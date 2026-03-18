@@ -1,0 +1,215 @@
+# horizon.RunsApi
+
+All URIs are relative to *http://localhost*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**cancel_instance**](RunsApi.md#cancel_instance) | **PUT** /horizon/api/runs/cancel | [EXPERIMENTAL] CancelInstance: Cancels multiple instance executions.
+[**get_run_results**](RunsApi.md#get_run_results) | **GET** /horizon/api/runs | [EXPERIMENTAL] GetRunResults: Get run results
+[**rerun_instance**](RunsApi.md#rerun_instance) | **PUT** /horizon/api/runs/{runId}/rerun | [EXPERIMENTAL] RerunInstance: Reruns a single instance execution.
+[**stop_instance_execution**](RunsApi.md#stop_instance_execution) | **PUT** /horizon/api/runs/{instanceId}/{runId}/stop | [EXPERIMENTAL] StopInstanceExecution: Stops a single instance execution.
+
+
+### Example
+
+```python
+from finbourne.sdk.exceptions import ApiException
+from finbourne.sdk.extensions.configuration_options import ConfigurationOptions
+from finbourne.sdk.services.horizon.models import *
+
+from finbourne.sdk.extensions import (
+  SyncApiClientFactory
+)
+
+from finbourne.sdk.services.horizon.api.runs_api import RunsApi
+
+# opts = ConfigurationOptions()
+# opts.total_timeout_ms = 30_000
+
+# uncomment the below to use an api client factory with overrides
+# api_client_factory = SyncApiClientFactory(opts=opts)
+
+api_client_factory = SyncApiClientFactory()
+api_instance = api_client_factory.build(RunsApi)
+```
+
+---
+
+# **cancel_instance**
+> IntegrationCancellationResponse cancelInstance = cancel_instance(cancel_run_request)
+
+[EXPERIMENTAL] CancelInstance: Cancels multiple instance executions.
+
+Cancels multiple execution instances of an integration. The execution instance must be queued, the user must be authenticated, entitled to call this method, and the user's domain must be licensed for the integration.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(RunsApi)
+cancel_run_request = CancelRunRequest()
+api_response = api_instance.cancel_instance(cancel_run_request)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **cancel_run_request** | [**CancelRunRequest**](CancelRunRequest.md)| Contains the run identifiers and a message to be set e.g. \&quot;b64135e7-98a0-41af-a845-d86167d54cc7\&quot;. | [required] 
+
+### Return type
+
+[**IntegrationCancellationResponse**](IntegrationCancellationResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Some or all of the instances requested were cancelled. |  -  |
+**400** | The details of the input related failure |  -  |
+**404** | None of the executions does not exist. |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_run_results**
+> PagedResourceListOfIntegrationRunResponse getRunResults = get_run_results(filter=filter, sort_by=sort_by, limit=limit, page_token=page_token)
+
+[EXPERIMENTAL] GetRunResults: Get run results
+
+Get run results
+
+### Example
+
+```python
+api_instance = api_client_factory.build(RunsApi)
+filter = 'filter_example' # str (optional)
+sort_by = ['sort_by_example'] # List[str] (optional)
+limit = 100 # int (optional)
+page_token = '' # str (optional)
+api_response = api_instance.get_run_results(filter=filter, sort_by=sort_by, limit=limit, page_token=page_token)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **filter** | **str**| Expression to filter the result set. | [optional] 
+ **sort_by** | [**List[str]**](str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
+ **limit** | **int**| When paginating, limit the results to this number. | [optional] [default to 100]
+ **page_token** | **str**| The pagination token to use to continue listing integration runs; this value is returned from             the previous call. If a pagination token is provided, the &lt;i&gt;sortBy&lt;/i&gt; and &lt;i&gt;filter&lt;/i&gt; fields must not have changed since the original request. | [optional] [default to &#39;&#39;]
+
+### Return type
+
+[**PagedResourceListOfIntegrationRunResponse**](PagedResourceListOfIntegrationRunResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | The details of the input related failure |  -  |
+**404** | Not Found |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **rerun_instance**
+> IntegrationRerunResponse rerunInstance = rerun_instance(run_id)
+
+[EXPERIMENTAL] RerunInstance: Reruns a single instance execution.
+
+Reruns an execution instance of an integration. The user must be authenticated, entitled to call this method, and the user's domain must be licensed for the integration.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(RunsApi)
+run_id = 'run_id_example' # str
+api_response = api_instance.rerun_instance(run_id)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **run_id** | **str**| Run identifier e.g. \&quot;b64135e7-98a0-41af-a845-d86167d54cc7\&quot;. | [required] 
+
+### Return type
+
+[**IntegrationRerunResponse**](IntegrationRerunResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The instance was rerun. |  -  |
+**400** | The details of the input related failure |  -  |
+**404** | The execution does not exist. |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **stop_instance_execution**
+> object stopInstanceExecution = stop_instance_execution(instance_id, run_id)
+
+[EXPERIMENTAL] StopInstanceExecution: Stops a single instance execution.
+
+Stops an execution instance of an External Client Application integration type. The execution instance must be started, the user must be authenticated, entitled to call this method, and the user's domain must be licensed for the integration.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(RunsApi)
+instance_id = 'instance_id_example' # str
+run_id = 'run_id_example' # str
+api_response = api_instance.stop_instance_execution(instance_id, run_id)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **instance_id** | **str**|  | [required] 
+ **run_id** | **str**| Run identifier e.g. \&quot;b64135e7-98a0-41af-a845-d86167d54cc7\&quot;. | [required] 
+
+### Return type
+
+**object**
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The instance was stopped. |  -  |
+**400** | The details of the input related failure |  -  |
+**404** | The execution does not exist. |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+

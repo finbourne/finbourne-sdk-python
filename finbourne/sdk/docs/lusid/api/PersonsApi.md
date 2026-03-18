@@ -1,0 +1,967 @@
+# lusid.PersonsApi
+
+All URIs are relative to *http://localhost*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**delete_person**](PersonsApi.md#delete_person) | **DELETE** /api/api/persons/{idTypeScope}/{idTypeCode}/{code} | DeletePerson: Delete person
+[**delete_person_access_metadata**](PersonsApi.md#delete_person_access_metadata) | **DELETE** /api/api/persons/{idTypeScope}/{idTypeCode}/{code}/metadata/{metadataKey} | [EARLY ACCESS] DeletePersonAccessMetadata: Delete a Person Access Metadata entry
+[**delete_person_identifiers**](PersonsApi.md#delete_person_identifiers) | **DELETE** /api/api/persons/{idTypeScope}/{idTypeCode}/{code}/identifiers | [EARLY ACCESS] DeletePersonIdentifiers: Delete Person Identifiers
+[**delete_person_properties**](PersonsApi.md#delete_person_properties) | **DELETE** /api/api/persons/{idTypeScope}/{idTypeCode}/{code}/properties | [EARLY ACCESS] DeletePersonProperties: Delete Person Properties
+[**get_all_person_access_metadata**](PersonsApi.md#get_all_person_access_metadata) | **GET** /api/api/persons/{idTypeScope}/{idTypeCode}/{code}/metadata | [EARLY ACCESS] GetAllPersonAccessMetadata: Get Access Metadata rules for a Person
+[**get_person**](PersonsApi.md#get_person) | **GET** /api/api/persons/{idTypeScope}/{idTypeCode}/{code} | [EARLY ACCESS] GetPerson: Get Person
+[**get_person_access_metadata_by_key**](PersonsApi.md#get_person_access_metadata_by_key) | **GET** /api/api/persons/{idTypeScope}/{idTypeCode}/{code}/metadata/{metadataKey} | [EARLY ACCESS] GetPersonAccessMetadataByKey: Get an entry identified by a metadataKey in the Access Metadata of a Person
+[**get_person_property_time_series**](PersonsApi.md#get_person_property_time_series) | **GET** /api/api/persons/{idTypeScope}/{idTypeCode}/{code}/properties/time-series | [EARLY ACCESS] GetPersonPropertyTimeSeries: Get Person Property Time Series
+[**get_person_relations**](PersonsApi.md#get_person_relations) | **GET** /api/api/persons/{idTypeScope}/{idTypeCode}/{code}/relations | [EARLY ACCESS] GetPersonRelations: Get Relations for Person
+[**get_person_relationships**](PersonsApi.md#get_person_relationships) | **GET** /api/api/persons/{idTypeScope}/{idTypeCode}/{code}/relationships | [EARLY ACCESS] GetPersonRelationships: Get Relationships for Person
+[**list_all_persons**](PersonsApi.md#list_all_persons) | **GET** /api/api/persons | [EARLY ACCESS] ListAllPersons: List All Persons
+[**list_persons**](PersonsApi.md#list_persons) | **GET** /api/api/persons/{idTypeScope}/{idTypeCode} | [EARLY ACCESS] ListPersons: List Persons
+[**patch_person_access_metadata**](PersonsApi.md#patch_person_access_metadata) | **PATCH** /api/api/persons/{idTypeScope}/{idTypeCode}/{code}/metadata | [EARLY ACCESS] PatchPersonAccessMetadata: Patch Access Metadata rules for a Person.
+[**set_person_identifiers**](PersonsApi.md#set_person_identifiers) | **POST** /api/api/persons/{idTypeScope}/{idTypeCode}/{code}/identifiers | [EARLY ACCESS] SetPersonIdentifiers: Set Person Identifiers
+[**set_person_properties**](PersonsApi.md#set_person_properties) | **POST** /api/api/persons/{idTypeScope}/{idTypeCode}/{code}/properties | [EARLY ACCESS] SetPersonProperties: Set Person Properties
+[**upsert_person**](PersonsApi.md#upsert_person) | **POST** /api/api/persons | UpsertPerson: Upsert Person
+[**upsert_person_access_metadata**](PersonsApi.md#upsert_person_access_metadata) | **PUT** /api/api/persons/{idTypeScope}/{idTypeCode}/{code}/metadata/{metadataKey} | [EARLY ACCESS] UpsertPersonAccessMetadata: Upsert a Person Access Metadata entry associated with a specific metadataKey. This creates or updates the data in LUSID.
+[**upsert_persons**](PersonsApi.md#upsert_persons) | **POST** /api/api/persons/$batchUpsert | [EARLY ACCESS] UpsertPersons: Batch upsert Persons
+
+
+### Example
+
+```python
+from finbourne.sdk.exceptions import ApiException
+from finbourne.sdk.extensions.configuration_options import ConfigurationOptions
+from finbourne.sdk.services.lusid.models import *
+
+from finbourne.sdk.extensions import (
+  SyncApiClientFactory
+)
+
+from finbourne.sdk.services.lusid.api.persons_api import PersonsApi
+
+# opts = ConfigurationOptions()
+# opts.total_timeout_ms = 30_000
+
+# uncomment the below to use an api client factory with overrides
+# api_client_factory = SyncApiClientFactory(opts=opts)
+
+api_client_factory = SyncApiClientFactory()
+api_instance = api_client_factory.build(PersonsApi)
+```
+
+---
+
+# **delete_person**
+> DeletedEntityResponse deletePerson = delete_person(id_type_scope, id_type_code, code)
+
+DeletePerson: Delete person
+
+Delete a person. Deletion will be valid from the person's creation datetime.  This means that the person will no longer exist at any effective datetime from the asAt datetime of deletion.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(PersonsApi)
+id_type_scope = 'id_type_scope_example' # str
+id_type_code = 'id_type_code_example' # str
+code = 'code_example' # str
+api_response = api_instance.delete_person(id_type_scope, id_type_code, code)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id_type_scope** | **str**| The scope of the person identifier type. | [required] 
+ **id_type_code** | **str**| The code of the person identifier type. | [required] 
+ **code** | **str**| Code of the person under specified identifier type scope and code. This together with defined              identifier type uniquely identifies the person to delete. | [required] 
+
+### Return type
+
+[**DeletedEntityResponse**](DeletedEntityResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The response from deleting person. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **delete_person_access_metadata**
+> DeletedEntityResponse deletePersonAccessMetadata = delete_person_access_metadata(id_type_scope, id_type_code, code, metadata_key, effective_at=effective_at, effective_until=effective_until)
+
+[EARLY ACCESS] DeletePersonAccessMetadata: Delete a Person Access Metadata entry
+
+Deletes the Person Access Metadata entry that exactly matches the provided identifier parts.    It is important to always check to verify success (or failure).
+
+### Example
+
+```python
+api_instance = api_client_factory.build(PersonsApi)
+id_type_scope = 'id_type_scope_example' # str
+id_type_code = 'id_type_code_example' # str
+code = 'code_example' # str
+metadata_key = 'metadata_key_example' # str
+effective_at = 'effective_at_example' # str (optional)
+effective_until = '2013-10-20T19:20:30+01:00' # datetime (optional)
+api_response = api_instance.delete_person_access_metadata(id_type_scope, id_type_code, code, metadata_key, effective_at=effective_at, effective_until=effective_until)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id_type_scope** | **str**| Scope of the person identifier. | [required] 
+ **id_type_code** | **str**| Code of the person identifier. | [required] 
+ **code** | **str**| Code of the person under specified identifier type&#39;s scope and code. | [required] 
+ **metadata_key** | **str**| Key of the metadata entry to retrieve | [required] 
+ **effective_at** | **str**| The effective date to delete at, if this is not supplied, it will delete all data found | [optional] 
+ **effective_until** | **datetime**| The effective date until which the delete is valid. If not supplied this will be valid indefinitely, or until the next &#39;effectiveAt&#39; date of the Access Metadata | [optional] 
+
+### Return type
+
+[**DeletedEntityResponse**](DeletedEntityResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The Access Metadata with the given metadataKey has been deleted |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **delete_person_identifiers**
+> DeletedEntityResponse deletePersonIdentifiers = delete_person_identifiers(id_type_scope, id_type_code, code, property_keys, effective_at=effective_at)
+
+[EARLY ACCESS] DeletePersonIdentifiers: Delete Person Identifiers
+
+Delete identifiers that belong to the given property keys of the person.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(PersonsApi)
+id_type_scope = 'id_type_scope_example' # str
+id_type_code = 'id_type_code_example' # str
+code = 'code_example' # str
+property_keys = ['property_keys_example'] # List[str]
+effective_at = 'effective_at_example' # str (optional)
+api_response = api_instance.delete_person_identifiers(id_type_scope, id_type_code, code, property_keys, effective_at=effective_at)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id_type_scope** | **str**| Scope of the person identifier type. | [required] 
+ **id_type_code** | **str**| Code of the person identifier type. | [required] 
+ **code** | **str**| Code of the person under specified identifier type&#39;s scope and code. This together with stated identifier type uniquely              identifies the person. | [required] 
+ **property_keys** | [**List[str]**](str.md)| The property keys of the identifiers to delete. These take the format              {domain}/{scope}/{code} e.g. \&quot;Person/CompanyDetails/Role\&quot;. Each property must be from the \&quot;Person\&quot; domain. Identifiers or identifiers not specified in request will not be changed. | [required] 
+ **effective_at** | **str**| The effective datetime or cut label at which to delete the identifiers. Defaults to the current LUSID system datetime if not specified.              Must not include an effective datetime if identifiers are perpetual. | [optional] 
+
+### Return type
+
+[**DeletedEntityResponse**](DeletedEntityResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The datetime that the identifiers were deleted from the specified person |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **delete_person_properties**
+> DeletedEntityResponse deletePersonProperties = delete_person_properties(id_type_scope, id_type_code, code, property_keys, effective_at=effective_at)
+
+[EARLY ACCESS] DeletePersonProperties: Delete Person Properties
+
+Delete all properties that belong to the given property keys of the person.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(PersonsApi)
+id_type_scope = 'id_type_scope_example' # str
+id_type_code = 'id_type_code_example' # str
+code = 'code_example' # str
+property_keys = ['property_keys_example'] # List[str]
+effective_at = 'effective_at_example' # str (optional)
+api_response = api_instance.delete_person_properties(id_type_scope, id_type_code, code, property_keys, effective_at=effective_at)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id_type_scope** | **str**| Scope of the person identifier type. | [required] 
+ **id_type_code** | **str**| Code of the person identifier type. | [required] 
+ **code** | **str**| Code of the person under specified identifier type&#39;s scope and code. This together with stated identifier type uniquely              identifies the person. | [required] 
+ **property_keys** | [**List[str]**](str.md)| The property keys of the person&#39;s properties to delete. These take the format              {domain}/{scope}/{code} e.g. \&quot;Person/CompanyDetails/Role\&quot;. Each property must be from the \&quot;Person\&quot; domain. Properties or identifiers not specified in request will not be changed. | [required] 
+ **effective_at** | **str**| The effective datetime or cut label at which to delete time-variant properties from.              The property must exist at the specified &#39;effectiveAt&#39; datetime. If the &#39;effectiveAt&#39; is not provided or is              before the time-variant property exists then a failure is returned. Do not specify this parameter if any of              the properties to delete are perpetual. | [optional] 
+
+### Return type
+
+[**DeletedEntityResponse**](DeletedEntityResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The datetime that the properties were deleted from the specified person |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_all_person_access_metadata**
+> Dict[str, List[AccessMetadataValue]] getAllPersonAccessMetadata = get_all_person_access_metadata(id_type_scope, id_type_code, code, effective_at=effective_at, as_at=as_at)
+
+[EARLY ACCESS] GetAllPersonAccessMetadata: Get Access Metadata rules for a Person
+
+Pass the Scope and Code of the Person identifier along with the person code parameter to retrieve the associated Access Metadata
+
+### Example
+
+```python
+api_instance = api_client_factory.build(PersonsApi)
+id_type_scope = 'id_type_scope_example' # str
+id_type_code = 'id_type_code_example' # str
+code = 'code_example' # str
+effective_at = 'effective_at_example' # str (optional)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+api_response = api_instance.get_all_person_access_metadata(id_type_scope, id_type_code, code, effective_at=effective_at, as_at=as_at)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id_type_scope** | **str**| Scope of the person identifier. | [required] 
+ **id_type_code** | **str**| Code of the person identifier. | [required] 
+ **code** | **str**| Code of the person under specified identifier type&#39;s scope and code. | [required] 
+ **effective_at** | **str**| The effectiveAt datetime at which to retrieve the Access Metadata | [optional] 
+ **as_at** | **datetime**| The asAt datetime at which to retrieve the Access Metadata | [optional] 
+
+### Return type
+
+**Dict[str, List[AccessMetadataValue]]**
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The access metadata for the Person or any failure. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_person**
+> Person getPerson = get_person(id_type_scope, id_type_code, code, property_keys=property_keys, effective_at=effective_at, as_at=as_at, relationship_definition_ids=relationship_definition_ids)
+
+[EARLY ACCESS] GetPerson: Get Person
+
+Retrieve the definition of a person.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(PersonsApi)
+id_type_scope = 'id_type_scope_example' # str
+id_type_code = 'id_type_code_example' # str
+code = 'code_example' # str
+property_keys = ['property_keys_example'] # List[str] (optional)
+effective_at = 'effective_at_example' # str (optional)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+relationship_definition_ids = ['relationship_definition_ids_example'] # List[str] (optional)
+api_response = api_instance.get_person(id_type_scope, id_type_code, code, property_keys=property_keys, effective_at=effective_at, as_at=as_at, relationship_definition_ids=relationship_definition_ids)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id_type_scope** | **str**| Scope of the person identifier type. | [required] 
+ **id_type_code** | **str**| Code of the person identifier type. | [required] 
+ **code** | **str**| Code of the person under specified scope and code. This together with stated identifier type uniquely              identifies the person. | [required] 
+ **property_keys** | [**List[str]**](str.md)| A list of property keys from the \&quot;Person\&quot; domain to decorate onto the person,               or from any domain that supports relationships to decorate onto related entities.              These take the format {domain}/{scope}/{code} e.g. \&quot;Person/ContactDetails/Address\&quot;. | [optional] 
+ **effective_at** | **str**| The effective datetime or cut label at which to retrieve the person. Defaults to the current LUSID system datetime if not specified. | [optional] 
+ **as_at** | **datetime**| The asAt datetime at which to retrieve the person. Defaults to return the latest version of the person if not specified. | [optional] 
+ **relationship_definition_ids** | [**List[str]**](str.md)| A list of relationship definitions that are used to decorate related entities              onto the person in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}. | [optional] 
+
+### Return type
+
+[**Person**](Person.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The requested person definition |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_person_access_metadata_by_key**
+> List[AccessMetadataValue] getPersonAccessMetadataByKey = get_person_access_metadata_by_key(id_type_scope, id_type_code, code, metadata_key, effective_at=effective_at, as_at=as_at)
+
+[EARLY ACCESS] GetPersonAccessMetadataByKey: Get an entry identified by a metadataKey in the Access Metadata of a Person
+
+Get a specific Person Access Metadata by specifying the corresponding identifier parts and Person code                No matching will be performed through this endpoint. To retrieve an entry, it is necessary to specify, exactly, the identifier of the entry
+
+### Example
+
+```python
+api_instance = api_client_factory.build(PersonsApi)
+id_type_scope = 'id_type_scope_example' # str
+id_type_code = 'id_type_code_example' # str
+code = 'code_example' # str
+metadata_key = 'metadata_key_example' # str
+effective_at = 'effective_at_example' # str (optional)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+api_response = api_instance.get_person_access_metadata_by_key(id_type_scope, id_type_code, code, metadata_key, effective_at=effective_at, as_at=as_at)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id_type_scope** | **str**| Scope of the person identifier. | [required] 
+ **id_type_code** | **str**| Code of the person identifier. | [required] 
+ **code** | **str**| Code of the person under specified identifier type&#39;s scope and code. | [required] 
+ **metadata_key** | **str**| Key of the metadata entry to retrieve | [required] 
+ **effective_at** | **str**| The effectiveAt datetime at which to retrieve the Access Metadata | [optional] 
+ **as_at** | **datetime**| The asAt datetime at which to retrieve the Access Metadata | [optional] 
+
+### Return type
+
+[**List[AccessMetadataValue]**](AccessMetadataValue.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The successfully retrieved Person access metadata filtered by metadataKey or any failure. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_person_property_time_series**
+> ResourceListOfPropertyInterval getPersonPropertyTimeSeries = get_person_property_time_series(id_type_scope, id_type_code, code, property_key, as_at=as_at, filter=filter, page=page, limit=limit)
+
+[EARLY ACCESS] GetPersonPropertyTimeSeries: Get Person Property Time Series
+
+List the complete time series of a person property.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(PersonsApi)
+id_type_scope = 'id_type_scope_example' # str
+id_type_code = 'id_type_code_example' # str
+code = 'code_example' # str
+property_key = 'property_key_example' # str
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+filter = 'filter_example' # str (optional)
+page = 'page_example' # str (optional)
+limit = 56 # int (optional)
+api_response = api_instance.get_person_property_time_series(id_type_scope, id_type_code, code, property_key, as_at=as_at, filter=filter, page=page, limit=limit)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id_type_scope** | **str**| Scope of the person identifier type. | [required] 
+ **id_type_code** | **str**| Code of the person identifier type. | [required] 
+ **code** | **str**| Code of the person under specified identifier type&#39;s scope and code. This together with stated identifier type uniquely identifies the person. | [required] 
+ **property_key** | **str**| The property key of the property that will have its history shown. These must be in the format {domain}/{scope}/{code} e.g. \&quot;Person/CompanyDetails/Role\&quot;.              Each property must be from the \&quot;Person\&quot; domain. | [required] 
+ **as_at** | **datetime**| The asAt datetime at which to list the person&#39;s property history. Defaults to return the current datetime if not supplied. | [optional] 
+ **filter** | **str**| Expression to filter the result set. Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid. | [optional] 
+ **page** | **str**| The pagination token to use to continue listing properties from a previous call to get property time series.              This value is returned from the previous call. If a pagination token is provided the filter and asAt fields              must not have changed since the original request. | [optional] 
+ **limit** | **int**| When paginating, limit the number of returned results to this many. | [optional] 
+
+### Return type
+
+[**ResourceListOfPropertyInterval**](ResourceListOfPropertyInterval.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The time series of the property |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_person_relations**
+> ResourceListOfRelation getPersonRelations = get_person_relations(id_type_scope, id_type_code, code, effective_at=effective_at, as_at=as_at, filter=filter, identifier_types=identifier_types)
+
+[EARLY ACCESS] GetPersonRelations: Get Relations for Person
+
+Get relations for the specified person.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(PersonsApi)
+id_type_scope = 'id_type_scope_example' # str
+id_type_code = 'id_type_code_example' # str
+code = 'code_example' # str
+effective_at = 'effective_at_example' # str (optional)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+filter = 'filter_example' # str (optional)
+identifier_types = ['identifier_types_example'] # List[str] (optional)
+api_response = api_instance.get_person_relations(id_type_scope, id_type_code, code, effective_at=effective_at, as_at=as_at, filter=filter, identifier_types=identifier_types)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id_type_scope** | **str**| Scope of the person identifier type. | [required] 
+ **id_type_code** | **str**| Code of the person identifier type. | [required] 
+ **code** | **str**| Code of the person under specified identifier type&#39;s scope and code. This together with stated identifier type uniquely              identifies the person. | [required] 
+ **effective_at** | **str**| The effective datetime or cut label at which to get relations. Defaults to the current LUSID system datetime if not specified. | [optional] 
+ **as_at** | **datetime**| The asAt datetime at which to retrieve the person&#39;s relations. Defaults to return the latest LUSID AsAt time if not specified. | [optional] 
+ **filter** | **str**| Expression to filter the relations. Users should provide null or empty string for this field until further notice. | [optional] 
+ **identifier_types** | [**List[str]**](str.md)| Identifiers types (as property keys) used for referencing Persons or Legal Entities. These take the format              {domain}/{scope}/{code} e.g. \&quot;Person/CompanyDetails/Role\&quot;. They must be from the \&quot;Person\&quot; or \&quot;LegalEntity\&quot; domain.              Only identifier types stated will be used to look up relevant entities in relations. If not applicable, provide an empty array. | [optional] 
+
+### Return type
+
+[**ResourceListOfRelation**](ResourceListOfRelation.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The relations for the specified person. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_person_relationships**
+> ResourceListOfRelationship getPersonRelationships = get_person_relationships(id_type_scope, id_type_code, code, effective_at=effective_at, as_at=as_at, filter=filter, identifier_types=identifier_types)
+
+[EARLY ACCESS] GetPersonRelationships: Get Relationships for Person
+
+Get relationships for the specified person.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(PersonsApi)
+id_type_scope = 'id_type_scope_example' # str
+id_type_code = 'id_type_code_example' # str
+code = 'code_example' # str
+effective_at = 'effective_at_example' # str (optional)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+filter = 'filter_example' # str (optional)
+identifier_types = ['identifier_types_example'] # List[str] (optional)
+api_response = api_instance.get_person_relationships(id_type_scope, id_type_code, code, effective_at=effective_at, as_at=as_at, filter=filter, identifier_types=identifier_types)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id_type_scope** | **str**| Scope of the person&#39;s identifier type. | [required] 
+ **id_type_code** | **str**| Code of the person&#39;s identifier type. | [required] 
+ **code** | **str**| Code of the person under specified identifier type&#39;s scope and code. This together with stated identifier type uniquely              identifies the person. | [required] 
+ **effective_at** | **str**| The effective datetime or cut label at which to get relationships. Defaults to the current LUSID system datetime if not specified. | [optional] 
+ **as_at** | **datetime**| The asAt datetime at which to retrieve relationships. Defaults to return the latest LUSID AsAt time if not specified. | [optional] 
+ **filter** | **str**| Expression to filter relationships. Users should provide null or empty string for this field until further notice. | [optional] 
+ **identifier_types** | [**List[str]**](str.md)| Identifier types (as property keys) used for referencing Persons or Legal Entities.              These can be specified from the &#39;Person&#39; or &#39;LegalEntity&#39; domains and have the format {domain}/{scope}/{code}, for example              &#39;Person/CompanyDetails/Role&#39;. An Empty array may be used to return all related Entities. | [optional] 
+
+### Return type
+
+[**ResourceListOfRelationship**](ResourceListOfRelationship.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The relationships for the specified person. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **list_all_persons**
+> ResourceListOfPerson listAllPersons = list_all_persons(effective_at=effective_at, as_at=as_at, page=page, limit=limit, filter=filter, property_keys=property_keys, relationship_definition_ids=relationship_definition_ids)
+
+[EARLY ACCESS] ListAllPersons: List All Persons
+
+List all persons which the user is entitled to see.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(PersonsApi)
+effective_at = 'effective_at_example' # str (optional)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+page = 'page_example' # str (optional)
+limit = 56 # int (optional)
+filter = 'filter_example' # str (optional)
+property_keys = ['property_keys_example'] # List[str] (optional)
+relationship_definition_ids = ['relationship_definition_ids_example'] # List[str] (optional)
+api_response = api_instance.list_all_persons(effective_at=effective_at, as_at=as_at, page=page, limit=limit, filter=filter, property_keys=property_keys, relationship_definition_ids=relationship_definition_ids)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **effective_at** | **str**| The effective datetime or cut label at which to list the people. Defaults to the current LUSID              system datetime if not specified. | [optional] 
+ **as_at** | **datetime**| The asAt datetime at which to list the people. Defaults to return the latest version              of each people if not specified. | [optional] 
+ **page** | **str**| The pagination token to use to continue listing persons from a previous call to list persons. This              value is returned from the previous call. If a pagination token is provided the filter, effectiveAt              and asAt fields must not have changed since the original request. | [optional] 
+ **limit** | **int**| When paginating, limit the number of returned results to this many. Defaults to 5000 if not specified. | [optional] 
+ **filter** | **str**| Expression to filter the result set.               For example, to filter on the display name, use \&quot;displayName eq &#39;John&#39;\&quot;              Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid. | [optional] 
+ **property_keys** | [**List[str]**](str.md)| A list of property keys from the \&quot;Person\&quot; domain to decorate onto each person,               or from any domain that supports relationships to decorate onto related entities.              These take the format {domain}/{scope}/{code} e.g. \&quot;Person/ContactDetails/Address\&quot;. | [optional] 
+ **relationship_definition_ids** | [**List[str]**](str.md)| A list of relationship definitions that are used to decorate related entities              onto the persons in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}. | [optional] 
+
+### Return type
+
+[**ResourceListOfPerson**](ResourceListOfPerson.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Existing people |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **list_persons**
+> PagedResourceListOfPerson listPersons = list_persons(id_type_scope, id_type_code, effective_at=effective_at, as_at=as_at, page=page, limit=limit, filter=filter, property_keys=property_keys, relationship_definition_ids=relationship_definition_ids)
+
+[EARLY ACCESS] ListPersons: List Persons
+
+List persons which have identifiers of a specific identifier type's scope and code, and satisfies filter criteria.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(PersonsApi)
+id_type_scope = 'id_type_scope_example' # str
+id_type_code = 'id_type_code_example' # str
+effective_at = 'effective_at_example' # str (optional)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+page = 'page_example' # str (optional)
+limit = 56 # int (optional)
+filter = 'filter_example' # str (optional)
+property_keys = ['property_keys_example'] # List[str] (optional)
+relationship_definition_ids = ['relationship_definition_ids_example'] # List[str] (optional)
+api_response = api_instance.list_persons(id_type_scope, id_type_code, effective_at=effective_at, as_at=as_at, page=page, limit=limit, filter=filter, property_keys=property_keys, relationship_definition_ids=relationship_definition_ids)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id_type_scope** | **str**| Scope of the person identifier type. | [required] 
+ **id_type_code** | **str**| Code of the person identifier type. | [required] 
+ **effective_at** | **str**| The effective datetime or cut label at which to list the people. Defaults to the current LUSID              system datetime if not specified. | [optional] 
+ **as_at** | **datetime**| The asAt datetime at which to list the people. Defaults to return the latest version              of each people if not specified. | [optional] 
+ **page** | **str**| The pagination token to use to continue listing persons from a previous call to list persons. This              value is returned from the previous call. If a pagination token is provided the filter, effectiveAt              and asAt fields must not have changed since the original request. | [optional] 
+ **limit** | **int**| When paginating, limit the number of returned results to this many. Defaults to 100 if not specified. | [optional] 
+ **filter** | **str**| Expression to filter the result set.               For example, to filter on the LUPID, use \&quot;lusidPersonId eq &#39;string&#39;\&quot;              Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid. | [optional] 
+ **property_keys** | [**List[str]**](str.md)| A list of property keys from the \&quot;Person\&quot; domain to decorate onto each person,               or from any domain that supports relationships to decorate onto related entities.              These take the format {domain}/{scope}/{code} e.g. \&quot;Person/ContactDetails/Address\&quot;. | [optional] 
+ **relationship_definition_ids** | [**List[str]**](str.md)| A list of relationship definitions that are used to decorate related entities              onto the persons in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}. | [optional] 
+
+### Return type
+
+[**PagedResourceListOfPerson**](PagedResourceListOfPerson.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | People in specified scope |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **patch_person_access_metadata**
+> Dict[str, List[AccessMetadataValue]] patchPersonAccessMetadata = patch_person_access_metadata(id_type_scope, id_type_code, code, access_metadata_operation, effective_at=effective_at, effective_until=effective_until)
+
+[EARLY ACCESS] PatchPersonAccessMetadata: Patch Access Metadata rules for a Person.
+
+Patch Person Access Metadata Rules in a single scope.  The behaviour is defined by the JSON Patch specification.                Currently only 'add' is a supported operation on the patch document.    Currently only valid metadata keys are supported paths on the patch document.                The response will return any affected Person Access Metadata rules or a failure message if unsuccessful.                It is important to always check to verify success (or failure).                Multiple rules for a metadataKey can exist with different effective at dates, when resources are accessed the rule that is active for the current time will be fetched.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(PersonsApi)
+id_type_scope = 'id_type_scope_example' # str
+id_type_code = 'id_type_code_example' # str
+code = 'code_example' # str
+access_metadata_operation = [{"value":[{"value":"SilverLicence","provider":"TestDataProvider"}],"path":"/exampleMetadataKey","op":"add"}] # List[AccessMetadataOperation]
+effective_at = 'effective_at_example' # str (optional)
+effective_until = '2013-10-20T19:20:30+01:00' # datetime (optional)
+api_response = api_instance.patch_person_access_metadata(id_type_scope, id_type_code, code, access_metadata_operation, effective_at=effective_at, effective_until=effective_until)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id_type_scope** | **str**| Scope of the person identifier. | [required] 
+ **id_type_code** | **str**| Code of the person identifier. | [required] 
+ **code** | **str**| Code of the person under specified identifier type&#39;s scope and code. | [required] 
+ **access_metadata_operation** | [**List[AccessMetadataOperation]**](AccessMetadataOperation.md)| The Json Patch document | [required] 
+ **effective_at** | **str**| The effectiveAt datetime at which to upsert the Access Metadata | [optional] 
+ **effective_until** | **datetime**| The effective datetime until which the Access Metadata is valid. If not supplied this will be valid indefinitely, or until the next &#39;effectiveAt&#39; datetime of the Access Metadata | [optional] 
+
+### Return type
+
+**Dict[str, List[AccessMetadataValue]]**
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The successfully patched items. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **set_person_identifiers**
+> Person setPersonIdentifiers = set_person_identifiers(id_type_scope, id_type_code, code, set_person_identifiers_request)
+
+[EARLY ACCESS] SetPersonIdentifiers: Set Person Identifiers
+
+Set identifiers of the person.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(PersonsApi)
+id_type_scope = 'id_type_scope_example' # str
+id_type_code = 'id_type_code_example' # str
+code = 'code_example' # str
+set_person_identifiers_request = SetPersonIdentifiersRequest()
+api_response = api_instance.set_person_identifiers(id_type_scope, id_type_code, code, set_person_identifiers_request)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id_type_scope** | **str**| Scope of the person identifier type. | [required] 
+ **id_type_code** | **str**| Code of the person identifier type. | [required] 
+ **code** | **str**| Code of the person under specified identifier type&#39;s scope and code. This together with stated identifier type uniquely              identifies the person. | [required] 
+ **set_person_identifiers_request** | [**SetPersonIdentifiersRequest**](SetPersonIdentifiersRequest.md)| Request containing identifiers to set for the person. Identifiers not specified in request will not be changed. | [required] 
+
+### Return type
+
+[**Person**](Person.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The Person with updated identifiers. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **set_person_properties**
+> Person setPersonProperties = set_person_properties(id_type_scope, id_type_code, code, set_person_properties_request)
+
+[EARLY ACCESS] SetPersonProperties: Set Person Properties
+
+Set properties of the person.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(PersonsApi)
+id_type_scope = 'id_type_scope_example' # str
+id_type_code = 'id_type_code_example' # str
+code = 'code_example' # str
+set_person_properties_request = SetPersonPropertiesRequest()
+api_response = api_instance.set_person_properties(id_type_scope, id_type_code, code, set_person_properties_request)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id_type_scope** | **str**| Scope of the person identifier type. | [required] 
+ **id_type_code** | **str**| Code of the person identifier type. | [required] 
+ **code** | **str**| Code of the person under specified identifier type&#39;s scope and code. This together with stated identifier type uniquely              identifies the person. | [required] 
+ **set_person_properties_request** | [**SetPersonPropertiesRequest**](SetPersonPropertiesRequest.md)| Request containing properties to set for the person. Properties not specified in request will not be changed. | [required] 
+
+### Return type
+
+[**Person**](Person.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The Person with updated properties or identifiers. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **upsert_person**
+> Person upsertPerson = upsert_person(upsert_person_request)
+
+UpsertPerson: Upsert Person
+
+Create or update a new person under the specified scope.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(PersonsApi)
+upsert_person_request = UpsertPersonRequest()
+api_response = api_instance.upsert_person(upsert_person_request)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **upsert_person_request** | [**UpsertPersonRequest**](UpsertPersonRequest.md)| Request to create or update a person. | [required] 
+
+### Return type
+
+[**Person**](Person.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | The newly created or updated person |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **upsert_person_access_metadata**
+> ResourceListOfAccessMetadataValueOf upsertPersonAccessMetadata = upsert_person_access_metadata(id_type_scope, id_type_code, code, metadata_key, upsert_person_access_metadata_request, effective_at=effective_at, effective_until=effective_until)
+
+[EARLY ACCESS] UpsertPersonAccessMetadata: Upsert a Person Access Metadata entry associated with a specific metadataKey. This creates or updates the data in LUSID.
+
+Update or insert one Person Access Metadata entry in a single scope. An item will be updated if it already exists  and inserted if it does not.                The response will return the successfully updated or inserted Person Access Metadata rule or failure message if unsuccessful.                It is important to always check to verify success (or failure).                Multiple rules for a metadataKey can exist with different effective at dates, when resources are accessed the rule that is active for the current time will be fetched.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(PersonsApi)
+id_type_scope = 'id_type_scope_example' # str
+id_type_code = 'id_type_code_example' # str
+code = 'code_example' # str
+metadata_key = 'metadata_key_example' # str
+upsert_person_access_metadata_request = UpsertPersonAccessMetadataRequest()
+effective_at = 'effective_at_example' # str (optional)
+effective_until = '2013-10-20T19:20:30+01:00' # datetime (optional)
+api_response = api_instance.upsert_person_access_metadata(id_type_scope, id_type_code, code, metadata_key, upsert_person_access_metadata_request, effective_at=effective_at, effective_until=effective_until)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id_type_scope** | **str**| Scope of the person identifier. | [required] 
+ **id_type_code** | **str**| Code of the person identifier. | [required] 
+ **code** | **str**| Code of the person under specified identifier type&#39;s scope and code. | [required] 
+ **metadata_key** | **str**| Key of the metadata entry to retrieve | [required] 
+ **upsert_person_access_metadata_request** | [**UpsertPersonAccessMetadataRequest**](UpsertPersonAccessMetadataRequest.md)| The Person Access Metadata entry to upsert | [required] 
+ **effective_at** | **str**| The effectiveAt datetime at which to upsert the Access Metadata | [optional] 
+ **effective_until** | **datetime**| The effective datetime until which the Access Metadata is valid. If not supplied this will be valid indefinitely, or until the next &#39;effectiveAt&#39; datetime of the Access Metadata | [optional] 
+
+### Return type
+
+[**ResourceListOfAccessMetadataValueOf**](ResourceListOfAccessMetadataValueOf.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The successfully updated or inserted item or any failure. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **upsert_persons**
+> UpsertPersonsResponse upsertPersons = upsert_persons(success_mode, request_body)
+
+[EARLY ACCESS] UpsertPersons: Batch upsert Persons
+
+Create or updates a collection of person(s).
+
+### Example
+
+```python
+api_instance = api_client_factory.build(PersonsApi)
+success_mode = 'success_mode_example' # str
+request_body = {"firstPersonExample":{"identifiers":{"Person/HrSystem1/InternalId":{"key":"Person/HrSystem1/InternalId","value":{"labelValue":"XY10001111"}},"Person/PayrollSystem1/Id":{"key":"Person/PayrollSystem1/Id","value":{"labelValue":"HSI3453456"}},"Person/CompanyIntranet/LoginId":{"key":"Person/CompanyIntranet/LoginId","value":{"labelValue":"johnsmith001"}}},"properties":{"Person/PersonalDetails/Name":{"key":"Person/PersonalDetails/Name","value":{"labelValue":"John Smith"}},"Person/CompanyDetails/Role":{"key":"Person/CompanyDetails/Role","value":{"labelValueSet":{"values":["SalesRepresentative","CustomerServiceRepresentative"]}},"effectiveFrom":"2016-07-01T00:00:00.0000000+00:00"}},"displayName":"Person1DisplayName","description":"Person1Description"},"secondPersonExample":{"identifiers":{"Person/HrSystem1/InternalId":{"key":"Person/HrSystem1/InternalId","value":{"labelValue":"XY10008377"}},"Person/PayrollSystem1/Id":{"key":"Person/PayrollSystem1/Id","value":{"labelValue":"LFK9172001"}},"Person/CompanyIntranet/LoginId":{"key":"Person/CompanyIntranet/LoginId","value":{"labelValue":"emilyevans002"}}},"properties":{"Person/PersonalDetails/Name":{"key":"Person/PersonalDetails/Name","value":{"labelValue":"Emily Evans"}},"Person/ContactDetails/Phone":{"key":"Person/ContactDetails/Phone","value":{"labelValue":"01005675678"}},"Person/CompanyDetails/Role":{"key":"Person/CompanyDetails/Role","value":{"labelValue":"Manager"},"effectiveFrom":"2018-04-01T00:00:00.0000000+00:00"}},"displayName":"Person2DisplayName","description":"Person2Description"}} # Dict[str, UpsertPersonRequest]
+api_response = api_instance.upsert_persons(success_mode, request_body)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **success_mode** | **str**| Whether the batch request should fail Atomically or in a Partial fashion - Allowed Values: Atomic, Partial | [required] 
+ **request_body** | [**Dict[str, UpsertPersonRequest]**](UpsertPersonRequest.md)| A collection of requests to create or update Person(s). | [required] 
+
+### Return type
+
+[**UpsertPersonsResponse**](UpsertPersonsResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | The newly created or updated person(s) |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+

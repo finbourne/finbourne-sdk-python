@@ -1,0 +1,43 @@
+[project]
+name = "finbourne-sdk"
+version = "0.0.3"
+description = "Merged OpenAPI Specification"
+authors = [
+    {name = "OpenAPI Generator Community", email = "team@openapitools.org"}
+]
+license = {text = "MIT"}
+
+readme = "README.md"
+requires-python = ">=3.11"
+keywords = ["OpenAPI", "OpenAPI-Generator", "Merged OpenAPI Specification", "finbourne-sdk"]
+dependencies = [
+    "urllib3>=2.6.3,<3.0.0",
+    "python-dateutil>=2.8.2,<3.0.0",
+    "requests>=2.32.4,<3.0.0",
+    "aiohttp>=3.8.4,<4.0.0",
+    "pydantic>=2.6.3,<3.0.0",
+    "aenum>=3.1.11,<4.0.0",
+
+]
+
+[project.urls]
+Repository = "https://github.com/finbourne/finbourne-sdk-python.git"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.2.1,<8.0.0",
+    "pytest-asyncio>=0.21.0",
+    "flake8>=4.0.0,<5.0.0",
+    "xeger>=0.4,<1.0.0",
+]
+
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["finbourne"]
+
+[tool.pylint.'MESSAGES CONTROL']
+extension-pkg-whitelist = "pydantic"

@@ -1,0 +1,793 @@
+# luminesce.SqlBackgroundExecutionApi
+
+All URIs are relative to *http://localhost*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**cancel_query**](SqlBackgroundExecutionApi.md#cancel_query) | **DELETE** /honeycomb/api/SqlBackground/{executionId} | CancelQuery: Cancel / Clear data from a previously run query
+[**fetch_query_result_csv**](SqlBackgroundExecutionApi.md#fetch_query_result_csv) | **GET** /honeycomb/api/SqlBackground/{executionId}/csv | FetchQueryResultCsv: Fetch the result of a query as CSV
+[**fetch_query_result_excel**](SqlBackgroundExecutionApi.md#fetch_query_result_excel) | **GET** /honeycomb/api/SqlBackground/{executionId}/excel | FetchQueryResultExcel: Fetch the result of a query as an Excel file
+[**fetch_query_result_histogram**](SqlBackgroundExecutionApi.md#fetch_query_result_histogram) | **GET** /honeycomb/api/SqlBackground/{executionId}/histogram | FetchQueryResultHistogram: Construct a histogram of the result of a query
+[**fetch_query_result_json**](SqlBackgroundExecutionApi.md#fetch_query_result_json) | **GET** /honeycomb/api/SqlBackground/{executionId}/json | FetchQueryResultJson: Fetch the result of a query as a JSON string
+[**fetch_query_result_json_proper**](SqlBackgroundExecutionApi.md#fetch_query_result_json_proper) | **GET** /honeycomb/api/SqlBackground/{executionId}/jsonProper | FetchQueryResultJsonProper: Fetch the result of a query as JSON
+[**fetch_query_result_json_proper_with_lineage**](SqlBackgroundExecutionApi.md#fetch_query_result_json_proper_with_lineage) | **GET** /honeycomb/api/SqlBackground/{executionId}/jsonProperWithLineage | FetchQueryResultJsonProperWithLineage: Fetch the result of a query as JSON, but including a Lineage Node (if available)
+[**fetch_query_result_parquet**](SqlBackgroundExecutionApi.md#fetch_query_result_parquet) | **GET** /honeycomb/api/SqlBackground/{executionId}/parquet | FetchQueryResultParquet: Fetch the result of a query as Parquet
+[**fetch_query_result_pipe**](SqlBackgroundExecutionApi.md#fetch_query_result_pipe) | **GET** /honeycomb/api/SqlBackground/{executionId}/pipe | FetchQueryResultPipe: Fetch the result of a query as pipe-delimited
+[**fetch_query_result_sqlite**](SqlBackgroundExecutionApi.md#fetch_query_result_sqlite) | **GET** /honeycomb/api/SqlBackground/{executionId}/sqlite | FetchQueryResultSqlite: Fetch the result of a query as SqLite
+[**fetch_query_result_xml**](SqlBackgroundExecutionApi.md#fetch_query_result_xml) | **GET** /honeycomb/api/SqlBackground/{executionId}/xml | FetchQueryResultXml: Fetch the result of a query as XML
+[**get_historical_feedback**](SqlBackgroundExecutionApi.md#get_historical_feedback) | **GET** /honeycomb/api/SqlBackground/{executionId}/historicalFeedback | GetHistoricalFeedback: View historical query progress (for older queries)
+[**get_progress_of**](SqlBackgroundExecutionApi.md#get_progress_of) | **GET** /honeycomb/api/SqlBackground/{executionId} | GetProgressOf: View query progress up to this point.
+[**start_query**](SqlBackgroundExecutionApi.md#start_query) | **PUT** /honeycomb/api/SqlBackground | StartQuery: Start to Execute Sql in the background
+
+
+### Example
+
+```python
+from finbourne.sdk.exceptions import ApiException
+from finbourne.sdk.extensions.configuration_options import ConfigurationOptions
+from finbourne.sdk.services.luminesce.models import *
+
+from finbourne.sdk.extensions import (
+  SyncApiClientFactory
+)
+
+from finbourne.sdk.services.luminesce.api.sql_background_execution_api import SqlBackgroundExecutionApi
+
+# opts = ConfigurationOptions()
+# opts.total_timeout_ms = 30_000
+
+# uncomment the below to use an api client factory with overrides
+# api_client_factory = SyncApiClientFactory(opts=opts)
+
+api_client_factory = SyncApiClientFactory()
+api_instance = api_client_factory.build(SqlBackgroundExecutionApi)
+```
+
+---
+
+# **cancel_query**
+> BackgroundQueryCancelResponse cancelQuery = cancel_query(execution_id)
+
+CancelQuery: Cancel / Clear data from a previously run query
+
+Cancel the query (if still running) / clear the data (if already returned) The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't exist and is not running or the calling user did not run the query. 
+
+### Example
+
+```python
+api_instance = api_client_factory.build(SqlBackgroundExecutionApi)
+execution_id = 'execution_id_example' # str
+api_response = api_instance.cancel_query(execution_id)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **execution_id** | **str**| ExecutionId returned when starting the query | [required] 
+
+### Return type
+
+[**BackgroundQueryCancelResponse**](BackgroundQueryCancelResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **fetch_query_result_csv**
+> str fetchQueryResultCsv = fetch_query_result_csv(execution_id, download=download, sort_by=sort_by, filter=filter, select=select, group_by=group_by, limit=limit, page=page, delimiter=delimiter, escape=escape, date_time_format=date_time_format, load_wait_milliseconds=load_wait_milliseconds)
+
+FetchQueryResultCsv: Fetch the result of a query as CSV
+
+Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(SqlBackgroundExecutionApi)
+execution_id = 'execution_id_example' # str
+download = False # bool (optional)
+sort_by = 'sort_by_example' # str (optional)
+filter = 'filter_example' # str (optional)
+select = 'select_example' # str (optional)
+group_by = 'group_by_example' # str (optional)
+limit = 0 # int (optional)
+page = 0 # int (optional)
+delimiter = 'delimiter_example' # str (optional)
+escape = 'escape_example' # str (optional)
+date_time_format = 'date_time_format_example' # str (optional)
+load_wait_milliseconds = 0 # int (optional)
+api_response = api_instance.fetch_query_result_csv(execution_id, download=download, sort_by=sort_by, filter=filter, select=select, group_by=group_by, limit=limit, page=page, delimiter=delimiter, escape=escape, date_time_format=date_time_format, load_wait_milliseconds=load_wait_milliseconds)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **execution_id** | **str**| ExecutionId returned when starting the query | [required] 
+ **download** | **bool**| Makes this a file-download request (as opposed to returning the data in the response-body) | [optional] [default to False]
+ **sort_by** | **str**| Order the results by these fields.             Use the &#x60;-&#x60; sign to denote descending order, e.g. &#x60;-MyFieldName&#x60;.  Numeric indexes may be used also, e.g. &#x60;2,-3&#x60;.             Multiple fields can be denoted by a comma e.g. &#x60;-MyFieldName,AnotherFieldName,-AFurtherFieldName&#x60;.             Default is null, the sort order specified in the query itself. | [optional] 
+ **filter** | **str**| An ODATA filter per Finbourne.Filtering syntax. | [optional] 
+ **select** | **str**| Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - &#x60;MyField&#x60; - &#x60;Max(x) FILTER (WHERE y &gt; 12) as ABC&#x60; (max of a field, if another field lets it qualify, with a nice column name) - &#x60;count(*)&#x60; (count the rows for the given group, that would produce a rather ugly column name, but  it works) - &#x60;count(distinct x) as numOfXs&#x60; If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - &#x60;some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name&#x60;   where you would likely want to pass &#x60;1&#x60; as the &#x60;groupBy&#x60; also. | [optional] 
+ **group_by** | **str**| Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. &#x60;2,3&#x60;, &#x60;myColumn&#x60;.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \&quot;select\&quot; parameter fields.             Only specify this if you are selecting aggregations in the \&quot;select\&quot; parameter. | [optional] 
+ **limit** | **int**| When paginating, only return this number of records, page should also be specified. | [optional] [default to 0]
+ **page** | **int**| 0-N based on chunk sized determined by the limit, ignored if limit &lt; 1. | [optional] [default to 0]
+ **delimiter** | **str**| Delimiter string to override the default | [optional] 
+ **escape** | **str**| Escape character to override the default | [optional] 
+ **date_time_format** | **str**| Format to apply for DateTime data, leaving blank gives the Luminesce Exporter default, currently &#x60;yyyy-MM-dd HH:mm:ss.fff&#x60; | [optional] 
+ **load_wait_milliseconds** | **int**| Optional maximum additional wait period for post execution platform processing. | [optional] [default to 0]
+
+### Return type
+
+**str**
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**403** | Forbidden |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **fetch_query_result_excel**
+> bytes fetchQueryResultExcel = fetch_query_result_excel(execution_id, sort_by=sort_by, filter=filter, select=select, group_by=group_by, date_time_format=date_time_format, load_wait_milliseconds=load_wait_milliseconds)
+
+FetchQueryResultExcel: Fetch the result of a query as an Excel file
+
+Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(SqlBackgroundExecutionApi)
+execution_id = 'execution_id_example' # str
+sort_by = 'sort_by_example' # str (optional)
+filter = 'filter_example' # str (optional)
+select = 'select_example' # str (optional)
+group_by = 'group_by_example' # str (optional)
+date_time_format = 'date_time_format_example' # str (optional)
+load_wait_milliseconds = 0 # int (optional)
+api_response = api_instance.fetch_query_result_excel(execution_id, sort_by=sort_by, filter=filter, select=select, group_by=group_by, date_time_format=date_time_format, load_wait_milliseconds=load_wait_milliseconds)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **execution_id** | **str**| ExecutionId returned when starting the query | [required] 
+ **sort_by** | **str**| Order the results by these fields.             Use the &#x60;-&#x60; sign to denote descending order, e.g. &#x60;-MyFieldName&#x60;.  Numeric indexes may be used also, e.g. &#x60;2,-3&#x60;.             Multiple fields can be denoted by a comma e.g. &#x60;-MyFieldName,AnotherFieldName,-AFurtherFieldName&#x60;.             Default is null, the sort order specified in the query itself. | [optional] 
+ **filter** | **str**| An ODATA filter per Finbourne.Filtering syntax. | [optional] 
+ **select** | **str**| Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - &#x60;MyField&#x60; - &#x60;Max(x) FILTER (WHERE y &gt; 12) as ABC&#x60; (max of a field, if another field lets it qualify, with a nice column name) - &#x60;count(*)&#x60; (count the rows for the given group, that would produce a rather ugly column name, but  it works) - &#x60;count(distinct x) as numOfXs&#x60; If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - &#x60;some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name&#x60;   where you would likely want to pass &#x60;1&#x60; as the &#x60;groupBy&#x60; also. | [optional] 
+ **group_by** | **str**| Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. &#x60;2,3&#x60;, &#x60;myColumn&#x60;.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \&quot;select\&quot; parameter fields.             Only specify this if you are selecting aggregations in the \&quot;select\&quot; parameter. | [optional] 
+ **date_time_format** | **str**| Format to apply for DateTime data, leaving blank gives the Luminesce Exporter default, currently &#x60;yyyy-MM-dd HH:mm:ss.fff&#x60; | [optional] 
+ **load_wait_milliseconds** | **int**| Optional maximum additional wait period for post execution platform processing. | [optional] [default to 0]
+
+### Return type
+
+**bytes**
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**403** | Forbidden |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **fetch_query_result_histogram**
+> str fetchQueryResultHistogram = fetch_query_result_histogram(execution_id, timestamp_field_name, start_at=start_at, end_at=end_at, bucket_size=bucket_size, filter=filter, json_proper=json_proper)
+
+FetchQueryResultHistogram: Construct a histogram of the result of a query
+
+Fetch the histogram in Json format (if available, or if not simply being informed it is not yet ready) The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(SqlBackgroundExecutionApi)
+execution_id = 'execution_id_example' # str
+timestamp_field_name = 'timestamp_field_name_example' # str
+start_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+end_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+bucket_size = 'bucket_size_example' # str (optional)
+filter = 'filter_example' # str (optional)
+json_proper = False # bool (optional)
+api_response = api_instance.fetch_query_result_histogram(execution_id, timestamp_field_name, start_at=start_at, end_at=end_at, bucket_size=bucket_size, filter=filter, json_proper=json_proper)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **execution_id** | **str**| ExecutionId returned when starting the query | [required] 
+ **timestamp_field_name** | **str**| Name of the timestamp field used in building the histogram | [required] 
+ **start_at** | **datetime**| Start point (of the timestampFieldName field) for the histogram | [optional] 
+ **end_at** | **datetime**| End point (of the timestampFieldName field) for the histogram | [optional] 
+ **bucket_size** | **str**| Optional histogram bucket width.  If not provided a set number of buckets between start/end range will be generated. | [optional] 
+ **filter** | **str**| An ODATA filter per Finbourne.Filtering syntax. | [optional] 
+ **json_proper** | **bool**| Should this be text/json (not json-encoded-as-a-string) | [optional] [default to False]
+
+### Return type
+
+**str**
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**403** | Forbidden |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **fetch_query_result_json**
+> str fetchQueryResultJson = fetch_query_result_json(execution_id, sort_by=sort_by, filter=filter, select=select, group_by=group_by, limit=limit, page=page, load_wait_milliseconds=load_wait_milliseconds)
+
+FetchQueryResultJson: Fetch the result of a query as a JSON string
+
+ *Please move to '/jsonProper' instead.  This may be marked as Deprecated in the future.*  Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(SqlBackgroundExecutionApi)
+execution_id = 'execution_id_example' # str
+sort_by = 'sort_by_example' # str (optional)
+filter = 'filter_example' # str (optional)
+select = 'select_example' # str (optional)
+group_by = 'group_by_example' # str (optional)
+limit = 0 # int (optional)
+page = 0 # int (optional)
+load_wait_milliseconds = 0 # int (optional)
+api_response = api_instance.fetch_query_result_json(execution_id, sort_by=sort_by, filter=filter, select=select, group_by=group_by, limit=limit, page=page, load_wait_milliseconds=load_wait_milliseconds)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **execution_id** | **str**| ExecutionId returned when starting the query | [required] 
+ **sort_by** | **str**| Order the results by these fields.             Use the &#x60;-&#x60; sign to denote descending order, e.g. &#x60;-MyFieldName&#x60;.  Numeric indexes may be used also, e.g. &#x60;2,-3&#x60;.             Multiple fields can be denoted by a comma e.g. &#x60;-MyFieldName,AnotherFieldName,-AFurtherFieldName&#x60;.             Default is null, the sort order specified in the query itself. | [optional] 
+ **filter** | **str**| An ODATA filter per Finbourne.Filtering syntax. | [optional] 
+ **select** | **str**| Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - &#x60;MyField&#x60; - &#x60;Max(x) FILTER (WHERE y &gt; 12) as ABC&#x60; (max of a field, if another field lets it qualify, with a nice column name) - &#x60;count(*)&#x60; (count the rows for the given group, that would produce a rather ugly column name, but  it works) - &#x60;count(distinct x) as numOfXs&#x60; If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - &#x60;some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name&#x60;   where you would likely want to pass &#x60;1&#x60; as the &#x60;groupBy&#x60; also. | [optional] 
+ **group_by** | **str**| Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. &#x60;2,3&#x60;, &#x60;myColumn&#x60;.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \&quot;select\&quot; parameter fields.             Only specify this if you are selecting aggregations in the \&quot;select\&quot; parameter. | [optional] 
+ **limit** | **int**| When paginating, only return this number of records, page should also be specified. | [optional] [default to 0]
+ **page** | **int**| 0-N based on chunk sized determined by the limit, ignored if limit &lt; 1. | [optional] [default to 0]
+ **load_wait_milliseconds** | **int**| Optional maximum additional wait period for post execution platform processing. | [optional] [default to 0]
+
+### Return type
+
+**str**
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**403** | Forbidden |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **fetch_query_result_json_proper**
+> str fetchQueryResultJsonProper = fetch_query_result_json_proper(execution_id, download=download, sort_by=sort_by, filter=filter, select=select, group_by=group_by, limit=limit, page=page, load_wait_milliseconds=load_wait_milliseconds)
+
+FetchQueryResultJsonProper: Fetch the result of a query as JSON
+
+Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(SqlBackgroundExecutionApi)
+execution_id = 'execution_id_example' # str
+download = False # bool (optional)
+sort_by = 'sort_by_example' # str (optional)
+filter = 'filter_example' # str (optional)
+select = 'select_example' # str (optional)
+group_by = 'group_by_example' # str (optional)
+limit = 0 # int (optional)
+page = 0 # int (optional)
+load_wait_milliseconds = 0 # int (optional)
+api_response = api_instance.fetch_query_result_json_proper(execution_id, download=download, sort_by=sort_by, filter=filter, select=select, group_by=group_by, limit=limit, page=page, load_wait_milliseconds=load_wait_milliseconds)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **execution_id** | **str**| ExecutionId returned when starting the query | [required] 
+ **download** | **bool**| Makes this a file-download request (as opposed to returning the data in the response-body) | [optional] [default to False]
+ **sort_by** | **str**| Order the results by these fields.             Use the &#x60;-&#x60; sign to denote descending order, e.g. &#x60;-MyFieldName&#x60;.  Numeric indexes may be used also, e.g. &#x60;2,-3&#x60;.             Multiple fields can be denoted by a comma e.g. &#x60;-MyFieldName,AnotherFieldName,-AFurtherFieldName&#x60;.             Default is null, the sort order specified in the query itself. | [optional] 
+ **filter** | **str**| An ODATA filter per Finbourne.Filtering syntax. | [optional] 
+ **select** | **str**| Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - &#x60;MyField&#x60; - &#x60;Max(x) FILTER (WHERE y &gt; 12) as ABC&#x60; (max of a field, if another field lets it qualify, with a nice column name) - &#x60;count(*)&#x60; (count the rows for the given group, that would produce a rather ugly column name, but  it works) - &#x60;count(distinct x) as numOfXs&#x60; If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - &#x60;some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name&#x60;   where you would likely want to pass &#x60;1&#x60; as the &#x60;groupBy&#x60; also. | [optional] 
+ **group_by** | **str**| Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. &#x60;2,3&#x60;, &#x60;myColumn&#x60;.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \&quot;select\&quot; parameter fields.             Only specify this if you are selecting aggregations in the \&quot;select\&quot; parameter. | [optional] 
+ **limit** | **int**| When paginating, only return this number of records, page should also be specified. | [optional] [default to 0]
+ **page** | **int**| 0-N based on chunk sized determined by the limit, ignored if limit &lt; 1. | [optional] [default to 0]
+ **load_wait_milliseconds** | **int**| Optional maximum additional wait period for post execution platform processing. | [optional] [default to 0]
+
+### Return type
+
+**str**
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**403** | Forbidden |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **fetch_query_result_json_proper_with_lineage**
+> str fetchQueryResultJsonProperWithLineage = fetch_query_result_json_proper_with_lineage(execution_id, download=download, sort_by=sort_by, filter=filter, select=select, group_by=group_by, limit=limit, page=page, load_wait_milliseconds=load_wait_milliseconds)
+
+FetchQueryResultJsonProperWithLineage: Fetch the result of a query as JSON, but including a Lineage Node (if available)
+
+Fetch the data in proper Json format (if available, or if not simply being informed it is not yet ready) But embeds the data under a `Data` node and Lineage (if requested when starting the execution) under a `Lineage` node. Lineage is just for the 'raw query' it ignores all of these parameters: sortBy, filter, select, groupBy and limit.  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(SqlBackgroundExecutionApi)
+execution_id = 'execution_id_example' # str
+download = False # bool (optional)
+sort_by = 'sort_by_example' # str (optional)
+filter = 'filter_example' # str (optional)
+select = 'select_example' # str (optional)
+group_by = 'group_by_example' # str (optional)
+limit = 0 # int (optional)
+page = 0 # int (optional)
+load_wait_milliseconds = 0 # int (optional)
+api_response = api_instance.fetch_query_result_json_proper_with_lineage(execution_id, download=download, sort_by=sort_by, filter=filter, select=select, group_by=group_by, limit=limit, page=page, load_wait_milliseconds=load_wait_milliseconds)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **execution_id** | **str**| ExecutionId returned when starting the query | [required] 
+ **download** | **bool**| Makes this a file-download request (as opposed to returning the data in the response-body) | [optional] [default to False]
+ **sort_by** | **str**| Order the results by these fields.             Use the &#x60;-&#x60; sign to denote descending order, e.g. &#x60;-MyFieldName&#x60;.  Numeric indexes may be used also, e.g. &#x60;2,-3&#x60;.             Multiple fields can be denoted by a comma e.g. &#x60;-MyFieldName,AnotherFieldName,-AFurtherFieldName&#x60;.             Default is null, the sort order specified in the query itself. | [optional] 
+ **filter** | **str**| An ODATA filter per Finbourne.Filtering syntax. | [optional] 
+ **select** | **str**| Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - &#x60;MyField&#x60; - &#x60;Max(x) FILTER (WHERE y &gt; 12) as ABC&#x60; (max of a field, if another field lets it qualify, with a nice column name) - &#x60;count(*)&#x60; (count the rows for the given group, that would produce a rather ugly column name, but  it works) - &#x60;count(distinct x) as numOfXs&#x60; If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - &#x60;some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name&#x60;   where you would likely want to pass &#x60;1&#x60; as the &#x60;groupBy&#x60; also. | [optional] 
+ **group_by** | **str**| Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. &#x60;2,3&#x60;, &#x60;myColumn&#x60;.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \&quot;select\&quot; parameter fields.             Only specify this if you are selecting aggregations in the \&quot;select\&quot; parameter. | [optional] 
+ **limit** | **int**| When paginating, only return this number of records, page should also be specified. | [optional] [default to 0]
+ **page** | **int**| 0-N based on chunk sized determined by the limit, ignored if limit &lt; 1. | [optional] [default to 0]
+ **load_wait_milliseconds** | **int**| Optional maximum additional wait period for post execution platform processing. | [optional] [default to 0]
+
+### Return type
+
+**str**
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**403** | Forbidden |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **fetch_query_result_parquet**
+> bytes fetchQueryResultParquet = fetch_query_result_parquet(execution_id, sort_by=sort_by, filter=filter, select=select, group_by=group_by, load_wait_milliseconds=load_wait_milliseconds)
+
+FetchQueryResultParquet: Fetch the result of a query as Parquet
+
+Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(SqlBackgroundExecutionApi)
+execution_id = 'execution_id_example' # str
+sort_by = 'sort_by_example' # str (optional)
+filter = 'filter_example' # str (optional)
+select = 'select_example' # str (optional)
+group_by = 'group_by_example' # str (optional)
+load_wait_milliseconds = 0 # int (optional)
+api_response = api_instance.fetch_query_result_parquet(execution_id, sort_by=sort_by, filter=filter, select=select, group_by=group_by, load_wait_milliseconds=load_wait_milliseconds)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **execution_id** | **str**| ExecutionId returned when starting the query | [required] 
+ **sort_by** | **str**| Order the results by these fields.             Use the &#x60;-&#x60; sign to denote descending order, e.g. &#x60;-MyFieldName&#x60;.  Numeric indexes may be used also, e.g. &#x60;2,-3&#x60;.             Multiple fields can be denoted by a comma e.g. &#x60;-MyFieldName,AnotherFieldName,-AFurtherFieldName&#x60;.             Default is null, the sort order specified in the query itself. | [optional] 
+ **filter** | **str**| An ODATA filter per Finbourne.Filtering syntax. | [optional] 
+ **select** | **str**| Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - &#x60;MyField&#x60; - &#x60;Max(x) FILTER (WHERE y &gt; 12) as ABC&#x60; (max of a field, if another field lets it qualify, with a nice column name) - &#x60;count(*)&#x60; (count the rows for the given group, that would produce a rather ugly column name, but  it works) - &#x60;count(distinct x) as numOfXs&#x60; If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - &#x60;some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name&#x60;   where you would likely want to pass &#x60;1&#x60; as the &#x60;groupBy&#x60; also. | [optional] 
+ **group_by** | **str**| Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. &#x60;2,3&#x60;, &#x60;myColumn&#x60;.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \&quot;select\&quot; parameter fields.             Only specify this if you are selecting aggregations in the \&quot;select\&quot; parameter. | [optional] 
+ **load_wait_milliseconds** | **int**| Optional maximum additional wait period for post execution platform processing. | [optional] [default to 0]
+
+### Return type
+
+**bytes**
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**403** | Forbidden |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **fetch_query_result_pipe**
+> str fetchQueryResultPipe = fetch_query_result_pipe(execution_id, download=download, sort_by=sort_by, filter=filter, select=select, group_by=group_by, limit=limit, page=page, date_time_format=date_time_format, load_wait_milliseconds=load_wait_milliseconds)
+
+FetchQueryResultPipe: Fetch the result of a query as pipe-delimited
+
+Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(SqlBackgroundExecutionApi)
+execution_id = 'execution_id_example' # str
+download = False # bool (optional)
+sort_by = 'sort_by_example' # str (optional)
+filter = 'filter_example' # str (optional)
+select = 'select_example' # str (optional)
+group_by = 'group_by_example' # str (optional)
+limit = 0 # int (optional)
+page = 0 # int (optional)
+date_time_format = 'date_time_format_example' # str (optional)
+load_wait_milliseconds = 0 # int (optional)
+api_response = api_instance.fetch_query_result_pipe(execution_id, download=download, sort_by=sort_by, filter=filter, select=select, group_by=group_by, limit=limit, page=page, date_time_format=date_time_format, load_wait_milliseconds=load_wait_milliseconds)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **execution_id** | **str**| ExecutionId returned when starting the query | [required] 
+ **download** | **bool**| Makes this a file-download request (as opposed to returning the data in the response-body) | [optional] [default to False]
+ **sort_by** | **str**| Order the results by these fields.             Use the &#x60;-&#x60; sign to denote descending order, e.g. &#x60;-MyFieldName&#x60;.  Numeric indexes may be used also, e.g. &#x60;2,-3&#x60;.             Multiple fields can be denoted by a comma e.g. &#x60;-MyFieldName,AnotherFieldName,-AFurtherFieldName&#x60;.             Default is null, the sort order specified in the query itself. | [optional] 
+ **filter** | **str**| An ODATA filter per Finbourne.Filtering syntax. | [optional] 
+ **select** | **str**| Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - &#x60;MyField&#x60; - &#x60;Max(x) FILTER (WHERE y &gt; 12) as ABC&#x60; (max of a field, if another field lets it qualify, with a nice column name) - &#x60;count(*)&#x60; (count the rows for the given group, that would produce a rather ugly column name, but  it works) - &#x60;count(distinct x) as numOfXs&#x60; If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - &#x60;some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name&#x60;   where you would likely want to pass &#x60;1&#x60; as the &#x60;groupBy&#x60; also. | [optional] 
+ **group_by** | **str**| Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. &#x60;2,3&#x60;, &#x60;myColumn&#x60;.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \&quot;select\&quot; parameter fields.             Only specify this if you are selecting aggregations in the \&quot;select\&quot; parameter. | [optional] 
+ **limit** | **int**| When paginating, only return this number of records, page should also be specified. | [optional] [default to 0]
+ **page** | **int**| 0-N based on chunk sized determined by the limit, ignored if limit &lt; 1. | [optional] [default to 0]
+ **date_time_format** | **str**| Format to apply for DateTime data, leaving blank gives the Luminesce Exporter default, currently &#x60;yyyy-MM-dd HH:mm:ss.fff&#x60; | [optional] 
+ **load_wait_milliseconds** | **int**| Optional maximum additional wait period for post execution platform processing. | [optional] [default to 0]
+
+### Return type
+
+**str**
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**403** | Forbidden |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **fetch_query_result_sqlite**
+> bytes fetchQueryResultSqlite = fetch_query_result_sqlite(execution_id, sort_by=sort_by, filter=filter, select=select, group_by=group_by, load_wait_milliseconds=load_wait_milliseconds)
+
+FetchQueryResultSqlite: Fetch the result of a query as SqLite
+
+Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(SqlBackgroundExecutionApi)
+execution_id = 'execution_id_example' # str
+sort_by = 'sort_by_example' # str (optional)
+filter = 'filter_example' # str (optional)
+select = 'select_example' # str (optional)
+group_by = 'group_by_example' # str (optional)
+load_wait_milliseconds = 0 # int (optional)
+api_response = api_instance.fetch_query_result_sqlite(execution_id, sort_by=sort_by, filter=filter, select=select, group_by=group_by, load_wait_milliseconds=load_wait_milliseconds)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **execution_id** | **str**| ExecutionId returned when starting the query | [required] 
+ **sort_by** | **str**| Order the results by these fields.             Use the &#x60;-&#x60; sign to denote descending order, e.g. &#x60;-MyFieldName&#x60;.  Numeric indexes may be used also, e.g. &#x60;2,-3&#x60;.             Multiple fields can be denoted by a comma e.g. &#x60;-MyFieldName,AnotherFieldName,-AFurtherFieldName&#x60;.             Default is null, the sort order specified in the query itself. | [optional] 
+ **filter** | **str**| An ODATA filter per Finbourne.Filtering syntax. | [optional] 
+ **select** | **str**| Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - &#x60;MyField&#x60; - &#x60;Max(x) FILTER (WHERE y &gt; 12) as ABC&#x60; (max of a field, if another field lets it qualify, with a nice column name) - &#x60;count(*)&#x60; (count the rows for the given group, that would produce a rather ugly column name, but  it works) - &#x60;count(distinct x) as numOfXs&#x60; If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - &#x60;some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name&#x60;   where you would likely want to pass &#x60;1&#x60; as the &#x60;groupBy&#x60; also. | [optional] 
+ **group_by** | **str**| Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. &#x60;2,3&#x60;, &#x60;myColumn&#x60;.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \&quot;select\&quot; parameter fields.             Only specify this if you are selecting aggregations in the \&quot;select\&quot; parameter. | [optional] 
+ **load_wait_milliseconds** | **int**| Optional maximum additional wait period for post execution platform processing. | [optional] [default to 0]
+
+### Return type
+
+**bytes**
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**403** | Forbidden |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **fetch_query_result_xml**
+> str fetchQueryResultXml = fetch_query_result_xml(execution_id, download=download, sort_by=sort_by, filter=filter, select=select, group_by=group_by, limit=limit, page=page, load_wait_milliseconds=load_wait_milliseconds)
+
+FetchQueryResultXml: Fetch the result of a query as XML
+
+Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(SqlBackgroundExecutionApi)
+execution_id = 'execution_id_example' # str
+download = False # bool (optional)
+sort_by = 'sort_by_example' # str (optional)
+filter = 'filter_example' # str (optional)
+select = 'select_example' # str (optional)
+group_by = 'group_by_example' # str (optional)
+limit = 0 # int (optional)
+page = 0 # int (optional)
+load_wait_milliseconds = 0 # int (optional)
+api_response = api_instance.fetch_query_result_xml(execution_id, download=download, sort_by=sort_by, filter=filter, select=select, group_by=group_by, limit=limit, page=page, load_wait_milliseconds=load_wait_milliseconds)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **execution_id** | **str**| ExecutionId returned when starting the query | [required] 
+ **download** | **bool**| Makes this a file-download request (as opposed to returning the data in the response-body) | [optional] [default to False]
+ **sort_by** | **str**| Order the results by these fields.             Use the &#x60;-&#x60; sign to denote descending order, e.g. &#x60;-MyFieldName&#x60;.  Numeric indexes may be used also, e.g. &#x60;2,-3&#x60;.             Multiple fields can be denoted by a comma e.g. &#x60;-MyFieldName,AnotherFieldName,-AFurtherFieldName&#x60;.             Default is null, the sort order specified in the query itself. | [optional] 
+ **filter** | **str**| An ODATA filter per Finbourne.Filtering syntax. | [optional] 
+ **select** | **str**| Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - &#x60;MyField&#x60; - &#x60;Max(x) FILTER (WHERE y &gt; 12) as ABC&#x60; (max of a field, if another field lets it qualify, with a nice column name) - &#x60;count(*)&#x60; (count the rows for the given group, that would produce a rather ugly column name, but  it works) - &#x60;count(distinct x) as numOfXs&#x60; If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - &#x60;some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name&#x60;   where you would likely want to pass &#x60;1&#x60; as the &#x60;groupBy&#x60; also. | [optional] 
+ **group_by** | **str**| Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. &#x60;2,3&#x60;, &#x60;myColumn&#x60;.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \&quot;select\&quot; parameter fields.             Only specify this if you are selecting aggregations in the \&quot;select\&quot; parameter. | [optional] 
+ **limit** | **int**| When paginating, only return this number of records, page should also be specified. | [optional] [default to 0]
+ **page** | **int**| 0-N based on chunk sized determined by the limit, ignored if limit &lt; 1. | [optional] [default to 0]
+ **load_wait_milliseconds** | **int**| Optional maximum additional wait period for post execution platform processing. | [optional] [default to 0]
+
+### Return type
+
+**str**
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**403** | Forbidden |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_historical_feedback**
+> BackgroundQueryProgressResponse getHistoricalFeedback = get_historical_feedback(execution_id, next_message_wait_seconds=next_message_wait_seconds, started_at=started_at)
+
+GetHistoricalFeedback: View historical query progress (for older queries)
+
+View full progress information, including historical feedback for queries which have passed their `keepForSeconds` time, so long as they were executed in the last 31 days.  This method is slow by its nature of looking at the stream of historical feedback data.   On the other hand under some circumstances this can fail to wait long enough and return 404s where really there is data. To help with this `nextMessageWaitSeconds` may be specified to non-default values larger then the 2-7s used internally.  Unlike most methods here this may be called by a user that did not run the original query, if your entitlements allow this, as this is pure telemetry information.  The following error codes are to be anticipated most with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't exist and is not running. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(SqlBackgroundExecutionApi)
+execution_id = 'execution_id_example' # str
+next_message_wait_seconds = 56 # int (optional)
+started_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+api_response = api_instance.get_historical_feedback(execution_id, next_message_wait_seconds=next_message_wait_seconds, started_at=started_at)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **execution_id** | **str**| ExecutionId returned when starting the query | [required] 
+ **next_message_wait_seconds** | **int**| An override to the internal default for the number of seconds to wait for stream-messages. Meant to help understand 404s that would seem on the surface to be incorrect. | [optional] 
+ **started_at** | **datetime**| Performance will be hugely improved if thet time (in UTC) when the query was started is provided. It will also significantly decrease the chances of a 404 where there really is data, as it can help to disambiguate between &#39;there is no query with this executionId&#39; and &#39;there is such a query but we couldn&#39;t wait long enough for it to come back from the Feedback Stream&#39;. | [optional] 
+
+### Return type
+
+[**BackgroundQueryProgressResponse**](BackgroundQueryProgressResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_progress_of**
+> BackgroundQueryProgressResponse getProgressOf = get_progress_of(execution_id, build_from_logs=build_from_logs, include_all_feedback=include_all_feedback)
+
+GetProgressOf: View query progress up to this point.
+
+View progress information (up until this point and starting from the last point requested) The following error codes are to be anticipated most with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't exist and is not running or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(SqlBackgroundExecutionApi)
+execution_id = 'execution_id_example' # str
+build_from_logs = False # bool (optional)
+include_all_feedback = False # bool (optional)
+api_response = api_instance.get_progress_of(execution_id, build_from_logs=build_from_logs, include_all_feedback=include_all_feedback)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **execution_id** | **str**| ExecutionId returned when starting the query | [required] 
+ **build_from_logs** | **bool**| Should the response state be build from query logs if missing from the shared-db-state?  Deprecated. Regardless of the value here it is now the case that:  False [and now even True] will mean &#x60;404 Not Found&#x60; in cases where it was a real query but has passed its &#x60;keepForSeconds&#x60; since the query completed (as well as &#39;this was not a query at all&#39; of course) | [optional] [default to False]
+ **include_all_feedback** | **bool**| Should all the feedback be returned?  As opposed to just the new feedback. | [optional] [default to False]
+
+### Return type
+
+[**BackgroundQueryProgressResponse**](BackgroundQueryProgressResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **start_query**
+> BackgroundQueryResponse startQuery = start_query(body, execution_id=execution_id, scalar_parameters=scalar_parameters, query_name=query_name, timeout_seconds=timeout_seconds, keep_for_seconds=keep_for_seconds, execution_flags=execution_flags)
+
+StartQuery: Start to Execute Sql in the background
+
+ Allow for starting a potentially long running query and getting back an immediate response with how to  - fetch the data in various formats (if available, or if not simply being informed it is not yet ready) - view progress information (up until this point) - cancel the query (if still running) / clear the data (if already returned)  This can still error on things like an outright syntax error, but more runtime errors (e.g. from providers) will not cause this to error (that will happen when attempting to fetch data)  Here is an example that intentionally takes one minute to run:  ```sql select Str, Takes500Ms from Testing1K where UseLinq = true and [Int] <= 120 ```  This is the only place in the Luminesce WebAPI where the following is supported. This will allow for the same user running a character-identical query not kick off a new query but simply be returned a reference  to the already running one for up to `N` seconds (where `N` should be `<=` `keepForSeconds`).  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - there was something wrong with your query syntax (the issue was detected at parse-time) - 401 Unauthorized - 403 Forbidden 
+
+### Example
+
+```python
+api_instance = api_client_factory.build(SqlBackgroundExecutionApi)
+body = select Str, Takes500Ms from Testing1K where UseLinq = true and [Int] <= 120 # str
+execution_id = 'execution_id_example' # str (optional)
+scalar_parameters = {'key': '{\"someParameter\":12,\"someOtherParameter\":\"someValue\"}'} # Dict[str, str] (optional)
+query_name = 'Intentionally slow test query' # str (optional)
+timeout_seconds = 0 # int (optional)
+keep_for_seconds = 0 # int (optional)
+execution_flags = luminesce.SqlExecutionFlags() # SqlExecutionFlags (optional)
+api_response = api_instance.start_query(body, execution_id=execution_id, scalar_parameters=scalar_parameters, query_name=query_name, timeout_seconds=timeout_seconds, keep_for_seconds=keep_for_seconds, execution_flags=execution_flags)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | **str**| The LuminesceSql query to kick off. | [required] 
+ **execution_id** | **str**| An explicit ExecutionId to use.  This must be blank OR assigned to a valid GUID-as-a-string. It might be ignored / replaced, for example if using the query cache and a cached query is found. | [optional] 
+ **scalar_parameters** | [**Dict[str, str]**](str.md)| Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution. | [optional] 
+ **query_name** | **str**| A name for this query.  This goes into logs and is available in &#x60;Sys.Logs.HcQueryStart&#x60;. | [optional] 
+ **timeout_seconds** | **int**| Maximum time the query may run for, in seconds: &lt;0 → ∞, 0 → 7200 (2h) | [optional] [default to 0]
+ **keep_for_seconds** | **int**| Maximum time the result may be kept for, in seconds: &lt;0 → 1200 (20m), 0 → 28800 (8h), max &#x3D; 2,678,400 (31d) | [optional] [default to 0]
+ **execution_flags** | [**SqlExecutionFlags**](.md)| Optional request flags for the execution.  Currently limited by may grow in time: - ProvideLineage : Should Lineage be requested when running the query?  This must be set in order to later retrieve Lineage. | [optional] 
+
+### Return type
+
+[**BackgroundQueryResponse**](BackgroundQueryResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: text/plain
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | Accepted |  -  |
+**400** | Bad Request |  -  |
+**403** | Forbidden |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+

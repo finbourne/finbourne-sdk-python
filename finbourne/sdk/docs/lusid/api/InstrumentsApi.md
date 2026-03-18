@@ -1,0 +1,1127 @@
+# lusid.InstrumentsApi
+
+All URIs are relative to *http://localhost*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**batch_upsert_instrument_properties**](InstrumentsApi.md#batch_upsert_instrument_properties) | **POST** /api/api/instruments/$batchupsertproperties | BatchUpsertInstrumentProperties: Batch upsert instruments properties
+[**calculate_settlement_date**](InstrumentsApi.md#calculate_settlement_date) | **GET** /api/api/instruments/{identifierType}/{identifier}/settlementdate | CalculateSettlementDate: Get the settlement date for an instrument.
+[**delete_instrument**](InstrumentsApi.md#delete_instrument) | **DELETE** /api/api/instruments/{identifierType}/{identifier} | DeleteInstrument: Soft delete a single instrument
+[**delete_instrument_properties**](InstrumentsApi.md#delete_instrument_properties) | **POST** /api/api/instruments/{identifierType}/{identifier}/properties/$delete | DeleteInstrumentProperties: Delete instrument properties
+[**delete_instruments**](InstrumentsApi.md#delete_instruments) | **POST** /api/api/instruments/$delete | DeleteInstruments: Soft or hard delete multiple instruments
+[**get_all_possible_features**](InstrumentsApi.md#get_all_possible_features) | **GET** /api/api/instruments/{instrumentType}/allfeatures | GetAllPossibleFeatures: Provides list of all possible features for instrument type.
+[**get_existing_instrument_capabilities**](InstrumentsApi.md#get_existing_instrument_capabilities) | **GET** /api/api/instruments/{identifier}/capabilities | GetExistingInstrumentCapabilities: Retrieve capabilities of an existing instrument identified by LUID. These include instrument features, and if model is provided it also includes supported address keys and economic dependencies.  Given an lusid instrument id provides instrument capabilities, outlining features, and, given the model, the capabilities also include supported addresses as well as economic dependencies.
+[**get_existing_instrument_models**](InstrumentsApi.md#get_existing_instrument_models) | **GET** /api/api/instruments/{identifier}/models | GetExistingInstrumentModels: Retrieve supported pricing models for an existing instrument identified by LUID.
+[**get_instrument**](InstrumentsApi.md#get_instrument) | **GET** /api/api/instruments/{identifierType}/{identifier} | GetInstrument: Get instrument
+[**get_instrument_identifier_types**](InstrumentsApi.md#get_instrument_identifier_types) | **GET** /api/api/instruments/identifierTypes | GetInstrumentIdentifierTypes: Get instrument identifier types
+[**get_instrument_payment_diary**](InstrumentsApi.md#get_instrument_payment_diary) | **GET** /api/api/instruments/{identifierType}/{identifier}/paymentdiary | GetInstrumentPaymentDiary: Get instrument payment diary
+[**get_instrument_properties**](InstrumentsApi.md#get_instrument_properties) | **GET** /api/api/instruments/{identifierType}/{identifier}/properties | GetInstrumentProperties: Get instrument properties
+[**get_instrument_property_time_series**](InstrumentsApi.md#get_instrument_property_time_series) | **GET** /api/api/instruments/{identifierType}/{identifier}/properties/time-series | GetInstrumentPropertyTimeSeries: Get instrument property time series
+[**get_instrument_relationships**](InstrumentsApi.md#get_instrument_relationships) | **GET** /api/api/instruments/{identifierType}/{identifier}/relationships | GetInstrumentRelationships: Get Instrument relationships
+[**get_instruments**](InstrumentsApi.md#get_instruments) | **POST** /api/api/instruments/$get | GetInstruments: Get instruments
+[**list_instrument_properties**](InstrumentsApi.md#list_instrument_properties) | **GET** /api/api/instruments/{identifierType}/{identifier}/properties/list | ListInstrumentProperties: Get instrument properties (with Pagination)
+[**list_instruments**](InstrumentsApi.md#list_instruments) | **GET** /api/api/instruments | ListInstruments: List instruments
+[**query_instrument_capabilities**](InstrumentsApi.md#query_instrument_capabilities) | **POST** /api/api/instruments/capabilities | QueryInstrumentCapabilities: Query capabilities of a particular instrument in advance of creating it. These include instrument features, and if model is provided it also includes supported address keys and economic dependencies.
+[**update_instrument_identifier**](InstrumentsApi.md#update_instrument_identifier) | **POST** /api/api/instruments/{identifierType}/{identifier} | UpdateInstrumentIdentifier: Update instrument identifier
+[**upsert_instruments**](InstrumentsApi.md#upsert_instruments) | **POST** /api/api/instruments | UpsertInstruments: Upsert instruments
+[**upsert_instruments_properties**](InstrumentsApi.md#upsert_instruments_properties) | **POST** /api/api/instruments/$upsertproperties | UpsertInstrumentsProperties: Upsert instruments properties
+
+
+### Example
+
+```python
+from finbourne.sdk.exceptions import ApiException
+from finbourne.sdk.extensions.configuration_options import ConfigurationOptions
+from finbourne.sdk.services.lusid.models import *
+
+from finbourne.sdk.extensions import (
+  SyncApiClientFactory
+)
+
+from finbourne.sdk.services.lusid.api.instruments_api import InstrumentsApi
+
+# opts = ConfigurationOptions()
+# opts.total_timeout_ms = 30_000
+
+# uncomment the below to use an api client factory with overrides
+# api_client_factory = SyncApiClientFactory(opts=opts)
+
+api_client_factory = SyncApiClientFactory()
+api_instance = api_client_factory.build(InstrumentsApi)
+```
+
+---
+
+# **batch_upsert_instrument_properties**
+> BatchUpsertInstrumentPropertiesResponse batchUpsertInstrumentProperties = batch_upsert_instrument_properties(request_body, scope=scope, identifier_effective_at=identifier_effective_at, success_mode=success_mode, data_model_scope=data_model_scope, data_model_code=data_model_code)
+
+BatchUpsertInstrumentProperties: Batch upsert instruments properties
+
+Create or update one or more properties for particular instruments.    Each instrument property is updated if it exists and created if it does not. For any failures, a reason  is provided.    Properties have an <i>effectiveFrom</i> datetime from which the property is valid, and an <i>effectiveUntil</i>  datetime until which the property is valid. Not supplying an <i>effectiveUntil</i> datetime results in the property being  valid indefinitely, or until the next <i>effectiveFrom</i> datetime of the property.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(InstrumentsApi)
+request_body = {"correlation":{"identifierType":"LusidInstrumentId","identifier":"LUID_00000000","properties":[{"key":"Instrument/MyScope/SomePropertyName","value":{"labelValue":"SomeValue1"},"effectiveFrom":"2016-09-15T12:00:00.0000000+00:00"},{"key":"Instrument/MyScope/SomePropertyName","value":{"labelValue":"SomeValue2"},"effectiveFrom":"2017-08-10T12:00:00.0000000+00:00"},{"key":"Instrument/MyScope/AnotherPropertyName","value":{"labelValue":"AnotherValue1"},"effectiveFrom":"2018-03-05T12:00:00.0000000+00:00","effectiveUntil":"2019-06-01T12:00:00.0000000+00:00"},{"key":"Instrument/MyScope/AnotherPropertyName","value":{"labelValue":"AnotherValue2"},"effectiveFrom":"2020-03-15T12:00:00.0000000+00:00","effectiveUntil":"2021-01-15T12:00:00.0000000+00:00"}]}} # Dict[str, UpsertInstrumentPropertyRequest]
+scope = 'default' # str (optional)
+identifier_effective_at = 'identifier_effective_at_example' # str (optional)
+success_mode = 'Partial' # str (optional)
+data_model_scope = 'data_model_scope_example' # str (optional)
+data_model_code = 'data_model_code_example' # str (optional)
+api_response = api_instance.batch_upsert_instrument_properties(request_body, scope=scope, identifier_effective_at=identifier_effective_at, success_mode=success_mode, data_model_scope=data_model_scope, data_model_code=data_model_code)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request_body** | [**Dict[str, UpsertInstrumentPropertyRequest]**](UpsertInstrumentPropertyRequest.md)| A list of instruments and associated instrument properties to create or update. | [required] 
+ **scope** | **str**| The scope in which the instrument lies. When not supplied the scope is &#39;default&#39;. | [optional] [default to &#39;default&#39;]
+ **identifier_effective_at** | **str**| The effective datetime used to resolve each instrument from the provided identifiers. Defaults to the current LUSID system datetime if not specified. | [optional] 
+ **success_mode** | **str**| Whether the batch request should fail Atomically or in a Partial fashion - Allowed Values: Atomic, Partial. | [optional] [default to &#39;Partial&#39;]
+ **data_model_scope** | **str**| The optional scope of a Custom Data Model to use | [optional] 
+ **data_model_code** | **str**| The optional code of a Custom Data Model to use | [optional] 
+
+### Return type
+
+[**BatchUpsertInstrumentPropertiesResponse**](BatchUpsertInstrumentPropertiesResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | The successfully upserted properties along with any failures. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **calculate_settlement_date**
+> AddBusinessDaysToDateResponse calculateSettlementDate = calculate_settlement_date(identifier_type, identifier, transaction_date=transaction_date, scope=scope, as_at=as_at)
+
+CalculateSettlementDate: Get the settlement date for an instrument.
+
+Get the settlement date for a given trade date and instrument. The calculated settlement date will be in UTC.  If a cut label transaction date is provided, the settlement date will be calculated relative to the absolute UTC datetime.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(InstrumentsApi)
+identifier_type = 'identifier_type_example' # str
+identifier = 'identifier_example' # str
+transaction_date = 'transaction_date_example' # str (optional)
+scope = 'default' # str (optional)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+api_response = api_instance.calculate_settlement_date(identifier_type, identifier, transaction_date=transaction_date, scope=scope, as_at=as_at)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **identifier_type** | **str**| An identifier type attached to the Instrument. | [required] 
+ **identifier** | **str**| The identifier value. | [required] 
+ **transaction_date** | **str**| The transaction date to calculate the settlement date from. This can be a UTC datetime offset or a cut label. | [optional] 
+ **scope** | **str**| The scope in which the instrument lies. When not supplied the scope is &#39;default&#39;. | [optional] [default to &#39;default&#39;]
+ **as_at** | **datetime**| The asAt datetime at which to retrieve the related instrument and calendars for calculation. Defaults to              returning the latest version if not specified. | [optional] 
+
+### Return type
+
+[**AddBusinessDaysToDateResponse**](AddBusinessDaysToDateResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The calculated settlement date. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **delete_instrument**
+> DeleteInstrumentResponse deleteInstrument = delete_instrument(identifier_type, identifier, scope=scope)
+
+DeleteInstrument: Soft delete a single instrument
+
+Soft delete a particular instrument, as identified by a particular instrument identifier.                Once deleted, an instrument is marked as inactive and can no longer be referenced when creating or updating  transactions or holdings. You can still query existing transactions and holdings related to the  deleted instrument.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(InstrumentsApi)
+identifier_type = 'identifier_type_example' # str
+identifier = 'identifier_example' # str
+scope = 'default' # str (optional)
+api_response = api_instance.delete_instrument(identifier_type, identifier, scope=scope)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **identifier_type** | **str**| The unique identifier type to search, for example &#39;Figi&#39;. | [required] 
+ **identifier** | **str**| An &lt;i&gt;identifierType&lt;/i&gt; value to use to identify the instrument, for example &#39;BBG000BLNNV0&#39;. | [required] 
+ **scope** | **str**| The scope in which the instrument lies. When not supplied the scope is &#39;default&#39;. | [optional] [default to &#39;default&#39;]
+
+### Return type
+
+[**DeleteInstrumentResponse**](DeleteInstrumentResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The datetime that the instrument was deleted |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **delete_instrument_properties**
+> DeleteInstrumentPropertiesResponse deleteInstrumentProperties = delete_instrument_properties(identifier_type, identifier, request_body, effective_at=effective_at, scope=scope, data_model_scope=data_model_scope, data_model_code=data_model_code)
+
+DeleteInstrumentProperties: Delete instrument properties
+
+Delete one or more properties from a particular instrument. If the properties are time-variant then an effective datetime from which  to delete properties must be specified. If the properties are perpetual then it is invalid to specify an effective datetime for deletion.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(InstrumentsApi)
+identifier_type = 'identifier_type_example' # str
+identifier = 'identifier_example' # str
+request_body = ["Instrument/scope/market-sector","Instrument/scope/tenor"] # List[str]
+effective_at = 'effective_at_example' # str (optional)
+scope = 'default' # str (optional)
+data_model_scope = 'data_model_scope_example' # str (optional)
+data_model_code = 'data_model_code_example' # str (optional)
+api_response = api_instance.delete_instrument_properties(identifier_type, identifier, request_body, effective_at=effective_at, scope=scope, data_model_scope=data_model_scope, data_model_code=data_model_code)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **identifier_type** | **str**| The unique identifier type to search, for example &#39;Figi&#39;. | [required] 
+ **identifier** | **str**| An &lt;i&gt;identifierType&lt;/i&gt; value to use to identify the instrument, for example &#39;BBG000BLNNV0&#39;. | [required] 
+ **request_body** | [**List[str]**](str.md)| A list of property keys from the &#39;Instruments&#39; domain whose properties to delete. | [required] 
+ **effective_at** | **str**| The effective datetime or cut label at which to delete time-variant properties from.              The property must exist at the specified &#39;effectiveAt&#39; datetime. If the &#39;effectiveAt&#39; is not provided or is              before the time-variant property exists then a failure is returned. Do not specify this parameter if any of              the properties to delete are perpetual. | [optional] 
+ **scope** | **str**| The scope in which the instrument lies. When not supplied the scope is &#39;default&#39;. | [optional] [default to &#39;default&#39;]
+ **data_model_scope** | **str**| The optional scope of a Custom Data Model to use | [optional] 
+ **data_model_code** | **str**| The optional code of a Custom Data Model to use | [optional] 
+
+### Return type
+
+[**DeleteInstrumentPropertiesResponse**](DeleteInstrumentPropertiesResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The asAt datetime at which properties were deleted. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **delete_instruments**
+> DeleteInstrumentsResponse deleteInstruments = delete_instruments(request_body, delete_mode=delete_mode, scope=scope)
+
+DeleteInstruments: Soft or hard delete multiple instruments
+
+Deletes a number of instruments identified by LusidInstrumentId.                Soft deletion marks the instrument as inactive so it can no longer be referenced when creating or updating transactions or holdings. You can still query existing transactions and holdings related to the inactive instrument.                In addition to the above behaviour, hard deletion: (i) completely removes all external identifiers from the instrument; (ii) marks the instrument as 'Deleted'; (iii) prepends the instrument's name with 'DELETED '; (iv) prevents the instrument from being returned in list instruments queries.                Following hard deletion, an instrument may only be retrieved by making a direct get instrument request for the LusidInstrumentId. Instrument deletion cannot be undone. Please note that currency instruments cannot currently be deleted.  The maximum number of instruments that this method can delete per request is 2,000.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(InstrumentsApi)
+request_body = ["LUID_12345678","LUID_87654321"] # List[str]
+delete_mode = 'delete_mode_example' # str (optional)
+scope = 'default' # str (optional)
+api_response = api_instance.delete_instruments(request_body, delete_mode=delete_mode, scope=scope)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request_body** | [**List[str]**](str.md)| The list of lusidInstrumentId&#39;s to delete. | [required] 
+ **delete_mode** | **str**| The delete mode to use (defaults to &#39;Soft&#39;). | [optional] 
+ **scope** | **str**| The scope in which the instruments lie. When not supplied the scope is &#39;default&#39;. | [optional] [default to &#39;default&#39;]
+
+### Return type
+
+[**DeleteInstrumentsResponse**](DeleteInstrumentsResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The datetime that the instruments were deleted |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_all_possible_features**
+> Dict[str, List[str]] getAllPossibleFeatures = get_all_possible_features(instrument_type)
+
+GetAllPossibleFeatures: Provides list of all possible features for instrument type.
+
+Provides all possible instrument features an instrument of a given type can provide.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(InstrumentsApi)
+instrument_type = 'instrument_type_example' # str
+api_response = api_instance.get_all_possible_features(instrument_type)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **instrument_type** | **str**| A lusid instrument type e.g. Bond, FxOption. | [required] 
+
+### Return type
+
+**Dict[str, List[str]]**
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Provides all possible instrument features an instrument of a given type can provide. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_existing_instrument_capabilities**
+> InstrumentCapabilities getExistingInstrumentCapabilities = get_existing_instrument_capabilities(identifier, model=model, effective_at=effective_at, as_at=as_at, instrument_scope=instrument_scope, recipe_scope=recipe_scope, recipe_code=recipe_code)
+
+GetExistingInstrumentCapabilities: Retrieve capabilities of an existing instrument identified by LUID. These include instrument features, and if model is provided it also includes supported address keys and economic dependencies.  Given an lusid instrument id provides instrument capabilities, outlining features, and, given the model, the capabilities also include supported addresses as well as economic dependencies.
+
+Returns instrument capabilities containing useful information about the instrument and the model. This includes  - features corresponding to the instrument e.g. Optionality:American, Other:InflationLinked  - supported addresses (if model provided) e.g. Valuation/Pv, Valuation/DirtyPriceKey, Valuation/Accrued  - economic dependencies (if model provided) e.g. Cash:USD, Fx:GBP.USD, Rates:GBP.GBPOIS
+
+### Example
+
+```python
+api_instance = api_client_factory.build(InstrumentsApi)
+identifier = 'identifier_example' # str
+model = 'model_example' # str (optional)
+effective_at = 'effective_at_example' # str (optional)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+instrument_scope = 'default' # str (optional)
+recipe_scope = 'default' # str (optional)
+recipe_code = 'recipe_code_example' # str (optional)
+api_response = api_instance.get_existing_instrument_capabilities(identifier, model=model, effective_at=effective_at, as_at=as_at, instrument_scope=instrument_scope, recipe_scope=recipe_scope, recipe_code=recipe_code)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **identifier** | **str**| A lusid instrument id identifying the instrument. | [required] 
+ **model** | **str**| A pricing model for the instrument. Defaults to Unknown if not specified. If not specified the SupportedAddresses and EconomicDependencies are not provided. | [optional] 
+ **effective_at** | **str**| The effective datetime or cut label at which to retrieve the instrument.              Defaults to the current LUSID system datetime if not specified. | [optional] 
+ **as_at** | **datetime**| The asAt datetime at which to retrieve the instrument. Defaults to              returning the latest version if not specified. | [optional] 
+ **instrument_scope** | **str**| The scope in which the instrument lies. When not supplied the scope is &#39;default&#39;. | [optional] [default to &#39;default&#39;]
+ **recipe_scope** | **str**| The scope in which the recipe lies. When not supplied the scope is &#39;default&#39;. | [optional] [default to &#39;default&#39;]
+ **recipe_code** | **str**| A unique identifier for an entity, used to obtain configuration recipe details. Default configuration recipe is used if not provided. | [optional] 
+
+### Return type
+
+[**InstrumentCapabilities**](InstrumentCapabilities.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Capabilities for a given instrument, with more details should the model be provided. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_existing_instrument_models**
+> InstrumentModels getExistingInstrumentModels = get_existing_instrument_models(identifier, effective_at=effective_at, as_at=as_at, instrument_scope=instrument_scope, recipe_scope=recipe_scope, recipe_code=recipe_code)
+
+GetExistingInstrumentModels: Retrieve supported pricing models for an existing instrument identified by LUID.
+
+Get the supported pricing models of a single instrument.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(InstrumentsApi)
+identifier = 'identifier_example' # str
+effective_at = 'effective_at_example' # str (optional)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+instrument_scope = 'default' # str (optional)
+recipe_scope = 'default' # str (optional)
+recipe_code = 'recipe_code_example' # str (optional)
+api_response = api_instance.get_existing_instrument_models(identifier, effective_at=effective_at, as_at=as_at, instrument_scope=instrument_scope, recipe_scope=recipe_scope, recipe_code=recipe_code)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **identifier** | **str**| A lusid instrument id identifying the instrument. | [required] 
+ **effective_at** | **str**| The effective datetime or cut label at which to retrieve the instrument.              Defaults to the current LUSID system datetime if not specified. | [optional] 
+ **as_at** | **datetime**| The asAt datetime at which to retrieve the instrument. Defaults to              returning the latest version if not specified. | [optional] 
+ **instrument_scope** | **str**| The scope in which the instrument lies. When not supplied the scope is &#39;default&#39;. | [optional] [default to &#39;default&#39;]
+ **recipe_scope** | **str**| The scope in which the recipe lies. When not supplied the scope is &#39;default&#39;. | [optional] [default to &#39;default&#39;]
+ **recipe_code** | **str**| A unique identifier for an entity, used to obtain configuration recipe details. Default configuration recipe is used if not provided. | [optional] 
+
+### Return type
+
+[**InstrumentModels**](InstrumentModels.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Models which can be used to value a given instrument. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_instrument**
+> Instrument getInstrument = get_instrument(identifier_type, identifier, effective_at=effective_at, as_at=as_at, property_keys=property_keys, scope=scope, relationship_definition_ids=relationship_definition_ids, data_model_scope=data_model_scope, data_model_code=data_model_code)
+
+GetInstrument: Get instrument
+
+Retrieve the definition of a particular instrument, as identified by a particular unique identifier.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(InstrumentsApi)
+identifier_type = 'identifier_type_example' # str
+identifier = 'identifier_example' # str
+effective_at = 'effective_at_example' # str (optional)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+property_keys = ['property_keys_example'] # List[str] (optional)
+scope = 'default' # str (optional)
+relationship_definition_ids = ['relationship_definition_ids_example'] # List[str] (optional)
+data_model_scope = 'data_model_scope_example' # str (optional)
+data_model_code = 'data_model_code_example' # str (optional)
+api_response = api_instance.get_instrument(identifier_type, identifier, effective_at=effective_at, as_at=as_at, property_keys=property_keys, scope=scope, relationship_definition_ids=relationship_definition_ids, data_model_scope=data_model_scope, data_model_code=data_model_code)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **identifier_type** | **str**| The unique identifier type to use, for example &#39;Figi&#39;. | [required] 
+ **identifier** | **str**| An &lt;i&gt;identifierType&lt;/i&gt; value to use to identify the instrument, for example &#39;BBG000BLNNV0&#39;. | [required] 
+ **effective_at** | **str**| The effective datetime or cut label at which to retrieve the instrument.              Defaults to the current LUSID system datetime if not specified. | [optional] 
+ **as_at** | **datetime**| The asAt datetime at which to retrieve the instrument. Defaults to              returning the latest version if not specified. | [optional] 
+ **property_keys** | [**List[str]**](str.md)| A list of property keys from the &#39;Instrument&#39; domain to decorate onto              the instrument, or from any domain that supports relationships to decorate onto related entities.              These must have the format {domain}/{scope}/{code}, for example &#39;Instrument/system/Name&#39;. | [optional] 
+ **scope** | **str**| The scope in which the instrument lies. When not supplied the scope is &#39;default&#39;. | [optional] [default to &#39;default&#39;]
+ **relationship_definition_ids** | [**List[str]**](str.md)| A list of relationship definitions that are used to decorate related entities              onto the instrument in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}. | [optional] 
+ **data_model_scope** | **str**| The optional scope of a Custom Data Model to use. | [optional] 
+ **data_model_code** | **str**| The optional code of a Custom Data Model to use. | [optional] 
+
+### Return type
+
+[**Instrument**](Instrument.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The requested instrument. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_instrument_identifier_types**
+> ResourceListOfInstrumentIdTypeDescriptor getInstrumentIdentifierTypes = get_instrument_identifier_types()
+
+GetInstrumentIdentifierTypes: Get instrument identifier types
+
+Retrieve a list of all valid instrument identifier types and whether they are unique or not.                An instrument must have a value for at least one unique identifier type (it can have more than one unique type and value).  In addition, a value is automatically generated for a LUSID Instrument ID (LUID) unique type by the system.                An instrument can have values for multiple non-unique identifier types (or it can have zero non-unique types and values).
+
+### Example
+
+```python
+api_instance = api_client_factory.build(InstrumentsApi)
+api_response = api_instance.get_instrument_identifier_types()
+pprint(api_response)
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ResourceListOfInstrumentIdTypeDescriptor**](ResourceListOfInstrumentIdTypeDescriptor.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A list of valid instrument identifier types. |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_instrument_payment_diary**
+> InstrumentPaymentDiary getInstrumentPaymentDiary = get_instrument_payment_diary(identifier_type, identifier, recipe_scope, recipe_code, effective_at=effective_at, as_at=as_at, scope=scope)
+
+GetInstrumentPaymentDiary: Get instrument payment diary
+
+Get the payment diary of a single instrument.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(InstrumentsApi)
+identifier_type = 'identifier_type_example' # str
+identifier = 'identifier_example' # str
+recipe_scope = 'recipe_scope_example' # str
+recipe_code = 'recipe_code_example' # str
+effective_at = 'effective_at_example' # str (optional)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+scope = 'default' # str (optional)
+api_response = api_instance.get_instrument_payment_diary(identifier_type, identifier, recipe_scope, recipe_code, effective_at=effective_at, as_at=as_at, scope=scope)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **identifier_type** | **str**| The identifier being supplied e.g. \&quot;Figi\&quot;. | [required] 
+ **identifier** | **str**| The value of the identifier for the requested instrument. | [required] 
+ **recipe_scope** | **str**| The scope of the valuation recipe being used to generate the payment diary | [required] 
+ **recipe_code** | **str**| The code of the valuation recipe being used to generate the payment diary | [required] 
+ **effective_at** | **str**| The effective datetime or cut label at which to list the instrument&#39;s properties. Defaults to the current LUSID system datetime if not specified. | [optional] 
+ **as_at** | **datetime**| The asAt datetime at which to list the instrument&#39;s properties. Defaults to return the latest version of each property if not specified. | [optional] 
+ **scope** | **str**| The scope in which the instrument lies. When not supplied the scope is &#39;default&#39;. | [optional] [default to &#39;default&#39;]
+
+### Return type
+
+[**InstrumentPaymentDiary**](InstrumentPaymentDiary.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The payment diary of the specified instrument |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_instrument_properties**
+> InstrumentProperties getInstrumentProperties = get_instrument_properties(identifier_type, identifier, effective_at=effective_at, as_at=as_at, scope=scope)
+
+GetInstrumentProperties: Get instrument properties
+
+List all the properties of a particular instrument, as identified by a particular unique identifier.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(InstrumentsApi)
+identifier_type = 'identifier_type_example' # str
+identifier = 'identifier_example' # str
+effective_at = 'effective_at_example' # str (optional)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+scope = 'default' # str (optional)
+api_response = api_instance.get_instrument_properties(identifier_type, identifier, effective_at=effective_at, as_at=as_at, scope=scope)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **identifier_type** | **str**| The unique identifier type to search, for example &#39;Figi&#39;. | [required] 
+ **identifier** | **str**| An &lt;i&gt;identifierType&lt;/i&gt; value to use to identify the instrument, for example &#39;BBG000BLNNV0&#39;. | [required] 
+ **effective_at** | **str**| The effective datetime or cut label at which to list the instrument&#39;s properties.              Defaults to the current LUSID system datetime if not specified. | [optional] 
+ **as_at** | **datetime**| The asAt datetime at which to list the instrument&#39;s properties. Defaults to returning              the latest version of each property if not specified. | [optional] 
+ **scope** | **str**| The scope in which the instrument lies. When not supplied the scope is &#39;default&#39;. | [optional] [default to &#39;default&#39;]
+
+### Return type
+
+[**InstrumentProperties**](InstrumentProperties.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The properties of the specified instrument |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_instrument_property_time_series**
+> ResourceListOfPropertyInterval getInstrumentPropertyTimeSeries = get_instrument_property_time_series(identifier_type, identifier, property_key, identifier_effective_at=identifier_effective_at, as_at=as_at, filter=filter, page=page, limit=limit, scope=scope)
+
+GetInstrumentPropertyTimeSeries: Get instrument property time series
+
+Retrieve the complete time series (history) for a particular property of an instrument.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(InstrumentsApi)
+identifier_type = 'identifier_type_example' # str
+identifier = 'identifier_example' # str
+property_key = 'property_key_example' # str
+identifier_effective_at = 'identifier_effective_at_example' # str (optional)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+filter = 'filter_example' # str (optional)
+page = 'page_example' # str (optional)
+limit = 56 # int (optional)
+scope = 'default' # str (optional)
+api_response = api_instance.get_instrument_property_time_series(identifier_type, identifier, property_key, identifier_effective_at=identifier_effective_at, as_at=as_at, filter=filter, page=page, limit=limit, scope=scope)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **identifier_type** | **str**| The unique identifier type to search, for example &#39;Figi&#39;. | [required] 
+ **identifier** | **str**| An &lt;i&gt;identifierType&lt;/i&gt; value to use to identify the instrument, for example &#39;BBG000BLNNV0&#39;. | [required] 
+ **property_key** | **str**| The property key of a property from the &#39;Instrument&#39; domain whose history to retrieve.              This must have the format {domain}/{scope}/{code}, for example &#39;Instrument/system/Name&#39;. | [required] 
+ **identifier_effective_at** | **str**| The effective datetime used to resolve the instrument from the identifier.              Defaults to the current LUSID system datetime if not specified. | [optional] 
+ **as_at** | **datetime**| The asAt datetime at which to retrieve the instrument&#39;s property history. Defaults to              returning the current datetime if not supplied. | [optional] 
+ **filter** | **str**| Expression to filter the results. For more information about filtering,              see https://support.lusid.com/knowledgebase/article/KA-01914. | [optional] 
+ **page** | **str**| The pagination token to use to continue listing properties; this value is returned from              the previous call. If a pagination token is provided, the &lt;i&gt;filter&lt;/i&gt;, &lt;i&gt;effectiveAt&lt;/i&gt; and              &lt;i&gt;asAt&lt;/i&gt; fields must not have changed since the original request. For more information, see              https://support.lusid.com/knowledgebase/article/KA-01915. | [optional] 
+ **limit** | **int**| When paginating, limit the results to this number. | [optional] 
+ **scope** | **str**| The scope in which the instrument lies. When not supplied the scope is &#39;default&#39;. | [optional] [default to &#39;default&#39;]
+
+### Return type
+
+[**ResourceListOfPropertyInterval**](ResourceListOfPropertyInterval.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The time series of the property |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_instrument_relationships**
+> ResourceListOfRelationship getInstrumentRelationships = get_instrument_relationships(identifier_type, identifier, effective_at=effective_at, as_at=as_at, filter=filter, identifier_types=identifier_types, scope=scope)
+
+GetInstrumentRelationships: Get Instrument relationships
+
+Get relationships for a particular Instrument.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(InstrumentsApi)
+identifier_type = 'identifier_type_example' # str
+identifier = 'identifier_example' # str
+effective_at = 'effective_at_example' # str (optional)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+filter = 'filter_example' # str (optional)
+identifier_types = ['identifier_types_example'] # List[str] (optional)
+scope = 'default' # str (optional)
+api_response = api_instance.get_instrument_relationships(identifier_type, identifier, effective_at=effective_at, as_at=as_at, filter=filter, identifier_types=identifier_types, scope=scope)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **identifier_type** | **str**| An identifier type attached to the Instrument. | [required] 
+ **identifier** | **str**| The identifier value. | [required] 
+ **effective_at** | **str**| The effective datetime or cut label at which to get relationships. Defaults to the current LUSID system datetime if not specified. | [optional] 
+ **as_at** | **datetime**| The asAt datetime at which to retrieve relationships. Defaults to return the latest LUSID AsAt time if not specified. | [optional] 
+ **filter** | **str**| Expression to filter relationships. Users should provide null or empty string for this field until further notice. | [optional] 
+ **identifier_types** | [**List[str]**](str.md)| Identifier types (as property keys) used for referencing Persons or Legal Entities.              These can be specified from the &#39;Person&#39; or &#39;LegalEntity&#39; domains and have the format {domain}/{scope}/{code}, for example              &#39;Person/CompanyDetails/Role&#39;. An Empty array may be used to return all related Entities. | [optional] 
+ **scope** | **str**| The entity scope in which the instrument lies. When not supplied the scope is &#39;default&#39;. | [optional] [default to &#39;default&#39;]
+
+### Return type
+
+[**ResourceListOfRelationship**](ResourceListOfRelationship.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The relationships for the specified instrument. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_instruments**
+> GetInstrumentsResponse getInstruments = get_instruments(identifier_type, request_body, effective_at=effective_at, as_at=as_at, property_keys=property_keys, scope=scope, relationship_definition_ids=relationship_definition_ids, data_model_scope=data_model_scope, data_model_code=data_model_code)
+
+GetInstruments: Get instruments
+
+Retrieve the definition of one or more instruments, as identified by a collection of unique identifiers.                Note that to retrieve all the instruments in the instrument master, use the List instruments endpoint instead.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(InstrumentsApi)
+identifier_type = 'identifier_type_example' # str
+request_body = ["instrument-identifier-1","instrument-identifier-2"] # List[str]
+effective_at = 'effective_at_example' # str (optional)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+property_keys = ['property_keys_example'] # List[str] (optional)
+scope = 'default' # str (optional)
+relationship_definition_ids = ['relationship_definition_ids_example'] # List[str] (optional)
+data_model_scope = 'data_model_scope_example' # str (optional)
+data_model_code = 'data_model_code_example' # str (optional)
+api_response = api_instance.get_instruments(identifier_type, request_body, effective_at=effective_at, as_at=as_at, property_keys=property_keys, scope=scope, relationship_definition_ids=relationship_definition_ids, data_model_scope=data_model_scope, data_model_code=data_model_code)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **identifier_type** | **str**| The unique identifier type to use, for example &#39;Figi&#39;. | [required] 
+ **request_body** | [**List[str]**](str.md)| A list of one or more &lt;i&gt;identifierType&lt;/i&gt; values to use to identify instruments. | [required] 
+ **effective_at** | **str**| The effective datetime or cut label at which to retrieve the instrument definitions.               Defaults to the current LUSID system datetime if not specified. | [optional] 
+ **as_at** | **datetime**| The asAt datetime at which to retrieve the instrument definitions.               Defaults to returning the latest version of each instrument definition if not specified. | [optional] 
+ **property_keys** | [**List[str]**](str.md)| A list of property keys from the &#39;Instrument&#39; domain to decorate onto               each instrument, or from any domain that supports relationships to decorate onto related entities.               These must have the format {domain}/{scope}/{code}, for example &#39;Instrument/system/Name&#39;. | [optional] 
+ **scope** | **str**| The scope in which the instrument lies. When not supplied the scope is &#39;default&#39;. | [optional] [default to &#39;default&#39;]
+ **relationship_definition_ids** | [**List[str]**](str.md)| A list of relationship definitions that are used to decorate related entities               onto each instrument in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}. | [optional] 
+ **data_model_scope** | **str**| The optional scope of a Custom Data Model to use. | [optional] 
+ **data_model_code** | **str**| The optional code of a Custom Data Model to use. | [optional] 
+
+### Return type
+
+[**GetInstrumentsResponse**](GetInstrumentsResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The requested instruments which could be identified along with any failures |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **list_instrument_properties**
+> ResourceListOfProperty listInstrumentProperties = list_instrument_properties(identifier_type, identifier, effective_at=effective_at, as_at=as_at, page=page, limit=limit, scope=scope)
+
+ListInstrumentProperties: Get instrument properties (with Pagination)
+
+List all the properties of a particular instrument, as identified by a particular unique identifier.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(InstrumentsApi)
+identifier_type = 'identifier_type_example' # str
+identifier = 'identifier_example' # str
+effective_at = 'effective_at_example' # str (optional)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+page = 'page_example' # str (optional)
+limit = 56 # int (optional)
+scope = 'default' # str (optional)
+api_response = api_instance.list_instrument_properties(identifier_type, identifier, effective_at=effective_at, as_at=as_at, page=page, limit=limit, scope=scope)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **identifier_type** | **str**| The unique identifier type to search, for example &#39;Figi&#39;. | [required] 
+ **identifier** | **str**| An &lt;i&gt;identifierType&lt;/i&gt; value to use to identify the instrument, for example &#39;BBG000BLNNV0&#39;. | [required] 
+ **effective_at** | **str**| The effective datetime or cut label at which to list the instrument&#39;s properties.              Defaults to the current LUSID system datetime if not specified. | [optional] 
+ **as_at** | **datetime**| The asAt datetime at which to list the instrument&#39;s properties. Defaults to returning              the latest version of each property if not specified. | [optional] 
+ **page** | **str**| The pagination token to use to continue listing commands; this value is returned from the previous call. | [optional] 
+ **limit** | **int**| When paginating, limit the results per page to this number. | [optional] 
+ **scope** | **str**| The scope in which the instrument lies. When not supplied the scope is &#39;default&#39;. | [optional] [default to &#39;default&#39;]
+
+### Return type
+
+[**ResourceListOfProperty**](ResourceListOfProperty.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The properties of the specified instrument |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **list_instruments**
+> PagedResourceListOfInstrument listInstruments = list_instruments(as_at=as_at, effective_at=effective_at, page=page, sort_by=sort_by, limit=limit, filter=filter, instrument_property_keys=instrument_property_keys, scope=scope, relationship_definition_ids=relationship_definition_ids, data_model_scope=data_model_scope, data_model_code=data_model_code, membership_type=membership_type)
+
+ListInstruments: List instruments
+
+List all the instruments in the instrument master.                To retrieve a particular set of instruments instead, use the Get instruments endpoint.  The maximum number of instruments that this method can list per request is 2,000.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(InstrumentsApi)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+effective_at = 'effective_at_example' # str (optional)
+page = 'page_example' # str (optional)
+sort_by = ['sort_by_example'] # List[str] (optional)
+limit = 56 # int (optional)
+filter = 'State eq \'Active\'' # str (optional)
+instrument_property_keys = ['instrument_property_keys_example'] # List[str] (optional)
+scope = 'default' # str (optional)
+relationship_definition_ids = ['relationship_definition_ids_example'] # List[str] (optional)
+data_model_scope = 'data_model_scope_example' # str (optional)
+data_model_code = 'data_model_code_example' # str (optional)
+membership_type = 'membership_type_example' # str (optional)
+api_response = api_instance.list_instruments(as_at=as_at, effective_at=effective_at, page=page, sort_by=sort_by, limit=limit, filter=filter, instrument_property_keys=instrument_property_keys, scope=scope, relationship_definition_ids=relationship_definition_ids, data_model_scope=data_model_scope, data_model_code=data_model_code, membership_type=membership_type)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **as_at** | **datetime**| The asAt datetime at which to list instruments. Defaults to returning the latest               version of each instrument if not specified. | [optional] 
+ **effective_at** | **str**| The effective datetime or cut label at which to list instruments.               Defaults to the current LUSID system datetime if not specified. | [optional] 
+ **page** | **str**| The pagination token to use to continue listing instruments; this value is returned from               the previous call. If a pagination token is provided, the &lt;i&gt;sortBy&lt;/i&gt;, &lt;i&gt;filter&lt;/i&gt;, &lt;i&gt;effectiveAt&lt;/i&gt; and               &lt;i&gt;asAt&lt;/i&gt; fields must not have changed since the original request.               For more information, see https://support.lusid.com/knowledgebase/article/KA-01915. | [optional] 
+ **sort_by** | [**List[str]**](str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
+ **limit** | **int**| When paginating, limit the results to this number. | [optional] 
+ **filter** | **str**| Expression to filter the result set. Defaults to filtering out inactive instruments               (that is, those that have been deleted). For more information about filtering results,               see https://support.lusid.com/knowledgebase/article/KA-01914. | [optional] [default to &#39;State eq \&#39;Active\&#39;&#39;]
+ **instrument_property_keys** | [**List[str]**](str.md)| A list of property keys from the &#39;Instrument&#39; domain to decorate onto               instruments, or from any domain that supports relationships to decorate onto related entities.               These must have the format {domain}/{scope}/{code}, for example &#39;Instrument/system/Name&#39;. | [optional] 
+ **scope** | **str**| The scope in which the instrument lies. When not supplied the scope is &#39;default&#39;. | [optional] [default to &#39;default&#39;]
+ **relationship_definition_ids** | [**List[str]**](str.md)| A list of relationship definitions that are used to decorate related entities               onto each instrument in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}. | [optional] 
+ **data_model_scope** | **str**| The optional scope of a Custom Data Model to use. | [optional] 
+ **data_model_code** | **str**| The optional code of a Custom Data Model to use. | [optional] 
+ **membership_type** | **str**| The membership types of the specified Custom Data Model to return. Allowable values are Member, Candidate and All. Defaults to Member. | [optional] 
+
+### Return type
+
+[**PagedResourceListOfInstrument**](PagedResourceListOfInstrument.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The requested instruments |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **query_instrument_capabilities**
+> InstrumentCapabilities queryInstrumentCapabilities = query_instrument_capabilities(lusid_instrument, model=model)
+
+QueryInstrumentCapabilities: Query capabilities of a particular instrument in advance of creating it. These include instrument features, and if model is provided it also includes supported address keys and economic dependencies.
+
+Returns instrument capabilities containing useful information about the instrument and the model. This includes  - features corresponding to the instrument e.g. Optionality:American, Other:InflationLinked  - supported addresses (if model provided) e.g. Valuation/Pv, Valuation/DirtyPriceKey, Valuation/Accrued  - economic dependencies (if model provided) e.g. Cash:USD, Fx:GBP.USD, Rates:GBP.GBPOIS
+
+### Example
+
+```python
+api_instance = api_client_factory.build(InstrumentsApi)
+lusid_instrument = LusidInstrument()
+model = 'model_example' # str (optional)
+api_response = api_instance.query_instrument_capabilities(lusid_instrument, model=model)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **lusid_instrument** | [**LusidInstrument**](LusidInstrument.md)| The definition of the instrument. | [required] 
+ **model** | **str**| A pricing model for the instrument. Defaults to Unknown if not specified. If not specified the SupportedAddresses and EconomicDependencies are not provided. | [optional] 
+
+### Return type
+
+[**InstrumentCapabilities**](InstrumentCapabilities.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Capabilities for a given instrument, with more details should the model be provided. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **update_instrument_identifier**
+> Instrument updateInstrumentIdentifier = update_instrument_identifier(identifier_type, identifier, update_instrument_identifier_request, scope=scope, data_model_scope=data_model_scope, data_model_code=data_model_code)
+
+UpdateInstrumentIdentifier: Update instrument identifier
+
+Create, update or delete a particular instrument identifier for an instrument.                To delete the identifier, leave the value unspecified in the request. If not being deleted, the  identifier is updated if it exists and created if it does not.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(InstrumentsApi)
+identifier_type = 'identifier_type_example' # str
+identifier = 'identifier_example' # str
+update_instrument_identifier_request = UpdateInstrumentIdentifierRequest()
+scope = 'default' # str (optional)
+data_model_scope = 'data_model_scope_example' # str (optional)
+data_model_code = 'data_model_code_example' # str (optional)
+api_response = api_instance.update_instrument_identifier(identifier_type, identifier, update_instrument_identifier_request, scope=scope, data_model_scope=data_model_scope, data_model_code=data_model_code)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **identifier_type** | **str**| The unique identifier type to search, for example &#39;Figi&#39;. | [required] 
+ **identifier** | **str**| An &lt;i&gt;identifierType&lt;/i&gt; value to use to identify the instrument, for example &#39;BBG000BLNNV0&#39;. | [required] 
+ **update_instrument_identifier_request** | [**UpdateInstrumentIdentifierRequest**](UpdateInstrumentIdentifierRequest.md)| The identifier to update or delete. This need not be the same value as the               &#39;identifier&#39; parameter used to retrieve the instrument. | [required] 
+ **scope** | **str**| The scope in which the instrument lies. When not supplied the scope is &#39;default&#39;. | [optional] [default to &#39;default&#39;]
+ **data_model_scope** | **str**| The optional scope of a Custom Data Model to use | [optional] 
+ **data_model_code** | **str**| The optional code of a Custom Data Model to use | [optional] 
+
+### Return type
+
+[**Instrument**](Instrument.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The updated instrument definition with the identifier created, updated or deleted |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **upsert_instruments**
+> UpsertInstrumentsResponse upsertInstruments = upsert_instruments(request_body, scope=scope, data_model_scope=data_model_scope, data_model_code=data_model_code)
+
+UpsertInstruments: Upsert instruments
+
+Create or update one or more instruments in the instrument master. An instrument is updated  if it already exists and created if it does not.                In the request, each instrument definition should be keyed by a unique correlation ID. This ID is ephemeral  and not stored by LUSID. It serves only to easily identify each instrument in the response.                Note that an instrument must have at least one unique identifier, which is a combination of a type  (such as 'Figi') and a value (such as 'BBG000BS1N49'). In addition, a random value is automatically  generated for a LUSID Instrument ID (LUID) unique type by the system. For more information, see  https://support.lusid.com/knowledgebase/article/KA-01862.                The response returns both the collection of successfully created or updated instruments, as well as those  that failed. For each failure, a reason is provided. It is important to check the failed set for  unsuccessful results.  The maximum number of instruments that this method can upsert per request is 2,000.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(InstrumentsApi)
+request_body = {"request_id_1":{"name":"Instrument name","identifiers":{"ClientInternal":{"value":"some-identifier","effectiveAt":"0001-01-01T00:00:00.0000000+00:00"},"Figi":{"value":"some-figi-code","effectiveAt":"0001-01-01T00:00:00.0000000+00:00"},"Isin":{"value":"some-isin-code","effectiveAt":"0001-01-01T00:00:00.0000000+00:00"}},"properties":[{"key":"Instrument/someScope/somePropertyName","value":{"labelValue":"some-property-value"},"effectiveFrom":"2018-06-18T09:00:00.0000000+00:00"}],"lookThroughPortfolioId":{"scope":"MyScope","code":"portfolio-code"},"definition":{"instrumentFormat":{"sourceSystem":"systemA","vendor":"Unknown","version":"1.0.0"},"content":"{\"some-key\": \"some-value\"}","instrumentType":"ExoticInstrument"},"settlementCycle":{"businessDayOffset":2,"calendars":[{"scope":"Holidays","code":"UK"}]}},"request_id_2":{"name":"Instrument name","identifiers":{"ClientInternal":{"value":"some-identifier-2","effectiveAt":"0001-01-01T00:00:00.0000000+00:00"},"Figi":{"value":"some-figi-code-2","effectiveAt":"0001-01-01T00:00:00.0000000+00:00"}},"properties":[],"lookThroughPortfolioId":{"scope":"MyScope","code":"portfolio-code"},"definition":{"instrumentFormat":{"sourceSystem":"systemA","vendor":"Unknown","version":"1.0.0"},"content":"{\"some-key\": \"some-value\"}","instrumentType":"ExoticInstrument"}}} # Dict[str, InstrumentDefinition]
+scope = 'default' # str (optional)
+data_model_scope = 'data_model_scope_example' # str (optional)
+data_model_code = 'data_model_code_example' # str (optional)
+api_response = api_instance.upsert_instruments(request_body, scope=scope, data_model_scope=data_model_scope, data_model_code=data_model_code)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request_body** | [**Dict[str, InstrumentDefinition]**](InstrumentDefinition.md)| The definitions of the instruments to create or update. | [required] 
+ **scope** | **str**| The scope in which the instrument lies. When not supplied the scope is &#39;default&#39;. | [optional] [default to &#39;default&#39;]
+ **data_model_scope** | **str**| The optional scope of a Custom Data Model to use | [optional] 
+ **data_model_code** | **str**| The optional code of a Custom Data Model to use | [optional] 
+
+### Return type
+
+[**UpsertInstrumentsResponse**](UpsertInstrumentsResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | The successfully created or updated instruments along with any failures |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **upsert_instruments_properties**
+> UpsertInstrumentPropertiesResponse upsertInstrumentsProperties = upsert_instruments_properties(upsert_instrument_property_request, scope=scope, data_model_scope=data_model_scope, data_model_code=data_model_code)
+
+UpsertInstrumentsProperties: Upsert instruments properties
+
+Create or update one or more properties for particular instruments.                Each instrument property is updated if it exists and created if it does not. For any failures, a reason  is provided.                Properties have an <i>effectiveFrom</i> datetime from which the property is valid, and an <i>effectiveUntil</i>  datetime until which the property is valid. Not supplying an <i>effectiveUntil</i> datetime results in the property being  valid indefinitely, or until the next <i>effectiveFrom</i> datetime of the property.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(InstrumentsApi)
+upsert_instrument_property_request = [{"identifierType":"LusidInstrumentId","identifier":"LUID_00000000","properties":[{"key":"Instrument/MyScope/SomePropertyName","value":{"labelValue":"SomeValue1"},"effectiveFrom":"2016-09-15T12:00:00.0000000+00:00"},{"key":"Instrument/MyScope/SomePropertyName","value":{"labelValue":"SomeValue2"},"effectiveFrom":"2017-08-10T12:00:00.0000000+00:00"},{"key":"Instrument/MyScope/AnotherPropertyName","value":{"labelValue":"AnotherValue1"},"effectiveFrom":"2018-03-05T12:00:00.0000000+00:00","effectiveUntil":"2019-06-01T12:00:00.0000000+00:00"},{"key":"Instrument/MyScope/AnotherPropertyName","value":{"labelValue":"AnotherValue2"},"effectiveFrom":"2020-03-15T12:00:00.0000000+00:00","effectiveUntil":"2021-01-15T12:00:00.0000000+00:00"}]}] # List[UpsertInstrumentPropertyRequest]
+scope = 'default' # str (optional)
+data_model_scope = 'data_model_scope_example' # str (optional)
+data_model_code = 'data_model_code_example' # str (optional)
+api_response = api_instance.upsert_instruments_properties(upsert_instrument_property_request, scope=scope, data_model_scope=data_model_scope, data_model_code=data_model_code)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **upsert_instrument_property_request** | [**List[UpsertInstrumentPropertyRequest]**](UpsertInstrumentPropertyRequest.md)| A list of instruments and associated instrument properties to create or update. | [required] 
+ **scope** | **str**| The scope in which the instrument lies. When not supplied the scope is &#39;default&#39;. | [optional] [default to &#39;default&#39;]
+ **data_model_scope** | **str**| The optional scope of a Custom Data Model to use | [optional] 
+ **data_model_code** | **str**| The optional code of a Custom Data Model to use | [optional] 
+
+### Return type
+
+[**UpsertInstrumentPropertiesResponse**](UpsertInstrumentPropertiesResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | The asAt datetime at which the properties were created or updated. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+

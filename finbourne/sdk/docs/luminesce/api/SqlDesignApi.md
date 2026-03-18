@@ -1,0 +1,843 @@
+# luminesce.SqlDesignApi
+
+All URIs are relative to *http://localhost*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**get_provider_template_for_export**](SqlDesignApi.md#get_provider_template_for_export) | **GET** /honeycomb/api/Sql/providertemplateforexport | GetProviderTemplateForExport: Makes a fields template for file importing via a writer
+[**put_case_statement_design_sql_to_design**](SqlDesignApi.md#put_case_statement_design_sql_to_design) | **PUT** /honeycomb/api/Sql/tocasestatementdesign | PutCaseStatementDesignSqlToDesign: Convert SQL to a case statement design object
+[**put_case_statement_design_to_sql**](SqlDesignApi.md#put_case_statement_design_to_sql) | **PUT** /honeycomb/api/Sql/fromcasestatementdesign | PutCaseStatementDesignToSql: Convert a case statement design object to SQL
+[**put_file_read_design_to_sql**](SqlDesignApi.md#put_file_read_design_to_sql) | **PUT** /honeycomb/api/Sql/fromfilereaddesign | PutFileReadDesignToSql: Make file read SQL from a design object
+[**put_inlined_properties_design_sql_to_design**](SqlDesignApi.md#put_inlined_properties_design_sql_to_design) | **PUT** /honeycomb/api/Sql/toinlinedpropertiesdesign | PutInlinedPropertiesDesignSqlToDesign: Make an inlined properties design from SQL
+[**put_inlined_properties_design_to_sql**](SqlDesignApi.md#put_inlined_properties_design_to_sql) | **PUT** /honeycomb/api/Sql/frominlinedpropertiesdesign | PutInlinedPropertiesDesignToSql: Make inlined properties SQL from a design object
+[**put_intellisense**](SqlDesignApi.md#put_intellisense) | **PUT** /honeycomb/api/Sql/intellisense | PutIntellisense: Make intellisense prompts given an SQL snip-it
+[**put_intellisense_error**](SqlDesignApi.md#put_intellisense_error) | **PUT** /honeycomb/api/Sql/intellisenseError | PutIntellisenseError: Get error ranges from SQL
+[**put_lusid_grid_to_query**](SqlDesignApi.md#put_lusid_grid_to_query) | **PUT** /honeycomb/api/Sql/fromlusidgrid | [EXPERIMENTAL] PutLusidGridToQuery: Generates SQL from a dashboard view
+[**put_query_design_to_sql**](SqlDesignApi.md#put_query_design_to_sql) | **PUT** /honeycomb/api/Sql/fromdesign | PutQueryDesignToSql: Make SQL from a structured query design
+[**put_query_to_format**](SqlDesignApi.md#put_query_to_format) | **PUT** /honeycomb/api/Sql/pretty | PutQueryToFormat: Format SQL into a more readable form
+[**put_sql_to_extract_scalar_parameters**](SqlDesignApi.md#put_sql_to_extract_scalar_parameters) | **PUT** /honeycomb/api/Sql/extractscalarparameters | PutSqlToExtractScalarParameters: Extract scalar parameter information from SQL
+[**put_sql_to_file_read_design**](SqlDesignApi.md#put_sql_to_file_read_design) | **PUT** /honeycomb/api/Sql/tofilereaddesign | PutSqlToFileReadDesign: Make a design object from file-read SQL
+[**put_sql_to_query_design**](SqlDesignApi.md#put_sql_to_query_design) | **PUT** /honeycomb/api/Sql/todesign | PutSqlToQueryDesign: Make a SQL-design object from SQL if possible
+[**put_sql_to_view_design**](SqlDesignApi.md#put_sql_to_view_design) | **PUT** /honeycomb/api/Sql/toviewdesign | PutSqlToViewDesign: Make a view-design from view creation SQL
+[**put_sql_to_writer_design**](SqlDesignApi.md#put_sql_to_writer_design) | **PUT** /honeycomb/api/Sql/towriterdesign | PutSqlToWriterDesign: Make a SQL-writer-design object from SQL
+[**put_view_design_to_sql**](SqlDesignApi.md#put_view_design_to_sql) | **PUT** /honeycomb/api/Sql/fromviewdesign | PutViewDesignToSql: Make view creation sql from a view-design
+[**put_writer_design_to_sql**](SqlDesignApi.md#put_writer_design_to_sql) | **PUT** /honeycomb/api/Sql/fromwriterdesign | PutWriterDesignToSql: Make writer SQL from a writer-design object
+
+
+### Example
+
+```python
+from finbourne.sdk.exceptions import ApiException
+from finbourne.sdk.extensions.configuration_options import ConfigurationOptions
+from finbourne.sdk.services.luminesce.models import *
+
+from finbourne.sdk.extensions import (
+  SyncApiClientFactory
+)
+
+from finbourne.sdk.services.luminesce.api.sql_design_api import SqlDesignApi
+
+# opts = ConfigurationOptions()
+# opts.total_timeout_ms = 30_000
+
+# uncomment the below to use an api client factory with overrides
+# api_client_factory = SyncApiClientFactory(opts=opts)
+
+api_client_factory = SyncApiClientFactory()
+api_instance = api_client_factory.build(SqlDesignApi)
+```
+
+---
+
+# **get_provider_template_for_export**
+> bytes getProviderTemplateForExport = get_provider_template_for_export(provider, content_type)
+
+GetProviderTemplateForExport: Makes a fields template for file importing via a writer
+
+Generates a template file for all the writable fields for a given provider returned in CSV or Excel (xlsx) format (as a file to be downloaded)
+
+### Example
+
+```python
+api_instance = api_client_factory.build(SqlDesignApi)
+provider = 'provider_example' # str
+content_type = 'content_type_example' # str
+api_response = api_instance.get_provider_template_for_export(provider, content_type)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **provider** | **str**| Name of the provider for which this template is for | [required] 
+ **content_type** | **str**| File content type for the Template. csv or excel | [required] 
+
+### Return type
+
+**bytes**
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**403** | Forbidden |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **put_case_statement_design_sql_to_design**
+> CaseStatementDesign putCaseStatementDesignSqlToDesign = put_case_statement_design_sql_to_design(body=body)
+
+PutCaseStatementDesignSqlToDesign: Convert SQL to a case statement design object
+
+Converts a SQL query to a CaseStatementDesign object  > This method is generally only intended for IDE generation purposes.  > It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
+
+### Example
+
+```python
+api_instance = api_client_factory.build(SqlDesignApi)
+body = CASE \n WHEN [currency] = 'US' THEN 'USD' \n WHEN [currency] = 'Gb' THEN 'GBP' \n ELSE [currency] \n END # str (optional)
+api_response = api_instance.put_case_statement_design_sql_to_design(body=body)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | **str**| SQL to attempt to create an case statement Design object from | [optional] 
+
+### Return type
+
+[**CaseStatementDesign**](CaseStatementDesign.md)
+
+### HTTP request headers
+
+ - **Content-Type**: text/plain
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**403** | Forbidden |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **put_case_statement_design_to_sql**
+> str putCaseStatementDesignToSql = put_case_statement_design_to_sql(case_statement_design)
+
+PutCaseStatementDesignToSql: Convert a case statement design object to SQL
+
+Generates a SQL case statement query from a structured CaseStatementDesign object  > This method is generally only intended for IDE generation purposes.  > It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
+
+### Example
+
+```python
+api_instance = api_client_factory.build(SqlDesignApi)
+case_statement_design = CaseStatementDesign()
+api_response = api_instance.put_case_statement_design_to_sql(case_statement_design)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **case_statement_design** | [**CaseStatementDesign**](CaseStatementDesign.md)| CaseStatementDesign object to try and create a SQL query from | [required] 
+
+### Return type
+
+**str**
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**403** | Forbidden |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **put_file_read_design_to_sql**
+> FileReaderBuilderResponse putFileReadDesignToSql = put_file_read_design_to_sql(file_reader_builder_def, execute_query=execute_query)
+
+PutFileReadDesignToSql: Make file read SQL from a design object
+
+Generates SQL from a FileReaderBuilderDef object  > This method is generally only intended for IDE generation purposes.  > It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
+
+### Example
+
+```python
+api_instance = api_client_factory.build(SqlDesignApi)
+file_reader_builder_def = FileReaderBuilderDef()
+execute_query = True # bool (optional)
+api_response = api_instance.put_file_read_design_to_sql(file_reader_builder_def, execute_query=execute_query)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **file_reader_builder_def** | [**FileReaderBuilderDef**](FileReaderBuilderDef.md)| Structured file read design object to generate SQL from | [required] 
+ **execute_query** | **bool**| Should the generated query be executed to build preview data or determine errors.&gt; | [optional] [default to True]
+
+### Return type
+
+[**FileReaderBuilderResponse**](FileReaderBuilderResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**403** | Forbidden |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **put_inlined_properties_design_sql_to_design**
+> InlinedPropertyDesign putInlinedPropertiesDesignSqlToDesign = put_inlined_properties_design_sql_to_design(body=body)
+
+PutInlinedPropertiesDesignSqlToDesign: Make an inlined properties design from SQL
+
+Generates a SQL-inlined-properties-design object from SQL string, if possible.  > This method is generally only intended for IDE generation purposes.  > It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
+
+### Example
+
+```python
+api_instance = api_client_factory.build(SqlDesignApi)
+body = @keysToCatalog = values('Portfolio/3897-78d4-e91c-26/location', 'PortfolioLocation', false, '');\n @config = select column1 as [Key], column2 as Name, column3 as IsMain, column4 as Description from @keysToCatalog; \n select * from Sys.Admin.Lusid.Provider.Configure where Provider = 'Lusid.Portfolio' and Configuration = @config; # str (optional)
+api_response = api_instance.put_inlined_properties_design_sql_to_design(body=body)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | **str**| SQL query to attempt to generate the inlined properties design object from | [optional] 
+
+### Return type
+
+[**InlinedPropertyDesign**](InlinedPropertyDesign.md)
+
+### HTTP request headers
+
+ - **Content-Type**: text/plain
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**403** | Forbidden |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **put_inlined_properties_design_to_sql**
+> str putInlinedPropertiesDesignToSql = put_inlined_properties_design_to_sql(inlined_property_design)
+
+PutInlinedPropertiesDesignToSql: Make inlined properties SQL from a design object
+
+Generates inlined properties SQL from a structured design  > This method is generally only intended for IDE generation purposes.  > It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
+
+### Example
+
+```python
+api_instance = api_client_factory.build(SqlDesignApi)
+inlined_property_design = InlinedPropertyDesign()
+api_response = api_instance.put_inlined_properties_design_to_sql(inlined_property_design)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **inlined_property_design** | [**InlinedPropertyDesign**](InlinedPropertyDesign.md)| Inlined properties Designer specification to generate SQL from | [required] 
+
+### Return type
+
+**str**
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**403** | Forbidden |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **put_intellisense**
+> IntellisenseResponse putIntellisense = put_intellisense(intellisense_request)
+
+PutIntellisense: Make intellisense prompts given an SQL snip-it
+
+Generate a set of possible intellisense prompts given a SQL snip-it (in need not yet be valid SQL) and cursor location  > This method is generally only intended for IDE generation purposes.  > It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
+
+### Example
+
+```python
+api_instance = api_client_factory.build(SqlDesignApi)
+intellisense_request = IntellisenseRequest()
+api_response = api_instance.put_intellisense(intellisense_request)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **intellisense_request** | [**IntellisenseRequest**](IntellisenseRequest.md)| SQL and a row/colum position within it from which to determine intellisense options for the user to potentially choose from. | [required] 
+
+### Return type
+
+[**IntellisenseResponse**](IntellisenseResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**403** | Forbidden |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **put_intellisense_error**
+> ErrorHighlightResponse putIntellisenseError = put_intellisense_error(error_highlight_request)
+
+PutIntellisenseError: Get error ranges from SQL
+
+Generate a set of error ranges, if any, in the given SQL (expressed as Lines)  > This method is generally only intended for IDE generation purposes.  > It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
+
+### Example
+
+```python
+api_instance = api_client_factory.build(SqlDesignApi)
+error_highlight_request = ErrorHighlightRequest()
+api_response = api_instance.put_intellisense_error(error_highlight_request)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **error_highlight_request** | [**ErrorHighlightRequest**](ErrorHighlightRequest.md)| SQL (by line) to syntax check and return error ranges from within, if any. | [required] 
+
+### Return type
+
+[**ErrorHighlightResponse**](ErrorHighlightResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**403** | Forbidden |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **put_lusid_grid_to_query**
+> str putLusidGridToQuery = put_lusid_grid_to_query(lusid_grid_data)
+
+[EXPERIMENTAL] PutLusidGridToQuery: Generates SQL from a dashboard view
+
+Used to convert dashboard views in LUSID to SQL that can be run in Lumi
+
+### Example
+
+```python
+api_instance = api_client_factory.build(SqlDesignApi)
+lusid_grid_data = LusidGridData()
+api_response = api_instance.put_lusid_grid_to_query(lusid_grid_data)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **lusid_grid_data** | [**LusidGridData**](LusidGridData.md)|  | [required] 
+
+### Return type
+
+**str**
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**403** | Forbidden |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **put_query_design_to_sql**
+> str putQueryDesignToSql = put_query_design_to_sql(query_design)
+
+PutQueryDesignToSql: Make SQL from a structured query design
+
+Generates SQL from a QueryDesign object  > This method is generally only intended for IDE generation purposes.  > It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
+
+### Example
+
+```python
+api_instance = api_client_factory.build(SqlDesignApi)
+query_design = QueryDesign()
+api_response = api_instance.put_query_design_to_sql(query_design)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **query_design** | [**QueryDesign**](QueryDesign.md)| Structured Query design object to generate SQL from | [required] 
+
+### Return type
+
+**str**
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**403** | Forbidden |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **put_query_to_format**
+> str putQueryToFormat = put_query_to_format(body, trailing_commas=trailing_commas, uppercase_keywords=uppercase_keywords, break_join_on_sections=break_join_on_sections, space_after_expanded_comma=space_after_expanded_comma, keyword_standardization=keyword_standardization, expand_comma_lists=expand_comma_lists, expand_in_lists=expand_in_lists, expand_boolean_expressions=expand_boolean_expressions, expand_between_conditions=expand_between_conditions, expand_case_statements=expand_case_statements, max_line_width=max_line_width, space_before_trailing_single_line_comments=space_before_trailing_single_line_comments, multiline_comment_extra_line_break=multiline_comment_extra_line_break)
+
+PutQueryToFormat: Format SQL into a more readable form
+
+ This formats SQL (given a set of options as to how to do so), a.k.a. Pretty-Print the SQL. It takes some SQL (or a fragment thereof, it need not fully parse as yet and certainly need not execute correctly) and returns the reformatted version. e.g. ```sql select x,y,z from a inner join b on a.x=b.x where x>y or y!=z ``` becomes ```sql select x, y, z from a inner join b    on a.x = b.x where x > y    or y != z ``` 
+
+### Example
+
+```python
+api_instance = api_client_factory.build(SqlDesignApi)
+body = select * from sys.field # str
+trailing_commas = True # bool (optional)
+uppercase_keywords = False # bool (optional)
+break_join_on_sections = True # bool (optional)
+space_after_expanded_comma = True # bool (optional)
+keyword_standardization = True # bool (optional)
+expand_comma_lists = False # bool (optional)
+expand_in_lists = False # bool (optional)
+expand_boolean_expressions = True # bool (optional)
+expand_between_conditions = True # bool (optional)
+expand_case_statements = True # bool (optional)
+max_line_width = 120 # int (optional)
+space_before_trailing_single_line_comments = True # bool (optional)
+multiline_comment_extra_line_break = False # bool (optional)
+api_response = api_instance.put_query_to_format(body, trailing_commas=trailing_commas, uppercase_keywords=uppercase_keywords, break_join_on_sections=break_join_on_sections, space_after_expanded_comma=space_after_expanded_comma, keyword_standardization=keyword_standardization, expand_comma_lists=expand_comma_lists, expand_in_lists=expand_in_lists, expand_boolean_expressions=expand_boolean_expressions, expand_between_conditions=expand_between_conditions, expand_case_statements=expand_case_statements, max_line_width=max_line_width, space_before_trailing_single_line_comments=space_before_trailing_single_line_comments, multiline_comment_extra_line_break=multiline_comment_extra_line_break)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | **str**| LuminesceSql to Pretty-Print. Even if it doesn&#39;t parse an attempt will be made to format it | [required] 
+ **trailing_commas** | **bool**| Should commas be after an expression (as opposed to before) | [optional] [default to True]
+ **uppercase_keywords** | **bool**| Should key words be capitalized | [optional] [default to False]
+ **break_join_on_sections** | **bool**| Should clauses on joins be given line breaks? | [optional] [default to True]
+ **space_after_expanded_comma** | **bool**| Should comma-lists have spaces after the commas? | [optional] [default to True]
+ **keyword_standardization** | **bool**| Should the \&quot;nicest\&quot; key words be used? (e.g. JOIN -&gt; INNER JOIN) | [optional] [default to True]
+ **expand_comma_lists** | **bool**| Should comma-lists (e.g. select a,b,c) have line breaks added? | [optional] [default to False]
+ **expand_in_lists** | **bool**| Should IN-lists have line breaks added? | [optional] [default to False]
+ **expand_boolean_expressions** | **bool**| Should boolean expressions have line breaks added? | [optional] [default to True]
+ **expand_between_conditions** | **bool**| Should between conditions have line breaks added? | [optional] [default to True]
+ **expand_case_statements** | **bool**| Should case-statements have line breaks added? | [optional] [default to True]
+ **max_line_width** | **int**| Maximum number of characters to allow on one line (if possible) | [optional] [default to 120]
+ **space_before_trailing_single_line_comments** | **bool**| Should the be a space before trailing single line comments? | [optional] [default to True]
+ **multiline_comment_extra_line_break** | **bool**| Should an additional line break be added after multi-line comments? | [optional] [default to False]
+
+### Return type
+
+**str**
+
+### HTTP request headers
+
+ - **Content-Type**: text/plain
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**403** | Forbidden |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **put_sql_to_extract_scalar_parameters**
+> List[ScalarParameter] putSqlToExtractScalarParameters = put_sql_to_extract_scalar_parameters(body)
+
+PutSqlToExtractScalarParameters: Extract scalar parameter information from SQL
+
+Extracts information about all the scalar parameters defined in the given SQL statement  > This method is generally only intended for IDE generation purposes.  > It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
+
+### Example
+
+```python
+api_instance = api_client_factory.build(SqlDesignApi)
+body = select abc, :p1:'this' as c1 from xxx where abc = :abcP:{1,2,3} or xyz in (:p2:, 'zzz') # str
+api_response = api_instance.put_sql_to_extract_scalar_parameters(body)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | **str**| SQL query to generate the design object from | [required] 
+
+### Return type
+
+[**List[ScalarParameter]**](ScalarParameter.md)
+
+### HTTP request headers
+
+ - **Content-Type**: text/plain
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**403** | Forbidden |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **put_sql_to_file_read_design**
+> FileReaderBuilderDef putSqlToFileReadDesign = put_sql_to_file_read_design(determine_available_sources=determine_available_sources, body=body)
+
+PutSqlToFileReadDesign: Make a design object from file-read SQL
+
+Generates a SQL-file-read-design object from SQL string, if possible.  > This method is generally only intended for IDE generation purposes.  > It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
+
+### Example
+
+```python
+api_instance = api_client_factory.build(SqlDesignApi)
+determine_available_sources = True # bool (optional)
+body = @x = \nuse Drive.Csv\n  --file=/some/folder/somefile.csv\nenduse;\n\nselect * from @x; # str (optional)
+api_response = api_instance.put_sql_to_file_read_design(determine_available_sources=determine_available_sources, body=body)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **determine_available_sources** | **bool**| Should the available sources be determined from &#x60;Sys.Registration&#x60; | [optional] [default to True]
+ **body** | **str**| SQL query to generate the file read design object from | [optional] 
+
+### Return type
+
+[**FileReaderBuilderDef**](FileReaderBuilderDef.md)
+
+### HTTP request headers
+
+ - **Content-Type**: text/plain
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**403** | Forbidden |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **put_sql_to_query_design**
+> QueryDesign putSqlToQueryDesign = put_sql_to_query_design(body, validate_with_metadata=validate_with_metadata, version=version)
+
+PutSqlToQueryDesign: Make a SQL-design object from SQL if possible
+
+Generates a QueryDesign object from simple SQL if possible  > This method is generally only intended for IDE generation purposes.  > It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
+
+### Example
+
+```python
+api_instance = api_client_factory.build(SqlDesignApi)
+body = SELECT [TableName], Count(distinct [FieldName]) as [NumberOfFields], case [FieldType] when 'Column' then 'col' else [FieldType] end as FieldType2  FROM [Sys.Field] WHERE ([TableName] = 'Sys.Registration') GROUP BY [TableName], [FieldType2] ORDER BY [DataType] LIMIT 42 # str
+validate_with_metadata = True # bool (optional)
+version = luminesce.QueryDesignerVersion() # QueryDesignerVersion (optional)
+api_response = api_instance.put_sql_to_query_design(body, validate_with_metadata=validate_with_metadata, version=version)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | **str**| SQL query to generate the design object from | [required] 
+ **validate_with_metadata** | **bool**| Should the table be validated against the users&#39; view of Sys.Field to fill in DataTypes, etc.? | [optional] [default to True]
+ **version** | [**QueryDesignerVersion**](.md)| Designer version number used to support multiple web user interface versions. Only some values will be allowed and this will change over time (as mentioned this whole method is largely internal to the Finbourne web user interfaces and evolves over time). | [optional] 
+
+### Return type
+
+[**QueryDesign**](QueryDesign.md)
+
+### HTTP request headers
+
+ - **Content-Type**: text/plain
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**403** | Forbidden |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **put_sql_to_view_design**
+> ConvertToViewData putSqlToViewDesign = put_sql_to_view_design(body)
+
+PutSqlToViewDesign: Make a view-design from view creation SQL
+
+Converts SQL which creates a view into a structured ConvertToViewData object  > This method is generally only intended for IDE generation purposes.  > It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
+
+### Example
+
+```python
+api_instance = api_client_factory.build(SqlDesignApi)
+body = @x = \nuse Sys.Admin.SetupView\n  --provider=YourView\n----\nselect * from Lusid.Instrument\nenduse;\n\nselect * from @x; # str
+api_response = api_instance.put_sql_to_view_design(body)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | **str**| SQL Query to generate the ConvertToViewData object from | [required] 
+
+### Return type
+
+[**ConvertToViewData**](ConvertToViewData.md)
+
+### HTTP request headers
+
+ - **Content-Type**: text/plain
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**403** | Forbidden |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **put_sql_to_writer_design**
+> WriterDesign putSqlToWriterDesign = put_sql_to_writer_design(body, merge_additional_mapping_fields=merge_additional_mapping_fields)
+
+PutSqlToWriterDesign: Make a SQL-writer-design object from SQL
+
+Generates a SQL-writer-design object (WriterDesign) from a SQL query, if possible  > This method is generally only intended for IDE generation purposes.  > It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
+
+### Example
+
+```python
+api_instance = api_client_factory.build(SqlDesignApi)
+body = Select abc from xyz # str
+merge_additional_mapping_fields = False # bool (optional)
+api_response = api_instance.put_sql_to_writer_design(body, merge_additional_mapping_fields=merge_additional_mapping_fields)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | **str**| SQL query to generate the writer design object from | [required] 
+ **merge_additional_mapping_fields** | **bool**| Should &#x60;Sys.Field&#x60; be used to find additional potential fields to map from? (not always possible) | [optional] [default to False]
+
+### Return type
+
+[**WriterDesign**](WriterDesign.md)
+
+### HTTP request headers
+
+ - **Content-Type**: text/plain
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**403** | Forbidden |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **put_view_design_to_sql**
+> str putViewDesignToSql = put_view_design_to_sql(convert_to_view_data)
+
+PutViewDesignToSql: Make view creation sql from a view-design
+
+Converts a ConvertToView specification into SQL that creates a view  > This method is generally only intended for IDE generation purposes.  > It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
+
+### Example
+
+```python
+api_instance = api_client_factory.build(SqlDesignApi)
+convert_to_view_data = ConvertToViewData()
+api_response = api_instance.put_view_design_to_sql(convert_to_view_data)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **convert_to_view_data** | [**ConvertToViewData**](ConvertToViewData.md)| Structured Query design object to generate SQL from | [required] 
+
+### Return type
+
+**str**
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**403** | Forbidden |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **put_writer_design_to_sql**
+> str putWriterDesignToSql = put_writer_design_to_sql(writer_design)
+
+PutWriterDesignToSql: Make writer SQL from a writer-design object
+
+Generates writer SQL from a valid WriterDesign structure  > This method is generally only intended for IDE generation purposes.  > It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
+
+### Example
+
+```python
+api_instance = api_client_factory.build(SqlDesignApi)
+writer_design = WriterDesign()
+api_response = api_instance.put_writer_design_to_sql(writer_design)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **writer_design** | [**WriterDesign**](WriterDesign.md)| Structured Writer Design design object to generate Writer SQL from | [required] 
+
+### Return type
+
+**str**
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**403** | Forbidden |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
