@@ -350,7 +350,7 @@ Name | Type | Description  | Notes
 ---
 
 # **get_policy**
-> PolicyResponse getPolicy = get_policy(code, scope=scope)
+> PolicyResponse getPolicy = get_policy(code, scope=scope, as_at=as_at)
 
 GetPolicy: Get Policy
 
@@ -362,7 +362,8 @@ Gets an identified Policy
 api_instance = api_client_factory.build(PoliciesApi)
 code = 'code_example' # str
 scope = 'scope_example' # str (optional)
-api_response = api_instance.get_policy(code, scope=scope)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+api_response = api_instance.get_policy(code, scope=scope, as_at=as_at)
 pprint(api_response)
 ```
 
@@ -372,6 +373,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **code** | **str**| The code of the Policy | [required] 
  **scope** | **str**| Optional. Will use the default scope if not provided. The scope of the Policy | [optional] 
+ **as_at** | **datetime**| Optional. The AsAt date and time at which to retrieve the Policy. Defaults to returning the latest version | [optional] 
 
 ### Return type
 

@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_custom_entity_type**](CustomEntityTypesApi.md#create_custom_entity_type) | **POST** /api/api/customentitytypes | [EARLY ACCESS] CreateCustomEntityType: Define a new Custom Entity Type.
+[**delete_custom_entity_type**](CustomEntityTypesApi.md#delete_custom_entity_type) | **DELETE** /api/api/customentitytypes/{entityType} | [EARLY ACCESS] DeleteCustomEntityType: Delete a Custom Entity type.
 [**get_custom_entity_type**](CustomEntityTypesApi.md#get_custom_entity_type) | **GET** /api/api/customentitytypes/{entityType} | [EARLY ACCESS] GetCustomEntityType: Get a Custom Entity Type.
 [**list_custom_entity_types**](CustomEntityTypesApi.md#list_custom_entity_types) | **GET** /api/api/customentitytypes | [EARLY ACCESS] ListCustomEntityTypes: List Custom Entity Types.
 [**update_custom_entity_type**](CustomEntityTypesApi.md#update_custom_entity_type) | **PUT** /api/api/customentitytypes/{entityType} | [EARLY ACCESS] UpdateCustomEntityType: Modify an existing Custom Entity Type.
@@ -70,6 +71,48 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The created Custom Entity Type. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **delete_custom_entity_type**
+> DeletedEntityResponse deleteCustomEntityType = delete_custom_entity_type(entity_type)
+
+[EARLY ACCESS] DeleteCustomEntityType: Delete a Custom Entity type.
+
+Delete a Custom Entity type definition by a specific entityType. This will delete all versions of the definition and all associated Custom Entities.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(CustomEntityTypesApi)
+entity_type = 'entity_type_example' # str
+api_response = api_instance.delete_custom_entity_type(entity_type)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **entity_type** | **str**| The identifier for the Custom Entity type, derived from the \&quot;entityTypeName\&quot; provided on creation. | [required] 
+
+### Return type
+
+[**DeletedEntityResponse**](DeletedEntityResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The deleted entity metadata. |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 

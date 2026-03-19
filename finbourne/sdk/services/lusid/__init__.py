@@ -626,6 +626,7 @@ from finbourne.sdk.services.lusid.models.group_reconciliation_definition_compari
 from finbourne.sdk.services.lusid.models.group_reconciliation_definition_currencies import GroupReconciliationDefinitionCurrencies
 from finbourne.sdk.services.lusid.models.group_reconciliation_definition_portfolio_entity_ids import GroupReconciliationDefinitionPortfolioEntityIds
 from finbourne.sdk.services.lusid.models.group_reconciliation_definition_recipe_ids import GroupReconciliationDefinitionRecipeIds
+from finbourne.sdk.services.lusid.models.group_reconciliation_filters import GroupReconciliationFilters
 from finbourne.sdk.services.lusid.models.group_reconciliation_instance_id import GroupReconciliationInstanceId
 from finbourne.sdk.services.lusid.models.group_reconciliation_result_statuses import GroupReconciliationResultStatuses
 from finbourne.sdk.services.lusid.models.group_reconciliation_result_types import GroupReconciliationResultTypes
@@ -2072,6 +2073,7 @@ __all__ = [
     "GroupReconciliationDefinitionCurrencies",
     "GroupReconciliationDefinitionPortfolioEntityIds",
     "GroupReconciliationDefinitionRecipeIds",
+    "GroupReconciliationFilters",
     "GroupReconciliationInstanceId",
     "GroupReconciliationResultStatuses",
     "GroupReconciliationResultTypes",

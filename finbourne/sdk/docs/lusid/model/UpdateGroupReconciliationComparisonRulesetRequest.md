@@ -6,6 +6,7 @@
 |------|------|----------|-------------|
 | **display_name** | **str** | Required | The name of the ruleset |
 | **reconciliation_type** | **str** | Required | The type of reconciliation to perform. \&quot;Holding\&quot; | \&quot;Transaction\&quot; | \&quot;Valuation\&quot; |
+| **filters** | [GroupReconciliationFilters](GroupReconciliationFilters.md) | Optional | *No description available.* |
 | **core_attribute_rules** | [List[GroupReconciliationCoreAttributeRule]](GroupReconciliationCoreAttributeRule.md) | Required | The core comparison rules |
 | **aggregate_attribute_rules** | [List[GroupReconciliationAggregateAttributeRule]](GroupReconciliationAggregateAttributeRule.md) | Required | The aggregate comparison rules |
 
@@ -20,11 +21,13 @@ from finbourne.sdk.services.lusid.models.UpdateGroupReconciliationComparisonRule
 instance = UpdateGroupReconciliationComparisonRulesetRequest(
     display_name="...",  # required — The name of the ruleset
     reconciliation_type="...",  # required — The type of reconciliation to perform. \&quot;Holding\&quot; | \&quot;Transaction\&quot; | \&quot;Valuation\&quot;
+    filters=GroupReconciliationFilters(...),  # optional
     core_attribute_rules=[],  # required — The core comparison rules
     aggregate_attribute_rules=[]  # required — The aggregate comparison rules
 )
 ```
 
+- [GroupReconciliationFilters](GroupReconciliationFilters.md)
 - [GroupReconciliationCoreAttributeRule](GroupReconciliationCoreAttributeRule.md) — used in `core_attribute_rules`
 - [GroupReconciliationAggregateAttributeRule](GroupReconciliationAggregateAttributeRule.md) — used in `aggregate_attribute_rules`
 

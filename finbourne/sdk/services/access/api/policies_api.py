@@ -19,6 +19,7 @@ from typing import overload, Optional, Union, Awaitable
 from typing_extensions import Annotated
 
 import finbourne.sdk.services.access.models as packageModels
+from datetime import datetime
 from pydantic import Field, StrictInt, StrictStr, field_validator
 from typing import Dict, List, Optional
 from typing_extensions import Annotated
@@ -964,7 +965,7 @@ class PoliciesApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def get_policy(self, code: StrictStr, scope: Optional[StrictStr] = None, **kwargs) -> PolicyResponse:
+    def get_policy(self, code: StrictStr, scope: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> PolicyResponse:
         """GetPolicy: Get Policy  # noqa: E501
 
         Gets an identified Policy  # noqa: E501
@@ -972,6 +973,8 @@ class PoliciesApi:
         :type code: str
         :param scope: Optional. Will use the default scope if not provided. The scope of the Policy
         :type scope: str
+        :param as_at: Optional. The AsAt date and time at which to retrieve the Policy. Defaults to returning the latest version
+        :type as_at: datetime
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -983,10 +986,10 @@ class PoliciesApi:
             message = "Error! Please call the get_policy_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_policy_with_http_info(code, scope, **kwargs)  # noqa: E501
+        return self.get_policy_with_http_info(code, scope, as_at, **kwargs)  # noqa: E501
 
     @validate_call
-    def get_policy_with_http_info(self, code: StrictStr, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PolicyResponse]:
+    def get_policy_with_http_info(self, code: StrictStr, scope: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[PolicyResponse]:
         """GetPolicy: Get Policy  # noqa: E501
 
         Gets an identified Policy  # noqa: E501
@@ -994,6 +997,8 @@ class PoliciesApi:
         :type code: str
         :param scope: Optional. Will use the default scope if not provided. The scope of the Policy
         :type scope: str
+        :param as_at: Optional. The AsAt date and time at which to retrieve the Policy. Defaults to returning the latest version
+        :type as_at: datetime
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1018,7 +1023,8 @@ class PoliciesApi:
 
         _all_params = [
             'code',
-            'scope'
+            'scope',
+            'as_at'
         ]
         _all_params.extend(
             [
@@ -1054,6 +1060,12 @@ class PoliciesApi:
         _query_params = []
         if _params.get('scope') is not None:  # noqa: E501
             _query_params.append(('scope', _params['scope']))
+
+        if _params.get('as_at') is not None:  # noqa: E501
+            if isinstance(_params['as_at'], datetime):
+                _query_params.append(('asAt', _params['as_at'].strftime(self.sync_api_client.configuration.datetime_format)))
+            else:
+                _query_params.append(('asAt', _params['as_at']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -3092,7 +3104,7 @@ class PoliciesApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def get_policy_async(self, code: StrictStr, scope: Optional[StrictStr] = None, **kwargs) -> PolicyResponse:
+    async def get_policy_async(self, code: StrictStr, scope: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> PolicyResponse:
             """GetPolicy: Get Policy  # noqa: E501
             Gets an identified Policy  # noqa: E501
             
@@ -3100,6 +3112,8 @@ class PoliciesApi:
             :type code: str
             :param scope: Optional. Will use the default scope if not provided. The scope of the Policy
             :type scope: str
+            :param as_at: Optional. The AsAt date and time at which to retrieve the Policy. Defaults to returning the latest version
+            :type as_at: datetime
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -3111,10 +3125,10 @@ class PoliciesApi:
                 message = "Error! Please call the get_policy_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_policy_with_http_info_async(code, scope, **kwargs)  # noqa: E501
+            return await self.get_policy_with_http_info_async(code, scope, as_at, **kwargs)  # noqa: E501
 
     @validate_call
-    async def get_policy_with_http_info_async(self, code: StrictStr, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PolicyResponse]:
+    async def get_policy_with_http_info_async(self, code: StrictStr, scope: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[PolicyResponse]:
             """GetPolicy: Get Policy  # noqa: E501
 
             Gets an identified Policy  # noqa: E501
@@ -3123,6 +3137,8 @@ class PoliciesApi:
             :type code: str
             :param scope: Optional. Will use the default scope if not provided. The scope of the Policy
             :type scope: str
+            :param as_at: Optional. The AsAt date and time at which to retrieve the Policy. Defaults to returning the latest version
+            :type as_at: datetime
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -3147,7 +3163,8 @@ class PoliciesApi:
 
             _all_params = [
                 'code',
-                'scope'
+                'scope',
+                'as_at'
             ]
             _all_params.extend(
                 [
@@ -3183,6 +3200,12 @@ class PoliciesApi:
             _query_params = []
             if _params.get('scope') is not None:  # noqa: E501
                 _query_params.append(('scope', _params['scope']))
+
+            if _params.get('as_at') is not None:  # noqa: E501
+                if isinstance(_params['as_at'], datetime):
+                    _query_params.append(('asAt', _params['as_at'].strftime(self.api_client.configuration.datetime_format)))
+                else:
+                    _query_params.append(('asAt', _params['as_at']))
 
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))

@@ -1,9 +1,9 @@
 [project]
 name = "finbourne-sdk"
-version = "0.0.3"
-description = "Merged OpenAPI Specification"
+version = "0.0.4"
+description = "This is the Python SDK for all of FINBOURNE's APIs"
 authors = [
-    {name = "OpenAPI Generator Community", email = "team@openapitools.org"}
+    {name = "Finbourne Technology LTD", email = "info@finbourne.com"}
 ]
 license = {text = "MIT"}
 

@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_custom_entity_definition**](CustomEntityDefinitionsApi.md#create_custom_entity_definition) | **POST** /api/api/customentities/entitytypes | [EARLY ACCESS] CreateCustomEntityDefinition: Define a new Custom Entity type.
+[**delete_definition**](CustomEntityDefinitionsApi.md#delete_definition) | **DELETE** /api/api/customentities/entitytypes/{entityType} | [EARLY ACCESS] DeleteDefinition: Delete a Custom Entity type definition.
 [**get_definition**](CustomEntityDefinitionsApi.md#get_definition) | **GET** /api/api/customentities/entitytypes/{entityType} | [EARLY ACCESS] GetDefinition: Get a Custom Entity type definition.
 [**list_custom_entity_definitions**](CustomEntityDefinitionsApi.md#list_custom_entity_definitions) | **GET** /api/api/customentities/entitytypes | [EARLY ACCESS] ListCustomEntityDefinitions: List the Custom Entity type definitions
 [**update_custom_entity_definition**](CustomEntityDefinitionsApi.md#update_custom_entity_definition) | **PUT** /api/api/customentities/entitytypes/{entityType} | [EARLY ACCESS] UpdateCustomEntityDefinition: Modify an existing Custom Entity type.
@@ -70,6 +71,48 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The created Custom Entity type. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **delete_definition**
+> DeletedEntityResponse deleteDefinition = delete_definition(entity_type)
+
+[EARLY ACCESS] DeleteDefinition: Delete a Custom Entity type definition.
+
+Delete a Custom Entity type definition by a specific entityType. This will delete all versions of the definition and all associated Custom Entities.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(CustomEntityDefinitionsApi)
+entity_type = 'entity_type_example' # str
+api_response = api_instance.delete_definition(entity_type)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **entity_type** | **str**| The identifier for the Custom Entity type, derived from the \&quot;entityTypeName\&quot; provided on creation. | [required] 
+
+### Return type
+
+[**DeletedEntityResponse**](DeletedEntityResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The deleted entity metadata. |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 

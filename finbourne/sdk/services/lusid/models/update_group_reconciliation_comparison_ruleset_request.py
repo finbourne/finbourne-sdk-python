@@ -22,6 +22,7 @@ from datetime import datetime
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 from finbourne.sdk.services.lusid.models.group_reconciliation_aggregate_attribute_rule import GroupReconciliationAggregateAttributeRule
 from finbourne.sdk.services.lusid.models.group_reconciliation_core_attribute_rule import GroupReconciliationCoreAttributeRule
+from finbourne.sdk.services.lusid.models.group_reconciliation_filters import GroupReconciliationFilters
 
 
 class UpdateGroupReconciliationComparisonRulesetRequest(BaseModel):
@@ -30,9 +31,10 @@ class UpdateGroupReconciliationComparisonRulesetRequest(BaseModel):
     """
     display_name:  StrictStr = Field(...,alias="displayName", description="The name of the ruleset") 
     reconciliation_type:  StrictStr = Field(...,alias="reconciliationType", description="The type of reconciliation to perform. \"Holding\" | \"Transaction\" | \"Valuation\"") 
+    filters: Optional[GroupReconciliationFilters] = None
     core_attribute_rules: List[GroupReconciliationCoreAttributeRule] = Field(description="The core comparison rules", alias="coreAttributeRules")
     aggregate_attribute_rules: List[GroupReconciliationAggregateAttributeRule] = Field(description="The aggregate comparison rules", alias="aggregateAttributeRules")
-    __properties = ["displayName", "reconciliationType", "coreAttributeRules", "aggregateAttributeRules"]
+    __properties = ["displayName", "reconciliationType", "filters", "coreAttributeRules", "aggregateAttributeRules"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -67,6 +69,9 @@ class UpdateGroupReconciliationComparisonRulesetRequest(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of filters
+        if self.filters:
+            _dict['filters'] = self.filters.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in core_attribute_rules (list)
         _items = []
         if self.core_attribute_rules:
@@ -95,6 +100,7 @@ class UpdateGroupReconciliationComparisonRulesetRequest(BaseModel):
         _obj = UpdateGroupReconciliationComparisonRulesetRequest.model_validate({
             "display_name": obj.get("displayName"),
             "reconciliation_type": obj.get("reconciliationType"),
+            "filters": GroupReconciliationFilters.from_dict(obj.get("filters")) if obj.get("filters") is not None else None,
             "core_attribute_rules": [GroupReconciliationCoreAttributeRule.from_dict(_item) for _item in obj.get("coreAttributeRules")] if obj.get("coreAttributeRules") is not None else None,
             "aggregate_attribute_rules": [GroupReconciliationAggregateAttributeRule.from_dict(_item) for _item in obj.get("aggregateAttributeRules")] if obj.get("aggregateAttributeRules") is not None else None
         })

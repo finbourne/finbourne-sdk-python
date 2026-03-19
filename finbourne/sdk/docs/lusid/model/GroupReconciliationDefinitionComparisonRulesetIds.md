@@ -7,6 +7,7 @@
 | **transaction_reconciliation** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **holding_reconciliation** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **valuation_reconciliation** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **cash_holding_reconciliation** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -19,13 +20,15 @@ from finbourne.sdk.services.lusid.models.GroupReconciliationDefinitionComparison
 instance = GroupReconciliationDefinitionComparisonRulesetIds(
     transaction_reconciliation=ResourceId(...),  # optional
     holding_reconciliation=ResourceId(...),  # optional
-    valuation_reconciliation=ResourceId(...)  # optional
+    valuation_reconciliation=ResourceId(...),  # optional
+    cash_holding_reconciliation=ResourceId(...)  # optional
 )
 ```
 
 
 ## Related Models
 
+- [ResourceId](ResourceId.md)
 - [ResourceId](ResourceId.md)
 - [ResourceId](ResourceId.md)
 - [ResourceId](ResourceId.md)

@@ -31,11 +31,10 @@ class UpdateTransactionFeeRequest(BaseModel):
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="A description of the transaction fee.") 
     calculation: Optional[FeeCalculationRequest] = None
     condition:  Optional[StrictStr] = Field(default=None,alias="condition", description="The condition that the transaction must meet in order for the fee to be applied.") 
-    capitalisation_condition:  Optional[StrictStr] = Field(default=None,alias="capitalisationCondition", description="If the fee Capitalisation is Conditional, this condition determines whether the fee is capitalised, when applied to the transaction.") 
     txn_property_key:  Optional[StrictStr] = Field(default=None,alias="txnPropertyKey", description="The property key to which the fee value will be applied and decorated onto the transaction. Must be in the 'Transaction' property domain.") 
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="A set of properties for the transaction fee.")
     is_active: Optional[StrictBool] = Field(default=None, description="Indicates whether the transaction fee is currently active and should be applied to transactions. Optional when creating a transaction fee, defaults to true, if a value is not provided.", alias="isActive")
-    __properties = ["description", "calculation", "condition", "capitalisationCondition", "txnPropertyKey", "properties", "isActive"]
+    __properties = ["description", "calculation", "condition", "txnPropertyKey", "properties", "isActive"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -90,11 +89,6 @@ class UpdateTransactionFeeRequest(BaseModel):
         if self.condition is None and "condition" in self.model_fields_set:
             _dict['condition'] = None
 
-        # set to None if capitalisation_condition (nullable) is None
-        # and model_fields_set contains the field
-        if self.capitalisation_condition is None and "capitalisation_condition" in self.model_fields_set:
-            _dict['capitalisationCondition'] = None
-
         # set to None if txn_property_key (nullable) is None
         # and model_fields_set contains the field
         if self.txn_property_key is None and "txn_property_key" in self.model_fields_set:
@@ -125,7 +119,6 @@ class UpdateTransactionFeeRequest(BaseModel):
             "description": obj.get("description"),
             "calculation": FeeCalculationRequest.from_dict(obj.get("calculation")) if obj.get("calculation") is not None else None,
             "condition": obj.get("condition"),
-            "capitalisation_condition": obj.get("capitalisationCondition"),
             "txn_property_key": obj.get("txnPropertyKey"),
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))

@@ -9,8 +9,6 @@
 | **description** | **str** | Optional | A description of the transaction fee. |
 | **calculation** | [FeeCalculationRequest](FeeCalculationRequest.md) | Optional | *No description available.* |
 | **condition** | **str** | Optional | The condition that the transaction must meet in order for the fee to be applied. |
-| **capitalised** | **str** | Optional | Specifies whether the fee should be capitalised, not capitalised or conditionally capitalised. |
-| **capitalisation_condition** | **str** | Optional | If the fee Capitalisation is Conditional, this condition determines whether the fee is capitalised, when applied to the transaction. |
 | **txn_property_key** | **str** | Optional | The property key to which the fee value will be applied and decorated onto the transaction. Must be in the &#39;Transaction&#39; property domain. |
 | **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the transaction fee. |
 | **version** | [Version](Version.md) | Optional | *No description available.* |
@@ -32,8 +30,6 @@ instance = TransactionFee(
     description="...",  # optional — A description of the transaction fee.
     calculation=FeeCalculationRequest(...),  # optional
     condition="...",  # optional — The condition that the transaction must meet in order for the fee to be applied.
-    capitalised="...",  # optional — Specifies whether the fee should be capitalised, not capitalised or conditionally capitalised.
-    capitalisation_condition="...",  # optional — If the fee Capitalisation is Conditional, this condition determines whether the fee is capitalised, when applied to the transaction.
     txn_property_key="...",  # optional — The property key to which the fee value will be applied and decorated onto the transaction. Must be in the &#39;Transaction&#39; property domain.
     properties=ModelProperty(...),  # optional — A set of properties for the transaction fee.
     version=Version(...),  # optional
