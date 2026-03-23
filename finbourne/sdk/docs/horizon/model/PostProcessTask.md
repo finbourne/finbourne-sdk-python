@@ -1,13 +1,14 @@
 # PostProcessTask
 
+Request defining a post-processing task for an instance.
 ## Properties
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **action** | **str** | Required | *No description available.* |
-| **target_instance** | **str** | Optional | *No description available.* |
-| **trigger_on** | **str** | Required | *No description available.* |
-| **parameters** | **object** | Optional | *No description available.* |
+| **action** | **str** | Required | The type of action to perform (Allowed: RunIntegration, RunWorkflow, TriggerEmail) |
+| **target_instance** | **str** | Optional | The instance identifier to trigger (for TriggerIntegration action). |
+| **trigger_on** | **str** | Required | When the task should be triggered (Allowed: OnSuccess, OnFailure, Always) |
+| **parameters** | **object** | Optional | JSON parameters specific to the action type. |
 
 
 ## Usage
@@ -18,10 +19,10 @@
 from finbourne.sdk.services.horizon.models.PostProcessTask import PostProcessTask
 
 instance = PostProcessTask(
-    action="...",  # required
-    target_instance="...",  # optional
-    trigger_on="...",  # required
-    parameters=  # optional
+    action="...",  # required — The type of action to perform (Allowed: RunIntegration, RunWorkflow, TriggerEmail)
+    target_instance="...",  # optional — The instance identifier to trigger (for TriggerIntegration action).
+    trigger_on="...",  # required — When the task should be triggered (Allowed: OnSuccess, OnFailure, Always)
+    parameters=  # optional — JSON parameters specific to the action type.
 )
 ```
 

@@ -1,11 +1,12 @@
 # IntegrationRunLogLink
 
+Integration run log link
 ## Properties
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **href** | **str** | Required | *No description available.* |
-| **description** | **str** | Required | *No description available.* |
+| **href** | **str** | Required |  |
+| **description** | **str** | Required |  |
 
 
 ## Usage
@@ -16,8 +17,8 @@
 from finbourne.sdk.services.horizon.models.IntegrationRunLogLink import IntegrationRunLogLink
 
 instance = IntegrationRunLogLink(
-    href="...",  # required
-    description="..."  # required
+    href="...",  # required — 
+    description="..."  # required — 
 )
 ```
 

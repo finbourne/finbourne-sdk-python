@@ -24,22 +24,22 @@ from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictF
 
 class ExternalLogRecord(BaseModel):
     """
-    ExternalLogRecord
+    Represents an external log record.  # noqa: E501
     """
-    logid: StrictInt
-    parentlogid: Optional[StrictInt] = None
-    loglevel:  StrictStr = Field(...,alias="loglevel") 
-    logstatus:  StrictStr = Field(...,alias="logstatus") 
-    sourcerecordtype:  Optional[StrictStr] = Field(default=None,alias="sourcerecordtype") 
-    sourceprimaryidtype:  Optional[StrictStr] = Field(default=None,alias="sourceprimaryidtype") 
-    sourceprimaryidvalue:  Optional[StrictStr] = Field(default=None,alias="sourceprimaryidvalue") 
-    targetrecordtype:  Optional[StrictStr] = Field(default=None,alias="targetrecordtype") 
-    targetrecordaction:  Optional[StrictStr] = Field(default=None,alias="targetrecordaction") 
-    targetprimaryidtype:  Optional[StrictStr] = Field(default=None,alias="targetprimaryidtype") 
-    targetprimaryidvalue:  Optional[StrictStr] = Field(default=None,alias="targetprimaryidvalue") 
-    message:  Optional[StrictStr] = Field(default=None,alias="message") 
-    messagetype:  Optional[StrictStr] = Field(default=None,alias="messagetype") 
-    timestamp:  StrictStr = Field(...,alias="timestamp") 
+    logid: StrictInt = Field(description="The unique log identifier.")
+    parentlogid: Optional[StrictInt] = Field(default=None, description="The parent log identifier (null is allowed).")
+    loglevel:  StrictStr = Field(...,alias="loglevel", description="The log level.") 
+    logstatus:  StrictStr = Field(...,alias="logstatus", description="The log status.") 
+    sourcerecordtype:  Optional[StrictStr] = Field(default=None,alias="sourcerecordtype", description="The source record type.") 
+    sourceprimaryidtype:  Optional[StrictStr] = Field(default=None,alias="sourceprimaryidtype", description="The source primary ID type.") 
+    sourceprimaryidvalue:  Optional[StrictStr] = Field(default=None,alias="sourceprimaryidvalue", description="The source primary ID value.") 
+    targetrecordtype:  Optional[StrictStr] = Field(default=None,alias="targetrecordtype", description="The target record type.") 
+    targetrecordaction:  Optional[StrictStr] = Field(default=None,alias="targetrecordaction", description="The target record action.") 
+    targetprimaryidtype:  Optional[StrictStr] = Field(default=None,alias="targetprimaryidtype", description="The target primary ID type.") 
+    targetprimaryidvalue:  Optional[StrictStr] = Field(default=None,alias="targetprimaryidvalue", description="The target primary ID value.") 
+    message:  Optional[StrictStr] = Field(default=None,alias="message", description="The log message.") 
+    messagetype:  Optional[StrictStr] = Field(default=None,alias="messagetype", description="The message type.") 
+    timestamp:  StrictStr = Field(...,alias="timestamp", description="The timestamp of the log record.") 
     __properties = ["logid", "parentlogid", "loglevel", "logstatus", "sourcerecordtype", "sourceprimaryidtype", "sourceprimaryidvalue", "targetrecordtype", "targetrecordaction", "targetprimaryidtype", "targetprimaryidvalue", "message", "messagetype", "timestamp"]
 
     model_config = ConfigDict(

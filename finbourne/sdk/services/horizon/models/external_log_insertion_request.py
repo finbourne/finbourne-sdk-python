@@ -25,9 +25,9 @@ from finbourne.sdk.services.horizon.models.external_log_record import ExternalLo
 
 class ExternalLogInsertionRequest(BaseModel):
     """
-    ExternalLogInsertionRequest
+    A request to insert external log records.  # noqa: E501
     """
-    logs: List[ExternalLogRecord]
+    logs: List[ExternalLogRecord] = Field(description="The collection of external log records to insert.")
     __properties = ["logs"]
 
     model_config = ConfigDict(

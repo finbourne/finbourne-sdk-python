@@ -24,7 +24,7 @@ from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictF
 
 class Trigger(BaseModel):
     """
-    Trigger
+    Response defining a trigger for an instance.  # noqa: E501
     """
     type:  StrictStr = Field(...,alias="type") 
     cron_expression:  StrictStr = Field(...,alias="cronExpression") 

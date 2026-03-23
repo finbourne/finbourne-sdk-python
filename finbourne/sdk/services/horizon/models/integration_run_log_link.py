@@ -24,10 +24,10 @@ from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictF
 
 class IntegrationRunLogLink(BaseModel):
     """
-    IntegrationRunLogLink
+    Integration run log link  # noqa: E501
     """
-    href:  StrictStr = Field(...,alias="href") 
-    description:  StrictStr = Field(...,alias="description") 
+    href:  StrictStr = Field(...,alias="href", description="") 
+    description:  StrictStr = Field(...,alias="description", description="") 
     __properties = ["href", "description"]
 
     model_config = ConfigDict(

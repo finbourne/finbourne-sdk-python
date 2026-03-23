@@ -24,7 +24,7 @@ from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictF
 
 class IntegrationCancellationResponse(BaseModel):
     """
-    IntegrationCancellationResponse
+    No content is returned when an instance is cancelled.  # noqa: E501
     """
     response: Dict[str, StrictStr]
     __properties = ["response"]

@@ -52,6 +52,7 @@
 * [SqlBackgroundExecutionApi](luminesce/api/SqlBackgroundExecutionApi.md)
 * [SqlDesignApi](luminesce/api/SqlDesignApi.md)
 * [SqlExecutionApi](luminesce/api/SqlExecutionApi.md)
+* [ViewManagementApi](luminesce/api/ViewManagementApi.md)
 ## Lusid
 * [AborApi](lusid/api/AborApi.md)
 * [AborConfigurationApi](lusid/api/AborConfigurationApi.md)

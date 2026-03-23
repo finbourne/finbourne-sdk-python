@@ -1,10 +1,11 @@
 # IntegrationRunLog
 
+Integration run log
 ## Properties
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **count** | **int** | Required | *No description available.* |
+| **count** | **int** | Required |  |
 | **link** | [IntegrationRunLogLink](IntegrationRunLogLink.md) | Required | *No description available.* |
 
 
@@ -16,7 +17,7 @@
 from finbourne.sdk.services.horizon.models.IntegrationRunLog import IntegrationRunLog
 
 instance = IntegrationRunLog(
-    count=0,  # required
+    count=0,  # required — 
     link=IntegrationRunLogLink(...)  # required
 )
 ```

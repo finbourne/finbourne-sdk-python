@@ -24,12 +24,12 @@ from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictF
 
 class PostProcessTask(BaseModel):
     """
-    PostProcessTask
+    Request defining a post-processing task for an instance.  # noqa: E501
     """
-    action:  StrictStr = Field(...,alias="action") 
-    target_instance:  Optional[StrictStr] = Field(default=None,alias="targetInstance") 
-    trigger_on:  StrictStr = Field(...,alias="triggerOn") 
-    parameters: Optional[Any] = None
+    action:  StrictStr = Field(...,alias="action", description="The type of action to perform (Allowed: RunIntegration, RunWorkflow, TriggerEmail)") 
+    target_instance:  Optional[StrictStr] = Field(default=None,alias="targetInstance", description="The instance identifier to trigger (for TriggerIntegration action).") 
+    trigger_on:  StrictStr = Field(...,alias="triggerOn", description="When the task should be triggered (Allowed: OnSuccess, OnFailure, Always)") 
+    parameters: Optional[Any] = Field(default=None, description="JSON parameters specific to the action type.")
     __properties = ["action", "targetInstance", "triggerOn", "parameters"]
 
     model_config = ConfigDict(

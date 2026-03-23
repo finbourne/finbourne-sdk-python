@@ -27,15 +27,15 @@ from finbourne.sdk.services.horizon.models.integration_run_version import Integr
 
 class IntegrationRunResponse(BaseModel):
     """
-    IntegrationRunResponse
+    Integration run response  # noqa: E501
     """
-    run_id:  StrictStr = Field(...,alias="runId") 
-    ref_run_id:  Optional[StrictStr] = Field(default=None,alias="refRunId") 
+    run_id:  StrictStr = Field(...,alias="runId", description="") 
+    ref_run_id:  Optional[StrictStr] = Field(default=None,alias="refRunId", description="") 
     attempt: StrictInt
     instance_id:  Optional[StrictStr] = Field(default=None,alias="instanceId") 
     instance_name:  Optional[StrictStr] = Field(default=None,alias="instanceName") 
-    status:  Optional[StrictStr] = Field(default=None,alias="status") 
-    message:  Optional[StrictStr] = Field(default=None,alias="message") 
+    status:  Optional[StrictStr] = Field(default=None,alias="status", description="") 
+    message:  Optional[StrictStr] = Field(default=None,alias="message", description="") 
     integration: IntegrationRunIntegration
     version: IntegrationRunVersion
     integration_logs: Optional[Dict[str, Dict[str, IntegrationRunLog]]] = Field(default=None, alias="integrationLogs")

@@ -11,6 +11,7 @@ from finbourne.sdk.services.luminesce.api.multi_query_execution_api import Multi
 from finbourne.sdk.services.luminesce.api.sql_background_execution_api import SqlBackgroundExecutionApi
 from finbourne.sdk.services.luminesce.api.sql_design_api import SqlDesignApi
 from finbourne.sdk.services.luminesce.api.sql_execution_api import SqlExecutionApi
+from finbourne.sdk.services.luminesce.api.view_management_api import ViewManagementApi
 
 
 __all__ = [
@@ -23,5 +24,6 @@ __all__ = [
     "MultiQueryExecutionApi",
     "SqlBackgroundExecutionApi",
     "SqlDesignApi",
-    "SqlExecutionApi"
+    "SqlExecutionApi",
+    "ViewManagementApi"
 ]

@@ -25,6 +25,7 @@ from finbourne.sdk.services.luminesce.api.multi_query_execution_api import Multi
 from finbourne.sdk.services.luminesce.api.sql_background_execution_api import SqlBackgroundExecutionApi
 from finbourne.sdk.services.luminesce.api.sql_design_api import SqlDesignApi
 from finbourne.sdk.services.luminesce.api.sql_execution_api import SqlExecutionApi
+from finbourne.sdk.services.luminesce.api.view_management_api import ViewManagementApi
 
 # import models into sdk package
 from finbourne.sdk.services.luminesce.models.access_controlled_action import AccessControlledAction
@@ -111,6 +112,7 @@ from finbourne.sdk.services.luminesce.models.table_meta import TableMeta
 from finbourne.sdk.services.luminesce.models.table_view import TableView
 from finbourne.sdk.services.luminesce.models.task_status import TaskStatus
 from finbourne.sdk.services.luminesce.models.type import Type
+from finbourne.sdk.services.luminesce.models.view_item import ViewItem
 from finbourne.sdk.services.luminesce.models.view_parameter import ViewParameter
 from finbourne.sdk.services.luminesce.models.writer_design import WriterDesign
 
@@ -127,6 +129,7 @@ __all__ = [
     "SqlBackgroundExecutionApi",
     "SqlDesignApi",
     "SqlExecutionApi",
+    "ViewManagementApi",
     "AccessControlledAction",
     "AccessControlledResource",
     "AccessControlledResourceIdentifierPartSchemaAttribute",
@@ -211,6 +214,7 @@ __all__ = [
     "TableView",
     "TaskStatus",
     "Type",
+    "ViewItem",
     "ViewParameter",
     "WriterDesign",
     

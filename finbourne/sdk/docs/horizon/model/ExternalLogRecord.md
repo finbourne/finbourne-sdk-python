@@ -1,23 +1,24 @@
 # ExternalLogRecord
 
+Represents an external log record.
 ## Properties
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **logid** | **int** | Required | *No description available.* |
-| **parentlogid** | **int** | Optional | *No description available.* |
-| **loglevel** | **str** | Required | *No description available.* |
-| **logstatus** | **str** | Required | *No description available.* |
-| **sourcerecordtype** | **str** | Optional | *No description available.* |
-| **sourceprimaryidtype** | **str** | Optional | *No description available.* |
-| **sourceprimaryidvalue** | **str** | Optional | *No description available.* |
-| **targetrecordtype** | **str** | Optional | *No description available.* |
-| **targetrecordaction** | **str** | Optional | *No description available.* |
-| **targetprimaryidtype** | **str** | Optional | *No description available.* |
-| **targetprimaryidvalue** | **str** | Optional | *No description available.* |
-| **message** | **str** | Optional | *No description available.* |
-| **messagetype** | **str** | Optional | *No description available.* |
-| **timestamp** | **str** | Required | *No description available.* |
+| **logid** | **int** | Required | The unique log identifier. |
+| **parentlogid** | **int** | Optional | The parent log identifier (null is allowed). |
+| **loglevel** | **str** | Required | The log level. |
+| **logstatus** | **str** | Required | The log status. |
+| **sourcerecordtype** | **str** | Optional | The source record type. |
+| **sourceprimaryidtype** | **str** | Optional | The source primary ID type. |
+| **sourceprimaryidvalue** | **str** | Optional | The source primary ID value. |
+| **targetrecordtype** | **str** | Optional | The target record type. |
+| **targetrecordaction** | **str** | Optional | The target record action. |
+| **targetprimaryidtype** | **str** | Optional | The target primary ID type. |
+| **targetprimaryidvalue** | **str** | Optional | The target primary ID value. |
+| **message** | **str** | Optional | The log message. |
+| **messagetype** | **str** | Optional | The message type. |
+| **timestamp** | **str** | Required | The timestamp of the log record. |
 
 
 ## Usage
@@ -28,20 +29,20 @@
 from finbourne.sdk.services.horizon.models.ExternalLogRecord import ExternalLogRecord
 
 instance = ExternalLogRecord(
-    logid=0,  # required
-    parentlogid=0,  # optional
-    loglevel="...",  # required
-    logstatus="...",  # required
-    sourcerecordtype="...",  # optional
-    sourceprimaryidtype="...",  # optional
-    sourceprimaryidvalue="...",  # optional
-    targetrecordtype="...",  # optional
-    targetrecordaction="...",  # optional
-    targetprimaryidtype="...",  # optional
-    targetprimaryidvalue="...",  # optional
-    message="...",  # optional
-    messagetype="...",  # optional
-    timestamp="..."  # required
+    logid=0,  # required — The unique log identifier.
+    parentlogid=0,  # optional — The parent log identifier (null is allowed).
+    loglevel="...",  # required — The log level.
+    logstatus="...",  # required — The log status.
+    sourcerecordtype="...",  # optional — The source record type.
+    sourceprimaryidtype="...",  # optional — The source primary ID type.
+    sourceprimaryidvalue="...",  # optional — The source primary ID value.
+    targetrecordtype="...",  # optional — The target record type.
+    targetrecordaction="...",  # optional — The target record action.
+    targetprimaryidtype="...",  # optional — The target primary ID type.
+    targetprimaryidvalue="...",  # optional — The target primary ID value.
+    message="...",  # optional — The log message.
+    messagetype="...",  # optional — The message type.
+    timestamp="..."  # required — The timestamp of the log record.
 )
 ```
 
