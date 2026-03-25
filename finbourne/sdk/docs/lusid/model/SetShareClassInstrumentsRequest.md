@@ -6,7 +6,7 @@ The request used to create a Fund.
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **share_class_instrument_scopes** | **List[str]** | Required | The scopes in which the instruments lie, currently limited to one. |
-| **share_class_instruments** | [List[InstrumentResolutionDetail]](InstrumentResolutionDetail.md) | Required | Details the user-provided instrument identifiers and the instrument resolved from them. |
+| **share_class_instruments** | [List[InstrumentResolutionDetail]](InstrumentResolutionDetail.md) | Required | Details the user-provided instrument identifiers and the instrument resolved from them. These would be decommissioned in favour of the new AllocationGroups and ShareClasses structures. |
 
 
 ## Usage
@@ -18,7 +18,7 @@ from finbourne.sdk.services.lusid.models.SetShareClassInstrumentsRequest import 
 
 instance = SetShareClassInstrumentsRequest(
     share_class_instrument_scopes=,  # required — The scopes in which the instruments lie, currently limited to one.
-    share_class_instruments=[]  # required — Details the user-provided instrument identifiers and the instrument resolved from them.
+    share_class_instruments=[]  # required — Details the user-provided instrument identifiers and the instrument resolved from them. These would be decommissioned in favour of the new AllocationGroups and ShareClasses structures.
 )
 ```
 

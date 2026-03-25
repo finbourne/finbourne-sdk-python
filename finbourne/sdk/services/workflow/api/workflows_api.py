@@ -51,7 +51,7 @@ class WorkflowsApi:
 
     @validate_call
     def create_workflow(self, create_workflow_request: CreateWorkflowRequest, **kwargs) -> WorkflowResponse:
-        """[EXPERIMENTAL] CreateWorkflow: Create a new Workflow  # noqa: E501
+        """CreateWorkflow: Create a new Workflow  # noqa: E501
 
         :param create_workflow_request: The data to create a Workflow (required)
         :type create_workflow_request: CreateWorkflowRequest
@@ -70,7 +70,7 @@ class WorkflowsApi:
 
     @validate_call
     def create_workflow_with_http_info(self, create_workflow_request: CreateWorkflowRequest, **kwargs) -> ApiResponse[WorkflowResponse]:
-        """[EXPERIMENTAL] CreateWorkflow: Create a new Workflow  # noqa: E501
+        """CreateWorkflow: Create a new Workflow  # noqa: E501
 
         :param create_workflow_request: The data to create a Workflow (required)
         :type create_workflow_request: CreateWorkflowRequest
@@ -177,7 +177,7 @@ class WorkflowsApi:
 
     @validate_call
     def get_workflow(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> WorkflowResponse:
-        """[EXPERIMENTAL] GetWorkflow: Get a Workflow  # noqa: E501
+        """GetWorkflow: Get a Workflow  # noqa: E501
 
         :param scope: The scope that identifies a Workflow (required)
         :type scope: str
@@ -200,7 +200,7 @@ class WorkflowsApi:
 
     @validate_call
     def get_workflow_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[WorkflowResponse]:
-        """[EXPERIMENTAL] GetWorkflow: Get a Workflow  # noqa: E501
+        """GetWorkflow: Get a Workflow  # noqa: E501
 
         :param scope: The scope that identifies a Workflow (required)
         :type scope: str
@@ -319,7 +319,7 @@ class WorkflowsApi:
 
     @validate_call
     async def create_workflow_async(self, create_workflow_request: CreateWorkflowRequest, **kwargs) -> WorkflowResponse:
-            """[EXPERIMENTAL] CreateWorkflow: Create a new Workflow  # noqa: E501
+            """CreateWorkflow: Create a new Workflow  # noqa: E501
             
             :param create_workflow_request: The data to create a Workflow (required)
             :type create_workflow_request: CreateWorkflowRequest
@@ -338,7 +338,7 @@ class WorkflowsApi:
 
     @validate_call
     async def create_workflow_with_http_info_async(self, create_workflow_request: CreateWorkflowRequest, **kwargs) -> ApiResponse[WorkflowResponse]:
-            """[EXPERIMENTAL] CreateWorkflow: Create a new Workflow  # noqa: E501
+            """CreateWorkflow: Create a new Workflow  # noqa: E501
 
 
             :param create_workflow_request: The data to create a Workflow (required)
@@ -446,7 +446,7 @@ class WorkflowsApi:
 
     @validate_call
     async def get_workflow_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> WorkflowResponse:
-            """[EXPERIMENTAL] GetWorkflow: Get a Workflow  # noqa: E501
+            """GetWorkflow: Get a Workflow  # noqa: E501
             
             :param scope: The scope that identifies a Workflow (required)
             :type scope: str
@@ -469,7 +469,7 @@ class WorkflowsApi:
 
     @validate_call
     async def get_workflow_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[WorkflowResponse]:
-            """[EXPERIMENTAL] GetWorkflow: Get a Workflow  # noqa: E501
+            """GetWorkflow: Get a Workflow  # noqa: E501
 
 
             :param scope: The scope that identifies a Workflow (required)

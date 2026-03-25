@@ -58,7 +58,7 @@ class TasksApi:
 
     @validate_call
     def batch_update_tasks(self, batch_update_tasks_request: Optional[BatchUpdateTasksRequest] = None, **kwargs) -> BatchUpdateTasksResponse:
-        """[EXPERIMENTAL] BatchUpdateTasks: Batch update tasks  # noqa: E501
+        """BatchUpdateTasks: Batch update tasks  # noqa: E501
 
         :param batch_update_tasks_request: The details of the request
         :type batch_update_tasks_request: BatchUpdateTasksRequest
@@ -77,7 +77,7 @@ class TasksApi:
 
     @validate_call
     def batch_update_tasks_with_http_info(self, batch_update_tasks_request: Optional[BatchUpdateTasksRequest] = None, **kwargs) -> ApiResponse[BatchUpdateTasksResponse]:
-        """[EXPERIMENTAL] BatchUpdateTasks: Batch update tasks  # noqa: E501
+        """BatchUpdateTasks: Batch update tasks  # noqa: E501
 
         :param batch_update_tasks_request: The details of the request
         :type batch_update_tasks_request: BatchUpdateTasksRequest
@@ -1122,7 +1122,7 @@ class TasksApi:
 
     @validate_call
     async def batch_update_tasks_async(self, batch_update_tasks_request: Optional[BatchUpdateTasksRequest] = None, **kwargs) -> BatchUpdateTasksResponse:
-            """[EXPERIMENTAL] BatchUpdateTasks: Batch update tasks  # noqa: E501
+            """BatchUpdateTasks: Batch update tasks  # noqa: E501
             
             :param batch_update_tasks_request: The details of the request
             :type batch_update_tasks_request: BatchUpdateTasksRequest
@@ -1141,7 +1141,7 @@ class TasksApi:
 
     @validate_call
     async def batch_update_tasks_with_http_info_async(self, batch_update_tasks_request: Optional[BatchUpdateTasksRequest] = None, **kwargs) -> ApiResponse[BatchUpdateTasksResponse]:
-            """[EXPERIMENTAL] BatchUpdateTasks: Batch update tasks  # noqa: E501
+            """BatchUpdateTasks: Batch update tasks  # noqa: E501
 
 
             :param batch_update_tasks_request: The details of the request

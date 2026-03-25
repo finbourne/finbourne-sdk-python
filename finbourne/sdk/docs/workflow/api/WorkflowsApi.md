@@ -4,8 +4,8 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_workflow**](WorkflowsApi.md#create_workflow) | **POST** /workflow/api/workflows | [EXPERIMENTAL] CreateWorkflow: Create a new Workflow
-[**get_workflow**](WorkflowsApi.md#get_workflow) | **GET** /workflow/api/workflows/{scope}/{code} | [EXPERIMENTAL] GetWorkflow: Get a Workflow
+[**create_workflow**](WorkflowsApi.md#create_workflow) | **POST** /workflow/api/workflows | CreateWorkflow: Create a new Workflow
+[**get_workflow**](WorkflowsApi.md#get_workflow) | **GET** /workflow/api/workflows/{scope}/{code} | GetWorkflow: Get a Workflow
 
 
 ### Example
@@ -36,7 +36,7 @@ api_instance = api_client_factory.build(WorkflowsApi)
 # **create_workflow**
 > WorkflowResponse createWorkflow = create_workflow(create_workflow_request)
 
-[EXPERIMENTAL] CreateWorkflow: Create a new Workflow
+CreateWorkflow: Create a new Workflow
 
 ### Example
 
@@ -77,7 +77,7 @@ Name | Type | Description  | Notes
 # **get_workflow**
 > WorkflowResponse getWorkflow = get_workflow(scope, code, as_at=as_at)
 
-[EXPERIMENTAL] GetWorkflow: Get a Workflow
+GetWorkflow: Get a Workflow
 
 ### Example
 

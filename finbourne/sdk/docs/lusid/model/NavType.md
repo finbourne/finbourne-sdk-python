@@ -4,23 +4,23 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **status** | **str** | Required | *No description available.* |
-| **code** | **str** | Optional | *No description available.* |
-| **display_name** | **str** | Optional | *No description available.* |
-| **description** | **str** | Optional | *No description available.* |
+| **status** | **str** | Required | The Status of the Nav Type. Can be &#39;Active&#39; or &#39;Inactive&#39;. |
+| **code** | **str** | Optional | The Code for the Nav Type. Must be unique within the Fund. |
+| **display_name** | **str** | Optional | The Display Name for the Nav Type. Must be unique within the Fund. |
+| **description** | **str** | Optional | The Description for the Nav Type. |
 | **chart_of_accounts_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
-| **posting_module_codes** | **List[str]** | Optional | *No description available.* |
-| **cleardown_module_codes** | **List[str]** | Optional | *No description available.* |
+| **posting_module_codes** | **List[str]** | Optional | The Posting Module Codes from which the rules to be applied are retrieved. |
+| **cleardown_module_codes** | **List[str]** | Optional | The Cleardown Module Codes from which the rules to be applied are retrieved. |
 | **valuation_recipe_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **holding_recipe_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
-| **accounting_method** | **str** | Required | *No description available.* |
-| **sub_holding_keys** | **List[str]** | Optional | Set of unique holding identifiers, e.g. trader, desk, strategy. |
-| **amortisation_method** | **str** | Required | *No description available.* |
-| **transaction_type_scope** | **str** | Required | *No description available.* |
-| **cash_gain_loss_calculation_date** | **str** | Required | *No description available.* |
+| **accounting_method** | **str** | Required | Determines the accounting treatment given to the simple position portfolio&#39;s tax lots. A non-default value is required. |
+| **sub_holding_keys** | **List[str]** | Optional | A set of unique transaction properties to group the derived transaction portfolio&#39;s holdings by, perhaps for strategy tagging. Each property must be from the &#39;Transaction&#39; domain and identified by a key in the format {domain}/{scope}/{code}, for example &#39;Transaction/strategies/quantsignal&#39;. See https://support.lusid.com/knowledgebase/article/KA-01879/en-us for more information. |
+| **amortisation_method** | **str** | Required | The amortisation method used by the portfolio for the calculation. The available values are: NoAmortisation, StraightLine, EffectiveYield, StraightLineSettlementDate, EffectiveYieldSettlementDate |
+| **transaction_type_scope** | **str** | Required | The scope of the transaction types. |
+| **cash_gain_loss_calculation_date** | **str** | Required | The option when the Cash Gain Loss to be calulated, TransactionDate/SettlementDate. A non-default value is required. |
 | **amortisation_rule_set_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
-| **leader_nav_type_code** | **str** | Optional | *No description available.* |
-| **transaction_template_scope** | **str** | Optional | *No description available.* |
+| **leader_nav_type_code** | **str** | Optional | The code of the Nav Type that this Nav Type will follow when set. |
+| **transaction_template_scope** | **str** | Optional | The Transaction Template Scope used by the NavType. Will default to the scope set on the parent portfolio. If the fund has multiple parent portfolios, then the Transaction Template Scope must be provided. |
 
 
 ## Usage
@@ -31,23 +31,23 @@
 from finbourne.sdk.services.lusid.models.NavType import NavType
 
 instance = NavType(
-    status="...",  # required
-    code="...",  # optional
-    display_name="...",  # optional
-    description="...",  # optional
+    status="...",  # required — The Status of the Nav Type. Can be &#39;Active&#39; or &#39;Inactive&#39;.
+    code="...",  # optional — The Code for the Nav Type. Must be unique within the Fund.
+    display_name="...",  # optional — The Display Name for the Nav Type. Must be unique within the Fund.
+    description="...",  # optional — The Description for the Nav Type.
     chart_of_accounts_id=ResourceId(...),  # required
-    posting_module_codes=,  # optional
-    cleardown_module_codes=,  # optional
+    posting_module_codes=,  # optional — The Posting Module Codes from which the rules to be applied are retrieved.
+    cleardown_module_codes=,  # optional — The Cleardown Module Codes from which the rules to be applied are retrieved.
     valuation_recipe_id=ResourceId(...),  # required
     holding_recipe_id=ResourceId(...),  # required
-    accounting_method="...",  # required
-    sub_holding_keys=,  # optional — Set of unique holding identifiers, e.g. trader, desk, strategy.
-    amortisation_method="...",  # required
-    transaction_type_scope="...",  # required
-    cash_gain_loss_calculation_date="...",  # required
+    accounting_method="...",  # required — Determines the accounting treatment given to the simple position portfolio&#39;s tax lots. A non-default value is required.
+    sub_holding_keys=,  # optional — A set of unique transaction properties to group the derived transaction portfolio&#39;s holdings by, perhaps for strategy tagging. Each property must be from the &#39;Transaction&#39; domain and identified by a key in the format {domain}/{scope}/{code}, for example &#39;Transaction/strategies/quantsignal&#39;. See https://support.lusid.com/knowledgebase/article/KA-01879/en-us for more information.
+    amortisation_method="...",  # required — The amortisation method used by the portfolio for the calculation. The available values are: NoAmortisation, StraightLine, EffectiveYield, StraightLineSettlementDate, EffectiveYieldSettlementDate
+    transaction_type_scope="...",  # required — The scope of the transaction types.
+    cash_gain_loss_calculation_date="...",  # required — The option when the Cash Gain Loss to be calulated, TransactionDate/SettlementDate. A non-default value is required.
     amortisation_rule_set_id=ResourceId(...),  # optional
-    leader_nav_type_code="...",  # optional
-    transaction_template_scope="..."  # optional
+    leader_nav_type_code="...",  # optional — The code of the Nav Type that this Nav Type will follow when set.
+    transaction_template_scope="..."  # optional — The Transaction Template Scope used by the NavType. Will default to the scope set on the parent portfolio. If the fund has multiple parent portfolios, then the Transaction Template Scope must be provided.
 )
 ```
 

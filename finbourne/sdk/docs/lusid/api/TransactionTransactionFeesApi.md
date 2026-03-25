@@ -37,7 +37,7 @@ api_instance = api_client_factory.build(TransactionTransactionFeesApi)
 ---
 
 # **create_transaction_fee**
-> TransactionFee createTransactionFee = create_transaction_fee(scope, code, create_transaction_fee_request, effective_at=effective_at)
+> TransactionFee createTransactionFee = create_transaction_fee(scope, code, create_transaction_fee_request)
 
 [EXPERIMENTAL] CreateTransactionFee: Create a TransactionFee
 
@@ -50,8 +50,7 @@ api_instance = api_client_factory.build(TransactionTransactionFeesApi)
 scope = 'scope_example' # str
 code = 'code_example' # str
 create_transaction_fee_request = CreateTransactionFeeRequest()
-effective_at = 'effective_at_example' # str (optional)
-api_response = api_instance.create_transaction_fee(scope, code, create_transaction_fee_request, effective_at=effective_at)
+api_response = api_instance.create_transaction_fee(scope, code, create_transaction_fee_request)
 pprint(api_response)
 ```
 
@@ -62,7 +61,6 @@ Name | Type | Description  | Notes
  **scope** | **str**| The scope of the TransactionFee. | [required] 
  **code** | **str**| The code of the TransactionFee.              Together with the scope this uniquely identifies the TransactionFee. | [required] 
  **create_transaction_fee_request** | [**CreateTransactionFeeRequest**](CreateTransactionFeeRequest.md)| The contents of the TransactionFee. | [required] 
- **effective_at** | **str**| The date and time at which the TransactionFee should be effective. | [optional] 
 
 ### Return type
 
@@ -154,7 +152,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the TransactionFee. | [required] 
  **code** | **str**| The code of the TransactionFee.              Together with the scope this uniquely identifies the TransactionFee. | [required] 
- **effective_at** | **str**| The date and time at which the query is effective. | [optional] 
+ **effective_at** | **str**| The effective datetime at which to retrieve the TransactionFee properties.              Defaults to the current LUSID system datetime if not specified. | [optional] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the TransactionFees.              Defaults to latest if not specified. | [optional] 
  **property_keys** | [**List[str]**](str.md)| The collection of &#x60;PropertyKey&#x60;s that we want to decorate on identifies the TransactionFee. | [optional] 
 
@@ -204,9 +202,9 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **effective_at** | **str**| The date and time at which the query is effective. | [optional] 
+ **effective_at** | **str**| The effective datetime at which to retrieve TransactionFee properties.              Defaults to the current LUSID system datetime if not specified. | [optional] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the TransactionFees.              Defaults to latest if not specified. | [optional] 
- **page** | **str**| The pagination token to use to continue listing TransactionFees from a previous call to list TransactionFees.  This value is returned from the previous call. If a pagination token is provided the filter,  sortBy and asAt field must not have changed since the original request. | [optional] 
+ **page** | **str**| The pagination token to use to continue listing TransactionFees from a previous call to list TransactionFees.  This value is returned from the previous call. If a pagination token is provided the filter,  sortBy, effectiveAt and asAt field must not have changed since the original request. | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many. Defaults to 100 if not specified. | [optional] 
  **filter** | **str**| Expression to filter the result set.              For example, to filter on the Scope, use \&quot;scope eq &#39;ExampleScope&#39;\&quot;              Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid. | [optional] 
  **sort_by** | [**List[str]**](str.md)| A list of field names to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot; | [optional] 
@@ -233,7 +231,7 @@ Name | Type | Description  | Notes
 ---
 
 # **update_transaction_fee**
-> TransactionFee updateTransactionFee = update_transaction_fee(scope, code, update_transaction_fee_request, effective_at=effective_at)
+> TransactionFee updateTransactionFee = update_transaction_fee(scope, code, update_transaction_fee_request)
 
 [EXPERIMENTAL] UpdateTransactionFee: Update a TransactionFee
 
@@ -246,8 +244,7 @@ api_instance = api_client_factory.build(TransactionTransactionFeesApi)
 scope = 'scope_example' # str
 code = 'code_example' # str
 update_transaction_fee_request = UpdateTransactionFeeRequest()
-effective_at = 'effective_at_example' # str (optional)
-api_response = api_instance.update_transaction_fee(scope, code, update_transaction_fee_request, effective_at=effective_at)
+api_response = api_instance.update_transaction_fee(scope, code, update_transaction_fee_request)
 pprint(api_response)
 ```
 
@@ -257,8 +254,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the TransactionFee. | [required] 
  **code** | **str**| The code of the specified TransactionFee.              Together with the scope this uniquely identifies the TransactionFee. | [required] 
- **update_transaction_fee_request** | [**UpdateTransactionFeeRequest**](UpdateTransactionFeeRequest.md)| The contents of the TransactionFee. | [required] 
- **effective_at** | **str**| The date and time at which the update should take effect.             The updated contents of the TransactionFee. | [optional] 
+ **update_transaction_fee_request** | [**UpdateTransactionFeeRequest**](UpdateTransactionFeeRequest.md)| The updated contents of the TransactionFee. | [required] 
 
 ### Return type
 

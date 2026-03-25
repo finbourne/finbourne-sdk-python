@@ -150,6 +150,11 @@ from finbourne.sdk.services.lusid.models.aggregation_query import AggregationQue
 from finbourne.sdk.services.lusid.models.aggregation_type import AggregationType
 from finbourne.sdk.services.lusid.models.alias import Alias
 from finbourne.sdk.services.lusid.models.allocation import Allocation
+from finbourne.sdk.services.lusid.models.allocation_group import AllocationGroup
+from finbourne.sdk.services.lusid.models.allocation_group_class import AllocationGroupClass
+from finbourne.sdk.services.lusid.models.allocation_group_class_definition import AllocationGroupClassDefinition
+from finbourne.sdk.services.lusid.models.allocation_group_definition import AllocationGroupDefinition
+from finbourne.sdk.services.lusid.models.allocation_method_property import AllocationMethodProperty
 from finbourne.sdk.services.lusid.models.allocation_request import AllocationRequest
 from finbourne.sdk.services.lusid.models.allocation_service_run_response import AllocationServiceRunResponse
 from finbourne.sdk.services.lusid.models.allocation_set_request import AllocationSetRequest
@@ -1200,10 +1205,12 @@ from finbourne.sdk.services.lusid.models.settlement_instruction_request import S
 from finbourne.sdk.services.lusid.models.settlement_instruction_with_transaction import SettlementInstructionWithTransaction
 from finbourne.sdk.services.lusid.models.settlement_problem import SettlementProblem
 from finbourne.sdk.services.lusid.models.settlement_schedule import SettlementSchedule
+from finbourne.sdk.services.lusid.models.share_class import ShareClass
 from finbourne.sdk.services.lusid.models.share_class_amount import ShareClassAmount
 from finbourne.sdk.services.lusid.models.share_class_breakdown import ShareClassBreakdown
 from finbourne.sdk.services.lusid.models.share_class_data import ShareClassData
 from finbourne.sdk.services.lusid.models.share_class_dealing_breakdown import ShareClassDealingBreakdown
+from finbourne.sdk.services.lusid.models.share_class_definition import ShareClassDefinition
 from finbourne.sdk.services.lusid.models.share_class_details import ShareClassDetails
 from finbourne.sdk.services.lusid.models.share_class_pnl_breakdown import ShareClassPnlBreakdown
 from finbourne.sdk.services.lusid.models.side_configuration_data import SideConfigurationData
@@ -1597,6 +1604,11 @@ __all__ = [
     "AggregationType",
     "Alias",
     "Allocation",
+    "AllocationGroup",
+    "AllocationGroupClass",
+    "AllocationGroupClassDefinition",
+    "AllocationGroupDefinition",
+    "AllocationMethodProperty",
     "AllocationRequest",
     "AllocationServiceRunResponse",
     "AllocationSetRequest",
@@ -2647,10 +2659,12 @@ __all__ = [
     "SettlementInstructionWithTransaction",
     "SettlementProblem",
     "SettlementSchedule",
+    "ShareClass",
     "ShareClassAmount",
     "ShareClassBreakdown",
     "ShareClassData",
     "ShareClassDealingBreakdown",
+    "ShareClassDefinition",
     "ShareClassDetails",
     "ShareClassPnlBreakdown",
     "SideConfigurationData",

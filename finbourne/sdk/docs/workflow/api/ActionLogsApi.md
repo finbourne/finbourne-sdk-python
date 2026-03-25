@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_action_logs**](ActionLogsApi.md#get_action_logs) | **GET** /workflow/api/actionlogs/{id} | [EXPERIMENTAL] GetActionLogs: Get the Action Logs for an Action Id
+[**get_action_logs**](ActionLogsApi.md#get_action_logs) | **GET** /workflow/api/actionlogs/{id} | GetActionLogs: Get the Action Logs for an Action Id
 
 
 ### Example
@@ -35,7 +35,7 @@ api_instance = api_client_factory.build(ActionLogsApi)
 # **get_action_logs**
 > ActionLog getActionLogs = get_action_logs(id)
 
-[EXPERIMENTAL] GetActionLogs: Get the Action Logs for an Action Id
+GetActionLogs: Get the Action Logs for an Action Id
 
 ### Example
 

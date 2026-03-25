@@ -3,7 +3,7 @@ import os
 from typing import Dict, TextIO, Protocol, Union, Iterable, Optional, Tuple, Any
 import logging
 from finbourne.sdk.extensions.proxy_config import ProxyConfig
-from finbourne.sdk.configuration import Configuration  # Changed import
+from finbourne.sdk.configuration import Configuration
 from finbourne.sdk.extensions.file_access_token import FileAccessToken
 from finbourne.sdk.extensions.configuration_options import ConfigurationOptions
 from finbourne.sdk.extensions.socket_keep_alive import keep_alive_socket_options
@@ -79,10 +79,10 @@ class SecretsFileConfigurationLoader:
                 with open(self._api_secrets_file) as api_secrets_file:
                     config = json.load(api_secrets_file)
         except OSError:
-            logger.warning(f"Unable to open secrets file {self._api_secrets_file}")
+            logger.debug(f"Unable to open secrets file {self._api_secrets_file}")
             return {}
         except json.JSONDecodeError:
-            logger.warning("unable to deserialise contents of secrets file to json")
+            logger.debug("unable to deserialise contents of secrets file to json")
             return {}
 
         profiles_config_section = config.get(profiles_config_key, {})
@@ -218,18 +218,22 @@ class FileTokenConfigurationLoader:
         return {"access_token": self.access_token}
 
 def get_api_configuration(
-    secrets_path: Optional[str] = None, 
-    profile_name: str = "default", 
+    secrets_path: Optional[str] = None,
+    profile_name: str = "default",
     environment_variables: Optional[Dict[str, str]] = None,
+    base_url: Optional[str] = None,
+    access_token: Optional[str] = None,
     socket_options: Union[Tuple[Any, Any, Any], Tuple[Any, Any, None, int]] = keep_alive_socket_options(),
     tcp_keep_alive: bool = True,
+    opts: Optional[ConfigurationOptions] = None,
 ) -> Configuration:
     """
     Read configuration from config loaders.
     Update config with values from each loader in order (last write wins).
     Initially looks at relative path 'secrets.json' for secrets file,
     but can be overridden by passing a secrets_path argument. Then checks environment variables for configuration.
-    Lastly checks for FileTokenConfigurationLoader. Will throw an exception if all of these fail.
+    Lastly checks for FileTokenConfigurationLoader. Finally, explicit base_url and access_token parameters override all loaders.
+    Will throw an exception if no base_url is found after all sources.
 
     Parameters
     ----------
@@ -241,6 +245,10 @@ def get_api_configuration(
     environment_variables: Optional[Dict[str,str]]
         Optional dictionary of environment variables to use for configuration. 
         If not provided, will use os.environ by default.
+    base_url: Optional[str]
+        Optional base URL that overrides all loaded configurations and takes precedence over other sources.
+    access_token: Optional[str]
+        Optional access token string that overrides all loaded configurations and takes precedence over other sources.
 
     Returns
     -------
@@ -281,6 +289,12 @@ def get_api_configuration(
     # Start with loaded config
     config = loaded_config.copy()
     
+    # Override with explicit parameters (highest priority)
+    if base_url is not None:
+        config["api_url"] = base_url
+    if access_token is not None:
+        config["access_token"] = access_token
+    
     # Handle proxy configuration
     proxy_address = config.pop("proxy_address", None)
     if proxy_address is not None:
@@ -302,5 +316,6 @@ def get_api_configuration(
     api_config = ApiConfiguration(**config)
     return api_config.build_api_client_config(
         tcp_keep_alive=tcp_keep_alive,
-        socket_options=socket_options
+        socket_options=socket_options,
+        opts=opts
     )

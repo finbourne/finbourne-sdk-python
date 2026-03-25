@@ -2,6 +2,7 @@ import requests
 import base64
 import threading
 import time
+import os
 
 from datetime import datetime, timezone
 from datetime import timedelta
@@ -11,10 +12,9 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-
 class RefreshingToken(UserString):
     def __init__(
-        self, api_configuration, expiry_offset=60, id_provider_response_handler=None
+        self, api_configuration=None, expiry_offset=60, id_provider_response_handler=None, access_token_location=os.getenv("FBN_ACCESS_TOKEN_FILE", None)
     ):
         """
         Implementation of UserString that will automatically refresh the token value upon expiry
@@ -25,25 +25,69 @@ class RefreshingToken(UserString):
         before it is consumed by the RefreshingToken, mutation of the Response is possible with this handler
         """
 
+        self.access_token_location = access_token_location
+        self.file_token_data = {"expires": datetime.now(tz=timezone.utc), "current_access_token": None}
         self.token_data = {"expires": None, "access_token": None, "refresh_token": None}
         self.expiry_offset = expiry_offset
-        try:
-            self.password = api_configuration.password
-            self.client_id = api_configuration.client_id
-            self.client_secret = api_configuration.client_secret
-            self.username = api_configuration.username
-            self.token_url = api_configuration.token_url
-            self.proxy_config = api_configuration.proxy_config
-            self.certificate_filename = api_configuration.certificate_filename
-        except AttributeError:
-            logger.debug("Could not access ApiConfig attribute - ensure api_config is an ApiConfiguration object")
-        self._validate_oauth_params()
+
+        self.password = None
+        self.client_id = None
+        self.client_secret = None
+        self.username = None
+        self.token_url = None
+        self.proxy_config = None
+        self.certificate_filename = None
+
+        self.use_file_token = (
+            self.access_token_location is not None
+            and os.path.exists(self.access_token_location)
+        )
+
+        if not self.use_file_token:
+            if api_configuration is None:
+                raise ValueError(
+                    "Either provide api_configuration or set FBN_ACCESS_TOKEN_FILE to an existing file"
+                )
+
+            try:
+                self.password = api_configuration.password
+                self.client_id = api_configuration.client_id
+                self.client_secret = api_configuration.client_secret
+                self.username = api_configuration.username
+                self.token_url = api_configuration.token_url
+                self.proxy_config = api_configuration.proxy_config
+                self.certificate_filename = api_configuration.certificate_filename
+            except AttributeError:
+                logger.debug("Could not access ApiConfig attribute - ensure api_config is an ApiConfiguration object")
+            self._validate_oauth_params()
+
         self.id_provider_response_handler = id_provider_response_handler
-        self.refresh_func = self.get_refresh_token
+        self.refresh_func = self.get_file_token if self.use_file_token else self.get_refresh_token
         self.lock = threading.Lock()
         self.retry_count = 0
         self.retry_limit = 5
         self.backoff_base = 2
+
+    def get_file_token(self):
+        """
+        Retrieves an access token from file and caches it for 120 seconds.
+
+        :return: The retrieved access token or None if file is unavailable
+        """
+        if self.access_token_location is None or not os.path.exists(self.access_token_location):
+            self.file_token_data["current_access_token"] = None
+            return None
+
+        if (
+            self.file_token_data["current_access_token"] is None
+            or self.file_token_data["expires"] <= datetime.now(tz=timezone.utc)
+        ):
+            with open(self.access_token_location, "r") as access_token_file:
+                self.file_token_data["current_access_token"] = access_token_file.read()
+
+            self.file_token_data["expires"] = datetime.now(tz=timezone.utc) + timedelta(seconds=120)
+
+        return self.file_token_data["current_access_token"]
     
     def _validate_oauth_params(self):
         if self.password is None:

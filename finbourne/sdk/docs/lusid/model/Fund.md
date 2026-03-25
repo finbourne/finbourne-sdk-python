@@ -14,7 +14,7 @@ A Fund entity.
 | **portfolio_ids** | [List[PortfolioEntityIdWithDetails]](PortfolioEntityIdWithDetails.md) | Optional | A list of the portfolios on the fund, which are part of the Fund. Note: These must all have the same base currency, which must also much the Fund Base Currency. |
 | **fund_configuration_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **abor_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
-| **share_class_instruments** | [List[InstrumentResolutionDetail]](InstrumentResolutionDetail.md) | Optional | Details the user-provided instrument identifiers and the instrument resolved from them. |
+| **share_class_instruments** | [List[InstrumentResolutionDetail]](InstrumentResolutionDetail.md) | Optional | Details the user-provided instrument identifiers and the instrument resolved from them. These would be decommissioned in favour of the new AllocationGroups and ShareClasses structures. |
 | **type** | **str** | Optional | The type of fund; &#39;Standalone&#39;, &#39;Master&#39; or &#39;Feeder&#39; |
 | **inception_date** | **datetime** | Required | Inception date of the Fund |
 | **decimal_places** | **int** | Optional | Number of decimal places for reporting |
@@ -22,6 +22,10 @@ A Fund entity.
 | **primary_nav_type** | [NavType](NavType.md) | Optional | *No description available.* |
 | **additional_nav_types** | [List[NavType]](NavType.md) | Optional | The definitions for any additional NAVs on the Fund. |
 | **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the Fund. |
+| **create_instrument** | **bool** | Optional | Whether to create an instrument for the Fund upon creation. Defaults to false. |
+| **apportionment_method_property** | [AllocationMethodProperty](AllocationMethodProperty.md) | Optional | *No description available.* |
+| **allocation_groups** | [List[AllocationGroup]](AllocationGroup.md) | Optional | An optional list of Allocation Group definitions for the Fund. |
+| **share_classes** | [List[ShareClass]](ShareClass.md) | Optional | An optional list of Share Class definitions for the Fund. |
 | **version** | [Version](Version.md) | Optional | *No description available.* |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
@@ -43,7 +47,7 @@ instance = Fund(
     portfolio_ids=[],  # optional — A list of the portfolios on the fund, which are part of the Fund. Note: These must all have the same base currency, which must also much the Fund Base Currency.
     fund_configuration_id=ResourceId(...),  # optional
     abor_id=ResourceId(...),  # optional
-    share_class_instruments=[],  # optional — Details the user-provided instrument identifiers and the instrument resolved from them.
+    share_class_instruments=[],  # optional — Details the user-provided instrument identifiers and the instrument resolved from them. These would be decommissioned in favour of the new AllocationGroups and ShareClasses structures.
     type="...",  # optional — The type of fund; &#39;Standalone&#39;, &#39;Master&#39; or &#39;Feeder&#39;
     inception_date=datetime.now(),  # required — Inception date of the Fund
     decimal_places=0,  # optional — Number of decimal places for reporting
@@ -51,6 +55,10 @@ instance = Fund(
     primary_nav_type=NavType(...),  # optional
     additional_nav_types=[],  # optional — The definitions for any additional NAVs on the Fund.
     properties=ModelProperty(...),  # optional — A set of properties for the Fund.
+    create_instrument=True,  # optional — Whether to create an instrument for the Fund upon creation. Defaults to false.
+    apportionment_method_property=AllocationMethodProperty(...),  # optional
+    allocation_groups=[],  # optional — An optional list of Allocation Group definitions for the Fund.
+    share_classes=[],  # optional — An optional list of Share Class definitions for the Fund.
     version=Version(...),  # optional
     links=[]  # optional
 )
@@ -65,6 +73,9 @@ instance = Fund(
 - [NavType](NavType.md)
 - [NavType](NavType.md) — used in `additional_nav_types`
 - [ModelProperty](ModelProperty.md) — used in `properties`
+- [AllocationMethodProperty](AllocationMethodProperty.md)
+- [AllocationGroup](AllocationGroup.md) — used in `allocation_groups`
+- [ShareClass](ShareClass.md) — used in `share_classes`
 - [Version](Version.md)
 - [Link](Link.md)
 

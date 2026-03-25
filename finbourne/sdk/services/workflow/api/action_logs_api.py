@@ -48,7 +48,7 @@ class ActionLogsApi:
 
     @validate_call
     def get_action_logs(self, id: StrictStr, **kwargs) -> ActionLog:
-        """[EXPERIMENTAL] GetActionLogs: Get the Action Logs for an Action Id  # noqa: E501
+        """GetActionLogs: Get the Action Logs for an Action Id  # noqa: E501
 
         :param id: The Action Id (required)
         :type id: str
@@ -67,7 +67,7 @@ class ActionLogsApi:
 
     @validate_call
     def get_action_logs_with_http_info(self, id: StrictStr, **kwargs) -> ApiResponse[ActionLog]:
-        """[EXPERIMENTAL] GetActionLogs: Get the Action Logs for an Action Id  # noqa: E501
+        """GetActionLogs: Get the Action Logs for an Action Id  # noqa: E501
 
         :param id: The Action Id (required)
         :type id: str
@@ -171,7 +171,7 @@ class ActionLogsApi:
 
     @validate_call
     async def get_action_logs_async(self, id: StrictStr, **kwargs) -> ActionLog:
-            """[EXPERIMENTAL] GetActionLogs: Get the Action Logs for an Action Id  # noqa: E501
+            """GetActionLogs: Get the Action Logs for an Action Id  # noqa: E501
             
             :param id: The Action Id (required)
             :type id: str
@@ -190,7 +190,7 @@ class ActionLogsApi:
 
     @validate_call
     async def get_action_logs_with_http_info_async(self, id: StrictStr, **kwargs) -> ApiResponse[ActionLog]:
-            """[EXPERIMENTAL] GetActionLogs: Get the Action Logs for an Action Id  # noqa: E501
+            """GetActionLogs: Get the Action Logs for an Action Id  # noqa: E501
 
 
             :param id: The Action Id (required)

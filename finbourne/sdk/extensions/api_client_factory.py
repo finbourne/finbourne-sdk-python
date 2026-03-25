@@ -17,6 +17,7 @@ from finbourne.sdk.extensions.tcp_keep_alive_connector import (
     TCPKeepAliveHTTPSConnectionPool,
 
 )
+from finbourne.sdk.extensions.refreshing_token import RefreshingToken
 from finbourne.sdk.configuration import Configuration
 
 from aiohttp import ClientSession
@@ -73,6 +74,8 @@ class SyncApiClientFactory:
         self,
         secrets_path: Optional[str] = None,
         environment_variables: Optional[Dict[str,str]] = None,
+        base_url: Optional[str] = None,
+        access_token: Optional[RefreshingToken] = None,
         profile_name: str = "default",
         id_provider_response_handler: Callable[[Response], None] = None,
         tcp_keep_alive: bool = True,
@@ -104,8 +107,16 @@ class SyncApiClientFactory:
         additional_headers : Optional[Dict[str, str]], optional
         Additional headers to set on the api client, by default None
         """
-        self.configuration = get_api_configuration(secrets_path, profile_name=profile_name, environment_variables=environment_variables,
-                                                   socket_options=socket_options, tcp_keep_alive=tcp_keep_alive)
+        self.configuration = get_api_configuration(
+            secrets_path,
+            profile_name=profile_name,
+            environment_variables=environment_variables,
+            access_token=access_token,
+            base_url=base_url,
+            socket_options=socket_options,
+            tcp_keep_alive=tcp_keep_alive,
+            opts=opts,
+        )
         # Only use Configuration everywhere
 
         self.__api_client = SyncApiClient(
@@ -153,6 +164,8 @@ class ApiClientFactory:
         self,
         secrets_path: Optional[str] = None,
         environment_variables: Optional[Dict[str,str]] = None,
+        base_url: Optional[str] = None,
+        access_token: Optional[RefreshingToken] = None,
         profile_name: str = "default",
         id_provider_response_handler: Callable[[Response], None] = None,
         tcp_keep_alive: bool = True,
@@ -167,7 +180,16 @@ class ApiClientFactory:
         opts: Optional[ConfigurationOptions] = None,
     ):
         is_owner = True
-        self.configuration = get_api_configuration(secrets_path, profile_name=profile_name, environment_variables=environment_variables, socket_options=socket_options, tcp_keep_alive=tcp_keep_alive)
+        self.configuration = get_api_configuration(
+            secrets_path,
+            profile_name=profile_name,
+            environment_variables=environment_variables,
+            access_token=access_token,
+            base_url=base_url,
+            socket_options=socket_options,
+            tcp_keep_alive=tcp_keep_alive,
+            opts=opts,
+        )
         # Only use Configuration everywhere
         
         self.__api_client = ApiClient(

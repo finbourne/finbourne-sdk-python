@@ -23,6 +23,11 @@ Defines a Task created based on a Task Definition
 | **action_log_id_created** | **UUID** | Optional | The Id of the Action that created this Task |
 | **action_log_id_modified** | **UUID** | Optional | The Id of the Action that last modified this Task |
 | **action_log_id_submitted** | **UUID** | Optional | The Id of the last Action submitted by this Task |
+| **hierarchical_position** | **str** | Optional | The hierarchical position of this Task: UltimateParent, IntermediateParent, Child, or Standalone |
+| **completion_status** | **str** | Optional | The completion status of this Task: NotStarted, InProgress, or Completed |
+| **open_duration** | **int** | Optional | Duration in seconds since the Task was created. If the Task is Completed, this is the duration from creation to the last transition. |
+| **open_duration_since_last_update** | **int** | Optional | Duration in seconds since the Task was last updated. 0 if the Task is Completed. |
+| **open_duration_since_last_transition** | **int** | Optional | Duration in seconds since the Task last transitioned. 0 if the Task is Completed. |
 
 
 ## Usage
@@ -50,7 +55,12 @@ instance = Task(
     stack=Stack(...),  # optional
     action_log_id_created="...",  # optional — The Id of the Action that created this Task
     action_log_id_modified="...",  # optional — The Id of the Action that last modified this Task
-    action_log_id_submitted="..."  # optional — The Id of the last Action submitted by this Task
+    action_log_id_submitted="...",  # optional — The Id of the last Action submitted by this Task
+    hierarchical_position="...",  # optional — The hierarchical position of this Task: UltimateParent, IntermediateParent, Child, or Standalone
+    completion_status="...",  # optional — The completion status of this Task: NotStarted, InProgress, or Completed
+    open_duration=0,  # optional — Duration in seconds since the Task was created. If the Task is Completed, this is the duration from creation to the last transition.
+    open_duration_since_last_update=0,  # optional — Duration in seconds since the Task was last updated. 0 if the Task is Completed.
+    open_duration_since_last_transition=0  # optional — Duration in seconds since the Task last transitioned. 0 if the Task is Completed.
 )
 ```
 

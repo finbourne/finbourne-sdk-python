@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**batch_update_tasks**](TasksApi.md#batch_update_tasks) | **PATCH** /workflow/api/tasks/$update | [EXPERIMENTAL] BatchUpdateTasks: Batch update tasks
+[**batch_update_tasks**](TasksApi.md#batch_update_tasks) | **PATCH** /workflow/api/tasks/$update | BatchUpdateTasks: Batch update tasks
 [**create_task**](TasksApi.md#create_task) | **POST** /workflow/api/tasks | CreateTask: Create a new Task
 [**delete_task**](TasksApi.md#delete_task) | **DELETE** /workflow/api/tasks/{id} | DeleteTask: Delete a Task
 [**delete_tasks**](TasksApi.md#delete_tasks) | **POST** /workflow/api/tasks/$delete | DeleteTasks: Batch Delete Tasks
@@ -42,7 +42,7 @@ api_instance = api_client_factory.build(TasksApi)
 # **batch_update_tasks**
 > BatchUpdateTasksResponse batchUpdateTasks = batch_update_tasks(batch_update_tasks_request=batch_update_tasks_request)
 
-[EXPERIMENTAL] BatchUpdateTasks: Batch update tasks
+BatchUpdateTasks: Batch update tasks
 
 ### Example
 

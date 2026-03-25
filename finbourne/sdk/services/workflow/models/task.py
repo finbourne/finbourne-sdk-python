@@ -50,7 +50,12 @@ class Task(BaseModel):
     action_log_id_created:  Optional[StrictStr] = Field(default=None,alias="actionLogIdCreated", description="The Id of the Action that created this Task") 
     action_log_id_modified:  Optional[StrictStr] = Field(default=None,alias="actionLogIdModified", description="The Id of the Action that last modified this Task") 
     action_log_id_submitted:  Optional[StrictStr] = Field(default=None,alias="actionLogIdSubmitted", description="The Id of the last Action submitted by this Task") 
-    __properties = ["id", "taskDefinitionId", "taskDefinitionVersion", "taskDefinitionDisplayName", "state", "ultimateParentTask", "parentTask", "childTasks", "correlationIds", "version", "terminalState", "asAtLastTransition", "fields", "stackingKey", "stack", "actionLogIdCreated", "actionLogIdModified", "actionLogIdSubmitted"]
+    hierarchical_position:  Optional[StrictStr] = Field(default=None,alias="hierarchicalPosition", description="The hierarchical position of this Task: UltimateParent, IntermediateParent, Child, or Standalone") 
+    completion_status:  Optional[StrictStr] = Field(default=None,alias="completionStatus", description="The completion status of this Task: NotStarted, InProgress, or Completed") 
+    open_duration: Optional[StrictInt] = Field(default=None, description="Duration in seconds since the Task was created. If the Task is Completed, this is the duration from creation to the last transition.", alias="openDuration")
+    open_duration_since_last_update: Optional[StrictInt] = Field(default=None, description="Duration in seconds since the Task was last updated. 0 if the Task is Completed.", alias="openDurationSinceLastUpdate")
+    open_duration_since_last_transition: Optional[StrictInt] = Field(default=None, description="Duration in seconds since the Task last transitioned. 0 if the Task is Completed.", alias="openDurationSinceLastTransition")
+    __properties = ["id", "taskDefinitionId", "taskDefinitionVersion", "taskDefinitionDisplayName", "state", "ultimateParentTask", "parentTask", "childTasks", "correlationIds", "version", "terminalState", "asAtLastTransition", "fields", "stackingKey", "stack", "actionLogIdCreated", "actionLogIdModified", "actionLogIdSubmitted", "hierarchicalPosition", "completionStatus", "openDuration", "openDurationSinceLastUpdate", "openDurationSinceLastTransition"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -157,6 +162,31 @@ class Task(BaseModel):
         if self.action_log_id_submitted is None and "action_log_id_submitted" in self.model_fields_set:
             _dict['actionLogIdSubmitted'] = None
 
+        # set to None if hierarchical_position (nullable) is None
+        # and model_fields_set contains the field
+        if self.hierarchical_position is None and "hierarchical_position" in self.model_fields_set:
+            _dict['hierarchicalPosition'] = None
+
+        # set to None if completion_status (nullable) is None
+        # and model_fields_set contains the field
+        if self.completion_status is None and "completion_status" in self.model_fields_set:
+            _dict['completionStatus'] = None
+
+        # set to None if open_duration (nullable) is None
+        # and model_fields_set contains the field
+        if self.open_duration is None and "open_duration" in self.model_fields_set:
+            _dict['openDuration'] = None
+
+        # set to None if open_duration_since_last_update (nullable) is None
+        # and model_fields_set contains the field
+        if self.open_duration_since_last_update is None and "open_duration_since_last_update" in self.model_fields_set:
+            _dict['openDurationSinceLastUpdate'] = None
+
+        # set to None if open_duration_since_last_transition (nullable) is None
+        # and model_fields_set contains the field
+        if self.open_duration_since_last_transition is None and "open_duration_since_last_transition" in self.model_fields_set:
+            _dict['openDurationSinceLastTransition'] = None
+
         return _dict
 
     @classmethod
@@ -186,7 +216,12 @@ class Task(BaseModel):
             "stack": Stack.from_dict(obj.get("stack")) if obj.get("stack") is not None else None,
             "action_log_id_created": obj.get("actionLogIdCreated"),
             "action_log_id_modified": obj.get("actionLogIdModified"),
-            "action_log_id_submitted": obj.get("actionLogIdSubmitted")
+            "action_log_id_submitted": obj.get("actionLogIdSubmitted"),
+            "hierarchical_position": obj.get("hierarchicalPosition"),
+            "completion_status": obj.get("completionStatus"),
+            "open_duration": obj.get("openDuration"),
+            "open_duration_since_last_update": obj.get("openDurationSinceLastUpdate"),
+            "open_duration_since_last_transition": obj.get("openDurationSinceLastTransition")
         })
         return _obj
 

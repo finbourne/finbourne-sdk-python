@@ -53,7 +53,7 @@ class TransactionTransactionFeesApi:
             self.api_client = ApiClient.get_default()
 
     @validate_call
-    def create_transaction_fee(self, scope: StrictStr, code: StrictStr, create_transaction_fee_request: CreateTransactionFeeRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> TransactionFee:
+    def create_transaction_fee(self, scope: StrictStr, code: StrictStr, create_transaction_fee_request: CreateTransactionFeeRequest, **kwargs) -> TransactionFee:
         """[EXPERIMENTAL] CreateTransactionFee: Create a TransactionFee  # noqa: E501
 
         Create a TransactionFee for the specified scope and code.  # noqa: E501
@@ -63,8 +63,6 @@ class TransactionTransactionFeesApi:
         :type code: str
         :param create_transaction_fee_request: The contents of the TransactionFee. (required)
         :type create_transaction_fee_request: CreateTransactionFeeRequest
-        :param effective_at: The date and time at which the TransactionFee should be effective.
-        :type effective_at: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -76,10 +74,10 @@ class TransactionTransactionFeesApi:
             message = "Error! Please call the create_transaction_fee_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_transaction_fee_with_http_info(scope, code, create_transaction_fee_request, effective_at, **kwargs)  # noqa: E501
+        return self.create_transaction_fee_with_http_info(scope, code, create_transaction_fee_request, **kwargs)  # noqa: E501
 
     @validate_call
-    def create_transaction_fee_with_http_info(self, scope: StrictStr, code: StrictStr, create_transaction_fee_request: CreateTransactionFeeRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[TransactionFee]:
+    def create_transaction_fee_with_http_info(self, scope: StrictStr, code: StrictStr, create_transaction_fee_request: CreateTransactionFeeRequest, **kwargs) -> ApiResponse[TransactionFee]:
         """[EXPERIMENTAL] CreateTransactionFee: Create a TransactionFee  # noqa: E501
 
         Create a TransactionFee for the specified scope and code.  # noqa: E501
@@ -89,8 +87,6 @@ class TransactionTransactionFeesApi:
         :type code: str
         :param create_transaction_fee_request: The contents of the TransactionFee. (required)
         :type create_transaction_fee_request: CreateTransactionFeeRequest
-        :param effective_at: The date and time at which the TransactionFee should be effective.
-        :type effective_at: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -116,8 +112,7 @@ class TransactionTransactionFeesApi:
         _all_params = [
             'scope',
             'code',
-            'create_transaction_fee_request',
-            'effective_at'
+            'create_transaction_fee_request'
         ]
         _all_params.extend(
             [
@@ -154,9 +149,6 @@ class TransactionTransactionFeesApi:
 
         # process the query parameters
         _query_params = []
-        if _params.get('effective_at') is not None:  # noqa: E501
-            _query_params.append(('effectiveAt', _params['effective_at']))
-
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -340,7 +332,7 @@ class TransactionTransactionFeesApi:
         :type scope: str
         :param code: The code of the TransactionFee.              Together with the scope this uniquely identifies the TransactionFee. (required)
         :type code: str
-        :param effective_at: The date and time at which the query is effective.
+        :param effective_at: The effective datetime at which to retrieve the TransactionFee properties.              Defaults to the current LUSID system datetime if not specified.
         :type effective_at: str
         :param as_at: The asAt datetime at which to retrieve the TransactionFees.              Defaults to latest if not specified.
         :type as_at: datetime
@@ -368,7 +360,7 @@ class TransactionTransactionFeesApi:
         :type scope: str
         :param code: The code of the TransactionFee.              Together with the scope this uniquely identifies the TransactionFee. (required)
         :type code: str
-        :param effective_at: The date and time at which the query is effective.
+        :param effective_at: The effective datetime at which to retrieve the TransactionFee properties.              Defaults to the current LUSID system datetime if not specified.
         :type effective_at: str
         :param as_at: The asAt datetime at which to retrieve the TransactionFees.              Defaults to latest if not specified.
         :type as_at: datetime
@@ -492,11 +484,11 @@ class TransactionTransactionFeesApi:
         """[EXPERIMENTAL] ListTransactionFees: List TransactionFees  # noqa: E501
 
         List TransactionFees that match the specified criteria.  # noqa: E501
-        :param effective_at: The date and time at which the query is effective.
+        :param effective_at: The effective datetime at which to retrieve TransactionFee properties.              Defaults to the current LUSID system datetime if not specified.
         :type effective_at: str
         :param as_at: The asAt datetime at which to retrieve the TransactionFees.              Defaults to latest if not specified.
         :type as_at: datetime
-        :param page: The pagination token to use to continue listing TransactionFees from a previous call to list TransactionFees.  This value is returned from the previous call. If a pagination token is provided the filter,  sortBy and asAt field must not have changed since the original request.
+        :param page: The pagination token to use to continue listing TransactionFees from a previous call to list TransactionFees.  This value is returned from the previous call. If a pagination token is provided the filter,  sortBy, effectiveAt and asAt field must not have changed since the original request.
         :type page: str
         :param limit: When paginating, limit the number of returned results to this many. Defaults to 100 if not specified.
         :type limit: int
@@ -524,11 +516,11 @@ class TransactionTransactionFeesApi:
         """[EXPERIMENTAL] ListTransactionFees: List TransactionFees  # noqa: E501
 
         List TransactionFees that match the specified criteria.  # noqa: E501
-        :param effective_at: The date and time at which the query is effective.
+        :param effective_at: The effective datetime at which to retrieve TransactionFee properties.              Defaults to the current LUSID system datetime if not specified.
         :type effective_at: str
         :param as_at: The asAt datetime at which to retrieve the TransactionFees.              Defaults to latest if not specified.
         :type as_at: datetime
-        :param page: The pagination token to use to continue listing TransactionFees from a previous call to list TransactionFees.  This value is returned from the previous call. If a pagination token is provided the filter,  sortBy and asAt field must not have changed since the original request.
+        :param page: The pagination token to use to continue listing TransactionFees from a previous call to list TransactionFees.  This value is returned from the previous call. If a pagination token is provided the filter,  sortBy, effectiveAt and asAt field must not have changed since the original request.
         :type page: str
         :param limit: When paginating, limit the number of returned results to this many. Defaults to 100 if not specified.
         :type limit: int
@@ -661,7 +653,7 @@ class TransactionTransactionFeesApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def update_transaction_fee(self, scope: StrictStr, code: StrictStr, update_transaction_fee_request: UpdateTransactionFeeRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> TransactionFee:
+    def update_transaction_fee(self, scope: StrictStr, code: StrictStr, update_transaction_fee_request: UpdateTransactionFeeRequest, **kwargs) -> TransactionFee:
         """[EXPERIMENTAL] UpdateTransactionFee: Update a TransactionFee  # noqa: E501
 
         Update a TransactionFee by providing the new contents of the TransactionFee.  The name field and the capitalisation field can not be updated.  # noqa: E501
@@ -669,10 +661,8 @@ class TransactionTransactionFeesApi:
         :type scope: str
         :param code: The code of the specified TransactionFee.              Together with the scope this uniquely identifies the TransactionFee. (required)
         :type code: str
-        :param update_transaction_fee_request: The contents of the TransactionFee. (required)
+        :param update_transaction_fee_request: The updated contents of the TransactionFee. (required)
         :type update_transaction_fee_request: UpdateTransactionFeeRequest
-        :param effective_at: The date and time at which the update should take effect.             The updated contents of the TransactionFee.
-        :type effective_at: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -684,10 +674,10 @@ class TransactionTransactionFeesApi:
             message = "Error! Please call the update_transaction_fee_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_transaction_fee_with_http_info(scope, code, update_transaction_fee_request, effective_at, **kwargs)  # noqa: E501
+        return self.update_transaction_fee_with_http_info(scope, code, update_transaction_fee_request, **kwargs)  # noqa: E501
 
     @validate_call
-    def update_transaction_fee_with_http_info(self, scope: StrictStr, code: StrictStr, update_transaction_fee_request: UpdateTransactionFeeRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[TransactionFee]:
+    def update_transaction_fee_with_http_info(self, scope: StrictStr, code: StrictStr, update_transaction_fee_request: UpdateTransactionFeeRequest, **kwargs) -> ApiResponse[TransactionFee]:
         """[EXPERIMENTAL] UpdateTransactionFee: Update a TransactionFee  # noqa: E501
 
         Update a TransactionFee by providing the new contents of the TransactionFee.  The name field and the capitalisation field can not be updated.  # noqa: E501
@@ -695,10 +685,8 @@ class TransactionTransactionFeesApi:
         :type scope: str
         :param code: The code of the specified TransactionFee.              Together with the scope this uniquely identifies the TransactionFee. (required)
         :type code: str
-        :param update_transaction_fee_request: The contents of the TransactionFee. (required)
+        :param update_transaction_fee_request: The updated contents of the TransactionFee. (required)
         :type update_transaction_fee_request: UpdateTransactionFeeRequest
-        :param effective_at: The date and time at which the update should take effect.             The updated contents of the TransactionFee.
-        :type effective_at: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -724,8 +712,7 @@ class TransactionTransactionFeesApi:
         _all_params = [
             'scope',
             'code',
-            'update_transaction_fee_request',
-            'effective_at'
+            'update_transaction_fee_request'
         ]
         _all_params.extend(
             [
@@ -762,9 +749,6 @@ class TransactionTransactionFeesApi:
 
         # process the query parameters
         _query_params = []
-        if _params.get('effective_at') is not None:  # noqa: E501
-            _query_params.append(('effectiveAt', _params['effective_at']))
-
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -816,7 +800,7 @@ class TransactionTransactionFeesApi:
 
 
     @validate_call
-    async def create_transaction_fee_async(self, scope: StrictStr, code: StrictStr, create_transaction_fee_request: CreateTransactionFeeRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> TransactionFee:
+    async def create_transaction_fee_async(self, scope: StrictStr, code: StrictStr, create_transaction_fee_request: CreateTransactionFeeRequest, **kwargs) -> TransactionFee:
             """[EXPERIMENTAL] CreateTransactionFee: Create a TransactionFee  # noqa: E501
             Create a TransactionFee for the specified scope and code.  # noqa: E501
             
@@ -826,8 +810,6 @@ class TransactionTransactionFeesApi:
             :type code: str
             :param create_transaction_fee_request: The contents of the TransactionFee. (required)
             :type create_transaction_fee_request: CreateTransactionFeeRequest
-            :param effective_at: The date and time at which the TransactionFee should be effective.
-            :type effective_at: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -839,10 +821,10 @@ class TransactionTransactionFeesApi:
                 message = "Error! Please call the create_transaction_fee_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_transaction_fee_with_http_info_async(scope, code, create_transaction_fee_request, effective_at, **kwargs)  # noqa: E501
+            return await self.create_transaction_fee_with_http_info_async(scope, code, create_transaction_fee_request, **kwargs)  # noqa: E501
 
     @validate_call
-    async def create_transaction_fee_with_http_info_async(self, scope: StrictStr, code: StrictStr, create_transaction_fee_request: CreateTransactionFeeRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[TransactionFee]:
+    async def create_transaction_fee_with_http_info_async(self, scope: StrictStr, code: StrictStr, create_transaction_fee_request: CreateTransactionFeeRequest, **kwargs) -> ApiResponse[TransactionFee]:
             """[EXPERIMENTAL] CreateTransactionFee: Create a TransactionFee  # noqa: E501
 
             Create a TransactionFee for the specified scope and code.  # noqa: E501
@@ -853,8 +835,6 @@ class TransactionTransactionFeesApi:
             :type code: str
             :param create_transaction_fee_request: The contents of the TransactionFee. (required)
             :type create_transaction_fee_request: CreateTransactionFeeRequest
-            :param effective_at: The date and time at which the TransactionFee should be effective.
-            :type effective_at: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -880,8 +860,7 @@ class TransactionTransactionFeesApi:
             _all_params = [
                 'scope',
                 'code',
-                'create_transaction_fee_request',
-                'effective_at'
+                'create_transaction_fee_request'
             ]
             _all_params.extend(
                 [
@@ -918,9 +897,6 @@ class TransactionTransactionFeesApi:
 
             # process the query parameters
             _query_params = []
-            if _params.get('effective_at') is not None:  # noqa: E501
-                _query_params.append(('effectiveAt', _params['effective_at']))
-
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))
             # process the form parameters
@@ -1105,7 +1081,7 @@ class TransactionTransactionFeesApi:
             :type scope: str
             :param code: The code of the TransactionFee.              Together with the scope this uniquely identifies the TransactionFee. (required)
             :type code: str
-            :param effective_at: The date and time at which the query is effective.
+            :param effective_at: The effective datetime at which to retrieve the TransactionFee properties.              Defaults to the current LUSID system datetime if not specified.
             :type effective_at: str
             :param as_at: The asAt datetime at which to retrieve the TransactionFees.              Defaults to latest if not specified.
             :type as_at: datetime
@@ -1134,7 +1110,7 @@ class TransactionTransactionFeesApi:
             :type scope: str
             :param code: The code of the TransactionFee.              Together with the scope this uniquely identifies the TransactionFee. (required)
             :type code: str
-            :param effective_at: The date and time at which the query is effective.
+            :param effective_at: The effective datetime at which to retrieve the TransactionFee properties.              Defaults to the current LUSID system datetime if not specified.
             :type effective_at: str
             :param as_at: The asAt datetime at which to retrieve the TransactionFees.              Defaults to latest if not specified.
             :type as_at: datetime
@@ -1258,11 +1234,11 @@ class TransactionTransactionFeesApi:
             """[EXPERIMENTAL] ListTransactionFees: List TransactionFees  # noqa: E501
             List TransactionFees that match the specified criteria.  # noqa: E501
             
-            :param effective_at: The date and time at which the query is effective.
+            :param effective_at: The effective datetime at which to retrieve TransactionFee properties.              Defaults to the current LUSID system datetime if not specified.
             :type effective_at: str
             :param as_at: The asAt datetime at which to retrieve the TransactionFees.              Defaults to latest if not specified.
             :type as_at: datetime
-            :param page: The pagination token to use to continue listing TransactionFees from a previous call to list TransactionFees.  This value is returned from the previous call. If a pagination token is provided the filter,  sortBy and asAt field must not have changed since the original request.
+            :param page: The pagination token to use to continue listing TransactionFees from a previous call to list TransactionFees.  This value is returned from the previous call. If a pagination token is provided the filter,  sortBy, effectiveAt and asAt field must not have changed since the original request.
             :type page: str
             :param limit: When paginating, limit the number of returned results to this many. Defaults to 100 if not specified.
             :type limit: int
@@ -1291,11 +1267,11 @@ class TransactionTransactionFeesApi:
 
             List TransactionFees that match the specified criteria.  # noqa: E501
 
-            :param effective_at: The date and time at which the query is effective.
+            :param effective_at: The effective datetime at which to retrieve TransactionFee properties.              Defaults to the current LUSID system datetime if not specified.
             :type effective_at: str
             :param as_at: The asAt datetime at which to retrieve the TransactionFees.              Defaults to latest if not specified.
             :type as_at: datetime
-            :param page: The pagination token to use to continue listing TransactionFees from a previous call to list TransactionFees.  This value is returned from the previous call. If a pagination token is provided the filter,  sortBy and asAt field must not have changed since the original request.
+            :param page: The pagination token to use to continue listing TransactionFees from a previous call to list TransactionFees.  This value is returned from the previous call. If a pagination token is provided the filter,  sortBy, effectiveAt and asAt field must not have changed since the original request.
             :type page: str
             :param limit: When paginating, limit the number of returned results to this many. Defaults to 100 if not specified.
             :type limit: int
@@ -1428,7 +1404,7 @@ class TransactionTransactionFeesApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def update_transaction_fee_async(self, scope: StrictStr, code: StrictStr, update_transaction_fee_request: UpdateTransactionFeeRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> TransactionFee:
+    async def update_transaction_fee_async(self, scope: StrictStr, code: StrictStr, update_transaction_fee_request: UpdateTransactionFeeRequest, **kwargs) -> TransactionFee:
             """[EXPERIMENTAL] UpdateTransactionFee: Update a TransactionFee  # noqa: E501
             Update a TransactionFee by providing the new contents of the TransactionFee.  The name field and the capitalisation field can not be updated.  # noqa: E501
             
@@ -1436,10 +1412,8 @@ class TransactionTransactionFeesApi:
             :type scope: str
             :param code: The code of the specified TransactionFee.              Together with the scope this uniquely identifies the TransactionFee. (required)
             :type code: str
-            :param update_transaction_fee_request: The contents of the TransactionFee. (required)
+            :param update_transaction_fee_request: The updated contents of the TransactionFee. (required)
             :type update_transaction_fee_request: UpdateTransactionFeeRequest
-            :param effective_at: The date and time at which the update should take effect.             The updated contents of the TransactionFee.
-            :type effective_at: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -1451,10 +1425,10 @@ class TransactionTransactionFeesApi:
                 message = "Error! Please call the update_transaction_fee_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_transaction_fee_with_http_info_async(scope, code, update_transaction_fee_request, effective_at, **kwargs)  # noqa: E501
+            return await self.update_transaction_fee_with_http_info_async(scope, code, update_transaction_fee_request, **kwargs)  # noqa: E501
 
     @validate_call
-    async def update_transaction_fee_with_http_info_async(self, scope: StrictStr, code: StrictStr, update_transaction_fee_request: UpdateTransactionFeeRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[TransactionFee]:
+    async def update_transaction_fee_with_http_info_async(self, scope: StrictStr, code: StrictStr, update_transaction_fee_request: UpdateTransactionFeeRequest, **kwargs) -> ApiResponse[TransactionFee]:
             """[EXPERIMENTAL] UpdateTransactionFee: Update a TransactionFee  # noqa: E501
 
             Update a TransactionFee by providing the new contents of the TransactionFee.  The name field and the capitalisation field can not be updated.  # noqa: E501
@@ -1463,10 +1437,8 @@ class TransactionTransactionFeesApi:
             :type scope: str
             :param code: The code of the specified TransactionFee.              Together with the scope this uniquely identifies the TransactionFee. (required)
             :type code: str
-            :param update_transaction_fee_request: The contents of the TransactionFee. (required)
+            :param update_transaction_fee_request: The updated contents of the TransactionFee. (required)
             :type update_transaction_fee_request: UpdateTransactionFeeRequest
-            :param effective_at: The date and time at which the update should take effect.             The updated contents of the TransactionFee.
-            :type effective_at: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -1492,8 +1464,7 @@ class TransactionTransactionFeesApi:
             _all_params = [
                 'scope',
                 'code',
-                'update_transaction_fee_request',
-                'effective_at'
+                'update_transaction_fee_request'
             ]
             _all_params.extend(
                 [
@@ -1530,9 +1501,6 @@ class TransactionTransactionFeesApi:
 
             # process the query parameters
             _query_params = []
-            if _params.get('effective_at') is not None:  # noqa: E501
-                _query_params.append(('effectiveAt', _params['effective_at']))
-
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))
             # process the form parameters
