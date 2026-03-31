@@ -23,6 +23,7 @@ Method | HTTP request | Description
 [**delete_settlement_instructions**](TransactionPortfoliosApi.md#delete_settlement_instructions) | **DELETE** /api/api/transactionportfolios/{scope}/{code}/settlementinstructions | [EARLY ACCESS] DeleteSettlementInstructions: Delete Settlement Instructions.
 [**get_a2_b_data**](TransactionPortfoliosApi.md#get_a2_b_data) | **GET** /api/api/transactionportfolios/{scope}/{code}/a2b | GetA2BData: Get A2B data
 [**get_a2_b_movements**](TransactionPortfoliosApi.md#get_a2_b_movements) | **GET** /api/api/transactionportfolios/{scope}/{code}/a2bmovements | GetA2BMovements: Get an A2B report at the movement level for the given portfolio.
+[**get_a2_b_movements_trading_vs_holding**](TransactionPortfoliosApi.md#get_a2_b_movements_trading_vs_holding) | **GET** /api/api/transactionportfolios/{scope}/{code}/a2bmovements/tradingvsholding | [EXPERIMENTAL] GetA2BMovementsTradingVsHolding: Get an A2B report at the movement level for the given portfolio, with P&amp;L split between holding and trading returns.
 [**get_bucketed_cash_flows**](TransactionPortfoliosApi.md#get_bucketed_cash_flows) | **POST** /api/api/transactionportfolios/{scope}/{code}/bucketedCashFlows | GetBucketedCashFlows: Get bucketed cash flows from a list of portfolios
 [**get_custodian_account**](TransactionPortfoliosApi.md#get_custodian_account) | **GET** /api/api/transactionportfolios/{scope}/{code}/custodianaccounts/{custodianAccountScope}/{custodianAccountCode} | GetCustodianAccount: Get Custodian Account
 [**get_details**](TransactionPortfoliosApi.md#get_details) | **GET** /api/api/transactionportfolios/{scope}/{code}/details | GetDetails: Get details
@@ -983,6 +984,64 @@ recipe_id_code = 'recipe_id_code_example' # str (optional)
 property_keys = ['property_keys_example'] # List[str] (optional)
 filter = 'filter_example' # str (optional)
 api_response = api_instance.get_a2_b_movements(scope, code, from_effective_at, to_effective_at, as_at=as_at, recipe_id_scope=recipe_id_scope, recipe_id_code=recipe_id_code, property_keys=property_keys, filter=filter)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the portfolio to retrieve the A2B movement report for. | [required] 
+ **code** | **str**| The code of the portfolio to retrieve the A2B movement report for. Together with the scope this              uniquely identifies the portfolio. | [required] 
+ **from_effective_at** | **str**| The lower bound effective datetime or cut label (inclusive) from which to retrieve the data.              There is no lower bound if this is not specified. | [required] 
+ **to_effective_at** | **str**| The upper bound effective datetime or cut label (inclusive) from which to retrieve the data.              There is no upper bound if this is not specified. | [required] 
+ **as_at** | **datetime**| The asAt datetime at which to retrieve the portfolio. Defaults to return the latest version              of each transaction if not specified. | [optional] 
+ **recipe_id_scope** | **str**| The scope of the given recipeId | [optional] 
+ **recipe_id_code** | **str**| The code of the given recipeId | [optional] 
+ **property_keys** | [**List[str]**](str.md)| A list of property keys from the \&quot;Instrument\&quot; domain to decorate onto              the results. These take the format {domain}/{scope}/{code} e.g. \&quot;Instrument/system/Name\&quot;. | [optional] 
+ **filter** | **str**| Expression to filter the result set.              Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid. | [optional] 
+
+### Return type
+
+[**VersionedResourceListOfA2BMovementRecord**](VersionedResourceListOfA2BMovementRecord.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The requested portfolio A2B movement data |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_a2_b_movements_trading_vs_holding**
+> VersionedResourceListOfA2BMovementRecord getA2BMovementsTradingVsHolding = get_a2_b_movements_trading_vs_holding(scope, code, from_effective_at, to_effective_at, as_at=as_at, recipe_id_scope=recipe_id_scope, recipe_id_code=recipe_id_code, property_keys=property_keys, filter=filter)
+
+[EXPERIMENTAL] GetA2BMovementsTradingVsHolding: Get an A2B report at the movement level for the given portfolio, with P&L split between holding and trading returns.
+
+Get an A2B report at the movement level for the given portfolio. Each transaction in the period is treated as a  synthetic holding rather than a flow, allowing P&L to be attributed to holding returns (market movement on  the starting position) versus trading returns (profit from buy/sell decisions).
+
+### Example
+
+```python
+api_instance = api_client_factory.build(TransactionPortfoliosApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+from_effective_at = 'from_effective_at_example' # str
+to_effective_at = 'to_effective_at_example' # str
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+recipe_id_scope = 'recipe_id_scope_example' # str (optional)
+recipe_id_code = 'recipe_id_code_example' # str (optional)
+property_keys = ['property_keys_example'] # List[str] (optional)
+filter = 'filter_example' # str (optional)
+api_response = api_instance.get_a2_b_movements_trading_vs_holding(scope, code, from_effective_at, to_effective_at, as_at=as_at, recipe_id_scope=recipe_id_scope, recipe_id_code=recipe_id_code, property_keys=property_keys, filter=filter)
 pprint(api_response)
 ```
 
@@ -1989,7 +2048,7 @@ Name | Type | Description  | Notes
 ---
 
 # **list_settlement_instructions**
-> VersionedResourceListOfTransactionSettlementInstruction listSettlementInstructions = list_settlement_instructions(scope, code, from_date=from_date, to_date=to_date, page=page, limit=limit, filter=filter, as_at=as_at, property_keys=property_keys)
+> VersionedResourceListOfTransactionSettlementInstruction listSettlementInstructions = list_settlement_instructions(scope, code, from_date=from_date, to_date=to_date, page=page, limit=limit, filter=filter, as_at=as_at, property_keys=property_keys, timeline_scope=timeline_scope, timeline_code=timeline_code, closed_period_id=closed_period_id)
 
 [EARLY ACCESS] ListSettlementInstructions: List Settlement Instructions.
 
@@ -2008,7 +2067,10 @@ limit = 56 # int (optional)
 filter = 'filter_example' # str (optional)
 as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
 property_keys = ['property_keys_example'] # List[str] (optional)
-api_response = api_instance.list_settlement_instructions(scope, code, from_date=from_date, to_date=to_date, page=page, limit=limit, filter=filter, as_at=as_at, property_keys=property_keys)
+timeline_scope = 'timeline_scope_example' # str (optional)
+timeline_code = 'timeline_code_example' # str (optional)
+closed_period_id = 'closed_period_id_example' # str (optional)
+api_response = api_instance.list_settlement_instructions(scope, code, from_date=from_date, to_date=to_date, page=page, limit=limit, filter=filter, as_at=as_at, property_keys=property_keys, timeline_scope=timeline_scope, timeline_code=timeline_code, closed_period_id=closed_period_id)
 pprint(api_response)
 ```
 
@@ -2025,6 +2087,9 @@ Name | Type | Description  | Notes
  **filter** | **str**| The expression to filter out settlement instructions | [optional] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the settlement instructions. Defaults to return the latest if not specified. | [optional] 
  **property_keys** | [**List[str]**](str.md)| A list of property keys from the &#39;SettlementInstruction&#39;, &#39;Instrument&#39; or &#39;Portfolio&#39; domains to decorate onto              settlement instructions. These must have the format {domain}/{scope}/{code}, for example &#39;Instrument/system/Name&#39; or &#39;SettlementInstruction/strategy/quantsignal&#39;. | [optional] 
+ **timeline_scope** | **str**| The scope of the Timeline. | [optional] 
+ **timeline_code** | **str**| The code of the Timeline. This can optionally include a colon followed by the Closed Period ID to use at the head of the timeline, for a timeline with unconfirmed periods. | [optional] 
+ **closed_period_id** | **str**| The closed period ID. If this is specified, both timelineScope and timelineCode must be specified. Either closedPeriodId or effectiveAt can be used with a Timeline. | [optional] 
 
 ### Return type
 

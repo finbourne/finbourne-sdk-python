@@ -1,4 +1,4 @@
-# AllocationMethodProperty
+# ApportionmentMethodProperty
 
 ## Properties
 
@@ -13,9 +13,9 @@
 ### Creating from keyword arguments
 
 ```python
-from finbourne.sdk.services.lusid.models.AllocationMethodProperty import AllocationMethodProperty
+from finbourne.sdk.services.lusid.models.ApportionmentMethodProperty import ApportionmentMethodProperty
 
-instance = AllocationMethodProperty(
+instance = ApportionmentMethodProperty(
     code="...",  # required — The code identifying the allocation method property.
     scope="..."  # required — The scope of the allocation method property.
 )

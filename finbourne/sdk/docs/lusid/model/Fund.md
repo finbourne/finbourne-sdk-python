@@ -22,8 +22,8 @@ A Fund entity.
 | **primary_nav_type** | [NavType](NavType.md) | Optional | *No description available.* |
 | **additional_nav_types** | [List[NavType]](NavType.md) | Optional | The definitions for any additional NAVs on the Fund. |
 | **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the Fund. |
-| **create_instrument** | **bool** | Optional | Whether to create an instrument for the Fund upon creation. Defaults to false. |
-| **apportionment_method_property** | [AllocationMethodProperty](AllocationMethodProperty.md) | Optional | *No description available.* |
+| **create_instrument** | **bool** | Optional | Whether to create instruments for the Fund&#39;s share classes, series, or partner classes upon creation. Defaults to false. |
+| **apportionment_method_property** | [ApportionmentMethodProperty](ApportionmentMethodProperty.md) | Optional | *No description available.* |
 | **allocation_groups** | [List[AllocationGroup]](AllocationGroup.md) | Optional | An optional list of Allocation Group definitions for the Fund. |
 | **share_classes** | [List[ShareClass]](ShareClass.md) | Optional | An optional list of Share Class definitions for the Fund. |
 | **version** | [Version](Version.md) | Optional | *No description available.* |
@@ -55,8 +55,8 @@ instance = Fund(
     primary_nav_type=NavType(...),  # optional
     additional_nav_types=[],  # optional — The definitions for any additional NAVs on the Fund.
     properties=ModelProperty(...),  # optional — A set of properties for the Fund.
-    create_instrument=True,  # optional — Whether to create an instrument for the Fund upon creation. Defaults to false.
-    apportionment_method_property=AllocationMethodProperty(...),  # optional
+    create_instrument=True,  # optional — Whether to create instruments for the Fund&#39;s share classes, series, or partner classes upon creation. Defaults to false.
+    apportionment_method_property=ApportionmentMethodProperty(...),  # optional
     allocation_groups=[],  # optional — An optional list of Allocation Group definitions for the Fund.
     share_classes=[],  # optional — An optional list of Share Class definitions for the Fund.
     version=Version(...),  # optional
@@ -73,7 +73,7 @@ instance = Fund(
 - [NavType](NavType.md)
 - [NavType](NavType.md) — used in `additional_nav_types`
 - [ModelProperty](ModelProperty.md) — used in `properties`
-- [AllocationMethodProperty](AllocationMethodProperty.md)
+- [ApportionmentMethodProperty](ApportionmentMethodProperty.md)
 - [AllocationGroup](AllocationGroup.md) — used in `allocation_groups`
 - [ShareClass](ShareClass.md) — used in `share_classes`
 - [Version](Version.md)

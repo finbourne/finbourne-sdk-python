@@ -68,7 +68,6 @@ from finbourne.sdk.services.lusid.models.allocation_group import AllocationGroup
 from finbourne.sdk.services.lusid.models.allocation_group_class import AllocationGroupClass
 from finbourne.sdk.services.lusid.models.allocation_group_class_definition import AllocationGroupClassDefinition
 from finbourne.sdk.services.lusid.models.allocation_group_definition import AllocationGroupDefinition
-from finbourne.sdk.services.lusid.models.allocation_method_property import AllocationMethodProperty
 from finbourne.sdk.services.lusid.models.allocation_request import AllocationRequest
 from finbourne.sdk.services.lusid.models.allocation_service_run_response import AllocationServiceRunResponse
 from finbourne.sdk.services.lusid.models.allocation_set_request import AllocationSetRequest
@@ -90,6 +89,7 @@ from finbourne.sdk.services.lusid.models.append_market_data_type import AppendMa
 from finbourne.sdk.services.lusid.models.applicable_entity import ApplicableEntity
 from finbourne.sdk.services.lusid.models.applicable_entity_types import ApplicableEntityTypes
 from finbourne.sdk.services.lusid.models.applicable_instrument_event import ApplicableInstrumentEvent
+from finbourne.sdk.services.lusid.models.apportionment_method_property import ApportionmentMethodProperty
 from finbourne.sdk.services.lusid.models.asset_class import AssetClass
 from finbourne.sdk.services.lusid.models.asset_leg import AssetLeg
 from finbourne.sdk.services.lusid.models.barrier import Barrier
@@ -1377,6 +1377,7 @@ from finbourne.sdk.services.lusid.models.workspace_creation_request import Works
 from finbourne.sdk.services.lusid.models.workspace_item import WorkspaceItem
 from finbourne.sdk.services.lusid.models.workspace_item_creation_request import WorkspaceItemCreationRequest
 from finbourne.sdk.services.lusid.models.workspace_item_update_request import WorkspaceItemUpdateRequest
+from finbourne.sdk.services.lusid.models.workspace_permitted_item_actions import WorkspacePermittedItemActions
 from finbourne.sdk.services.lusid.models.workspace_update_request import WorkspaceUpdateRequest
 from finbourne.sdk.services.lusid.models.workspace_visibility import WorkspaceVisibility
 from finbourne.sdk.services.lusid.models.year_month_day import YearMonthDay
@@ -1440,7 +1441,6 @@ __all__ = [
     "AllocationGroupClass",
     "AllocationGroupClassDefinition",
     "AllocationGroupDefinition",
-    "AllocationMethodProperty",
     "AllocationRequest",
     "AllocationServiceRunResponse",
     "AllocationSetRequest",
@@ -1462,6 +1462,7 @@ __all__ = [
     "ApplicableEntity",
     "ApplicableEntityTypes",
     "ApplicableInstrumentEvent",
+    "ApportionmentMethodProperty",
     "AssetClass",
     "AssetLeg",
     "Barrier",
@@ -2749,6 +2750,7 @@ __all__ = [
     "WorkspaceItem",
     "WorkspaceItemCreationRequest",
     "WorkspaceItemUpdateRequest",
+    "WorkspacePermittedItemActions",
     "WorkspaceUpdateRequest",
     "WorkspaceVisibility",
     "YearMonthDay",

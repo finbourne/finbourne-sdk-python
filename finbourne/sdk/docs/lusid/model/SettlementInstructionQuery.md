@@ -12,6 +12,9 @@
 | **filter** | **str** | Optional | *No description available.* |
 | **settlement_instruction_property_keys** | **List[str]** | Optional | *No description available.* |
 | **transaction_property_keys** | **List[str]** | Optional | *No description available.* |
+| **timeline_scope** | **str** | Optional | *No description available.* |
+| **timeline_code** | **str** | Optional | *No description available.* |
+| **closed_period_id** | **str** | Optional | *No description available.* |
 
 
 ## Usage
@@ -29,7 +32,10 @@ instance = SettlementInstructionQuery(
     page="...",  # optional
     filter="...",  # optional
     settlement_instruction_property_keys=,  # optional
-    transaction_property_keys=  # optional
+    transaction_property_keys=,  # optional
+    timeline_scope="...",  # optional
+    timeline_code="...",  # optional
+    closed_period_id="..."  # optional
 )
 ```
 

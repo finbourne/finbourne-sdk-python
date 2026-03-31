@@ -201,14 +201,16 @@ class WorkspaceApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def create_workspace(self, visibility: StrictStr, workspace_creation_request: Optional[WorkspaceCreationRequest] = None, **kwargs) -> Workspace:
+    def create_workspace(self, visibility: StrictStr, workspace_creation_request: WorkspaceCreationRequest, include_item_access: Optional[bool] = None, **kwargs) -> Workspace:
         """[EXPERIMENTAL] CreateWorkspace: Create a new workspace.  # noqa: E501
 
         Create a new workspace.  # noqa: E501
         :param visibility: The visibility for the workspace being created. Must be `shared` or `personal`; case is important. (required)
         :type visibility: str
-        :param workspace_creation_request: The workspace to be created.
+        :param workspace_creation_request: The workspace to be created. (required)
         :type workspace_creation_request: WorkspaceCreationRequest
+        :param include_item_access: If true, includes the workspace item actions the user is permitted to perform in the response. Defaults to false.
+        :type include_item_access: bool
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -220,17 +222,19 @@ class WorkspaceApi:
             message = "Error! Please call the create_workspace_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_workspace_with_http_info(visibility, workspace_creation_request, **kwargs)  # noqa: E501
+        return self.create_workspace_with_http_info(visibility, workspace_creation_request, include_item_access, **kwargs)  # noqa: E501
 
     @validate_call
-    def create_workspace_with_http_info(self, visibility: StrictStr, workspace_creation_request: Optional[WorkspaceCreationRequest] = None, **kwargs) -> ApiResponse[Workspace]:
+    def create_workspace_with_http_info(self, visibility: StrictStr, workspace_creation_request: WorkspaceCreationRequest, include_item_access: Optional[bool] = None, **kwargs) -> ApiResponse[Workspace]:
         """[EXPERIMENTAL] CreateWorkspace: Create a new workspace.  # noqa: E501
 
         Create a new workspace.  # noqa: E501
         :param visibility: The visibility for the workspace being created. Must be `shared` or `personal`; case is important. (required)
         :type visibility: str
-        :param workspace_creation_request: The workspace to be created.
+        :param workspace_creation_request: The workspace to be created. (required)
         :type workspace_creation_request: WorkspaceCreationRequest
+        :param include_item_access: If true, includes the workspace item actions the user is permitted to perform in the response. Defaults to false.
+        :type include_item_access: bool
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -255,7 +259,8 @@ class WorkspaceApi:
 
         _all_params = [
             'visibility',
-            'workspace_creation_request'
+            'workspace_creation_request',
+            'include_item_access'
         ]
         _all_params.extend(
             [
@@ -289,6 +294,9 @@ class WorkspaceApi:
 
         # process the query parameters
         _query_params = []
+        if _params.get('include_item_access') is not None:  # noqa: E501
+            _query_params.append(('includeItemAccess', _params['include_item_access']))
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -771,7 +779,7 @@ class WorkspaceApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def get_workspace(self, visibility: StrictStr, workspace_name: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> Workspace:
+    def get_workspace(self, visibility: StrictStr, workspace_name: StrictStr, as_at: Optional[datetime] = None, include_item_access: Optional[bool] = None, **kwargs) -> Workspace:
         """[EXPERIMENTAL] GetWorkspace: Get a workspace.  # noqa: E501
 
         Get a workspace.  # noqa: E501
@@ -781,6 +789,8 @@ class WorkspaceApi:
         :type workspace_name: str
         :param as_at: The asAt datetime at which to retrieve workspaces. Defaults to 'latest' if not specified.
         :type as_at: datetime
+        :param include_item_access: If true, includes the workspace item actions the user is permitted to perform in the response. Defaults to false.
+        :type include_item_access: bool
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -792,10 +802,10 @@ class WorkspaceApi:
             message = "Error! Please call the get_workspace_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_workspace_with_http_info(visibility, workspace_name, as_at, **kwargs)  # noqa: E501
+        return self.get_workspace_with_http_info(visibility, workspace_name, as_at, include_item_access, **kwargs)  # noqa: E501
 
     @validate_call
-    def get_workspace_with_http_info(self, visibility: StrictStr, workspace_name: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[Workspace]:
+    def get_workspace_with_http_info(self, visibility: StrictStr, workspace_name: StrictStr, as_at: Optional[datetime] = None, include_item_access: Optional[bool] = None, **kwargs) -> ApiResponse[Workspace]:
         """[EXPERIMENTAL] GetWorkspace: Get a workspace.  # noqa: E501
 
         Get a workspace.  # noqa: E501
@@ -805,6 +815,8 @@ class WorkspaceApi:
         :type workspace_name: str
         :param as_at: The asAt datetime at which to retrieve workspaces. Defaults to 'latest' if not specified.
         :type as_at: datetime
+        :param include_item_access: If true, includes the workspace item actions the user is permitted to perform in the response. Defaults to false.
+        :type include_item_access: bool
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -830,7 +842,8 @@ class WorkspaceApi:
         _all_params = [
             'visibility',
             'workspace_name',
-            'as_at'
+            'as_at',
+            'include_item_access'
         ]
         _all_params.extend(
             [
@@ -872,6 +885,9 @@ class WorkspaceApi:
                 _query_params.append(('asAt', _params['as_at'].strftime(self.sync_api_client.configuration.datetime_format)))
             else:
                 _query_params.append(('asAt', _params['as_at']))
+
+        if _params.get('include_item_access') is not None:  # noqa: E501
+            _query_params.append(('includeItemAccess', _params['include_item_access']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -1082,7 +1098,7 @@ class WorkspaceApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def list_workspaces(self, visibility: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfWorkspace:
+    def list_workspaces(self, visibility: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, include_item_access: Optional[bool] = None, **kwargs) -> PagedResourceListOfWorkspace:
         """[EXPERIMENTAL] ListWorkspaces: List workspaces.  # noqa: E501
 
         List workspaces.  # noqa: E501
@@ -1098,6 +1114,8 @@ class WorkspaceApi:
         :type limit: int
         :param filter: Expression to filter the result set. Read more about filtering results from LUSID here:              https://support.lusid.com/filtering-results-from-lusid.
         :type filter: str
+        :param include_item_access: If true, includes the workspace item actions the user is permitted to perform in the response. Defaults to false.
+        :type include_item_access: bool
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -1109,10 +1127,10 @@ class WorkspaceApi:
             message = "Error! Please call the list_workspaces_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_workspaces_with_http_info(visibility, as_at, page, sort_by, limit, filter, **kwargs)  # noqa: E501
+        return self.list_workspaces_with_http_info(visibility, as_at, page, sort_by, limit, filter, include_item_access, **kwargs)  # noqa: E501
 
     @validate_call
-    def list_workspaces_with_http_info(self, visibility: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfWorkspace]:
+    def list_workspaces_with_http_info(self, visibility: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, include_item_access: Optional[bool] = None, **kwargs) -> ApiResponse[PagedResourceListOfWorkspace]:
         """[EXPERIMENTAL] ListWorkspaces: List workspaces.  # noqa: E501
 
         List workspaces.  # noqa: E501
@@ -1128,6 +1146,8 @@ class WorkspaceApi:
         :type limit: int
         :param filter: Expression to filter the result set. Read more about filtering results from LUSID here:              https://support.lusid.com/filtering-results-from-lusid.
         :type filter: str
+        :param include_item_access: If true, includes the workspace item actions the user is permitted to perform in the response. Defaults to false.
+        :type include_item_access: bool
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1156,7 +1176,8 @@ class WorkspaceApi:
             'page',
             'sort_by',
             'limit',
-            'filter'
+            'filter',
+            'include_item_access'
         ]
         _all_params.extend(
             [
@@ -1208,6 +1229,9 @@ class WorkspaceApi:
 
         if _params.get('filter') is not None:  # noqa: E501
             _query_params.append(('filter', _params['filter']))
+
+        if _params.get('include_item_access') is not None:  # noqa: E501
+            _query_params.append(('includeItemAccess', _params['include_item_access']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -1569,7 +1593,7 @@ class WorkspaceApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def update_workspace(self, visibility: StrictStr, workspace_name: StrictStr, workspace_update_request: Optional[WorkspaceUpdateRequest] = None, **kwargs) -> Workspace:
+    def update_workspace(self, visibility: StrictStr, workspace_name: StrictStr, workspace_update_request: WorkspaceUpdateRequest, include_item_access: Optional[bool] = None, **kwargs) -> Workspace:
         """[EXPERIMENTAL] UpdateWorkspace: Update a workspace.  # noqa: E501
 
         Update a workspace.  # noqa: E501
@@ -1577,8 +1601,10 @@ class WorkspaceApi:
         :type visibility: str
         :param workspace_name: The workspace name. (required)
         :type workspace_name: str
-        :param workspace_update_request: The new workspace details.
+        :param workspace_update_request: The new workspace details. (required)
         :type workspace_update_request: WorkspaceUpdateRequest
+        :param include_item_access: If true, includes the workspace item actions the user is permitted to perform in the response. Defaults to false.
+        :type include_item_access: bool
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -1590,10 +1616,10 @@ class WorkspaceApi:
             message = "Error! Please call the update_workspace_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_workspace_with_http_info(visibility, workspace_name, workspace_update_request, **kwargs)  # noqa: E501
+        return self.update_workspace_with_http_info(visibility, workspace_name, workspace_update_request, include_item_access, **kwargs)  # noqa: E501
 
     @validate_call
-    def update_workspace_with_http_info(self, visibility: StrictStr, workspace_name: StrictStr, workspace_update_request: Optional[WorkspaceUpdateRequest] = None, **kwargs) -> ApiResponse[Workspace]:
+    def update_workspace_with_http_info(self, visibility: StrictStr, workspace_name: StrictStr, workspace_update_request: WorkspaceUpdateRequest, include_item_access: Optional[bool] = None, **kwargs) -> ApiResponse[Workspace]:
         """[EXPERIMENTAL] UpdateWorkspace: Update a workspace.  # noqa: E501
 
         Update a workspace.  # noqa: E501
@@ -1601,8 +1627,10 @@ class WorkspaceApi:
         :type visibility: str
         :param workspace_name: The workspace name. (required)
         :type workspace_name: str
-        :param workspace_update_request: The new workspace details.
+        :param workspace_update_request: The new workspace details. (required)
         :type workspace_update_request: WorkspaceUpdateRequest
+        :param include_item_access: If true, includes the workspace item actions the user is permitted to perform in the response. Defaults to false.
+        :type include_item_access: bool
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1628,7 +1656,8 @@ class WorkspaceApi:
         _all_params = [
             'visibility',
             'workspace_name',
-            'workspace_update_request'
+            'workspace_update_request',
+            'include_item_access'
         ]
         _all_params.extend(
             [
@@ -1665,6 +1694,9 @@ class WorkspaceApi:
 
         # process the query parameters
         _query_params = []
+        if _params.get('include_item_access') is not None:  # noqa: E501
+            _query_params.append(('includeItemAccess', _params['include_item_access']))
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -1860,14 +1892,16 @@ class WorkspaceApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def create_workspace_async(self, visibility: StrictStr, workspace_creation_request: Optional[WorkspaceCreationRequest] = None, **kwargs) -> Workspace:
+    async def create_workspace_async(self, visibility: StrictStr, workspace_creation_request: WorkspaceCreationRequest, include_item_access: Optional[bool] = None, **kwargs) -> Workspace:
             """[EXPERIMENTAL] CreateWorkspace: Create a new workspace.  # noqa: E501
             Create a new workspace.  # noqa: E501
             
             :param visibility: The visibility for the workspace being created. Must be `shared` or `personal`; case is important. (required)
             :type visibility: str
-            :param workspace_creation_request: The workspace to be created.
+            :param workspace_creation_request: The workspace to be created. (required)
             :type workspace_creation_request: WorkspaceCreationRequest
+            :param include_item_access: If true, includes the workspace item actions the user is permitted to perform in the response. Defaults to false.
+            :type include_item_access: bool
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -1879,18 +1913,20 @@ class WorkspaceApi:
                 message = "Error! Please call the create_workspace_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_workspace_with_http_info_async(visibility, workspace_creation_request, **kwargs)  # noqa: E501
+            return await self.create_workspace_with_http_info_async(visibility, workspace_creation_request, include_item_access, **kwargs)  # noqa: E501
 
     @validate_call
-    async def create_workspace_with_http_info_async(self, visibility: StrictStr, workspace_creation_request: Optional[WorkspaceCreationRequest] = None, **kwargs) -> ApiResponse[Workspace]:
+    async def create_workspace_with_http_info_async(self, visibility: StrictStr, workspace_creation_request: WorkspaceCreationRequest, include_item_access: Optional[bool] = None, **kwargs) -> ApiResponse[Workspace]:
             """[EXPERIMENTAL] CreateWorkspace: Create a new workspace.  # noqa: E501
 
             Create a new workspace.  # noqa: E501
 
             :param visibility: The visibility for the workspace being created. Must be `shared` or `personal`; case is important. (required)
             :type visibility: str
-            :param workspace_creation_request: The workspace to be created.
+            :param workspace_creation_request: The workspace to be created. (required)
             :type workspace_creation_request: WorkspaceCreationRequest
+            :param include_item_access: If true, includes the workspace item actions the user is permitted to perform in the response. Defaults to false.
+            :type include_item_access: bool
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -1915,7 +1951,8 @@ class WorkspaceApi:
 
             _all_params = [
                 'visibility',
-                'workspace_creation_request'
+                'workspace_creation_request',
+                'include_item_access'
             ]
             _all_params.extend(
                 [
@@ -1949,6 +1986,9 @@ class WorkspaceApi:
 
             # process the query parameters
             _query_params = []
+            if _params.get('include_item_access') is not None:  # noqa: E501
+                _query_params.append(('includeItemAccess', _params['include_item_access']))
+
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))
             # process the form parameters
@@ -2434,7 +2474,7 @@ class WorkspaceApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def get_workspace_async(self, visibility: StrictStr, workspace_name: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> Workspace:
+    async def get_workspace_async(self, visibility: StrictStr, workspace_name: StrictStr, as_at: Optional[datetime] = None, include_item_access: Optional[bool] = None, **kwargs) -> Workspace:
             """[EXPERIMENTAL] GetWorkspace: Get a workspace.  # noqa: E501
             Get a workspace.  # noqa: E501
             
@@ -2444,6 +2484,8 @@ class WorkspaceApi:
             :type workspace_name: str
             :param as_at: The asAt datetime at which to retrieve workspaces. Defaults to 'latest' if not specified.
             :type as_at: datetime
+            :param include_item_access: If true, includes the workspace item actions the user is permitted to perform in the response. Defaults to false.
+            :type include_item_access: bool
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -2455,10 +2497,10 @@ class WorkspaceApi:
                 message = "Error! Please call the get_workspace_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_workspace_with_http_info_async(visibility, workspace_name, as_at, **kwargs)  # noqa: E501
+            return await self.get_workspace_with_http_info_async(visibility, workspace_name, as_at, include_item_access, **kwargs)  # noqa: E501
 
     @validate_call
-    async def get_workspace_with_http_info_async(self, visibility: StrictStr, workspace_name: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[Workspace]:
+    async def get_workspace_with_http_info_async(self, visibility: StrictStr, workspace_name: StrictStr, as_at: Optional[datetime] = None, include_item_access: Optional[bool] = None, **kwargs) -> ApiResponse[Workspace]:
             """[EXPERIMENTAL] GetWorkspace: Get a workspace.  # noqa: E501
 
             Get a workspace.  # noqa: E501
@@ -2469,6 +2511,8 @@ class WorkspaceApi:
             :type workspace_name: str
             :param as_at: The asAt datetime at which to retrieve workspaces. Defaults to 'latest' if not specified.
             :type as_at: datetime
+            :param include_item_access: If true, includes the workspace item actions the user is permitted to perform in the response. Defaults to false.
+            :type include_item_access: bool
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -2494,7 +2538,8 @@ class WorkspaceApi:
             _all_params = [
                 'visibility',
                 'workspace_name',
-                'as_at'
+                'as_at',
+                'include_item_access'
             ]
             _all_params.extend(
                 [
@@ -2536,6 +2581,9 @@ class WorkspaceApi:
                     _query_params.append(('asAt', _params['as_at'].strftime(self.api_client.configuration.datetime_format)))
                 else:
                     _query_params.append(('asAt', _params['as_at']))
+
+            if _params.get('include_item_access') is not None:  # noqa: E501
+                _query_params.append(('includeItemAccess', _params['include_item_access']))
 
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))
@@ -2747,7 +2795,7 @@ class WorkspaceApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def list_workspaces_async(self, visibility: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfWorkspace:
+    async def list_workspaces_async(self, visibility: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, include_item_access: Optional[bool] = None, **kwargs) -> PagedResourceListOfWorkspace:
             """[EXPERIMENTAL] ListWorkspaces: List workspaces.  # noqa: E501
             List workspaces.  # noqa: E501
             
@@ -2763,6 +2811,8 @@ class WorkspaceApi:
             :type limit: int
             :param filter: Expression to filter the result set. Read more about filtering results from LUSID here:              https://support.lusid.com/filtering-results-from-lusid.
             :type filter: str
+            :param include_item_access: If true, includes the workspace item actions the user is permitted to perform in the response. Defaults to false.
+            :type include_item_access: bool
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -2774,10 +2824,10 @@ class WorkspaceApi:
                 message = "Error! Please call the list_workspaces_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_workspaces_with_http_info_async(visibility, as_at, page, sort_by, limit, filter, **kwargs)  # noqa: E501
+            return await self.list_workspaces_with_http_info_async(visibility, as_at, page, sort_by, limit, filter, include_item_access, **kwargs)  # noqa: E501
 
     @validate_call
-    async def list_workspaces_with_http_info_async(self, visibility: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfWorkspace]:
+    async def list_workspaces_with_http_info_async(self, visibility: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, include_item_access: Optional[bool] = None, **kwargs) -> ApiResponse[PagedResourceListOfWorkspace]:
             """[EXPERIMENTAL] ListWorkspaces: List workspaces.  # noqa: E501
 
             List workspaces.  # noqa: E501
@@ -2794,6 +2844,8 @@ class WorkspaceApi:
             :type limit: int
             :param filter: Expression to filter the result set. Read more about filtering results from LUSID here:              https://support.lusid.com/filtering-results-from-lusid.
             :type filter: str
+            :param include_item_access: If true, includes the workspace item actions the user is permitted to perform in the response. Defaults to false.
+            :type include_item_access: bool
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -2822,7 +2874,8 @@ class WorkspaceApi:
                 'page',
                 'sort_by',
                 'limit',
-                'filter'
+                'filter',
+                'include_item_access'
             ]
             _all_params.extend(
                 [
@@ -2874,6 +2927,9 @@ class WorkspaceApi:
 
             if _params.get('filter') is not None:  # noqa: E501
                 _query_params.append(('filter', _params['filter']))
+
+            if _params.get('include_item_access') is not None:  # noqa: E501
+                _query_params.append(('includeItemAccess', _params['include_item_access']))
 
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))
@@ -3237,7 +3293,7 @@ class WorkspaceApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def update_workspace_async(self, visibility: StrictStr, workspace_name: StrictStr, workspace_update_request: Optional[WorkspaceUpdateRequest] = None, **kwargs) -> Workspace:
+    async def update_workspace_async(self, visibility: StrictStr, workspace_name: StrictStr, workspace_update_request: WorkspaceUpdateRequest, include_item_access: Optional[bool] = None, **kwargs) -> Workspace:
             """[EXPERIMENTAL] UpdateWorkspace: Update a workspace.  # noqa: E501
             Update a workspace.  # noqa: E501
             
@@ -3245,8 +3301,10 @@ class WorkspaceApi:
             :type visibility: str
             :param workspace_name: The workspace name. (required)
             :type workspace_name: str
-            :param workspace_update_request: The new workspace details.
+            :param workspace_update_request: The new workspace details. (required)
             :type workspace_update_request: WorkspaceUpdateRequest
+            :param include_item_access: If true, includes the workspace item actions the user is permitted to perform in the response. Defaults to false.
+            :type include_item_access: bool
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -3258,10 +3316,10 @@ class WorkspaceApi:
                 message = "Error! Please call the update_workspace_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_workspace_with_http_info_async(visibility, workspace_name, workspace_update_request, **kwargs)  # noqa: E501
+            return await self.update_workspace_with_http_info_async(visibility, workspace_name, workspace_update_request, include_item_access, **kwargs)  # noqa: E501
 
     @validate_call
-    async def update_workspace_with_http_info_async(self, visibility: StrictStr, workspace_name: StrictStr, workspace_update_request: Optional[WorkspaceUpdateRequest] = None, **kwargs) -> ApiResponse[Workspace]:
+    async def update_workspace_with_http_info_async(self, visibility: StrictStr, workspace_name: StrictStr, workspace_update_request: WorkspaceUpdateRequest, include_item_access: Optional[bool] = None, **kwargs) -> ApiResponse[Workspace]:
             """[EXPERIMENTAL] UpdateWorkspace: Update a workspace.  # noqa: E501
 
             Update a workspace.  # noqa: E501
@@ -3270,8 +3328,10 @@ class WorkspaceApi:
             :type visibility: str
             :param workspace_name: The workspace name. (required)
             :type workspace_name: str
-            :param workspace_update_request: The new workspace details.
+            :param workspace_update_request: The new workspace details. (required)
             :type workspace_update_request: WorkspaceUpdateRequest
+            :param include_item_access: If true, includes the workspace item actions the user is permitted to perform in the response. Defaults to false.
+            :type include_item_access: bool
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -3297,7 +3357,8 @@ class WorkspaceApi:
             _all_params = [
                 'visibility',
                 'workspace_name',
-                'workspace_update_request'
+                'workspace_update_request',
+                'include_item_access'
             ]
             _all_params.extend(
                 [
@@ -3334,6 +3395,9 @@ class WorkspaceApi:
 
             # process the query parameters
             _query_params = []
+            if _params.get('include_item_access') is not None:  # noqa: E501
+                _query_params.append(('includeItemAccess', _params['include_item_access']))
+
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))
             # process the form parameters

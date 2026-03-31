@@ -18,6 +18,7 @@ Defines a change that occured for an entity, with extra detail about the change
 | **previous_value** | [PropertyValue](PropertyValue.md) | Optional | *No description available.* |
 | **new_value** | [PropertyValue](PropertyValue.md) | Optional | *No description available.* |
 | **effective_range** | [EffectiveRange](EffectiveRange.md) | Optional | *No description available.* |
+| **is_inherited** | **bool** | Optional | Indicates whether this change interval is a result of a change to an ancestor or the entity itself. |
 
 
 ## Usage
@@ -40,7 +41,8 @@ instance = ChangeIntervalWithOrderManagementDetail(
     attribute_name="...",  # optional — The name of the field or property that has been changed.
     previous_value=PropertyValue(...),  # optional
     new_value=PropertyValue(...),  # optional
-    effective_range=EffectiveRange(...)  # optional
+    effective_range=EffectiveRange(...),  # optional
+    is_inherited=True  # optional — Indicates whether this change interval is a result of a change to an ancestor or the entity itself.
 )
 ```
 

@@ -28,7 +28,7 @@ A list of output transactions.
 | **cancel_date_time** | **datetime** | Optional | If the transaction has been cancelled, the asAt datetime that the transaction was cancelled. |
 | **realised_gain_loss** | [List[RealisedGainLoss]](RealisedGainLoss.md) | Optional | The collection of realised gains or losses resulting from relevant transactions e.g. a sale transaction. The cost used in calculating the realised gain or loss is determined by the accounting method defined when the transaction portfolio is created. |
 | **holding_ids** | **List[int]** | Optional | The collection of single identifiers for the holding within the portfolio. The holdingId is constructed from the LusidInstrumentId, sub-holding keys and currrency and is unique within the portfolio. |
-| **source_type** | **str** | Optional | The type of source that the transaction originated from, eg: InputTransaction, InstrumentEvent, HoldingAdjustment |
+| **source_type** | **str** | Optional | The type of source that the transaction originated from, eg: InputTransaction, InstrumentEvent, HoldingAdjustment, OverriddenVirtualTransaction |
 | **source_instrument_event_id** | **str** | Optional | The unique ID of the instrument event that the transaction is related to. |
 | **custodian_account** | [CustodianAccount](CustodianAccount.md) | Optional | *No description available.* |
 | **transaction_group_id** | **str** | Optional | The identifier for grouping economic events across multiple transactions |
@@ -43,6 +43,7 @@ A list of output transactions.
 | **sequence** | **int** | Optional | The sequential position in which this transaction was processed. |
 | **sequence_priority** | **int** | Optional | The calculated priority level for this transaction. |
 | **settlement_summary** | [TransactionSettlementSummary](TransactionSettlementSummary.md) | Optional | *No description available.* |
+| **version** | [Version](Version.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -76,7 +77,7 @@ instance = OutputTransaction(
     cancel_date_time=datetime.now(),  # optional — If the transaction has been cancelled, the asAt datetime that the transaction was cancelled.
     realised_gain_loss=[],  # optional — The collection of realised gains or losses resulting from relevant transactions e.g. a sale transaction. The cost used in calculating the realised gain or loss is determined by the accounting method defined when the transaction portfolio is created.
     holding_ids=,  # optional — The collection of single identifiers for the holding within the portfolio. The holdingId is constructed from the LusidInstrumentId, sub-holding keys and currrency and is unique within the portfolio.
-    source_type="...",  # optional — The type of source that the transaction originated from, eg: InputTransaction, InstrumentEvent, HoldingAdjustment
+    source_type="...",  # optional — The type of source that the transaction originated from, eg: InputTransaction, InstrumentEvent, HoldingAdjustment, OverriddenVirtualTransaction
     source_instrument_event_id="...",  # optional — The unique ID of the instrument event that the transaction is related to.
     custodian_account=CustodianAccount(...),  # optional
     transaction_group_id="...",  # optional — The identifier for grouping economic events across multiple transactions
@@ -90,7 +91,8 @@ instance = OutputTransaction(
     data_model_membership=DataModelMembership(...),  # optional
     sequence=0,  # optional — The sequential position in which this transaction was processed.
     sequence_priority=0,  # optional — The calculated priority level for this transaction.
-    settlement_summary=TransactionSettlementSummary(...)  # optional
+    settlement_summary=TransactionSettlementSummary(...),  # optional
+    version=Version(...)  # optional
 )
 ```
 
@@ -106,6 +108,7 @@ instance = OutputTransaction(
 - [Economics](Economics.md) — used in `economics`
 - [DataModelMembership](DataModelMembership.md)
 - [TransactionSettlementSummary](TransactionSettlementSummary.md)
+- [Version](Version.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

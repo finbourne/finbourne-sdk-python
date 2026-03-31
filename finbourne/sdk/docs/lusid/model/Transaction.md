@@ -31,6 +31,7 @@ A list of transactions.
 | **strategy_tag** | [List[Strategy]](Strategy.md) | Optional | A list of strategies representing the allocation of units across multiple sub-holding keys |
 | **resolved_transaction_type_details** | [TransactionTypeDetails](TransactionTypeDetails.md) | Optional | *No description available.* |
 | **data_model_membership** | [DataModelMembership](DataModelMembership.md) | Optional | *No description available.* |
+| **version** | [Version](Version.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -66,7 +67,8 @@ instance = Transaction(
     transaction_group_id="...",  # optional — The identifier for grouping economic events across multiple transactions
     strategy_tag=[],  # optional — A list of strategies representing the allocation of units across multiple sub-holding keys
     resolved_transaction_type_details=TransactionTypeDetails(...),  # optional
-    data_model_membership=DataModelMembership(...)  # optional
+    data_model_membership=DataModelMembership(...),  # optional
+    version=Version(...)  # optional
 )
 ```
 
@@ -80,6 +82,7 @@ instance = Transaction(
 - [Strategy](Strategy.md) — used in `strategy_tag`
 - [TransactionTypeDetails](TransactionTypeDetails.md)
 - [DataModelMembership](DataModelMembership.md)
+- [Version](Version.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

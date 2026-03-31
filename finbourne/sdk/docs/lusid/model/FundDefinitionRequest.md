@@ -20,8 +20,8 @@ The request used to create a Fund.
 | **primary_nav_type** | [NavTypeDefinition](NavTypeDefinition.md) | Required | *No description available.* |
 | **additional_nav_types** | [List[NavTypeDefinition]](NavTypeDefinition.md) | Optional | The definitions for any additional NAVs on the Fund. |
 | **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the Fund. |
-| **create_instrument** | **bool** | Optional | Whether to create an instrument for the Fund upon creation. Defaults to false. |
-| **apportionment_method_property** | [AllocationMethodProperty](AllocationMethodProperty.md) | Optional | *No description available.* |
+| **create_instrument** | **bool** | Optional | Whether to create instruments for the Fund&#39;s share classes, series, or partner classes upon creation. Defaults to false. |
+| **apportionment_method_property** | [ApportionmentMethodProperty](ApportionmentMethodProperty.md) | Optional | *No description available.* |
 | **share_classes** | [List[ShareClassDefinition]](ShareClassDefinition.md) | Optional | An optional list of Share Class definitions for the Fund. |
 
 
@@ -48,8 +48,8 @@ instance = FundDefinitionRequest(
     primary_nav_type=NavTypeDefinition(...),  # required
     additional_nav_types=[],  # optional — The definitions for any additional NAVs on the Fund.
     properties=ModelProperty(...),  # optional — A set of properties for the Fund.
-    create_instrument=True,  # optional — Whether to create an instrument for the Fund upon creation. Defaults to false.
-    apportionment_method_property=AllocationMethodProperty(...),  # optional
+    create_instrument=True,  # optional — Whether to create instruments for the Fund&#39;s share classes, series, or partner classes upon creation. Defaults to false.
+    apportionment_method_property=ApportionmentMethodProperty(...),  # optional
     share_classes=[]  # optional — An optional list of Share Class definitions for the Fund.
 )
 ```
@@ -60,7 +60,7 @@ instance = FundDefinitionRequest(
 - [NavTypeDefinition](NavTypeDefinition.md)
 - [NavTypeDefinition](NavTypeDefinition.md) — used in `additional_nav_types`
 - [ModelProperty](ModelProperty.md) — used in `properties`
-- [AllocationMethodProperty](AllocationMethodProperty.md)
+- [ApportionmentMethodProperty](ApportionmentMethodProperty.md)
 - [ShareClassDefinition](ShareClassDefinition.md) — used in `share_classes`
 
 

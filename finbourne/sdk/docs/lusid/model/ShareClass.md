@@ -4,6 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
+| **instrument_identifiers** | **Dict[str, Optional[str]]** | Required | Unique instrument identifiers |
 | **code** | **str** | Required | The unique code for the Share Class. Must be unique within the Fund. |
 | **name** | **str** | Required | The display name of the Share Class. |
 | **description** | **str** | Optional | An optional description for the Share Class. |
@@ -33,6 +34,7 @@
 from finbourne.sdk.services.lusid.models.ShareClass import ShareClass
 
 instance = ShareClass(
+    instrument_identifiers=,  # required — Unique instrument identifiers
     code="...",  # required — The unique code for the Share Class. Must be unique within the Fund.
     name="...",  # required — The display name of the Share Class.
     description="...",  # optional — An optional description for the Share Class.

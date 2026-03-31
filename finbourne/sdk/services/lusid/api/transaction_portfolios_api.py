@@ -3067,6 +3067,194 @@ class TransactionPortfoliosApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    def get_a2_b_movements_trading_vs_holding(self, scope: StrictStr, code: StrictStr, from_effective_at: StrictStr, to_effective_at: StrictStr, as_at: Optional[datetime] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, filter: Optional[StrictStr] = None, **kwargs) -> VersionedResourceListOfA2BMovementRecord:
+        """[EXPERIMENTAL] GetA2BMovementsTradingVsHolding: Get an A2B report at the movement level for the given portfolio, with P&L split between holding and trading returns.  # noqa: E501
+
+        Get an A2B report at the movement level for the given portfolio. Each transaction in the period is treated as a  synthetic holding rather than a flow, allowing P&L to be attributed to holding returns (market movement on  the starting position) versus trading returns (profit from buy/sell decisions).  # noqa: E501
+        :param scope: The scope of the portfolio to retrieve the A2B movement report for. (required)
+        :type scope: str
+        :param code: The code of the portfolio to retrieve the A2B movement report for. Together with the scope this              uniquely identifies the portfolio. (required)
+        :type code: str
+        :param from_effective_at: The lower bound effective datetime or cut label (inclusive) from which to retrieve the data.              There is no lower bound if this is not specified. (required)
+        :type from_effective_at: str
+        :param to_effective_at: The upper bound effective datetime or cut label (inclusive) from which to retrieve the data.              There is no upper bound if this is not specified. (required)
+        :type to_effective_at: str
+        :param as_at: The asAt datetime at which to retrieve the portfolio. Defaults to return the latest version              of each transaction if not specified.
+        :type as_at: datetime
+        :param recipe_id_scope: The scope of the given recipeId
+        :type recipe_id_scope: str
+        :param recipe_id_code: The code of the given recipeId
+        :type recipe_id_code: str
+        :param property_keys: A list of property keys from the \"Instrument\" domain to decorate onto              the results. These take the format {domain}/{scope}/{code} e.g. \"Instrument/system/Name\".
+        :type property_keys: List[str]
+        :param filter: Expression to filter the result set.              Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid.
+        :type filter: str
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: VersionedResourceListOfA2BMovementRecord
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_a2_b_movements_trading_vs_holding_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        return self.get_a2_b_movements_trading_vs_holding_with_http_info(scope, code, from_effective_at, to_effective_at, as_at, recipe_id_scope, recipe_id_code, property_keys, filter, **kwargs)  # noqa: E501
+
+    @validate_call
+    def get_a2_b_movements_trading_vs_holding_with_http_info(self, scope: StrictStr, code: StrictStr, from_effective_at: StrictStr, to_effective_at: StrictStr, as_at: Optional[datetime] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfA2BMovementRecord]:
+        """[EXPERIMENTAL] GetA2BMovementsTradingVsHolding: Get an A2B report at the movement level for the given portfolio, with P&L split between holding and trading returns.  # noqa: E501
+
+        Get an A2B report at the movement level for the given portfolio. Each transaction in the period is treated as a  synthetic holding rather than a flow, allowing P&L to be attributed to holding returns (market movement on  the starting position) versus trading returns (profit from buy/sell decisions).  # noqa: E501
+        :param scope: The scope of the portfolio to retrieve the A2B movement report for. (required)
+        :type scope: str
+        :param code: The code of the portfolio to retrieve the A2B movement report for. Together with the scope this              uniquely identifies the portfolio. (required)
+        :type code: str
+        :param from_effective_at: The lower bound effective datetime or cut label (inclusive) from which to retrieve the data.              There is no lower bound if this is not specified. (required)
+        :type from_effective_at: str
+        :param to_effective_at: The upper bound effective datetime or cut label (inclusive) from which to retrieve the data.              There is no upper bound if this is not specified. (required)
+        :type to_effective_at: str
+        :param as_at: The asAt datetime at which to retrieve the portfolio. Defaults to return the latest version              of each transaction if not specified.
+        :type as_at: datetime
+        :param recipe_id_scope: The scope of the given recipeId
+        :type recipe_id_scope: str
+        :param recipe_id_code: The code of the given recipeId
+        :type recipe_id_code: str
+        :param property_keys: A list of property keys from the \"Instrument\" domain to decorate onto              the results. These take the format {domain}/{scope}/{code} e.g. \"Instrument/system/Name\".
+        :type property_keys: List[str]
+        :param filter: Expression to filter the result set.              Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid.
+        :type filter: str
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(VersionedResourceListOfA2BMovementRecord, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'scope',
+            'code',
+            'from_effective_at',
+            'to_effective_at',
+            'as_at',
+            'recipe_id_scope',
+            'recipe_id_code',
+            'property_keys',
+            'filter'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_a2_b_movements_trading_vs_holding" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['scope']:
+            _path_params['scope'] = _params['scope']
+
+        if _params['code']:
+            _path_params['code'] = _params['code']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('from_effective_at') is not None:  # noqa: E501
+            _query_params.append(('fromEffectiveAt', _params['from_effective_at']))
+
+        if _params.get('to_effective_at') is not None:  # noqa: E501
+            _query_params.append(('toEffectiveAt', _params['to_effective_at']))
+
+        if _params.get('as_at') is not None:  # noqa: E501
+            if isinstance(_params['as_at'], datetime):
+                _query_params.append(('asAt', _params['as_at'].strftime(self.sync_api_client.configuration.datetime_format)))
+            else:
+                _query_params.append(('asAt', _params['as_at']))
+
+        if _params.get('recipe_id_scope') is not None:  # noqa: E501
+            _query_params.append(('recipeIdScope', _params['recipe_id_scope']))
+
+        if _params.get('recipe_id_code') is not None:  # noqa: E501
+            _query_params.append(('recipeIdCode', _params['recipe_id_code']))
+
+        if _params.get('property_keys') is not None:  # noqa: E501
+            _query_params.append(('propertyKeys', _params['property_keys']))
+            _collection_formats['propertyKeys'] = 'multi'
+
+        if _params.get('filter') is not None:  # noqa: E501
+            _query_params.append(('filter', _params['filter']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "VersionedResourceListOfA2BMovementRecord",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/transactionportfolios/{scope}/{code}/a2bmovements/tradingvsholding', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     def get_bucketed_cash_flows(self, scope: StrictStr, code: StrictStr, bucketed_cash_flow_request: Optional[BucketedCashFlowRequest] = None, **kwargs) -> BucketedCashFlowResponse:
         """GetBucketedCashFlows: Get bucketed cash flows from a list of portfolios  # noqa: E501
 
@@ -6194,7 +6382,7 @@ class TransactionPortfoliosApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def list_settlement_instructions(self, scope: StrictStr, code: StrictStr, from_date: Optional[StrictStr] = None, to_date: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> VersionedResourceListOfTransactionSettlementInstruction:
+    def list_settlement_instructions(self, scope: StrictStr, code: StrictStr, from_date: Optional[StrictStr] = None, to_date: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> VersionedResourceListOfTransactionSettlementInstruction:
         """[EARLY ACCESS] ListSettlementInstructions: List Settlement Instructions.  # noqa: E501
 
         Display all the Settlement Instructions for a given Portfolio. The transaction Id filter can be ued to return instructions for an individual transaction.  # noqa: E501
@@ -6216,6 +6404,12 @@ class TransactionPortfoliosApi:
         :type as_at: datetime
         :param property_keys: A list of property keys from the 'SettlementInstruction', 'Instrument' or 'Portfolio' domains to decorate onto              settlement instructions. These must have the format {domain}/{scope}/{code}, for example 'Instrument/system/Name' or 'SettlementInstruction/strategy/quantsignal'.
         :type property_keys: List[str]
+        :param timeline_scope: The scope of the Timeline.
+        :type timeline_scope: str
+        :param timeline_code: The code of the Timeline. This can optionally include a colon followed by the Closed Period ID to use at the head of the timeline, for a timeline with unconfirmed periods.
+        :type timeline_code: str
+        :param closed_period_id: The closed period ID. If this is specified, both timelineScope and timelineCode must be specified. Either closedPeriodId or effectiveAt can be used with a Timeline.
+        :type closed_period_id: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -6227,10 +6421,10 @@ class TransactionPortfoliosApi:
             message = "Error! Please call the list_settlement_instructions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_settlement_instructions_with_http_info(scope, code, from_date, to_date, page, limit, filter, as_at, property_keys, **kwargs)  # noqa: E501
+        return self.list_settlement_instructions_with_http_info(scope, code, from_date, to_date, page, limit, filter, as_at, property_keys, timeline_scope, timeline_code, closed_period_id, **kwargs)  # noqa: E501
 
     @validate_call
-    def list_settlement_instructions_with_http_info(self, scope: StrictStr, code: StrictStr, from_date: Optional[StrictStr] = None, to_date: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[VersionedResourceListOfTransactionSettlementInstruction]:
+    def list_settlement_instructions_with_http_info(self, scope: StrictStr, code: StrictStr, from_date: Optional[StrictStr] = None, to_date: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfTransactionSettlementInstruction]:
         """[EARLY ACCESS] ListSettlementInstructions: List Settlement Instructions.  # noqa: E501
 
         Display all the Settlement Instructions for a given Portfolio. The transaction Id filter can be ued to return instructions for an individual transaction.  # noqa: E501
@@ -6252,6 +6446,12 @@ class TransactionPortfoliosApi:
         :type as_at: datetime
         :param property_keys: A list of property keys from the 'SettlementInstruction', 'Instrument' or 'Portfolio' domains to decorate onto              settlement instructions. These must have the format {domain}/{scope}/{code}, for example 'Instrument/system/Name' or 'SettlementInstruction/strategy/quantsignal'.
         :type property_keys: List[str]
+        :param timeline_scope: The scope of the Timeline.
+        :type timeline_scope: str
+        :param timeline_code: The code of the Timeline. This can optionally include a colon followed by the Closed Period ID to use at the head of the timeline, for a timeline with unconfirmed periods.
+        :type timeline_code: str
+        :param closed_period_id: The closed period ID. If this is specified, both timelineScope and timelineCode must be specified. Either closedPeriodId or effectiveAt can be used with a Timeline.
+        :type closed_period_id: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -6283,7 +6483,10 @@ class TransactionPortfoliosApi:
             'limit',
             'filter',
             'as_at',
-            'property_keys'
+            'property_keys',
+            'timeline_scope',
+            'timeline_code',
+            'closed_period_id'
         ]
         _all_params.extend(
             [
@@ -6344,6 +6547,15 @@ class TransactionPortfoliosApi:
         if _params.get('property_keys') is not None:  # noqa: E501
             _query_params.append(('propertyKeys', _params['property_keys']))
             _collection_formats['propertyKeys'] = 'multi'
+
+        if _params.get('timeline_scope') is not None:  # noqa: E501
+            _query_params.append(('timelineScope', _params['timeline_scope']))
+
+        if _params.get('timeline_code') is not None:  # noqa: E501
+            _query_params.append(('timelineCode', _params['timeline_code']))
+
+        if _params.get('closed_period_id') is not None:  # noqa: E501
+            _query_params.append(('closedPeriodId', _params['closed_period_id']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -10970,6 +11182,195 @@ class TransactionPortfoliosApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    async def get_a2_b_movements_trading_vs_holding_async(self, scope: StrictStr, code: StrictStr, from_effective_at: StrictStr, to_effective_at: StrictStr, as_at: Optional[datetime] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, filter: Optional[StrictStr] = None, **kwargs) -> VersionedResourceListOfA2BMovementRecord:
+            """[EXPERIMENTAL] GetA2BMovementsTradingVsHolding: Get an A2B report at the movement level for the given portfolio, with P&L split between holding and trading returns.  # noqa: E501
+            Get an A2B report at the movement level for the given portfolio. Each transaction in the period is treated as a  synthetic holding rather than a flow, allowing P&L to be attributed to holding returns (market movement on  the starting position) versus trading returns (profit from buy/sell decisions).  # noqa: E501
+            
+            :param scope: The scope of the portfolio to retrieve the A2B movement report for. (required)
+            :type scope: str
+            :param code: The code of the portfolio to retrieve the A2B movement report for. Together with the scope this              uniquely identifies the portfolio. (required)
+            :type code: str
+            :param from_effective_at: The lower bound effective datetime or cut label (inclusive) from which to retrieve the data.              There is no lower bound if this is not specified. (required)
+            :type from_effective_at: str
+            :param to_effective_at: The upper bound effective datetime or cut label (inclusive) from which to retrieve the data.              There is no upper bound if this is not specified. (required)
+            :type to_effective_at: str
+            :param as_at: The asAt datetime at which to retrieve the portfolio. Defaults to return the latest version              of each transaction if not specified.
+            :type as_at: datetime
+            :param recipe_id_scope: The scope of the given recipeId
+            :type recipe_id_scope: str
+            :param recipe_id_code: The code of the given recipeId
+            :type recipe_id_code: str
+            :param property_keys: A list of property keys from the \"Instrument\" domain to decorate onto              the results. These take the format {domain}/{scope}/{code} e.g. \"Instrument/system/Name\".
+            :type property_keys: List[str]
+            :param filter: Expression to filter the result set.              Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid.
+            :type filter: str
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: VersionedResourceListOfA2BMovementRecord
+            """
+            kwargs['_return_http_data_only'] = True
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the get_a2_b_movements_trading_vs_holding_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            return await self.get_a2_b_movements_trading_vs_holding_with_http_info_async(scope, code, from_effective_at, to_effective_at, as_at, recipe_id_scope, recipe_id_code, property_keys, filter, **kwargs)  # noqa: E501
+
+    @validate_call
+    async def get_a2_b_movements_trading_vs_holding_with_http_info_async(self, scope: StrictStr, code: StrictStr, from_effective_at: StrictStr, to_effective_at: StrictStr, as_at: Optional[datetime] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfA2BMovementRecord]:
+            """[EXPERIMENTAL] GetA2BMovementsTradingVsHolding: Get an A2B report at the movement level for the given portfolio, with P&L split between holding and trading returns.  # noqa: E501
+
+            Get an A2B report at the movement level for the given portfolio. Each transaction in the period is treated as a  synthetic holding rather than a flow, allowing P&L to be attributed to holding returns (market movement on  the starting position) versus trading returns (profit from buy/sell decisions).  # noqa: E501
+
+            :param scope: The scope of the portfolio to retrieve the A2B movement report for. (required)
+            :type scope: str
+            :param code: The code of the portfolio to retrieve the A2B movement report for. Together with the scope this              uniquely identifies the portfolio. (required)
+            :type code: str
+            :param from_effective_at: The lower bound effective datetime or cut label (inclusive) from which to retrieve the data.              There is no lower bound if this is not specified. (required)
+            :type from_effective_at: str
+            :param to_effective_at: The upper bound effective datetime or cut label (inclusive) from which to retrieve the data.              There is no upper bound if this is not specified. (required)
+            :type to_effective_at: str
+            :param as_at: The asAt datetime at which to retrieve the portfolio. Defaults to return the latest version              of each transaction if not specified.
+            :type as_at: datetime
+            :param recipe_id_scope: The scope of the given recipeId
+            :type recipe_id_scope: str
+            :param recipe_id_code: The code of the given recipeId
+            :type recipe_id_code: str
+            :param property_keys: A list of property keys from the \"Instrument\" domain to decorate onto              the results. These take the format {domain}/{scope}/{code} e.g. \"Instrument/system/Name\".
+            :type property_keys: List[str]
+            :param filter: Expression to filter the result set.              Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid.
+            :type filter: str
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(VersionedResourceListOfA2BMovementRecord, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'scope',
+                'code',
+                'from_effective_at',
+                'to_effective_at',
+                'as_at',
+                'recipe_id_scope',
+                'recipe_id_code',
+                'property_keys',
+                'filter'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method get_a2_b_movements_trading_vs_holding" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['scope']:
+                _path_params['scope'] = _params['scope']
+
+            if _params['code']:
+                _path_params['code'] = _params['code']
+
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('from_effective_at') is not None:  # noqa: E501
+                _query_params.append(('fromEffectiveAt', _params['from_effective_at']))
+
+            if _params.get('to_effective_at') is not None:  # noqa: E501
+                _query_params.append(('toEffectiveAt', _params['to_effective_at']))
+
+            if _params.get('as_at') is not None:  # noqa: E501
+                if isinstance(_params['as_at'], datetime):
+                    _query_params.append(('asAt', _params['as_at'].strftime(self.api_client.configuration.datetime_format)))
+                else:
+                    _query_params.append(('asAt', _params['as_at']))
+
+            if _params.get('recipe_id_scope') is not None:  # noqa: E501
+                _query_params.append(('recipeIdScope', _params['recipe_id_scope']))
+
+            if _params.get('recipe_id_code') is not None:  # noqa: E501
+                _query_params.append(('recipeIdCode', _params['recipe_id_code']))
+
+            if _params.get('property_keys') is not None:  # noqa: E501
+                _query_params.append(('propertyKeys', _params['property_keys']))
+                _collection_formats['propertyKeys'] = 'multi'
+
+            if _params.get('filter') is not None:  # noqa: E501
+                _query_params.append(('filter', _params['filter']))
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "VersionedResourceListOfA2BMovementRecord",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/transactionportfolios/{scope}/{code}/a2bmovements/tradingvsholding', 'GET',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     async def get_bucketed_cash_flows_async(self, scope: StrictStr, code: StrictStr, bucketed_cash_flow_request: Optional[BucketedCashFlowRequest] = None, **kwargs) -> BucketedCashFlowResponse:
             """GetBucketedCashFlows: Get bucketed cash flows from a list of portfolios  # noqa: E501
             We bucket/aggregate a transaction portfolio's instruments by date or tenor specified in the request.  The cashflows are grouped by both instrumentId and currency.                If you want transactional level cashflow, please use the 'GetUpsertableCashFlows' endpoint.  If you want instrument cashflow, please use the 'GetPortfolioCashFlows' endpoint.  Note that these endpoints do not apply bucketing.  # noqa: E501
@@ -14114,7 +14515,7 @@ class TransactionPortfoliosApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def list_settlement_instructions_async(self, scope: StrictStr, code: StrictStr, from_date: Optional[StrictStr] = None, to_date: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> VersionedResourceListOfTransactionSettlementInstruction:
+    async def list_settlement_instructions_async(self, scope: StrictStr, code: StrictStr, from_date: Optional[StrictStr] = None, to_date: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> VersionedResourceListOfTransactionSettlementInstruction:
             """[EARLY ACCESS] ListSettlementInstructions: List Settlement Instructions.  # noqa: E501
             Display all the Settlement Instructions for a given Portfolio. The transaction Id filter can be ued to return instructions for an individual transaction.  # noqa: E501
             
@@ -14136,6 +14537,12 @@ class TransactionPortfoliosApi:
             :type as_at: datetime
             :param property_keys: A list of property keys from the 'SettlementInstruction', 'Instrument' or 'Portfolio' domains to decorate onto              settlement instructions. These must have the format {domain}/{scope}/{code}, for example 'Instrument/system/Name' or 'SettlementInstruction/strategy/quantsignal'.
             :type property_keys: List[str]
+            :param timeline_scope: The scope of the Timeline.
+            :type timeline_scope: str
+            :param timeline_code: The code of the Timeline. This can optionally include a colon followed by the Closed Period ID to use at the head of the timeline, for a timeline with unconfirmed periods.
+            :type timeline_code: str
+            :param closed_period_id: The closed period ID. If this is specified, both timelineScope and timelineCode must be specified. Either closedPeriodId or effectiveAt can be used with a Timeline.
+            :type closed_period_id: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -14147,10 +14554,10 @@ class TransactionPortfoliosApi:
                 message = "Error! Please call the list_settlement_instructions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_settlement_instructions_with_http_info_async(scope, code, from_date, to_date, page, limit, filter, as_at, property_keys, **kwargs)  # noqa: E501
+            return await self.list_settlement_instructions_with_http_info_async(scope, code, from_date, to_date, page, limit, filter, as_at, property_keys, timeline_scope, timeline_code, closed_period_id, **kwargs)  # noqa: E501
 
     @validate_call
-    async def list_settlement_instructions_with_http_info_async(self, scope: StrictStr, code: StrictStr, from_date: Optional[StrictStr] = None, to_date: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[VersionedResourceListOfTransactionSettlementInstruction]:
+    async def list_settlement_instructions_with_http_info_async(self, scope: StrictStr, code: StrictStr, from_date: Optional[StrictStr] = None, to_date: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfTransactionSettlementInstruction]:
             """[EARLY ACCESS] ListSettlementInstructions: List Settlement Instructions.  # noqa: E501
 
             Display all the Settlement Instructions for a given Portfolio. The transaction Id filter can be ued to return instructions for an individual transaction.  # noqa: E501
@@ -14173,6 +14580,12 @@ class TransactionPortfoliosApi:
             :type as_at: datetime
             :param property_keys: A list of property keys from the 'SettlementInstruction', 'Instrument' or 'Portfolio' domains to decorate onto              settlement instructions. These must have the format {domain}/{scope}/{code}, for example 'Instrument/system/Name' or 'SettlementInstruction/strategy/quantsignal'.
             :type property_keys: List[str]
+            :param timeline_scope: The scope of the Timeline.
+            :type timeline_scope: str
+            :param timeline_code: The code of the Timeline. This can optionally include a colon followed by the Closed Period ID to use at the head of the timeline, for a timeline with unconfirmed periods.
+            :type timeline_code: str
+            :param closed_period_id: The closed period ID. If this is specified, both timelineScope and timelineCode must be specified. Either closedPeriodId or effectiveAt can be used with a Timeline.
+            :type closed_period_id: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -14204,7 +14617,10 @@ class TransactionPortfoliosApi:
                 'limit',
                 'filter',
                 'as_at',
-                'property_keys'
+                'property_keys',
+                'timeline_scope',
+                'timeline_code',
+                'closed_period_id'
             ]
             _all_params.extend(
                 [
@@ -14265,6 +14681,15 @@ class TransactionPortfoliosApi:
             if _params.get('property_keys') is not None:  # noqa: E501
                 _query_params.append(('propertyKeys', _params['property_keys']))
                 _collection_formats['propertyKeys'] = 'multi'
+
+            if _params.get('timeline_scope') is not None:  # noqa: E501
+                _query_params.append(('timelineScope', _params['timeline_scope']))
+
+            if _params.get('timeline_code') is not None:  # noqa: E501
+                _query_params.append(('timelineCode', _params['timeline_code']))
+
+            if _params.get('closed_period_id') is not None:  # noqa: E501
+                _query_params.append(('closedPeriodId', _params['closed_period_id']))
 
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))

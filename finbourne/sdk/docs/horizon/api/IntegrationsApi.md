@@ -47,7 +47,7 @@ api_instance = api_client_factory.build(IntegrationsApi)
 ---
 
 # **create_instance**
-> InstanceIdentifier createInstance = create_instance(create_instance_request=create_instance_request)
+> InstanceIdentifier createInstance = create_instance(create_instance_request)
 
 [EXPERIMENTAL] CreateInstance: Create a single integration instance.
 
@@ -58,7 +58,7 @@ Creates a new instance of an integration, returning its identifier. The user mus
 ```python
 api_instance = api_client_factory.build(IntegrationsApi)
 create_instance_request = CreateInstanceRequest()
-api_response = api_instance.create_instance(create_instance_request=create_instance_request)
+api_response = api_instance.create_instance(create_instance_request)
 pprint(api_response)
 ```
 
@@ -66,7 +66,7 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_instance_request** | [**CreateInstanceRequest**](CreateInstanceRequest.md)| The new integration instance. | [optional] 
+ **create_instance_request** | [**CreateInstanceRequest**](CreateInstanceRequest.md)| The new integration instance. | [required] 
 
 ### Return type
 
@@ -663,7 +663,7 @@ Name | Type | Description  | Notes
 ---
 
 # **update_instance**
-> updateInstance = update_instance(instance_id, update_instance_request=update_instance_request)
+> updateInstance = update_instance(instance_id, update_instance_request)
 
 [EXPERIMENTAL] UpdateInstance: Update a single integration instance.
 
@@ -675,7 +675,7 @@ Updates an existing instance of an integration, returning its identifier. The us
 api_instance = api_client_factory.build(IntegrationsApi)
 instance_id = 'instance_id_example' # str
 update_instance_request = UpdateInstanceRequest()
-api_instance.update_instance(instance_id, update_instance_request=update_instance_request)
+api_instance.update_instance(instance_id, update_instance_request)
 ```
 
 ### Parameters
@@ -683,7 +683,7 @@ api_instance.update_instance(instance_id, update_instance_request=update_instanc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **instance_id** | **str**| Instance identifier e.g. \&quot;b64135e7-98a0-41af-a845-d86167d54cc7\&quot;. | [required] 
- **update_instance_request** | [**UpdateInstanceRequest**](UpdateInstanceRequest.md)| The new integration instance. | [optional] 
+ **update_instance_request** | [**UpdateInstanceRequest**](UpdateInstanceRequest.md)| The new integration instance. | [required] 
 
 ### Return type
 

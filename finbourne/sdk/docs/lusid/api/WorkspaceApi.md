@@ -89,7 +89,7 @@ Name | Type | Description  | Notes
 ---
 
 # **create_workspace**
-> Workspace createWorkspace = create_workspace(visibility, workspace_creation_request=workspace_creation_request)
+> Workspace createWorkspace = create_workspace(visibility, workspace_creation_request, include_item_access=include_item_access)
 
 [EXPERIMENTAL] CreateWorkspace: Create a new workspace.
 
@@ -101,7 +101,8 @@ Create a new workspace.
 api_instance = api_client_factory.build(WorkspaceApi)
 visibility = 'visibility_example' # str
 workspace_creation_request = WorkspaceCreationRequest()
-api_response = api_instance.create_workspace(visibility, workspace_creation_request=workspace_creation_request)
+include_item_access = False # bool (optional)
+api_response = api_instance.create_workspace(visibility, workspace_creation_request, include_item_access=include_item_access)
 pprint(api_response)
 ```
 
@@ -110,7 +111,8 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **visibility** | **str**| The visibility for the workspace being created. Must be &#x60;shared&#x60; or &#x60;personal&#x60;; case is important. | [required] 
- **workspace_creation_request** | [**WorkspaceCreationRequest**](WorkspaceCreationRequest.md)| The workspace to be created. | [optional] 
+ **workspace_creation_request** | [**WorkspaceCreationRequest**](WorkspaceCreationRequest.md)| The workspace to be created. | [required] 
+ **include_item_access** | **bool**| If true, includes the workspace item actions the user is permitted to perform in the response. Defaults to false. | [optional] [default to False]
 
 ### Return type
 
@@ -277,7 +279,7 @@ Name | Type | Description  | Notes
 ---
 
 # **get_workspace**
-> Workspace getWorkspace = get_workspace(visibility, workspace_name, as_at=as_at)
+> Workspace getWorkspace = get_workspace(visibility, workspace_name, as_at=as_at, include_item_access=include_item_access)
 
 [EXPERIMENTAL] GetWorkspace: Get a workspace.
 
@@ -290,7 +292,8 @@ api_instance = api_client_factory.build(WorkspaceApi)
 visibility = 'visibility_example' # str
 workspace_name = 'workspace_name_example' # str
 as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
-api_response = api_instance.get_workspace(visibility, workspace_name, as_at=as_at)
+include_item_access = False # bool (optional)
+api_response = api_instance.get_workspace(visibility, workspace_name, as_at=as_at, include_item_access=include_item_access)
 pprint(api_response)
 ```
 
@@ -301,6 +304,7 @@ Name | Type | Description  | Notes
  **visibility** | **str**| The visibility for the workspace. Must be &#x60;shared&#x60; or &#x60;personal&#x60;; case is important. | [required] 
  **workspace_name** | **str**| The workspace name. | [required] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve workspaces. Defaults to &#39;latest&#39; if not specified. | [optional] 
+ **include_item_access** | **bool**| If true, includes the workspace item actions the user is permitted to perform in the response. Defaults to false. | [optional] [default to False]
 
 ### Return type
 
@@ -377,7 +381,7 @@ Name | Type | Description  | Notes
 ---
 
 # **list_workspaces**
-> PagedResourceListOfWorkspace listWorkspaces = list_workspaces(visibility, as_at=as_at, page=page, sort_by=sort_by, limit=limit, filter=filter)
+> PagedResourceListOfWorkspace listWorkspaces = list_workspaces(visibility, as_at=as_at, page=page, sort_by=sort_by, limit=limit, filter=filter, include_item_access=include_item_access)
 
 [EXPERIMENTAL] ListWorkspaces: List workspaces.
 
@@ -393,7 +397,8 @@ page = 'page_example' # str (optional)
 sort_by = ['sort_by_example'] # List[str] (optional)
 limit = 56 # int (optional)
 filter = 'filter_example' # str (optional)
-api_response = api_instance.list_workspaces(visibility, as_at=as_at, page=page, sort_by=sort_by, limit=limit, filter=filter)
+include_item_access = False # bool (optional)
+api_response = api_instance.list_workspaces(visibility, as_at=as_at, page=page, sort_by=sort_by, limit=limit, filter=filter, include_item_access=include_item_access)
 pprint(api_response)
 ```
 
@@ -407,6 +412,7 @@ Name | Type | Description  | Notes
  **sort_by** | [**List[str]**](str.md)| A list of field names to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many. | [optional] 
  **filter** | **str**| Expression to filter the result set. Read more about filtering results from LUSID here:              https://support.lusid.com/filtering-results-from-lusid. | [optional] 
+ **include_item_access** | **bool**| If true, includes the workspace item actions the user is permitted to perform in the response. Defaults to false. | [optional] [default to False]
 
 ### Return type
 
@@ -531,7 +537,7 @@ Name | Type | Description  | Notes
 ---
 
 # **update_workspace**
-> Workspace updateWorkspace = update_workspace(visibility, workspace_name, workspace_update_request=workspace_update_request)
+> Workspace updateWorkspace = update_workspace(visibility, workspace_name, workspace_update_request, include_item_access=include_item_access)
 
 [EXPERIMENTAL] UpdateWorkspace: Update a workspace.
 
@@ -544,7 +550,8 @@ api_instance = api_client_factory.build(WorkspaceApi)
 visibility = 'visibility_example' # str
 workspace_name = 'workspace_name_example' # str
 workspace_update_request = WorkspaceUpdateRequest()
-api_response = api_instance.update_workspace(visibility, workspace_name, workspace_update_request=workspace_update_request)
+include_item_access = False # bool (optional)
+api_response = api_instance.update_workspace(visibility, workspace_name, workspace_update_request, include_item_access=include_item_access)
 pprint(api_response)
 ```
 
@@ -554,7 +561,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **visibility** | **str**| The visibility for the workspace. Must be &#x60;shared&#x60; or &#x60;personal&#x60;; case is important. | [required] 
  **workspace_name** | **str**| The workspace name. | [required] 
- **workspace_update_request** | [**WorkspaceUpdateRequest**](WorkspaceUpdateRequest.md)| The new workspace details. | [optional] 
+ **workspace_update_request** | [**WorkspaceUpdateRequest**](WorkspaceUpdateRequest.md)| The new workspace details. | [required] 
+ **include_item_access** | **bool**| If true, includes the workspace item actions the user is permitted to perform in the response. Defaults to false. | [optional] [default to False]
 
 ### Return type
 

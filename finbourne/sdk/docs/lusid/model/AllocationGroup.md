@@ -9,7 +9,7 @@
 | **name** | **str** | Required | The display name of the Allocation Group. |
 | **description** | **str** | Optional | An optional description for the Allocation Group. |
 | **share_class_short_code** | **str** | Required | The short code that identifies the Allocation Group. |
-| **apportionment_method_property** | [AllocationMethodProperty](AllocationMethodProperty.md) | Optional | *No description available.* |
+| **apportionment_method_property** | [ApportionmentMethodProperty](ApportionmentMethodProperty.md) | Optional | *No description available.* |
 | **formula** | **str** | Optional | An optional filter expression used to define which classes belong to this group, based on fund grouping criteria. You can provide this or the Classes, but not both. |
 
 
@@ -26,7 +26,7 @@ instance = AllocationGroup(
     name="...",  # required — The display name of the Allocation Group.
     description="...",  # optional — An optional description for the Allocation Group.
     share_class_short_code="...",  # required — The short code that identifies the Allocation Group.
-    apportionment_method_property=AllocationMethodProperty(...),  # optional
+    apportionment_method_property=ApportionmentMethodProperty(...),  # optional
     formula="..."  # optional — An optional filter expression used to define which classes belong to this group, based on fund grouping criteria. You can provide this or the Classes, but not both.
 )
 ```
@@ -35,7 +35,7 @@ instance = AllocationGroup(
 ## Related Models
 
 - [AllocationGroupClass](AllocationGroupClass.md) — used in `classes`
-- [AllocationMethodProperty](AllocationMethodProperty.md)
+- [ApportionmentMethodProperty](ApportionmentMethodProperty.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

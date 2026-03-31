@@ -59,11 +59,11 @@ class IntegrationsApi:
             self.api_client = ApiClient.get_default()
 
     @validate_call
-    def create_instance(self, create_instance_request: Optional[CreateInstanceRequest] = None, **kwargs) -> InstanceIdentifier:
+    def create_instance(self, create_instance_request: CreateInstanceRequest, **kwargs) -> InstanceIdentifier:
         """[EXPERIMENTAL] CreateInstance: Create a single integration instance.  # noqa: E501
 
         Creates a new instance of an integration, returning its identifier. The user must be authenticated, entitled to call this method, and the user's domain must be licensed for the integration.  # noqa: E501
-        :param create_instance_request: The new integration instance.
+        :param create_instance_request: The new integration instance. (required)
         :type create_instance_request: CreateInstanceRequest
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -79,11 +79,11 @@ class IntegrationsApi:
         return self.create_instance_with_http_info(create_instance_request, **kwargs)  # noqa: E501
 
     @validate_call
-    def create_instance_with_http_info(self, create_instance_request: Optional[CreateInstanceRequest] = None, **kwargs) -> ApiResponse[InstanceIdentifier]:
+    def create_instance_with_http_info(self, create_instance_request: CreateInstanceRequest, **kwargs) -> ApiResponse[InstanceIdentifier]:
         """[EXPERIMENTAL] CreateInstance: Create a single integration instance.  # noqa: E501
 
         Creates a new instance of an integration, returning its identifier. The user must be authenticated, entitled to call this method, and the user's domain must be licensed for the integration.  # noqa: E501
-        :param create_instance_request: The new integration instance.
+        :param create_instance_request: The new integration instance. (required)
         :type create_instance_request: CreateInstanceRequest
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -1857,13 +1857,13 @@ class IntegrationsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def update_instance(self, instance_id: StrictStr, update_instance_request: Optional[UpdateInstanceRequest] = None, **kwargs) -> None:
+    def update_instance(self, instance_id: StrictStr, update_instance_request: UpdateInstanceRequest, **kwargs) -> None:
         """[EXPERIMENTAL] UpdateInstance: Update a single integration instance.  # noqa: E501
 
         Updates an existing instance of an integration, returning its identifier. The user must be authenticated, entitled to call this method, and the user's domain must be licensed for the integration.  # noqa: E501
         :param instance_id: Instance identifier e.g. \"b64135e7-98a0-41af-a845-d86167d54cc7\". (required)
         :type instance_id: str
-        :param update_instance_request: The new integration instance.
+        :param update_instance_request: The new integration instance. (required)
         :type update_instance_request: UpdateInstanceRequest
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -1879,13 +1879,13 @@ class IntegrationsApi:
         return self.update_instance_with_http_info(instance_id, update_instance_request, **kwargs)  # noqa: E501
 
     @validate_call
-    def update_instance_with_http_info(self, instance_id: StrictStr, update_instance_request: Optional[UpdateInstanceRequest] = None, **kwargs) -> None:
+    def update_instance_with_http_info(self, instance_id: StrictStr, update_instance_request: UpdateInstanceRequest, **kwargs) -> None:
         """[EXPERIMENTAL] UpdateInstance: Update a single integration instance.  # noqa: E501
 
         Updates an existing instance of an integration, returning its identifier. The user must be authenticated, entitled to call this method, and the user's domain must be licensed for the integration.  # noqa: E501
         :param instance_id: Instance identifier e.g. \"b64135e7-98a0-41af-a845-d86167d54cc7\". (required)
         :type instance_id: str
-        :param update_instance_request: The new integration instance.
+        :param update_instance_request: The new integration instance. (required)
         :type update_instance_request: UpdateInstanceRequest
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -1993,11 +1993,11 @@ class IntegrationsApi:
 
 
     @validate_call
-    async def create_instance_async(self, create_instance_request: Optional[CreateInstanceRequest] = None, **kwargs) -> InstanceIdentifier:
+    async def create_instance_async(self, create_instance_request: CreateInstanceRequest, **kwargs) -> InstanceIdentifier:
             """[EXPERIMENTAL] CreateInstance: Create a single integration instance.  # noqa: E501
             Creates a new instance of an integration, returning its identifier. The user must be authenticated, entitled to call this method, and the user's domain must be licensed for the integration.  # noqa: E501
             
-            :param create_instance_request: The new integration instance.
+            :param create_instance_request: The new integration instance. (required)
             :type create_instance_request: CreateInstanceRequest
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -2013,12 +2013,12 @@ class IntegrationsApi:
             return await self.create_instance_with_http_info_async(create_instance_request, **kwargs)  # noqa: E501
 
     @validate_call
-    async def create_instance_with_http_info_async(self, create_instance_request: Optional[CreateInstanceRequest] = None, **kwargs) -> ApiResponse[InstanceIdentifier]:
+    async def create_instance_with_http_info_async(self, create_instance_request: CreateInstanceRequest, **kwargs) -> ApiResponse[InstanceIdentifier]:
             """[EXPERIMENTAL] CreateInstance: Create a single integration instance.  # noqa: E501
 
             Creates a new instance of an integration, returning its identifier. The user must be authenticated, entitled to call this method, and the user's domain must be licensed for the integration.  # noqa: E501
 
-            :param create_instance_request: The new integration instance.
+            :param create_instance_request: The new integration instance. (required)
             :type create_instance_request: CreateInstanceRequest
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
@@ -3805,13 +3805,13 @@ class IntegrationsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def update_instance_async(self, instance_id: StrictStr, update_instance_request: Optional[UpdateInstanceRequest] = None, **kwargs) -> None:
+    async def update_instance_async(self, instance_id: StrictStr, update_instance_request: UpdateInstanceRequest, **kwargs) -> None:
             """[EXPERIMENTAL] UpdateInstance: Update a single integration instance.  # noqa: E501
             Updates an existing instance of an integration, returning its identifier. The user must be authenticated, entitled to call this method, and the user's domain must be licensed for the integration.  # noqa: E501
             
             :param instance_id: Instance identifier e.g. \"b64135e7-98a0-41af-a845-d86167d54cc7\". (required)
             :type instance_id: str
-            :param update_instance_request: The new integration instance.
+            :param update_instance_request: The new integration instance. (required)
             :type update_instance_request: UpdateInstanceRequest
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -3827,14 +3827,14 @@ class IntegrationsApi:
             return await self.update_instance_with_http_info_async(instance_id, update_instance_request, **kwargs)  # noqa: E501
 
     @validate_call
-    async def update_instance_with_http_info_async(self, instance_id: StrictStr, update_instance_request: Optional[UpdateInstanceRequest] = None, **kwargs) -> None:
+    async def update_instance_with_http_info_async(self, instance_id: StrictStr, update_instance_request: UpdateInstanceRequest, **kwargs) -> None:
             """[EXPERIMENTAL] UpdateInstance: Update a single integration instance.  # noqa: E501
 
             Updates an existing instance of an integration, returning its identifier. The user must be authenticated, entitled to call this method, and the user's domain must be licensed for the integration.  # noqa: E501
 
             :param instance_id: Instance identifier e.g. \"b64135e7-98a0-41af-a845-d86167d54cc7\". (required)
             :type instance_id: str
-            :param update_instance_request: The new integration instance.
+            :param update_instance_request: The new integration instance. (required)
             :type update_instance_request: UpdateInstanceRequest
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the

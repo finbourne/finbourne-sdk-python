@@ -34,7 +34,10 @@ class SettlementInstructionQuery(BaseModel):
     filter:  Optional[StrictStr] = Field(default=None,alias="filter") 
     settlement_instruction_property_keys: Optional[List[StrictStr]] = Field(default=None, alias="settlementInstructionPropertyKeys")
     transaction_property_keys: Optional[List[StrictStr]] = Field(default=None, alias="transactionPropertyKeys")
-    __properties = ["asAt", "startDate", "endDate", "limit", "page", "filter", "settlementInstructionPropertyKeys", "transactionPropertyKeys"]
+    timeline_scope:  Optional[StrictStr] = Field(default=None,alias="timelineScope") 
+    timeline_code:  Optional[StrictStr] = Field(default=None,alias="timelineCode") 
+    closed_period_id:  Optional[StrictStr] = Field(default=None,alias="closedPeriodId") 
+    __properties = ["asAt", "startDate", "endDate", "limit", "page", "filter", "settlementInstructionPropertyKeys", "transactionPropertyKeys", "timelineScope", "timelineCode", "closedPeriodId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -109,6 +112,21 @@ class SettlementInstructionQuery(BaseModel):
         if self.transaction_property_keys is None and "transaction_property_keys" in self.model_fields_set:
             _dict['transactionPropertyKeys'] = None
 
+        # set to None if timeline_scope (nullable) is None
+        # and model_fields_set contains the field
+        if self.timeline_scope is None and "timeline_scope" in self.model_fields_set:
+            _dict['timelineScope'] = None
+
+        # set to None if timeline_code (nullable) is None
+        # and model_fields_set contains the field
+        if self.timeline_code is None and "timeline_code" in self.model_fields_set:
+            _dict['timelineCode'] = None
+
+        # set to None if closed_period_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.closed_period_id is None and "closed_period_id" in self.model_fields_set:
+            _dict['closedPeriodId'] = None
+
         return _dict
 
     @classmethod
@@ -128,7 +146,10 @@ class SettlementInstructionQuery(BaseModel):
             "page": obj.get("page"),
             "filter": obj.get("filter"),
             "settlement_instruction_property_keys": obj.get("settlementInstructionPropertyKeys"),
-            "transaction_property_keys": obj.get("transactionPropertyKeys")
+            "transaction_property_keys": obj.get("transactionPropertyKeys"),
+            "timeline_scope": obj.get("timelineScope"),
+            "timeline_code": obj.get("timelineCode"),
+            "closed_period_id": obj.get("closedPeriodId")
         })
         return _obj
 
