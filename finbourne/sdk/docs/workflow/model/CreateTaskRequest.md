@@ -5,7 +5,8 @@ Contains required info to create a new Task
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **task_definition_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **task_definition_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **workflow_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **correlation_ids** | **List[str]** | Optional | A set of guid identifiers that allow correlation across the application tier |
 | **fields** | [List[TaskInstanceField]](TaskInstanceField.md) | Optional | Fields and their initial values - should correspond with the Task Definition field schema |
 | **stacking_key** | **str** | Optional | The key for the Stack that this Task should be added to |
@@ -19,7 +20,8 @@ Contains required info to create a new Task
 from finbourne.sdk.services.workflow.models.CreateTaskRequest import CreateTaskRequest
 
 instance = CreateTaskRequest(
-    task_definition_id=ResourceId(...),  # required
+    task_definition_id=ResourceId(...),  # optional
+    workflow_id=ResourceId(...),  # optional
     correlation_ids=,  # optional — A set of guid identifiers that allow correlation across the application tier
     fields=[],  # optional — Fields and their initial values - should correspond with the Task Definition field schema
     stacking_key="..."  # optional — The key for the Stack that this Task should be added to
@@ -29,6 +31,7 @@ instance = CreateTaskRequest(
 
 ## Related Models
 
+- [ResourceId](ResourceId.md)
 - [ResourceId](ResourceId.md)
 - [TaskInstanceField](TaskInstanceField.md) — used in `fields`
 

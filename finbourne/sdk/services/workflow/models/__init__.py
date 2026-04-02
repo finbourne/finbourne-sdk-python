@@ -71,6 +71,7 @@ from finbourne.sdk.services.workflow.models.paged_resource_list_of_event_handler
 from finbourne.sdk.services.workflow.models.paged_resource_list_of_task import PagedResourceListOfTask
 from finbourne.sdk.services.workflow.models.paged_resource_list_of_task_definition import PagedResourceListOfTaskDefinition
 from finbourne.sdk.services.workflow.models.paged_resource_list_of_worker import PagedResourceListOfWorker
+from finbourne.sdk.services.workflow.models.paged_resource_list_of_workflow_response import PagedResourceListOfWorkflowResponse
 from finbourne.sdk.services.workflow.models.parameter import Parameter
 from finbourne.sdk.services.workflow.models.parameter_value import ParameterValue
 from finbourne.sdk.services.workflow.models.read_only_states import ReadOnlyStates
@@ -196,6 +197,7 @@ __all__ = [
     "PagedResourceListOfTask",
     "PagedResourceListOfTaskDefinition",
     "PagedResourceListOfWorker",
+    "PagedResourceListOfWorkflowResponse",
     "Parameter",
     "ParameterValue",
     "ReadOnlyStates",

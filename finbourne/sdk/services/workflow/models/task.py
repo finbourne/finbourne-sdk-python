@@ -36,6 +36,8 @@ class Task(BaseModel):
     task_definition_id: ResourceId = Field(alias="taskDefinitionId")
     task_definition_version: TaskDefinitionVersion = Field(alias="taskDefinitionVersion")
     task_definition_display_name:  StrictStr = Field(...,alias="taskDefinitionDisplayName", description="The display name of the Task Definition used by this Task") 
+    workflow_id: Optional[ResourceId] = Field(default=None, alias="workflowId")
+    workflow_display_name:  Optional[StrictStr] = Field(default=None,alias="workflowDisplayName", description="The display name of the Workflow that this Task is a member of, if any") 
     state:  StrictStr = Field(...,alias="state", description="Current State") 
     ultimate_parent_task: TaskSummary = Field(alias="ultimateParentTask")
     parent_task: Optional[TaskSummary] = Field(default=None, alias="parentTask")
@@ -55,7 +57,7 @@ class Task(BaseModel):
     open_duration: Optional[StrictInt] = Field(default=None, description="Duration in seconds since the Task was created. If the Task is Completed, this is the duration from creation to the last transition.", alias="openDuration")
     open_duration_since_last_update: Optional[StrictInt] = Field(default=None, description="Duration in seconds since the Task was last updated. 0 if the Task is Completed.", alias="openDurationSinceLastUpdate")
     open_duration_since_last_transition: Optional[StrictInt] = Field(default=None, description="Duration in seconds since the Task last transitioned. 0 if the Task is Completed.", alias="openDurationSinceLastTransition")
-    __properties = ["id", "taskDefinitionId", "taskDefinitionVersion", "taskDefinitionDisplayName", "state", "ultimateParentTask", "parentTask", "childTasks", "correlationIds", "version", "terminalState", "asAtLastTransition", "fields", "stackingKey", "stack", "actionLogIdCreated", "actionLogIdModified", "actionLogIdSubmitted", "hierarchicalPosition", "completionStatus", "openDuration", "openDurationSinceLastUpdate", "openDurationSinceLastTransition"]
+    __properties = ["id", "taskDefinitionId", "taskDefinitionVersion", "taskDefinitionDisplayName", "workflowId", "workflowDisplayName", "state", "ultimateParentTask", "parentTask", "childTasks", "correlationIds", "version", "terminalState", "asAtLastTransition", "fields", "stackingKey", "stack", "actionLogIdCreated", "actionLogIdModified", "actionLogIdSubmitted", "hierarchicalPosition", "completionStatus", "openDuration", "openDurationSinceLastUpdate", "openDurationSinceLastTransition"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -96,6 +98,9 @@ class Task(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of task_definition_version
         if self.task_definition_version:
             _dict['taskDefinitionVersion'] = self.task_definition_version.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of workflow_id
+        if self.workflow_id:
+            _dict['workflowId'] = self.workflow_id.to_dict()
         # override the default output from pydantic by calling `to_dict()` of ultimate_parent_task
         if self.ultimate_parent_task:
             _dict['ultimateParentTask'] = self.ultimate_parent_task.to_dict()
@@ -122,6 +127,11 @@ class Task(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of stack
         if self.stack:
             _dict['stack'] = self.stack.to_dict()
+        # set to None if workflow_display_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.workflow_display_name is None and "workflow_display_name" in self.model_fields_set:
+            _dict['workflowDisplayName'] = None
+
         # set to None if child_tasks (nullable) is None
         # and model_fields_set contains the field
         if self.child_tasks is None and "child_tasks" in self.model_fields_set:
@@ -203,6 +213,8 @@ class Task(BaseModel):
             "task_definition_id": ResourceId.from_dict(obj.get("taskDefinitionId")) if obj.get("taskDefinitionId") is not None else None,
             "task_definition_version": TaskDefinitionVersion.from_dict(obj.get("taskDefinitionVersion")) if obj.get("taskDefinitionVersion") is not None else None,
             "task_definition_display_name": obj.get("taskDefinitionDisplayName"),
+            "workflow_id": ResourceId.from_dict(obj.get("workflowId")) if obj.get("workflowId") is not None else None,
+            "workflow_display_name": obj.get("workflowDisplayName"),
             "state": obj.get("state"),
             "ultimate_parent_task": TaskSummary.from_dict(obj.get("ultimateParentTask")) if obj.get("ultimateParentTask") is not None else None,
             "parent_task": TaskSummary.from_dict(obj.get("parentTask")) if obj.get("parentTask") is not None else None,

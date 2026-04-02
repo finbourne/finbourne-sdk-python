@@ -1921,6 +1921,7 @@
 * [PagedResourceListOfTask](workflow/model/PagedResourceListOfTask.md)
 * [PagedResourceListOfTaskDefinition](workflow/model/PagedResourceListOfTaskDefinition.md)
 * [PagedResourceListOfWorker](workflow/model/PagedResourceListOfWorker.md)
+* [PagedResourceListOfWorkflowResponse](workflow/model/PagedResourceListOfWorkflowResponse.md)
 * [Parameter](workflow/model/Parameter.md)
 * [ParameterValue](workflow/model/ParameterValue.md)
 * [ReadOnlyStates](workflow/model/ReadOnlyStates.md)

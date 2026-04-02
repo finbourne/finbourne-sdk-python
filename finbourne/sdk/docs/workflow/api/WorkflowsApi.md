@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_workflow**](WorkflowsApi.md#create_workflow) | **POST** /workflow/api/workflows | CreateWorkflow: Create a new Workflow
 [**get_workflow**](WorkflowsApi.md#get_workflow) | **GET** /workflow/api/workflows/{scope}/{code} | GetWorkflow: Get a Workflow
+[**list_workflows**](WorkflowsApi.md#list_workflows) | **GET** /workflow/api/workflows | ListWorkflows: List Workflows
 
 
 ### Example
@@ -113,6 +114,55 @@ Name | Type | Description  | Notes
 **200** | OK |  -  |
 **400** | The details of the input related failure |  -  |
 **404** | Workflow not found. |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **list_workflows**
+> PagedResourceListOfWorkflowResponse listWorkflows = list_workflows(as_at=as_at, filter=filter, sort_by=sort_by, limit=limit, page=page)
+
+ListWorkflows: List Workflows
+
+### Example
+
+```python
+api_instance = api_client_factory.build(WorkflowsApi)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+filter = 'filter_example' # str (optional)
+sort_by = ['sort_by_example'] # List[str] (optional)
+limit = 10 # int (optional)
+page = 'page_example' # str (optional)
+api_response = api_instance.list_workflows(as_at=as_at, filter=filter, sort_by=sort_by, limit=limit, page=page)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **as_at** | **datetime**| The asAt datetime at which to list the Workflows. Defaults to return the latest version of each Workflow if not specified. | [optional] 
+ **filter** | **str**| Expression to filter the result set. Read more about filtering results from LUSID here: https://support.lusid.com/filtering-results-from-lusid. | [optional] 
+ **sort_by** | [**List[str]**](str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot; | [optional] 
+ **limit** | **int**| When paginating, limit the number of returned results to this many. | [optional] [default to 10]
+ **page** | **str**| The pagination token to use to continue listing workflows from a previous call to list workflows. This value is returned from the previous call. If a pagination token is provided the sortBy, filter, effectiveAt, and asAt fields must not have changed since the original request. | [optional] 
+
+### Return type
+
+[**PagedResourceListOfWorkflowResponse**](PagedResourceListOfWorkflowResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | The details of the input related failure |  -  |
+**404** | No Workflows found. |  -  |
 **0** | Error response |  -  |
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)

@@ -1,6 +1,6 @@
 [project]
 name = "finbourne-sdk"
-version = "0.0.13"
+version = "0.0.15"
 description = "This is the Python SDK for all of FINBOURNE's APIs"
 authors = [
     {name = "Finbourne Technology LTD", email = "info@finbourne.com"}

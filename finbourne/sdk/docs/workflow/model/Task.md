@@ -9,6 +9,8 @@ Defines a Task created based on a Task Definition
 | **task_definition_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **task_definition_version** | [TaskDefinitionVersion](TaskDefinitionVersion.md) | Required | *No description available.* |
 | **task_definition_display_name** | **str** | Required | The display name of the Task Definition used by this Task |
+| **workflow_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **workflow_display_name** | **str** | Optional | The display name of the Workflow that this Task is a member of, if any |
 | **state** | **str** | Required | Current State |
 | **ultimate_parent_task** | [TaskSummary](TaskSummary.md) | Required | *No description available.* |
 | **parent_task** | [TaskSummary](TaskSummary.md) | Optional | *No description available.* |
@@ -42,6 +44,8 @@ instance = Task(
     task_definition_id=ResourceId(...),  # required
     task_definition_version=TaskDefinitionVersion(...),  # required
     task_definition_display_name="...",  # required — The display name of the Task Definition used by this Task
+    workflow_id=ResourceId(...),  # optional
+    workflow_display_name="...",  # optional — The display name of the Workflow that this Task is a member of, if any
     state="...",  # required — Current State
     ultimate_parent_task=TaskSummary(...),  # required
     parent_task=TaskSummary(...),  # optional
@@ -66,6 +70,7 @@ instance = Task(
 
 - [ResourceId](ResourceId.md)
 - [TaskDefinitionVersion](TaskDefinitionVersion.md)
+- [ResourceId](ResourceId.md)
 - [TaskSummary](TaskSummary.md)
 - [TaskSummary](TaskSummary.md)
 - [TaskSummary](TaskSummary.md) — used in `child_tasks`
