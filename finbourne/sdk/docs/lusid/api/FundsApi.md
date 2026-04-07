@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**accept_estimate_valuation_point**](FundsApi.md#accept_estimate_valuation_point) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/$acceptestimate | [EXPERIMENTAL] AcceptEstimateValuationPoint: Accepts an Estimate Valuation Point.
 [**add_allocation_groups**](FundsApi.md#add_allocation_groups) | **POST** /api/api/funds/{scope}/{code}/allocationgroups | [EXPERIMENTAL] AddAllocationGroups: Add Allocation Groups to a Fund.
+[**add_series**](FundsApi.md#add_series) | **POST** /api/api/funds/{scope}/{code}/series | [EXPERIMENTAL] AddSeries: Add Series to a Fund.
 [**create_fee**](FundsApi.md#create_fee) | **POST** /api/api/funds/{scope}/{code}/fees | [EXPERIMENTAL] CreateFee: Create a Fee.
 [**create_fund**](FundsApi.md#create_fund) | **POST** /api/api/funds/{scope} | [EXPERIMENTAL] CreateFund: Create a Fund.
 [**create_fund_v2**](FundsApi.md#create_fund_v2) | **POST** /api/api/funds/v2/{scope} | [EXPERIMENTAL] CreateFundV2: Create a Fund V2 (Preview).
@@ -157,6 +158,52 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The updated Fund with the added Allocation Groups. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **add_series**
+> Fund addSeries = add_series(scope, code, series_definition_request)
+
+[EXPERIMENTAL] AddSeries: Add Series to a Fund.
+
+Add the given Series definitions to the specified Share Classes of the Fund.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(FundsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+series_definition_request = [{"shareClassCode":"ShareClass1","seriesDefinitions":[{"seriesIdentifier":"Series1","seriesType":"Lead","launchDate":"2024-01-01T00:00:00.0000000+00:00","launchPriceType":"Manual","domCcy":"GBP","properties":{}}]}] # List[SeriesDefinitionRequest]
+api_response = api_instance.add_series(scope, code, series_definition_request)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the Fund. | [required] 
+ **code** | **str**| The code of the Fund. Together with the scope this uniquely identifies the Fund. | [required] 
+ **series_definition_request** | [**List[SeriesDefinitionRequest]**](SeriesDefinitionRequest.md)| The definitions of the Series to add. | [required] 
+
+### Return type
+
+[**Fund**](Fund.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The updated Fund with the added Series. |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 

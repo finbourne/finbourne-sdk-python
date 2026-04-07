@@ -838,6 +838,7 @@ from finbourne.sdk.services.lusid.models.order_update_request import OrderUpdate
 from finbourne.sdk.services.lusid.models.otc_confirmation import OtcConfirmation
 from finbourne.sdk.services.lusid.models.output_transaction import OutputTransaction
 from finbourne.sdk.services.lusid.models.output_transition import OutputTransition
+from finbourne.sdk.services.lusid.models.override_virtual_transactions_response import OverrideVirtualTransactionsResponse
 from finbourne.sdk.services.lusid.models.package import Package
 from finbourne.sdk.services.lusid.models.package_request import PackageRequest
 from finbourne.sdk.services.lusid.models.package_set_request import PackageSetRequest
@@ -1187,6 +1188,9 @@ from finbourne.sdk.services.lusid.models.script_map_reference import ScriptMapRe
 from finbourne.sdk.services.lusid.models.security_election import SecurityElection
 from finbourne.sdk.services.lusid.models.security_offer_election import SecurityOfferElection
 from finbourne.sdk.services.lusid.models.sequence_definition import SequenceDefinition
+from finbourne.sdk.services.lusid.models.series import Series
+from finbourne.sdk.services.lusid.models.series_definition import SeriesDefinition
+from finbourne.sdk.services.lusid.models.series_definition_request import SeriesDefinitionRequest
 from finbourne.sdk.services.lusid.models.set_amortisation_rules_request import SetAmortisationRulesRequest
 from finbourne.sdk.services.lusid.models.set_legal_entity_identifiers_request import SetLegalEntityIdentifiersRequest
 from finbourne.sdk.services.lusid.models.set_legal_entity_properties_request import SetLegalEntityPropertiesRequest
@@ -2293,6 +2297,7 @@ __all__ = [
     "OtcConfirmation",
     "OutputTransaction",
     "OutputTransition",
+    "OverrideVirtualTransactionsResponse",
     "Package",
     "PackageRequest",
     "PackageSetRequest",
@@ -2642,6 +2647,9 @@ __all__ = [
     "SecurityElection",
     "SecurityOfferElection",
     "SequenceDefinition",
+    "Series",
+    "SeriesDefinition",
+    "SeriesDefinitionRequest",
     "SetAmortisationRulesRequest",
     "SetLegalEntityIdentifiersRequest",
     "SetLegalEntityPropertiesRequest",

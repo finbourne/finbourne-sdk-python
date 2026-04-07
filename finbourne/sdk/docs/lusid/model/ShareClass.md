@@ -5,6 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **instrument_identifiers** | **Dict[str, Optional[str]]** | Required | Unique instrument identifiers |
+| **series** | [List[Series]](Series.md) | Optional | The series that belong to this Share Class. |
 | **code** | **str** | Required | The unique code for the Share Class. Must be unique within the Fund. |
 | **name** | **str** | Required | The display name of the Share Class. |
 | **description** | **str** | Optional | An optional description for the Share Class. |
@@ -35,6 +36,7 @@ from finbourne.sdk.services.lusid.models.ShareClass import ShareClass
 
 instance = ShareClass(
     instrument_identifiers=,  # required — Unique instrument identifiers
+    series=[],  # optional — The series that belong to this Share Class.
     code="...",  # required — The unique code for the Share Class. Must be unique within the Fund.
     name="...",  # required — The display name of the Share Class.
     description="...",  # optional — An optional description for the Share Class.
@@ -57,6 +59,7 @@ instance = ShareClass(
 )
 ```
 
+- [Series](Series.md) — used in `series`
 - [ModelProperty](ModelProperty.md) — used in `properties`
 - [TradingConventions](TradingConventions.md)
 - [SimpleRoundingConvention](SimpleRoundingConvention.md) — used in `rounding_conventions`

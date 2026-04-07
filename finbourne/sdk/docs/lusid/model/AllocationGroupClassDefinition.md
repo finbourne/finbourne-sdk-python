@@ -7,6 +7,7 @@
 | **share_class_short_code** | **str** | Required | A short code that uniquely identifies the share class within the Fund and is attached to the transaction. |
 | **share_class_fund_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **apportionment_factor** | **float** | Optional | The weighting factor used for apportionment across this share class. |
+| **share_class_series_code** | **str** | Optional | An optional series identifier for the share class. If not provided, the share class will include all series. |
 
 
 ## Usage
@@ -19,7 +20,8 @@ from finbourne.sdk.services.lusid.models.AllocationGroupClassDefinition import A
 instance = AllocationGroupClassDefinition(
     share_class_short_code="...",  # required — A short code that uniquely identifies the share class within the Fund and is attached to the transaction.
     share_class_fund_id=ResourceId(...),  # optional
-    apportionment_factor=0.0  # optional — The weighting factor used for apportionment across this share class.
+    apportionment_factor=0.0,  # optional — The weighting factor used for apportionment across this share class.
+    share_class_series_code="..."  # optional — An optional series identifier for the share class. If not provided, the share class will include all series.
 )
 ```
 
