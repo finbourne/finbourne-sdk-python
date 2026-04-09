@@ -1300,7 +1300,7 @@ class InstrumentsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def get_instrument(self, identifier_type: StrictStr, identifier: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, scope: Optional[StrictStr] = None, relationship_definition_ids: Optional[List[str]] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, **kwargs) -> Instrument:
+    def get_instrument(self, identifier_type: StrictStr, identifier: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, scope: Optional[StrictStr] = None, relationship_definition_ids: Optional[List[str]] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> Instrument:
         """GetInstrument: Get instrument  # noqa: E501
 
         Retrieve the definition of a particular instrument, as identified by a particular unique identifier.  # noqa: E501
@@ -1322,6 +1322,12 @@ class InstrumentsApi:
         :type data_model_scope: str
         :param data_model_code: The optional code of a Custom Data Model to use.
         :type data_model_code: str
+        :param timeline_scope: The optional scope of a timeline to use for post-close activity.
+        :type timeline_scope: str
+        :param timeline_code: The optional code of a timeline to use for post-close activity.
+        :type timeline_code: str
+        :param closed_period_id: The optional id of a closed period within the timeline to view.
+        :type closed_period_id: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -1333,10 +1339,10 @@ class InstrumentsApi:
             message = "Error! Please call the get_instrument_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_instrument_with_http_info(identifier_type, identifier, effective_at, as_at, property_keys, scope, relationship_definition_ids, data_model_scope, data_model_code, **kwargs)  # noqa: E501
+        return self.get_instrument_with_http_info(identifier_type, identifier, effective_at, as_at, property_keys, scope, relationship_definition_ids, data_model_scope, data_model_code, timeline_scope, timeline_code, closed_period_id, **kwargs)  # noqa: E501
 
     @validate_call
-    def get_instrument_with_http_info(self, identifier_type: StrictStr, identifier: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, scope: Optional[StrictStr] = None, relationship_definition_ids: Optional[List[str]] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[Instrument]:
+    def get_instrument_with_http_info(self, identifier_type: StrictStr, identifier: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, scope: Optional[StrictStr] = None, relationship_definition_ids: Optional[List[str]] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[Instrument]:
         """GetInstrument: Get instrument  # noqa: E501
 
         Retrieve the definition of a particular instrument, as identified by a particular unique identifier.  # noqa: E501
@@ -1358,6 +1364,12 @@ class InstrumentsApi:
         :type data_model_scope: str
         :param data_model_code: The optional code of a Custom Data Model to use.
         :type data_model_code: str
+        :param timeline_scope: The optional scope of a timeline to use for post-close activity.
+        :type timeline_scope: str
+        :param timeline_code: The optional code of a timeline to use for post-close activity.
+        :type timeline_code: str
+        :param closed_period_id: The optional id of a closed period within the timeline to view.
+        :type closed_period_id: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1389,7 +1401,10 @@ class InstrumentsApi:
             'scope',
             'relationship_definition_ids',
             'data_model_scope',
-            'data_model_code'
+            'data_model_code',
+            'timeline_scope',
+            'timeline_code',
+            'closed_period_id'
         ]
         _all_params.extend(
             [
@@ -1451,6 +1466,15 @@ class InstrumentsApi:
 
         if _params.get('data_model_code') is not None:  # noqa: E501
             _query_params.append(('dataModelCode', _params['data_model_code']))
+
+        if _params.get('timeline_scope') is not None:  # noqa: E501
+            _query_params.append(('timelineScope', _params['timeline_scope']))
+
+        if _params.get('timeline_code') is not None:  # noqa: E501
+            _query_params.append(('timelineCode', _params['timeline_code']))
+
+        if _params.get('closed_period_id') is not None:  # noqa: E501
+            _query_params.append(('closedPeriodId', _params['closed_period_id']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -2652,7 +2676,7 @@ class InstrumentsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def list_instruments(self, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, instrument_property_keys: Optional[List[str]] = None, scope: Optional[StrictStr] = None, relationship_definition_ids: Optional[List[str]] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, membership_type: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfInstrument:
+    def list_instruments(self, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, instrument_property_keys: Optional[List[str]] = None, scope: Optional[StrictStr] = None, relationship_definition_ids: Optional[List[str]] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, membership_type: Optional[StrictStr] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfInstrument:
         """ListInstruments: List instruments  # noqa: E501
 
         List all the instruments in the instrument master.                To retrieve a particular set of instruments instead, use the Get instruments endpoint.  The maximum number of instruments that this method can list per request is 2,000.  # noqa: E501
@@ -2680,6 +2704,12 @@ class InstrumentsApi:
         :type data_model_code: str
         :param membership_type: The membership types of the specified Custom Data Model to return. Allowable values are Member, Candidate and All. Defaults to Member.
         :type membership_type: str
+        :param timeline_scope: The scope of the timeline to use for PCA (Post Close Activity) support.
+        :type timeline_scope: str
+        :param timeline_code: The code of the timeline to use for PCA (Post Close Activity) support.
+        :type timeline_code: str
+        :param closed_period_id: The id of the closed period on the timeline to use for PCA (Post Close Activity) support.
+        :type closed_period_id: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -2691,10 +2721,10 @@ class InstrumentsApi:
             message = "Error! Please call the list_instruments_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_instruments_with_http_info(as_at, effective_at, page, sort_by, limit, filter, instrument_property_keys, scope, relationship_definition_ids, data_model_scope, data_model_code, membership_type, **kwargs)  # noqa: E501
+        return self.list_instruments_with_http_info(as_at, effective_at, page, sort_by, limit, filter, instrument_property_keys, scope, relationship_definition_ids, data_model_scope, data_model_code, membership_type, timeline_scope, timeline_code, closed_period_id, **kwargs)  # noqa: E501
 
     @validate_call
-    def list_instruments_with_http_info(self, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, instrument_property_keys: Optional[List[str]] = None, scope: Optional[StrictStr] = None, relationship_definition_ids: Optional[List[str]] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, membership_type: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfInstrument]:
+    def list_instruments_with_http_info(self, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, instrument_property_keys: Optional[List[str]] = None, scope: Optional[StrictStr] = None, relationship_definition_ids: Optional[List[str]] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, membership_type: Optional[StrictStr] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfInstrument]:
         """ListInstruments: List instruments  # noqa: E501
 
         List all the instruments in the instrument master.                To retrieve a particular set of instruments instead, use the Get instruments endpoint.  The maximum number of instruments that this method can list per request is 2,000.  # noqa: E501
@@ -2722,6 +2752,12 @@ class InstrumentsApi:
         :type data_model_code: str
         :param membership_type: The membership types of the specified Custom Data Model to return. Allowable values are Member, Candidate and All. Defaults to Member.
         :type membership_type: str
+        :param timeline_scope: The scope of the timeline to use for PCA (Post Close Activity) support.
+        :type timeline_scope: str
+        :param timeline_code: The code of the timeline to use for PCA (Post Close Activity) support.
+        :type timeline_code: str
+        :param closed_period_id: The id of the closed period on the timeline to use for PCA (Post Close Activity) support.
+        :type closed_period_id: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -2756,7 +2792,10 @@ class InstrumentsApi:
             'relationship_definition_ids',
             'data_model_scope',
             'data_model_code',
-            'membership_type'
+            'membership_type',
+            'timeline_scope',
+            'timeline_code',
+            'closed_period_id'
         ]
         _all_params.extend(
             [
@@ -2828,6 +2867,15 @@ class InstrumentsApi:
 
         if _params.get('membership_type') is not None:  # noqa: E501
             _query_params.append(('membershipType', _params['membership_type']))
+
+        if _params.get('timeline_scope') is not None:  # noqa: E501
+            _query_params.append(('timelineScope', _params['timeline_scope']))
+
+        if _params.get('timeline_code') is not None:  # noqa: E501
+            _query_params.append(('timelineCode', _params['timeline_code']))
+
+        if _params.get('closed_period_id') is not None:  # noqa: E501
+            _query_params.append(('closedPeriodId', _params['closed_period_id']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -4712,7 +4760,7 @@ class InstrumentsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def get_instrument_async(self, identifier_type: StrictStr, identifier: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, scope: Optional[StrictStr] = None, relationship_definition_ids: Optional[List[str]] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, **kwargs) -> Instrument:
+    async def get_instrument_async(self, identifier_type: StrictStr, identifier: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, scope: Optional[StrictStr] = None, relationship_definition_ids: Optional[List[str]] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> Instrument:
             """GetInstrument: Get instrument  # noqa: E501
             Retrieve the definition of a particular instrument, as identified by a particular unique identifier.  # noqa: E501
             
@@ -4734,6 +4782,12 @@ class InstrumentsApi:
             :type data_model_scope: str
             :param data_model_code: The optional code of a Custom Data Model to use.
             :type data_model_code: str
+            :param timeline_scope: The optional scope of a timeline to use for post-close activity.
+            :type timeline_scope: str
+            :param timeline_code: The optional code of a timeline to use for post-close activity.
+            :type timeline_code: str
+            :param closed_period_id: The optional id of a closed period within the timeline to view.
+            :type closed_period_id: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -4745,10 +4799,10 @@ class InstrumentsApi:
                 message = "Error! Please call the get_instrument_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_instrument_with_http_info_async(identifier_type, identifier, effective_at, as_at, property_keys, scope, relationship_definition_ids, data_model_scope, data_model_code, **kwargs)  # noqa: E501
+            return await self.get_instrument_with_http_info_async(identifier_type, identifier, effective_at, as_at, property_keys, scope, relationship_definition_ids, data_model_scope, data_model_code, timeline_scope, timeline_code, closed_period_id, **kwargs)  # noqa: E501
 
     @validate_call
-    async def get_instrument_with_http_info_async(self, identifier_type: StrictStr, identifier: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, scope: Optional[StrictStr] = None, relationship_definition_ids: Optional[List[str]] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[Instrument]:
+    async def get_instrument_with_http_info_async(self, identifier_type: StrictStr, identifier: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, scope: Optional[StrictStr] = None, relationship_definition_ids: Optional[List[str]] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[Instrument]:
             """GetInstrument: Get instrument  # noqa: E501
 
             Retrieve the definition of a particular instrument, as identified by a particular unique identifier.  # noqa: E501
@@ -4771,6 +4825,12 @@ class InstrumentsApi:
             :type data_model_scope: str
             :param data_model_code: The optional code of a Custom Data Model to use.
             :type data_model_code: str
+            :param timeline_scope: The optional scope of a timeline to use for post-close activity.
+            :type timeline_scope: str
+            :param timeline_code: The optional code of a timeline to use for post-close activity.
+            :type timeline_code: str
+            :param closed_period_id: The optional id of a closed period within the timeline to view.
+            :type closed_period_id: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -4802,7 +4862,10 @@ class InstrumentsApi:
                 'scope',
                 'relationship_definition_ids',
                 'data_model_scope',
-                'data_model_code'
+                'data_model_code',
+                'timeline_scope',
+                'timeline_code',
+                'closed_period_id'
             ]
             _all_params.extend(
                 [
@@ -4864,6 +4927,15 @@ class InstrumentsApi:
 
             if _params.get('data_model_code') is not None:  # noqa: E501
                 _query_params.append(('dataModelCode', _params['data_model_code']))
+
+            if _params.get('timeline_scope') is not None:  # noqa: E501
+                _query_params.append(('timelineScope', _params['timeline_scope']))
+
+            if _params.get('timeline_code') is not None:  # noqa: E501
+                _query_params.append(('timelineCode', _params['timeline_code']))
+
+            if _params.get('closed_period_id') is not None:  # noqa: E501
+                _query_params.append(('closedPeriodId', _params['closed_period_id']))
 
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))
@@ -6072,7 +6144,7 @@ class InstrumentsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def list_instruments_async(self, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, instrument_property_keys: Optional[List[str]] = None, scope: Optional[StrictStr] = None, relationship_definition_ids: Optional[List[str]] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, membership_type: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfInstrument:
+    async def list_instruments_async(self, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, instrument_property_keys: Optional[List[str]] = None, scope: Optional[StrictStr] = None, relationship_definition_ids: Optional[List[str]] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, membership_type: Optional[StrictStr] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfInstrument:
             """ListInstruments: List instruments  # noqa: E501
             List all the instruments in the instrument master.                To retrieve a particular set of instruments instead, use the Get instruments endpoint.  The maximum number of instruments that this method can list per request is 2,000.  # noqa: E501
             
@@ -6100,6 +6172,12 @@ class InstrumentsApi:
             :type data_model_code: str
             :param membership_type: The membership types of the specified Custom Data Model to return. Allowable values are Member, Candidate and All. Defaults to Member.
             :type membership_type: str
+            :param timeline_scope: The scope of the timeline to use for PCA (Post Close Activity) support.
+            :type timeline_scope: str
+            :param timeline_code: The code of the timeline to use for PCA (Post Close Activity) support.
+            :type timeline_code: str
+            :param closed_period_id: The id of the closed period on the timeline to use for PCA (Post Close Activity) support.
+            :type closed_period_id: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -6111,10 +6189,10 @@ class InstrumentsApi:
                 message = "Error! Please call the list_instruments_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_instruments_with_http_info_async(as_at, effective_at, page, sort_by, limit, filter, instrument_property_keys, scope, relationship_definition_ids, data_model_scope, data_model_code, membership_type, **kwargs)  # noqa: E501
+            return await self.list_instruments_with_http_info_async(as_at, effective_at, page, sort_by, limit, filter, instrument_property_keys, scope, relationship_definition_ids, data_model_scope, data_model_code, membership_type, timeline_scope, timeline_code, closed_period_id, **kwargs)  # noqa: E501
 
     @validate_call
-    async def list_instruments_with_http_info_async(self, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, instrument_property_keys: Optional[List[str]] = None, scope: Optional[StrictStr] = None, relationship_definition_ids: Optional[List[str]] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, membership_type: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfInstrument]:
+    async def list_instruments_with_http_info_async(self, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, instrument_property_keys: Optional[List[str]] = None, scope: Optional[StrictStr] = None, relationship_definition_ids: Optional[List[str]] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, membership_type: Optional[StrictStr] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfInstrument]:
             """ListInstruments: List instruments  # noqa: E501
 
             List all the instruments in the instrument master.                To retrieve a particular set of instruments instead, use the Get instruments endpoint.  The maximum number of instruments that this method can list per request is 2,000.  # noqa: E501
@@ -6143,6 +6221,12 @@ class InstrumentsApi:
             :type data_model_code: str
             :param membership_type: The membership types of the specified Custom Data Model to return. Allowable values are Member, Candidate and All. Defaults to Member.
             :type membership_type: str
+            :param timeline_scope: The scope of the timeline to use for PCA (Post Close Activity) support.
+            :type timeline_scope: str
+            :param timeline_code: The code of the timeline to use for PCA (Post Close Activity) support.
+            :type timeline_code: str
+            :param closed_period_id: The id of the closed period on the timeline to use for PCA (Post Close Activity) support.
+            :type closed_period_id: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -6177,7 +6261,10 @@ class InstrumentsApi:
                 'relationship_definition_ids',
                 'data_model_scope',
                 'data_model_code',
-                'membership_type'
+                'membership_type',
+                'timeline_scope',
+                'timeline_code',
+                'closed_period_id'
             ]
             _all_params.extend(
                 [
@@ -6249,6 +6336,15 @@ class InstrumentsApi:
 
             if _params.get('membership_type') is not None:  # noqa: E501
                 _query_params.append(('membershipType', _params['membership_type']))
+
+            if _params.get('timeline_scope') is not None:  # noqa: E501
+                _query_params.append(('timelineScope', _params['timeline_scope']))
+
+            if _params.get('timeline_code') is not None:  # noqa: E501
+                _query_params.append(('timelineCode', _params['timeline_code']))
+
+            if _params.get('closed_period_id') is not None:  # noqa: E501
+                _query_params.append(('closedPeriodId', _params['closed_period_id']))
 
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))

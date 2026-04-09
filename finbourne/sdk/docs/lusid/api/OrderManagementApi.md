@@ -13,6 +13,7 @@ Method | HTTP request | Description
 [**move_orders**](OrderManagementApi.md#move_orders) | **POST** /api/api/ordermanagement/moveorders | [EARLY ACCESS] MoveOrders: Move orders to new or existing block
 [**place_blocks**](OrderManagementApi.md#place_blocks) | **POST** /api/api/ordermanagement/placeblocks | [EARLY ACCESS] PlaceBlocks: Places blocks for a given list of placement requests.
 [**run_allocation_service**](OrderManagementApi.md#run_allocation_service) | **POST** /api/api/ordermanagement/allocate | RunAllocationService: Runs the Allocation Service
+[**run_allocation_service_with_weights**](OrderManagementApi.md#run_allocation_service_with_weights) | **POST** /api/api/ordermanagement/allocate/weighted | [EXPERIMENTAL] RunAllocationServiceWithWeights: Runs the Allocation Service with portfolio weights
 [**sweep_blocks**](OrderManagementApi.md#sweep_blocks) | **POST** /api/api/ordermanagement/SweepBlocks | [EXPERIMENTAL] SweepBlocks: Sweeps specified blocks, for each block that meets the requirements. The request may be partially successful.
 [**update_orders**](OrderManagementApi.md#update_orders) | **POST** /api/api/ordermanagement/updateorders | [EARLY ACCESS] UpdateOrders: Update existing orders
 [**update_placements**](OrderManagementApi.md#update_placements) | **POST** /api/api/ordermanagement/$updateplacements | [EARLY ACCESS] UpdatePlacements: Update existing placements
@@ -399,7 +400,7 @@ Allocates Executions for a given list of placements back to their originating or
 
 ```python
 api_instance = api_client_factory.build(OrderManagementApi)
-resource_id = [{"scope":"MyScope","code":"PLAC00000123"},{"scope":"MyScope","code":"PLAC00000456"}] # List[ResourceId]
+resource_id = [{"scope":"MyScope","code":"PLAC00000123"}] # List[ResourceId]
 allocation_algorithm = 'allocation_algorithm_example' # str (optional)
 api_response = api_instance.run_allocation_service(resource_id, allocation_algorithm=allocation_algorithm)
 pprint(api_response)
@@ -411,6 +412,50 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **resource_id** | [**List[ResourceId]**](ResourceId.md)| The List of Placement IDs for which you wish to allocate Executions. | [required] 
  **allocation_algorithm** | **str**| A string representation of the allocation algorithm you would like to use to allocate shares from executions e.g. \&quot;PR-FIFO\&quot;.  This defaults to \&quot;PR-FIFO\&quot;. | [optional] 
+
+### Return type
+
+[**AllocationServiceRunResponse**](AllocationServiceRunResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A list of Allocations |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **run_allocation_service_with_weights**
+> AllocationServiceRunResponse runAllocationServiceWithWeights = run_allocation_service_with_weights(weighted_allocation_service_run_request, allocation_algorithm=allocation_algorithm)
+
+[EXPERIMENTAL] RunAllocationServiceWithWeights: Runs the Allocation Service with portfolio weights
+
+Allocates Executions for a given list of placements to a specified set of portfolios by weight,  creating Allocations to record the results. Used for the unsolicited Block and Block Trade booking flows where no Orders exist against the Block.  Weights are relative to each other and are not required to sum to 1 or 100.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(OrderManagementApi)
+weighted_allocation_service_run_request = WeightedAllocationServiceRunRequest()
+allocation_algorithm = 'allocation_algorithm_example' # str (optional)
+api_response = api_instance.run_allocation_service_with_weights(weighted_allocation_service_run_request, allocation_algorithm=allocation_algorithm)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **weighted_allocation_service_run_request** | [**WeightedAllocationServiceRunRequest**](WeightedAllocationServiceRunRequest.md)| The placement IDs to allocate against, and the portfolio weights to use for the allocation split. | [required] 
+ **allocation_algorithm** | **str**| A string representation of the allocation algorithm you would like to use to allocate shares from executions e.g. \&quot;PR-LF\&quot;.  Allocating with weights means the base algorithm is always pro-rata, and the orphan allocation algorithm is either Largest First or Smallest First.  This defaults to \&quot;PR-LF\&quot;. Valid values are \&quot;PR-LF\&quot;, \&quot;PR-SF\&quot;, \&quot;LF\&quot;, \&quot;SF\&quot;. | [optional] 
 
 ### Return type
 

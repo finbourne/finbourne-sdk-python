@@ -12,8 +12,8 @@ A definition for the period you wish to close
 | **query_as_at** | **datetime** | Optional | The query time of the diary entry. Defaults to latest. |
 | **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the diary entry. |
 | **apply_clear_down** | **bool** | Optional | Defaults to false. Set to true if you want that the closed period to have the clear down applied. |
-| **holdings_as_at_override** | **datetime** | Optional | The optional AsAt Override to use for building holdings in the Valuation Point. Defaults to Latest. |
-| **valuations_as_at_override** | **datetime** | Optional | The optional AsAt Override to use for performing valuations in the Valuation Point. Defaults to Latest. |
+| **holdings_as_at_override** | **datetime** | Optional | The optional AsAt Override to use for building holdings in the Valuation Point. Defaults to QueryAsAt. |
+| **valuations_as_at_override** | **datetime** | Optional | The optional AsAt Override to use for performing valuations in the Valuation Point. Defaults to QueryAsAt. |
 | **update_inclusion_date_nav_adjustments** | **bool** | Optional | Defaults to false. Set to true if you have the required licence and want the InclusionDate property values to be used to determine whether items should be automatically included in the post close activities. |
 
 
@@ -32,8 +32,8 @@ instance = UpsertValuationPointRequest(
     query_as_at=datetime.now(),  # optional — The query time of the diary entry. Defaults to latest.
     properties=ModelProperty(...),  # optional — A set of properties for the diary entry.
     apply_clear_down=True,  # optional — Defaults to false. Set to true if you want that the closed period to have the clear down applied.
-    holdings_as_at_override=datetime.now(),  # optional — The optional AsAt Override to use for building holdings in the Valuation Point. Defaults to Latest.
-    valuations_as_at_override=datetime.now(),  # optional — The optional AsAt Override to use for performing valuations in the Valuation Point. Defaults to Latest.
+    holdings_as_at_override=datetime.now(),  # optional — The optional AsAt Override to use for building holdings in the Valuation Point. Defaults to QueryAsAt.
+    valuations_as_at_override=datetime.now(),  # optional — The optional AsAt Override to use for performing valuations in the Valuation Point. Defaults to QueryAsAt.
     update_inclusion_date_nav_adjustments=True  # optional — Defaults to false. Set to true if you have the required licence and want the InclusionDate property values to be used to determine whether items should be automatically included in the post close activities.
 )
 ```

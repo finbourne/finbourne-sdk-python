@@ -18,6 +18,7 @@ An instrument event equipped with additional metadata.
 | **sequence_number** | **int** | Optional | The order of the instrument event relative others on the same date (0 being processed first). Must be non negative. |
 | **participation_type** | **str** | Optional | Is participation in this event Mandatory, MandatoryWithChoices, or Voluntary. Default: `'Mandatory'` |
 | **as_at** | **datetime** | Optional | The AsAt time of the instrument event, if available. This is a readonly field and should not be provided on upsert. *(read-only)* |
+| **group_code** | **str** | Optional | The group code that determines the processing order of instrument events with the same effective datetime. |
 
 
 ## Usage
@@ -40,7 +41,8 @@ instance = InstrumentEventHolder(
     properties=[],  # optional — The properties attached to this instrument event.
     sequence_number=0,  # optional — The order of the instrument event relative others on the same date (0 being processed first). Must be non negative.
     participation_type="...",  # optional — Is participation in this event Mandatory, MandatoryWithChoices, or Voluntary.
-    as_at=datetime.now()  # optional — The AsAt time of the instrument event, if available. This is a readonly field and should not be provided on upsert.
+    as_at=datetime.now(),  # optional — The AsAt time of the instrument event, if available. This is a readonly field and should not be provided on upsert.
+    group_code="..."  # optional — The group code that determines the processing order of instrument events with the same effective datetime.
 )
 ```
 

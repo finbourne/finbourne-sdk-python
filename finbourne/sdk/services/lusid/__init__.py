@@ -965,6 +965,7 @@ from finbourne.sdk.services.lusid.models.portfolio_settlement_instruction import
 from finbourne.sdk.services.lusid.models.portfolio_trade_ticket import PortfolioTradeTicket
 from finbourne.sdk.services.lusid.models.portfolio_transaction import PortfolioTransaction
 from finbourne.sdk.services.lusid.models.portfolio_type import PortfolioType
+from finbourne.sdk.services.lusid.models.portfolio_weight import PortfolioWeight
 from finbourne.sdk.services.lusid.models.portfolio_without_href import PortfolioWithoutHref
 from finbourne.sdk.services.lusid.models.portfolios_reconciliation_request import PortfoliosReconciliationRequest
 from finbourne.sdk.services.lusid.models.post_close_activities_request import PostCloseActivitiesRequest
@@ -1459,6 +1460,7 @@ from finbourne.sdk.services.lusid.models.virtual_document_row import VirtualDocu
 from finbourne.sdk.services.lusid.models.virtual_row import VirtualRow
 from finbourne.sdk.services.lusid.models.warning import Warning
 from finbourne.sdk.services.lusid.models.weekend_mask import WeekendMask
+from finbourne.sdk.services.lusid.models.weighted_allocation_service_run_request import WeightedAllocationServiceRunRequest
 from finbourne.sdk.services.lusid.models.weighted_instrument import WeightedInstrument
 from finbourne.sdk.services.lusid.models.weighted_instrument_in_line_lookup_identifiers import WeightedInstrumentInLineLookupIdentifiers
 from finbourne.sdk.services.lusid.models.weighted_instruments import WeightedInstruments
@@ -2424,6 +2426,7 @@ __all__ = [
     "PortfolioTradeTicket",
     "PortfolioTransaction",
     "PortfolioType",
+    "PortfolioWeight",
     "PortfolioWithoutHref",
     "PortfoliosReconciliationRequest",
     "PostCloseActivitiesRequest",
@@ -2918,6 +2921,7 @@ __all__ = [
     "VirtualRow",
     "Warning",
     "WeekendMask",
+    "WeightedAllocationServiceRunRequest",
     "WeightedInstrument",
     "WeightedInstrumentInLineLookupIdentifiers",
     "WeightedInstruments",

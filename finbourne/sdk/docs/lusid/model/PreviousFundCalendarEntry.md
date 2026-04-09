@@ -9,8 +9,8 @@
 | **description** | **str** | Optional | A description for the Fund Calendar entry. |
 | **effective_at** | **datetime** | Optional | The effective at of the Calendar Entry. |
 | **as_at** | **datetime** | Required | The asAt datetime for the Calendar Entry. |
-| **holdings_as_at_override** | **datetime** | Optional | The optional AsAt Override to use for building holdings in the Valuation Point. Defaults to Latest. |
-| **valuations_as_at_override** | **datetime** | Optional | The optional AsAt Override to use for performing valuations in the Valuation Point. Defaults to Latest. |
+| **holdings_as_at_override** | **datetime** | Optional | The optional AsAt Override to use for building holdings in the Valuation Point. Defaults to QueryAsAt. |
+| **valuations_as_at_override** | **datetime** | Optional | The optional AsAt Override to use for performing valuations in the Valuation Point. Defaults to QueryAsAt. |
 
 
 ## Usage
@@ -26,8 +26,8 @@ instance = PreviousFundCalendarEntry(
     description="...",  # optional — A description for the Fund Calendar entry.
     effective_at=datetime.now(),  # optional — The effective at of the Calendar Entry.
     as_at=datetime.now(),  # required — The asAt datetime for the Calendar Entry.
-    holdings_as_at_override=datetime.now(),  # optional — The optional AsAt Override to use for building holdings in the Valuation Point. Defaults to Latest.
-    valuations_as_at_override=datetime.now()  # optional — The optional AsAt Override to use for performing valuations in the Valuation Point. Defaults to Latest.
+    holdings_as_at_override=datetime.now(),  # optional — The optional AsAt Override to use for building holdings in the Valuation Point. Defaults to QueryAsAt.
+    valuations_as_at_override=datetime.now()  # optional — The optional AsAt Override to use for performing valuations in the Valuation Point. Defaults to QueryAsAt.
 )
 ```
 

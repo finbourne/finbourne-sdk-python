@@ -43,12 +43,7 @@ class RefreshingToken(UserString):
             and os.path.exists(self.access_token_location)
         )
 
-        if not self.use_file_token:
-            if api_configuration is None:
-                raise ValueError(
-                    "Either provide api_configuration or set FBN_ACCESS_TOKEN_FILE to an existing file"
-                )
-
+        if not self.use_file_token and api_configuration is not None:
             try:
                 self.password = api_configuration.password
                 self.client_id = api_configuration.client_id
@@ -62,7 +57,10 @@ class RefreshingToken(UserString):
             self._validate_oauth_params()
 
         self.id_provider_response_handler = id_provider_response_handler
-        self.refresh_func = self.get_file_token if self.use_file_token else self.get_refresh_token
+        if self.use_file_token or api_configuration is None:
+            self.refresh_func = self.get_file_token
+        else:
+            self.refresh_func = self.get_refresh_token
         self.lock = threading.Lock()
         self.retry_count = 0
         self.retry_limit = 5

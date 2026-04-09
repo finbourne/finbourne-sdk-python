@@ -16,8 +16,8 @@
 | **entry_type** | **str** | Required | The type of the Fund Calendar Entry. The available values are: FinalisedValuationPoint, FundEstimateValuationPoint, FundBookmark |
 | **status** | **str** | Optional | The status of the Fund Calendar Entry. Can be &#39;Estimate&#39;, &#39;Unofficial&#39; or &#39;Final&#39;. |
 | **apply_clear_down** | **bool** | Required | Set to true if that closed period should have the clear down applied. |
-| **holdings_as_at_override** | **datetime** | Optional | The optional AsAt Override to use for building holdings in the Valuation Point. Defaults to Latest. |
-| **valuations_as_at_override** | **datetime** | Optional | The optional AsAt Override to use for performing valuations in the Valuation Point. Defaults to Latest. |
+| **holdings_as_at_override** | **datetime** | Optional | The optional AsAt Override to use for building holdings in the Valuation Point. Defaults to QueryAsAt. |
+| **valuations_as_at_override** | **datetime** | Optional | The optional AsAt Override to use for performing valuations in the Valuation Point. Defaults to QueryAsAt. |
 | **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | The properties for the Calendar Entry. These will be from the &#39;ClosedPeriod&#39; domain. |
 | **version** | [Version](Version.md) | Required | *No description available.* |
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested asAt datetime. |
@@ -45,8 +45,8 @@ instance = FinalisedValuationPoint(
     entry_type="...",  # required — The type of the Fund Calendar Entry. The available values are: FinalisedValuationPoint, FundEstimateValuationPoint, FundBookmark
     status="...",  # optional — The status of the Fund Calendar Entry. Can be &#39;Estimate&#39;, &#39;Unofficial&#39; or &#39;Final&#39;.
     apply_clear_down=True,  # required — Set to true if that closed period should have the clear down applied.
-    holdings_as_at_override=datetime.now(),  # optional — The optional AsAt Override to use for building holdings in the Valuation Point. Defaults to Latest.
-    valuations_as_at_override=datetime.now(),  # optional — The optional AsAt Override to use for performing valuations in the Valuation Point. Defaults to Latest.
+    holdings_as_at_override=datetime.now(),  # optional — The optional AsAt Override to use for building holdings in the Valuation Point. Defaults to QueryAsAt.
+    valuations_as_at_override=datetime.now(),  # optional — The optional AsAt Override to use for performing valuations in the Valuation Point. Defaults to QueryAsAt.
     properties=ModelProperty(...),  # optional — The properties for the Calendar Entry. These will be from the &#39;ClosedPeriod&#39; domain.
     version=Version(...),  # required
     href="...",  # optional — The specific Uniform Resource Identifier (URI) for this resource at the requested asAt datetime.

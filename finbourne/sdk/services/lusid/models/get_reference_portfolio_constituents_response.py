@@ -94,7 +94,8 @@ class GetReferencePortfolioConstituentsResponse(BaseModel):
                                     'WeekRegularity',
                                     'YearRegularity',
                                     'LusidEntityDataQualityCheck',
-                                    'LusidEntityDataQualityCheckResponse']:
+                                    'LusidEntityDataQualityCheckResponse',
+                                    'TriggerChildTasksActionResponse']:
            return value
         
         # Only validate the 'type' property of the class
@@ -162,7 +163,8 @@ class GetReferencePortfolioConstituentsResponse(BaseModel):
                                     'WeekRegularity',
                                     'YearRegularity',
                                     'LusidEntityDataQualityCheck',
-                                    'LusidEntityDataQualityCheckResponse']:
+                                    'LusidEntityDataQualityCheckResponse',
+                                    'TriggerChildTasksActionResponse']:
            return value
         
         # Only validate the 'type' property of the class

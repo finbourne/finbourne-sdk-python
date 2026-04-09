@@ -20,10 +20,11 @@ import re  # noqa: F401
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist, ValidationError
 from finbourne.sdk.services.workflow.models.create_child_tasks_action_response import CreateChildTasksActionResponse
 from finbourne.sdk.services.workflow.models.run_worker_action_response import RunWorkerActionResponse
+from finbourne.sdk.services.workflow.models.trigger_child_tasks_action_response import TriggerChildTasksActionResponse
 from finbourne.sdk.services.workflow.models.trigger_parent_task_action_response import TriggerParentTaskActionResponse
 from typing import Optional, List, Dict, Union, Annotated, Any, Literal, TYPE_CHECKING
 
-ACTIONDETAILSRESPONSE_ONE_OF_SCHEMAS = ["CreateChildTasksActionResponse", "RunWorkerActionResponse", "TriggerParentTaskActionResponse"]
+ACTIONDETAILSRESPONSE_ONE_OF_SCHEMAS = ["CreateChildTasksActionResponse", "RunWorkerActionResponse", "TriggerChildTasksActionResponse", "TriggerParentTaskActionResponse"]
 
 class ActionDetailsResponse(BaseModel):
     """
@@ -33,10 +34,12 @@ class ActionDetailsResponse(BaseModel):
     oneof_schema_1_validator: Optional[CreateChildTasksActionResponse] = None
     # data type: RunWorkerActionResponse
     oneof_schema_2_validator: Optional[RunWorkerActionResponse] = None
+    # data type: TriggerChildTasksActionResponse
+    oneof_schema_3_validator: Optional[TriggerChildTasksActionResponse] = None
     # data type: TriggerParentTaskActionResponse
-    oneof_schema_3_validator: Optional[TriggerParentTaskActionResponse] = None
+    oneof_schema_4_validator: Optional[TriggerParentTaskActionResponse] = None
     if TYPE_CHECKING:
-        actual_instance: Union[CreateChildTasksActionResponse, RunWorkerActionResponse, TriggerParentTaskActionResponse]
+        actual_instance: Union[CreateChildTasksActionResponse, RunWorkerActionResponse, TriggerChildTasksActionResponse, TriggerParentTaskActionResponse]
     else:
         actual_instance: Any
     one_of_schemas: Literal[ACTIONDETAILSRESPONSE_ONE_OF_SCHEMAS] = ACTIONDETAILSRESPONSE_ONE_OF_SCHEMAS
@@ -73,6 +76,12 @@ class ActionDetailsResponse(BaseModel):
         else:
             match += 1
             matchclass = matchclass + " RunWorkerActionResponse"
+        # validate data type: TriggerChildTasksActionResponse
+        if not isinstance(v, TriggerChildTasksActionResponse):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `TriggerChildTasksActionResponse`")
+        else:
+            match += 1
+            matchclass = matchclass + " TriggerChildTasksActionResponse"
         # validate data type: TriggerParentTaskActionResponse
         if not isinstance(v, TriggerParentTaskActionResponse):
             error_messages.append(f"Error! Input type `{type(v)}` is not `TriggerParentTaskActionResponse`")
@@ -81,10 +90,10 @@ class ActionDetailsResponse(BaseModel):
             matchclass = matchclass + " TriggerParentTaskActionResponse"
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in ActionDetailsResponse with oneOf schemas: CreateChildTasksActionResponse, RunWorkerActionResponse, TriggerParentTaskActionResponse. Details: Matched classes " + matchclass)
+            raise ValueError("Multiple matches found when setting `actual_instance` in ActionDetailsResponse with oneOf schemas: CreateChildTasksActionResponse, RunWorkerActionResponse, TriggerChildTasksActionResponse, TriggerParentTaskActionResponse. Details: Matched classes " + matchclass)
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in ActionDetailsResponse with oneOf schemas: CreateChildTasksActionResponse, RunWorkerActionResponse, TriggerParentTaskActionResponse. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in ActionDetailsResponse with oneOf schemas: CreateChildTasksActionResponse, RunWorkerActionResponse, TriggerChildTasksActionResponse, TriggerParentTaskActionResponse. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -115,6 +124,13 @@ class ActionDetailsResponse(BaseModel):
             matchclass =matchclass + " RunWorkerActionResponse"
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
+        # deserialize data into TriggerChildTasksActionResponse
+        try:
+            instance.actual_instance = TriggerChildTasksActionResponse.from_json(json_str)
+            match += 1
+            matchclass =matchclass + " TriggerChildTasksActionResponse"
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
         # deserialize data into TriggerParentTaskActionResponse
         try:
             instance.actual_instance = TriggerParentTaskActionResponse.from_json(json_str)
@@ -125,10 +141,10 @@ class ActionDetailsResponse(BaseModel):
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into ActionDetailsResponse with oneOf schemas: CreateChildTasksActionResponse, RunWorkerActionResponse, TriggerParentTaskActionResponse. Matches: "+matchclass+", Details: " + ", ".join(error_messages) + ", JSON: " + json_str)
+            raise ValueError("Multiple matches found when deserializing the JSON string into ActionDetailsResponse with oneOf schemas: CreateChildTasksActionResponse, RunWorkerActionResponse, TriggerChildTasksActionResponse, TriggerParentTaskActionResponse. Matches: "+matchclass+", Details: " + ", ".join(error_messages) + ", JSON: " + json_str)
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into ActionDetailsResponse with oneOf schemas: CreateChildTasksActionResponse, RunWorkerActionResponse, TriggerParentTaskActionResponse. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into ActionDetailsResponse with oneOf schemas: CreateChildTasksActionResponse, RunWorkerActionResponse, TriggerChildTasksActionResponse, TriggerParentTaskActionResponse. Details: " + ", ".join(error_messages))
         else:
             return instance
 

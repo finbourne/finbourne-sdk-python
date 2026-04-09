@@ -7,7 +7,7 @@ This request specifies single target holding. i.e. holding data that the  system
 |------|------|----------|-------------|
 | **instrument_identifiers** | **Dict[str, Optional[str]]** | Required | A set of instrument identifiers that can resolve the holding adjustment to a unique instrument. |
 | **sub_holding_keys** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | The sub-holding properties which identify the holding. Each property must be from the &#39;Transaction&#39; domain. |
-| **currency** | **str** | Optional | The Holding currency. |
+| **currency** | **str** | Required | The Holding currency. |
 | **custodian_account_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 
 
@@ -21,7 +21,7 @@ from finbourne.sdk.services.lusid.models.CancelSingleHoldingAdjustmentRequest im
 instance = CancelSingleHoldingAdjustmentRequest(
     instrument_identifiers=,  # required — A set of instrument identifiers that can resolve the holding adjustment to a unique instrument.
     sub_holding_keys=PerpetualProperty(...),  # optional — The sub-holding properties which identify the holding. Each property must be from the &#39;Transaction&#39; domain.
-    currency="...",  # optional — The Holding currency.
+    currency="...",  # required — The Holding currency.
     custodian_account_id=ResourceId(...)  # optional
 )
 ```

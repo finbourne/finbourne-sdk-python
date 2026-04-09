@@ -449,7 +449,7 @@ Name | Type | Description  | Notes
 ---
 
 # **get_instrument**
-> Instrument getInstrument = get_instrument(identifier_type, identifier, effective_at=effective_at, as_at=as_at, property_keys=property_keys, scope=scope, relationship_definition_ids=relationship_definition_ids, data_model_scope=data_model_scope, data_model_code=data_model_code)
+> Instrument getInstrument = get_instrument(identifier_type, identifier, effective_at=effective_at, as_at=as_at, property_keys=property_keys, scope=scope, relationship_definition_ids=relationship_definition_ids, data_model_scope=data_model_scope, data_model_code=data_model_code, timeline_scope=timeline_scope, timeline_code=timeline_code, closed_period_id=closed_period_id)
 
 GetInstrument: Get instrument
 
@@ -468,7 +468,10 @@ scope = 'default' # str (optional)
 relationship_definition_ids = ['relationship_definition_ids_example'] # List[str] (optional)
 data_model_scope = 'data_model_scope_example' # str (optional)
 data_model_code = 'data_model_code_example' # str (optional)
-api_response = api_instance.get_instrument(identifier_type, identifier, effective_at=effective_at, as_at=as_at, property_keys=property_keys, scope=scope, relationship_definition_ids=relationship_definition_ids, data_model_scope=data_model_scope, data_model_code=data_model_code)
+timeline_scope = 'timeline_scope_example' # str (optional)
+timeline_code = 'timeline_code_example' # str (optional)
+closed_period_id = 'closed_period_id_example' # str (optional)
+api_response = api_instance.get_instrument(identifier_type, identifier, effective_at=effective_at, as_at=as_at, property_keys=property_keys, scope=scope, relationship_definition_ids=relationship_definition_ids, data_model_scope=data_model_scope, data_model_code=data_model_code, timeline_scope=timeline_scope, timeline_code=timeline_code, closed_period_id=closed_period_id)
 pprint(api_response)
 ```
 
@@ -485,6 +488,9 @@ Name | Type | Description  | Notes
  **relationship_definition_ids** | [**List[str]**](str.md)| A list of relationship definitions that are used to decorate related entities              onto the instrument in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}. | [optional] 
  **data_model_scope** | **str**| The optional scope of a Custom Data Model to use. | [optional] 
  **data_model_code** | **str**| The optional code of a Custom Data Model to use. | [optional] 
+ **timeline_scope** | **str**| The optional scope of a timeline to use for post-close activity. | [optional] 
+ **timeline_code** | **str**| The optional code of a timeline to use for post-close activity. | [optional] 
+ **closed_period_id** | **str**| The optional id of a closed period within the timeline to view. | [optional] 
 
 ### Return type
 
@@ -872,7 +878,7 @@ Name | Type | Description  | Notes
 ---
 
 # **list_instruments**
-> PagedResourceListOfInstrument listInstruments = list_instruments(as_at=as_at, effective_at=effective_at, page=page, sort_by=sort_by, limit=limit, filter=filter, instrument_property_keys=instrument_property_keys, scope=scope, relationship_definition_ids=relationship_definition_ids, data_model_scope=data_model_scope, data_model_code=data_model_code, membership_type=membership_type)
+> PagedResourceListOfInstrument listInstruments = list_instruments(as_at=as_at, effective_at=effective_at, page=page, sort_by=sort_by, limit=limit, filter=filter, instrument_property_keys=instrument_property_keys, scope=scope, relationship_definition_ids=relationship_definition_ids, data_model_scope=data_model_scope, data_model_code=data_model_code, membership_type=membership_type, timeline_scope=timeline_scope, timeline_code=timeline_code, closed_period_id=closed_period_id)
 
 ListInstruments: List instruments
 
@@ -894,7 +900,10 @@ relationship_definition_ids = ['relationship_definition_ids_example'] # List[str
 data_model_scope = 'data_model_scope_example' # str (optional)
 data_model_code = 'data_model_code_example' # str (optional)
 membership_type = 'membership_type_example' # str (optional)
-api_response = api_instance.list_instruments(as_at=as_at, effective_at=effective_at, page=page, sort_by=sort_by, limit=limit, filter=filter, instrument_property_keys=instrument_property_keys, scope=scope, relationship_definition_ids=relationship_definition_ids, data_model_scope=data_model_scope, data_model_code=data_model_code, membership_type=membership_type)
+timeline_scope = 'timeline_scope_example' # str (optional)
+timeline_code = 'timeline_code_example' # str (optional)
+closed_period_id = 'closed_period_id_example' # str (optional)
+api_response = api_instance.list_instruments(as_at=as_at, effective_at=effective_at, page=page, sort_by=sort_by, limit=limit, filter=filter, instrument_property_keys=instrument_property_keys, scope=scope, relationship_definition_ids=relationship_definition_ids, data_model_scope=data_model_scope, data_model_code=data_model_code, membership_type=membership_type, timeline_scope=timeline_scope, timeline_code=timeline_code, closed_period_id=closed_period_id)
 pprint(api_response)
 ```
 
@@ -914,6 +923,9 @@ Name | Type | Description  | Notes
  **data_model_scope** | **str**| The optional scope of a Custom Data Model to use. | [optional] 
  **data_model_code** | **str**| The optional code of a Custom Data Model to use. | [optional] 
  **membership_type** | **str**| The membership types of the specified Custom Data Model to return. Allowable values are Member, Candidate and All. Defaults to Member. | [optional] 
+ **timeline_scope** | **str**| The scope of the timeline to use for PCA (Post Close Activity) support. | [optional] 
+ **timeline_code** | **str**| The code of the timeline to use for PCA (Post Close Activity) support. | [optional] 
+ **closed_period_id** | **str**| The id of the closed period on the timeline to use for PCA (Post Close Activity) support. | [optional] 
 
 ### Return type
 

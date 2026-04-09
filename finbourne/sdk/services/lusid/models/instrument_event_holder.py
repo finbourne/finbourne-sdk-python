@@ -43,7 +43,8 @@ class InstrumentEventHolder(BaseModel):
     sequence_number: Optional[StrictInt] = Field(default=None, description="The order of the instrument event relative others on the same date (0 being processed first). Must be non negative.", alias="sequenceNumber")
     participation_type:  Optional[StrictStr] = Field(default=None,alias="participationType", description="Is participation in this event Mandatory, MandatoryWithChoices, or Voluntary.") 
     as_at: Optional[datetime] = Field(default=None, description="The AsAt time of the instrument event, if available. This is a readonly field and should not be provided on upsert.", alias="asAt")
-    __properties = ["instrumentEventId", "corporateActionSourceId", "instrumentIdentifiers", "lusidInstrumentId", "instrumentScope", "description", "eventDateRange", "completeness", "instrumentEvent", "properties", "sequenceNumber", "participationType", "asAt"]
+    group_code:  Optional[StrictStr] = Field(default=None,alias="groupCode", description="The group code that determines the processing order of instrument events with the same effective datetime.") 
+    __properties = ["instrumentEventId", "corporateActionSourceId", "instrumentIdentifiers", "lusidInstrumentId", "instrumentScope", "description", "eventDateRange", "completeness", "instrumentEvent", "properties", "sequenceNumber", "participationType", "asAt", "groupCode"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -116,6 +117,11 @@ class InstrumentEventHolder(BaseModel):
         if self.as_at is None and "as_at" in self.model_fields_set:
             _dict['asAt'] = None
 
+        # set to None if group_code (nullable) is None
+        # and model_fields_set contains the field
+        if self.group_code is None and "group_code" in self.model_fields_set:
+            _dict['groupCode'] = None
+
         return _dict
 
     @classmethod
@@ -140,7 +146,8 @@ class InstrumentEventHolder(BaseModel):
             "properties": [PerpetualProperty.from_dict(_item) for _item in obj.get("properties")] if obj.get("properties") is not None else None,
             "sequence_number": obj.get("sequenceNumber"),
             "participation_type": obj.get("participationType") if obj.get("participationType") is not None else 'Mandatory',
-            "as_at": obj.get("asAt")
+            "as_at": obj.get("asAt"),
+            "group_code": obj.get("groupCode")
         })
         return _obj
 

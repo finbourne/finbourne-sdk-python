@@ -96,7 +96,8 @@ class ScripDividendEvent(InstrumentEvent):
                                     'WeekRegularity',
                                     'YearRegularity',
                                     'LusidEntityDataQualityCheck',
-                                    'LusidEntityDataQualityCheckResponse']:
+                                    'LusidEntityDataQualityCheckResponse',
+                                    'TriggerChildTasksActionResponse']:
            return value
         
         # Only validate the 'type' property of the class

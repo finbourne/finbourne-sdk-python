@@ -8,6 +8,7 @@ Abstracts the kinds of Actions available in a read-only form
 
 * [CreateChildTasksActionResponse](./CreateChildTasksActionResponse.md)
 * [RunWorkerActionResponse](./RunWorkerActionResponse.md)
+* [TriggerChildTasksActionResponse](./TriggerChildTasksActionResponse.md)
 * [TriggerParentTaskActionResponse](./TriggerParentTaskActionResponse.md)
 
 ## Usage
@@ -42,6 +43,7 @@ instance = ActionDetailsResponse(create_child_tasks_action_response_instance)
 
 - [CreateChildTasksActionResponse](./CreateChildTasksActionResponse.md)
 - [RunWorkerActionResponse](./RunWorkerActionResponse.md)
+- [TriggerChildTasksActionResponse](./TriggerChildTasksActionResponse.md)
 - [TriggerParentTaskActionResponse](./TriggerParentTaskActionResponse.md)
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)
