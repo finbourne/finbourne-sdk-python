@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **price** | **float** | Optional | *No description available.* |
-| **type** | **str** | Optional | The available values are: Price, Yield, Spread, CashFlowPerUnit, CleanPrice, DirtyPrice |
+| **type** | **str** | Optional | The available values are: Price, Yield, Spread, CashFlowPerUnit, CleanPrice, DirtyPrice, CdsPrice |
 
 
 ## Usage
@@ -17,7 +17,7 @@ from finbourne.sdk.services.lusid.models.TransactionPrice import TransactionPric
 
 instance = TransactionPrice(
     price=0.0,  # optional
-    type="..."  # optional — The available values are: Price, Yield, Spread, CashFlowPerUnit, CleanPrice, DirtyPrice
+    type="..."  # optional — The available values are: Price, Yield, Spread, CashFlowPerUnit, CleanPrice, DirtyPrice, CdsPrice
 )
 ```
 

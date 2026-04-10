@@ -293,7 +293,10 @@ def get_api_configuration(
     if base_url is not None:
         config["api_url"] = base_url
     if access_token is not None:
-        config["access_token"] = access_token
+        # RefreshingToken.data can return None if the token file is missing or inaccessible
+        token_value = access_token.data if hasattr(access_token, 'data') else access_token
+        if token_value is not None:
+            config["access_token"] = access_token
     
     # Handle proxy configuration
     proxy_address = config.pop("proxy_address", None)
