@@ -34,7 +34,8 @@ class ViewItem(BaseModel):
     last_updated_at: Optional[datetime] = Field(default=None, description="The last updated at time, needed to get the creating Sql out of the logs", alias="lastUpdatedAt")
     last_updated_by:  Optional[StrictStr] = Field(default=None,alias="lastUpdatedBy", description="The last updated by this user") 
     created_by_user_id:  Optional[StrictStr] = Field(default=None,alias="createdByUserId", description="Originally created by this user") 
-    __properties = ["name", "domain", "filePath", "fileContent", "lastUpdatedExecutionId", "lastUpdatedAt", "lastUpdatedBy", "createdByUserId"]
+    notes:  Optional[StrictStr] = Field(default=None,alias="notes", description="Any notes around saving or whatnot") 
+    __properties = ["name", "domain", "filePath", "fileContent", "lastUpdatedExecutionId", "lastUpdatedAt", "lastUpdatedBy", "createdByUserId", "notes"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -66,6 +67,7 @@ class ViewItem(BaseModel):
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
         _dict = self. model_dump(by_alias=True,
+                          mode='json',
                           exclude={
                           },
                           exclude_none=True)
@@ -109,6 +111,11 @@ class ViewItem(BaseModel):
         if self.created_by_user_id is None and "created_by_user_id" in self.model_fields_set:
             _dict['createdByUserId'] = None
 
+        # set to None if notes (nullable) is None
+        # and model_fields_set contains the field
+        if self.notes is None and "notes" in self.model_fields_set:
+            _dict['notes'] = None
+
         return _dict
 
     @classmethod
@@ -128,7 +135,8 @@ class ViewItem(BaseModel):
             "last_updated_execution_id": obj.get("lastUpdatedExecutionId"),
             "last_updated_at": obj.get("lastUpdatedAt"),
             "last_updated_by": obj.get("lastUpdatedBy"),
-            "created_by_user_id": obj.get("createdByUserId")
+            "created_by_user_id": obj.get("createdByUserId"),
+            "notes": obj.get("notes")
         })
         return _obj
 

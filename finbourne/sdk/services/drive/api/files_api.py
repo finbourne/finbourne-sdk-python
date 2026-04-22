@@ -58,7 +58,7 @@ class FilesApi:
         :type x_lusid_drive_path: str
         :param content_length: The size in bytes of the file to be uploaded (required)
         :type content_length: int
-        :param body: (required)
+        :param body: Binary file content to upload as a stream (required)
         :type body: bytes
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -83,7 +83,7 @@ class FilesApi:
         :type x_lusid_drive_path: str
         :param content_length: The size in bytes of the file to be uploaded (required)
         :type content_length: int
-        :param body: (required)
+        :param body: Binary file content to upload as a stream (required)
         :type body: bytes
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -160,6 +160,11 @@ class FilesApi:
         _body_params = None
         if _params['body'] is not None:
             _body_params = _params['body']
+            # convert to byte array if the input is a file name (str)
+            if isinstance(_body_params, str):
+                with io.open(_body_params, "rb") as _fp:
+                   _body_params_from_file = _fp.read()
+                _body_params = _body_params_from_file
 
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.sync_api_client.select_header_accept(
@@ -558,7 +563,7 @@ class FilesApi:
         :type id: str
         :param content_length: The size in bytes of the file to be uploaded (required)
         :type content_length: int
-        :param body: (required)
+        :param body: Binary file content to upload as a stream (required)
         :type body: bytes
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -581,7 +586,7 @@ class FilesApi:
         :type id: str
         :param content_length: The size in bytes of the file to be uploaded (required)
         :type content_length: int
-        :param body: (required)
+        :param body: Binary file content to upload as a stream (required)
         :type body: bytes
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -654,6 +659,11 @@ class FilesApi:
         _body_params = None
         if _params['body'] is not None:
             _body_params = _params['body']
+            # convert to byte array if the input is a file name (str)
+            if isinstance(_body_params, str):
+                with io.open(_body_params, "rb") as _fp:
+                   _body_params_from_file = _fp.read()
+                _body_params = _body_params_from_file
 
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.sync_api_client.select_header_accept(
@@ -838,7 +848,7 @@ class FilesApi:
             :type x_lusid_drive_path: str
             :param content_length: The size in bytes of the file to be uploaded (required)
             :type content_length: int
-            :param body: (required)
+            :param body: Binary file content to upload as a stream (required)
             :type body: bytes
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -864,7 +874,7 @@ class FilesApi:
             :type x_lusid_drive_path: str
             :param content_length: The size in bytes of the file to be uploaded (required)
             :type content_length: int
-            :param body: (required)
+            :param body: Binary file content to upload as a stream (required)
             :type body: bytes
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
@@ -941,6 +951,11 @@ class FilesApi:
             _body_params = None
             if _params['body'] is not None:
                 _body_params = _params['body']
+                # convert to byte array if the input is a file name (str)
+                if isinstance(_body_params, str):
+                    with io.open(_body_params, "rb") as _fp:
+                      _body_params_from_file = _fp.read()
+                    _body_params = _body_params_from_file
 
             # set the HTTP header `Accept`
             _header_params['Accept'] = self.api_client.select_header_accept(
@@ -1342,7 +1357,7 @@ class FilesApi:
             :type id: str
             :param content_length: The size in bytes of the file to be uploaded (required)
             :type content_length: int
-            :param body: (required)
+            :param body: Binary file content to upload as a stream (required)
             :type body: bytes
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -1366,7 +1381,7 @@ class FilesApi:
             :type id: str
             :param content_length: The size in bytes of the file to be uploaded (required)
             :type content_length: int
-            :param body: (required)
+            :param body: Binary file content to upload as a stream (required)
             :type body: bytes
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
@@ -1439,6 +1454,11 @@ class FilesApi:
             _body_params = None
             if _params['body'] is not None:
                 _body_params = _params['body']
+                # convert to byte array if the input is a file name (str)
+                if isinstance(_body_params, str):
+                    with io.open(_body_params, "rb") as _fp:
+                      _body_params_from_file = _fp.read()
+                    _body_params = _body_params_from_file
 
             # set the HTTP header `Accept`
             _header_params['Accept'] = self.api_client.select_header_accept(

@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**list_access_controlled_resources**](ApplicationMetadataApi.md#list_access_controlled_resources) | **GET** /notifications/api/metadata/access/resources | ListAccessControlledResources: Get resources available for access control
+[**list_access_controlled_resources**](ApplicationMetadataApi.md#list_access_controlled_resources) | **GET** /notification/api/metadata/access/resources | ListAccessControlledResources: Get resources available for access control
 
 
 ### Example

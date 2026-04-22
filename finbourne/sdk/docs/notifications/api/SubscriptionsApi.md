@@ -4,11 +4,11 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_subscription**](SubscriptionsApi.md#create_subscription) | **POST** /notifications/api/subscriptions | CreateSubscription: Create a new subscription.
-[**delete_subscription**](SubscriptionsApi.md#delete_subscription) | **DELETE** /notifications/api/subscriptions/{scope}/{code} | DeleteSubscription: Delete a subscription.
-[**get_subscription**](SubscriptionsApi.md#get_subscription) | **GET** /notifications/api/subscriptions/{scope}/{code} | GetSubscription: Get a subscription.
-[**list_subscriptions**](SubscriptionsApi.md#list_subscriptions) | **GET** /notifications/api/subscriptions | ListSubscriptions: List subscriptions.
-[**update_subscription**](SubscriptionsApi.md#update_subscription) | **PUT** /notifications/api/subscriptions/{scope}/{code} | UpdateSubscription: Update an existing subscription.
+[**create_subscription**](SubscriptionsApi.md#create_subscription) | **POST** /notification/api/subscriptions | CreateSubscription: Create a new subscription.
+[**delete_subscription**](SubscriptionsApi.md#delete_subscription) | **DELETE** /notification/api/subscriptions/{scope}/{code} | DeleteSubscription: Delete a subscription.
+[**get_subscription**](SubscriptionsApi.md#get_subscription) | **GET** /notification/api/subscriptions/{scope}/{code} | GetSubscription: Get a subscription.
+[**list_subscriptions**](SubscriptionsApi.md#list_subscriptions) | **GET** /notification/api/subscriptions | ListSubscriptions: List subscriptions.
+[**update_subscription**](SubscriptionsApi.md#update_subscription) | **PUT** /notification/api/subscriptions/{scope}/{code} | UpdateSubscription: Update an existing subscription.
 
 
 ### Example

@@ -21,6 +21,7 @@
 | **requested_changes** | [RequestedChanges](RequestedChanges.md) | Optional | *No description available.* |
 | **entity_hrefs** | [StagedModificationsEntityHrefs](StagedModificationsEntityHrefs.md) | Optional | *No description available.* |
 | **display_name** | **str** | Optional | The display name of the entity the staged modification applies to. |
+| **source_entity** | [StagedModificationSourceEntity](StagedModificationSourceEntity.md) | Optional | *No description available.* |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
@@ -49,6 +50,7 @@ instance = StagedModification(
     requested_changes=RequestedChanges(...),  # optional
     entity_hrefs=StagedModificationsEntityHrefs(...),  # optional
     display_name="...",  # optional — The display name of the entity the staged modification applies to.
+    source_entity=StagedModificationSourceEntity(...),  # optional
     links=[]  # optional
 )
 ```
@@ -57,6 +59,7 @@ instance = StagedModification(
 - [StagedModificationDecision](StagedModificationDecision.md) — used in `decisions`
 - [RequestedChanges](RequestedChanges.md)
 - [StagedModificationsEntityHrefs](StagedModificationsEntityHrefs.md)
+- [StagedModificationSourceEntity](StagedModificationSourceEntity.md)
 - [Link](Link.md)
 
 

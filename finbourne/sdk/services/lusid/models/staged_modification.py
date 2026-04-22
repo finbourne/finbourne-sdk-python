@@ -23,6 +23,7 @@ from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictF
 from finbourne.sdk.services.lusid.models.link import Link
 from finbourne.sdk.services.lusid.models.requested_changes import RequestedChanges
 from finbourne.sdk.services.lusid.models.staged_modification_decision import StagedModificationDecision
+from finbourne.sdk.services.lusid.models.staged_modification_source_entity import StagedModificationSourceEntity
 from finbourne.sdk.services.lusid.models.staged_modification_staging_rule import StagedModificationStagingRule
 from finbourne.sdk.services.lusid.models.staged_modifications_entity_hrefs import StagedModificationsEntityHrefs
 
@@ -48,8 +49,9 @@ class StagedModification(BaseModel):
     requested_changes: Optional[RequestedChanges] = Field(default=None, alias="requestedChanges")
     entity_hrefs: Optional[StagedModificationsEntityHrefs] = Field(default=None, alias="entityHrefs")
     display_name:  Optional[StrictStr] = Field(default=None,alias="displayName", description="The display name of the entity the staged modification applies to.") 
+    source_entity: Optional[StagedModificationSourceEntity] = Field(default=None, alias="sourceEntity")
     links: Optional[List[Link]] = None
-    __properties = ["id", "asAtStaged", "userIdStaged", "requestedIdStaged", "requestReason", "action", "stagingRule", "decisions", "decisionsCount", "status", "asAtClosed", "entityType", "scope", "entityUniqueId", "requestedChanges", "entityHrefs", "displayName", "links"]
+    __properties = ["id", "asAtStaged", "userIdStaged", "requestedIdStaged", "requestReason", "action", "stagingRule", "decisions", "decisionsCount", "status", "asAtClosed", "entityType", "scope", "entityUniqueId", "requestedChanges", "entityHrefs", "displayName", "sourceEntity", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -81,6 +83,7 @@ class StagedModification(BaseModel):
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
         _dict = self. model_dump(by_alias=True,
+                          mode='json',
                           exclude={
                           },
                           exclude_none=True)
@@ -100,6 +103,9 @@ class StagedModification(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of entity_hrefs
         if self.entity_hrefs:
             _dict['entityHrefs'] = self.entity_hrefs.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of source_entity
+        if self.source_entity:
+            _dict['sourceEntity'] = self.source_entity.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in links (list)
         _items = []
         if self.links:
@@ -201,6 +207,7 @@ class StagedModification(BaseModel):
             "requested_changes": RequestedChanges.from_dict(obj.get("requestedChanges")) if obj.get("requestedChanges") is not None else None,
             "entity_hrefs": StagedModificationsEntityHrefs.from_dict(obj.get("entityHrefs")) if obj.get("entityHrefs") is not None else None,
             "display_name": obj.get("displayName"),
+            "source_entity": StagedModificationSourceEntity.from_dict(obj.get("sourceEntity")) if obj.get("sourceEntity") is not None else None,
             "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
         })
         return _obj

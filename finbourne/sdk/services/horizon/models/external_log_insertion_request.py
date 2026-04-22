@@ -60,6 +60,7 @@ class ExternalLogInsertionRequest(BaseModel):
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
         _dict = self. model_dump(by_alias=True,
+                          mode='json',
                           exclude={
                           },
                           exclude_none=True)

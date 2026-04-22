@@ -4,8 +4,8 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_event_type**](EventTypesApi.md#get_event_type) | **GET** /notifications/api/eventtypes/{eventType} | GetEventType: Gets the specified event type schema.
-[**list_event_types**](EventTypesApi.md#list_event_types) | **GET** /notifications/api/eventtypes | ListEventTypes: Lists all of the available event types.
+[**get_event_type**](EventTypesApi.md#get_event_type) | **GET** /notification/api/eventtypes/{eventType} | GetEventType: Gets the specified event type schema.
+[**list_event_types**](EventTypesApi.md#list_event_types) | **GET** /notification/api/eventtypes | ListEventTypes: Lists all of the available event types.
 
 
 ### Example

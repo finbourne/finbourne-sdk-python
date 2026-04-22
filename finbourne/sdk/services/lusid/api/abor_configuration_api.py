@@ -627,7 +627,7 @@ class AborConfigurationApi:
         List all the AborConfiguration matching particular criteria.  # noqa: E501
         :param effective_at: The effective datetime or cut label at which to list the TimeVariant properties for the AborConfiguration. Defaults to the current LUSID              system datetime if not specified.
         :type effective_at: str
-        :param as_at: The asAt datetime at which to list the AborConfiguration. Defaults to returning the latest version of each AAborConfigurationbor if not specified.
+        :param as_at: The asAt datetime at which to list the AborConfiguration. Defaults to returning the latest version of each AborConfiguration if not specified.
         :type as_at: datetime
         :param page: The pagination token to use to continue listing AborConfiguration; this              value is returned from the previous call. If a pagination token is provided, the filter, effectiveAt              and asAt fields must not have changed since the original request.
         :type page: str
@@ -659,7 +659,7 @@ class AborConfigurationApi:
         List all the AborConfiguration matching particular criteria.  # noqa: E501
         :param effective_at: The effective datetime or cut label at which to list the TimeVariant properties for the AborConfiguration. Defaults to the current LUSID              system datetime if not specified.
         :type effective_at: str
-        :param as_at: The asAt datetime at which to list the AborConfiguration. Defaults to returning the latest version of each AAborConfigurationbor if not specified.
+        :param as_at: The asAt datetime at which to list the AborConfiguration. Defaults to returning the latest version of each AborConfiguration if not specified.
         :type as_at: datetime
         :param page: The pagination token to use to continue listing AborConfiguration; this              value is returned from the previous call. If a pagination token is provided, the filter, effectiveAt              and asAt fields must not have changed since the original request.
         :type page: str
@@ -1660,7 +1660,7 @@ class AborConfigurationApi:
             
             :param effective_at: The effective datetime or cut label at which to list the TimeVariant properties for the AborConfiguration. Defaults to the current LUSID              system datetime if not specified.
             :type effective_at: str
-            :param as_at: The asAt datetime at which to list the AborConfiguration. Defaults to returning the latest version of each AAborConfigurationbor if not specified.
+            :param as_at: The asAt datetime at which to list the AborConfiguration. Defaults to returning the latest version of each AborConfiguration if not specified.
             :type as_at: datetime
             :param page: The pagination token to use to continue listing AborConfiguration; this              value is returned from the previous call. If a pagination token is provided, the filter, effectiveAt              and asAt fields must not have changed since the original request.
             :type page: str
@@ -1693,7 +1693,7 @@ class AborConfigurationApi:
 
             :param effective_at: The effective datetime or cut label at which to list the TimeVariant properties for the AborConfiguration. Defaults to the current LUSID              system datetime if not specified.
             :type effective_at: str
-            :param as_at: The asAt datetime at which to list the AborConfiguration. Defaults to returning the latest version of each AAborConfigurationbor if not specified.
+            :param as_at: The asAt datetime at which to list the AborConfiguration. Defaults to returning the latest version of each AborConfiguration if not specified.
             :type as_at: datetime
             :param page: The pagination token to use to continue listing AborConfiguration; this              value is returned from the previous call. If a pagination token is provided, the filter, effectiveAt              and asAt fields must not have changed since the original request.
             :type page: str

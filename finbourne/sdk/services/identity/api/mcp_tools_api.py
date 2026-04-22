@@ -172,6 +172,7 @@ class MCPToolsApi:
         _response_types_map = {
             '201': "McpToolResponse",
             '400': "LusidValidationProblemDetails",
+            '409': None,
         }
 
         return self.sync_api_client.call_api(
@@ -687,6 +688,7 @@ class MCPToolsApi:
         _response_types_map = {
             '200': "McpToolResponse",
             '400': "LusidValidationProblemDetails",
+            '409': None,
         }
 
         return self.sync_api_client.call_api(
@@ -835,6 +837,7 @@ class MCPToolsApi:
             _response_types_map = {
                 '201': "McpToolResponse",
                 '400': "LusidValidationProblemDetails",
+                '409': None,
             }
 
             return await self.api_client.call_api_async(
@@ -1354,6 +1357,7 @@ class MCPToolsApi:
             _response_types_map = {
                 '200': "McpToolResponse",
                 '400': "LusidValidationProblemDetails",
+                '409': None,
             }
 
             return await self.api_client.call_api_async(

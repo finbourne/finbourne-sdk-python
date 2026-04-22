@@ -156,7 +156,7 @@ class ManualEventApi:
         }
 
         return self.sync_api_client.call_api(
-            '/notifications/api/manualevent', 'POST',
+            '/notification/api/manualevent', 'POST',
             _path_params,
             _query_params,
             _header_params,
@@ -286,7 +286,7 @@ class ManualEventApi:
             }
 
             return await self.api_client.call_api_async(
-                '/notifications/api/manualevent', 'POST',
+                '/notification/api/manualevent', 'POST',
                 _path_params,
                 _query_params,
                 _header_params,

@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**list_deliveries**](DeliveriesApi.md#list_deliveries) | **GET** /notifications/api/deliveries | ListDeliveries: List Deliveries
+[**list_deliveries**](DeliveriesApi.md#list_deliveries) | **GET** /notification/api/deliveries | ListDeliveries: List Deliveries
 
 
 ### Example

@@ -124,6 +124,7 @@ from finbourne.sdk.services.workflow.models.update_task_definition_request impor
 from finbourne.sdk.services.workflow.models.update_task_request import UpdateTaskRequest
 from finbourne.sdk.services.workflow.models.update_task_with_id_and_trigger_request import UpdateTaskWithIdAndTriggerRequest
 from finbourne.sdk.services.workflow.models.update_worker_request import UpdateWorkerRequest
+from finbourne.sdk.services.workflow.models.update_workflow_request import UpdateWorkflowRequest
 from finbourne.sdk.services.workflow.models.value_constraints import ValueConstraints
 from finbourne.sdk.services.workflow.models.version_info import VersionInfo
 from finbourne.sdk.services.workflow.models.versioned_task_definition_id import VersionedTaskDefinitionId
@@ -252,6 +253,7 @@ __all__ = [
     "UpdateTaskRequest",
     "UpdateTaskWithIdAndTriggerRequest",
     "UpdateWorkerRequest",
+    "UpdateWorkflowRequest",
     "ValueConstraints",
     "VersionInfo",
     "VersionedTaskDefinitionId",

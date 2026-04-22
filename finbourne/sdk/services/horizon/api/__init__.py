@@ -1,6 +1,7 @@
 # flake8: noqa
 
 # import apis into api package
+from finbourne.sdk.services.horizon.api.client_configurations_api import ClientConfigurationsApi
 from finbourne.sdk.services.horizon.api.instrument_api import InstrumentApi
 from finbourne.sdk.services.horizon.api.integrations_api import IntegrationsApi
 from finbourne.sdk.services.horizon.api.logs_api import LogsApi
@@ -10,6 +11,7 @@ from finbourne.sdk.services.horizon.api.vendor_api import VendorApi
 
 
 __all__ = [
+    "ClientConfigurationsApi",
     "InstrumentApi",
     "IntegrationsApi",
     "LogsApi",

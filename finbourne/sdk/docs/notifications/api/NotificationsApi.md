@@ -4,11 +4,11 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_notification**](NotificationsApi.md#create_notification) | **POST** /notifications/api/subscriptions/{scope}/{code}/notifications | CreateNotification: Add a Notification to a Subscription.
-[**delete_notification**](NotificationsApi.md#delete_notification) | **DELETE** /notifications/api/subscriptions/{scope}/{code}/notifications/{id} | DeleteNotification: Delete a notification for a given subscription.
-[**get_notification**](NotificationsApi.md#get_notification) | **GET** /notifications/api/subscriptions/{scope}/{code}/notifications/{id} | GetNotification: Get a notification on a subscription.
-[**list_notifications**](NotificationsApi.md#list_notifications) | **GET** /notifications/api/subscriptions/{scope}/{code}/notifications | ListNotifications: List all notifications on a subscription.
-[**update_notification**](NotificationsApi.md#update_notification) | **PUT** /notifications/api/subscriptions/{scope}/{code}/notifications/{id} | UpdateNotification: Update a Notification for a Subscription
+[**create_notification**](NotificationsApi.md#create_notification) | **POST** /notification/api/subscriptions/{scope}/{code}/notifications | CreateNotification: Add a Notification to a Subscription.
+[**delete_notification**](NotificationsApi.md#delete_notification) | **DELETE** /notification/api/subscriptions/{scope}/{code}/notifications/{id} | DeleteNotification: Delete a notification for a given subscription.
+[**get_notification**](NotificationsApi.md#get_notification) | **GET** /notification/api/subscriptions/{scope}/{code}/notifications/{id} | GetNotification: Get a notification on a subscription.
+[**list_notifications**](NotificationsApi.md#list_notifications) | **GET** /notification/api/subscriptions/{scope}/{code}/notifications | ListNotifications: List all notifications on a subscription.
+[**update_notification**](NotificationsApi.md#update_notification) | **PUT** /notification/api/subscriptions/{scope}/{code}/notifications/{id} | UpdateNotification: Update a Notification for a Subscription
 
 
 ### Example

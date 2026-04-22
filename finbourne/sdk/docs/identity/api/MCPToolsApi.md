@@ -76,6 +76,7 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **201** | Create MCP Tool |  -  |
 **400** | The details of the input related failure |  -  |
+**409** | A tool with the same code or name already exists in this domain |  -  |
 **0** | Error response |  -  |
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
@@ -248,6 +249,7 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Update MCP Tool |  -  |
 **400** | The details of the input related failure |  -  |
+**409** | Renaming this tool would conflict with an existing tool name in this domain |  -  |
 **0** | Error response |  -  |
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)

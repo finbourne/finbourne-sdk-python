@@ -159,7 +159,7 @@ class SubscriptionsApi:
         }
 
         return self.sync_api_client.call_api(
-            '/notifications/api/subscriptions', 'POST',
+            '/notification/api/subscriptions', 'POST',
             _path_params,
             _query_params,
             _header_params,
@@ -282,7 +282,7 @@ class SubscriptionsApi:
         _response_types_map = {}
 
         return self.sync_api_client.call_api(
-            '/notifications/api/subscriptions/{scope}/{code}', 'DELETE',
+            '/notification/api/subscriptions/{scope}/{code}', 'DELETE',
             _path_params,
             _query_params,
             _header_params,
@@ -409,7 +409,7 @@ class SubscriptionsApi:
         }
 
         return self.sync_api_client.call_api(
-            '/notifications/api/subscriptions/{scope}/{code}', 'GET',
+            '/notification/api/subscriptions/{scope}/{code}', 'GET',
             _path_params,
             _query_params,
             _header_params,
@@ -551,7 +551,7 @@ class SubscriptionsApi:
         }
 
         return self.sync_api_client.call_api(
-            '/notifications/api/subscriptions', 'GET',
+            '/notification/api/subscriptions', 'GET',
             _path_params,
             _query_params,
             _header_params,
@@ -693,7 +693,7 @@ class SubscriptionsApi:
         }
 
         return self.sync_api_client.call_api(
-            '/notifications/api/subscriptions/{scope}/{code}', 'PUT',
+            '/notification/api/subscriptions/{scope}/{code}', 'PUT',
             _path_params,
             _query_params,
             _header_params,
@@ -823,7 +823,7 @@ class SubscriptionsApi:
             }
 
             return await self.api_client.call_api_async(
-                '/notifications/api/subscriptions', 'POST',
+                '/notification/api/subscriptions', 'POST',
                 _path_params,
                 _query_params,
                 _header_params,
@@ -947,7 +947,7 @@ class SubscriptionsApi:
             _response_types_map = {}
 
             return await self.api_client.call_api_async(
-                '/notifications/api/subscriptions/{scope}/{code}', 'DELETE',
+                '/notification/api/subscriptions/{scope}/{code}', 'DELETE',
                 _path_params,
                 _query_params,
                 _header_params,
@@ -1075,7 +1075,7 @@ class SubscriptionsApi:
             }
 
             return await self.api_client.call_api_async(
-                '/notifications/api/subscriptions/{scope}/{code}', 'GET',
+                '/notification/api/subscriptions/{scope}/{code}', 'GET',
                 _path_params,
                 _query_params,
                 _header_params,
@@ -1218,7 +1218,7 @@ class SubscriptionsApi:
             }
 
             return await self.api_client.call_api_async(
-                '/notifications/api/subscriptions', 'GET',
+                '/notification/api/subscriptions', 'GET',
                 _path_params,
                 _query_params,
                 _header_params,
@@ -1361,7 +1361,7 @@ class SubscriptionsApi:
             }
 
             return await self.api_client.call_api_async(
-                '/notifications/api/subscriptions/{scope}/{code}', 'PUT',
+                '/notification/api/subscriptions/{scope}/{code}', 'PUT',
                 _path_params,
                 _query_params,
                 _header_params,

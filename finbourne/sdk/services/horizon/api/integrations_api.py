@@ -33,6 +33,8 @@ from finbourne.sdk.services.horizon.models.j_schema import JSchema
 from finbourne.sdk.services.horizon.models.lusid_property_definition_overrides_by_type import LusidPropertyDefinitionOverridesByType
 from finbourne.sdk.services.horizon.models.paged_resource_list_of_i_field_mapping import PagedResourceListOfIFieldMapping
 from finbourne.sdk.services.horizon.models.paged_resource_list_of_i_property_mapping import PagedResourceListOfIPropertyMapping
+from finbourne.sdk.services.horizon.models.processor_description import ProcessorDescription
+from finbourne.sdk.services.horizon.models.processor_schema_response import ProcessorSchemaResponse
 from finbourne.sdk.services.horizon.models.update_instance_request import UpdateInstanceRequest
 from finbourne.sdk.api_client import ApiClient
 from finbourne.sdk.api_response import ApiResponse
@@ -545,6 +547,125 @@ class IntegrationsApi:
 
         return self.sync_api_client.call_api(
             '/horizon/api/integrations/instances/{instanceId}/executewithparams', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    def get_dataflow_processor_schema(self, processor_type: StrictStr, **kwargs) -> ProcessorSchemaResponse:
+        """[EXPERIMENTAL] GetDataflowProcessorSchema: Returns processor configuration schema for a given processor type. This is used by the UI to render the configuration form for a processortype.  # noqa: E501
+
+        :param processor_type:  (required)
+        :type processor_type: str
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: ProcessorSchemaResponse
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_dataflow_processor_schema_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        return self.get_dataflow_processor_schema_with_http_info(processor_type, **kwargs)  # noqa: E501
+
+    @validate_call
+    def get_dataflow_processor_schema_with_http_info(self, processor_type: StrictStr, **kwargs) -> ApiResponse[ProcessorSchemaResponse]:
+        """[EXPERIMENTAL] GetDataflowProcessorSchema: Returns processor configuration schema for a given processor type. This is used by the UI to render the configuration form for a processortype.  # noqa: E501
+
+        :param processor_type:  (required)
+        :type processor_type: str
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(ProcessorSchemaResponse, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'processor_type'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_dataflow_processor_schema" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['processor_type']:
+            _path_params['processorType'] = _params['processor_type']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '400': "LusidValidationProblemDetails",
+            '200': "ProcessorSchemaResponse",
+            '404': None,
+        }
+
+        return self.sync_api_client.call_api(
+            '/horizon/api/integrations/dataflow/processors/{processorType}/schema', 'GET',
             _path_params,
             _query_params,
             _header_params,
@@ -1474,6 +1595,118 @@ class IntegrationsApi:
 
         return self.sync_api_client.call_api(
             '/horizon/api/integrations/schema/{integration}', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    def list_dataflow_processors(self, **kwargs) -> List[ProcessorDescription]:
+        """[EXPERIMENTAL] ListDataflowProcessors: List processor types.  # noqa: E501
+
+        The user must be authenticated to call this method.  # noqa: E501
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: List[ProcessorDescription]
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the list_dataflow_processors_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        return self.list_dataflow_processors_with_http_info(**kwargs)  # noqa: E501
+
+    @validate_call
+    def list_dataflow_processors_with_http_info(self, **kwargs) -> ApiResponse[List[ProcessorDescription]]:
+        """[EXPERIMENTAL] ListDataflowProcessors: List processor types.  # noqa: E501
+
+        The user must be authenticated to call this method.  # noqa: E501
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(List[ProcessorDescription], status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method list_dataflow_processors" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "List[ProcessorDescription]",
+            '404': None,
+        }
+
+        return self.sync_api_client.call_api(
+            '/horizon/api/integrations/dataflow/processors', 'GET',
             _path_params,
             _query_params,
             _header_params,
@@ -2499,6 +2732,126 @@ class IntegrationsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    async def get_dataflow_processor_schema_async(self, processor_type: StrictStr, **kwargs) -> ProcessorSchemaResponse:
+            """[EXPERIMENTAL] GetDataflowProcessorSchema: Returns processor configuration schema for a given processor type. This is used by the UI to render the configuration form for a processortype.  # noqa: E501
+            
+            :param processor_type:  (required)
+            :type processor_type: str
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: ProcessorSchemaResponse
+            """
+            kwargs['_return_http_data_only'] = True
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the get_dataflow_processor_schema_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            return await self.get_dataflow_processor_schema_with_http_info_async(processor_type, **kwargs)  # noqa: E501
+
+    @validate_call
+    async def get_dataflow_processor_schema_with_http_info_async(self, processor_type: StrictStr, **kwargs) -> ApiResponse[ProcessorSchemaResponse]:
+            """[EXPERIMENTAL] GetDataflowProcessorSchema: Returns processor configuration schema for a given processor type. This is used by the UI to render the configuration form for a processortype.  # noqa: E501
+
+
+            :param processor_type:  (required)
+            :type processor_type: str
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(ProcessorSchemaResponse, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'processor_type'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method get_dataflow_processor_schema" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['processor_type']:
+                _path_params['processorType'] = _params['processor_type']
+
+
+            # process the query parameters
+            _query_params = []
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['application/json'])  # noqa: E501
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '400': "LusidValidationProblemDetails",
+                '200': "ProcessorSchemaResponse",
+                '404': None,
+            }
+
+            return await self.api_client.call_api_async(
+                '/horizon/api/integrations/dataflow/processors/{processorType}/schema', 'GET',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     async def get_execution_ids_for_instance_async(self, instance_id: StrictStr, limit: Optional[int] = None, **kwargs) -> List[str]:
             """[EXPERIMENTAL] GetExecutionIdsForInstance: Get integration instance execution ids.  # noqa: E501
             Get the most recent execution ids for an integration instance. The user must be authenticated, entitled to call this method, and the user's domain must be licensed for the integration.  # noqa: E501
@@ -3419,6 +3772,119 @@ class IntegrationsApi:
 
             return await self.api_client.call_api_async(
                 '/horizon/api/integrations/schema/{integration}', 'GET',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def list_dataflow_processors_async(self, **kwargs) -> List[ProcessorDescription]:
+            """[EXPERIMENTAL] ListDataflowProcessors: List processor types.  # noqa: E501
+            The user must be authenticated to call this method.  # noqa: E501
+            
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: List[ProcessorDescription]
+            """
+            kwargs['_return_http_data_only'] = True
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the list_dataflow_processors_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            return await self.list_dataflow_processors_with_http_info_async(**kwargs)  # noqa: E501
+
+    @validate_call
+    async def list_dataflow_processors_with_http_info_async(self, **kwargs) -> ApiResponse[List[ProcessorDescription]]:
+            """[EXPERIMENTAL] ListDataflowProcessors: List processor types.  # noqa: E501
+
+            The user must be authenticated to call this method.  # noqa: E501
+
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(List[ProcessorDescription], status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method list_dataflow_processors" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+
+            # process the query parameters
+            _query_params = []
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['application/json'])  # noqa: E501
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "List[ProcessorDescription]",
+                '404': None,
+            }
+
+            return await self.api_client.call_api_async(
+                '/horizon/api/integrations/dataflow/processors', 'GET',
                 _path_params,
                 _query_params,
                 _header_params,

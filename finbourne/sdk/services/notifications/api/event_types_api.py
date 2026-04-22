@@ -150,7 +150,7 @@ class EventTypesApi:
         }
 
         return self.sync_api_client.call_api(
-            '/notifications/api/eventtypes/{eventType}', 'GET',
+            '/notification/api/eventtypes/{eventType}', 'GET',
             _path_params,
             _query_params,
             _header_params,
@@ -260,7 +260,7 @@ class EventTypesApi:
         }
 
         return self.sync_api_client.call_api(
-            '/notifications/api/eventtypes', 'GET',
+            '/notification/api/eventtypes', 'GET',
             _path_params,
             _query_params,
             _header_params,
@@ -384,7 +384,7 @@ class EventTypesApi:
             }
 
             return await self.api_client.call_api_async(
-                '/notifications/api/eventtypes/{eventType}', 'GET',
+                '/notification/api/eventtypes/{eventType}', 'GET',
                 _path_params,
                 _query_params,
                 _header_params,
@@ -495,7 +495,7 @@ class EventTypesApi:
             }
 
             return await self.api_client.call_api_async(
-                '/notifications/api/eventtypes', 'GET',
+                '/notification/api/eventtypes', 'GET',
                 _path_params,
                 _query_params,
                 _header_params,

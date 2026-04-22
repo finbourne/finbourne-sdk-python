@@ -1359,7 +1359,7 @@ Name | Type | Description  | Notes
 ---
 
 # **get_holdings_adjustment**
-> HoldingsAdjustment getHoldingsAdjustment = get_holdings_adjustment(scope, code, effective_at, as_at=as_at, property_keys=property_keys)
+> HoldingsAdjustment getHoldingsAdjustment = get_holdings_adjustment(scope, code, effective_at, as_at=as_at, property_keys=property_keys, filter=filter)
 
 GetHoldingsAdjustment: Get holdings adjustment
 
@@ -1374,7 +1374,8 @@ code = 'code_example' # str
 effective_at = 'effective_at_example' # str
 as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
 property_keys = ['property_keys_example'] # List[str] (optional)
-api_response = api_instance.get_holdings_adjustment(scope, code, effective_at, as_at=as_at, property_keys=property_keys)
+filter = 'filter_example' # str (optional)
+api_response = api_instance.get_holdings_adjustment(scope, code, effective_at, as_at=as_at, property_keys=property_keys, filter=filter)
 pprint(api_response)
 ```
 
@@ -1386,7 +1387,8 @@ Name | Type | Description  | Notes
  **code** | **str**| The code of the transaction portfolio. Together with the scope this uniquely identifies              the transaction portfolio. | [required] 
  **effective_at** | **str**| The effective datetime or cut label of the holdings adjustment. | [required] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the holdings adjustment. Defaults to the return the latest              version of the holdings adjustment if not specified. | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the ‘Instrument&#39; domain to decorate onto holdings adjustments.              These must have the format {domain}/{scope}/{code}, for example &#39;Instrument/system/Name&#39;.              Note that properties from the &#39;Holding’ domain are automatically returned. | [optional] 
+ **property_keys** | [**List[str]**](str.md)| A list of property keys from the &#39;Instrument&#39; domain to decorate onto holdings adjustments.              These must have the format {domain}/{scope}/{code}, for example &#39;Instrument/system/Name&#39;.              Note that properties from the &#39;Holding&#39; domain are automatically returned. | [optional] 
+ **filter** | **str**| Expression to filter the holding adjustments result set.              Supported fields: InstrumentUid, InstrumentScope, Currency, Properties[Holding/{scope}/{code}], SubHoldingKeys[Transaction/{scope}/{code}].              For example, to filter on a specific instrument, specify \&quot;InstrumentUid eq &#39;LUID_00003D4X&#39;\&quot;.              For more information about filtering LUSID results, see https://support.lusid.com/knowledgebase/article/KA-01914. | [optional] 
 
 ### Return type
 
@@ -1999,7 +2001,7 @@ Name | Type | Description  | Notes
 ---
 
 # **list_holdings_adjustments**
-> ResourceListOfHoldingsAdjustmentHeader listHoldingsAdjustments = list_holdings_adjustments(scope, code, from_effective_at=from_effective_at, to_effective_at=to_effective_at, as_at=as_at)
+> ResourceListOfHoldingsAdjustmentHeader listHoldingsAdjustments = list_holdings_adjustments(scope, code, from_effective_at=from_effective_at, to_effective_at=to_effective_at, as_at=as_at, filter=filter)
 
 ListHoldingsAdjustments: List holdings adjustments
 
@@ -2014,7 +2016,8 @@ code = 'code_example' # str
 from_effective_at = 'from_effective_at_example' # str (optional)
 to_effective_at = 'to_effective_at_example' # str (optional)
 as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
-api_response = api_instance.list_holdings_adjustments(scope, code, from_effective_at=from_effective_at, to_effective_at=to_effective_at, as_at=as_at)
+filter = 'filter_example' # str (optional)
+api_response = api_instance.list_holdings_adjustments(scope, code, from_effective_at=from_effective_at, to_effective_at=to_effective_at, as_at=as_at, filter=filter)
 pprint(api_response)
 ```
 
@@ -2027,6 +2030,7 @@ Name | Type | Description  | Notes
  **from_effective_at** | **str**| The lower bound effective datetime or cut label (inclusive) from which to retrieve the holdings              adjustments. There is no lower bound if this is not specified. | [optional] 
  **to_effective_at** | **str**| The upper bound effective datetime or cut label (inclusive) from which to retrieve the holdings              adjustments. There is no upper bound if this is not specified. | [optional] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the holdings adjustments. Defaults to return the              latest version of each holding adjustment if not specified. | [optional] 
+ **filter** | **str**| Expression to filter the holding adjustments result set.              Supported fields: InstrumentUid, InstrumentScope, Currency, Properties[Holding/{scope}/{code}], SubHoldingKeys[Transaction/{scope}/{code}].              For example, to filter on a specific instrument, specify \&quot;InstrumentUid eq &#39;LUID_00003D4X&#39;\&quot;.              For more information about filtering LUSID results, see https://support.lusid.com/knowledgebase/article/KA-01914. | [optional] 
 
 ### Return type
 

@@ -5,8 +5,10 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_workflow**](WorkflowsApi.md#create_workflow) | **POST** /workflow/api/workflows | CreateWorkflow: Create a new Workflow
+[**delete_workflow**](WorkflowsApi.md#delete_workflow) | **DELETE** /workflow/api/workflows/{scope}/{code} | [EXPERIMENTAL] DeleteWorkflow: Delete a Workflow
 [**get_workflow**](WorkflowsApi.md#get_workflow) | **GET** /workflow/api/workflows/{scope}/{code} | GetWorkflow: Get a Workflow
 [**list_workflows**](WorkflowsApi.md#list_workflows) | **GET** /workflow/api/workflows | ListWorkflows: List Workflows
+[**update_workflow**](WorkflowsApi.md#update_workflow) | **PUT** /workflow/api/workflows/{scope}/{code} | [EXPERIMENTAL] UpdateWorkflow: Update an existing Workflow
 
 
 ### Example
@@ -69,6 +71,49 @@ Name | Type | Description  | Notes
 **201** | Created |  -  |
 **400** | The details of the input related failure |  -  |
 **409** | Workflow already exists. |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **delete_workflow**
+> DeletedEntityResponse deleteWorkflow = delete_workflow(scope, code)
+
+[EXPERIMENTAL] DeleteWorkflow: Delete a Workflow
+
+### Example
+
+```python
+api_instance = api_client_factory.build(WorkflowsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+api_response = api_instance.delete_workflow(scope, code)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope that identifies a Workflow | [required] 
+ **code** | **str**| The code that identifies a Workflow | [required] 
+
+### Return type
+
+[**DeletedEntityResponse**](DeletedEntityResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | The details of the input related failure |  -  |
+**404** | Workflow not found. |  -  |
 **0** | Error response |  -  |
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
@@ -163,6 +208,51 @@ Name | Type | Description  | Notes
 **200** | OK |  -  |
 **400** | The details of the input related failure |  -  |
 **404** | No Workflows found. |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **update_workflow**
+> WorkflowResponse updateWorkflow = update_workflow(scope, code, update_workflow_request)
+
+[EXPERIMENTAL] UpdateWorkflow: Update an existing Workflow
+
+### Example
+
+```python
+api_instance = api_client_factory.build(WorkflowsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+update_workflow_request = UpdateWorkflowRequest()
+api_response = api_instance.update_workflow(scope, code, update_workflow_request)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope that identifies a Workflow | [required] 
+ **code** | **str**| The code that identifies a Workflow | [required] 
+ **update_workflow_request** | [**UpdateWorkflowRequest**](UpdateWorkflowRequest.md)| The data to update a Workflow | [required] 
+
+### Return type
+
+[**WorkflowResponse**](WorkflowResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | The details of the input related failure |  -  |
+**404** | Workflow not found. |  -  |
 **0** | Error response |  -  |
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)

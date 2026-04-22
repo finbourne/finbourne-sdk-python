@@ -15,6 +15,7 @@
 from __future__ import absolute_import
 
 # import apis into sdk package
+from finbourne.sdk.services.horizon.api.client_configurations_api import ClientConfigurationsApi
 from finbourne.sdk.services.horizon.api.instrument_api import InstrumentApi
 from finbourne.sdk.services.horizon.api.integrations_api import IntegrationsApi
 from finbourne.sdk.services.horizon.api.logs_api import LogsApi
@@ -30,6 +31,8 @@ from finbourne.sdk.services.horizon.models.audit_file_details import AuditFileDe
 from finbourne.sdk.services.horizon.models.audit_update_request import AuditUpdateRequest
 from finbourne.sdk.services.horizon.models.audit_update_response import AuditUpdateResponse
 from finbourne.sdk.services.horizon.models.cancel_run_request import CancelRunRequest
+from finbourne.sdk.services.horizon.models.client_configuration_response import ClientConfigurationResponse
+from finbourne.sdk.services.horizon.models.create_client_configuration_draft_request import CreateClientConfigurationDraftRequest
 from finbourne.sdk.services.horizon.models.create_instance_request import CreateInstanceRequest
 from finbourne.sdk.services.horizon.models.enrichment_response import EnrichmentResponse
 from finbourne.sdk.services.horizon.models.execute_instance_response import ExecuteInstanceResponse
@@ -87,12 +90,15 @@ from finbourne.sdk.services.horizon.models.post_process_task import PostProcessT
 from finbourne.sdk.services.horizon.models.process_information import ProcessInformation
 from finbourne.sdk.services.horizon.models.process_summary import ProcessSummary
 from finbourne.sdk.services.horizon.models.process_update_result import ProcessUpdateResult
+from finbourne.sdk.services.horizon.models.processor_description import ProcessorDescription
+from finbourne.sdk.services.horizon.models.processor_schema_response import ProcessorSchemaResponse
 from finbourne.sdk.services.horizon.models.property_mapping import PropertyMapping
 from finbourne.sdk.services.horizon.models.query_request import QueryRequest
 from finbourne.sdk.services.horizon.models.query_specification import QuerySpecification
 from finbourne.sdk.services.horizon.models.resource_id import ResourceId
 from finbourne.sdk.services.horizon.models.row_details import RowDetails
 from finbourne.sdk.services.horizon.models.trigger import Trigger
+from finbourne.sdk.services.horizon.models.update_client_configuration_draft_request import UpdateClientConfigurationDraftRequest
 from finbourne.sdk.services.horizon.models.update_instance_request import UpdateInstanceRequest
 from finbourne.sdk.services.horizon.models.vendor_field import VendorField
 from finbourne.sdk.services.horizon.models.vendor_product import VendorProduct
@@ -100,6 +106,7 @@ from finbourne.sdk.services.horizon.models.vendor_product import VendorProduct
 
 
 __all__ = [
+    "ClientConfigurationsApi",
     "InstrumentApi",
     "IntegrationsApi",
     "LogsApi",
@@ -113,6 +120,8 @@ __all__ = [
     "AuditUpdateRequest",
     "AuditUpdateResponse",
     "CancelRunRequest",
+    "ClientConfigurationResponse",
+    "CreateClientConfigurationDraftRequest",
     "CreateInstanceRequest",
     "EnrichmentResponse",
     "ExecuteInstanceResponse",
@@ -170,12 +179,15 @@ __all__ = [
     "ProcessInformation",
     "ProcessSummary",
     "ProcessUpdateResult",
+    "ProcessorDescription",
+    "ProcessorSchemaResponse",
     "PropertyMapping",
     "QueryRequest",
     "QuerySpecification",
     "ResourceId",
     "RowDetails",
     "Trigger",
+    "UpdateClientConfigurationDraftRequest",
     "UpdateInstanceRequest",
     "VendorField",
     "VendorProduct",

@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**trigger_manual_event**](ManualEventApi.md#trigger_manual_event) | **POST** /notifications/api/manualevent | TriggerManualEvent: Trigger a manual event.
+[**trigger_manual_event**](ManualEventApi.md#trigger_manual_event) | **POST** /notification/api/manualevent | TriggerManualEvent: Trigger a manual event.
 
 
 ### Example

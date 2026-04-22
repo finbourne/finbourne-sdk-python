@@ -168,7 +168,7 @@ class DeliveriesApi:
         }
 
         return self.sync_api_client.call_api(
-            '/notifications/api/deliveries', 'GET',
+            '/notification/api/deliveries', 'GET',
             _path_params,
             _query_params,
             _header_params,
@@ -310,7 +310,7 @@ class DeliveriesApi:
             }
 
             return await self.api_client.call_api_async(
-                '/notifications/api/deliveries', 'GET',
+                '/notification/api/deliveries', 'GET',
                 _path_params,
                 _query_params,
                 _header_params,

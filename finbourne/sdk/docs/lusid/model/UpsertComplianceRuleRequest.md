@@ -10,7 +10,7 @@
 | **active** | **bool** | Required | *No description available.* |
 | **template_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **variation** | **str** | Required | *No description available.* |
-| **portfolio_group_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **portfolio_group_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **parameters** | [Dict[str, ComplianceParameter]](ComplianceParameter.md) | Required | *No description available.* |
 | **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Required | *No description available.* |
 
@@ -29,7 +29,7 @@ instance = UpsertComplianceRuleRequest(
     active=True,  # required
     template_id=ResourceId(...),  # required
     variation="...",  # required
-    portfolio_group_id=ResourceId(...),  # required
+    portfolio_group_id=ResourceId(...),  # optional
     parameters=ComplianceParameter(...),  # required
     properties=PerpetualProperty(...)  # required
 )

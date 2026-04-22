@@ -1148,6 +1148,7 @@ from finbourne.sdk.services.lusid.models.staged_modification import StagedModifi
 from finbourne.sdk.services.lusid.models.staged_modification_decision import StagedModificationDecision
 from finbourne.sdk.services.lusid.models.staged_modification_decision_request import StagedModificationDecisionRequest
 from finbourne.sdk.services.lusid.models.staged_modification_effective_range import StagedModificationEffectiveRange
+from finbourne.sdk.services.lusid.models.staged_modification_source_entity import StagedModificationSourceEntity
 from finbourne.sdk.services.lusid.models.staged_modification_staging_rule import StagedModificationStagingRule
 from finbourne.sdk.services.lusid.models.staged_modifications_entity_hrefs import StagedModificationsEntityHrefs
 from finbourne.sdk.services.lusid.models.staged_modifications_info import StagedModificationsInfo
@@ -1198,6 +1199,7 @@ from finbourne.sdk.services.lusid.models.transaction_currency_and_amount import 
 from finbourne.sdk.services.lusid.models.transaction_date_windows import TransactionDateWindows
 from finbourne.sdk.services.lusid.models.transaction_diagnostics import TransactionDiagnostics
 from finbourne.sdk.services.lusid.models.transaction_fee import TransactionFee
+from finbourne.sdk.services.lusid.models.transaction_fee_capitalisation import TransactionFeeCapitalisation
 from finbourne.sdk.services.lusid.models.transaction_field_map import TransactionFieldMap
 from finbourne.sdk.services.lusid.models.transaction_matching_alternative_id import TransactionMatchingAlternativeId
 from finbourne.sdk.services.lusid.models.transaction_price import TransactionPrice
@@ -2527,6 +2529,7 @@ __all__ = [
     "StagedModificationDecision",
     "StagedModificationDecisionRequest",
     "StagedModificationEffectiveRange",
+    "StagedModificationSourceEntity",
     "StagedModificationStagingRule",
     "StagedModificationsEntityHrefs",
     "StagedModificationsInfo",
@@ -2577,6 +2580,7 @@ __all__ = [
     "TransactionDateWindows",
     "TransactionDiagnostics",
     "TransactionFee",
+    "TransactionFeeCapitalisation",
     "TransactionFieldMap",
     "TransactionMatchingAlternativeId",
     "TransactionPrice",

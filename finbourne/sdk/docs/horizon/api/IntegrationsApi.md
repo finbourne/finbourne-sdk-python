@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**delete_instance**](IntegrationsApi.md#delete_instance) | **DELETE** /horizon/api/integrations/instances/{instanceId} | [EXPERIMENTAL] DeleteInstance: Delete a single integration instance.
 [**execute_instance**](IntegrationsApi.md#execute_instance) | **POST** /horizon/api/integrations/instances/{instanceId}/execute | [EXPERIMENTAL] ExecuteInstance: Execute an integration instance.
 [**execute_instance_with_params**](IntegrationsApi.md#execute_instance_with_params) | **POST** /horizon/api/integrations/instances/{instanceId}/executewithparams | [EXPERIMENTAL] ExecuteInstanceWithParams: Execute an integration instance with runtime parameters
+[**get_dataflow_processor_schema**](IntegrationsApi.md#get_dataflow_processor_schema) | **GET** /horizon/api/integrations/dataflow/processors/{processorType}/schema | [EXPERIMENTAL] GetDataflowProcessorSchema: Returns processor configuration schema for a given processor type. This is used by the UI to render the configuration form for a processortype.
 [**get_execution_ids_for_instance**](IntegrationsApi.md#get_execution_ids_for_instance) | **GET** /horizon/api/integrations/instances/{instanceId}/executions | [EXPERIMENTAL] GetExecutionIdsForInstance: Get integration instance execution ids.
 [**get_instance**](IntegrationsApi.md#get_instance) | **GET** /horizon/api/integrations/instances/{instanceId} | [EXPERIMENTAL] GetInstance: Get a specified Instance for a given integration.
 [**get_instance_optional_property_mapping**](IntegrationsApi.md#get_instance_optional_property_mapping) | **GET** /horizon/api/integrations/instances/configuration/{integration}/{instanceId} | [EXPERIMENTAL] GetInstanceOptionalPropertyMapping: Get the Optional Property Mapping for an Integration Instance
@@ -15,6 +16,7 @@ Method | HTTP request | Description
 [**get_integration_configuration_fields**](IntegrationsApi.md#get_integration_configuration_fields) | **GET** /horizon/api/integrations/configuration/{integration}/fields | [EXPERIMENTAL] GetIntegrationConfigurationFields: Get the Field Mapping configuration for a given integration
 [**get_integration_configuration_properties**](IntegrationsApi.md#get_integration_configuration_properties) | **GET** /horizon/api/integrations/configuration/{integration}/properties | [EXPERIMENTAL] GetIntegrationConfigurationProperties: Get the Property Mapping configuration for a given integration
 [**get_schema**](IntegrationsApi.md#get_schema) | **GET** /horizon/api/integrations/schema/{integration} | [EXPERIMENTAL] GetSchema: Get the JSON schema for the details section of an integration instance.
+[**list_dataflow_processors**](IntegrationsApi.md#list_dataflow_processors) | **GET** /horizon/api/integrations/dataflow/processors | [EXPERIMENTAL] ListDataflowProcessors: List processor types.
 [**list_instances**](IntegrationsApi.md#list_instances) | **GET** /horizon/api/integrations/instances | [EXPERIMENTAL] ListInstances: List instances across all integrations.
 [**list_integrations**](IntegrationsApi.md#list_integrations) | **GET** /horizon/api/integrations | [EXPERIMENTAL] ListIntegrations: List available integrations.
 [**set_instance_optional_property_mapping**](IntegrationsApi.md#set_instance_optional_property_mapping) | **PUT** /horizon/api/integrations/instances/configuration/{integration}/{instanceId} | [EXPERIMENTAL] SetInstanceOptionalPropertyMapping: Set the Optional Property Mapping for an Integration Instance
@@ -213,6 +215,47 @@ Name | Type | Description  | Notes
 **200** | The execution id |  -  |
 **400** | The details of the input related failure |  -  |
 **404** | The integration instance does not exist |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_dataflow_processor_schema**
+> ProcessorSchemaResponse getDataflowProcessorSchema = get_dataflow_processor_schema(processor_type)
+
+[EXPERIMENTAL] GetDataflowProcessorSchema: Returns processor configuration schema for a given processor type. This is used by the UI to render the configuration form for a processortype.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(IntegrationsApi)
+processor_type = 'processor_type_example' # str
+api_response = api_instance.get_dataflow_processor_schema(processor_type)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **processor_type** | **str**|  | [required] 
+
+### Return type
+
+[**ProcessorSchemaResponse**](ProcessorSchemaResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**400** | The details of the input related failure |  -  |
+**200** | OK |  -  |
+**404** | The processor type does not exist. |  -  |
 **0** | Error response |  -  |
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
@@ -534,6 +577,44 @@ Name | Type | Description  | Notes
 **200** | The system defined JSON schema for the details of a specified integration. |  -  |
 **400** | The details of the input related failure |  -  |
 **404** | The integration type does not exist or is not enabled. |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **list_dataflow_processors**
+> List[ProcessorDescription] listDataflowProcessors = list_dataflow_processors()
+
+[EXPERIMENTAL] ListDataflowProcessors: List processor types.
+
+The user must be authenticated to call this method.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(IntegrationsApi)
+api_response = api_instance.list_dataflow_processors()
+pprint(api_response)
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**List[ProcessorDescription]**](ProcessorDescription.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**404** | The requested processors do not exist. |  -  |
 **0** | Error response |  -  |
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)

@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
  **x_lusid_drive_filename** | **str**| File name. | [required] 
  **x_lusid_drive_path** | **str**| File path. | [required] 
  **content_length** | **int**| The size in bytes of the file to be uploaded | [required] 
- **body** | **bytes**|  | [required] 
+ **body** | **bytes**| Binary file content to upload as a stream | [required] 
 
 ### Return type
 
@@ -226,7 +226,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| The unique file identifier | [required] 
  **content_length** | **int**| The size in bytes of the file to be uploaded | [required] 
- **body** | **bytes**|  | [required] 
+ **body** | **bytes**| Binary file content to upload as a stream | [required] 
 
 ### Return type
 

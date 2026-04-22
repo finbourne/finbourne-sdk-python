@@ -35,7 +35,7 @@ class UpsertComplianceRuleRequest(BaseModel):
     active: StrictBool
     template_id: ResourceId = Field(alias="templateId")
     variation:  StrictStr = Field(...,alias="variation") 
-    portfolio_group_id: ResourceId = Field(alias="portfolioGroupId")
+    portfolio_group_id: Optional[ResourceId] = Field(default=None, alias="portfolioGroupId")
     parameters: Dict[str, ComplianceParameter]
     properties: Dict[str, PerpetualProperty]
     __properties = ["id", "name", "description", "active", "templateId", "variation", "portfolioGroupId", "parameters", "properties"]
@@ -70,6 +70,7 @@ class UpsertComplianceRuleRequest(BaseModel):
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
         _dict = self. model_dump(by_alias=True,
+                          mode='json',
                           exclude={
                           },
                           exclude_none=True)

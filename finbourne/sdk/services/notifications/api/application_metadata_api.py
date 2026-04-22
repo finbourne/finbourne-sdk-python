@@ -139,7 +139,7 @@ class ApplicationMetadataApi:
         }
 
         return self.sync_api_client.call_api(
-            '/notifications/api/metadata/access/resources', 'GET',
+            '/notification/api/metadata/access/resources', 'GET',
             _path_params,
             _query_params,
             _header_params,
@@ -255,7 +255,7 @@ class ApplicationMetadataApi:
             }
 
             return await self.api_client.call_api_async(
-                '/notifications/api/metadata/access/resources', 'GET',
+                '/notification/api/metadata/access/resources', 'GET',
                 _path_params,
                 _query_params,
                 _header_params,

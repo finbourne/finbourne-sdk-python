@@ -12,6 +12,7 @@
 | **last_updated_at** | **datetime** | Optional | The last updated at time, needed to get the creating Sql out of the logs |
 | **last_updated_by** | **str** | Optional | The last updated by this user |
 | **created_by_user_id** | **str** | Optional | Originally created by this user |
+| **notes** | **str** | Optional | Any notes around saving or whatnot |
 
 
 ## Usage
@@ -29,7 +30,8 @@ instance = ViewItem(
     last_updated_execution_id="...",  # optional — The last ExecutionId, needed to get the creating Sql out of the logs
     last_updated_at=datetime.now(),  # optional — The last updated at time, needed to get the creating Sql out of the logs
     last_updated_by="...",  # optional — The last updated by this user
-    created_by_user_id="..."  # optional — Originally created by this user
+    created_by_user_id="...",  # optional — Originally created by this user
+    notes="..."  # optional — Any notes around saving or whatnot
 )
 ```
 

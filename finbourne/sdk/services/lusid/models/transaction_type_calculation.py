@@ -20,6 +20,8 @@ from datetime import datetime
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
+from finbourne.sdk.services.lusid.models.resource_id import ResourceId
+from finbourne.sdk.services.lusid.models.transaction_fee_capitalisation import TransactionFeeCapitalisation
 
 
 class TransactionTypeCalculation(BaseModel):
@@ -29,7 +31,9 @@ class TransactionTypeCalculation(BaseModel):
     type:  StrictStr = Field(...,alias="type", description="The type of calculation to perform") 
     side:  Optional[StrictStr] = Field(default=None,alias="side", description="The side to which the calculation is applied") 
     formula:  Optional[StrictStr] = Field(default=None,alias="formula", description="The formula used to derive the total consideration amount when it is not provided on the transaction") 
-    __properties = ["type", "side", "formula"]
+    transaction_fee_id: Optional[ResourceId] = Field(default=None, alias="transactionFeeId")
+    transaction_fee_capitalisation: Optional[TransactionFeeCapitalisation] = Field(default=None, alias="transactionFeeCapitalisation")
+    __properties = ["type", "side", "formula", "transactionFeeId", "transactionFeeCapitalisation"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -61,9 +65,16 @@ class TransactionTypeCalculation(BaseModel):
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
         _dict = self. model_dump(by_alias=True,
+                          mode='json',
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of transaction_fee_id
+        if self.transaction_fee_id:
+            _dict['transactionFeeId'] = self.transaction_fee_id.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of transaction_fee_capitalisation
+        if self.transaction_fee_capitalisation:
+            _dict['transactionFeeCapitalisation'] = self.transaction_fee_capitalisation.to_dict()
         # set to None if side (nullable) is None
         # and model_fields_set contains the field
         if self.side is None and "side" in self.model_fields_set:
@@ -88,7 +99,9 @@ class TransactionTypeCalculation(BaseModel):
         _obj = TransactionTypeCalculation.model_validate({
             "type": obj.get("type"),
             "side": obj.get("side"),
-            "formula": obj.get("formula")
+            "formula": obj.get("formula"),
+            "transaction_fee_id": ResourceId.from_dict(obj.get("transactionFeeId")) if obj.get("transactionFeeId") is not None else None,
+            "transaction_fee_capitalisation": TransactionFeeCapitalisation.from_dict(obj.get("transactionFeeCapitalisation")) if obj.get("transactionFeeCapitalisation") is not None else None
         })
         return _obj
 
