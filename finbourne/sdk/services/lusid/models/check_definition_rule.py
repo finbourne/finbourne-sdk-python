@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class CheckDefinitionRule(BaseModel):
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="A description for the Rule.") 
     rule_formula:  Optional[StrictStr] = Field(default=None,alias="ruleFormula", description="The formula for the rule.") 
     severity: Optional[StrictInt] = Field(default=None, description="Severity of the rule if formaula is not satisfied.")
-    __properties = ["ruleKey", "displayName", "description", "ruleFormula", "severity"]
+    __properties: ClassVar[List[str]] = ["ruleKey", "displayName", "description", "ruleFormula", "severity"]
 
     model_config = ConfigDict(
         populate_by_name=True,

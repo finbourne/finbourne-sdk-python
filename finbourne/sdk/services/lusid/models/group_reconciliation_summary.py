@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -36,7 +36,7 @@ class GroupReconciliationSummary(BaseModel):
     """
     run_details: Optional[GroupReconciliationRunDetails] = Field(default=None, alias="runDetails")
     group_reconciliation_definition_id: Optional[ResourceId] = Field(default=None, alias="groupReconciliationDefinitionId")
-    reconciliation_type:  StrictStr = Field(...,alias="reconciliationType", description="The type of reconciliation to perform. \"Holding\" | \"Transaction\" | \"Valuation\"") 
+    reconciliation_type:  StrictStr = Field(...,alias="reconciliationType", description="The type of reconciliation to perform. Available values: Holding, Transaction, Valuation, CashHolding.") 
     instance_id: GroupReconciliationInstanceId = Field(alias="instanceId")
     dates_reconciled: GroupReconciliationDates = Field(alias="datesReconciled")
     reconciliation_run_as_at: datetime = Field(description="The date and time the reconciliation was run", alias="reconciliationRunAsAt")
@@ -45,7 +45,7 @@ class GroupReconciliationSummary(BaseModel):
     result_types: Optional[GroupReconciliationResultTypes] = Field(default=None, alias="resultTypes")
     result_statuses: Optional[GroupReconciliationResultStatuses] = Field(default=None, alias="resultStatuses")
     review_statuses: Optional[GroupReconciliationReviewStatuses] = Field(default=None, alias="reviewStatuses")
-    __properties = ["runDetails", "groupReconciliationDefinitionId", "reconciliationType", "instanceId", "datesReconciled", "reconciliationRunAsAt", "countComparisonResults", "linkComparisonResults", "resultTypes", "resultStatuses", "reviewStatuses"]
+    __properties: ClassVar[List[str]] = ["runDetails", "groupReconciliationDefinitionId", "reconciliationType", "instanceId", "datesReconciled", "reconciliationRunAsAt", "countComparisonResults", "linkComparisonResults", "resultTypes", "resultStatuses", "reviewStatuses"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -117,17 +117,17 @@ class GroupReconciliationSummary(BaseModel):
             return GroupReconciliationSummary.model_validate(obj)
 
         _obj = GroupReconciliationSummary.model_validate({
-            "run_details": GroupReconciliationRunDetails.from_dict(obj.get("runDetails")) if obj.get("runDetails") is not None else None,
-            "group_reconciliation_definition_id": ResourceId.from_dict(obj.get("groupReconciliationDefinitionId")) if obj.get("groupReconciliationDefinitionId") is not None else None,
+            "run_details": GroupReconciliationRunDetails.from_dict(_v) if (_v := obj.get("runDetails")) is not None else None,
+            "group_reconciliation_definition_id": ResourceId.from_dict(_v) if (_v := obj.get("groupReconciliationDefinitionId")) is not None else None,
             "reconciliation_type": obj.get("reconciliationType"),
-            "instance_id": GroupReconciliationInstanceId.from_dict(obj.get("instanceId")) if obj.get("instanceId") is not None else None,
-            "dates_reconciled": GroupReconciliationDates.from_dict(obj.get("datesReconciled")) if obj.get("datesReconciled") is not None else None,
+            "instance_id": GroupReconciliationInstanceId.from_dict(_v) if (_v := obj.get("instanceId")) is not None else None,
+            "dates_reconciled": GroupReconciliationDates.from_dict(_v) if (_v := obj.get("datesReconciled")) is not None else None,
             "reconciliation_run_as_at": obj.get("reconciliationRunAsAt"),
             "count_comparison_results": obj.get("countComparisonResults"),
-            "link_comparison_results": Link.from_dict(obj.get("linkComparisonResults")) if obj.get("linkComparisonResults") is not None else None,
-            "result_types": GroupReconciliationResultTypes.from_dict(obj.get("resultTypes")) if obj.get("resultTypes") is not None else None,
-            "result_statuses": GroupReconciliationResultStatuses.from_dict(obj.get("resultStatuses")) if obj.get("resultStatuses") is not None else None,
-            "review_statuses": GroupReconciliationReviewStatuses.from_dict(obj.get("reviewStatuses")) if obj.get("reviewStatuses") is not None else None
+            "link_comparison_results": Link.from_dict(_v) if (_v := obj.get("linkComparisonResults")) is not None else None,
+            "result_types": GroupReconciliationResultTypes.from_dict(_v) if (_v := obj.get("resultTypes")) is not None else None,
+            "result_statuses": GroupReconciliationResultStatuses.from_dict(_v) if (_v := obj.get("resultStatuses")) is not None else None,
+            "review_statuses": GroupReconciliationReviewStatuses.from_dict(_v) if (_v := obj.get("reviewStatuses")) is not None else None
         })
         return _obj
 

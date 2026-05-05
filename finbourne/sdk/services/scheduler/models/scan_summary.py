@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class ScanSummary(BaseModel):
     low: Optional[StrictInt] = Field(default=None, description="The number of Low severity vulnerabilities")
     negligible: Optional[StrictInt] = Field(default=None, description="The number of Negligible severity vulnerabilities")
     unknown: Optional[StrictInt] = Field(default=None, description="The number of Unknown severity vulnerabilities")
-    __properties = ["fixable", "total", "critical", "high", "medium", "low", "negligible", "unknown"]
+    __properties: ClassVar[List[str]] = ["fixable", "total", "critical", "high", "medium", "low", "negligible", "unknown"]
 
     model_config = ConfigDict(
         populate_by_name=True,

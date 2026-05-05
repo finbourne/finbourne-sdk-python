@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -38,7 +38,7 @@ class Bucket(BaseModel):
     base: Optional[CurrencyAndAmount] = None
     units: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The units.")
     activity_date: Optional[datetime] = Field(default=None, description="The activity date of the bucket.", alias="activityDate")
-    __properties = ["taxLotId", "movementName", "holdingType", "economicBucket", "economicBucketComponent", "economicBucketVariant", "holdingSign", "local", "base", "units", "activityDate"]
+    __properties: ClassVar[List[str]] = ["taxLotId", "movementName", "holdingType", "economicBucket", "economicBucketComponent", "economicBucketVariant", "holdingSign", "local", "base", "units", "activityDate"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -134,8 +134,8 @@ class Bucket(BaseModel):
             "economic_bucket_component": obj.get("economicBucketComponent"),
             "economic_bucket_variant": obj.get("economicBucketVariant"),
             "holding_sign": obj.get("holdingSign"),
-            "local": CurrencyAndAmount.from_dict(obj.get("local")) if obj.get("local") is not None else None,
-            "base": CurrencyAndAmount.from_dict(obj.get("base")) if obj.get("base") is not None else None,
+            "local": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("local")) is not None else None,
+            "base": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("base")) is not None else None,
             "units": obj.get("units"),
             "activity_date": obj.get("activityDate")
         })

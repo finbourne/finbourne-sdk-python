@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class LogIpChainEntry(BaseModel):
     geographical_context: Optional[LogGeographicalContext] = Field(default=None, alias="geographicalContext")
     version:  Optional[StrictStr] = Field(default=None,alias="version") 
     source:  Optional[StrictStr] = Field(default=None,alias="source") 
-    __properties = ["ip", "geographicalContext", "version", "source"]
+    __properties: ClassVar[List[str]] = ["ip", "geographicalContext", "version", "source"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -98,7 +98,7 @@ class LogIpChainEntry(BaseModel):
 
         _obj = LogIpChainEntry.model_validate({
             "ip": obj.get("ip"),
-            "geographical_context": LogGeographicalContext.from_dict(obj.get("geographicalContext")) if obj.get("geographicalContext") is not None else None,
+            "geographical_context": LogGeographicalContext.from_dict(_v) if (_v := obj.get("geographicalContext")) is not None else None,
             "version": obj.get("version"),
             "source": obj.get("source")
         })

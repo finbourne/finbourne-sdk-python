@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class GroupReconciliationDates(BaseModel):
     """
     left: Optional[GroupReconciliationDatePair] = None
     right: Optional[GroupReconciliationDatePair] = None
-    __properties = ["left", "right"]
+    __properties: ClassVar[List[str]] = ["left", "right"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -83,8 +83,8 @@ class GroupReconciliationDates(BaseModel):
             return GroupReconciliationDates.model_validate(obj)
 
         _obj = GroupReconciliationDates.model_validate({
-            "left": GroupReconciliationDatePair.from_dict(obj.get("left")) if obj.get("left") is not None else None,
-            "right": GroupReconciliationDatePair.from_dict(obj.get("right")) if obj.get("right") is not None else None
+            "left": GroupReconciliationDatePair.from_dict(_v) if (_v := obj.get("left")) is not None else None,
+            "right": GroupReconciliationDatePair.from_dict(_v) if (_v := obj.get("right")) is not None else None
         })
         return _obj
 

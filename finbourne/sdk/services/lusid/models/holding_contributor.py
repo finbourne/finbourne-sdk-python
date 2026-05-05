@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class HoldingContributor(BaseModel):
     transaction: Transaction
     holding_id: Optional[StrictInt] = Field(default=None, description="The unique holding identifier", alias="holdingId")
     movements: Optional[List[MovementSettlementSummary]] = Field(default=None, description="Movements contributed to holding")
-    __properties = ["transaction", "holdingId", "movements"]
+    __properties: ClassVar[List[str]] = ["transaction", "holdingId", "movements"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -99,9 +99,9 @@ class HoldingContributor(BaseModel):
             return HoldingContributor.model_validate(obj)
 
         _obj = HoldingContributor.model_validate({
-            "transaction": Transaction.from_dict(obj.get("transaction")) if obj.get("transaction") is not None else None,
+            "transaction": Transaction.from_dict(_v) if (_v := obj.get("transaction")) is not None else None,
             "holding_id": obj.get("holdingId"),
-            "movements": [MovementSettlementSummary.from_dict(_item) for _item in obj.get("movements")] if obj.get("movements") is not None else None
+            "movements": [MovementSettlementSummary.from_dict(_item) for _item in _v] if (_v := obj.get("movements")) is not None else None
         })
         return _obj
 

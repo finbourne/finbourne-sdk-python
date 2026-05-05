@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class InstrumentResolutionDetail(BaseModel):
     instrument_scope:  Optional[StrictStr] = Field(default=None,alias="instrumentScope", description="The scope in which the instrument lies.") 
     launch_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The launch price set when a shareclass is added to the fund. Defaults to 1.", alias="launchPrice")
     launch_date: Optional[datetime] = Field(default=None, description="The launch date set when a shareclass is added to the fund. Defaults to Fund Inception Date.", alias="launchDate")
-    __properties = ["instrumentIdentifiers", "lusidInstrumentId", "instrumentScope", "launchPrice", "launchDate"]
+    __properties: ClassVar[List[str]] = ["instrumentIdentifiers", "lusidInstrumentId", "instrumentScope", "launchPrice", "launchDate"]
 
     model_config = ConfigDict(
         populate_by_name=True,

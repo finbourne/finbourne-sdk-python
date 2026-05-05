@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class CancelledOrderResult(BaseModel):
     CancelledOrderResult
     """
     order_state: Optional[Order] = Field(default=None, alias="orderState")
-    __properties = ["orderState"]
+    __properties: ClassVar[List[str]] = ["orderState"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,7 +79,7 @@ class CancelledOrderResult(BaseModel):
             return CancelledOrderResult.model_validate(obj)
 
         _obj = CancelledOrderResult.model_validate({
-            "order_state": Order.from_dict(obj.get("orderState")) if obj.get("orderState") is not None else None
+            "order_state": Order.from_dict(_v) if (_v := obj.get("orderState")) is not None else None
         })
         return _obj
 

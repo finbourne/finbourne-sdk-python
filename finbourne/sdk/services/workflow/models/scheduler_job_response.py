@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class SchedulerJobResponse(BaseModel):
     """
     type:  Optional[StrictStr] = Field(default=None,alias="type", description="The type of worker") 
     job_id: Optional[ResourceId] = Field(default=None, alias="jobId")
-    __properties = ["type", "jobId"]
+    __properties: ClassVar[List[str]] = ["type", "jobId"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -158,7 +158,7 @@ class SchedulerJobResponse(BaseModel):
 
         _obj = SchedulerJobResponse.model_validate({
             "type": obj.get("type"),
-            "job_id": ResourceId.from_dict(obj.get("jobId")) if obj.get("jobId") is not None else None
+            "job_id": ResourceId.from_dict(_v) if (_v := obj.get("jobId")) is not None else None
         })
         return _obj
 

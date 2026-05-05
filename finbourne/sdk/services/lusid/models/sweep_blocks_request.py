@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class SweepBlocksRequest(BaseModel):
     """
     block_ids: Dict[str, ResourceId] = Field(description="A dictionary mapping ephemeral identifiers, which live as long as the request, to specific blocks to sweep.", alias="blockIds")
     latest_allowable_modification_time:  StrictStr = Field(...,alias="latestAllowableModificationTime", description="Timestamp or cut label which the  block or related entities must not have been updated after.") 
-    __properties = ["blockIds", "latestAllowableModificationTime"]
+    __properties: ClassVar[List[str]] = ["blockIds", "latestAllowableModificationTime"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -86,9 +86,9 @@ class SweepBlocksRequest(BaseModel):
         _obj = SweepBlocksRequest.model_validate({
             "block_ids": dict(
                 (_k, ResourceId.from_dict(_v))
-                for _k, _v in obj.get("blockIds").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("blockIds") is not None
+            if (_val := obj.get("blockIds")) is not None
             else None,
             "latest_allowable_modification_time": obj.get("latestAllowableModificationTime")
         })

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class SetPasswordResponse(BaseModel):
     """
     updated_at: datetime = Field(description="The date and time at which the password was successfully updated", alias="updatedAt")
     links: Optional[List[Link]] = None
-    __properties = ["updatedAt", "links"]
+    __properties: ClassVar[List[str]] = ["updatedAt", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -90,7 +90,7 @@ class SetPasswordResponse(BaseModel):
 
         _obj = SetPasswordResponse.model_validate({
             "updated_at": obj.get("updatedAt"),
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

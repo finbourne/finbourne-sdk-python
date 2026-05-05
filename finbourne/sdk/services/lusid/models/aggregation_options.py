@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class AggregationOptions(BaseModel):
     use_ansi_like_syntax: Optional[StrictBool] = Field(default=None, description="Should the aggregation behave like ANSI Sql or MySql with respect to a conceptual request which is equivalent to \"select a,sum(a) from results\";  ANSI Sql would report an error if a was not unique where MySql would simply view a,suma(a) as equivalent to firstof(a),sum(a).", alias="useAnsiLikeSyntax")
     allow_partial_entitlement_success: Optional[StrictBool] = Field(default=None, description="In the case of valuing a portfolio group where some, but not all entitlements fail, should the aggregation return the valuations  applied only to those portfolios where entitlements checks succeeded.", alias="allowPartialEntitlementSuccess")
     apply_iso4217_rounding: Optional[StrictBool] = Field(default=None, description="Various results that are units of currency might need to be rounded.  This will round according to the ISO4217 standard number of decimal places for a currency.", alias="applyIso4217Rounding")
-    __properties = ["useAnsiLikeSyntax", "allowPartialEntitlementSuccess", "applyIso4217Rounding"]
+    __properties: ClassVar[List[str]] = ["useAnsiLikeSyntax", "allowPartialEntitlementSuccess", "applyIso4217Rounding"]
 
     model_config = ConfigDict(
         populate_by_name=True,

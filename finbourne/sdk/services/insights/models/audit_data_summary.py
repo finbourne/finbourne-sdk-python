@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class AuditDataSummary(BaseModel):
     """
     count: Optional[StrictInt] = None
     categories: Optional[Dict[str, StrictInt]] = None
-    __properties = ["count", "categories"]
+    __properties: ClassVar[List[str]] = ["count", "categories"]
 
     model_config = ConfigDict(
         populate_by_name=True,

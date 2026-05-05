@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class BlockAndOrders(BaseModel):
     """
     block: Block
     orders: List[Order]
-    __properties = ["block", "orders"]
+    __properties: ClassVar[List[str]] = ["block", "orders"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,8 +88,8 @@ class BlockAndOrders(BaseModel):
             return BlockAndOrders.model_validate(obj)
 
         _obj = BlockAndOrders.model_validate({
-            "block": Block.from_dict(obj.get("block")) if obj.get("block") is not None else None,
-            "orders": [Order.from_dict(_item) for _item in obj.get("orders")] if obj.get("orders") is not None else None
+            "block": Block.from_dict(_v) if (_v := obj.get("block")) is not None else None,
+            "orders": [Order.from_dict(_item) for _item in _v] if (_v := obj.get("orders")) is not None else None
         })
         return _obj
 

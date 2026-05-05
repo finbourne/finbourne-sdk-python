@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class SecurityElection(BaseModel):
     is_default: Optional[StrictBool] = Field(default=None, description="Is this election automatically applied in the absence of an election having been made.  May only be true for one election if multiple are provided.", alias="isDefault")
     price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Price per unit of the security. At least one of UnitsRatio or Price must be provided.  Price must non-zero.")
     units_ratio: Optional[UnitsRatio] = Field(default=None, alias="unitsRatio")
-    __properties = ["electionKey", "isChosen", "isDefault", "price", "unitsRatio"]
+    __properties: ClassVar[List[str]] = ["electionKey", "isChosen", "isDefault", "price", "unitsRatio"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -92,7 +92,7 @@ class SecurityElection(BaseModel):
             "is_chosen": obj.get("isChosen"),
             "is_default": obj.get("isDefault"),
             "price": obj.get("price"),
-            "units_ratio": UnitsRatio.from_dict(obj.get("unitsRatio")) if obj.get("unitsRatio") is not None else None
+            "units_ratio": UnitsRatio.from_dict(_v) if (_v := obj.get("unitsRatio")) is not None else None
         })
         return _obj
 

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class IfExpression(BaseModel):
     if_identity_claim_expression: Optional[IfIdentityClaimExpression] = Field(default=None, alias="ifIdentityClaimExpression")
     if_identity_scope_expression: Optional[IfIdentityScopeExpression] = Field(default=None, alias="ifIdentityScopeExpression")
     if_via_api_expression: Optional[IfViaApiExpression] = Field(default=None, alias="ifViaApiExpression")
-    __properties = ["ifRequestHeaderExpression", "ifIdentityClaimExpression", "ifIdentityScopeExpression", "ifViaApiExpression"]
+    __properties: ClassVar[List[str]] = ["ifRequestHeaderExpression", "ifIdentityClaimExpression", "ifIdentityScopeExpression", "ifViaApiExpression"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -94,10 +94,10 @@ class IfExpression(BaseModel):
             return IfExpression.model_validate(obj)
 
         _obj = IfExpression.model_validate({
-            "if_request_header_expression": IfRequestHeaderExpression.from_dict(obj.get("ifRequestHeaderExpression")) if obj.get("ifRequestHeaderExpression") is not None else None,
-            "if_identity_claim_expression": IfIdentityClaimExpression.from_dict(obj.get("ifIdentityClaimExpression")) if obj.get("ifIdentityClaimExpression") is not None else None,
-            "if_identity_scope_expression": IfIdentityScopeExpression.from_dict(obj.get("ifIdentityScopeExpression")) if obj.get("ifIdentityScopeExpression") is not None else None,
-            "if_via_api_expression": IfViaApiExpression.from_dict(obj.get("ifViaApiExpression")) if obj.get("ifViaApiExpression") is not None else None
+            "if_request_header_expression": IfRequestHeaderExpression.from_dict(_v) if (_v := obj.get("ifRequestHeaderExpression")) is not None else None,
+            "if_identity_claim_expression": IfIdentityClaimExpression.from_dict(_v) if (_v := obj.get("ifIdentityClaimExpression")) is not None else None,
+            "if_identity_scope_expression": IfIdentityScopeExpression.from_dict(_v) if (_v := obj.get("ifIdentityScopeExpression")) is not None else None,
+            "if_via_api_expression": IfViaApiExpression.from_dict(_v) if (_v := obj.get("ifViaApiExpression")) is not None else None
         })
         return _obj
 

@@ -70,12 +70,12 @@ class SearchApi:
         :return: Returns the result object.
         :rtype: List[InstrumentMatch]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the instruments_search_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.instruments_search_with_http_info(instrument_search_property, mastered_effective_at, mastered_only, scope, **kwargs)  # noqa: E501
+        response = self.instruments_search_with_http_info(instrument_search_property, mastered_effective_at, mastered_only, scope, **kwargs)
+        return response.data
 
     @validate_call
     def instruments_search_with_http_info(self, instrument_search_property: List[InstrumentSearchProperty], mastered_effective_at: Optional[StrictStr] = None, mastered_only: Optional[bool] = None, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[List[InstrumentMatch]]:
@@ -223,12 +223,12 @@ class SearchApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfPortfolioGroupSearchResult
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the search_portfolio_groups_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.search_portfolio_groups_with_http_info(search, filter, sort_by, limit, page, **kwargs)  # noqa: E501
+        response = self.search_portfolio_groups_with_http_info(search, filter, sort_by, limit, page, **kwargs)
+        return response.data
 
     @validate_call
     def search_portfolio_groups_with_http_info(self, search: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sort_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfPortfolioGroupSearchResult]:
@@ -375,12 +375,12 @@ class SearchApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfPortfolioSearchResult
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the search_portfolios_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.search_portfolios_with_http_info(search, filter, sort_by, limit, page, **kwargs)  # noqa: E501
+        response = self.search_portfolios_with_http_info(search, filter, sort_by, limit, page, **kwargs)
+        return response.data
 
     @validate_call
     def search_portfolios_with_http_info(self, search: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sort_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfPortfolioSearchResult]:
@@ -527,12 +527,12 @@ class SearchApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfPropertyDefinitionSearchResult
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the search_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.search_properties_with_http_info(search, filter, sort_by, limit, page, **kwargs)  # noqa: E501
+        response = self.search_properties_with_http_info(search, filter, sort_by, limit, page, **kwargs)
+        return response.data
 
     @validate_call
     def search_properties_with_http_info(self, search: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sort_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfPropertyDefinitionSearchResult]:
@@ -681,12 +681,12 @@ class SearchApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: List[InstrumentMatch]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the instruments_search_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.instruments_search_with_http_info_async(instrument_search_property, mastered_effective_at, mastered_only, scope, **kwargs)  # noqa: E501
+            response = await self.instruments_search_with_http_info_async(instrument_search_property, mastered_effective_at, mastered_only, scope, **kwargs)
+            return response.data
 
     @validate_call
     async def instruments_search_with_http_info_async(self, instrument_search_property: List[InstrumentSearchProperty], mastered_effective_at: Optional[StrictStr] = None, mastered_only: Optional[bool] = None, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[List[InstrumentMatch]]:
@@ -835,12 +835,12 @@ class SearchApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfPortfolioGroupSearchResult
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the search_portfolio_groups_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.search_portfolio_groups_with_http_info_async(search, filter, sort_by, limit, page, **kwargs)  # noqa: E501
+            response = await self.search_portfolio_groups_with_http_info_async(search, filter, sort_by, limit, page, **kwargs)
+            return response.data
 
     @validate_call
     async def search_portfolio_groups_with_http_info_async(self, search: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sort_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfPortfolioGroupSearchResult]:
@@ -988,12 +988,12 @@ class SearchApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfPortfolioSearchResult
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the search_portfolios_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.search_portfolios_with_http_info_async(search, filter, sort_by, limit, page, **kwargs)  # noqa: E501
+            response = await self.search_portfolios_with_http_info_async(search, filter, sort_by, limit, page, **kwargs)
+            return response.data
 
     @validate_call
     async def search_portfolios_with_http_info_async(self, search: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sort_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfPortfolioSearchResult]:
@@ -1141,12 +1141,12 @@ class SearchApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfPropertyDefinitionSearchResult
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the search_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.search_properties_with_http_info_async(search, filter, sort_by, limit, page, **kwargs)  # noqa: E501
+            response = await self.search_properties_with_http_info_async(search, filter, sort_by, limit, page, **kwargs)
+            return response.data
 
     @validate_call
     async def search_properties_with_http_info_async(self, search: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sort_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfPropertyDefinitionSearchResult]:

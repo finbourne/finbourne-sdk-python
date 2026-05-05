@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class TaxRule(BaseModel):
     description:  StrictStr = Field(...,alias="description", description="A description for this rule") 
     rate: Union[StrictFloat, StrictInt] = Field(description="The rate to be applied if all criteria are met")
     match_criteria: List[MatchCriterion] = Field(description="A set of criteria to be met for this rule to be applied", alias="matchCriteria")
-    __properties = ["name", "description", "rate", "matchCriteria"]
+    __properties: ClassVar[List[str]] = ["name", "description", "rate", "matchCriteria"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -89,7 +89,7 @@ class TaxRule(BaseModel):
             "name": obj.get("name"),
             "description": obj.get("description"),
             "rate": obj.get("rate"),
-            "match_criteria": [MatchCriterion.from_dict(_item) for _item in obj.get("matchCriteria")] if obj.get("matchCriteria") is not None else None
+            "match_criteria": [MatchCriterion.from_dict(_item) for _item in _v] if (_v := obj.get("matchCriteria")) is not None else None
         })
         return _obj
 

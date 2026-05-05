@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class ReconciledTransaction(BaseModel):
     right: Optional[Transaction] = None
     percentage_match: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="How good a match this is considered to be.", alias="percentageMatch")
     mapping_rule_set_results: Optional[List[StrictBool]] = Field(default=None, description="The result of each individual mapping rule result.  Will only be present if both Left and Right are populated.", alias="mappingRuleSetResults")
-    __properties = ["left", "right", "percentageMatch", "mappingRuleSetResults"]
+    __properties: ClassVar[List[str]] = ["left", "right", "percentageMatch", "mappingRuleSetResults"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -90,8 +90,8 @@ class ReconciledTransaction(BaseModel):
             return ReconciledTransaction.model_validate(obj)
 
         _obj = ReconciledTransaction.model_validate({
-            "left": Transaction.from_dict(obj.get("left")) if obj.get("left") is not None else None,
-            "right": Transaction.from_dict(obj.get("right")) if obj.get("right") is not None else None,
+            "left": Transaction.from_dict(_v) if (_v := obj.get("left")) is not None else None,
+            "right": Transaction.from_dict(_v) if (_v := obj.get("right")) is not None else None,
             "percentage_match": obj.get("percentageMatch"),
             "mapping_rule_set_results": obj.get("mappingRuleSetResults")
         })

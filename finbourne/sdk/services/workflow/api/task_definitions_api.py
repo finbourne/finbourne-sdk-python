@@ -65,12 +65,12 @@ class TaskDefinitionsApi:
         :return: Returns the result object.
         :rtype: TaskDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_task_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_task_definition_with_http_info(create_task_definition_request, **kwargs)  # noqa: E501
+        response = self.create_task_definition_with_http_info(create_task_definition_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_task_definition_with_http_info(self, create_task_definition_request: CreateTaskDefinitionRequest, **kwargs) -> ApiResponse[TaskDefinition]:
@@ -192,12 +192,12 @@ class TaskDefinitionsApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_task_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_task_definition_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_task_definition_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_task_definition_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -321,12 +321,12 @@ class TaskDefinitionsApi:
         :return: Returns the result object.
         :rtype: TaskDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_task_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_task_definition_with_http_info(scope, code, as_at, **kwargs)  # noqa: E501
+        response = self.get_task_definition_with_http_info(scope, code, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_task_definition_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[TaskDefinition]:
@@ -463,12 +463,12 @@ class TaskDefinitionsApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfTaskDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_task_definitions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_task_definitions_with_http_info(as_at, filter, sort_by, limit, page, **kwargs)  # noqa: E501
+        response = self.list_task_definitions_with_http_info(as_at, filter, sort_by, limit, page, **kwargs)
+        return response.data
 
     @validate_call
     def list_task_definitions_with_http_info(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfTaskDefinition]:
@@ -614,12 +614,12 @@ class TaskDefinitionsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfTask
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_tasks_for_task_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_tasks_for_task_definition_with_http_info(scope, code, as_at, **kwargs)  # noqa: E501
+        response = self.list_tasks_for_task_definition_with_http_info(scope, code, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def list_tasks_for_task_definition_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfTask]:
@@ -752,12 +752,12 @@ class TaskDefinitionsApi:
         :return: Returns the result object.
         :rtype: TaskDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_task_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_task_definition_with_http_info(scope, code, update_task_definition_request, **kwargs)  # noqa: E501
+        response = self.update_task_definition_with_http_info(scope, code, update_task_definition_request, **kwargs)
+        return response.data
 
     @validate_call
     def update_task_definition_with_http_info(self, scope: StrictStr, code: StrictStr, update_task_definition_request: UpdateTaskDefinitionRequest, **kwargs) -> ApiResponse[TaskDefinition]:
@@ -894,12 +894,12 @@ class TaskDefinitionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: TaskDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_task_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_task_definition_with_http_info_async(create_task_definition_request, **kwargs)  # noqa: E501
+            response = await self.create_task_definition_with_http_info_async(create_task_definition_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_task_definition_with_http_info_async(self, create_task_definition_request: CreateTaskDefinitionRequest, **kwargs) -> ApiResponse[TaskDefinition]:
@@ -1022,12 +1022,12 @@ class TaskDefinitionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_task_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_task_definition_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_task_definition_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_task_definition_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -1152,12 +1152,12 @@ class TaskDefinitionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: TaskDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_task_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_task_definition_with_http_info_async(scope, code, as_at, **kwargs)  # noqa: E501
+            response = await self.get_task_definition_with_http_info_async(scope, code, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_task_definition_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[TaskDefinition]:
@@ -1295,12 +1295,12 @@ class TaskDefinitionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfTaskDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_task_definitions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_task_definitions_with_http_info_async(as_at, filter, sort_by, limit, page, **kwargs)  # noqa: E501
+            response = await self.list_task_definitions_with_http_info_async(as_at, filter, sort_by, limit, page, **kwargs)
+            return response.data
 
     @validate_call
     async def list_task_definitions_with_http_info_async(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfTaskDefinition]:
@@ -1447,12 +1447,12 @@ class TaskDefinitionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfTask
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_tasks_for_task_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_tasks_for_task_definition_with_http_info_async(scope, code, as_at, **kwargs)  # noqa: E501
+            response = await self.list_tasks_for_task_definition_with_http_info_async(scope, code, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def list_tasks_for_task_definition_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfTask]:
@@ -1586,12 +1586,12 @@ class TaskDefinitionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: TaskDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_task_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_task_definition_with_http_info_async(scope, code, update_task_definition_request, **kwargs)  # noqa: E501
+            response = await self.update_task_definition_with_http_info_async(scope, code, update_task_definition_request, **kwargs)
+            return response.data
 
     @validate_call
     async def update_task_definition_with_http_info_async(self, scope: StrictStr, code: StrictStr, update_task_definition_request: UpdateTaskDefinitionRequest, **kwargs) -> ApiResponse[TaskDefinition]:

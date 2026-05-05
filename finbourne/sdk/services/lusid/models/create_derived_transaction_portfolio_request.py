@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -35,16 +35,16 @@ class CreateDerivedTransactionPortfolioRequest(BaseModel):
     parent_portfolio_id: ResourceId = Field(alias="parentPortfolioId")
     created: Optional[datetime] = Field(default=None, description="This will be auto-populated to be the parent portfolio creation date.")
     corporate_action_source_id: Optional[ResourceId] = Field(default=None, alias="corporateActionSourceId")
-    accounting_method:  Optional[StrictStr] = Field(default=None,alias="accountingMethod", description=". The available values are: Default, AverageCost, FirstInFirstOut, LastInFirstOut, HighestCostFirst, LowestCostFirst, ProRateByUnits, ProRateByCost, ProRateByCostPortfolioCurrency, IntraDayThenFirstInFirstOut, LongTermHighestCostFirst, LongTermHighestCostFirstPortfolioCurrency, HighestCostFirstPortfolioCurrency, LowestCostFirstPortfolioCurrency, MaximumLossMinimumGain, MaximumLossMinimumGainPortfolioCurrency") 
+    accounting_method:  Optional[StrictStr] = Field(default=None,alias="accountingMethod", description="Determines the accounting treatment given to the transaction portfolio's tax lots. Default value: AverageCost. Available values: Default, AverageCost, FirstInFirstOut, LastInFirstOut, HighestCostFirst, LowestCostFirst, ProRateByUnits, ProRateByCost, ProRateByCostPortfolioCurrency, IntraDayThenFirstInFirstOut, LongTermHighestCostFirst, LongTermHighestCostFirstPortfolioCurrency, HighestCostFirstPortfolioCurrency, LowestCostFirstPortfolioCurrency, MaximumLossMinimumGain, MaximumLossMinimumGainPortfolioCurrency.") 
     sub_holding_keys: Optional[List[StrictStr]] = Field(default=None, description="A set of unique transaction properties to group the derived transaction portfolio's holdings by, perhaps for strategy tagging. Each property must be from the 'Transaction' domain and identified by a key in the format {domain}/{scope}/{code}, for example 'Transaction/strategies/quantsignal'. See https://support.lusid.com/knowledgebase/article/KA-01879/en-us for more information.", alias="subHoldingKeys")
     instrument_scopes: Optional[List[StrictStr]] = Field(default=None, description="The resolution strategy used to resolve instruments of transactions/holdings upserted to this derived portfolio.", alias="instrumentScopes")
-    amortisation_method:  Optional[StrictStr] = Field(default=None,alias="amortisationMethod", description="The amortisation method used by the portfolio for the calculation. The available values are: NoAmortisation, StraightLine, EffectiveYield, StraightLineSettlementDate, EffectiveYieldSettlementDate") 
+    amortisation_method:  Optional[StrictStr] = Field(default=None,alias="amortisationMethod", description="The amortisation method used by the portfolio for the calculation. Available values: NoAmortisation, StraightLine, EffectiveYield, StraightLineSettlementDate, EffectiveYieldSettlementDate.") 
     transaction_type_scope:  Optional[StrictStr] = Field(default=None,alias="transactionTypeScope", description="The scope of the transaction types.") 
-    cash_gain_loss_calculation_date:  Optional[StrictStr] = Field(default=None,alias="cashGainLossCalculationDate", description="The option when the Cash Gain Loss to be calulated, TransactionDate/SettlementDate. Defaults to SettlementDate.") 
+    cash_gain_loss_calculation_date:  Optional[StrictStr] = Field(default=None,alias="cashGainLossCalculationDate", description="The option when the Cash Gain Loss to be calulated. Default value: SettlementDate. Available values: Default, SettlementDate, TransactionDate.") 
     amortisation_rule_set_id: Optional[ResourceId] = Field(default=None, alias="amortisationRuleSetId")
     instrument_event_configuration: Optional[InstrumentEventConfiguration] = Field(default=None, alias="instrumentEventConfiguration")
     settlement_configuration: Optional[PortfolioSettlementConfiguration] = Field(default=None, alias="settlementConfiguration")
-    __properties = ["displayName", "description", "code", "parentPortfolioId", "created", "corporateActionSourceId", "accountingMethod", "subHoldingKeys", "instrumentScopes", "amortisationMethod", "transactionTypeScope", "cashGainLossCalculationDate", "amortisationRuleSetId", "instrumentEventConfiguration", "settlementConfiguration"]
+    __properties: ClassVar[List[str]] = ["displayName", "description", "code", "parentPortfolioId", "created", "corporateActionSourceId", "accountingMethod", "subHoldingKeys", "instrumentScopes", "amortisationMethod", "transactionTypeScope", "cashGainLossCalculationDate", "amortisationRuleSetId", "instrumentEventConfiguration", "settlementConfiguration"]
 
     @field_validator('accounting_method')
     def accounting_method_validate_enum(cls, value):
@@ -217,18 +217,18 @@ class CreateDerivedTransactionPortfolioRequest(BaseModel):
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
             "code": obj.get("code"),
-            "parent_portfolio_id": ResourceId.from_dict(obj.get("parentPortfolioId")) if obj.get("parentPortfolioId") is not None else None,
+            "parent_portfolio_id": ResourceId.from_dict(_v) if (_v := obj.get("parentPortfolioId")) is not None else None,
             "created": obj.get("created"),
-            "corporate_action_source_id": ResourceId.from_dict(obj.get("corporateActionSourceId")) if obj.get("corporateActionSourceId") is not None else None,
+            "corporate_action_source_id": ResourceId.from_dict(_v) if (_v := obj.get("corporateActionSourceId")) is not None else None,
             "accounting_method": obj.get("accountingMethod"),
             "sub_holding_keys": obj.get("subHoldingKeys"),
             "instrument_scopes": obj.get("instrumentScopes"),
             "amortisation_method": obj.get("amortisationMethod"),
             "transaction_type_scope": obj.get("transactionTypeScope"),
             "cash_gain_loss_calculation_date": obj.get("cashGainLossCalculationDate"),
-            "amortisation_rule_set_id": ResourceId.from_dict(obj.get("amortisationRuleSetId")) if obj.get("amortisationRuleSetId") is not None else None,
-            "instrument_event_configuration": InstrumentEventConfiguration.from_dict(obj.get("instrumentEventConfiguration")) if obj.get("instrumentEventConfiguration") is not None else None,
-            "settlement_configuration": PortfolioSettlementConfiguration.from_dict(obj.get("settlementConfiguration")) if obj.get("settlementConfiguration") is not None else None
+            "amortisation_rule_set_id": ResourceId.from_dict(_v) if (_v := obj.get("amortisationRuleSetId")) is not None else None,
+            "instrument_event_configuration": InstrumentEventConfiguration.from_dict(_v) if (_v := obj.get("instrumentEventConfiguration")) is not None else None,
+            "settlement_configuration": PortfolioSettlementConfiguration.from_dict(_v) if (_v := obj.get("settlementConfiguration")) is not None else None
         })
         return _obj
 

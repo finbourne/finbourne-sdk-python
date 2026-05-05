@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -36,7 +36,7 @@ class EstimateVariant(BaseModel):
     valuations_as_at_override: Optional[datetime] = Field(default=None, description="The optional AsAt Override to use for performing valuations in the Valuation Point. Defaults to QueryAsAt.", alias="valuationsAsAtOverride")
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="The properties for the Calendar Entry. These will be from the 'ClosedPeriod' domain.")
     version: Version
-    __properties = ["variant", "displayName", "description", "asAt", "holdingsAsAtOverride", "valuationsAsAtOverride", "properties", "version"]
+    __properties: ClassVar[List[str]] = ["variant", "displayName", "description", "asAt", "holdingsAsAtOverride", "valuationsAsAtOverride", "properties", "version"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -127,11 +127,11 @@ class EstimateVariant(BaseModel):
             "valuations_as_at_override": obj.get("valuationsAsAtOverride"),
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None
         })
         return _obj
 

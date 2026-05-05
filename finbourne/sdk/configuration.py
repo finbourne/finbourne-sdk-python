@@ -36,7 +36,7 @@ class Timeouts:
         if not isinstance(value, int):
             raise TypeError(f"total_timeout_ms must be type int but type '{type(value)}' used")
         if value < 0:
-            raise ValueError(f"total_timeout_ms must be an integer greater than or equal to zero")
+            raise ValueError("total_timeout_ms must be an integer greater than or equal to zero")
         self.__total_timeout_ms = value
 
     @property
@@ -48,7 +48,7 @@ class Timeouts:
         if not isinstance(value, int):
             raise TypeError(f"connect_timeout_ms must be type int but type '{type(value)}' used")
         if value < 0:
-            raise ValueError(f"connect_timeout_ms must be an integer greater than or equal to zero")
+            raise ValueError("connect_timeout_ms must be an integer greater than or equal to zero")
         self.__connect_timeout_ms = value
 
     @property
@@ -60,7 +60,7 @@ class Timeouts:
         if not isinstance(value, int):
             raise TypeError(f"read_timeout_ms must be type int but type '{type(value)}' used")
         if value < 0:
-            raise ValueError(f"read_timeout_ms must be an integer greater than or equal to zero")
+            raise ValueError("read_timeout_ms must be an integer greater than or equal to zero")
         self.__read_timeout_ms = value
         
     def __init__(self, total_timeout_ms: int, connect_timeout_ms: int, read_timeout_ms: int):
@@ -68,6 +68,7 @@ class Timeouts:
         self.connect_timeout_ms = connect_timeout_ms
         self.read_timeout_ms = read_timeout_ms
         
+    @staticmethod
     def get_default():
         return Timeouts(
             total_timeout_ms=Configuration.DEFAULT_TOTAL_TIMEOUT_MS,

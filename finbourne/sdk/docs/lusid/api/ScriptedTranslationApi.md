@@ -68,8 +68,8 @@ Name | Type | Description  | Notes
  **scope** | **str**| The scope of the dialect. | [required] 
  **vendor** | **str**| The vendor of the dialect, the entity that created it. e.g. ISDA, FINBOURNE. | [required] 
  **source_system** | **str**| The source system of the dialect, the system that understands it. e.g. LUSID, QuantLib. | [required] 
- **entity_type** | **str**| The type of entity this dialect describes e.g. Instrument. | [required] 
- **serialisation_format** | **str**| The serialisation format of a document in this dialect. e.g. JSON, XML. | [required] 
+ **entity_type** | **str**| The type of entity this dialect describes e.g. Instrument. Available values: Instrument. | [required] 
+ **serialisation_format** | **str**| The serialisation format of a document in this dialect. Available values: Json, Xml. | [required] 
  **version** | **str**| The semantic version of the dialect: MAJOR.MINOR.PATCH. | [required] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the dialect. Defaults to return the latest version of the dialect if not specified. | [optional] 
 

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,8 +32,8 @@ class ResultValue(BaseModel):
     """
     Base class for representing result values in LUSID.  This base class should not be directly instantiated; each supported ResultValueType has a corresponding inherited class.  # noqa: E501
     """
-    result_value_type:  StrictStr = Field(...,alias="resultValueType", description="The available values are: ResultValue, ResultValueDictionary, ResultValue0D, ResultValueDecimal, ResultValueInt, ResultValueString, ResultValueBool, ResultValueCurrency, CashFlowValue, CashFlowValueSet, ResultValueLifeCycleEventValue, ResultValueDateTimeOffset") 
-    __properties = ["resultValueType"]
+    result_value_type:  StrictStr = Field(...,alias="resultValueType", description="Available values: ResultValue, ResultValueDictionary, ResultValue0D, ResultValueDecimal, ResultValueInt, ResultValueString, ResultValueBool, ResultValueCurrency, CashFlowValue, CashFlowValueSet, ResultValueLifeCycleEventValue, ResultValueDateTimeOffset.") 
+    __properties: ClassVar[List[str]] = ["resultValueType"]
 
     @field_validator('result_value_type')
     def result_value_type_validate_enum(cls, value):
@@ -111,10 +111,10 @@ class ResultValue(BaseModel):
     )
 
     # JSON field name that stores the object type
-    __discriminator_property_name = 'resultValueType'
+    __discriminator_property_name: ClassVar[str] = 'resultValueType'
 
     # discriminator mappings
-    __discriminator_value_class_map = {
+    __discriminator_value_class_map: ClassVar[Dict[str, str]] = {
         'CashFlowValue': 'CashFlowValue',
         'CashFlowValueSet': 'CashFlowValueSet',
         'LifeCycleEventValue': 'LifeCycleEventValue',
@@ -129,20 +129,11 @@ class ResultValue(BaseModel):
     }
 
     @classmethod
-    def get_discriminator_value(cls, obj: dict) -> str:
+    def get_discriminator_value(cls, obj: dict) -> str | None:
         """Returns the discriminator value (object type) of the data"""
-        discriminator_value = cls.__discriminator_property_name
-        if not isinstance(cls.__discriminator_property_name, str) and getattr(cls.__discriminator_property_name, 'default', None):
-            discriminator_value = cls.__discriminator_property_name.default
-
-        discriminator_value = obj[discriminator_value]
+        discriminator_value = obj[cls.__discriminator_property_name]
         if discriminator_value:
-            discriminator_dict = cls.__discriminator_value_class_map
-            
-            if not isinstance(cls.__discriminator_value_class_map, dict) and getattr(cls.__discriminator_value_class_map, 'default', None):
-                discriminator_dict = cls.__discriminator_value_class_map.default
-            
-            return discriminator_dict.get(discriminator_value)
+            return cls.__discriminator_value_class_map.get(discriminator_value)
         else:
             return None
 
@@ -163,7 +154,7 @@ class ResultValue(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Union[CashFlowValue, CashFlowValueSet, LifeCycleEventValue, ResultValue0D, ResultValueBool, ResultValueCurrency, ResultValueDateTimeOffset, ResultValueDecimal, ResultValueDictionary, ResultValueInt, ResultValueString]:
+    def from_json(cls, json_str: str) -> Union[CashFlowValue, CashFlowValueSet, LifeCycleEventValue, ResultValue0D, ResultValueBool, ResultValueCurrency, ResultValueDateTimeOffset, ResultValueDecimal, ResultValueDictionary, ResultValueInt, ResultValueString, ResultValue]:
         """Create an instance of ResultValue from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -177,29 +168,19 @@ class ResultValue(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Union[CashFlowValue, CashFlowValueSet, LifeCycleEventValue, ResultValue0D, ResultValueBool, ResultValueCurrency, ResultValueDateTimeOffset, ResultValueDecimal, ResultValueDictionary, ResultValueInt, ResultValueString]:
+    def from_dict(cls, obj: dict) -> Union[CashFlowValue, CashFlowValueSet, LifeCycleEventValue, ResultValue0D, ResultValueBool, ResultValueCurrency, ResultValueDateTimeOffset, ResultValueDecimal, ResultValueDictionary, ResultValueInt, ResultValueString, ResultValue]:
         """Create an instance of ResultValue from a dict"""
         # look up the object type based on discriminator mapping
         object_type = cls.get_discriminator_value(obj)
         if object_type:
             klass = getattr(finbourne.sdk.services.lusid.models, object_type)
             return klass.from_dict(obj)
+        elif obj.get(cls.__discriminator_property_name):
+            return cls.model_validate(obj)
         else:
-            discriminator_value = cls.__discriminator_property_name
-            if not isinstance(cls.__discriminator_property_name, str) and getattr(cls.__discriminator_property_name, 'default', None):
-                discriminator_value = cls.__discriminator_property_name.default
-
-            discriminator_value = obj[discriminator_value]
-            if discriminator_value:
-                discriminator_dict = cls.__discriminator_value_class_map
-                
-                # Fix: Handle ModelPrivateAttr for error message
-                if not isinstance(cls.__discriminator_value_class_map, dict) and getattr(cls.__discriminator_value_class_map, 'default', None):
-                    discriminator_dict = cls.__discriminator_value_class_map.default
-            else:                
-                raise ValueError("ResultKeyRule failed to lookup discriminator value from " +
-                                json.dumps(obj) + ". Discriminator property name: " + str(discriminator_value) +
-                                ", mapping: " + json.dumps(discriminator_dict if isinstance(discriminator_dict, dict) else {}))
+            raise ValueError("Failed to lookup discriminator value from " +
+                            json.dumps(obj) + ". Discriminator property name: " + cls.__discriminator_property_name +
+                            ", mapping: " + json.dumps(cls.__discriminator_value_class_map))
 
 ResultValue.model_rebuild()
 

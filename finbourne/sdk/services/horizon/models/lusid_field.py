@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class LusidField(BaseModel):
     transformation_description:  Optional[StrictStr] = Field(default=None,alias="transformationDescription", description="A description of how the vendor package's field(s) get mapped to the LUSID field") 
     entity_type:  StrictStr = Field(...,alias="entityType", description="LUSID Entity this refers to (e.g. Instrument)") 
     entity_sub_type:  Optional[StrictStr] = Field(default=None,alias="entitySubType", description="Sub-Entity this field refers to (e.g. Equity)") 
-    __properties = ["fieldName", "defaultValue", "vendorPackages", "vendorNamespaces", "vendorFields", "transformationDescription", "entityType", "entitySubType"]
+    __properties: ClassVar[List[str]] = ["fieldName", "defaultValue", "vendorPackages", "vendorNamespaces", "vendorFields", "transformationDescription", "entityType", "entitySubType"]
 
     model_config = ConfigDict(
         populate_by_name=True,

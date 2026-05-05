@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class DateRange(BaseModel):
     """
     from_date: datetime = Field(alias="fromDate")
     until_date: Optional[datetime] = Field(default=None, alias="untilDate")
-    __properties = ["fromDate", "untilDate"]
+    __properties: ClassVar[List[str]] = ["fromDate", "untilDate"]
 
     model_config = ConfigDict(
         populate_by_name=True,

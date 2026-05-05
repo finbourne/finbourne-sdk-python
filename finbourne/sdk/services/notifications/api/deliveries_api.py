@@ -64,12 +64,12 @@ class DeliveriesApi:
         :return: Returns the result object.
         :rtype: ResourceListOfDelivery
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_deliveries_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_deliveries_with_http_info(page, limit, filter, **kwargs)  # noqa: E501
+        response = self.list_deliveries_with_http_info(page, limit, filter, **kwargs)
+        return response.data
 
     @validate_call
     def list_deliveries_with_http_info(self, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfDelivery]:
@@ -205,12 +205,12 @@ class DeliveriesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfDelivery
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_deliveries_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_deliveries_with_http_info_async(page, limit, filter, **kwargs)  # noqa: E501
+            response = await self.list_deliveries_with_http_info_async(page, limit, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def list_deliveries_with_http_info_async(self, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfDelivery]:

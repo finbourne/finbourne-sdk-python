@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class LusidPropertyDefinitionOverridesResponse(BaseModel):
     write_error_detail:  Optional[StrictStr] = Field(default=None,alias="writeErrorDetail", description="") 
     display_name_override:  Optional[StrictStr] = Field(default=None,alias="displayNameOverride", description="") 
     description_override:  Optional[StrictStr] = Field(default=None,alias="descriptionOverride", description="") 
-    __properties = ["action", "writeError", "writeErrorDetail", "displayNameOverride", "descriptionOverride"]
+    __properties: ClassVar[List[str]] = ["action", "writeError", "writeErrorDetail", "displayNameOverride", "descriptionOverride"]
 
     model_config = ConfigDict(
         populate_by_name=True,

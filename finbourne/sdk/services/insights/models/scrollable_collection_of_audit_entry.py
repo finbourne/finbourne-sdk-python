@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class ScrollableCollectionOfAuditEntry(BaseModel):
     """
     data: Optional[List[AuditEntry]] = None
     state:  Optional[StrictStr] = Field(default=None,alias="state") 
-    __properties = ["data", "state"]
+    __properties: ClassVar[List[str]] = ["data", "state"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -94,7 +94,7 @@ class ScrollableCollectionOfAuditEntry(BaseModel):
             return ScrollableCollectionOfAuditEntry.model_validate(obj)
 
         _obj = ScrollableCollectionOfAuditEntry.model_validate({
-            "data": [AuditEntry.from_dict(_item) for _item in obj.get("data")] if obj.get("data") is not None else None,
+            "data": [AuditEntry.from_dict(_item) for _item in _v] if (_v := obj.get("data")) is not None else None,
             "state": obj.get("state")
         })
         return _obj

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -39,7 +39,8 @@ class UpsertMcpToolRequest(BaseModel):
     parameters: Optional[List[McpToolParameter]] = Field(default=None, description="The parameters for this MCP tool")
     luminesce_payload: Optional[McpToolLuminescePayload] = Field(default=None, alias="luminescePayload")
     scheduler_payload: Optional[McpToolSchedulerPayload] = Field(default=None, alias="schedulerPayload")
-    __properties = ["name", "title", "description", "destructive", "idempotent", "openWorld", "readOnly", "parameters", "luminescePayload", "schedulerPayload"]
+    destructive_action_summary_template:  Optional[StrictStr] = Field(default=None,alias="destructiveActionSummaryTemplate", description="Template for human-readable destructive action summary. Uses {paramName} single-brace placeholders (e.g. \"Delete file '{filePath}'\"). Required when Destructive is true.") 
+    __properties: ClassVar[List[str]] = ["name", "title", "description", "destructive", "idempotent", "openWorld", "readOnly", "parameters", "luminescePayload", "schedulerPayload", "destructiveActionSummaryTemplate"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -93,6 +94,11 @@ class UpsertMcpToolRequest(BaseModel):
         if self.parameters is None and "parameters" in self.model_fields_set:
             _dict['parameters'] = None
 
+        # set to None if destructive_action_summary_template (nullable) is None
+        # and model_fields_set contains the field
+        if self.destructive_action_summary_template is None and "destructive_action_summary_template" in self.model_fields_set:
+            _dict['destructiveActionSummaryTemplate'] = None
+
         return _dict
 
     @classmethod
@@ -112,9 +118,10 @@ class UpsertMcpToolRequest(BaseModel):
             "idempotent": obj.get("idempotent"),
             "open_world": obj.get("openWorld"),
             "read_only": obj.get("readOnly"),
-            "parameters": [McpToolParameter.from_dict(_item) for _item in obj.get("parameters")] if obj.get("parameters") is not None else None,
-            "luminesce_payload": McpToolLuminescePayload.from_dict(obj.get("luminescePayload")) if obj.get("luminescePayload") is not None else None,
-            "scheduler_payload": McpToolSchedulerPayload.from_dict(obj.get("schedulerPayload")) if obj.get("schedulerPayload") is not None else None
+            "parameters": [McpToolParameter.from_dict(_item) for _item in _v] if (_v := obj.get("parameters")) is not None else None,
+            "luminesce_payload": McpToolLuminescePayload.from_dict(_v) if (_v := obj.get("luminescePayload")) is not None else None,
+            "scheduler_payload": McpToolSchedulerPayload.from_dict(_v) if (_v := obj.get("schedulerPayload")) is not None else None,
+            "destructive_action_summary_template": obj.get("destructiveActionSummaryTemplate")
         })
         return _obj
 

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -38,7 +38,7 @@ class RelationalDatasetDefinition(BaseModel):
     href:  Optional[StrictStr] = Field(default=None,alias="href", description="The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime.") 
     version: Optional[Version] = None
     links: Optional[List[Link]] = None
-    __properties = ["id", "displayName", "description", "applicableEntityTypes", "fieldSchema", "href", "version", "links"]
+    __properties: ClassVar[List[str]] = ["id", "displayName", "description", "applicableEntityTypes", "fieldSchema", "href", "version", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -121,14 +121,14 @@ class RelationalDatasetDefinition(BaseModel):
             return RelationalDatasetDefinition.model_validate(obj)
 
         _obj = RelationalDatasetDefinition.model_validate({
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
             "applicable_entity_types": obj.get("applicableEntityTypes"),
-            "field_schema": [RelationalDatasetFieldDefinition.from_dict(_item) for _item in obj.get("fieldSchema")] if obj.get("fieldSchema") is not None else None,
+            "field_schema": [RelationalDatasetFieldDefinition.from_dict(_item) for _item in _v] if (_v := obj.get("fieldSchema")) is not None else None,
             "href": obj.get("href"),
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

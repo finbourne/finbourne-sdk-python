@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -27,7 +27,7 @@ class QuerySpecification(BaseModel):
     Defines the information that can be used to query a set of data.  # noqa: E501
     """
     limit: Optional[StrictInt] = Field(default=None, description="The maximum number of results to be returned in a \"page\"")
-    __properties = ["limit"]
+    __properties: ClassVar[List[str]] = ["limit"]
 
     model_config = ConfigDict(
         populate_by_name=True,

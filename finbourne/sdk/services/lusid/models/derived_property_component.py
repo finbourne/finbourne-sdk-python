@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,12 +30,12 @@ class DerivedPropertyComponent(BaseModel):
     """
     component:  Optional[StrictStr] = Field(default=None,alias="component", description="The component of the formula which is being evaluated.") 
     display_name:  Optional[StrictStr] = Field(default=None,alias="displayName", description="The display name of the component being evaluated.") 
-    type:  Optional[StrictStr] = Field(default=None,alias="type", description="The type of the formula component. This can be a Literal, Variable, DerivedProperty, or PartialFormula.") 
+    type:  Optional[StrictStr] = Field(default=None,alias="type", description="The type of the formula component. Available values: Variable, DerivedProperty, Literal, PartialFormula.") 
     value: Optional[PropertyValue] = None
     derivation_formula:  Optional[StrictStr] = Field(default=None,alias="derivationFormula", description="The derivation formula of the component. This field will only be populated if the component is a derived property.") 
     sub_components: Optional[List[DerivedPropertyComponent]] = Field(default=None, description="Any sub-components of this formula. If this formula cannot be further decomposed, this collection will be null.", alias="subComponents")
     links: Optional[List[Link]] = None
-    __properties = ["component", "displayName", "type", "value", "derivationFormula", "subComponents", "links"]
+    __properties: ClassVar[List[str]] = ["component", "displayName", "type", "value", "derivationFormula", "subComponents", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -133,10 +133,10 @@ class DerivedPropertyComponent(BaseModel):
             "component": obj.get("component"),
             "display_name": obj.get("displayName"),
             "type": obj.get("type"),
-            "value": PropertyValue.from_dict(obj.get("value")) if obj.get("value") is not None else None,
+            "value": PropertyValue.from_dict(_v) if (_v := obj.get("value")) is not None else None,
             "derivation_formula": obj.get("derivationFormula"),
-            "sub_components": [DerivedPropertyComponent.from_dict(_item) for _item in obj.get("subComponents")] if obj.get("subComponents") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "sub_components": [DerivedPropertyComponent.from_dict(_item) for _item in _v] if (_v := obj.get("subComponents")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

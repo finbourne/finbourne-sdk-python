@@ -62,12 +62,12 @@ class SubscriptionsApi:
         :return: Returns the result object.
         :rtype: Subscription
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_subscription_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_subscription_with_http_info(create_subscription, **kwargs)  # noqa: E501
+        response = self.create_subscription_with_http_info(create_subscription, **kwargs)
+        return response.data
 
     @validate_call
     def create_subscription_with_http_info(self, create_subscription: CreateSubscription, **kwargs) -> ApiResponse[Subscription]:
@@ -189,15 +189,15 @@ class SubscriptionsApi:
         :return: Returns the result object.
         :rtype: None
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_subscription_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_subscription_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_subscription_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
-    def delete_subscription_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> None:
+    def delete_subscription_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[None]:
         """DeleteSubscription: Delete a subscription.  # noqa: E501
 
         :param scope: The scope that identifies a subscription (required)
@@ -312,12 +312,12 @@ class SubscriptionsApi:
         :return: Returns the result object.
         :rtype: Subscription
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_subscription_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_subscription_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.get_subscription_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def get_subscription_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[Subscription]:
@@ -443,12 +443,12 @@ class SubscriptionsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfSubscription
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_subscriptions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_subscriptions_with_http_info(filter, sort_by, page, limit, **kwargs)  # noqa: E501
+        response = self.list_subscriptions_with_http_info(filter, sort_by, page, limit, **kwargs)
+        return response.data
 
     @validate_call
     def list_subscriptions_with_http_info(self, filter: Optional[StrictStr] = None, sort_by: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, **kwargs) -> ApiResponse[ResourceListOfSubscription]:
@@ -583,12 +583,12 @@ class SubscriptionsApi:
         :return: Returns the result object.
         :rtype: Subscription
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_subscription_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_subscription_with_http_info(scope, code, update_subscription, **kwargs)  # noqa: E501
+        response = self.update_subscription_with_http_info(scope, code, update_subscription, **kwargs)
+        return response.data
 
     @validate_call
     def update_subscription_with_http_info(self, scope: StrictStr, code: StrictStr, update_subscription: UpdateSubscription, **kwargs) -> ApiResponse[Subscription]:
@@ -725,12 +725,12 @@ class SubscriptionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Subscription
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_subscription_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_subscription_with_http_info_async(create_subscription, **kwargs)  # noqa: E501
+            response = await self.create_subscription_with_http_info_async(create_subscription, **kwargs)
+            return response.data
 
     @validate_call
     async def create_subscription_with_http_info_async(self, create_subscription: CreateSubscription, **kwargs) -> ApiResponse[Subscription]:
@@ -853,15 +853,15 @@ class SubscriptionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: None
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_subscription_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_subscription_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_subscription_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
-    async def delete_subscription_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> None:
+    async def delete_subscription_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[None]:
             """DeleteSubscription: Delete a subscription.  # noqa: E501
 
 
@@ -977,12 +977,12 @@ class SubscriptionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Subscription
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_subscription_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_subscription_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.get_subscription_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def get_subscription_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[Subscription]:
@@ -1109,12 +1109,12 @@ class SubscriptionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfSubscription
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_subscriptions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_subscriptions_with_http_info_async(filter, sort_by, page, limit, **kwargs)  # noqa: E501
+            response = await self.list_subscriptions_with_http_info_async(filter, sort_by, page, limit, **kwargs)
+            return response.data
 
     @validate_call
     async def list_subscriptions_with_http_info_async(self, filter: Optional[StrictStr] = None, sort_by: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, **kwargs) -> ApiResponse[ResourceListOfSubscription]:
@@ -1250,12 +1250,12 @@ class SubscriptionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Subscription
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_subscription_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_subscription_with_http_info_async(scope, code, update_subscription, **kwargs)  # noqa: E501
+            response = await self.update_subscription_with_http_info_async(scope, code, update_subscription, **kwargs)
+            return response.data
 
     @validate_call
     async def update_subscription_with_http_info_async(self, scope: StrictStr, code: StrictStr, update_subscription: UpdateSubscription, **kwargs) -> ApiResponse[Subscription]:

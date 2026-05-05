@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -35,14 +35,14 @@ class GroupReconciliationComparisonResult(BaseModel):
     GroupReconciliationComparisonResult
     """
     id: ResourceId
-    reconciliation_type:  StrictStr = Field(...,alias="reconciliationType", description="The type of reconciliation to perform. \"Holding\" | \"Transaction\" | \"Valuation\"") 
+    reconciliation_type:  StrictStr = Field(...,alias="reconciliationType", description="The type of reconciliation to perform. Available values: Holding, Transaction, Valuation, CashHolding.") 
     group_reconciliation_definition_id: ResourceId = Field(alias="groupReconciliationDefinitionId")
     instance_id: GroupReconciliationInstanceId = Field(alias="instanceId")
     comparison_result_id:  StrictStr = Field(...,alias="comparisonResultId", description="Comparison result identifier, encoded value for core attribute results, aggregate attribute results, reconciliation type and run instanceId.") 
     reconciliation_run_as_at: datetime = Field(description="The timestamp when the run occurred.", alias="reconciliationRunAsAt")
-    result_type:  StrictStr = Field(...,alias="resultType", description="Reconciliation run general result. \"Break\" | \"Match\" | \"PartialMatch\" | \"NotFound") 
-    result_status:  StrictStr = Field(...,alias="resultStatus", description="Indicates how a particular result evolves from one run to the next. \"New\" | \"Confirmed\" | \"Changed\"") 
-    review_status:  StrictStr = Field(...,alias="reviewStatus", description="Status of whether user has provided any input (comments, manual matches, break codes). \"Pending\" | \"Reviewed\" | \"Matched\" | \"Invalid\"") 
+    result_type:  StrictStr = Field(...,alias="resultType", description="Reconciliation run general result. Available values: Match, PartialMatch, Break, NotFound, Resolved.") 
+    result_status:  StrictStr = Field(...,alias="resultStatus", description="Indicates how a particular result evolves from one run to the next. Available values: New, Confirmed, Changed.") 
+    review_status:  StrictStr = Field(...,alias="reviewStatus", description="Status of whether user has provided any input (comments, manual matches, break codes). Available values: Pending, Reviewed, Matched, Invalid.") 
     dates_reconciled: GroupReconciliationDates = Field(alias="datesReconciled")
     core_attributes: GroupReconciliationCoreAttributeValues = Field(alias="coreAttributes")
     aggregate_attributes: GroupReconciliationAggregateAttributeValues = Field(alias="aggregateAttributes")
@@ -50,7 +50,7 @@ class GroupReconciliationComparisonResult(BaseModel):
     href:  Optional[StrictStr] = Field(default=None,alias="href", description="The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime.") 
     version: Optional[Version] = None
     links: Optional[List[Link]] = None
-    __properties = ["id", "reconciliationType", "groupReconciliationDefinitionId", "instanceId", "comparisonResultId", "reconciliationRunAsAt", "resultType", "resultStatus", "reviewStatus", "datesReconciled", "coreAttributes", "aggregateAttributes", "userReview", "href", "version", "links"]
+    __properties: ClassVar[List[str]] = ["id", "reconciliationType", "groupReconciliationDefinitionId", "instanceId", "comparisonResultId", "reconciliationRunAsAt", "resultType", "resultStatus", "reviewStatus", "datesReconciled", "coreAttributes", "aggregateAttributes", "userReview", "href", "version", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -139,22 +139,22 @@ class GroupReconciliationComparisonResult(BaseModel):
             return GroupReconciliationComparisonResult.model_validate(obj)
 
         _obj = GroupReconciliationComparisonResult.model_validate({
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
             "reconciliation_type": obj.get("reconciliationType"),
-            "group_reconciliation_definition_id": ResourceId.from_dict(obj.get("groupReconciliationDefinitionId")) if obj.get("groupReconciliationDefinitionId") is not None else None,
-            "instance_id": GroupReconciliationInstanceId.from_dict(obj.get("instanceId")) if obj.get("instanceId") is not None else None,
+            "group_reconciliation_definition_id": ResourceId.from_dict(_v) if (_v := obj.get("groupReconciliationDefinitionId")) is not None else None,
+            "instance_id": GroupReconciliationInstanceId.from_dict(_v) if (_v := obj.get("instanceId")) is not None else None,
             "comparison_result_id": obj.get("comparisonResultId"),
             "reconciliation_run_as_at": obj.get("reconciliationRunAsAt"),
             "result_type": obj.get("resultType"),
             "result_status": obj.get("resultStatus"),
             "review_status": obj.get("reviewStatus"),
-            "dates_reconciled": GroupReconciliationDates.from_dict(obj.get("datesReconciled")) if obj.get("datesReconciled") is not None else None,
-            "core_attributes": GroupReconciliationCoreAttributeValues.from_dict(obj.get("coreAttributes")) if obj.get("coreAttributes") is not None else None,
-            "aggregate_attributes": GroupReconciliationAggregateAttributeValues.from_dict(obj.get("aggregateAttributes")) if obj.get("aggregateAttributes") is not None else None,
-            "user_review": GroupReconciliationUserReview.from_dict(obj.get("userReview")) if obj.get("userReview") is not None else None,
+            "dates_reconciled": GroupReconciliationDates.from_dict(_v) if (_v := obj.get("datesReconciled")) is not None else None,
+            "core_attributes": GroupReconciliationCoreAttributeValues.from_dict(_v) if (_v := obj.get("coreAttributes")) is not None else None,
+            "aggregate_attributes": GroupReconciliationAggregateAttributeValues.from_dict(_v) if (_v := obj.get("aggregateAttributes")) is not None else None,
+            "user_review": GroupReconciliationUserReview.from_dict(_v) if (_v := obj.get("userReview")) is not None else None,
             "href": obj.get("href"),
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

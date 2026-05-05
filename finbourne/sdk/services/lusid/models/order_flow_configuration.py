@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -26,8 +26,8 @@ class OrderFlowConfiguration(BaseModel):
     """
     OrderFlowConfiguration
     """
-    include_entity_types:  StrictStr = Field(...,alias="includeEntityTypes", description="Controls whether Orders and Allocations orders are included in the Portfolio valuation.  Valid values are  None (to account for Transactions only), Allocations (to include Allocations and Transactions) and  OrdersAndAllocations (to include Orders, Allocations and Transactions).") 
-    __properties = ["includeEntityTypes"]
+    include_entity_types:  StrictStr = Field(...,alias="includeEntityTypes", description="Controls whether Orders and Allocations orders are included in the Portfolio valuation.  Valid values are  None (to account for Transactions only), Allocations (to include Allocations and Transactions) and  OrdersAndAllocations (to include Orders, Allocations and Transactions). Available values: None, Allocations, OrdersAndAllocations.") 
+    __properties: ClassVar[List[str]] = ["includeEntityTypes"]
 
     model_config = ConfigDict(
         populate_by_name=True,

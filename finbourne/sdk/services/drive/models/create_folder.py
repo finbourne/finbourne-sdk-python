@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class CreateFolder(BaseModel):
     """
     path:  StrictStr = Field(...,alias="path", description="Path of the created folder") 
     name:  StrictStr = Field(...,alias="name", description="Name of the created folder") 
-    __properties = ["path", "name"]
+    __properties: ClassVar[List[str]] = ["path", "name"]
 
     model_config = ConfigDict(
         populate_by_name=True,

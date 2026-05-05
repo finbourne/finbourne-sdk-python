@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class OrderGraphBlockPlacementSynopsis(BaseModel):
     quantity: Union[StrictFloat, StrictInt] = Field(description="Total number of units placed.")
     quantity_by_state: Optional[Dict[str, Union[StrictFloat, StrictInt]]] = Field(default=None, description="Total number of units placed.", alias="quantityByState")
     details: List[OrderGraphBlockPlacementDetail] = Field(description="Identifiers for each placement in this block.")
-    __properties = ["quantity", "quantityByState", "details"]
+    __properties: ClassVar[List[str]] = ["quantity", "quantityByState", "details"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -92,7 +92,7 @@ class OrderGraphBlockPlacementSynopsis(BaseModel):
         _obj = OrderGraphBlockPlacementSynopsis.model_validate({
             "quantity": obj.get("quantity"),
             "quantity_by_state": obj.get("quantityByState"),
-            "details": [OrderGraphBlockPlacementDetail.from_dict(_item) for _item in obj.get("details")] if obj.get("details") is not None else None
+            "details": [OrderGraphBlockPlacementDetail.from_dict(_item) for _item in _v] if (_v := obj.get("details")) is not None else None
         })
         return _obj
 

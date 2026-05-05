@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,9 +30,9 @@ class Mapping(BaseModel):
     scope:  StrictStr = Field(...,alias="scope", description="The scope for this mapping.") 
     code:  StrictStr = Field(...,alias="code", description="The code for this mapping.") 
     name:  StrictStr = Field(...,alias="name", description="The mapping name") 
-    reconciliation_type:  StrictStr = Field(...,alias="reconciliationType", description="What type of reconciliation this mapping is for") 
+    reconciliation_type:  StrictStr = Field(...,alias="reconciliationType", description="What type of reconciliation this mapping is for. Available values: Transaction, Holding, Valuation, Cash, CashHolding.") 
     rules: Optional[List[MappingRule]] = Field(default=None, description="The rules in this mapping, keyed by the left field/property name")
-    __properties = ["scope", "code", "name", "reconciliationType", "rules"]
+    __properties: ClassVar[List[str]] = ["scope", "code", "name", "reconciliationType", "rules"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -96,7 +96,7 @@ class Mapping(BaseModel):
             "code": obj.get("code"),
             "name": obj.get("name"),
             "reconciliation_type": obj.get("reconciliationType"),
-            "rules": [MappingRule.from_dict(_item) for _item in obj.get("rules")] if obj.get("rules") is not None else None
+            "rules": [MappingRule.from_dict(_item) for _item in _v] if (_v := obj.get("rules")) is not None else None
         })
         return _obj
 

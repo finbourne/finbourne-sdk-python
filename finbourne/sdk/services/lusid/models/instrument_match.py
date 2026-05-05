@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class InstrumentMatch(BaseModel):
     """
     mastered_instruments: Optional[List[InstrumentDefinition]] = Field(default=None, description="The collection of instruments found by the search which have been mastered within LUSID.", alias="masteredInstruments")
     external_instruments: Optional[List[InstrumentDefinition]] = Field(default=None, description="The collection of instruments found by the search which have not been mastered within LUSID and instead found via OpenFIGI.", alias="externalInstruments")
-    __properties = ["masteredInstruments", "externalInstruments"]
+    __properties: ClassVar[List[str]] = ["masteredInstruments", "externalInstruments"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -101,8 +101,8 @@ class InstrumentMatch(BaseModel):
             return InstrumentMatch.model_validate(obj)
 
         _obj = InstrumentMatch.model_validate({
-            "mastered_instruments": [InstrumentDefinition.from_dict(_item) for _item in obj.get("masteredInstruments")] if obj.get("masteredInstruments") is not None else None,
-            "external_instruments": [InstrumentDefinition.from_dict(_item) for _item in obj.get("externalInstruments")] if obj.get("externalInstruments") is not None else None
+            "mastered_instruments": [InstrumentDefinition.from_dict(_item) for _item in _v] if (_v := obj.get("masteredInstruments")) is not None else None,
+            "external_instruments": [InstrumentDefinition.from_dict(_item) for _item in _v] if (_v := obj.get("externalInstruments")) is not None else None
         })
         return _obj
 

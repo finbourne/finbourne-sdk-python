@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,9 +28,9 @@ class StringList(ReferenceList):
     StringList
     """
     values: List[StrictStr]
-    reference_list_type:  StrictStr = Field(...,alias="referenceListType", description="The reference list values. The available values are: PortfolioGroupIdList, PortfolioIdList, AddressKeyList, StringList, InstrumentList, DecimalList, PropertyList, FundIdList") 
+    reference_list_type:  StrictStr = Field(...,alias="referenceListType", description="The reference list values. Available values: PortfolioGroupIdList, PortfolioIdList, AddressKeyList, StringList, InstrumentList, DecimalList, PropertyList, FundIdList, FilteredFundIdList.") 
     additional_properties: Dict[str, Any] = {}
-    __properties = ["referenceListType", "values"]
+    __properties: ClassVar[List[str]] = ["referenceListType", "values"]
 
     @field_validator('reference_list_type')
     def reference_list_type_validate_enum(cls, value):
@@ -97,8 +97,8 @@ class StringList(ReferenceList):
         if "reference_list_type" != "type":
             return value
 
-        if value not in ['PortfolioGroupIdList', 'PortfolioIdList', 'AddressKeyList', 'StringList', 'InstrumentList', 'DecimalList', 'PropertyList', 'FundIdList']:
-            raise ValueError("must be one of enum values ('PortfolioGroupIdList', 'PortfolioIdList', 'AddressKeyList', 'StringList', 'InstrumentList', 'DecimalList', 'PropertyList', 'FundIdList')")
+        if value not in ['PortfolioGroupIdList', 'PortfolioIdList', 'AddressKeyList', 'StringList', 'InstrumentList', 'DecimalList', 'PropertyList', 'FundIdList', 'FilteredFundIdList']:
+            raise ValueError("must be one of enum values ('PortfolioGroupIdList', 'PortfolioIdList', 'AddressKeyList', 'StringList', 'InstrumentList', 'DecimalList', 'PropertyList', 'FundIdList', 'FilteredFundIdList')")
         return value
 
     model_config = ConfigDict(
@@ -157,13 +157,8 @@ class StringList(ReferenceList):
             "values": obj.get("values")
         })
         # store additional fields in additional_properties
-        
-        properties = cls.__properties
-        if not isinstance(cls.__properties, dict) and getattr(cls.__properties, 'default', None):
-            properties = cls.__properties.default
-    
         for _key in obj.keys():
-            if _key not in properties:
+            if _key not in cls.__properties:
                 _obj.additional_properties[_key] = obj.get(_key)
 
         return _obj

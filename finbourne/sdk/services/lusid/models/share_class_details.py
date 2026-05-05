@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class ShareClassDetails(BaseModel):
     short_code:  Optional[StrictStr] = Field(default=None,alias="shortCode", description="The unique code within the fund for the share class instrument.") 
     dom_currency:  Optional[StrictStr] = Field(default=None,alias="domCurrency", description="The domestic currency of the share class instrument") 
     instrument_active: Optional[StrictBool] = Field(default=None, description="If the instrument of the share class is active.", alias="instrumentActive")
-    __properties = ["lusidInstrumentId", "instrumentScope", "shortCode", "domCurrency", "instrumentActive"]
+    __properties: ClassVar[List[str]] = ["lusidInstrumentId", "instrumentScope", "shortCode", "domCurrency", "instrumentActive"]
 
     model_config = ConfigDict(
         populate_by_name=True,

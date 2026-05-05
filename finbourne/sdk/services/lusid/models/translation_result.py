@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class TranslationResult(BaseModel):
     """
     entity:  StrictStr = Field(...,alias="entity", description="The serialised entity the translation script produced.") 
     properties: Dict[str, ModelProperty] = Field(description="Any properties the translation script produced.")
-    __properties = ["entity", "properties"]
+    __properties: ClassVar[List[str]] = ["entity", "properties"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -87,9 +87,9 @@ class TranslationResult(BaseModel):
             "entity": obj.get("entity"),
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None
         })
         return _obj

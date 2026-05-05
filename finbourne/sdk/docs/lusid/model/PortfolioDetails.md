@@ -11,10 +11,10 @@
 | **corporate_action_source_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **sub_holding_keys** | **List[str]** | Optional | *No description available.* |
 | **instrument_scopes** | **List[str]** | Optional | The resolution strategy used to resolve instruments of transactions/holdings upserted to the transaction portfolio. |
-| **accounting_method** | **str** | Optional | . The available values are: Default, AverageCost, FirstInFirstOut, LastInFirstOut, HighestCostFirst, LowestCostFirst, ProRateByUnits, ProRateByCost, ProRateByCostPortfolioCurrency, IntraDayThenFirstInFirstOut, LongTermHighestCostFirst, LongTermHighestCostFirstPortfolioCurrency, HighestCostFirstPortfolioCurrency, LowestCostFirstPortfolioCurrency, MaximumLossMinimumGain, MaximumLossMinimumGainPortfolioCurrency |
-| **amortisation_method** | **str** | Optional | The amortisation method used by the portfolio for the calculation. The available values are: NoAmortisation, StraightLine, EffectiveYield, StraightLineSettlementDate, EffectiveYieldSettlementDate |
+| **accounting_method** | **str** | Optional | The AccountingMethod used for the portfolio. Available values: Default, AverageCost, FirstInFirstOut, LastInFirstOut, HighestCostFirst, LowestCostFirst, ProRateByUnits, ProRateByCost, ProRateByCostPortfolioCurrency, IntraDayThenFirstInFirstOut, LongTermHighestCostFirst, LongTermHighestCostFirstPortfolioCurrency, HighestCostFirstPortfolioCurrency, LowestCostFirstPortfolioCurrency, MaximumLossMinimumGain, MaximumLossMinimumGainPortfolioCurrency. |
+| **amortisation_method** | **str** | Optional | The amortisation method used by the portfolio for the calculation. Available values: NoAmortisation, StraightLine, EffectiveYield, StraightLineSettlementDate, EffectiveYieldSettlementDate. |
 | **transaction_type_scope** | **str** | Optional | The scope of the transaction types. |
-| **cash_gain_loss_calculation_date** | **str** | Optional | The option when the Cash Gain Loss to be calulated, TransactionDate/SettlementDate. Defaults to SettlementDate. |
+| **cash_gain_loss_calculation_date** | **str** | Optional | The option when the Cash Gain Loss to be calulated. Default value: SettlementDate. |
 | **instrument_event_configuration** | [InstrumentEventConfiguration](InstrumentEventConfiguration.md) | Optional | *No description available.* |
 | **amortisation_rule_set_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **tax_rule_set_scope** | **str** | Optional | The scope of the tax rule sets for this portfolio. |
@@ -38,10 +38,10 @@ instance = PortfolioDetails(
     corporate_action_source_id=ResourceId(...),  # optional
     sub_holding_keys=,  # optional
     instrument_scopes=,  # optional — The resolution strategy used to resolve instruments of transactions/holdings upserted to the transaction portfolio.
-    accounting_method="...",  # optional — . The available values are: Default, AverageCost, FirstInFirstOut, LastInFirstOut, HighestCostFirst, LowestCostFirst, ProRateByUnits, ProRateByCost, ProRateByCostPortfolioCurrency, IntraDayThenFirstInFirstOut, LongTermHighestCostFirst, LongTermHighestCostFirstPortfolioCurrency, HighestCostFirstPortfolioCurrency, LowestCostFirstPortfolioCurrency, MaximumLossMinimumGain, MaximumLossMinimumGainPortfolioCurrency
-    amortisation_method="...",  # optional — The amortisation method used by the portfolio for the calculation. The available values are: NoAmortisation, StraightLine, EffectiveYield, StraightLineSettlementDate, EffectiveYieldSettlementDate
+    accounting_method="...",  # optional — The AccountingMethod used for the portfolio. Available values: Default, AverageCost, FirstInFirstOut, LastInFirstOut, HighestCostFirst, LowestCostFirst, ProRateByUnits, ProRateByCost, ProRateByCostPortfolioCurrency, IntraDayThenFirstInFirstOut, LongTermHighestCostFirst, LongTermHighestCostFirstPortfolioCurrency, HighestCostFirstPortfolioCurrency, LowestCostFirstPortfolioCurrency, MaximumLossMinimumGain, MaximumLossMinimumGainPortfolioCurrency.
+    amortisation_method="...",  # optional — The amortisation method used by the portfolio for the calculation. Available values: NoAmortisation, StraightLine, EffectiveYield, StraightLineSettlementDate, EffectiveYieldSettlementDate.
     transaction_type_scope="...",  # optional — The scope of the transaction types.
-    cash_gain_loss_calculation_date="...",  # optional — The option when the Cash Gain Loss to be calulated, TransactionDate/SettlementDate. Defaults to SettlementDate.
+    cash_gain_loss_calculation_date="...",  # optional — The option when the Cash Gain Loss to be calulated. Default value: SettlementDate.
     instrument_event_configuration=InstrumentEventConfiguration(...),  # optional
     amortisation_rule_set_id=ResourceId(...),  # optional
     tax_rule_set_scope="...",  # optional — The scope of the tax rule sets for this portfolio.

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -27,7 +27,7 @@ class FundAmount(BaseModel):
     FundAmount
     """
     value: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The value of the amount in the fund currency.")
-    __properties = ["value"]
+    __properties: ClassVar[List[str]] = ["value"]
 
     model_config = ConfigDict(
         populate_by_name=True,

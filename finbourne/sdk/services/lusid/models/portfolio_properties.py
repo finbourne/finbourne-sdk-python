@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -35,7 +35,7 @@ class PortfolioProperties(BaseModel):
     version: Optional[Version] = None
     staged_modifications: Optional[StagedModificationsInfo] = Field(default=None, alias="stagedModifications")
     links: Optional[List[Link]] = None
-    __properties = ["href", "properties", "version", "stagedModifications", "links"]
+    __properties: ClassVar[List[str]] = ["href", "properties", "version", "stagedModifications", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -121,13 +121,13 @@ class PortfolioProperties(BaseModel):
             "href": obj.get("href"),
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
-            "staged_modifications": StagedModificationsInfo.from_dict(obj.get("stagedModifications")) if obj.get("stagedModifications") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "staged_modifications": StagedModificationsInfo.from_dict(_v) if (_v := obj.get("stagedModifications")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

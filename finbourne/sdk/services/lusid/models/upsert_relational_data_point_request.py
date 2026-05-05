@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class UpsertRelationalDataPointRequest(BaseModel):
     effective_at:  StrictStr = Field(...,alias="effectiveAt", description="The effectiveAt or cut-label datetime of the DataPoint.") 
     value_fields: Dict[str, Any] = Field(description="The values associated with the DataPoint, structured according to the FieldSchema of the parent RelationalDatasetDefinition.", alias="valueFields")
     meta_data_fields: Optional[Dict[str, Any]] = Field(default=None, description="The metadata associated with the DataPoint, structured according to the FieldSchema of the parent RelationalDatasetDefinition.", alias="metaDataFields")
-    __properties = ["dataSeries", "effectiveAt", "valueFields", "metaDataFields"]
+    __properties: ClassVar[List[str]] = ["dataSeries", "effectiveAt", "valueFields", "metaDataFields"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -87,7 +87,7 @@ class UpsertRelationalDataPointRequest(BaseModel):
             return UpsertRelationalDataPointRequest.model_validate(obj)
 
         _obj = UpsertRelationalDataPointRequest.model_validate({
-            "data_series": DataSeries.from_dict(obj.get("dataSeries")) if obj.get("dataSeries") is not None else None,
+            "data_series": DataSeries.from_dict(_v) if (_v := obj.get("dataSeries")) is not None else None,
             "effective_at": obj.get("effectiveAt"),
             "value_fields": obj.get("valueFields"),
             "meta_data_fields": obj.get("metaDataFields")

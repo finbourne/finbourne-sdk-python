@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class BookTransactionsRequest(BaseModel):
     """
     allocation_ids: List[ResourceId] = Field(description="A collection of Allocation IDs", alias="allocationIds")
     transaction_properties: Optional[Dict[str, PerpetualProperty]] = Field(default=None, description="A collection of properties", alias="transactionProperties")
-    __properties = ["allocationIds", "transactionProperties"]
+    __properties: ClassVar[List[str]] = ["allocationIds", "transactionProperties"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -97,12 +97,12 @@ class BookTransactionsRequest(BaseModel):
             return BookTransactionsRequest.model_validate(obj)
 
         _obj = BookTransactionsRequest.model_validate({
-            "allocation_ids": [ResourceId.from_dict(_item) for _item in obj.get("allocationIds")] if obj.get("allocationIds") is not None else None,
+            "allocation_ids": [ResourceId.from_dict(_item) for _item in _v] if (_v := obj.get("allocationIds")) is not None else None,
             "transaction_properties": dict(
                 (_k, PerpetualProperty.from_dict(_v))
-                for _k, _v in obj.get("transactionProperties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("transactionProperties") is not None
+            if (_val := obj.get("transactionProperties")) is not None
             else None
         })
         return _obj

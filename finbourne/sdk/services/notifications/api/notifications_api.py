@@ -65,12 +65,12 @@ class NotificationsApi:
         :return: Returns the result object.
         :rtype: Notification
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_notification_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_notification_with_http_info(scope, code, create_notification_request, **kwargs)  # noqa: E501
+        response = self.create_notification_with_http_info(scope, code, create_notification_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_notification_with_http_info(self, scope: StrictStr, code: StrictStr, create_notification_request: CreateNotificationRequest, **kwargs) -> ApiResponse[Notification]:
@@ -206,15 +206,15 @@ class NotificationsApi:
         :return: Returns the result object.
         :rtype: None
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_notification_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_notification_with_http_info(scope, code, id, **kwargs)  # noqa: E501
+        response = self.delete_notification_with_http_info(scope, code, id, **kwargs)
+        return response.data
 
     @validate_call
-    def delete_notification_with_http_info(self, scope: StrictStr, code: StrictStr, id: StrictStr, **kwargs) -> None:
+    def delete_notification_with_http_info(self, scope: StrictStr, code: StrictStr, id: StrictStr, **kwargs) -> ApiResponse[None]:
         """DeleteNotification: Delete a notification for a given subscription.  # noqa: E501
 
         :param scope: The scope that identifies a subscription (required)
@@ -337,12 +337,12 @@ class NotificationsApi:
         :return: Returns the result object.
         :rtype: Notification
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_notification_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_notification_with_http_info(scope, code, id, **kwargs)  # noqa: E501
+        response = self.get_notification_with_http_info(scope, code, id, **kwargs)
+        return response.data
 
     @validate_call
     def get_notification_with_http_info(self, scope: StrictStr, code: StrictStr, id: StrictStr, **kwargs) -> ApiResponse[Notification]:
@@ -470,12 +470,12 @@ class NotificationsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfNotification
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_notifications_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_notifications_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.list_notifications_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def list_notifications_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[ResourceListOfNotification]:
@@ -601,12 +601,12 @@ class NotificationsApi:
         :return: Returns the result object.
         :rtype: Notification
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_notification_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_notification_with_http_info(scope, code, id, update_notification_request, **kwargs)  # noqa: E501
+        response = self.update_notification_with_http_info(scope, code, id, update_notification_request, **kwargs)
+        return response.data
 
     @validate_call
     def update_notification_with_http_info(self, scope: StrictStr, code: StrictStr, id: StrictStr, update_notification_request: UpdateNotificationRequest, **kwargs) -> ApiResponse[Notification]:
@@ -753,12 +753,12 @@ class NotificationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Notification
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_notification_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_notification_with_http_info_async(scope, code, create_notification_request, **kwargs)  # noqa: E501
+            response = await self.create_notification_with_http_info_async(scope, code, create_notification_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_notification_with_http_info_async(self, scope: StrictStr, code: StrictStr, create_notification_request: CreateNotificationRequest, **kwargs) -> ApiResponse[Notification]:
@@ -895,15 +895,15 @@ class NotificationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: None
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_notification_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_notification_with_http_info_async(scope, code, id, **kwargs)  # noqa: E501
+            response = await self.delete_notification_with_http_info_async(scope, code, id, **kwargs)
+            return response.data
 
     @validate_call
-    async def delete_notification_with_http_info_async(self, scope: StrictStr, code: StrictStr, id: StrictStr, **kwargs) -> None:
+    async def delete_notification_with_http_info_async(self, scope: StrictStr, code: StrictStr, id: StrictStr, **kwargs) -> ApiResponse[None]:
             """DeleteNotification: Delete a notification for a given subscription.  # noqa: E501
 
 
@@ -1027,12 +1027,12 @@ class NotificationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Notification
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_notification_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_notification_with_http_info_async(scope, code, id, **kwargs)  # noqa: E501
+            response = await self.get_notification_with_http_info_async(scope, code, id, **kwargs)
+            return response.data
 
     @validate_call
     async def get_notification_with_http_info_async(self, scope: StrictStr, code: StrictStr, id: StrictStr, **kwargs) -> ApiResponse[Notification]:
@@ -1161,12 +1161,12 @@ class NotificationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfNotification
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_notifications_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_notifications_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.list_notifications_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def list_notifications_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[ResourceListOfNotification]:
@@ -1293,12 +1293,12 @@ class NotificationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Notification
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_notification_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_notification_with_http_info_async(scope, code, id, update_notification_request, **kwargs)  # noqa: E501
+            response = await self.update_notification_with_http_info_async(scope, code, id, update_notification_request, **kwargs)
+            return response.data
 
     @validate_call
     async def update_notification_with_http_info_async(self, scope: StrictStr, code: StrictStr, id: StrictStr, update_notification_request: UpdateNotificationRequest, **kwargs) -> ApiResponse[Notification]:

@@ -73,12 +73,12 @@ class ConventionsApi:
         :return: Returns the result object.
         :rtype: AnnulSingleStructuredDataResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_cds_flow_conventions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_cds_flow_conventions_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_cds_flow_conventions_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_cds_flow_conventions_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[AnnulSingleStructuredDataResponse]:
@@ -201,12 +201,12 @@ class ConventionsApi:
         :return: Returns the result object.
         :rtype: AnnulSingleStructuredDataResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_flow_conventions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_flow_conventions_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_flow_conventions_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_flow_conventions_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[AnnulSingleStructuredDataResponse]:
@@ -329,12 +329,12 @@ class ConventionsApi:
         :return: Returns the result object.
         :rtype: AnnulSingleStructuredDataResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_index_convention_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_index_convention_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_index_convention_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_index_convention_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[AnnulSingleStructuredDataResponse]:
@@ -459,12 +459,12 @@ class ConventionsApi:
         :return: Returns the result object.
         :rtype: GetCdsFlowConventionsResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_cds_flow_conventions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_cds_flow_conventions_with_http_info(scope, code, as_at, **kwargs)  # noqa: E501
+        response = self.get_cds_flow_conventions_with_http_info(scope, code, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_cds_flow_conventions_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[GetCdsFlowConventionsResponse]:
@@ -598,12 +598,12 @@ class ConventionsApi:
         :return: Returns the result object.
         :rtype: GetFlowConventionsResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_flow_conventions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_flow_conventions_with_http_info(scope, code, as_at, **kwargs)  # noqa: E501
+        response = self.get_flow_conventions_with_http_info(scope, code, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_flow_conventions_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[GetFlowConventionsResponse]:
@@ -737,12 +737,12 @@ class ConventionsApi:
         :return: Returns the result object.
         :rtype: GetIndexConventionResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_index_convention_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_index_convention_with_http_info(scope, code, as_at, **kwargs)  # noqa: E501
+        response = self.get_index_convention_with_http_info(scope, code, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_index_convention_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[GetIndexConventionResponse]:
@@ -872,12 +872,12 @@ class ConventionsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfGetCdsFlowConventionsResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_cds_flow_conventions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_cds_flow_conventions_with_http_info(as_at, **kwargs)  # noqa: E501
+        response = self.list_cds_flow_conventions_with_http_info(as_at, **kwargs)
+        return response.data
 
     @validate_call
     def list_cds_flow_conventions_with_http_info(self, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfGetCdsFlowConventionsResponse]:
@@ -995,12 +995,12 @@ class ConventionsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfGetFlowConventionsResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_flow_conventions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_flow_conventions_with_http_info(as_at, **kwargs)  # noqa: E501
+        response = self.list_flow_conventions_with_http_info(as_at, **kwargs)
+        return response.data
 
     @validate_call
     def list_flow_conventions_with_http_info(self, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfGetFlowConventionsResponse]:
@@ -1118,12 +1118,12 @@ class ConventionsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfGetIndexConventionResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_index_convention_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_index_convention_with_http_info(as_at, **kwargs)  # noqa: E501
+        response = self.list_index_convention_with_http_info(as_at, **kwargs)
+        return response.data
 
     @validate_call
     def list_index_convention_with_http_info(self, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfGetIndexConventionResponse]:
@@ -1241,12 +1241,12 @@ class ConventionsApi:
         :return: Returns the result object.
         :rtype: UpsertSingleStructuredDataResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_cds_flow_conventions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_cds_flow_conventions_with_http_info(upsert_cds_flow_conventions_request, **kwargs)  # noqa: E501
+        response = self.upsert_cds_flow_conventions_with_http_info(upsert_cds_flow_conventions_request, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_cds_flow_conventions_with_http_info(self, upsert_cds_flow_conventions_request: UpsertCdsFlowConventionsRequest, **kwargs) -> ApiResponse[UpsertSingleStructuredDataResponse]:
@@ -1368,12 +1368,12 @@ class ConventionsApi:
         :return: Returns the result object.
         :rtype: UpsertSingleStructuredDataResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_flow_conventions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_flow_conventions_with_http_info(upsert_flow_conventions_request, **kwargs)  # noqa: E501
+        response = self.upsert_flow_conventions_with_http_info(upsert_flow_conventions_request, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_flow_conventions_with_http_info(self, upsert_flow_conventions_request: UpsertFlowConventionsRequest, **kwargs) -> ApiResponse[UpsertSingleStructuredDataResponse]:
@@ -1495,12 +1495,12 @@ class ConventionsApi:
         :return: Returns the result object.
         :rtype: UpsertSingleStructuredDataResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_index_convention_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_index_convention_with_http_info(upsert_index_convention_request, **kwargs)  # noqa: E501
+        response = self.upsert_index_convention_with_http_info(upsert_index_convention_request, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_index_convention_with_http_info(self, upsert_index_convention_request: UpsertIndexConventionRequest, **kwargs) -> ApiResponse[UpsertSingleStructuredDataResponse]:
@@ -1628,12 +1628,12 @@ class ConventionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: AnnulSingleStructuredDataResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_cds_flow_conventions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_cds_flow_conventions_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_cds_flow_conventions_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_cds_flow_conventions_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[AnnulSingleStructuredDataResponse]:
@@ -1757,12 +1757,12 @@ class ConventionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: AnnulSingleStructuredDataResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_flow_conventions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_flow_conventions_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_flow_conventions_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_flow_conventions_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[AnnulSingleStructuredDataResponse]:
@@ -1886,12 +1886,12 @@ class ConventionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: AnnulSingleStructuredDataResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_index_convention_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_index_convention_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_index_convention_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_index_convention_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[AnnulSingleStructuredDataResponse]:
@@ -2017,12 +2017,12 @@ class ConventionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: GetCdsFlowConventionsResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_cds_flow_conventions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_cds_flow_conventions_with_http_info_async(scope, code, as_at, **kwargs)  # noqa: E501
+            response = await self.get_cds_flow_conventions_with_http_info_async(scope, code, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_cds_flow_conventions_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[GetCdsFlowConventionsResponse]:
@@ -2157,12 +2157,12 @@ class ConventionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: GetFlowConventionsResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_flow_conventions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_flow_conventions_with_http_info_async(scope, code, as_at, **kwargs)  # noqa: E501
+            response = await self.get_flow_conventions_with_http_info_async(scope, code, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_flow_conventions_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[GetFlowConventionsResponse]:
@@ -2297,12 +2297,12 @@ class ConventionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: GetIndexConventionResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_index_convention_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_index_convention_with_http_info_async(scope, code, as_at, **kwargs)  # noqa: E501
+            response = await self.get_index_convention_with_http_info_async(scope, code, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_index_convention_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[GetIndexConventionResponse]:
@@ -2433,12 +2433,12 @@ class ConventionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfGetCdsFlowConventionsResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_cds_flow_conventions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_cds_flow_conventions_with_http_info_async(as_at, **kwargs)  # noqa: E501
+            response = await self.list_cds_flow_conventions_with_http_info_async(as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def list_cds_flow_conventions_with_http_info_async(self, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfGetCdsFlowConventionsResponse]:
@@ -2557,12 +2557,12 @@ class ConventionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfGetFlowConventionsResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_flow_conventions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_flow_conventions_with_http_info_async(as_at, **kwargs)  # noqa: E501
+            response = await self.list_flow_conventions_with_http_info_async(as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def list_flow_conventions_with_http_info_async(self, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfGetFlowConventionsResponse]:
@@ -2681,12 +2681,12 @@ class ConventionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfGetIndexConventionResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_index_convention_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_index_convention_with_http_info_async(as_at, **kwargs)  # noqa: E501
+            response = await self.list_index_convention_with_http_info_async(as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def list_index_convention_with_http_info_async(self, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfGetIndexConventionResponse]:
@@ -2805,12 +2805,12 @@ class ConventionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: UpsertSingleStructuredDataResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_cds_flow_conventions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_cds_flow_conventions_with_http_info_async(upsert_cds_flow_conventions_request, **kwargs)  # noqa: E501
+            response = await self.upsert_cds_flow_conventions_with_http_info_async(upsert_cds_flow_conventions_request, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_cds_flow_conventions_with_http_info_async(self, upsert_cds_flow_conventions_request: UpsertCdsFlowConventionsRequest, **kwargs) -> ApiResponse[UpsertSingleStructuredDataResponse]:
@@ -2933,12 +2933,12 @@ class ConventionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: UpsertSingleStructuredDataResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_flow_conventions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_flow_conventions_with_http_info_async(upsert_flow_conventions_request, **kwargs)  # noqa: E501
+            response = await self.upsert_flow_conventions_with_http_info_async(upsert_flow_conventions_request, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_flow_conventions_with_http_info_async(self, upsert_flow_conventions_request: UpsertFlowConventionsRequest, **kwargs) -> ApiResponse[UpsertSingleStructuredDataResponse]:
@@ -3061,12 +3061,12 @@ class ConventionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: UpsertSingleStructuredDataResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_index_convention_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_index_convention_with_http_info_async(upsert_index_convention_request, **kwargs)  # noqa: E501
+            response = await self.upsert_index_convention_with_http_info_async(upsert_index_convention_request, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_index_convention_with_http_info_async(self, upsert_index_convention_request: UpsertIndexConventionRequest, **kwargs) -> ApiResponse[UpsertSingleStructuredDataResponse]:

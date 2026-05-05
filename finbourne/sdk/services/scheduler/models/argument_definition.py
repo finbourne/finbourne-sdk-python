@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class ArgumentDefinition(BaseModel):
     constraints:  Optional[StrictStr] = Field(default=None,alias="constraints", description="Constrains of the argument value") 
     passed_as:  StrictStr = Field(...,alias="passedAs", description="Specifies how this argument should be passed in Allowed values are: CommandLine or EnvironmentVariable  Defaults to: CommandLine") 
     default_value:  Optional[StrictStr] = Field(default=None,alias="defaultValue", description="Specify a default value for this argument if no value is provided The value needs to be convertible to the associated data type") 
-    __properties = ["dataType", "required", "description", "order", "constraints", "passedAs", "defaultValue"]
+    __properties: ClassVar[List[str]] = ["dataType", "required", "description", "order", "constraints", "passedAs", "defaultValue"]
 
     model_config = ConfigDict(
         populate_by_name=True,

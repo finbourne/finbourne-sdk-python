@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,8 +30,8 @@ class PortfolioEntityIdWithDetails(BaseModel):
     description:  Optional[StrictStr] = Field(default=None,alias="description") 
     scope:  StrictStr = Field(...,alias="scope", description="The scope within which the portfolio or portfolio group lives.") 
     code:  StrictStr = Field(...,alias="code", description="Portfolio name or code.") 
-    portfolio_entity_type:  Optional[StrictStr] = Field(default=None,alias="portfolioEntityType", description="String identifier for portfolio e.g. \"SinglePortfolio\" and \"GroupPortfolio\". If not specified, it is assumed to be a single portfolio.") 
-    __properties = ["displayName", "description", "scope", "code", "portfolioEntityType"]
+    portfolio_entity_type:  Optional[StrictStr] = Field(default=None,alias="portfolioEntityType", description="String identifier for portfolio e.g. \"SinglePortfolio\" and \"GroupPortfolio\". If not specified, it is assumed to be a single portfolio. Available values: SinglePortfolio, GroupPortfolio.") 
+    __properties: ClassVar[List[str]] = ["displayName", "description", "scope", "code", "portfolioEntityType"]
 
     model_config = ConfigDict(
         populate_by_name=True,

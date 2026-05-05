@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class PreviousFundCalendarEntry(BaseModel):
     as_at: datetime = Field(description="The asAt datetime for the Calendar Entry.", alias="asAt")
     holdings_as_at_override: Optional[datetime] = Field(default=None, description="The optional AsAt Override to use for building holdings in the Valuation Point. Defaults to QueryAsAt.", alias="holdingsAsAtOverride")
     valuations_as_at_override: Optional[datetime] = Field(default=None, description="The optional AsAt Override to use for performing valuations in the Valuation Point. Defaults to QueryAsAt.", alias="valuationsAsAtOverride")
-    __properties = ["code", "displayName", "description", "effectiveAt", "asAt", "holdingsAsAtOverride", "valuationsAsAtOverride"]
+    __properties: ClassVar[List[str]] = ["code", "displayName", "description", "effectiveAt", "asAt", "holdingsAsAtOverride", "valuationsAsAtOverride"]
 
     model_config = ConfigDict(
         populate_by_name=True,

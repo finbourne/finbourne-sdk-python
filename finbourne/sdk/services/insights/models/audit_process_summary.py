@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class AuditProcessSummary(BaseModel):
     process: Optional[AuditProcess] = None
     latest_entry: Optional[AuditData] = Field(default=None, alias="latestEntry")
     summary: Optional[AuditDataSummary] = None
-    __properties = ["process", "latestEntry", "summary"]
+    __properties: ClassVar[List[str]] = ["process", "latestEntry", "summary"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -89,9 +89,9 @@ class AuditProcessSummary(BaseModel):
             return AuditProcessSummary.model_validate(obj)
 
         _obj = AuditProcessSummary.model_validate({
-            "process": AuditProcess.from_dict(obj.get("process")) if obj.get("process") is not None else None,
-            "latest_entry": AuditData.from_dict(obj.get("latestEntry")) if obj.get("latestEntry") is not None else None,
-            "summary": AuditDataSummary.from_dict(obj.get("summary")) if obj.get("summary") is not None else None
+            "process": AuditProcess.from_dict(_v) if (_v := obj.get("process")) is not None else None,
+            "latest_entry": AuditData.from_dict(_v) if (_v := obj.get("latestEntry")) is not None else None,
+            "summary": AuditDataSummary.from_dict(_v) if (_v := obj.get("summary")) is not None else None
         })
         return _obj
 

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class CleardownModuleRule(BaseModel):
     rule_id:  StrictStr = Field(...,alias="ruleId", description="The identifier for the Cleardown Rule.") 
     general_ledger_account_code:  StrictStr = Field(...,alias="generalLedgerAccountCode", description="The account to post the residual P&L to.") 
     rule_filter:  StrictStr = Field(...,alias="ruleFilter", description="The filter syntax for the Cleardown Rule. See https://support.lusid.com/knowledgebase/article/KA-02140 for more information on filter syntax.") 
-    __properties = ["ruleId", "generalLedgerAccountCode", "ruleFilter"]
+    __properties: ClassVar[List[str]] = ["ruleId", "generalLedgerAccountCode", "ruleFilter"]
 
     model_config = ConfigDict(
         populate_by_name=True,

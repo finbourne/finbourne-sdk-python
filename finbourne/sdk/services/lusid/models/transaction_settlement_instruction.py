@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,23 +31,23 @@ class TransactionSettlementInstruction(BaseModel):
     TransactionSettlementInstruction
     """
     settlement_instruction_id:  StrictStr = Field(...,alias="settlementInstructionId", description="The instruction identifier. Unique within the portfolio.") 
-    instruction_type:  StrictStr = Field(...,alias="instructionType", description="The type of instruction which can be Complete or CancelAutomatic. Complete means that the instruction is intended to completely settle a settlement bucket. CancelAutomatic means that it is intended to cancel Automatic settlement.") 
+    instruction_type:  StrictStr = Field(...,alias="instructionType", description="The type of instruction which can be Complete or CancelAutomatic. Complete means that the instruction is intended to completely settle a settlement bucket. CancelAutomatic means that it is intended to cancel Automatic settlement. Available values: Complete, CancelAutomatic, Partial.") 
     actual_settlement_date: datetime = Field(description="The date that settlement takes place.", alias="actualSettlementDate")
     units: Union[StrictFloat, StrictInt] = Field(description="The number of units for the instruction.")
     transaction_id:  StrictStr = Field(...,alias="transactionId", description="The ID for the transaction being instructed.") 
-    settlement_category:  StrictStr = Field(...,alias="settlementCategory", description="A category representing the set of movement types that this instruction applies to.") 
+    settlement_category:  StrictStr = Field(...,alias="settlementCategory", description="A category representing the set of movement types that this instruction applies to. Available values: StockSettlement, CashSettlement, DeferredCashReceipt, NotApplicable.") 
     lusid_instrument_id:  StrictStr = Field(...,alias="lusidInstrumentId", description="The LusidInstrumentId of the instrument being settled.") 
     contractual_settlement_date: Optional[datetime] = Field(default=None, description="The contractual settlement date. Used to match the instruction to the correct settlement bucket.", alias="contractualSettlementDate")
     sub_holding_key_overrides: Optional[Dict[str, PerpetualProperty]] = Field(default=None, description="Allows one or more sub-holding keys to be overridden for any movement being settled by an instruction. Providing a key and value will set the sub-holding key to the specified value; Providing a key only will nullify the sub-holding key. Not referenced sub-holding keys will not be impacted. ", alias="subHoldingKeyOverrides")
     custodian_account_override: Optional[ResourceId] = Field(default=None, alias="custodianAccountOverride")
     instrument_identifiers: Dict[str, Optional[StrictStr]] = Field(description="A set of instrument identifiers that can resolve the settlement instruction to a unique instrument.", alias="instrumentIdentifiers")
-    status:  Optional[StrictStr] = Field(default=None,alias="status", description="The status of the settlement instruction - 'Invalid', 'Rejected' 'Applied' or 'Orphan'.") 
+    status:  Optional[StrictStr] = Field(default=None,alias="status", description="The status of the settlement instruction. Available values: Applied, Inactive, Invalid, Orphan, Rejected. Available values: Invalid, Rejected, Applied, Orphan.") 
     instruction_to_portfolio_rate: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The exchange rate between the Settlement Instruction and Portfolio.", alias="instructionToPortfolioRate")
     settlement_in_lieu: Optional[SettlementInLieu] = Field(default=None, alias="settlementInLieu")
     is_active: Optional[StrictBool] = Field(default=None, description="Indicates whether the settlement instruction is active. When false, the instruction has no impact on settlement positions, but remains visible. Defaults to true.", alias="isActive")
     properties: Optional[Dict[str, PerpetualProperty]] = Field(default=None, description="The properties which have been requested to be decorated onto the settlement instruction. These will be from the 'SettlementInstruction', 'Portfolio', or 'Instrument' domains.")
     version: Optional[Version] = None
-    __properties = ["settlementInstructionId", "instructionType", "actualSettlementDate", "units", "transactionId", "settlementCategory", "lusidInstrumentId", "contractualSettlementDate", "subHoldingKeyOverrides", "custodianAccountOverride", "instrumentIdentifiers", "status", "instructionToPortfolioRate", "settlementInLieu", "isActive", "properties", "version"]
+    __properties: ClassVar[List[str]] = ["settlementInstructionId", "instructionType", "actualSettlementDate", "units", "transactionId", "settlementCategory", "lusidInstrumentId", "contractualSettlementDate", "subHoldingKeyOverrides", "custodianAccountOverride", "instrumentIdentifiers", "status", "instructionToPortfolioRate", "settlementInLieu", "isActive", "properties", "version"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -153,23 +153,23 @@ class TransactionSettlementInstruction(BaseModel):
             "contractual_settlement_date": obj.get("contractualSettlementDate"),
             "sub_holding_key_overrides": dict(
                 (_k, PerpetualProperty.from_dict(_v))
-                for _k, _v in obj.get("subHoldingKeyOverrides").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("subHoldingKeyOverrides") is not None
+            if (_val := obj.get("subHoldingKeyOverrides")) is not None
             else None,
-            "custodian_account_override": ResourceId.from_dict(obj.get("custodianAccountOverride")) if obj.get("custodianAccountOverride") is not None else None,
+            "custodian_account_override": ResourceId.from_dict(_v) if (_v := obj.get("custodianAccountOverride")) is not None else None,
             "instrument_identifiers": obj.get("instrumentIdentifiers"),
             "status": obj.get("status"),
             "instruction_to_portfolio_rate": obj.get("instructionToPortfolioRate"),
-            "settlement_in_lieu": SettlementInLieu.from_dict(obj.get("settlementInLieu")) if obj.get("settlementInLieu") is not None else None,
+            "settlement_in_lieu": SettlementInLieu.from_dict(_v) if (_v := obj.get("settlementInLieu")) is not None else None,
             "is_active": obj.get("isActive"),
             "properties": dict(
                 (_k, PerpetualProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None
         })
         return _obj
 

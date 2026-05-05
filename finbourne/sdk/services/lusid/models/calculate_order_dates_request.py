@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,11 +31,11 @@ class CalculateOrderDatesRequest(BaseModel):
     instrument_scope:  Optional[StrictStr] = Field(default=None,alias="instrumentScope") 
     received_date: Optional[datetime] = Field(default=None, alias="receivedDate")
     price_date: Optional[datetime] = Field(default=None, alias="priceDate")
-    transaction_category:  Optional[StrictStr] = Field(default=None,alias="transactionCategory") 
+    transaction_category:  Optional[StrictStr] = Field(default=None,alias="transactionCategory", description="Available values: Subscription, Redemption, SwitchOut, SwitchIn, TransferOut, TransferIn.") 
     liquidating_share_class_identifier:  Optional[StrictStr] = Field(default=None,alias="liquidatingShareClassIdentifier") 
     liquidating_share_class_identifier_type:  Optional[StrictStr] = Field(default=None,alias="liquidatingShareClassIdentifierType") 
     liquidating_share_class_instrument_scope:  Optional[StrictStr] = Field(default=None,alias="liquidatingShareClassInstrumentScope") 
-    __properties = ["instrumentIdentifierType", "instrumentIdentifier", "instrumentScope", "receivedDate", "priceDate", "transactionCategory", "liquidatingShareClassIdentifier", "liquidatingShareClassIdentifierType", "liquidatingShareClassInstrumentScope"]
+    __properties: ClassVar[List[str]] = ["instrumentIdentifierType", "instrumentIdentifier", "instrumentScope", "receivedDate", "priceDate", "transactionCategory", "liquidatingShareClassIdentifier", "liquidatingShareClassIdentifierType", "liquidatingShareClassInstrumentScope"]
 
     model_config = ConfigDict(
         populate_by_name=True,

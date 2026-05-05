@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,15 +34,15 @@ class ValuationPointOverview(BaseModel):
     effective_from: datetime = Field(description="The effective time of the last Valuation Point.", alias="effectiveFrom")
     effective_to: datetime = Field(description="The effective time of the current Valuation Point.", alias="effectiveTo")
     query_as_at: Optional[datetime] = Field(default=None, description="The query time of the Valuation Point. Defaults to latest.", alias="queryAsAt")
-    type:  StrictStr = Field(...,alias="type", description="The type of the diary entry. This is 'ValuationPoint'.") 
-    status:  StrictStr = Field(...,alias="status", description="The status of the Valuation Point. Can be 'Estimate', 'Candidate' or 'Final'.") 
+    type:  StrictStr = Field(...,alias="type", description="The type of the diary entry. This is 'ValuationPoint'. Available values: PeriodBoundary, ValuationPoint, Other.") 
+    status:  StrictStr = Field(...,alias="status", description="The status of the Valuation Point. Available values: Undefined, Estimate, Final, Candidate, Unofficial.") 
     gav: Union[StrictFloat, StrictInt] = Field(description="The Gross Asset Value of the Fund or Share Class at the Valuation Point. This is effectively a summation of all Trial balance entries linked to accounts of types 'Asset' and 'Liabilities'.")
     nav: Union[StrictFloat, StrictInt] = Field(description="The Net Asset Value of the Fund or Share Class at the Valuation Point. This represents the GAV with any fees applied in the period.")
     holdings_as_at_override: Optional[datetime] = Field(default=None, description="The optional AsAt Override to use for building holdings in the Valuation Point. Defaults to QueryAsAt.", alias="holdingsAsAtOverride")
     valuations_as_at_override: Optional[datetime] = Field(default=None, description="The optional AsAt Override to use for performing valuations in the Valuation Point. Defaults to QueryAsAt.", alias="valuationsAsAtOverride")
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="The Fee properties. These will be from the 'Fee' domain.")
     links: Optional[List[Link]] = None
-    __properties = ["href", "diaryEntryCode", "diaryEntryVariant", "effectiveFrom", "effectiveTo", "queryAsAt", "type", "status", "gav", "nav", "holdingsAsAtOverride", "valuationsAsAtOverride", "properties", "links"]
+    __properties: ClassVar[List[str]] = ["href", "diaryEntryCode", "diaryEntryVariant", "effectiveFrom", "effectiveTo", "queryAsAt", "type", "status", "gav", "nav", "holdingsAsAtOverride", "valuationsAsAtOverride", "properties", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -148,11 +148,11 @@ class ValuationPointOverview(BaseModel):
             "valuations_as_at_override": obj.get("valuationsAsAtOverride"),
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

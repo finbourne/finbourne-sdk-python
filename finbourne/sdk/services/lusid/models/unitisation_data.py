@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class UnitisationData(BaseModel):
     shares_in_issue: Union[StrictFloat, StrictInt] = Field(description="The number of shares in issue at a valuation point.", alias="sharesInIssue")
     unit_price: Union[StrictFloat, StrictInt] = Field(description="The price of one unit of the share class at a valuation point.", alias="unitPrice")
     net_dealing_units: Union[StrictFloat, StrictInt] = Field(description="The net dealing in units for the share class at a valuation point. This could be the sum of negative redemptions (in units) and positive subscriptions (in units).", alias="netDealingUnits")
-    __properties = ["sharesInIssue", "unitPrice", "netDealingUnits"]
+    __properties: ClassVar[List[str]] = ["sharesInIssue", "unitPrice", "netDealingUnits"]
 
     model_config = ConfigDict(
         populate_by_name=True,

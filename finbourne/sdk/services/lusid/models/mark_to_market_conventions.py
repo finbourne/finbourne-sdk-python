@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class MarkToMarketConventions(BaseModel):
     calendar_code:  Optional[StrictStr] = Field(default=None,alias="calendarCode", description="The calendar to use when generating mark to market cashflows and events.") 
     hour_offset_tenor:  Optional[StrictStr] = Field(default=None,alias="hourOffsetTenor", description="The hour tenor component of the time offset against the maturity date.  This is an optional field, if a value is provided it must be a positive value between '0hour' and '23hour'.") 
     minute_offset_tenor:  Optional[StrictStr] = Field(default=None,alias="minuteOffsetTenor", description="The minute tenor component of the time offset against the maturity date.  This is an optional field, if a value is provided it must be a positive value between '0min' and '59min'.") 
-    __properties = ["calendarCode", "hourOffsetTenor", "minuteOffsetTenor"]
+    __properties: ClassVar[List[str]] = ["calendarCode", "hourOffsetTenor", "minuteOffsetTenor"]
 
     model_config = ConfigDict(
         populate_by_name=True,

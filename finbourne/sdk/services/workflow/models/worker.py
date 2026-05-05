@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -40,7 +40,7 @@ class Worker(BaseModel):
     parameters: Optional[List[Parameter]] = Field(default=None, description="The Parameters this Worker accepts or requires.")
     result_fields: Optional[List[ResultField]] = Field(default=None, description="The Fields that the Worker results will come back with.", alias="resultFields")
     links: Optional[List[Link]] = None
-    __properties = ["id", "displayName", "description", "workerConfiguration", "version", "parameters", "resultFields", "links"]
+    __properties: ClassVar[List[str]] = ["id", "displayName", "description", "workerConfiguration", "version", "parameters", "resultFields", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -138,14 +138,14 @@ class Worker(BaseModel):
             return Worker.model_validate(obj)
 
         _obj = Worker.model_validate({
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
-            "worker_configuration": WorkerConfigurationResponse.from_dict(obj.get("workerConfiguration")) if obj.get("workerConfiguration") is not None else None,
-            "version": VersionInfo.from_dict(obj.get("version")) if obj.get("version") is not None else None,
-            "parameters": [Parameter.from_dict(_item) for _item in obj.get("parameters")] if obj.get("parameters") is not None else None,
-            "result_fields": [ResultField.from_dict(_item) for _item in obj.get("resultFields")] if obj.get("resultFields") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "worker_configuration": WorkerConfigurationResponse.from_dict(_v) if (_v := obj.get("workerConfiguration")) is not None else None,
+            "version": VersionInfo.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "parameters": [Parameter.from_dict(_item) for _item in _v] if (_v := obj.get("parameters")) is not None else None,
+            "result_fields": [ResultField.from_dict(_item) for _item in _v] if (_v := obj.get("resultFields")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

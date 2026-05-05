@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class QueryRequest(BaseModel):
     Used to control queries, including getting \"pages\" of data  # noqa: E501
     """
     specification: Optional[QuerySpecification] = None
-    __properties = ["specification"]
+    __properties: ClassVar[List[str]] = ["specification"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,7 +79,7 @@ class QueryRequest(BaseModel):
             return QueryRequest.model_validate(obj)
 
         _obj = QueryRequest.model_validate({
-            "specification": QuerySpecification.from_dict(obj.get("specification")) if obj.get("specification") is not None else None
+            "specification": QuerySpecification.from_dict(_v) if (_v := obj.get("specification")) is not None else None
         })
         return _obj
 

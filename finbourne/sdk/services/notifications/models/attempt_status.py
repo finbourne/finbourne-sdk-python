@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class AttemptStatus(BaseModel):
     """
     result:  StrictStr = Field(...,alias="result", description="Result of the delivery.") 
     detailed_message:  Optional[StrictStr] = Field(default=None,alias="detailedMessage", description="The detailed message from attempting to deliver the message.") 
-    __properties = ["result", "detailedMessage"]
+    __properties: ClassVar[List[str]] = ["result", "detailedMessage"]
 
     model_config = ConfigDict(
         populate_by_name=True,

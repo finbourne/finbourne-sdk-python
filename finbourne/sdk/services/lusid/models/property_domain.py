@@ -10,6 +10,7 @@
     Do not edit the class manually.
 """
 
+from __future__ import annotations
 import json
 import pprint
 import re  # noqa: F401
@@ -19,7 +20,7 @@ from aenum import Enum, no_arg
 
 
 
-class PropertyDomain(str, Enum):
+class PropertyDomain(str, Enum):  # type: ignore[misc]
     """
     See https://wiki.finbourne.com/information/domain-model-properties                Each domain refers to a logical set of properties which reside within it.
     """

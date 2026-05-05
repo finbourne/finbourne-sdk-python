@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -40,7 +40,7 @@ class AuditCompleteRequest(BaseModel):
     rows_ignored: StrictInt = Field(description="The number of data rows that had no actions taken", alias="rowsIgnored")
     audit_files: List[AuditFileDetails] = Field(description="A list of file details for attaching to the event", alias="auditFiles")
     process_name_override:  Optional[StrictStr] = Field(default=None,alias="processNameOverride", description="Optional Name for how the process appears in Data Feed Monitoring") 
-    __properties = ["id", "userId", "schedulerRunId", "startTime", "endTime", "message", "status", "rowsTotal", "rowsSucceeded", "rowsFailed", "rowsIgnored", "auditFiles", "processNameOverride"]
+    __properties: ClassVar[List[str]] = ["id", "userId", "schedulerRunId", "startTime", "endTime", "message", "status", "rowsTotal", "rowsSucceeded", "rowsFailed", "rowsIgnored", "auditFiles", "processNameOverride"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -111,7 +111,7 @@ class AuditCompleteRequest(BaseModel):
             "rows_succeeded": obj.get("rowsSucceeded"),
             "rows_failed": obj.get("rowsFailed"),
             "rows_ignored": obj.get("rowsIgnored"),
-            "audit_files": [AuditFileDetails.from_dict(_item) for _item in obj.get("auditFiles")] if obj.get("auditFiles") is not None else None,
+            "audit_files": [AuditFileDetails.from_dict(_item) for _item in _v] if (_v := obj.get("auditFiles")) is not None else None,
             "process_name_override": obj.get("processNameOverride")
         })
         return _obj

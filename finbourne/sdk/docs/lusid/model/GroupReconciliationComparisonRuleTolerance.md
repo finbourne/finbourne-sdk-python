@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **type** | **str** | Required | The type of tolerance to allow. \&quot;Relative\&quot; | \&quot;Absolute\&quot; |
+| **type** | **str** | Required | The type of tolerance to allow. Available values: Relative, Absolute. |
 | **value** | **float** | Required | The decimal value of how much tolerance to allow when comparing in relative (i.e percentage) or absolute terms depending on the ToleranceType specified |
 
 
@@ -16,7 +16,7 @@
 from finbourne.sdk.services.lusid.models.GroupReconciliationComparisonRuleTolerance import GroupReconciliationComparisonRuleTolerance
 
 instance = GroupReconciliationComparisonRuleTolerance(
-    type="...",  # required — The type of tolerance to allow. \&quot;Relative\&quot; | \&quot;Absolute\&quot;
+    type="...",  # required — The type of tolerance to allow. Available values: Relative, Absolute.
     value=0.0  # required — The decimal value of how much tolerance to allow when comparing in relative (i.e percentage) or absolute terms depending on the ToleranceType specified
 )
 ```

@@ -11,7 +11,7 @@
 | **created** | **datetime** | Optional | The effective datetime at which the portfolio was created. No transactions or constituents can be added to the portfolio before this date. |
 | **parent_portfolio_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **is_derived** | **bool** | Optional | Whether or not this is a derived portfolio. *(read-only)* |
-| **type** | **str** | Optional | The type of the portfolio. The available values are: Transaction, Reference, DerivedTransaction, SimplePosition |
+| **type** | **str** | Optional | The type of the portfolio. Available values: Transaction, Reference, DerivedTransaction, SimplePosition. |
 | **version** | [Version](Version.md) | Required | *No description available.* |
 | **properties** | [List[ModelProperty]](ModelProperty.md) | Optional | The requested portfolio properties. These will be from the &#39;Portfolio&#39; domain. |
 | **base_currency** | **str** | Optional | If the portfolio is a transaction portfolio or derived transaction portfolio, this is the base currency of the portfolio. |
@@ -34,7 +34,7 @@ instance = CompletePortfolio(
     created=datetime.now(),  # optional — The effective datetime at which the portfolio was created. No transactions or constituents can be added to the portfolio before this date.
     parent_portfolio_id=ResourceId(...),  # optional
     is_derived=True,  # optional — Whether or not this is a derived portfolio.
-    type="...",  # optional — The type of the portfolio. The available values are: Transaction, Reference, DerivedTransaction, SimplePosition
+    type="...",  # optional — The type of the portfolio. Available values: Transaction, Reference, DerivedTransaction, SimplePosition.
     version=Version(...),  # required
     properties=[],  # optional — The requested portfolio properties. These will be from the &#39;Portfolio&#39; domain.
     base_currency="...",  # optional — If the portfolio is a transaction portfolio or derived transaction portfolio, this is the base currency of the portfolio.

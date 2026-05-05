@@ -14,6 +14,10 @@ __all__ = [
     "SyncApiClientFactory",
     "ApiClientFactory",
     "ConfigurationLoader",
+    "SecretsFileConfigurationLoader",
+    "EnvironmentVariablesConfigurationLoader",
+    "FileTokenConfigurationLoader",
+    "ArgsConfigurationLoader",
     "SyncApiClient",
     "RefreshingToken",
     "ConfigurationOptions"

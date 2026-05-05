@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class ProcessUpdateResult(BaseModel):
     status:  StrictStr = Field(...,alias="status", description="") 
     message:  StrictStr = Field(...,alias="message", description="") 
     schema_version:  Optional[StrictStr] = Field(default=None,alias="schemaVersion", description="") 
-    __properties = ["domain", "entryId", "processName", "runId", "entryDate", "status", "message", "schemaVersion"]
+    __properties: ClassVar[List[str]] = ["domain", "entryId", "processName", "runId", "entryDate", "status", "message", "schemaVersion"]
 
     model_config = ConfigDict(
         populate_by_name=True,

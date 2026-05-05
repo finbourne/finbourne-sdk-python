@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,11 +28,11 @@ class IndexModelOptions(ModelOptions):
     """
     IndexModelOptions
     """
-    portfolio_scaling:  StrictStr = Field(...,alias="portfolioScaling", description="The available values are: Sum, AbsoluteSum, Unity") 
+    portfolio_scaling:  StrictStr = Field(...,alias="portfolioScaling", description="Available values: Sum, AbsoluteSum, Unity.") 
     lookthrough_portfolio_relationship_id: Optional[ResourceId] = Field(default=None, alias="lookthroughPortfolioRelationshipId")
-    model_options_type:  StrictStr = Field(...,alias="modelOptionsType", description="The available values are: Invalid, OpaqueModelOptions, EmptyModelOptions, IndexModelOptions, FxForwardModelOptions, FundingLegModelOptions, EquityModelOptions, CdsModelOptions") 
+    model_options_type:  StrictStr = Field(...,alias="modelOptionsType", description="Available values: Invalid, OpaqueModelOptions, EmptyModelOptions, IndexModelOptions, FxForwardModelOptions, FundingLegModelOptions, EquityModelOptions, CdsModelOptions.") 
     additional_properties: Dict[str, Any] = {}
-    __properties = ["modelOptionsType", "portfolioScaling", "lookthroughPortfolioRelationshipId"]
+    __properties: ClassVar[List[str]] = ["modelOptionsType", "portfolioScaling", "lookthroughPortfolioRelationshipId"]
 
     @field_validator('portfolio_scaling')
     def portfolio_scaling_validate_enum(cls, value):
@@ -229,16 +229,11 @@ class IndexModelOptions(ModelOptions):
         _obj = IndexModelOptions.model_validate({
             "model_options_type": obj.get("modelOptionsType"),
             "portfolio_scaling": obj.get("portfolioScaling"),
-            "lookthrough_portfolio_relationship_id": ResourceId.from_dict(obj.get("lookthroughPortfolioRelationshipId")) if obj.get("lookthroughPortfolioRelationshipId") is not None else None
+            "lookthrough_portfolio_relationship_id": ResourceId.from_dict(_v) if (_v := obj.get("lookthroughPortfolioRelationshipId")) is not None else None
         })
         # store additional fields in additional_properties
-        
-        properties = cls.__properties
-        if not isinstance(cls.__properties, dict) and getattr(cls.__properties, 'default', None):
-            properties = cls.__properties.default
-    
         for _key in obj.keys():
-            if _key not in properties:
+            if _key not in cls.__properties:
                 _obj.additional_properties[_key] = obj.get(_key)
 
         return _obj

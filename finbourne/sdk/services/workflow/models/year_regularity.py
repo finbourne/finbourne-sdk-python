@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class YearRegularity(BaseModel):
     """
     dates: List[DayOfYear] = Field(description="The dates in the year")
     type:  StrictStr = Field(...,alias="type", description="The type of Date Regularity") 
-    __properties = ["dates", "type"]
+    __properties: ClassVar[List[str]] = ["dates", "type"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -153,7 +153,7 @@ class YearRegularity(BaseModel):
             return YearRegularity.model_validate(obj)
 
         _obj = YearRegularity.model_validate({
-            "dates": [DayOfYear.from_dict(_item) for _item in obj.get("dates")] if obj.get("dates") is not None else None,
+            "dates": [DayOfYear.from_dict(_item) for _item in _v] if (_v := obj.get("dates")) is not None else None,
             "type": obj.get("type")
         })
         return _obj

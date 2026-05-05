@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -37,7 +37,7 @@ class Change(BaseModel):
     amendment_effective_at: Optional[datetime] = Field(default=None, alias="amendmentEffectiveAt")
     amendment_as_at: Optional[datetime] = Field(default=None, alias="amendmentAsAt")
     links: Optional[List[Link]] = None
-    __properties = ["href", "entityId", "corrected", "correctionEffectiveAt", "correctionAsAt", "amended", "amendmentEffectiveAt", "amendmentAsAt", "links"]
+    __properties: ClassVar[List[str]] = ["href", "entityId", "corrected", "correctionEffectiveAt", "correctionAsAt", "amended", "amendmentEffectiveAt", "amendmentAsAt", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -126,14 +126,14 @@ class Change(BaseModel):
 
         _obj = Change.model_validate({
             "href": obj.get("href"),
-            "entity_id": ResourceId.from_dict(obj.get("entityId")) if obj.get("entityId") is not None else None,
+            "entity_id": ResourceId.from_dict(_v) if (_v := obj.get("entityId")) is not None else None,
             "corrected": obj.get("corrected"),
             "correction_effective_at": obj.get("correctionEffectiveAt"),
             "correction_as_at": obj.get("correctionAsAt"),
             "amended": obj.get("amended"),
             "amendment_effective_at": obj.get("amendmentEffectiveAt"),
             "amendment_as_at": obj.get("amendmentAsAt"),
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

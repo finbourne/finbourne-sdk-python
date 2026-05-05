@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class CreateWorkflowRequest(BaseModel):
     display_name:  StrictStr = Field(...,alias="displayName", description="Human readable name") 
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="Human readable description") 
     root_task_definition_id: ResourceId = Field(alias="rootTaskDefinitionId")
-    __properties = ["id", "displayName", "description", "rootTaskDefinitionId"]
+    __properties: ClassVar[List[str]] = ["id", "displayName", "description", "rootTaskDefinitionId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -90,10 +90,10 @@ class CreateWorkflowRequest(BaseModel):
             return CreateWorkflowRequest.model_validate(obj)
 
         _obj = CreateWorkflowRequest.model_validate({
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
-            "root_task_definition_id": ResourceId.from_dict(obj.get("rootTaskDefinitionId")) if obj.get("rootTaskDefinitionId") is not None else None
+            "root_task_definition_id": ResourceId.from_dict(_v) if (_v := obj.get("rootTaskDefinitionId")) is not None else None
         })
         return _obj
 

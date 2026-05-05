@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class FieldMapping(BaseModel):
     """
     map_from:  Optional[StrictStr] = Field(default=None,alias="mapFrom", description="The field to map from") 
     set_to: Optional[Any] = Field(default=None, description="The (constant) value to set", alias="setTo")
-    __properties = ["mapFrom", "setTo"]
+    __properties: ClassVar[List[str]] = ["mapFrom", "setTo"]
 
     model_config = ConfigDict(
         populate_by_name=True,

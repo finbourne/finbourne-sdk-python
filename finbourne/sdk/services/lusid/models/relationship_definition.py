@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,15 +31,15 @@ class RelationshipDefinition(BaseModel):
     """
     version: Optional[Version] = None
     relationship_definition_id: ResourceId = Field(alias="relationshipDefinitionId")
-    source_entity_type:  StrictStr = Field(...,alias="sourceEntityType", description="The entity type of the source entity object.") 
-    target_entity_type:  StrictStr = Field(...,alias="targetEntityType", description="The entity type of the target entity object.") 
+    source_entity_type:  StrictStr = Field(...,alias="sourceEntityType", description="The entity type of the source entity object. Available values: Portfolio, PortfolioGroup, Person, LegalEntity, NextBestAction.") 
+    target_entity_type:  StrictStr = Field(...,alias="targetEntityType", description="The entity type of the target entity object. Available values: Portfolio, PortfolioGroup, Person, LegalEntity, NextBestAction.") 
     display_name:  StrictStr = Field(...,alias="displayName", description="The display name of the relationship.") 
     outward_description:  StrictStr = Field(...,alias="outwardDescription", description="The description to relate source entity object and target entity object") 
     inward_description:  StrictStr = Field(...,alias="inwardDescription", description="The description to relate target entity object and source entity object") 
-    life_time:  StrictStr = Field(...,alias="lifeTime", description="Describes how the relationships can change over time.") 
-    relationship_cardinality:  StrictStr = Field(...,alias="relationshipCardinality", description="Describes the cardinality of the relationship between source entity and target entity.") 
+    life_time:  StrictStr = Field(...,alias="lifeTime", description="Describes how the relationships can change over time. Available values: Perpetual, TimeVariant.") 
+    relationship_cardinality:  StrictStr = Field(...,alias="relationshipCardinality", description="Describes the cardinality of the relationship between source entity and target entity. Available values: ManyToOne, ManyToMany.") 
     links: Optional[List[Link]] = None
-    __properties = ["version", "relationshipDefinitionId", "sourceEntityType", "targetEntityType", "displayName", "outwardDescription", "inwardDescription", "lifeTime", "relationshipCardinality", "links"]
+    __properties: ClassVar[List[str]] = ["version", "relationshipDefinitionId", "sourceEntityType", "targetEntityType", "displayName", "outwardDescription", "inwardDescription", "lifeTime", "relationshipCardinality", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -105,8 +105,8 @@ class RelationshipDefinition(BaseModel):
             return RelationshipDefinition.model_validate(obj)
 
         _obj = RelationshipDefinition.model_validate({
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
-            "relationship_definition_id": ResourceId.from_dict(obj.get("relationshipDefinitionId")) if obj.get("relationshipDefinitionId") is not None else None,
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "relationship_definition_id": ResourceId.from_dict(_v) if (_v := obj.get("relationshipDefinitionId")) is not None else None,
             "source_entity_type": obj.get("sourceEntityType"),
             "target_entity_type": obj.get("targetEntityType"),
             "display_name": obj.get("displayName"),
@@ -114,7 +114,7 @@ class RelationshipDefinition(BaseModel):
             "inward_description": obj.get("inwardDescription"),
             "life_time": obj.get("lifeTime"),
             "relationship_cardinality": obj.get("relationshipCardinality"),
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

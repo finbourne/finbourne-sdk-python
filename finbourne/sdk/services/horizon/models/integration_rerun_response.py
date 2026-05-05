@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class IntegrationRerunResponse(BaseModel):
     No content is returned when an instance is rerun.  # noqa: E501
     """
     run_id: InstanceExecutionReferenceId = Field(alias="runId")
-    __properties = ["runId"]
+    __properties: ClassVar[List[str]] = ["runId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,7 +79,7 @@ class IntegrationRerunResponse(BaseModel):
             return IntegrationRerunResponse.model_validate(obj)
 
         _obj = IntegrationRerunResponse.model_validate({
-            "run_id": InstanceExecutionReferenceId.from_dict(obj.get("runId")) if obj.get("runId") is not None else None
+            "run_id": InstanceExecutionReferenceId.from_dict(_v) if (_v := obj.get("runId")) is not None else None
         })
         return _obj
 

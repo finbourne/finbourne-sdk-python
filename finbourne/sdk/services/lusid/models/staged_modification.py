@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -51,7 +51,7 @@ class StagedModification(BaseModel):
     display_name:  Optional[StrictStr] = Field(default=None,alias="displayName", description="The display name of the entity the staged modification applies to.") 
     source_entity: Optional[StagedModificationSourceEntity] = Field(default=None, alias="sourceEntity")
     links: Optional[List[Link]] = None
-    __properties = ["id", "asAtStaged", "userIdStaged", "requestedIdStaged", "requestReason", "action", "stagingRule", "decisions", "decisionsCount", "status", "asAtClosed", "entityType", "scope", "entityUniqueId", "requestedChanges", "entityHrefs", "displayName", "sourceEntity", "links"]
+    __properties: ClassVar[List[str]] = ["id", "asAtStaged", "userIdStaged", "requestedIdStaged", "requestReason", "action", "stagingRule", "decisions", "decisionsCount", "status", "asAtClosed", "entityType", "scope", "entityUniqueId", "requestedChanges", "entityHrefs", "displayName", "sourceEntity", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -196,19 +196,19 @@ class StagedModification(BaseModel):
             "requested_id_staged": obj.get("requestedIdStaged"),
             "request_reason": obj.get("requestReason"),
             "action": obj.get("action"),
-            "staging_rule": StagedModificationStagingRule.from_dict(obj.get("stagingRule")) if obj.get("stagingRule") is not None else None,
-            "decisions": [StagedModificationDecision.from_dict(_item) for _item in obj.get("decisions")] if obj.get("decisions") is not None else None,
+            "staging_rule": StagedModificationStagingRule.from_dict(_v) if (_v := obj.get("stagingRule")) is not None else None,
+            "decisions": [StagedModificationDecision.from_dict(_item) for _item in _v] if (_v := obj.get("decisions")) is not None else None,
             "decisions_count": obj.get("decisionsCount"),
             "status": obj.get("status"),
             "as_at_closed": obj.get("asAtClosed"),
             "entity_type": obj.get("entityType"),
             "scope": obj.get("scope"),
             "entity_unique_id": obj.get("entityUniqueId"),
-            "requested_changes": RequestedChanges.from_dict(obj.get("requestedChanges")) if obj.get("requestedChanges") is not None else None,
-            "entity_hrefs": StagedModificationsEntityHrefs.from_dict(obj.get("entityHrefs")) if obj.get("entityHrefs") is not None else None,
+            "requested_changes": RequestedChanges.from_dict(_v) if (_v := obj.get("requestedChanges")) is not None else None,
+            "entity_hrefs": StagedModificationsEntityHrefs.from_dict(_v) if (_v := obj.get("entityHrefs")) is not None else None,
             "display_name": obj.get("displayName"),
-            "source_entity": StagedModificationSourceEntity.from_dict(obj.get("sourceEntity")) if obj.get("sourceEntity") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "source_entity": StagedModificationSourceEntity.from_dict(_v) if (_v := obj.get("sourceEntity")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

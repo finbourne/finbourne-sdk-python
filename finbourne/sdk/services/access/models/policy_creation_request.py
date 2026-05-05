@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -43,7 +43,7 @@ class PolicyCreationRequest(BaseModel):
     when: WhenSpec
     how: Optional[HowSpec] = None
     template_metadata: Optional[TemplateMetadata] = Field(default=None, alias="templateMetadata")
-    __properties = ["code", "description", "applications", "grant", "selectors", "for", "if", "when", "how", "templateMetadata"]
+    __properties: ClassVar[List[str]] = ["code", "description", "applications", "grant", "selectors", "for", "if", "when", "how", "templateMetadata"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -145,12 +145,12 @@ class PolicyCreationRequest(BaseModel):
             "description": obj.get("description"),
             "applications": obj.get("applications"),
             "grant": obj.get("grant"),
-            "selectors": [SelectorDefinition.from_dict(_item) for _item in obj.get("selectors")] if obj.get("selectors") is not None else None,
-            "var_for": [ForSpec.from_dict(_item) for _item in obj.get("for")] if obj.get("for") is not None else None,
-            "var_if": [IfExpression.from_dict(_item) for _item in obj.get("if")] if obj.get("if") is not None else None,
-            "when": WhenSpec.from_dict(obj.get("when")) if obj.get("when") is not None else None,
-            "how": HowSpec.from_dict(obj.get("how")) if obj.get("how") is not None else None,
-            "template_metadata": TemplateMetadata.from_dict(obj.get("templateMetadata")) if obj.get("templateMetadata") is not None else None
+            "selectors": [SelectorDefinition.from_dict(_item) for _item in _v] if (_v := obj.get("selectors")) is not None else None,
+            "var_for": [ForSpec.from_dict(_item) for _item in _v] if (_v := obj.get("for")) is not None else None,
+            "var_if": [IfExpression.from_dict(_item) for _item in _v] if (_v := obj.get("if")) is not None else None,
+            "when": WhenSpec.from_dict(_v) if (_v := obj.get("when")) is not None else None,
+            "how": HowSpec.from_dict(_v) if (_v := obj.get("how")) is not None else None,
+            "template_metadata": TemplateMetadata.from_dict(_v) if (_v := obj.get("templateMetadata")) is not None else None
         })
         return _obj
 

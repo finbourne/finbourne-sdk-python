@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class UserRoleUpdateRequest(BaseModel):
     Dto used to request updating a user's role  # noqa: E501
     """
     resource: PolicyIdRoleResource
-    __properties = ["resource"]
+    __properties: ClassVar[List[str]] = ["resource"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,7 +79,7 @@ class UserRoleUpdateRequest(BaseModel):
             return UserRoleUpdateRequest.model_validate(obj)
 
         _obj = UserRoleUpdateRequest.model_validate({
-            "resource": PolicyIdRoleResource.from_dict(obj.get("resource")) if obj.get("resource") is not None else None
+            "resource": PolicyIdRoleResource.from_dict(_v) if (_v := obj.get("resource")) is not None else None
         })
         return _obj
 

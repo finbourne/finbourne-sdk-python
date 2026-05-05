@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -39,7 +39,7 @@ class IntegrationRunResponse(BaseModel):
     integration: IntegrationRunIntegration
     version: IntegrationRunVersion
     integration_logs: Optional[Dict[str, Dict[str, IntegrationRunLog]]] = Field(default=None, alias="integrationLogs")
-    __properties = ["runId", "refRunId", "attempt", "instanceId", "instanceName", "status", "message", "integration", "version", "integrationLogs"]
+    __properties: ClassVar[List[str]] = ["runId", "refRunId", "attempt", "instanceId", "instanceName", "status", "message", "integration", "version", "integrationLogs"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -137,8 +137,8 @@ class IntegrationRunResponse(BaseModel):
             "instance_name": obj.get("instanceName"),
             "status": obj.get("status"),
             "message": obj.get("message"),
-            "integration": IntegrationRunIntegration.from_dict(obj.get("integration")) if obj.get("integration") is not None else None,
-            "version": IntegrationRunVersion.from_dict(obj.get("version")) if obj.get("version") is not None else None,
+            "integration": IntegrationRunIntegration.from_dict(_v) if (_v := obj.get("integration")) is not None else None,
+            "version": IntegrationRunVersion.from_dict(_v) if (_v := obj.get("version")) is not None else None,
             "integration_logs": dict(
                 (_k, dict(
                     (_ik, IntegrationRunLog.from_dict(_iv))
@@ -147,9 +147,9 @@ class IntegrationRunResponse(BaseModel):
                     if _v is not None
                     else None
                 )
-                for _k, _v in obj.get("integrationLogs").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("integrationLogs") is not None
+            if (_val := obj.get("integrationLogs")) is not None
             else None
         })
         return _obj

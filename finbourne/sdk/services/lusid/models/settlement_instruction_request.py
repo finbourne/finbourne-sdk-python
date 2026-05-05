@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,8 +31,8 @@ class SettlementInstructionRequest(BaseModel):
     """
     settlement_instruction_id:  StrictStr = Field(...,alias="settlementInstructionId") 
     transaction_id:  StrictStr = Field(...,alias="transactionId") 
-    settlement_category:  StrictStr = Field(...,alias="settlementCategory") 
-    instruction_type:  Optional[StrictStr] = Field(default=None,alias="instructionType") 
+    settlement_category:  StrictStr = Field(...,alias="settlementCategory", description="Available values: StockSettlement, CashSettlement, DeferredCashReceipt.") 
+    instruction_type:  Optional[StrictStr] = Field(default=None,alias="instructionType", description="Available values: Complete, CancelAutomatic, Partial.") 
     instrument_identifiers: Dict[str, Optional[StrictStr]] = Field(alias="instrumentIdentifiers")
     contractual_settlement_date: Optional[datetime] = Field(default=None, alias="contractualSettlementDate")
     actual_settlement_date: datetime = Field(alias="actualSettlementDate")
@@ -42,7 +42,7 @@ class SettlementInstructionRequest(BaseModel):
     instruction_to_portfolio_rate: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="instructionToPortfolioRate")
     settlement_in_lieu: Optional[SettlementInLieu] = Field(default=None, alias="settlementInLieu")
     properties: Optional[List[PerpetualProperty]] = None
-    __properties = ["settlementInstructionId", "transactionId", "settlementCategory", "instructionType", "instrumentIdentifiers", "contractualSettlementDate", "actualSettlementDate", "units", "subHoldingKeyOverrides", "custodianAccountOverride", "instructionToPortfolioRate", "settlementInLieu", "properties"]
+    __properties: ClassVar[List[str]] = ["settlementInstructionId", "transactionId", "settlementCategory", "instructionType", "instrumentIdentifiers", "contractualSettlementDate", "actualSettlementDate", "units", "subHoldingKeyOverrides", "custodianAccountOverride", "instructionToPortfolioRate", "settlementInLieu", "properties"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -145,14 +145,14 @@ class SettlementInstructionRequest(BaseModel):
             "units": obj.get("units"),
             "sub_holding_key_overrides": dict(
                 (_k, PerpetualProperty.from_dict(_v))
-                for _k, _v in obj.get("subHoldingKeyOverrides").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("subHoldingKeyOverrides") is not None
+            if (_val := obj.get("subHoldingKeyOverrides")) is not None
             else None,
-            "custodian_account_override": ResourceId.from_dict(obj.get("custodianAccountOverride")) if obj.get("custodianAccountOverride") is not None else None,
+            "custodian_account_override": ResourceId.from_dict(_v) if (_v := obj.get("custodianAccountOverride")) is not None else None,
             "instruction_to_portfolio_rate": obj.get("instructionToPortfolioRate"),
-            "settlement_in_lieu": SettlementInLieu.from_dict(obj.get("settlementInLieu")) if obj.get("settlementInLieu") is not None else None,
-            "properties": [PerpetualProperty.from_dict(_item) for _item in obj.get("properties")] if obj.get("properties") is not None else None
+            "settlement_in_lieu": SettlementInLieu.from_dict(_v) if (_v := obj.get("settlementInLieu")) is not None else None,
+            "properties": [PerpetualProperty.from_dict(_item) for _item in _v] if (_v := obj.get("properties")) is not None else None
         })
         return _obj
 

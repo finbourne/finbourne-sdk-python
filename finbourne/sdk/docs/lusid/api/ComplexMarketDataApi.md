@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 ---
 
 # **get_complex_market_data**
-> GetComplexMarketDataResponse getComplexMarketData = get_complex_market_data(scope, request_body, effective_at=effective_at, as_at=as_at, max_age=max_age)
+> GetComplexMarketDataResponse getComplexMarketData = get_complex_market_data(scope, request_body, effective_at=effective_at, as_at=as_at, max_age=max_age, timeline_scope=timeline_scope, timeline_code=timeline_code, closed_period_id=closed_period_id)
 
 GetComplexMarketData: Get complex market data
 
@@ -96,7 +96,10 @@ request_body = {"first-item":{"provider":"DataScope","priceSource":"Some Bank Pl
 effective_at = 'effective_at_example' # str (optional)
 as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
 max_age = 'max_age_example' # str (optional)
-api_response = api_instance.get_complex_market_data(scope, request_body, effective_at=effective_at, as_at=as_at, max_age=max_age)
+timeline_scope = 'timeline_scope_example' # str (optional)
+timeline_code = 'timeline_code_example' # str (optional)
+closed_period_id = 'closed_period_id_example' # str (optional)
+api_response = api_instance.get_complex_market_data(scope, request_body, effective_at=effective_at, as_at=as_at, max_age=max_age, timeline_scope=timeline_scope, timeline_code=timeline_code, closed_period_id=closed_period_id)
 pprint(api_response)
 ```
 
@@ -109,6 +112,9 @@ Name | Type | Description  | Notes
  **effective_at** | **str**| The effective datetime at which to retrieve the complex market data.               Defaults to the current LUSID system datetime if not specified.               Must match the Effective at of each ComplexMarketDataId given in the request body. | [optional] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the complex market data. Defaults to return the latest version if not specified. | [optional] 
  **max_age** | **str**| The duration of the look back window in an ISO8601 time interval format e.g. P1Y2M3DT4H30M (1 year, 2 months, 3 days, 4 hours and 30 minutes).               This is subtracted from the provided effectiveAt datetime to generate a effective datetime window inside which a complex market data item must exist to be retrieved. | [optional] 
+ **timeline_scope** | **str**| The scope of the Timeline. | [optional] 
+ **timeline_code** | **str**| The code of the Timeline. This can optionally include a colon followed by the Closed Period ID to use at the head of the timeline, for a timeline with unconfirmed periods. | [optional] 
+ **closed_period_id** | **str**| The closed period ID. If this is specified, both timelineScope and timelineCode must be specified. | [optional] 
 
 ### Return type
 
@@ -131,7 +137,7 @@ Name | Type | Description  | Notes
 ---
 
 # **list_complex_market_data**
-> ResourceListOfListComplexMarketDataWithMetaDataResponse listComplexMarketData = list_complex_market_data(as_at=as_at, effective_at=effective_at, page=page, limit=limit)
+> ResourceListOfListComplexMarketDataWithMetaDataResponse listComplexMarketData = list_complex_market_data(as_at=as_at, effective_at=effective_at, page=page, limit=limit, timeline_scope=timeline_scope, timeline_code=timeline_code, closed_period_id=closed_period_id)
 
 ListComplexMarketData: List the set of ComplexMarketData
 
@@ -145,7 +151,10 @@ as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
 effective_at = 'effective_at_example' # str (optional)
 page = 'page_example' # str (optional)
 limit = 56 # int (optional)
-api_response = api_instance.list_complex_market_data(as_at=as_at, effective_at=effective_at, page=page, limit=limit)
+timeline_scope = 'timeline_scope_example' # str (optional)
+timeline_code = 'timeline_code_example' # str (optional)
+closed_period_id = 'closed_period_id_example' # str (optional)
+api_response = api_instance.list_complex_market_data(as_at=as_at, effective_at=effective_at, page=page, limit=limit, timeline_scope=timeline_scope, timeline_code=timeline_code, closed_period_id=closed_period_id)
 pprint(api_response)
 ```
 
@@ -157,6 +166,9 @@ Name | Type | Description  | Notes
  **effective_at** | **str**| The effectiveAt datetime at which to list the ComplexMarketData. Defaults to latest if not specified. Note  that this parameter is not implemented at this time and the latest version of the ComplexMarketData will  always be returned. | [optional] 
  **page** | **str**| The pagination token to use to continue listing ComplexMarketData; this              value is returned from the previous call. If a pagination token is provided, the effectiveAt              and asAt fields must not have changed since the original request. | [optional] 
  **limit** | **int**| When paginating, limit the results to this number. If not specified, no pagination will be applied. It is  highly recommended to supply a value for this parameter as the default behaviour will change in the future. | [optional] 
+ **timeline_scope** | **str**| The scope of the Timeline. | [optional] 
+ **timeline_code** | **str**| The code of the Timeline. This can optionally include a colon followed by the Closed Period ID to use at the head of the timeline, for a timeline with unconfirmed periods. | [optional] 
+ **closed_period_id** | **str**| The closed period ID. If this is specified, both timelineScope and timelineCode must be specified. | [optional] 
 
 ### Return type
 

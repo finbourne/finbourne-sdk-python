@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class ApplicableEntity(BaseModel):
     identifier_type:  Optional[StrictStr] = Field(default=None,alias="identifierType", description="The type of identifier (e.g., Figi, Isin) used to uniquely identify the entity.") 
     identifier_value:  Optional[StrictStr] = Field(default=None,alias="identifierValue", description="The value of the identifier used to uniquely identify the entity.") 
     sub_entity_id:  Optional[StrictStr] = Field(default=None,alias="subEntityId", description="An optional sub-entity identifier, if applicable.") 
-    __properties = ["entityType", "entityScope", "identifierScope", "identifierType", "identifierValue", "subEntityId"]
+    __properties: ClassVar[List[str]] = ["entityType", "entityScope", "identifierScope", "identifierType", "identifierValue", "subEntityId"]
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class UpsertInstrumentPropertiesResponse(BaseModel):
     """
     as_at_date: datetime = Field(description="The as-at datetime at which properties were created or updated.", alias="asAtDate")
     links: Optional[List[Link]] = None
-    __properties = ["asAtDate", "links"]
+    __properties: ClassVar[List[str]] = ["asAtDate", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -90,7 +90,7 @@ class UpsertInstrumentPropertiesResponse(BaseModel):
 
         _obj = UpsertInstrumentPropertiesResponse.model_validate({
             "as_at_date": obj.get("asAtDate"),
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

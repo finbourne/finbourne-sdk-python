@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class LusidEntityDataset(BaseModel):
     selector_attribute:  Optional[StrictStr] = Field(default=None,alias="selectorAttribute", description="An attribute (field name, propertyKey or identifierKey) to use to sub-divide the dataset.") 
     selector_value:  Optional[StrictStr] = Field(default=None,alias="selectorValue", description="The value of the above attribute used to sub-divide the dataset.") 
     return_identifier_key:  Optional[StrictStr] = Field(default=None,alias="returnIdentifierKey", description="The preferred identifier to return for entities with multiple external identifiers.") 
-    __properties = ["asAt", "effectiveAt", "scope", "asAtModifiedSince", "selectorAttribute", "selectorValue", "returnIdentifierKey"]
+    __properties: ClassVar[List[str]] = ["asAt", "effectiveAt", "scope", "asAtModifiedSince", "selectorAttribute", "selectorValue", "returnIdentifierKey"]
 
     model_config = ConfigDict(
         populate_by_name=True,

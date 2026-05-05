@@ -63,12 +63,12 @@ class QueryableKeysApi:
         :return: Returns the result object.
         :rtype: ResourceListOfQueryableKey
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_all_queryable_keys_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_all_queryable_keys_with_http_info(as_at, filter, **kwargs)  # noqa: E501
+        response = self.get_all_queryable_keys_with_http_info(as_at, filter, **kwargs)
+        return response.data
 
     @validate_call
     def get_all_queryable_keys_with_http_info(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfQueryableKey]:
@@ -198,12 +198,12 @@ class QueryableKeysApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfQueryableKey
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_all_queryable_keys_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_all_queryable_keys_with_http_info_async(as_at, filter, **kwargs)  # noqa: E501
+            response = await self.get_all_queryable_keys_with_http_info_async(as_at, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def get_all_queryable_keys_with_http_info_async(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfQueryableKey]:

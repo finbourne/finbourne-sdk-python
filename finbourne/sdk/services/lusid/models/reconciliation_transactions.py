@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class ReconciliationTransactions(BaseModel):
     """
     transaction_window: Optional[DateRange] = Field(default=None, alias="transactionWindow")
     mapping_id: Optional[ResourceId] = Field(default=None, alias="mappingId")
-    __properties = ["transactionWindow", "mappingId"]
+    __properties: ClassVar[List[str]] = ["transactionWindow", "mappingId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -84,8 +84,8 @@ class ReconciliationTransactions(BaseModel):
             return ReconciliationTransactions.model_validate(obj)
 
         _obj = ReconciliationTransactions.model_validate({
-            "transaction_window": DateRange.from_dict(obj.get("transactionWindow")) if obj.get("transactionWindow") is not None else None,
-            "mapping_id": ResourceId.from_dict(obj.get("mappingId")) if obj.get("mappingId") is not None else None
+            "transaction_window": DateRange.from_dict(_v) if (_v := obj.get("transactionWindow")) is not None else None,
+            "mapping_id": ResourceId.from_dict(_v) if (_v := obj.get("mappingId")) is not None else None
         })
         return _obj
 

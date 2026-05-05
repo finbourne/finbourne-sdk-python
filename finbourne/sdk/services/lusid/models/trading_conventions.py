@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class TradingConventions(BaseModel):
     price_scale_factor: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The factor used to scale prices for the instrument. Currently used by LUSID when calculating cost  and notional amounts on transactions. Note this factor does not yet impact Valuation, PV, exposure,  all of which use the scale factor attached to the price quotes in the QuoteStore.  Must be positive and defaults to 1 if not set.", alias="priceScaleFactor")
     minimum_order_size: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The Minimum Order Size  Must be non-negative and defaults to 0 if not set.", alias="minimumOrderSize")
     minimum_order_increment: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The Minimum Order Increment  Must be non-negative and defaults to 0 if not set.", alias="minimumOrderIncrement")
-    __properties = ["priceScaleFactor", "minimumOrderSize", "minimumOrderIncrement"]
+    __properties: ClassVar[List[str]] = ["priceScaleFactor", "minimumOrderSize", "minimumOrderIncrement"]
 
     model_config = ConfigDict(
         populate_by_name=True,

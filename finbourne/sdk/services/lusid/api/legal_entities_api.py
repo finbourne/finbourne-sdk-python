@@ -79,12 +79,12 @@ class LegalEntitiesApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_legal_entity_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_legal_entity_with_http_info(id_type_scope, id_type_code, code, **kwargs)  # noqa: E501
+        response = self.delete_legal_entity_with_http_info(id_type_scope, id_type_code, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_legal_entity_with_http_info(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -221,12 +221,12 @@ class LegalEntitiesApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_legal_entity_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_legal_entity_access_metadata_with_http_info(id_type_scope, id_type_code, code, metadata_key, effective_at, effective_until, **kwargs)  # noqa: E501
+        response = self.delete_legal_entity_access_metadata_with_http_info(id_type_scope, id_type_code, code, metadata_key, effective_at, effective_until, **kwargs)
+        return response.data
 
     @validate_call
     def delete_legal_entity_access_metadata_with_http_info(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, metadata_key: StrictStr, effective_at: Optional[StrictStr] = None, effective_until: Optional[datetime] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -382,12 +382,12 @@ class LegalEntitiesApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_legal_entity_identifiers_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_legal_entity_identifiers_with_http_info(id_type_scope, id_type_code, code, property_keys, effective_at, **kwargs)  # noqa: E501
+        response = self.delete_legal_entity_identifiers_with_http_info(id_type_scope, id_type_code, code, property_keys, effective_at, **kwargs)
+        return response.data
 
     @validate_call
     def delete_legal_entity_identifiers_with_http_info(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, property_keys: List[str], effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -535,12 +535,12 @@ class LegalEntitiesApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_legal_entity_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_legal_entity_properties_with_http_info(id_type_scope, id_type_code, code, property_keys, effective_at, **kwargs)  # noqa: E501
+        response = self.delete_legal_entity_properties_with_http_info(id_type_scope, id_type_code, code, property_keys, effective_at, **kwargs)
+        return response.data
 
     @validate_call
     def delete_legal_entity_properties_with_http_info(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, property_keys: List[str], effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -688,12 +688,12 @@ class LegalEntitiesApi:
         :return: Returns the result object.
         :rtype: Dict[str, List[AccessMetadataValue]]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_all_legal_entity_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_all_legal_entity_access_metadata_with_http_info(id_type_scope, id_type_code, code, effective_at, as_at, **kwargs)  # noqa: E501
+        response = self.get_all_legal_entity_access_metadata_with_http_info(id_type_scope, id_type_code, code, effective_at, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_all_legal_entity_access_metadata_with_http_info(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[Dict[str, List[AccessMetadataValue]]]:
@@ -847,12 +847,12 @@ class LegalEntitiesApi:
         :return: Returns the result object.
         :rtype: LegalEntity
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_legal_entity_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_legal_entity_with_http_info(id_type_scope, id_type_code, code, property_keys, effective_at, as_at, relationship_definition_ids, **kwargs)  # noqa: E501
+        response = self.get_legal_entity_with_http_info(id_type_scope, id_type_code, code, property_keys, effective_at, as_at, relationship_definition_ids, **kwargs)
+        return response.data
 
     @validate_call
     def get_legal_entity_with_http_info(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, property_keys: Optional[List[str]] = None, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> ApiResponse[LegalEntity]:
@@ -1018,12 +1018,12 @@ class LegalEntitiesApi:
         :return: Returns the result object.
         :rtype: List[AccessMetadataValue]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_legal_entity_access_metadata_by_key_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_legal_entity_access_metadata_by_key_with_http_info(id_type_scope, id_type_code, code, metadata_key, effective_at, as_at, **kwargs)  # noqa: E501
+        response = self.get_legal_entity_access_metadata_by_key_with_http_info(id_type_scope, id_type_code, code, metadata_key, effective_at, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_legal_entity_access_metadata_by_key_with_http_info(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, metadata_key: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[List[AccessMetadataValue]]:
@@ -1185,12 +1185,12 @@ class LegalEntitiesApi:
         :return: Returns the result object.
         :rtype: ResourceListOfPropertyInterval
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_legal_entity_property_time_series_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_legal_entity_property_time_series_with_http_info(id_type_scope, id_type_code, code, property_key, as_at, filter, page, limit, **kwargs)  # noqa: E501
+        response = self.get_legal_entity_property_time_series_with_http_info(id_type_scope, id_type_code, code, property_key, as_at, filter, page, limit, **kwargs)
+        return response.data
 
     @validate_call
     def get_legal_entity_property_time_series_with_http_info(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, property_key: StrictStr, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, **kwargs) -> ApiResponse[ResourceListOfPropertyInterval]:
@@ -1362,12 +1362,12 @@ class LegalEntitiesApi:
         :return: Returns the result object.
         :rtype: ResourceListOfRelation
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_legal_entity_relations_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_legal_entity_relations_with_http_info(id_type_scope, id_type_code, code, effective_at, as_at, filter, identifier_types, **kwargs)  # noqa: E501
+        response = self.get_legal_entity_relations_with_http_info(id_type_scope, id_type_code, code, effective_at, as_at, filter, identifier_types, **kwargs)
+        return response.data
 
     @validate_call
     def get_legal_entity_relations_with_http_info(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, identifier_types: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfRelation]:
@@ -1534,12 +1534,12 @@ class LegalEntitiesApi:
         :return: Returns the result object.
         :rtype: ResourceListOfRelationship
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_legal_entity_relationships_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_legal_entity_relationships_with_http_info(id_type_scope, id_type_code, code, effective_at, as_at, filter, identifier_types, **kwargs)  # noqa: E501
+        response = self.get_legal_entity_relationships_with_http_info(id_type_scope, id_type_code, code, effective_at, as_at, filter, identifier_types, **kwargs)
+        return response.data
 
     @validate_call
     def get_legal_entity_relationships_with_http_info(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, identifier_types: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfRelationship]:
@@ -1708,12 +1708,12 @@ class LegalEntitiesApi:
         :return: Returns the result object.
         :rtype: ResourceListOfLegalEntity
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_all_legal_entities_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_all_legal_entities_with_http_info(effective_at, as_at, page, limit, filter, sort_by, property_keys, relationship_definition_ids, **kwargs)  # noqa: E501
+        response = self.list_all_legal_entities_with_http_info(effective_at, as_at, page, limit, filter, sort_by, property_keys, relationship_definition_ids, **kwargs)
+        return response.data
 
     @validate_call
     def list_all_legal_entities_with_http_info(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfLegalEntity]:
@@ -1894,12 +1894,12 @@ class LegalEntitiesApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfLegalEntity
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_legal_entities_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_legal_entities_with_http_info(id_type_scope, id_type_code, effective_at, as_at, page, limit, filter, sort_by, property_keys, relationship_definition_ids, **kwargs)  # noqa: E501
+        response = self.list_legal_entities_with_http_info(id_type_scope, id_type_code, effective_at, as_at, page, limit, filter, sort_by, property_keys, relationship_definition_ids, **kwargs)
+        return response.data
 
     @validate_call
     def list_legal_entities_with_http_info(self, id_type_scope: StrictStr, id_type_code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfLegalEntity]:
@@ -2084,12 +2084,12 @@ class LegalEntitiesApi:
         :return: Returns the result object.
         :rtype: Dict[str, List[AccessMetadataValue]]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the patch_legal_entity_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.patch_legal_entity_access_metadata_with_http_info(id_type_scope, id_type_code, code, access_metadata_operation, effective_at, effective_until, **kwargs)  # noqa: E501
+        response = self.patch_legal_entity_access_metadata_with_http_info(id_type_scope, id_type_code, code, access_metadata_operation, effective_at, effective_until, **kwargs)
+        return response.data
 
     @validate_call
     def patch_legal_entity_access_metadata_with_http_info(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, access_metadata_operation: List[AccessMetadataOperation], effective_at: Optional[StrictStr] = None, effective_until: Optional[datetime] = None, **kwargs) -> ApiResponse[Dict[str, List[AccessMetadataValue]]]:
@@ -2250,12 +2250,12 @@ class LegalEntitiesApi:
         :return: Returns the result object.
         :rtype: LegalEntity
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the set_legal_entity_identifiers_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.set_legal_entity_identifiers_with_http_info(id_type_scope, id_type_code, code, set_legal_entity_identifiers_request, **kwargs)  # noqa: E501
+        response = self.set_legal_entity_identifiers_with_http_info(id_type_scope, id_type_code, code, set_legal_entity_identifiers_request, **kwargs)
+        return response.data
 
     @validate_call
     def set_legal_entity_identifiers_with_http_info(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, set_legal_entity_identifiers_request: SetLegalEntityIdentifiersRequest, **kwargs) -> ApiResponse[LegalEntity]:
@@ -2401,12 +2401,12 @@ class LegalEntitiesApi:
         :return: Returns the result object.
         :rtype: LegalEntity
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the set_legal_entity_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.set_legal_entity_properties_with_http_info(id_type_scope, id_type_code, code, set_legal_entity_properties_request, **kwargs)  # noqa: E501
+        response = self.set_legal_entity_properties_with_http_info(id_type_scope, id_type_code, code, set_legal_entity_properties_request, **kwargs)
+        return response.data
 
     @validate_call
     def set_legal_entity_properties_with_http_info(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, set_legal_entity_properties_request: SetLegalEntityPropertiesRequest, **kwargs) -> ApiResponse[LegalEntity]:
@@ -2548,12 +2548,12 @@ class LegalEntitiesApi:
         :return: Returns the result object.
         :rtype: UpsertLegalEntitiesResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_legal_entities_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_legal_entities_with_http_info(success_mode, request_body, **kwargs)  # noqa: E501
+        response = self.upsert_legal_entities_with_http_info(success_mode, request_body, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_legal_entities_with_http_info(self, success_mode: StrictStr, request_body: Dict[str, UpsertLegalEntityRequest], **kwargs) -> ApiResponse[UpsertLegalEntitiesResponse]:
@@ -2681,12 +2681,12 @@ class LegalEntitiesApi:
         :return: Returns the result object.
         :rtype: LegalEntity
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_legal_entity_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_legal_entity_with_http_info(upsert_legal_entity_request, **kwargs)  # noqa: E501
+        response = self.upsert_legal_entity_with_http_info(upsert_legal_entity_request, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_legal_entity_with_http_info(self, upsert_legal_entity_request: UpsertLegalEntityRequest, **kwargs) -> ApiResponse[LegalEntity]:
@@ -2820,12 +2820,12 @@ class LegalEntitiesApi:
         :return: Returns the result object.
         :rtype: ResourceListOfAccessMetadataValueOf
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_legal_entity_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_legal_entity_access_metadata_with_http_info(id_type_scope, id_type_code, code, metadata_key, upsert_legal_entity_access_metadata_request, effective_at, effective_until, **kwargs)  # noqa: E501
+        response = self.upsert_legal_entity_access_metadata_with_http_info(id_type_scope, id_type_code, code, metadata_key, upsert_legal_entity_access_metadata_request, effective_at, effective_until, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_legal_entity_access_metadata_with_http_info(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, metadata_key: StrictStr, upsert_legal_entity_access_metadata_request: UpsertLegalEntityAccessMetadataRequest, effective_at: Optional[StrictStr] = None, effective_until: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfAccessMetadataValueOf]:
@@ -2994,12 +2994,12 @@ class LegalEntitiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_legal_entity_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_legal_entity_with_http_info_async(id_type_scope, id_type_code, code, **kwargs)  # noqa: E501
+            response = await self.delete_legal_entity_with_http_info_async(id_type_scope, id_type_code, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_legal_entity_with_http_info_async(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -3137,12 +3137,12 @@ class LegalEntitiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_legal_entity_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_legal_entity_access_metadata_with_http_info_async(id_type_scope, id_type_code, code, metadata_key, effective_at, effective_until, **kwargs)  # noqa: E501
+            response = await self.delete_legal_entity_access_metadata_with_http_info_async(id_type_scope, id_type_code, code, metadata_key, effective_at, effective_until, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_legal_entity_access_metadata_with_http_info_async(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, metadata_key: StrictStr, effective_at: Optional[StrictStr] = None, effective_until: Optional[datetime] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -3299,12 +3299,12 @@ class LegalEntitiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_legal_entity_identifiers_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_legal_entity_identifiers_with_http_info_async(id_type_scope, id_type_code, code, property_keys, effective_at, **kwargs)  # noqa: E501
+            response = await self.delete_legal_entity_identifiers_with_http_info_async(id_type_scope, id_type_code, code, property_keys, effective_at, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_legal_entity_identifiers_with_http_info_async(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, property_keys: List[str], effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -3453,12 +3453,12 @@ class LegalEntitiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_legal_entity_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_legal_entity_properties_with_http_info_async(id_type_scope, id_type_code, code, property_keys, effective_at, **kwargs)  # noqa: E501
+            response = await self.delete_legal_entity_properties_with_http_info_async(id_type_scope, id_type_code, code, property_keys, effective_at, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_legal_entity_properties_with_http_info_async(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, property_keys: List[str], effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -3607,12 +3607,12 @@ class LegalEntitiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Dict[str, List[AccessMetadataValue]]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_all_legal_entity_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_all_legal_entity_access_metadata_with_http_info_async(id_type_scope, id_type_code, code, effective_at, as_at, **kwargs)  # noqa: E501
+            response = await self.get_all_legal_entity_access_metadata_with_http_info_async(id_type_scope, id_type_code, code, effective_at, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_all_legal_entity_access_metadata_with_http_info_async(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[Dict[str, List[AccessMetadataValue]]]:
@@ -3767,12 +3767,12 @@ class LegalEntitiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: LegalEntity
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_legal_entity_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_legal_entity_with_http_info_async(id_type_scope, id_type_code, code, property_keys, effective_at, as_at, relationship_definition_ids, **kwargs)  # noqa: E501
+            response = await self.get_legal_entity_with_http_info_async(id_type_scope, id_type_code, code, property_keys, effective_at, as_at, relationship_definition_ids, **kwargs)
+            return response.data
 
     @validate_call
     async def get_legal_entity_with_http_info_async(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, property_keys: Optional[List[str]] = None, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> ApiResponse[LegalEntity]:
@@ -3939,12 +3939,12 @@ class LegalEntitiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: List[AccessMetadataValue]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_legal_entity_access_metadata_by_key_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_legal_entity_access_metadata_by_key_with_http_info_async(id_type_scope, id_type_code, code, metadata_key, effective_at, as_at, **kwargs)  # noqa: E501
+            response = await self.get_legal_entity_access_metadata_by_key_with_http_info_async(id_type_scope, id_type_code, code, metadata_key, effective_at, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_legal_entity_access_metadata_by_key_with_http_info_async(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, metadata_key: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[List[AccessMetadataValue]]:
@@ -4107,12 +4107,12 @@ class LegalEntitiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfPropertyInterval
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_legal_entity_property_time_series_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_legal_entity_property_time_series_with_http_info_async(id_type_scope, id_type_code, code, property_key, as_at, filter, page, limit, **kwargs)  # noqa: E501
+            response = await self.get_legal_entity_property_time_series_with_http_info_async(id_type_scope, id_type_code, code, property_key, as_at, filter, page, limit, **kwargs)
+            return response.data
 
     @validate_call
     async def get_legal_entity_property_time_series_with_http_info_async(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, property_key: StrictStr, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, **kwargs) -> ApiResponse[ResourceListOfPropertyInterval]:
@@ -4285,12 +4285,12 @@ class LegalEntitiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfRelation
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_legal_entity_relations_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_legal_entity_relations_with_http_info_async(id_type_scope, id_type_code, code, effective_at, as_at, filter, identifier_types, **kwargs)  # noqa: E501
+            response = await self.get_legal_entity_relations_with_http_info_async(id_type_scope, id_type_code, code, effective_at, as_at, filter, identifier_types, **kwargs)
+            return response.data
 
     @validate_call
     async def get_legal_entity_relations_with_http_info_async(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, identifier_types: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfRelation]:
@@ -4458,12 +4458,12 @@ class LegalEntitiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfRelationship
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_legal_entity_relationships_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_legal_entity_relationships_with_http_info_async(id_type_scope, id_type_code, code, effective_at, as_at, filter, identifier_types, **kwargs)  # noqa: E501
+            response = await self.get_legal_entity_relationships_with_http_info_async(id_type_scope, id_type_code, code, effective_at, as_at, filter, identifier_types, **kwargs)
+            return response.data
 
     @validate_call
     async def get_legal_entity_relationships_with_http_info_async(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, identifier_types: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfRelationship]:
@@ -4633,12 +4633,12 @@ class LegalEntitiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfLegalEntity
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_all_legal_entities_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_all_legal_entities_with_http_info_async(effective_at, as_at, page, limit, filter, sort_by, property_keys, relationship_definition_ids, **kwargs)  # noqa: E501
+            response = await self.list_all_legal_entities_with_http_info_async(effective_at, as_at, page, limit, filter, sort_by, property_keys, relationship_definition_ids, **kwargs)
+            return response.data
 
     @validate_call
     async def list_all_legal_entities_with_http_info_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfLegalEntity]:
@@ -4820,12 +4820,12 @@ class LegalEntitiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfLegalEntity
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_legal_entities_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_legal_entities_with_http_info_async(id_type_scope, id_type_code, effective_at, as_at, page, limit, filter, sort_by, property_keys, relationship_definition_ids, **kwargs)  # noqa: E501
+            response = await self.list_legal_entities_with_http_info_async(id_type_scope, id_type_code, effective_at, as_at, page, limit, filter, sort_by, property_keys, relationship_definition_ids, **kwargs)
+            return response.data
 
     @validate_call
     async def list_legal_entities_with_http_info_async(self, id_type_scope: StrictStr, id_type_code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfLegalEntity]:
@@ -5011,12 +5011,12 @@ class LegalEntitiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Dict[str, List[AccessMetadataValue]]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the patch_legal_entity_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.patch_legal_entity_access_metadata_with_http_info_async(id_type_scope, id_type_code, code, access_metadata_operation, effective_at, effective_until, **kwargs)  # noqa: E501
+            response = await self.patch_legal_entity_access_metadata_with_http_info_async(id_type_scope, id_type_code, code, access_metadata_operation, effective_at, effective_until, **kwargs)
+            return response.data
 
     @validate_call
     async def patch_legal_entity_access_metadata_with_http_info_async(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, access_metadata_operation: List[AccessMetadataOperation], effective_at: Optional[StrictStr] = None, effective_until: Optional[datetime] = None, **kwargs) -> ApiResponse[Dict[str, List[AccessMetadataValue]]]:
@@ -5178,12 +5178,12 @@ class LegalEntitiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: LegalEntity
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the set_legal_entity_identifiers_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.set_legal_entity_identifiers_with_http_info_async(id_type_scope, id_type_code, code, set_legal_entity_identifiers_request, **kwargs)  # noqa: E501
+            response = await self.set_legal_entity_identifiers_with_http_info_async(id_type_scope, id_type_code, code, set_legal_entity_identifiers_request, **kwargs)
+            return response.data
 
     @validate_call
     async def set_legal_entity_identifiers_with_http_info_async(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, set_legal_entity_identifiers_request: SetLegalEntityIdentifiersRequest, **kwargs) -> ApiResponse[LegalEntity]:
@@ -5330,12 +5330,12 @@ class LegalEntitiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: LegalEntity
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the set_legal_entity_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.set_legal_entity_properties_with_http_info_async(id_type_scope, id_type_code, code, set_legal_entity_properties_request, **kwargs)  # noqa: E501
+            response = await self.set_legal_entity_properties_with_http_info_async(id_type_scope, id_type_code, code, set_legal_entity_properties_request, **kwargs)
+            return response.data
 
     @validate_call
     async def set_legal_entity_properties_with_http_info_async(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, set_legal_entity_properties_request: SetLegalEntityPropertiesRequest, **kwargs) -> ApiResponse[LegalEntity]:
@@ -5478,12 +5478,12 @@ class LegalEntitiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: UpsertLegalEntitiesResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_legal_entities_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_legal_entities_with_http_info_async(success_mode, request_body, **kwargs)  # noqa: E501
+            response = await self.upsert_legal_entities_with_http_info_async(success_mode, request_body, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_legal_entities_with_http_info_async(self, success_mode: StrictStr, request_body: Dict[str, UpsertLegalEntityRequest], **kwargs) -> ApiResponse[UpsertLegalEntitiesResponse]:
@@ -5612,12 +5612,12 @@ class LegalEntitiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: LegalEntity
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_legal_entity_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_legal_entity_with_http_info_async(upsert_legal_entity_request, **kwargs)  # noqa: E501
+            response = await self.upsert_legal_entity_with_http_info_async(upsert_legal_entity_request, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_legal_entity_with_http_info_async(self, upsert_legal_entity_request: UpsertLegalEntityRequest, **kwargs) -> ApiResponse[LegalEntity]:
@@ -5752,12 +5752,12 @@ class LegalEntitiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfAccessMetadataValueOf
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_legal_entity_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_legal_entity_access_metadata_with_http_info_async(id_type_scope, id_type_code, code, metadata_key, upsert_legal_entity_access_metadata_request, effective_at, effective_until, **kwargs)  # noqa: E501
+            response = await self.upsert_legal_entity_access_metadata_with_http_info_async(id_type_scope, id_type_code, code, metadata_key, upsert_legal_entity_access_metadata_request, effective_at, effective_until, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_legal_entity_access_metadata_with_http_info_async(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, metadata_key: StrictStr, upsert_legal_entity_access_metadata_request: UpsertLegalEntityAccessMetadataRequest, effective_at: Optional[StrictStr] = None, effective_until: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfAccessMetadataValueOf]:

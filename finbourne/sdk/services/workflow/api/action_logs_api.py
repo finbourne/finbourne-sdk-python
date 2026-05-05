@@ -58,12 +58,12 @@ class ActionLogsApi:
         :return: Returns the result object.
         :rtype: ActionLog
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_action_logs_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_action_logs_with_http_info(id, **kwargs)  # noqa: E501
+        response = self.get_action_logs_with_http_info(id, **kwargs)
+        return response.data
 
     @validate_call
     def get_action_logs_with_http_info(self, id: StrictStr, **kwargs) -> ApiResponse[ActionLog]:
@@ -181,12 +181,12 @@ class ActionLogsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ActionLog
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_action_logs_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_action_logs_with_http_info_async(id, **kwargs)  # noqa: E501
+            response = await self.get_action_logs_with_http_info_async(id, **kwargs)
+            return response.data
 
     @validate_call
     async def get_action_logs_with_http_info_async(self, id: StrictStr, **kwargs) -> ApiResponse[ActionLog]:

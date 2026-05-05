@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class TransactionTypeCalculation(BaseModel):
     formula:  Optional[StrictStr] = Field(default=None,alias="formula", description="The formula used to derive the total consideration amount when it is not provided on the transaction") 
     transaction_fee_id: Optional[ResourceId] = Field(default=None, alias="transactionFeeId")
     transaction_fee_capitalisation: Optional[TransactionFeeCapitalisation] = Field(default=None, alias="transactionFeeCapitalisation")
-    __properties = ["type", "side", "formula", "transactionFeeId", "transactionFeeCapitalisation"]
+    __properties: ClassVar[List[str]] = ["type", "side", "formula", "transactionFeeId", "transactionFeeCapitalisation"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -100,8 +100,8 @@ class TransactionTypeCalculation(BaseModel):
             "type": obj.get("type"),
             "side": obj.get("side"),
             "formula": obj.get("formula"),
-            "transaction_fee_id": ResourceId.from_dict(obj.get("transactionFeeId")) if obj.get("transactionFeeId") is not None else None,
-            "transaction_fee_capitalisation": TransactionFeeCapitalisation.from_dict(obj.get("transactionFeeCapitalisation")) if obj.get("transactionFeeCapitalisation") is not None else None
+            "transaction_fee_id": ResourceId.from_dict(_v) if (_v := obj.get("transactionFeeId")) is not None else None,
+            "transaction_fee_capitalisation": TransactionFeeCapitalisation.from_dict(_v) if (_v := obj.get("transactionFeeCapitalisation")) is not None else None
         })
         return _obj
 

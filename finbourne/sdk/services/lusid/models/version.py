@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -39,7 +39,7 @@ class Version(BaseModel):
     as_at_version_number: Optional[StrictInt] = Field(default=None, description="The integer version number for the entity (the entity was created at version 1)", alias="asAtVersionNumber")
     entity_unique_id:  Optional[StrictStr] = Field(default=None,alias="entityUniqueId", description="The unique id of the entity") 
     staged_modification_id_modified:  Optional[StrictStr] = Field(default=None,alias="stagedModificationIdModified", description="The ID of the staged change that resulted in the most recent modification.") 
-    __properties = ["effectiveFrom", "asAtDate", "asAtCreated", "userIdCreated", "requestIdCreated", "reasonCreated", "asAtModified", "userIdModified", "requestIdModified", "reasonModified", "asAtVersionNumber", "entityUniqueId", "stagedModificationIdModified"]
+    __properties: ClassVar[List[str]] = ["effectiveFrom", "asAtDate", "asAtCreated", "userIdCreated", "requestIdCreated", "reasonCreated", "asAtModified", "userIdModified", "requestIdModified", "reasonModified", "asAtVersionNumber", "entityUniqueId", "stagedModificationIdModified"]
 
     model_config = ConfigDict(
         populate_by_name=True,

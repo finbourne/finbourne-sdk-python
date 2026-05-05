@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -27,9 +27,9 @@ class GroupOfMarketDataKeyRules(BaseModel):
     """
     Represents a collection of MarketDataKeyRules that should be resolved together when resolving market data.  That is, market data resolution will always attempt to resolve with all rules in the group  before deciding what market data to return.  # noqa: E501
     """
-    market_data_key_rule_group_operation:  StrictStr = Field(...,alias="marketDataKeyRuleGroupOperation", description="The operation that will be used to process the collection of market data items and failures found on resolution  into a single market data item or failure to be used.  Supported values: [FirstLatest, AverageOfQuotesFound, AverageOfAllQuotes, FirstMinimum, FirstMaximum]") 
+    market_data_key_rule_group_operation:  StrictStr = Field(...,alias="marketDataKeyRuleGroupOperation", description="The operation that will be used to process the collection of market data items and failures found on resolution  into a single market data item or failure to be used. Available values: FirstLatest, AverageOfQuotesFound, AverageOfAllQuotes, FirstMinimum, FirstMaximum.") 
     market_rules: List[MarketDataKeyRule] = Field(description="The rules that should be grouped together in market data resolution.", alias="marketRules")
-    __properties = ["marketDataKeyRuleGroupOperation", "marketRules"]
+    __properties: ClassVar[List[str]] = ["marketDataKeyRuleGroupOperation", "marketRules"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,7 +85,7 @@ class GroupOfMarketDataKeyRules(BaseModel):
 
         _obj = GroupOfMarketDataKeyRules.model_validate({
             "market_data_key_rule_group_operation": obj.get("marketDataKeyRuleGroupOperation"),
-            "market_rules": [MarketDataKeyRule.from_dict(_item) for _item in obj.get("marketRules")] if obj.get("marketRules") is not None else None
+            "market_rules": [MarketDataKeyRule.from_dict(_item) for _item in _v] if (_v := obj.get("marketRules")) is not None else None
         })
         return _obj
 

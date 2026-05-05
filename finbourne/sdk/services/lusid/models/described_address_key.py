@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class DescribedAddressKey(BaseModel):
     """
     address_key:  Optional[StrictStr] = Field(default=None,alias="addressKey", description="Address key of some underlying object e.g. Valuation/PV, Instrument/Features") 
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="Description of the address key.") 
-    __properties = ["addressKey", "description"]
+    __properties: ClassVar[List[str]] = ["addressKey", "description"]
 
     model_config = ConfigDict(
         populate_by_name=True,

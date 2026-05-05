@@ -76,7 +76,7 @@ class ApiClient:
             "X-LUSID-SDK-Version": package_version
 
         }
-        if header_name is not None:
+        if header_name is not None and header_value is not None:
             self.default_headers[header_name] = header_value
         if additional_headers:
             self.default_headers.update(additional_headers)
@@ -235,10 +235,10 @@ class ApiClient:
         return_data = None # assuming derialization is not needed
         # data needs deserialization or returns HTTP data (deserialized) only
         if _preload_content or _return_http_data_only:
-          response_type = response_types_map.get(str(response_data.status), None)
+          response_type = response_types_map.get(str(response_data.status), None) if response_types_map else None
           if not response_type and isinstance(response_data.status, int) and 100 <= response_data.status <= 599:
               # if not found, look for '1XX', '2XX', etc.
-              response_type = response_types_map.get(str(response_data.status)[0] + "XX", None)
+              response_type = response_types_map.get(str(response_data.status)[0] + "XX", None) if response_types_map else None
 
           if response_type == "bytearray":
               response_data.data = response_data.data
@@ -342,12 +342,14 @@ class ApiClient:
 
         if isinstance(klass, str):
             if klass.startswith('List['):
-                sub_kls = re.match(r'List\[(.*)]', klass).group(1)
+                m = re.match(r'List\[(.*)]', klass)
+                sub_kls = m.group(1) if m else klass
                 return [self.__deserialize(sub_data, sub_kls, model_klass)
                         for sub_data in data]
 
             if klass.startswith('Dict['):
-                sub_kls = re.match(r'Dict\[([^,]*), (.*)]', klass).group(2)
+                m = re.match(r'Dict\[([^,]*), (.*)]', klass)
+                sub_kls = m.group(2) if m else klass
                 return {k: self.__deserialize(v, sub_kls, model_klass)
                         for k, v in data.items()}
 
@@ -359,7 +361,7 @@ class ApiClient:
 
         if klass in self.PRIMITIVE_TYPES:
             return self.__deserialize_primitive(data, klass)
-        elif klass == object:
+        elif klass is object:
             return self.__deserialize_object(data)
         elif klass == datetime.date:
             return self.__deserialize_date(data)
@@ -683,9 +685,10 @@ class ApiClient:
 
         content_disposition = response.getheader("Content-Disposition")
         if content_disposition:
-            filename = re.search(r'filename=[\'"]?([^\'"\s]+)[\'"]?',
-                                 content_disposition).group(1)
-            path = os.path.join(os.path.dirname(path), filename)
+            m = re.search(r'filename=[\'"]?([^\'"\s]+)[\'"]?', content_disposition)
+            if m:
+                filename = m.group(1)
+                path = os.path.join(os.path.dirname(path), filename)
 
         with open(path, "wb") as f:
             f.write(response.data)

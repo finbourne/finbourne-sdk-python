@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -36,7 +36,7 @@ class OptionsExcel(BaseModel):
     range_or_table:  Optional[StrictStr] = Field(default=None,alias="rangeOrTable", description="The cell range to import as either a specified range or a table name") 
     ignore_invalid_cells: Optional[StrictBool] = Field(default=None, description="If specified cells which can not be successfully converted to the target type will be ignored", alias="ignoreInvalidCells")
     ignore_blank_rows: Optional[StrictBool] = Field(default=None, description="If the entire rows has only blank cells it will be ignored will be ignored", alias="ignoreBlankRows")
-    __properties = ["columnNames", "columnTypes", "inferTypeRowCount", "noHeader", "calculate", "password", "worksheet", "rangeOrTable", "ignoreInvalidCells", "ignoreBlankRows"]
+    __properties: ClassVar[List[str]] = ["columnNames", "columnTypes", "inferTypeRowCount", "noHeader", "calculate", "password", "worksheet", "rangeOrTable", "ignoreInvalidCells", "ignoreBlankRows"]
 
     model_config = ConfigDict(
         populate_by_name=True,

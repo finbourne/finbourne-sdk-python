@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -27,8 +27,8 @@ class GroupReconciliationCoreComparisonRuleOperand(BaseModel):
     GroupReconciliationCoreComparisonRuleOperand
     """
     key:  StrictStr = Field(...,alias="key", description="The key of the value to compare") 
-    operation:  StrictStr = Field(...,alias="operation", description="What to do with the value pointed to by the key, e.g. Sum. Only \"Value is allowed for core rules\"") 
-    __properties = ["key", "operation"]
+    operation:  StrictStr = Field(...,alias="operation", description="What to do with the value pointed to by the key, e.g. Sum. Only \"Value is allowed for core rules\". Available values: Value.") 
+    __properties: ClassVar[List[str]] = ["key", "operation"]
 
     model_config = ConfigDict(
         populate_by_name=True,

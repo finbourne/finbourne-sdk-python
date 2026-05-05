@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class SidesDefinitionRequest(BaseModel):
     """
     side:  StrictStr = Field(...,alias="side", description="A unique label identifying the side definition.") 
     side_request: SideDefinitionRequest = Field(alias="sideRequest")
-    __properties = ["side", "sideRequest"]
+    __properties: ClassVar[List[str]] = ["side", "sideRequest"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -81,7 +81,7 @@ class SidesDefinitionRequest(BaseModel):
 
         _obj = SidesDefinitionRequest.model_validate({
             "side": obj.get("side"),
-            "side_request": SideDefinitionRequest.from_dict(obj.get("sideRequest")) if obj.get("sideRequest") is not None else None
+            "side_request": SideDefinitionRequest.from_dict(_v) if (_v := obj.get("sideRequest")) is not None else None
         })
         return _obj
 

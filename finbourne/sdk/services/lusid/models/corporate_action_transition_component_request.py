@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class CorporateActionTransitionComponentRequest(BaseModel):
     instrument_identifiers: Dict[str, Optional[StrictStr]] = Field(description="Unique instrument identifiers", alias="instrumentIdentifiers")
     units_factor: Union[StrictFloat, StrictInt] = Field(description="The factor to scale units by", alias="unitsFactor")
     cost_factor: Union[StrictFloat, StrictInt] = Field(description="The factor to scale cost by", alias="costFactor")
-    __properties = ["instrumentIdentifiers", "unitsFactor", "costFactor"]
+    __properties: ClassVar[List[str]] = ["instrumentIdentifiers", "unitsFactor", "costFactor"]
 
     model_config = ConfigDict(
         populate_by_name=True,

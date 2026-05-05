@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class ManualEventBody(BaseModel):
     subject:  StrictStr = Field(...,alias="subject", description="The subject of the manual event") 
     message:  StrictStr = Field(...,alias="message", description="The message of the manual event") 
     json_message: Optional[Any] = Field(default=None, description="The JSON message of the manual event", alias="jsonMessage")
-    __properties = ["subject", "message", "jsonMessage"]
+    __properties: ClassVar[List[str]] = ["subject", "message", "jsonMessage"]
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class TransactionTypePropertyMapping(BaseModel):
     set_to:  Optional[StrictStr] = Field(default=None,alias="setTo", description="A pointer to the Property being mapped from") 
     template_from:  Optional[StrictStr] = Field(default=None,alias="templateFrom", description="The template that defines how the property value is constructed from transaction, instrument and portfolio details.") 
     nullify: Optional[StrictBool] = Field(default=None, description="Flag to unset the Property Key for the mapping")
-    __properties = ["propertyKey", "mapFrom", "setTo", "templateFrom", "nullify"]
+    __properties: ClassVar[List[str]] = ["propertyKey", "mapFrom", "setTo", "templateFrom", "nullify"]
 
     model_config = ConfigDict(
         populate_by_name=True,

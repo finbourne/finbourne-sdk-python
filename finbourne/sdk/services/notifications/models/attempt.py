@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class Attempt(BaseModel):
     attempt_number: StrictInt = Field(description="The attempt number of the delivery.", alias="attemptNumber")
     attempt_time: datetime = Field(description="The time that the delivery was attempted.", alias="attemptTime")
     status: AttemptStatus
-    __properties = ["attemptNumber", "attemptTime", "status"]
+    __properties: ClassVar[List[str]] = ["attemptNumber", "attemptTime", "status"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -83,7 +83,7 @@ class Attempt(BaseModel):
         _obj = Attempt.model_validate({
             "attempt_number": obj.get("attemptNumber"),
             "attempt_time": obj.get("attemptTime"),
-            "status": AttemptStatus.from_dict(obj.get("status")) if obj.get("status") is not None else None
+            "status": AttemptStatus.from_dict(_v) if (_v := obj.get("status")) is not None else None
         })
         return _obj
 

@@ -79,12 +79,12 @@ class ComplianceApi:
         :return: Returns the result object.
         :rtype: ComplianceRuleTemplate
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_compliance_template_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_compliance_template_with_http_info(scope, create_compliance_template_request, **kwargs)  # noqa: E501
+        response = self.create_compliance_template_with_http_info(scope, create_compliance_template_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_compliance_template_with_http_info(self, scope: StrictStr, create_compliance_template_request: CreateComplianceTemplateRequest, **kwargs) -> ApiResponse[ComplianceRuleTemplate]:
@@ -214,12 +214,12 @@ class ComplianceApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_compliance_rule_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_compliance_rule_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_compliance_rule_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_compliance_rule_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -342,12 +342,12 @@ class ComplianceApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_compliance_template_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_compliance_template_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_compliance_template_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_compliance_template_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -474,12 +474,12 @@ class ComplianceApi:
         :return: Returns the result object.
         :rtype: ComplianceRuleResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_compliance_rule_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_compliance_rule_with_http_info(scope, code, as_at, property_keys, **kwargs)  # noqa: E501
+        response = self.get_compliance_rule_with_http_info(scope, code, as_at, property_keys, **kwargs)
+        return response.data
 
     @validate_call
     def get_compliance_rule_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[ComplianceRuleResponse]:
@@ -622,12 +622,12 @@ class ComplianceApi:
         :return: Returns the result object.
         :rtype: ComplianceRuleResultV2
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_compliance_rule_result_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_compliance_rule_result_with_http_info(run_scope, run_code, rule_scope, rule_code, **kwargs)  # noqa: E501
+        response = self.get_compliance_rule_result_with_http_info(run_scope, run_code, rule_scope, rule_code, **kwargs)
+        return response.data
 
     @validate_call
     def get_compliance_rule_result_with_http_info(self, run_scope: StrictStr, run_code: StrictStr, rule_scope: StrictStr, rule_code: StrictStr, **kwargs) -> ApiResponse[ComplianceRuleResultV2]:
@@ -764,12 +764,12 @@ class ComplianceApi:
         :return: Returns the result object.
         :rtype: ComplianceTemplate
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_compliance_template_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_compliance_template_with_http_info(scope, code, as_at, **kwargs)  # noqa: E501
+        response = self.get_compliance_template_with_http_info(scope, code, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_compliance_template_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ComplianceTemplate]:
@@ -901,12 +901,12 @@ class ComplianceApi:
         :return: Returns the result object.
         :rtype: DecoratedComplianceRunSummary
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_decorated_compliance_run_summary_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_decorated_compliance_run_summary_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.get_decorated_compliance_run_summary_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def get_decorated_compliance_run_summary_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DecoratedComplianceRunSummary]:
@@ -1035,12 +1035,12 @@ class ComplianceApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfComplianceRuleResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_compliance_rules_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_compliance_rules_with_http_info(as_at, page, limit, filter, property_keys, **kwargs)  # noqa: E501
+        response = self.list_compliance_rules_with_http_info(as_at, page, limit, filter, property_keys, **kwargs)
+        return response.data
 
     @validate_call
     def list_compliance_rules_with_http_info(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfComplianceRuleResponse]:
@@ -1191,12 +1191,12 @@ class ComplianceApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfComplianceRunInfoV2
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_compliance_runs_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_compliance_runs_with_http_info(as_at, page, limit, filter, sort_by, **kwargs)  # noqa: E501
+        response = self.list_compliance_runs_with_http_info(as_at, page, limit, filter, sort_by, **kwargs)
+        return response.data
 
     @validate_call
     def list_compliance_runs_with_http_info(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfComplianceRunInfoV2]:
@@ -1345,12 +1345,12 @@ class ComplianceApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfComplianceTemplate
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_compliance_templates_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_compliance_templates_with_http_info(as_at, page, limit, filter, **kwargs)  # noqa: E501
+        response = self.list_compliance_templates_with_http_info(as_at, page, limit, filter, **kwargs)
+        return response.data
 
     @validate_call
     def list_compliance_templates_with_http_info(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfComplianceTemplate]:
@@ -1494,12 +1494,12 @@ class ComplianceApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfOrderBreachHistory
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_order_breach_history_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_order_breach_history_with_http_info(as_at, page, limit, filter, sort_by, **kwargs)  # noqa: E501
+        response = self.list_order_breach_history_with_http_info(as_at, page, limit, filter, sort_by, **kwargs)
+        return response.data
 
     @validate_call
     def list_order_breach_history_with_http_info(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfOrderBreachHistory]:
@@ -1650,12 +1650,12 @@ class ComplianceApi:
         :return: Returns the result object.
         :rtype: ComplianceRunInfoV2
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the run_compliance_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.run_compliance_with_http_info(run_scope, rule_scope, is_pre_trade, recipe_id_scope, recipe_id_code, **kwargs)  # noqa: E501
+        response = self.run_compliance_with_http_info(run_scope, rule_scope, is_pre_trade, recipe_id_scope, recipe_id_code, **kwargs)
+        return response.data
 
     @validate_call
     def run_compliance_with_http_info(self, run_scope: StrictStr, rule_scope: StrictStr, is_pre_trade: bool, recipe_id_scope: StrictStr, recipe_id_code: StrictStr, **kwargs) -> ApiResponse[ComplianceRunInfoV2]:
@@ -1802,12 +1802,12 @@ class ComplianceApi:
         :return: Returns the result object.
         :rtype: ComplianceRunInfoV2
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the run_compliance_preview_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.run_compliance_preview_with_http_info(run_scope, rule_scope, recipe_id_scope, recipe_id_code, compliance_run_configuration, **kwargs)  # noqa: E501
+        response = self.run_compliance_preview_with_http_info(run_scope, rule_scope, recipe_id_scope, recipe_id_code, compliance_run_configuration, **kwargs)
+        return response.data
 
     @validate_call
     def run_compliance_preview_with_http_info(self, run_scope: StrictStr, rule_scope: StrictStr, recipe_id_scope: StrictStr, recipe_id_code: StrictStr, compliance_run_configuration: Optional[ComplianceRunConfiguration] = None, **kwargs) -> ApiResponse[ComplianceRunInfoV2]:
@@ -1957,12 +1957,12 @@ class ComplianceApi:
         :return: Returns the result object.
         :rtype: ComplianceRuleTemplate
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_compliance_template_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_compliance_template_with_http_info(scope, code, update_compliance_template_request, **kwargs)  # noqa: E501
+        response = self.update_compliance_template_with_http_info(scope, code, update_compliance_template_request, **kwargs)
+        return response.data
 
     @validate_call
     def update_compliance_template_with_http_info(self, scope: StrictStr, code: StrictStr, update_compliance_template_request: UpdateComplianceTemplateRequest, **kwargs) -> ApiResponse[ComplianceRuleTemplate]:
@@ -2096,12 +2096,12 @@ class ComplianceApi:
         :return: Returns the result object.
         :rtype: ComplianceRuleResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_compliance_rule_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_compliance_rule_with_http_info(upsert_compliance_rule_request, **kwargs)  # noqa: E501
+        response = self.upsert_compliance_rule_with_http_info(upsert_compliance_rule_request, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_compliance_rule_with_http_info(self, upsert_compliance_rule_request: Optional[UpsertComplianceRuleRequest] = None, **kwargs) -> ApiResponse[ComplianceRuleResponse]:
@@ -2223,12 +2223,12 @@ class ComplianceApi:
         :return: Returns the result object.
         :rtype: UpsertComplianceRunSummaryResult
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_compliance_run_summary_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_compliance_run_summary_with_http_info(upsert_compliance_run_summary_request, **kwargs)  # noqa: E501
+        response = self.upsert_compliance_run_summary_with_http_info(upsert_compliance_run_summary_request, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_compliance_run_summary_with_http_info(self, upsert_compliance_run_summary_request: Optional[UpsertComplianceRunSummaryRequest] = None, **kwargs) -> ApiResponse[UpsertComplianceRunSummaryResult]:
@@ -2356,12 +2356,12 @@ class ComplianceApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ComplianceRuleTemplate
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_compliance_template_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_compliance_template_with_http_info_async(scope, create_compliance_template_request, **kwargs)  # noqa: E501
+            response = await self.create_compliance_template_with_http_info_async(scope, create_compliance_template_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_compliance_template_with_http_info_async(self, scope: StrictStr, create_compliance_template_request: CreateComplianceTemplateRequest, **kwargs) -> ApiResponse[ComplianceRuleTemplate]:
@@ -2492,12 +2492,12 @@ class ComplianceApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_compliance_rule_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_compliance_rule_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_compliance_rule_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_compliance_rule_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -2621,12 +2621,12 @@ class ComplianceApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_compliance_template_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_compliance_template_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_compliance_template_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_compliance_template_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -2754,12 +2754,12 @@ class ComplianceApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ComplianceRuleResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_compliance_rule_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_compliance_rule_with_http_info_async(scope, code, as_at, property_keys, **kwargs)  # noqa: E501
+            response = await self.get_compliance_rule_with_http_info_async(scope, code, as_at, property_keys, **kwargs)
+            return response.data
 
     @validate_call
     async def get_compliance_rule_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[ComplianceRuleResponse]:
@@ -2903,12 +2903,12 @@ class ComplianceApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ComplianceRuleResultV2
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_compliance_rule_result_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_compliance_rule_result_with_http_info_async(run_scope, run_code, rule_scope, rule_code, **kwargs)  # noqa: E501
+            response = await self.get_compliance_rule_result_with_http_info_async(run_scope, run_code, rule_scope, rule_code, **kwargs)
+            return response.data
 
     @validate_call
     async def get_compliance_rule_result_with_http_info_async(self, run_scope: StrictStr, run_code: StrictStr, rule_scope: StrictStr, rule_code: StrictStr, **kwargs) -> ApiResponse[ComplianceRuleResultV2]:
@@ -3046,12 +3046,12 @@ class ComplianceApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ComplianceTemplate
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_compliance_template_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_compliance_template_with_http_info_async(scope, code, as_at, **kwargs)  # noqa: E501
+            response = await self.get_compliance_template_with_http_info_async(scope, code, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_compliance_template_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ComplianceTemplate]:
@@ -3184,12 +3184,12 @@ class ComplianceApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DecoratedComplianceRunSummary
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_decorated_compliance_run_summary_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_decorated_compliance_run_summary_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.get_decorated_compliance_run_summary_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def get_decorated_compliance_run_summary_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DecoratedComplianceRunSummary]:
@@ -3319,12 +3319,12 @@ class ComplianceApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfComplianceRuleResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_compliance_rules_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_compliance_rules_with_http_info_async(as_at, page, limit, filter, property_keys, **kwargs)  # noqa: E501
+            response = await self.list_compliance_rules_with_http_info_async(as_at, page, limit, filter, property_keys, **kwargs)
+            return response.data
 
     @validate_call
     async def list_compliance_rules_with_http_info_async(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfComplianceRuleResponse]:
@@ -3476,12 +3476,12 @@ class ComplianceApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfComplianceRunInfoV2
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_compliance_runs_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_compliance_runs_with_http_info_async(as_at, page, limit, filter, sort_by, **kwargs)  # noqa: E501
+            response = await self.list_compliance_runs_with_http_info_async(as_at, page, limit, filter, sort_by, **kwargs)
+            return response.data
 
     @validate_call
     async def list_compliance_runs_with_http_info_async(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfComplianceRunInfoV2]:
@@ -3631,12 +3631,12 @@ class ComplianceApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfComplianceTemplate
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_compliance_templates_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_compliance_templates_with_http_info_async(as_at, page, limit, filter, **kwargs)  # noqa: E501
+            response = await self.list_compliance_templates_with_http_info_async(as_at, page, limit, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def list_compliance_templates_with_http_info_async(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfComplianceTemplate]:
@@ -3781,12 +3781,12 @@ class ComplianceApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfOrderBreachHistory
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_order_breach_history_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_order_breach_history_with_http_info_async(as_at, page, limit, filter, sort_by, **kwargs)  # noqa: E501
+            response = await self.list_order_breach_history_with_http_info_async(as_at, page, limit, filter, sort_by, **kwargs)
+            return response.data
 
     @validate_call
     async def list_order_breach_history_with_http_info_async(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfOrderBreachHistory]:
@@ -3938,12 +3938,12 @@ class ComplianceApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ComplianceRunInfoV2
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the run_compliance_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.run_compliance_with_http_info_async(run_scope, rule_scope, is_pre_trade, recipe_id_scope, recipe_id_code, **kwargs)  # noqa: E501
+            response = await self.run_compliance_with_http_info_async(run_scope, rule_scope, is_pre_trade, recipe_id_scope, recipe_id_code, **kwargs)
+            return response.data
 
     @validate_call
     async def run_compliance_with_http_info_async(self, run_scope: StrictStr, rule_scope: StrictStr, is_pre_trade: bool, recipe_id_scope: StrictStr, recipe_id_code: StrictStr, **kwargs) -> ApiResponse[ComplianceRunInfoV2]:
@@ -4091,12 +4091,12 @@ class ComplianceApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ComplianceRunInfoV2
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the run_compliance_preview_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.run_compliance_preview_with_http_info_async(run_scope, rule_scope, recipe_id_scope, recipe_id_code, compliance_run_configuration, **kwargs)  # noqa: E501
+            response = await self.run_compliance_preview_with_http_info_async(run_scope, rule_scope, recipe_id_scope, recipe_id_code, compliance_run_configuration, **kwargs)
+            return response.data
 
     @validate_call
     async def run_compliance_preview_with_http_info_async(self, run_scope: StrictStr, rule_scope: StrictStr, recipe_id_scope: StrictStr, recipe_id_code: StrictStr, compliance_run_configuration: Optional[ComplianceRunConfiguration] = None, **kwargs) -> ApiResponse[ComplianceRunInfoV2]:
@@ -4247,12 +4247,12 @@ class ComplianceApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ComplianceRuleTemplate
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_compliance_template_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_compliance_template_with_http_info_async(scope, code, update_compliance_template_request, **kwargs)  # noqa: E501
+            response = await self.update_compliance_template_with_http_info_async(scope, code, update_compliance_template_request, **kwargs)
+            return response.data
 
     @validate_call
     async def update_compliance_template_with_http_info_async(self, scope: StrictStr, code: StrictStr, update_compliance_template_request: UpdateComplianceTemplateRequest, **kwargs) -> ApiResponse[ComplianceRuleTemplate]:
@@ -4387,12 +4387,12 @@ class ComplianceApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ComplianceRuleResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_compliance_rule_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_compliance_rule_with_http_info_async(upsert_compliance_rule_request, **kwargs)  # noqa: E501
+            response = await self.upsert_compliance_rule_with_http_info_async(upsert_compliance_rule_request, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_compliance_rule_with_http_info_async(self, upsert_compliance_rule_request: Optional[UpsertComplianceRuleRequest] = None, **kwargs) -> ApiResponse[ComplianceRuleResponse]:
@@ -4515,12 +4515,12 @@ class ComplianceApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: UpsertComplianceRunSummaryResult
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_compliance_run_summary_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_compliance_run_summary_with_http_info_async(upsert_compliance_run_summary_request, **kwargs)  # noqa: E501
+            response = await self.upsert_compliance_run_summary_with_http_info_async(upsert_compliance_run_summary_request, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_compliance_run_summary_with_http_info_async(self, upsert_compliance_run_summary_request: Optional[UpsertComplianceRunSummaryRequest] = None, **kwargs) -> ApiResponse[UpsertComplianceRunSummaryResult]:

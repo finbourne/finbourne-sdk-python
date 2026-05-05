@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -39,7 +39,7 @@ class ReconciliationBreak(BaseModel):
     right_cost: CurrencyAndAmount = Field(alias="rightCost")
     difference_cost: CurrencyAndAmount = Field(alias="differenceCost")
     instrument_properties: List[ModelProperty] = Field(description="Additional features relating to the instrument", alias="instrumentProperties")
-    __properties = ["instrumentScope", "instrumentUid", "subHoldingKeys", "leftUnits", "rightUnits", "differenceUnits", "leftCost", "rightCost", "differenceCost", "instrumentProperties"]
+    __properties: ClassVar[List[str]] = ["instrumentScope", "instrumentUid", "subHoldingKeys", "leftUnits", "rightUnits", "differenceUnits", "leftCost", "rightCost", "differenceCost", "instrumentProperties"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -119,17 +119,17 @@ class ReconciliationBreak(BaseModel):
             "instrument_uid": obj.get("instrumentUid"),
             "sub_holding_keys": dict(
                 (_k, PerpetualProperty.from_dict(_v))
-                for _k, _v in obj.get("subHoldingKeys").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("subHoldingKeys") is not None
+            if (_val := obj.get("subHoldingKeys")) is not None
             else None,
             "left_units": obj.get("leftUnits"),
             "right_units": obj.get("rightUnits"),
             "difference_units": obj.get("differenceUnits"),
-            "left_cost": CurrencyAndAmount.from_dict(obj.get("leftCost")) if obj.get("leftCost") is not None else None,
-            "right_cost": CurrencyAndAmount.from_dict(obj.get("rightCost")) if obj.get("rightCost") is not None else None,
-            "difference_cost": CurrencyAndAmount.from_dict(obj.get("differenceCost")) if obj.get("differenceCost") is not None else None,
-            "instrument_properties": [ModelProperty.from_dict(_item) for _item in obj.get("instrumentProperties")] if obj.get("instrumentProperties") is not None else None
+            "left_cost": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("leftCost")) is not None else None,
+            "right_cost": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("rightCost")) is not None else None,
+            "difference_cost": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("differenceCost")) is not None else None,
+            "instrument_properties": [ModelProperty.from_dict(_item) for _item in _v] if (_v := obj.get("instrumentProperties")) is not None else None
         })
         return _obj
 

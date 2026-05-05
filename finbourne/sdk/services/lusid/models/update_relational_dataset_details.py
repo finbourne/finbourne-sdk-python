@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class UpdateRelationalDatasetDetails(BaseModel):
     display_name:  StrictStr = Field(...,alias="displayName", description="A user-friendly display name for the relational dataset definition.") 
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="A detailed description of the relational dataset definition and its purpose.") 
     applicable_entity_types: Optional[ApplicableEntityTypes] = Field(default=None, alias="applicableEntityTypes")
-    __properties = ["displayName", "description", "applicableEntityTypes"]
+    __properties: ClassVar[List[str]] = ["displayName", "description", "applicableEntityTypes"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,7 +88,7 @@ class UpdateRelationalDatasetDetails(BaseModel):
         _obj = UpdateRelationalDatasetDetails.model_validate({
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
-            "applicable_entity_types": ApplicableEntityTypes.from_dict(obj.get("applicableEntityTypes")) if obj.get("applicableEntityTypes") is not None else None
+            "applicable_entity_types": ApplicableEntityTypes.from_dict(_v) if (_v := obj.get("applicableEntityTypes")) is not None else None
         })
         return _obj
 

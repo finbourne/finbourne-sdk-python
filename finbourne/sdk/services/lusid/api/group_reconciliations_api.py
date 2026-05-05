@@ -81,12 +81,12 @@ class GroupReconciliationsApi:
         :return: Returns the result object.
         :rtype: BatchUpdateUserReviewForComparisonResultResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the batch_update_comparison_results_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.batch_update_comparison_results_with_http_info(scope, code, batch_update_user_review_for_comparison_result_request, success_mode, **kwargs)  # noqa: E501
+        response = self.batch_update_comparison_results_with_http_info(scope, code, batch_update_user_review_for_comparison_result_request, success_mode, **kwargs)
+        return response.data
 
     @validate_call
     def batch_update_comparison_results_with_http_info(self, scope: StrictStr, code: StrictStr, batch_update_user_review_for_comparison_result_request: List[BatchUpdateUserReviewForComparisonResultRequest], success_mode: Optional[StrictStr] = None, **kwargs) -> ApiResponse[BatchUpdateUserReviewForComparisonResultResponse]:
@@ -226,12 +226,12 @@ class GroupReconciliationsApi:
         :return: Returns the result object.
         :rtype: GroupReconciliationComparisonRuleset
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_comparison_ruleset_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_comparison_ruleset_with_http_info(create_group_reconciliation_comparison_ruleset_request, **kwargs)  # noqa: E501
+        response = self.create_comparison_ruleset_with_http_info(create_group_reconciliation_comparison_ruleset_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_comparison_ruleset_with_http_info(self, create_group_reconciliation_comparison_ruleset_request: Optional[CreateGroupReconciliationComparisonRulesetRequest] = None, **kwargs) -> ApiResponse[GroupReconciliationComparisonRuleset]:
@@ -353,12 +353,12 @@ class GroupReconciliationsApi:
         :return: Returns the result object.
         :rtype: GroupReconciliationDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_group_reconciliation_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_group_reconciliation_definition_with_http_info(create_group_reconciliation_definition_request, **kwargs)  # noqa: E501
+        response = self.create_group_reconciliation_definition_with_http_info(create_group_reconciliation_definition_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_group_reconciliation_definition_with_http_info(self, create_group_reconciliation_definition_request: Optional[CreateGroupReconciliationDefinitionRequest] = None, **kwargs) -> ApiResponse[GroupReconciliationDefinition]:
@@ -482,12 +482,12 @@ class GroupReconciliationsApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_comparison_ruleset_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_comparison_ruleset_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_comparison_ruleset_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_comparison_ruleset_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -610,12 +610,12 @@ class GroupReconciliationsApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_group_reconciliation_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_group_reconciliation_definition_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_group_reconciliation_definition_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_group_reconciliation_definition_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -742,12 +742,12 @@ class GroupReconciliationsApi:
         :return: Returns the result object.
         :rtype: GroupReconciliationComparisonResult
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_comparison_result_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_comparison_result_with_http_info(scope, code, result_id, as_at, **kwargs)  # noqa: E501
+        response = self.get_comparison_result_with_http_info(scope, code, result_id, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_comparison_result_with_http_info(self, scope: StrictStr, code: StrictStr, result_id: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[GroupReconciliationComparisonResult]:
@@ -887,12 +887,12 @@ class GroupReconciliationsApi:
         :return: Returns the result object.
         :rtype: GroupReconciliationComparisonRuleset
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_comparison_ruleset_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_comparison_ruleset_with_http_info(scope, code, as_at, **kwargs)  # noqa: E501
+        response = self.get_comparison_ruleset_with_http_info(scope, code, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_comparison_ruleset_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[GroupReconciliationComparisonRuleset]:
@@ -1028,12 +1028,12 @@ class GroupReconciliationsApi:
         :return: Returns the result object.
         :rtype: GroupReconciliationDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_group_reconciliation_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_group_reconciliation_definition_with_http_info(scope, code, effective_at, as_at, **kwargs)  # noqa: E501
+        response = self.get_group_reconciliation_definition_with_http_info(scope, code, effective_at, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_group_reconciliation_definition_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[GroupReconciliationDefinition]:
@@ -1177,12 +1177,12 @@ class GroupReconciliationsApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfGroupReconciliationComparisonResult
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_comparison_results_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_comparison_results_with_http_info(as_at, page, sort_by, limit, filter, **kwargs)  # noqa: E501
+        response = self.list_comparison_results_with_http_info(as_at, page, sort_by, limit, filter, **kwargs)
+        return response.data
 
     @validate_call
     def list_comparison_results_with_http_info(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfGroupReconciliationComparisonResult]:
@@ -1333,12 +1333,12 @@ class GroupReconciliationsApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfGroupReconciliationComparisonRuleset
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_comparison_rulesets_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_comparison_rulesets_with_http_info(as_at, page, sort_by, limit, filter, **kwargs)  # noqa: E501
+        response = self.list_comparison_rulesets_with_http_info(as_at, page, sort_by, limit, filter, **kwargs)
+        return response.data
 
     @validate_call
     def list_comparison_rulesets_with_http_info(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfGroupReconciliationComparisonRuleset]:
@@ -1491,12 +1491,12 @@ class GroupReconciliationsApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfGroupReconciliationDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_group_reconciliation_definitions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_group_reconciliation_definitions_with_http_info(effective_at, as_at, page, limit, filter, sort_by, **kwargs)  # noqa: E501
+        response = self.list_group_reconciliation_definitions_with_http_info(effective_at, as_at, page, limit, filter, sort_by, **kwargs)
+        return response.data
 
     @validate_call
     def list_group_reconciliation_definitions_with_http_info(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfGroupReconciliationDefinition]:
@@ -1649,12 +1649,12 @@ class GroupReconciliationsApi:
         :return: Returns the result object.
         :rtype: GroupReconciliationRunResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the run_reconciliation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.run_reconciliation_with_http_info(scope, code, group_reconciliation_run_request, **kwargs)  # noqa: E501
+        response = self.run_reconciliation_with_http_info(scope, code, group_reconciliation_run_request, **kwargs)
+        return response.data
 
     @validate_call
     def run_reconciliation_with_http_info(self, scope: StrictStr, code: StrictStr, group_reconciliation_run_request: Optional[GroupReconciliationRunRequest] = None, **kwargs) -> ApiResponse[GroupReconciliationRunResponse]:
@@ -1792,12 +1792,12 @@ class GroupReconciliationsApi:
         :return: Returns the result object.
         :rtype: GroupReconciliationComparisonRuleset
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_comparison_ruleset_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_comparison_ruleset_with_http_info(scope, code, update_group_reconciliation_comparison_ruleset_request, **kwargs)  # noqa: E501
+        response = self.update_comparison_ruleset_with_http_info(scope, code, update_group_reconciliation_comparison_ruleset_request, **kwargs)
+        return response.data
 
     @validate_call
     def update_comparison_ruleset_with_http_info(self, scope: StrictStr, code: StrictStr, update_group_reconciliation_comparison_ruleset_request: Optional[UpdateGroupReconciliationComparisonRulesetRequest] = None, **kwargs) -> ApiResponse[GroupReconciliationComparisonRuleset]:
@@ -1935,12 +1935,12 @@ class GroupReconciliationsApi:
         :return: Returns the result object.
         :rtype: GroupReconciliationDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_group_reconciliation_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_group_reconciliation_definition_with_http_info(scope, code, update_group_reconciliation_definition_request, **kwargs)  # noqa: E501
+        response = self.update_group_reconciliation_definition_with_http_info(scope, code, update_group_reconciliation_definition_request, **kwargs)
+        return response.data
 
     @validate_call
     def update_group_reconciliation_definition_with_http_info(self, scope: StrictStr, code: StrictStr, update_group_reconciliation_definition_request: Optional[UpdateGroupReconciliationDefinitionRequest] = None, **kwargs) -> ApiResponse[GroupReconciliationDefinition]:
@@ -2084,12 +2084,12 @@ class GroupReconciliationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: BatchUpdateUserReviewForComparisonResultResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the batch_update_comparison_results_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.batch_update_comparison_results_with_http_info_async(scope, code, batch_update_user_review_for_comparison_result_request, success_mode, **kwargs)  # noqa: E501
+            response = await self.batch_update_comparison_results_with_http_info_async(scope, code, batch_update_user_review_for_comparison_result_request, success_mode, **kwargs)
+            return response.data
 
     @validate_call
     async def batch_update_comparison_results_with_http_info_async(self, scope: StrictStr, code: StrictStr, batch_update_user_review_for_comparison_result_request: List[BatchUpdateUserReviewForComparisonResultRequest], success_mode: Optional[StrictStr] = None, **kwargs) -> ApiResponse[BatchUpdateUserReviewForComparisonResultResponse]:
@@ -2230,12 +2230,12 @@ class GroupReconciliationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: GroupReconciliationComparisonRuleset
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_comparison_ruleset_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_comparison_ruleset_with_http_info_async(create_group_reconciliation_comparison_ruleset_request, **kwargs)  # noqa: E501
+            response = await self.create_comparison_ruleset_with_http_info_async(create_group_reconciliation_comparison_ruleset_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_comparison_ruleset_with_http_info_async(self, create_group_reconciliation_comparison_ruleset_request: Optional[CreateGroupReconciliationComparisonRulesetRequest] = None, **kwargs) -> ApiResponse[GroupReconciliationComparisonRuleset]:
@@ -2358,12 +2358,12 @@ class GroupReconciliationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: GroupReconciliationDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_group_reconciliation_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_group_reconciliation_definition_with_http_info_async(create_group_reconciliation_definition_request, **kwargs)  # noqa: E501
+            response = await self.create_group_reconciliation_definition_with_http_info_async(create_group_reconciliation_definition_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_group_reconciliation_definition_with_http_info_async(self, create_group_reconciliation_definition_request: Optional[CreateGroupReconciliationDefinitionRequest] = None, **kwargs) -> ApiResponse[GroupReconciliationDefinition]:
@@ -2488,12 +2488,12 @@ class GroupReconciliationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_comparison_ruleset_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_comparison_ruleset_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_comparison_ruleset_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_comparison_ruleset_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -2617,12 +2617,12 @@ class GroupReconciliationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_group_reconciliation_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_group_reconciliation_definition_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_group_reconciliation_definition_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_group_reconciliation_definition_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -2750,12 +2750,12 @@ class GroupReconciliationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: GroupReconciliationComparisonResult
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_comparison_result_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_comparison_result_with_http_info_async(scope, code, result_id, as_at, **kwargs)  # noqa: E501
+            response = await self.get_comparison_result_with_http_info_async(scope, code, result_id, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_comparison_result_with_http_info_async(self, scope: StrictStr, code: StrictStr, result_id: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[GroupReconciliationComparisonResult]:
@@ -2896,12 +2896,12 @@ class GroupReconciliationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: GroupReconciliationComparisonRuleset
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_comparison_ruleset_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_comparison_ruleset_with_http_info_async(scope, code, as_at, **kwargs)  # noqa: E501
+            response = await self.get_comparison_ruleset_with_http_info_async(scope, code, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_comparison_ruleset_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[GroupReconciliationComparisonRuleset]:
@@ -3038,12 +3038,12 @@ class GroupReconciliationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: GroupReconciliationDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_group_reconciliation_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_group_reconciliation_definition_with_http_info_async(scope, code, effective_at, as_at, **kwargs)  # noqa: E501
+            response = await self.get_group_reconciliation_definition_with_http_info_async(scope, code, effective_at, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_group_reconciliation_definition_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[GroupReconciliationDefinition]:
@@ -3188,12 +3188,12 @@ class GroupReconciliationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfGroupReconciliationComparisonResult
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_comparison_results_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_comparison_results_with_http_info_async(as_at, page, sort_by, limit, filter, **kwargs)  # noqa: E501
+            response = await self.list_comparison_results_with_http_info_async(as_at, page, sort_by, limit, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def list_comparison_results_with_http_info_async(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfGroupReconciliationComparisonResult]:
@@ -3345,12 +3345,12 @@ class GroupReconciliationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfGroupReconciliationComparisonRuleset
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_comparison_rulesets_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_comparison_rulesets_with_http_info_async(as_at, page, sort_by, limit, filter, **kwargs)  # noqa: E501
+            response = await self.list_comparison_rulesets_with_http_info_async(as_at, page, sort_by, limit, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def list_comparison_rulesets_with_http_info_async(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfGroupReconciliationComparisonRuleset]:
@@ -3504,12 +3504,12 @@ class GroupReconciliationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfGroupReconciliationDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_group_reconciliation_definitions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_group_reconciliation_definitions_with_http_info_async(effective_at, as_at, page, limit, filter, sort_by, **kwargs)  # noqa: E501
+            response = await self.list_group_reconciliation_definitions_with_http_info_async(effective_at, as_at, page, limit, filter, sort_by, **kwargs)
+            return response.data
 
     @validate_call
     async def list_group_reconciliation_definitions_with_http_info_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfGroupReconciliationDefinition]:
@@ -3663,12 +3663,12 @@ class GroupReconciliationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: GroupReconciliationRunResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the run_reconciliation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.run_reconciliation_with_http_info_async(scope, code, group_reconciliation_run_request, **kwargs)  # noqa: E501
+            response = await self.run_reconciliation_with_http_info_async(scope, code, group_reconciliation_run_request, **kwargs)
+            return response.data
 
     @validate_call
     async def run_reconciliation_with_http_info_async(self, scope: StrictStr, code: StrictStr, group_reconciliation_run_request: Optional[GroupReconciliationRunRequest] = None, **kwargs) -> ApiResponse[GroupReconciliationRunResponse]:
@@ -3807,12 +3807,12 @@ class GroupReconciliationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: GroupReconciliationComparisonRuleset
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_comparison_ruleset_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_comparison_ruleset_with_http_info_async(scope, code, update_group_reconciliation_comparison_ruleset_request, **kwargs)  # noqa: E501
+            response = await self.update_comparison_ruleset_with_http_info_async(scope, code, update_group_reconciliation_comparison_ruleset_request, **kwargs)
+            return response.data
 
     @validate_call
     async def update_comparison_ruleset_with_http_info_async(self, scope: StrictStr, code: StrictStr, update_group_reconciliation_comparison_ruleset_request: Optional[UpdateGroupReconciliationComparisonRulesetRequest] = None, **kwargs) -> ApiResponse[GroupReconciliationComparisonRuleset]:
@@ -3951,12 +3951,12 @@ class GroupReconciliationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: GroupReconciliationDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_group_reconciliation_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_group_reconciliation_definition_with_http_info_async(scope, code, update_group_reconciliation_definition_request, **kwargs)  # noqa: E501
+            response = await self.update_group_reconciliation_definition_with_http_info_async(scope, code, update_group_reconciliation_definition_request, **kwargs)
+            return response.data
 
     @validate_call
     async def update_group_reconciliation_definition_with_http_info_async(self, scope: StrictStr, code: StrictStr, update_group_reconciliation_definition_request: Optional[UpdateGroupReconciliationDefinitionRequest] = None, **kwargs) -> ApiResponse[GroupReconciliationDefinition]:

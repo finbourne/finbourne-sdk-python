@@ -70,12 +70,12 @@ class CounterpartiesApi:
         :return: Returns the result object.
         :rtype: AnnulSingleStructuredDataResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_counterparty_agreement_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_counterparty_agreement_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_counterparty_agreement_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_counterparty_agreement_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[AnnulSingleStructuredDataResponse]:
@@ -198,12 +198,12 @@ class CounterpartiesApi:
         :return: Returns the result object.
         :rtype: AnnulSingleStructuredDataResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_credit_support_annex_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_credit_support_annex_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_credit_support_annex_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_credit_support_annex_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[AnnulSingleStructuredDataResponse]:
@@ -328,12 +328,12 @@ class CounterpartiesApi:
         :return: Returns the result object.
         :rtype: GetCounterpartyAgreementResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_counterparty_agreement_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_counterparty_agreement_with_http_info(scope, code, as_at, **kwargs)  # noqa: E501
+        response = self.get_counterparty_agreement_with_http_info(scope, code, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_counterparty_agreement_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[GetCounterpartyAgreementResponse]:
@@ -467,12 +467,12 @@ class CounterpartiesApi:
         :return: Returns the result object.
         :rtype: GetCreditSupportAnnexResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_credit_support_annex_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_credit_support_annex_with_http_info(scope, code, as_at, **kwargs)  # noqa: E501
+        response = self.get_credit_support_annex_with_http_info(scope, code, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_credit_support_annex_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[GetCreditSupportAnnexResponse]:
@@ -602,12 +602,12 @@ class CounterpartiesApi:
         :return: Returns the result object.
         :rtype: ResourceListOfGetCounterpartyAgreementResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_counterparty_agreements_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_counterparty_agreements_with_http_info(as_at, **kwargs)  # noqa: E501
+        response = self.list_counterparty_agreements_with_http_info(as_at, **kwargs)
+        return response.data
 
     @validate_call
     def list_counterparty_agreements_with_http_info(self, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfGetCounterpartyAgreementResponse]:
@@ -725,12 +725,12 @@ class CounterpartiesApi:
         :return: Returns the result object.
         :rtype: ResourceListOfGetCreditSupportAnnexResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_credit_support_annexes_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_credit_support_annexes_with_http_info(as_at, **kwargs)  # noqa: E501
+        response = self.list_credit_support_annexes_with_http_info(as_at, **kwargs)
+        return response.data
 
     @validate_call
     def list_credit_support_annexes_with_http_info(self, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfGetCreditSupportAnnexResponse]:
@@ -848,12 +848,12 @@ class CounterpartiesApi:
         :return: Returns the result object.
         :rtype: UpsertSingleStructuredDataResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_counterparty_agreement_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_counterparty_agreement_with_http_info(upsert_counterparty_agreement_request, **kwargs)  # noqa: E501
+        response = self.upsert_counterparty_agreement_with_http_info(upsert_counterparty_agreement_request, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_counterparty_agreement_with_http_info(self, upsert_counterparty_agreement_request: UpsertCounterpartyAgreementRequest, **kwargs) -> ApiResponse[UpsertSingleStructuredDataResponse]:
@@ -975,12 +975,12 @@ class CounterpartiesApi:
         :return: Returns the result object.
         :rtype: UpsertSingleStructuredDataResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_credit_support_annex_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_credit_support_annex_with_http_info(upsert_credit_support_annex_request, **kwargs)  # noqa: E501
+        response = self.upsert_credit_support_annex_with_http_info(upsert_credit_support_annex_request, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_credit_support_annex_with_http_info(self, upsert_credit_support_annex_request: UpsertCreditSupportAnnexRequest, **kwargs) -> ApiResponse[UpsertSingleStructuredDataResponse]:
@@ -1108,12 +1108,12 @@ class CounterpartiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: AnnulSingleStructuredDataResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_counterparty_agreement_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_counterparty_agreement_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_counterparty_agreement_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_counterparty_agreement_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[AnnulSingleStructuredDataResponse]:
@@ -1237,12 +1237,12 @@ class CounterpartiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: AnnulSingleStructuredDataResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_credit_support_annex_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_credit_support_annex_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_credit_support_annex_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_credit_support_annex_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[AnnulSingleStructuredDataResponse]:
@@ -1368,12 +1368,12 @@ class CounterpartiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: GetCounterpartyAgreementResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_counterparty_agreement_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_counterparty_agreement_with_http_info_async(scope, code, as_at, **kwargs)  # noqa: E501
+            response = await self.get_counterparty_agreement_with_http_info_async(scope, code, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_counterparty_agreement_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[GetCounterpartyAgreementResponse]:
@@ -1508,12 +1508,12 @@ class CounterpartiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: GetCreditSupportAnnexResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_credit_support_annex_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_credit_support_annex_with_http_info_async(scope, code, as_at, **kwargs)  # noqa: E501
+            response = await self.get_credit_support_annex_with_http_info_async(scope, code, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_credit_support_annex_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[GetCreditSupportAnnexResponse]:
@@ -1644,12 +1644,12 @@ class CounterpartiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfGetCounterpartyAgreementResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_counterparty_agreements_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_counterparty_agreements_with_http_info_async(as_at, **kwargs)  # noqa: E501
+            response = await self.list_counterparty_agreements_with_http_info_async(as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def list_counterparty_agreements_with_http_info_async(self, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfGetCounterpartyAgreementResponse]:
@@ -1768,12 +1768,12 @@ class CounterpartiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfGetCreditSupportAnnexResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_credit_support_annexes_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_credit_support_annexes_with_http_info_async(as_at, **kwargs)  # noqa: E501
+            response = await self.list_credit_support_annexes_with_http_info_async(as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def list_credit_support_annexes_with_http_info_async(self, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfGetCreditSupportAnnexResponse]:
@@ -1892,12 +1892,12 @@ class CounterpartiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: UpsertSingleStructuredDataResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_counterparty_agreement_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_counterparty_agreement_with_http_info_async(upsert_counterparty_agreement_request, **kwargs)  # noqa: E501
+            response = await self.upsert_counterparty_agreement_with_http_info_async(upsert_counterparty_agreement_request, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_counterparty_agreement_with_http_info_async(self, upsert_counterparty_agreement_request: UpsertCounterpartyAgreementRequest, **kwargs) -> ApiResponse[UpsertSingleStructuredDataResponse]:
@@ -2020,12 +2020,12 @@ class CounterpartiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: UpsertSingleStructuredDataResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_credit_support_annex_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_credit_support_annex_with_http_info_async(upsert_credit_support_annex_request, **kwargs)  # noqa: E501
+            response = await self.upsert_credit_support_annex_with_http_info_async(upsert_credit_support_annex_request, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_credit_support_annex_with_http_info_async(self, upsert_credit_support_annex_request: UpsertCreditSupportAnnexRequest, **kwargs) -> ApiResponse[UpsertSingleStructuredDataResponse]:

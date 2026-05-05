@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class AzureServiceBusNotificationType(BaseModel):
     tenant_id:  StrictStr = Field(...,alias="tenantId", description="Reference to tenant id from Configuration Store") 
     client_id:  StrictStr = Field(...,alias="clientId", description="Reference to client id from Configuration Store") 
     client_secret:  StrictStr = Field(...,alias="clientSecret", description="Reference to client secret from Configuration Store") 
-    __properties = ["type", "namespace", "queueName", "body", "tenantId", "clientId", "clientSecret"]
+    __properties: ClassVar[List[str]] = ["type", "namespace", "queueName", "body", "tenantId", "clientId", "clientSecret"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):

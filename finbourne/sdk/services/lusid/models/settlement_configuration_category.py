@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -27,12 +27,12 @@ class SettlementConfigurationCategory(BaseModel):
     """
     SettlementConfigurationCategory
     """
-    method:  Optional[StrictStr] = Field(default=None,alias="method", description="The method of settlement for the movements of the relevant type(s). Allowed values: 'Automatic' and 'Instructed'. A value of 'Instructed' means that such movements can only be settled with a SettlementInstruction. A value of 'Automatic' means that such movements will settle automatically but a SettlementInstruction will still override automatic settlement.") 
+    method:  Optional[StrictStr] = Field(default=None,alias="method", description="The method of settlement for the movements of the relevant type(s). A value of Instructed means that such movements can only be settled with a SettlementInstruction. A value of Automatic means that such movements will settle automatically but a SettlementInstruction will still override automatic settlement. Available values: Automatic, Instructed.") 
     calculate_instruction_to_portfolio_rate: Optional[StrictBool] = Field(default=None, description="An optional flag that allows for the calculation of the instruction to portfolio rate for instructions with settlement category CashSettlement or DeferredCashReceipt, if it is not provided on the settlement instruction. Defaults to false if not specified.", alias="calculateInstructionToPortfolioRate")
     calculate_in_lieu_settlement_amount: Optional[StrictBool] = Field(default=None, description="An optional flag that allows for the calculation of the in lieu amount for instructions with settlement category CashSettlement or DeferredCashReceipt, if it is not provided on the settlement instruction. Defaults to false if not specified.", alias="calculateInLieuSettlementAmount")
     method_override: Optional[SettlementConfigurationMethodOverride] = Field(default=None, alias="methodOverride")
     calculate_trade_date_to_settlement_fx_pn_l: Optional[StrictBool] = Field(default=None, description="An optional flag that allows for the calculation of the in lieu amount for instructions with settlement category CashSettlement or DeferredCashReceipt, if it is not provided on the settlement instruction. Defaults to false if not specified.", alias="calculateTradeDateToSettlementFxPnL")
-    __properties = ["method", "calculateInstructionToPortfolioRate", "calculateInLieuSettlementAmount", "methodOverride", "calculateTradeDateToSettlementFxPnL"]
+    __properties: ClassVar[List[str]] = ["method", "calculateInstructionToPortfolioRate", "calculateInLieuSettlementAmount", "methodOverride", "calculateTradeDateToSettlementFxPnL"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,7 +91,7 @@ class SettlementConfigurationCategory(BaseModel):
             "method": obj.get("method"),
             "calculate_instruction_to_portfolio_rate": obj.get("calculateInstructionToPortfolioRate"),
             "calculate_in_lieu_settlement_amount": obj.get("calculateInLieuSettlementAmount"),
-            "method_override": SettlementConfigurationMethodOverride.from_dict(obj.get("methodOverride")) if obj.get("methodOverride") is not None else None,
+            "method_override": SettlementConfigurationMethodOverride.from_dict(_v) if (_v := obj.get("methodOverride")) is not None else None,
             "calculate_trade_date_to_settlement_fx_pn_l": obj.get("calculateTradeDateToSettlementFxPnL")
         })
         return _obj

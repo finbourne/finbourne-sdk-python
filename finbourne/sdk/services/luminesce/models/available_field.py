@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class AvailableField(BaseModel):
     field_type: FieldType = Field(alias="fieldType")
     is_main: Optional[StrictBool] = Field(default=None, description="Is this a Main Field within the Provider", alias="isMain")
     is_primary_key: Optional[StrictBool] = Field(default=None, description="Is this a member of the PrimaryKey of the Provider", alias="isPrimaryKey")
-    __properties = ["name", "dataType", "fieldType", "isMain", "isPrimaryKey"]
+    __properties: ClassVar[List[str]] = ["name", "dataType", "fieldType", "isMain", "isPrimaryKey"]
 
     model_config = ConfigDict(
         populate_by_name=True,

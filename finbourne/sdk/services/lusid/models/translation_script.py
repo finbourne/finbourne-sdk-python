@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class TranslationScript(BaseModel):
     id: TranslationScriptId
     body:  StrictStr = Field(...,alias="body", description="Body of the translation script, i.e. the actual translation code.") 
     version: Optional[Version] = None
-    __properties = ["id", "body", "version"]
+    __properties: ClassVar[List[str]] = ["id", "body", "version"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,9 +85,9 @@ class TranslationScript(BaseModel):
             return TranslationScript.model_validate(obj)
 
         _obj = TranslationScript.model_validate({
-            "id": TranslationScriptId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
+            "id": TranslationScriptId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
             "body": obj.get("body"),
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None
         })
         return _obj
 

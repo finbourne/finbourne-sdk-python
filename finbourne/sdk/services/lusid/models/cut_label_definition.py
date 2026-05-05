@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -37,7 +37,7 @@ class CutLabelDefinition(BaseModel):
     href:  Optional[StrictStr] = Field(default=None,alias="href") 
     version: Optional[Version] = None
     links: Optional[List[Link]] = None
-    __properties = ["code", "displayName", "description", "cutLocalTime", "timeZone", "href", "version", "links"]
+    __properties: ClassVar[List[str]] = ["code", "displayName", "description", "cutLocalTime", "timeZone", "href", "version", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -131,11 +131,11 @@ class CutLabelDefinition(BaseModel):
             "code": obj.get("code"),
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
-            "cut_local_time": CutLocalTime.from_dict(obj.get("cutLocalTime")) if obj.get("cutLocalTime") is not None else None,
+            "cut_local_time": CutLocalTime.from_dict(_v) if (_v := obj.get("cutLocalTime")) is not None else None,
             "time_zone": obj.get("timeZone"),
             "href": obj.get("href"),
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

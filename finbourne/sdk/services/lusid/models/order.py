@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -55,7 +55,7 @@ class Order(BaseModel):
     amount: Optional[CurrencyAndAmount] = None
     data_model_membership: Optional[DataModelMembership] = Field(default=None, alias="dataModelMembership")
     links: Optional[List[Link]] = None
-    __properties = ["properties", "version", "instrumentIdentifiers", "quantity", "side", "orderBookId", "portfolioId", "id", "instrumentScope", "lusidInstrumentId", "state", "type", "timeInForce", "date", "price", "limitPrice", "stopPrice", "orderInstructionId", "packageId", "weight", "amount", "dataModelMembership", "links"]
+    __properties: ClassVar[List[str]] = ["properties", "version", "instrumentIdentifiers", "quantity", "side", "orderBookId", "portfolioId", "id", "instrumentScope", "lusidInstrumentId", "state", "type", "timeInForce", "date", "price", "limitPrice", "stopPrice", "orderInstructionId", "packageId", "weight", "amount", "dataModelMembership", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -192,32 +192,32 @@ class Order(BaseModel):
         _obj = Order.model_validate({
             "properties": dict(
                 (_k, PerpetualProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
             "instrument_identifiers": obj.get("instrumentIdentifiers"),
             "quantity": obj.get("quantity"),
             "side": obj.get("side"),
-            "order_book_id": ResourceId.from_dict(obj.get("orderBookId")) if obj.get("orderBookId") is not None else None,
-            "portfolio_id": ResourceId.from_dict(obj.get("portfolioId")) if obj.get("portfolioId") is not None else None,
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
+            "order_book_id": ResourceId.from_dict(_v) if (_v := obj.get("orderBookId")) is not None else None,
+            "portfolio_id": ResourceId.from_dict(_v) if (_v := obj.get("portfolioId")) is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
             "instrument_scope": obj.get("instrumentScope"),
             "lusid_instrument_id": obj.get("lusidInstrumentId"),
             "state": obj.get("state"),
             "type": obj.get("type"),
             "time_in_force": obj.get("timeInForce"),
             "var_date": obj.get("date"),
-            "price": CurrencyAndAmount.from_dict(obj.get("price")) if obj.get("price") is not None else None,
-            "limit_price": CurrencyAndAmount.from_dict(obj.get("limitPrice")) if obj.get("limitPrice") is not None else None,
-            "stop_price": CurrencyAndAmount.from_dict(obj.get("stopPrice")) if obj.get("stopPrice") is not None else None,
-            "order_instruction_id": ResourceId.from_dict(obj.get("orderInstructionId")) if obj.get("orderInstructionId") is not None else None,
-            "package_id": ResourceId.from_dict(obj.get("packageId")) if obj.get("packageId") is not None else None,
+            "price": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("price")) is not None else None,
+            "limit_price": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("limitPrice")) is not None else None,
+            "stop_price": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("stopPrice")) is not None else None,
+            "order_instruction_id": ResourceId.from_dict(_v) if (_v := obj.get("orderInstructionId")) is not None else None,
+            "package_id": ResourceId.from_dict(_v) if (_v := obj.get("packageId")) is not None else None,
             "weight": obj.get("weight"),
-            "amount": CurrencyAndAmount.from_dict(obj.get("amount")) if obj.get("amount") is not None else None,
-            "data_model_membership": DataModelMembership.from_dict(obj.get("dataModelMembership")) if obj.get("dataModelMembership") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "amount": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("amount")) is not None else None,
+            "data_model_membership": DataModelMembership.from_dict(_v) if (_v := obj.get("dataModelMembership")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

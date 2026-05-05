@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,8 +29,8 @@ class FieldDefinition(BaseModel):
     key:  StrictStr = Field(...,alias="key") 
     is_required: StrictBool = Field(alias="isRequired")
     is_unique: StrictBool = Field(alias="isUnique")
-    value_type:  Optional[StrictStr] = Field(default=None,alias="valueType") 
-    __properties = ["key", "isRequired", "isUnique", "valueType"]
+    value_type:  Optional[StrictStr] = Field(default=None,alias="valueType", description="Available values: String, Decimal.") 
+    __properties: ClassVar[List[str]] = ["key", "isRequired", "isUnique", "valueType"]
 
     model_config = ConfigDict(
         populate_by_name=True,

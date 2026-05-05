@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class TimeZoneConventions(BaseModel):
     primary_time_zone:  StrictStr = Field(...,alias="primaryTimeZone", description="The IANA time zone code for the instrument.") 
     start_of_day:  Optional[StrictStr] = Field(default=None,alias="startOfDay", description="A LUSID Cut Label code used for generating instrument events at a time other than local midnight.") 
     primary_market_open:  Optional[StrictStr] = Field(default=None,alias="primaryMarketOpen", description="A LUSID Cut Label code used for delaying the transaction time of certain instrument events until market open.") 
-    __properties = ["primaryTimeZone", "startOfDay", "primaryMarketOpen"]
+    __properties: ClassVar[List[str]] = ["primaryTimeZone", "startOfDay", "primaryMarketOpen"]
 
     model_config = ConfigDict(
         populate_by_name=True,

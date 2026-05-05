@@ -6,7 +6,7 @@ A single constituent of a partial closure event for a Flexible Repo. Contains de
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **amount** | **float** | Required | If AmountType is set to Units, this field represents the number of units of the instrument being exchanged.  If AmountType is set to Percentage, this field represents the percentage of the total repoed units of the instrument being exchanged.  When defining a FlexibleRepoPartialClosureEvent the AmountType can be set to either Units or Percentage,  where Units represents the number of units of the instrument being exchanged, and Percentage represents the  percentage of the total repoed units of the instrument being exchanged in the context of the FlexibleRepo. |
-| **amount_type** | **str** | Required | The type of amount represented by the Amount field.  I.e., does it represent a number of units or a percentage of the total repoed units of the instrument?  When defining a FlexibleRepoPartialClosureEvent AmountType can be set to either Units or Percentage.    Supported string (enumeration) values are: [Percentage, Units]. |
+| **amount_type** | **str** | Required | The type of amount represented by the Amount field.  I.e., does it represent a number of units or a percentage of the total repoed units of the instrument?  When defining a FlexibleRepoPartialClosureEvent AmountType can be set to either Units or Percentage. Available values: Percentage, Units. |
 | **instrument** | [NewInstrument](NewInstrument.md) | Required | *No description available.* |
 
 
@@ -19,7 +19,7 @@ from finbourne.sdk.services.lusid.models.PartialClosureConstituent import Partia
 
 instance = PartialClosureConstituent(
     amount=0.0,  # required — If AmountType is set to Units, this field represents the number of units of the instrument being exchanged.  If AmountType is set to Percentage, this field represents the percentage of the total repoed units of the instrument being exchanged.  When defining a FlexibleRepoPartialClosureEvent the AmountType can be set to either Units or Percentage,  where Units represents the number of units of the instrument being exchanged, and Percentage represents the  percentage of the total repoed units of the instrument being exchanged in the context of the FlexibleRepo.
-    amount_type="...",  # required — The type of amount represented by the Amount field.  I.e., does it represent a number of units or a percentage of the total repoed units of the instrument?  When defining a FlexibleRepoPartialClosureEvent AmountType can be set to either Units or Percentage.    Supported string (enumeration) values are: [Percentage, Units].
+    amount_type="...",  # required — The type of amount represented by the Amount field.  I.e., does it represent a number of units or a percentage of the total repoed units of the instrument?  When defining a FlexibleRepoPartialClosureEvent AmountType can be set to either Units or Percentage. Available values: Percentage, Units.
     instrument=NewInstrument(...)  # required
 )
 ```

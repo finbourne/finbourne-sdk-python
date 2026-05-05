@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class ComplianceTemplateParameter(BaseModel):
     name:  StrictStr = Field(...,alias="name", description="The name for the required Compliance Template Parameter") 
     description:  StrictStr = Field(...,alias="description", description="The description for the required Compliance Template Parameter") 
     type:  StrictStr = Field(...,alias="type", description="The type for the required Compliance Template Parameter") 
-    __properties = ["name", "description", "type"]
+    __properties: ClassVar[List[str]] = ["name", "description", "type"]
 
     model_config = ConfigDict(
         populate_by_name=True,

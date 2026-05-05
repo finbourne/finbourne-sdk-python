@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class BatchUpdateTasksRequest(BaseModel):
     A request to update multiple Tasks  # noqa: E501
     """
     update_tasks: Optional[List[UpdateTaskWithIdAndTriggerRequest]] = Field(default=None, description="A Dictionary of task IDs to UpdateTaskRequest", alias="updateTasks")
-    __properties = ["updateTasks"]
+    __properties: ClassVar[List[str]] = ["updateTasks"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,7 +88,7 @@ class BatchUpdateTasksRequest(BaseModel):
             return BatchUpdateTasksRequest.model_validate(obj)
 
         _obj = BatchUpdateTasksRequest.model_validate({
-            "update_tasks": [UpdateTaskWithIdAndTriggerRequest.from_dict(_item) for _item in obj.get("updateTasks")] if obj.get("updateTasks") is not None else None
+            "update_tasks": [UpdateTaskWithIdAndTriggerRequest.from_dict(_item) for _item in _v] if (_v := obj.get("updateTasks")) is not None else None
         })
         return _obj
 

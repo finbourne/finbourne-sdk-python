@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -37,7 +37,7 @@ class VersionedResourceListWithPostBodiesOfSettlementInstructionWithTransactionT
     next_page: Optional[SettlementInstructionQuery] = Field(default=None, alias="nextPage")
     previous_page: Optional[SettlementInstructionQuery] = Field(default=None, alias="previousPage")
     links: Optional[List[Link]] = None
-    __properties = ["version", "values", "href", "postBody", "nextPage", "previousPage", "links"]
+    __properties: ClassVar[List[str]] = ["version", "values", "href", "postBody", "nextPage", "previousPage", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -121,13 +121,13 @@ class VersionedResourceListWithPostBodiesOfSettlementInstructionWithTransactionT
             return VersionedResourceListWithPostBodiesOfSettlementInstructionWithTransactionToSettlementInstructionQuery.model_validate(obj)
 
         _obj = VersionedResourceListWithPostBodiesOfSettlementInstructionWithTransactionToSettlementInstructionQuery.model_validate({
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
-            "values": [SettlementInstructionWithTransaction.from_dict(_item) for _item in obj.get("values")] if obj.get("values") is not None else None,
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "values": [SettlementInstructionWithTransaction.from_dict(_item) for _item in _v] if (_v := obj.get("values")) is not None else None,
             "href": obj.get("href"),
-            "post_body": SettlementInstructionQuery.from_dict(obj.get("postBody")) if obj.get("postBody") is not None else None,
-            "next_page": SettlementInstructionQuery.from_dict(obj.get("nextPage")) if obj.get("nextPage") is not None else None,
-            "previous_page": SettlementInstructionQuery.from_dict(obj.get("previousPage")) if obj.get("previousPage") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "post_body": SettlementInstructionQuery.from_dict(_v) if (_v := obj.get("postBody")) is not None else None,
+            "next_page": SettlementInstructionQuery.from_dict(_v) if (_v := obj.get("nextPage")) is not None else None,
+            "previous_page": SettlementInstructionQuery.from_dict(_v) if (_v := obj.get("previousPage")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

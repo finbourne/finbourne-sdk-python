@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class MarketDataSpecificRule(BaseModel):
     key:  StrictStr = Field(...,alias="key", description="The market data key pattern which this is a rule for. A dot separated string (A.B.C.D.*)") 
     supplier:  StrictStr = Field(...,alias="supplier", description="The market data supplier (where the data comes from)") 
     data_scope:  StrictStr = Field(...,alias="dataScope", description="The scope in which the data should be found when using this rule.") 
-    quote_type:  StrictStr = Field(...,alias="quoteType", description="The available values are: Price, Spread, Rate, LogNormalVol, NormalVol, ParSpread, IsdaSpread, Upfront, Index, Ratio, Delta, PoolFactor, InflationAssumption, DirtyPrice, PrincipalWriteOff, InterestDeferred, InterestShortfall, ConstituentWeightFactor") 
+    quote_type:  StrictStr = Field(...,alias="quoteType", description="Available values: Price, Spread, Rate, LogNormalVol, NormalVol, ParSpread, IsdaSpread, Upfront, Index, Ratio, Delta, PoolFactor, InflationAssumption, DirtyPrice, PrincipalWriteOff, InterestDeferred, InterestShortfall, ConstituentWeightFactor.") 
     var_field:  StrictStr = Field(...,alias="field", description="The conceptual qualification for the field, such as bid, mid, or ask.  The field must be one of a defined set for the given supplier, in the same way as it  is for the Quotes.QuoteSeriesId\"") 
     quote_interval:  Optional[StrictStr] = Field(default=None,alias="quoteInterval", description="Shorthand for the time interval used to select market data. This must be a dot-separated string              nominating a start and end date, for example '5D.0D' to look back 5 days from today (0 days ago). The syntax              is <i>int</i><i>char</i>.<i>int</i><i>char</i>, where <i>char</i> is one of D(ay), W(eek), M(onth) or Y(ear).") 
     as_at: Optional[datetime] = Field(default=None, description="Deprecated field which no longer has any effect on market data resolution.", alias="asAt")
@@ -39,7 +39,7 @@ class MarketDataSpecificRule(BaseModel):
     dependency_source_filter: DependencySourceFilter = Field(alias="dependencySourceFilter")
     source_system:  Optional[StrictStr] = Field(default=None,alias="sourceSystem", description="Determines from where LUSID should attempt to find the data. Optional and, if omitted, will default to \"Lusid\".  This means that data will be retrieved from the Quotes store and the ComplexMarketData store.  These can be populated using the Quotes and ComplexMarketData endpoints.") 
     fall_through_on_access_denied: Optional[StrictBool] = Field(default=None, description="When a user attempts to use a rule to access data to which they are not entitled,  the rule will fail to resolve any market data.  By default, such an access denied failure will stop any further attempts to resolve market data.  This is so that differently entitled users always receive the same market data from market data resolution,  if they have sufficient entitlements to retrieve the required data.  If set to true, then an access denied failure will not stop further market data resolution,  and resolution will continue with the next specified MarketDataKeyRule.  Optional, and defaults to false.", alias="fallThroughOnAccessDenied")
-    __properties = ["key", "supplier", "dataScope", "quoteType", "field", "quoteInterval", "asAt", "priceSource", "mask", "dependencySourceFilter", "sourceSystem", "fallThroughOnAccessDenied"]
+    __properties: ClassVar[List[str]] = ["key", "supplier", "dataScope", "quoteType", "field", "quoteInterval", "asAt", "priceSource", "mask", "dependencySourceFilter", "sourceSystem", "fallThroughOnAccessDenied"]
 
     @field_validator('quote_type')
     def quote_type_validate_enum(cls, value):
@@ -193,7 +193,7 @@ class MarketDataSpecificRule(BaseModel):
             "as_at": obj.get("asAt"),
             "price_source": obj.get("priceSource"),
             "mask": obj.get("mask"),
-            "dependency_source_filter": DependencySourceFilter.from_dict(obj.get("dependencySourceFilter")) if obj.get("dependencySourceFilter") is not None else None,
+            "dependency_source_filter": DependencySourceFilter.from_dict(_v) if (_v := obj.get("dependencySourceFilter")) is not None else None,
             "source_system": obj.get("sourceSystem"),
             "fall_through_on_access_denied": obj.get("fallThroughOnAccessDenied")
         })

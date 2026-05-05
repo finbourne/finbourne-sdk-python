@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class CreateNetworkZoneRequest(BaseModel):
     network_zone_ips: List[IpAddressDefinition] = Field(alias="networkZoneIPs")
     action:  Optional[StrictStr] = Field(default=None,alias="action") 
     apply_rules: NetworkZonesApplyRules = Field(alias="applyRules")
-    __properties = ["code", "description", "networkZoneIPs", "action", "applyRules"]
+    __properties: ClassVar[List[str]] = ["code", "description", "networkZoneIPs", "action", "applyRules"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -103,9 +103,9 @@ class CreateNetworkZoneRequest(BaseModel):
         _obj = CreateNetworkZoneRequest.model_validate({
             "code": obj.get("code"),
             "description": obj.get("description"),
-            "network_zone_ips": [IpAddressDefinition.from_dict(_item) for _item in obj.get("networkZoneIPs")] if obj.get("networkZoneIPs") is not None else None,
+            "network_zone_ips": [IpAddressDefinition.from_dict(_item) for _item in _v] if (_v := obj.get("networkZoneIPs")) is not None else None,
             "action": obj.get("action"),
-            "apply_rules": NetworkZonesApplyRules.from_dict(obj.get("applyRules")) if obj.get("applyRules") is not None else None
+            "apply_rules": NetworkZonesApplyRules.from_dict(_v) if (_v := obj.get("applyRules")) is not None else None
         })
         return _obj
 

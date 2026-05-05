@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class CashElection(BaseModel):
     is_declared: Optional[StrictBool] = Field(default=None, description="Is this the declared CashElection.  Only one Election may be Declared per Event.", alias="isDeclared")
     is_default: Optional[StrictBool] = Field(default=None, description="Is this election the default.  Only one Election may be Default per Event", alias="isDefault")
     dividend_currency:  StrictStr = Field(...,alias="dividendCurrency", description="The payment currency for this CashElection.") 
-    __properties = ["electionKey", "exchangeRate", "dividendRate", "isChosen", "isDeclared", "isDefault", "dividendCurrency"]
+    __properties: ClassVar[List[str]] = ["electionKey", "exchangeRate", "dividendRate", "isChosen", "isDeclared", "isDefault", "dividendCurrency"]
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class CreateComplianceTemplateRequest(BaseModel):
     code:  StrictStr = Field(...,alias="code", description="The code given for the Compliance Template") 
     description:  StrictStr = Field(...,alias="description", description="The description of the Compliance Template") 
     variations: List[ComplianceTemplateVariationRequest] = Field(description="Variation details of a Compliance Template")
-    __properties = ["code", "description", "variations"]
+    __properties: ClassVar[List[str]] = ["code", "description", "variations"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -87,7 +87,7 @@ class CreateComplianceTemplateRequest(BaseModel):
         _obj = CreateComplianceTemplateRequest.model_validate({
             "code": obj.get("code"),
             "description": obj.get("description"),
-            "variations": [ComplianceTemplateVariationRequest.from_dict(_item) for _item in obj.get("variations")] if obj.get("variations") is not None else None
+            "variations": [ComplianceTemplateVariationRequest.from_dict(_item) for _item in _v] if (_v := obj.get("variations")) is not None else None
         })
         return _obj
 

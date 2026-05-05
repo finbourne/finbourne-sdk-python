@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -40,7 +40,7 @@ class BlockedOrderRequest(BaseModel):
     order_instruction: Optional[ResourceId] = Field(default=None, alias="orderInstruction")
     package: Optional[ResourceId] = None
     side:  Optional[StrictStr] = Field(default=None,alias="side", description="The client's representation of the order's side (buy, sell, short, etc)") 
-    __properties = ["properties", "quantity", "orderBookId", "portfolioId", "id", "state", "date", "price", "orderInstruction", "package", "side"]
+    __properties: ClassVar[List[str]] = ["properties", "quantity", "orderBookId", "portfolioId", "id", "state", "date", "price", "orderInstruction", "package", "side"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -130,19 +130,19 @@ class BlockedOrderRequest(BaseModel):
         _obj = BlockedOrderRequest.model_validate({
             "properties": dict(
                 (_k, PerpetualProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
             "quantity": obj.get("quantity"),
-            "order_book_id": ResourceId.from_dict(obj.get("orderBookId")) if obj.get("orderBookId") is not None else None,
-            "portfolio_id": ResourceId.from_dict(obj.get("portfolioId")) if obj.get("portfolioId") is not None else None,
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
+            "order_book_id": ResourceId.from_dict(_v) if (_v := obj.get("orderBookId")) is not None else None,
+            "portfolio_id": ResourceId.from_dict(_v) if (_v := obj.get("portfolioId")) is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
             "state": obj.get("state"),
             "var_date": obj.get("date"),
-            "price": CurrencyAndAmount.from_dict(obj.get("price")) if obj.get("price") is not None else None,
-            "order_instruction": ResourceId.from_dict(obj.get("orderInstruction")) if obj.get("orderInstruction") is not None else None,
-            "package": ResourceId.from_dict(obj.get("package")) if obj.get("package") is not None else None,
+            "price": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("price")) is not None else None,
+            "order_instruction": ResourceId.from_dict(_v) if (_v := obj.get("orderInstruction")) is not None else None,
+            "package": ResourceId.from_dict(_v) if (_v := obj.get("package")) is not None else None,
             "side": obj.get("side")
         })
         return _obj

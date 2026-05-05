@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -37,7 +37,7 @@ class RelatedEntity(BaseModel):
     lusid_unique_id: Optional[LusidUniqueId] = Field(default=None, alias="lusidUniqueId")
     identifiers: List[EntityIdentifier] = Field(description="The identifiers of the related entity in the relationship.")
     href:  Optional[StrictStr] = Field(default=None,alias="href", description="The link to the entity.") 
-    __properties = ["entityType", "entityId", "displayName", "properties", "scope", "lusidUniqueId", "identifiers", "href"]
+    __properties: ClassVar[List[str]] = ["entityType", "entityId", "displayName", "properties", "scope", "lusidUniqueId", "identifiers", "href"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -122,13 +122,13 @@ class RelatedEntity(BaseModel):
             "display_name": obj.get("displayName"),
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
             "scope": obj.get("scope"),
-            "lusid_unique_id": LusidUniqueId.from_dict(obj.get("lusidUniqueId")) if obj.get("lusidUniqueId") is not None else None,
-            "identifiers": [EntityIdentifier.from_dict(_item) for _item in obj.get("identifiers")] if obj.get("identifiers") is not None else None,
+            "lusid_unique_id": LusidUniqueId.from_dict(_v) if (_v := obj.get("lusidUniqueId")) is not None else None,
+            "identifiers": [EntityIdentifier.from_dict(_item) for _item in _v] if (_v := obj.get("identifiers")) is not None else None,
             "href": obj.get("href")
         })
         return _obj

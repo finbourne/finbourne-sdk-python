@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class CancelledPlacementResult(BaseModel):
     """
     placement_state: Optional[Placement] = Field(default=None, alias="placementState")
     cancelled_child_placements: List[ResourceId] = Field(description="Child placements which have also been cancelled following cancellation of the parent", alias="cancelledChildPlacements")
-    __properties = ["placementState", "cancelledChildPlacements"]
+    __properties: ClassVar[List[str]] = ["placementState", "cancelledChildPlacements"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,8 +88,8 @@ class CancelledPlacementResult(BaseModel):
             return CancelledPlacementResult.model_validate(obj)
 
         _obj = CancelledPlacementResult.model_validate({
-            "placement_state": Placement.from_dict(obj.get("placementState")) if obj.get("placementState") is not None else None,
-            "cancelled_child_placements": [ResourceId.from_dict(_item) for _item in obj.get("cancelledChildPlacements")] if obj.get("cancelledChildPlacements") is not None else None
+            "placement_state": Placement.from_dict(_v) if (_v := obj.get("placementState")) is not None else None,
+            "cancelled_child_placements": [ResourceId.from_dict(_item) for _item in _v] if (_v := obj.get("cancelledChildPlacements")) is not None else None
         })
         return _obj
 

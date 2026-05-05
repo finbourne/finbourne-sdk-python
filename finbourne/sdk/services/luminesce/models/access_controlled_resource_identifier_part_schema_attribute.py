@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class AccessControlledResourceIdentifierPartSchemaAttribute(BaseModel):
     required: Optional[StrictBool] = None
     values_path:  Optional[StrictStr] = Field(default=None,alias="valuesPath") 
     type_id: Optional[Any] = Field(default=None, alias="typeId")
-    __properties = ["index", "name", "displayName", "description", "required", "valuesPath", "typeId"]
+    __properties: ClassVar[List[str]] = ["index", "name", "displayName", "description", "required", "valuesPath", "typeId"]
 
     model_config = ConfigDict(
         populate_by_name=True,

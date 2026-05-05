@@ -8,7 +8,7 @@ For indicating a dependency on some opaque market data requested by an outside v
 | **vendor_name** | **str** | Required | The name of the outside vendor |
 | **vendor_path** | **List[str]** | Required | The specific dependency path |
 | **var_date** | **datetime** | Required | The effectiveDate of the entity that this is a dependency for. |
-| **dependency_type** | **str** | Required | The available values are: OpaqueDependency, CashDependency, DiscountingDependency, EquityCurveDependency, EquityVolDependency, FxDependency, FxForwardsDependency, FxVolDependency, IndexProjectionDependency, IrVolDependency, QuoteDependency, Vendor, CalendarDependency, InflationFixingDependency |
+| **dependency_type** | **str** | Required | Available values: OpaqueDependency, CashDependency, DiscountingDependency, EquityCurveDependency, EquityVolDependency, FxDependency, FxForwardsDependency, FxVolDependency, IndexProjectionDependency, IrVolDependency, QuoteDependency, Vendor, CalendarDependency, InflationFixingDependency. |
 
 
 ## Usage
@@ -22,7 +22,7 @@ instance = VendorDependency(
     vendor_name="...",  # required — The name of the outside vendor
     vendor_path=,  # required — The specific dependency path
     var_date=datetime.now(),  # required — The effectiveDate of the entity that this is a dependency for.
-    dependency_type="..."  # required — The available values are: OpaqueDependency, CashDependency, DiscountingDependency, EquityCurveDependency, EquityVolDependency, FxDependency, FxForwardsDependency, FxVolDependency, IndexProjectionDependency, IrVolDependency, QuoteDependency, Vendor, CalendarDependency, InflationFixingDependency
+    dependency_type="..."  # required — Available values: OpaqueDependency, CashDependency, DiscountingDependency, EquityCurveDependency, EquityVolDependency, FxDependency, FxForwardsDependency, FxVolDependency, IndexProjectionDependency, IrVolDependency, QuoteDependency, Vendor, CalendarDependency, InflationFixingDependency.
 )
 ```
 

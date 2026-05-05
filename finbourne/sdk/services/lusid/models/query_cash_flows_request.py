@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class QueryCashFlowsRequest(BaseModel):
     portfolio_entity_ids: List[PortfolioEntityId] = Field(description="The set of portfolios and portfolio groups to which the instrument events must belong.", alias="portfolioEntityIds")
     recipe_id: ResourceId = Field(alias="recipeId")
     effective_at: datetime = Field(description="The Effective date used in the valuation of the cashflows.", alias="effectiveAt")
-    __properties = ["asAt", "windowStart", "windowEnd", "portfolioEntityIds", "recipeId", "effectiveAt"]
+    __properties: ClassVar[List[str]] = ["asAt", "windowStart", "windowEnd", "portfolioEntityIds", "recipeId", "effectiveAt"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -100,8 +100,8 @@ class QueryCashFlowsRequest(BaseModel):
             "as_at": obj.get("asAt"),
             "window_start": obj.get("windowStart"),
             "window_end": obj.get("windowEnd"),
-            "portfolio_entity_ids": [PortfolioEntityId.from_dict(_item) for _item in obj.get("portfolioEntityIds")] if obj.get("portfolioEntityIds") is not None else None,
-            "recipe_id": ResourceId.from_dict(obj.get("recipeId")) if obj.get("recipeId") is not None else None,
+            "portfolio_entity_ids": [PortfolioEntityId.from_dict(_item) for _item in _v] if (_v := obj.get("portfolioEntityIds")) is not None else None,
+            "recipe_id": ResourceId.from_dict(_v) if (_v := obj.get("recipeId")) is not None else None,
             "effective_at": obj.get("effectiveAt")
         })
         return _obj

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,15 +30,15 @@ class CreateDataTypeRequest(BaseModel):
     """
     scope:  StrictStr = Field(...,alias="scope", description="The scope that the data type will be created in.") 
     code:  StrictStr = Field(...,alias="code", description="The code of the data type. Together with the scope this uniquely defines the data type.") 
-    type_value_range:  StrictStr = Field(...,alias="typeValueRange", description="Indicates the range of data acceptable by a data type. The available values are: Open, Closed") 
+    type_value_range:  StrictStr = Field(...,alias="typeValueRange", description="Indicates the range of data acceptable by a data type. Available values: Open, Closed.") 
     display_name:  StrictStr = Field(...,alias="displayName", description="The display name of the data type.") 
     description:  StrictStr = Field(...,alias="description", description="The description of the data type.") 
-    value_type:  StrictStr = Field(...,alias="valueType", description="The expected type of the values. The available values are: String, Int, Decimal, DateTime, Boolean, Map, List, PropertyArray, Percentage, Code, Id, Uri, CurrencyAndAmount, TradePrice, Currency, MetricValue, ResourceId, ResultValue, CutLocalTime, DateOrCutLabel, UnindexedText") 
+    value_type:  StrictStr = Field(...,alias="valueType", description="The expected type of the values. Available values: String, Int, Decimal, DateTime, Boolean, Map, List, PropertyArray, Percentage, Code, Id, Uri, CurrencyAndAmount, TradePrice, Currency, MetricValue, ResourceId, ResultValue, CutLocalTime, DateOrCutLabel, UnindexedText.") 
     acceptable_values: Optional[List[StrictStr]] = Field(default=None, description="The acceptable set of values for this data type. Only applies to 'open' value type range.", alias="acceptableValues")
-    unit_schema:  Optional[StrictStr] = Field(default=None,alias="unitSchema", description="The schema of the data type's units. The available values are: NoUnits, Basic, Iso4217Currency") 
+    unit_schema:  Optional[StrictStr] = Field(default=None,alias="unitSchema", description="The schema of the data type's units. Available values: NoUnits, Basic, Iso4217Currency.") 
     acceptable_units: Optional[List[CreateUnitDefinition]] = Field(default=None, description="The definitions of the acceptable units.", alias="acceptableUnits")
     reference_data: Optional[ReferenceData] = Field(default=None, alias="referenceData")
-    __properties = ["scope", "code", "typeValueRange", "displayName", "description", "valueType", "acceptableValues", "unitSchema", "acceptableUnits", "referenceData"]
+    __properties: ClassVar[List[str]] = ["scope", "code", "typeValueRange", "displayName", "description", "valueType", "acceptableValues", "unitSchema", "acceptableUnits", "referenceData"]
 
     @field_validator('type_value_range')
     def type_value_range_validate_enum(cls, value):
@@ -324,8 +324,8 @@ class CreateDataTypeRequest(BaseModel):
             "value_type": obj.get("valueType"),
             "acceptable_values": obj.get("acceptableValues"),
             "unit_schema": obj.get("unitSchema"),
-            "acceptable_units": [CreateUnitDefinition.from_dict(_item) for _item in obj.get("acceptableUnits")] if obj.get("acceptableUnits") is not None else None,
-            "reference_data": ReferenceData.from_dict(obj.get("referenceData")) if obj.get("referenceData") is not None else None
+            "acceptable_units": [CreateUnitDefinition.from_dict(_item) for _item in _v] if (_v := obj.get("acceptableUnits")) is not None else None,
+            "reference_data": ReferenceData.from_dict(_v) if (_v := obj.get("referenceData")) is not None else None
         })
         return _obj
 

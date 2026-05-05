@@ -76,12 +76,12 @@ class ConfigurationSetsApi:
         :return: Returns the result object.
         :rtype: ConfigurationSet
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the add_configuration_to_set_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.add_configuration_to_set_with_http_info(type, scope, code, create_configuration_item, user_id, **kwargs)  # noqa: E501
+        response = self.add_configuration_to_set_with_http_info(type, scope, code, create_configuration_item, user_id, **kwargs)
+        return response.data
 
     @validate_call
     def add_configuration_to_set_with_http_info(self, type: StrictStr, scope: StrictStr, code: StrictStr, create_configuration_item: CreateConfigurationItem, user_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ConfigurationSet]:
@@ -224,15 +224,15 @@ class ConfigurationSetsApi:
         :return: Returns the result object.
         :rtype: None
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the check_access_token_exists_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.check_access_token_exists_with_http_info(**kwargs)  # noqa: E501
+        response = self.check_access_token_exists_with_http_info(**kwargs)
+        return response.data
 
     @validate_call
-    def check_access_token_exists_with_http_info(self, **kwargs) -> None:
+    def check_access_token_exists_with_http_info(self, **kwargs) -> ApiResponse[None]:
         """[DEPRECATED] CheckAccessTokenExists: Check the Personal Access Token exists for the current user  # noqa: E501
 
         :param _preload_content: if False, the ApiResponse.data will
@@ -335,12 +335,12 @@ class ConfigurationSetsApi:
         :return: Returns the result object.
         :rtype: ConfigurationSet
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_configuration_set_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_configuration_set_with_http_info(create_configuration_set, user_id, **kwargs)  # noqa: E501
+        response = self.create_configuration_set_with_http_info(create_configuration_set, user_id, **kwargs)
+        return response.data
 
     @validate_call
     def create_configuration_set_with_http_info(self, create_configuration_set: CreateConfigurationSet, user_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ConfigurationSet]:
@@ -464,15 +464,15 @@ class ConfigurationSetsApi:
         :return: Returns the result object.
         :rtype: None
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_access_token_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_access_token_with_http_info(**kwargs)  # noqa: E501
+        response = self.delete_access_token_with_http_info(**kwargs)
+        return response.data
 
     @validate_call
-    def delete_access_token_with_http_info(self, **kwargs) -> None:
+    def delete_access_token_with_http_info(self, **kwargs) -> ApiResponse[None]:
         """[DEPRECATED] DeleteAccessToken: Delete any stored Personal Access Token for the current user  # noqa: E501
 
         :param _preload_content: if False, the ApiResponse.data will
@@ -581,15 +581,15 @@ class ConfigurationSetsApi:
         :return: Returns the result object.
         :rtype: None
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_configuration_item_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_configuration_item_with_http_info(type, scope, code, key, user_id, **kwargs)  # noqa: E501
+        response = self.delete_configuration_item_with_http_info(type, scope, code, key, user_id, **kwargs)
+        return response.data
 
     @validate_call
-    def delete_configuration_item_with_http_info(self, type: StrictStr, scope: StrictStr, code: StrictStr, key: StrictStr, user_id: Optional[StrictStr] = None, **kwargs) -> None:
+    def delete_configuration_item_with_http_info(self, type: StrictStr, scope: StrictStr, code: StrictStr, key: StrictStr, user_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[None]:
         """[EARLY ACCESS] DeleteConfigurationItem: Remove the specified configuration item from the specified configuration set  # noqa: E501
 
         :param type: Whether the configuration set is Personal or Shared (required)
@@ -726,15 +726,15 @@ class ConfigurationSetsApi:
         :return: Returns the result object.
         :rtype: None
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_configuration_set_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_configuration_set_with_http_info(type, scope, code, user_id, **kwargs)  # noqa: E501
+        response = self.delete_configuration_set_with_http_info(type, scope, code, user_id, **kwargs)
+        return response.data
 
     @validate_call
-    def delete_configuration_set_with_http_info(self, type: StrictStr, scope: StrictStr, code: StrictStr, user_id: Optional[StrictStr] = None, **kwargs) -> None:
+    def delete_configuration_set_with_http_info(self, type: StrictStr, scope: StrictStr, code: StrictStr, user_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[None]:
         """[EARLY ACCESS] DeleteConfigurationSet: Deletes a configuration set along with all their configuration items  # noqa: E501
 
         :param type: Whether the configuration set is Personal or Shared (required)
@@ -859,12 +859,12 @@ class ConfigurationSetsApi:
         :return: Returns the result object.
         :rtype: PersonalAccessToken
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the generate_access_token_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.generate_access_token_with_http_info(action, **kwargs)  # noqa: E501
+        response = self.generate_access_token_with_http_info(action, **kwargs)
+        return response.data
 
     @validate_call
     def generate_access_token_with_http_info(self, action: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PersonalAccessToken]:
@@ -987,12 +987,12 @@ class ConfigurationSetsApi:
         :return: Returns the result object.
         :rtype: ConfigurationItem
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_configuration_item_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_configuration_item_with_http_info(type, scope, code, key, reveal, user_id, **kwargs)  # noqa: E501
+        response = self.get_configuration_item_with_http_info(type, scope, code, key, reveal, user_id, **kwargs)
+        return response.data
 
     @validate_call
     def get_configuration_item_with_http_info(self, type: StrictStr, scope: StrictStr, code: StrictStr, key: StrictStr, reveal: Optional[bool] = None, user_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ConfigurationItem]:
@@ -1144,12 +1144,12 @@ class ConfigurationSetsApi:
         :return: Returns the result object.
         :rtype: ConfigurationSet
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_configuration_set_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_configuration_set_with_http_info(type, scope, code, reveal, user_id, **kwargs)  # noqa: E501
+        response = self.get_configuration_set_with_http_info(type, scope, code, reveal, user_id, **kwargs)
+        return response.data
 
     @validate_call
     def get_configuration_set_with_http_info(self, type: StrictStr, scope: StrictStr, code: StrictStr, reveal: Optional[bool] = None, user_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ConfigurationSet]:
@@ -1291,12 +1291,12 @@ class ConfigurationSetsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfConfigurationItem
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_system_configuration_items_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_system_configuration_items_with_http_info(code, key, reveal, **kwargs)  # noqa: E501
+        response = self.get_system_configuration_items_with_http_info(code, key, reveal, **kwargs)
+        return response.data
 
     @validate_call
     def get_system_configuration_items_with_http_info(self, code: StrictStr, key: StrictStr, reveal: Optional[bool] = None, **kwargs) -> ApiResponse[ResourceListOfConfigurationItem]:
@@ -1424,12 +1424,12 @@ class ConfigurationSetsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfConfigurationSet
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_system_configuration_sets_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_system_configuration_sets_with_http_info(code, reveal, **kwargs)  # noqa: E501
+        response = self.get_system_configuration_sets_with_http_info(code, reveal, **kwargs)
+        return response.data
 
     @validate_call
     def get_system_configuration_sets_with_http_info(self, code: StrictStr, reveal: Optional[bool] = None, **kwargs) -> ApiResponse[ResourceListOfConfigurationSet]:
@@ -1551,12 +1551,12 @@ class ConfigurationSetsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfConfigurationSetSummary
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_configuration_sets_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_configuration_sets_with_http_info(type, user_id, **kwargs)  # noqa: E501
+        response = self.list_configuration_sets_with_http_info(type, user_id, **kwargs)
+        return response.data
 
     @validate_call
     def list_configuration_sets_with_http_info(self, type: Optional[StrictStr] = None, user_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfConfigurationSetSummary]:
@@ -1685,12 +1685,12 @@ class ConfigurationSetsApi:
         :return: Returns the result object.
         :rtype: ConfigurationItem
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_configuration_item_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_configuration_item_with_http_info(type, scope, code, key, update_configuration_item, user_id, **kwargs)  # noqa: E501
+        response = self.update_configuration_item_with_http_info(type, scope, code, key, update_configuration_item, user_id, **kwargs)
+        return response.data
 
     @validate_call
     def update_configuration_item_with_http_info(self, type: StrictStr, scope: StrictStr, code: StrictStr, key: StrictStr, update_configuration_item: UpdateConfigurationItem, user_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ConfigurationItem]:
@@ -1849,12 +1849,12 @@ class ConfigurationSetsApi:
         :return: Returns the result object.
         :rtype: ConfigurationSet
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_configuration_set_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_configuration_set_with_http_info(type, scope, code, update_configuration_set, user_id, **kwargs)  # noqa: E501
+        response = self.update_configuration_set_with_http_info(type, scope, code, update_configuration_set, user_id, **kwargs)
+        return response.data
 
     @validate_call
     def update_configuration_set_with_http_info(self, type: StrictStr, scope: StrictStr, code: StrictStr, update_configuration_set: UpdateConfigurationSet, user_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ConfigurationSet]:
@@ -2011,12 +2011,12 @@ class ConfigurationSetsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ConfigurationSet
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the add_configuration_to_set_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.add_configuration_to_set_with_http_info_async(type, scope, code, create_configuration_item, user_id, **kwargs)  # noqa: E501
+            response = await self.add_configuration_to_set_with_http_info_async(type, scope, code, create_configuration_item, user_id, **kwargs)
+            return response.data
 
     @validate_call
     async def add_configuration_to_set_with_http_info_async(self, type: StrictStr, scope: StrictStr, code: StrictStr, create_configuration_item: CreateConfigurationItem, user_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ConfigurationSet]:
@@ -2160,15 +2160,15 @@ class ConfigurationSetsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: None
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the check_access_token_exists_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.check_access_token_exists_with_http_info_async(**kwargs)  # noqa: E501
+            response = await self.check_access_token_exists_with_http_info_async(**kwargs)
+            return response.data
 
     @validate_call
-    async def check_access_token_exists_with_http_info_async(self, **kwargs) -> None:
+    async def check_access_token_exists_with_http_info_async(self, **kwargs) -> ApiResponse[None]:
             """[DEPRECATED] CheckAccessTokenExists: Check the Personal Access Token exists for the current user  # noqa: E501
 
 
@@ -2272,12 +2272,12 @@ class ConfigurationSetsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ConfigurationSet
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_configuration_set_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_configuration_set_with_http_info_async(create_configuration_set, user_id, **kwargs)  # noqa: E501
+            response = await self.create_configuration_set_with_http_info_async(create_configuration_set, user_id, **kwargs)
+            return response.data
 
     @validate_call
     async def create_configuration_set_with_http_info_async(self, create_configuration_set: CreateConfigurationSet, user_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ConfigurationSet]:
@@ -2402,15 +2402,15 @@ class ConfigurationSetsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: None
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_access_token_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_access_token_with_http_info_async(**kwargs)  # noqa: E501
+            response = await self.delete_access_token_with_http_info_async(**kwargs)
+            return response.data
 
     @validate_call
-    async def delete_access_token_with_http_info_async(self, **kwargs) -> None:
+    async def delete_access_token_with_http_info_async(self, **kwargs) -> ApiResponse[None]:
             """[DEPRECATED] DeleteAccessToken: Delete any stored Personal Access Token for the current user  # noqa: E501
 
 
@@ -2520,15 +2520,15 @@ class ConfigurationSetsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: None
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_configuration_item_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_configuration_item_with_http_info_async(type, scope, code, key, user_id, **kwargs)  # noqa: E501
+            response = await self.delete_configuration_item_with_http_info_async(type, scope, code, key, user_id, **kwargs)
+            return response.data
 
     @validate_call
-    async def delete_configuration_item_with_http_info_async(self, type: StrictStr, scope: StrictStr, code: StrictStr, key: StrictStr, user_id: Optional[StrictStr] = None, **kwargs) -> None:
+    async def delete_configuration_item_with_http_info_async(self, type: StrictStr, scope: StrictStr, code: StrictStr, key: StrictStr, user_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[None]:
             """[EARLY ACCESS] DeleteConfigurationItem: Remove the specified configuration item from the specified configuration set  # noqa: E501
 
 
@@ -2666,15 +2666,15 @@ class ConfigurationSetsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: None
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_configuration_set_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_configuration_set_with_http_info_async(type, scope, code, user_id, **kwargs)  # noqa: E501
+            response = await self.delete_configuration_set_with_http_info_async(type, scope, code, user_id, **kwargs)
+            return response.data
 
     @validate_call
-    async def delete_configuration_set_with_http_info_async(self, type: StrictStr, scope: StrictStr, code: StrictStr, user_id: Optional[StrictStr] = None, **kwargs) -> None:
+    async def delete_configuration_set_with_http_info_async(self, type: StrictStr, scope: StrictStr, code: StrictStr, user_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[None]:
             """[EARLY ACCESS] DeleteConfigurationSet: Deletes a configuration set along with all their configuration items  # noqa: E501
 
 
@@ -2800,12 +2800,12 @@ class ConfigurationSetsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PersonalAccessToken
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the generate_access_token_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.generate_access_token_with_http_info_async(action, **kwargs)  # noqa: E501
+            response = await self.generate_access_token_with_http_info_async(action, **kwargs)
+            return response.data
 
     @validate_call
     async def generate_access_token_with_http_info_async(self, action: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PersonalAccessToken]:
@@ -2929,12 +2929,12 @@ class ConfigurationSetsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ConfigurationItem
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_configuration_item_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_configuration_item_with_http_info_async(type, scope, code, key, reveal, user_id, **kwargs)  # noqa: E501
+            response = await self.get_configuration_item_with_http_info_async(type, scope, code, key, reveal, user_id, **kwargs)
+            return response.data
 
     @validate_call
     async def get_configuration_item_with_http_info_async(self, type: StrictStr, scope: StrictStr, code: StrictStr, key: StrictStr, reveal: Optional[bool] = None, user_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ConfigurationItem]:
@@ -3087,12 +3087,12 @@ class ConfigurationSetsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ConfigurationSet
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_configuration_set_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_configuration_set_with_http_info_async(type, scope, code, reveal, user_id, **kwargs)  # noqa: E501
+            response = await self.get_configuration_set_with_http_info_async(type, scope, code, reveal, user_id, **kwargs)
+            return response.data
 
     @validate_call
     async def get_configuration_set_with_http_info_async(self, type: StrictStr, scope: StrictStr, code: StrictStr, reveal: Optional[bool] = None, user_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ConfigurationSet]:
@@ -3235,12 +3235,12 @@ class ConfigurationSetsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfConfigurationItem
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_system_configuration_items_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_system_configuration_items_with_http_info_async(code, key, reveal, **kwargs)  # noqa: E501
+            response = await self.get_system_configuration_items_with_http_info_async(code, key, reveal, **kwargs)
+            return response.data
 
     @validate_call
     async def get_system_configuration_items_with_http_info_async(self, code: StrictStr, key: StrictStr, reveal: Optional[bool] = None, **kwargs) -> ApiResponse[ResourceListOfConfigurationItem]:
@@ -3369,12 +3369,12 @@ class ConfigurationSetsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfConfigurationSet
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_system_configuration_sets_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_system_configuration_sets_with_http_info_async(code, reveal, **kwargs)  # noqa: E501
+            response = await self.get_system_configuration_sets_with_http_info_async(code, reveal, **kwargs)
+            return response.data
 
     @validate_call
     async def get_system_configuration_sets_with_http_info_async(self, code: StrictStr, reveal: Optional[bool] = None, **kwargs) -> ApiResponse[ResourceListOfConfigurationSet]:
@@ -3497,12 +3497,12 @@ class ConfigurationSetsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfConfigurationSetSummary
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_configuration_sets_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_configuration_sets_with_http_info_async(type, user_id, **kwargs)  # noqa: E501
+            response = await self.list_configuration_sets_with_http_info_async(type, user_id, **kwargs)
+            return response.data
 
     @validate_call
     async def list_configuration_sets_with_http_info_async(self, type: Optional[StrictStr] = None, user_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfConfigurationSetSummary]:
@@ -3632,12 +3632,12 @@ class ConfigurationSetsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ConfigurationItem
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_configuration_item_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_configuration_item_with_http_info_async(type, scope, code, key, update_configuration_item, user_id, **kwargs)  # noqa: E501
+            response = await self.update_configuration_item_with_http_info_async(type, scope, code, key, update_configuration_item, user_id, **kwargs)
+            return response.data
 
     @validate_call
     async def update_configuration_item_with_http_info_async(self, type: StrictStr, scope: StrictStr, code: StrictStr, key: StrictStr, update_configuration_item: UpdateConfigurationItem, user_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ConfigurationItem]:
@@ -3797,12 +3797,12 @@ class ConfigurationSetsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ConfigurationSet
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_configuration_set_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_configuration_set_with_http_info_async(type, scope, code, update_configuration_set, user_id, **kwargs)  # noqa: E501
+            response = await self.update_configuration_set_with_http_info_async(type, scope, code, update_configuration_set, user_id, **kwargs)
+            return response.data
 
     @validate_call
     async def update_configuration_set_with_http_info_async(self, type: StrictStr, scope: StrictStr, code: StrictStr, update_configuration_set: UpdateConfigurationSet, user_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ConfigurationSet]:

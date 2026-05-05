@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class RelativeMonthRegularity(BaseModel):
     days_of_week: List[StrictStr] = Field(description="Days of the week. One or more of - Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday", alias="daysOfWeek")
     index:  StrictStr = Field(...,alias="index", description="Relative index in the month. One of - First, Second, Third, Fourth, Last. For example, to specify the second Tuesday of every month, set DaysOfWeek to [\"Tuesday\"] and Index to \"Second\"") 
     type:  StrictStr = Field(...,alias="type", description="The type of Date Regularity") 
-    __properties = ["frequency", "daysOfWeek", "index", "type"]
+    __properties: ClassVar[List[str]] = ["frequency", "daysOfWeek", "index", "type"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):

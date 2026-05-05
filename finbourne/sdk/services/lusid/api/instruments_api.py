@@ -92,12 +92,12 @@ class InstrumentsApi:
         :return: Returns the result object.
         :rtype: BatchUpsertInstrumentPropertiesResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the batch_upsert_instrument_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.batch_upsert_instrument_properties_with_http_info(request_body, scope, identifier_effective_at, success_mode, data_model_scope, data_model_code, **kwargs)  # noqa: E501
+        response = self.batch_upsert_instrument_properties_with_http_info(request_body, scope, identifier_effective_at, success_mode, data_model_scope, data_model_code, **kwargs)
+        return response.data
 
     @validate_call
     def batch_upsert_instrument_properties_with_http_info(self, request_body: Dict[str, UpsertInstrumentPropertyRequest], scope: Optional[StrictStr] = None, identifier_effective_at: Optional[StrictStr] = None, success_mode: Optional[StrictStr] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[BatchUpsertInstrumentPropertiesResponse]:
@@ -257,12 +257,12 @@ class InstrumentsApi:
         :return: Returns the result object.
         :rtype: AddBusinessDaysToDateResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the calculate_settlement_date_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.calculate_settlement_date_with_http_info(identifier_type, identifier, transaction_date, scope, as_at, **kwargs)  # noqa: E501
+        response = self.calculate_settlement_date_with_http_info(identifier_type, identifier, transaction_date, scope, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def calculate_settlement_date_with_http_info(self, identifier_type: StrictStr, identifier: StrictStr, transaction_date: Optional[StrictStr] = None, scope: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[AddBusinessDaysToDateResponse]:
@@ -408,12 +408,12 @@ class InstrumentsApi:
         :return: Returns the result object.
         :rtype: DeleteInstrumentResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_instrument_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_instrument_with_http_info(identifier_type, identifier, scope, **kwargs)  # noqa: E501
+        response = self.delete_instrument_with_http_info(identifier_type, identifier, scope, **kwargs)
+        return response.data
 
     @validate_call
     def delete_instrument_with_http_info(self, identifier_type: StrictStr, identifier: StrictStr, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeleteInstrumentResponse]:
@@ -552,12 +552,12 @@ class InstrumentsApi:
         :return: Returns the result object.
         :rtype: DeleteInstrumentPropertiesResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_instrument_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_instrument_properties_with_http_info(identifier_type, identifier, request_body, effective_at, scope, data_model_scope, data_model_code, **kwargs)  # noqa: E501
+        response = self.delete_instrument_properties_with_http_info(identifier_type, identifier, request_body, effective_at, scope, data_model_scope, data_model_code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_instrument_properties_with_http_info(self, identifier_type: StrictStr, identifier: StrictStr, request_body: List[str], effective_at: Optional[StrictStr] = None, scope: Optional[StrictStr] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeleteInstrumentPropertiesResponse]:
@@ -709,7 +709,7 @@ class InstrumentsApi:
         Deletes a number of instruments identified by LusidInstrumentId.                Soft deletion marks the instrument as inactive so it can no longer be referenced when creating or updating transactions or holdings. You can still query existing transactions and holdings related to the inactive instrument.                In addition to the above behaviour, hard deletion: (i) completely removes all external identifiers from the instrument; (ii) marks the instrument as 'Deleted'; (iii) prepends the instrument's name with 'DELETED '; (iv) prevents the instrument from being returned in list instruments queries.                Following hard deletion, an instrument may only be retrieved by making a direct get instrument request for the LusidInstrumentId. Instrument deletion cannot be undone. Please note that currency instruments cannot currently be deleted.  The maximum number of instruments that this method can delete per request is 2,000.  # noqa: E501
         :param request_body: The list of lusidInstrumentId's to delete. (required)
         :type request_body: List[str]
-        :param delete_mode: The delete mode to use (defaults to 'Soft').
+        :param delete_mode: The delete mode to use. Default value: Soft. Available values: Soft, Hard.
         :type delete_mode: str
         :param scope: The scope in which the instruments lie. When not supplied the scope is 'default'.
         :type scope: str
@@ -719,12 +719,12 @@ class InstrumentsApi:
         :return: Returns the result object.
         :rtype: DeleteInstrumentsResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_instruments_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_instruments_with_http_info(request_body, delete_mode, scope, **kwargs)  # noqa: E501
+        response = self.delete_instruments_with_http_info(request_body, delete_mode, scope, **kwargs)
+        return response.data
 
     @validate_call
     def delete_instruments_with_http_info(self, request_body: List[str], delete_mode: Optional[StrictStr] = None, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeleteInstrumentsResponse]:
@@ -733,7 +733,7 @@ class InstrumentsApi:
         Deletes a number of instruments identified by LusidInstrumentId.                Soft deletion marks the instrument as inactive so it can no longer be referenced when creating or updating transactions or holdings. You can still query existing transactions and holdings related to the inactive instrument.                In addition to the above behaviour, hard deletion: (i) completely removes all external identifiers from the instrument; (ii) marks the instrument as 'Deleted'; (iii) prepends the instrument's name with 'DELETED '; (iv) prevents the instrument from being returned in list instruments queries.                Following hard deletion, an instrument may only be retrieved by making a direct get instrument request for the LusidInstrumentId. Instrument deletion cannot be undone. Please note that currency instruments cannot currently be deleted.  The maximum number of instruments that this method can delete per request is 2,000.  # noqa: E501
         :param request_body: The list of lusidInstrumentId's to delete. (required)
         :type request_body: List[str]
-        :param delete_mode: The delete mode to use (defaults to 'Soft').
+        :param delete_mode: The delete mode to use. Default value: Soft. Available values: Soft, Hard.
         :type delete_mode: str
         :param scope: The scope in which the instruments lie. When not supplied the scope is 'default'.
         :type scope: str
@@ -858,12 +858,12 @@ class InstrumentsApi:
         :return: Returns the result object.
         :rtype: Dict[str, List[str]]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_all_possible_features_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_all_possible_features_with_http_info(instrument_type, **kwargs)  # noqa: E501
+        response = self.get_all_possible_features_with_http_info(instrument_type, **kwargs)
+        return response.data
 
     @validate_call
     def get_all_possible_features_with_http_info(self, instrument_type: StrictStr, **kwargs) -> ApiResponse[Dict[str, List[str]]]:
@@ -990,12 +990,12 @@ class InstrumentsApi:
         :return: Returns the result object.
         :rtype: InstrumentCapabilities
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_existing_instrument_capabilities_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_existing_instrument_capabilities_with_http_info(identifier, model, effective_at, as_at, instrument_scope, recipe_scope, recipe_code, **kwargs)  # noqa: E501
+        response = self.get_existing_instrument_capabilities_with_http_info(identifier, model, effective_at, as_at, instrument_scope, recipe_scope, recipe_code, **kwargs)
+        return response.data
 
     @validate_call
     def get_existing_instrument_capabilities_with_http_info(self, identifier: StrictStr, model: Optional[StrictStr] = None, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, instrument_scope: Optional[StrictStr] = None, recipe_scope: Optional[StrictStr] = None, recipe_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[InstrumentCapabilities]:
@@ -1159,12 +1159,12 @@ class InstrumentsApi:
         :return: Returns the result object.
         :rtype: InstrumentModels
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_existing_instrument_models_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_existing_instrument_models_with_http_info(identifier, effective_at, as_at, instrument_scope, recipe_scope, recipe_code, **kwargs)  # noqa: E501
+        response = self.get_existing_instrument_models_with_http_info(identifier, effective_at, as_at, instrument_scope, recipe_scope, recipe_code, **kwargs)
+        return response.data
 
     @validate_call
     def get_existing_instrument_models_with_http_info(self, identifier: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, instrument_scope: Optional[StrictStr] = None, recipe_scope: Optional[StrictStr] = None, recipe_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[InstrumentModels]:
@@ -1322,11 +1322,11 @@ class InstrumentsApi:
         :type data_model_scope: str
         :param data_model_code: The optional code of a Custom Data Model to use.
         :type data_model_code: str
-        :param timeline_scope: The optional scope of a timeline to use for post-close activity.
+        :param timeline_scope: The scope of the Timeline.
         :type timeline_scope: str
-        :param timeline_code: The optional code of a timeline to use for post-close activity.
+        :param timeline_code: The code of the Timeline. This can optionally include a colon followed by the Closed Period ID to use at the head of the timeline, for a timeline with unconfirmed periods.
         :type timeline_code: str
-        :param closed_period_id: The optional id of a closed period within the timeline to view.
+        :param closed_period_id: The closed period ID. If this is specified, both timelineScope and timelineCode must be specified.
         :type closed_period_id: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -1334,12 +1334,12 @@ class InstrumentsApi:
         :return: Returns the result object.
         :rtype: Instrument
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_instrument_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_instrument_with_http_info(identifier_type, identifier, effective_at, as_at, property_keys, scope, relationship_definition_ids, data_model_scope, data_model_code, timeline_scope, timeline_code, closed_period_id, **kwargs)  # noqa: E501
+        response = self.get_instrument_with_http_info(identifier_type, identifier, effective_at, as_at, property_keys, scope, relationship_definition_ids, data_model_scope, data_model_code, timeline_scope, timeline_code, closed_period_id, **kwargs)
+        return response.data
 
     @validate_call
     def get_instrument_with_http_info(self, identifier_type: StrictStr, identifier: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, scope: Optional[StrictStr] = None, relationship_definition_ids: Optional[List[str]] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[Instrument]:
@@ -1364,11 +1364,11 @@ class InstrumentsApi:
         :type data_model_scope: str
         :param data_model_code: The optional code of a Custom Data Model to use.
         :type data_model_code: str
-        :param timeline_scope: The optional scope of a timeline to use for post-close activity.
+        :param timeline_scope: The scope of the Timeline.
         :type timeline_scope: str
-        :param timeline_code: The optional code of a timeline to use for post-close activity.
+        :param timeline_code: The code of the Timeline. This can optionally include a colon followed by the Closed Period ID to use at the head of the timeline, for a timeline with unconfirmed periods.
         :type timeline_code: str
-        :param closed_period_id: The optional id of a closed period within the timeline to view.
+        :param closed_period_id: The closed period ID. If this is specified, both timelineScope and timelineCode must be specified.
         :type closed_period_id: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -1523,12 +1523,12 @@ class InstrumentsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfInstrumentIdTypeDescriptor
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_instrument_identifier_types_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_instrument_identifier_types_with_http_info(**kwargs)  # noqa: E501
+        response = self.get_instrument_identifier_types_with_http_info(**kwargs)
+        return response.data
 
     @validate_call
     def get_instrument_identifier_types_with_http_info(self, **kwargs) -> ApiResponse[ResourceListOfInstrumentIdTypeDescriptor]:
@@ -1648,12 +1648,12 @@ class InstrumentsApi:
         :return: Returns the result object.
         :rtype: InstrumentPaymentDiary
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_instrument_payment_diary_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_instrument_payment_diary_with_http_info(identifier_type, identifier, recipe_scope, recipe_code, effective_at, as_at, scope, **kwargs)  # noqa: E501
+        response = self.get_instrument_payment_diary_with_http_info(identifier_type, identifier, recipe_scope, recipe_code, effective_at, as_at, scope, **kwargs)
+        return response.data
 
     @validate_call
     def get_instrument_payment_diary_with_http_info(self, identifier_type: StrictStr, identifier: StrictStr, recipe_scope: StrictStr, recipe_code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[InstrumentPaymentDiary]:
@@ -1815,12 +1815,12 @@ class InstrumentsApi:
         :return: Returns the result object.
         :rtype: InstrumentProperties
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_instrument_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_instrument_properties_with_http_info(identifier_type, identifier, effective_at, as_at, scope, **kwargs)  # noqa: E501
+        response = self.get_instrument_properties_with_http_info(identifier_type, identifier, effective_at, as_at, scope, **kwargs)
+        return response.data
 
     @validate_call
     def get_instrument_properties_with_http_info(self, identifier_type: StrictStr, identifier: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[InstrumentProperties]:
@@ -1978,12 +1978,12 @@ class InstrumentsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfPropertyInterval
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_instrument_property_time_series_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_instrument_property_time_series_with_http_info(identifier_type, identifier, property_key, identifier_effective_at, as_at, filter, page, limit, scope, **kwargs)  # noqa: E501
+        response = self.get_instrument_property_time_series_with_http_info(identifier_type, identifier, property_key, identifier_effective_at, as_at, filter, page, limit, scope, **kwargs)
+        return response.data
 
     @validate_call
     def get_instrument_property_time_series_with_http_info(self, identifier_type: StrictStr, identifier: StrictStr, property_key: StrictStr, identifier_effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfPropertyInterval]:
@@ -2161,12 +2161,12 @@ class InstrumentsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfRelationship
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_instrument_relationships_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_instrument_relationships_with_http_info(identifier_type, identifier, effective_at, as_at, filter, identifier_types, scope, **kwargs)  # noqa: E501
+        response = self.get_instrument_relationships_with_http_info(identifier_type, identifier, effective_at, as_at, filter, identifier_types, scope, **kwargs)
+        return response.data
 
     @validate_call
     def get_instrument_relationships_with_http_info(self, identifier_type: StrictStr, identifier: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, identifier_types: Optional[List[str]] = None, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfRelationship]:
@@ -2337,12 +2337,12 @@ class InstrumentsApi:
         :return: Returns the result object.
         :rtype: GetInstrumentsResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_instruments_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_instruments_with_http_info(identifier_type, request_body, effective_at, as_at, property_keys, scope, relationship_definition_ids, data_model_scope, data_model_code, **kwargs)  # noqa: E501
+        response = self.get_instruments_with_http_info(identifier_type, request_body, effective_at, as_at, property_keys, scope, relationship_definition_ids, data_model_scope, data_model_code, **kwargs)
+        return response.data
 
     @validate_call
     def get_instruments_with_http_info(self, identifier_type: StrictStr, request_body: List[str], effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, scope: Optional[StrictStr] = None, relationship_definition_ids: Optional[List[str]] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[GetInstrumentsResponse]:
@@ -2529,12 +2529,12 @@ class InstrumentsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfProperty
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_instrument_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_instrument_properties_with_http_info(identifier_type, identifier, effective_at, as_at, page, limit, scope, **kwargs)  # noqa: E501
+        response = self.list_instrument_properties_with_http_info(identifier_type, identifier, effective_at, as_at, page, limit, scope, **kwargs)
+        return response.data
 
     @validate_call
     def list_instrument_properties_with_http_info(self, identifier_type: StrictStr, identifier: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfProperty]:
@@ -2679,7 +2679,7 @@ class InstrumentsApi:
     def list_instruments(self, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, instrument_property_keys: Optional[List[str]] = None, scope: Optional[StrictStr] = None, relationship_definition_ids: Optional[List[str]] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, membership_type: Optional[StrictStr] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfInstrument:
         """ListInstruments: List instruments  # noqa: E501
 
-        List all the instruments in the instrument master.                To retrieve a particular set of instruments instead, use the Get instruments endpoint.  The maximum number of instruments that this method can list per request is 2,000.  # noqa: E501
+        List all the instruments in the instrument master.                To retrieve a particular set of instruments instead, use the Get instruments endpoint.    Use scope '*' to list instruments across all scopes.  The maximum number of instruments that this method can list per request is 2,000.  # noqa: E501
         :param as_at: The asAt datetime at which to list instruments. Defaults to returning the latest               version of each instrument if not specified.
         :type as_at: datetime
         :param effective_at: The effective datetime or cut label at which to list instruments.               Defaults to the current LUSID system datetime if not specified.
@@ -2694,7 +2694,7 @@ class InstrumentsApi:
         :type filter: str
         :param instrument_property_keys: A list of property keys from the 'Instrument' domain to decorate onto               instruments, or from any domain that supports relationships to decorate onto related entities.               These must have the format {domain}/{scope}/{code}, for example 'Instrument/system/Name'.
         :type instrument_property_keys: List[str]
-        :param scope: The scope in which the instrument lies. When not supplied the scope is 'default'.
+        :param scope: The scope in which the instrument lies. When not supplied the scope is 'default'.                 Use '*' to list instruments across all scopes.
         :type scope: str
         :param relationship_definition_ids: A list of relationship definitions that are used to decorate related entities               onto each instrument in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}.
         :type relationship_definition_ids: List[str]
@@ -2702,13 +2702,13 @@ class InstrumentsApi:
         :type data_model_scope: str
         :param data_model_code: The optional code of a Custom Data Model to use.
         :type data_model_code: str
-        :param membership_type: The membership types of the specified Custom Data Model to return. Allowable values are Member, Candidate and All. Defaults to Member.
+        :param membership_type: The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate.
         :type membership_type: str
-        :param timeline_scope: The scope of the timeline to use for PCA (Post Close Activity) support.
+        :param timeline_scope: The scope of the Timeline.
         :type timeline_scope: str
-        :param timeline_code: The code of the timeline to use for PCA (Post Close Activity) support.
+        :param timeline_code: The code of the Timeline. This can optionally include a colon followed by the Closed Period ID to use at the head of the timeline, for a timeline with unconfirmed periods.
         :type timeline_code: str
-        :param closed_period_id: The id of the closed period on the timeline to use for PCA (Post Close Activity) support.
+        :param closed_period_id: The closed period ID. If this is specified, both timelineScope and timelineCode must be specified.
         :type closed_period_id: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -2716,18 +2716,18 @@ class InstrumentsApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfInstrument
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_instruments_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_instruments_with_http_info(as_at, effective_at, page, sort_by, limit, filter, instrument_property_keys, scope, relationship_definition_ids, data_model_scope, data_model_code, membership_type, timeline_scope, timeline_code, closed_period_id, **kwargs)  # noqa: E501
+        response = self.list_instruments_with_http_info(as_at, effective_at, page, sort_by, limit, filter, instrument_property_keys, scope, relationship_definition_ids, data_model_scope, data_model_code, membership_type, timeline_scope, timeline_code, closed_period_id, **kwargs)
+        return response.data
 
     @validate_call
     def list_instruments_with_http_info(self, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, instrument_property_keys: Optional[List[str]] = None, scope: Optional[StrictStr] = None, relationship_definition_ids: Optional[List[str]] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, membership_type: Optional[StrictStr] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfInstrument]:
         """ListInstruments: List instruments  # noqa: E501
 
-        List all the instruments in the instrument master.                To retrieve a particular set of instruments instead, use the Get instruments endpoint.  The maximum number of instruments that this method can list per request is 2,000.  # noqa: E501
+        List all the instruments in the instrument master.                To retrieve a particular set of instruments instead, use the Get instruments endpoint.    Use scope '*' to list instruments across all scopes.  The maximum number of instruments that this method can list per request is 2,000.  # noqa: E501
         :param as_at: The asAt datetime at which to list instruments. Defaults to returning the latest               version of each instrument if not specified.
         :type as_at: datetime
         :param effective_at: The effective datetime or cut label at which to list instruments.               Defaults to the current LUSID system datetime if not specified.
@@ -2742,7 +2742,7 @@ class InstrumentsApi:
         :type filter: str
         :param instrument_property_keys: A list of property keys from the 'Instrument' domain to decorate onto               instruments, or from any domain that supports relationships to decorate onto related entities.               These must have the format {domain}/{scope}/{code}, for example 'Instrument/system/Name'.
         :type instrument_property_keys: List[str]
-        :param scope: The scope in which the instrument lies. When not supplied the scope is 'default'.
+        :param scope: The scope in which the instrument lies. When not supplied the scope is 'default'.                 Use '*' to list instruments across all scopes.
         :type scope: str
         :param relationship_definition_ids: A list of relationship definitions that are used to decorate related entities               onto each instrument in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}.
         :type relationship_definition_ids: List[str]
@@ -2750,13 +2750,13 @@ class InstrumentsApi:
         :type data_model_scope: str
         :param data_model_code: The optional code of a Custom Data Model to use.
         :type data_model_code: str
-        :param membership_type: The membership types of the specified Custom Data Model to return. Allowable values are Member, Candidate and All. Defaults to Member.
+        :param membership_type: The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate.
         :type membership_type: str
-        :param timeline_scope: The scope of the timeline to use for PCA (Post Close Activity) support.
+        :param timeline_scope: The scope of the Timeline.
         :type timeline_scope: str
-        :param timeline_code: The code of the timeline to use for PCA (Post Close Activity) support.
+        :param timeline_code: The code of the Timeline. This can optionally include a colon followed by the Closed Period ID to use at the head of the timeline, for a timeline with unconfirmed periods.
         :type timeline_code: str
-        :param closed_period_id: The id of the closed period on the timeline to use for PCA (Post Close Activity) support.
+        :param closed_period_id: The closed period ID. If this is specified, both timelineScope and timelineCode must be specified.
         :type closed_period_id: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -2928,12 +2928,12 @@ class InstrumentsApi:
         :return: Returns the result object.
         :rtype: InstrumentCapabilities
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the query_instrument_capabilities_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.query_instrument_capabilities_with_http_info(lusid_instrument, model, **kwargs)  # noqa: E501
+        response = self.query_instrument_capabilities_with_http_info(lusid_instrument, model, **kwargs)
+        return response.data
 
     @validate_call
     def query_instrument_capabilities_with_http_info(self, lusid_instrument: LusidInstrument, model: Optional[StrictStr] = None, **kwargs) -> ApiResponse[InstrumentCapabilities]:
@@ -3071,12 +3071,12 @@ class InstrumentsApi:
         :return: Returns the result object.
         :rtype: Instrument
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_instrument_identifier_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_instrument_identifier_with_http_info(identifier_type, identifier, update_instrument_identifier_request, scope, data_model_scope, data_model_code, **kwargs)  # noqa: E501
+        response = self.update_instrument_identifier_with_http_info(identifier_type, identifier, update_instrument_identifier_request, scope, data_model_scope, data_model_code, **kwargs)
+        return response.data
 
     @validate_call
     def update_instrument_identifier_with_http_info(self, identifier_type: StrictStr, identifier: StrictStr, update_instrument_identifier_request: UpdateInstrumentIdentifierRequest, scope: Optional[StrictStr] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[Instrument]:
@@ -3234,12 +3234,12 @@ class InstrumentsApi:
         :return: Returns the result object.
         :rtype: UpsertInstrumentsResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_instruments_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_instruments_with_http_info(request_body, scope, data_model_scope, data_model_code, **kwargs)  # noqa: E501
+        response = self.upsert_instruments_with_http_info(request_body, scope, data_model_scope, data_model_code, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_instruments_with_http_info(self, request_body: Dict[str, InstrumentDefinition], scope: Optional[StrictStr] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[UpsertInstrumentsResponse]:
@@ -3385,12 +3385,12 @@ class InstrumentsApi:
         :return: Returns the result object.
         :rtype: UpsertInstrumentPropertiesResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_instruments_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_instruments_properties_with_http_info(upsert_instrument_property_request, scope, data_model_scope, data_model_code, **kwargs)  # noqa: E501
+        response = self.upsert_instruments_properties_with_http_info(upsert_instrument_property_request, scope, data_model_scope, data_model_code, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_instruments_properties_with_http_info(self, upsert_instrument_property_request: List[UpsertInstrumentPropertyRequest], scope: Optional[StrictStr] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[UpsertInstrumentPropertiesResponse]:
@@ -3544,12 +3544,12 @@ class InstrumentsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: BatchUpsertInstrumentPropertiesResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the batch_upsert_instrument_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.batch_upsert_instrument_properties_with_http_info_async(request_body, scope, identifier_effective_at, success_mode, data_model_scope, data_model_code, **kwargs)  # noqa: E501
+            response = await self.batch_upsert_instrument_properties_with_http_info_async(request_body, scope, identifier_effective_at, success_mode, data_model_scope, data_model_code, **kwargs)
+            return response.data
 
     @validate_call
     async def batch_upsert_instrument_properties_with_http_info_async(self, request_body: Dict[str, UpsertInstrumentPropertyRequest], scope: Optional[StrictStr] = None, identifier_effective_at: Optional[StrictStr] = None, success_mode: Optional[StrictStr] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[BatchUpsertInstrumentPropertiesResponse]:
@@ -3710,12 +3710,12 @@ class InstrumentsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: AddBusinessDaysToDateResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the calculate_settlement_date_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.calculate_settlement_date_with_http_info_async(identifier_type, identifier, transaction_date, scope, as_at, **kwargs)  # noqa: E501
+            response = await self.calculate_settlement_date_with_http_info_async(identifier_type, identifier, transaction_date, scope, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def calculate_settlement_date_with_http_info_async(self, identifier_type: StrictStr, identifier: StrictStr, transaction_date: Optional[StrictStr] = None, scope: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[AddBusinessDaysToDateResponse]:
@@ -3862,12 +3862,12 @@ class InstrumentsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeleteInstrumentResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_instrument_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_instrument_with_http_info_async(identifier_type, identifier, scope, **kwargs)  # noqa: E501
+            response = await self.delete_instrument_with_http_info_async(identifier_type, identifier, scope, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_instrument_with_http_info_async(self, identifier_type: StrictStr, identifier: StrictStr, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeleteInstrumentResponse]:
@@ -4007,12 +4007,12 @@ class InstrumentsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeleteInstrumentPropertiesResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_instrument_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_instrument_properties_with_http_info_async(identifier_type, identifier, request_body, effective_at, scope, data_model_scope, data_model_code, **kwargs)  # noqa: E501
+            response = await self.delete_instrument_properties_with_http_info_async(identifier_type, identifier, request_body, effective_at, scope, data_model_scope, data_model_code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_instrument_properties_with_http_info_async(self, identifier_type: StrictStr, identifier: StrictStr, request_body: List[str], effective_at: Optional[StrictStr] = None, scope: Optional[StrictStr] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeleteInstrumentPropertiesResponse]:
@@ -4165,7 +4165,7 @@ class InstrumentsApi:
             
             :param request_body: The list of lusidInstrumentId's to delete. (required)
             :type request_body: List[str]
-            :param delete_mode: The delete mode to use (defaults to 'Soft').
+            :param delete_mode: The delete mode to use. Default value: Soft. Available values: Soft, Hard.
             :type delete_mode: str
             :param scope: The scope in which the instruments lie. When not supplied the scope is 'default'.
             :type scope: str
@@ -4175,12 +4175,12 @@ class InstrumentsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeleteInstrumentsResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_instruments_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_instruments_with_http_info_async(request_body, delete_mode, scope, **kwargs)  # noqa: E501
+            response = await self.delete_instruments_with_http_info_async(request_body, delete_mode, scope, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_instruments_with_http_info_async(self, request_body: List[str], delete_mode: Optional[StrictStr] = None, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeleteInstrumentsResponse]:
@@ -4190,7 +4190,7 @@ class InstrumentsApi:
 
             :param request_body: The list of lusidInstrumentId's to delete. (required)
             :type request_body: List[str]
-            :param delete_mode: The delete mode to use (defaults to 'Soft').
+            :param delete_mode: The delete mode to use. Default value: Soft. Available values: Soft, Hard.
             :type delete_mode: str
             :param scope: The scope in which the instruments lie. When not supplied the scope is 'default'.
             :type scope: str
@@ -4315,12 +4315,12 @@ class InstrumentsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Dict[str, List[str]]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_all_possible_features_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_all_possible_features_with_http_info_async(instrument_type, **kwargs)  # noqa: E501
+            response = await self.get_all_possible_features_with_http_info_async(instrument_type, **kwargs)
+            return response.data
 
     @validate_call
     async def get_all_possible_features_with_http_info_async(self, instrument_type: StrictStr, **kwargs) -> ApiResponse[Dict[str, List[str]]]:
@@ -4448,12 +4448,12 @@ class InstrumentsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: InstrumentCapabilities
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_existing_instrument_capabilities_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_existing_instrument_capabilities_with_http_info_async(identifier, model, effective_at, as_at, instrument_scope, recipe_scope, recipe_code, **kwargs)  # noqa: E501
+            response = await self.get_existing_instrument_capabilities_with_http_info_async(identifier, model, effective_at, as_at, instrument_scope, recipe_scope, recipe_code, **kwargs)
+            return response.data
 
     @validate_call
     async def get_existing_instrument_capabilities_with_http_info_async(self, identifier: StrictStr, model: Optional[StrictStr] = None, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, instrument_scope: Optional[StrictStr] = None, recipe_scope: Optional[StrictStr] = None, recipe_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[InstrumentCapabilities]:
@@ -4618,12 +4618,12 @@ class InstrumentsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: InstrumentModels
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_existing_instrument_models_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_existing_instrument_models_with_http_info_async(identifier, effective_at, as_at, instrument_scope, recipe_scope, recipe_code, **kwargs)  # noqa: E501
+            response = await self.get_existing_instrument_models_with_http_info_async(identifier, effective_at, as_at, instrument_scope, recipe_scope, recipe_code, **kwargs)
+            return response.data
 
     @validate_call
     async def get_existing_instrument_models_with_http_info_async(self, identifier: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, instrument_scope: Optional[StrictStr] = None, recipe_scope: Optional[StrictStr] = None, recipe_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[InstrumentModels]:
@@ -4782,11 +4782,11 @@ class InstrumentsApi:
             :type data_model_scope: str
             :param data_model_code: The optional code of a Custom Data Model to use.
             :type data_model_code: str
-            :param timeline_scope: The optional scope of a timeline to use for post-close activity.
+            :param timeline_scope: The scope of the Timeline.
             :type timeline_scope: str
-            :param timeline_code: The optional code of a timeline to use for post-close activity.
+            :param timeline_code: The code of the Timeline. This can optionally include a colon followed by the Closed Period ID to use at the head of the timeline, for a timeline with unconfirmed periods.
             :type timeline_code: str
-            :param closed_period_id: The optional id of a closed period within the timeline to view.
+            :param closed_period_id: The closed period ID. If this is specified, both timelineScope and timelineCode must be specified.
             :type closed_period_id: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -4794,12 +4794,12 @@ class InstrumentsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Instrument
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_instrument_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_instrument_with_http_info_async(identifier_type, identifier, effective_at, as_at, property_keys, scope, relationship_definition_ids, data_model_scope, data_model_code, timeline_scope, timeline_code, closed_period_id, **kwargs)  # noqa: E501
+            response = await self.get_instrument_with_http_info_async(identifier_type, identifier, effective_at, as_at, property_keys, scope, relationship_definition_ids, data_model_scope, data_model_code, timeline_scope, timeline_code, closed_period_id, **kwargs)
+            return response.data
 
     @validate_call
     async def get_instrument_with_http_info_async(self, identifier_type: StrictStr, identifier: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, scope: Optional[StrictStr] = None, relationship_definition_ids: Optional[List[str]] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[Instrument]:
@@ -4825,11 +4825,11 @@ class InstrumentsApi:
             :type data_model_scope: str
             :param data_model_code: The optional code of a Custom Data Model to use.
             :type data_model_code: str
-            :param timeline_scope: The optional scope of a timeline to use for post-close activity.
+            :param timeline_scope: The scope of the Timeline.
             :type timeline_scope: str
-            :param timeline_code: The optional code of a timeline to use for post-close activity.
+            :param timeline_code: The code of the Timeline. This can optionally include a colon followed by the Closed Period ID to use at the head of the timeline, for a timeline with unconfirmed periods.
             :type timeline_code: str
-            :param closed_period_id: The optional id of a closed period within the timeline to view.
+            :param closed_period_id: The closed period ID. If this is specified, both timelineScope and timelineCode must be specified.
             :type closed_period_id: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
@@ -4984,12 +4984,12 @@ class InstrumentsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfInstrumentIdTypeDescriptor
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_instrument_identifier_types_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_instrument_identifier_types_with_http_info_async(**kwargs)  # noqa: E501
+            response = await self.get_instrument_identifier_types_with_http_info_async(**kwargs)
+            return response.data
 
     @validate_call
     async def get_instrument_identifier_types_with_http_info_async(self, **kwargs) -> ApiResponse[ResourceListOfInstrumentIdTypeDescriptor]:
@@ -5110,12 +5110,12 @@ class InstrumentsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: InstrumentPaymentDiary
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_instrument_payment_diary_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_instrument_payment_diary_with_http_info_async(identifier_type, identifier, recipe_scope, recipe_code, effective_at, as_at, scope, **kwargs)  # noqa: E501
+            response = await self.get_instrument_payment_diary_with_http_info_async(identifier_type, identifier, recipe_scope, recipe_code, effective_at, as_at, scope, **kwargs)
+            return response.data
 
     @validate_call
     async def get_instrument_payment_diary_with_http_info_async(self, identifier_type: StrictStr, identifier: StrictStr, recipe_scope: StrictStr, recipe_code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[InstrumentPaymentDiary]:
@@ -5278,12 +5278,12 @@ class InstrumentsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: InstrumentProperties
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_instrument_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_instrument_properties_with_http_info_async(identifier_type, identifier, effective_at, as_at, scope, **kwargs)  # noqa: E501
+            response = await self.get_instrument_properties_with_http_info_async(identifier_type, identifier, effective_at, as_at, scope, **kwargs)
+            return response.data
 
     @validate_call
     async def get_instrument_properties_with_http_info_async(self, identifier_type: StrictStr, identifier: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[InstrumentProperties]:
@@ -5442,12 +5442,12 @@ class InstrumentsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfPropertyInterval
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_instrument_property_time_series_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_instrument_property_time_series_with_http_info_async(identifier_type, identifier, property_key, identifier_effective_at, as_at, filter, page, limit, scope, **kwargs)  # noqa: E501
+            response = await self.get_instrument_property_time_series_with_http_info_async(identifier_type, identifier, property_key, identifier_effective_at, as_at, filter, page, limit, scope, **kwargs)
+            return response.data
 
     @validate_call
     async def get_instrument_property_time_series_with_http_info_async(self, identifier_type: StrictStr, identifier: StrictStr, property_key: StrictStr, identifier_effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfPropertyInterval]:
@@ -5626,12 +5626,12 @@ class InstrumentsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfRelationship
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_instrument_relationships_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_instrument_relationships_with_http_info_async(identifier_type, identifier, effective_at, as_at, filter, identifier_types, scope, **kwargs)  # noqa: E501
+            response = await self.get_instrument_relationships_with_http_info_async(identifier_type, identifier, effective_at, as_at, filter, identifier_types, scope, **kwargs)
+            return response.data
 
     @validate_call
     async def get_instrument_relationships_with_http_info_async(self, identifier_type: StrictStr, identifier: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, identifier_types: Optional[List[str]] = None, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfRelationship]:
@@ -5803,12 +5803,12 @@ class InstrumentsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: GetInstrumentsResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_instruments_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_instruments_with_http_info_async(identifier_type, request_body, effective_at, as_at, property_keys, scope, relationship_definition_ids, data_model_scope, data_model_code, **kwargs)  # noqa: E501
+            response = await self.get_instruments_with_http_info_async(identifier_type, request_body, effective_at, as_at, property_keys, scope, relationship_definition_ids, data_model_scope, data_model_code, **kwargs)
+            return response.data
 
     @validate_call
     async def get_instruments_with_http_info_async(self, identifier_type: StrictStr, request_body: List[str], effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, scope: Optional[StrictStr] = None, relationship_definition_ids: Optional[List[str]] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[GetInstrumentsResponse]:
@@ -5996,12 +5996,12 @@ class InstrumentsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfProperty
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_instrument_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_instrument_properties_with_http_info_async(identifier_type, identifier, effective_at, as_at, page, limit, scope, **kwargs)  # noqa: E501
+            response = await self.list_instrument_properties_with_http_info_async(identifier_type, identifier, effective_at, as_at, page, limit, scope, **kwargs)
+            return response.data
 
     @validate_call
     async def list_instrument_properties_with_http_info_async(self, identifier_type: StrictStr, identifier: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfProperty]:
@@ -6146,7 +6146,7 @@ class InstrumentsApi:
     @validate_call
     async def list_instruments_async(self, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, instrument_property_keys: Optional[List[str]] = None, scope: Optional[StrictStr] = None, relationship_definition_ids: Optional[List[str]] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, membership_type: Optional[StrictStr] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfInstrument:
             """ListInstruments: List instruments  # noqa: E501
-            List all the instruments in the instrument master.                To retrieve a particular set of instruments instead, use the Get instruments endpoint.  The maximum number of instruments that this method can list per request is 2,000.  # noqa: E501
+            List all the instruments in the instrument master.                To retrieve a particular set of instruments instead, use the Get instruments endpoint.    Use scope '*' to list instruments across all scopes.  The maximum number of instruments that this method can list per request is 2,000.  # noqa: E501
             
             :param as_at: The asAt datetime at which to list instruments. Defaults to returning the latest               version of each instrument if not specified.
             :type as_at: datetime
@@ -6162,7 +6162,7 @@ class InstrumentsApi:
             :type filter: str
             :param instrument_property_keys: A list of property keys from the 'Instrument' domain to decorate onto               instruments, or from any domain that supports relationships to decorate onto related entities.               These must have the format {domain}/{scope}/{code}, for example 'Instrument/system/Name'.
             :type instrument_property_keys: List[str]
-            :param scope: The scope in which the instrument lies. When not supplied the scope is 'default'.
+            :param scope: The scope in which the instrument lies. When not supplied the scope is 'default'.                 Use '*' to list instruments across all scopes.
             :type scope: str
             :param relationship_definition_ids: A list of relationship definitions that are used to decorate related entities               onto each instrument in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}.
             :type relationship_definition_ids: List[str]
@@ -6170,13 +6170,13 @@ class InstrumentsApi:
             :type data_model_scope: str
             :param data_model_code: The optional code of a Custom Data Model to use.
             :type data_model_code: str
-            :param membership_type: The membership types of the specified Custom Data Model to return. Allowable values are Member, Candidate and All. Defaults to Member.
+            :param membership_type: The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate.
             :type membership_type: str
-            :param timeline_scope: The scope of the timeline to use for PCA (Post Close Activity) support.
+            :param timeline_scope: The scope of the Timeline.
             :type timeline_scope: str
-            :param timeline_code: The code of the timeline to use for PCA (Post Close Activity) support.
+            :param timeline_code: The code of the Timeline. This can optionally include a colon followed by the Closed Period ID to use at the head of the timeline, for a timeline with unconfirmed periods.
             :type timeline_code: str
-            :param closed_period_id: The id of the closed period on the timeline to use for PCA (Post Close Activity) support.
+            :param closed_period_id: The closed period ID. If this is specified, both timelineScope and timelineCode must be specified.
             :type closed_period_id: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -6184,18 +6184,18 @@ class InstrumentsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfInstrument
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_instruments_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_instruments_with_http_info_async(as_at, effective_at, page, sort_by, limit, filter, instrument_property_keys, scope, relationship_definition_ids, data_model_scope, data_model_code, membership_type, timeline_scope, timeline_code, closed_period_id, **kwargs)  # noqa: E501
+            response = await self.list_instruments_with_http_info_async(as_at, effective_at, page, sort_by, limit, filter, instrument_property_keys, scope, relationship_definition_ids, data_model_scope, data_model_code, membership_type, timeline_scope, timeline_code, closed_period_id, **kwargs)
+            return response.data
 
     @validate_call
     async def list_instruments_with_http_info_async(self, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, instrument_property_keys: Optional[List[str]] = None, scope: Optional[StrictStr] = None, relationship_definition_ids: Optional[List[str]] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, membership_type: Optional[StrictStr] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfInstrument]:
             """ListInstruments: List instruments  # noqa: E501
 
-            List all the instruments in the instrument master.                To retrieve a particular set of instruments instead, use the Get instruments endpoint.  The maximum number of instruments that this method can list per request is 2,000.  # noqa: E501
+            List all the instruments in the instrument master.                To retrieve a particular set of instruments instead, use the Get instruments endpoint.    Use scope '*' to list instruments across all scopes.  The maximum number of instruments that this method can list per request is 2,000.  # noqa: E501
 
             :param as_at: The asAt datetime at which to list instruments. Defaults to returning the latest               version of each instrument if not specified.
             :type as_at: datetime
@@ -6211,7 +6211,7 @@ class InstrumentsApi:
             :type filter: str
             :param instrument_property_keys: A list of property keys from the 'Instrument' domain to decorate onto               instruments, or from any domain that supports relationships to decorate onto related entities.               These must have the format {domain}/{scope}/{code}, for example 'Instrument/system/Name'.
             :type instrument_property_keys: List[str]
-            :param scope: The scope in which the instrument lies. When not supplied the scope is 'default'.
+            :param scope: The scope in which the instrument lies. When not supplied the scope is 'default'.                 Use '*' to list instruments across all scopes.
             :type scope: str
             :param relationship_definition_ids: A list of relationship definitions that are used to decorate related entities               onto each instrument in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}.
             :type relationship_definition_ids: List[str]
@@ -6219,13 +6219,13 @@ class InstrumentsApi:
             :type data_model_scope: str
             :param data_model_code: The optional code of a Custom Data Model to use.
             :type data_model_code: str
-            :param membership_type: The membership types of the specified Custom Data Model to return. Allowable values are Member, Candidate and All. Defaults to Member.
+            :param membership_type: The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate.
             :type membership_type: str
-            :param timeline_scope: The scope of the timeline to use for PCA (Post Close Activity) support.
+            :param timeline_scope: The scope of the Timeline.
             :type timeline_scope: str
-            :param timeline_code: The code of the timeline to use for PCA (Post Close Activity) support.
+            :param timeline_code: The code of the Timeline. This can optionally include a colon followed by the Closed Period ID to use at the head of the timeline, for a timeline with unconfirmed periods.
             :type timeline_code: str
-            :param closed_period_id: The id of the closed period on the timeline to use for PCA (Post Close Activity) support.
+            :param closed_period_id: The closed period ID. If this is specified, both timelineScope and timelineCode must be specified.
             :type closed_period_id: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
@@ -6397,12 +6397,12 @@ class InstrumentsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: InstrumentCapabilities
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the query_instrument_capabilities_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.query_instrument_capabilities_with_http_info_async(lusid_instrument, model, **kwargs)  # noqa: E501
+            response = await self.query_instrument_capabilities_with_http_info_async(lusid_instrument, model, **kwargs)
+            return response.data
 
     @validate_call
     async def query_instrument_capabilities_with_http_info_async(self, lusid_instrument: LusidInstrument, model: Optional[StrictStr] = None, **kwargs) -> ApiResponse[InstrumentCapabilities]:
@@ -6541,12 +6541,12 @@ class InstrumentsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Instrument
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_instrument_identifier_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_instrument_identifier_with_http_info_async(identifier_type, identifier, update_instrument_identifier_request, scope, data_model_scope, data_model_code, **kwargs)  # noqa: E501
+            response = await self.update_instrument_identifier_with_http_info_async(identifier_type, identifier, update_instrument_identifier_request, scope, data_model_scope, data_model_code, **kwargs)
+            return response.data
 
     @validate_call
     async def update_instrument_identifier_with_http_info_async(self, identifier_type: StrictStr, identifier: StrictStr, update_instrument_identifier_request: UpdateInstrumentIdentifierRequest, scope: Optional[StrictStr] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[Instrument]:
@@ -6705,12 +6705,12 @@ class InstrumentsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: UpsertInstrumentsResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_instruments_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_instruments_with_http_info_async(request_body, scope, data_model_scope, data_model_code, **kwargs)  # noqa: E501
+            response = await self.upsert_instruments_with_http_info_async(request_body, scope, data_model_scope, data_model_code, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_instruments_with_http_info_async(self, request_body: Dict[str, InstrumentDefinition], scope: Optional[StrictStr] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[UpsertInstrumentsResponse]:
@@ -6857,12 +6857,12 @@ class InstrumentsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: UpsertInstrumentPropertiesResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_instruments_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_instruments_properties_with_http_info_async(upsert_instrument_property_request, scope, data_model_scope, data_model_code, **kwargs)  # noqa: E501
+            response = await self.upsert_instruments_properties_with_http_info_async(upsert_instrument_property_request, scope, data_model_scope, data_model_code, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_instruments_properties_with_http_info_async(self, upsert_instrument_property_request: List[UpsertInstrumentPropertyRequest], scope: Optional[StrictStr] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[UpsertInstrumentPropertiesResponse]:

@@ -7,7 +7,7 @@
 | **run_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **instigated_at** | **datetime** | Required | *No description available.* |
 | **completed_at** | **datetime** | Required | *No description available.* |
-| **schedule** | **str** | Required | *No description available.* |
+| **schedule** | **str** | Required | Available values: PreTrade, PostTrade, PreAndPostTrade. |
 | **rule_result** | [ComplianceSummaryRuleResult](ComplianceSummaryRuleResult.md) | Required | *No description available.* |
 
 
@@ -22,7 +22,7 @@ instance = ComplianceRuleResultV2(
     run_id=ResourceId(...),  # required
     instigated_at=datetime.now(),  # required
     completed_at=datetime.now(),  # required
-    schedule="...",  # required
+    schedule="...",  # required — Available values: PreTrade, PostTrade, PreAndPostTrade.
     rule_result=ComplianceSummaryRuleResult(...)  # required
 )
 ```

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -40,7 +40,7 @@ class ExternalLogRecord(BaseModel):
     message:  Optional[StrictStr] = Field(default=None,alias="message", description="The log message.") 
     messagetype:  Optional[StrictStr] = Field(default=None,alias="messagetype", description="The message type.") 
     timestamp:  StrictStr = Field(...,alias="timestamp", description="The timestamp of the log record.") 
-    __properties = ["logid", "parentlogid", "loglevel", "logstatus", "sourcerecordtype", "sourceprimaryidtype", "sourceprimaryidvalue", "targetrecordtype", "targetrecordaction", "targetprimaryidtype", "targetprimaryidvalue", "message", "messagetype", "timestamp"]
+    __properties: ClassVar[List[str]] = ["logid", "parentlogid", "loglevel", "logstatus", "sourcerecordtype", "sourceprimaryidtype", "sourceprimaryidvalue", "targetrecordtype", "targetrecordaction", "targetprimaryidtype", "targetprimaryidvalue", "message", "messagetype", "timestamp"]
 
     model_config = ConfigDict(
         populate_by_name=True,

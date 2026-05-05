@@ -63,12 +63,12 @@ class IdentityProviderApi:
         :return: Returns the result object.
         :rtype: AddScimResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the add_scim_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.add_scim_with_http_info(api_token_action, old_api_token_deactivation, **kwargs)  # noqa: E501
+        response = self.add_scim_with_http_info(api_token_action, old_api_token_deactivation, **kwargs)
+        return response.data
 
     @validate_call
     def add_scim_with_http_info(self, api_token_action: Optional[StrictStr] = None, old_api_token_deactivation: Optional[datetime] = None, **kwargs) -> ApiResponse[AddScimResponse]:
@@ -190,15 +190,15 @@ class IdentityProviderApi:
         :return: Returns the result object.
         :rtype: None
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the remove_scim_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.remove_scim_with_http_info(**kwargs)  # noqa: E501
+        response = self.remove_scim_with_http_info(**kwargs)
+        return response.data
 
     @validate_call
-    def remove_scim_with_http_info(self, **kwargs) -> None:
+    def remove_scim_with_http_info(self, **kwargs) -> ApiResponse[None]:
         """RemoveScim: Remove SCIM  # noqa: E501
 
         Deactivates any existing SCIM API token  # noqa: E501
@@ -307,12 +307,12 @@ class IdentityProviderApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: AddScimResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the add_scim_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.add_scim_with_http_info_async(api_token_action, old_api_token_deactivation, **kwargs)  # noqa: E501
+            response = await self.add_scim_with_http_info_async(api_token_action, old_api_token_deactivation, **kwargs)
+            return response.data
 
     @validate_call
     async def add_scim_with_http_info_async(self, api_token_action: Optional[StrictStr] = None, old_api_token_deactivation: Optional[datetime] = None, **kwargs) -> ApiResponse[AddScimResponse]:
@@ -435,15 +435,15 @@ class IdentityProviderApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: None
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the remove_scim_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.remove_scim_with_http_info_async(**kwargs)  # noqa: E501
+            response = await self.remove_scim_with_http_info_async(**kwargs)
+            return response.data
 
     @validate_call
-    async def remove_scim_with_http_info_async(self, **kwargs) -> None:
+    async def remove_scim_with_http_info_async(self, **kwargs) -> ApiResponse[None]:
             """RemoveScim: Remove SCIM  # noqa: E501
 
             Deactivates any existing SCIM API token  # noqa: E501

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class UpsertResultValuesDataRequest(BaseModel):
     key: Optional[Dict[str, Optional[StrictStr]]] = Field(default=None, description="The structured unit result data key.")
     data_address:  Optional[StrictStr] = Field(default=None,alias="dataAddress", description="The address of the piece of unit result data") 
     result_value: Optional[ResultValue] = Field(default=None, alias="resultValue")
-    __properties = ["documentId", "key", "dataAddress", "resultValue"]
+    __properties: ClassVar[List[str]] = ["documentId", "key", "dataAddress", "resultValue"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -96,10 +96,10 @@ class UpsertResultValuesDataRequest(BaseModel):
             return UpsertResultValuesDataRequest.model_validate(obj)
 
         _obj = UpsertResultValuesDataRequest.model_validate({
-            "document_id": StructuredResultDataId.from_dict(obj.get("documentId")) if obj.get("documentId") is not None else None,
+            "document_id": StructuredResultDataId.from_dict(_v) if (_v := obj.get("documentId")) is not None else None,
             "key": obj.get("key"),
             "data_address": obj.get("dataAddress"),
-            "result_value": ResultValue.from_dict(obj.get("resultValue")) if obj.get("resultValue") is not None else None
+            "result_value": ResultValue.from_dict(_v) if (_v := obj.get("resultValue")) is not None else None
         })
         return _obj
 

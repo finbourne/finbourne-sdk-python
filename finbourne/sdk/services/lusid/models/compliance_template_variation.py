@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -37,7 +37,7 @@ class ComplianceTemplateVariation(BaseModel):
     accepted_address_keys: ResourceId = Field(alias="acceptedAddressKeys")
     steps: List[ComplianceStep] = Field(description="The steps expressed in this template, with their required parameters")
     referenced_group_label:  Optional[StrictStr] = Field(default=None,alias="referencedGroupLabel", description="The label of a given referenced group in a Compliance Rule Template Variation") 
-    __properties = ["label", "description", "requiredParameters", "properties", "acceptedAddressKeys", "steps", "referencedGroupLabel"]
+    __properties: ClassVar[List[str]] = ["label", "description", "requiredParameters", "properties", "acceptedAddressKeys", "steps", "referencedGroupLabel"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -116,15 +116,15 @@ class ComplianceTemplateVariation(BaseModel):
         _obj = ComplianceTemplateVariation.model_validate({
             "label": obj.get("label"),
             "description": obj.get("description"),
-            "required_parameters": [ComplianceTemplateParameter.from_dict(_item) for _item in obj.get("requiredParameters")] if obj.get("requiredParameters") is not None else None,
+            "required_parameters": [ComplianceTemplateParameter.from_dict(_item) for _item in _v] if (_v := obj.get("requiredParameters")) is not None else None,
             "properties": dict(
                 (_k, PerpetualProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
-            "accepted_address_keys": ResourceId.from_dict(obj.get("acceptedAddressKeys")) if obj.get("acceptedAddressKeys") is not None else None,
-            "steps": [ComplianceStep.from_dict(_item) for _item in obj.get("steps")] if obj.get("steps") is not None else None,
+            "accepted_address_keys": ResourceId.from_dict(_v) if (_v := obj.get("acceptedAddressKeys")) is not None else None,
+            "steps": [ComplianceStep.from_dict(_item) for _item in _v] if (_v := obj.get("steps")) is not None else None,
             "referenced_group_label": obj.get("referencedGroupLabel")
         })
         return _obj

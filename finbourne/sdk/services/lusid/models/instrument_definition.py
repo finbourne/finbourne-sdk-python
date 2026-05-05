@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -37,7 +37,7 @@ class InstrumentDefinition(BaseModel):
     look_through_portfolio_id: Optional[ResourceId] = Field(default=None, alias="lookThroughPortfolioId")
     definition: Optional[LusidInstrument] = None
     settlement_cycle: Optional[SettlementCycle] = Field(default=None, alias="settlementCycle")
-    __properties = ["name", "identifiers", "properties", "lookThroughPortfolioId", "definition", "settlementCycle"]
+    __properties: ClassVar[List[str]] = ["name", "identifiers", "properties", "lookThroughPortfolioId", "definition", "settlementCycle"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -116,14 +116,14 @@ class InstrumentDefinition(BaseModel):
             "name": obj.get("name"),
             "identifiers": dict(
                 (_k, InstrumentIdValue.from_dict(_v))
-                for _k, _v in obj.get("identifiers").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("identifiers") is not None
+            if (_val := obj.get("identifiers")) is not None
             else None,
-            "properties": [ModelProperty.from_dict(_item) for _item in obj.get("properties")] if obj.get("properties") is not None else None,
-            "look_through_portfolio_id": ResourceId.from_dict(obj.get("lookThroughPortfolioId")) if obj.get("lookThroughPortfolioId") is not None else None,
-            "definition": LusidInstrument.from_dict(obj.get("definition")) if obj.get("definition") is not None else None,
-            "settlement_cycle": SettlementCycle.from_dict(obj.get("settlementCycle")) if obj.get("settlementCycle") is not None else None
+            "properties": [ModelProperty.from_dict(_item) for _item in _v] if (_v := obj.get("properties")) is not None else None,
+            "look_through_portfolio_id": ResourceId.from_dict(_v) if (_v := obj.get("lookThroughPortfolioId")) is not None else None,
+            "definition": LusidInstrument.from_dict(_v) if (_v := obj.get("definition")) is not None else None,
+            "settlement_cycle": SettlementCycle.from_dict(_v) if (_v := obj.get("settlementCycle")) is not None else None
         })
         return _obj
 

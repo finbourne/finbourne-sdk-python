@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class UpsertCorporateActionRequest(BaseModel):
     record_date: datetime = Field(description="The record date of the corporate action", alias="recordDate")
     payment_date: datetime = Field(description="The payment date of the corporate action", alias="paymentDate")
     transitions: List[CorporateActionTransitionRequest] = Field(description="The transitions that result from this corporate action")
-    __properties = ["corporateActionCode", "description", "announcementDate", "exDate", "recordDate", "paymentDate", "transitions"]
+    __properties: ClassVar[List[str]] = ["corporateActionCode", "description", "announcementDate", "exDate", "recordDate", "paymentDate", "transitions"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -100,7 +100,7 @@ class UpsertCorporateActionRequest(BaseModel):
             "ex_date": obj.get("exDate"),
             "record_date": obj.get("recordDate"),
             "payment_date": obj.get("paymentDate"),
-            "transitions": [CorporateActionTransitionRequest.from_dict(_item) for _item in obj.get("transitions")] if obj.get("transitions") is not None else None
+            "transitions": [CorporateActionTransitionRequest.from_dict(_item) for _item in _v] if (_v := obj.get("transitions")) is not None else None
         })
         return _obj
 

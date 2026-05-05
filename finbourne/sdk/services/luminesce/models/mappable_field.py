@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -36,7 +36,7 @@ class MappableField(BaseModel):
     allowed_values:  Optional[StrictStr] = Field(default=None,alias="allowedValues", description="Any set of exactly allowed values for the field (perhaps just for rendering to the user, if nothing else)") 
     mandatory_for_actions:  Optional[StrictStr] = Field(default=None,alias="mandatoryForActions", description="Which `Actions` is this mandatory for? If any (and potentially when), perhaps just for rendering to the user, if nothing else") 
     mapping: Optional[ExpressionWithAlias] = None
-    __properties = ["name", "type", "description", "displayName", "sampleValues", "allowedValues", "mandatoryForActions", "mapping"]
+    __properties: ClassVar[List[str]] = ["name", "type", "description", "displayName", "sampleValues", "allowedValues", "mandatoryForActions", "mapping"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -124,7 +124,7 @@ class MappableField(BaseModel):
             "sample_values": obj.get("sampleValues"),
             "allowed_values": obj.get("allowedValues"),
             "mandatory_for_actions": obj.get("mandatoryForActions"),
-            "mapping": ExpressionWithAlias.from_dict(obj.get("mapping")) if obj.get("mapping") is not None else None
+            "mapping": ExpressionWithAlias.from_dict(_v) if (_v := obj.get("mapping")) is not None else None
         })
         return _obj
 

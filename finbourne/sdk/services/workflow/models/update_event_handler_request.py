@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -40,7 +40,7 @@ class UpdateEventHandlerRequest(BaseModel):
     task_definition_id: ResourceId = Field(alias="taskDefinitionId")
     task_definition_as_at: Optional[datetime] = Field(default=None, description="AsAt of the required task definition", alias="taskDefinitionAsAt")
     task_activity: TaskActivity = Field(alias="taskActivity")
-    __properties = ["displayName", "description", "status", "eventMatchingPattern", "scheduleMatchingPattern", "runAsUserId", "taskDefinitionId", "taskDefinitionAsAt", "taskActivity"]
+    __properties: ClassVar[List[str]] = ["displayName", "description", "status", "eventMatchingPattern", "scheduleMatchingPattern", "runAsUserId", "taskDefinitionId", "taskDefinitionAsAt", "taskActivity"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -116,12 +116,12 @@ class UpdateEventHandlerRequest(BaseModel):
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
             "status": obj.get("status"),
-            "event_matching_pattern": EventMatchingPattern.from_dict(obj.get("eventMatchingPattern")) if obj.get("eventMatchingPattern") is not None else None,
-            "schedule_matching_pattern": ScheduleMatchingPattern.from_dict(obj.get("scheduleMatchingPattern")) if obj.get("scheduleMatchingPattern") is not None else None,
-            "run_as_user_id": EventHandlerMapping.from_dict(obj.get("runAsUserId")) if obj.get("runAsUserId") is not None else None,
-            "task_definition_id": ResourceId.from_dict(obj.get("taskDefinitionId")) if obj.get("taskDefinitionId") is not None else None,
+            "event_matching_pattern": EventMatchingPattern.from_dict(_v) if (_v := obj.get("eventMatchingPattern")) is not None else None,
+            "schedule_matching_pattern": ScheduleMatchingPattern.from_dict(_v) if (_v := obj.get("scheduleMatchingPattern")) is not None else None,
+            "run_as_user_id": EventHandlerMapping.from_dict(_v) if (_v := obj.get("runAsUserId")) is not None else None,
+            "task_definition_id": ResourceId.from_dict(_v) if (_v := obj.get("taskDefinitionId")) is not None else None,
             "task_definition_as_at": obj.get("taskDefinitionAsAt"),
-            "task_activity": TaskActivity.from_dict(obj.get("taskActivity")) if obj.get("taskActivity") is not None else None
+            "task_activity": TaskActivity.from_dict(_v) if (_v := obj.get("taskActivity")) is not None else None
         })
         return _obj
 

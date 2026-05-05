@@ -9,8 +9,9 @@ The Valuation Point Data Response for the Fund and specified date.
 | **journal_entry_action** | **str** | Optional | The journal entry line action associated with this transaction. |
 | **transaction** | [OutputTransaction](OutputTransaction.md) | Optional | *No description available.* |
 | **portfolio_id** | [PortfolioId](PortfolioId.md) | Optional | *No description available.* |
-| **valuation_point_origin** | **str** | Optional | Designates if the transaction was originally part of the Valuation Point or if it was added as part of a Complex Close action. |
+| **valuation_point_origin** | **str** | Optional | Designates if the transaction was originally part of the Valuation Point or if it was added as part of a Complex Close action. Available values: None, Original, Added. |
 | **added_origin_valuation_point_code** | **str** | Optional | The Valuation Point, only for transaction added as part of a Complex Close action. |
+| **added_origin_valuation_point_variant_code** | **str** | Optional | The Valuation Point variant, only for transactions added as part of a Complex Close action. |
 
 
 ## Usage
@@ -25,8 +26,9 @@ instance = AccountedTransaction(
     journal_entry_action="...",  # optional — The journal entry line action associated with this transaction.
     transaction=OutputTransaction(...),  # optional
     portfolio_id=PortfolioId(...),  # optional
-    valuation_point_origin="...",  # optional — Designates if the transaction was originally part of the Valuation Point or if it was added as part of a Complex Close action.
-    added_origin_valuation_point_code="..."  # optional — The Valuation Point, only for transaction added as part of a Complex Close action.
+    valuation_point_origin="...",  # optional — Designates if the transaction was originally part of the Valuation Point or if it was added as part of a Complex Close action. Available values: None, Original, Added.
+    added_origin_valuation_point_code="...",  # optional — The Valuation Point, only for transaction added as part of a Complex Close action.
+    added_origin_valuation_point_variant_code="..."  # optional — The Valuation Point variant, only for transactions added as part of a Complex Close action.
 )
 ```
 

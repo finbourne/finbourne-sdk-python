@@ -24,7 +24,7 @@ from finbourne.sdk.services.notifications.models.azure_service_bus_notification_
 from finbourne.sdk.services.notifications.models.email_notification_type import EmailNotificationType
 from finbourne.sdk.services.notifications.models.sms_notification_type import SmsNotificationType
 from finbourne.sdk.services.notifications.models.webhook_notification_type import WebhookNotificationType
-from typing import Optional, List, Dict, Union, Annotated, Any, Literal, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Any, ClassVar, Literal, TYPE_CHECKING
 
 NOTIFICATIONTYPE_ONE_OF_SCHEMAS = ["AmazonSqsNotificationType", "AmazonSqsPrincipalAuthNotificationType", "AzureServiceBusNotificationType", "EmailNotificationType", "SmsNotificationType", "WebhookNotificationType"]
 
@@ -48,25 +48,25 @@ class NotificationType(BaseModel):
         actual_instance: Union[AmazonSqsNotificationType, AmazonSqsPrincipalAuthNotificationType, AzureServiceBusNotificationType, EmailNotificationType, SmsNotificationType, WebhookNotificationType]
     else:
         actual_instance: Any
-    one_of_schemas: Literal[NOTIFICATIONTYPE_ONE_OF_SCHEMAS] = NOTIFICATIONTYPE_ONE_OF_SCHEMAS
+    one_of_schemas: ClassVar[List[str]] = NOTIFICATIONTYPE_ONE_OF_SCHEMAS
 
     model_config = ConfigDict(
         validate_assignment=True
     )
 
-    def __init__(self, *args, **kwargs) -> None:
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         if args:
             if len(args) > 1:
                 raise ValueError("If a position argument is used, only 1 is allowed to set `actual_instance`")
             if kwargs:
                 raise ValueError("If a position argument is used, keyword arguments cannot be used.")
-            super().__init__(actual_instance=args[0])
+            super().__init__(actual_instance=args[0])  # type: ignore[index]
         else:
             super().__init__(**kwargs)
 
     @field_validator('actual_instance')
     def actual_instance_must_validate_oneof(cls, v):
-        instance = NotificationType.model_construct()
+        _instance = NotificationType.model_construct()
         error_messages = []
         match = 0
         matchclass = ""
@@ -191,7 +191,7 @@ class NotificationType(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> dict:
+    def to_dict(self) -> Any:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class OrderBreachHistory(BaseModel):
     run_id: ResourceId = Field(alias="runId")
     breaches_by_rule: Optional[Dict[str, Optional[List[OrderRuleBreach]]]] = Field(default=None, description="Compliance rule breaches associations with the order and run.", alias="breachesByRule")
     as_at: datetime = Field(description="The asAt datetime at which the order breach was created in LUSID.", alias="asAt")
-    __properties = ["id", "orderId", "runId", "breachesByRule", "asAt"]
+    __properties: ClassVar[List[str]] = ["id", "orderId", "runId", "breachesByRule", "asAt"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -82,9 +82,9 @@ class OrderBreachHistory(BaseModel):
         _field_dict_of_array = {}
         if self.breaches_by_rule:
             for _key in self.breaches_by_rule:
-                if self.breaches_by_rule[_key]:
+                if (_items_for_key := self.breaches_by_rule[_key]):
                     _field_dict_of_array[_key] = [
-                        _item.to_dict() for _item in self.breaches_by_rule[_key]
+                        _item.to_dict() for _item in _items_for_key
                     ]
             _dict['breachesByRule'] = _field_dict_of_array
         # set to None if breaches_by_rule (nullable) is None
@@ -104,18 +104,18 @@ class OrderBreachHistory(BaseModel):
             return OrderBreachHistory.model_validate(obj)
 
         _obj = OrderBreachHistory.model_validate({
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
-            "order_id": ResourceId.from_dict(obj.get("orderId")) if obj.get("orderId") is not None else None,
-            "run_id": ResourceId.from_dict(obj.get("runId")) if obj.get("runId") is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
+            "order_id": ResourceId.from_dict(_v) if (_v := obj.get("orderId")) is not None else None,
+            "run_id": ResourceId.from_dict(_v) if (_v := obj.get("runId")) is not None else None,
             "breaches_by_rule": dict(
                 (_k,
                         [OrderRuleBreach.from_dict(_item) for _item in _v]
                         if _v is not None
                         else None
                 )
-                for _k, _v in obj.get("breachesByRule").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("breachesByRule") is not None
+            if (_val := obj.get("breachesByRule")) is not None
             else None,
             "as_at": obj.get("asAt")
         })

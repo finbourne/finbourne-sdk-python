@@ -7,6 +7,7 @@ import os
 from datetime import datetime, timezone
 from datetime import timedelta
 from collections import UserString
+from typing import Any
 from urllib.parse import quote
 import logging
 
@@ -26,8 +27,8 @@ class RefreshingToken(UserString):
         """
 
         self.access_token_location = access_token_location
-        self.file_token_data = {"expires": datetime.now(tz=timezone.utc), "current_access_token": None}
-        self.token_data = {"expires": None, "access_token": None, "refresh_token": None}
+        self.file_token_data: dict[str, Any] = {"expires": datetime.now(tz=timezone.utc), "current_access_token": None}
+        self.token_data: dict[str, Any] = {"expires": None, "access_token": None, "refresh_token": None}
         self.expiry_offset = expiry_offset
 
         self.password = None
@@ -120,9 +121,10 @@ class RefreshingToken(UserString):
         :return: The retrieved access token
         """
         # the safe parameter is to ensure that the / character is also encoded
-        encoded_password = quote(self.password, safe="")
-        encoded_client_id = quote(self.client_id, safe="")
-        encoded_client_secret = quote(self.client_secret, safe="")
+        # _validate_oauth_params ensures these are not None
+        encoded_password = quote(str(self.password), safe="")
+        encoded_client_id = quote(str(self.client_id), safe="")
+        encoded_client_secret = quote(str(self.client_secret), safe="")
 
         # Prepare our authentication request
         token_request_body = (
@@ -137,7 +139,7 @@ class RefreshingToken(UserString):
         }
 
         # extra request args
-        kwargs = {"headers": headers}
+        kwargs: dict[str, Any] = {"headers": headers}
 
         if self.proxy_config is not None:
             kwargs["proxies"] = self.proxy_config.format_proxy_schema()
@@ -148,7 +150,7 @@ class RefreshingToken(UserString):
 
         # make request to Okta to get an authentication token
         id_provider_response = requests.post(
-            self.token_url, data=token_request_body, **kwargs
+            str(self.token_url), data=token_request_body, **kwargs
         )
 
         if self.id_provider_response_handler is not None:
@@ -199,7 +201,7 @@ class RefreshingToken(UserString):
             request_body = f"grant_type=refresh_token&scope=openid client groups offline_access&refresh_token={self.token_data['refresh_token']}"
 
             # request parameters
-            kwargs = {"headers": headers}
+            kwargs: dict[str, Any] = {"headers": headers}
 
             if self.proxy_config is not None:
                 kwargs["proxies"] = self.proxy_config.format_proxy_schema()
@@ -208,7 +210,7 @@ class RefreshingToken(UserString):
                 kwargs["verify"] = self.certificate_filename
 
             id_provider_response = requests.post(
-                self.token_url, data=request_body, **kwargs
+                str(self.token_url), data=request_body, **kwargs
             )
 
             if self.id_provider_response_handler is not None:

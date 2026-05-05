@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -26,14 +26,14 @@ class PerformanceReturnsMetric(BaseModel):
     """
     The request used in the AggregatedReturns.  # noqa: E501
     """
-    type:  Optional[StrictStr] = Field(default=None,alias="type", description="The type of the metric. Default to Return") 
+    type:  Optional[StrictStr] = Field(default=None,alias="type", description="The type of the metric. Default value: Return. Available values: Return, Volatility, IndicativeAmount, Dispersion.") 
     window:  Optional[StrictStr] = Field(default=None,alias="window", description="The given metric for the calculation i.e. 1Y, 1D.") 
     allow_partial: Optional[StrictBool] = Field(default=None, description="Bool if the metric is allowed partial results. Default to false.", alias="allowPartial")
     annualised: Optional[StrictBool] = Field(default=None, description="Bool if the metric is annualized. Default to false.")
     with_fee: Optional[StrictBool] = Field(default=None, description="Bool if the metric should consider the fees when is calculated. Default to false.", alias="withFee")
     seed_amount:  Optional[StrictStr] = Field(default=None,alias="seedAmount", description="The given seed amount for the calculation of the indicative amount metrics.") 
     alias:  Optional[StrictStr] = Field(default=None,alias="alias", description="The alias for the metric.") 
-    __properties = ["type", "window", "allowPartial", "annualised", "withFee", "seedAmount", "alias"]
+    __properties: ClassVar[List[str]] = ["type", "window", "allowPartial", "annualised", "withFee", "seedAmount", "alias"]
 
     model_config = ConfigDict(
         populate_by_name=True,

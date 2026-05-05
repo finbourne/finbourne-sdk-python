@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -36,7 +36,7 @@ class CreateUserRequest(BaseModel):
     roles: Optional[List[RoleId]] = Field(default=None, description="Optional. Any known roles the user should be created with.")
     type:  StrictStr = Field(...,alias="type", description="The type of user (e.g. Personal or Service)") 
     user_expiry: Optional[datetime] = Field(default=None, description="The user's expiry unix datetime", alias="userExpiry")
-    __properties = ["firstName", "lastName", "emailAddress", "secondEmailAddress", "login", "alternativeUserIds", "roles", "type", "userExpiry"]
+    __properties: ClassVar[List[str]] = ["firstName", "lastName", "emailAddress", "secondEmailAddress", "login", "alternativeUserIds", "roles", "type", "userExpiry"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -117,7 +117,7 @@ class CreateUserRequest(BaseModel):
             "second_email_address": obj.get("secondEmailAddress"),
             "login": obj.get("login"),
             "alternative_user_ids": obj.get("alternativeUserIds"),
-            "roles": [RoleId.from_dict(_item) for _item in obj.get("roles")] if obj.get("roles") is not None else None,
+            "roles": [RoleId.from_dict(_item) for _item in _v] if (_v := obj.get("roles")) is not None else None,
             "type": obj.get("type"),
             "user_expiry": obj.get("userExpiry")
         })

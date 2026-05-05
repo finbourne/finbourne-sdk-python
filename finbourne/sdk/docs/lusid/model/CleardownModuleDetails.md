@@ -7,7 +7,7 @@ A Cleardown Module request definition
 |------|------|----------|-------------|
 | **display_name** | **str** | Required | The name of the Cleardown Module. |
 | **description** | **str** | Optional | A description for the Cleardown Module. |
-| **status** | **str** | Required | The Cleardown Module status. Can be Active or Inactive. Defaults to Active. |
+| **status** | **str** | Required | The Cleardown Module status. Default value: Active. Available values: Active, Inactive. |
 
 
 ## Usage
@@ -20,7 +20,7 @@ from finbourne.sdk.services.lusid.models.CleardownModuleDetails import Cleardown
 instance = CleardownModuleDetails(
     display_name="...",  # required — The name of the Cleardown Module.
     description="...",  # optional — A description for the Cleardown Module.
-    status="..."  # required — The Cleardown Module status. Can be Active or Inactive. Defaults to Active.
+    status="..."  # required — The Cleardown Module status. Default value: Active. Available values: Active, Inactive.
 )
 ```
 

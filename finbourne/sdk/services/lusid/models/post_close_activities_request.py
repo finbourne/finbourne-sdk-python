@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class PostCloseActivitiesRequest(BaseModel):
     PostCloseActivitiesRequest
     """
     post_close_activities: List[PostCloseActivity] = Field(description="A collection of post-close activities.", alias="postCloseActivities")
-    __properties = ["postCloseActivities"]
+    __properties: ClassVar[List[str]] = ["postCloseActivities"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -83,7 +83,7 @@ class PostCloseActivitiesRequest(BaseModel):
             return PostCloseActivitiesRequest.model_validate(obj)
 
         _obj = PostCloseActivitiesRequest.model_validate({
-            "post_close_activities": [PostCloseActivity.from_dict(_item) for _item in obj.get("postCloseActivities")] if obj.get("postCloseActivities") is not None else None
+            "post_close_activities": [PostCloseActivity.from_dict(_item) for _item in _v] if (_v := obj.get("postCloseActivities")) is not None else None
         })
         return _obj
 

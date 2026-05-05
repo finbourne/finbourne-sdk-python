@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class EconomicDependencyWithComplexMarketData(BaseModel):
     """
     economic_dependency: EconomicDependency = Field(alias="economicDependency")
     complex_market_data: ComplexMarketData = Field(alias="complexMarketData")
-    __properties = ["economicDependency", "complexMarketData"]
+    __properties: ClassVar[List[str]] = ["economicDependency", "complexMarketData"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -84,8 +84,8 @@ class EconomicDependencyWithComplexMarketData(BaseModel):
             return EconomicDependencyWithComplexMarketData.model_validate(obj)
 
         _obj = EconomicDependencyWithComplexMarketData.model_validate({
-            "economic_dependency": EconomicDependency.from_dict(obj.get("economicDependency")) if obj.get("economicDependency") is not None else None,
-            "complex_market_data": ComplexMarketData.from_dict(obj.get("complexMarketData")) if obj.get("complexMarketData") is not None else None
+            "economic_dependency": EconomicDependency.from_dict(_v) if (_v := obj.get("economicDependency")) is not None else None,
+            "complex_market_data": ComplexMarketData.from_dict(_v) if (_v := obj.get("complexMarketData")) is not None else None
         })
         return _obj
 

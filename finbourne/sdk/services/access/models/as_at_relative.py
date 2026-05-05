@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class AsAtRelative(BaseModel):
     adjustment: Optional[StrictInt] = None
     unit: Optional[DateUnit] = None
     relative_to_date_time: Optional[RelativeToDateTime] = Field(default=None, alias="relativeToDateTime")
-    __properties = ["date", "adjustment", "unit", "relativeToDateTime"]
+    __properties: ClassVar[List[str]] = ["date", "adjustment", "unit", "relativeToDateTime"]
 
     model_config = ConfigDict(
         populate_by_name=True,

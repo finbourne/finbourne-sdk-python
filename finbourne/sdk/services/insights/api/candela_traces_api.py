@@ -62,12 +62,12 @@ class CandelaTracesApi:
         :return: Returns the result object.
         :rtype: TraceDiagramResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_trace_diagram_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_trace_diagram_with_http_info(trace_id, **kwargs)  # noqa: E501
+        response = self.get_trace_diagram_with_http_info(trace_id, **kwargs)
+        return response.data
 
     @validate_call
     def get_trace_diagram_with_http_info(self, trace_id: StrictStr, **kwargs) -> ApiResponse[TraceDiagramResponse]:
@@ -180,12 +180,12 @@ class CandelaTracesApi:
         :return: Returns the result object.
         :rtype: TraceLog
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_trace_log_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_trace_log_with_http_info(trace_id, **kwargs)  # noqa: E501
+        response = self.get_trace_log_with_http_info(trace_id, **kwargs)
+        return response.data
 
     @validate_call
     def get_trace_log_with_http_info(self, trace_id: StrictStr, **kwargs) -> ApiResponse[TraceLog]:
@@ -300,12 +300,12 @@ class CandelaTracesApi:
         :return: Returns the result object.
         :rtype: ResourceListOfTraceEventLog
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_trace_event_logs_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_trace_event_logs_with_http_info(trace_id, page, **kwargs)  # noqa: E501
+        response = self.list_trace_event_logs_with_http_info(trace_id, page, **kwargs)
+        return response.data
 
     @validate_call
     def list_trace_event_logs_with_http_info(self, trace_id: StrictStr, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfTraceEventLog]:
@@ -430,12 +430,12 @@ class CandelaTracesApi:
         :return: Returns the result object.
         :rtype: ResourceListOfTraceLog
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_trace_logs_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_trace_logs_with_http_info(filter, sort_by, limit, page, **kwargs)  # noqa: E501
+        response = self.list_trace_logs_with_http_info(filter, sort_by, limit, page, **kwargs)
+        return response.data
 
     @validate_call
     def list_trace_logs_with_http_info(self, filter: Optional[StrictStr] = None, sort_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfTraceLog]:
@@ -570,12 +570,12 @@ class CandelaTracesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: TraceDiagramResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_trace_diagram_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_trace_diagram_with_http_info_async(trace_id, **kwargs)  # noqa: E501
+            response = await self.get_trace_diagram_with_http_info_async(trace_id, **kwargs)
+            return response.data
 
     @validate_call
     async def get_trace_diagram_with_http_info_async(self, trace_id: StrictStr, **kwargs) -> ApiResponse[TraceDiagramResponse]:
@@ -689,12 +689,12 @@ class CandelaTracesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: TraceLog
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_trace_log_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_trace_log_with_http_info_async(trace_id, **kwargs)  # noqa: E501
+            response = await self.get_trace_log_with_http_info_async(trace_id, **kwargs)
+            return response.data
 
     @validate_call
     async def get_trace_log_with_http_info_async(self, trace_id: StrictStr, **kwargs) -> ApiResponse[TraceLog]:
@@ -810,12 +810,12 @@ class CandelaTracesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfTraceEventLog
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_trace_event_logs_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_trace_event_logs_with_http_info_async(trace_id, page, **kwargs)  # noqa: E501
+            response = await self.list_trace_event_logs_with_http_info_async(trace_id, page, **kwargs)
+            return response.data
 
     @validate_call
     async def list_trace_event_logs_with_http_info_async(self, trace_id: StrictStr, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfTraceEventLog]:
@@ -941,12 +941,12 @@ class CandelaTracesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfTraceLog
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_trace_logs_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_trace_logs_with_http_info_async(filter, sort_by, limit, page, **kwargs)  # noqa: E501
+            response = await self.list_trace_logs_with_http_info_async(filter, sort_by, limit, page, **kwargs)
+            return response.data
 
     @validate_call
     async def list_trace_logs_with_http_info_async(self, filter: Optional[StrictStr] = None, sort_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfTraceLog]:

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,14 +31,14 @@ class SimpleInstrument(LusidInstrument):
     """
     maturity_date: Optional[datetime] = Field(default=None, description="The final maturity date of the instrument. This means the last date on which the instruments makes a payment of any amount.  For the avoidance of doubt, that is not necessarily prior to its last sensitivity date for the purposes of risk; e.g. instruments such as  Constant Maturity Swaps (CMS) often have sensitivities to rates that may well be observed or set prior to the maturity date, but refer to a termination date beyond it.", alias="maturityDate")
     dom_ccy:  StrictStr = Field(...,alias="domCcy", description="The domestic currency.") 
-    asset_class:  StrictStr = Field(...,alias="assetClass", description="The available values are: InterestRates, FX, Inflation, Equities, Credit, Commodities, Money, Unknown") 
+    asset_class:  StrictStr = Field(...,alias="assetClass", description="Available values: InterestRates, FX, Inflation, Equities, Credit, Commodities, Money, Unknown.") 
     fgn_ccys: Optional[List[StrictStr]] = Field(default=None, description="The set of foreign currencies, if any (optional).", alias="fgnCcys")
     simple_instrument_type:  StrictStr = Field(...,alias="simpleInstrumentType", description="The Instrument type of the simple instrument.") 
     time_zone_conventions: Optional[TimeZoneConventions] = Field(default=None, alias="timeZoneConventions")
     trading_conventions: Optional[TradingConventions] = Field(default=None, alias="tradingConventions")
-    instrument_type:  StrictStr = Field(...,alias="instrumentType", description="The available values are: QuotedSecurity, InterestRateSwap, FxForward, Future, ExoticInstrument, FxOption, CreditDefaultSwap, InterestRateSwaption, Bond, EquityOption, FixedLeg, FloatingLeg, BespokeCashFlowsLeg, Unknown, TermDeposit, ContractForDifference, EquitySwap, CashPerpetual, CapFloor, CashSettled, CdsIndex, Basket, FundingLeg, FxSwap, ForwardRateAgreement, SimpleInstrument, Repo, Equity, ExchangeTradedOption, ReferenceInstrument, ComplexBond, InflationLinkedBond, InflationSwap, SimpleCashFlowLoan, TotalReturnSwap, InflationLeg, FundShareClass, FlexibleLoan, UnsettledCash, Cash, MasteredInstrument, LoanFacility, FlexibleDeposit, FlexibleRepo") 
+    instrument_type:  StrictStr = Field(...,alias="instrumentType", description="Available values: QuotedSecurity, InterestRateSwap, FxForward, Future, ExoticInstrument, FxOption, CreditDefaultSwap, InterestRateSwaption, Bond, EquityOption, FixedLeg, FloatingLeg, BespokeCashFlowsLeg, Unknown, TermDeposit, ContractForDifference, EquitySwap, CashPerpetual, CapFloor, CashSettled, CdsIndex, Basket, FundingLeg, FxSwap, ForwardRateAgreement, SimpleInstrument, Repo, Equity, ExchangeTradedOption, ReferenceInstrument, ComplexBond, InflationLinkedBond, InflationSwap, SimpleCashFlowLoan, TotalReturnSwap, InflationLeg, FundShareClass, FlexibleLoan, UnsettledCash, Cash, MasteredInstrument, LoanFacility, FlexibleDeposit, FlexibleRepo.") 
     additional_properties: Dict[str, Any] = {}
-    __properties = ["instrumentType", "maturityDate", "domCcy", "assetClass", "fgnCcys", "simpleInstrumentType", "timeZoneConventions", "tradingConventions"]
+    __properties: ClassVar[List[str]] = ["instrumentType", "maturityDate", "domCcy", "assetClass", "fgnCcys", "simpleInstrumentType", "timeZoneConventions", "tradingConventions"]
 
     @field_validator('asset_class')
     def asset_class_validate_enum(cls, value):
@@ -247,17 +247,12 @@ class SimpleInstrument(LusidInstrument):
             "asset_class": obj.get("assetClass"),
             "fgn_ccys": obj.get("fgnCcys"),
             "simple_instrument_type": obj.get("simpleInstrumentType"),
-            "time_zone_conventions": TimeZoneConventions.from_dict(obj.get("timeZoneConventions")) if obj.get("timeZoneConventions") is not None else None,
-            "trading_conventions": TradingConventions.from_dict(obj.get("tradingConventions")) if obj.get("tradingConventions") is not None else None
+            "time_zone_conventions": TimeZoneConventions.from_dict(_v) if (_v := obj.get("timeZoneConventions")) is not None else None,
+            "trading_conventions": TradingConventions.from_dict(_v) if (_v := obj.get("tradingConventions")) is not None else None
         })
         # store additional fields in additional_properties
-        
-        properties = cls.__properties
-        if not isinstance(cls.__properties, dict) and getattr(cls.__properties, 'default', None):
-            properties = cls.__properties.default
-    
         for _key in obj.keys():
-            if _key not in properties:
+            if _key not in cls.__properties:
                 _obj.additional_properties[_key] = obj.get(_key)
 
         return _obj

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class ErrorHighlightResponse(BaseModel):
     """
     errors: List[ErrorHighlightItem] = Field(description="The errors within the Sql")
     sql_with_marker:  StrictStr = Field(...,alias="sqlWithMarker", description="The SQL this is for, with characters indicating the error locations") 
-    __properties = ["errors", "sqlWithMarker"]
+    __properties: ClassVar[List[str]] = ["errors", "sqlWithMarker"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -84,7 +84,7 @@ class ErrorHighlightResponse(BaseModel):
             return ErrorHighlightResponse.model_validate(obj)
 
         _obj = ErrorHighlightResponse.model_validate({
-            "errors": [ErrorHighlightItem.from_dict(_item) for _item in obj.get("errors")] if obj.get("errors") is not None else None,
+            "errors": [ErrorHighlightItem.from_dict(_item) for _item in _v] if (_v := obj.get("errors")) is not None else None,
             "sql_with_marker": obj.get("sqlWithMarker")
         })
         return _obj

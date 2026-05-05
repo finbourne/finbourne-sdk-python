@@ -25,7 +25,7 @@ from finbourne.sdk.services.workflow.models.luminesce_view import LuminesceView
 from finbourne.sdk.services.workflow.models.lusid_entity_data_quality_check import LusidEntityDataQualityCheck
 from finbourne.sdk.services.workflow.models.scheduler_job import SchedulerJob
 from finbourne.sdk.services.workflow.models.sleep import Sleep
-from typing import Optional, List, Dict, Union, Annotated, Any, Literal, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Any, ClassVar, Literal, TYPE_CHECKING
 
 WORKERCONFIGURATION_ONE_OF_SCHEMAS = ["Fail", "GroupReconciliation", "HealthCheck", "LuminesceView", "LusidEntityDataQualityCheck", "SchedulerJob", "Sleep"]
 
@@ -51,25 +51,25 @@ class WorkerConfiguration(BaseModel):
         actual_instance: Union[Fail, GroupReconciliation, HealthCheck, LuminesceView, LusidEntityDataQualityCheck, SchedulerJob, Sleep]
     else:
         actual_instance: Any
-    one_of_schemas: Literal[WORKERCONFIGURATION_ONE_OF_SCHEMAS] = WORKERCONFIGURATION_ONE_OF_SCHEMAS
+    one_of_schemas: ClassVar[List[str]] = WORKERCONFIGURATION_ONE_OF_SCHEMAS
 
     model_config = ConfigDict(
         validate_assignment=True
     )
 
-    def __init__(self, *args, **kwargs) -> None:
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         if args:
             if len(args) > 1:
                 raise ValueError("If a position argument is used, only 1 is allowed to set `actual_instance`")
             if kwargs:
                 raise ValueError("If a position argument is used, keyword arguments cannot be used.")
-            super().__init__(actual_instance=args[0])
+            super().__init__(actual_instance=args[0])  # type: ignore[index]
         else:
             super().__init__(**kwargs)
 
     @field_validator('actual_instance')
     def actual_instance_must_validate_oneof(cls, v):
-        instance = WorkerConfiguration.model_construct()
+        _instance = WorkerConfiguration.model_construct()
         error_messages = []
         match = 0
         matchclass = ""
@@ -207,7 +207,7 @@ class WorkerConfiguration(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> dict:
+    def to_dict(self) -> Any:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

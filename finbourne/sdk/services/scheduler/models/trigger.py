@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class Trigger(BaseModel):
     Holds different kinds of triggers A schedule may only have one type of trigger  # noqa: E501
     """
     time_trigger: Optional[TimeTrigger] = Field(default=None, alias="timeTrigger")
-    __properties = ["timeTrigger"]
+    __properties: ClassVar[List[str]] = ["timeTrigger"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,7 +79,7 @@ class Trigger(BaseModel):
             return Trigger.model_validate(obj)
 
         _obj = Trigger.model_validate({
-            "time_trigger": TimeTrigger.from_dict(obj.get("timeTrigger")) if obj.get("timeTrigger") is not None else None
+            "time_trigger": TimeTrigger.from_dict(_v) if (_v := obj.get("timeTrigger")) is not None else None
         })
         return _obj
 

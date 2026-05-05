@@ -69,12 +69,12 @@ class TransactionTransactionFeesApi:
         :return: Returns the result object.
         :rtype: TransactionFee
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_transaction_fee_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_transaction_fee_with_http_info(scope, code, create_transaction_fee_request, **kwargs)  # noqa: E501
+        response = self.create_transaction_fee_with_http_info(scope, code, create_transaction_fee_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_transaction_fee_with_http_info(self, scope: StrictStr, code: StrictStr, create_transaction_fee_request: CreateTransactionFeeRequest, **kwargs) -> ApiResponse[TransactionFee]:
@@ -210,12 +210,12 @@ class TransactionTransactionFeesApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_transaction_fee_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_transaction_fee_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_transaction_fee_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_transaction_fee_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -344,12 +344,12 @@ class TransactionTransactionFeesApi:
         :return: Returns the result object.
         :rtype: TransactionFee
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_transaction_fee_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_transaction_fee_with_http_info(scope, code, effective_at, as_at, property_keys, **kwargs)  # noqa: E501
+        response = self.get_transaction_fee_with_http_info(scope, code, effective_at, as_at, property_keys, **kwargs)
+        return response.data
 
     @validate_call
     def get_transaction_fee_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[TransactionFee]:
@@ -504,12 +504,12 @@ class TransactionTransactionFeesApi:
         :return: Returns the result object.
         :rtype: ResourceListOfTransactionFee
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_transaction_fees_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_transaction_fees_with_http_info(effective_at, as_at, page, limit, filter, sort_by, property_keys, **kwargs)  # noqa: E501
+        response = self.list_transaction_fees_with_http_info(effective_at, as_at, page, limit, filter, sort_by, property_keys, **kwargs)
+        return response.data
 
     @validate_call
     def list_transaction_fees_with_http_info(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfTransactionFee]:
@@ -669,12 +669,12 @@ class TransactionTransactionFeesApi:
         :return: Returns the result object.
         :rtype: TransactionFee
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_transaction_fee_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_transaction_fee_with_http_info(scope, code, update_transaction_fee_request, **kwargs)  # noqa: E501
+        response = self.update_transaction_fee_with_http_info(scope, code, update_transaction_fee_request, **kwargs)
+        return response.data
 
     @validate_call
     def update_transaction_fee_with_http_info(self, scope: StrictStr, code: StrictStr, update_transaction_fee_request: UpdateTransactionFeeRequest, **kwargs) -> ApiResponse[TransactionFee]:
@@ -816,12 +816,12 @@ class TransactionTransactionFeesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: TransactionFee
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_transaction_fee_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_transaction_fee_with_http_info_async(scope, code, create_transaction_fee_request, **kwargs)  # noqa: E501
+            response = await self.create_transaction_fee_with_http_info_async(scope, code, create_transaction_fee_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_transaction_fee_with_http_info_async(self, scope: StrictStr, code: StrictStr, create_transaction_fee_request: CreateTransactionFeeRequest, **kwargs) -> ApiResponse[TransactionFee]:
@@ -958,12 +958,12 @@ class TransactionTransactionFeesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_transaction_fee_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_transaction_fee_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_transaction_fee_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_transaction_fee_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -1093,12 +1093,12 @@ class TransactionTransactionFeesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: TransactionFee
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_transaction_fee_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_transaction_fee_with_http_info_async(scope, code, effective_at, as_at, property_keys, **kwargs)  # noqa: E501
+            response = await self.get_transaction_fee_with_http_info_async(scope, code, effective_at, as_at, property_keys, **kwargs)
+            return response.data
 
     @validate_call
     async def get_transaction_fee_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[TransactionFee]:
@@ -1254,12 +1254,12 @@ class TransactionTransactionFeesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfTransactionFee
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_transaction_fees_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_transaction_fees_with_http_info_async(effective_at, as_at, page, limit, filter, sort_by, property_keys, **kwargs)  # noqa: E501
+            response = await self.list_transaction_fees_with_http_info_async(effective_at, as_at, page, limit, filter, sort_by, property_keys, **kwargs)
+            return response.data
 
     @validate_call
     async def list_transaction_fees_with_http_info_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfTransactionFee]:
@@ -1420,12 +1420,12 @@ class TransactionTransactionFeesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: TransactionFee
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_transaction_fee_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_transaction_fee_with_http_info_async(scope, code, update_transaction_fee_request, **kwargs)  # noqa: E501
+            response = await self.update_transaction_fee_with_http_info_async(scope, code, update_transaction_fee_request, **kwargs)
+            return response.data
 
     @validate_call
     async def update_transaction_fee_with_http_info_async(self, scope: StrictStr, code: StrictStr, update_transaction_fee_request: UpdateTransactionFeeRequest, **kwargs) -> ApiResponse[TransactionFee]:

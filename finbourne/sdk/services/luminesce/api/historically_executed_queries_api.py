@@ -63,12 +63,12 @@ class HistoricallyExecutedQueriesApi:
         :return: Returns the result object.
         :rtype: BackgroundQueryCancelResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the cancel_history_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.cancel_history_with_http_info(execution_id, **kwargs)  # noqa: E501
+        response = self.cancel_history_with_http_info(execution_id, **kwargs)
+        return response.data
 
     @validate_call
     def cancel_history_with_http_info(self, execution_id: StrictStr, **kwargs) -> ApiResponse[BackgroundQueryCancelResponse]:
@@ -188,12 +188,12 @@ class HistoricallyExecutedQueriesApi:
         :return: Returns the result object.
         :rtype: str
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the fetch_history_result_histogram_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.fetch_history_result_histogram_with_http_info(execution_id, bucket_size, filter, json_proper, **kwargs)  # noqa: E501
+        response = self.fetch_history_result_histogram_with_http_info(execution_id, bucket_size, filter, json_proper, **kwargs)
+        return response.data
 
     @validate_call
     def fetch_history_result_histogram_with_http_info(self, execution_id: StrictStr, bucket_size: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, json_proper: Optional[bool] = None, **kwargs) -> ApiResponse[str]:
@@ -341,12 +341,12 @@ class HistoricallyExecutedQueriesApi:
         :return: Returns the result object.
         :rtype: str
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the fetch_history_result_json_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.fetch_history_result_json_with_http_info(execution_id, sort_by, filter, select, group_by, limit, page, json_proper, **kwargs)  # noqa: E501
+        response = self.fetch_history_result_json_with_http_info(execution_id, sort_by, filter, select, group_by, limit, page, json_proper, **kwargs)
+        return response.data
 
     @validate_call
     def fetch_history_result_json_with_http_info(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, json_proper: Optional[bool] = None, **kwargs) -> ApiResponse[str]:
@@ -510,12 +510,12 @@ class HistoricallyExecutedQueriesApi:
         :return: Returns the result object.
         :rtype: BackgroundQueryResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_history_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_history_with_http_info(start_at, end_at, free_text_search, show_all, **kwargs)  # noqa: E501
+        response = self.get_history_with_http_info(start_at, end_at, free_text_search, show_all, **kwargs)
+        return response.data
 
     @validate_call
     def get_history_with_http_info(self, start_at: Optional[datetime] = None, end_at: Optional[datetime] = None, free_text_search: Optional[StrictStr] = None, show_all: Optional[bool] = None, **kwargs) -> ApiResponse[BackgroundQueryResponse]:
@@ -653,12 +653,12 @@ class HistoricallyExecutedQueriesApi:
         :return: Returns the result object.
         :rtype: BackgroundQueryProgressResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_progress_of_history_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_progress_of_history_with_http_info(execution_id, **kwargs)  # noqa: E501
+        response = self.get_progress_of_history_with_http_info(execution_id, **kwargs)
+        return response.data
 
     @validate_call
     def get_progress_of_history_with_http_info(self, execution_id: StrictStr, **kwargs) -> ApiResponse[BackgroundQueryProgressResponse]:
@@ -776,12 +776,12 @@ class HistoricallyExecutedQueriesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: BackgroundQueryCancelResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the cancel_history_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.cancel_history_with_http_info_async(execution_id, **kwargs)  # noqa: E501
+            response = await self.cancel_history_with_http_info_async(execution_id, **kwargs)
+            return response.data
 
     @validate_call
     async def cancel_history_with_http_info_async(self, execution_id: StrictStr, **kwargs) -> ApiResponse[BackgroundQueryCancelResponse]:
@@ -902,12 +902,12 @@ class HistoricallyExecutedQueriesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: str
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the fetch_history_result_histogram_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.fetch_history_result_histogram_with_http_info_async(execution_id, bucket_size, filter, json_proper, **kwargs)  # noqa: E501
+            response = await self.fetch_history_result_histogram_with_http_info_async(execution_id, bucket_size, filter, json_proper, **kwargs)
+            return response.data
 
     @validate_call
     async def fetch_history_result_histogram_with_http_info_async(self, execution_id: StrictStr, bucket_size: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, json_proper: Optional[bool] = None, **kwargs) -> ApiResponse[str]:
@@ -1056,12 +1056,12 @@ class HistoricallyExecutedQueriesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: str
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the fetch_history_result_json_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.fetch_history_result_json_with_http_info_async(execution_id, sort_by, filter, select, group_by, limit, page, json_proper, **kwargs)  # noqa: E501
+            response = await self.fetch_history_result_json_with_http_info_async(execution_id, sort_by, filter, select, group_by, limit, page, json_proper, **kwargs)
+            return response.data
 
     @validate_call
     async def fetch_history_result_json_with_http_info_async(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, json_proper: Optional[bool] = None, **kwargs) -> ApiResponse[str]:
@@ -1226,12 +1226,12 @@ class HistoricallyExecutedQueriesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: BackgroundQueryResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_history_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_history_with_http_info_async(start_at, end_at, free_text_search, show_all, **kwargs)  # noqa: E501
+            response = await self.get_history_with_http_info_async(start_at, end_at, free_text_search, show_all, **kwargs)
+            return response.data
 
     @validate_call
     async def get_history_with_http_info_async(self, start_at: Optional[datetime] = None, end_at: Optional[datetime] = None, free_text_search: Optional[StrictStr] = None, show_all: Optional[bool] = None, **kwargs) -> ApiResponse[BackgroundQueryResponse]:
@@ -1370,12 +1370,12 @@ class HistoricallyExecutedQueriesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: BackgroundQueryProgressResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_progress_of_history_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_progress_of_history_with_http_info_async(execution_id, **kwargs)  # noqa: E501
+            response = await self.get_progress_of_history_with_http_info_async(execution_id, **kwargs)
+            return response.data
 
     @validate_call
     async def get_progress_of_history_with_http_info_async(self, execution_id: StrictStr, **kwargs) -> ApiResponse[BackgroundQueryProgressResponse]:

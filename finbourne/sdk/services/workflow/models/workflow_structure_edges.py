@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class WorkflowStructureEdges(BaseModel):
     The edges of a Workflow structure graph — the parent-child relationships between Task Definitions  # noqa: E501
     """
     child_task_definitions: Optional[List[ChildTaskDefinitionEdge]] = Field(default=None, description="The child Task Definition relationships", alias="childTaskDefinitions")
-    __properties = ["childTaskDefinitions"]
+    __properties: ClassVar[List[str]] = ["childTaskDefinitions"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,7 +88,7 @@ class WorkflowStructureEdges(BaseModel):
             return WorkflowStructureEdges.model_validate(obj)
 
         _obj = WorkflowStructureEdges.model_validate({
-            "child_task_definitions": [ChildTaskDefinitionEdge.from_dict(_item) for _item in obj.get("childTaskDefinitions")] if obj.get("childTaskDefinitions") is not None else None
+            "child_task_definitions": [ChildTaskDefinitionEdge.from_dict(_item) for _item in _v] if (_v := obj.get("childTaskDefinitions")) is not None else None
         })
         return _obj
 

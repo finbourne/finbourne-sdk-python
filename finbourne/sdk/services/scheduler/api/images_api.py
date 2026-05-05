@@ -63,12 +63,12 @@ class ImagesApi:
         :return: Returns the result object.
         :rtype: Image
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_image_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_image_with_http_info(name, **kwargs)  # noqa: E501
+        response = self.get_image_with_http_info(name, **kwargs)
+        return response.data
 
     @validate_call
     def get_image_with_http_info(self, name: StrictStr, **kwargs) -> ApiResponse[Image]:
@@ -191,12 +191,12 @@ class ImagesApi:
         :return: Returns the result object.
         :rtype: ResourceListOfImageSummary
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_images_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_images_with_http_info(name, page, sort_by, start, limit, filter, **kwargs)  # noqa: E501
+        response = self.list_images_with_http_info(name, page, sort_by, start, limit, filter, **kwargs)
+        return response.data
 
     @validate_call
     def list_images_with_http_info(self, name: StrictStr, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, start: Optional[int] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfImageSummary]:
@@ -348,12 +348,12 @@ class ImagesApi:
         :return: Returns the result object.
         :rtype: ResourceListOfRepository
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_repositories_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_repositories_with_http_info(page, sort_by, start, limit, filter, **kwargs)  # noqa: E501
+        response = self.list_repositories_with_http_info(page, sort_by, start, limit, filter, **kwargs)
+        return response.data
 
     @validate_call
     def list_repositories_with_http_info(self, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, start: Optional[int] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfRepository]:
@@ -492,12 +492,12 @@ class ImagesApi:
         :return: Returns the result object.
         :rtype: UploadImageInstructions
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upload_image_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upload_image_with_http_info(upload_image_request, **kwargs)  # noqa: E501
+        response = self.upload_image_with_http_info(upload_image_request, **kwargs)
+        return response.data
 
     @validate_call
     def upload_image_with_http_info(self, upload_image_request: UploadImageRequest, **kwargs) -> ApiResponse[UploadImageInstructions]:
@@ -622,12 +622,12 @@ class ImagesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Image
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_image_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_image_with_http_info_async(name, **kwargs)  # noqa: E501
+            response = await self.get_image_with_http_info_async(name, **kwargs)
+            return response.data
 
     @validate_call
     async def get_image_with_http_info_async(self, name: StrictStr, **kwargs) -> ApiResponse[Image]:
@@ -751,12 +751,12 @@ class ImagesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfImageSummary
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_images_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_images_with_http_info_async(name, page, sort_by, start, limit, filter, **kwargs)  # noqa: E501
+            response = await self.list_images_with_http_info_async(name, page, sort_by, start, limit, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def list_images_with_http_info_async(self, name: StrictStr, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, start: Optional[int] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfImageSummary]:
@@ -909,12 +909,12 @@ class ImagesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfRepository
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_repositories_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_repositories_with_http_info_async(page, sort_by, start, limit, filter, **kwargs)  # noqa: E501
+            response = await self.list_repositories_with_http_info_async(page, sort_by, start, limit, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def list_repositories_with_http_info_async(self, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, start: Optional[int] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfRepository]:
@@ -1054,12 +1054,12 @@ class ImagesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: UploadImageInstructions
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upload_image_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upload_image_with_http_info_async(upload_image_request, **kwargs)  # noqa: E501
+            response = await self.upload_image_with_http_info_async(upload_image_request, **kwargs)
+            return response.data
 
     @validate_call
     async def upload_image_with_http_info_async(self, upload_image_request: UploadImageRequest, **kwargs) -> ApiResponse[UploadImageInstructions]:

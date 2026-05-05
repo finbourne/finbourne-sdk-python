@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -36,7 +36,7 @@ class FeeAccrual(BaseModel):
     previous_total_accrual: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The previous valuation point's total accrual.", alias="previousTotalAccrual")
     total_accrual: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The sum of the PreviousAccrual and Amount.", alias="totalAccrual")
     links: Optional[List[Link]] = None
-    __properties = ["effectiveAt", "code", "name", "calculationBase", "amount", "previousAccrual", "previousTotalAccrual", "totalAccrual", "links"]
+    __properties: ClassVar[List[str]] = ["effectiveAt", "code", "name", "calculationBase", "amount", "previousAccrual", "previousTotalAccrual", "totalAccrual", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -104,7 +104,7 @@ class FeeAccrual(BaseModel):
             "previous_accrual": obj.get("previousAccrual"),
             "previous_total_accrual": obj.get("previousTotalAccrual"),
             "total_accrual": obj.get("totalAccrual"),
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

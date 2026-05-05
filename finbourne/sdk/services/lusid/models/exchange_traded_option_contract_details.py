@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -41,9 +41,9 @@ class ExchangeTradedOptionContractDetails(BaseModel):
     underlying: LusidInstrument
     underlying_code:  StrictStr = Field(...,alias="underlyingCode", description="Code of the underlying, for an option on futures this should be the futures code.") 
     delivery_days: Optional[StrictInt] = Field(default=None, description="Number of business days between exercise date and settlement of the option payoff or underlying.  Defaults to 0 if not set.", alias="deliveryDays")
-    business_day_convention:  Optional[StrictStr] = Field(default=None,alias="businessDayConvention", description="The adjustment type to apply to dates that fall upon a non-business day, e.g. modified following or following.  Supported string (enumeration) values are: [NoAdjustment, Previous, P, Following, F, ModifiedPrevious, MP, ModifiedFollowing, MF, HalfMonthModifiedFollowing, Nearest].  Defaults to \"F\" if not set.") 
+    business_day_convention:  Optional[StrictStr] = Field(default=None,alias="businessDayConvention", description="The adjustment type to apply to dates that fall upon a non-business day, e.g. modified following or following.  Default value: F. Available values: NoAdjustment, None, Previous, P, Following, F, ModifiedPrevious, MP, ModifiedFollowing, MF, HalfMonthModifiedFollowing, Nearest, Invalid.") 
     settlement_calendars: Optional[List[StrictStr]] = Field(default=None, description="An array of strings denoting calendars used in calculating the option settlement date.", alias="settlementCalendars")
-    __properties = ["domCcy", "strike", "contractSize", "country", "deliveryType", "description", "exchangeCode", "exerciseDate", "exerciseType", "optionCode", "optionType", "underlying", "underlyingCode", "deliveryDays", "businessDayConvention", "settlementCalendars"]
+    __properties: ClassVar[List[str]] = ["domCcy", "strike", "contractSize", "country", "deliveryType", "description", "exchangeCode", "exerciseDate", "exerciseType", "optionCode", "optionType", "underlying", "underlyingCode", "deliveryDays", "businessDayConvention", "settlementCalendars"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -115,7 +115,7 @@ class ExchangeTradedOptionContractDetails(BaseModel):
             "exercise_type": obj.get("exerciseType"),
             "option_code": obj.get("optionCode"),
             "option_type": obj.get("optionType"),
-            "underlying": LusidInstrument.from_dict(obj.get("underlying")) if obj.get("underlying") is not None else None,
+            "underlying": LusidInstrument.from_dict(_v) if (_v := obj.get("underlying")) is not None else None,
             "underlying_code": obj.get("underlyingCode"),
             "delivery_days": obj.get("deliveryDays"),
             "business_day_convention": obj.get("businessDayConvention"),

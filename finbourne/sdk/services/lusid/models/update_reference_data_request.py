@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class UpdateReferenceDataRequest(BaseModel):
     """
     request_definitions: List[FieldDefinition] = Field(description="Definition of a reference data field.", alias="requestDefinitions")
     request_values: List[FieldValue] = Field(description="Reference data.", alias="requestValues")
-    __properties = ["requestDefinitions", "requestValues"]
+    __properties: ClassVar[List[str]] = ["requestDefinitions", "requestValues"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -92,8 +92,8 @@ class UpdateReferenceDataRequest(BaseModel):
             return UpdateReferenceDataRequest.model_validate(obj)
 
         _obj = UpdateReferenceDataRequest.model_validate({
-            "request_definitions": [FieldDefinition.from_dict(_item) for _item in obj.get("requestDefinitions")] if obj.get("requestDefinitions") is not None else None,
-            "request_values": [FieldValue.from_dict(_item) for _item in obj.get("requestValues")] if obj.get("requestValues") is not None else None
+            "request_definitions": [FieldDefinition.from_dict(_item) for _item in _v] if (_v := obj.get("requestDefinitions")) is not None else None,
+            "request_values": [FieldValue.from_dict(_item) for _item in _v] if (_v := obj.get("requestValues")) is not None else None
         })
         return _obj
 

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class OpenFigiPermIdResult(BaseModel):
     """
     open_figi_result: OpenFigiData = Field(alias="openFigiResult")
     perm_id_result: Optional[PermIdData] = Field(default=None, alias="permIdResult")
-    __properties = ["openFigiResult", "permIdResult"]
+    __properties: ClassVar[List[str]] = ["openFigiResult", "permIdResult"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -84,8 +84,8 @@ class OpenFigiPermIdResult(BaseModel):
             return OpenFigiPermIdResult.model_validate(obj)
 
         _obj = OpenFigiPermIdResult.model_validate({
-            "open_figi_result": OpenFigiData.from_dict(obj.get("openFigiResult")) if obj.get("openFigiResult") is not None else None,
-            "perm_id_result": PermIdData.from_dict(obj.get("permIdResult")) if obj.get("permIdResult") is not None else None
+            "open_figi_result": OpenFigiData.from_dict(_v) if (_v := obj.get("openFigiResult")) is not None else None,
+            "perm_id_result": PermIdData.from_dict(_v) if (_v := obj.get("permIdResult")) is not None else None
         })
         return _obj
 

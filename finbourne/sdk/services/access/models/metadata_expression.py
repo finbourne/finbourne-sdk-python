@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class MetadataExpression(BaseModel):
     metadata_key:  StrictStr = Field(...,alias="metadataKey") 
     operator: Operator
     text_value:  Optional[StrictStr] = Field(default=None,alias="textValue") 
-    __properties = ["metadataKey", "operator", "textValue"]
+    __properties: ClassVar[List[str]] = ["metadataKey", "operator", "textValue"]
 
     model_config = ConfigDict(
         populate_by_name=True,

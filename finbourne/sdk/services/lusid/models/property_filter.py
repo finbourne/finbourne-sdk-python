@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -27,10 +27,10 @@ class PropertyFilter(BaseModel):
     PropertyFilter
     """
     left:  Optional[StrictStr] = Field(default=None,alias="left", description="The key that uniquely identifies a queryable address in Lusid.") 
-    operator:  Optional[StrictStr] = Field(default=None,alias="operator", description="The available values are: Equals, NotEquals, GreaterThan, GreaterThanOrEqualTo, LessThan, LessThanOrEqualTo, In, StartsWith") 
+    operator:  Optional[StrictStr] = Field(default=None,alias="operator", description="Available values: Equals, NotEquals, GreaterThan, GreaterThanOrEqualTo, LessThan, LessThanOrEqualTo, In, StartsWith.") 
     right: Optional[Any] = None
-    right_operand_type:  Optional[StrictStr] = Field(default=None,alias="rightOperandType", description="The available values are: Absolute, Property") 
-    __properties = ["left", "operator", "right", "rightOperandType"]
+    right_operand_type:  Optional[StrictStr] = Field(default=None,alias="rightOperandType", description="Available values: Absolute, Property.") 
+    __properties: ClassVar[List[str]] = ["left", "operator", "right", "rightOperandType"]
 
     @field_validator('operator')
     def operator_validate_enum(cls, value):

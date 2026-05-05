@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class ScheduleMatchingPatternContext(BaseModel):
     """
     time_zone:  StrictStr = Field(...,alias="timeZone", description="The time zone to use. A TZ Identifier e.g. \"Europe/London\"") 
     holiday_calendars: Optional[List[CalendarReference]] = Field(default=None, description="References to any Holiday Calendars to use", alias="holidayCalendars")
-    __properties = ["timeZone", "holidayCalendars"]
+    __properties: ClassVar[List[str]] = ["timeZone", "holidayCalendars"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -90,7 +90,7 @@ class ScheduleMatchingPatternContext(BaseModel):
 
         _obj = ScheduleMatchingPatternContext.model_validate({
             "time_zone": obj.get("timeZone"),
-            "holiday_calendars": [CalendarReference.from_dict(_item) for _item in obj.get("holidayCalendars")] if obj.get("holidayCalendars") is not None else None
+            "holiday_calendars": [CalendarReference.from_dict(_item) for _item in _v] if (_v := obj.get("holidayCalendars")) is not None else None
         })
         return _obj
 

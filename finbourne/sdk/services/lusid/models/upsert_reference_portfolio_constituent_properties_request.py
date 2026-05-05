@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class UpsertReferencePortfolioConstituentPropertiesRequest(BaseModel):
     """
     identifiers: Dict[str, Optional[StrictStr]] = Field(description="A set of instrument identifiers that can resolve the constituent to a unique instrument.")
     properties: Dict[str, PerpetualProperty] = Field(description="The updated collection of properties of the constituent.")
-    __properties = ["identifiers", "properties"]
+    __properties: ClassVar[List[str]] = ["identifiers", "properties"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -87,9 +87,9 @@ class UpsertReferencePortfolioConstituentPropertiesRequest(BaseModel):
             "identifiers": obj.get("identifiers"),
             "properties": dict(
                 (_k, PerpetualProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None
         })
         return _obj

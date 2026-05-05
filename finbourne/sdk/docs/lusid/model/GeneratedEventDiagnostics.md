@@ -6,7 +6,7 @@ Represents a set of diagnostics per generatedEvent, where applicable.
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **instrument_event_id** | **str** | Required | *No description available.* |
-| **type** | **str** | Required | *No description available.* |
+| **type** | **str** | Required | Available values: MarketDataFailure, TransactionFailure, EventCombinationFailure, RepodOutHolding, ScheduleFailure. |
 | **detail** | **str** | Required | *No description available.* |
 | **error_details** | **List[str]** | Required | *No description available.* |
 
@@ -20,7 +20,7 @@ from finbourne.sdk.services.lusid.models.GeneratedEventDiagnostics import Genera
 
 instance = GeneratedEventDiagnostics(
     instrument_event_id="...",  # required
-    type="...",  # required
+    type="...",  # required — Available values: MarketDataFailure, TransactionFailure, EventCombinationFailure, RepodOutHolding, ScheduleFailure.
     detail="...",  # required
     error_details=  # required
 )

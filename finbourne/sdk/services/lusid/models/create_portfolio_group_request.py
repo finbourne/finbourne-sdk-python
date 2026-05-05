@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -35,7 +35,7 @@ class CreatePortfolioGroupRequest(BaseModel):
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="A set of unique group properties to add to the portfolio group. Each property must be from the 'PortfolioGroup' domain and should be identified by its key which has the format {domain}/{scope}/{code}, e.g. 'PortfolioGroup/Manager/Id'. These properties must be pre-defined.")
     display_name:  StrictStr = Field(...,alias="displayName", description="The name of the portfolio group.") 
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="A long form description of the portfolio group.") 
-    __properties = ["code", "created", "values", "subGroups", "properties", "displayName", "description"]
+    __properties: ClassVar[List[str]] = ["code", "created", "values", "subGroups", "properties", "displayName", "description"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -131,13 +131,13 @@ class CreatePortfolioGroupRequest(BaseModel):
         _obj = CreatePortfolioGroupRequest.model_validate({
             "code": obj.get("code"),
             "created": obj.get("created"),
-            "values": [ResourceId.from_dict(_item) for _item in obj.get("values")] if obj.get("values") is not None else None,
-            "sub_groups": [ResourceId.from_dict(_item) for _item in obj.get("subGroups")] if obj.get("subGroups") is not None else None,
+            "values": [ResourceId.from_dict(_item) for _item in _v] if (_v := obj.get("values")) is not None else None,
+            "sub_groups": [ResourceId.from_dict(_item) for _item in _v] if (_v := obj.get("subGroups")) is not None else None,
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
             "display_name": obj.get("displayName"),
             "description": obj.get("description")

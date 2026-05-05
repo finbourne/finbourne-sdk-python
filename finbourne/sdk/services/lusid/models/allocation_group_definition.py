@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -35,7 +35,7 @@ class AllocationGroupDefinition(BaseModel):
     share_class_short_code:  StrictStr = Field(...,alias="shareClassShortCode", description="The short code that identifies the Allocation Group.") 
     apportionment_method_property: Optional[ApportionmentMethodProperty] = Field(default=None, alias="apportionmentMethodProperty")
     formula:  Optional[StrictStr] = Field(default=None,alias="formula", description="An optional filter expression used to define which classes belong to this group, based on fund grouping criteria. You can provide this or the Classes, but not both.") 
-    __properties = ["classes", "code", "name", "description", "shareClassShortCode", "apportionmentMethodProperty", "formula"]
+    __properties: ClassVar[List[str]] = ["classes", "code", "name", "description", "shareClassShortCode", "apportionmentMethodProperty", "formula"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -108,12 +108,12 @@ class AllocationGroupDefinition(BaseModel):
             return AllocationGroupDefinition.model_validate(obj)
 
         _obj = AllocationGroupDefinition.model_validate({
-            "classes": [AllocationGroupClassDefinition.from_dict(_item) for _item in obj.get("classes")] if obj.get("classes") is not None else None,
+            "classes": [AllocationGroupClassDefinition.from_dict(_item) for _item in _v] if (_v := obj.get("classes")) is not None else None,
             "code": obj.get("code"),
             "name": obj.get("name"),
             "description": obj.get("description"),
             "share_class_short_code": obj.get("shareClassShortCode"),
-            "apportionment_method_property": ApportionmentMethodProperty.from_dict(obj.get("apportionmentMethodProperty")) if obj.get("apportionmentMethodProperty") is not None else None,
+            "apportionment_method_property": ApportionmentMethodProperty.from_dict(_v) if (_v := obj.get("apportionmentMethodProperty")) is not None else None,
             "formula": obj.get("formula")
         })
         return _obj

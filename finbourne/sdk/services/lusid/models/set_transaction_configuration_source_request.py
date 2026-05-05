@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class SetTransactionConfigurationSourceRequest(BaseModel):
     aliases: List[SetTransactionConfigurationAlias]
     movements: List[TransactionConfigurationMovementDataRequest]
     properties: Optional[Dict[str, PerpetualProperty]] = None
-    __properties = ["aliases", "movements", "properties"]
+    __properties: ClassVar[List[str]] = ["aliases", "movements", "properties"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -106,13 +106,13 @@ class SetTransactionConfigurationSourceRequest(BaseModel):
             return SetTransactionConfigurationSourceRequest.model_validate(obj)
 
         _obj = SetTransactionConfigurationSourceRequest.model_validate({
-            "aliases": [SetTransactionConfigurationAlias.from_dict(_item) for _item in obj.get("aliases")] if obj.get("aliases") is not None else None,
-            "movements": [TransactionConfigurationMovementDataRequest.from_dict(_item) for _item in obj.get("movements")] if obj.get("movements") is not None else None,
+            "aliases": [SetTransactionConfigurationAlias.from_dict(_item) for _item in _v] if (_v := obj.get("aliases")) is not None else None,
+            "movements": [TransactionConfigurationMovementDataRequest.from_dict(_item) for _item in _v] if (_v := obj.get("movements")) is not None else None,
             "properties": dict(
                 (_k, PerpetualProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None
         })
         return _obj

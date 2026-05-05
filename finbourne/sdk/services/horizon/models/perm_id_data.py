@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class PermIdData(BaseModel):
     quote_perm_id:  StrictStr = Field(...,alias="quotePermId", description="QuotePermId of the instrument") 
     is_primary_quote: StrictBool = Field(description="If the quote is primary", alias="isPrimaryQuote")
     legal_entity_identifier:  Optional[StrictStr] = Field(default=None,alias="legalEntityIdentifier", description="LEI assigned to the instrument") 
-    __properties = ["figi", "ticker", "mic", "quotePermId", "isPrimaryQuote", "legalEntityIdentifier"]
+    __properties: ClassVar[List[str]] = ["figi", "ticker", "mic", "quotePermId", "isPrimaryQuote", "legalEntityIdentifier"]
 
     model_config = ConfigDict(
         populate_by_name=True,

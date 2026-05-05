@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -44,7 +44,7 @@ class ClosedPeriod(BaseModel):
     branch_status:  Optional[StrictStr] = Field(default=None,alias="branchStatus", description="The branch status of the closed period, e.g. Confirmed/Unconfirmed.") 
     href:  Optional[StrictStr] = Field(default=None,alias="href", description="The specific Uniform Resource Identifier (URI) for this resource at the requested asAt datetime.") 
     links: Optional[List[Link]] = None
-    __properties = ["closedPeriodId", "displayName", "description", "effectiveStart", "effectiveEnd", "asAtClosed", "properties", "version", "postCloseActivities", "holdingsAsAtClosedOverride", "valuationAsAtClosedOverride", "branchStatus", "href", "links"]
+    __properties: ClassVar[List[str]] = ["closedPeriodId", "displayName", "description", "effectiveStart", "effectiveEnd", "asAtClosed", "properties", "version", "postCloseActivities", "holdingsAsAtClosedOverride", "valuationAsAtClosedOverride", "branchStatus", "href", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -174,17 +174,17 @@ class ClosedPeriod(BaseModel):
             "as_at_closed": obj.get("asAtClosed"),
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
-            "post_close_activities": [PostCloseActivity.from_dict(_item) for _item in obj.get("postCloseActivities")] if obj.get("postCloseActivities") is not None else None,
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "post_close_activities": [PostCloseActivity.from_dict(_item) for _item in _v] if (_v := obj.get("postCloseActivities")) is not None else None,
             "holdings_as_at_closed_override": obj.get("holdingsAsAtClosedOverride"),
             "valuation_as_at_closed_override": obj.get("valuationAsAtClosedOverride"),
             "branch_status": obj.get("branchStatus"),
             "href": obj.get("href"),
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

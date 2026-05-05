@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class AllocationSetRequest(BaseModel):
     A request to create or update multiple Allocations.  # noqa: E501
     """
     allocation_requests: Optional[List[AllocationRequest]] = Field(default=None, description="A collection of AllocationRequests.", alias="allocationRequests")
-    __properties = ["allocationRequests"]
+    __properties: ClassVar[List[str]] = ["allocationRequests"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,7 +88,7 @@ class AllocationSetRequest(BaseModel):
             return AllocationSetRequest.model_validate(obj)
 
         _obj = AllocationSetRequest.model_validate({
-            "allocation_requests": [AllocationRequest.from_dict(_item) for _item in obj.get("allocationRequests")] if obj.get("allocationRequests") is not None else None
+            "allocation_requests": [AllocationRequest.from_dict(_item) for _item in _v] if (_v := obj.get("allocationRequests")) is not None else None
         })
         return _obj
 

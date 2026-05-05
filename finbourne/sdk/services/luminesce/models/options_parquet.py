@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -27,7 +27,7 @@ class OptionsParquet(BaseModel):
     Additional options applicable to the given SourceType  # noqa: E501
     """
     column_names_wanted:  Optional[StrictStr] = Field(default=None,alias="columnNamesWanted", description="Column (by Name) that should be returned (comma delimited list)") 
-    __properties = ["columnNamesWanted"]
+    __properties: ClassVar[List[str]] = ["columnNamesWanted"]
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -62,12 +62,12 @@ class TranslationApi:
         :return: Returns the result object.
         :rtype: TranslateInstrumentDefinitionsResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the translate_instrument_definitions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.translate_instrument_definitions_with_http_info(translate_instrument_definitions_request, **kwargs)  # noqa: E501
+        response = self.translate_instrument_definitions_with_http_info(translate_instrument_definitions_request, **kwargs)
+        return response.data
 
     @validate_call
     def translate_instrument_definitions_with_http_info(self, translate_instrument_definitions_request: TranslateInstrumentDefinitionsRequest, **kwargs) -> ApiResponse[TranslateInstrumentDefinitionsResponse]:
@@ -189,12 +189,12 @@ class TranslationApi:
         :return: Returns the result object.
         :rtype: TranslateTradeTicketsResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the translate_trade_tickets_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.translate_trade_tickets_with_http_info(translate_trade_ticket_request, **kwargs)  # noqa: E501
+        response = self.translate_trade_tickets_with_http_info(translate_trade_ticket_request, **kwargs)
+        return response.data
 
     @validate_call
     def translate_trade_tickets_with_http_info(self, translate_trade_ticket_request: TranslateTradeTicketRequest, **kwargs) -> ApiResponse[TranslateTradeTicketsResponse]:
@@ -320,12 +320,12 @@ class TranslationApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: TranslateInstrumentDefinitionsResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the translate_instrument_definitions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.translate_instrument_definitions_with_http_info_async(translate_instrument_definitions_request, **kwargs)  # noqa: E501
+            response = await self.translate_instrument_definitions_with_http_info_async(translate_instrument_definitions_request, **kwargs)
+            return response.data
 
     @validate_call
     async def translate_instrument_definitions_with_http_info_async(self, translate_instrument_definitions_request: TranslateInstrumentDefinitionsRequest, **kwargs) -> ApiResponse[TranslateInstrumentDefinitionsResponse]:
@@ -448,12 +448,12 @@ class TranslationApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: TranslateTradeTicketsResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the translate_trade_tickets_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.translate_trade_tickets_with_http_info_async(translate_trade_ticket_request, **kwargs)  # noqa: E501
+            response = await self.translate_trade_tickets_with_http_info_async(translate_trade_ticket_request, **kwargs)
+            return response.data
 
     @validate_call
     async def translate_trade_tickets_with_http_info_async(self, translate_trade_ticket_request: TranslateTradeTicketRequest, **kwargs) -> ApiResponse[TranslateTradeTicketsResponse]:

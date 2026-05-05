@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class CorporateActionTransitionRequest(BaseModel):
     """
     input_transition: Optional[CorporateActionTransitionComponentRequest] = Field(default=None, alias="inputTransition")
     output_transitions: Optional[List[CorporateActionTransitionComponentRequest]] = Field(default=None, alias="outputTransitions")
-    __properties = ["inputTransition", "outputTransitions"]
+    __properties: ClassVar[List[str]] = ["inputTransition", "outputTransitions"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -92,8 +92,8 @@ class CorporateActionTransitionRequest(BaseModel):
             return CorporateActionTransitionRequest.model_validate(obj)
 
         _obj = CorporateActionTransitionRequest.model_validate({
-            "input_transition": CorporateActionTransitionComponentRequest.from_dict(obj.get("inputTransition")) if obj.get("inputTransition") is not None else None,
-            "output_transitions": [CorporateActionTransitionComponentRequest.from_dict(_item) for _item in obj.get("outputTransitions")] if obj.get("outputTransitions") is not None else None
+            "input_transition": CorporateActionTransitionComponentRequest.from_dict(_v) if (_v := obj.get("inputTransition")) is not None else None,
+            "output_transitions": [CorporateActionTransitionComponentRequest.from_dict(_item) for _item in _v] if (_v := obj.get("outputTransitions")) is not None else None
         })
         return _obj
 

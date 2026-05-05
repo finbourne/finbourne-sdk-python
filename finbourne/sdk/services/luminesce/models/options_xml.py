@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class OptionsXml(BaseModel):
     column_names:  Optional[StrictStr] = Field(default=None,alias="columnNames", description="Column Names either overrides the header row or steps in when there is no header row (comma delimited list)") 
     node_path:  Optional[StrictStr] = Field(default=None,alias="nodePath", description="XPath query that selects the nodes to map to rows") 
     namespaces:  Optional[StrictStr] = Field(default=None,alias="namespaces", description="Selected prefix(es) and namespace(s):prefix1=namespace1-uri1,prefix2=namespace2-uri2,...prefixN=namespaceN-uriN") 
-    __properties = ["columnTypes", "inferTypeRowCount", "valuesToMakeNull", "columnNames", "nodePath", "namespaces"]
+    __properties: ClassVar[List[str]] = ["columnTypes", "inferTypeRowCount", "valuesToMakeNull", "columnNames", "nodePath", "namespaces"]
 
     model_config = ConfigDict(
         populate_by_name=True,

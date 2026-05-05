@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class CreateChildTasksAction(BaseModel):
     """
     type:  StrictStr = Field(...,alias="type", description="Type name for this Action") 
     child_task_configurations: List[CreateChildTaskConfiguration] = Field(description="The Child Task Configurations", alias="childTaskConfigurations")
-    __properties = ["type", "childTaskConfigurations"]
+    __properties: ClassVar[List[str]] = ["type", "childTaskConfigurations"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -154,7 +154,7 @@ class CreateChildTasksAction(BaseModel):
 
         _obj = CreateChildTasksAction.model_validate({
             "type": obj.get("type"),
-            "child_task_configurations": [CreateChildTaskConfiguration.from_dict(_item) for _item in obj.get("childTaskConfigurations")] if obj.get("childTaskConfigurations") is not None else None
+            "child_task_configurations": [CreateChildTaskConfiguration.from_dict(_item) for _item in _v] if (_v := obj.get("childTaskConfigurations")) is not None else None
         })
         return _obj
 

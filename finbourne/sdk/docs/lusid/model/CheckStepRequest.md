@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **label** | **str** | Required | The label of the compliance step |
-| **compliance_step_type_request** | **str** | Required | . The available values are: FilterStepRequest, GroupByStepRequest, GroupFilterStepRequest, BranchStepRequest, CheckStepRequest, PercentCheckStepRequest |
+| **compliance_step_type_request** | **str** | Required | The type of the compliance step. Available values: FilterStepRequest, GroupByStepRequest, GroupFilterStepRequest, BranchStepRequest, CheckStepRequest, PercentCheckStepRequest. |
 
 
 ## Usage
@@ -17,7 +17,7 @@ from finbourne.sdk.services.lusid.models.CheckStepRequest import CheckStepReques
 
 instance = CheckStepRequest(
     label="...",  # required — The label of the compliance step
-    compliance_step_type_request="..."  # required — . The available values are: FilterStepRequest, GroupByStepRequest, GroupFilterStepRequest, BranchStepRequest, CheckStepRequest, PercentCheckStepRequest
+    compliance_step_type_request="..."  # required — The type of the compliance step. Available values: FilterStepRequest, GroupByStepRequest, GroupFilterStepRequest, BranchStepRequest, CheckStepRequest, PercentCheckStepRequest.
 )
 ```
 

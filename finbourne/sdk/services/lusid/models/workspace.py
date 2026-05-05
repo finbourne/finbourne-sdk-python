@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class Workspace(BaseModel):
     version: Optional[Version] = None
     permitted_item_actions: Optional[WorkspacePermittedItemActions] = Field(default=None, alias="permittedItemActions")
     links: Optional[List[Link]] = None
-    __properties = ["name", "description", "version", "permittedItemActions", "links"]
+    __properties: ClassVar[List[str]] = ["name", "description", "version", "permittedItemActions", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -102,9 +102,9 @@ class Workspace(BaseModel):
         _obj = Workspace.model_validate({
             "name": obj.get("name"),
             "description": obj.get("description"),
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
-            "permitted_item_actions": WorkspacePermittedItemActions.from_dict(obj.get("permittedItemActions")) if obj.get("permittedItemActions") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "permitted_item_actions": WorkspacePermittedItemActions.from_dict(_v) if (_v := obj.get("permittedItemActions")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

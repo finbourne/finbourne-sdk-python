@@ -62,12 +62,12 @@ class ApplicationMetadataApi:
         :return: Returns the result object.
         :rtype: FileResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_excel_addin_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_excel_addin_with_http_info(version, **kwargs)  # noqa: E501
+        response = self.get_excel_addin_with_http_info(version, **kwargs)
+        return response.data
 
     @validate_call
     def get_excel_addin_with_http_info(self, version: Optional[StrictStr] = None, **kwargs) -> ApiResponse[FileResponse]:
@@ -180,12 +180,12 @@ class ApplicationMetadataApi:
         :return: Returns the result object.
         :rtype: VersionSummaryDto
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_lusid_versions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_lusid_versions_with_http_info(**kwargs)  # noqa: E501
+        response = self.get_lusid_versions_with_http_info(**kwargs)
+        return response.data
 
     @validate_call
     def get_lusid_versions_with_http_info(self, **kwargs) -> ApiResponse[VersionSummaryDto]:
@@ -293,12 +293,12 @@ class ApplicationMetadataApi:
         :return: Returns the result object.
         :rtype: ResourceListOfAccessControlledResource
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_access_controlled_resources_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_access_controlled_resources_with_http_info(filter, **kwargs)  # noqa: E501
+        response = self.list_access_controlled_resources_with_http_info(filter, **kwargs)
+        return response.data
 
     @validate_call
     def list_access_controlled_resources_with_http_info(self, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfAccessControlledResource]:
@@ -417,12 +417,12 @@ class ApplicationMetadataApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: FileResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_excel_addin_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_excel_addin_with_http_info_async(version, **kwargs)  # noqa: E501
+            response = await self.get_excel_addin_with_http_info_async(version, **kwargs)
+            return response.data
 
     @validate_call
     async def get_excel_addin_with_http_info_async(self, version: Optional[StrictStr] = None, **kwargs) -> ApiResponse[FileResponse]:
@@ -536,12 +536,12 @@ class ApplicationMetadataApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: VersionSummaryDto
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_lusid_versions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_lusid_versions_with_http_info_async(**kwargs)  # noqa: E501
+            response = await self.get_lusid_versions_with_http_info_async(**kwargs)
+            return response.data
 
     @validate_call
     async def get_lusid_versions_with_http_info_async(self, **kwargs) -> ApiResponse[VersionSummaryDto]:
@@ -650,12 +650,12 @@ class ApplicationMetadataApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfAccessControlledResource
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_access_controlled_resources_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_access_controlled_resources_with_http_info_async(filter, **kwargs)  # noqa: E501
+            response = await self.list_access_controlled_resources_with_http_info_async(filter, **kwargs)
+            return response.data
 
     @validate_call
     async def list_access_controlled_resources_with_http_info_async(self, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfAccessControlledResource]:

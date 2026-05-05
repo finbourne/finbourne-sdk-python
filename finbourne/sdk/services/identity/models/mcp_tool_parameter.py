@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class McpToolParameter(BaseModel):
     name:  StrictStr = Field(...,alias="name", description="The name of the parameter (identifier format)") 
     data_type:  StrictStr = Field(...,alias="dataType", description="The data type of the parameter") 
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="A description of what the parameter is used for") 
-    __properties = ["name", "dataType", "description"]
+    __properties: ClassVar[List[str]] = ["name", "dataType", "description"]
 
     model_config = ConfigDict(
         populate_by_name=True,

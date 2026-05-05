@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,8 +29,8 @@ class UpdatePropertyDefinitionRequest(BaseModel):
     display_name:  StrictStr = Field(...,alias="displayName", description="The display name of the property.") 
     property_description:  Optional[StrictStr] = Field(default=None,alias="propertyDescription", description="Describes the property") 
     custom_entity_types: Optional[List[StrictStr]] = Field(default=None, description="The custom entity types that properties relating to this property definition can be applied to.", alias="customEntityTypes")
-    value_format:  Optional[StrictStr] = Field(default=None,alias="valueFormat", description="The format in which values for this property definition should be represented.") 
-    __properties = ["displayName", "propertyDescription", "customEntityTypes", "valueFormat"]
+    value_format:  Optional[StrictStr] = Field(default=None,alias="valueFormat", description="The format in which values for this property definition should be represented. Available values: Text, Html.") 
+    __properties: ClassVar[List[str]] = ["displayName", "propertyDescription", "customEntityTypes", "valueFormat"]
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class Alias(BaseModel):
     """
     attribute_name:  StrictStr = Field(...,alias="attributeName", description="The property key, identifier type, or field to be replaced by an alias.") 
     attribute_alias:  StrictStr = Field(...,alias="attributeAlias", description="The alias to replace the property key, identifier type, or field on the bound entity.") 
-    __properties = ["attributeName", "attributeAlias"]
+    __properties: ClassVar[List[str]] = ["attributeName", "attributeAlias"]
 
     model_config = ConfigDict(
         populate_by_name=True,

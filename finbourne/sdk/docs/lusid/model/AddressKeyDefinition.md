@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **address_key** | **str** | Required | The address key of the address key definition. |
-| **type** | **str** | Required | The type of the address key definition |
+| **type** | **str** | Required | The type of the address key definition. Available values: Text, Integer, Decimal, Boolean, DateTime, Result0D. |
 | **version** | [Version](Version.md) | Optional | *No description available.* |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
@@ -19,7 +19,7 @@ from finbourne.sdk.services.lusid.models.AddressKeyDefinition import AddressKeyD
 
 instance = AddressKeyDefinition(
     address_key="...",  # required — The address key of the address key definition.
-    type="...",  # required — The type of the address key definition
+    type="...",  # required — The type of the address key definition. Available values: Text, Integer, Decimal, Boolean, DateTime, Result0D.
     version=Version(...),  # optional
     links=[]  # optional
 )

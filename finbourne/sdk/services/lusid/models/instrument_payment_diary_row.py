@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -41,7 +41,7 @@ class InstrumentPaymentDiaryRow(BaseModel):
     forward_rate: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Forward rate for cash flow if appropriate. (as in for a rates fixed or floating leg)", alias="forwardRate")
     reset_rate: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The value of the reset, if any.", alias="resetRate")
     spread: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The spread that exists on the payoff.")
-    __properties = ["quantity", "currency", "paymentDate", "payOrReceive", "accrualStart", "accrualEnd", "cashFlowType", "isCashFlowDetermined", "isCashFlowHistoric", "discountFactor", "discountedExpectedCashFlowAmount", "dayCountFraction", "forwardRate", "resetRate", "spread"]
+    __properties: ClassVar[List[str]] = ["quantity", "currency", "paymentDate", "payOrReceive", "accrualStart", "accrualEnd", "cashFlowType", "isCashFlowDetermined", "isCashFlowHistoric", "discountFactor", "discountedExpectedCashFlowAmount", "dayCountFraction", "forwardRate", "resetRate", "spread"]
 
     model_config = ConfigDict(
         populate_by_name=True,

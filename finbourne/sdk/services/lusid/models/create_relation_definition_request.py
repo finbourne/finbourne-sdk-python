@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -35,7 +35,7 @@ class CreateRelationDefinitionRequest(BaseModel):
     inward_description:  StrictStr = Field(...,alias="inwardDescription", description="The description to relate target entity object and source entity object.") 
     life_time:  Optional[StrictStr] = Field(default=None,alias="lifeTime", description="Describes how the relations can change over time, allowed values are \"Perpetual\" and \"TimeVariant\"") 
     constraint_style:  Optional[StrictStr] = Field(default=None,alias="constraintStyle", description="Describes the uniqueness and cardinality for relations with a specific source entity object and relations under this definition. Allowed values are \"Property\" and \"Collection\", defaults to \"Collection\" if not specified.") 
-    __properties = ["scope", "code", "sourceEntityDomain", "targetEntityDomain", "displayName", "outwardDescription", "inwardDescription", "lifeTime", "constraintStyle"]
+    __properties: ClassVar[List[str]] = ["scope", "code", "sourceEntityDomain", "targetEntityDomain", "displayName", "outwardDescription", "inwardDescription", "lifeTime", "constraintStyle"]
 
     model_config = ConfigDict(
         populate_by_name=True,

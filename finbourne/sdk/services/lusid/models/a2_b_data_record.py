@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -46,7 +46,7 @@ class A2BDataRecord(BaseModel):
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="The properties which have been requested to be decorated onto the holding. These will be from the 'Instrument' domain.")
     group_id:  Optional[StrictStr] = Field(default=None,alias="groupId", description="Arbitrary string that can be used to cross reference an entry in the A2B report with activity in the A2B-Movements. This should be used purely as a token. The content should not be relied upon.") 
     errors: Optional[List[ResponseMetaData]] = Field(default=None, description="Any errors with the record are reported here.")
-    __properties = ["portfolioId", "holdingType", "instrumentScope", "instrumentUid", "subHoldingKeys", "currency", "transactionId", "start", "flows", "gains", "carry", "end", "properties", "groupId", "errors"]
+    __properties: ClassVar[List[str]] = ["portfolioId", "holdingType", "instrumentScope", "instrumentUid", "subHoldingKeys", "currency", "transactionId", "start", "flows", "gains", "carry", "end", "properties", "groupId", "errors"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -178,31 +178,31 @@ class A2BDataRecord(BaseModel):
             return A2BDataRecord.model_validate(obj)
 
         _obj = A2BDataRecord.model_validate({
-            "portfolio_id": ResourceId.from_dict(obj.get("portfolioId")) if obj.get("portfolioId") is not None else None,
+            "portfolio_id": ResourceId.from_dict(_v) if (_v := obj.get("portfolioId")) is not None else None,
             "holding_type": obj.get("holdingType"),
             "instrument_scope": obj.get("instrumentScope"),
             "instrument_uid": obj.get("instrumentUid"),
             "sub_holding_keys": dict(
                 (_k, PerpetualProperty.from_dict(_v))
-                for _k, _v in obj.get("subHoldingKeys").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("subHoldingKeys") is not None
+            if (_val := obj.get("subHoldingKeys")) is not None
             else None,
             "currency": obj.get("currency"),
             "transaction_id": obj.get("transactionId"),
-            "start": A2BCategory.from_dict(obj.get("start")) if obj.get("start") is not None else None,
-            "flows": A2BCategory.from_dict(obj.get("flows")) if obj.get("flows") is not None else None,
-            "gains": A2BCategory.from_dict(obj.get("gains")) if obj.get("gains") is not None else None,
-            "carry": A2BCategory.from_dict(obj.get("carry")) if obj.get("carry") is not None else None,
-            "end": A2BCategory.from_dict(obj.get("end")) if obj.get("end") is not None else None,
+            "start": A2BCategory.from_dict(_v) if (_v := obj.get("start")) is not None else None,
+            "flows": A2BCategory.from_dict(_v) if (_v := obj.get("flows")) is not None else None,
+            "gains": A2BCategory.from_dict(_v) if (_v := obj.get("gains")) is not None else None,
+            "carry": A2BCategory.from_dict(_v) if (_v := obj.get("carry")) is not None else None,
+            "end": A2BCategory.from_dict(_v) if (_v := obj.get("end")) is not None else None,
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
             "group_id": obj.get("groupId"),
-            "errors": [ResponseMetaData.from_dict(_item) for _item in obj.get("errors")] if obj.get("errors") is not None else None
+            "errors": [ResponseMetaData.from_dict(_item) for _item in _v] if (_v := obj.get("errors")) is not None else None
         })
         return _obj
 

@@ -5,7 +5,7 @@ Specification object for the pre trade configuration parameters of a compliance 
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **include_entity_types** | **str** | Required | Controls whether Orders and Allocations orders are included in the Portfolio valuation done for this compliance run.  Valid values are:  None (to account for Transactions only), Allocations (to include Allocations and Transactions) and  OrdersAndAllocations (to include Orders, Allocations and Transactions). |
+| **include_entity_types** | **str** | Required | Controls whether Orders and Allocations orders are included in the Portfolio valuation done for this compliance run.  Valid values are:  None (to account for Transactions only), Allocations (to include Allocations and Transactions) and  OrdersAndAllocations (to include Orders, Allocations and Transactions). Available values: None, Allocations, OrdersAndAllocations. |
 
 
 ## Usage
@@ -16,7 +16,7 @@ Specification object for the pre trade configuration parameters of a compliance 
 from finbourne.sdk.services.lusid.models.PreTradeConfiguration import PreTradeConfiguration
 
 instance = PreTradeConfiguration(
-    include_entity_types="..."  # required — Controls whether Orders and Allocations orders are included in the Portfolio valuation done for this compliance run.  Valid values are:  None (to account for Transactions only), Allocations (to include Allocations and Transactions) and  OrdersAndAllocations (to include Orders, Allocations and Transactions).
+    include_entity_types="..."  # required — Controls whether Orders and Allocations orders are included in the Portfolio valuation done for this compliance run.  Valid values are:  None (to account for Transactions only), Allocations (to include Allocations and Transactions) and  OrdersAndAllocations (to include Orders, Allocations and Transactions). Available values: None, Allocations, OrdersAndAllocations.
 )
 ```
 

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class GroupReconciliationResultStatuses(BaseModel):
     link_confirmed: Link = Field(alias="linkConfirmed")
     count_changed: StrictInt = Field(description="The number of comparison results of resultStatus \"Changed\" with this instanceId and reconciliationType", alias="countChanged")
     link_changed: Link = Field(alias="linkChanged")
-    __properties = ["countNew", "linkNew", "countConfirmed", "linkConfirmed", "countChanged", "linkChanged"]
+    __properties: ClassVar[List[str]] = ["countNew", "linkNew", "countConfirmed", "linkConfirmed", "countChanged", "linkChanged"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,11 +91,11 @@ class GroupReconciliationResultStatuses(BaseModel):
 
         _obj = GroupReconciliationResultStatuses.model_validate({
             "count_new": obj.get("countNew"),
-            "link_new": Link.from_dict(obj.get("linkNew")) if obj.get("linkNew") is not None else None,
+            "link_new": Link.from_dict(_v) if (_v := obj.get("linkNew")) is not None else None,
             "count_confirmed": obj.get("countConfirmed"),
-            "link_confirmed": Link.from_dict(obj.get("linkConfirmed")) if obj.get("linkConfirmed") is not None else None,
+            "link_confirmed": Link.from_dict(_v) if (_v := obj.get("linkConfirmed")) is not None else None,
             "count_changed": obj.get("countChanged"),
-            "link_changed": Link.from_dict(obj.get("linkChanged")) if obj.get("linkChanged") is not None else None
+            "link_changed": Link.from_dict(_v) if (_v := obj.get("linkChanged")) is not None else None
         })
         return _obj
 

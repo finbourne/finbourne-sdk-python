@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class ComponentTransaction(BaseModel):
     transaction_property_map: List[TransactionPropertyMap] = Field(alias="transactionPropertyMap")
     preserve_tax_lot_structure: Optional[StrictBool] = Field(default=None, description="Controls if tax lot structure should be preserved when cost base is transferred to a new holding. For example in Spin Off instrument events.", alias="preserveTaxLotStructure")
     market_open_time_adjustments: Optional[List[StrictStr]] = Field(default=None, alias="marketOpenTimeAdjustments")
-    __properties = ["displayName", "condition", "transactionFieldMap", "transactionPropertyMap", "preserveTaxLotStructure", "marketOpenTimeAdjustments"]
+    __properties: ClassVar[List[str]] = ["displayName", "condition", "transactionFieldMap", "transactionPropertyMap", "preserveTaxLotStructure", "marketOpenTimeAdjustments"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -109,8 +109,8 @@ class ComponentTransaction(BaseModel):
         _obj = ComponentTransaction.model_validate({
             "display_name": obj.get("displayName"),
             "condition": obj.get("condition"),
-            "transaction_field_map": TransactionFieldMap.from_dict(obj.get("transactionFieldMap")) if obj.get("transactionFieldMap") is not None else None,
-            "transaction_property_map": [TransactionPropertyMap.from_dict(_item) for _item in obj.get("transactionPropertyMap")] if obj.get("transactionPropertyMap") is not None else None,
+            "transaction_field_map": TransactionFieldMap.from_dict(_v) if (_v := obj.get("transactionFieldMap")) is not None else None,
+            "transaction_property_map": [TransactionPropertyMap.from_dict(_item) for _item in _v] if (_v := obj.get("transactionPropertyMap")) is not None else None,
             "preserve_tax_lot_structure": obj.get("preserveTaxLotStructure"),
             "market_open_time_adjustments": obj.get("marketOpenTimeAdjustments")
         })

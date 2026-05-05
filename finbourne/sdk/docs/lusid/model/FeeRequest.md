@@ -11,11 +11,11 @@
 | **origin** | **str** | Optional | The origin or source of the Fee accrual. |
 | **calculation_base** | **str** | Optional | The calculation base for a Fee that is calculated using a percentage (TotalAnnualAccrualAmount and CalculationBase cannot both be present). When the Fee is a ShareClass Fee (i.e: when ShareClasses contains at least one value), each of the following would be a valid CalculationBase: \&quot;10000.00\&quot;, \&quot;ShareClass.GAV\&quot;, \&quot;ShareClass.GAV - ShareClass.Fees[ShareClassFeeCode1].Amount\&quot;, \&quot;ShareClass.Fees[ShareClassFeeCode1].CalculationBase\&quot;. When the Fee is a NonShareClassSpecific Fee (i.e: when ShareClasses contains no values), each of the following would be a valid CalculationBase: \&quot;10000.00\&quot;, \&quot;GAV\&quot;, \&quot;GAV - Fees[NonClassSpecificFeeCode1].Amount\&quot;, \&quot;Fees[NonClassSpecificFeeCode1].CalculationBase\&quot;.  |
 | **accrual_currency** | **str** | Required | The accrual currency. |
-| **treatment** | **str** | Required | The accrual period of the Fee; &#39;Monthly&#39; or &#39;Daily&#39;. |
+| **treatment** | **str** | Required | The accrual period of the Fee. Available values: Daily, Monthly. |
 | **total_annual_accrual_amount** | **float** | Optional | The total annual accrued amount for the Fee. (TotalAnnualAccrualAmount and CalculationBase cannot both be present) |
 | **fee_rate_percentage** | **float** | Optional | The fee rate percentage. (Required when CalculationBase is present and not compatible with TotalAnnualAccrualAmount) |
-| **payable_frequency** | **str** | Required | The payable frequency for the Fee; &#39;Annually&#39;, &#39;Quarterly&#39; or &#39;Monthly&#39;. |
-| **business_day_convention** | **str** | Required | The business day convention to use for Fee calculations on weekends or holidays. Supported string values are: [Previous, P, Following, F, None]. |
+| **payable_frequency** | **str** | Required | The payable frequency for the Fee. Available values: Annually, Quarterly, Monthly. |
+| **business_day_convention** | **str** | Required | The business day convention to use for Fee calculations on weekends or holidays. Available values: None, P, Previous, F, Following. |
 | **start_date** | **datetime** | Required | The start date of the Fee. |
 | **end_date** | **datetime** | Optional | The end date of the Fee. |
 | **anchor_date** | [DayMonth](DayMonth.md) | Optional | *No description available.* |
@@ -39,11 +39,11 @@ instance = FeeRequest(
     origin="...",  # optional — The origin or source of the Fee accrual.
     calculation_base="...",  # optional — The calculation base for a Fee that is calculated using a percentage (TotalAnnualAccrualAmount and CalculationBase cannot both be present). When the Fee is a ShareClass Fee (i.e: when ShareClasses contains at least one value), each of the following would be a valid CalculationBase: \&quot;10000.00\&quot;, \&quot;ShareClass.GAV\&quot;, \&quot;ShareClass.GAV - ShareClass.Fees[ShareClassFeeCode1].Amount\&quot;, \&quot;ShareClass.Fees[ShareClassFeeCode1].CalculationBase\&quot;. When the Fee is a NonShareClassSpecific Fee (i.e: when ShareClasses contains no values), each of the following would be a valid CalculationBase: \&quot;10000.00\&quot;, \&quot;GAV\&quot;, \&quot;GAV - Fees[NonClassSpecificFeeCode1].Amount\&quot;, \&quot;Fees[NonClassSpecificFeeCode1].CalculationBase\&quot;. 
     accrual_currency="...",  # required — The accrual currency.
-    treatment="...",  # required — The accrual period of the Fee; &#39;Monthly&#39; or &#39;Daily&#39;.
+    treatment="...",  # required — The accrual period of the Fee. Available values: Daily, Monthly.
     total_annual_accrual_amount=0.0,  # optional — The total annual accrued amount for the Fee. (TotalAnnualAccrualAmount and CalculationBase cannot both be present)
     fee_rate_percentage=0.0,  # optional — The fee rate percentage. (Required when CalculationBase is present and not compatible with TotalAnnualAccrualAmount)
-    payable_frequency="...",  # required — The payable frequency for the Fee; &#39;Annually&#39;, &#39;Quarterly&#39; or &#39;Monthly&#39;.
-    business_day_convention="...",  # required — The business day convention to use for Fee calculations on weekends or holidays. Supported string values are: [Previous, P, Following, F, None].
+    payable_frequency="...",  # required — The payable frequency for the Fee. Available values: Annually, Quarterly, Monthly.
+    business_day_convention="...",  # required — The business day convention to use for Fee calculations on weekends or holidays. Available values: None, P, Previous, F, Following.
     start_date=datetime.now(),  # required — The start date of the Fee.
     end_date=datetime.now(),  # optional — The end date of the Fee.
     anchor_date=DayMonth(...),  # optional

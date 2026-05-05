@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class ShareClassAmount(BaseModel):
     """
     fund_currency_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The value of the amount in the fund currency.", alias="fundCurrencyAmount")
     share_class_currency_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The value of the amount in the share class currency.", alias="shareClassCurrencyAmount")
-    __properties = ["fundCurrencyAmount", "shareClassCurrencyAmount"]
+    __properties: ClassVar[List[str]] = ["fundCurrencyAmount", "shareClassCurrencyAmount"]
 
     model_config = ConfigDict(
         populate_by_name=True,

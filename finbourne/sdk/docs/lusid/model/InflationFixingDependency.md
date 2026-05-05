@@ -8,7 +8,7 @@ For indicating a dependency upon an inflation fixing
 | **type** | **str** | Required | The Type of fixing (index, ratio or assumption) |
 | **code** | **str** | Required | The Code of the fixing, typically the index name |
 | **var_date** | **datetime** | Required | The effectiveAt of the inflation fixing |
-| **dependency_type** | **str** | Required | The available values are: OpaqueDependency, CashDependency, DiscountingDependency, EquityCurveDependency, EquityVolDependency, FxDependency, FxForwardsDependency, FxVolDependency, IndexProjectionDependency, IrVolDependency, QuoteDependency, Vendor, CalendarDependency, InflationFixingDependency |
+| **dependency_type** | **str** | Required | Available values: OpaqueDependency, CashDependency, DiscountingDependency, EquityCurveDependency, EquityVolDependency, FxDependency, FxForwardsDependency, FxVolDependency, IndexProjectionDependency, IrVolDependency, QuoteDependency, Vendor, CalendarDependency, InflationFixingDependency. |
 
 
 ## Usage
@@ -22,7 +22,7 @@ instance = InflationFixingDependency(
     type="...",  # required — The Type of fixing (index, ratio or assumption)
     code="...",  # required — The Code of the fixing, typically the index name
     var_date=datetime.now(),  # required — The effectiveAt of the inflation fixing
-    dependency_type="..."  # required — The available values are: OpaqueDependency, CashDependency, DiscountingDependency, EquityCurveDependency, EquityVolDependency, FxDependency, FxForwardsDependency, FxVolDependency, IndexProjectionDependency, IrVolDependency, QuoteDependency, Vendor, CalendarDependency, InflationFixingDependency
+    dependency_type="..."  # required — Available values: OpaqueDependency, CashDependency, DiscountingDependency, EquityCurveDependency, EquityVolDependency, FxDependency, FxForwardsDependency, FxVolDependency, IndexProjectionDependency, IrVolDependency, QuoteDependency, Vendor, CalendarDependency, InflationFixingDependency.
 )
 ```
 

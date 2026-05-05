@@ -68,12 +68,12 @@ class SearchApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfStorageObject
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the search_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.search_with_http_info(search_body, page, sort_by, limit, filter, **kwargs)  # noqa: E501
+        response = self.search_with_http_info(search_body, page, sort_by, limit, filter, **kwargs)
+        return response.data
 
     @validate_call
     def search_with_http_info(self, search_body: SearchBody, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfStorageObject]:
@@ -230,12 +230,12 @@ class SearchApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfStorageObject
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the search_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.search_with_http_info_async(search_body, page, sort_by, limit, filter, **kwargs)  # noqa: E501
+            response = await self.search_with_http_info_async(search_body, page, sort_by, limit, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def search_with_http_info_async(self, search_body: SearchBody, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfStorageObject]:

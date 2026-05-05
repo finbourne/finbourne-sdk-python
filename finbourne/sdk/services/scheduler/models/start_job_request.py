@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class StartJobRequest(BaseModel):
     arguments: Optional[Dict[str, Optional[StrictStr]]] = Field(default=None, description="All arguments needed for the Job to run")
     notifications: Optional[List[Notification]] = Field(default=None, description="Notifications for this Job")
     use_as_auth:  Optional[StrictStr] = Field(default=None,alias="useAsAuth", description="Id of user associated with schedule. All calls to FINBOURNE services as part of execution of this schedule will be authenticated as this  user. Can be null, in which case we'll default to that of the user  making this request") 
-    __properties = ["arguments", "notifications", "useAsAuth"]
+    __properties: ClassVar[List[str]] = ["arguments", "notifications", "useAsAuth"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -101,7 +101,7 @@ class StartJobRequest(BaseModel):
 
         _obj = StartJobRequest.model_validate({
             "arguments": obj.get("arguments"),
-            "notifications": [Notification.from_dict(_item) for _item in obj.get("notifications")] if obj.get("notifications") is not None else None,
+            "notifications": [Notification.from_dict(_item) for _item in _v] if (_v := obj.get("notifications")) is not None else None,
             "use_as_auth": obj.get("useAsAuth")
         })
         return _obj

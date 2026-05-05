@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,9 +30,9 @@ class DialectId(BaseModel):
     vendor:  StrictStr = Field(...,alias="vendor", description="The vendor of the dialect, the entity that created it. e.g. ISDA, FINBOURNE.") 
     source_system:  StrictStr = Field(...,alias="sourceSystem", description="The source system of the dialect, the system that understands it. e.g. LUSID, QuantLib.") 
     version:  StrictStr = Field(...,alias="version", description="The semantic version of the dialect: MAJOR.MINOR.PATCH.") 
-    serialisation_format:  StrictStr = Field(...,alias="serialisationFormat", description="The serialisation format of a document in this dialect. e.g. JSON, XML.") 
-    entity_type:  StrictStr = Field(...,alias="entityType", description="The type of entity this dialect describes e.g. Instrument.") 
-    __properties = ["scope", "vendor", "sourceSystem", "version", "serialisationFormat", "entityType"]
+    serialisation_format:  StrictStr = Field(...,alias="serialisationFormat", description="The serialisation format of a document in this dialect. Available values: Json, Xml.") 
+    entity_type:  StrictStr = Field(...,alias="entityType", description="The type of entity this dialect describes e.g. Instrument. Available values: Instrument.") 
+    __properties: ClassVar[List[str]] = ["scope", "vendor", "sourceSystem", "version", "serialisationFormat", "entityType"]
 
     model_config = ConfigDict(
         populate_by_name=True,

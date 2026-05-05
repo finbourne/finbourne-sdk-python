@@ -65,12 +65,12 @@ class IdentifierDefinitionsApi:
         :return: Returns the result object.
         :rtype: IdentifierDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_identifier_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_identifier_definition_with_http_info(create_identifier_definition_request, **kwargs)  # noqa: E501
+        response = self.create_identifier_definition_with_http_info(create_identifier_definition_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_identifier_definition_with_http_info(self, create_identifier_definition_request: Optional[CreateIdentifierDefinitionRequest] = None, **kwargs) -> ApiResponse[IdentifierDefinition]:
@@ -184,7 +184,7 @@ class IdentifierDefinitionsApi:
         """[EXPERIMENTAL] DeleteIdentifierDefinition: Delete a particular Identifier Definition  # noqa: E501
 
         The deletion will take effect from the Identifier Definition deletion datetime.  i.e. will no longer exist at any asAt datetime after the asAt datetime of deletion.  # noqa: E501
-        :param domain: The type of entity to which the identifier relates (required)
+        :param domain: The type of entity to which the identifier relates. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee. (required)
         :type domain: str
         :param identifier_scope: The scope that the identifier exists in (required)
         :type identifier_scope: str
@@ -196,19 +196,19 @@ class IdentifierDefinitionsApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_identifier_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_identifier_definition_with_http_info(domain, identifier_scope, identifier_type, **kwargs)  # noqa: E501
+        response = self.delete_identifier_definition_with_http_info(domain, identifier_scope, identifier_type, **kwargs)
+        return response.data
 
     @validate_call
     def delete_identifier_definition_with_http_info(self, domain: StrictStr, identifier_scope: StrictStr, identifier_type: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
         """[EXPERIMENTAL] DeleteIdentifierDefinition: Delete a particular Identifier Definition  # noqa: E501
 
         The deletion will take effect from the Identifier Definition deletion datetime.  i.e. will no longer exist at any asAt datetime after the asAt datetime of deletion.  # noqa: E501
-        :param domain: The type of entity to which the identifier relates (required)
+        :param domain: The type of entity to which the identifier relates. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee. (required)
         :type domain: str
         :param identifier_scope: The scope that the identifier exists in (required)
         :type identifier_scope: str
@@ -320,7 +320,7 @@ class IdentifierDefinitionsApi:
         """[EXPERIMENTAL] GetIdentifierDefinition: Get a single Identifier Definition  # noqa: E501
 
         Get a single Identifier Definition using domain, identifierScope, identifierType, and an optional asAt              - defaulting to latest if not specified  # noqa: E501
-        :param domain: The type of entity to which the identifier relates. (required)
+        :param domain: The type of entity to which the identifier relates. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee. (required)
         :type domain: str
         :param identifier_scope: The scope that the identifier exists in (required)
         :type identifier_scope: str
@@ -338,19 +338,19 @@ class IdentifierDefinitionsApi:
         :return: Returns the result object.
         :rtype: IdentifierDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_identifier_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_identifier_definition_with_http_info(domain, identifier_scope, identifier_type, as_at, effective_at, property_keys, **kwargs)  # noqa: E501
+        response = self.get_identifier_definition_with_http_info(domain, identifier_scope, identifier_type, as_at, effective_at, property_keys, **kwargs)
+        return response.data
 
     @validate_call
     def get_identifier_definition_with_http_info(self, domain: StrictStr, identifier_scope: StrictStr, identifier_type: StrictStr, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[IdentifierDefinition]:
         """[EXPERIMENTAL] GetIdentifierDefinition: Get a single Identifier Definition  # noqa: E501
 
         Get a single Identifier Definition using domain, identifierScope, identifierType, and an optional asAt              - defaulting to latest if not specified  # noqa: E501
-        :param domain: The type of entity to which the identifier relates. (required)
+        :param domain: The type of entity to which the identifier relates. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee. (required)
         :type domain: str
         :param identifier_scope: The scope that the identifier exists in (required)
         :type identifier_scope: str
@@ -504,12 +504,12 @@ class IdentifierDefinitionsApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfIdentifierDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_identifier_definitions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_identifier_definitions_with_http_info(effective_at, as_at, page, limit, filter, sort_by, property_keys, **kwargs)  # noqa: E501
+        response = self.list_identifier_definitions_with_http_info(effective_at, as_at, page, limit, filter, sort_by, property_keys, **kwargs)
+        return response.data
 
     @validate_call
     def list_identifier_definitions_with_http_info(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfIdentifierDefinition]:
@@ -657,7 +657,7 @@ class IdentifierDefinitionsApi:
         """[EXPERIMENTAL] UpdateIdentifierDefinition: Update Identifier Definition defined by domain, identifierScope, and identifierType  # noqa: E501
 
         Overwrites an existing Identifier Definition.  # noqa: E501
-        :param domain: The type of entity to which the identifier relates (required)
+        :param domain: The type of entity to which the identifier relates. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee. (required)
         :type domain: str
         :param identifier_scope: The scope that the identifier exists in (required)
         :type identifier_scope: str
@@ -671,19 +671,19 @@ class IdentifierDefinitionsApi:
         :return: Returns the result object.
         :rtype: IdentifierDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_identifier_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_identifier_definition_with_http_info(domain, identifier_scope, identifier_type, update_identifier_definition_request, **kwargs)  # noqa: E501
+        response = self.update_identifier_definition_with_http_info(domain, identifier_scope, identifier_type, update_identifier_definition_request, **kwargs)
+        return response.data
 
     @validate_call
     def update_identifier_definition_with_http_info(self, domain: StrictStr, identifier_scope: StrictStr, identifier_type: StrictStr, update_identifier_definition_request: Optional[UpdateIdentifierDefinitionRequest] = None, **kwargs) -> ApiResponse[IdentifierDefinition]:
         """[EXPERIMENTAL] UpdateIdentifierDefinition: Update Identifier Definition defined by domain, identifierScope, and identifierType  # noqa: E501
 
         Overwrites an existing Identifier Definition.  # noqa: E501
-        :param domain: The type of entity to which the identifier relates (required)
+        :param domain: The type of entity to which the identifier relates. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee. (required)
         :type domain: str
         :param identifier_scope: The scope that the identifier exists in (required)
         :type identifier_scope: str
@@ -820,12 +820,12 @@ class IdentifierDefinitionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: IdentifierDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_identifier_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_identifier_definition_with_http_info_async(create_identifier_definition_request, **kwargs)  # noqa: E501
+            response = await self.create_identifier_definition_with_http_info_async(create_identifier_definition_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_identifier_definition_with_http_info_async(self, create_identifier_definition_request: Optional[CreateIdentifierDefinitionRequest] = None, **kwargs) -> ApiResponse[IdentifierDefinition]:
@@ -940,7 +940,7 @@ class IdentifierDefinitionsApi:
             """[EXPERIMENTAL] DeleteIdentifierDefinition: Delete a particular Identifier Definition  # noqa: E501
             The deletion will take effect from the Identifier Definition deletion datetime.  i.e. will no longer exist at any asAt datetime after the asAt datetime of deletion.  # noqa: E501
             
-            :param domain: The type of entity to which the identifier relates (required)
+            :param domain: The type of entity to which the identifier relates. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee. (required)
             :type domain: str
             :param identifier_scope: The scope that the identifier exists in (required)
             :type identifier_scope: str
@@ -952,12 +952,12 @@ class IdentifierDefinitionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_identifier_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_identifier_definition_with_http_info_async(domain, identifier_scope, identifier_type, **kwargs)  # noqa: E501
+            response = await self.delete_identifier_definition_with_http_info_async(domain, identifier_scope, identifier_type, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_identifier_definition_with_http_info_async(self, domain: StrictStr, identifier_scope: StrictStr, identifier_type: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -965,7 +965,7 @@ class IdentifierDefinitionsApi:
 
             The deletion will take effect from the Identifier Definition deletion datetime.  i.e. will no longer exist at any asAt datetime after the asAt datetime of deletion.  # noqa: E501
 
-            :param domain: The type of entity to which the identifier relates (required)
+            :param domain: The type of entity to which the identifier relates. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee. (required)
             :type domain: str
             :param identifier_scope: The scope that the identifier exists in (required)
             :type identifier_scope: str
@@ -1077,7 +1077,7 @@ class IdentifierDefinitionsApi:
             """[EXPERIMENTAL] GetIdentifierDefinition: Get a single Identifier Definition  # noqa: E501
             Get a single Identifier Definition using domain, identifierScope, identifierType, and an optional asAt              - defaulting to latest if not specified  # noqa: E501
             
-            :param domain: The type of entity to which the identifier relates. (required)
+            :param domain: The type of entity to which the identifier relates. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee. (required)
             :type domain: str
             :param identifier_scope: The scope that the identifier exists in (required)
             :type identifier_scope: str
@@ -1095,12 +1095,12 @@ class IdentifierDefinitionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: IdentifierDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_identifier_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_identifier_definition_with_http_info_async(domain, identifier_scope, identifier_type, as_at, effective_at, property_keys, **kwargs)  # noqa: E501
+            response = await self.get_identifier_definition_with_http_info_async(domain, identifier_scope, identifier_type, as_at, effective_at, property_keys, **kwargs)
+            return response.data
 
     @validate_call
     async def get_identifier_definition_with_http_info_async(self, domain: StrictStr, identifier_scope: StrictStr, identifier_type: StrictStr, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[IdentifierDefinition]:
@@ -1108,7 +1108,7 @@ class IdentifierDefinitionsApi:
 
             Get a single Identifier Definition using domain, identifierScope, identifierType, and an optional asAt              - defaulting to latest if not specified  # noqa: E501
 
-            :param domain: The type of entity to which the identifier relates. (required)
+            :param domain: The type of entity to which the identifier relates. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee. (required)
             :type domain: str
             :param identifier_scope: The scope that the identifier exists in (required)
             :type identifier_scope: str
@@ -1262,12 +1262,12 @@ class IdentifierDefinitionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfIdentifierDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_identifier_definitions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_identifier_definitions_with_http_info_async(effective_at, as_at, page, limit, filter, sort_by, property_keys, **kwargs)  # noqa: E501
+            response = await self.list_identifier_definitions_with_http_info_async(effective_at, as_at, page, limit, filter, sort_by, property_keys, **kwargs)
+            return response.data
 
     @validate_call
     async def list_identifier_definitions_with_http_info_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfIdentifierDefinition]:
@@ -1416,7 +1416,7 @@ class IdentifierDefinitionsApi:
             """[EXPERIMENTAL] UpdateIdentifierDefinition: Update Identifier Definition defined by domain, identifierScope, and identifierType  # noqa: E501
             Overwrites an existing Identifier Definition.  # noqa: E501
             
-            :param domain: The type of entity to which the identifier relates (required)
+            :param domain: The type of entity to which the identifier relates. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee. (required)
             :type domain: str
             :param identifier_scope: The scope that the identifier exists in (required)
             :type identifier_scope: str
@@ -1430,12 +1430,12 @@ class IdentifierDefinitionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: IdentifierDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_identifier_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_identifier_definition_with_http_info_async(domain, identifier_scope, identifier_type, update_identifier_definition_request, **kwargs)  # noqa: E501
+            response = await self.update_identifier_definition_with_http_info_async(domain, identifier_scope, identifier_type, update_identifier_definition_request, **kwargs)
+            return response.data
 
     @validate_call
     async def update_identifier_definition_with_http_info_async(self, domain: StrictStr, identifier_scope: StrictStr, identifier_type: StrictStr, update_identifier_definition_request: Optional[UpdateIdentifierDefinitionRequest] = None, **kwargs) -> ApiResponse[IdentifierDefinition]:
@@ -1443,7 +1443,7 @@ class IdentifierDefinitionsApi:
 
             Overwrites an existing Identifier Definition.  # noqa: E501
 
-            :param domain: The type of entity to which the identifier relates (required)
+            :param domain: The type of entity to which the identifier relates. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee. (required)
             :type domain: str
             :param identifier_scope: The scope that the identifier exists in (required)
             :type identifier_scope: str

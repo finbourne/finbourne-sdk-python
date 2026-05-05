@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -35,7 +35,7 @@ class ProcessInformation(BaseModel):
     schema_version:  Optional[StrictStr] = Field(default=None,alias="schemaVersion", description="") 
     user_id:  StrictStr = Field(...,alias="userId", description="") 
     process_summary: Optional[ProcessSummary] = Field(default=None, alias="processSummary")
-    __properties = ["domain", "processName", "runId", "startTime", "dataAction", "schemaVersion", "userId", "processSummary"]
+    __properties: ClassVar[List[str]] = ["domain", "processName", "runId", "startTime", "dataAction", "schemaVersion", "userId", "processSummary"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -98,7 +98,7 @@ class ProcessInformation(BaseModel):
             "data_action": obj.get("dataAction"),
             "schema_version": obj.get("schemaVersion"),
             "user_id": obj.get("userId"),
-            "process_summary": ProcessSummary.from_dict(obj.get("processSummary")) if obj.get("processSummary") is not None else None
+            "process_summary": ProcessSummary.from_dict(_v) if (_v := obj.get("processSummary")) is not None else None
         })
         return _obj
 

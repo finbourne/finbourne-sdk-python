@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -36,7 +36,7 @@ class Relationship(BaseModel):
     traversal_description:  StrictStr = Field(...,alias="traversalDescription", description="Description of the relationship based on relationship's traversal direction. If 'TraversalDirection' is 'Out', this description would be 'OutwardDescription' from the associated relationship definition. If 'TraversalDirection' is 'In', this description would be 'InwardDescription' from the associated relationship definition.") 
     effective_from: Optional[datetime] = Field(default=None, description="The effective datetime from which the relationship is valid.", alias="effectiveFrom")
     effective_until: Optional[datetime] = Field(default=None, description="The effective datetime until which the relationship is valid. If no future deletions are present or an effective until has not been set for the relationship, this will be indefinite and represented by the maximum date.", alias="effectiveUntil")
-    __properties = ["version", "relationshipDefinitionId", "relatedEntity", "traversalDirection", "traversalDescription", "effectiveFrom", "effectiveUntil"]
+    __properties: ClassVar[List[str]] = ["version", "relationshipDefinitionId", "relatedEntity", "traversalDirection", "traversalDescription", "effectiveFrom", "effectiveUntil"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -93,9 +93,9 @@ class Relationship(BaseModel):
             return Relationship.model_validate(obj)
 
         _obj = Relationship.model_validate({
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
-            "relationship_definition_id": ResourceId.from_dict(obj.get("relationshipDefinitionId")) if obj.get("relationshipDefinitionId") is not None else None,
-            "related_entity": RelatedEntity.from_dict(obj.get("relatedEntity")) if obj.get("relatedEntity") is not None else None,
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "relationship_definition_id": ResourceId.from_dict(_v) if (_v := obj.get("relationshipDefinitionId")) is not None else None,
+            "related_entity": RelatedEntity.from_dict(_v) if (_v := obj.get("relatedEntity")) is not None else None,
             "traversal_direction": obj.get("traversalDirection"),
             "traversal_description": obj.get("traversalDescription"),
             "effective_from": obj.get("effectiveFrom"),

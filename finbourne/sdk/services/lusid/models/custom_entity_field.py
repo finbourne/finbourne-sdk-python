@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class CustomEntityField(BaseModel):
     value: Optional[Any] = Field(default=None, description="The value for the field.")
     effective_from: Optional[datetime] = Field(default=None, description="The effective datetime from which the field's value is valid. For timeVariant fields, this defaults to the beginning of time.", alias="effectiveFrom")
     effective_until: Optional[datetime] = Field(default=None, description="The effective datetime until which the field's value is valid. If not supplied, the value will be valid indefinitely or until the next “effectiveFrom” date of the field.", alias="effectiveUntil")
-    __properties = ["name", "value", "effectiveFrom", "effectiveUntil"]
+    __properties: ClassVar[List[str]] = ["name", "value", "effectiveFrom", "effectiveUntil"]
 
     model_config = ConfigDict(
         populate_by_name=True,

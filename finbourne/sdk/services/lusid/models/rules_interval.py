@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class RulesInterval(BaseModel):
     """
     effective_range: DateRange = Field(alias="effectiveRange")
     rules: List[AmortisationRule] = Field(description="The rules of this rule set.")
-    __properties = ["effectiveRange", "rules"]
+    __properties: ClassVar[List[str]] = ["effectiveRange", "rules"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,8 +88,8 @@ class RulesInterval(BaseModel):
             return RulesInterval.model_validate(obj)
 
         _obj = RulesInterval.model_validate({
-            "effective_range": DateRange.from_dict(obj.get("effectiveRange")) if obj.get("effectiveRange") is not None else None,
-            "rules": [AmortisationRule.from_dict(_item) for _item in obj.get("rules")] if obj.get("rules") is not None else None
+            "effective_range": DateRange.from_dict(_v) if (_v := obj.get("effectiveRange")) is not None else None,
+            "rules": [AmortisationRule.from_dict(_item) for _item in _v] if (_v := obj.get("rules")) is not None else None
         })
         return _obj
 

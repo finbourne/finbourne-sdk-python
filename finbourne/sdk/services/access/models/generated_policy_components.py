@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class GeneratedPolicyComponents(BaseModel):
     applications: Optional[List[StrictStr]] = Field(default=None, description="Applications to which the policy applies")
     template_metadata: Optional[TemplateMetadata] = Field(default=None, alias="templateMetadata")
     selectors: Optional[List[SelectorDefinition]] = Field(default=None, description="Selectors that this policy will be applied to")
-    __properties = ["applications", "templateMetadata", "selectors"]
+    __properties: ClassVar[List[str]] = ["applications", "templateMetadata", "selectors"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -100,8 +100,8 @@ class GeneratedPolicyComponents(BaseModel):
 
         _obj = GeneratedPolicyComponents.model_validate({
             "applications": obj.get("applications"),
-            "template_metadata": TemplateMetadata.from_dict(obj.get("templateMetadata")) if obj.get("templateMetadata") is not None else None,
-            "selectors": [SelectorDefinition.from_dict(_item) for _item in obj.get("selectors")] if obj.get("selectors") is not None else None
+            "template_metadata": TemplateMetadata.from_dict(_v) if (_v := obj.get("templateMetadata")) is not None else None,
+            "selectors": [SelectorDefinition.from_dict(_item) for _item in _v] if (_v := obj.get("selectors")) is not None else None
         })
         return _obj
 

@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **key** | **str** | Required | The key of the value to compare |
-| **operation** | **str** | Required | What to do with the value pointed to by the key, e.g. Sum. Only \&quot;Value is allowed for core rules\&quot; |
+| **operation** | **str** | Required | What to do with the value pointed to by the key, e.g. Sum. Only \&quot;Value is allowed for core rules\&quot;. Available values: Value. |
 
 
 ## Usage
@@ -17,7 +17,7 @@ from finbourne.sdk.services.lusid.models.GroupReconciliationCoreComparisonRuleOp
 
 instance = GroupReconciliationCoreComparisonRuleOperand(
     key="...",  # required — The key of the value to compare
-    operation="..."  # required — What to do with the value pointed to by the key, e.g. Sum. Only \&quot;Value is allowed for core rules\&quot;
+    operation="..."  # required — What to do with the value pointed to by the key, e.g. Sum. Only \&quot;Value is allowed for core rules\&quot;. Available values: Value.
 )
 ```
 

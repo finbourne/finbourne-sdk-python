@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class SupportRolesResponse(BaseModel):
     SupportRolesResponse
     """
     support_roles: Optional[List[SupportRole]] = Field(default=None, alias="supportRoles")
-    __properties = ["supportRoles"]
+    __properties: ClassVar[List[str]] = ["supportRoles"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,7 +88,7 @@ class SupportRolesResponse(BaseModel):
             return SupportRolesResponse.model_validate(obj)
 
         _obj = SupportRolesResponse.model_validate({
-            "support_roles": [SupportRole.from_dict(_item) for _item in obj.get("supportRoles")] if obj.get("supportRoles") is not None else None
+            "support_roles": [SupportRole.from_dict(_item) for _item in _v] if (_v := obj.get("supportRoles")) is not None else None
         })
         return _obj
 

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class CreateCorporateActionSourceRequest(BaseModel):
     display_name:  StrictStr = Field(...,alias="displayName", description="The name of the corporate action source") 
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="The description of the corporate action source") 
     instrument_scopes: Optional[List[StrictStr]] = Field(default=None, description="The list of instrument scopes used as the scope resolution strategy when resolving instruments of upserted corporate actions.", alias="instrumentScopes")
-    __properties = ["scope", "code", "displayName", "description", "instrumentScopes"]
+    __properties: ClassVar[List[str]] = ["scope", "code", "displayName", "description", "instrumentScopes"]
 
     model_config = ConfigDict(
         populate_by_name=True,

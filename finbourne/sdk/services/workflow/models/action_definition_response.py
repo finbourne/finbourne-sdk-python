@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class ActionDefinitionResponse(BaseModel):
     display_name:  Optional[StrictStr] = Field(default=None,alias="displayName", description="Schema for the Action") 
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="Schema for the Action") 
     category:  Optional[StrictStr] = Field(default=None,alias="category", description="Schema for the Action") 
-    __properties = ["name", "runAsUserId", "actionDetails", "displayName", "description", "category"]
+    __properties: ClassVar[List[str]] = ["name", "runAsUserId", "actionDetails", "displayName", "description", "category"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -111,7 +111,7 @@ class ActionDefinitionResponse(BaseModel):
         _obj = ActionDefinitionResponse.model_validate({
             "name": obj.get("name"),
             "run_as_user_id": obj.get("runAsUserId"),
-            "action_details": ActionDetailsResponse.from_dict(obj.get("actionDetails")) if obj.get("actionDetails") is not None else None,
+            "action_details": ActionDetailsResponse.from_dict(_v) if (_v := obj.get("actionDetails")) is not None else None,
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
             "category": obj.get("category")

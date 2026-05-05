@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class CurrentUserResponse(BaseModel):
     user_expiry: Optional[datetime] = Field(default=None, description="The user's user expiry datetime", alias="userExpiry")
     groups: Optional[List[StrictStr]] = Field(default=None, description="The groups this user belongs to")
     links: Optional[List[Link]] = None
-    __properties = ["id", "emailAddress", "type", "domainType", "userExpiry", "groups", "links"]
+    __properties: ClassVar[List[str]] = ["id", "emailAddress", "type", "domainType", "userExpiry", "groups", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -115,7 +115,7 @@ class CurrentUserResponse(BaseModel):
             "domain_type": obj.get("domainType"),
             "user_expiry": obj.get("userExpiry"),
             "groups": obj.get("groups"),
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

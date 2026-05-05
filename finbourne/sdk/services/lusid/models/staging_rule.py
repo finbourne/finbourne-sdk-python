@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,10 +30,10 @@ class StagingRule(BaseModel):
     """
     rule_id:  StrictStr = Field(...,alias="ruleId", description="The ID of the staging rule.") 
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="A description for the staging rule.") 
-    status:  StrictStr = Field(...,alias="status", description="Whether the rule is 'Active' or 'Inactive'.") 
+    status:  StrictStr = Field(...,alias="status", description="Status of the rule. Available values: Active, Inactive.") 
     match_criteria: StagingRuleMatchCriteria = Field(alias="matchCriteria")
     approval_criteria: StagingRuleApprovalCriteria = Field(alias="approvalCriteria")
-    __properties = ["ruleId", "description", "status", "matchCriteria", "approvalCriteria"]
+    __properties: ClassVar[List[str]] = ["ruleId", "description", "status", "matchCriteria", "approvalCriteria"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -95,8 +95,8 @@ class StagingRule(BaseModel):
             "rule_id": obj.get("ruleId"),
             "description": obj.get("description"),
             "status": obj.get("status"),
-            "match_criteria": StagingRuleMatchCriteria.from_dict(obj.get("matchCriteria")) if obj.get("matchCriteria") is not None else None,
-            "approval_criteria": StagingRuleApprovalCriteria.from_dict(obj.get("approvalCriteria")) if obj.get("approvalCriteria") is not None else None
+            "match_criteria": StagingRuleMatchCriteria.from_dict(_v) if (_v := obj.get("matchCriteria")) is not None else None,
+            "approval_criteria": StagingRuleApprovalCriteria.from_dict(_v) if (_v := obj.get("approvalCriteria")) is not None else None
         })
         return _obj
 

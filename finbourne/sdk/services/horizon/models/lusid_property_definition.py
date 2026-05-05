@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -37,7 +37,7 @@ class LusidPropertyDefinition(BaseModel):
     description:  StrictStr = Field(...,alias="description", description="") 
     lifetime:  StrictStr = Field(...,alias="lifetime", description="") 
     constraint_style:  StrictStr = Field(...,alias="constraintStyle", description="") 
-    __properties = ["key", "productEntityItemKey", "domain", "scope", "code", "displayName", "dataTypeId", "description", "lifetime", "constraintStyle"]
+    __properties: ClassVar[List[str]] = ["key", "productEntityItemKey", "domain", "scope", "code", "displayName", "dataTypeId", "description", "lifetime", "constraintStyle"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -95,7 +95,7 @@ class LusidPropertyDefinition(BaseModel):
             "scope": obj.get("scope"),
             "code": obj.get("code"),
             "display_name": obj.get("displayName"),
-            "data_type_id": ResourceId.from_dict(obj.get("dataTypeId")) if obj.get("dataTypeId") is not None else None,
+            "data_type_id": ResourceId.from_dict(_v) if (_v := obj.get("dataTypeId")) is not None else None,
             "description": obj.get("description"),
             "lifetime": obj.get("lifetime"),
             "constraint_style": obj.get("constraintStyle")

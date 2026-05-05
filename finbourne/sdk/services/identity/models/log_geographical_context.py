@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class LogGeographicalContext(BaseModel):
     country:  Optional[StrictStr] = Field(default=None,alias="country") 
     postal_code:  Optional[StrictStr] = Field(default=None,alias="postalCode") 
     geolocation: Optional[LogGeolocation] = None
-    __properties = ["city", "state", "country", "postalCode", "geolocation"]
+    __properties: ClassVar[List[str]] = ["city", "state", "country", "postalCode", "geolocation"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -107,7 +107,7 @@ class LogGeographicalContext(BaseModel):
             "state": obj.get("state"),
             "country": obj.get("country"),
             "postal_code": obj.get("postalCode"),
-            "geolocation": LogGeolocation.from_dict(obj.get("geolocation")) if obj.get("geolocation") is not None else None
+            "geolocation": LogGeolocation.from_dict(_v) if (_v := obj.get("geolocation")) is not None else None
         })
         return _obj
 

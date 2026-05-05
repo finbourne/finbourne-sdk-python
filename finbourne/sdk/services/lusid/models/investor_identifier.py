@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -26,9 +26,9 @@ class InvestorIdentifier(BaseModel):
     """
     Identification of an Investor on the LUSID API.  # noqa: E501
     """
-    investor_type:  StrictStr = Field(...,alias="investorType", description="The type of the investor of the Investor Record. Can be either a Person, LegalEntity or Nominee.") 
+    investor_type:  StrictStr = Field(...,alias="investorType", description="The type of the investor of the Investor Record. Available values: Person, LegalEntity, Nominee.") 
     identifiers: Optional[Dict[str, Optional[StrictStr]]] = Field(default=None, description="Single identifier that should target the desired person or legal entity")
-    __properties = ["investorType", "identifiers"]
+    __properties: ClassVar[List[str]] = ["investorType", "identifiers"]
 
     model_config = ConfigDict(
         populate_by_name=True,

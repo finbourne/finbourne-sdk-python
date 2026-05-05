@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -37,7 +37,7 @@ class CreditSupportAnnex(BaseModel):
     initial_margin_amount: Union[StrictFloat, StrictInt] = Field(description="The initial margin that is required. In the reference currency", alias="initialMarginAmount")
     minimum_transfer_amount: Union[StrictFloat, StrictInt] = Field(description="The minimum amount, in the reference currency, that must be transferred when required.", alias="minimumTransferAmount")
     id: ResourceId
-    __properties = ["referenceCurrency", "collateralCurrencies", "isdaAgreementVersion", "marginCallFrequency", "valuationAgent", "thresholdAmount", "roundingDecimalPlaces", "initialMarginAmount", "minimumTransferAmount", "id"]
+    __properties: ClassVar[List[str]] = ["referenceCurrency", "collateralCurrencies", "isdaAgreementVersion", "marginCallFrequency", "valuationAgent", "thresholdAmount", "roundingDecimalPlaces", "initialMarginAmount", "minimumTransferAmount", "id"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -97,7 +97,7 @@ class CreditSupportAnnex(BaseModel):
             "rounding_decimal_places": obj.get("roundingDecimalPlaces"),
             "initial_margin_amount": obj.get("initialMarginAmount"),
             "minimum_transfer_amount": obj.get("minimumTransferAmount"),
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None
         })
         return _obj
 

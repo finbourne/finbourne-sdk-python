@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -41,7 +41,7 @@ class Column(BaseModel):
     condition_usage: Optional[ConditionAttributes] = Field(default=None, alias="conditionUsage")
     sample_values:  Optional[StrictStr] = Field(default=None,alias="sampleValues") 
     allowed_values:  Optional[StrictStr] = Field(default=None,alias="allowedValues") 
-    __properties = ["isPrimaryKey", "isMain", "isRequiredByProvider", "mandatoryForActions", "lineage", "name", "type", "description", "displayName", "conditionUsage", "sampleValues", "allowedValues"]
+    __properties: ClassVar[List[str]] = ["isPrimaryKey", "isMain", "isRequiredByProvider", "mandatoryForActions", "lineage", "name", "type", "description", "displayName", "conditionUsage", "sampleValues", "allowedValues"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -126,7 +126,7 @@ class Column(BaseModel):
             "is_main": obj.get("isMain"),
             "is_required_by_provider": obj.get("isRequiredByProvider"),
             "mandatory_for_actions": obj.get("mandatoryForActions"),
-            "lineage": Lineage.from_dict(obj.get("lineage")) if obj.get("lineage") is not None else None,
+            "lineage": Lineage.from_dict(_v) if (_v := obj.get("lineage")) is not None else None,
             "name": obj.get("name"),
             "type": obj.get("type"),
             "description": obj.get("description"),

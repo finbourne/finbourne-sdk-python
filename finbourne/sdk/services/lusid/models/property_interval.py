@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class PropertyInterval(BaseModel):
     effective_range: DateRange = Field(alias="effectiveRange")
     as_at_range: DateRange = Field(alias="asAtRange")
     status:  StrictStr = Field(...,alias="status", description="Indicates whether the value is part of the prevailing effective date timeline for the requested asAt date, or whether it has been superseded by correctional activity") 
-    __properties = ["value", "effectiveRange", "asAtRange", "status"]
+    __properties: ClassVar[List[str]] = ["value", "effectiveRange", "asAtRange", "status"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -89,9 +89,9 @@ class PropertyInterval(BaseModel):
             return PropertyInterval.model_validate(obj)
 
         _obj = PropertyInterval.model_validate({
-            "value": PropertyValue.from_dict(obj.get("value")) if obj.get("value") is not None else None,
-            "effective_range": DateRange.from_dict(obj.get("effectiveRange")) if obj.get("effectiveRange") is not None else None,
-            "as_at_range": DateRange.from_dict(obj.get("asAtRange")) if obj.get("asAtRange") is not None else None,
+            "value": PropertyValue.from_dict(_v) if (_v := obj.get("value")) is not None else None,
+            "effective_range": DateRange.from_dict(_v) if (_v := obj.get("effectiveRange")) is not None else None,
+            "as_at_range": DateRange.from_dict(_v) if (_v := obj.get("asAtRange")) is not None else None,
             "status": obj.get("status")
         })
         return _obj

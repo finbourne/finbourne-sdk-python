@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class UpsertQuoteRequest(BaseModel):
     metric_value: Optional[MetricValue] = Field(default=None, alias="metricValue")
     lineage:  Optional[StrictStr] = Field(default=None,alias="lineage", description="Description of the quote's lineage e.g. 'FundAccountant_GreenQuality'.") 
     scale_factor: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="An optional scale factor for non-standard scaling of quotes against the instrument. For example, if you wish the quote's Value to be scaled down by a factor of 100, enter 100. If not supplied, the default ScaleFactor is 1.", alias="scaleFactor")
-    __properties = ["quoteId", "metricValue", "lineage", "scaleFactor"]
+    __properties: ClassVar[List[str]] = ["quoteId", "metricValue", "lineage", "scaleFactor"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -96,8 +96,8 @@ class UpsertQuoteRequest(BaseModel):
             return UpsertQuoteRequest.model_validate(obj)
 
         _obj = UpsertQuoteRequest.model_validate({
-            "quote_id": QuoteId.from_dict(obj.get("quoteId")) if obj.get("quoteId") is not None else None,
-            "metric_value": MetricValue.from_dict(obj.get("metricValue")) if obj.get("metricValue") is not None else None,
+            "quote_id": QuoteId.from_dict(_v) if (_v := obj.get("quoteId")) is not None else None,
+            "metric_value": MetricValue.from_dict(_v) if (_v := obj.get("metricValue")) is not None else None,
             "lineage": obj.get("lineage"),
             "scale_factor": obj.get("scaleFactor")
         })

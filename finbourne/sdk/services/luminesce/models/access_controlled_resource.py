@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class AccessControlledResource(BaseModel):
     description:  Optional[StrictStr] = Field(default=None,alias="description") 
     actions: Optional[List[AccessControlledAction]] = None
     identifier_parts: Optional[List[AccessControlledResourceIdentifierPartSchemaAttribute]] = Field(default=None, alias="identifierParts")
-    __properties = ["application", "name", "description", "actions", "identifierParts"]
+    __properties: ClassVar[List[str]] = ["application", "name", "description", "actions", "identifierParts"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -123,8 +123,8 @@ class AccessControlledResource(BaseModel):
             "application": obj.get("application"),
             "name": obj.get("name"),
             "description": obj.get("description"),
-            "actions": [AccessControlledAction.from_dict(_item) for _item in obj.get("actions")] if obj.get("actions") is not None else None,
-            "identifier_parts": [AccessControlledResourceIdentifierPartSchemaAttribute.from_dict(_item) for _item in obj.get("identifierParts")] if obj.get("identifierParts") is not None else None
+            "actions": [AccessControlledAction.from_dict(_item) for _item in _v] if (_v := obj.get("actions")) is not None else None,
+            "identifier_parts": [AccessControlledResourceIdentifierPartSchemaAttribute.from_dict(_item) for _item in _v] if (_v := obj.get("identifierParts")) is not None else None
         })
         return _obj
 

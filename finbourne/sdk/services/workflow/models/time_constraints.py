@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class TimeConstraints(BaseModel):
     start_date:  StrictStr = Field(...,alias="startDate", description="Start date of the Recurrence Pattern e.g. 2025-12-25") 
     end_date:  Optional[StrictStr] = Field(default=None,alias="endDate", description="Optional end date of the Recurrence Pattern e.g. 2025-12-31") 
     times_of_day: List[TimeOfDay] = Field(description="Times of the day to run the Recurrence Pattern", alias="timesOfDay")
-    __properties = ["startDate", "endDate", "timesOfDay"]
+    __properties: ClassVar[List[str]] = ["startDate", "endDate", "timesOfDay"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -92,7 +92,7 @@ class TimeConstraints(BaseModel):
         _obj = TimeConstraints.model_validate({
             "start_date": obj.get("startDate"),
             "end_date": obj.get("endDate"),
-            "times_of_day": [TimeOfDay.from_dict(_item) for _item in obj.get("timesOfDay")] if obj.get("timesOfDay") is not None else None
+            "times_of_day": [TimeOfDay.from_dict(_item) for _item in _v] if (_v := obj.get("timesOfDay")) is not None else None
         })
         return _obj
 

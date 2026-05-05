@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -47,7 +47,7 @@ class OrderRequest(BaseModel):
     package: Optional[ResourceId] = None
     weight: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The proportion of the total portfolio value ordered for the given instrument ordered.")
     amount: Optional[CurrencyAndAmount] = None
-    __properties = ["properties", "instrumentIdentifiers", "quantity", "side", "orderBookId", "portfolioId", "id", "state", "type", "timeInForce", "date", "price", "limitPrice", "stopPrice", "orderInstruction", "package", "weight", "amount"]
+    __properties: ClassVar[List[str]] = ["properties", "instrumentIdentifiers", "quantity", "side", "orderBookId", "portfolioId", "id", "state", "type", "timeInForce", "date", "price", "limitPrice", "stopPrice", "orderInstruction", "package", "weight", "amount"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -161,27 +161,27 @@ class OrderRequest(BaseModel):
         _obj = OrderRequest.model_validate({
             "properties": dict(
                 (_k, PerpetualProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
             "instrument_identifiers": obj.get("instrumentIdentifiers"),
             "quantity": obj.get("quantity"),
             "side": obj.get("side"),
-            "order_book_id": ResourceId.from_dict(obj.get("orderBookId")) if obj.get("orderBookId") is not None else None,
-            "portfolio_id": ResourceId.from_dict(obj.get("portfolioId")) if obj.get("portfolioId") is not None else None,
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
+            "order_book_id": ResourceId.from_dict(_v) if (_v := obj.get("orderBookId")) is not None else None,
+            "portfolio_id": ResourceId.from_dict(_v) if (_v := obj.get("portfolioId")) is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
             "state": obj.get("state"),
             "type": obj.get("type"),
             "time_in_force": obj.get("timeInForce"),
             "var_date": obj.get("date"),
-            "price": CurrencyAndAmount.from_dict(obj.get("price")) if obj.get("price") is not None else None,
-            "limit_price": CurrencyAndAmount.from_dict(obj.get("limitPrice")) if obj.get("limitPrice") is not None else None,
-            "stop_price": CurrencyAndAmount.from_dict(obj.get("stopPrice")) if obj.get("stopPrice") is not None else None,
-            "order_instruction": ResourceId.from_dict(obj.get("orderInstruction")) if obj.get("orderInstruction") is not None else None,
-            "package": ResourceId.from_dict(obj.get("package")) if obj.get("package") is not None else None,
+            "price": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("price")) is not None else None,
+            "limit_price": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("limitPrice")) is not None else None,
+            "stop_price": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("stopPrice")) is not None else None,
+            "order_instruction": ResourceId.from_dict(_v) if (_v := obj.get("orderInstruction")) is not None else None,
+            "package": ResourceId.from_dict(_v) if (_v := obj.get("package")) is not None else None,
             "weight": obj.get("weight"),
-            "amount": CurrencyAndAmount.from_dict(obj.get("amount")) if obj.get("amount") is not None else None
+            "amount": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("amount")) is not None else None
         })
         return _obj
 

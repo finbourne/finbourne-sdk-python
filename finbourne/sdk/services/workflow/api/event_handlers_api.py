@@ -64,12 +64,12 @@ class EventHandlersApi:
         :return: Returns the result object.
         :rtype: EventHandler
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_event_handler_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_event_handler_with_http_info(create_event_handler_request, **kwargs)  # noqa: E501
+        response = self.create_event_handler_with_http_info(create_event_handler_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_event_handler_with_http_info(self, create_event_handler_request: CreateEventHandlerRequest, **kwargs) -> ApiResponse[EventHandler]:
@@ -192,12 +192,12 @@ class EventHandlersApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_event_handler_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_event_handler_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_event_handler_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_event_handler_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -323,12 +323,12 @@ class EventHandlersApi:
         :return: Returns the result object.
         :rtype: EventHandler
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_event_handler_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_event_handler_with_http_info(scope, code, as_at, **kwargs)  # noqa: E501
+        response = self.get_event_handler_with_http_info(scope, code, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_event_handler_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[EventHandler]:
@@ -463,12 +463,12 @@ class EventHandlersApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfEventHandler
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_event_handlers_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_event_handlers_with_http_info(as_at, filter, limit, page, **kwargs)  # noqa: E501
+        response = self.list_event_handlers_with_http_info(as_at, filter, limit, page, **kwargs)
+        return response.data
 
     @validate_call
     def list_event_handlers_with_http_info(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfEventHandler]:
@@ -606,12 +606,12 @@ class EventHandlersApi:
         :return: Returns the result object.
         :rtype: EventHandler
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_event_handler_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_event_handler_with_http_info(scope, code, update_event_handler_request, **kwargs)  # noqa: E501
+        response = self.update_event_handler_with_http_info(scope, code, update_event_handler_request, **kwargs)
+        return response.data
 
     @validate_call
     def update_event_handler_with_http_info(self, scope: StrictStr, code: StrictStr, update_event_handler_request: UpdateEventHandlerRequest, **kwargs) -> ApiResponse[EventHandler]:
@@ -748,12 +748,12 @@ class EventHandlersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: EventHandler
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_event_handler_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_event_handler_with_http_info_async(create_event_handler_request, **kwargs)  # noqa: E501
+            response = await self.create_event_handler_with_http_info_async(create_event_handler_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_event_handler_with_http_info_async(self, create_event_handler_request: CreateEventHandlerRequest, **kwargs) -> ApiResponse[EventHandler]:
@@ -877,12 +877,12 @@ class EventHandlersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_event_handler_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_event_handler_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_event_handler_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_event_handler_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -1009,12 +1009,12 @@ class EventHandlersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: EventHandler
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_event_handler_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_event_handler_with_http_info_async(scope, code, as_at, **kwargs)  # noqa: E501
+            response = await self.get_event_handler_with_http_info_async(scope, code, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_event_handler_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[EventHandler]:
@@ -1150,12 +1150,12 @@ class EventHandlersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfEventHandler
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_event_handlers_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_event_handlers_with_http_info_async(as_at, filter, limit, page, **kwargs)  # noqa: E501
+            response = await self.list_event_handlers_with_http_info_async(as_at, filter, limit, page, **kwargs)
+            return response.data
 
     @validate_call
     async def list_event_handlers_with_http_info_async(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfEventHandler]:
@@ -1294,12 +1294,12 @@ class EventHandlersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: EventHandler
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_event_handler_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_event_handler_with_http_info_async(scope, code, update_event_handler_request, **kwargs)  # noqa: E501
+            response = await self.update_event_handler_with_http_info_async(scope, code, update_event_handler_request, **kwargs)
+            return response.data
 
     @validate_call
     async def update_event_handler_with_http_info_async(self, scope: StrictStr, code: StrictStr, update_event_handler_request: UpdateEventHandlerRequest, **kwargs) -> ApiResponse[EventHandler]:

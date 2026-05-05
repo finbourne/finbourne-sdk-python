@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,13 +29,13 @@ class TransactionTemplateSpecification(BaseModel):
     """
     TransactionTemplateSpecification
     """
-    instrument_event_type:  StrictStr = Field(...,alias="instrumentEventType") 
+    instrument_event_type:  StrictStr = Field(...,alias="instrumentEventType", description="Available values: Internal, TransitionEvent, CouponEvent, OpenEvent, CloseEvent, BondDefaultEvent, CashDividendEvent, StockSplitEvent, BondCouponEvent, DividendReinvestmentEvent, AccumulationEvent, BondPrincipalEvent, DividendOptionEvent, MaturityEvent, FxForwardSettlementEvent, ExpiryEvent, ScripDividendEvent, StockDividendEvent, ReverseStockSplitEvent, CapitalDistributionEvent, SpinOffEvent, MergerEvent, FutureExpiryEvent, SwapCashFlowEvent, SwapPrincipalEvent, CreditPremiumCashFlowEvent, CdsCreditEvent, CdxCreditEvent, MbsCouponEvent, MbsPrincipalEvent, BonusIssueEvent, MbsPrincipalWriteOffEvent, MbsInterestDeferralEvent, MbsInterestShortfallEvent, TenderEvent, CallOnIntermediateSecuritiesEvent, IntermediateSecuritiesDistributionEvent, OptionExercisePhysicalEvent, OptionExerciseCashEvent, ProtectionPayoutCashFlowEvent, TermDepositInterestEvent, TermDepositPrincipalEvent, Unknown, EarlyRedemptionEvent, FutureMarkToMarketEvent, AdjustGlobalCommitmentEvent, ContractInitialisationEvent, DrawdownEvent, LoanInterestRepaymentEvent, UpdateDepositAmountEvent, LoanPrincipalRepaymentEvent, DepositInterestPaymentEvent, DepositCloseEvent, LoanFacilityContractRolloverEvent, RepurchaseOfferEvent, RepoPartialClosureEvent, RepoCashFlowEvent, FlexibleRepoInterestPaymentEvent, FlexibleRepoCashFlowEvent, FlexibleRepoCollateralEvent, ConversionEvent, FlexibleRepoPartialClosureEvent, FlexibleRepoFullClosureEvent, CapletFloorletCashFlowEvent, EarlyCloseOutEvent, DepositRollEvent, ConsentEvent.") 
     supported_instrument_types: List[StrictStr] = Field(alias="supportedInstrumentTypes")
     supported_participation_types: List[StrictStr] = Field(alias="supportedParticipationTypes")
     supported_election_types: List[ElectionSpecification] = Field(alias="supportedElectionTypes")
     supported_template_fields: List[TemplateField] = Field(alias="supportedTemplateFields")
     eligibility_calculation: EligibilityCalculation = Field(alias="eligibilityCalculation")
-    __properties = ["instrumentEventType", "supportedInstrumentTypes", "supportedParticipationTypes", "supportedElectionTypes", "supportedTemplateFields", "eligibilityCalculation"]
+    __properties: ClassVar[List[str]] = ["instrumentEventType", "supportedInstrumentTypes", "supportedParticipationTypes", "supportedElectionTypes", "supportedTemplateFields", "eligibilityCalculation"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -103,9 +103,9 @@ class TransactionTemplateSpecification(BaseModel):
             "instrument_event_type": obj.get("instrumentEventType"),
             "supported_instrument_types": obj.get("supportedInstrumentTypes"),
             "supported_participation_types": obj.get("supportedParticipationTypes"),
-            "supported_election_types": [ElectionSpecification.from_dict(_item) for _item in obj.get("supportedElectionTypes")] if obj.get("supportedElectionTypes") is not None else None,
-            "supported_template_fields": [TemplateField.from_dict(_item) for _item in obj.get("supportedTemplateFields")] if obj.get("supportedTemplateFields") is not None else None,
-            "eligibility_calculation": EligibilityCalculation.from_dict(obj.get("eligibilityCalculation")) if obj.get("eligibilityCalculation") is not None else None
+            "supported_election_types": [ElectionSpecification.from_dict(_item) for _item in _v] if (_v := obj.get("supportedElectionTypes")) is not None else None,
+            "supported_template_fields": [TemplateField.from_dict(_item) for _item in _v] if (_v := obj.get("supportedTemplateFields")) is not None else None,
+            "eligibility_calculation": EligibilityCalculation.from_dict(_v) if (_v := obj.get("eligibilityCalculation")) is not None else None
         })
         return _obj
 

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -54,7 +54,7 @@ class Allocation(BaseModel):
     execution_ids: Optional[List[ResourceId]] = Field(default=None, description="The executions associated with this allocation", alias="executionIds")
     data_model_membership: Optional[DataModelMembership] = Field(default=None, alias="dataModelMembership")
     links: Optional[List[Link]] = None
-    __properties = ["id", "allocatedOrderId", "portfolioId", "quantity", "instrumentIdentifiers", "version", "properties", "instrumentScope", "lusidInstrumentId", "placementIds", "state", "side", "type", "settlementDate", "date", "price", "settlementCurrency", "settlementCurrencyFxRate", "counterparty", "executionIds", "dataModelMembership", "links"]
+    __properties: ClassVar[List[str]] = ["id", "allocatedOrderId", "portfolioId", "quantity", "instrumentIdentifiers", "version", "properties", "instrumentScope", "lusidInstrumentId", "placementIds", "state", "side", "type", "settlementDate", "date", "price", "settlementCurrency", "settlementCurrencyFxRate", "counterparty", "executionIds", "dataModelMembership", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -208,33 +208,33 @@ class Allocation(BaseModel):
             return Allocation.model_validate(obj)
 
         _obj = Allocation.model_validate({
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
-            "allocated_order_id": ResourceId.from_dict(obj.get("allocatedOrderId")) if obj.get("allocatedOrderId") is not None else None,
-            "portfolio_id": ResourceId.from_dict(obj.get("portfolioId")) if obj.get("portfolioId") is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
+            "allocated_order_id": ResourceId.from_dict(_v) if (_v := obj.get("allocatedOrderId")) is not None else None,
+            "portfolio_id": ResourceId.from_dict(_v) if (_v := obj.get("portfolioId")) is not None else None,
             "quantity": obj.get("quantity"),
             "instrument_identifiers": obj.get("instrumentIdentifiers"),
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
             "properties": dict(
                 (_k, PerpetualProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
             "instrument_scope": obj.get("instrumentScope"),
             "lusid_instrument_id": obj.get("lusidInstrumentId"),
-            "placement_ids": [ResourceId.from_dict(_item) for _item in obj.get("placementIds")] if obj.get("placementIds") is not None else None,
+            "placement_ids": [ResourceId.from_dict(_item) for _item in _v] if (_v := obj.get("placementIds")) is not None else None,
             "state": obj.get("state"),
             "side": obj.get("side"),
             "type": obj.get("type"),
             "settlement_date": obj.get("settlementDate"),
             "var_date": obj.get("date"),
-            "price": CurrencyAndAmount.from_dict(obj.get("price")) if obj.get("price") is not None else None,
+            "price": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("price")) is not None else None,
             "settlement_currency": obj.get("settlementCurrency"),
             "settlement_currency_fx_rate": obj.get("settlementCurrencyFxRate"),
             "counterparty": obj.get("counterparty"),
-            "execution_ids": [ResourceId.from_dict(_item) for _item in obj.get("executionIds")] if obj.get("executionIds") is not None else None,
-            "data_model_membership": DataModelMembership.from_dict(obj.get("dataModelMembership")) if obj.get("dataModelMembership") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "execution_ids": [ResourceId.from_dict(_item) for _item in _v] if (_v := obj.get("executionIds")) is not None else None,
+            "data_model_membership": DataModelMembership.from_dict(_v) if (_v := obj.get("dataModelMembership")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

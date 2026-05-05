@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class TranslateTradeTicketRequest(BaseModel):
     """
     tickets: Dict[str, TradeTicket] = Field(description="The collection of trade tickets to translate.                Each trade ticket should be keyed by a unique correlation id. This id is ephemeral  and is not stored by LUSID. It serves only as a way to easily identify each instrument in the response.")
     dialect:  StrictStr = Field(...,alias="dialect", description="The target dialect that the given instruments should be translated to.") 
-    __properties = ["tickets", "dialect"]
+    __properties: ClassVar[List[str]] = ["tickets", "dialect"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -86,9 +86,9 @@ class TranslateTradeTicketRequest(BaseModel):
         _obj = TranslateTradeTicketRequest.model_validate({
             "tickets": dict(
                 (_k, TradeTicket.from_dict(_v))
-                for _k, _v in obj.get("tickets").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("tickets") is not None
+            if (_val := obj.get("tickets")) is not None
             else None,
             "dialect": obj.get("dialect")
         })

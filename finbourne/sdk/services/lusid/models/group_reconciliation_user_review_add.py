@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class GroupReconciliationUserReviewAdd(BaseModel):
     break_code:  Optional[StrictStr] = Field(default=None,alias="breakCode", description="The break code of the reconciliation result.") 
     match_key:  Optional[StrictStr] = Field(default=None,alias="matchKey", description="The match key of the reconciliation result.") 
     comment_text:  Optional[StrictStr] = Field(default=None,alias="commentText", description="User's comment regarding the reconciliation result.") 
-    __properties = ["breakCode", "matchKey", "commentText"]
+    __properties: ClassVar[List[str]] = ["breakCode", "matchKey", "commentText"]
 
     model_config = ConfigDict(
         populate_by_name=True,

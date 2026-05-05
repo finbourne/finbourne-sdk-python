@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class TaskSummary(BaseModel):
     task_definition_version: TaskDefinitionVersion = Field(alias="taskDefinitionVersion")
     task_definition_display_name:  StrictStr = Field(...,alias="taskDefinitionDisplayName", description="The display name of the Task Definition used by this Task") 
     state:  StrictStr = Field(...,alias="state", description="Current State") 
-    __properties = ["id", "taskDefinitionId", "taskDefinitionVersion", "taskDefinitionDisplayName", "state"]
+    __properties: ClassVar[List[str]] = ["id", "taskDefinitionId", "taskDefinitionVersion", "taskDefinitionDisplayName", "state"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,8 +88,8 @@ class TaskSummary(BaseModel):
 
         _obj = TaskSummary.model_validate({
             "id": obj.get("id"),
-            "task_definition_id": ResourceId.from_dict(obj.get("taskDefinitionId")) if obj.get("taskDefinitionId") is not None else None,
-            "task_definition_version": TaskDefinitionVersion.from_dict(obj.get("taskDefinitionVersion")) if obj.get("taskDefinitionVersion") is not None else None,
+            "task_definition_id": ResourceId.from_dict(_v) if (_v := obj.get("taskDefinitionId")) is not None else None,
+            "task_definition_version": TaskDefinitionVersion.from_dict(_v) if (_v := obj.get("taskDefinitionVersion")) is not None else None,
             "task_definition_display_name": obj.get("taskDefinitionDisplayName"),
             "state": obj.get("state")
         })

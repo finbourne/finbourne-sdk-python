@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class EffectiveRange(BaseModel):
     """
     var_from: Optional[datetime] = Field(default=None, alias="from")
     to: Optional[datetime] = None
-    __properties = ["from", "to"]
+    __properties: ClassVar[List[str]] = ["from", "to"]
 
     model_config = ConfigDict(
         populate_by_name=True,

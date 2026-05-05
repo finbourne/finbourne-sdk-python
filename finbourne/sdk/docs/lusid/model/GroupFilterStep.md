@@ -6,7 +6,7 @@
 |------|------|----------|-------------|
 | **label** | **str** | Required | The label of the compliance step |
 | **limit_check_parameters** | [List[ComplianceTemplateParameter]](ComplianceTemplateParameter.md) | Required | Parameters required for an absolute limit check |
-| **compliance_step_type** | **str** | Required | . The available values are: FilterStep, GroupByStep, GroupFilterStep, BranchStep, RecombineStep, CheckStep, PercentCheckStep |
+| **compliance_step_type** | **str** | Required | The type of the compliance step. Available values: FilterStep, GroupByStep, GroupFilterStep, BranchStep, RecombineStep, CheckStep, PercentCheckStep. |
 
 
 ## Usage
@@ -19,7 +19,7 @@ from finbourne.sdk.services.lusid.models.GroupFilterStep import GroupFilterStep
 instance = GroupFilterStep(
     label="...",  # required — The label of the compliance step
     limit_check_parameters=[],  # required — Parameters required for an absolute limit check
-    compliance_step_type="..."  # required — . The available values are: FilterStep, GroupByStep, GroupFilterStep, BranchStep, RecombineStep, CheckStep, PercentCheckStep
+    compliance_step_type="..."  # required — The type of the compliance step. Available values: FilterStep, GroupByStep, GroupFilterStep, BranchStep, RecombineStep, CheckStep, PercentCheckStep.
 )
 ```
 

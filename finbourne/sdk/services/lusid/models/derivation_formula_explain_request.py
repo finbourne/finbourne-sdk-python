@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class DerivationFormulaExplainRequest(BaseModel):
     identifier: Optional[Dict[str, Optional[StrictStr]]] = Field(default=None, description="(Optional). An identifier key/value pair that uniquely identifies the entity to explain the derived property for. This can be either an instrument identifier, or an identifier property. If no code or identifier is provided, the logical evaluation tree without resolved values is returned.")
     property_key:  Optional[StrictStr] = Field(default=None,alias="propertyKey", description="(Optional) The key of the derived property to get an explanation for. This takes the format {domain}/{scope}/{code}. One of either property key or partial formula must be provided.") 
     partial_formula:  Optional[StrictStr] = Field(default=None,alias="partialFormula", description="(Optional) A partial derivation formula to get an explanation for. Can be provided in lieu of a property key. One of either property key or partial formula must be provided.") 
-    __properties = ["entityType", "scope", "code", "subentityId", "identifier", "propertyKey", "partialFormula"]
+    __properties: ClassVar[List[str]] = ["entityType", "scope", "code", "subentityId", "identifier", "propertyKey", "partialFormula"]
 
     model_config = ConfigDict(
         populate_by_name=True,

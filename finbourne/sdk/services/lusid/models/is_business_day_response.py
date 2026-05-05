@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class IsBusinessDayResponse(BaseModel):
     """
     requested_date_time: datetime = Field(alias="requestedDateTime")
     is_business_day: StrictBool = Field(alias="isBusinessDay")
-    __properties = ["requestedDateTime", "isBusinessDay"]
+    __properties: ClassVar[List[str]] = ["requestedDateTime", "isBusinessDay"]
 
     model_config = ConfigDict(
         populate_by_name=True,

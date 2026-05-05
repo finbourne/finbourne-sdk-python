@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class IndexConvention(BaseModel):
     index_name:  Optional[StrictStr] = Field(default=None,alias="indexName", description="The name of the index for which this represents the conventions of.  For instance, \"SOFR\", \"LIBOR\", \"EURIBOR\", etc.  Defaults to \"INDEX\" if not specified.") 
     scope:  Optional[StrictStr] = Field(default=None,alias="scope", description="The scope used when updating or inserting the convention.") 
     code:  Optional[StrictStr] = Field(default=None,alias="code", description="The code of the convention.") 
-    __properties = ["fixingReference", "publicationDayLag", "paymentTenor", "dayCountConvention", "currency", "indexName", "scope", "code"]
+    __properties: ClassVar[List[str]] = ["fixingReference", "publicationDayLag", "paymentTenor", "dayCountConvention", "currency", "indexName", "scope", "code"]
 
     model_config = ConfigDict(
         populate_by_name=True,

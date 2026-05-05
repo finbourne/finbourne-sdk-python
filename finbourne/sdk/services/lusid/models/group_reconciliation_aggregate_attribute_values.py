@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class GroupReconciliationAggregateAttributeValues(BaseModel):
     """
     left_aggregate_attributes: List[ComparisonAttributeValuePair] = Field(description="Aggregate attribute names and values for the left hand entity being reconciled.", alias="leftAggregateAttributes")
     right_aggregate_attributes: List[ComparisonAttributeValuePair] = Field(description="Aggregate attribute names and values for the right hand entity being reconciled.", alias="rightAggregateAttributes")
-    __properties = ["leftAggregateAttributes", "rightAggregateAttributes"]
+    __properties: ClassVar[List[str]] = ["leftAggregateAttributes", "rightAggregateAttributes"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,8 +91,8 @@ class GroupReconciliationAggregateAttributeValues(BaseModel):
             return GroupReconciliationAggregateAttributeValues.model_validate(obj)
 
         _obj = GroupReconciliationAggregateAttributeValues.model_validate({
-            "left_aggregate_attributes": [ComparisonAttributeValuePair.from_dict(_item) for _item in obj.get("leftAggregateAttributes")] if obj.get("leftAggregateAttributes") is not None else None,
-            "right_aggregate_attributes": [ComparisonAttributeValuePair.from_dict(_item) for _item in obj.get("rightAggregateAttributes")] if obj.get("rightAggregateAttributes") is not None else None
+            "left_aggregate_attributes": [ComparisonAttributeValuePair.from_dict(_item) for _item in _v] if (_v := obj.get("leftAggregateAttributes")) is not None else None,
+            "right_aggregate_attributes": [ComparisonAttributeValuePair.from_dict(_item) for _item in _v] if (_v := obj.get("rightAggregateAttributes")) is not None else None
         })
         return _obj
 

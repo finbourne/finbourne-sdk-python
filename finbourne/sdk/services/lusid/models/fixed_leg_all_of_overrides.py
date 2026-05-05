@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class FixedLegAllOfOverrides(BaseModel):
     amortization: Optional[List[Union[StrictFloat, StrictInt]]] = Field(default=None, alias="Amortization")
     spreads: Optional[List[Union[StrictFloat, StrictInt]]] = Field(default=None, alias="Spreads")
     additional_properties: Dict[str, Any] = {}
-    __properties = ["Amortization", "Spreads"]
+    __properties: ClassVar[List[str]] = ["Amortization", "Spreads"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -87,13 +87,8 @@ class FixedLegAllOfOverrides(BaseModel):
             "spreads": obj.get("Spreads")
         })
         # store additional fields in additional_properties
-        
-        properties = cls.__properties
-        if not isinstance(cls.__properties, dict) and getattr(cls.__properties, 'default', None):
-            properties = cls.__properties.default
-    
         for _key in obj.keys():
-            if _key not in properties:
+            if _key not in cls.__properties:
                 _obj.additional_properties[_key] = obj.get(_key)
 
         return _obj

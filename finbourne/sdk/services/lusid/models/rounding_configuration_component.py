@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -26,8 +26,8 @@ class RoundingConfigurationComponent(BaseModel):
     """
     RoundingConfigurationComponent
     """
-    rounding_type:  StrictStr = Field(...,alias="roundingType", description="The type of rounding that should be used, eg: Up, Down, NearestRoundHalfAwayFromZero") 
-    __properties = ["roundingType"]
+    rounding_type:  StrictStr = Field(...,alias="roundingType", description="The type of rounding that should be used. Available values: Up, Down, NearestRoundHalfAwayFromZero.") 
+    __properties: ClassVar[List[str]] = ["roundingType"]
 
     model_config = ConfigDict(
         populate_by_name=True,

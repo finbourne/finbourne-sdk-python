@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,9 +28,9 @@ class ResultValueDictionary(ResultValue):
     Result value for a collection of key-value pairs. Used for diagnostics associated to a cash flow, etc.  # noqa: E501
     """
     elements: Optional[Dict[str, ResultValue]] = Field(default=None, description="The dictionary elements")
-    result_value_type:  StrictStr = Field(...,alias="resultValueType", description="The available values are: ResultValue, ResultValueDictionary, ResultValue0D, ResultValueDecimal, ResultValueInt, ResultValueString, ResultValueBool, ResultValueCurrency, CashFlowValue, CashFlowValueSet, ResultValueLifeCycleEventValue, ResultValueDateTimeOffset") 
+    result_value_type:  StrictStr = Field(...,alias="resultValueType", description="Available values: ResultValue, ResultValueDictionary, ResultValue0D, ResultValueDecimal, ResultValueInt, ResultValueString, ResultValueBool, ResultValueCurrency, CashFlowValue, CashFlowValueSet, ResultValueLifeCycleEventValue, ResultValueDateTimeOffset.") 
     additional_properties: Dict[str, Any] = {}
-    __properties = ["resultValueType", "elements"]
+    __properties: ClassVar[List[str]] = ["resultValueType", "elements"]
 
     @field_validator('result_value_type')
     def result_value_type_validate_enum(cls, value):
@@ -168,19 +168,14 @@ class ResultValueDictionary(ResultValue):
             "result_value_type": obj.get("resultValueType"),
             "elements": dict(
                 (_k, ResultValue.from_dict(_v))
-                for _k, _v in obj.get("elements").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("elements") is not None
+            if (_val := obj.get("elements")) is not None
             else None
         })
         # store additional fields in additional_properties
-        
-        properties = cls.__properties
-        if not isinstance(cls.__properties, dict) and getattr(cls.__properties, 'default', None):
-            properties = cls.__properties.default
-    
         for _key in obj.keys():
-            if _key not in properties:
+            if _key not in cls.__properties:
                 _obj.additional_properties[_key] = obj.get(_key)
 
         return _obj

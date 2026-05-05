@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class RequiredResources(BaseModel):
     lusid_apis: Optional[List[StrictStr]] = Field(default=None, description="List of LUSID APIs the job needs access to", alias="lusidApis")
     lusid_file_system: Optional[List[StrictStr]] = Field(default=None, description="List of S3 bucket or folder names that the job can access", alias="lusidFileSystem")
     external_calls: Optional[List[StrictStr]] = Field(default=None, description="External URLs that the job can call", alias="externalCalls")
-    __properties = ["lusidApis", "lusidFileSystem", "externalCalls"]
+    __properties: ClassVar[List[str]] = ["lusidApis", "lusidFileSystem", "externalCalls"]
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -60,12 +60,12 @@ class ViewManagementApi:
         :return: Returns the result object.
         :rtype: str
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_view_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_view_with_http_info(view_name, **kwargs)  # noqa: E501
+        response = self.delete_view_with_http_info(view_name, **kwargs)
+        return response.data
 
     @validate_call
     def delete_view_with_http_info(self, view_name: Optional[StrictStr] = None, **kwargs) -> ApiResponse[str]:
@@ -181,12 +181,12 @@ class ViewManagementApi:
         :return: Returns the result object.
         :rtype: str
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_view_creation_sql_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_view_creation_sql_with_http_info(view_item, **kwargs)  # noqa: E501
+        response = self.get_view_creation_sql_with_http_info(view_item, **kwargs)
+        return response.data
 
     @validate_call
     def get_view_creation_sql_with_http_info(self, view_item: Optional[ViewItem] = None, **kwargs) -> ApiResponse[str]:
@@ -313,12 +313,12 @@ class ViewManagementApi:
         :return: Returns the result object.
         :rtype: List[ViewItem]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_views_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_views_with_http_info(show_all, reg_ex_filter, name_like_filter, **kwargs)  # noqa: E501
+        response = self.list_views_with_http_info(show_all, reg_ex_filter, name_like_filter, **kwargs)
+        return response.data
 
     @validate_call
     def list_views_with_http_info(self, show_all: Optional[bool] = None, reg_ex_filter: Optional[StrictStr] = None, name_like_filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[List[ViewItem]]:
@@ -450,12 +450,12 @@ class ViewManagementApi:
         :return: Returns the result object.
         :rtype: str
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_view_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_view_with_http_info(allow_warnings, may_update_existing, view_item, **kwargs)  # noqa: E501
+        response = self.upsert_view_with_http_info(allow_warnings, may_update_existing, view_item, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_view_with_http_info(self, allow_warnings: Optional[bool] = None, may_update_existing: Optional[bool] = None, view_item: Optional[ViewItem] = None, **kwargs) -> ApiResponse[str]:
@@ -594,12 +594,12 @@ class ViewManagementApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: str
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_view_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_view_with_http_info_async(view_name, **kwargs)  # noqa: E501
+            response = await self.delete_view_with_http_info_async(view_name, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_view_with_http_info_async(self, view_name: Optional[StrictStr] = None, **kwargs) -> ApiResponse[str]:
@@ -716,12 +716,12 @@ class ViewManagementApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: str
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_view_creation_sql_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_view_creation_sql_with_http_info_async(view_item, **kwargs)  # noqa: E501
+            response = await self.get_view_creation_sql_with_http_info_async(view_item, **kwargs)
+            return response.data
 
     @validate_call
     async def get_view_creation_sql_with_http_info_async(self, view_item: Optional[ViewItem] = None, **kwargs) -> ApiResponse[str]:
@@ -849,12 +849,12 @@ class ViewManagementApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: List[ViewItem]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_views_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_views_with_http_info_async(show_all, reg_ex_filter, name_like_filter, **kwargs)  # noqa: E501
+            response = await self.list_views_with_http_info_async(show_all, reg_ex_filter, name_like_filter, **kwargs)
+            return response.data
 
     @validate_call
     async def list_views_with_http_info_async(self, show_all: Optional[bool] = None, reg_ex_filter: Optional[StrictStr] = None, name_like_filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[List[ViewItem]]:
@@ -987,12 +987,12 @@ class ViewManagementApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: str
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_view_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_view_with_http_info_async(allow_warnings, may_update_existing, view_item, **kwargs)  # noqa: E501
+            response = await self.upsert_view_with_http_info_async(allow_warnings, may_update_existing, view_item, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_view_with_http_info_async(self, allow_warnings: Optional[bool] = None, may_update_existing: Optional[bool] = None, view_item: Optional[ViewItem] = None, **kwargs) -> ApiResponse[str]:

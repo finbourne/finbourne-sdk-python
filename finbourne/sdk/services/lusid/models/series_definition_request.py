@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class SeriesDefinitionRequest(BaseModel):
     """
     share_class_code:  StrictStr = Field(...,alias="shareClassCode", description="The code of the Share Class this Series belongs to.") 
     series_definitions: List[SeriesDefinition] = Field(description="The definitions of the Series to add to the Share Class.", alias="seriesDefinitions")
-    __properties = ["shareClassCode", "seriesDefinitions"]
+    __properties: ClassVar[List[str]] = ["shareClassCode", "seriesDefinitions"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,7 +85,7 @@ class SeriesDefinitionRequest(BaseModel):
 
         _obj = SeriesDefinitionRequest.model_validate({
             "share_class_code": obj.get("shareClassCode"),
-            "series_definitions": [SeriesDefinition.from_dict(_item) for _item in obj.get("seriesDefinitions")] if obj.get("seriesDefinitions") is not None else None
+            "series_definitions": [SeriesDefinition.from_dict(_item) for _item in _v] if (_v := obj.get("seriesDefinitions")) is not None else None
         })
         return _obj
 

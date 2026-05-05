@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -48,9 +48,9 @@ class FxOption(LusidInstrument):
     premium: Optional[Premium] = None
     touches: Optional[List[Touch]] = Field(default=None, description="For a touch option the list should not be empty. Up to two touches are supported.  An option cannot be at the same time barrier- and touch-option.  One (or both) of the lists must be empty.")
     time_zone_conventions: Optional[TimeZoneConventions] = Field(default=None, alias="timeZoneConventions")
-    instrument_type:  StrictStr = Field(...,alias="instrumentType", description="The available values are: QuotedSecurity, InterestRateSwap, FxForward, Future, ExoticInstrument, FxOption, CreditDefaultSwap, InterestRateSwaption, Bond, EquityOption, FixedLeg, FloatingLeg, BespokeCashFlowsLeg, Unknown, TermDeposit, ContractForDifference, EquitySwap, CashPerpetual, CapFloor, CashSettled, CdsIndex, Basket, FundingLeg, FxSwap, ForwardRateAgreement, SimpleInstrument, Repo, Equity, ExchangeTradedOption, ReferenceInstrument, ComplexBond, InflationLinkedBond, InflationSwap, SimpleCashFlowLoan, TotalReturnSwap, InflationLeg, FundShareClass, FlexibleLoan, UnsettledCash, Cash, MasteredInstrument, LoanFacility, FlexibleDeposit, FlexibleRepo") 
+    instrument_type:  StrictStr = Field(...,alias="instrumentType", description="Available values: QuotedSecurity, InterestRateSwap, FxForward, Future, ExoticInstrument, FxOption, CreditDefaultSwap, InterestRateSwaption, Bond, EquityOption, FixedLeg, FloatingLeg, BespokeCashFlowsLeg, Unknown, TermDeposit, ContractForDifference, EquitySwap, CashPerpetual, CapFloor, CashSettled, CdsIndex, Basket, FundingLeg, FxSwap, ForwardRateAgreement, SimpleInstrument, Repo, Equity, ExchangeTradedOption, ReferenceInstrument, ComplexBond, InflationLinkedBond, InflationSwap, SimpleCashFlowLoan, TotalReturnSwap, InflationLeg, FundShareClass, FlexibleLoan, UnsettledCash, Cash, MasteredInstrument, LoanFacility, FlexibleDeposit, FlexibleRepo.") 
     additional_properties: Dict[str, Any] = {}
-    __properties = ["instrumentType", "startDate", "domCcy", "domAmount", "fgnCcy", "fgnAmount", "strike", "barriers", "exerciseType", "isCallNotPut", "isDeliveryNotCash", "isPayoffDigital", "optionMaturityDate", "optionSettlementDate", "payoutStyle", "premium", "touches", "timeZoneConventions"]
+    __properties: ClassVar[List[str]] = ["instrumentType", "startDate", "domCcy", "domAmount", "fgnCcy", "fgnAmount", "strike", "barriers", "exerciseType", "isCallNotPut", "isDeliveryNotCash", "isPayoffDigital", "optionMaturityDate", "optionSettlementDate", "payoutStyle", "premium", "touches", "timeZoneConventions"]
 
     @field_validator('instrument_type')
     def instrument_type_validate_enum(cls, value):
@@ -235,7 +235,7 @@ class FxOption(LusidInstrument):
             "fgn_ccy": obj.get("fgnCcy"),
             "fgn_amount": obj.get("fgnAmount"),
             "strike": obj.get("strike"),
-            "barriers": [Barrier.from_dict(_item) for _item in obj.get("barriers")] if obj.get("barriers") is not None else None,
+            "barriers": [Barrier.from_dict(_item) for _item in _v] if (_v := obj.get("barriers")) is not None else None,
             "exercise_type": obj.get("exerciseType"),
             "is_call_not_put": obj.get("isCallNotPut"),
             "is_delivery_not_cash": obj.get("isDeliveryNotCash"),
@@ -243,18 +243,13 @@ class FxOption(LusidInstrument):
             "option_maturity_date": obj.get("optionMaturityDate"),
             "option_settlement_date": obj.get("optionSettlementDate"),
             "payout_style": obj.get("payoutStyle"),
-            "premium": Premium.from_dict(obj.get("premium")) if obj.get("premium") is not None else None,
-            "touches": [Touch.from_dict(_item) for _item in obj.get("touches")] if obj.get("touches") is not None else None,
-            "time_zone_conventions": TimeZoneConventions.from_dict(obj.get("timeZoneConventions")) if obj.get("timeZoneConventions") is not None else None
+            "premium": Premium.from_dict(_v) if (_v := obj.get("premium")) is not None else None,
+            "touches": [Touch.from_dict(_item) for _item in _v] if (_v := obj.get("touches")) is not None else None,
+            "time_zone_conventions": TimeZoneConventions.from_dict(_v) if (_v := obj.get("timeZoneConventions")) is not None else None
         })
         # store additional fields in additional_properties
-        
-        properties = cls.__properties
-        if not isinstance(cls.__properties, dict) and getattr(cls.__properties, 'default', None):
-            properties = cls.__properties.default
-    
         for _key in obj.keys():
-            if _key not in properties:
+            if _key not in cls.__properties:
                 _obj.additional_properties[_key] = obj.get(_key)
 
         return _obj

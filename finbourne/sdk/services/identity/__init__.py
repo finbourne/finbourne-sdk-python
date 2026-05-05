@@ -18,6 +18,7 @@ from __future__ import absolute_import
 from finbourne.sdk.services.identity.api.application_metadata_api import ApplicationMetadataApi
 from finbourne.sdk.services.identity.api.applications_api import ApplicationsApi
 from finbourne.sdk.services.identity.api.authentication_api import AuthenticationApi
+from finbourne.sdk.services.identity.api.cell_management_api import CellManagementApi
 from finbourne.sdk.services.identity.api.external_token_issuers_api import ExternalTokenIssuersApi
 from finbourne.sdk.services.identity.api.identity_logs_api import IdentityLogsApi
 from finbourne.sdk.services.identity.api.identity_provider_api import IdentityProviderApi
@@ -36,6 +37,7 @@ from finbourne.sdk.services.identity.models.action_id import ActionId
 from finbourne.sdk.services.identity.models.add_scim_response import AddScimResponse
 from finbourne.sdk.services.identity.models.api_key import ApiKey
 from finbourne.sdk.services.identity.models.authentication_information import AuthenticationInformation
+from finbourne.sdk.services.identity.models.cell_parent_status_response import CellParentStatusResponse
 from finbourne.sdk.services.identity.models.claim_mappings import ClaimMappings
 from finbourne.sdk.services.identity.models.create_api_key import CreateApiKey
 from finbourne.sdk.services.identity.models.create_application_request import CreateApplicationRequest
@@ -45,6 +47,7 @@ from finbourne.sdk.services.identity.models.create_role_request import CreateRol
 from finbourne.sdk.services.identity.models.create_user_request import CreateUserRequest
 from finbourne.sdk.services.identity.models.created_api_key import CreatedApiKey
 from finbourne.sdk.services.identity.models.current_user_response import CurrentUserResponse
+from finbourne.sdk.services.identity.models.detach_parent_cell_request import DetachParentCellRequest
 from finbourne.sdk.services.identity.models.error_detail import ErrorDetail
 from finbourne.sdk.services.identity.models.external_token_issuer_response import ExternalTokenIssuerResponse
 from finbourne.sdk.services.identity.models.id_selector_definition import IdSelectorDefinition
@@ -86,6 +89,8 @@ from finbourne.sdk.services.identity.models.resource_list_of_access_controlled_r
 from finbourne.sdk.services.identity.models.resource_list_of_system_log import ResourceListOfSystemLog
 from finbourne.sdk.services.identity.models.role_id import RoleId
 from finbourne.sdk.services.identity.models.role_response import RoleResponse
+from finbourne.sdk.services.identity.models.set_attaching_key_request import SetAttachingKeyRequest
+from finbourne.sdk.services.identity.models.set_parent_cell_request import SetParentCellRequest
 from finbourne.sdk.services.identity.models.set_password import SetPassword
 from finbourne.sdk.services.identity.models.set_password_response import SetPasswordResponse
 from finbourne.sdk.services.identity.models.support_access_expiry import SupportAccessExpiry
@@ -118,6 +123,7 @@ __all__ = [
     "ApplicationMetadataApi",
     "ApplicationsApi",
     "AuthenticationApi",
+    "CellManagementApi",
     "ExternalTokenIssuersApi",
     "IdentityLogsApi",
     "IdentityProviderApi",
@@ -134,6 +140,7 @@ __all__ = [
     "AddScimResponse",
     "ApiKey",
     "AuthenticationInformation",
+    "CellParentStatusResponse",
     "ClaimMappings",
     "CreateApiKey",
     "CreateApplicationRequest",
@@ -143,6 +150,7 @@ __all__ = [
     "CreateUserRequest",
     "CreatedApiKey",
     "CurrentUserResponse",
+    "DetachParentCellRequest",
     "ErrorDetail",
     "ExternalTokenIssuerResponse",
     "IdSelectorDefinition",
@@ -184,6 +192,8 @@ __all__ = [
     "ResourceListOfSystemLog",
     "RoleId",
     "RoleResponse",
+    "SetAttachingKeyRequest",
+    "SetParentCellRequest",
     "SetPassword",
     "SetPasswordResponse",
     "SupportAccessExpiry",

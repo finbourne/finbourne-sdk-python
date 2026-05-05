@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class CashFlowLineage(BaseModel):
     leg_id:  Optional[StrictStr] = Field(default=None,alias="legId", description="The leg id to which the cash flow belongs to.") 
     source_transaction_id:  Optional[StrictStr] = Field(default=None,alias="sourceTransactionId", description="The source transaction of the instrument to which the cash flow belongs to. When upserting this should be null") 
     pay_receive:  Optional[StrictStr] = Field(default=None,alias="payReceive", description="Does the cash flow belong to the Pay or Receive leg. When upserting this should either be null or one of [Pay, Receive, NotApplicable]") 
-    __properties = ["instrumentType", "cashFlowType", "instrumentId", "legId", "sourceTransactionId", "payReceive"]
+    __properties: ClassVar[List[str]] = ["instrumentType", "cashFlowType", "instrumentId", "legId", "sourceTransactionId", "payReceive"]
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class ManualEventRequest(BaseModel):
     The information required to trigger a manual event  # noqa: E501
     """
     body: ManualEventBody
-    __properties = ["body"]
+    __properties: ClassVar[List[str]] = ["body"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,7 +79,7 @@ class ManualEventRequest(BaseModel):
             return ManualEventRequest.model_validate(obj)
 
         _obj = ManualEventRequest.model_validate({
-            "body": ManualEventBody.from_dict(obj.get("body")) if obj.get("body") is not None else None
+            "body": ManualEventBody.from_dict(_v) if (_v := obj.get("body")) is not None else None
         })
         return _obj
 

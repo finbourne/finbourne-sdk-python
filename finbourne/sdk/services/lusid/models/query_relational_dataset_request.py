@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class QueryRelationalDatasetRequest(BaseModel):
     query_method:  Optional[StrictStr] = Field(default=None,alias="queryMethod", description="The method used to query data points. Can be either 'Latest' or 'TimeSeries'.") 
     filter:  Optional[StrictStr] = Field(default=None,alias="filter", description="Expression to filter the result set. For more information about filtering LUSID results, see https://support.lusid.com/knowledgebase/article/KA-01914.") 
     custom_sort_by: Optional[List[CustomSortBy]] = Field(default=None, description="A list of fields and values to sort the results by.", alias="customSortBy")
-    __properties = ["queryMethod", "filter", "customSortBy"]
+    __properties: ClassVar[List[str]] = ["queryMethod", "filter", "customSortBy"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -102,7 +102,7 @@ class QueryRelationalDatasetRequest(BaseModel):
         _obj = QueryRelationalDatasetRequest.model_validate({
             "query_method": obj.get("queryMethod"),
             "filter": obj.get("filter"),
-            "custom_sort_by": [CustomSortBy.from_dict(_item) for _item in obj.get("customSortBy")] if obj.get("customSortBy") is not None else None
+            "custom_sort_by": [CustomSortBy.from_dict(_item) for _item in _v] if (_v := obj.get("customSortBy")) is not None else None
         })
         return _obj
 

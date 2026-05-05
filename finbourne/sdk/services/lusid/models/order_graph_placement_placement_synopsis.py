@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class OrderGraphPlacementPlacementSynopsis(BaseModel):
     """
     details: List[OrderGraphPlacementChildPlacementDetail] = Field(description="Identifiers for each child placement for this placement.")
     quantity: Union[StrictFloat, StrictInt] = Field(description="Total number of units placed.")
-    __properties = ["details", "quantity"]
+    __properties: ClassVar[List[str]] = ["details", "quantity"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -84,7 +84,7 @@ class OrderGraphPlacementPlacementSynopsis(BaseModel):
             return OrderGraphPlacementPlacementSynopsis.model_validate(obj)
 
         _obj = OrderGraphPlacementPlacementSynopsis.model_validate({
-            "details": [OrderGraphPlacementChildPlacementDetail.from_dict(_item) for _item in obj.get("details")] if obj.get("details") is not None else None,
+            "details": [OrderGraphPlacementChildPlacementDetail.from_dict(_item) for _item in _v] if (_v := obj.get("details")) is not None else None,
             "quantity": obj.get("quantity")
         })
         return _obj

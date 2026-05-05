@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -38,7 +38,7 @@ class ImageSummary(BaseModel):
     scan_status:  Optional[StrictStr] = Field(default=None,alias="scanStatus", description="The Scan Status of the stated image") 
     scan_summary: Optional[ScanSummary] = Field(default=None, alias="scanSummary")
     link: Optional[Link] = None
-    __properties = ["name", "pushTime", "pullTime", "digest", "size", "tags", "scanStatus", "scanSummary", "link"]
+    __properties: ClassVar[List[str]] = ["name", "pushTime", "pullTime", "digest", "size", "tags", "scanStatus", "scanSummary", "link"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -139,10 +139,10 @@ class ImageSummary(BaseModel):
             "pull_time": obj.get("pullTime"),
             "digest": obj.get("digest"),
             "size": obj.get("size"),
-            "tags": [Tag.from_dict(_item) for _item in obj.get("tags")] if obj.get("tags") is not None else None,
+            "tags": [Tag.from_dict(_item) for _item in _v] if (_v := obj.get("tags")) is not None else None,
             "scan_status": obj.get("scanStatus"),
-            "scan_summary": ScanSummary.from_dict(obj.get("scanSummary")) if obj.get("scanSummary") is not None else None,
-            "link": Link.from_dict(obj.get("link")) if obj.get("link") is not None else None
+            "scan_summary": ScanSummary.from_dict(_v) if (_v := obj.get("scanSummary")) is not None else None,
+            "link": Link.from_dict(_v) if (_v := obj.get("link")) is not None else None
         })
         return _obj
 

@@ -243,6 +243,7 @@ from finbourne.sdk.services.lusid.models.composite_dispersion import CompositeDi
 from finbourne.sdk.services.lusid.models.composite_dispersion_response import CompositeDispersionResponse
 from finbourne.sdk.services.lusid.models.compounding import Compounding
 from finbourne.sdk.services.lusid.models.configuration_recipe import ConfigurationRecipe
+from finbourne.sdk.services.lusid.models.consent_event import ConsentEvent
 from finbourne.sdk.services.lusid.models.constant_volatility_surface import ConstantVolatilitySurface
 from finbourne.sdk.services.lusid.models.constituents_adjustment_header import ConstituentsAdjustmentHeader
 from finbourne.sdk.services.lusid.models.contract_details import ContractDetails
@@ -437,6 +438,7 @@ from finbourne.sdk.services.lusid.models.file_response import FileResponse
 from finbourne.sdk.services.lusid.models.filter_predicate_compliance_parameter import FilterPredicateComplianceParameter
 from finbourne.sdk.services.lusid.models.filter_step import FilterStep
 from finbourne.sdk.services.lusid.models.filter_step_request import FilterStepRequest
+from finbourne.sdk.services.lusid.models.filtered_fund_id_list import FilteredFundIdList
 from finbourne.sdk.services.lusid.models.finalised_valuation_point import FinalisedValuationPoint
 from finbourne.sdk.services.lusid.models.fixed_leg import FixedLeg
 from finbourne.sdk.services.lusid.models.fixed_leg_all_of_overrides import FixedLegAllOfOverrides
@@ -462,6 +464,7 @@ from finbourne.sdk.services.lusid.models.fund_calendar_entries import FundCalend
 from finbourne.sdk.services.lusid.models.fund_calendar_entries_type import FundCalendarEntriesType
 from finbourne.sdk.services.lusid.models.fund_calendar_entry import FundCalendarEntry
 from finbourne.sdk.services.lusid.models.fund_calendar_entry_type import FundCalendarEntryType
+from finbourne.sdk.services.lusid.models.fund_cash_statement_row import FundCashStatementRow
 from finbourne.sdk.services.lusid.models.fund_configuration import FundConfiguration
 from finbourne.sdk.services.lusid.models.fund_configuration_properties import FundConfigurationProperties
 from finbourne.sdk.services.lusid.models.fund_configuration_request import FundConfigurationRequest
@@ -923,6 +926,7 @@ from finbourne.sdk.services.lusid.models.quantity_instructed import QuantityInst
 from finbourne.sdk.services.lusid.models.query_applicable_instrument_events_request import QueryApplicableInstrumentEventsRequest
 from finbourne.sdk.services.lusid.models.query_bucketed_cash_flows_request import QueryBucketedCashFlowsRequest
 from finbourne.sdk.services.lusid.models.query_cash_flows_request import QueryCashFlowsRequest
+from finbourne.sdk.services.lusid.models.query_fund_cash_statement_parameters import QueryFundCashStatementParameters
 from finbourne.sdk.services.lusid.models.query_instrument_events_request import QueryInstrumentEventsRequest
 from finbourne.sdk.services.lusid.models.query_relational_dataset_request import QueryRelationalDatasetRequest
 from finbourne.sdk.services.lusid.models.query_trade_tickets_request import QueryTradeTicketsRequest
@@ -1348,6 +1352,7 @@ from finbourne.sdk.services.lusid.models.valuation_point_data_request import Val
 from finbourne.sdk.services.lusid.models.valuation_point_data_response import ValuationPointDataResponse
 from finbourne.sdk.services.lusid.models.valuation_point_overview import ValuationPointOverview
 from finbourne.sdk.services.lusid.models.valuation_point_resource_list_of_accounted_transaction import ValuationPointResourceListOfAccountedTransaction
+from finbourne.sdk.services.lusid.models.valuation_point_resource_list_of_fund_cash_statement_row import ValuationPointResourceListOfFundCashStatementRow
 from finbourne.sdk.services.lusid.models.valuation_point_resource_list_of_fund_journal_entry_line import ValuationPointResourceListOfFundJournalEntryLine
 from finbourne.sdk.services.lusid.models.valuation_point_resource_list_of_pnl_journal_entry_line import ValuationPointResourceListOfPnlJournalEntryLine
 from finbourne.sdk.services.lusid.models.valuation_point_resource_list_of_trial_balance import ValuationPointResourceListOfTrialBalance
@@ -1624,6 +1629,7 @@ __all__ = [
     "CompositeDispersionResponse",
     "Compounding",
     "ConfigurationRecipe",
+    "ConsentEvent",
     "ConstantVolatilitySurface",
     "ConstituentsAdjustmentHeader",
     "ContractDetails",
@@ -1818,6 +1824,7 @@ __all__ = [
     "FilterPredicateComplianceParameter",
     "FilterStep",
     "FilterStepRequest",
+    "FilteredFundIdList",
     "FinalisedValuationPoint",
     "FixedLeg",
     "FixedLegAllOfOverrides",
@@ -1843,6 +1850,7 @@ __all__ = [
     "FundCalendarEntriesType",
     "FundCalendarEntry",
     "FundCalendarEntryType",
+    "FundCashStatementRow",
     "FundConfiguration",
     "FundConfigurationProperties",
     "FundConfigurationRequest",
@@ -2304,6 +2312,7 @@ __all__ = [
     "QueryApplicableInstrumentEventsRequest",
     "QueryBucketedCashFlowsRequest",
     "QueryCashFlowsRequest",
+    "QueryFundCashStatementParameters",
     "QueryInstrumentEventsRequest",
     "QueryRelationalDatasetRequest",
     "QueryTradeTicketsRequest",
@@ -2729,6 +2738,7 @@ __all__ = [
     "ValuationPointDataResponse",
     "ValuationPointOverview",
     "ValuationPointResourceListOfAccountedTransaction",
+    "ValuationPointResourceListOfFundCashStatementRow",
     "ValuationPointResourceListOfFundJournalEntryLine",
     "ValuationPointResourceListOfPnlJournalEntryLine",
     "ValuationPointResourceListOfTrialBalance",

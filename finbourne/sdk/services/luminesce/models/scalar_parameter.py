@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class ScalarParameter(BaseModel):
     value: Optional[Any] = Field(default=None, description="the default value of the parameter")
     value_options: Optional[List[Any]] = Field(default=None, description="Values of the parameter listed as being available for choosing from.", alias="valueOptions")
     value_must_be_from_options: Optional[StrictBool] = Field(default=None, description="Must Value be one of ValueOptions (if any)?", alias="valueMustBeFromOptions")
-    __properties = ["name", "type", "value", "valueOptions", "valueMustBeFromOptions"]
+    __properties: ClassVar[List[str]] = ["name", "type", "value", "valueOptions", "valueMustBeFromOptions"]
 
     model_config = ConfigDict(
         populate_by_name=True,

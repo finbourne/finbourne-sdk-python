@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -27,7 +27,7 @@ class OptionsSqLite(BaseModel):
     Additional options applicable to the given SourceType  # noqa: E501
     """
     table:  Optional[StrictStr] = Field(default=None,alias="table", description="Table name to read.  If missing then an error will be raised if there is any number of tables other than one.") 
-    __properties = ["table"]
+    __properties: ClassVar[List[str]] = ["table"]
 
     model_config = ConfigDict(
         populate_by_name=True,

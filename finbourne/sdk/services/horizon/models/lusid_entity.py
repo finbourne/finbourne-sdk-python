@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class LusidEntity(BaseModel):
     entity_type_display_name:  StrictStr = Field(...,alias="entityTypeDisplayName", description="The display name for the entity type.") 
     entity_sub_type:  Optional[StrictStr] = Field(default=None,alias="entitySubType", description="The entity sub-type") 
     entity_sub_type_display_name:  Optional[StrictStr] = Field(default=None,alias="entitySubTypeDisplayName", description="Display name for the entity sub-type") 
-    __properties = ["entityType", "entityTypeDisplayName", "entitySubType", "entitySubTypeDisplayName"]
+    __properties: ClassVar[List[str]] = ["entityType", "entityTypeDisplayName", "entitySubType", "entitySubTypeDisplayName"]
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,8 +28,8 @@ class GroupReconciliationComparisonRuleStringValueMap(BaseModel):
     """
     left_value:  StrictStr = Field(...,alias="leftValue", description="The left string to map") 
     right_value:  StrictStr = Field(...,alias="rightValue", description="The right string to map") 
-    direction:  StrictStr = Field(...,alias="direction", description="The direction to map. \"UniDirectional\" | \"BiDirectional\"") 
-    __properties = ["leftValue", "rightValue", "direction"]
+    direction:  StrictStr = Field(...,alias="direction", description="The direction to map. Available values: BiDirectional, UniDirectional.") 
+    __properties: ClassVar[List[str]] = ["leftValue", "rightValue", "direction"]
 
     model_config = ConfigDict(
         populate_by_name=True,

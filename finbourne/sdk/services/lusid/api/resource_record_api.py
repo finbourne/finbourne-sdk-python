@@ -70,12 +70,12 @@ class ResourceRecordApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_resource_record_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_resource_record_with_http_info(scope, code, resource_id, **kwargs)  # noqa: E501
+        response = self.delete_resource_record_with_http_info(scope, code, resource_id, **kwargs)
+        return response.data
 
     @validate_call
     def delete_resource_record_with_http_info(self, scope: StrictStr, code: StrictStr, resource_id: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -208,12 +208,12 @@ class ResourceRecordApi:
         :return: Returns the result object.
         :rtype: ResourceRecord
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_resource_record_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_resource_record_with_http_info(scope, code, resource_id, as_at, **kwargs)  # noqa: E501
+        response = self.get_resource_record_with_http_info(scope, code, resource_id, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_resource_record_with_http_info(self, scope: StrictStr, code: StrictStr, resource_id: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceRecord]:
@@ -353,12 +353,12 @@ class ResourceRecordApi:
         :return: Returns the result object.
         :rtype: ResourceListOfString
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_resource_record_codes_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_resource_record_codes_with_http_info(scope, as_at, sort_order, **kwargs)  # noqa: E501
+        response = self.list_resource_record_codes_with_http_info(scope, as_at, sort_order, **kwargs)
+        return response.data
 
     @validate_call
     def list_resource_record_codes_with_http_info(self, scope: StrictStr, as_at: Optional[datetime] = None, sort_order: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfString]:
@@ -492,12 +492,12 @@ class ResourceRecordApi:
         :return: Returns the result object.
         :rtype: ResourceListOfScopeDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_resource_record_scopes_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_resource_record_scopes_with_http_info(as_at, page, limit, **kwargs)  # noqa: E501
+        response = self.list_resource_record_scopes_with_http_info(as_at, page, limit, **kwargs)
+        return response.data
 
     @validate_call
     def list_resource_record_scopes_with_http_info(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, **kwargs) -> ApiResponse[ResourceListOfScopeDefinition]:
@@ -639,12 +639,12 @@ class ResourceRecordApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfResourceRecord
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_resource_records_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_resource_records_with_http_info(scope, code, as_at, page, sort_by, limit, filter, **kwargs)  # noqa: E501
+        response = self.list_resource_records_with_http_info(scope, code, as_at, page, sort_by, limit, filter, **kwargs)
+        return response.data
 
     @validate_call
     def list_resource_records_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfResourceRecord]:
@@ -799,12 +799,12 @@ class ResourceRecordApi:
         :return: Returns the result object.
         :rtype: ResourceRecord
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_resource_record_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_resource_record_with_http_info(upsert_resource_record_request, **kwargs)  # noqa: E501
+        response = self.upsert_resource_record_with_http_info(upsert_resource_record_request, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_resource_record_with_http_info(self, upsert_resource_record_request: UpsertResourceRecordRequest, **kwargs) -> ApiResponse[ResourceRecord]:
@@ -934,12 +934,12 @@ class ResourceRecordApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_resource_record_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_resource_record_with_http_info_async(scope, code, resource_id, **kwargs)  # noqa: E501
+            response = await self.delete_resource_record_with_http_info_async(scope, code, resource_id, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_resource_record_with_http_info_async(self, scope: StrictStr, code: StrictStr, resource_id: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -1073,12 +1073,12 @@ class ResourceRecordApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceRecord
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_resource_record_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_resource_record_with_http_info_async(scope, code, resource_id, as_at, **kwargs)  # noqa: E501
+            response = await self.get_resource_record_with_http_info_async(scope, code, resource_id, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_resource_record_with_http_info_async(self, scope: StrictStr, code: StrictStr, resource_id: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceRecord]:
@@ -1219,12 +1219,12 @@ class ResourceRecordApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfString
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_resource_record_codes_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_resource_record_codes_with_http_info_async(scope, as_at, sort_order, **kwargs)  # noqa: E501
+            response = await self.list_resource_record_codes_with_http_info_async(scope, as_at, sort_order, **kwargs)
+            return response.data
 
     @validate_call
     async def list_resource_record_codes_with_http_info_async(self, scope: StrictStr, as_at: Optional[datetime] = None, sort_order: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfString]:
@@ -1359,12 +1359,12 @@ class ResourceRecordApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfScopeDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_resource_record_scopes_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_resource_record_scopes_with_http_info_async(as_at, page, limit, **kwargs)  # noqa: E501
+            response = await self.list_resource_record_scopes_with_http_info_async(as_at, page, limit, **kwargs)
+            return response.data
 
     @validate_call
     async def list_resource_record_scopes_with_http_info_async(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, **kwargs) -> ApiResponse[ResourceListOfScopeDefinition]:
@@ -1507,12 +1507,12 @@ class ResourceRecordApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfResourceRecord
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_resource_records_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_resource_records_with_http_info_async(scope, code, as_at, page, sort_by, limit, filter, **kwargs)  # noqa: E501
+            response = await self.list_resource_records_with_http_info_async(scope, code, as_at, page, sort_by, limit, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def list_resource_records_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfResourceRecord]:
@@ -1668,12 +1668,12 @@ class ResourceRecordApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceRecord
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_resource_record_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_resource_record_with_http_info_async(upsert_resource_record_request, **kwargs)  # noqa: E501
+            response = await self.upsert_resource_record_with_http_info_async(upsert_resource_record_request, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_resource_record_with_http_info_async(self, upsert_resource_record_request: UpsertResourceRecordRequest, **kwargs) -> ApiResponse[ResourceRecord]:

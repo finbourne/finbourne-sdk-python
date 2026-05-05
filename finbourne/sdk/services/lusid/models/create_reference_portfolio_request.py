@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class CreateReferencePortfolioRequest(BaseModel):
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="Portfolio properties to add to the portfolio.")
     instrument_scopes: Optional[List[StrictStr]] = Field(default=None, description="Instrument Scopes.", alias="instrumentScopes")
     base_currency:  Optional[StrictStr] = Field(default=None,alias="baseCurrency", description="The base currency of the transaction portfolio in ISO 4217 currency code format.") 
-    __properties = ["displayName", "description", "code", "created", "properties", "instrumentScopes", "baseCurrency"]
+    __properties: ClassVar[List[str]] = ["displayName", "description", "code", "created", "properties", "instrumentScopes", "baseCurrency"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -120,9 +120,9 @@ class CreateReferencePortfolioRequest(BaseModel):
             "created": obj.get("created"),
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
             "instrument_scopes": obj.get("instrumentScopes"),
             "base_currency": obj.get("baseCurrency")

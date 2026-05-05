@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **decision** | **str** | Required | The decision on the requested staged modification, can be &#39;Approve&#39; or &#39;Reject&#39;. |
+| **decision** | **str** | Required | The decision on the requested staged modification, can be &#39;Approve&#39; or &#39;Reject&#39;. Available values: Approve, Reject. |
 | **comment** | **str** | Required | Comment on decision. |
 
 
@@ -16,7 +16,7 @@
 from finbourne.sdk.services.lusid.models.StagedModificationDecisionRequest import StagedModificationDecisionRequest
 
 instance = StagedModificationDecisionRequest(
-    decision="...",  # required — The decision on the requested staged modification, can be &#39;Approve&#39; or &#39;Reject&#39;.
+    decision="...",  # required — The decision on the requested staged modification, can be &#39;Approve&#39; or &#39;Reject&#39;. Available values: Approve, Reject.
     comment="..."  # required — Comment on decision.
 )
 ```

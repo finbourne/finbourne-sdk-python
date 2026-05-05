@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -38,7 +38,7 @@ class OrderUpdateRequest(BaseModel):
     stop_price: Optional[CurrencyAndAmount] = Field(default=None, alias="stopPrice")
     var_date: Optional[datetime] = Field(default=None, description="The date on which the order was made", alias="date")
     side:  Optional[StrictStr] = Field(default=None,alias="side", description="The client's representation of the order's side (buy, sell, short, etc)") 
-    __properties = ["id", "quantity", "portfolioId", "properties", "price", "limitPrice", "stopPrice", "date", "side"]
+    __properties: ClassVar[List[str]] = ["id", "quantity", "portfolioId", "properties", "price", "limitPrice", "stopPrice", "date", "side"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -128,18 +128,18 @@ class OrderUpdateRequest(BaseModel):
             return OrderUpdateRequest.model_validate(obj)
 
         _obj = OrderUpdateRequest.model_validate({
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
             "quantity": obj.get("quantity"),
-            "portfolio_id": ResourceId.from_dict(obj.get("portfolioId")) if obj.get("portfolioId") is not None else None,
+            "portfolio_id": ResourceId.from_dict(_v) if (_v := obj.get("portfolioId")) is not None else None,
             "properties": dict(
                 (_k, PerpetualProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
-            "price": CurrencyAndAmount.from_dict(obj.get("price")) if obj.get("price") is not None else None,
-            "limit_price": CurrencyAndAmount.from_dict(obj.get("limitPrice")) if obj.get("limitPrice") is not None else None,
-            "stop_price": CurrencyAndAmount.from_dict(obj.get("stopPrice")) if obj.get("stopPrice") is not None else None,
+            "price": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("price")) is not None else None,
+            "limit_price": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("limitPrice")) is not None else None,
+            "stop_price": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("stopPrice")) is not None else None,
             "var_date": obj.get("date"),
             "side": obj.get("side")
         })

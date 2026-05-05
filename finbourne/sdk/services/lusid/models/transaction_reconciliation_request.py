@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class TransactionReconciliationRequest(BaseModel):
     to_transaction_date: datetime = Field(alias="toTransactionDate")
     as_at: Optional[datetime] = Field(default=None, alias="asAt")
     property_keys: Optional[List[StrictStr]] = Field(default=None, alias="propertyKeys")
-    __properties = ["leftPortfolioId", "rightPortfolioId", "mappingId", "fromTransactionDate", "toTransactionDate", "asAt", "propertyKeys"]
+    __properties: ClassVar[List[str]] = ["leftPortfolioId", "rightPortfolioId", "mappingId", "fromTransactionDate", "toTransactionDate", "asAt", "propertyKeys"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -101,9 +101,9 @@ class TransactionReconciliationRequest(BaseModel):
             return TransactionReconciliationRequest.model_validate(obj)
 
         _obj = TransactionReconciliationRequest.model_validate({
-            "left_portfolio_id": ResourceId.from_dict(obj.get("leftPortfolioId")) if obj.get("leftPortfolioId") is not None else None,
-            "right_portfolio_id": ResourceId.from_dict(obj.get("rightPortfolioId")) if obj.get("rightPortfolioId") is not None else None,
-            "mapping_id": ResourceId.from_dict(obj.get("mappingId")) if obj.get("mappingId") is not None else None,
+            "left_portfolio_id": ResourceId.from_dict(_v) if (_v := obj.get("leftPortfolioId")) is not None else None,
+            "right_portfolio_id": ResourceId.from_dict(_v) if (_v := obj.get("rightPortfolioId")) is not None else None,
+            "mapping_id": ResourceId.from_dict(_v) if (_v := obj.get("mappingId")) is not None else None,
             "from_transaction_date": obj.get("fromTransactionDate"),
             "to_transaction_date": obj.get("toTransactionDate"),
             "as_at": obj.get("asAt"),

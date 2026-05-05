@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,9 +32,9 @@ class Basket(LusidInstrument):
     basket_name: BasketIdentifier = Field(alias="basketName")
     basket_type:  StrictStr = Field(...,alias="basketType", description="What contents does the basket have. The validation will check that the instrument types contained match those expected.    Supported string (enumeration) values are: [Bonds, Credits, Equities, EquitySwap].") 
     weighted_instruments: WeightedInstruments = Field(alias="weightedInstruments")
-    instrument_type:  StrictStr = Field(...,alias="instrumentType", description="The available values are: QuotedSecurity, InterestRateSwap, FxForward, Future, ExoticInstrument, FxOption, CreditDefaultSwap, InterestRateSwaption, Bond, EquityOption, FixedLeg, FloatingLeg, BespokeCashFlowsLeg, Unknown, TermDeposit, ContractForDifference, EquitySwap, CashPerpetual, CapFloor, CashSettled, CdsIndex, Basket, FundingLeg, FxSwap, ForwardRateAgreement, SimpleInstrument, Repo, Equity, ExchangeTradedOption, ReferenceInstrument, ComplexBond, InflationLinkedBond, InflationSwap, SimpleCashFlowLoan, TotalReturnSwap, InflationLeg, FundShareClass, FlexibleLoan, UnsettledCash, Cash, MasteredInstrument, LoanFacility, FlexibleDeposit, FlexibleRepo") 
+    instrument_type:  StrictStr = Field(...,alias="instrumentType", description="Available values: QuotedSecurity, InterestRateSwap, FxForward, Future, ExoticInstrument, FxOption, CreditDefaultSwap, InterestRateSwaption, Bond, EquityOption, FixedLeg, FloatingLeg, BespokeCashFlowsLeg, Unknown, TermDeposit, ContractForDifference, EquitySwap, CashPerpetual, CapFloor, CashSettled, CdsIndex, Basket, FundingLeg, FxSwap, ForwardRateAgreement, SimpleInstrument, Repo, Equity, ExchangeTradedOption, ReferenceInstrument, ComplexBond, InflationLinkedBond, InflationSwap, SimpleCashFlowLoan, TotalReturnSwap, InflationLeg, FundShareClass, FlexibleLoan, UnsettledCash, Cash, MasteredInstrument, LoanFacility, FlexibleDeposit, FlexibleRepo.") 
     additional_properties: Dict[str, Any] = {}
-    __properties = ["instrumentType", "basketName", "basketType", "weightedInstruments"]
+    __properties: ClassVar[List[str]] = ["instrumentType", "basketName", "basketType", "weightedInstruments"]
 
     @field_validator('instrument_type')
     def instrument_type_validate_enum(cls, value):
@@ -164,18 +164,13 @@ class Basket(LusidInstrument):
 
         _obj = Basket.model_validate({
             "instrument_type": obj.get("instrumentType"),
-            "basket_name": BasketIdentifier.from_dict(obj.get("basketName")) if obj.get("basketName") is not None else None,
+            "basket_name": BasketIdentifier.from_dict(_v) if (_v := obj.get("basketName")) is not None else None,
             "basket_type": obj.get("basketType"),
-            "weighted_instruments": WeightedInstruments.from_dict(obj.get("weightedInstruments")) if obj.get("weightedInstruments") is not None else None
+            "weighted_instruments": WeightedInstruments.from_dict(_v) if (_v := obj.get("weightedInstruments")) is not None else None
         })
         # store additional fields in additional_properties
-        
-        properties = cls.__properties
-        if not isinstance(cls.__properties, dict) and getattr(cls.__properties, 'default', None):
-            properties = cls.__properties.default
-    
         for _key in obj.keys():
-            if _key not in properties:
+            if _key not in cls.__properties:
                 _obj.additional_properties[_key] = obj.get(_key)
 
         return _obj

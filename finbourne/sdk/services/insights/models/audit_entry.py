@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class AuditEntry(BaseModel):
     process: AuditProcess
     data: AuditData
     notes: Optional[List[AuditEntryNote]] = None
-    __properties = ["id", "date", "process", "data", "notes"]
+    __properties: ClassVar[List[str]] = ["id", "date", "process", "data", "notes"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -102,9 +102,9 @@ class AuditEntry(BaseModel):
         _obj = AuditEntry.model_validate({
             "id": obj.get("id"),
             "var_date": obj.get("date"),
-            "process": AuditProcess.from_dict(obj.get("process")) if obj.get("process") is not None else None,
-            "data": AuditData.from_dict(obj.get("data")) if obj.get("data") is not None else None,
-            "notes": [AuditEntryNote.from_dict(_item) for _item in obj.get("notes")] if obj.get("notes") is not None else None
+            "process": AuditProcess.from_dict(_v) if (_v := obj.get("process")) is not None else None,
+            "data": AuditData.from_dict(_v) if (_v := obj.get("data")) is not None else None,
+            "notes": [AuditEntryNote.from_dict(_item) for _item in _v] if (_v := obj.get("notes")) is not None else None
         })
         return _obj
 

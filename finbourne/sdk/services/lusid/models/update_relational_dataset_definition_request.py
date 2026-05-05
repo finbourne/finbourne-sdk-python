@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class UpdateRelationalDatasetDefinitionRequest(BaseModel):
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="A detailed description of the relational dataset definition and its purpose.") 
     applicable_entity_types: List[StrictStr] = Field(description="The types of entities this relational dataset definition can be applied to (e.g. Instrument, Portfolio, etc.).", alias="applicableEntityTypes")
     field_schema: List[RelationalDatasetFieldDefinition] = Field(description="The schema defining the structure and data types of the relational dataset.", alias="fieldSchema")
-    __properties = ["displayName", "description", "applicableEntityTypes", "fieldSchema"]
+    __properties: ClassVar[List[str]] = ["displayName", "description", "applicableEntityTypes", "fieldSchema"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -94,7 +94,7 @@ class UpdateRelationalDatasetDefinitionRequest(BaseModel):
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
             "applicable_entity_types": obj.get("applicableEntityTypes"),
-            "field_schema": [RelationalDatasetFieldDefinition.from_dict(_item) for _item in obj.get("fieldSchema")] if obj.get("fieldSchema") is not None else None
+            "field_schema": [RelationalDatasetFieldDefinition.from_dict(_item) for _item in _v] if (_v := obj.get("fieldSchema")) is not None else None
         })
         return _obj
 

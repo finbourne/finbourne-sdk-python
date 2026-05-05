@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -35,7 +35,7 @@ class AborRequest(BaseModel):
     portfolio_ids: List[PortfolioEntityId] = Field(description="The list with the portfolio ids which are part of the Abor. Note: These must all have the same base currency.", alias="portfolioIds")
     abor_configuration_id: ResourceId = Field(alias="aborConfigurationId")
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="A set of properties for the Abor.")
-    __properties = ["code", "displayName", "description", "portfolioIds", "aborConfigurationId", "properties"]
+    __properties: ClassVar[List[str]] = ["code", "displayName", "description", "portfolioIds", "aborConfigurationId", "properties"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -113,13 +113,13 @@ class AborRequest(BaseModel):
             "code": obj.get("code"),
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
-            "portfolio_ids": [PortfolioEntityId.from_dict(_item) for _item in obj.get("portfolioIds")] if obj.get("portfolioIds") is not None else None,
-            "abor_configuration_id": ResourceId.from_dict(obj.get("aborConfigurationId")) if obj.get("aborConfigurationId") is not None else None,
+            "portfolio_ids": [PortfolioEntityId.from_dict(_item) for _item in _v] if (_v := obj.get("portfolioIds")) is not None else None,
+            "abor_configuration_id": ResourceId.from_dict(_v) if (_v := obj.get("aborConfigurationId")) is not None else None,
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None
         })
         return _obj

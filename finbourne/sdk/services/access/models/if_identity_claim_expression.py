@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class IfIdentityClaimExpression(BaseModel):
     claim_original_issuer:  Optional[StrictStr] = Field(default=None,alias="claimOriginalIssuer") 
     operator: TextOperator
     value:  Optional[StrictStr] = Field(default=None,alias="value") 
-    __properties = ["claimType", "claimValueType", "claimIssuer", "claimOriginalIssuer", "operator", "value"]
+    __properties: ClassVar[List[str]] = ["claimType", "claimValueType", "claimIssuer", "claimOriginalIssuer", "operator", "value"]
 
     model_config = ConfigDict(
         populate_by_name=True,

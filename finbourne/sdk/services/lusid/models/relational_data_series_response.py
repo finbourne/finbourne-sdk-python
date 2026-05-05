@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class RelationalDataSeriesResponse(BaseModel):
     series_scope:  StrictStr = Field(...,alias="seriesScope", description="The scope of the DataSeries.") 
     applicable_entity: ApplicableEntity = Field(alias="applicableEntity")
     series_identifiers: Dict[str, RelationalDataPointFieldValueResponse] = Field(description="The identifiers that uniquely define this DataSeries, if any, structured according to the FieldSchema of the parent RelationalDatasetDefinition.", alias="seriesIdentifiers")
-    __properties = ["seriesScope", "applicableEntity", "seriesIdentifiers"]
+    __properties: ClassVar[List[str]] = ["seriesScope", "applicableEntity", "seriesIdentifiers"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -90,12 +90,12 @@ class RelationalDataSeriesResponse(BaseModel):
 
         _obj = RelationalDataSeriesResponse.model_validate({
             "series_scope": obj.get("seriesScope"),
-            "applicable_entity": ApplicableEntity.from_dict(obj.get("applicableEntity")) if obj.get("applicableEntity") is not None else None,
+            "applicable_entity": ApplicableEntity.from_dict(_v) if (_v := obj.get("applicableEntity")) is not None else None,
             "series_identifiers": dict(
                 (_k, RelationalDataPointFieldValueResponse.from_dict(_v))
-                for _k, _v in obj.get("seriesIdentifiers").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("seriesIdentifiers") is not None
+            if (_val := obj.get("seriesIdentifiers")) is not None
             else None
         })
         return _obj

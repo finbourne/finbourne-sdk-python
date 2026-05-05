@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class LusidUniqueId(BaseModel):
     """
     type:  StrictStr = Field(...,alias="type", description="The type for the LUSID unique id, this will depend on the type of entity found, for instance 'Instrument' would have a value of 'LusidInstrumentId'") 
     value:  StrictStr = Field(...,alias="value", description="The value for the LUSID unique id") 
-    __properties = ["type", "value"]
+    __properties: ClassVar[List[str]] = ["type", "value"]
 
     model_config = ConfigDict(
         populate_by_name=True,

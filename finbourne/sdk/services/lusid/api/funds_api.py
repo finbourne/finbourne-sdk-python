@@ -45,6 +45,7 @@ from finbourne.sdk.services.lusid.models.paged_resource_list_of_fund import Page
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_fund_calendar_entries import PagedResourceListOfFundCalendarEntries
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_fund_calendar_entry import PagedResourceListOfFundCalendarEntry
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_valuation_point_overview import PagedResourceListOfValuationPointOverview
+from finbourne.sdk.services.lusid.models.query_fund_cash_statement_parameters import QueryFundCashStatementParameters
 from finbourne.sdk.services.lusid.models.resource_list_of_nav_activity_adjustment import ResourceListOfNavActivityAdjustment
 from finbourne.sdk.services.lusid.models.revert_valuation_point_data_request import RevertValuationPointDataRequest
 from finbourne.sdk.services.lusid.models.series_definition_request import SeriesDefinitionRequest
@@ -56,6 +57,7 @@ from finbourne.sdk.services.lusid.models.valuation_point_data_query_parameters i
 from finbourne.sdk.services.lusid.models.valuation_point_data_request import ValuationPointDataRequest
 from finbourne.sdk.services.lusid.models.valuation_point_data_response import ValuationPointDataResponse
 from finbourne.sdk.services.lusid.models.valuation_point_resource_list_of_accounted_transaction import ValuationPointResourceListOfAccountedTransaction
+from finbourne.sdk.services.lusid.models.valuation_point_resource_list_of_fund_cash_statement_row import ValuationPointResourceListOfFundCashStatementRow
 from finbourne.sdk.services.lusid.models.valuation_point_resource_list_of_fund_journal_entry_line import ValuationPointResourceListOfFundJournalEntryLine
 from finbourne.sdk.services.lusid.models.valuation_point_resource_list_of_pnl_journal_entry_line import ValuationPointResourceListOfPnlJournalEntryLine
 from finbourne.sdk.services.lusid.models.valuation_point_resource_list_of_trial_balance import ValuationPointResourceListOfTrialBalance
@@ -104,12 +106,12 @@ class FundsApi:
         :return: Returns the result object.
         :rtype: AcceptEstimateValuationPointResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the accept_estimate_valuation_point_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.accept_estimate_valuation_point_with_http_info(scope, code, valuation_point_data_request, nav_type_code, **kwargs)  # noqa: E501
+        response = self.accept_estimate_valuation_point_with_http_info(scope, code, valuation_point_data_request, nav_type_code, **kwargs)
+        return response.data
 
     @validate_call
     def accept_estimate_valuation_point_with_http_info(self, scope: StrictStr, code: StrictStr, valuation_point_data_request: ValuationPointDataRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AcceptEstimateValuationPointResponse]:
@@ -253,12 +255,12 @@ class FundsApi:
         :return: Returns the result object.
         :rtype: Fund
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the add_allocation_groups_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.add_allocation_groups_with_http_info(scope, code, allocation_group_definition, **kwargs)  # noqa: E501
+        response = self.add_allocation_groups_with_http_info(scope, code, allocation_group_definition, **kwargs)
+        return response.data
 
     @validate_call
     def add_allocation_groups_with_http_info(self, scope: StrictStr, code: StrictStr, allocation_group_definition: List[AllocationGroupDefinition], **kwargs) -> ApiResponse[Fund]:
@@ -396,12 +398,12 @@ class FundsApi:
         :return: Returns the result object.
         :rtype: Fund
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the add_series_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.add_series_with_http_info(scope, code, series_definition_request, **kwargs)  # noqa: E501
+        response = self.add_series_with_http_info(scope, code, series_definition_request, **kwargs)
+        return response.data
 
     @validate_call
     def add_series_with_http_info(self, scope: StrictStr, code: StrictStr, series_definition_request: List[SeriesDefinitionRequest], **kwargs) -> ApiResponse[Fund]:
@@ -541,12 +543,12 @@ class FundsApi:
         :return: Returns the result object.
         :rtype: Fee
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_fee_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_fee_with_http_info(scope, code, fee_request, nav_type_code, **kwargs)  # noqa: E501
+        response = self.create_fee_with_http_info(scope, code, fee_request, nav_type_code, **kwargs)
+        return response.data
 
     @validate_call
     def create_fee_with_http_info(self, scope: StrictStr, code: StrictStr, fee_request: FeeRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[Fee]:
@@ -688,12 +690,12 @@ class FundsApi:
         :return: Returns the result object.
         :rtype: Fund
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_fund_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_fund_with_http_info(scope, fund_request, **kwargs)  # noqa: E501
+        response = self.create_fund_with_http_info(scope, fund_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_fund_with_http_info(self, scope: StrictStr, fund_request: FundRequest, **kwargs) -> ApiResponse[Fund]:
@@ -823,12 +825,12 @@ class FundsApi:
         :return: Returns the result object.
         :rtype: Fund
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_fund_v2_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_fund_v2_with_http_info(scope, fund_definition_request, **kwargs)  # noqa: E501
+        response = self.create_fund_v2_with_http_info(scope, fund_definition_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_fund_v2_with_http_info(self, scope: StrictStr, fund_definition_request: FundDefinitionRequest, **kwargs) -> ApiResponse[Fund]:
@@ -954,7 +956,7 @@ class FundsApi:
         :type code: str
         :param request_body: The codes of the nav types to be deactivated. (required)
         :type request_body: List[str]
-        :param delete_mode: The delete mode to use (defaults to 'Soft').
+        :param delete_mode: The delete mode to use. Default value: Soft. Available values: Soft, Hard.
         :type delete_mode: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -962,12 +964,12 @@ class FundsApi:
         :return: Returns the result object.
         :rtype: Fund
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the deactivate_nav_types_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.deactivate_nav_types_with_http_info(scope, code, request_body, delete_mode, **kwargs)  # noqa: E501
+        response = self.deactivate_nav_types_with_http_info(scope, code, request_body, delete_mode, **kwargs)
+        return response.data
 
     @validate_call
     def deactivate_nav_types_with_http_info(self, scope: StrictStr, code: StrictStr, request_body: List[str], delete_mode: Optional[StrictStr] = None, **kwargs) -> ApiResponse[Fund]:
@@ -980,7 +982,7 @@ class FundsApi:
         :type code: str
         :param request_body: The codes of the nav types to be deactivated. (required)
         :type request_body: List[str]
-        :param delete_mode: The delete mode to use (defaults to 'Soft').
+        :param delete_mode: The delete mode to use. Default value: Soft. Available values: Soft, Hard.
         :type delete_mode: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -1113,12 +1115,12 @@ class FundsApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_bookmark_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_bookmark_with_http_info(scope, code, bookmark_code, nav_type_code, **kwargs)  # noqa: E501
+        response = self.delete_bookmark_with_http_info(scope, code, bookmark_code, nav_type_code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_bookmark_with_http_info(self, scope: StrictStr, code: StrictStr, bookmark_code: StrictStr, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -1255,12 +1257,12 @@ class FundsApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_fee_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_fee_with_http_info(scope, code, fee_code, **kwargs)  # noqa: E501
+        response = self.delete_fee_with_http_info(scope, code, fee_code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_fee_with_http_info(self, scope: StrictStr, code: StrictStr, fee_code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -1389,12 +1391,12 @@ class FundsApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_fund_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_fund_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_fund_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_fund_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -1525,12 +1527,12 @@ class FundsApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_nav_activity_adjustments_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_nav_activity_adjustments_with_http_info(scope, code, valuation_point_code, nav_activity_adjustment, nav_type_code, valuation_point_code_variant, **kwargs)  # noqa: E501
+        response = self.delete_nav_activity_adjustments_with_http_info(scope, code, valuation_point_code, nav_activity_adjustment, nav_type_code, valuation_point_code_variant, **kwargs)
+        return response.data
 
     @validate_call
     def delete_nav_activity_adjustments_with_http_info(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_activity_adjustment: List[NavActivityAdjustment], nav_type_code: Optional[StrictStr] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -1690,12 +1692,12 @@ class FundsApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_valuation_point_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_valuation_point_with_http_info(scope, code, diary_entry_code, diary_entry_code_variant, nav_type_code, **kwargs)  # noqa: E501
+        response = self.delete_valuation_point_with_http_info(scope, code, diary_entry_code, diary_entry_code_variant, nav_type_code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_valuation_point_with_http_info(self, scope: StrictStr, code: StrictStr, diary_entry_code: StrictStr, diary_entry_code_variant: Optional[StrictStr] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -1840,12 +1842,12 @@ class FundsApi:
         :return: Returns the result object.
         :rtype: ValuationPointDataResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the finalise_candidate_valuation_point_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.finalise_candidate_valuation_point_with_http_info(scope, code, valuation_point_data_request, nav_type_code, **kwargs)  # noqa: E501
+        response = self.finalise_candidate_valuation_point_with_http_info(scope, code, valuation_point_data_request, nav_type_code, **kwargs)
+        return response.data
 
     @validate_call
     def finalise_candidate_valuation_point_with_http_info(self, scope: StrictStr, code: StrictStr, valuation_point_data_request: ValuationPointDataRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointDataResponse]:
@@ -1995,12 +1997,12 @@ class FundsApi:
         :return: Returns the result object.
         :rtype: Fee
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_fee_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_fee_with_http_info(scope, code, fee_code, effective_at, as_at, property_keys, **kwargs)  # noqa: E501
+        response = self.get_fee_with_http_info(scope, code, fee_code, effective_at, as_at, property_keys, **kwargs)
+        return response.data
 
     @validate_call
     def get_fee_with_http_info(self, scope: StrictStr, code: StrictStr, fee_code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[Fee]:
@@ -2157,12 +2159,12 @@ class FundsApi:
         :return: Returns the result object.
         :rtype: FeeProperties
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_fee_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_fee_properties_with_http_info(scope, code, fee_code, effective_at, as_at, **kwargs)  # noqa: E501
+        response = self.get_fee_properties_with_http_info(scope, code, fee_code, effective_at, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_fee_properties_with_http_info(self, scope: StrictStr, code: StrictStr, fee_code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[FeeProperties]:
@@ -2312,12 +2314,12 @@ class FundsApi:
         :return: Returns the result object.
         :rtype: Fund
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_fund_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_fund_with_http_info(scope, code, effective_at, as_at, property_keys, **kwargs)  # noqa: E501
+        response = self.get_fund_with_http_info(scope, code, effective_at, as_at, property_keys, **kwargs)
+        return response.data
 
     @validate_call
     def get_fund_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[Fund]:
@@ -2466,12 +2468,12 @@ class FundsApi:
         :return: Returns the result object.
         :rtype: FundProperties
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_fund_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_fund_properties_with_http_info(scope, code, effective_at, as_at, **kwargs)  # noqa: E501
+        response = self.get_fund_properties_with_http_info(scope, code, effective_at, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_fund_properties_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[FundProperties]:
@@ -2627,12 +2629,12 @@ class FundsApi:
         :return: Returns the result object.
         :rtype: VersionedResourceListOfHoldingContributor
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_holding_contributors_for_fund_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_holding_contributors_for_fund_with_http_info(scope, code, holding_id, valuation_point_data_query_parameters, nav_type_code, include_historic, tax_lot_id, include_unsettled_movements, limit, as_at, page, **kwargs)  # noqa: E501
+        response = self.get_holding_contributors_for_fund_with_http_info(scope, code, holding_id, valuation_point_data_query_parameters, nav_type_code, include_historic, tax_lot_id, include_unsettled_movements, limit, as_at, page, **kwargs)
+        return response.data
 
     @validate_call
     def get_holding_contributors_for_fund_with_http_info(self, scope: StrictStr, code: StrictStr, holding_id: int, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, nav_type_code: Optional[StrictStr] = None, include_historic: Optional[bool] = None, tax_lot_id: Optional[StrictStr] = None, include_unsettled_movements: Optional[bool] = None, limit: Optional[int] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfHoldingContributor]:
@@ -2833,12 +2835,12 @@ class FundsApi:
         :return: Returns the result object.
         :rtype: VersionedResourceListOfPortfolioHolding
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_holdings_for_fund_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_holdings_for_fund_with_http_info(scope, code, single_valuation_point_query_parameters, nav_type_code, as_at, filter, property_keys, by_taxlots, include_settlement_events_after_days, **kwargs)  # noqa: E501
+        response = self.get_holdings_for_fund_with_http_info(scope, code, single_valuation_point_query_parameters, nav_type_code, as_at, filter, property_keys, by_taxlots, include_settlement_events_after_days, **kwargs)
+        return response.data
 
     @validate_call
     def get_holdings_for_fund_with_http_info(self, scope: StrictStr, code: StrictStr, single_valuation_point_query_parameters: SingleValuationPointQueryParameters, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, by_taxlots: Optional[bool] = None, include_settlement_events_after_days: Optional[int] = None, **kwargs) -> ApiResponse[VersionedResourceListOfPortfolioHolding]:
@@ -3018,12 +3020,12 @@ class FundsApi:
         :return: Returns the result object.
         :rtype: ListAggregationResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_valuation_for_fund_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_valuation_for_fund_with_http_info(scope, code, nav_type_code, fund_valuation_request, **kwargs)  # noqa: E501
+        response = self.get_valuation_for_fund_with_http_info(scope, code, nav_type_code, fund_valuation_request, **kwargs)
+        return response.data
 
     @validate_call
     def get_valuation_for_fund_with_http_info(self, scope: StrictStr, code: StrictStr, nav_type_code: Optional[StrictStr] = None, fund_valuation_request: Optional[FundValuationRequest] = None, **kwargs) -> ApiResponse[ListAggregationResponse]:
@@ -3171,12 +3173,12 @@ class FundsApi:
         :return: Returns the result object.
         :rtype: ValuationPointDataResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_valuation_point_data_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_valuation_point_data_with_http_info(scope, code, valuation_point_data_query_parameters, as_at, nav_type_code, **kwargs)  # noqa: E501
+        response = self.get_valuation_point_data_with_http_info(scope, code, valuation_point_data_query_parameters, as_at, nav_type_code, **kwargs)
+        return response.data
 
     @validate_call
     def get_valuation_point_data_with_http_info(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, as_at: Optional[datetime] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointDataResponse]:
@@ -3343,12 +3345,12 @@ class FundsApi:
         :return: Returns the result object.
         :rtype: ValuationPointResourceListOfFundJournalEntryLine
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_valuation_point_journal_entry_lines_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_valuation_point_journal_entry_lines_with_http_info(scope, code, valuation_point_data_query_parameters, general_ledger_profile_code, as_at, filter, limit, page, property_keys, nav_type_code, **kwargs)  # noqa: E501
+        response = self.get_valuation_point_journal_entry_lines_with_http_info(scope, code, valuation_point_data_query_parameters, general_ledger_profile_code, as_at, filter, limit, page, property_keys, nav_type_code, **kwargs)
+        return response.data
 
     @validate_call
     def get_valuation_point_journal_entry_lines_with_http_info(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, general_ledger_profile_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfFundJournalEntryLine]:
@@ -3544,12 +3546,12 @@ class FundsApi:
         :return: Returns the result object.
         :rtype: ValuationPointResourceListOfPnlJournalEntryLine
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_valuation_point_pnl_summary_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_valuation_point_pnl_summary_with_http_info(scope, code, valuation_point_data_query_parameters, general_ledger_profile_code, as_at, filter, limit, page, nav_type_code, **kwargs)  # noqa: E501
+        response = self.get_valuation_point_pnl_summary_with_http_info(scope, code, valuation_point_data_query_parameters, general_ledger_profile_code, as_at, filter, limit, page, nav_type_code, **kwargs)
+        return response.data
 
     @validate_call
     def get_valuation_point_pnl_summary_with_http_info(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, general_ledger_profile_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfPnlJournalEntryLine]:
@@ -3738,7 +3740,7 @@ class FundsApi:
         :type data_model_code: str
         :param show_cancelled_transactions: Option to specify whether or not to include cancelled transactions,              including previous versions of transactions which have since been amended.              Defaults to False if not specified.
         :type show_cancelled_transactions: bool
-        :param membership_type: The membership types of the specified Custom Data Model to return. Allowable values are Member, Candidate and All. Defaults to Member.
+        :param membership_type: The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate.
         :type membership_type: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -3746,12 +3748,12 @@ class FundsApi:
         :return: Returns the result object.
         :rtype: ValuationPointResourceListOfAccountedTransaction
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_valuation_point_transactions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_valuation_point_transactions_with_http_info(scope, code, valuation_point_data_query_parameters, as_at, filter, limit, page, property_keys, nav_type_code, data_model_scope, data_model_code, show_cancelled_transactions, membership_type, **kwargs)  # noqa: E501
+        response = self.get_valuation_point_transactions_with_http_info(scope, code, valuation_point_data_query_parameters, as_at, filter, limit, page, property_keys, nav_type_code, data_model_scope, data_model_code, show_cancelled_transactions, membership_type, **kwargs)
+        return response.data
 
     @validate_call
     def get_valuation_point_transactions_with_http_info(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, show_cancelled_transactions: Optional[bool] = None, membership_type: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfAccountedTransaction]:
@@ -3782,7 +3784,7 @@ class FundsApi:
         :type data_model_code: str
         :param show_cancelled_transactions: Option to specify whether or not to include cancelled transactions,              including previous versions of transactions which have since been amended.              Defaults to False if not specified.
         :type show_cancelled_transactions: bool
-        :param membership_type: The membership types of the specified Custom Data Model to return. Allowable values are Member, Candidate and All. Defaults to Member.
+        :param membership_type: The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate.
         :type membership_type: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -3969,12 +3971,12 @@ class FundsApi:
         :return: Returns the result object.
         :rtype: ValuationPointResourceListOfTrialBalance
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_valuation_point_trial_balance_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_valuation_point_trial_balance_with_http_info(scope, code, valuation_point_data_query_parameters, general_ledger_profile_code, as_at, filter, limit, page, property_keys, nav_type_code, exclude_cleardown_module, **kwargs)  # noqa: E501
+        response = self.get_valuation_point_trial_balance_with_http_info(scope, code, valuation_point_data_query_parameters, general_ledger_profile_code, as_at, filter, limit, page, property_keys, nav_type_code, exclude_cleardown_module, **kwargs)
+        return response.data
 
     @validate_call
     def get_valuation_point_trial_balance_with_http_info(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, general_ledger_profile_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, exclude_cleardown_module: Optional[bool] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfTrialBalance]:
@@ -4176,12 +4178,12 @@ class FundsApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfFee
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_fees_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_fees_with_http_info(scope, code, effective_at, as_at, page, limit, filter, sort_by, property_keys, **kwargs)  # noqa: E501
+        response = self.list_fees_with_http_info(scope, code, effective_at, as_at, page, limit, filter, sort_by, property_keys, **kwargs)
+        return response.data
 
     @validate_call
     def list_fees_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfFee]:
@@ -4363,12 +4365,12 @@ class FundsApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfFundCalendarEntry
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_fund_calendar_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_fund_calendar_with_http_info(scope, code, as_at, page, limit, filter, sort_by, property_keys, **kwargs)  # noqa: E501
+        response = self.list_fund_calendar_with_http_info(scope, code, as_at, page, limit, filter, sort_by, property_keys, **kwargs)
+        return response.data
 
     @validate_call
     def list_fund_calendar_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfFundCalendarEntry]:
@@ -4544,12 +4546,12 @@ class FundsApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfFundCalendarEntries
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_fund_calendar_entries_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_fund_calendar_entries_with_http_info(scope, code, as_at, page, limit, filter, sort_by, property_keys, **kwargs)  # noqa: E501
+        response = self.list_fund_calendar_entries_with_http_info(scope, code, as_at, page, limit, filter, sort_by, property_keys, **kwargs)
+        return response.data
 
     @validate_call
     def list_fund_calendar_entries_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfFundCalendarEntries]:
@@ -4723,12 +4725,12 @@ class FundsApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfFund
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_funds_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_funds_with_http_info(effective_at, as_at, page, limit, filter, sort_by, property_keys, **kwargs)  # noqa: E501
+        response = self.list_funds_with_http_info(effective_at, as_at, page, limit, filter, sort_by, property_keys, **kwargs)
+        return response.data
 
     @validate_call
     def list_funds_with_http_info(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfFund]:
@@ -4900,12 +4902,12 @@ class FundsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfNavActivityAdjustment
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_nav_activity_adjustments_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_nav_activity_adjustments_with_http_info(scope, code, valuation_point_code, nav_type_code, as_at, page, limit, filter, valuation_point_code_variant, **kwargs)  # noqa: E501
+        response = self.list_nav_activity_adjustments_with_http_info(scope, code, valuation_point_code, nav_type_code, as_at, page, limit, filter, valuation_point_code_variant, **kwargs)
+        return response.data
 
     @validate_call
     def list_nav_activity_adjustments_with_http_info(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfNavActivityAdjustment]:
@@ -5087,12 +5089,12 @@ class FundsApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfValuationPointOverview
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_valuation_point_overview_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_valuation_point_overview_with_http_info(scope, code, effective_at, as_at, page, limit, filter, property_keys, nav_type_code, **kwargs)  # noqa: E501
+        response = self.list_valuation_point_overview_with_http_info(scope, code, effective_at, as_at, page, limit, filter, property_keys, nav_type_code, **kwargs)
+        return response.data
 
     @validate_call
     def list_valuation_point_overview_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfValuationPointOverview]:
@@ -5265,12 +5267,12 @@ class FundsApi:
         :return: Returns the result object.
         :rtype: Fee
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the patch_fee_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.patch_fee_with_http_info(scope, code, fee_code, operation, **kwargs)  # noqa: E501
+        response = self.patch_fee_with_http_info(scope, code, fee_code, operation, **kwargs)
+        return response.data
 
     @validate_call
     def patch_fee_with_http_info(self, scope: StrictStr, code: StrictStr, fee_code: StrictStr, operation: List[Operation], **kwargs) -> ApiResponse[Fee]:
@@ -5414,12 +5416,12 @@ class FundsApi:
         :return: Returns the result object.
         :rtype: Fund
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the patch_fund_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.patch_fund_with_http_info(scope, code, operation, **kwargs)  # noqa: E501
+        response = self.patch_fund_with_http_info(scope, code, operation, **kwargs)
+        return response.data
 
     @validate_call
     def patch_fund_with_http_info(self, scope: StrictStr, code: StrictStr, operation: List[Operation], **kwargs) -> ApiResponse[Fund]:
@@ -5541,6 +5543,201 @@ class FundsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    def query_cash_statement(self, scope: StrictStr, code: StrictStr, query_fund_cash_statement_parameters: QueryFundCashStatementParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ValuationPointResourceListOfFundCashStatementRow:
+        """[EXPERIMENTAL] QueryCashStatement: [EXPERIMENTAL] QueryCashStatement: Query cash statement for a Fund valuation point.  # noqa: E501
+
+        Returns settled cash movements with running balance, cost basis, average FX rate, and realised FX PnL  for the specified Fund valuation point period. The cash statement is derived from Journal Entry Lines  filtered to settled cash (HoldType='B', SourceType=LusidTransaction). Use the DisplayMode parameter  on the request body to choose between ShowReversal (full reversal/TrueUp detail) and Consolidated  (collapses reversals into AvgRateCorrection rows).  # noqa: E501
+        :param scope: The scope of the Fund. (required)
+        :type scope: str
+        :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
+        :type code: str
+        :param query_fund_cash_statement_parameters: The query parameters specifying the diary entry period and display mode. (required)
+        :type query_fund_cash_statement_parameters: QueryFundCashStatementParameters
+        :param as_at: The asAt datetime at which to retrieve the cash statement. Defaults to the latest version if not specified.
+        :type as_at: datetime
+        :param filter: Expression to filter the result set.
+        :type filter: str
+        :param limit: When paginating, limit the number of returned results to this many. Defaults to 100 if not specified.
+        :type limit: int
+        :param page: The pagination token to use to get the next page of results.
+        :type page: str
+        :param property_keys: A list of property keys to decorate onto the cash statement rows.
+        :type property_keys: List[str]
+        :param nav_type_code: The code of the NAV type to use. Defaults to the primary NAV type if not specified.
+        :type nav_type_code: str
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: ValuationPointResourceListOfFundCashStatementRow
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the query_cash_statement_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.query_cash_statement_with_http_info(scope, code, query_fund_cash_statement_parameters, as_at, filter, limit, page, property_keys, nav_type_code, **kwargs)
+        return response.data
+
+    @validate_call
+    def query_cash_statement_with_http_info(self, scope: StrictStr, code: StrictStr, query_fund_cash_statement_parameters: QueryFundCashStatementParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfFundCashStatementRow]:
+        """[EXPERIMENTAL] QueryCashStatement: [EXPERIMENTAL] QueryCashStatement: Query cash statement for a Fund valuation point.  # noqa: E501
+
+        Returns settled cash movements with running balance, cost basis, average FX rate, and realised FX PnL  for the specified Fund valuation point period. The cash statement is derived from Journal Entry Lines  filtered to settled cash (HoldType='B', SourceType=LusidTransaction). Use the DisplayMode parameter  on the request body to choose between ShowReversal (full reversal/TrueUp detail) and Consolidated  (collapses reversals into AvgRateCorrection rows).  # noqa: E501
+        :param scope: The scope of the Fund. (required)
+        :type scope: str
+        :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
+        :type code: str
+        :param query_fund_cash_statement_parameters: The query parameters specifying the diary entry period and display mode. (required)
+        :type query_fund_cash_statement_parameters: QueryFundCashStatementParameters
+        :param as_at: The asAt datetime at which to retrieve the cash statement. Defaults to the latest version if not specified.
+        :type as_at: datetime
+        :param filter: Expression to filter the result set.
+        :type filter: str
+        :param limit: When paginating, limit the number of returned results to this many. Defaults to 100 if not specified.
+        :type limit: int
+        :param page: The pagination token to use to get the next page of results.
+        :type page: str
+        :param property_keys: A list of property keys to decorate onto the cash statement rows.
+        :type property_keys: List[str]
+        :param nav_type_code: The code of the NAV type to use. Defaults to the primary NAV type if not specified.
+        :type nav_type_code: str
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(ValuationPointResourceListOfFundCashStatementRow, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'scope',
+            'code',
+            'query_fund_cash_statement_parameters',
+            'as_at',
+            'filter',
+            'limit',
+            'page',
+            'property_keys',
+            'nav_type_code'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method query_cash_statement" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['scope']:
+            _path_params['scope'] = _params['scope']
+
+        if _params['code']:
+            _path_params['code'] = _params['code']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('as_at') is not None:  # noqa: E501
+            if isinstance(_params['as_at'], datetime):
+                _query_params.append(('asAt', _params['as_at'].strftime(self.sync_api_client.configuration.datetime_format)))
+            else:
+                _query_params.append(('asAt', _params['as_at']))
+
+        if _params.get('filter') is not None:  # noqa: E501
+            _query_params.append(('filter', _params['filter']))
+
+        if _params.get('limit') is not None:  # noqa: E501
+            _query_params.append(('limit', _params['limit']))
+
+        if _params.get('page') is not None:  # noqa: E501
+            _query_params.append(('page', _params['page']))
+
+        if _params.get('property_keys') is not None:  # noqa: E501
+            _query_params.append(('propertyKeys', _params['property_keys']))
+            _collection_formats['propertyKeys'] = 'multi'
+
+        if _params.get('nav_type_code') is not None:  # noqa: E501
+            _query_params.append(('navTypeCode', _params['nav_type_code']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['query_fund_cash_statement_parameters'] is not None:
+            _body_params = _params['query_fund_cash_statement_parameters']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.sync_api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "ValuationPointResourceListOfFundCashStatementRow",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/funds/{scope}/{code}/valuationpoints/cashstatement/$query', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     def revert_valuation_point_to_estimate(self, scope: StrictStr, code: StrictStr, revert_valuation_point_data_request: RevertValuationPointDataRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ValuationPointDataResponse:
         """[EXPERIMENTAL] RevertValuationPointToEstimate: Reverts a Final Valuation Point to Estimate.  # noqa: E501
 
@@ -5559,12 +5756,12 @@ class FundsApi:
         :return: Returns the result object.
         :rtype: ValuationPointDataResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the revert_valuation_point_to_estimate_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.revert_valuation_point_to_estimate_with_http_info(scope, code, revert_valuation_point_data_request, nav_type_code, **kwargs)  # noqa: E501
+        response = self.revert_valuation_point_to_estimate_with_http_info(scope, code, revert_valuation_point_data_request, nav_type_code, **kwargs)
+        return response.data
 
     @validate_call
     def revert_valuation_point_to_estimate_with_http_info(self, scope: StrictStr, code: StrictStr, revert_valuation_point_data_request: RevertValuationPointDataRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointDataResponse]:
@@ -5708,12 +5905,12 @@ class FundsApi:
         :return: Returns the result object.
         :rtype: Fund
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the set_share_class_instruments_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.set_share_class_instruments_with_http_info(scope, code, set_share_class_instruments_request, **kwargs)  # noqa: E501
+        response = self.set_share_class_instruments_with_http_info(scope, code, set_share_class_instruments_request, **kwargs)
+        return response.data
 
     @validate_call
     def set_share_class_instruments_with_http_info(self, scope: StrictStr, code: StrictStr, set_share_class_instruments_request: SetShareClassInstrumentsRequest, **kwargs) -> ApiResponse[Fund]:
@@ -5853,12 +6050,12 @@ class FundsApi:
         :return: Returns the result object.
         :rtype: FundCalendarEntry
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_bookmark_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_bookmark_with_http_info(scope, code, upsert_fund_bookmark_request, nav_type_code, **kwargs)  # noqa: E501
+        response = self.upsert_bookmark_with_http_info(scope, code, upsert_fund_bookmark_request, nav_type_code, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_bookmark_with_http_info(self, scope: StrictStr, code: StrictStr, upsert_fund_bookmark_request: UpsertFundBookmarkRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[FundCalendarEntry]:
@@ -6004,12 +6201,12 @@ class FundsApi:
         :return: Returns the result object.
         :rtype: DiaryEntry
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_diary_entry_type_valuation_point_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_diary_entry_type_valuation_point_with_http_info(scope, code, upsert_valuation_point_request, nav_type_code, **kwargs)  # noqa: E501
+        response = self.upsert_diary_entry_type_valuation_point_with_http_info(scope, code, upsert_valuation_point_request, nav_type_code, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_diary_entry_type_valuation_point_with_http_info(self, scope: StrictStr, code: StrictStr, upsert_valuation_point_request: UpsertValuationPointRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DiaryEntry]:
@@ -6155,12 +6352,12 @@ class FundsApi:
         :return: Returns the result object.
         :rtype: FeeProperties
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_fee_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_fee_properties_with_http_info(scope, code, fee_code, request_body, **kwargs)  # noqa: E501
+        response = self.upsert_fee_properties_with_http_info(scope, code, fee_code, request_body, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_fee_properties_with_http_info(self, scope: StrictStr, code: StrictStr, fee_code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> ApiResponse[FeeProperties]:
@@ -6304,12 +6501,12 @@ class FundsApi:
         :return: Returns the result object.
         :rtype: FundProperties
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_fund_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_fund_properties_with_http_info(scope, code, request_body, **kwargs)  # noqa: E501
+        response = self.upsert_fund_properties_with_http_info(scope, code, request_body, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_fund_properties_with_http_info(self, scope: StrictStr, code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> ApiResponse[FundProperties]:
@@ -6453,12 +6650,12 @@ class FundsApi:
         :return: Returns the result object.
         :rtype: datetime
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_nav_activity_adjustments_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_nav_activity_adjustments_with_http_info(scope, code, valuation_point_code, nav_activity_adjustment, nav_type_code, valuation_point_code_variant, **kwargs)  # noqa: E501
+        response = self.upsert_nav_activity_adjustments_with_http_info(scope, code, valuation_point_code, nav_activity_adjustment, nav_type_code, valuation_point_code_variant, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_nav_activity_adjustments_with_http_info(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_activity_adjustment: List[NavActivityAdjustment], nav_type_code: Optional[StrictStr] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> ApiResponse[datetime]:
@@ -6620,12 +6817,12 @@ class FundsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: AcceptEstimateValuationPointResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the accept_estimate_valuation_point_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.accept_estimate_valuation_point_with_http_info_async(scope, code, valuation_point_data_request, nav_type_code, **kwargs)  # noqa: E501
+            response = await self.accept_estimate_valuation_point_with_http_info_async(scope, code, valuation_point_data_request, nav_type_code, **kwargs)
+            return response.data
 
     @validate_call
     async def accept_estimate_valuation_point_with_http_info_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_request: ValuationPointDataRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AcceptEstimateValuationPointResponse]:
@@ -6770,12 +6967,12 @@ class FundsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Fund
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the add_allocation_groups_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.add_allocation_groups_with_http_info_async(scope, code, allocation_group_definition, **kwargs)  # noqa: E501
+            response = await self.add_allocation_groups_with_http_info_async(scope, code, allocation_group_definition, **kwargs)
+            return response.data
 
     @validate_call
     async def add_allocation_groups_with_http_info_async(self, scope: StrictStr, code: StrictStr, allocation_group_definition: List[AllocationGroupDefinition], **kwargs) -> ApiResponse[Fund]:
@@ -6914,12 +7111,12 @@ class FundsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Fund
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the add_series_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.add_series_with_http_info_async(scope, code, series_definition_request, **kwargs)  # noqa: E501
+            response = await self.add_series_with_http_info_async(scope, code, series_definition_request, **kwargs)
+            return response.data
 
     @validate_call
     async def add_series_with_http_info_async(self, scope: StrictStr, code: StrictStr, series_definition_request: List[SeriesDefinitionRequest], **kwargs) -> ApiResponse[Fund]:
@@ -7060,12 +7257,12 @@ class FundsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Fee
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_fee_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_fee_with_http_info_async(scope, code, fee_request, nav_type_code, **kwargs)  # noqa: E501
+            response = await self.create_fee_with_http_info_async(scope, code, fee_request, nav_type_code, **kwargs)
+            return response.data
 
     @validate_call
     async def create_fee_with_http_info_async(self, scope: StrictStr, code: StrictStr, fee_request: FeeRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[Fee]:
@@ -7208,12 +7405,12 @@ class FundsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Fund
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_fund_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_fund_with_http_info_async(scope, fund_request, **kwargs)  # noqa: E501
+            response = await self.create_fund_with_http_info_async(scope, fund_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_fund_with_http_info_async(self, scope: StrictStr, fund_request: FundRequest, **kwargs) -> ApiResponse[Fund]:
@@ -7344,12 +7541,12 @@ class FundsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Fund
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_fund_v2_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_fund_v2_with_http_info_async(scope, fund_definition_request, **kwargs)  # noqa: E501
+            response = await self.create_fund_v2_with_http_info_async(scope, fund_definition_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_fund_v2_with_http_info_async(self, scope: StrictStr, fund_definition_request: FundDefinitionRequest, **kwargs) -> ApiResponse[Fund]:
@@ -7476,7 +7673,7 @@ class FundsApi:
             :type code: str
             :param request_body: The codes of the nav types to be deactivated. (required)
             :type request_body: List[str]
-            :param delete_mode: The delete mode to use (defaults to 'Soft').
+            :param delete_mode: The delete mode to use. Default value: Soft. Available values: Soft, Hard.
             :type delete_mode: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -7484,12 +7681,12 @@ class FundsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Fund
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the deactivate_nav_types_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.deactivate_nav_types_with_http_info_async(scope, code, request_body, delete_mode, **kwargs)  # noqa: E501
+            response = await self.deactivate_nav_types_with_http_info_async(scope, code, request_body, delete_mode, **kwargs)
+            return response.data
 
     @validate_call
     async def deactivate_nav_types_with_http_info_async(self, scope: StrictStr, code: StrictStr, request_body: List[str], delete_mode: Optional[StrictStr] = None, **kwargs) -> ApiResponse[Fund]:
@@ -7503,7 +7700,7 @@ class FundsApi:
             :type code: str
             :param request_body: The codes of the nav types to be deactivated. (required)
             :type request_body: List[str]
-            :param delete_mode: The delete mode to use (defaults to 'Soft').
+            :param delete_mode: The delete mode to use. Default value: Soft. Available values: Soft, Hard.
             :type delete_mode: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
@@ -7636,12 +7833,12 @@ class FundsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_bookmark_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_bookmark_with_http_info_async(scope, code, bookmark_code, nav_type_code, **kwargs)  # noqa: E501
+            response = await self.delete_bookmark_with_http_info_async(scope, code, bookmark_code, nav_type_code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_bookmark_with_http_info_async(self, scope: StrictStr, code: StrictStr, bookmark_code: StrictStr, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -7779,12 +7976,12 @@ class FundsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_fee_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_fee_with_http_info_async(scope, code, fee_code, **kwargs)  # noqa: E501
+            response = await self.delete_fee_with_http_info_async(scope, code, fee_code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_fee_with_http_info_async(self, scope: StrictStr, code: StrictStr, fee_code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -7914,12 +8111,12 @@ class FundsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_fund_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_fund_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_fund_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_fund_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -8051,12 +8248,12 @@ class FundsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_nav_activity_adjustments_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_nav_activity_adjustments_with_http_info_async(scope, code, valuation_point_code, nav_activity_adjustment, nav_type_code, valuation_point_code_variant, **kwargs)  # noqa: E501
+            response = await self.delete_nav_activity_adjustments_with_http_info_async(scope, code, valuation_point_code, nav_activity_adjustment, nav_type_code, valuation_point_code_variant, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_nav_activity_adjustments_with_http_info_async(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_activity_adjustment: List[NavActivityAdjustment], nav_type_code: Optional[StrictStr] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -8217,12 +8414,12 @@ class FundsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_valuation_point_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_valuation_point_with_http_info_async(scope, code, diary_entry_code, diary_entry_code_variant, nav_type_code, **kwargs)  # noqa: E501
+            response = await self.delete_valuation_point_with_http_info_async(scope, code, diary_entry_code, diary_entry_code_variant, nav_type_code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_valuation_point_with_http_info_async(self, scope: StrictStr, code: StrictStr, diary_entry_code: StrictStr, diary_entry_code_variant: Optional[StrictStr] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -8368,12 +8565,12 @@ class FundsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ValuationPointDataResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the finalise_candidate_valuation_point_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.finalise_candidate_valuation_point_with_http_info_async(scope, code, valuation_point_data_request, nav_type_code, **kwargs)  # noqa: E501
+            response = await self.finalise_candidate_valuation_point_with_http_info_async(scope, code, valuation_point_data_request, nav_type_code, **kwargs)
+            return response.data
 
     @validate_call
     async def finalise_candidate_valuation_point_with_http_info_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_request: ValuationPointDataRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointDataResponse]:
@@ -8524,12 +8721,12 @@ class FundsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Fee
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_fee_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_fee_with_http_info_async(scope, code, fee_code, effective_at, as_at, property_keys, **kwargs)  # noqa: E501
+            response = await self.get_fee_with_http_info_async(scope, code, fee_code, effective_at, as_at, property_keys, **kwargs)
+            return response.data
 
     @validate_call
     async def get_fee_with_http_info_async(self, scope: StrictStr, code: StrictStr, fee_code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[Fee]:
@@ -8687,12 +8884,12 @@ class FundsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: FeeProperties
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_fee_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_fee_properties_with_http_info_async(scope, code, fee_code, effective_at, as_at, **kwargs)  # noqa: E501
+            response = await self.get_fee_properties_with_http_info_async(scope, code, fee_code, effective_at, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_fee_properties_with_http_info_async(self, scope: StrictStr, code: StrictStr, fee_code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[FeeProperties]:
@@ -8843,12 +9040,12 @@ class FundsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Fund
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_fund_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_fund_with_http_info_async(scope, code, effective_at, as_at, property_keys, **kwargs)  # noqa: E501
+            response = await self.get_fund_with_http_info_async(scope, code, effective_at, as_at, property_keys, **kwargs)
+            return response.data
 
     @validate_call
     async def get_fund_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[Fund]:
@@ -8998,12 +9195,12 @@ class FundsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: FundProperties
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_fund_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_fund_properties_with_http_info_async(scope, code, effective_at, as_at, **kwargs)  # noqa: E501
+            response = await self.get_fund_properties_with_http_info_async(scope, code, effective_at, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_fund_properties_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[FundProperties]:
@@ -9160,12 +9357,12 @@ class FundsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: VersionedResourceListOfHoldingContributor
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_holding_contributors_for_fund_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_holding_contributors_for_fund_with_http_info_async(scope, code, holding_id, valuation_point_data_query_parameters, nav_type_code, include_historic, tax_lot_id, include_unsettled_movements, limit, as_at, page, **kwargs)  # noqa: E501
+            response = await self.get_holding_contributors_for_fund_with_http_info_async(scope, code, holding_id, valuation_point_data_query_parameters, nav_type_code, include_historic, tax_lot_id, include_unsettled_movements, limit, as_at, page, **kwargs)
+            return response.data
 
     @validate_call
     async def get_holding_contributors_for_fund_with_http_info_async(self, scope: StrictStr, code: StrictStr, holding_id: int, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, nav_type_code: Optional[StrictStr] = None, include_historic: Optional[bool] = None, tax_lot_id: Optional[StrictStr] = None, include_unsettled_movements: Optional[bool] = None, limit: Optional[int] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfHoldingContributor]:
@@ -9367,12 +9564,12 @@ class FundsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: VersionedResourceListOfPortfolioHolding
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_holdings_for_fund_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_holdings_for_fund_with_http_info_async(scope, code, single_valuation_point_query_parameters, nav_type_code, as_at, filter, property_keys, by_taxlots, include_settlement_events_after_days, **kwargs)  # noqa: E501
+            response = await self.get_holdings_for_fund_with_http_info_async(scope, code, single_valuation_point_query_parameters, nav_type_code, as_at, filter, property_keys, by_taxlots, include_settlement_events_after_days, **kwargs)
+            return response.data
 
     @validate_call
     async def get_holdings_for_fund_with_http_info_async(self, scope: StrictStr, code: StrictStr, single_valuation_point_query_parameters: SingleValuationPointQueryParameters, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, by_taxlots: Optional[bool] = None, include_settlement_events_after_days: Optional[int] = None, **kwargs) -> ApiResponse[VersionedResourceListOfPortfolioHolding]:
@@ -9553,12 +9750,12 @@ class FundsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ListAggregationResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_valuation_for_fund_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_valuation_for_fund_with_http_info_async(scope, code, nav_type_code, fund_valuation_request, **kwargs)  # noqa: E501
+            response = await self.get_valuation_for_fund_with_http_info_async(scope, code, nav_type_code, fund_valuation_request, **kwargs)
+            return response.data
 
     @validate_call
     async def get_valuation_for_fund_with_http_info_async(self, scope: StrictStr, code: StrictStr, nav_type_code: Optional[StrictStr] = None, fund_valuation_request: Optional[FundValuationRequest] = None, **kwargs) -> ApiResponse[ListAggregationResponse]:
@@ -9707,12 +9904,12 @@ class FundsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ValuationPointDataResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_valuation_point_data_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_valuation_point_data_with_http_info_async(scope, code, valuation_point_data_query_parameters, as_at, nav_type_code, **kwargs)  # noqa: E501
+            response = await self.get_valuation_point_data_with_http_info_async(scope, code, valuation_point_data_query_parameters, as_at, nav_type_code, **kwargs)
+            return response.data
 
     @validate_call
     async def get_valuation_point_data_with_http_info_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, as_at: Optional[datetime] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointDataResponse]:
@@ -9880,12 +10077,12 @@ class FundsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ValuationPointResourceListOfFundJournalEntryLine
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_valuation_point_journal_entry_lines_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_valuation_point_journal_entry_lines_with_http_info_async(scope, code, valuation_point_data_query_parameters, general_ledger_profile_code, as_at, filter, limit, page, property_keys, nav_type_code, **kwargs)  # noqa: E501
+            response = await self.get_valuation_point_journal_entry_lines_with_http_info_async(scope, code, valuation_point_data_query_parameters, general_ledger_profile_code, as_at, filter, limit, page, property_keys, nav_type_code, **kwargs)
+            return response.data
 
     @validate_call
     async def get_valuation_point_journal_entry_lines_with_http_info_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, general_ledger_profile_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfFundJournalEntryLine]:
@@ -10082,12 +10279,12 @@ class FundsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ValuationPointResourceListOfPnlJournalEntryLine
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_valuation_point_pnl_summary_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_valuation_point_pnl_summary_with_http_info_async(scope, code, valuation_point_data_query_parameters, general_ledger_profile_code, as_at, filter, limit, page, nav_type_code, **kwargs)  # noqa: E501
+            response = await self.get_valuation_point_pnl_summary_with_http_info_async(scope, code, valuation_point_data_query_parameters, general_ledger_profile_code, as_at, filter, limit, page, nav_type_code, **kwargs)
+            return response.data
 
     @validate_call
     async def get_valuation_point_pnl_summary_with_http_info_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, general_ledger_profile_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfPnlJournalEntryLine]:
@@ -10277,7 +10474,7 @@ class FundsApi:
             :type data_model_code: str
             :param show_cancelled_transactions: Option to specify whether or not to include cancelled transactions,              including previous versions of transactions which have since been amended.              Defaults to False if not specified.
             :type show_cancelled_transactions: bool
-            :param membership_type: The membership types of the specified Custom Data Model to return. Allowable values are Member, Candidate and All. Defaults to Member.
+            :param membership_type: The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate.
             :type membership_type: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -10285,12 +10482,12 @@ class FundsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ValuationPointResourceListOfAccountedTransaction
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_valuation_point_transactions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_valuation_point_transactions_with_http_info_async(scope, code, valuation_point_data_query_parameters, as_at, filter, limit, page, property_keys, nav_type_code, data_model_scope, data_model_code, show_cancelled_transactions, membership_type, **kwargs)  # noqa: E501
+            response = await self.get_valuation_point_transactions_with_http_info_async(scope, code, valuation_point_data_query_parameters, as_at, filter, limit, page, property_keys, nav_type_code, data_model_scope, data_model_code, show_cancelled_transactions, membership_type, **kwargs)
+            return response.data
 
     @validate_call
     async def get_valuation_point_transactions_with_http_info_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, show_cancelled_transactions: Optional[bool] = None, membership_type: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfAccountedTransaction]:
@@ -10322,7 +10519,7 @@ class FundsApi:
             :type data_model_code: str
             :param show_cancelled_transactions: Option to specify whether or not to include cancelled transactions,              including previous versions of transactions which have since been amended.              Defaults to False if not specified.
             :type show_cancelled_transactions: bool
-            :param membership_type: The membership types of the specified Custom Data Model to return. Allowable values are Member, Candidate and All. Defaults to Member.
+            :param membership_type: The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate.
             :type membership_type: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
@@ -10509,12 +10706,12 @@ class FundsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ValuationPointResourceListOfTrialBalance
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_valuation_point_trial_balance_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_valuation_point_trial_balance_with_http_info_async(scope, code, valuation_point_data_query_parameters, general_ledger_profile_code, as_at, filter, limit, page, property_keys, nav_type_code, exclude_cleardown_module, **kwargs)  # noqa: E501
+            response = await self.get_valuation_point_trial_balance_with_http_info_async(scope, code, valuation_point_data_query_parameters, general_ledger_profile_code, as_at, filter, limit, page, property_keys, nav_type_code, exclude_cleardown_module, **kwargs)
+            return response.data
 
     @validate_call
     async def get_valuation_point_trial_balance_with_http_info_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, general_ledger_profile_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, exclude_cleardown_module: Optional[bool] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfTrialBalance]:
@@ -10717,12 +10914,12 @@ class FundsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfFee
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_fees_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_fees_with_http_info_async(scope, code, effective_at, as_at, page, limit, filter, sort_by, property_keys, **kwargs)  # noqa: E501
+            response = await self.list_fees_with_http_info_async(scope, code, effective_at, as_at, page, limit, filter, sort_by, property_keys, **kwargs)
+            return response.data
 
     @validate_call
     async def list_fees_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfFee]:
@@ -10905,12 +11102,12 @@ class FundsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfFundCalendarEntry
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_fund_calendar_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_fund_calendar_with_http_info_async(scope, code, as_at, page, limit, filter, sort_by, property_keys, **kwargs)  # noqa: E501
+            response = await self.list_fund_calendar_with_http_info_async(scope, code, as_at, page, limit, filter, sort_by, property_keys, **kwargs)
+            return response.data
 
     @validate_call
     async def list_fund_calendar_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfFundCalendarEntry]:
@@ -11087,12 +11284,12 @@ class FundsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfFundCalendarEntries
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_fund_calendar_entries_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_fund_calendar_entries_with_http_info_async(scope, code, as_at, page, limit, filter, sort_by, property_keys, **kwargs)  # noqa: E501
+            response = await self.list_fund_calendar_entries_with_http_info_async(scope, code, as_at, page, limit, filter, sort_by, property_keys, **kwargs)
+            return response.data
 
     @validate_call
     async def list_fund_calendar_entries_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfFundCalendarEntries]:
@@ -11267,12 +11464,12 @@ class FundsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfFund
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_funds_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_funds_with_http_info_async(effective_at, as_at, page, limit, filter, sort_by, property_keys, **kwargs)  # noqa: E501
+            response = await self.list_funds_with_http_info_async(effective_at, as_at, page, limit, filter, sort_by, property_keys, **kwargs)
+            return response.data
 
     @validate_call
     async def list_funds_with_http_info_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfFund]:
@@ -11445,12 +11642,12 @@ class FundsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfNavActivityAdjustment
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_nav_activity_adjustments_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_nav_activity_adjustments_with_http_info_async(scope, code, valuation_point_code, nav_type_code, as_at, page, limit, filter, valuation_point_code_variant, **kwargs)  # noqa: E501
+            response = await self.list_nav_activity_adjustments_with_http_info_async(scope, code, valuation_point_code, nav_type_code, as_at, page, limit, filter, valuation_point_code_variant, **kwargs)
+            return response.data
 
     @validate_call
     async def list_nav_activity_adjustments_with_http_info_async(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfNavActivityAdjustment]:
@@ -11633,12 +11830,12 @@ class FundsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfValuationPointOverview
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_valuation_point_overview_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_valuation_point_overview_with_http_info_async(scope, code, effective_at, as_at, page, limit, filter, property_keys, nav_type_code, **kwargs)  # noqa: E501
+            response = await self.list_valuation_point_overview_with_http_info_async(scope, code, effective_at, as_at, page, limit, filter, property_keys, nav_type_code, **kwargs)
+            return response.data
 
     @validate_call
     async def list_valuation_point_overview_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfValuationPointOverview]:
@@ -11812,12 +12009,12 @@ class FundsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Fee
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the patch_fee_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.patch_fee_with_http_info_async(scope, code, fee_code, operation, **kwargs)  # noqa: E501
+            response = await self.patch_fee_with_http_info_async(scope, code, fee_code, operation, **kwargs)
+            return response.data
 
     @validate_call
     async def patch_fee_with_http_info_async(self, scope: StrictStr, code: StrictStr, fee_code: StrictStr, operation: List[Operation], **kwargs) -> ApiResponse[Fee]:
@@ -11962,12 +12159,12 @@ class FundsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Fund
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the patch_fund_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.patch_fund_with_http_info_async(scope, code, operation, **kwargs)  # noqa: E501
+            response = await self.patch_fund_with_http_info_async(scope, code, operation, **kwargs)
+            return response.data
 
     @validate_call
     async def patch_fund_with_http_info_async(self, scope: StrictStr, code: StrictStr, operation: List[Operation], **kwargs) -> ApiResponse[Fund]:
@@ -12090,6 +12287,202 @@ class FundsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    async def query_cash_statement_async(self, scope: StrictStr, code: StrictStr, query_fund_cash_statement_parameters: QueryFundCashStatementParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ValuationPointResourceListOfFundCashStatementRow:
+            """[EXPERIMENTAL] QueryCashStatement: [EXPERIMENTAL] QueryCashStatement: Query cash statement for a Fund valuation point.  # noqa: E501
+            Returns settled cash movements with running balance, cost basis, average FX rate, and realised FX PnL  for the specified Fund valuation point period. The cash statement is derived from Journal Entry Lines  filtered to settled cash (HoldType='B', SourceType=LusidTransaction). Use the DisplayMode parameter  on the request body to choose between ShowReversal (full reversal/TrueUp detail) and Consolidated  (collapses reversals into AvgRateCorrection rows).  # noqa: E501
+            
+            :param scope: The scope of the Fund. (required)
+            :type scope: str
+            :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
+            :type code: str
+            :param query_fund_cash_statement_parameters: The query parameters specifying the diary entry period and display mode. (required)
+            :type query_fund_cash_statement_parameters: QueryFundCashStatementParameters
+            :param as_at: The asAt datetime at which to retrieve the cash statement. Defaults to the latest version if not specified.
+            :type as_at: datetime
+            :param filter: Expression to filter the result set.
+            :type filter: str
+            :param limit: When paginating, limit the number of returned results to this many. Defaults to 100 if not specified.
+            :type limit: int
+            :param page: The pagination token to use to get the next page of results.
+            :type page: str
+            :param property_keys: A list of property keys to decorate onto the cash statement rows.
+            :type property_keys: List[str]
+            :param nav_type_code: The code of the NAV type to use. Defaults to the primary NAV type if not specified.
+            :type nav_type_code: str
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: ValuationPointResourceListOfFundCashStatementRow
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the query_cash_statement_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.query_cash_statement_with_http_info_async(scope, code, query_fund_cash_statement_parameters, as_at, filter, limit, page, property_keys, nav_type_code, **kwargs)
+            return response.data
+
+    @validate_call
+    async def query_cash_statement_with_http_info_async(self, scope: StrictStr, code: StrictStr, query_fund_cash_statement_parameters: QueryFundCashStatementParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfFundCashStatementRow]:
+            """[EXPERIMENTAL] QueryCashStatement: [EXPERIMENTAL] QueryCashStatement: Query cash statement for a Fund valuation point.  # noqa: E501
+
+            Returns settled cash movements with running balance, cost basis, average FX rate, and realised FX PnL  for the specified Fund valuation point period. The cash statement is derived from Journal Entry Lines  filtered to settled cash (HoldType='B', SourceType=LusidTransaction). Use the DisplayMode parameter  on the request body to choose between ShowReversal (full reversal/TrueUp detail) and Consolidated  (collapses reversals into AvgRateCorrection rows).  # noqa: E501
+
+            :param scope: The scope of the Fund. (required)
+            :type scope: str
+            :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
+            :type code: str
+            :param query_fund_cash_statement_parameters: The query parameters specifying the diary entry period and display mode. (required)
+            :type query_fund_cash_statement_parameters: QueryFundCashStatementParameters
+            :param as_at: The asAt datetime at which to retrieve the cash statement. Defaults to the latest version if not specified.
+            :type as_at: datetime
+            :param filter: Expression to filter the result set.
+            :type filter: str
+            :param limit: When paginating, limit the number of returned results to this many. Defaults to 100 if not specified.
+            :type limit: int
+            :param page: The pagination token to use to get the next page of results.
+            :type page: str
+            :param property_keys: A list of property keys to decorate onto the cash statement rows.
+            :type property_keys: List[str]
+            :param nav_type_code: The code of the NAV type to use. Defaults to the primary NAV type if not specified.
+            :type nav_type_code: str
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(ValuationPointResourceListOfFundCashStatementRow, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'scope',
+                'code',
+                'query_fund_cash_statement_parameters',
+                'as_at',
+                'filter',
+                'limit',
+                'page',
+                'property_keys',
+                'nav_type_code'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method query_cash_statement" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['scope']:
+                _path_params['scope'] = _params['scope']
+
+            if _params['code']:
+                _path_params['code'] = _params['code']
+
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('as_at') is not None:  # noqa: E501
+                if isinstance(_params['as_at'], datetime):
+                    _query_params.append(('asAt', _params['as_at'].strftime(self.api_client.configuration.datetime_format)))
+                else:
+                    _query_params.append(('asAt', _params['as_at']))
+
+            if _params.get('filter') is not None:  # noqa: E501
+                _query_params.append(('filter', _params['filter']))
+
+            if _params.get('limit') is not None:  # noqa: E501
+                _query_params.append(('limit', _params['limit']))
+
+            if _params.get('page') is not None:  # noqa: E501
+                _query_params.append(('page', _params['page']))
+
+            if _params.get('property_keys') is not None:  # noqa: E501
+                _query_params.append(('propertyKeys', _params['property_keys']))
+                _collection_formats['propertyKeys'] = 'multi'
+
+            if _params.get('nav_type_code') is not None:  # noqa: E501
+                _query_params.append(('navTypeCode', _params['nav_type_code']))
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            if _params['query_fund_cash_statement_parameters'] is not None:
+                _body_params = _params['query_fund_cash_statement_parameters']
+
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # set the HTTP header `Content-Type`
+            _content_types_list = _params.get('_content_type',
+                self.api_client.select_header_content_type(
+                    ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+            if _content_types_list:
+                    _header_params['Content-Type'] = _content_types_list
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "ValuationPointResourceListOfFundCashStatementRow",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/funds/{scope}/{code}/valuationpoints/cashstatement/$query', 'POST',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     async def revert_valuation_point_to_estimate_async(self, scope: StrictStr, code: StrictStr, revert_valuation_point_data_request: RevertValuationPointDataRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ValuationPointDataResponse:
             """[EXPERIMENTAL] RevertValuationPointToEstimate: Reverts a Final Valuation Point to Estimate.  # noqa: E501
             Moves a 'Final' status Valuation Point to status 'Estimate'.  # noqa: E501
@@ -12108,12 +12501,12 @@ class FundsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ValuationPointDataResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the revert_valuation_point_to_estimate_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.revert_valuation_point_to_estimate_with_http_info_async(scope, code, revert_valuation_point_data_request, nav_type_code, **kwargs)  # noqa: E501
+            response = await self.revert_valuation_point_to_estimate_with_http_info_async(scope, code, revert_valuation_point_data_request, nav_type_code, **kwargs)
+            return response.data
 
     @validate_call
     async def revert_valuation_point_to_estimate_with_http_info_async(self, scope: StrictStr, code: StrictStr, revert_valuation_point_data_request: RevertValuationPointDataRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointDataResponse]:
@@ -12258,12 +12651,12 @@ class FundsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Fund
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the set_share_class_instruments_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.set_share_class_instruments_with_http_info_async(scope, code, set_share_class_instruments_request, **kwargs)  # noqa: E501
+            response = await self.set_share_class_instruments_with_http_info_async(scope, code, set_share_class_instruments_request, **kwargs)
+            return response.data
 
     @validate_call
     async def set_share_class_instruments_with_http_info_async(self, scope: StrictStr, code: StrictStr, set_share_class_instruments_request: SetShareClassInstrumentsRequest, **kwargs) -> ApiResponse[Fund]:
@@ -12404,12 +12797,12 @@ class FundsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: FundCalendarEntry
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_bookmark_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_bookmark_with_http_info_async(scope, code, upsert_fund_bookmark_request, nav_type_code, **kwargs)  # noqa: E501
+            response = await self.upsert_bookmark_with_http_info_async(scope, code, upsert_fund_bookmark_request, nav_type_code, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_bookmark_with_http_info_async(self, scope: StrictStr, code: StrictStr, upsert_fund_bookmark_request: UpsertFundBookmarkRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[FundCalendarEntry]:
@@ -12556,12 +12949,12 @@ class FundsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DiaryEntry
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_diary_entry_type_valuation_point_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_diary_entry_type_valuation_point_with_http_info_async(scope, code, upsert_valuation_point_request, nav_type_code, **kwargs)  # noqa: E501
+            response = await self.upsert_diary_entry_type_valuation_point_with_http_info_async(scope, code, upsert_valuation_point_request, nav_type_code, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_diary_entry_type_valuation_point_with_http_info_async(self, scope: StrictStr, code: StrictStr, upsert_valuation_point_request: UpsertValuationPointRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DiaryEntry]:
@@ -12708,12 +13101,12 @@ class FundsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: FeeProperties
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_fee_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_fee_properties_with_http_info_async(scope, code, fee_code, request_body, **kwargs)  # noqa: E501
+            response = await self.upsert_fee_properties_with_http_info_async(scope, code, fee_code, request_body, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_fee_properties_with_http_info_async(self, scope: StrictStr, code: StrictStr, fee_code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> ApiResponse[FeeProperties]:
@@ -12858,12 +13251,12 @@ class FundsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: FundProperties
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_fund_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_fund_properties_with_http_info_async(scope, code, request_body, **kwargs)  # noqa: E501
+            response = await self.upsert_fund_properties_with_http_info_async(scope, code, request_body, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_fund_properties_with_http_info_async(self, scope: StrictStr, code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> ApiResponse[FundProperties]:
@@ -13008,12 +13401,12 @@ class FundsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: datetime
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_nav_activity_adjustments_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_nav_activity_adjustments_with_http_info_async(scope, code, valuation_point_code, nav_activity_adjustment, nav_type_code, valuation_point_code_variant, **kwargs)  # noqa: E501
+            response = await self.upsert_nav_activity_adjustments_with_http_info_async(scope, code, valuation_point_code, nav_activity_adjustment, nav_type_code, valuation_point_code_variant, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_nav_activity_adjustments_with_http_info_async(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_activity_adjustment: List[NavActivityAdjustment], nav_type_code: Optional[StrictStr] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> ApiResponse[datetime]:

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class AddBusinessDaysToDateRequest(BaseModel):
     holiday_codes: List[StrictStr] = Field(alias="holidayCodes")
     start_date: Optional[datetime] = Field(default=None, alias="startDate")
     as_at: Optional[datetime] = Field(default=None, alias="asAt")
-    __properties = ["businessDayOffset", "holidayCodes", "startDate", "asAt"]
+    __properties: ClassVar[List[str]] = ["businessDayOffset", "holidayCodes", "startDate", "asAt"]
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class GroupReconciliationUserReviewComment(BaseModel):
     user_id:  Optional[StrictStr] = Field(default=None,alias="userId", description="Id of the user who made a User Review input.") 
     as_at_added: Optional[datetime] = Field(default=None, description="The timestamp of the added User Review input.", alias="asAtAdded")
     as_at_invalid: Optional[datetime] = Field(default=None, description="The timestamp when User Review input became invalid e.g. because of the different attribute values within the new run.", alias="asAtInvalid")
-    __properties = ["commentText", "userId", "asAtAdded", "asAtInvalid"]
+    __properties: ClassVar[List[str]] = ["commentText", "userId", "asAtAdded", "asAtInvalid"]
 
     model_config = ConfigDict(
         populate_by_name=True,

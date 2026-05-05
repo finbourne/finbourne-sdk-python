@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class SettlementSchedule(BaseModel):
     movement_type:  Optional[StrictStr] = Field(default=None,alias="movementType") 
     unsettled_units: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="unsettledUnits")
     overdue_units: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="overdueUnits")
-    __properties = ["tradeId", "settlementDate", "units", "bondInterest", "movementName", "movementType", "unsettledUnits", "overdueUnits"]
+    __properties: ClassVar[List[str]] = ["tradeId", "settlementDate", "units", "bondInterest", "movementName", "movementType", "unsettledUnits", "overdueUnits"]
 
     model_config = ConfigDict(
         populate_by_name=True,

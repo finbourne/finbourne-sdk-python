@@ -1,6 +1,6 @@
-# UpdateClientConfigurationDraftRequest
+# UpdateVersionedConfigurationDraftRequest
 
-Request to update the value of an existing draft client configuration.
+Request to update the value of an existing draft versioned configuration.
 ## Properties
 
 | Name | Type | Required | Description |
@@ -13,9 +13,9 @@ Request to update the value of an existing draft client configuration.
 ### Creating from keyword arguments
 
 ```python
-from finbourne.sdk.services.horizon.models.UpdateClientConfigurationDraftRequest import UpdateClientConfigurationDraftRequest
+from finbourne.sdk.services.horizon.models.UpdateVersionedConfigurationDraftRequest import UpdateVersionedConfigurationDraftRequest
 
-instance = UpdateClientConfigurationDraftRequest(
+instance = UpdateVersionedConfigurationDraftRequest(
     value="..."  # required — The new JSON value to store. Must be valid JSON.
 )
 ```

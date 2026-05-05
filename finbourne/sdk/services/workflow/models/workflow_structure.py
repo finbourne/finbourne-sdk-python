@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class WorkflowStructure(BaseModel):
     """
     nodes: Optional[WorkflowStructureNodes] = None
     edges: Optional[WorkflowStructureEdges] = None
-    __properties = ["nodes", "edges"]
+    __properties: ClassVar[List[str]] = ["nodes", "edges"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -84,8 +84,8 @@ class WorkflowStructure(BaseModel):
             return WorkflowStructure.model_validate(obj)
 
         _obj = WorkflowStructure.model_validate({
-            "nodes": WorkflowStructureNodes.from_dict(obj.get("nodes")) if obj.get("nodes") is not None else None,
-            "edges": WorkflowStructureEdges.from_dict(obj.get("edges")) if obj.get("edges") is not None else None
+            "nodes": WorkflowStructureNodes.from_dict(_v) if (_v := obj.get("nodes")) is not None else None,
+            "edges": WorkflowStructureEdges.from_dict(_v) if (_v := obj.get("edges")) is not None else None
         })
         return _obj
 

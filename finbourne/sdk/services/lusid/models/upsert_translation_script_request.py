@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class UpsertTranslationScriptRequest(BaseModel):
     """
     id: TranslationScriptId
     body:  StrictStr = Field(...,alias="body", description="Body of the translation script, i.e. the actual translation code.") 
-    __properties = ["id", "body"]
+    __properties: ClassVar[List[str]] = ["id", "body"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,7 +80,7 @@ class UpsertTranslationScriptRequest(BaseModel):
             return UpsertTranslationScriptRequest.model_validate(obj)
 
         _obj = UpsertTranslationScriptRequest.model_validate({
-            "id": TranslationScriptId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
+            "id": TranslationScriptId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
             "body": obj.get("body")
         })
         return _obj

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -35,7 +35,7 @@ class PropertyMapping(BaseModel):
     entity_sub_type:  Optional[StrictStr] = Field(default=None,alias="entitySubType", description="The LUSID Entity sub type this is valid for") 
     transformation_description:  Optional[StrictStr] = Field(default=None,alias="transformationDescription", description="The transformation, if required, to map from VendorFields to the LUSID Property") 
     versions: List[StrictStr] = Field(description="The versions of the Vendor integration this mapping is valid for")
-    __properties = ["property", "vendorFields", "optionality", "entityType", "entitySubType", "transformationDescription", "versions"]
+    __properties: ClassVar[List[str]] = ["property", "vendorFields", "optionality", "entityType", "entitySubType", "transformationDescription", "versions"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -103,8 +103,8 @@ class PropertyMapping(BaseModel):
             return PropertyMapping.model_validate(obj)
 
         _obj = PropertyMapping.model_validate({
-            "var_property": LusidPropertyDefinition.from_dict(obj.get("property")) if obj.get("property") is not None else None,
-            "vendor_fields": [VendorField.from_dict(_item) for _item in obj.get("vendorFields")] if obj.get("vendorFields") is not None else None,
+            "var_property": LusidPropertyDefinition.from_dict(_v) if (_v := obj.get("property")) is not None else None,
+            "vendor_fields": [VendorField.from_dict(_item) for _item in _v] if (_v := obj.get("vendorFields")) is not None else None,
             "optionality": obj.get("optionality"),
             "entity_type": obj.get("entityType"),
             "entity_sub_type": obj.get("entitySubType"),

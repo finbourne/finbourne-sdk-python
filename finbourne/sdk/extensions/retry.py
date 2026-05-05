@@ -60,10 +60,10 @@ class RetryingRestWrapper:
                 )
             except ApiException as ex:
 
-                if ex.status == 429 and ((opts != None and opts.rate_limit_retries != None) or self.rate_limit_retries != None):
+                if ex.status == 429 and ((opts is not None and opts.rate_limit_retries is not None) or self.rate_limit_retries is not None):
                     # check for limit of rate limit retries
-                    limit = opts.rate_limit_retries if (opts and opts.rate_limit_retries != None) else self.rate_limit_retries
-                    if rate_limit_retries_count >= limit:
+                    limit = opts.rate_limit_retries if (opts and opts.rate_limit_retries is not None) else self.rate_limit_retries
+                    if limit is not None and rate_limit_retries_count >= limit:
                         raise
                     rate_limit_retries_count += 1
                 else:
@@ -72,7 +72,7 @@ class RetryingRestWrapper:
                         raise
                     retries_count += 1
 
-                retry_after = ex.headers.get("Retry-After")
+                retry_after = ex.headers.get("Retry-After") if ex.headers else None
 
                 # try after delay
                 if retry_after is not None:
@@ -270,10 +270,10 @@ class RetryingRestWrapperAsync:
                 )
             except ApiException as ex:
 
-                if ex.status == 429 and ((opts and opts.rate_limit_retries != None) or self.rate_limit_retries != None):
+                if ex.status == 429 and ((opts is not None and opts.rate_limit_retries is not None) or self.rate_limit_retries is not None):
                     # check for limit of rate limit retries
-                    limit = opts.rate_limit_retries if (opts and opts.rate_limit_retries != None) else self.rate_limit_retries
-                    if rate_limit_retries_count >= limit:
+                    limit = opts.rate_limit_retries if (opts and opts.rate_limit_retries is not None) else self.rate_limit_retries
+                    if limit is not None and rate_limit_retries_count >= limit:
                         raise
                     rate_limit_retries_count += 1
                 else:
@@ -282,7 +282,7 @@ class RetryingRestWrapperAsync:
                         raise
                     retries_count += 1
 
-                retry_after = ex.headers.get("Retry-After")
+                retry_after = ex.headers.get("Retry-After") if ex.headers else None
 
                 # try after delay
                 if retry_after is not None:

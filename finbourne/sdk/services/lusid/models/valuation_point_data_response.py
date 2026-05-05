@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,15 +31,15 @@ class ValuationPointDataResponse(BaseModel):
     The Valuation Point Data Response for the Fund and specified date.  # noqa: E501
     """
     href:  Optional[StrictStr] = Field(default=None,alias="href", description="The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime.") 
-    type:  StrictStr = Field(...,alias="type", description="The Type of the associated Diary Entry ('PeriodBoundary','ValuationPoint','Other' or 'Adhoc' when a diary entry wasn't used).") 
-    status:  StrictStr = Field(...,alias="status", description="The status of a Diary Entry of Type 'ValuationPoint'. Defaults to 'Estimate' when upserting a diary entry, moves to 'Candidate' or 'Final' when a ValuationPoint is accepted, and 'Final' when it is finalised. The status of a Diary Entry becomes 'Unofficial' when a diary entry wasn't used.") 
+    type:  StrictStr = Field(...,alias="type", description="The Type of the associated Diary Entry ('PeriodBoundary','ValuationPoint','Other' or 'Adhoc' when a diary entry wasn't used). Available values: PeriodBoundary, ValuationPoint, Other, Adhoc.") 
+    status:  StrictStr = Field(...,alias="status", description="The status of a Diary Entry of Type 'ValuationPoint'. Defaults to 'Estimate' when upserting a diary entry, moves to 'Candidate' or 'Final' when a ValuationPoint is accepted, and 'Final' when it is finalised. The status of a Diary Entry becomes 'Unofficial' when a diary entry wasn't used. Available values: Undefined, Estimate, Final, Candidate, Unofficial.") 
     fund_details: FundDetails = Field(alias="fundDetails")
     fund_valuation_point_data: FundValuationPointData = Field(alias="fundValuationPointData")
     share_class_data: List[ShareClassData] = Field(description="The data for all share classes in fund. Share classes are identified by their short codes.", alias="shareClassData")
     valuation_point_code:  Optional[StrictStr] = Field(default=None,alias="valuationPointCode", description="The code of the valuation point.") 
     previous_valuation_point_code:  Optional[StrictStr] = Field(default=None,alias="previousValuationPointCode", description="The code of the previous valuation point.") 
     links: Optional[List[Link]] = None
-    __properties = ["href", "type", "status", "fundDetails", "fundValuationPointData", "shareClassData", "valuationPointCode", "previousValuationPointCode", "links"]
+    __properties: ClassVar[List[str]] = ["href", "type", "status", "fundDetails", "fundValuationPointData", "shareClassData", "valuationPointCode", "previousValuationPointCode", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -130,12 +130,12 @@ class ValuationPointDataResponse(BaseModel):
             "href": obj.get("href"),
             "type": obj.get("type"),
             "status": obj.get("status"),
-            "fund_details": FundDetails.from_dict(obj.get("fundDetails")) if obj.get("fundDetails") is not None else None,
-            "fund_valuation_point_data": FundValuationPointData.from_dict(obj.get("fundValuationPointData")) if obj.get("fundValuationPointData") is not None else None,
-            "share_class_data": [ShareClassData.from_dict(_item) for _item in obj.get("shareClassData")] if obj.get("shareClassData") is not None else None,
+            "fund_details": FundDetails.from_dict(_v) if (_v := obj.get("fundDetails")) is not None else None,
+            "fund_valuation_point_data": FundValuationPointData.from_dict(_v) if (_v := obj.get("fundValuationPointData")) is not None else None,
+            "share_class_data": [ShareClassData.from_dict(_item) for _item in _v] if (_v := obj.get("shareClassData")) is not None else None,
             "valuation_point_code": obj.get("valuationPointCode"),
             "previous_valuation_point_code": obj.get("previousValuationPointCode"),
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

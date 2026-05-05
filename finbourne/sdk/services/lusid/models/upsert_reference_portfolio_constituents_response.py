@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class UpsertReferencePortfolioConstituentsResponse(BaseModel):
     href:  Optional[StrictStr] = Field(default=None,alias="href") 
     version: Optional[Version] = None
     links: Optional[List[Link]] = None
-    __properties = ["href", "version", "links"]
+    __properties: ClassVar[List[str]] = ["href", "version", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -100,8 +100,8 @@ class UpsertReferencePortfolioConstituentsResponse(BaseModel):
 
         _obj = UpsertReferencePortfolioConstituentsResponse.model_validate({
             "href": obj.get("href"),
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

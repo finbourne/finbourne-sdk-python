@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -35,7 +35,7 @@ class GroupReconciliationResultTypes(BaseModel):
     link_breaks: Link = Field(alias="linkBreaks")
     count_resolved: StrictInt = Field(description="The number of comparison results of resultType \"Resolved\" with this instanceId and reconciliationType", alias="countResolved")
     link_resolved: Link = Field(alias="linkResolved")
-    __properties = ["countMatch", "linkMatches", "countPartialMatch", "linkPartialMatches", "countBreak", "linkBreaks", "countResolved", "linkResolved"]
+    __properties: ClassVar[List[str]] = ["countMatch", "linkMatches", "countPartialMatch", "linkPartialMatches", "countBreak", "linkBreaks", "countResolved", "linkResolved"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -96,13 +96,13 @@ class GroupReconciliationResultTypes(BaseModel):
 
         _obj = GroupReconciliationResultTypes.model_validate({
             "count_match": obj.get("countMatch"),
-            "link_matches": Link.from_dict(obj.get("linkMatches")) if obj.get("linkMatches") is not None else None,
+            "link_matches": Link.from_dict(_v) if (_v := obj.get("linkMatches")) is not None else None,
             "count_partial_match": obj.get("countPartialMatch"),
-            "link_partial_matches": Link.from_dict(obj.get("linkPartialMatches")) if obj.get("linkPartialMatches") is not None else None,
+            "link_partial_matches": Link.from_dict(_v) if (_v := obj.get("linkPartialMatches")) is not None else None,
             "count_break": obj.get("countBreak"),
-            "link_breaks": Link.from_dict(obj.get("linkBreaks")) if obj.get("linkBreaks") is not None else None,
+            "link_breaks": Link.from_dict(_v) if (_v := obj.get("linkBreaks")) is not None else None,
             "count_resolved": obj.get("countResolved"),
-            "link_resolved": Link.from_dict(obj.get("linkResolved")) if obj.get("linkResolved") is not None else None
+            "link_resolved": Link.from_dict(_v) if (_v := obj.get("linkResolved")) is not None else None
         })
         return _obj
 

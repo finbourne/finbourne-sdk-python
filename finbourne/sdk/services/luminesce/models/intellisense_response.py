@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class IntellisenseResponse(BaseModel):
     sql_with_marker:  StrictStr = Field(...,alias="sqlWithMarker", description="The SQL this is for with characters indicating the location the pop-up is for") 
     start_replacement_position: CursorPosition = Field(alias="startReplacementPosition")
     end_replacement_position: CursorPosition = Field(alias="endReplacementPosition")
-    __properties = ["autoCompleteList", "tryAgainSoonForMore", "sqlWithMarker", "startReplacementPosition", "endReplacementPosition"]
+    __properties: ClassVar[List[str]] = ["autoCompleteList", "tryAgainSoonForMore", "sqlWithMarker", "startReplacementPosition", "endReplacementPosition"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -94,11 +94,11 @@ class IntellisenseResponse(BaseModel):
             return IntellisenseResponse.model_validate(obj)
 
         _obj = IntellisenseResponse.model_validate({
-            "auto_complete_list": [IntellisenseItem.from_dict(_item) for _item in obj.get("autoCompleteList")] if obj.get("autoCompleteList") is not None else None,
+            "auto_complete_list": [IntellisenseItem.from_dict(_item) for _item in _v] if (_v := obj.get("autoCompleteList")) is not None else None,
             "try_again_soon_for_more": obj.get("tryAgainSoonForMore"),
             "sql_with_marker": obj.get("sqlWithMarker"),
-            "start_replacement_position": CursorPosition.from_dict(obj.get("startReplacementPosition")) if obj.get("startReplacementPosition") is not None else None,
-            "end_replacement_position": CursorPosition.from_dict(obj.get("endReplacementPosition")) if obj.get("endReplacementPosition") is not None else None
+            "start_replacement_position": CursorPosition.from_dict(_v) if (_v := obj.get("startReplacementPosition")) is not None else None,
+            "end_replacement_position": CursorPosition.from_dict(_v) if (_v := obj.get("endReplacementPosition")) is not None else None
         })
         return _obj
 

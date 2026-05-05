@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class WeightedAllocationServiceRunRequest(BaseModel):
     """
     placement_ids: List[ResourceId] = Field(description="The set of Placement IDs to allocate.", alias="placementIds")
     portfolio_weights: Optional[List[PortfolioWeight]] = Field(default=None, description="The set of Portfolios and their associated weights to use for allocation.", alias="portfolioWeights")
-    __properties = ["placementIds", "portfolioWeights"]
+    __properties: ClassVar[List[str]] = ["placementIds", "portfolioWeights"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -97,8 +97,8 @@ class WeightedAllocationServiceRunRequest(BaseModel):
             return WeightedAllocationServiceRunRequest.model_validate(obj)
 
         _obj = WeightedAllocationServiceRunRequest.model_validate({
-            "placement_ids": [ResourceId.from_dict(_item) for _item in obj.get("placementIds")] if obj.get("placementIds") is not None else None,
-            "portfolio_weights": [PortfolioWeight.from_dict(_item) for _item in obj.get("portfolioWeights")] if obj.get("portfolioWeights") is not None else None
+            "placement_ids": [ResourceId.from_dict(_item) for _item in _v] if (_v := obj.get("placementIds")) is not None else None,
+            "portfolio_weights": [PortfolioWeight.from_dict(_item) for _item in _v] if (_v := obj.get("portfolioWeights")) is not None else None
         })
         return _obj
 

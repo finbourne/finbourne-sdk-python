@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -39,7 +39,7 @@ class VendorLog(BaseModel):
     user_id:  StrictStr = Field(...,alias="userId", description="The user that made the request to LUSID.") 
     request_id:  StrictStr = Field(...,alias="requestId", description="The ID of the request to LUSID.") 
     links: Optional[List[Link]] = None
-    __properties = ["id", "provider", "timestamp", "type", "destinationUrl", "operation", "outcome", "duration", "httpStatusCode", "userId", "requestId", "links"]
+    __properties: ClassVar[List[str]] = ["id", "provider", "timestamp", "type", "destinationUrl", "operation", "outcome", "duration", "httpStatusCode", "userId", "requestId", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -110,7 +110,7 @@ class VendorLog(BaseModel):
             "http_status_code": obj.get("httpStatusCode"),
             "user_id": obj.get("userId"),
             "request_id": obj.get("requestId"),
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

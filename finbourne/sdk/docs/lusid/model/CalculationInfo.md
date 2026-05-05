@@ -4,8 +4,8 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **calculation_method** | **str** | Required | Method of calculating the fees or commission among: BasisPoints, Percentage, Rate, Flat etc. |
-| **multiplier** | **str** | Required | Field by which to multiply the numerical amount. Eg: Quantity, Value |
+| **calculation_method** | **str** | Required | Method of calculating the fees or commission among: BasisPoints, Percentage, Rate, Flat etc. Available values: Rate, BasisPoints, Percentage, Flat. |
+| **multiplier** | **str** | Required | Field by which to multiply the numerical amount. Available values: None, Quantity, Value. |
 | **calculation_amount** | **float** | Required | Numerical fee amount |
 
 
@@ -17,8 +17,8 @@
 from finbourne.sdk.services.lusid.models.CalculationInfo import CalculationInfo
 
 instance = CalculationInfo(
-    calculation_method="...",  # required — Method of calculating the fees or commission among: BasisPoints, Percentage, Rate, Flat etc.
-    multiplier="...",  # required — Field by which to multiply the numerical amount. Eg: Quantity, Value
+    calculation_method="...",  # required — Method of calculating the fees or commission among: BasisPoints, Percentage, Rate, Flat etc. Available values: Rate, BasisPoints, Percentage, Flat.
+    multiplier="...",  # required — Field by which to multiply the numerical amount. Available values: None, Quantity, Value.
     calculation_amount=0.0  # required — Numerical fee amount
 )
 ```

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,11 +29,11 @@ class DiaryEntryRequest(BaseModel):
     """
     diary_entry_code:  StrictStr = Field(...,alias="diaryEntryCode", description="The code of the diary entry.") 
     name:  Optional[StrictStr] = Field(default=None,alias="name", description="The name of the diary entry.") 
-    status:  Optional[StrictStr] = Field(default=None,alias="status", description="The status of a Diary Entry of Type 'Other'. Defaults to 'Undefined' and supports 'Undefined', 'Estimate', 'Candidate', and 'Final'.") 
+    status:  Optional[StrictStr] = Field(default=None,alias="status", description="The status of a Diary Entry of Type 'Other'. Defaults to 'Undefined' and supports 'Undefined', 'Estimate', 'Candidate', and 'Final'. Available values: Undefined, Estimate, Final, Candidate, Unofficial.") 
     effective_at: datetime = Field(description="The effective time of the diary entry.", alias="effectiveAt")
     query_as_at: Optional[datetime] = Field(default=None, description="The query time of the diary entry. Defaults to latest.", alias="queryAsAt")
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="A set of properties for the diary entry.")
-    __properties = ["diaryEntryCode", "name", "status", "effectiveAt", "queryAsAt", "properties"]
+    __properties: ClassVar[List[str]] = ["diaryEntryCode", "name", "status", "effectiveAt", "queryAsAt", "properties"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -115,9 +115,9 @@ class DiaryEntryRequest(BaseModel):
             "query_as_at": obj.get("queryAsAt"),
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None
         })
         return _obj

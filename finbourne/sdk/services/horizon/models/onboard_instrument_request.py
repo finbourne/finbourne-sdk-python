@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class OnboardInstrumentRequest(BaseModel):
     data_results: List[OpenFigiPermIdResult] = Field(description="Enumerable packed OpenFigi/PermId information used to create instruments", alias="dataResults")
     primary_vendor_key:  Optional[StrictStr] = Field(default=None,alias="primaryVendorKey", description="Primary vendor used to master instrument from Unknown to an asset type") 
     secondary_vendor_keys: Optional[List[StrictStr]] = Field(default=None, description="Secondary vendors used to decorate additional properties", alias="secondaryVendorKeys")
-    __properties = ["dataResults", "primaryVendorKey", "secondaryVendorKeys"]
+    __properties: ClassVar[List[str]] = ["dataResults", "primaryVendorKey", "secondaryVendorKeys"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -95,7 +95,7 @@ class OnboardInstrumentRequest(BaseModel):
             return OnboardInstrumentRequest.model_validate(obj)
 
         _obj = OnboardInstrumentRequest.model_validate({
-            "data_results": [OpenFigiPermIdResult.from_dict(_item) for _item in obj.get("dataResults")] if obj.get("dataResults") is not None else None,
+            "data_results": [OpenFigiPermIdResult.from_dict(_item) for _item in _v] if (_v := obj.get("dataResults")) is not None else None,
             "primary_vendor_key": obj.get("primaryVendorKey"),
             "secondary_vendor_keys": obj.get("secondaryVendorKeys")
         })

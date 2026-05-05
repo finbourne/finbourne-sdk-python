@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,10 +31,10 @@ class ChangeHistory(BaseModel):
     user_id:  StrictStr = Field(...,alias="userId", description="The unique identifier of the user that made the change.") 
     modified_as_at: datetime = Field(description="The date/time of the change.", alias="modifiedAsAt")
     request_id:  StrictStr = Field(...,alias="requestId", description="The unique identifier of the request that the changes were part of.") 
-    action:  StrictStr = Field(...,alias="action", description="The action performed on the transaction, either created, updated, or deleted. The available values are: Create, Update, Delete") 
+    action:  StrictStr = Field(...,alias="action", description="The action performed on the transaction. Available values: Create, Update, Delete.") 
     changes: List[ChangeItem] = Field(description="The collection of changes that were made.")
     links: Optional[List[Link]] = None
-    __properties = ["userId", "modifiedAsAt", "requestId", "action", "changes", "links"]
+    __properties: ClassVar[List[str]] = ["userId", "modifiedAsAt", "requestId", "action", "changes", "links"]
 
     @field_validator('action')
     def action_validate_enum(cls, value):
@@ -174,8 +174,8 @@ class ChangeHistory(BaseModel):
             "modified_as_at": obj.get("modifiedAsAt"),
             "request_id": obj.get("requestId"),
             "action": obj.get("action"),
-            "changes": [ChangeItem.from_dict(_item) for _item in obj.get("changes")] if obj.get("changes") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "changes": [ChangeItem.from_dict(_item) for _item in _v] if (_v := obj.get("changes")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

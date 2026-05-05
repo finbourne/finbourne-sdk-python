@@ -5,7 +5,7 @@ The base class for representing a Trade Ticket in LUSID.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **trade_ticket_type** | **str** | Required | The available values are: LusidTradeTicket, ExternalTradeTicket |
+| **trade_ticket_type** | **str** | Required | Available values: LusidTradeTicket, ExternalTradeTicket. |
 
 
 ## Usage
@@ -16,7 +16,7 @@ The base class for representing a Trade Ticket in LUSID.
 from finbourne.sdk.services.lusid.models.TradeTicket import TradeTicket
 
 instance = TradeTicket(
-    trade_ticket_type="..."  # required — The available values are: LusidTradeTicket, ExternalTradeTicket
+    trade_ticket_type="..."  # required — Available values: LusidTradeTicket, ExternalTradeTicket.
 )
 ```
 

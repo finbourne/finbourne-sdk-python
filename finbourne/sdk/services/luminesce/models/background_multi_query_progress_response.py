@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class BackgroundMultiQueryProgressResponse(BaseModel):
     feedback: Optional[List[FeedbackEventArgs]] = Field(default=None, description="Individual Feedback Messages (to replace Progress).  A given message will be returned from only one call.")
     status: Optional[TaskStatus] = None
     queries: Optional[List[BackgroundQueryProgressResponse]] = None
-    __properties = ["progress", "feedback", "status", "queries"]
+    __properties: ClassVar[List[str]] = ["progress", "feedback", "status", "queries"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -111,9 +111,9 @@ class BackgroundMultiQueryProgressResponse(BaseModel):
 
         _obj = BackgroundMultiQueryProgressResponse.model_validate({
             "progress": obj.get("progress"),
-            "feedback": [FeedbackEventArgs.from_dict(_item) for _item in obj.get("feedback")] if obj.get("feedback") is not None else None,
+            "feedback": [FeedbackEventArgs.from_dict(_item) for _item in _v] if (_v := obj.get("feedback")) is not None else None,
             "status": obj.get("status"),
-            "queries": [BackgroundQueryProgressResponse.from_dict(_item) for _item in obj.get("queries")] if obj.get("queries") is not None else None
+            "queries": [BackgroundQueryProgressResponse.from_dict(_item) for _item in _v] if (_v := obj.get("queries")) is not None else None
         })
         return _obj
 

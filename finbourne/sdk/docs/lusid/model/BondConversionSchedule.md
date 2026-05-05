@@ -14,7 +14,7 @@ A BondConversionSchedule object represents a class containing the  information r
 | **mandatory_conversion** | **bool** | Optional | Set this to true if a conversion is mandatory if the trigger occurs. Defaults to false. |
 | **notification_period_end** | **datetime** | Optional | The last day in the notification period for the conversion of the bond |
 | **notification_period_start** | **datetime** | Optional | The first day in the notification period for the conversion of the bond |
-| **schedule_type** | **str** | Required | The available values are: FixedSchedule, FloatSchedule, OptionalitySchedule, StepSchedule, Exercise, FxRateSchedule, FxLinkedNotionalSchedule, BondConversionSchedule, Invalid |
+| **schedule_type** | **str** | Required | Available values: FixedSchedule, FloatSchedule, OptionalitySchedule, StepSchedule, Exercise, FxRateSchedule, FxLinkedNotionalSchedule, BondConversionSchedule, Invalid. |
 
 
 ## Usage
@@ -34,7 +34,7 @@ instance = BondConversionSchedule(
     mandatory_conversion=True,  # optional — Set this to true if a conversion is mandatory if the trigger occurs. Defaults to false.
     notification_period_end=datetime.now(),  # optional — The last day in the notification period for the conversion of the bond
     notification_period_start=datetime.now(),  # optional — The first day in the notification period for the conversion of the bond
-    schedule_type="..."  # required — The available values are: FixedSchedule, FloatSchedule, OptionalitySchedule, StepSchedule, Exercise, FxRateSchedule, FxLinkedNotionalSchedule, BondConversionSchedule, Invalid
+    schedule_type="..."  # required — Available values: FixedSchedule, FloatSchedule, OptionalitySchedule, StepSchedule, Exercise, FxRateSchedule, FxLinkedNotionalSchedule, BondConversionSchedule, Invalid.
 )
 ```
 

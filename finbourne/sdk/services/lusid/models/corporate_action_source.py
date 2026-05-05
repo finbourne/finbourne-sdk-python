@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -36,7 +36,7 @@ class CorporateActionSource(BaseModel):
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="The description of the corporate action source") 
     instrument_scopes: Optional[List[StrictStr]] = Field(default=None, description="The list of instrument scopes used as the scope resolution strategy when resolving instruments of upserted corporate actions.", alias="instrumentScopes")
     links: Optional[List[Link]] = None
-    __properties = ["href", "id", "version", "displayName", "description", "instrumentScopes", "links"]
+    __properties: ClassVar[List[str]] = ["href", "id", "version", "displayName", "description", "instrumentScopes", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -123,12 +123,12 @@ class CorporateActionSource(BaseModel):
 
         _obj = CorporateActionSource.model_validate({
             "href": obj.get("href"),
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
             "instrument_scopes": obj.get("instrumentScopes"),
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

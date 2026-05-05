@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class TransactionTypeDetails(BaseModel):
     scope:  StrictStr = Field(...,alias="scope", description="The scope in which the TransactionType was resolved. If the portfolio has a TransactionTypeScope, this will have been used. Otherwise the default scope will have been used.") 
     source:  StrictStr = Field(...,alias="source", description="The source in which the TransactionType was resolved.") 
     type:  StrictStr = Field(...,alias="type", description="The resolved TransactionType. More information on TransactionType resolution can be found at https://support.lusid.com/docs/how-does-lusid-resolve-transactions-to-transaction-types") 
-    __properties = ["scope", "source", "type"]
+    __properties: ClassVar[List[str]] = ["scope", "source", "type"]
 
     model_config = ConfigDict(
         populate_by_name=True,

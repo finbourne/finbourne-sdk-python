@@ -66,12 +66,12 @@ class FilesApi:
         :return: Returns the result object.
         :rtype: StorageObject
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_file_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_file_with_http_info(x_lusid_drive_filename, x_lusid_drive_path, content_length, body, **kwargs)  # noqa: E501
+        response = self.create_file_with_http_info(x_lusid_drive_filename, x_lusid_drive_path, content_length, body, **kwargs)
+        return response.data
 
     @validate_call
     def create_file_with_http_info(self, x_lusid_drive_filename: StrictStr, x_lusid_drive_path: StrictStr, content_length: int, body: bytes, **kwargs) -> ApiResponse[StorageObject]:
@@ -214,15 +214,15 @@ class FilesApi:
         :return: Returns the result object.
         :rtype: None
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_file_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_file_with_http_info(id, **kwargs)  # noqa: E501
+        response = self.delete_file_with_http_info(id, **kwargs)
+        return response.data
 
     @validate_call
-    def delete_file_with_http_info(self, id: StrictStr, **kwargs) -> None:
+    def delete_file_with_http_info(self, id: StrictStr, **kwargs) -> ApiResponse[None]:
         """[EARLY ACCESS] DeleteFile: Deletes a file from Drive.  # noqa: E501
 
         :param id: Identifier of the file to be deleted. (required)
@@ -329,12 +329,12 @@ class FilesApi:
         :return: Returns the result object.
         :rtype: bytes
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the download_file_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.download_file_with_http_info(id, **kwargs)  # noqa: E501
+        response = self.download_file_with_http_info(id, **kwargs)
+        return response.data
 
     @validate_call
     def download_file_with_http_info(self, id: StrictStr, **kwargs) -> ApiResponse[bytes]:
@@ -449,12 +449,12 @@ class FilesApi:
         :return: Returns the result object.
         :rtype: StorageObject
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_file_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_file_with_http_info(id, **kwargs)  # noqa: E501
+        response = self.get_file_with_http_info(id, **kwargs)
+        return response.data
 
     @validate_call
     def get_file_with_http_info(self, id: StrictStr, **kwargs) -> ApiResponse[StorageObject]:
@@ -571,12 +571,12 @@ class FilesApi:
         :return: Returns the result object.
         :rtype: StorageObject
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_file_contents_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_file_contents_with_http_info(id, content_length, body, **kwargs)  # noqa: E501
+        response = self.update_file_contents_with_http_info(id, content_length, body, **kwargs)
+        return response.data
 
     @validate_call
     def update_file_contents_with_http_info(self, id: StrictStr, content_length: int, body: bytes, **kwargs) -> ApiResponse[StorageObject]:
@@ -715,12 +715,12 @@ class FilesApi:
         :return: Returns the result object.
         :rtype: StorageObject
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_file_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_file_metadata_with_http_info(id, update_file, **kwargs)  # noqa: E501
+        response = self.update_file_metadata_with_http_info(id, update_file, **kwargs)
+        return response.data
 
     @validate_call
     def update_file_metadata_with_http_info(self, id: StrictStr, update_file: UpdateFile, **kwargs) -> ApiResponse[StorageObject]:
@@ -856,12 +856,12 @@ class FilesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: StorageObject
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_file_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_file_with_http_info_async(x_lusid_drive_filename, x_lusid_drive_path, content_length, body, **kwargs)  # noqa: E501
+            response = await self.create_file_with_http_info_async(x_lusid_drive_filename, x_lusid_drive_path, content_length, body, **kwargs)
+            return response.data
 
     @validate_call
     async def create_file_with_http_info_async(self, x_lusid_drive_filename: StrictStr, x_lusid_drive_path: StrictStr, content_length: int, body: bytes, **kwargs) -> ApiResponse[StorageObject]:
@@ -1005,15 +1005,15 @@ class FilesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: None
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_file_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_file_with_http_info_async(id, **kwargs)  # noqa: E501
+            response = await self.delete_file_with_http_info_async(id, **kwargs)
+            return response.data
 
     @validate_call
-    async def delete_file_with_http_info_async(self, id: StrictStr, **kwargs) -> None:
+    async def delete_file_with_http_info_async(self, id: StrictStr, **kwargs) -> ApiResponse[None]:
             """[EARLY ACCESS] DeleteFile: Deletes a file from Drive.  # noqa: E501
 
 
@@ -1121,12 +1121,12 @@ class FilesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: bytes
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the download_file_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.download_file_with_http_info_async(id, **kwargs)  # noqa: E501
+            response = await self.download_file_with_http_info_async(id, **kwargs)
+            return response.data
 
     @validate_call
     async def download_file_with_http_info_async(self, id: StrictStr, **kwargs) -> ApiResponse[bytes]:
@@ -1242,12 +1242,12 @@ class FilesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: StorageObject
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_file_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_file_with_http_info_async(id, **kwargs)  # noqa: E501
+            response = await self.get_file_with_http_info_async(id, **kwargs)
+            return response.data
 
     @validate_call
     async def get_file_with_http_info_async(self, id: StrictStr, **kwargs) -> ApiResponse[StorageObject]:
@@ -1365,12 +1365,12 @@ class FilesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: StorageObject
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_file_contents_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_file_contents_with_http_info_async(id, content_length, body, **kwargs)  # noqa: E501
+            response = await self.update_file_contents_with_http_info_async(id, content_length, body, **kwargs)
+            return response.data
 
     @validate_call
     async def update_file_contents_with_http_info_async(self, id: StrictStr, content_length: int, body: bytes, **kwargs) -> ApiResponse[StorageObject]:
@@ -1510,12 +1510,12 @@ class FilesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: StorageObject
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_file_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_file_metadata_with_http_info_async(id, update_file, **kwargs)  # noqa: E501
+            response = await self.update_file_metadata_with_http_info_async(id, update_file, **kwargs)
+            return response.data
 
     @validate_call
     async def update_file_metadata_with_http_info_async(self, id: StrictStr, update_file: UpdateFile, **kwargs) -> ApiResponse[StorageObject]:

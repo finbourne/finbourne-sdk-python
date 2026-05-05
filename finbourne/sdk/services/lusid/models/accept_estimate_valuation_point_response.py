@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class AcceptEstimateValuationPointResponse(BaseModel):
     candidate_valuation_point: ValuationPointDataResponse = Field(alias="candidateValuationPoint")
     latest_valuation_point: Optional[ValuationPointDataResponse] = Field(default=None, alias="latestValuationPoint")
     links: Optional[List[Link]] = None
-    __properties = ["href", "candidateValuationPoint", "latestValuationPoint", "links"]
+    __properties: ClassVar[List[str]] = ["href", "candidateValuationPoint", "latestValuationPoint", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -104,9 +104,9 @@ class AcceptEstimateValuationPointResponse(BaseModel):
 
         _obj = AcceptEstimateValuationPointResponse.model_validate({
             "href": obj.get("href"),
-            "candidate_valuation_point": ValuationPointDataResponse.from_dict(obj.get("candidateValuationPoint")) if obj.get("candidateValuationPoint") is not None else None,
-            "latest_valuation_point": ValuationPointDataResponse.from_dict(obj.get("latestValuationPoint")) if obj.get("latestValuationPoint") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "candidate_valuation_point": ValuationPointDataResponse.from_dict(_v) if (_v := obj.get("candidateValuationPoint")) is not None else None,
+            "latest_valuation_point": ValuationPointDataResponse.from_dict(_v) if (_v := obj.get("latestValuationPoint")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class MappingRule(BaseModel):
     weight: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="A factor used to influence the importance of this item.")
     mapped_strings: Optional[List[MappedString]] = Field(default=None, description="The (optional) value used to map string values.", alias="mappedStrings")
     is_case_sensitive: Optional[StrictBool] = Field(default=None, description="Should string comparisons take case into account, defaults to `false`.", alias="isCaseSensitive")
-    __properties = ["left", "right", "comparisonType", "comparisonValue", "weight", "mappedStrings", "isCaseSensitive"]
+    __properties: ClassVar[List[str]] = ["left", "right", "comparisonType", "comparisonValue", "weight", "mappedStrings", "isCaseSensitive"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -119,7 +119,7 @@ class MappingRule(BaseModel):
             "comparison_type": obj.get("comparisonType"),
             "comparison_value": obj.get("comparisonValue"),
             "weight": obj.get("weight"),
-            "mapped_strings": [MappedString.from_dict(_item) for _item in obj.get("mappedStrings")] if obj.get("mappedStrings") is not None else None,
+            "mapped_strings": [MappedString.from_dict(_item) for _item in _v] if (_v := obj.get("mappedStrings")) is not None else None,
             "is_case_sensitive": obj.get("isCaseSensitive")
         })
         return _obj

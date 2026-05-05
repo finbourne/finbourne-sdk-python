@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -36,7 +36,7 @@ class AuthenticationInformation(BaseModel):
     support_access_expiry_with_role: Optional[List[SupportAccessExpiryWithRole]] = Field(default=None, alias="supportAccessExpiryWithRole")
     status: Optional[StrictBool] = None
     links: Optional[List[Link]] = None
-    __properties = ["issuerUrl", "fallbackIssuerUrls", "samlIdentityProviderId", "support", "supportAccessExpiryWithRole", "status", "links"]
+    __properties: ClassVar[List[str]] = ["issuerUrl", "fallbackIssuerUrls", "samlIdentityProviderId", "support", "supportAccessExpiryWithRole", "status", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -124,10 +124,10 @@ class AuthenticationInformation(BaseModel):
             "issuer_url": obj.get("issuerUrl"),
             "fallback_issuer_urls": obj.get("fallbackIssuerUrls"),
             "saml_identity_provider_id": obj.get("samlIdentityProviderId"),
-            "support": SupportAccessExpiry.from_dict(obj.get("support")) if obj.get("support") is not None else None,
-            "support_access_expiry_with_role": [SupportAccessExpiryWithRole.from_dict(_item) for _item in obj.get("supportAccessExpiryWithRole")] if obj.get("supportAccessExpiryWithRole") is not None else None,
+            "support": SupportAccessExpiry.from_dict(_v) if (_v := obj.get("support")) is not None else None,
+            "support_access_expiry_with_role": [SupportAccessExpiryWithRole.from_dict(_item) for _item in _v] if (_v := obj.get("supportAccessExpiryWithRole")) is not None else None,
             "status": obj.get("status"),
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

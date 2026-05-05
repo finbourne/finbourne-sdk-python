@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -41,7 +41,7 @@ class LegalEntity(BaseModel):
     counterparty_risk_information: Optional[CounterpartyRiskInformation] = Field(default=None, alias="counterpartyRiskInformation")
     version: Optional[Version] = None
     links: Optional[List[Link]] = None
-    __properties = ["displayName", "description", "href", "lusidLegalEntityId", "identifiers", "properties", "relationships", "counterpartyRiskInformation", "version", "links"]
+    __properties: ClassVar[List[str]] = ["displayName", "description", "href", "lusidLegalEntityId", "identifiers", "properties", "relationships", "counterpartyRiskInformation", "version", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -169,20 +169,20 @@ class LegalEntity(BaseModel):
             "lusid_legal_entity_id": obj.get("lusidLegalEntityId"),
             "identifiers": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("identifiers").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("identifiers") is not None
+            if (_val := obj.get("identifiers")) is not None
             else None,
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
-            "relationships": [Relationship.from_dict(_item) for _item in obj.get("relationships")] if obj.get("relationships") is not None else None,
-            "counterparty_risk_information": CounterpartyRiskInformation.from_dict(obj.get("counterpartyRiskInformation")) if obj.get("counterpartyRiskInformation") is not None else None,
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "relationships": [Relationship.from_dict(_item) for _item in _v] if (_v := obj.get("relationships")) is not None else None,
+            "counterparty_risk_information": CounterpartyRiskInformation.from_dict(_v) if (_v := obj.get("counterpartyRiskInformation")) is not None else None,
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

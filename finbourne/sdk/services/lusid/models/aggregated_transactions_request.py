@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -40,7 +40,7 @@ class AggregatedTransactionsRequest(BaseModel):
     group_by: Optional[List[StrictStr]] = Field(default=None, alias="groupBy")
     filters: Optional[List[PropertyFilter]] = None
     sort: Optional[List[OrderBySpec]] = None
-    __properties = ["fromTransactionDate", "toTransactionDate", "portfolioId", "portfolioEntityIds", "asAt", "metrics", "groupBy", "filters", "sort"]
+    __properties: ClassVar[List[str]] = ["fromTransactionDate", "toTransactionDate", "portfolioId", "portfolioEntityIds", "asAt", "metrics", "groupBy", "filters", "sort"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -146,13 +146,13 @@ class AggregatedTransactionsRequest(BaseModel):
         _obj = AggregatedTransactionsRequest.model_validate({
             "from_transaction_date": obj.get("fromTransactionDate"),
             "to_transaction_date": obj.get("toTransactionDate"),
-            "portfolio_id": ResourceId.from_dict(obj.get("portfolioId")) if obj.get("portfolioId") is not None else None,
-            "portfolio_entity_ids": [PortfolioEntityId.from_dict(_item) for _item in obj.get("portfolioEntityIds")] if obj.get("portfolioEntityIds") is not None else None,
+            "portfolio_id": ResourceId.from_dict(_v) if (_v := obj.get("portfolioId")) is not None else None,
+            "portfolio_entity_ids": [PortfolioEntityId.from_dict(_item) for _item in _v] if (_v := obj.get("portfolioEntityIds")) is not None else None,
             "as_at": obj.get("asAt"),
-            "metrics": [AggregateSpec.from_dict(_item) for _item in obj.get("metrics")] if obj.get("metrics") is not None else None,
+            "metrics": [AggregateSpec.from_dict(_item) for _item in _v] if (_v := obj.get("metrics")) is not None else None,
             "group_by": obj.get("groupBy"),
-            "filters": [PropertyFilter.from_dict(_item) for _item in obj.get("filters")] if obj.get("filters") is not None else None,
-            "sort": [OrderBySpec.from_dict(_item) for _item in obj.get("sort")] if obj.get("sort") is not None else None
+            "filters": [PropertyFilter.from_dict(_item) for _item in _v] if (_v := obj.get("filters")) is not None else None,
+            "sort": [OrderBySpec.from_dict(_item) for _item in _v] if (_v := obj.get("sort")) is not None else None
         })
         return _obj
 

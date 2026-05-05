@@ -7,8 +7,8 @@ The request used in the GetCompositeBreakdown.
 |------|------|----------|-------------|
 | **return_ids** | [List[ResourceId]](ResourceId.md) | Optional | The Scope and code of the returns. |
 | **recipe_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
-| **composite_method** | **str** | Optional | The method used to calculate the Portfolio performance: Equal/Asset. |
-| **period** | **str** | Optional | The type of the returns used to calculate the aggregation result: Daily/Monthly. |
+| **composite_method** | **str** | Optional | The method used to calculate the Portfolio performance. Available values: Equal, Asset. |
+| **period** | **str** | Optional | The type of the returns used to calculate the aggregation result. Available values: Daily, Monthly. |
 | **holiday_calendars** | **List[str]** | Optional | The holiday calendar(s) that should be used in determining the date schedule. Holiday calendar(s) are supplied by their codes, for example, &#39;CoppClark&#39;. Note that when the calendars are not available (e.g. when the user has insufficient permissions), a recipe setting will be used to determine whether the whole batch should then fail or whether the calendar not being available should simply be ignored. |
 | **currency** | **str** | Optional | Optional - either a string or a property. If provided, the results will be converted to the specified currency |
 
@@ -23,8 +23,8 @@ from finbourne.sdk.services.lusid.models.CompositeBreakdownRequest import Compos
 instance = CompositeBreakdownRequest(
     return_ids=[],  # optional — The Scope and code of the returns.
     recipe_id=ResourceId(...),  # optional
-    composite_method="...",  # optional — The method used to calculate the Portfolio performance: Equal/Asset.
-    period="...",  # optional — The type of the returns used to calculate the aggregation result: Daily/Monthly.
+    composite_method="...",  # optional — The method used to calculate the Portfolio performance. Available values: Equal, Asset.
+    period="...",  # optional — The type of the returns used to calculate the aggregation result. Available values: Daily, Monthly.
     holiday_calendars=,  # optional — The holiday calendar(s) that should be used in determining the date schedule. Holiday calendar(s) are supplied by their codes, for example, &#39;CoppClark&#39;. Note that when the calendars are not available (e.g. when the user has insufficient permissions), a recipe setting will be used to determine whether the whole batch should then fail or whether the calendar not being available should simply be ignored.
     currency="..."  # optional — Optional - either a string or a property. If provided, the results will be converted to the specified currency
 )

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class AddressKeyFilter(BaseModel):
     left:  Optional[StrictStr] = Field(default=None,alias="left", description="Address for the value in the row") 
     operator:  Optional[StrictStr] = Field(default=None,alias="operator", description="What sort of comparison is the filter performing. Can be either \"eq\" for equals or \"neq\" for not equals.") 
     right: Optional[ResultValue] = None
-    __properties = ["left", "operator", "right"]
+    __properties: ClassVar[List[str]] = ["left", "operator", "right"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -93,7 +93,7 @@ class AddressKeyFilter(BaseModel):
         _obj = AddressKeyFilter.model_validate({
             "left": obj.get("left"),
             "operator": obj.get("operator"),
-            "right": ResultValue.from_dict(obj.get("right")) if obj.get("right") is not None else None
+            "right": ResultValue.from_dict(_v) if (_v := obj.get("right")) is not None else None
         })
         return _obj
 

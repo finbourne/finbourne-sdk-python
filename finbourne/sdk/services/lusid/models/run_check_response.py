@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class RunCheckResponse(BaseModel):
     Response containing the results of running data quality checks  # noqa: E501
     """
     data_quality_check_results: Optional[List[DataQualityCheckResult]] = Field(default=None, description="Collection of data quality check results", alias="dataQualityCheckResults")
-    __properties = ["dataQualityCheckResults"]
+    __properties: ClassVar[List[str]] = ["dataQualityCheckResults"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,7 +88,7 @@ class RunCheckResponse(BaseModel):
             return RunCheckResponse.model_validate(obj)
 
         _obj = RunCheckResponse.model_validate({
-            "data_quality_check_results": [DataQualityCheckResult.from_dict(_item) for _item in obj.get("dataQualityCheckResults")] if obj.get("dataQualityCheckResults") is not None else None
+            "data_quality_check_results": [DataQualityCheckResult.from_dict(_item) for _item in _v] if (_v := obj.get("dataQualityCheckResults")) is not None else None
         })
         return _obj
 

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,9 +28,9 @@ class ShareClassDealingBreakdown(BaseModel):
     """
     The breakdown of Dealing for a Share Class.  # noqa: E501
     """
-    class_dealing: Dict[str, ShareClassAmount] = Field(description="Bucket of detail for any 'Dealing' specific to the share class that has occured inside the queried period.", alias="classDealing")
-    class_dealing_units: Dict[str, Amount] = Field(description="Bucket of detail for any 'Dealing' units specific to the share class that has occured inside the queried period.", alias="classDealingUnits")
-    __properties = ["classDealing", "classDealingUnits"]
+    class_dealing: Dict[str, ShareClassAmount] = Field(description="Bucket of detail for any 'Dealing' specific to the share class that has occurred inside the queried period.", alias="classDealing")
+    class_dealing_units: Dict[str, Amount] = Field(description="Bucket of detail for any 'Dealing' units specific to the share class that has occurred inside the queried period.", alias="classDealingUnits")
+    __properties: ClassVar[List[str]] = ["classDealing", "classDealingUnits"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -94,15 +94,15 @@ class ShareClassDealingBreakdown(BaseModel):
         _obj = ShareClassDealingBreakdown.model_validate({
             "class_dealing": dict(
                 (_k, ShareClassAmount.from_dict(_v))
-                for _k, _v in obj.get("classDealing").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("classDealing") is not None
+            if (_val := obj.get("classDealing")) is not None
             else None,
             "class_dealing_units": dict(
                 (_k, Amount.from_dict(_v))
-                for _k, _v in obj.get("classDealingUnits").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("classDealingUnits") is not None
+            if (_val := obj.get("classDealingUnits")) is not None
             else None
         })
         return _obj

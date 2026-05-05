@@ -1,6 +1,6 @@
 [project]
 name = "finbourne-sdk"
-version = "0.1.2"
+version = "0.1.11"
 description = "This is the Python SDK for all of FINBOURNE's APIs"
 authors = [
     {name = "Finbourne Technology LTD", email = "info@finbourne.com"}
@@ -17,7 +17,6 @@ dependencies = [
     "aiohttp>=3.13.4,<4.0.0",
     "pydantic>=2.6.3,<3.0.0",
     "aenum>=3.1.11,<4.0.0",
-
 ]
 
 [project.urls]
@@ -25,7 +24,9 @@ Repository = "https://github.com/finbourne/finbourne-sdk-python.git"
 
 [project.optional-dependencies]
 dev = [
-    "pytest>=7.2.1,<8.0.0",
+    "pyright>=1.1.408",
+    "ruff>=0.15.12",
+    "pytest>=9.0.3",
     "pytest-asyncio>=0.21.0",
     "flake8>=4.0.0,<5.0.0",
     "xeger>=0.4,<1.0.0",
@@ -41,3 +42,17 @@ packages = ["finbourne"]
 
 [tool.pylint.'MESSAGES CONTROL']
 extension-pkg-whitelist = "pydantic"
+
+[tool.ruff.lint]
+ignore = [
+    "F401",  # Unused imports - generated code imports a superset; each model uses a different subset
+    "F811",  # Redefined unused - API templates have static + dynamic import blocks that overlap
+    "E402",  # Module import not at top - intentional circular import workaround in models
+]
+
+[tool.pyright]
+pythonVersion = "3.11"
+typeCheckingMode = "standard"
+reportRedeclaration = false
+reportInvalidTypeArguments = false
+reportAttributeAccessIssue = "warning"

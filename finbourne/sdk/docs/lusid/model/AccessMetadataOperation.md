@@ -6,7 +6,7 @@
 |------|------|----------|-------------|
 | **value** | [List[AccessMetadataValue]](AccessMetadataValue.md) | Required | *No description available.* |
 | **path** | **str** | Required | *No description available.* |
-| **op** | **str** | Required | The available values are: add, remove |
+| **op** | **str** | Required | Available values: add, remove. |
 | **var_from** | **str** | Optional | *No description available.* |
 
 
@@ -20,7 +20,7 @@ from finbourne.sdk.services.lusid.models.AccessMetadataOperation import AccessMe
 instance = AccessMetadataOperation(
     value=[],  # required
     path="...",  # required
-    op="...",  # required — The available values are: add, remove
+    op="...",  # required — Available values: add, remove.
     var_from="..."  # optional
 )
 ```

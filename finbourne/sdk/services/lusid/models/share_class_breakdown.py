@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -43,7 +43,7 @@ class ShareClassBreakdown(BaseModel):
     share_class_to_fund_fx_rate: Union[StrictFloat, StrictInt] = Field(description="The fx rate from the Share Class currency to the fund currency at this valuation point.", alias="shareClassToFundFxRate")
     capital_ratio: Union[StrictFloat, StrictInt] = Field(description="The proportion of the fund's adjusted beginning equity (ie: the sum of the previous NAV and the net dealing) that is invested in the share class.", alias="capitalRatio")
     previous_share_class_breakdown: PreviousShareClassBreakdown = Field(alias="previousShareClassBreakdown")
-    __properties = ["backOut", "dealing", "pnL", "gav", "fees", "nav", "unitisation", "miscellaneous", "shareClassToFundFxRate", "capitalRatio", "previousShareClassBreakdown"]
+    __properties: ClassVar[List[str]] = ["backOut", "dealing", "pnL", "gav", "fees", "nav", "unitisation", "miscellaneous", "shareClassToFundFxRate", "capitalRatio", "previousShareClassBreakdown"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -137,30 +137,30 @@ class ShareClassBreakdown(BaseModel):
         _obj = ShareClassBreakdown.model_validate({
             "back_out": dict(
                 (_k, ShareClassAmount.from_dict(_v))
-                for _k, _v in obj.get("backOut").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("backOut") is not None
+            if (_val := obj.get("backOut")) is not None
             else None,
-            "dealing": ShareClassDealingBreakdown.from_dict(obj.get("dealing")) if obj.get("dealing") is not None else None,
-            "pn_l": ShareClassPnlBreakdown.from_dict(obj.get("pnL")) if obj.get("pnL") is not None else None,
-            "gav": ShareClassAmount.from_dict(obj.get("gav")) if obj.get("gav") is not None else None,
+            "dealing": ShareClassDealingBreakdown.from_dict(_v) if (_v := obj.get("dealing")) is not None else None,
+            "pn_l": ShareClassPnlBreakdown.from_dict(_v) if (_v := obj.get("pnL")) is not None else None,
+            "gav": ShareClassAmount.from_dict(_v) if (_v := obj.get("gav")) is not None else None,
             "fees": dict(
                 (_k, FeeAccrual.from_dict(_v))
-                for _k, _v in obj.get("fees").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("fees") is not None
+            if (_val := obj.get("fees")) is not None
             else None,
-            "nav": ShareClassAmount.from_dict(obj.get("nav")) if obj.get("nav") is not None else None,
-            "unitisation": UnitisationData.from_dict(obj.get("unitisation")) if obj.get("unitisation") is not None else None,
+            "nav": ShareClassAmount.from_dict(_v) if (_v := obj.get("nav")) is not None else None,
+            "unitisation": UnitisationData.from_dict(_v) if (_v := obj.get("unitisation")) is not None else None,
             "miscellaneous": dict(
                 (_k, ShareClassAmount.from_dict(_v))
-                for _k, _v in obj.get("miscellaneous").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("miscellaneous") is not None
+            if (_val := obj.get("miscellaneous")) is not None
             else None,
             "share_class_to_fund_fx_rate": obj.get("shareClassToFundFxRate"),
             "capital_ratio": obj.get("capitalRatio"),
-            "previous_share_class_breakdown": PreviousShareClassBreakdown.from_dict(obj.get("previousShareClassBreakdown")) if obj.get("previousShareClassBreakdown") is not None else None
+            "previous_share_class_breakdown": PreviousShareClassBreakdown.from_dict(_v) if (_v := obj.get("previousShareClassBreakdown")) is not None else None
         })
         return _obj
 

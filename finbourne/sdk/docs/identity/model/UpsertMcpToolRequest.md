@@ -15,6 +15,7 @@ Request to create or update an MCP tool
 | **parameters** | [List[McpToolParameter]](McpToolParameter.md) | Optional | The parameters for this MCP tool |
 | **luminesce_payload** | [McpToolLuminescePayload](McpToolLuminescePayload.md) | Optional | *No description available.* |
 | **scheduler_payload** | [McpToolSchedulerPayload](McpToolSchedulerPayload.md) | Optional | *No description available.* |
+| **destructive_action_summary_template** | **str** | Optional | Template for human-readable destructive action summary. Uses {paramName} single-brace placeholders (e.g. \&quot;Delete file &#39;{filePath}&#39;\&quot;). Required when Destructive is true. |
 
 
 ## Usage
@@ -34,7 +35,8 @@ instance = UpsertMcpToolRequest(
     read_only=True,  # optional — Whether the tool is read-only
     parameters=[],  # optional — The parameters for this MCP tool
     luminesce_payload=McpToolLuminescePayload(...),  # optional
-    scheduler_payload=McpToolSchedulerPayload(...)  # optional
+    scheduler_payload=McpToolSchedulerPayload(...),  # optional
+    destructive_action_summary_template="..."  # optional — Template for human-readable destructive action summary. Uses {paramName} single-brace placeholders (e.g. \&quot;Delete file &#39;{filePath}&#39;\&quot;). Required when Destructive is true.
 )
 ```
 

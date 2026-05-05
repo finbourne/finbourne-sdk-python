@@ -63,12 +63,12 @@ class RunsApi:
         :return: Returns the result object.
         :rtype: IntegrationCancellationResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the cancel_instance_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.cancel_instance_with_http_info(cancel_run_request, **kwargs)  # noqa: E501
+        response = self.cancel_instance_with_http_info(cancel_run_request, **kwargs)
+        return response.data
 
     @validate_call
     def cancel_instance_with_http_info(self, cancel_run_request: CancelRunRequest, **kwargs) -> ApiResponse[IntegrationCancellationResponse]:
@@ -197,12 +197,12 @@ class RunsApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfIntegrationRunResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_run_results_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_run_results_with_http_info(filter, sort_by, limit, page_token, **kwargs)  # noqa: E501
+        response = self.get_run_results_with_http_info(filter, sort_by, limit, page_token, **kwargs)
+        return response.data
 
     @validate_call
     def get_run_results_with_http_info(self, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, page_token: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfIntegrationRunResponse]:
@@ -337,12 +337,12 @@ class RunsApi:
         :return: Returns the result object.
         :rtype: IntegrationRerunResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the rerun_instance_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.rerun_instance_with_http_info(run_id, **kwargs)  # noqa: E501
+        response = self.rerun_instance_with_http_info(run_id, **kwargs)
+        return response.data
 
     @validate_call
     def rerun_instance_with_http_info(self, run_id: StrictStr, **kwargs) -> ApiResponse[IntegrationRerunResponse]:
@@ -460,12 +460,12 @@ class RunsApi:
         :return: Returns the result object.
         :rtype: object
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the stop_instance_execution_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.stop_instance_execution_with_http_info(instance_id, run_id, **kwargs)  # noqa: E501
+        response = self.stop_instance_execution_with_http_info(instance_id, run_id, **kwargs)
+        return response.data
 
     @validate_call
     def stop_instance_execution_with_http_info(self, instance_id: StrictStr, run_id: StrictStr, **kwargs) -> ApiResponse[object]:
@@ -591,12 +591,12 @@ class RunsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: IntegrationCancellationResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the cancel_instance_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.cancel_instance_with_http_info_async(cancel_run_request, **kwargs)  # noqa: E501
+            response = await self.cancel_instance_with_http_info_async(cancel_run_request, **kwargs)
+            return response.data
 
     @validate_call
     async def cancel_instance_with_http_info_async(self, cancel_run_request: CancelRunRequest, **kwargs) -> ApiResponse[IntegrationCancellationResponse]:
@@ -726,12 +726,12 @@ class RunsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfIntegrationRunResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_run_results_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_run_results_with_http_info_async(filter, sort_by, limit, page_token, **kwargs)  # noqa: E501
+            response = await self.get_run_results_with_http_info_async(filter, sort_by, limit, page_token, **kwargs)
+            return response.data
 
     @validate_call
     async def get_run_results_with_http_info_async(self, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, page_token: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfIntegrationRunResponse]:
@@ -867,12 +867,12 @@ class RunsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: IntegrationRerunResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the rerun_instance_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.rerun_instance_with_http_info_async(run_id, **kwargs)  # noqa: E501
+            response = await self.rerun_instance_with_http_info_async(run_id, **kwargs)
+            return response.data
 
     @validate_call
     async def rerun_instance_with_http_info_async(self, run_id: StrictStr, **kwargs) -> ApiResponse[IntegrationRerunResponse]:
@@ -991,12 +991,12 @@ class RunsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: object
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the stop_instance_execution_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.stop_instance_execution_with_http_info_async(instance_id, run_id, **kwargs)  # noqa: E501
+            response = await self.stop_instance_execution_with_http_info_async(instance_id, run_id, **kwargs)
+            return response.data
 
     @validate_call
     async def stop_instance_execution_with_http_info_async(self, instance_id: StrictStr, run_id: StrictStr, **kwargs) -> ApiResponse[object]:

@@ -69,12 +69,12 @@ class VendorApi:
         :return: Returns the result object.
         :rtype: List[LusidField]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_core_field_mappings_for_product_entity_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_core_field_mappings_for_product_entity_with_http_info(vendor_name, product_name, lusid_entity_type, lusid_entity_sub_type, **kwargs)  # noqa: E501
+        response = self.get_core_field_mappings_for_product_entity_with_http_info(vendor_name, product_name, lusid_entity_type, lusid_entity_sub_type, **kwargs)
+        return response.data
 
     @validate_call
     def get_core_field_mappings_for_product_entity_with_http_info(self, vendor_name: StrictStr, product_name: StrictStr, lusid_entity_type: StrictStr, lusid_entity_sub_type: Optional[StrictStr] = None, **kwargs) -> ApiResponse[List[LusidField]]:
@@ -211,12 +211,12 @@ class VendorApi:
         :return: Returns the result object.
         :rtype: Dict[str, LusidPropertyDefinitionOverrides]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_optional_mappings_for_product_entity_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_optional_mappings_for_product_entity_with_http_info(vendor_name, product_name, lusid_entity_type, lusid_entity_sub_type, **kwargs)  # noqa: E501
+        response = self.get_optional_mappings_for_product_entity_with_http_info(vendor_name, product_name, lusid_entity_type, lusid_entity_sub_type, **kwargs)
+        return response.data
 
     @validate_call
     def get_optional_mappings_for_product_entity_with_http_info(self, vendor_name: StrictStr, product_name: StrictStr, lusid_entity_type: StrictStr, lusid_entity_sub_type: Optional[StrictStr] = None, **kwargs) -> ApiResponse[Dict[str, LusidPropertyDefinitionOverrides]]:
@@ -353,12 +353,12 @@ class VendorApi:
         :return: Returns the result object.
         :rtype: List[LusidPropertyToVendorFieldMapping]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_property_mappings_for_product_entity_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_property_mappings_for_product_entity_with_http_info(vendor_name, product_name, lusid_entity_type, lusid_entity_sub_type, **kwargs)  # noqa: E501
+        response = self.get_property_mappings_for_product_entity_with_http_info(vendor_name, product_name, lusid_entity_type, lusid_entity_sub_type, **kwargs)
+        return response.data
 
     @validate_call
     def get_property_mappings_for_product_entity_with_http_info(self, vendor_name: StrictStr, product_name: StrictStr, lusid_entity_type: StrictStr, lusid_entity_sub_type: Optional[StrictStr] = None, **kwargs) -> ApiResponse[List[LusidPropertyToVendorFieldMapping]]:
@@ -489,12 +489,12 @@ class VendorApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfVendorProduct
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the query_vendors_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.query_vendors_with_http_info(query_request, **kwargs)  # noqa: E501
+        response = self.query_vendors_with_http_info(query_request, **kwargs)
+        return response.data
 
     @validate_call
     def query_vendors_with_http_info(self, query_request: QueryRequest, **kwargs) -> ApiResponse[PagedResourceListOfVendorProduct]:
@@ -622,12 +622,12 @@ class VendorApi:
         :return: Returns the result object.
         :rtype: Dict[str, LusidPropertyDefinitionOverridesResponse]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the set_optional_mappings_for_product_entity_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.set_optional_mappings_for_product_entity_with_http_info(vendor_name, product_name, lusid_entity_type, request_body, lusid_entity_sub_type, **kwargs)  # noqa: E501
+        response = self.set_optional_mappings_for_product_entity_with_http_info(vendor_name, product_name, lusid_entity_type, request_body, lusid_entity_sub_type, **kwargs)
+        return response.data
 
     @validate_call
     def set_optional_mappings_for_product_entity_with_http_info(self, vendor_name: StrictStr, product_name: StrictStr, lusid_entity_type: StrictStr, request_body: Dict[str, LusidPropertyDefinitionOverrides], lusid_entity_sub_type: Optional[StrictStr] = None, **kwargs) -> ApiResponse[Dict[str, LusidPropertyDefinitionOverridesResponse]]:
@@ -781,12 +781,12 @@ class VendorApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: List[LusidField]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_core_field_mappings_for_product_entity_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_core_field_mappings_for_product_entity_with_http_info_async(vendor_name, product_name, lusid_entity_type, lusid_entity_sub_type, **kwargs)  # noqa: E501
+            response = await self.get_core_field_mappings_for_product_entity_with_http_info_async(vendor_name, product_name, lusid_entity_type, lusid_entity_sub_type, **kwargs)
+            return response.data
 
     @validate_call
     async def get_core_field_mappings_for_product_entity_with_http_info_async(self, vendor_name: StrictStr, product_name: StrictStr, lusid_entity_type: StrictStr, lusid_entity_sub_type: Optional[StrictStr] = None, **kwargs) -> ApiResponse[List[LusidField]]:
@@ -924,12 +924,12 @@ class VendorApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Dict[str, LusidPropertyDefinitionOverrides]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_optional_mappings_for_product_entity_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_optional_mappings_for_product_entity_with_http_info_async(vendor_name, product_name, lusid_entity_type, lusid_entity_sub_type, **kwargs)  # noqa: E501
+            response = await self.get_optional_mappings_for_product_entity_with_http_info_async(vendor_name, product_name, lusid_entity_type, lusid_entity_sub_type, **kwargs)
+            return response.data
 
     @validate_call
     async def get_optional_mappings_for_product_entity_with_http_info_async(self, vendor_name: StrictStr, product_name: StrictStr, lusid_entity_type: StrictStr, lusid_entity_sub_type: Optional[StrictStr] = None, **kwargs) -> ApiResponse[Dict[str, LusidPropertyDefinitionOverrides]]:
@@ -1067,12 +1067,12 @@ class VendorApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: List[LusidPropertyToVendorFieldMapping]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_property_mappings_for_product_entity_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_property_mappings_for_product_entity_with_http_info_async(vendor_name, product_name, lusid_entity_type, lusid_entity_sub_type, **kwargs)  # noqa: E501
+            response = await self.get_property_mappings_for_product_entity_with_http_info_async(vendor_name, product_name, lusid_entity_type, lusid_entity_sub_type, **kwargs)
+            return response.data
 
     @validate_call
     async def get_property_mappings_for_product_entity_with_http_info_async(self, vendor_name: StrictStr, product_name: StrictStr, lusid_entity_type: StrictStr, lusid_entity_sub_type: Optional[StrictStr] = None, **kwargs) -> ApiResponse[List[LusidPropertyToVendorFieldMapping]]:
@@ -1204,12 +1204,12 @@ class VendorApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfVendorProduct
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the query_vendors_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.query_vendors_with_http_info_async(query_request, **kwargs)  # noqa: E501
+            response = await self.query_vendors_with_http_info_async(query_request, **kwargs)
+            return response.data
 
     @validate_call
     async def query_vendors_with_http_info_async(self, query_request: QueryRequest, **kwargs) -> ApiResponse[PagedResourceListOfVendorProduct]:
@@ -1338,12 +1338,12 @@ class VendorApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Dict[str, LusidPropertyDefinitionOverridesResponse]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the set_optional_mappings_for_product_entity_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.set_optional_mappings_for_product_entity_with_http_info_async(vendor_name, product_name, lusid_entity_type, request_body, lusid_entity_sub_type, **kwargs)  # noqa: E501
+            response = await self.set_optional_mappings_for_product_entity_with_http_info_async(vendor_name, product_name, lusid_entity_type, request_body, lusid_entity_sub_type, **kwargs)
+            return response.data
 
     @validate_call
     async def set_optional_mappings_for_product_entity_with_http_info_async(self, vendor_name: StrictStr, product_name: StrictStr, lusid_entity_type: StrictStr, request_body: Dict[str, LusidPropertyDefinitionOverrides], lusid_entity_sub_type: Optional[StrictStr] = None, **kwargs) -> ApiResponse[Dict[str, LusidPropertyDefinitionOverridesResponse]]:

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -37,14 +37,14 @@ class InstrumentEventHolder(BaseModel):
     instrument_scope:  StrictStr = Field(...,alias="instrumentScope", description="The scope of the instrument.") 
     description:  StrictStr = Field(...,alias="description", description="The description of the instrument event.") 
     event_date_range: EventDateRange = Field(alias="eventDateRange")
-    completeness:  Optional[StrictStr] = Field(default=None,alias="completeness", description="Is the event Economically Complete, or is it missing some DataDependent fields (Incomplete).") 
+    completeness:  Optional[StrictStr] = Field(default=None,alias="completeness", description="Is the event Economically Complete, or is it missing some DataDependent fields (Incomplete). Available values: Complete, Incomplete.") 
     instrument_event: InstrumentEvent = Field(alias="instrumentEvent")
     properties: Optional[List[PerpetualProperty]] = Field(default=None, description="The properties attached to this instrument event.")
     sequence_number: Optional[StrictInt] = Field(default=None, description="The order of the instrument event relative others on the same date (0 being processed first). Must be non negative.", alias="sequenceNumber")
-    participation_type:  Optional[StrictStr] = Field(default=None,alias="participationType", description="Is participation in this event Mandatory, MandatoryWithChoices, or Voluntary.") 
+    participation_type:  Optional[StrictStr] = Field(default=None,alias="participationType", description="Indicates the type of participation in this event. Default value: Mandatory. Available values: Mandatory, MandatoryWithChoices, Voluntary.") 
     as_at: Optional[datetime] = Field(default=None, description="The AsAt time of the instrument event, if available. This is a readonly field and should not be provided on upsert.", alias="asAt")
-    group_code:  Optional[StrictStr] = Field(default=None,alias="groupCode", description="The group code that determines the processing order of instrument events with the same effective datetime.") 
-    __properties = ["instrumentEventId", "corporateActionSourceId", "instrumentIdentifiers", "lusidInstrumentId", "instrumentScope", "description", "eventDateRange", "completeness", "instrumentEvent", "properties", "sequenceNumber", "participationType", "asAt", "groupCode"]
+    group_code:  Optional[StrictStr] = Field(default=None,alias="groupCode", description="The group code that determines the processing order of instrument events with the same effective datetime. Available values: Tier1, Tier2, Tier3, Legacy.") 
+    __properties: ClassVar[List[str]] = ["instrumentEventId", "corporateActionSourceId", "instrumentIdentifiers", "lusidInstrumentId", "instrumentScope", "description", "eventDateRange", "completeness", "instrumentEvent", "properties", "sequenceNumber", "participationType", "asAt", "groupCode"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -136,15 +136,15 @@ class InstrumentEventHolder(BaseModel):
 
         _obj = InstrumentEventHolder.model_validate({
             "instrument_event_id": obj.get("instrumentEventId"),
-            "corporate_action_source_id": ResourceId.from_dict(obj.get("corporateActionSourceId")) if obj.get("corporateActionSourceId") is not None else None,
+            "corporate_action_source_id": ResourceId.from_dict(_v) if (_v := obj.get("corporateActionSourceId")) is not None else None,
             "instrument_identifiers": obj.get("instrumentIdentifiers"),
             "lusid_instrument_id": obj.get("lusidInstrumentId"),
             "instrument_scope": obj.get("instrumentScope"),
             "description": obj.get("description"),
-            "event_date_range": EventDateRange.from_dict(obj.get("eventDateRange")) if obj.get("eventDateRange") is not None else None,
+            "event_date_range": EventDateRange.from_dict(_v) if (_v := obj.get("eventDateRange")) is not None else None,
             "completeness": obj.get("completeness"),
-            "instrument_event": InstrumentEvent.from_dict(obj.get("instrumentEvent")) if obj.get("instrumentEvent") is not None else None,
-            "properties": [PerpetualProperty.from_dict(_item) for _item in obj.get("properties")] if obj.get("properties") is not None else None,
+            "instrument_event": InstrumentEvent.from_dict(_v) if (_v := obj.get("instrumentEvent")) is not None else None,
+            "properties": [PerpetualProperty.from_dict(_item) for _item in _v] if (_v := obj.get("properties")) is not None else None,
             "sequence_number": obj.get("sequenceNumber"),
             "participation_type": obj.get("participationType") if obj.get("participationType") is not None else 'Mandatory',
             "as_at": obj.get("asAt"),

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -22,9 +22,9 @@ from datetime import datetime
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 
 
-class ClientConfigurationResponse(BaseModel):
+class VersionedConfigurationResponse(BaseModel):
     """
-    Represents a versioned client configuration record.  # noqa: E501
+    Represents a versioned configuration record.  # noqa: E501
     """
     name:  StrictStr = Field(...,alias="name", description="The logical name of the configuration.") 
     config_type:  StrictStr = Field(...,alias="configType", description="The category of configuration.") 
@@ -32,7 +32,7 @@ class ClientConfigurationResponse(BaseModel):
     minor_version: StrictInt = Field(description="The minor version number.", alias="minorVersion")
     value:  StrictStr = Field(...,alias="value", description="The JSON configuration value.") 
     is_draft: StrictBool = Field(description="Whether this version is still in draft state. Draft versions can be edited; locked versions cannot.", alias="isDraft")
-    __properties = ["name", "configType", "majorVersion", "minorVersion", "value", "isDraft"]
+    __properties: ClassVar[List[str]] = ["name", "configType", "majorVersion", "minorVersion", "value", "isDraft"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -57,8 +57,8 @@ class ClientConfigurationResponse(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> ClientConfigurationResponse:
-        """Create an instance of ClientConfigurationResponse from a JSON string"""
+    def from_json(cls, json_str: str) -> VersionedConfigurationResponse:
+        """Create an instance of VersionedConfigurationResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -71,15 +71,15 @@ class ClientConfigurationResponse(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> ClientConfigurationResponse:
-        """Create an instance of ClientConfigurationResponse from a dict"""
+    def from_dict(cls, obj: dict) -> VersionedConfigurationResponse:
+        """Create an instance of VersionedConfigurationResponse from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return ClientConfigurationResponse.model_validate(obj)
+            return VersionedConfigurationResponse.model_validate(obj)
 
-        _obj = ClientConfigurationResponse.model_validate({
+        _obj = VersionedConfigurationResponse.model_validate({
             "name": obj.get("name"),
             "config_type": obj.get("configType"),
             "major_version": obj.get("majorVersion"),
@@ -89,5 +89,5 @@ class ClientConfigurationResponse(BaseModel):
         })
         return _obj
 
-ClientConfigurationResponse.model_rebuild()
+VersionedConfigurationResponse.model_rebuild()
 

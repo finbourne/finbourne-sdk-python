@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -37,7 +37,7 @@ class FundConfigurationRequest(BaseModel):
     back_out_filters: List[ComponentFilter] = Field(description="The set of filters used to decide which JE lines are included in the back outs.", alias="backOutFilters")
     external_fee_filters: Optional[List[ExternalFeeComponentFilter]] = Field(default=None, description="The set of filters used to decide which JE lines are used for inputting fees from an external source.", alias="externalFeeFilters")
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="A set of properties for the Fund Configuration.")
-    __properties = ["code", "displayName", "description", "dealingFilters", "pnlFilters", "backOutFilters", "externalFeeFilters", "properties"]
+    __properties: ClassVar[List[str]] = ["code", "displayName", "description", "dealingFilters", "pnlFilters", "backOutFilters", "externalFeeFilters", "properties"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -143,15 +143,15 @@ class FundConfigurationRequest(BaseModel):
             "code": obj.get("code"),
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
-            "dealing_filters": [ComponentFilter.from_dict(_item) for _item in obj.get("dealingFilters")] if obj.get("dealingFilters") is not None else None,
-            "pnl_filters": [ComponentFilter.from_dict(_item) for _item in obj.get("pnlFilters")] if obj.get("pnlFilters") is not None else None,
-            "back_out_filters": [ComponentFilter.from_dict(_item) for _item in obj.get("backOutFilters")] if obj.get("backOutFilters") is not None else None,
-            "external_fee_filters": [ExternalFeeComponentFilter.from_dict(_item) for _item in obj.get("externalFeeFilters")] if obj.get("externalFeeFilters") is not None else None,
+            "dealing_filters": [ComponentFilter.from_dict(_item) for _item in _v] if (_v := obj.get("dealingFilters")) is not None else None,
+            "pnl_filters": [ComponentFilter.from_dict(_item) for _item in _v] if (_v := obj.get("pnlFilters")) is not None else None,
+            "back_out_filters": [ComponentFilter.from_dict(_item) for _item in _v] if (_v := obj.get("backOutFilters")) is not None else None,
+            "external_fee_filters": [ExternalFeeComponentFilter.from_dict(_item) for _item in _v] if (_v := obj.get("externalFeeFilters")) is not None else None,
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None
         })
         return _obj

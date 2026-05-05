@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class AuditUpdateRequest(BaseModel):
     start_time: datetime = Field(description="When the run was started in UTC", alias="startTime")
     message:  StrictStr = Field(...,alias="message", description="A descriptive message to accompany the status") 
     process_name_override:  Optional[StrictStr] = Field(default=None,alias="processNameOverride", description="Optional Name for how the process appears in Data Feed Monitoring") 
-    __properties = ["id", "userId", "schedulerRunId", "startTime", "message", "processNameOverride"]
+    __properties: ClassVar[List[str]] = ["id", "userId", "schedulerRunId", "startTime", "message", "processNameOverride"]
 
     model_config = ConfigDict(
         populate_by_name=True,

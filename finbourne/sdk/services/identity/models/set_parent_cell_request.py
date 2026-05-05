@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -22,12 +22,13 @@ from datetime import datetime
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 
 
-class UpdateClientConfigurationDraftRequest(BaseModel):
+class SetParentCellRequest(BaseModel):
     """
-    Request to update the value of an existing draft client configuration.  # noqa: E501
+    Request body for setting the parent cell.  # noqa: E501
     """
-    value:  StrictStr = Field(...,alias="value", description="The new JSON value to store. Must be valid JSON.") 
-    __properties = ["value"]
+    admin_domain_name:  StrictStr = Field(...,alias="adminDomainName", description="The name of the admin domain in the parent cell.") 
+    confirm: StrictBool = Field(description="Whether to confirm the parent cell attachment (second invocation). First call with false creates a Proposed state; second call with true transitions to Attaching.")
+    __properties: ClassVar[List[str]] = ["adminDomainName", "confirm"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -52,8 +53,8 @@ class UpdateClientConfigurationDraftRequest(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> UpdateClientConfigurationDraftRequest:
-        """Create an instance of UpdateClientConfigurationDraftRequest from a JSON string"""
+    def from_json(cls, json_str: str) -> SetParentCellRequest:
+        """Create an instance of SetParentCellRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -66,18 +67,19 @@ class UpdateClientConfigurationDraftRequest(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> UpdateClientConfigurationDraftRequest:
-        """Create an instance of UpdateClientConfigurationDraftRequest from a dict"""
+    def from_dict(cls, obj: dict) -> SetParentCellRequest:
+        """Create an instance of SetParentCellRequest from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return UpdateClientConfigurationDraftRequest.model_validate(obj)
+            return SetParentCellRequest.model_validate(obj)
 
-        _obj = UpdateClientConfigurationDraftRequest.model_validate({
-            "value": obj.get("value")
+        _obj = SetParentCellRequest.model_validate({
+            "admin_domain_name": obj.get("adminDomainName"),
+            "confirm": obj.get("confirm")
         })
         return _obj
 
-UpdateClientConfigurationDraftRequest.model_rebuild()
+SetParentCellRequest.model_rebuild()
 

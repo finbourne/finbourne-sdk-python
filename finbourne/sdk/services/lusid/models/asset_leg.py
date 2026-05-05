@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class AssetLeg(BaseModel):
     """
     asset: LusidInstrument
     pay_receive:  StrictStr = Field(...,alias="payReceive", description="Either Pay or Receive stating direction of the asset in the swap.    Supported string (enumeration) values are: [Pay, Receive].") 
-    __properties = ["asset", "payReceive"]
+    __properties: ClassVar[List[str]] = ["asset", "payReceive"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,7 +80,7 @@ class AssetLeg(BaseModel):
             return AssetLeg.model_validate(obj)
 
         _obj = AssetLeg.model_validate({
-            "asset": LusidInstrument.from_dict(obj.get("asset")) if obj.get("asset") is not None else None,
+            "asset": LusidInstrument.from_dict(_v) if (_v := obj.get("asset")) is not None else None,
             "pay_receive": obj.get("payReceive")
         })
         return _obj

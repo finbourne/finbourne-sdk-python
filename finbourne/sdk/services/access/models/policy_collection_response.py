@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class PolicyCollectionResponse(BaseModel):
     policy_collections: Optional[List[PolicyCollectionId]] = Field(default=None, description="The identifiers of the PolicyCollections in this collection", alias="policyCollections")
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="A description of this policy collection") 
     links: Optional[List[Link]] = None
-    __properties = ["id", "policies", "policyCollections", "description", "links"]
+    __properties: ClassVar[List[str]] = ["id", "policies", "policyCollections", "description", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -126,11 +126,11 @@ class PolicyCollectionResponse(BaseModel):
             return PolicyCollectionResponse.model_validate(obj)
 
         _obj = PolicyCollectionResponse.model_validate({
-            "id": PolicyCollectionId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
-            "policies": [PolicyId.from_dict(_item) for _item in obj.get("policies")] if obj.get("policies") is not None else None,
-            "policy_collections": [PolicyCollectionId.from_dict(_item) for _item in obj.get("policyCollections")] if obj.get("policyCollections") is not None else None,
+            "id": PolicyCollectionId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
+            "policies": [PolicyId.from_dict(_item) for _item in _v] if (_v := obj.get("policies")) is not None else None,
+            "policy_collections": [PolicyCollectionId.from_dict(_item) for _item in _v] if (_v := obj.get("policyCollections")) is not None else None,
             "description": obj.get("description"),
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

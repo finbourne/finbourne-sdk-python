@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class ErrorHighlightRequest(BaseModel):
     """
     lines: List[StrictStr] = Field(description="The lines of text the user currently has in the editor")
     ensure_some_text_is_selected: Optional[StrictBool] = Field(default=None, description="If an editor requires some selection of non-whitespace this can be set to true to force at least one visible character to be selected.", alias="ensureSomeTextIsSelected")
-    __properties = ["lines", "ensureSomeTextIsSelected"]
+    __properties: ClassVar[List[str]] = ["lines", "ensureSomeTextIsSelected"]
 
     model_config = ConfigDict(
         populate_by_name=True,

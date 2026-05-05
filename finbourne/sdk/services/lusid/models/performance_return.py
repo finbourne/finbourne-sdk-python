@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class PerformanceReturn(BaseModel):
     opening_market_value: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The opening market value.", alias="openingMarketValue")
     closing_market_value: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The closing market value.", alias="closingMarketValue")
     period:  Optional[StrictStr] = Field(default=None,alias="period", description="Upsert the returns on a Daily or Monthly period. Defaults to Daily.") 
-    __properties = ["effectiveAt", "rateOfReturn", "openingMarketValue", "closingMarketValue", "period"]
+    __properties: ClassVar[List[str]] = ["effectiveAt", "rateOfReturn", "openingMarketValue", "closingMarketValue", "period"]
 
     model_config = ConfigDict(
         populate_by_name=True,

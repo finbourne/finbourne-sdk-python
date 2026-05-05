@@ -5,7 +5,7 @@ Base class for representing model options in LUSID, which provide config for ins
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **model_options_type** | **str** | Required | The available values are: Invalid, OpaqueModelOptions, EmptyModelOptions, IndexModelOptions, FxForwardModelOptions, FundingLegModelOptions, EquityModelOptions, CdsModelOptions |
+| **model_options_type** | **str** | Required | Available values: Invalid, OpaqueModelOptions, EmptyModelOptions, IndexModelOptions, FxForwardModelOptions, FundingLegModelOptions, EquityModelOptions, CdsModelOptions. |
 
 
 ## Usage
@@ -16,7 +16,7 @@ Base class for representing model options in LUSID, which provide config for ins
 from finbourne.sdk.services.lusid.models.ModelOptions import ModelOptions
 
 instance = ModelOptions(
-    model_options_type="..."  # required — The available values are: Invalid, OpaqueModelOptions, EmptyModelOptions, IndexModelOptions, FxForwardModelOptions, FundingLegModelOptions, EquityModelOptions, CdsModelOptions
+    model_options_type="..."  # required — Available values: Invalid, OpaqueModelOptions, EmptyModelOptions, IndexModelOptions, FxForwardModelOptions, FundingLegModelOptions, EquityModelOptions, CdsModelOptions.
 )
 ```
 

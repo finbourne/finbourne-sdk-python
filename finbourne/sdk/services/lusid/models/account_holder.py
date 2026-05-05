@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class AccountHolder(BaseModel):
     identifiers: Optional[Dict[str, Optional[StrictStr]]] = Field(default=None, description="Single Account Holder identifier that should target the desired Investor Record.")
     entity_unique_id:  Optional[StrictStr] = Field(default=None,alias="entityUniqueId", description="The unique InvestorRecord entity identifier") 
     investor_record: Optional[InvestorRecord] = Field(default=None, alias="investorRecord")
-    __properties = ["key", "scope", "identifiers", "entityUniqueId", "investorRecord"]
+    __properties: ClassVar[List[str]] = ["key", "scope", "identifiers", "entityUniqueId", "investorRecord"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -107,7 +107,7 @@ class AccountHolder(BaseModel):
             "scope": obj.get("scope"),
             "identifiers": obj.get("identifiers"),
             "entity_unique_id": obj.get("entityUniqueId"),
-            "investor_record": InvestorRecord.from_dict(obj.get("investorRecord")) if obj.get("investorRecord") is not None else None
+            "investor_record": InvestorRecord.from_dict(_v) if (_v := obj.get("investorRecord")) is not None else None
         })
         return _obj
 

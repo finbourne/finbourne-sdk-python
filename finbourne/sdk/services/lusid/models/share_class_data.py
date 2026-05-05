@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class ShareClassData(BaseModel):
     """
     share_class_breakdown: ShareClassBreakdown = Field(alias="shareClassBreakdown")
     share_class_details: Optional[ShareClassDetails] = Field(default=None, alias="shareClassDetails")
-    __properties = ["shareClassBreakdown", "shareClassDetails"]
+    __properties: ClassVar[List[str]] = ["shareClassBreakdown", "shareClassDetails"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -84,8 +84,8 @@ class ShareClassData(BaseModel):
             return ShareClassData.model_validate(obj)
 
         _obj = ShareClassData.model_validate({
-            "share_class_breakdown": ShareClassBreakdown.from_dict(obj.get("shareClassBreakdown")) if obj.get("shareClassBreakdown") is not None else None,
-            "share_class_details": ShareClassDetails.from_dict(obj.get("shareClassDetails")) if obj.get("shareClassDetails") is not None else None
+            "share_class_breakdown": ShareClassBreakdown.from_dict(_v) if (_v := obj.get("shareClassBreakdown")) is not None else None,
+            "share_class_details": ShareClassDetails.from_dict(_v) if (_v := obj.get("shareClassDetails")) is not None else None
         })
         return _obj
 

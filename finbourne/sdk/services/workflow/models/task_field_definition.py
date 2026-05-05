@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -36,7 +36,7 @@ class TaskFieldDefinition(BaseModel):
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="Description for field definition") 
     category:  Optional[StrictStr] = Field(default=None,alias="category", description="Category for field definition") 
     contains_url: Optional[StrictBool] = Field(default=None, description="Field contains url", alias="containsUrl")
-    __properties = ["name", "type", "readOnlyStates", "valueConstraints", "displayName", "description", "category", "containsUrl"]
+    __properties: ClassVar[List[str]] = ["name", "type", "readOnlyStates", "valueConstraints", "displayName", "description", "category", "containsUrl"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -112,8 +112,8 @@ class TaskFieldDefinition(BaseModel):
         _obj = TaskFieldDefinition.model_validate({
             "name": obj.get("name"),
             "type": obj.get("type"),
-            "read_only_states": ReadOnlyStates.from_dict(obj.get("readOnlyStates")) if obj.get("readOnlyStates") is not None else None,
-            "value_constraints": ValueConstraints.from_dict(obj.get("valueConstraints")) if obj.get("valueConstraints") is not None else None,
+            "read_only_states": ReadOnlyStates.from_dict(_v) if (_v := obj.get("readOnlyStates")) is not None else None,
+            "value_constraints": ValueConstraints.from_dict(_v) if (_v := obj.get("valueConstraints")) is not None else None,
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
             "category": obj.get("category"),

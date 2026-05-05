@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class AccountHolderIdentifier(BaseModel):
     key:  StrictStr = Field(...,alias="key", description="A client-defined key used to identify the Account Holder, unique within the Investment Account") 
     scope:  StrictStr = Field(...,alias="scope", description="The scope in which the Investor Record lies.") 
     identifiers: Dict[str, Optional[StrictStr]] = Field(description="Single Account Holder identifier that should target the desired Investor Record.")
-    __properties = ["key", "scope", "identifiers"]
+    __properties: ClassVar[List[str]] = ["key", "scope", "identifiers"]
 
     model_config = ConfigDict(
         populate_by_name=True,

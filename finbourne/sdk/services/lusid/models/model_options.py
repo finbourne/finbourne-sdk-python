@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,8 +32,8 @@ class ModelOptions(BaseModel):
     """
     Base class for representing model options in LUSID, which provide config for instrument analytics.  This base class should not be directly instantiated; each supported ModelOptionsType has a corresponding inherited class.  # noqa: E501
     """
-    model_options_type:  StrictStr = Field(...,alias="modelOptionsType", description="The available values are: Invalid, OpaqueModelOptions, EmptyModelOptions, IndexModelOptions, FxForwardModelOptions, FundingLegModelOptions, EquityModelOptions, CdsModelOptions") 
-    __properties = ["modelOptionsType"]
+    model_options_type:  StrictStr = Field(...,alias="modelOptionsType", description="Available values: Invalid, OpaqueModelOptions, EmptyModelOptions, IndexModelOptions, FxForwardModelOptions, FundingLegModelOptions, EquityModelOptions, CdsModelOptions.") 
+    __properties: ClassVar[List[str]] = ["modelOptionsType"]
 
     @field_validator('model_options_type')
     def model_options_type_validate_enum(cls, value):
@@ -111,10 +111,10 @@ class ModelOptions(BaseModel):
     )
 
     # JSON field name that stores the object type
-    __discriminator_property_name = 'modelOptionsType'
+    __discriminator_property_name: ClassVar[str] = 'modelOptionsType'
 
     # discriminator mappings
-    __discriminator_value_class_map = {
+    __discriminator_value_class_map: ClassVar[Dict[str, str]] = {
         'CdsModelOptions': 'CdsModelOptions',
         'EmptyModelOptions': 'EmptyModelOptions',
         'EquityModelOptions': 'EquityModelOptions',
@@ -125,20 +125,11 @@ class ModelOptions(BaseModel):
     }
 
     @classmethod
-    def get_discriminator_value(cls, obj: dict) -> str:
+    def get_discriminator_value(cls, obj: dict) -> str | None:
         """Returns the discriminator value (object type) of the data"""
-        discriminator_value = cls.__discriminator_property_name
-        if not isinstance(cls.__discriminator_property_name, str) and getattr(cls.__discriminator_property_name, 'default', None):
-            discriminator_value = cls.__discriminator_property_name.default
-
-        discriminator_value = obj[discriminator_value]
+        discriminator_value = obj[cls.__discriminator_property_name]
         if discriminator_value:
-            discriminator_dict = cls.__discriminator_value_class_map
-            
-            if not isinstance(cls.__discriminator_value_class_map, dict) and getattr(cls.__discriminator_value_class_map, 'default', None):
-                discriminator_dict = cls.__discriminator_value_class_map.default
-            
-            return discriminator_dict.get(discriminator_value)
+            return cls.__discriminator_value_class_map.get(discriminator_value)
         else:
             return None
 
@@ -159,7 +150,7 @@ class ModelOptions(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Union[CdsModelOptions, EmptyModelOptions, EquityModelOptions, FundingLegOptions, FxForwardModelOptions, IndexModelOptions, OpaqueModelOptions]:
+    def from_json(cls, json_str: str) -> Union[CdsModelOptions, EmptyModelOptions, EquityModelOptions, FundingLegOptions, FxForwardModelOptions, IndexModelOptions, OpaqueModelOptions, ModelOptions]:
         """Create an instance of ModelOptions from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -173,29 +164,19 @@ class ModelOptions(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Union[CdsModelOptions, EmptyModelOptions, EquityModelOptions, FundingLegOptions, FxForwardModelOptions, IndexModelOptions, OpaqueModelOptions]:
+    def from_dict(cls, obj: dict) -> Union[CdsModelOptions, EmptyModelOptions, EquityModelOptions, FundingLegOptions, FxForwardModelOptions, IndexModelOptions, OpaqueModelOptions, ModelOptions]:
         """Create an instance of ModelOptions from a dict"""
         # look up the object type based on discriminator mapping
         object_type = cls.get_discriminator_value(obj)
         if object_type:
             klass = getattr(finbourne.sdk.services.lusid.models, object_type)
             return klass.from_dict(obj)
+        elif obj.get(cls.__discriminator_property_name):
+            return cls.model_validate(obj)
         else:
-            discriminator_value = cls.__discriminator_property_name
-            if not isinstance(cls.__discriminator_property_name, str) and getattr(cls.__discriminator_property_name, 'default', None):
-                discriminator_value = cls.__discriminator_property_name.default
-
-            discriminator_value = obj[discriminator_value]
-            if discriminator_value:
-                discriminator_dict = cls.__discriminator_value_class_map
-                
-                # Fix: Handle ModelPrivateAttr for error message
-                if not isinstance(cls.__discriminator_value_class_map, dict) and getattr(cls.__discriminator_value_class_map, 'default', None):
-                    discriminator_dict = cls.__discriminator_value_class_map.default
-            else:                
-                raise ValueError("ResultKeyRule failed to lookup discriminator value from " +
-                                json.dumps(obj) + ". Discriminator property name: " + str(discriminator_value) +
-                                ", mapping: " + json.dumps(discriminator_dict if isinstance(discriminator_dict, dict) else {}))
+            raise ValueError("Failed to lookup discriminator value from " +
+                            json.dumps(obj) + ". Discriminator property name: " + cls.__discriminator_property_name +
+                            ", mapping: " + json.dumps(cls.__discriminator_value_class_map))
 
 ModelOptions.model_rebuild()
 

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,14 +28,14 @@ class VendorModelRule(BaseModel):
     """
     A rule that identifies the set of preferences to be used for a given library, model and instrument type.  There can be many such rules, though only the first found for a given combination would be used.  # noqa: E501
     """
-    supplier:  StrictStr = Field(...,alias="supplier", description="The available values are: Lusid, RefinitivQps, RefinitivTracsWeb, VolMaster, IsdaCds, YieldBook, LusidCalc") 
+    supplier:  StrictStr = Field(...,alias="supplier", description="Available values: Lusid, RefinitivQps, RefinitivTracsWeb, VolMaster, IsdaCds, YieldBook, LusidCalc.") 
     model_name:  StrictStr = Field(...,alias="modelName", description="The vendor library model name") 
     instrument_type:  StrictStr = Field(...,alias="instrumentType", description="The vendor library instrument type") 
     parameters:  Optional[StrictStr] = Field(default=None,alias="parameters", description="THIS FIELD IS DEPRECATED - use ModelOptions  The set of opaque model parameters, provided as a Json object, that is a string object which will internally be converted to a dictionary of string to object.  Note that this is not intended as the final form of this object. It will be replaced with a more structured object as the set of parameters that are possible is  better understood.") 
     model_options: Optional[ModelOptions] = Field(default=None, alias="modelOptions")
     instrument_id:  Optional[StrictStr] = Field(default=None,alias="instrumentId", description="This field should generally not be required. It indicates a specific case where there is a particular need to make a rule apply to only a single instrument  specified by an identifier on that instrument such as its LUID. One particular example would be to control the behaviour of a look-through portfolio scaling  methodology, such as where there is a mixture of indices and credit-debit portfolios where scaling on the sum of valuation would be deemed incorrectly for one  set but desired in general.") 
     address_key_filters: Optional[List[AddressKeyFilter]] = Field(default=None, description="Condition for model selection. If a condition is satisfied the default model for valuation is overridden (for that instrument).", alias="addressKeyFilters")
-    __properties = ["supplier", "modelName", "instrumentType", "parameters", "modelOptions", "instrumentId", "addressKeyFilters"]
+    __properties: ClassVar[List[str]] = ["supplier", "modelName", "instrumentType", "parameters", "modelOptions", "instrumentId", "addressKeyFilters"]
 
     @field_validator('supplier')
     def supplier_validate_enum(cls, value):
@@ -181,9 +181,9 @@ class VendorModelRule(BaseModel):
             "model_name": obj.get("modelName"),
             "instrument_type": obj.get("instrumentType"),
             "parameters": obj.get("parameters"),
-            "model_options": ModelOptions.from_dict(obj.get("modelOptions")) if obj.get("modelOptions") is not None else None,
+            "model_options": ModelOptions.from_dict(_v) if (_v := obj.get("modelOptions")) is not None else None,
             "instrument_id": obj.get("instrumentId"),
-            "address_key_filters": [AddressKeyFilter.from_dict(_item) for _item in obj.get("addressKeyFilters")] if obj.get("addressKeyFilters") is not None else None
+            "address_key_filters": [AddressKeyFilter.from_dict(_item) for _item in _v] if (_v := obj.get("addressKeyFilters")) is not None else None
         })
         return _obj
 

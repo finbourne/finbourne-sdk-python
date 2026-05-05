@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class ActionDefinition(BaseModel):
     action_details: ActionDetails = Field(alias="actionDetails")
     display_name:  Optional[StrictStr] = Field(default=None,alias="displayName", description="The display name of this Action") 
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="The description of this Action") 
-    __properties = ["name", "runAsUserId", "actionDetails", "displayName", "description"]
+    __properties: ClassVar[List[str]] = ["name", "runAsUserId", "actionDetails", "displayName", "description"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -100,7 +100,7 @@ class ActionDefinition(BaseModel):
         _obj = ActionDefinition.model_validate({
             "name": obj.get("name"),
             "run_as_user_id": obj.get("runAsUserId"),
-            "action_details": ActionDetails.from_dict(obj.get("actionDetails")) if obj.get("actionDetails") is not None else None,
+            "action_details": ActionDetails.from_dict(_v) if (_v := obj.get("actionDetails")) is not None else None,
             "display_name": obj.get("displayName"),
             "description": obj.get("description")
         })

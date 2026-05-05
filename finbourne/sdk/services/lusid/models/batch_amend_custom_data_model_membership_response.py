@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class BatchAmendCustomDataModelMembershipResponse(BaseModel):
     staged: Optional[Dict[str, MembershipAmendmentResponse]] = None
     failed: Optional[Dict[str, ErrorDetail]] = None
     metadata: Optional[Dict[str, Optional[List[ResponseMetaData]]]] = None
-    __properties = ["values", "staged", "failed", "metadata"]
+    __properties: ClassVar[List[str]] = ["values", "staged", "failed", "metadata"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -94,9 +94,9 @@ class BatchAmendCustomDataModelMembershipResponse(BaseModel):
         _field_dict_of_array = {}
         if self.metadata:
             for _key in self.metadata:
-                if self.metadata[_key]:
+                if (_items_for_key := self.metadata[_key]):
                     _field_dict_of_array[_key] = [
-                        _item.to_dict() for _item in self.metadata[_key]
+                        _item.to_dict() for _item in _items_for_key
                     ]
             _dict['metadata'] = _field_dict_of_array
         # set to None if values (nullable) is None
@@ -133,21 +133,21 @@ class BatchAmendCustomDataModelMembershipResponse(BaseModel):
         _obj = BatchAmendCustomDataModelMembershipResponse.model_validate({
             "values": dict(
                 (_k, MembershipAmendmentResponse.from_dict(_v))
-                for _k, _v in obj.get("values").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("values") is not None
+            if (_val := obj.get("values")) is not None
             else None,
             "staged": dict(
                 (_k, MembershipAmendmentResponse.from_dict(_v))
-                for _k, _v in obj.get("staged").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("staged") is not None
+            if (_val := obj.get("staged")) is not None
             else None,
             "failed": dict(
                 (_k, ErrorDetail.from_dict(_v))
-                for _k, _v in obj.get("failed").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("failed") is not None
+            if (_val := obj.get("failed")) is not None
             else None,
             "metadata": dict(
                 (_k,
@@ -155,9 +155,9 @@ class BatchAmendCustomDataModelMembershipResponse(BaseModel):
                         if _v is not None
                         else None
                 )
-                for _k, _v in obj.get("metadata").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("metadata") is not None
+            if (_val := obj.get("metadata")) is not None
             else None
         })
         return _obj

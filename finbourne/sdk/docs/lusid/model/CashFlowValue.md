@@ -10,7 +10,7 @@ Result class for a cash flow value
 | **cash_flow_lineage** | [CashFlowLineage](CashFlowLineage.md) | Optional | *No description available.* |
 | **payment_amount** | **float** | Required | The amount paid or received |
 | **payment_ccy** | **str** | Required | The currency of the transaction |
-| **result_value_type** | **str** | Required | The available values are: ResultValue, ResultValueDictionary, ResultValue0D, ResultValueDecimal, ResultValueInt, ResultValueString, ResultValueBool, ResultValueCurrency, CashFlowValue, CashFlowValueSet, ResultValueLifeCycleEventValue, ResultValueDateTimeOffset |
+| **result_value_type** | **str** | Required | Available values: ResultValue, ResultValueDictionary, ResultValue0D, ResultValueDecimal, ResultValueInt, ResultValueString, ResultValueBool, ResultValueCurrency, CashFlowValue, CashFlowValueSet, ResultValueLifeCycleEventValue, ResultValueDateTimeOffset. |
 
 
 ## Usage
@@ -26,7 +26,7 @@ instance = CashFlowValue(
     cash_flow_lineage=CashFlowLineage(...),  # optional
     payment_amount=0.0,  # required — The amount paid or received
     payment_ccy="...",  # required — The currency of the transaction
-    result_value_type="..."  # required — The available values are: ResultValue, ResultValueDictionary, ResultValue0D, ResultValueDecimal, ResultValueInt, ResultValueString, ResultValueBool, ResultValueCurrency, CashFlowValue, CashFlowValueSet, ResultValueLifeCycleEventValue, ResultValueDateTimeOffset
+    result_value_type="..."  # required — Available values: ResultValue, ResultValueDictionary, ResultValue0D, ResultValueDecimal, ResultValueInt, ResultValueString, ResultValueBool, ResultValueCurrency, CashFlowValue, CashFlowValueSet, ResultValueLifeCycleEventValue, ResultValueDateTimeOffset.
 )
 ```
 

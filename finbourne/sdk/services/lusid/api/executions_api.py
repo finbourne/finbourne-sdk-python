@@ -67,12 +67,12 @@ class ExecutionsApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_execution_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_execution_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_execution_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_execution_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -199,12 +199,12 @@ class ExecutionsApi:
         :return: Returns the result object.
         :rtype: Execution
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_execution_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_execution_with_http_info(scope, code, as_at, property_keys, **kwargs)  # noqa: E501
+        response = self.get_execution_with_http_info(scope, code, as_at, property_keys, **kwargs)
+        return response.data
 
     @validate_call
     def get_execution_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[Execution]:
@@ -351,12 +351,12 @@ class ExecutionsApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfExecution
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_executions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_executions_with_http_info(as_at, page, sort_by, limit, filter, property_keys, **kwargs)  # noqa: E501
+        response = self.list_executions_with_http_info(as_at, page, sort_by, limit, filter, property_keys, **kwargs)
+        return response.data
 
     @validate_call
     def list_executions_with_http_info(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfExecution]:
@@ -506,12 +506,12 @@ class ExecutionsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfExecution
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_executions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_executions_with_http_info(execution_set_request, **kwargs)  # noqa: E501
+        response = self.upsert_executions_with_http_info(execution_set_request, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_executions_with_http_info(self, execution_set_request: Optional[ExecutionSetRequest] = None, **kwargs) -> ApiResponse[ResourceListOfExecution]:
@@ -639,12 +639,12 @@ class ExecutionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_execution_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_execution_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_execution_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_execution_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -772,12 +772,12 @@ class ExecutionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Execution
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_execution_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_execution_with_http_info_async(scope, code, as_at, property_keys, **kwargs)  # noqa: E501
+            response = await self.get_execution_with_http_info_async(scope, code, as_at, property_keys, **kwargs)
+            return response.data
 
     @validate_call
     async def get_execution_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[Execution]:
@@ -925,12 +925,12 @@ class ExecutionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfExecution
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_executions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_executions_with_http_info_async(as_at, page, sort_by, limit, filter, property_keys, **kwargs)  # noqa: E501
+            response = await self.list_executions_with_http_info_async(as_at, page, sort_by, limit, filter, property_keys, **kwargs)
+            return response.data
 
     @validate_call
     async def list_executions_with_http_info_async(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfExecution]:
@@ -1081,12 +1081,12 @@ class ExecutionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfExecution
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_executions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_executions_with_http_info_async(execution_set_request, **kwargs)  # noqa: E501
+            response = await self.upsert_executions_with_http_info_async(execution_set_request, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_executions_with_http_info_async(self, execution_set_request: Optional[ExecutionSetRequest] = None, **kwargs) -> ApiResponse[ResourceListOfExecution]:

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class ApplicableEntityTypes(BaseModel):
     """
     applicable_entity_types_to_add: Optional[List[StrictStr]] = Field(default=None, description="The types of entities this relational dataset definition can be applied to (e.g. Instrument, Portfolio, etc.).", alias="applicableEntityTypesToAdd")
     applicable_entity_types_to_remove: Optional[List[StrictStr]] = Field(default=None, description="The types of entities this relational dataset definition can be applied to (e.g. Instrument, Portfolio, etc.).", alias="applicableEntityTypesToRemove")
-    __properties = ["applicableEntityTypesToAdd", "applicableEntityTypesToRemove"]
+    __properties: ClassVar[List[str]] = ["applicableEntityTypesToAdd", "applicableEntityTypesToRemove"]
 
     model_config = ConfigDict(
         populate_by_name=True,

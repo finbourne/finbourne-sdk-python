@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class Investor(BaseModel):
     entity_unique_id:  Optional[StrictStr] = Field(default=None,alias="entityUniqueId", description="The unique Investor entity identifier") 
     person: Optional[Person] = None
     legal_entity: Optional[LegalEntity] = Field(default=None, alias="legalEntity")
-    __properties = ["investorType", "identifiers", "entityUniqueId", "person", "legalEntity"]
+    __properties: ClassVar[List[str]] = ["investorType", "identifiers", "entityUniqueId", "person", "legalEntity"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -105,8 +105,8 @@ class Investor(BaseModel):
             "investor_type": obj.get("investorType"),
             "identifiers": obj.get("identifiers"),
             "entity_unique_id": obj.get("entityUniqueId"),
-            "person": Person.from_dict(obj.get("person")) if obj.get("person") is not None else None,
-            "legal_entity": LegalEntity.from_dict(obj.get("legalEntity")) if obj.get("legalEntity") is not None else None
+            "person": Person.from_dict(_v) if (_v := obj.get("person")) is not None else None,
+            "legal_entity": LegalEntity.from_dict(_v) if (_v := obj.get("legalEntity")) is not None else None
         })
         return _obj
 

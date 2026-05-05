@@ -273,7 +273,7 @@ Name | Type | Description  | Notes
  **scope** | **str**| The scope of the Chart of Accounts. | [required] 
  **code** | **str**| The code of the Chart of Accounts. Together with the scope this uniquely identifies              the Chart of Accounts. | [required] 
  **request_body** | [**List[str]**](str.md)| The codes of the accounts to delete. | [required] 
- **delete_mode** | **str**| The delete mode to use (defaults to &#39;Soft&#39;). | [optional] 
+ **delete_mode** | **str**| The delete mode to use. Default value: Soft. Available values: Soft, Hard. | [optional] 
 
 ### Return type
 

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class UpsertRecipeComposerRequest(BaseModel):
     A recipe composer that is to be stored in the recipe composer data store or used for inline resolving.  # noqa: E501
     """
     recipe_composer: Optional[RecipeComposer] = Field(default=None, alias="recipeComposer")
-    __properties = ["recipeComposer"]
+    __properties: ClassVar[List[str]] = ["recipeComposer"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,7 +79,7 @@ class UpsertRecipeComposerRequest(BaseModel):
             return UpsertRecipeComposerRequest.model_validate(obj)
 
         _obj = UpsertRecipeComposerRequest.model_validate({
-            "recipe_composer": RecipeComposer.from_dict(obj.get("recipeComposer")) if obj.get("recipeComposer") is not None else None
+            "recipe_composer": RecipeComposer.from_dict(_v) if (_v := obj.get("recipeComposer")) is not None else None
         })
         return _obj
 

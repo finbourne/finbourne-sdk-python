@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -27,9 +27,9 @@ class EligibilityCalculation(BaseModel):
     EligibilityCalculation
     """
     entitlement_date:  StrictStr = Field(...,alias="entitlementDate") 
-    eligible_units:  StrictStr = Field(...,alias="eligibleUnits") 
+    eligible_units:  StrictStr = Field(...,alias="eligibleUnits", description="Available values: TotalUnits, SettledUnits, NotApplicable.") 
     date_modifiable_by_instruction: Optional[StrictBool] = Field(default=None, alias="dateModifiableByInstruction")
-    __properties = ["entitlementDate", "eligibleUnits", "dateModifiableByInstruction"]
+    __properties: ClassVar[List[str]] = ["entitlementDate", "eligibleUnits", "dateModifiableByInstruction"]
 
     model_config = ConfigDict(
         populate_by_name=True,

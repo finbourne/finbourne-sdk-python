@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -37,7 +37,7 @@ class FeeType(BaseModel):
     component_transactions: List[ComponentTransaction] = Field(description="A set of component transactions that relate to the fee type to be created.", alias="componentTransactions")
     version: Optional[Version] = None
     links: Optional[List[Link]] = None
-    __properties = ["href", "id", "displayName", "description", "componentTransactions", "version", "links"]
+    __properties: ClassVar[List[str]] = ["href", "id", "displayName", "description", "componentTransactions", "version", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -116,12 +116,12 @@ class FeeType(BaseModel):
 
         _obj = FeeType.model_validate({
             "href": obj.get("href"),
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
-            "component_transactions": [ComponentTransaction.from_dict(_item) for _item in obj.get("componentTransactions")] if obj.get("componentTransactions") is not None else None,
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "component_transactions": [ComponentTransaction.from_dict(_item) for _item in _v] if (_v := obj.get("componentTransactions")) is not None else None,
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

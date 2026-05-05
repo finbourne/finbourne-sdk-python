@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class GeneralLedgerProfileMapping(BaseModel):
     """
     mapping_filter:  StrictStr = Field(...,alias="mappingFilter", description="The filter syntax for the Mapping filter. See https://support.lusid.com/knowledgebase/article/KA-02140 for more information on filter syntax") 
     levels: List[StrictStr] = Field(description="References fields and properties on the associated Journal Entry Line and graph of associated objects.")
-    __properties = ["mappingFilter", "levels"]
+    __properties: ClassVar[List[str]] = ["mappingFilter", "levels"]
 
     model_config = ConfigDict(
         populate_by_name=True,

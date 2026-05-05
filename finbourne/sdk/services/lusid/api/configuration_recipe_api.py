@@ -70,12 +70,12 @@ class ConfigurationRecipeApi:
         :return: Returns the result object.
         :rtype: AnnulSingleStructuredDataResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_configuration_recipe_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_configuration_recipe_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_configuration_recipe_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_configuration_recipe_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[AnnulSingleStructuredDataResponse]:
@@ -198,12 +198,12 @@ class ConfigurationRecipeApi:
         :return: Returns the result object.
         :rtype: AnnulSingleStructuredDataResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_recipe_composer_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_recipe_composer_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_recipe_composer_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_recipe_composer_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[AnnulSingleStructuredDataResponse]:
@@ -328,12 +328,12 @@ class ConfigurationRecipeApi:
         :return: Returns the result object.
         :rtype: GetRecipeResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_configuration_recipe_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_configuration_recipe_with_http_info(scope, code, as_at, **kwargs)  # noqa: E501
+        response = self.get_configuration_recipe_with_http_info(scope, code, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_configuration_recipe_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[GetRecipeResponse]:
@@ -467,12 +467,12 @@ class ConfigurationRecipeApi:
         :return: Returns the result object.
         :rtype: GetRecipeResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_derived_recipe_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_derived_recipe_with_http_info(scope, code, as_at, **kwargs)  # noqa: E501
+        response = self.get_derived_recipe_with_http_info(scope, code, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_derived_recipe_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[GetRecipeResponse]:
@@ -606,12 +606,12 @@ class ConfigurationRecipeApi:
         :return: Returns the result object.
         :rtype: GetRecipeComposerResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_recipe_composer_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_recipe_composer_with_http_info(scope, code, as_at, **kwargs)  # noqa: E501
+        response = self.get_recipe_composer_with_http_info(scope, code, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_recipe_composer_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[GetRecipeComposerResponse]:
@@ -741,12 +741,12 @@ class ConfigurationRecipeApi:
         :return: Returns the result object.
         :rtype: GetRecipeResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_recipe_composer_resolved_inline_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_recipe_composer_resolved_inline_with_http_info(upsert_recipe_composer_request, **kwargs)  # noqa: E501
+        response = self.get_recipe_composer_resolved_inline_with_http_info(upsert_recipe_composer_request, **kwargs)
+        return response.data
 
     @validate_call
     def get_recipe_composer_resolved_inline_with_http_info(self, upsert_recipe_composer_request: UpsertRecipeComposerRequest, **kwargs) -> ApiResponse[GetRecipeResponse]:
@@ -870,12 +870,12 @@ class ConfigurationRecipeApi:
         :return: Returns the result object.
         :rtype: ResourceListOfGetRecipeResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_configuration_recipes_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_configuration_recipes_with_http_info(as_at, filter, **kwargs)  # noqa: E501
+        response = self.list_configuration_recipes_with_http_info(as_at, filter, **kwargs)
+        return response.data
 
     @validate_call
     def list_configuration_recipes_with_http_info(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfGetRecipeResponse]:
@@ -1001,12 +1001,12 @@ class ConfigurationRecipeApi:
         :return: Returns the result object.
         :rtype: ResourceListOfGetRecipeResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_derived_recipes_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_derived_recipes_with_http_info(as_at, filter, **kwargs)  # noqa: E501
+        response = self.list_derived_recipes_with_http_info(as_at, filter, **kwargs)
+        return response.data
 
     @validate_call
     def list_derived_recipes_with_http_info(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfGetRecipeResponse]:
@@ -1132,12 +1132,12 @@ class ConfigurationRecipeApi:
         :return: Returns the result object.
         :rtype: ResourceListOfGetRecipeComposerResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_recipe_composers_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_recipe_composers_with_http_info(as_at, filter, **kwargs)  # noqa: E501
+        response = self.list_recipe_composers_with_http_info(as_at, filter, **kwargs)
+        return response.data
 
     @validate_call
     def list_recipe_composers_with_http_info(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfGetRecipeComposerResponse]:
@@ -1261,12 +1261,12 @@ class ConfigurationRecipeApi:
         :return: Returns the result object.
         :rtype: UpsertSingleStructuredDataResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_configuration_recipe_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_configuration_recipe_with_http_info(upsert_recipe_request, **kwargs)  # noqa: E501
+        response = self.upsert_configuration_recipe_with_http_info(upsert_recipe_request, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_configuration_recipe_with_http_info(self, upsert_recipe_request: UpsertRecipeRequest, **kwargs) -> ApiResponse[UpsertSingleStructuredDataResponse]:
@@ -1388,12 +1388,12 @@ class ConfigurationRecipeApi:
         :return: Returns the result object.
         :rtype: UpsertSingleStructuredDataResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_recipe_composer_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_recipe_composer_with_http_info(upsert_recipe_composer_request, **kwargs)  # noqa: E501
+        response = self.upsert_recipe_composer_with_http_info(upsert_recipe_composer_request, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_recipe_composer_with_http_info(self, upsert_recipe_composer_request: UpsertRecipeComposerRequest, **kwargs) -> ApiResponse[UpsertSingleStructuredDataResponse]:
@@ -1521,12 +1521,12 @@ class ConfigurationRecipeApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: AnnulSingleStructuredDataResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_configuration_recipe_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_configuration_recipe_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_configuration_recipe_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_configuration_recipe_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[AnnulSingleStructuredDataResponse]:
@@ -1650,12 +1650,12 @@ class ConfigurationRecipeApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: AnnulSingleStructuredDataResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_recipe_composer_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_recipe_composer_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_recipe_composer_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_recipe_composer_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[AnnulSingleStructuredDataResponse]:
@@ -1781,12 +1781,12 @@ class ConfigurationRecipeApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: GetRecipeResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_configuration_recipe_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_configuration_recipe_with_http_info_async(scope, code, as_at, **kwargs)  # noqa: E501
+            response = await self.get_configuration_recipe_with_http_info_async(scope, code, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_configuration_recipe_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[GetRecipeResponse]:
@@ -1921,12 +1921,12 @@ class ConfigurationRecipeApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: GetRecipeResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_derived_recipe_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_derived_recipe_with_http_info_async(scope, code, as_at, **kwargs)  # noqa: E501
+            response = await self.get_derived_recipe_with_http_info_async(scope, code, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_derived_recipe_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[GetRecipeResponse]:
@@ -2061,12 +2061,12 @@ class ConfigurationRecipeApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: GetRecipeComposerResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_recipe_composer_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_recipe_composer_with_http_info_async(scope, code, as_at, **kwargs)  # noqa: E501
+            response = await self.get_recipe_composer_with_http_info_async(scope, code, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_recipe_composer_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[GetRecipeComposerResponse]:
@@ -2197,12 +2197,12 @@ class ConfigurationRecipeApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: GetRecipeResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_recipe_composer_resolved_inline_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_recipe_composer_resolved_inline_with_http_info_async(upsert_recipe_composer_request, **kwargs)  # noqa: E501
+            response = await self.get_recipe_composer_resolved_inline_with_http_info_async(upsert_recipe_composer_request, **kwargs)
+            return response.data
 
     @validate_call
     async def get_recipe_composer_resolved_inline_with_http_info_async(self, upsert_recipe_composer_request: UpsertRecipeComposerRequest, **kwargs) -> ApiResponse[GetRecipeResponse]:
@@ -2327,12 +2327,12 @@ class ConfigurationRecipeApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfGetRecipeResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_configuration_recipes_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_configuration_recipes_with_http_info_async(as_at, filter, **kwargs)  # noqa: E501
+            response = await self.list_configuration_recipes_with_http_info_async(as_at, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def list_configuration_recipes_with_http_info_async(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfGetRecipeResponse]:
@@ -2459,12 +2459,12 @@ class ConfigurationRecipeApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfGetRecipeResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_derived_recipes_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_derived_recipes_with_http_info_async(as_at, filter, **kwargs)  # noqa: E501
+            response = await self.list_derived_recipes_with_http_info_async(as_at, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def list_derived_recipes_with_http_info_async(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfGetRecipeResponse]:
@@ -2591,12 +2591,12 @@ class ConfigurationRecipeApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfGetRecipeComposerResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_recipe_composers_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_recipe_composers_with_http_info_async(as_at, filter, **kwargs)  # noqa: E501
+            response = await self.list_recipe_composers_with_http_info_async(as_at, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def list_recipe_composers_with_http_info_async(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfGetRecipeComposerResponse]:
@@ -2721,12 +2721,12 @@ class ConfigurationRecipeApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: UpsertSingleStructuredDataResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_configuration_recipe_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_configuration_recipe_with_http_info_async(upsert_recipe_request, **kwargs)  # noqa: E501
+            response = await self.upsert_configuration_recipe_with_http_info_async(upsert_recipe_request, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_configuration_recipe_with_http_info_async(self, upsert_recipe_request: UpsertRecipeRequest, **kwargs) -> ApiResponse[UpsertSingleStructuredDataResponse]:
@@ -2849,12 +2849,12 @@ class ConfigurationRecipeApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: UpsertSingleStructuredDataResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_recipe_composer_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_recipe_composer_with_http_info_async(upsert_recipe_composer_request, **kwargs)  # noqa: E501
+            response = await self.upsert_recipe_composer_with_http_info_async(upsert_recipe_composer_request, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_recipe_composer_with_http_info_async(self, upsert_recipe_composer_request: UpsertRecipeComposerRequest, **kwargs) -> ApiResponse[UpsertSingleStructuredDataResponse]:

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class BatchDeleteRelationalDataResponse(BaseModel):
     values: Dict[str, Optional[StrictStr]] = Field(description="A list of data points that were successfully upserted.")
     failed: Optional[Dict[str, ErrorDetail]] = Field(default=None, description="A list of data points that failed to be upserted, along with the associated error message.")
     href:  Optional[StrictStr] = Field(default=None,alias="href", description="The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime.") 
-    __properties = ["values", "failed", "href"]
+    __properties: ClassVar[List[str]] = ["values", "failed", "href"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -98,9 +98,9 @@ class BatchDeleteRelationalDataResponse(BaseModel):
             "values": obj.get("values"),
             "failed": dict(
                 (_k, ErrorDetail.from_dict(_v))
-                for _k, _v in obj.get("failed").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("failed") is not None
+            if (_val := obj.get("failed")) is not None
             else None,
             "href": obj.get("href")
         })

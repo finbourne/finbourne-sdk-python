@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class ComplianceBreachedOrderInfo(BaseModel):
     """
     order_id: ResourceId = Field(alias="orderId")
     list_rule_result: List[ComplianceRuleResult] = Field(description="The Rule Results for a particular compliance run", alias="listRuleResult")
-    __properties = ["orderId", "listRuleResult"]
+    __properties: ClassVar[List[str]] = ["orderId", "listRuleResult"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,8 +88,8 @@ class ComplianceBreachedOrderInfo(BaseModel):
             return ComplianceBreachedOrderInfo.model_validate(obj)
 
         _obj = ComplianceBreachedOrderInfo.model_validate({
-            "order_id": ResourceId.from_dict(obj.get("orderId")) if obj.get("orderId") is not None else None,
-            "list_rule_result": [ComplianceRuleResult.from_dict(_item) for _item in obj.get("listRuleResult")] if obj.get("listRuleResult") is not None else None
+            "order_id": ResourceId.from_dict(_v) if (_v := obj.get("orderId")) is not None else None,
+            "list_rule_result": [ComplianceRuleResult.from_dict(_item) for _item in _v] if (_v := obj.get("listRuleResult")) is not None else None
         })
         return _obj
 

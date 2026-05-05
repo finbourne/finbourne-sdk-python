@@ -6,7 +6,7 @@
 |------|------|----------|-------------|
 | **field_name** | **str** | Required | The name of the field to sort by. |
 | **priority_values** | **List[str]** | Optional | An optional list of priority field values to sort by, in the order they should be prioritized. |
-| **remainder_order** | **str** | Required | The sorting direction for the remaining field values. Either ascending (ASC) or descending (DESC). |
+| **remainder_order** | **str** | Required | The sorting direction for the remaining field values. Either ascending (ASC) or descending (DESC). Available values: ASC, DESC. |
 
 
 ## Usage
@@ -19,7 +19,7 @@ from finbourne.sdk.services.lusid.models.CustomSortBy import CustomSortBy
 instance = CustomSortBy(
     field_name="...",  # required — The name of the field to sort by.
     priority_values=,  # optional — An optional list of priority field values to sort by, in the order they should be prioritized.
-    remainder_order="..."  # required — The sorting direction for the remaining field values. Either ascending (ASC) or descending (DESC).
+    remainder_order="..."  # required — The sorting direction for the remaining field values. Either ascending (ASC) or descending (DESC). Available values: ASC, DESC.
 )
 ```
 

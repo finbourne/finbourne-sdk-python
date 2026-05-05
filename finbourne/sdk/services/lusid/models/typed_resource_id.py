@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class TypedResourceId(BaseModel):
     id_type_scope:  StrictStr = Field(...,alias="idTypeScope", description="The scope of the identifier's (property) definition.") 
     id_type_code:  StrictStr = Field(...,alias="idTypeCode", description="The code of identifier's (property) definition. This describes what the identifier represents.  For a Person this might be a username, nationalInsuranceNumber or similar.  For a Legal Entity, this might be a registeredCompanyNumber or LEI.") 
     code:  StrictStr = Field(...,alias="code", description="The value of the user-defined identifier in respect of the entity.") 
-    __properties = ["idTypeScope", "idTypeCode", "code"]
+    __properties: ClassVar[List[str]] = ["idTypeScope", "idTypeCode", "code"]
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -27,7 +27,7 @@ class TransactionMatchingAlternativeId(BaseModel):
     TransactionMatchingAlternativeId
     """
     property_key:  StrictStr = Field(...,alias="propertyKey", description="An property key (from the 'Transaction' domain) that can be used as an alternative to TransactionId when matching transactions to settlement instructions. This property must be pre-defined and must be present on the transaction in order to be used for matching.") 
-    __properties = ["propertyKey"]
+    __properties: ClassVar[List[str]] = ["propertyKey"]
 
     model_config = ConfigDict(
         populate_by_name=True,

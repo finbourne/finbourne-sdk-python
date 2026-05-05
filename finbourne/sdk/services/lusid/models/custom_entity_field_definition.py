@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class CustomEntityFieldDefinition(BaseModel):
     collection_type:  Optional[StrictStr] = Field(default=None,alias="collectionType", description="The collection type for the field. Available values are: “Single”, “Array”. Null value defaults to “Single”") 
     required: StrictBool = Field(description="Whether the field is required or not.")
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="An optional description for the field.") 
-    __properties = ["name", "lifetime", "type", "collectionType", "required", "description"]
+    __properties: ClassVar[List[str]] = ["name", "lifetime", "type", "collectionType", "required", "description"]
 
     model_config = ConfigDict(
         populate_by_name=True,

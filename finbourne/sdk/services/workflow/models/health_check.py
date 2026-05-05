@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class HealthCheck(BaseModel):
     """
     type:  StrictStr = Field(...,alias="type", description="The type of worker") 
     url:  StrictStr = Field(...,alias="url", description="The URL to check, eg: https://www.google.com/") 
-    __properties = ["type", "url"]
+    __properties: ClassVar[List[str]] = ["type", "url"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):

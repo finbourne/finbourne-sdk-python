@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class UpdateNotificationRequest(BaseModel):
     display_name:  StrictStr = Field(...,alias="displayName", description="The name of the notification") 
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="The summary of the services provided by the notification") 
     notification_type: NotificationType = Field(alias="notificationType")
-    __properties = ["displayName", "description", "notificationType"]
+    __properties: ClassVar[List[str]] = ["displayName", "description", "notificationType"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,7 +88,7 @@ class UpdateNotificationRequest(BaseModel):
         _obj = UpdateNotificationRequest.model_validate({
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
-            "notification_type": NotificationType.from_dict(obj.get("notificationType")) if obj.get("notificationType") is not None else None
+            "notification_type": NotificationType.from_dict(_v) if (_v := obj.get("notificationType")) is not None else None
         })
         return _obj
 

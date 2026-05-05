@@ -7,7 +7,7 @@
 | **id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **display_name** | **str** | Optional | *No description available.* |
 | **description** | **str** | Optional | *No description available.* |
-| **type** | **str** | Optional | The available values are: String, Int, Decimal, DateTime, Boolean, Map, List, PropertyArray, Percentage, Code, Id, Uri, CurrencyAndAmount, TradePrice, Currency, MetricValue, ResourceId, ResultValue, CutLocalTime, DateOrCutLabel, UnindexedText |
+| **type** | **str** | Optional | Available values: String, Int, Decimal, DateTime, Boolean, Map, List, PropertyArray, Percentage, Code, Id, Uri, CurrencyAndAmount, TradePrice, Currency, MetricValue, ResourceId, ResultValue, CutLocalTime, DateOrCutLabel, UnindexedText. |
 | **display_order** | **int** | Optional | *No description available.* |
 
 
@@ -22,7 +22,7 @@ instance = FieldSchema(
     id=ResourceId(...),  # optional
     display_name="...",  # optional
     description="...",  # optional
-    type="...",  # optional — The available values are: String, Int, Decimal, DateTime, Boolean, Map, List, PropertyArray, Percentage, Code, Id, Uri, CurrencyAndAmount, TradePrice, Currency, MetricValue, ResourceId, ResultValue, CutLocalTime, DateOrCutLabel, UnindexedText
+    type="...",  # optional — Available values: String, Int, Decimal, DateTime, Boolean, Map, List, PropertyArray, Percentage, Code, Id, Uri, CurrencyAndAmount, TradePrice, Currency, MetricValue, ResourceId, ResultValue, CutLocalTime, DateOrCutLabel, UnindexedText.
     display_order=0  # optional
 )
 ```

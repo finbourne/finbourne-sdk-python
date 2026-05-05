@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class TraceDiagramNode(BaseModel):
     type:  Optional[StrictStr] = Field(default=None,alias="type", description="Type classification of the node.") 
     agent_scope:  Optional[StrictStr] = Field(default=None,alias="agentScope", description="The scope of the agent.") 
     agent_version: Optional[StrictInt] = Field(default=None, description="The version of the agent.", alias="agentVersion")
-    __properties = ["id", "displayName", "level", "parent", "type", "agentScope", "agentVersion"]
+    __properties: ClassVar[List[str]] = ["id", "displayName", "level", "parent", "type", "agentScope", "agentVersion"]
 
     model_config = ConfigDict(
         populate_by_name=True,

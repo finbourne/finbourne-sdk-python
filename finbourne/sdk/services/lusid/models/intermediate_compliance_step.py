@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,9 +30,9 @@ class IntermediateComplianceStep(ComplianceStep):
     """
     label:  StrictStr = Field(...,alias="label", description="The label of the compliance step") 
     grouped_parameters: Dict[str, Optional[List[ComplianceTemplateParameter]]] = Field(description="Parameters required for the step", alias="groupedParameters")
-    compliance_step_type:  StrictStr = Field(...,alias="complianceStepType", description=". The available values are: FilterStep, GroupByStep, GroupFilterStep, BranchStep, RecombineStep, CheckStep, PercentCheckStep") 
+    compliance_step_type:  StrictStr = Field(...,alias="complianceStepType", description="The type of the compliance step. Available values: FilterStep, GroupByStep, GroupFilterStep, BranchStep, RecombineStep, CheckStep, PercentCheckStep.") 
     additional_properties: Dict[str, Any] = {}
-    __properties = ["complianceStepType", "label", "groupedParameters"]
+    __properties: ClassVar[List[str]] = ["complianceStepType", "label", "groupedParameters"]
 
     @field_validator('compliance_step_type')
     def compliance_step_type_validate_enum(cls, value):
@@ -142,9 +142,9 @@ class IntermediateComplianceStep(ComplianceStep):
         _field_dict_of_array = {}
         if self.grouped_parameters:
             for _key in self.grouped_parameters:
-                if self.grouped_parameters[_key]:
+                if (_items_for_key := self.grouped_parameters[_key]):
                     _field_dict_of_array[_key] = [
-                        _item.to_dict() for _item in self.grouped_parameters[_key]
+                        _item.to_dict() for _item in _items_for_key
                     ]
             _dict['groupedParameters'] = _field_dict_of_array
         # puts key-value pairs in additional_properties in the top level
@@ -172,19 +172,14 @@ class IntermediateComplianceStep(ComplianceStep):
                         if _v is not None
                         else None
                 )
-                for _k, _v in obj.get("groupedParameters").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("groupedParameters") is not None
+            if (_val := obj.get("groupedParameters")) is not None
             else None
         })
         # store additional fields in additional_properties
-        
-        properties = cls.__properties
-        if not isinstance(cls.__properties, dict) and getattr(cls.__properties, 'default', None):
-            properties = cls.__properties.default
-    
         for _key in obj.keys():
-            if _key not in properties:
+            if _key not in cls.__properties:
                 _obj.additional_properties[_key] = obj.get(_key)
 
         return _obj

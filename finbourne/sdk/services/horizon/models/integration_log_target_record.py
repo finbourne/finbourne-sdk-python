@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class IntegrationLogTargetRecord(BaseModel):
     id_value:  Optional[StrictStr] = Field(default=None,alias="idValue") 
     attribute_name:  Optional[StrictStr] = Field(default=None,alias="attributeName") 
     attribute_value:  Optional[StrictStr] = Field(default=None,alias="attributeValue") 
-    __properties = ["recordAction", "recordType", "idType", "idValue", "attributeName", "attributeValue"]
+    __properties: ClassVar[List[str]] = ["recordAction", "recordType", "idType", "idValue", "attributeName", "attributeValue"]
 
     model_config = ConfigDict(
         populate_by_name=True,

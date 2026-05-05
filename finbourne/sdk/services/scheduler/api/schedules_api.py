@@ -64,12 +64,12 @@ class SchedulesApi:
         :return: Returns the result object.
         :rtype: ScheduleDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_schedule_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_schedule_with_http_info(create_schedule_request, **kwargs)  # noqa: E501
+        response = self.create_schedule_with_http_info(create_schedule_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_schedule_with_http_info(self, create_schedule_request: CreateScheduleRequest, **kwargs) -> ApiResponse[ScheduleDefinition]:
@@ -191,15 +191,15 @@ class SchedulesApi:
         :return: Returns the result object.
         :rtype: None
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_schedule_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_schedule_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_schedule_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
-    def delete_schedule_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> None:
+    def delete_schedule_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[None]:
         """DeleteSchedule: Delete a schedule  # noqa: E501
 
         :param scope: Scope of the schedule to be deleted (required)
@@ -316,12 +316,12 @@ class SchedulesApi:
         :return: Returns the result object.
         :rtype: ScheduleDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the enabled_schedule_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.enabled_schedule_with_http_info(scope, code, enable, **kwargs)  # noqa: E501
+        response = self.enabled_schedule_with_http_info(scope, code, enable, **kwargs)
+        return response.data
 
     @validate_call
     def enabled_schedule_with_http_info(self, scope: StrictStr, code: StrictStr, enable: bool, **kwargs) -> ApiResponse[ScheduleDefinition]:
@@ -448,12 +448,12 @@ class SchedulesApi:
         :return: Returns the result object.
         :rtype: ScheduleDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_schedule_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_schedule_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.get_schedule_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def get_schedule_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[ScheduleDefinition]:
@@ -570,12 +570,12 @@ class SchedulesApi:
         :return: Returns the result object.
         :rtype: ResourceListOfString
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_valid_timezones_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_valid_timezones_with_http_info(**kwargs)  # noqa: E501
+        response = self.get_valid_timezones_with_http_info(**kwargs)
+        return response.data
 
     @validate_call
     def get_valid_timezones_with_http_info(self, **kwargs) -> ApiResponse[ResourceListOfString]:
@@ -689,12 +689,12 @@ class SchedulesApi:
         :return: Returns the result object.
         :rtype: ResourceListOfScheduleDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_schedules_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_schedules_with_http_info(page, sort_by, start, limit, filter, **kwargs)  # noqa: E501
+        response = self.list_schedules_with_http_info(page, sort_by, start, limit, filter, **kwargs)
+        return response.data
 
     @validate_call
     def list_schedules_with_http_info(self, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, start: Optional[int] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfScheduleDefinition]:
@@ -834,12 +834,12 @@ class SchedulesApi:
         :return: Returns the result object.
         :rtype: StartScheduleResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the run_schedule_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.run_schedule_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.run_schedule_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def run_schedule_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[StartScheduleResponse]:
@@ -962,12 +962,12 @@ class SchedulesApi:
         :return: Returns the result object.
         :rtype: ScheduleDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_schedule_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_schedule_with_http_info(scope, code, update_schedule_request, **kwargs)  # noqa: E501
+        response = self.update_schedule_with_http_info(scope, code, update_schedule_request, **kwargs)
+        return response.data
 
     @validate_call
     def update_schedule_with_http_info(self, scope: StrictStr, code: StrictStr, update_schedule_request: UpdateScheduleRequest, **kwargs) -> ApiResponse[ScheduleDefinition]:
@@ -1103,12 +1103,12 @@ class SchedulesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ScheduleDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_schedule_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_schedule_with_http_info_async(create_schedule_request, **kwargs)  # noqa: E501
+            response = await self.create_schedule_with_http_info_async(create_schedule_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_schedule_with_http_info_async(self, create_schedule_request: CreateScheduleRequest, **kwargs) -> ApiResponse[ScheduleDefinition]:
@@ -1231,15 +1231,15 @@ class SchedulesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: None
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_schedule_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_schedule_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_schedule_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
-    async def delete_schedule_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> None:
+    async def delete_schedule_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[None]:
             """DeleteSchedule: Delete a schedule  # noqa: E501
 
 
@@ -1357,12 +1357,12 @@ class SchedulesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ScheduleDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the enabled_schedule_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.enabled_schedule_with_http_info_async(scope, code, enable, **kwargs)  # noqa: E501
+            response = await self.enabled_schedule_with_http_info_async(scope, code, enable, **kwargs)
+            return response.data
 
     @validate_call
     async def enabled_schedule_with_http_info_async(self, scope: StrictStr, code: StrictStr, enable: bool, **kwargs) -> ApiResponse[ScheduleDefinition]:
@@ -1490,12 +1490,12 @@ class SchedulesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ScheduleDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_schedule_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_schedule_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.get_schedule_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def get_schedule_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[ScheduleDefinition]:
@@ -1613,12 +1613,12 @@ class SchedulesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfString
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_valid_timezones_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_valid_timezones_with_http_info_async(**kwargs)  # noqa: E501
+            response = await self.get_valid_timezones_with_http_info_async(**kwargs)
+            return response.data
 
     @validate_call
     async def get_valid_timezones_with_http_info_async(self, **kwargs) -> ApiResponse[ResourceListOfString]:
@@ -1733,12 +1733,12 @@ class SchedulesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfScheduleDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_schedules_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_schedules_with_http_info_async(page, sort_by, start, limit, filter, **kwargs)  # noqa: E501
+            response = await self.list_schedules_with_http_info_async(page, sort_by, start, limit, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def list_schedules_with_http_info_async(self, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, start: Optional[int] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfScheduleDefinition]:
@@ -1879,12 +1879,12 @@ class SchedulesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: StartScheduleResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the run_schedule_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.run_schedule_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.run_schedule_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def run_schedule_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[StartScheduleResponse]:
@@ -2008,12 +2008,12 @@ class SchedulesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ScheduleDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_schedule_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_schedule_with_http_info_async(scope, code, update_schedule_request, **kwargs)  # noqa: E501
+            response = await self.update_schedule_with_http_info_async(scope, code, update_schedule_request, **kwargs)
+            return response.data
 
     @validate_call
     async def update_schedule_with_http_info_async(self, scope: StrictStr, code: StrictStr, update_schedule_request: UpdateScheduleRequest, **kwargs) -> ApiResponse[ScheduleDefinition]:

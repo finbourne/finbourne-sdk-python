@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -35,7 +35,7 @@ class DataModelSummary(BaseModel):
     precedence: StrictInt = Field(description="Where in the hierarchy this model sits.")
     parent: Optional[ResourceId] = None
     children: List[DataModelSummary] = Field(description="Child Custom Data Models that will inherit from this data model.")
-    __properties = ["id", "displayName", "description", "entityType", "type", "precedence", "parent", "children"]
+    __properties: ClassVar[List[str]] = ["id", "displayName", "description", "entityType", "type", "precedence", "parent", "children"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -101,14 +101,14 @@ class DataModelSummary(BaseModel):
             return DataModelSummary.model_validate(obj)
 
         _obj = DataModelSummary.model_validate({
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
             "entity_type": obj.get("entityType"),
             "type": obj.get("type"),
             "precedence": obj.get("precedence"),
-            "parent": ResourceId.from_dict(obj.get("parent")) if obj.get("parent") is not None else None,
-            "children": [DataModelSummary.from_dict(_item) for _item in obj.get("children")] if obj.get("children") is not None else None
+            "parent": ResourceId.from_dict(_v) if (_v := obj.get("parent")) is not None else None,
+            "children": [DataModelSummary.from_dict(_item) for _item in _v] if (_v := obj.get("children")) is not None else None
         })
         return _obj
 

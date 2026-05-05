@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -35,7 +35,7 @@ class CompositeDispersion(BaseModel):
     range: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Highest return - Lowest return.")
     constituents_in_scope: Optional[List[ResourceId]] = Field(default=None, description="List containing Composite members which are part of the dispersion calcualtion.", alias="constituentsInScope")
     constituents_excluded: Optional[List[ResourceId]] = Field(default=None, description="List containing the Composite members which are not part of the dispersion calculation", alias="constituentsExcluded")
-    __properties = ["effectiveAt", "dispersionCalculation", "variance", "firstQuartile", "thirdQuartile", "range", "constituentsInScope", "constituentsExcluded"]
+    __properties: ClassVar[List[str]] = ["effectiveAt", "dispersionCalculation", "variance", "firstQuartile", "thirdQuartile", "range", "constituentsInScope", "constituentsExcluded"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -138,8 +138,8 @@ class CompositeDispersion(BaseModel):
             "first_quartile": obj.get("firstQuartile"),
             "third_quartile": obj.get("thirdQuartile"),
             "range": obj.get("range"),
-            "constituents_in_scope": [ResourceId.from_dict(_item) for _item in obj.get("constituentsInScope")] if obj.get("constituentsInScope") is not None else None,
-            "constituents_excluded": [ResourceId.from_dict(_item) for _item in obj.get("constituentsExcluded")] if obj.get("constituentsExcluded") is not None else None
+            "constituents_in_scope": [ResourceId.from_dict(_item) for _item in _v] if (_v := obj.get("constituentsInScope")) is not None else None,
+            "constituents_excluded": [ResourceId.from_dict(_item) for _item in _v] if (_v := obj.get("constituentsExcluded")) is not None else None
         })
         return _obj
 

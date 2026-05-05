@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class ScheduledTimeAdjustment(BaseModel):
     """
     date_adjustment: DateAdjustment = Field(alias="dateAdjustment")
     time_adjustment: TimeAdjustment = Field(alias="timeAdjustment")
-    __properties = ["dateAdjustment", "timeAdjustment"]
+    __properties: ClassVar[List[str]] = ["dateAdjustment", "timeAdjustment"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -84,8 +84,8 @@ class ScheduledTimeAdjustment(BaseModel):
             return ScheduledTimeAdjustment.model_validate(obj)
 
         _obj = ScheduledTimeAdjustment.model_validate({
-            "date_adjustment": DateAdjustment.from_dict(obj.get("dateAdjustment")) if obj.get("dateAdjustment") is not None else None,
-            "time_adjustment": TimeAdjustment.from_dict(obj.get("timeAdjustment")) if obj.get("timeAdjustment") is not None else None
+            "date_adjustment": DateAdjustment.from_dict(_v) if (_v := obj.get("dateAdjustment")) is not None else None,
+            "time_adjustment": TimeAdjustment.from_dict(_v) if (_v := obj.get("timeAdjustment")) is not None else None
         })
         return _obj
 

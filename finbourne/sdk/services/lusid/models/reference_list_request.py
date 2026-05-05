@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class ReferenceListRequest(BaseModel):
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="The description of the reference list.") 
     tags: Optional[List[StrictStr]] = Field(default=None, description="The tags associated with the reference list.")
     reference_list: ReferenceList = Field(alias="referenceList")
-    __properties = ["id", "name", "description", "tags", "referenceList"]
+    __properties: ClassVar[List[str]] = ["id", "name", "description", "tags", "referenceList"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -97,11 +97,11 @@ class ReferenceListRequest(BaseModel):
             return ReferenceListRequest.model_validate(obj)
 
         _obj = ReferenceListRequest.model_validate({
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
             "name": obj.get("name"),
             "description": obj.get("description"),
             "tags": obj.get("tags"),
-            "reference_list": ReferenceList.from_dict(obj.get("referenceList")) if obj.get("referenceList") is not None else None
+            "reference_list": ReferenceList.from_dict(_v) if (_v := obj.get("referenceList")) is not None else None
         })
         return _obj
 

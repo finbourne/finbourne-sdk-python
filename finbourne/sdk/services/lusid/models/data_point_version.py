@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class DataPointVersion(BaseModel):
     request_id_modified:  Optional[StrictStr] = Field(default=None,alias="requestIdModified", description="The unique request id of the command that last updated the entity (including its properties) in LUSID.") 
     as_at_version_number: Optional[StrictInt] = Field(default=None, description="The integer version number for the entity (the entity was created at version 1)", alias="asAtVersionNumber")
     entity_unique_id:  Optional[StrictStr] = Field(default=None,alias="entityUniqueId", description="The unique id of the entity") 
-    __properties = ["asAtCreated", "userIdCreated", "requestIdCreated", "asAtModified", "userIdModified", "requestIdModified", "asAtVersionNumber", "entityUniqueId"]
+    __properties: ClassVar[List[str]] = ["asAtCreated", "userIdCreated", "requestIdCreated", "asAtModified", "userIdModified", "requestIdModified", "asAtVersionNumber", "entityUniqueId"]
 
     model_config = ConfigDict(
         populate_by_name=True,

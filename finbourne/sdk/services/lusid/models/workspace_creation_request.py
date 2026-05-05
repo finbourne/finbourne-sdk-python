@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class WorkspaceCreationRequest(BaseModel):
     """
     name:  StrictStr = Field(...,alias="name", description="A workspace's name.") 
     description:  StrictStr = Field(...,alias="description", description="A friendly description for the workspace.") 
-    __properties = ["name", "description"]
+    __properties: ClassVar[List[str]] = ["name", "description"]
 
     model_config = ConfigDict(
         populate_by_name=True,

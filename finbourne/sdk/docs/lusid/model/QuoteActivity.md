@@ -8,7 +8,7 @@
 | **effective_at** | **str** | Required | The EffectiveAt time of the quote event that need to be added to the closed period. |
 | **entity_unique_id** | **str** | Required | The EntityUniqueId from the quote which needs to be added as a post close activity. |
 | **instrument_id** | **str** | Required | The InstrumentId from the quote which needs to be added as a post close activity. |
-| **nav_activity_adjustment_type** | **str** | Required | . The available values are: PortfolioTransaction, PortfolioSettlementInstruction, InstrumentActivity, QuoteActivity |
+| **nav_activity_adjustment_type** | **str** | Required | The type of the entity being applied, for example a PortfolioTransaction. Available values: PortfolioTransaction, PortfolioSettlementInstruction, InstrumentActivity, QuoteActivity. |
 
 
 ## Usage
@@ -23,7 +23,7 @@ instance = QuoteActivity(
     effective_at="...",  # required — The EffectiveAt time of the quote event that need to be added to the closed period.
     entity_unique_id="...",  # required — The EntityUniqueId from the quote which needs to be added as a post close activity.
     instrument_id="...",  # required — The InstrumentId from the quote which needs to be added as a post close activity.
-    nav_activity_adjustment_type="..."  # required — . The available values are: PortfolioTransaction, PortfolioSettlementInstruction, InstrumentActivity, QuoteActivity
+    nav_activity_adjustment_type="..."  # required — The type of the entity being applied, for example a PortfolioTransaction. Available values: PortfolioTransaction, PortfolioSettlementInstruction, InstrumentActivity, QuoteActivity.
 )
 ```
 

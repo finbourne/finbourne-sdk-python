@@ -7,7 +7,7 @@
 | **display_name** | **str** | Required | The display name of the property. |
 | **property_description** | **str** | Optional | Describes the property |
 | **custom_entity_types** | **List[str]** | Optional | The custom entity types that properties relating to this property definition can be applied to. |
-| **value_format** | **str** | Optional | The format in which values for this property definition should be represented. |
+| **value_format** | **str** | Optional | The format in which values for this property definition should be represented. Available values: Text, Html. |
 
 
 ## Usage
@@ -21,7 +21,7 @@ instance = UpdatePropertyDefinitionRequest(
     display_name="...",  # required — The display name of the property.
     property_description="...",  # optional — Describes the property
     custom_entity_types=,  # optional — The custom entity types that properties relating to this property definition can be applied to.
-    value_format="..."  # optional — The format in which values for this property definition should be represented.
+    value_format="..."  # optional — The format in which values for this property definition should be represented. Available values: Text, Html.
 )
 ```
 

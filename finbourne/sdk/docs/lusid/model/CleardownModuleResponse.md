@@ -11,7 +11,7 @@ A Cleardown Module definition
 | **display_name** | **str** | Required | The name of the Cleardown Module. |
 | **description** | **str** | Optional | A description for the Cleardown Module. |
 | **rules** | [List[CleardownModuleRule]](CleardownModuleRule.md) | Optional | The Cleardown Rules that apply for the Cleardown Module. Rules are evaluated in the order they occur in this collection. |
-| **status** | **str** | Required | The Cleardown Module status. Can be Active, Inactive or Deleted. Defaults to Active. |
+| **status** | **str** | Required | The Cleardown Module status. Default value: Active. Available values: Active, Inactive, Deleted. |
 | **version** | [Version](Version.md) | Optional | *No description available.* |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
@@ -30,7 +30,7 @@ instance = CleardownModuleResponse(
     display_name="...",  # required — The name of the Cleardown Module.
     description="...",  # optional — A description for the Cleardown Module.
     rules=[],  # optional — The Cleardown Rules that apply for the Cleardown Module. Rules are evaluated in the order they occur in this collection.
-    status="...",  # required — The Cleardown Module status. Can be Active, Inactive or Deleted. Defaults to Active.
+    status="...",  # required — The Cleardown Module status. Default value: Active. Available values: Active, Inactive, Deleted.
     version=Version(...),  # optional
     links=[]  # optional
 )

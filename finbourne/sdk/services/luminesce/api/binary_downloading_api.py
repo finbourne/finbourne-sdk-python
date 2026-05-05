@@ -62,12 +62,12 @@ class BinaryDownloadingApi:
         :return: Returns the result object.
         :rtype: bytes
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the download_binary_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.download_binary_with_http_info(type, version, **kwargs)  # noqa: E501
+        response = self.download_binary_with_http_info(type, version, **kwargs)
+        return response.data
 
     @validate_call
     def download_binary_with_http_info(self, type: Optional[str] = None, version: Optional[StrictStr] = None, **kwargs) -> ApiResponse[bytes]:
@@ -189,12 +189,12 @@ class BinaryDownloadingApi:
         :return: Returns the result object.
         :rtype: List[str]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_binary_versions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_binary_versions_with_http_info(type, **kwargs)  # noqa: E501
+        response = self.get_binary_versions_with_http_info(type, **kwargs)
+        return response.data
 
     @validate_call
     def get_binary_versions_with_http_info(self, type: Optional[str] = None, **kwargs) -> ApiResponse[List[str]]:
@@ -316,12 +316,12 @@ class BinaryDownloadingApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: bytes
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the download_binary_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.download_binary_with_http_info_async(type, version, **kwargs)  # noqa: E501
+            response = await self.download_binary_with_http_info_async(type, version, **kwargs)
+            return response.data
 
     @validate_call
     async def download_binary_with_http_info_async(self, type: Optional[str] = None, version: Optional[StrictStr] = None, **kwargs) -> ApiResponse[bytes]:
@@ -444,12 +444,12 @@ class BinaryDownloadingApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: List[str]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_binary_versions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_binary_versions_with_http_info_async(type, **kwargs)  # noqa: E501
+            response = await self.get_binary_versions_with_http_info_async(type, **kwargs)
+            return response.data
 
     @validate_call
     async def get_binary_versions_with_http_info_async(self, type: Optional[str] = None, **kwargs) -> ApiResponse[List[str]]:

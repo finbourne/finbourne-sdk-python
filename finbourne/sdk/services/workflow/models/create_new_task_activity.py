@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class CreateNewTaskActivity(BaseModel):
     correlation_ids: Optional[List[EventHandlerMapping]] = Field(default=None, description="The event to correlation ID mappings", alias="correlationIds")
     task_fields: Optional[Dict[str, FieldMapping]] = Field(default=None, description="The event to task field mappings", alias="taskFields")
     schedule_dependent_task_fields: Optional[Dict[str, ScheduledTimeAdjustment]] = Field(default=None, description="The Schedule dependent task field mappings. Only relevant if a Finbourne.Workflow.WebApi.Common.Dto.Json.EventHandlers.ScheduleMatchingPattern is specified", alias="scheduleDependentTaskFields")
-    __properties = ["initialTrigger", "type", "correlationIds", "taskFields", "scheduleDependentTaskFields"]
+    __properties: ClassVar[List[str]] = ["initialTrigger", "type", "correlationIds", "taskFields", "scheduleDependentTaskFields"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -194,18 +194,18 @@ class CreateNewTaskActivity(BaseModel):
         _obj = CreateNewTaskActivity.model_validate({
             "initial_trigger": obj.get("initialTrigger"),
             "type": obj.get("type"),
-            "correlation_ids": [EventHandlerMapping.from_dict(_item) for _item in obj.get("correlationIds")] if obj.get("correlationIds") is not None else None,
+            "correlation_ids": [EventHandlerMapping.from_dict(_item) for _item in _v] if (_v := obj.get("correlationIds")) is not None else None,
             "task_fields": dict(
                 (_k, FieldMapping.from_dict(_v))
-                for _k, _v in obj.get("taskFields").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("taskFields") is not None
+            if (_val := obj.get("taskFields")) is not None
             else None,
             "schedule_dependent_task_fields": dict(
                 (_k, ScheduledTimeAdjustment.from_dict(_v))
-                for _k, _v in obj.get("scheduleDependentTaskFields").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("scheduleDependentTaskFields") is not None
+            if (_val := obj.get("scheduleDependentTaskFields")) is not None
             else None
         })
         return _obj

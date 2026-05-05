@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -37,7 +37,7 @@ class CreateInstanceRequest(BaseModel):
     triggers: List[Trigger]
     details: Dict[str, Any] = Field(description="Base DTO type of an integration configuration specific to the integration type.              N.B. ASP.NET Core model validation is normally applied automatically when [ApiController] is added to a controller, however it doesn't work here with the polymorphic integration subtypes of this class (see https://github.com/dotnet/aspnetcore/issues/27882). The workaround here is to implement the IValidatableObject interface and each subtype must call Validate() or ValidateContents() on its properties (the validation is not recursive).  Located in Horizon.Integrations.Web so both specific integration projects and Horizon.WebApi can reference it.")
     post_process_tasks: List[PostProcessTask] = Field(alias="postProcessTasks")
-    __properties = ["instanceOptionalProps", "integrationType", "name", "description", "enabled", "triggers", "details", "postProcessTasks"]
+    __properties: ClassVar[List[str]] = ["instanceOptionalProps", "integrationType", "name", "description", "enabled", "triggers", "details", "postProcessTasks"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -113,17 +113,17 @@ class CreateInstanceRequest(BaseModel):
         _obj = CreateInstanceRequest.model_validate({
             "instance_optional_props": dict(
                 (_k, LusidPropertyDefinitionOverridesByType.from_dict(_v))
-                for _k, _v in obj.get("instanceOptionalProps").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("instanceOptionalProps") is not None
+            if (_val := obj.get("instanceOptionalProps")) is not None
             else None,
             "integration_type": obj.get("integrationType"),
             "name": obj.get("name"),
             "description": obj.get("description"),
             "enabled": obj.get("enabled"),
-            "triggers": [Trigger.from_dict(_item) for _item in obj.get("triggers")] if obj.get("triggers") is not None else None,
+            "triggers": [Trigger.from_dict(_item) for _item in _v] if (_v := obj.get("triggers")) is not None else None,
             "details": obj.get("details"),
-            "post_process_tasks": [PostProcessTask.from_dict(_item) for _item in obj.get("postProcessTasks")] if obj.get("postProcessTasks") is not None else None
+            "post_process_tasks": [PostProcessTask.from_dict(_item) for _item in _v] if (_v := obj.get("postProcessTasks")) is not None else None
         })
         return _obj
 

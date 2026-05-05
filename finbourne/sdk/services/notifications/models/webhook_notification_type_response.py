@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class WebhookNotificationTypeResponse(BaseModel):
     authentication_configuration_item_paths: Optional[Dict[str, Optional[StrictStr]]] = Field(default=None, description="The paths of the Configuration Store configuration items that contain the authentication configuration. Each authentication type requires different keys: - Lusid - None required - BasicAuth - Requires 'Username' and 'Password' - BearerToken - Requires 'BearerToken' and optionally 'BearerScheme'              e.g. the following would be valid assuming that the config is present in the configuration store at the specified paths:                  \"authenticationType\": \"BasicAuth\",     \"authenticationConfigurationItemPaths\": {         \"Username\": \"config://personal/myUserId/WebhookConfigurations/ExampleService/AdminUser\",         \"Password\": \"config://personal/myUserId/WebhookConfigurations/ExampleService/AdminPassword\"     }", alias="authenticationConfigurationItemPaths")
     content_type:  Optional[StrictStr] = Field(default=None,alias="contentType", description="The type of the content e.g. Json") 
     content: Optional[Any] = Field(default=None, description="The content of the request")
-    __properties = ["type", "httpMethod", "url", "authenticationType", "authenticationConfigurationItemPaths", "contentType", "content"]
+    __properties: ClassVar[List[str]] = ["type", "httpMethod", "url", "authenticationType", "authenticationConfigurationItemPaths", "contentType", "content"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):

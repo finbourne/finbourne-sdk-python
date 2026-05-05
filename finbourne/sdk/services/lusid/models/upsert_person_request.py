@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class UpsertPersonRequest(BaseModel):
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="A set of properties associated to the Person. There can be multiple properties associated with a property key.")
     display_name:  StrictStr = Field(...,alias="displayName", description="The display name of the Person") 
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="The description of the Person") 
-    __properties = ["identifiers", "properties", "displayName", "description"]
+    __properties: ClassVar[List[str]] = ["identifiers", "properties", "displayName", "description"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -105,15 +105,15 @@ class UpsertPersonRequest(BaseModel):
         _obj = UpsertPersonRequest.model_validate({
             "identifiers": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("identifiers").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("identifiers") is not None
+            if (_val := obj.get("identifiers")) is not None
             else None,
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
             "display_name": obj.get("displayName"),
             "description": obj.get("description")

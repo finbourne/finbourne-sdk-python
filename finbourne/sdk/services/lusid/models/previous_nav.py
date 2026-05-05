@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class PreviousNAV(BaseModel):
     PreviousNAV
     """
     amount: Optional[ShareClassAmount] = None
-    __properties = ["amount"]
+    __properties: ClassVar[List[str]] = ["amount"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,7 +79,7 @@ class PreviousNAV(BaseModel):
             return PreviousNAV.model_validate(obj)
 
         _obj = PreviousNAV.model_validate({
-            "amount": ShareClassAmount.from_dict(obj.get("amount")) if obj.get("amount") is not None else None
+            "amount": ShareClassAmount.from_dict(_v) if (_v := obj.get("amount")) is not None else None
         })
         return _obj
 

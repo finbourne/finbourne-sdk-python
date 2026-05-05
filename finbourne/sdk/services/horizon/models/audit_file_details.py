@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class AuditFileDetails(BaseModel):
     """
     file_type:  StrictStr = Field(...,alias="fileType", description="The type of the audit file") 
     file_path_and_name:  StrictStr = Field(...,alias="filePathAndName", description="The file path and name") 
-    __properties = ["fileType", "filePathAndName"]
+    __properties: ClassVar[List[str]] = ["fileType", "filePathAndName"]
 
     model_config = ConfigDict(
         populate_by_name=True,

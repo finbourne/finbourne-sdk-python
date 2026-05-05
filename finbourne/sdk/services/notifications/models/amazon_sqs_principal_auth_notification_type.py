@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class AmazonSqsPrincipalAuthNotificationType(BaseModel):
     type:  StrictStr = Field(...,alias="type", description="The type of delivery mechanism for this notification") 
     body:  StrictStr = Field(...,alias="body", description="The body of the Amazon Queue Message") 
     queue_url_ref:  StrictStr = Field(...,alias="queueUrlRef", description="Reference to queue url from Configuration Store") 
-    __properties = ["type", "body", "queueUrlRef"]
+    __properties: ClassVar[List[str]] = ["type", "body", "queueUrlRef"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):

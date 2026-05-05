@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -26,10 +26,10 @@ class ElectionSpecification(BaseModel):
     """
     ElectionSpecification
     """
-    election_type:  StrictStr = Field(...,alias="electionType") 
+    election_type:  StrictStr = Field(...,alias="electionType", description="Available values: CashElection, CashAndSecurityOfferElection, CashOfferElection, EarlyRedemptionElection, LapseElection, OptionExerciseElection, SecurityElection, SecurityOfferElection, TenderOfferElection.") 
     cardinality: Dict[str, Optional[StrictStr]]
     referenced_as: List[StrictStr] = Field(alias="referencedAs")
-    __properties = ["electionType", "cardinality", "referencedAs"]
+    __properties: ClassVar[List[str]] = ["electionType", "cardinality", "referencedAs"]
 
     model_config = ConfigDict(
         populate_by_name=True,

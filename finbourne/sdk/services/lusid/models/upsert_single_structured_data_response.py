@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class UpsertSingleStructuredDataResponse(BaseModel):
     href:  Optional[StrictStr] = Field(default=None,alias="href", description="The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime.") 
     value: Optional[datetime] = Field(default=None, description="The value that was successfully retrieved.")
     links: Optional[List[Link]] = None
-    __properties = ["href", "value", "links"]
+    __properties: ClassVar[List[str]] = ["href", "value", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -97,7 +97,7 @@ class UpsertSingleStructuredDataResponse(BaseModel):
         _obj = UpsertSingleStructuredDataResponse.model_validate({
             "href": obj.get("href"),
             "value": obj.get("value"),
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

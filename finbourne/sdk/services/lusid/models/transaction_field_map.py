@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -39,7 +39,7 @@ class TransactionFieldMap(BaseModel):
     transaction_currency:  StrictStr = Field(...,alias="transactionCurrency") 
     exchange_rate:  Optional[StrictStr] = Field(default=None,alias="exchangeRate") 
     total_consideration: TransactionCurrencyAndAmount = Field(alias="totalConsideration")
-    __properties = ["transactionId", "type", "source", "instrument", "transactionDate", "settlementDate", "units", "transactionPrice", "transactionCurrency", "exchangeRate", "totalConsideration"]
+    __properties: ClassVar[List[str]] = ["transactionId", "type", "source", "instrument", "transactionDate", "settlementDate", "units", "transactionPrice", "transactionCurrency", "exchangeRate", "totalConsideration"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -105,10 +105,10 @@ class TransactionFieldMap(BaseModel):
             "transaction_date": obj.get("transactionDate"),
             "settlement_date": obj.get("settlementDate"),
             "units": obj.get("units"),
-            "transaction_price": TransactionPriceAndType.from_dict(obj.get("transactionPrice")) if obj.get("transactionPrice") is not None else None,
+            "transaction_price": TransactionPriceAndType.from_dict(_v) if (_v := obj.get("transactionPrice")) is not None else None,
             "transaction_currency": obj.get("transactionCurrency"),
             "exchange_rate": obj.get("exchangeRate"),
-            "total_consideration": TransactionCurrencyAndAmount.from_dict(obj.get("totalConsideration")) if obj.get("totalConsideration") is not None else None
+            "total_consideration": TransactionCurrencyAndAmount.from_dict(_v) if (_v := obj.get("totalConsideration")) is not None else None
         })
         return _obj
 

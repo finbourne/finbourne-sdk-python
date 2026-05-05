@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -37,7 +37,7 @@ class OrderInstructionRequest(BaseModel):
     weight: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The proportion of the total portfolio value ordered for the given instrument ordered.")
     price: Optional[CurrencyAndAmount] = None
     properties: Optional[Dict[str, PerpetualProperty]] = Field(default=None, description="Client-defined properties associated with this execution.")
-    __properties = ["id", "createdDate", "portfolioId", "instrumentIdentifiers", "quantity", "weight", "price", "properties"]
+    __properties: ClassVar[List[str]] = ["id", "createdDate", "portfolioId", "instrumentIdentifiers", "quantity", "weight", "price", "properties"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -121,18 +121,18 @@ class OrderInstructionRequest(BaseModel):
             return OrderInstructionRequest.model_validate(obj)
 
         _obj = OrderInstructionRequest.model_validate({
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
             "created_date": obj.get("createdDate"),
-            "portfolio_id": ResourceId.from_dict(obj.get("portfolioId")) if obj.get("portfolioId") is not None else None,
+            "portfolio_id": ResourceId.from_dict(_v) if (_v := obj.get("portfolioId")) is not None else None,
             "instrument_identifiers": obj.get("instrumentIdentifiers"),
             "quantity": obj.get("quantity"),
             "weight": obj.get("weight"),
-            "price": CurrencyAndAmount.from_dict(obj.get("price")) if obj.get("price") is not None else None,
+            "price": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("price")) is not None else None,
             "properties": dict(
                 (_k, PerpetualProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None
         })
         return _obj

@@ -77,12 +77,12 @@ class PoliciesApi:
         :return: Returns the result object.
         :rtype: PolicyCollectionResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the add_to_policy_collection_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.add_to_policy_collection_with_http_info(code, add_to_policy_collection_request, scope, **kwargs)  # noqa: E501
+        response = self.add_to_policy_collection_with_http_info(code, add_to_policy_collection_request, scope, **kwargs)
+        return response.data
 
     @validate_call
     def add_to_policy_collection_with_http_info(self, code: StrictStr, add_to_policy_collection_request: AddToPolicyCollectionRequest, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PolicyCollectionResponse]:
@@ -216,12 +216,12 @@ class PoliciesApi:
         :return: Returns the result object.
         :rtype: PolicyResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_policy_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_policy_with_http_info(policy_creation_request, **kwargs)  # noqa: E501
+        response = self.create_policy_with_http_info(policy_creation_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_policy_with_http_info(self, policy_creation_request: PolicyCreationRequest, **kwargs) -> ApiResponse[PolicyResponse]:
@@ -343,12 +343,12 @@ class PoliciesApi:
         :return: Returns the result object.
         :rtype: PolicyCollectionResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_policy_collection_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_policy_collection_with_http_info(policy_collection_creation_request, **kwargs)  # noqa: E501
+        response = self.create_policy_collection_with_http_info(policy_collection_creation_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_policy_collection_with_http_info(self, policy_collection_creation_request: PolicyCollectionCreationRequest, **kwargs) -> ApiResponse[PolicyCollectionResponse]:
@@ -472,15 +472,15 @@ class PoliciesApi:
         :return: Returns the result object.
         :rtype: None
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_policy_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_policy_with_http_info(code, scope, **kwargs)  # noqa: E501
+        response = self.delete_policy_with_http_info(code, scope, **kwargs)
+        return response.data
 
     @validate_call
-    def delete_policy_with_http_info(self, code: StrictStr, scope: Optional[StrictStr] = None, **kwargs) -> None:
+    def delete_policy_with_http_info(self, code: StrictStr, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[None]:
         """DeletePolicy: Delete Policy  # noqa: E501
 
         Deletes an identified Policy  # noqa: E501
@@ -597,15 +597,15 @@ class PoliciesApi:
         :return: Returns the result object.
         :rtype: None
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_policy_collection_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_policy_collection_with_http_info(code, scope, **kwargs)  # noqa: E501
+        response = self.delete_policy_collection_with_http_info(code, scope, **kwargs)
+        return response.data
 
     @validate_call
-    def delete_policy_collection_with_http_info(self, code: StrictStr, scope: Optional[StrictStr] = None, **kwargs) -> None:
+    def delete_policy_collection_with_http_info(self, code: StrictStr, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[None]:
         """DeletePolicyCollection: Delete PolicyCollection  # noqa: E501
 
         Deletes an identified PolicyCollection  # noqa: E501
@@ -722,12 +722,12 @@ class PoliciesApi:
         :return: Returns the result object.
         :rtype: Dict[str, EvaluationResponse]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the evaluate_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.evaluate_with_http_info(request_body, applications, **kwargs)  # noqa: E501
+        response = self.evaluate_with_http_info(request_body, applications, **kwargs)
+        return response.data
 
     @validate_call
     def evaluate_with_http_info(self, request_body: Dict[str, EvaluationRequest], applications: Optional[List[str]] = None, **kwargs) -> ApiResponse[Dict[str, EvaluationResponse]]:
@@ -856,12 +856,12 @@ class PoliciesApi:
         :return: Returns the result object.
         :rtype: List[AttachedPolicyDefinitionResponse]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_own_policies_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_own_policies_with_http_info(applications, **kwargs)  # noqa: E501
+        response = self.get_own_policies_with_http_info(applications, **kwargs)
+        return response.data
 
     @validate_call
     def get_own_policies_with_http_info(self, applications: Optional[List[str]] = None, **kwargs) -> ApiResponse[List[AttachedPolicyDefinitionResponse]]:
@@ -981,12 +981,12 @@ class PoliciesApi:
         :return: Returns the result object.
         :rtype: PolicyResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_policy_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_policy_with_http_info(code, scope, as_at, **kwargs)  # noqa: E501
+        response = self.get_policy_with_http_info(code, scope, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_policy_with_http_info(self, code: StrictStr, scope: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[PolicyResponse]:
@@ -1118,12 +1118,12 @@ class PoliciesApi:
         :return: Returns the result object.
         :rtype: PolicyCollectionResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_policy_collection_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_policy_collection_with_http_info(code, scope, **kwargs)  # noqa: E501
+        response = self.get_policy_collection_with_http_info(code, scope, **kwargs)
+        return response.data
 
     @validate_call
     def get_policy_collection_with_http_info(self, code: StrictStr, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PolicyCollectionResponse]:
@@ -1244,12 +1244,12 @@ class PoliciesApi:
         :return: Returns the result object.
         :rtype: List[PolicyResponse]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_policies_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_policies_with_http_info(scope, **kwargs)  # noqa: E501
+        response = self.list_policies_with_http_info(scope, **kwargs)
+        return response.data
 
     @validate_call
     def list_policies_with_http_info(self, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[List[PolicyResponse]]:
@@ -1364,12 +1364,12 @@ class PoliciesApi:
         :return: Returns the result object.
         :rtype: List[PolicyCollectionResponse]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_policy_collections_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_policy_collections_with_http_info(scope, **kwargs)  # noqa: E501
+        response = self.list_policy_collections_with_http_info(scope, **kwargs)
+        return response.data
 
     @validate_call
     def list_policy_collections_with_http_info(self, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[List[PolicyCollectionResponse]]:
@@ -1490,12 +1490,12 @@ class PoliciesApi:
         :return: Returns the result object.
         :rtype: ResourceListOfPolicyResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the page_policies_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.page_policies_with_http_info(sort_by, limit, filter, page, **kwargs)  # noqa: E501
+        response = self.page_policies_with_http_info(sort_by, limit, filter, page, **kwargs)
+        return response.data
 
     @validate_call
     def page_policies_with_http_info(self, sort_by: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfPolicyResponse]:
@@ -1634,12 +1634,12 @@ class PoliciesApi:
         :return: Returns the result object.
         :rtype: ResourceListOfPolicyCollectionResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the page_policy_collections_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.page_policy_collections_with_http_info(sort_by, limit, filter, page, **kwargs)  # noqa: E501
+        response = self.page_policy_collections_with_http_info(sort_by, limit, filter, page, **kwargs)
+        return response.data
 
     @validate_call
     def page_policy_collections_with_http_info(self, sort_by: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfPolicyCollectionResponse]:
@@ -1776,12 +1776,12 @@ class PoliciesApi:
         :return: Returns the result object.
         :rtype: PolicyCollectionResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the remove_from_policy_collection_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.remove_from_policy_collection_with_http_info(code, remove_from_policy_collection_request, scope, **kwargs)  # noqa: E501
+        response = self.remove_from_policy_collection_with_http_info(code, remove_from_policy_collection_request, scope, **kwargs)
+        return response.data
 
     @validate_call
     def remove_from_policy_collection_with_http_info(self, code: StrictStr, remove_from_policy_collection_request: RemoveFromPolicyCollectionRequest, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PolicyCollectionResponse]:
@@ -1919,12 +1919,12 @@ class PoliciesApi:
         :return: Returns the result object.
         :rtype: PolicyResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_policy_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_policy_with_http_info(code, policy_update_request, scope, **kwargs)  # noqa: E501
+        response = self.update_policy_with_http_info(code, policy_update_request, scope, **kwargs)
+        return response.data
 
     @validate_call
     def update_policy_with_http_info(self, code: StrictStr, policy_update_request: PolicyUpdateRequest, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PolicyResponse]:
@@ -2062,12 +2062,12 @@ class PoliciesApi:
         :return: Returns the result object.
         :rtype: PolicyCollectionResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_policy_collection_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_policy_collection_with_http_info(code, policy_collection_update_request, scope, **kwargs)  # noqa: E501
+        response = self.update_policy_collection_with_http_info(code, policy_collection_update_request, scope, **kwargs)
+        return response.data
 
     @validate_call
     def update_policy_collection_with_http_info(self, code: StrictStr, policy_collection_update_request: PolicyCollectionUpdateRequest, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PolicyCollectionResponse]:
@@ -2209,12 +2209,12 @@ class PoliciesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PolicyCollectionResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the add_to_policy_collection_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.add_to_policy_collection_with_http_info_async(code, add_to_policy_collection_request, scope, **kwargs)  # noqa: E501
+            response = await self.add_to_policy_collection_with_http_info_async(code, add_to_policy_collection_request, scope, **kwargs)
+            return response.data
 
     @validate_call
     async def add_to_policy_collection_with_http_info_async(self, code: StrictStr, add_to_policy_collection_request: AddToPolicyCollectionRequest, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PolicyCollectionResponse]:
@@ -2349,12 +2349,12 @@ class PoliciesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PolicyResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_policy_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_policy_with_http_info_async(policy_creation_request, **kwargs)  # noqa: E501
+            response = await self.create_policy_with_http_info_async(policy_creation_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_policy_with_http_info_async(self, policy_creation_request: PolicyCreationRequest, **kwargs) -> ApiResponse[PolicyResponse]:
@@ -2477,12 +2477,12 @@ class PoliciesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PolicyCollectionResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_policy_collection_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_policy_collection_with_http_info_async(policy_collection_creation_request, **kwargs)  # noqa: E501
+            response = await self.create_policy_collection_with_http_info_async(policy_collection_creation_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_policy_collection_with_http_info_async(self, policy_collection_creation_request: PolicyCollectionCreationRequest, **kwargs) -> ApiResponse[PolicyCollectionResponse]:
@@ -2607,15 +2607,15 @@ class PoliciesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: None
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_policy_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_policy_with_http_info_async(code, scope, **kwargs)  # noqa: E501
+            response = await self.delete_policy_with_http_info_async(code, scope, **kwargs)
+            return response.data
 
     @validate_call
-    async def delete_policy_with_http_info_async(self, code: StrictStr, scope: Optional[StrictStr] = None, **kwargs) -> None:
+    async def delete_policy_with_http_info_async(self, code: StrictStr, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[None]:
             """DeletePolicy: Delete Policy  # noqa: E501
 
             Deletes an identified Policy  # noqa: E501
@@ -2733,15 +2733,15 @@ class PoliciesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: None
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_policy_collection_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_policy_collection_with_http_info_async(code, scope, **kwargs)  # noqa: E501
+            response = await self.delete_policy_collection_with_http_info_async(code, scope, **kwargs)
+            return response.data
 
     @validate_call
-    async def delete_policy_collection_with_http_info_async(self, code: StrictStr, scope: Optional[StrictStr] = None, **kwargs) -> None:
+    async def delete_policy_collection_with_http_info_async(self, code: StrictStr, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[None]:
             """DeletePolicyCollection: Delete PolicyCollection  # noqa: E501
 
             Deletes an identified PolicyCollection  # noqa: E501
@@ -2859,12 +2859,12 @@ class PoliciesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Dict[str, EvaluationResponse]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the evaluate_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.evaluate_with_http_info_async(request_body, applications, **kwargs)  # noqa: E501
+            response = await self.evaluate_with_http_info_async(request_body, applications, **kwargs)
+            return response.data
 
     @validate_call
     async def evaluate_with_http_info_async(self, request_body: Dict[str, EvaluationRequest], applications: Optional[List[str]] = None, **kwargs) -> ApiResponse[Dict[str, EvaluationResponse]]:
@@ -2994,12 +2994,12 @@ class PoliciesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: List[AttachedPolicyDefinitionResponse]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_own_policies_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_own_policies_with_http_info_async(applications, **kwargs)  # noqa: E501
+            response = await self.get_own_policies_with_http_info_async(applications, **kwargs)
+            return response.data
 
     @validate_call
     async def get_own_policies_with_http_info_async(self, applications: Optional[List[str]] = None, **kwargs) -> ApiResponse[List[AttachedPolicyDefinitionResponse]]:
@@ -3120,12 +3120,12 @@ class PoliciesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PolicyResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_policy_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_policy_with_http_info_async(code, scope, as_at, **kwargs)  # noqa: E501
+            response = await self.get_policy_with_http_info_async(code, scope, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_policy_with_http_info_async(self, code: StrictStr, scope: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[PolicyResponse]:
@@ -3258,12 +3258,12 @@ class PoliciesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PolicyCollectionResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_policy_collection_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_policy_collection_with_http_info_async(code, scope, **kwargs)  # noqa: E501
+            response = await self.get_policy_collection_with_http_info_async(code, scope, **kwargs)
+            return response.data
 
     @validate_call
     async def get_policy_collection_with_http_info_async(self, code: StrictStr, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PolicyCollectionResponse]:
@@ -3385,12 +3385,12 @@ class PoliciesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: List[PolicyResponse]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_policies_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_policies_with_http_info_async(scope, **kwargs)  # noqa: E501
+            response = await self.list_policies_with_http_info_async(scope, **kwargs)
+            return response.data
 
     @validate_call
     async def list_policies_with_http_info_async(self, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[List[PolicyResponse]]:
@@ -3506,12 +3506,12 @@ class PoliciesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: List[PolicyCollectionResponse]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_policy_collections_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_policy_collections_with_http_info_async(scope, **kwargs)  # noqa: E501
+            response = await self.list_policy_collections_with_http_info_async(scope, **kwargs)
+            return response.data
 
     @validate_call
     async def list_policy_collections_with_http_info_async(self, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[List[PolicyCollectionResponse]]:
@@ -3633,12 +3633,12 @@ class PoliciesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfPolicyResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the page_policies_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.page_policies_with_http_info_async(sort_by, limit, filter, page, **kwargs)  # noqa: E501
+            response = await self.page_policies_with_http_info_async(sort_by, limit, filter, page, **kwargs)
+            return response.data
 
     @validate_call
     async def page_policies_with_http_info_async(self, sort_by: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfPolicyResponse]:
@@ -3778,12 +3778,12 @@ class PoliciesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfPolicyCollectionResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the page_policy_collections_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.page_policy_collections_with_http_info_async(sort_by, limit, filter, page, **kwargs)  # noqa: E501
+            response = await self.page_policy_collections_with_http_info_async(sort_by, limit, filter, page, **kwargs)
+            return response.data
 
     @validate_call
     async def page_policy_collections_with_http_info_async(self, sort_by: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfPolicyCollectionResponse]:
@@ -3921,12 +3921,12 @@ class PoliciesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PolicyCollectionResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the remove_from_policy_collection_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.remove_from_policy_collection_with_http_info_async(code, remove_from_policy_collection_request, scope, **kwargs)  # noqa: E501
+            response = await self.remove_from_policy_collection_with_http_info_async(code, remove_from_policy_collection_request, scope, **kwargs)
+            return response.data
 
     @validate_call
     async def remove_from_policy_collection_with_http_info_async(self, code: StrictStr, remove_from_policy_collection_request: RemoveFromPolicyCollectionRequest, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PolicyCollectionResponse]:
@@ -4065,12 +4065,12 @@ class PoliciesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PolicyResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_policy_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_policy_with_http_info_async(code, policy_update_request, scope, **kwargs)  # noqa: E501
+            response = await self.update_policy_with_http_info_async(code, policy_update_request, scope, **kwargs)
+            return response.data
 
     @validate_call
     async def update_policy_with_http_info_async(self, code: StrictStr, policy_update_request: PolicyUpdateRequest, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PolicyResponse]:
@@ -4209,12 +4209,12 @@ class PoliciesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PolicyCollectionResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_policy_collection_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_policy_collection_with_http_info_async(code, policy_collection_update_request, scope, **kwargs)  # noqa: E501
+            response = await self.update_policy_collection_with_http_info_async(code, policy_collection_update_request, scope, **kwargs)
+            return response.data
 
     @validate_call
     async def update_policy_collection_with_http_info_async(self, code: StrictStr, policy_collection_update_request: PolicyCollectionUpdateRequest, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PolicyCollectionResponse]:

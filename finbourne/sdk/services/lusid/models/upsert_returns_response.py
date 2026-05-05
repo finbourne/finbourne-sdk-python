@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class UpsertReturnsResponse(BaseModel):
     values: Optional[List[Dict[str, datetime]]] = Field(default=None, description="The set of values that were successfully retrieved.")
     failed: Optional[List[Dict[str, ErrorDetail]]] = Field(default=None, description="The set of values that could not be retrieved due along with a reason for this, e.g badly formed request.")
     links: Optional[List[Link]] = None
-    __properties = ["version", "href", "values", "failed", "links"]
+    __properties: ClassVar[List[str]] = ["version", "href", "values", "failed", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -119,11 +119,11 @@ class UpsertReturnsResponse(BaseModel):
             return UpsertReturnsResponse.model_validate(obj)
 
         _obj = UpsertReturnsResponse.model_validate({
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
             "href": obj.get("href"),
             "values": obj.get("values"),
-            "failed": [Dict[str, ErrorDetail].from_dict(_item) for _item in obj.get("failed")] if obj.get("failed") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "failed": [Dict[str, ErrorDetail].from_dict(_item) for _item in _v] if (_v := obj.get("failed")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

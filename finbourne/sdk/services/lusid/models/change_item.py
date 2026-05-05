@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class ChangeItem(BaseModel):
     new_value:  Optional[StrictStr] = Field(default=None,alias="newValue", description="The new value for this field / property.") 
     effective_from: Optional[datetime] = Field(default=None, description="The market data time, i.e. the time to run the change from.", alias="effectiveFrom")
     effective_until: Optional[datetime] = Field(default=None, description="The market data time, i.e. the time to run the change until.", alias="effectiveUntil")
-    __properties = ["fieldName", "previousValue", "newValue", "effectiveFrom", "effectiveUntil"]
+    __properties: ClassVar[List[str]] = ["fieldName", "previousValue", "newValue", "effectiveFrom", "effectiveUntil"]
 
     model_config = ConfigDict(
         populate_by_name=True,

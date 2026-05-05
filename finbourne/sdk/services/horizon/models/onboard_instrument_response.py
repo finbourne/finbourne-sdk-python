@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class OnboardInstrumentResponse(BaseModel):
     href:  Optional[StrictStr] = Field(default=None,alias="href", description="The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime.") 
     values: List[StrictStr] = Field(description="The instruments which have been successfully updated or created.")
     failed: Dict[str, StrictStr] = Field(description="The instruments that could not be updated or created or were left unchanged without error along with a reason for their failure.")
-    __properties = ["href", "values", "failed"]
+    __properties: ClassVar[List[str]] = ["href", "values", "failed"]
 
     model_config = ConfigDict(
         populate_by_name=True,

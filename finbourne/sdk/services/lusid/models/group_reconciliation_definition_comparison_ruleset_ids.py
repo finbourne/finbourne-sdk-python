@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class GroupReconciliationDefinitionComparisonRulesetIds(BaseModel):
     holding_reconciliation: Optional[ResourceId] = Field(default=None, alias="holdingReconciliation")
     valuation_reconciliation: Optional[ResourceId] = Field(default=None, alias="valuationReconciliation")
     cash_holding_reconciliation: Optional[ResourceId] = Field(default=None, alias="cashHoldingReconciliation")
-    __properties = ["transactionReconciliation", "holdingReconciliation", "valuationReconciliation", "cashHoldingReconciliation"]
+    __properties: ClassVar[List[str]] = ["transactionReconciliation", "holdingReconciliation", "valuationReconciliation", "cashHoldingReconciliation"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,10 +91,10 @@ class GroupReconciliationDefinitionComparisonRulesetIds(BaseModel):
             return GroupReconciliationDefinitionComparisonRulesetIds.model_validate(obj)
 
         _obj = GroupReconciliationDefinitionComparisonRulesetIds.model_validate({
-            "transaction_reconciliation": ResourceId.from_dict(obj.get("transactionReconciliation")) if obj.get("transactionReconciliation") is not None else None,
-            "holding_reconciliation": ResourceId.from_dict(obj.get("holdingReconciliation")) if obj.get("holdingReconciliation") is not None else None,
-            "valuation_reconciliation": ResourceId.from_dict(obj.get("valuationReconciliation")) if obj.get("valuationReconciliation") is not None else None,
-            "cash_holding_reconciliation": ResourceId.from_dict(obj.get("cashHoldingReconciliation")) if obj.get("cashHoldingReconciliation") is not None else None
+            "transaction_reconciliation": ResourceId.from_dict(_v) if (_v := obj.get("transactionReconciliation")) is not None else None,
+            "holding_reconciliation": ResourceId.from_dict(_v) if (_v := obj.get("holdingReconciliation")) is not None else None,
+            "valuation_reconciliation": ResourceId.from_dict(_v) if (_v := obj.get("valuationReconciliation")) is not None else None,
+            "cash_holding_reconciliation": ResourceId.from_dict(_v) if (_v := obj.get("cashHoldingReconciliation")) is not None else None
         })
         return _obj
 

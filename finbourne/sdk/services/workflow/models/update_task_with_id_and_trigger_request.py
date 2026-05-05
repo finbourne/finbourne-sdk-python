@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class UpdateTaskWithIdAndTriggerRequest(BaseModel):
     fields: Optional[List[TaskInstanceField]] = Field(default=None, description="Defines the fields associated with the update")
     stacking_key:  Optional[StrictStr] = Field(default=None,alias="stackingKey", description="The key for the Stack that this Task should be added to") 
     trigger_name:  Optional[StrictStr] = Field(default=None,alias="triggerName", description="The trigger we want to update the task with") 
-    __properties = ["taskInstanceId", "correlationIds", "fields", "stackingKey", "triggerName"]
+    __properties: ClassVar[List[str]] = ["taskInstanceId", "correlationIds", "fields", "stackingKey", "triggerName"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -114,7 +114,7 @@ class UpdateTaskWithIdAndTriggerRequest(BaseModel):
         _obj = UpdateTaskWithIdAndTriggerRequest.model_validate({
             "task_instance_id": obj.get("taskInstanceId"),
             "correlation_ids": obj.get("correlationIds"),
-            "fields": [TaskInstanceField.from_dict(_item) for _item in obj.get("fields")] if obj.get("fields") is not None else None,
+            "fields": [TaskInstanceField.from_dict(_item) for _item in _v] if (_v := obj.get("fields")) is not None else None,
             "stacking_key": obj.get("stackingKey"),
             "trigger_name": obj.get("triggerName")
         })

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class CreateCustomEntityTypeRequest(BaseModel):
     display_name:  StrictStr = Field(...,alias="displayName", description="A display label for the custom entity type.") 
     description:  StrictStr = Field(...,alias="description", description="A description for the custom entity type.") 
     field_schema: List[CustomEntityFieldDefinition] = Field(description="The description of the fields on the custom entity type.", alias="fieldSchema")
-    __properties = ["entityTypeName", "displayName", "description", "fieldSchema"]
+    __properties: ClassVar[List[str]] = ["entityTypeName", "displayName", "description", "fieldSchema"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -89,7 +89,7 @@ class CreateCustomEntityTypeRequest(BaseModel):
             "entity_type_name": obj.get("entityTypeName"),
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
-            "field_schema": [CustomEntityFieldDefinition.from_dict(_item) for _item in obj.get("fieldSchema")] if obj.get("fieldSchema") is not None else None
+            "field_schema": [CustomEntityFieldDefinition.from_dict(_item) for _item in _v] if (_v := obj.get("fieldSchema")) is not None else None
         })
         return _obj
 

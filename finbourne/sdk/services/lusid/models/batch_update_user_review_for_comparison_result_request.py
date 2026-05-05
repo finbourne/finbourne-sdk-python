@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class BatchUpdateUserReviewForComparisonResultRequest(BaseModel):
     comparison_result_id:  StrictStr = Field(...,alias="comparisonResultId", description="Comparison result identifier, encoded value for core attribute results, aggregate attribute results, reconciliation type and run instanceId.") 
     user_review_add: Optional[GroupReconciliationUserReviewAdd] = Field(default=None, alias="userReviewAdd")
     user_review_remove: Optional[GroupReconciliationUserReviewRemove] = Field(default=None, alias="userReviewRemove")
-    __properties = ["comparisonResultId", "userReviewAdd", "userReviewRemove"]
+    __properties: ClassVar[List[str]] = ["comparisonResultId", "userReviewAdd", "userReviewRemove"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -86,8 +86,8 @@ class BatchUpdateUserReviewForComparisonResultRequest(BaseModel):
 
         _obj = BatchUpdateUserReviewForComparisonResultRequest.model_validate({
             "comparison_result_id": obj.get("comparisonResultId"),
-            "user_review_add": GroupReconciliationUserReviewAdd.from_dict(obj.get("userReviewAdd")) if obj.get("userReviewAdd") is not None else None,
-            "user_review_remove": GroupReconciliationUserReviewRemove.from_dict(obj.get("userReviewRemove")) if obj.get("userReviewRemove") is not None else None
+            "user_review_add": GroupReconciliationUserReviewAdd.from_dict(_v) if (_v := obj.get("userReviewAdd")) is not None else None,
+            "user_review_remove": GroupReconciliationUserReviewRemove.from_dict(_v) if (_v := obj.get("userReviewRemove")) is not None else None
         })
         return _obj
 

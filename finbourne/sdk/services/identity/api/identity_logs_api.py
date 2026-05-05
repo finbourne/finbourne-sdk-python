@@ -73,12 +73,12 @@ class IdentityLogsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfSystemLog
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_logs_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_logs_with_http_info(okta_since, okta_until, okta_filter, okta_query, okta_limit, okta_sort_order, okta_after, **kwargs)  # noqa: E501
+        response = self.list_logs_with_http_info(okta_since, okta_until, okta_filter, okta_query, okta_limit, okta_sort_order, okta_after, **kwargs)
+        return response.data
 
     @validate_call
     def list_logs_with_http_info(self, okta_since: Optional[datetime] = None, okta_until: Optional[datetime] = None, okta_filter: Optional[StrictStr] = None, okta_query: Optional[StrictStr] = None, okta_limit: Optional[int] = None, okta_sort_order: Optional[StrictStr] = None, okta_after: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfSystemLog]:
@@ -243,12 +243,12 @@ class IdentityLogsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfSystemLog
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_user_logs_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_user_logs_with_http_info(okta_since, okta_until, okta_limit, okta_sort_order, okta_after, **kwargs)  # noqa: E501
+        response = self.list_user_logs_with_http_info(okta_since, okta_until, okta_limit, okta_sort_order, okta_after, **kwargs)
+        return response.data
 
     @validate_call
     def list_user_logs_with_http_info(self, okta_since: Optional[datetime] = None, okta_until: Optional[datetime] = None, okta_limit: Optional[int] = None, okta_sort_order: Optional[StrictStr] = None, okta_after: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfSystemLog]:
@@ -409,12 +409,12 @@ class IdentityLogsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfSystemLog
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_logs_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_logs_with_http_info_async(okta_since, okta_until, okta_filter, okta_query, okta_limit, okta_sort_order, okta_after, **kwargs)  # noqa: E501
+            response = await self.list_logs_with_http_info_async(okta_since, okta_until, okta_filter, okta_query, okta_limit, okta_sort_order, okta_after, **kwargs)
+            return response.data
 
     @validate_call
     async def list_logs_with_http_info_async(self, okta_since: Optional[datetime] = None, okta_until: Optional[datetime] = None, okta_filter: Optional[StrictStr] = None, okta_query: Optional[StrictStr] = None, okta_limit: Optional[int] = None, okta_sort_order: Optional[StrictStr] = None, okta_after: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfSystemLog]:
@@ -580,12 +580,12 @@ class IdentityLogsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfSystemLog
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_user_logs_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_user_logs_with_http_info_async(okta_since, okta_until, okta_limit, okta_sort_order, okta_after, **kwargs)  # noqa: E501
+            response = await self.list_user_logs_with_http_info_async(okta_since, okta_until, okta_limit, okta_sort_order, okta_after, **kwargs)
+            return response.data
 
     @validate_call
     async def list_user_logs_with_http_info_async(self, okta_since: Optional[datetime] = None, okta_until: Optional[datetime] = None, okta_limit: Optional[int] = None, okta_sort_order: Optional[StrictStr] = None, okta_after: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfSystemLog]:

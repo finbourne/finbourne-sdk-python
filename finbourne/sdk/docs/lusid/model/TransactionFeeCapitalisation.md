@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **capitalisation** | **str** | Optional | Whether the transaction fee should be capitalised, not capitalised, or conditionally capitalised. The allowed values are Capitalised, NonCapitalised, Conditional. |
+| **capitalisation** | **str** | Optional | Whether the transaction fee should be capitalised, not capitalised, or conditionally capitalised. Available values: Capitalised, NonCapitalised, Conditional. |
 | **capitalised_condition** | **str** | Optional | The condition that determines whether the fee is capitalised when applied to the transaction. Required only when Capitalisation is &#39;Conditional&#39;. |
 
 
@@ -16,7 +16,7 @@
 from finbourne.sdk.services.lusid.models.TransactionFeeCapitalisation import TransactionFeeCapitalisation
 
 instance = TransactionFeeCapitalisation(
-    capitalisation="...",  # optional — Whether the transaction fee should be capitalised, not capitalised, or conditionally capitalised. The allowed values are Capitalised, NonCapitalised, Conditional.
+    capitalisation="...",  # optional — Whether the transaction fee should be capitalised, not capitalised, or conditionally capitalised. Available values: Capitalised, NonCapitalised, Conditional.
     capitalised_condition="..."  # optional — The condition that determines whether the fee is capitalised when applied to the transaction. Required only when Capitalisation is &#39;Conditional&#39;.
 )
 ```

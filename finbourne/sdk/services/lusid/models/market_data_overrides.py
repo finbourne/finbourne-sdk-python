@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class MarketDataOverrides(BaseModel):
     """
     complex_market_data: Optional[List[EconomicDependencyWithComplexMarketData]] = Field(default=None, description="A list of EconomicDependency paired with quote data satisfying that economic dependency", alias="complexMarketData")
     quotes: Optional[List[EconomicDependencyWithQuote]] = Field(default=None, description="A list of EconomicDependency paired with a ComplexMarketData satisfying that economic dependency")
-    __properties = ["complexMarketData", "quotes"]
+    __properties: ClassVar[List[str]] = ["complexMarketData", "quotes"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -102,8 +102,8 @@ class MarketDataOverrides(BaseModel):
             return MarketDataOverrides.model_validate(obj)
 
         _obj = MarketDataOverrides.model_validate({
-            "complex_market_data": [EconomicDependencyWithComplexMarketData.from_dict(_item) for _item in obj.get("complexMarketData")] if obj.get("complexMarketData") is not None else None,
-            "quotes": [EconomicDependencyWithQuote.from_dict(_item) for _item in obj.get("quotes")] if obj.get("quotes") is not None else None
+            "complex_market_data": [EconomicDependencyWithComplexMarketData.from_dict(_item) for _item in _v] if (_v := obj.get("complexMarketData")) is not None else None,
+            "quotes": [EconomicDependencyWithQuote.from_dict(_item) for _item in _v] if (_v := obj.get("quotes")) is not None else None
         })
         return _obj
 

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class NotificationStatus(BaseModel):
     """
     result:  Optional[StrictStr] = Field(default=None,alias="result", description="The status of the notification") 
     last_updated: Optional[datetime] = Field(default=None, description="The time at which the notification status was last updated", alias="lastUpdated")
-    __properties = ["result", "lastUpdated"]
+    __properties: ClassVar[List[str]] = ["result", "lastUpdated"]
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class ConvertToViewData(BaseModel):
     view_parameters: Optional[List[ViewParameter]] = Field(default=None, description="View parameters", alias="viewParameters")
     other_parameters: Optional[Dict[str, Optional[StrictStr]]] = Field(default=None, description="Other parameters not explicitly handled by the ConvertToView generation. These will be populated by the \"From SQL\" and should simply be returned by the web GUI should the user edit / update / regenerate", alias="otherParameters")
     starting_variable_name:  Optional[StrictStr] = Field(default=None,alias="startingVariableName", description="Which variable the this start with, null if not started from a full Create View Sql Statement.") 
-    __properties = ["query", "name", "description", "documentationLink", "viewParameters", "otherParameters", "startingVariableName"]
+    __properties: ClassVar[List[str]] = ["query", "name", "description", "documentationLink", "viewParameters", "otherParameters", "startingVariableName"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -118,7 +118,7 @@ class ConvertToViewData(BaseModel):
             "name": obj.get("name"),
             "description": obj.get("description"),
             "documentation_link": obj.get("documentationLink"),
-            "view_parameters": [ViewParameter.from_dict(_item) for _item in obj.get("viewParameters")] if obj.get("viewParameters") is not None else None,
+            "view_parameters": [ViewParameter.from_dict(_item) for _item in _v] if (_v := obj.get("viewParameters")) is not None else None,
             "other_parameters": obj.get("otherParameters"),
             "starting_variable_name": obj.get("startingVariableName")
         })

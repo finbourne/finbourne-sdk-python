@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class UpdateInstrumentIdentifierRequest(BaseModel):
     type:  StrictStr = Field(...,alias="type", description="The allowable instrument identifier to update, insert or remove e.g. 'Figi'.") 
     value:  Optional[StrictStr] = Field(default=None,alias="value", description="The new value of the allowable instrument identifier. If unspecified the identifier will be removed from the instrument.") 
     effective_at:  Optional[StrictStr] = Field(default=None,alias="effectiveAt", description="The effective datetime from which the identifier should be updated, inserted or removed. Defaults to the current LUSID system datetime if not specified.") 
-    __properties = ["type", "value", "effectiveAt"]
+    __properties: ClassVar[List[str]] = ["type", "value", "effectiveAt"]
 
     model_config = ConfigDict(
         populate_by_name=True,

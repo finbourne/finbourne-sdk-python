@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class UpdateStagingRuleSetRequest(BaseModel):
     display_name:  StrictStr = Field(...,alias="displayName", description="The name of the staging rule set.") 
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="A description for the staging rule set.") 
     rules: List[StagingRule] = Field(description="The list of staging rules that apply to a specific entity type.")
-    __properties = ["displayName", "description", "rules"]
+    __properties: ClassVar[List[str]] = ["displayName", "description", "rules"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -92,7 +92,7 @@ class UpdateStagingRuleSetRequest(BaseModel):
         _obj = UpdateStagingRuleSetRequest.model_validate({
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
-            "rules": [StagingRule.from_dict(_item) for _item in obj.get("rules")] if obj.get("rules") is not None else None
+            "rules": [StagingRule.from_dict(_item) for _item in _v] if (_v := obj.get("rules")) is not None else None
         })
         return _obj
 

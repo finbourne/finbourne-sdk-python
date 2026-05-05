@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,9 +29,9 @@ class AccessMetadataOperation(BaseModel):
     """
     value: List[AccessMetadataValue]
     path:  StrictStr = Field(...,alias="path") 
-    op:  StrictStr = Field(...,alias="op", description="The available values are: add, remove") 
+    op:  StrictStr = Field(...,alias="op", description="Available values: add, remove.") 
     var_from:  Optional[StrictStr] = Field(default=None,alias="from") 
-    __properties = ["value", "path", "op", "from"]
+    __properties: ClassVar[List[str]] = ["value", "path", "op", "from"]
 
     @field_validator('op')
     def op_validate_enum(cls, value):
@@ -160,7 +160,7 @@ class AccessMetadataOperation(BaseModel):
             return AccessMetadataOperation.model_validate(obj)
 
         _obj = AccessMetadataOperation.model_validate({
-            "value": [AccessMetadataValue.from_dict(_item) for _item in obj.get("value")] if obj.get("value") is not None else None,
+            "value": [AccessMetadataValue.from_dict(_item) for _item in _v] if (_v := obj.get("value")) is not None else None,
             "path": obj.get("path"),
             "op": obj.get("op"),
             "var_from": obj.get("from")

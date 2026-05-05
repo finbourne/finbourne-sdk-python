@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class GroupReconciliationDefinitionPortfolioEntityIds(BaseModel):
     """
     left: List[PortfolioEntityId] = Field(description="Portfolio Entity Id of the left side of a reconciliation")
     right: List[PortfolioEntityId] = Field(description="Portfolio Entity Id of the right side of a reconciliation")
-    __properties = ["left", "right"]
+    __properties: ClassVar[List[str]] = ["left", "right"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,8 +91,8 @@ class GroupReconciliationDefinitionPortfolioEntityIds(BaseModel):
             return GroupReconciliationDefinitionPortfolioEntityIds.model_validate(obj)
 
         _obj = GroupReconciliationDefinitionPortfolioEntityIds.model_validate({
-            "left": [PortfolioEntityId.from_dict(_item) for _item in obj.get("left")] if obj.get("left") is not None else None,
-            "right": [PortfolioEntityId.from_dict(_item) for _item in obj.get("right")] if obj.get("right") is not None else None
+            "left": [PortfolioEntityId.from_dict(_item) for _item in _v] if (_v := obj.get("left")) is not None else None,
+            "right": [PortfolioEntityId.from_dict(_item) for _item in _v] if (_v := obj.get("right")) is not None else None
         })
         return _obj
 

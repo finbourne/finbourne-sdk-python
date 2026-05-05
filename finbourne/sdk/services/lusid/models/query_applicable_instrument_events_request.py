@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class QueryApplicableInstrumentEventsRequest(BaseModel):
     effective_at: datetime = Field(description="The Effective date that splits query window into two parts: factual period and forecast period", alias="effectiveAt")
     portfolio_entity_ids: List[PortfolioEntityId] = Field(description="The set of portfolios and portfolio groups to which the instrument events must belong.", alias="portfolioEntityIds")
     forecasting_recipe_id: ResourceId = Field(alias="forecastingRecipeId")
-    __properties = ["windowStart", "windowEnd", "effectiveAt", "portfolioEntityIds", "forecastingRecipeId"]
+    __properties: ClassVar[List[str]] = ["windowStart", "windowEnd", "effectiveAt", "portfolioEntityIds", "forecastingRecipeId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -94,8 +94,8 @@ class QueryApplicableInstrumentEventsRequest(BaseModel):
             "window_start": obj.get("windowStart"),
             "window_end": obj.get("windowEnd"),
             "effective_at": obj.get("effectiveAt"),
-            "portfolio_entity_ids": [PortfolioEntityId.from_dict(_item) for _item in obj.get("portfolioEntityIds")] if obj.get("portfolioEntityIds") is not None else None,
-            "forecasting_recipe_id": ResourceId.from_dict(obj.get("forecastingRecipeId")) if obj.get("forecastingRecipeId") is not None else None
+            "portfolio_entity_ids": [PortfolioEntityId.from_dict(_item) for _item in _v] if (_v := obj.get("portfolioEntityIds")) is not None else None,
+            "forecasting_recipe_id": ResourceId.from_dict(_v) if (_v := obj.get("forecastingRecipeId")) is not None else None
         })
         return _obj
 

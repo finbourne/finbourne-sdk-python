@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,15 +30,15 @@ class CustodianAccountRequest(BaseModel):
     """
     scope:  Optional[StrictStr] = Field(default=None,alias="scope", description="The Scope assigned to the Custodian Account, where left blank the parent Portfolio Scope will be used") 
     code:  StrictStr = Field(...,alias="code", description="Unique Code representing the Custodian Account") 
-    status:  Optional[StrictStr] = Field(default=None,alias="status", description="The Account status. Can be Active, Inactive or Deleted.") 
+    status:  Optional[StrictStr] = Field(default=None,alias="status", description="The Account status. Available values: Active, Inactive, Deleted.") 
     account_number:  StrictStr = Field(...,alias="accountNumber", description="The Custodian Account Number") 
     account_name:  StrictStr = Field(...,alias="accountName", description="The identifiable name given to the Custodian Account") 
-    accounting_method:  StrictStr = Field(...,alias="accountingMethod", description="The Accounting method to be used") 
+    accounting_method:  StrictStr = Field(...,alias="accountingMethod", description="The Accounting method to be used. Available values: Default, AverageCost, FirstInFirstOut, LastInFirstOut, HighestCostFirst, LowestCostFirst, ProRateByUnits, ProRateByCost, ProRateByCostPortfolioCurrency, IntraDayThenFirstInFirstOut, LongTermHighestCostFirst, LongTermHighestCostFirstPortfolioCurrency, HighestCostFirstPortfolioCurrency, LowestCostFirstPortfolioCurrency, MaximumLossMinimumGain, MaximumLossMinimumGainPortfolioCurrency.") 
     currency:  StrictStr = Field(...,alias="currency", description="The Currency for the Account") 
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="Set of unique Custodian Account properties and associated values to store with the Custodian Account. Each property must be from the 'CustodianAccount' domain.")
     custodian_identifier: TypedResourceId = Field(alias="custodianIdentifier")
-    account_type:  Optional[StrictStr] = Field(default=None,alias="accountType", description="The Type of the Custodian Account. Can be Margin, Cash or Swap. Defaults to Margin.") 
-    __properties = ["scope", "code", "status", "accountNumber", "accountName", "accountingMethod", "currency", "properties", "custodianIdentifier", "accountType"]
+    account_type:  Optional[StrictStr] = Field(default=None,alias="accountType", description="The Type of the Custodian Account. Default value: Margin. Available values: Margin, Cash, Swap.") 
+    __properties: ClassVar[List[str]] = ["scope", "code", "status", "accountNumber", "accountName", "accountingMethod", "currency", "properties", "custodianIdentifier", "accountType"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -125,11 +125,11 @@ class CustodianAccountRequest(BaseModel):
             "currency": obj.get("currency"),
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
-            "custodian_identifier": TypedResourceId.from_dict(obj.get("custodianIdentifier")) if obj.get("custodianIdentifier") is not None else None,
+            "custodian_identifier": TypedResourceId.from_dict(_v) if (_v := obj.get("custodianIdentifier")) is not None else None,
             "account_type": obj.get("accountType")
         })
         return _obj

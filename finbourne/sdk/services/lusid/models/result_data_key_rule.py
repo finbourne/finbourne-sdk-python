@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -35,9 +35,9 @@ class ResultDataKeyRule(ResultKeyRule):
     resource_key:  StrictStr = Field(...,alias="resourceKey", description="The result data key that identifies the address pattern that this is a rule for") 
     document_result_type:  StrictStr = Field(...,alias="documentResultType") 
     use_document_to_infer_holdings: Optional[StrictBool] = Field(default=None, description="Indicates whether the relevant document should be used to infer the set of holdings in the valuation.", alias="useDocumentToInferHoldings")
-    result_key_rule_type:  StrictStr = Field(...,alias="resultKeyRuleType", description="The available values are: Invalid, ResultDataKeyRule, PortfolioResultDataKeyRule") 
+    result_key_rule_type:  StrictStr = Field(...,alias="resultKeyRuleType", description="Available values: Invalid, ResultDataKeyRule, PortfolioResultDataKeyRule.") 
     additional_properties: Dict[str, Any] = {}
-    __properties = ["resultKeyRuleType", "supplier", "dataScope", "documentCode", "quoteInterval", "asAt", "resourceKey", "documentResultType", "useDocumentToInferHoldings"]
+    __properties: ClassVar[List[str]] = ["resultKeyRuleType", "supplier", "dataScope", "documentCode", "quoteInterval", "asAt", "resourceKey", "documentResultType", "useDocumentToInferHoldings"]
 
     @field_validator('result_key_rule_type')
     def result_key_rule_type_validate_enum(cls, value):
@@ -181,13 +181,8 @@ class ResultDataKeyRule(ResultKeyRule):
             "use_document_to_infer_holdings": obj.get("useDocumentToInferHoldings")
         })
         # store additional fields in additional_properties
-        
-        properties = cls.__properties
-        if not isinstance(cls.__properties, dict) and getattr(cls.__properties, 'default', None):
-            properties = cls.__properties.default
-    
         for _key in obj.keys():
-            if _key not in properties:
+            if _key not in cls.__properties:
                 _obj.additional_properties[_key] = obj.get(_key)
 
         return _obj

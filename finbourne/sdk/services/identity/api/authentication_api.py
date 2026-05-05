@@ -64,12 +64,12 @@ class AuthenticationApi:
         :return: Returns the result object.
         :rtype: AuthenticationInformation
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_authentication_information_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_authentication_information_with_http_info(**kwargs)  # noqa: E501
+        response = self.get_authentication_information_with_http_info(**kwargs)
+        return response.data
 
     @validate_call
     def get_authentication_information_with_http_info(self, **kwargs) -> ApiResponse[AuthenticationInformation]:
@@ -177,12 +177,12 @@ class AuthenticationApi:
         :return: Returns the result object.
         :rtype: PasswordPolicyResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_password_policy_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_password_policy_with_http_info(user_type, **kwargs)  # noqa: E501
+        response = self.get_password_policy_with_http_info(user_type, **kwargs)
+        return response.data
 
     @validate_call
     def get_password_policy_with_http_info(self, user_type: StrictStr, **kwargs) -> ApiResponse[PasswordPolicyResponse]:
@@ -299,12 +299,12 @@ class AuthenticationApi:
         :return: Returns the result object.
         :rtype: List[SupportAccessResponse]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_support_access_history_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_support_access_history_with_http_info(start, end, **kwargs)  # noqa: E501
+        response = self.get_support_access_history_with_http_info(start, end, **kwargs)
+        return response.data
 
     @validate_call
     def get_support_access_history_with_http_info(self, start: Optional[datetime] = None, end: Optional[datetime] = None, **kwargs) -> ApiResponse[List[SupportAccessResponse]]:
@@ -429,12 +429,12 @@ class AuthenticationApi:
         :return: Returns the result object.
         :rtype: SupportRolesResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_support_roles_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_support_roles_with_http_info(**kwargs)  # noqa: E501
+        response = self.get_support_roles_with_http_info(**kwargs)
+        return response.data
 
     @validate_call
     def get_support_roles_with_http_info(self, **kwargs) -> ApiResponse[SupportRolesResponse]:
@@ -542,12 +542,12 @@ class AuthenticationApi:
         :return: Returns the result object.
         :rtype: SupportAccessResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the grant_support_access_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.grant_support_access_with_http_info(support_access_request, **kwargs)  # noqa: E501
+        response = self.grant_support_access_with_http_info(support_access_request, **kwargs)
+        return response.data
 
     @validate_call
     def grant_support_access_with_http_info(self, support_access_request: SupportAccessRequest, **kwargs) -> ApiResponse[SupportAccessResponse]:
@@ -667,12 +667,12 @@ class AuthenticationApi:
         :return: Returns the result object.
         :rtype: List[SupportAccessResponse]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the invalidate_support_access_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.invalidate_support_access_with_http_info(**kwargs)  # noqa: E501
+        response = self.invalidate_support_access_with_http_info(**kwargs)
+        return response.data
 
     @validate_call
     def invalidate_support_access_with_http_info(self, **kwargs) -> ApiResponse[List[SupportAccessResponse]]:
@@ -782,12 +782,12 @@ class AuthenticationApi:
         :return: Returns the result object.
         :rtype: PasswordPolicyResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_password_policy_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_password_policy_with_http_info(user_type, update_password_policy_request, **kwargs)  # noqa: E501
+        response = self.update_password_policy_with_http_info(user_type, update_password_policy_request, **kwargs)
+        return response.data
 
     @validate_call
     def update_password_policy_with_http_info(self, user_type: StrictStr, update_password_policy_request: Optional[UpdatePasswordPolicyRequest] = None, **kwargs) -> ApiResponse[PasswordPolicyResponse]:
@@ -917,12 +917,12 @@ class AuthenticationApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: AuthenticationInformation
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_authentication_information_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_authentication_information_with_http_info_async(**kwargs)  # noqa: E501
+            response = await self.get_authentication_information_with_http_info_async(**kwargs)
+            return response.data
 
     @validate_call
     async def get_authentication_information_with_http_info_async(self, **kwargs) -> ApiResponse[AuthenticationInformation]:
@@ -1031,12 +1031,12 @@ class AuthenticationApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PasswordPolicyResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_password_policy_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_password_policy_with_http_info_async(user_type, **kwargs)  # noqa: E501
+            response = await self.get_password_policy_with_http_info_async(user_type, **kwargs)
+            return response.data
 
     @validate_call
     async def get_password_policy_with_http_info_async(self, user_type: StrictStr, **kwargs) -> ApiResponse[PasswordPolicyResponse]:
@@ -1154,12 +1154,12 @@ class AuthenticationApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: List[SupportAccessResponse]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_support_access_history_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_support_access_history_with_http_info_async(start, end, **kwargs)  # noqa: E501
+            response = await self.get_support_access_history_with_http_info_async(start, end, **kwargs)
+            return response.data
 
     @validate_call
     async def get_support_access_history_with_http_info_async(self, start: Optional[datetime] = None, end: Optional[datetime] = None, **kwargs) -> ApiResponse[List[SupportAccessResponse]]:
@@ -1285,12 +1285,12 @@ class AuthenticationApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: SupportRolesResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_support_roles_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_support_roles_with_http_info_async(**kwargs)  # noqa: E501
+            response = await self.get_support_roles_with_http_info_async(**kwargs)
+            return response.data
 
     @validate_call
     async def get_support_roles_with_http_info_async(self, **kwargs) -> ApiResponse[SupportRolesResponse]:
@@ -1399,12 +1399,12 @@ class AuthenticationApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: SupportAccessResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the grant_support_access_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.grant_support_access_with_http_info_async(support_access_request, **kwargs)  # noqa: E501
+            response = await self.grant_support_access_with_http_info_async(support_access_request, **kwargs)
+            return response.data
 
     @validate_call
     async def grant_support_access_with_http_info_async(self, support_access_request: SupportAccessRequest, **kwargs) -> ApiResponse[SupportAccessResponse]:
@@ -1525,12 +1525,12 @@ class AuthenticationApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: List[SupportAccessResponse]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the invalidate_support_access_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.invalidate_support_access_with_http_info_async(**kwargs)  # noqa: E501
+            response = await self.invalidate_support_access_with_http_info_async(**kwargs)
+            return response.data
 
     @validate_call
     async def invalidate_support_access_with_http_info_async(self, **kwargs) -> ApiResponse[List[SupportAccessResponse]]:
@@ -1641,12 +1641,12 @@ class AuthenticationApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PasswordPolicyResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_password_policy_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_password_policy_with_http_info_async(user_type, update_password_policy_request, **kwargs)  # noqa: E501
+            response = await self.update_password_policy_with_http_info_async(user_type, update_password_policy_request, **kwargs)
+            return response.data
 
     @validate_call
     async def update_password_policy_with_http_info_async(self, user_type: StrictStr, update_password_policy_request: Optional[UpdatePasswordPolicyRequest] = None, **kwargs) -> ApiResponse[PasswordPolicyResponse]:

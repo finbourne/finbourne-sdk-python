@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class LogAuthenticationContext(BaseModel):
     interface:  Optional[StrictStr] = Field(default=None,alias="interface") 
     authentication_step: Optional[StrictInt] = Field(default=None, alias="authenticationStep")
     external_session_id:  Optional[StrictStr] = Field(default=None,alias="externalSessionId") 
-    __properties = ["authenticationProvider", "credentialProvider", "credentialType", "issuer", "interface", "authenticationStep", "externalSessionId"]
+    __properties: ClassVar[List[str]] = ["authenticationProvider", "credentialProvider", "credentialType", "issuer", "interface", "authenticationStep", "externalSessionId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -118,7 +118,7 @@ class LogAuthenticationContext(BaseModel):
             "authentication_provider": obj.get("authenticationProvider"),
             "credential_provider": obj.get("credentialProvider"),
             "credential_type": obj.get("credentialType"),
-            "issuer": LogIssuer.from_dict(obj.get("issuer")) if obj.get("issuer") is not None else None,
+            "issuer": LogIssuer.from_dict(_v) if (_v := obj.get("issuer")) is not None else None,
             "interface": obj.get("interface"),
             "authentication_step": obj.get("authenticationStep"),
             "external_session_id": obj.get("externalSessionId")

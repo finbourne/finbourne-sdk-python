@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -49,7 +49,7 @@ class LegDefinition(BaseModel):
     last_coupon_type:  Optional[StrictStr] = Field(default=None,alias="lastCouponType", description="Optional coupon type setting for the last coupon, can be used with Stub coupons.  If set to \"ProRata\" (the default), the coupon year fraction is calculated as normal,  however if set to \"Full\" the year fraction is overwritten with the standard year fraction  for a regular ful\" coupon. Note this does not use the day count convention but rather is defined  directly from the tenor (i.e. a quarterly leg will be set to 0.25).    Supported string (enumeration) values are: [ProRata, Full].") 
     fx_linked_notional_schedule: Optional[FxLinkedNotionalSchedule] = Field(default=None, alias="fxLinkedNotionalSchedule")
     intermediate_notional_exchange: Optional[StrictBool] = Field(default=None, description="Indicates whether there are intermediate notional exchanges.", alias="intermediateNotionalExchange")
-    __properties = ["conventionName", "conventions", "indexConvention", "indexConventionName", "notionalExchangeType", "payReceive", "rateOrSpread", "resetConvention", "stubType", "compounding", "amortisation", "firstRegularPaymentDate", "firstCouponType", "lastRegularPaymentDate", "lastCouponType", "fxLinkedNotionalSchedule", "intermediateNotionalExchange"]
+    __properties: ClassVar[List[str]] = ["conventionName", "conventions", "indexConvention", "indexConventionName", "notionalExchangeType", "payReceive", "rateOrSpread", "resetConvention", "stubType", "compounding", "amortisation", "firstRegularPaymentDate", "firstCouponType", "lastRegularPaymentDate", "lastCouponType", "fxLinkedNotionalSchedule", "intermediateNotionalExchange"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -148,22 +148,22 @@ class LegDefinition(BaseModel):
             return LegDefinition.model_validate(obj)
 
         _obj = LegDefinition.model_validate({
-            "convention_name": FlowConventionName.from_dict(obj.get("conventionName")) if obj.get("conventionName") is not None else None,
-            "conventions": FlowConventions.from_dict(obj.get("conventions")) if obj.get("conventions") is not None else None,
-            "index_convention": IndexConvention.from_dict(obj.get("indexConvention")) if obj.get("indexConvention") is not None else None,
-            "index_convention_name": FlowConventionName.from_dict(obj.get("indexConventionName")) if obj.get("indexConventionName") is not None else None,
+            "convention_name": FlowConventionName.from_dict(_v) if (_v := obj.get("conventionName")) is not None else None,
+            "conventions": FlowConventions.from_dict(_v) if (_v := obj.get("conventions")) is not None else None,
+            "index_convention": IndexConvention.from_dict(_v) if (_v := obj.get("indexConvention")) is not None else None,
+            "index_convention_name": FlowConventionName.from_dict(_v) if (_v := obj.get("indexConventionName")) is not None else None,
             "notional_exchange_type": obj.get("notionalExchangeType"),
             "pay_receive": obj.get("payReceive"),
             "rate_or_spread": obj.get("rateOrSpread"),
             "reset_convention": obj.get("resetConvention"),
             "stub_type": obj.get("stubType"),
-            "compounding": Compounding.from_dict(obj.get("compounding")) if obj.get("compounding") is not None else None,
-            "amortisation": StepSchedule.from_dict(obj.get("amortisation")) if obj.get("amortisation") is not None else None,
+            "compounding": Compounding.from_dict(_v) if (_v := obj.get("compounding")) is not None else None,
+            "amortisation": StepSchedule.from_dict(_v) if (_v := obj.get("amortisation")) is not None else None,
             "first_regular_payment_date": obj.get("firstRegularPaymentDate"),
             "first_coupon_type": obj.get("firstCouponType"),
             "last_regular_payment_date": obj.get("lastRegularPaymentDate"),
             "last_coupon_type": obj.get("lastCouponType"),
-            "fx_linked_notional_schedule": FxLinkedNotionalSchedule.from_dict(obj.get("fxLinkedNotionalSchedule")) if obj.get("fxLinkedNotionalSchedule") is not None else None,
+            "fx_linked_notional_schedule": FxLinkedNotionalSchedule.from_dict(_v) if (_v := obj.get("fxLinkedNotionalSchedule")) is not None else None,
             "intermediate_notional_exchange": obj.get("intermediateNotionalExchange")
         })
         return _obj

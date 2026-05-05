@@ -74,12 +74,12 @@ class CorporateActionSourcesApi:
         :return: Returns the result object.
         :rtype: UpsertCorporateActionsResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the batch_upsert_corporate_actions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.batch_upsert_corporate_actions_with_http_info(scope, code, upsert_corporate_action_request, **kwargs)  # noqa: E501
+        response = self.batch_upsert_corporate_actions_with_http_info(scope, code, upsert_corporate_action_request, **kwargs)
+        return response.data
 
     @validate_call
     def batch_upsert_corporate_actions_with_http_info(self, scope: StrictStr, code: StrictStr, upsert_corporate_action_request: Optional[List[UpsertCorporateActionRequest]] = None, **kwargs) -> ApiResponse[UpsertCorporateActionsResponse]:
@@ -213,12 +213,12 @@ class CorporateActionSourcesApi:
         :return: Returns the result object.
         :rtype: CorporateActionSource
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_corporate_action_source_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_corporate_action_source_with_http_info(create_corporate_action_source_request, **kwargs)  # noqa: E501
+        response = self.create_corporate_action_source_with_http_info(create_corporate_action_source_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_corporate_action_source_with_http_info(self, create_corporate_action_source_request: CreateCorporateActionSourceRequest, **kwargs) -> ApiResponse[CorporateActionSource]:
@@ -342,12 +342,12 @@ class CorporateActionSourcesApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_corporate_action_source_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_corporate_action_source_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_corporate_action_source_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_corporate_action_source_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -472,12 +472,12 @@ class CorporateActionSourcesApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_corporate_actions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_corporate_actions_with_http_info(scope, code, corporate_action_ids, **kwargs)  # noqa: E501
+        response = self.delete_corporate_actions_with_http_info(scope, code, corporate_action_ids, **kwargs)
+        return response.data
 
     @validate_call
     def delete_corporate_actions_with_http_info(self, scope: StrictStr, code: StrictStr, corporate_action_ids: List[str], **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -609,12 +609,12 @@ class CorporateActionSourcesApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_instrument_events_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_instrument_events_with_http_info(scope, code, instrument_event_ids, **kwargs)  # noqa: E501
+        response = self.delete_instrument_events_with_http_info(scope, code, instrument_event_ids, **kwargs)
+        return response.data
 
     @validate_call
     def delete_instrument_events_with_http_info(self, scope: StrictStr, code: StrictStr, instrument_event_ids: List[str], **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -756,12 +756,12 @@ class CorporateActionSourcesApi:
         :return: Returns the result object.
         :rtype: ResourceListOfCorporateAction
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_corporate_actions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_corporate_actions_with_http_info(scope, code, from_effective_at, to_effective_at, as_at, sort_by, limit, filter, **kwargs)  # noqa: E501
+        response = self.get_corporate_actions_with_http_info(scope, code, from_effective_at, to_effective_at, as_at, sort_by, limit, filter, **kwargs)
+        return response.data
 
     @validate_call
     def get_corporate_actions_with_http_info(self, scope: StrictStr, code: StrictStr, from_effective_at: Optional[StrictStr] = None, to_effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfCorporateAction]:
@@ -938,12 +938,12 @@ class CorporateActionSourcesApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfInstrumentEventHolder
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_instrument_events_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_instrument_events_with_http_info(scope, code, as_at, limit, page, filter, timeline_scope, timeline_code, closed_period_id, **kwargs)  # noqa: E501
+        response = self.get_instrument_events_with_http_info(scope, code, as_at, limit, page, filter, timeline_scope, timeline_code, closed_period_id, **kwargs)
+        return response.data
 
     @validate_call
     def get_instrument_events_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfInstrumentEventHolder]:
@@ -1117,12 +1117,12 @@ class CorporateActionSourcesApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfCorporateActionSource
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_corporate_action_sources_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_corporate_action_sources_with_http_info(as_at, sort_by, limit, filter, page, **kwargs)  # noqa: E501
+        response = self.list_corporate_action_sources_with_http_info(as_at, sort_by, limit, filter, page, **kwargs)
+        return response.data
 
     @validate_call
     def list_corporate_action_sources_with_http_info(self, as_at: Optional[datetime] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfCorporateActionSource]:
@@ -1269,12 +1269,12 @@ class CorporateActionSourcesApi:
         :return: Returns the result object.
         :rtype: UpsertInstrumentEventsResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_instrument_events_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_instrument_events_with_http_info(scope, code, upsert_instrument_event_request, **kwargs)  # noqa: E501
+        response = self.upsert_instrument_events_with_http_info(scope, code, upsert_instrument_event_request, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_instrument_events_with_http_info(self, scope: StrictStr, code: StrictStr, upsert_instrument_event_request: Optional[List[UpsertInstrumentEventRequest]] = None, **kwargs) -> ApiResponse[UpsertInstrumentEventsResponse]:
@@ -1416,12 +1416,12 @@ class CorporateActionSourcesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: UpsertCorporateActionsResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the batch_upsert_corporate_actions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.batch_upsert_corporate_actions_with_http_info_async(scope, code, upsert_corporate_action_request, **kwargs)  # noqa: E501
+            response = await self.batch_upsert_corporate_actions_with_http_info_async(scope, code, upsert_corporate_action_request, **kwargs)
+            return response.data
 
     @validate_call
     async def batch_upsert_corporate_actions_with_http_info_async(self, scope: StrictStr, code: StrictStr, upsert_corporate_action_request: Optional[List[UpsertCorporateActionRequest]] = None, **kwargs) -> ApiResponse[UpsertCorporateActionsResponse]:
@@ -1556,12 +1556,12 @@ class CorporateActionSourcesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: CorporateActionSource
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_corporate_action_source_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_corporate_action_source_with_http_info_async(create_corporate_action_source_request, **kwargs)  # noqa: E501
+            response = await self.create_corporate_action_source_with_http_info_async(create_corporate_action_source_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_corporate_action_source_with_http_info_async(self, create_corporate_action_source_request: CreateCorporateActionSourceRequest, **kwargs) -> ApiResponse[CorporateActionSource]:
@@ -1686,12 +1686,12 @@ class CorporateActionSourcesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_corporate_action_source_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_corporate_action_source_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_corporate_action_source_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_corporate_action_source_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -1817,12 +1817,12 @@ class CorporateActionSourcesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_corporate_actions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_corporate_actions_with_http_info_async(scope, code, corporate_action_ids, **kwargs)  # noqa: E501
+            response = await self.delete_corporate_actions_with_http_info_async(scope, code, corporate_action_ids, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_corporate_actions_with_http_info_async(self, scope: StrictStr, code: StrictStr, corporate_action_ids: List[str], **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -1955,12 +1955,12 @@ class CorporateActionSourcesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_instrument_events_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_instrument_events_with_http_info_async(scope, code, instrument_event_ids, **kwargs)  # noqa: E501
+            response = await self.delete_instrument_events_with_http_info_async(scope, code, instrument_event_ids, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_instrument_events_with_http_info_async(self, scope: StrictStr, code: StrictStr, instrument_event_ids: List[str], **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -2103,12 +2103,12 @@ class CorporateActionSourcesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfCorporateAction
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_corporate_actions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_corporate_actions_with_http_info_async(scope, code, from_effective_at, to_effective_at, as_at, sort_by, limit, filter, **kwargs)  # noqa: E501
+            response = await self.get_corporate_actions_with_http_info_async(scope, code, from_effective_at, to_effective_at, as_at, sort_by, limit, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def get_corporate_actions_with_http_info_async(self, scope: StrictStr, code: StrictStr, from_effective_at: Optional[StrictStr] = None, to_effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfCorporateAction]:
@@ -2286,12 +2286,12 @@ class CorporateActionSourcesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfInstrumentEventHolder
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_instrument_events_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_instrument_events_with_http_info_async(scope, code, as_at, limit, page, filter, timeline_scope, timeline_code, closed_period_id, **kwargs)  # noqa: E501
+            response = await self.get_instrument_events_with_http_info_async(scope, code, as_at, limit, page, filter, timeline_scope, timeline_code, closed_period_id, **kwargs)
+            return response.data
 
     @validate_call
     async def get_instrument_events_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfInstrumentEventHolder]:
@@ -2466,12 +2466,12 @@ class CorporateActionSourcesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfCorporateActionSource
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_corporate_action_sources_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_corporate_action_sources_with_http_info_async(as_at, sort_by, limit, filter, page, **kwargs)  # noqa: E501
+            response = await self.list_corporate_action_sources_with_http_info_async(as_at, sort_by, limit, filter, page, **kwargs)
+            return response.data
 
     @validate_call
     async def list_corporate_action_sources_with_http_info_async(self, as_at: Optional[datetime] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfCorporateActionSource]:
@@ -2619,12 +2619,12 @@ class CorporateActionSourcesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: UpsertInstrumentEventsResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_instrument_events_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_instrument_events_with_http_info_async(scope, code, upsert_instrument_event_request, **kwargs)  # noqa: E501
+            response = await self.upsert_instrument_events_with_http_info_async(scope, code, upsert_instrument_event_request, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_instrument_events_with_http_info_async(self, scope: StrictStr, code: StrictStr, upsert_instrument_event_request: Optional[List[UpsertInstrumentEventRequest]] = None, **kwargs) -> ApiResponse[UpsertInstrumentEventsResponse]:

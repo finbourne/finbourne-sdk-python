@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class ReconciliationConfiguration(BaseModel):
     left: Optional[ReconciliationSideConfiguration] = None
     right: Optional[ReconciliationSideConfiguration] = None
     mapping_id: Optional[ResourceId] = Field(default=None, alias="mappingId")
-    __properties = ["left", "right", "mappingId"]
+    __properties: ClassVar[List[str]] = ["left", "right", "mappingId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,9 +88,9 @@ class ReconciliationConfiguration(BaseModel):
             return ReconciliationConfiguration.model_validate(obj)
 
         _obj = ReconciliationConfiguration.model_validate({
-            "left": ReconciliationSideConfiguration.from_dict(obj.get("left")) if obj.get("left") is not None else None,
-            "right": ReconciliationSideConfiguration.from_dict(obj.get("right")) if obj.get("right") is not None else None,
-            "mapping_id": ResourceId.from_dict(obj.get("mappingId")) if obj.get("mappingId") is not None else None
+            "left": ReconciliationSideConfiguration.from_dict(_v) if (_v := obj.get("left")) is not None else None,
+            "right": ReconciliationSideConfiguration.from_dict(_v) if (_v := obj.get("right")) is not None else None,
+            "mapping_id": ResourceId.from_dict(_v) if (_v := obj.get("mappingId")) is not None else None
         })
         return _obj
 

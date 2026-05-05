@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class TranslateEntitiesInlinedRequest(BaseModel):
     entity_payloads: Dict[str, TranslationInput] = Field(description="Entity payloads to be translated indexed by (ephemeral) unique correlation ids.", alias="entityPayloads")
     script_body:  StrictStr = Field(...,alias="scriptBody", description="The body of the translation script to use for translating the entities.") 
     var_schema: Optional[DialectSchema] = Field(default=None, alias="schema")
-    __properties = ["entityPayloads", "scriptBody", "schema"]
+    __properties: ClassVar[List[str]] = ["entityPayloads", "scriptBody", "schema"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,12 +91,12 @@ class TranslateEntitiesInlinedRequest(BaseModel):
         _obj = TranslateEntitiesInlinedRequest.model_validate({
             "entity_payloads": dict(
                 (_k, TranslationInput.from_dict(_v))
-                for _k, _v in obj.get("entityPayloads").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("entityPayloads") is not None
+            if (_val := obj.get("entityPayloads")) is not None
             else None,
             "script_body": obj.get("scriptBody"),
-            "var_schema": DialectSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
+            "var_schema": DialectSchema.from_dict(_v) if (_v := obj.get("schema")) is not None else None
         })
         return _obj
 

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class IntegrationDescription(BaseModel):
     description:  StrictStr = Field(...,alias="description", description="Describes the purpose of the integration.") 
     supported_trigger_types: List[StrictStr] = Field(description="Trigger types (Time, File) the integration supports.", alias="supportedTriggerTypes")
     licensed: StrictBool = Field(description="True if your domain is licensed to use this integration, otherwise false.")
-    __properties = ["type", "name", "description", "supportedTriggerTypes", "licensed"]
+    __properties: ClassVar[List[str]] = ["type", "name", "description", "supportedTriggerTypes", "licensed"]
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -10,6 +10,7 @@
     Do not edit the class manually.
 """
 
+from __future__ import annotations
 import json
 import pprint
 import re  # noqa: F401
@@ -19,7 +20,7 @@ from aenum import Enum, no_arg
 
 
 
-class InstrumentEventType(str, Enum):
+class InstrumentEventType(str, Enum):  # type: ignore[misc]
     """
     The individual event types.
     """
@@ -98,6 +99,7 @@ class InstrumentEventType(str, Enum):
     CAPLETFLOORLETCASHFLOWEVENT = 'CapletFloorletCashFlowEvent'
     EARLYCLOSEOUTEVENT = 'EarlyCloseOutEvent'
     DEPOSITROLLEVENT = 'DepositRollEvent'
+    CONSENTEVENT = 'ConsentEvent'
 
     @classmethod
     def from_json(cls, json_str: str) -> InstrumentEventType:

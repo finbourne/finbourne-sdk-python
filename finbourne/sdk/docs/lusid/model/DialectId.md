@@ -9,8 +9,8 @@ Unique identifier of a given Dialect
 | **vendor** | **str** | Required | The vendor of the dialect, the entity that created it. e.g. ISDA, FINBOURNE. |
 | **source_system** | **str** | Required | The source system of the dialect, the system that understands it. e.g. LUSID, QuantLib. |
 | **version** | **str** | Required | The semantic version of the dialect: MAJOR.MINOR.PATCH. |
-| **serialisation_format** | **str** | Required | The serialisation format of a document in this dialect. e.g. JSON, XML. |
-| **entity_type** | **str** | Required | The type of entity this dialect describes e.g. Instrument. |
+| **serialisation_format** | **str** | Required | The serialisation format of a document in this dialect. Available values: Json, Xml. |
+| **entity_type** | **str** | Required | The type of entity this dialect describes e.g. Instrument. Available values: Instrument. |
 
 
 ## Usage
@@ -25,8 +25,8 @@ instance = DialectId(
     vendor="...",  # required — The vendor of the dialect, the entity that created it. e.g. ISDA, FINBOURNE.
     source_system="...",  # required — The source system of the dialect, the system that understands it. e.g. LUSID, QuantLib.
     version="...",  # required — The semantic version of the dialect: MAJOR.MINOR.PATCH.
-    serialisation_format="...",  # required — The serialisation format of a document in this dialect. e.g. JSON, XML.
-    entity_type="..."  # required — The type of entity this dialect describes e.g. Instrument.
+    serialisation_format="...",  # required — The serialisation format of a document in this dialect. Available values: Json, Xml.
+    entity_type="..."  # required — The type of entity this dialect describes e.g. Instrument. Available values: Instrument.
 )
 ```
 

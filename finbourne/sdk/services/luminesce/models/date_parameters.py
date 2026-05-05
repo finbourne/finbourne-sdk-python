@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class DateParameters(BaseModel):
     effective_at: Optional[datetime] = Field(default=None, description="EffectiveAt of the dashboard", alias="effectiveAt")
     effective_from: Optional[datetime] = Field(default=None, description="EffectiveFrom of the dashboard", alias="effectiveFrom")
     as_at: datetime = Field(description="AsAt of the dashboard", alias="asAt")
-    __properties = ["dateFrom", "dateTo", "effectiveAt", "effectiveFrom", "asAt"]
+    __properties: ClassVar[List[str]] = ["dateFrom", "dateTo", "effectiveAt", "effectiveFrom", "asAt"]
 
     model_config = ConfigDict(
         populate_by_name=True,

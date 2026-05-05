@@ -21,7 +21,7 @@ class FileAccessToken(collections.UserString):
         }
 
     @property
-    def data(self) -> str:
+    def data(self) -> str:  # type: ignore[override]
         """load access token from file
 
         Returns

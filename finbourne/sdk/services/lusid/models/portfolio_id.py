@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class PortfolioId(BaseModel):
     """
     scope: Optional[DataScope] = None
     identifier:  Optional[StrictStr] = Field(default=None,alias="identifier") 
-    __properties = ["scope", "identifier"]
+    __properties: ClassVar[List[str]] = ["scope", "identifier"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,7 +85,7 @@ class PortfolioId(BaseModel):
             return PortfolioId.model_validate(obj)
 
         _obj = PortfolioId.model_validate({
-            "scope": DataScope.from_dict(obj.get("scope")) if obj.get("scope") is not None else None,
+            "scope": DataScope.from_dict(_v) if (_v := obj.get("scope")) is not None else None,
             "identifier": obj.get("identifier")
         })
         return _obj

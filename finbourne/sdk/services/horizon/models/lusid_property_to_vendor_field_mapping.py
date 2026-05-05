@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class LusidPropertyToVendorFieldMapping(BaseModel):
     vendor_package:  StrictStr = Field(...,alias="vendorPackage") 
     vendor_namespace:  StrictStr = Field(...,alias="vendorNamespace") 
     optionality:  StrictStr = Field(...,alias="optionality") 
-    __properties = ["property", "vendorField", "vendorPackage", "vendorNamespace", "optionality"]
+    __properties: ClassVar[List[str]] = ["property", "vendorField", "vendorPackage", "vendorNamespace", "optionality"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -83,7 +83,7 @@ class LusidPropertyToVendorFieldMapping(BaseModel):
             return LusidPropertyToVendorFieldMapping.model_validate(obj)
 
         _obj = LusidPropertyToVendorFieldMapping.model_validate({
-            "var_property": LusidPropertyDefinition.from_dict(obj.get("property")) if obj.get("property") is not None else None,
+            "var_property": LusidPropertyDefinition.from_dict(_v) if (_v := obj.get("property")) is not None else None,
             "vendor_field": obj.get("vendorField"),
             "vendor_package": obj.get("vendorPackage"),
             "vendor_namespace": obj.get("vendorNamespace"),

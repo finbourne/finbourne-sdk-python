@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **address_key** | **str** | Required | The address key of the address key definition. |
-| **type** | **str** | Required | The type of the address key definition |
+| **type** | **str** | Required | The type of the address key definition. Available values: Text, Integer, Decimal, Boolean, DateTime, Result0D. |
 
 
 ## Usage
@@ -17,7 +17,7 @@ from finbourne.sdk.services.lusid.models.CreateAddressKeyDefinitionRequest impor
 
 instance = CreateAddressKeyDefinitionRequest(
     address_key="...",  # required — The address key of the address key definition.
-    type="..."  # required — The type of the address key definition
+    type="..."  # required — The type of the address key definition. Available values: Text, Integer, Decimal, Boolean, DateTime, Result0D.
 )
 ```
 

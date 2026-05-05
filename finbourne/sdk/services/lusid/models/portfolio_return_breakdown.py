@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -40,7 +40,7 @@ class PortfolioReturnBreakdown(BaseModel):
     local_rate_of_return: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The rate of return in the local currency.", alias="localRateOfReturn")
     local_opening_market_value: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The opening market value in the local currency.", alias="localOpeningMarketValue")
     local_closing_market_value: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The closing market value in the local currency.", alias="localClosingMarketValue")
-    __properties = ["portfolioId", "rateOfReturn", "openingMarketValue", "closingMarketValue", "weight", "constituentsInTheComposite", "constituentsMissing", "currency", "openFxRate", "closeFxRate", "localRateOfReturn", "localOpeningMarketValue", "localClosingMarketValue"]
+    __properties: ClassVar[List[str]] = ["portfolioId", "rateOfReturn", "openingMarketValue", "closingMarketValue", "weight", "constituentsInTheComposite", "constituentsMissing", "currency", "openFxRate", "closeFxRate", "localRateOfReturn", "localOpeningMarketValue", "localClosingMarketValue"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -121,7 +121,7 @@ class PortfolioReturnBreakdown(BaseModel):
             return PortfolioReturnBreakdown.model_validate(obj)
 
         _obj = PortfolioReturnBreakdown.model_validate({
-            "portfolio_id": ResourceId.from_dict(obj.get("portfolioId")) if obj.get("portfolioId") is not None else None,
+            "portfolio_id": ResourceId.from_dict(_v) if (_v := obj.get("portfolioId")) is not None else None,
             "rate_of_return": obj.get("rateOfReturn"),
             "opening_market_value": obj.get("openingMarketValue"),
             "closing_market_value": obj.get("closingMarketValue"),

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -42,7 +42,7 @@ class FeeRuleUpsertRequest(BaseModel):
     max_fee: Optional[CalculationInfo] = Field(default=None, alias="maxFee")
     additional_keys: Optional[Dict[str, Optional[StrictStr]]] = Field(default=None, alias="additionalKeys")
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="") 
-    __properties = ["code", "transactionPropertyKey", "transactionType", "country", "counterparty", "transactionCurrency", "settlementCurrency", "executionBroker", "custodian", "exchange", "fee", "minFee", "maxFee", "additionalKeys", "description"]
+    __properties: ClassVar[List[str]] = ["code", "transactionPropertyKey", "transactionType", "country", "counterparty", "transactionCurrency", "settlementCurrency", "executionBroker", "custodian", "exchange", "fee", "minFee", "maxFee", "additionalKeys", "description"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -124,9 +124,9 @@ class FeeRuleUpsertRequest(BaseModel):
             "execution_broker": obj.get("executionBroker"),
             "custodian": obj.get("custodian"),
             "exchange": obj.get("exchange"),
-            "fee": CalculationInfo.from_dict(obj.get("fee")) if obj.get("fee") is not None else None,
-            "min_fee": CalculationInfo.from_dict(obj.get("minFee")) if obj.get("minFee") is not None else None,
-            "max_fee": CalculationInfo.from_dict(obj.get("maxFee")) if obj.get("maxFee") is not None else None,
+            "fee": CalculationInfo.from_dict(_v) if (_v := obj.get("fee")) is not None else None,
+            "min_fee": CalculationInfo.from_dict(_v) if (_v := obj.get("minFee")) is not None else None,
+            "max_fee": CalculationInfo.from_dict(_v) if (_v := obj.get("maxFee")) is not None else None,
             "additional_keys": obj.get("additionalKeys"),
             "description": obj.get("description")
         })

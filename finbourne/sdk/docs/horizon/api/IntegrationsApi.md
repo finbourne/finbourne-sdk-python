@@ -16,6 +16,7 @@ Method | HTTP request | Description
 [**get_integration_configuration_fields**](IntegrationsApi.md#get_integration_configuration_fields) | **GET** /horizon/api/integrations/configuration/{integration}/fields | [EXPERIMENTAL] GetIntegrationConfigurationFields: Get the Field Mapping configuration for a given integration
 [**get_integration_configuration_properties**](IntegrationsApi.md#get_integration_configuration_properties) | **GET** /horizon/api/integrations/configuration/{integration}/properties | [EXPERIMENTAL] GetIntegrationConfigurationProperties: Get the Property Mapping configuration for a given integration
 [**get_schema**](IntegrationsApi.md#get_schema) | **GET** /horizon/api/integrations/schema/{integration} | [EXPERIMENTAL] GetSchema: Get the JSON schema for the details section of an integration instance.
+[**get_tpf_transaction_history_search**](IntegrationsApi.md#get_tpf_transaction_history_search) | **GET** /horizon/api/integrations/trade-publication-framework/transactions/search | [EARLY ACCESS] GetTpfTransactionHistorySearch: Endpoint to search TPF transaction by transaction ID and/or instrument identifier, with filtering by instance and date range
 [**list_dataflow_processors**](IntegrationsApi.md#list_dataflow_processors) | **GET** /horizon/api/integrations/dataflow/processors | [EXPERIMENTAL] ListDataflowProcessors: List processor types.
 [**list_instances**](IntegrationsApi.md#list_instances) | **GET** /horizon/api/integrations/instances | [EXPERIMENTAL] ListInstances: List instances across all integrations.
 [**list_integrations**](IntegrationsApi.md#list_integrations) | **GET** /horizon/api/integrations | [EXPERIMENTAL] ListIntegrations: List available integrations.
@@ -577,6 +578,60 @@ Name | Type | Description  | Notes
 **200** | The system defined JSON schema for the details of a specified integration. |  -  |
 **400** | The details of the input related failure |  -  |
 **404** | The integration type does not exist or is not enabled. |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_tpf_transaction_history_search**
+> PagedResourceListOfTpfTransactionSearchResponse getTpfTransactionHistorySearch = get_tpf_transaction_history_search(transaction_id=transaction_id, instrument_id=instrument_id, date_from=date_from, date_to=date_to, status=status, instance_id=instance_id, page_size=page_size, page_token=page_token)
+
+[EARLY ACCESS] GetTpfTransactionHistorySearch: Endpoint to search TPF transaction by transaction ID and/or instrument identifier, with filtering by instance and date range
+
+### Example
+
+```python
+api_instance = api_client_factory.build(IntegrationsApi)
+transaction_id = 'transaction_id_example' # str (optional)
+instrument_id = 'instrument_id_example' # str (optional)
+date_from = 'date_from_example' # str (optional)
+date_to = 'date_to_example' # str (optional)
+status = 'status_example' # str (optional)
+instance_id = 'instance_id_example' # str (optional)
+page_size = 400 # int (optional)
+page_token = '' # str (optional)
+api_response = api_instance.get_tpf_transaction_history_search(transaction_id=transaction_id, instrument_id=instrument_id, date_from=date_from, date_to=date_to, status=status, instance_id=instance_id, page_size=page_size, page_token=page_token)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **transaction_id** | **str**|  | [optional] 
+ **instrument_id** | **str**|  | [optional] 
+ **date_from** | **str**|  | [optional] 
+ **date_to** | **str**|  | [optional] 
+ **status** | **str**|  | [optional] 
+ **instance_id** | **str**|  | [optional] 
+ **page_size** | **int**|  | [optional] [default to 400]
+ **page_token** | **str**|  | [optional] [default to &#39;&#39;]
+
+### Return type
+
+[**PagedResourceListOfTpfTransactionSearchResponse**](PagedResourceListOfTpfTransactionSearchResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)

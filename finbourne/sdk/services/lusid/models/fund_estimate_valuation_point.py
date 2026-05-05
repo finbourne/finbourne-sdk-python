@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -35,14 +35,14 @@ class FundEstimateValuationPoint(FundCalendarEntries):
     timeline_id: Optional[ResourceId] = Field(default=None, alias="timelineId")
     previous_entry: Optional[PreviousFundCalendarEntry] = Field(default=None, alias="previousEntry")
     effective_at: Optional[datetime] = Field(default=None, description="The effective at of the Calendar Entry.", alias="effectiveAt")
-    entry_type:  StrictStr = Field(...,alias="entryType", description="The type of the Fund Calendar Entry. The available values are: FinalisedValuationPoint, FundEstimateValuationPoint, FundBookmark") 
+    entry_type:  StrictStr = Field(...,alias="entryType", description="The type of the Fund Calendar Entry. Available values: FinalisedValuationPoint, FundEstimateValuationPoint, FundBookmark.") 
     status:  Optional[StrictStr] = Field(default=None,alias="status", description="The status of the Fund Calendar Entry. Can be 'Estimate', 'Unofficial' or 'Final'.") 
     apply_clear_down: Optional[StrictBool] = Field(default=None, description="Set to true if that closed period should have the clear down applied.", alias="applyClearDown")
     leader_nav_type_code:  Optional[StrictStr] = Field(default=None,alias="leaderNavTypeCode", description="The code of the Nav Type that this Nav Type will follow when set.") 
     variants: Optional[List[EstimateVariant]] = Field(default=None, description="The variants of the Estimate Valuation Point. ")
-    fund_calendar_entries_type:  StrictStr = Field(...,alias="fundCalendarEntriesType", description="The type of the Calendar Entry. The available values are: FinalisedValuationPoint, FundEstimateValuationPoint, FundBookmark") 
+    fund_calendar_entries_type:  StrictStr = Field(...,alias="fundCalendarEntriesType", description="The type of the Calendar Entry. Available values: FinalisedValuationPoint, FundEstimateValuationPoint, FundBookmark.") 
     additional_properties: Dict[str, Any] = {}
-    __properties = ["fundCalendarEntriesType", "code", "navTypeCode", "timelineId", "previousEntry", "effectiveAt", "entryType", "status", "applyClearDown", "leaderNavTypeCode", "variants"]
+    __properties: ClassVar[List[str]] = ["fundCalendarEntriesType", "code", "navTypeCode", "timelineId", "previousEntry", "effectiveAt", "entryType", "status", "applyClearDown", "leaderNavTypeCode", "variants"]
 
     @field_validator('entry_type')
     def entry_type_validate_enum(cls, value):
@@ -265,23 +265,18 @@ class FundEstimateValuationPoint(FundCalendarEntries):
             "fund_calendar_entries_type": obj.get("fundCalendarEntriesType"),
             "code": obj.get("code"),
             "nav_type_code": obj.get("navTypeCode"),
-            "timeline_id": ResourceId.from_dict(obj.get("timelineId")) if obj.get("timelineId") is not None else None,
-            "previous_entry": PreviousFundCalendarEntry.from_dict(obj.get("previousEntry")) if obj.get("previousEntry") is not None else None,
+            "timeline_id": ResourceId.from_dict(_v) if (_v := obj.get("timelineId")) is not None else None,
+            "previous_entry": PreviousFundCalendarEntry.from_dict(_v) if (_v := obj.get("previousEntry")) is not None else None,
             "effective_at": obj.get("effectiveAt"),
             "entry_type": obj.get("entryType"),
             "status": obj.get("status"),
             "apply_clear_down": obj.get("applyClearDown"),
             "leader_nav_type_code": obj.get("leaderNavTypeCode"),
-            "variants": [EstimateVariant.from_dict(_item) for _item in obj.get("variants")] if obj.get("variants") is not None else None
+            "variants": [EstimateVariant.from_dict(_item) for _item in _v] if (_v := obj.get("variants")) is not None else None
         })
         # store additional fields in additional_properties
-        
-        properties = cls.__properties
-        if not isinstance(cls.__properties, dict) and getattr(cls.__properties, 'default', None):
-            properties = cls.__properties.default
-    
         for _key in obj.keys():
-            if _key not in properties:
+            if _key not in cls.__properties:
                 _obj.additional_properties[_key] = obj.get(_key)
 
         return _obj

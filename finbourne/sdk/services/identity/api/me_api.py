@@ -59,12 +59,12 @@ class MeApi:
         :return: Returns the result object.
         :rtype: CurrentUserResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_user_info_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_user_info_with_http_info(**kwargs)  # noqa: E501
+        response = self.get_user_info_with_http_info(**kwargs)
+        return response.data
 
     @validate_call
     def get_user_info_with_http_info(self, **kwargs) -> ApiResponse[CurrentUserResponse]:
@@ -172,12 +172,12 @@ class MeApi:
         :return: Returns the result object.
         :rtype: SetPasswordResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the set_password_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.set_password_with_http_info(set_password, **kwargs)  # noqa: E501
+        response = self.set_password_with_http_info(set_password, **kwargs)
+        return response.data
 
     @validate_call
     def set_password_with_http_info(self, set_password: SetPassword, **kwargs) -> ApiResponse[SetPasswordResponse]:
@@ -301,12 +301,12 @@ class MeApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: CurrentUserResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_user_info_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_user_info_with_http_info_async(**kwargs)  # noqa: E501
+            response = await self.get_user_info_with_http_info_async(**kwargs)
+            return response.data
 
     @validate_call
     async def get_user_info_with_http_info_async(self, **kwargs) -> ApiResponse[CurrentUserResponse]:
@@ -415,12 +415,12 @@ class MeApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: SetPasswordResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the set_password_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.set_password_with_http_info_async(set_password, **kwargs)  # noqa: E501
+            response = await self.set_password_with_http_info_async(set_password, **kwargs)
+            return response.data
 
     @validate_call
     async def set_password_with_http_info_async(self, set_password: SetPassword, **kwargs) -> ApiResponse[SetPasswordResponse]:

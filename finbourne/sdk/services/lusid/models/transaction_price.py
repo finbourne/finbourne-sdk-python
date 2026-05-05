@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -27,8 +27,8 @@ class TransactionPrice(BaseModel):
     TransactionPrice
     """
     price: Optional[Union[StrictFloat, StrictInt]] = None
-    type:  Optional[StrictStr] = Field(default=None,alias="type", description="The available values are: Price, Yield, Spread, CashFlowPerUnit, CleanPrice, DirtyPrice, CdsPrice") 
-    __properties = ["price", "type"]
+    type:  Optional[StrictStr] = Field(default=None,alias="type", description="Available values: Price, Yield, Spread, CashFlowPerUnit, CleanPrice, DirtyPrice, CdsPrice.") 
+    __properties: ClassVar[List[str]] = ["price", "type"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):

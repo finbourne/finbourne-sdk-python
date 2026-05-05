@@ -62,12 +62,12 @@ class FoldersApi:
         :return: Returns the result object.
         :rtype: StorageObject
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_folder_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_folder_with_http_info(create_folder, **kwargs)  # noqa: E501
+        response = self.create_folder_with_http_info(create_folder, **kwargs)
+        return response.data
 
     @validate_call
     def create_folder_with_http_info(self, create_folder: CreateFolder, **kwargs) -> ApiResponse[StorageObject]:
@@ -187,15 +187,15 @@ class FoldersApi:
         :return: Returns the result object.
         :rtype: None
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_folder_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_folder_with_http_info(id, **kwargs)  # noqa: E501
+        response = self.delete_folder_with_http_info(id, **kwargs)
+        return response.data
 
     @validate_call
-    def delete_folder_with_http_info(self, id: StrictStr, **kwargs) -> None:
+    def delete_folder_with_http_info(self, id: StrictStr, **kwargs) -> ApiResponse[None]:
         """[EARLY ACCESS] DeleteFolder: Delete a specified folder and all subfolders  # noqa: E501
 
         :param id: Unique ID of the folder (required)
@@ -302,12 +302,12 @@ class FoldersApi:
         :return: Returns the result object.
         :rtype: StorageObject
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_folder_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_folder_with_http_info(id, **kwargs)  # noqa: E501
+        response = self.get_folder_with_http_info(id, **kwargs)
+        return response.data
 
     @validate_call
     def get_folder_with_http_info(self, id: StrictStr, **kwargs) -> ApiResponse[StorageObject]:
@@ -431,12 +431,12 @@ class FoldersApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfStorageObject
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_folder_contents_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_folder_contents_with_http_info(id, page, sort_by, start, limit, filter, **kwargs)  # noqa: E501
+        response = self.get_folder_contents_with_http_info(id, page, sort_by, start, limit, filter, **kwargs)
+        return response.data
 
     @validate_call
     def get_folder_contents_with_http_info(self, id: StrictStr, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, start: Optional[int] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfStorageObject]:
@@ -589,12 +589,12 @@ class FoldersApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfStorageObject
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_root_folder_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_root_folder_with_http_info(page, sort_by, start, limit, filter, **kwargs)  # noqa: E501
+        response = self.get_root_folder_with_http_info(page, sort_by, start, limit, filter, **kwargs)
+        return response.data
 
     @validate_call
     def get_root_folder_with_http_info(self, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, start: Optional[int] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfStorageObject]:
@@ -738,12 +738,12 @@ class FoldersApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfStorageObject
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the move_folder_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.move_folder_with_http_info(id, request_body, overwrite, delete_source, **kwargs)  # noqa: E501
+        response = self.move_folder_with_http_info(id, request_body, overwrite, delete_source, **kwargs)
+        return response.data
 
     @validate_call
     def move_folder_with_http_info(self, id: StrictStr, request_body: List[str], overwrite: Optional[bool] = None, delete_source: Optional[bool] = None, **kwargs) -> ApiResponse[PagedResourceListOfStorageObject]:
@@ -885,12 +885,12 @@ class FoldersApi:
         :return: Returns the result object.
         :rtype: StorageObject
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_folder_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_folder_with_http_info(id, update_folder, **kwargs)  # noqa: E501
+        response = self.update_folder_with_http_info(id, update_folder, **kwargs)
+        return response.data
 
     @validate_call
     def update_folder_with_http_info(self, id: StrictStr, update_folder: UpdateFolder, **kwargs) -> ApiResponse[StorageObject]:
@@ -1021,12 +1021,12 @@ class FoldersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: StorageObject
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_folder_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_folder_with_http_info_async(create_folder, **kwargs)  # noqa: E501
+            response = await self.create_folder_with_http_info_async(create_folder, **kwargs)
+            return response.data
 
     @validate_call
     async def create_folder_with_http_info_async(self, create_folder: CreateFolder, **kwargs) -> ApiResponse[StorageObject]:
@@ -1147,15 +1147,15 @@ class FoldersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: None
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_folder_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_folder_with_http_info_async(id, **kwargs)  # noqa: E501
+            response = await self.delete_folder_with_http_info_async(id, **kwargs)
+            return response.data
 
     @validate_call
-    async def delete_folder_with_http_info_async(self, id: StrictStr, **kwargs) -> None:
+    async def delete_folder_with_http_info_async(self, id: StrictStr, **kwargs) -> ApiResponse[None]:
             """[EARLY ACCESS] DeleteFolder: Delete a specified folder and all subfolders  # noqa: E501
 
 
@@ -1263,12 +1263,12 @@ class FoldersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: StorageObject
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_folder_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_folder_with_http_info_async(id, **kwargs)  # noqa: E501
+            response = await self.get_folder_with_http_info_async(id, **kwargs)
+            return response.data
 
     @validate_call
     async def get_folder_with_http_info_async(self, id: StrictStr, **kwargs) -> ApiResponse[StorageObject]:
@@ -1393,12 +1393,12 @@ class FoldersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfStorageObject
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_folder_contents_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_folder_contents_with_http_info_async(id, page, sort_by, start, limit, filter, **kwargs)  # noqa: E501
+            response = await self.get_folder_contents_with_http_info_async(id, page, sort_by, start, limit, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def get_folder_contents_with_http_info_async(self, id: StrictStr, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, start: Optional[int] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfStorageObject]:
@@ -1552,12 +1552,12 @@ class FoldersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfStorageObject
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_root_folder_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_root_folder_with_http_info_async(page, sort_by, start, limit, filter, **kwargs)  # noqa: E501
+            response = await self.get_root_folder_with_http_info_async(page, sort_by, start, limit, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def get_root_folder_with_http_info_async(self, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, start: Optional[int] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfStorageObject]:
@@ -1702,12 +1702,12 @@ class FoldersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfStorageObject
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the move_folder_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.move_folder_with_http_info_async(id, request_body, overwrite, delete_source, **kwargs)  # noqa: E501
+            response = await self.move_folder_with_http_info_async(id, request_body, overwrite, delete_source, **kwargs)
+            return response.data
 
     @validate_call
     async def move_folder_with_http_info_async(self, id: StrictStr, request_body: List[str], overwrite: Optional[bool] = None, delete_source: Optional[bool] = None, **kwargs) -> ApiResponse[PagedResourceListOfStorageObject]:
@@ -1850,12 +1850,12 @@ class FoldersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: StorageObject
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_folder_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_folder_with_http_info_async(id, update_folder, **kwargs)  # noqa: E501
+            response = await self.update_folder_with_http_info_async(id, update_folder, **kwargs)
+            return response.data
 
     @validate_call
     async def update_folder_with_http_info_async(self, id: StrictStr, update_folder: UpdateFolder, **kwargs) -> ApiResponse[StorageObject]:

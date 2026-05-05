@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class CalendarReference(BaseModel):
     """
     scope:  StrictStr = Field(...,alias="scope", description="The scope of the Calendar") 
     code:  StrictStr = Field(...,alias="code", description="The code of the Calendar") 
-    __properties = ["scope", "code"]
+    __properties: ClassVar[List[str]] = ["scope", "code"]
 
     model_config = ConfigDict(
         populate_by_name=True,

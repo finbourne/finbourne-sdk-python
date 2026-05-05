@@ -12,7 +12,7 @@
 | **previous_entry** | [PreviousFundCalendarEntry](PreviousFundCalendarEntry.md) | Optional | *No description available.* |
 | **effective_at** | **datetime** | Optional | The effective at of the Calendar Entry. |
 | **as_at** | **datetime** | Required | The asAt datetime for the Calendar Entry. |
-| **entry_type** | **str** | Required | The type of the Fund Calendar Entry. The available values are: ValuationPointFundCalendarEntry, BookmarkFundCalendarEntry |
+| **entry_type** | **str** | Required | The type of the Fund Calendar Entry. Available values: ValuationPointFundCalendarEntry, BookmarkFundCalendarEntry. |
 | **status** | **str** | Optional | The status of the Fund Calendar Entry. Can be &#39;Estimate&#39;, &#39;Unofficial&#39; or &#39;Final&#39;. |
 | **apply_clear_down** | **bool** | Optional | Set to true if that closed period should have the clear down applied. |
 | **holdings_as_at_override** | **datetime** | Optional | The optional AsAt Override to use for building holdings in the Valuation Point. Defaults to QueryAsAt. |
@@ -21,7 +21,7 @@
 | **version** | [Version](Version.md) | Required | *No description available.* |
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested asAt datetime. |
 | **leader_nav_type_code** | **str** | Optional | The code of the Nav Type that this Nav Type will follow when set. |
-| **fund_calendar_entries_type** | **str** | Required | The type of the Calendar Entry. The available values are: FinalisedValuationPoint, FundEstimateValuationPoint, FundBookmark |
+| **fund_calendar_entries_type** | **str** | Required | The type of the Calendar Entry. Available values: FinalisedValuationPoint, FundEstimateValuationPoint, FundBookmark. |
 
 
 ## Usage
@@ -40,7 +40,7 @@ instance = FundBookmark(
     previous_entry=PreviousFundCalendarEntry(...),  # optional
     effective_at=datetime.now(),  # optional — The effective at of the Calendar Entry.
     as_at=datetime.now(),  # required — The asAt datetime for the Calendar Entry.
-    entry_type="...",  # required — The type of the Fund Calendar Entry. The available values are: ValuationPointFundCalendarEntry, BookmarkFundCalendarEntry
+    entry_type="...",  # required — The type of the Fund Calendar Entry. Available values: ValuationPointFundCalendarEntry, BookmarkFundCalendarEntry.
     status="...",  # optional — The status of the Fund Calendar Entry. Can be &#39;Estimate&#39;, &#39;Unofficial&#39; or &#39;Final&#39;.
     apply_clear_down=True,  # optional — Set to true if that closed period should have the clear down applied.
     holdings_as_at_override=datetime.now(),  # optional — The optional AsAt Override to use for building holdings in the Valuation Point. Defaults to QueryAsAt.
@@ -49,7 +49,7 @@ instance = FundBookmark(
     version=Version(...),  # required
     href="...",  # optional — The specific Uniform Resource Identifier (URI) for this resource at the requested asAt datetime.
     leader_nav_type_code="...",  # optional — The code of the Nav Type that this Nav Type will follow when set.
-    fund_calendar_entries_type="..."  # required — The type of the Calendar Entry. The available values are: FinalisedValuationPoint, FundEstimateValuationPoint, FundBookmark
+    fund_calendar_entries_type="..."  # required — The type of the Calendar Entry. Available values: FinalisedValuationPoint, FundEstimateValuationPoint, FundBookmark.
 )
 ```
 

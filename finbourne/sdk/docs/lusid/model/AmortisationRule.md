@@ -7,7 +7,7 @@
 | **name** | **str** | Required | The name of the rule. |
 | **description** | **str** | Optional | A description of the rule. |
 | **filter** | **str** | Required | The filter for this rule. |
-| **amortisation_method** | **str** | Required | The filter for this rule. |
+| **amortisation_method** | **str** | Required | The filter for this rule. Available values: NoAmortisation, StraightLine, EffectiveYield, StraightLineSettlementDate, EffectiveYieldSettlementDate. |
 
 
 ## Usage
@@ -21,7 +21,7 @@ instance = AmortisationRule(
     name="...",  # required — The name of the rule.
     description="...",  # optional — A description of the rule.
     filter="...",  # required — The filter for this rule.
-    amortisation_method="..."  # required — The filter for this rule.
+    amortisation_method="..."  # required — The filter for this rule. Available values: NoAmortisation, StraightLine, EffectiveYield, StraightLineSettlementDate, EffectiveYieldSettlementDate.
 )
 ```
 

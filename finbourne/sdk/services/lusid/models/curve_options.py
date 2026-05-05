@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -27,12 +27,12 @@ class CurveOptions(MarketDataOptions):
     """
     Options for configuring how ComplexMarketData representing a 'curve' is interpreted.  # noqa: E501
     """
-    day_count_convention:  Optional[StrictStr] = Field(default=None,alias="dayCountConvention", description="Day count convention of the curve. Defaults to \"Act360\".") 
-    front_extrapolation_type:  Optional[StrictStr] = Field(default=None,alias="frontExtrapolationType", description="What type of extrapolation is used to build the curve  Imagine that the curve is facing the observer(you), then the \"front\" direction is the closest point on the curve onward.    example: 0D tenor to past  Defaults to \"Flat\". Supported string (enumeration) values are: [None, Flat, Linear].") 
-    back_extrapolation_type:  Optional[StrictStr] = Field(default=None,alias="backExtrapolationType", description="What type of extrapolation is used to build the curve.    Imagine that the curve is facing the observer(you), then the \"back\" direction is the furthest point on the curve onward.  example: 30Y tenor to infinity    Defaults to \"Flat\". Supported string (enumeration) values are: [None, Flat, Linear].") 
-    market_data_options_type:  StrictStr = Field(...,alias="marketDataOptionsType", description="The available values are: CurveOptions") 
+    day_count_convention:  Optional[StrictStr] = Field(default=None,alias="dayCountConvention", description="Day count convention of the curve. Default value: Act360. Available values: Actual360, Act360, MoneyMarket, Actual365, Act365, Thirty360, ThirtyU360, Bond, ThirtyE360, EuroBond, ActualActual, ActAct, ActActIsda, ActActIsma, ActActIcma, OneOne, Act364, Act365F, Act365L, Act365_25, Act252, Bus252, NL360, NL365, ActActAFB, Act365Cad, ThirtyActIsda, Thirty365Isda, ThirtyEActIsda, ThirtyE360Isda, ThirtyE365Isda, ThirtyU360EOM, Invalid.") 
+    front_extrapolation_type:  Optional[StrictStr] = Field(default=None,alias="frontExtrapolationType", description="What type of extrapolation is used to build the curve  Imagine that the curve is facing the observer(you), then the \"front\" direction is the closest point on the curve onward.    example: 0D tenor to past  Default value: Flat. Available values: None, Flat, Linear.") 
+    back_extrapolation_type:  Optional[StrictStr] = Field(default=None,alias="backExtrapolationType", description="What type of extrapolation is used to build the curve.    Imagine that the curve is facing the observer(you), then the \"back\" direction is the furthest point on the curve onward.  example: 30Y tenor to infinity    Default value: Flat. Available values: None, Flat, Linear.") 
+    market_data_options_type:  StrictStr = Field(...,alias="marketDataOptionsType", description="Available values: CurveOptions. Available values: CurveOptions.") 
     additional_properties: Dict[str, Any] = {}
-    __properties = ["marketDataOptionsType", "dayCountConvention", "frontExtrapolationType", "backExtrapolationType"]
+    __properties: ClassVar[List[str]] = ["marketDataOptionsType", "dayCountConvention", "frontExtrapolationType", "backExtrapolationType"]
 
     @field_validator('market_data_options_type')
     def market_data_options_type_validate_enum(cls, value):
@@ -176,13 +176,8 @@ class CurveOptions(MarketDataOptions):
             "back_extrapolation_type": obj.get("backExtrapolationType")
         })
         # store additional fields in additional_properties
-        
-        properties = cls.__properties
-        if not isinstance(cls.__properties, dict) and getattr(cls.__properties, 'default', None):
-            properties = cls.__properties.default
-    
         for _key in obj.keys():
-            if _key not in properties:
+            if _key not in cls.__properties:
                 _obj.additional_properties[_key] = obj.get(_key)
 
         return _obj

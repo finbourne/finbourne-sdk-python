@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class PeriodDiaryEntriesReopenedResponse(BaseModel):
     period_diary_entries_from: datetime = Field(description="The start point where periods were removed from", alias="periodDiaryEntriesFrom")
     period_diary_entries_to: datetime = Field(description="The end point where periods were removed to", alias="periodDiaryEntriesTo")
     links: Optional[List[Link]] = None
-    __properties = ["href", "effectiveFrom", "asAt", "periodDiaryEntriesRemoved", "periodDiaryEntriesFrom", "periodDiaryEntriesTo", "links"]
+    __properties: ClassVar[List[str]] = ["href", "effectiveFrom", "asAt", "periodDiaryEntriesRemoved", "periodDiaryEntriesFrom", "periodDiaryEntriesTo", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -110,7 +110,7 @@ class PeriodDiaryEntriesReopenedResponse(BaseModel):
             "period_diary_entries_removed": obj.get("periodDiaryEntriesRemoved"),
             "period_diary_entries_from": obj.get("periodDiaryEntriesFrom"),
             "period_diary_entries_to": obj.get("periodDiaryEntriesTo"),
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

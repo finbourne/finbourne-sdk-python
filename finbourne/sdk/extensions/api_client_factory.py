@@ -20,7 +20,7 @@ from finbourne.sdk.extensions.tcp_keep_alive_connector import (
 from finbourne.sdk.extensions.refreshing_token import RefreshingToken
 from finbourne.sdk.configuration import Configuration
 
-from aiohttp import ClientSession
+from aiohttp import ClientSession, TraceConfig
 import logging
 from typing import Any, Callable, Optional, Tuple, TypeVar, Type, Iterable, Union, Dict
 import os
@@ -77,11 +77,9 @@ class SyncApiClientFactory:
         base_url: Optional[str] = None,
         access_token: Optional[RefreshingToken] = None,
         profile_name: str = "default",
-        id_provider_response_handler: Callable[[Response], None] = None,
+        id_provider_response_handler: Optional[Callable[[Response], None]] = None,
         tcp_keep_alive: bool = True,
-        socket_options: Optional[
-            Union[Tuple[Any, Any, Any], Tuple[Any, Any, None, int]]
-        ] = keep_alive_socket_options(),
+        socket_options: Any = keep_alive_socket_options(),
         correlation_id: Optional[str] = None,
         app_name: Optional[str] = None,
         additional_headers: Optional[Dict[str, str]] = None,
@@ -149,7 +147,7 @@ class SyncApiClientFactory:
         self,
         metaclass: Type[T],
     ) -> T:
-        return metaclass(sync_api_client=self.__api_client)
+        return metaclass(sync_api_client=self.__api_client)  # type: ignore[call-arg]
 
     def get_api_client(self) -> SyncApiClient:
         return self.__api_client
@@ -167,16 +165,14 @@ class ApiClientFactory:
         base_url: Optional[str] = None,
         access_token: Optional[RefreshingToken] = None,
         profile_name: str = "default",
-        id_provider_response_handler: Callable[[Response], None] = None,
+        id_provider_response_handler: Optional[Callable[[Response], None]] = None,
         tcp_keep_alive: bool = True,
-        socket_options: Optional[
-            Union[Tuple[Any, Any, Any], Tuple[Any, Any, None, int]]
-        ] = keep_alive_socket_options(),
+        socket_options: Any = keep_alive_socket_options(),
         correlation_id: Optional[str] = None,
         app_name: Optional[str] = None,
         additional_headers: Optional[Dict[str, str]] = None,
         client_session: Optional[ClientSession] = None,
-        trace_configs: Optional[List[TraceConfig]] = None,
+        trace_configs: Optional[list[TraceConfig]] = None,
         opts: Optional[ConfigurationOptions] = None,
     ):
         is_owner = True
@@ -204,7 +200,7 @@ class ApiClientFactory:
             else:
                 connector = rc.pool_manager.connector
             if tcp_keep_alive:
-                connector = TcpKeepAliveConnector(connector=connector, socket_options=self.configuration.socket_options)
+                connector = TcpKeepAliveConnector(connector=connector, socket_options=self.configuration.socket_options)  # type: ignore[arg-type]
             rc.pool_manager._connector = None
             rc.pool_manager = ClientSession(
                 connector=connector,
@@ -236,7 +232,7 @@ class ApiClientFactory:
         self,
         metaclass: Type[T],
     ) -> T:
-        return metaclass(api_client=self.__api_client)
+        return metaclass(api_client=self.__api_client)  # type: ignore[call-arg]
 
     def get_api_client(self) -> ApiClient:
         return self.__api_client

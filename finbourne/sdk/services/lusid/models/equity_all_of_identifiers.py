@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -38,7 +38,7 @@ class EquityAllOfIdentifiers(BaseModel):
     bbgid:  Optional[StrictStr] = Field(default=None,alias="BBGId") 
     ice_code:  Optional[StrictStr] = Field(default=None,alias="ICECode") 
     additional_properties: Dict[str, Any] = {}
-    __properties = ["LusidInstrumentId", "Isin", "Sedol", "Cusip", "ClientInternal", "Figi", "RIC", "QuotePermId", "REDCode", "BBGId", "ICECode"]
+    __properties: ClassVar[List[str]] = ["LusidInstrumentId", "Isin", "Sedol", "Cusip", "ClientInternal", "Figi", "RIC", "QuotePermId", "REDCode", "BBGId", "ICECode"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -105,13 +105,8 @@ class EquityAllOfIdentifiers(BaseModel):
             "ice_code": obj.get("ICECode")
         })
         # store additional fields in additional_properties
-        
-        properties = cls.__properties
-        if not isinstance(cls.__properties, dict) and getattr(cls.__properties, 'default', None):
-            properties = cls.__properties.default
-    
         for _key in obj.keys():
-            if _key not in properties:
+            if _key not in cls.__properties:
                 _obj.additional_properties[_key] = obj.get(_key)
 
         return _obj

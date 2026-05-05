@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class ResultField(BaseModel):
     type:  StrictStr = Field(...,alias="type", description="The type of this Parameter") 
     display_name:  Optional[StrictStr] = Field(default=None,alias="displayName", description="DisplayName") 
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="Description") 
-    __properties = ["name", "type", "displayName", "description"]
+    __properties: ClassVar[List[str]] = ["name", "type", "displayName", "description"]
 
     model_config = ConfigDict(
         populate_by_name=True,

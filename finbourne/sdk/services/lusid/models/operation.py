@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,9 +28,9 @@ class Operation(BaseModel):
     """
     value: Optional[Any] = None
     path:  StrictStr = Field(...,alias="path") 
-    op:  StrictStr = Field(...,alias="op") 
+    op:  StrictStr = Field(...,alias="op", description="Available values: add, remove.") 
     var_from:  Optional[StrictStr] = Field(default=None,alias="from") 
-    __properties = ["value", "path", "op", "from"]
+    __properties: ClassVar[List[str]] = ["value", "path", "op", "from"]
 
     model_config = ConfigDict(
         populate_by_name=True,

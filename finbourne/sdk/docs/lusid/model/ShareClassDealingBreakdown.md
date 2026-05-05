@@ -5,8 +5,8 @@ The breakdown of Dealing for a Share Class.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **class_dealing** | [Dict[str, ShareClassAmount]](ShareClassAmount.md) | Required | Bucket of detail for any &#39;Dealing&#39; specific to the share class that has occured inside the queried period. |
-| **class_dealing_units** | [Dict[str, Amount]](Amount.md) | Required | Bucket of detail for any &#39;Dealing&#39; units specific to the share class that has occured inside the queried period. |
+| **class_dealing** | [Dict[str, ShareClassAmount]](ShareClassAmount.md) | Required | Bucket of detail for any &#39;Dealing&#39; specific to the share class that has occurred inside the queried period. |
+| **class_dealing_units** | [Dict[str, Amount]](Amount.md) | Required | Bucket of detail for any &#39;Dealing&#39; units specific to the share class that has occurred inside the queried period. |
 
 
 ## Usage
@@ -17,8 +17,8 @@ The breakdown of Dealing for a Share Class.
 from finbourne.sdk.services.lusid.models.ShareClassDealingBreakdown import ShareClassDealingBreakdown
 
 instance = ShareClassDealingBreakdown(
-    class_dealing=ShareClassAmount(...),  # required — Bucket of detail for any &#39;Dealing&#39; specific to the share class that has occured inside the queried period.
-    class_dealing_units=Amount(...)  # required — Bucket of detail for any &#39;Dealing&#39; units specific to the share class that has occured inside the queried period.
+    class_dealing=ShareClassAmount(...),  # required — Bucket of detail for any &#39;Dealing&#39; specific to the share class that has occurred inside the queried period.
+    class_dealing_units=Amount(...)  # required — Bucket of detail for any &#39;Dealing&#39; units specific to the share class that has occurred inside the queried period.
 )
 ```
 

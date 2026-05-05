@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,9 +29,9 @@ class AppendFxForwardCurveByQuoteReference(AppendMarketData):
     """
     tenor:  StrictStr = Field(...,alias="tenor", description="Tenor for which the forward rate applies.") 
     quote_reference: Dict[str, Optional[StrictStr]] = Field(description="A collection of identifiers for the tenor, which will be used to query the LUSID Quote Store to resolve the actual rates.  The keys must be chosen from the following enumeration:  [LusidInstrumentId, Isin, Sedol, Cusip, ClientInternal, Figi, RIC, QuotePermId, REDCode, BBGId, ICECode].    For example:    \"quoteReference\": {\"ClientInternal\": \"SomeIdentifierForTenor\"}", alias="quoteReference")
-    market_data_type:  StrictStr = Field(...,alias="marketDataType", description="The available values are: AppendFxForwardCurveByQuoteReference, AppendFxForwardCurveData, AppendFxForwardPipsCurveData, AppendFxForwardTenorCurveData, AppendFxForwardTenorPipsCurveData") 
+    market_data_type:  StrictStr = Field(...,alias="marketDataType", description="Available values: AppendFxForwardCurveByQuoteReference, AppendFxForwardCurveData, AppendFxForwardPipsCurveData, AppendFxForwardTenorCurveData, AppendFxForwardTenorPipsCurveData.") 
     additional_properties: Dict[str, Any] = {}
-    __properties = ["marketDataType", "tenor", "quoteReference"]
+    __properties: ClassVar[List[str]] = ["marketDataType", "tenor", "quoteReference"]
 
     @field_validator('market_data_type')
     def market_data_type_validate_enum(cls, value):
@@ -159,13 +159,8 @@ class AppendFxForwardCurveByQuoteReference(AppendMarketData):
             "quote_reference": obj.get("quoteReference")
         })
         # store additional fields in additional_properties
-        
-        properties = cls.__properties
-        if not isinstance(cls.__properties, dict) and getattr(cls.__properties, 'default', None):
-            properties = cls.__properties.default
-    
         for _key in obj.keys():
-            if _key not in properties:
+            if _key not in cls.__properties:
                 _obj.additional_properties[_key] = obj.get(_key)
 
         return _obj

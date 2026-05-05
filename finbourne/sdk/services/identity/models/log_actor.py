@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class LogActor(BaseModel):
     alternate_id:  Optional[StrictStr] = Field(default=None,alias="alternateId") 
     display_name:  Optional[StrictStr] = Field(default=None,alias="displayName") 
     detail_entry: Optional[Dict[str, Any]] = Field(default=None, alias="detailEntry")
-    __properties = ["id", "type", "alternateId", "displayName", "detailEntry"]
+    __properties: ClassVar[List[str]] = ["id", "type", "alternateId", "displayName", "detailEntry"]
 
     model_config = ConfigDict(
         populate_by_name=True,

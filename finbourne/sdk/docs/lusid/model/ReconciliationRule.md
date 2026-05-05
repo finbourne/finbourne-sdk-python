@@ -5,7 +5,7 @@ Base class for representing reconciliation rules in LUSID.  Reconciliation rules
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **rule_type** | **str** | Required | The available values are: ReconcileNumericRule, ReconcileDateTimeRule, ReconcileStringRule, ReconcileExact |
+| **rule_type** | **str** | Required | Available values: ReconcileNumericRule, ReconcileDateTimeRule, ReconcileStringRule, ReconcileExact. |
 
 
 ## Usage
@@ -16,7 +16,7 @@ Base class for representing reconciliation rules in LUSID.  Reconciliation rules
 from finbourne.sdk.services.lusid.models.ReconciliationRule import ReconciliationRule
 
 instance = ReconciliationRule(
-    rule_type="..."  # required — The available values are: ReconcileNumericRule, ReconcileDateTimeRule, ReconcileStringRule, ReconcileExact
+    rule_type="..."  # required — Available values: ReconcileNumericRule, ReconcileDateTimeRule, ReconcileStringRule, ReconcileExact.
 )
 ```
 

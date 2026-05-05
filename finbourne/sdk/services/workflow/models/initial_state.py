@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class InitialState(BaseModel):
     """
     name:  StrictStr = Field(...,alias="name", description="The Initial State of the Task") 
     required_fields: Optional[List[StrictStr]] = Field(default=None, description="Required input Fields for the Initial State", alias="requiredFields")
-    __properties = ["name", "requiredFields"]
+    __properties: ClassVar[List[str]] = ["name", "requiredFields"]
 
     model_config = ConfigDict(
         populate_by_name=True,

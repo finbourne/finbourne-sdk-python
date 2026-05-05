@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class PerpetualProperty(BaseModel):
     key:  StrictStr = Field(...,alias="key", description="The key of the property. This takes the format {domain}/{scope}/{code} e.g. 'Instrument/system/Name' or 'Transaction/strategy/quantsignal'.") 
     value: Optional[PropertyValue] = None
     reference_data: Optional[Dict[str, PropertyReferenceDataValue]] = Field(default=None, description="The ReferenceData linked to the value of the property. The ReferenceData is taken from the DataType on the PropertyDefinition that defines the property.", alias="referenceData")
-    __properties = ["key", "value", "referenceData"]
+    __properties: ClassVar[List[str]] = ["key", "value", "referenceData"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -96,12 +96,12 @@ class PerpetualProperty(BaseModel):
 
         _obj = PerpetualProperty.model_validate({
             "key": obj.get("key"),
-            "value": PropertyValue.from_dict(obj.get("value")) if obj.get("value") is not None else None,
+            "value": PropertyValue.from_dict(_v) if (_v := obj.get("value")) is not None else None,
             "reference_data": dict(
                 (_k, PropertyReferenceDataValue.from_dict(_v))
-                for _k, _v in obj.get("referenceData").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("referenceData") is not None
+            if (_val := obj.get("referenceData")) is not None
             else None
         })
         return _obj

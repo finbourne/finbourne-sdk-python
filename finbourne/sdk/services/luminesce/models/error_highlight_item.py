@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class ErrorHighlightItem(BaseModel):
     no_viable_alternative_start: Optional[CursorPosition] = Field(default=None, alias="noViableAlternativeStart")
     length: StrictInt = Field(description="The length of the error token counting line breaks if any")
     message:  StrictStr = Field(...,alias="message", description="The error message") 
-    __properties = ["start", "stop", "noViableAlternativeStart", "length", "message"]
+    __properties: ClassVar[List[str]] = ["start", "stop", "noViableAlternativeStart", "length", "message"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -89,9 +89,9 @@ class ErrorHighlightItem(BaseModel):
             return ErrorHighlightItem.model_validate(obj)
 
         _obj = ErrorHighlightItem.model_validate({
-            "start": CursorPosition.from_dict(obj.get("start")) if obj.get("start") is not None else None,
-            "stop": CursorPosition.from_dict(obj.get("stop")) if obj.get("stop") is not None else None,
-            "no_viable_alternative_start": CursorPosition.from_dict(obj.get("noViableAlternativeStart")) if obj.get("noViableAlternativeStart") is not None else None,
+            "start": CursorPosition.from_dict(_v) if (_v := obj.get("start")) is not None else None,
+            "stop": CursorPosition.from_dict(_v) if (_v := obj.get("stop")) is not None else None,
+            "no_viable_alternative_start": CursorPosition.from_dict(_v) if (_v := obj.get("noViableAlternativeStart")) is not None else None,
             "length": obj.get("length"),
             "message": obj.get("message")
         })

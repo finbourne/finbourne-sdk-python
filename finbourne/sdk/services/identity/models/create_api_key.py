@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class CreateApiKey(BaseModel):
     """
     display_name:  StrictStr = Field(...,alias="displayName", description="The display name for the API key") 
     deactivation_date: Optional[datetime] = Field(default=None, description="The optional date at which the key should deactivate", alias="deactivationDate")
-    __properties = ["displayName", "deactivationDate"]
+    __properties: ClassVar[List[str]] = ["displayName", "deactivationDate"]
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -26,9 +26,9 @@ class DialectSchema(BaseModel):
     """
     A schema that a given document must obey. A representation of the validation of a particular Dialect,  in a given language.  # noqa: E501
     """
-    type:  StrictStr = Field(...,alias="type", description="The type of schema this represents") 
+    type:  StrictStr = Field(...,alias="type", description="The type of schema this represents. Available values: None, JsonSchema.") 
     body:  Optional[StrictStr] = Field(default=None,alias="body", description="The body of the schema") 
-    __properties = ["type", "body"]
+    __properties: ClassVar[List[str]] = ["type", "body"]
 
     model_config = ConfigDict(
         populate_by_name=True,

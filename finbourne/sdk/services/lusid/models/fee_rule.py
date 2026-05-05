@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -46,7 +46,7 @@ class FeeRule(BaseModel):
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="") 
     version: Optional[Version] = None
     links: Optional[List[Link]] = None
-    __properties = ["code", "transactionPropertyKey", "transactionType", "country", "counterparty", "transactionCurrency", "settlementCurrency", "executionBroker", "custodian", "exchange", "fee", "minFee", "maxFee", "additionalKeys", "description", "version", "links"]
+    __properties: ClassVar[List[str]] = ["code", "transactionPropertyKey", "transactionType", "country", "counterparty", "transactionCurrency", "settlementCurrency", "executionBroker", "custodian", "exchange", "fee", "minFee", "maxFee", "additionalKeys", "description", "version", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -138,13 +138,13 @@ class FeeRule(BaseModel):
             "execution_broker": obj.get("executionBroker"),
             "custodian": obj.get("custodian"),
             "exchange": obj.get("exchange"),
-            "fee": CalculationInfo.from_dict(obj.get("fee")) if obj.get("fee") is not None else None,
-            "min_fee": CalculationInfo.from_dict(obj.get("minFee")) if obj.get("minFee") is not None else None,
-            "max_fee": CalculationInfo.from_dict(obj.get("maxFee")) if obj.get("maxFee") is not None else None,
+            "fee": CalculationInfo.from_dict(_v) if (_v := obj.get("fee")) is not None else None,
+            "min_fee": CalculationInfo.from_dict(_v) if (_v := obj.get("minFee")) is not None else None,
+            "max_fee": CalculationInfo.from_dict(_v) if (_v := obj.get("maxFee")) is not None else None,
             "additional_keys": obj.get("additionalKeys"),
             "description": obj.get("description"),
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

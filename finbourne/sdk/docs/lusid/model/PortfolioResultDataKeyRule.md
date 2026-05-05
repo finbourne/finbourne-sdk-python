@@ -11,7 +11,7 @@
 | **as_at** | **datetime** | Optional | The AsAt predicate specification. |
 | **portfolio_code** | **str** | Optional | *No description available.* |
 | **portfolio_scope** | **str** | Optional | *No description available.* |
-| **result_key_rule_type** | **str** | Required | The available values are: Invalid, ResultDataKeyRule, PortfolioResultDataKeyRule |
+| **result_key_rule_type** | **str** | Required | Available values: Invalid, ResultDataKeyRule, PortfolioResultDataKeyRule. |
 
 
 ## Usage
@@ -29,7 +29,7 @@ instance = PortfolioResultDataKeyRule(
     as_at=datetime.now(),  # optional — The AsAt predicate specification.
     portfolio_code="...",  # optional
     portfolio_scope="...",  # optional
-    result_key_rule_type="..."  # required — The available values are: Invalid, ResultDataKeyRule, PortfolioResultDataKeyRule
+    result_key_rule_type="..."  # required — Available values: Invalid, ResultDataKeyRule, PortfolioResultDataKeyRule.
 )
 ```
 

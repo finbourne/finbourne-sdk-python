@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -46,7 +46,7 @@ class PortfolioCashFlow(BaseModel):
     transaction: Optional[Transaction] = None
     unrealised_gain_loss_reporting_currency: CurrencyAndAmount = Field(alias="unrealisedGainLossReportingCurrency")
     links: Optional[List[Link]] = None
-    __properties = ["groupById", "sequenceNumber", "effectiveDate", "subHoldingKeys", "type", "movementName", "cashflow", "balance", "fxRate", "cashflowReportingCurrency", "balanceReportingCurrency", "translationGainLoss", "costBasisReportingCurrency", "transaction", "unrealisedGainLossReportingCurrency", "links"]
+    __properties: ClassVar[List[str]] = ["groupById", "sequenceNumber", "effectiveDate", "subHoldingKeys", "type", "movementName", "cashflow", "balance", "fxRate", "cashflowReportingCurrency", "balanceReportingCurrency", "translationGainLoss", "costBasisReportingCurrency", "transaction", "unrealisedGainLossReportingCurrency", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -147,22 +147,22 @@ class PortfolioCashFlow(BaseModel):
             "effective_date": obj.get("effectiveDate"),
             "sub_holding_keys": dict(
                 (_k, PerpetualProperty.from_dict(_v))
-                for _k, _v in obj.get("subHoldingKeys").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("subHoldingKeys") is not None
+            if (_val := obj.get("subHoldingKeys")) is not None
             else None,
             "type": obj.get("type"),
             "movement_name": obj.get("movementName"),
-            "cashflow": CurrencyAndAmount.from_dict(obj.get("cashflow")) if obj.get("cashflow") is not None else None,
-            "balance": CurrencyAndAmount.from_dict(obj.get("balance")) if obj.get("balance") is not None else None,
+            "cashflow": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("cashflow")) is not None else None,
+            "balance": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("balance")) is not None else None,
             "fx_rate": obj.get("fxRate"),
-            "cashflow_reporting_currency": CurrencyAndAmount.from_dict(obj.get("cashflowReportingCurrency")) if obj.get("cashflowReportingCurrency") is not None else None,
-            "balance_reporting_currency": CurrencyAndAmount.from_dict(obj.get("balanceReportingCurrency")) if obj.get("balanceReportingCurrency") is not None else None,
-            "translation_gain_loss": CurrencyAndAmount.from_dict(obj.get("translationGainLoss")) if obj.get("translationGainLoss") is not None else None,
-            "cost_basis_reporting_currency": CurrencyAndAmount.from_dict(obj.get("costBasisReportingCurrency")) if obj.get("costBasisReportingCurrency") is not None else None,
-            "transaction": Transaction.from_dict(obj.get("transaction")) if obj.get("transaction") is not None else None,
-            "unrealised_gain_loss_reporting_currency": CurrencyAndAmount.from_dict(obj.get("unrealisedGainLossReportingCurrency")) if obj.get("unrealisedGainLossReportingCurrency") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "cashflow_reporting_currency": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("cashflowReportingCurrency")) is not None else None,
+            "balance_reporting_currency": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("balanceReportingCurrency")) is not None else None,
+            "translation_gain_loss": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("translationGainLoss")) is not None else None,
+            "cost_basis_reporting_currency": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("costBasisReportingCurrency")) is not None else None,
+            "transaction": Transaction.from_dict(_v) if (_v := obj.get("transaction")) is not None else None,
+            "unrealised_gain_loss_reporting_currency": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("unrealisedGainLossReportingCurrency")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

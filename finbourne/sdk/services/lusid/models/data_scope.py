@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class DataScope(BaseModel):
     """
     client: Optional[Client] = None
     scope:  Optional[StrictStr] = Field(default=None,alias="scope") 
-    __properties = ["client", "scope"]
+    __properties: ClassVar[List[str]] = ["client", "scope"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,7 +85,7 @@ class DataScope(BaseModel):
             return DataScope.model_validate(obj)
 
         _obj = DataScope.model_validate({
-            "client": Client.from_dict(obj.get("client")) if obj.get("client") is not None else None,
+            "client": Client.from_dict(_v) if (_v := obj.get("client")) is not None else None,
             "scope": obj.get("scope")
         })
         return _obj

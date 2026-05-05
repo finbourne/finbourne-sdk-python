@@ -74,12 +74,12 @@ class InvestorRecordsApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_investor_record_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_investor_record_with_http_info(identifier_type, identifier_value, scope, identifier_scope, **kwargs)  # noqa: E501
+        response = self.delete_investor_record_with_http_info(identifier_type, identifier_value, scope, identifier_scope, **kwargs)
+        return response.data
 
     @validate_call
     def delete_investor_record_with_http_info(self, identifier_type: StrictStr, identifier_value: StrictStr, scope: StrictStr, identifier_scope: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -224,12 +224,12 @@ class InvestorRecordsApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_investor_record_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_investor_record_access_metadata_with_http_info(identifier_type, identifier_value, metadata_key, scope, identifier_scope, effective_at, effective_until, **kwargs)  # noqa: E501
+        response = self.delete_investor_record_access_metadata_with_http_info(identifier_type, identifier_value, metadata_key, scope, identifier_scope, effective_at, effective_until, **kwargs)
+        return response.data
 
     @validate_call
     def delete_investor_record_access_metadata_with_http_info(self, identifier_type: StrictStr, identifier_value: StrictStr, metadata_key: StrictStr, scope: StrictStr, identifier_scope: StrictStr, effective_at: Optional[StrictStr] = None, effective_until: Optional[datetime] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -393,12 +393,12 @@ class InvestorRecordsApi:
         :return: Returns the result object.
         :rtype: Dict[str, List[AccessMetadataValue]]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_all_investor_record_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_all_investor_record_access_metadata_with_http_info(identifier_type, identifier_value, scope, identifier_scope, effective_at, as_at, **kwargs)  # noqa: E501
+        response = self.get_all_investor_record_access_metadata_with_http_info(identifier_type, identifier_value, scope, identifier_scope, effective_at, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_all_investor_record_access_metadata_with_http_info(self, identifier_type: StrictStr, identifier_value: StrictStr, scope: StrictStr, identifier_scope: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[Dict[str, List[AccessMetadataValue]]]:
@@ -560,12 +560,12 @@ class InvestorRecordsApi:
         :return: Returns the result object.
         :rtype: InvestorRecord
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_investor_record_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_investor_record_with_http_info(identifier_type, identifier_value, scope, identifier_scope, property_keys, effective_at, as_at, relationship_definition_ids, **kwargs)  # noqa: E501
+        response = self.get_investor_record_with_http_info(identifier_type, identifier_value, scope, identifier_scope, property_keys, effective_at, as_at, relationship_definition_ids, **kwargs)
+        return response.data
 
     @validate_call
     def get_investor_record_with_http_info(self, identifier_type: StrictStr, identifier_value: StrictStr, scope: StrictStr, identifier_scope: StrictStr, property_keys: Optional[List[str]] = None, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> ApiResponse[InvestorRecord]:
@@ -741,12 +741,12 @@ class InvestorRecordsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfRelationship
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_investor_record_relationships_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_investor_record_relationships_with_http_info(identifier_type, identifier_value, scope, identifier_scope, effective_at, as_at, filter, identifier_types, **kwargs)  # noqa: E501
+        response = self.get_investor_record_relationships_with_http_info(identifier_type, identifier_value, scope, identifier_scope, effective_at, as_at, filter, identifier_types, **kwargs)
+        return response.data
 
     @validate_call
     def get_investor_record_relationships_with_http_info(self, identifier_type: StrictStr, identifier_value: StrictStr, scope: StrictStr, identifier_scope: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, identifier_types: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfRelationship]:
@@ -921,12 +921,12 @@ class InvestorRecordsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfInvestorRecord
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_all_investor_records_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_all_investor_records_with_http_info(effective_at, as_at, page, limit, filter, sort_by, property_keys, relationship_definition_ids, **kwargs)  # noqa: E501
+        response = self.list_all_investor_records_with_http_info(effective_at, as_at, page, limit, filter, sort_by, property_keys, relationship_definition_ids, **kwargs)
+        return response.data
 
     @validate_call
     def list_all_investor_records_with_http_info(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfInvestorRecord]:
@@ -1101,12 +1101,12 @@ class InvestorRecordsApi:
         :return: Returns the result object.
         :rtype: Dict[str, List[AccessMetadataValue]]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the patch_investor_record_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.patch_investor_record_access_metadata_with_http_info(identifier_type, identifier_value, scope, identifier_scope, access_metadata_operation, effective_at, effective_until, **kwargs)  # noqa: E501
+        response = self.patch_investor_record_access_metadata_with_http_info(identifier_type, identifier_value, scope, identifier_scope, access_metadata_operation, effective_at, effective_until, **kwargs)
+        return response.data
 
     @validate_call
     def patch_investor_record_access_metadata_with_http_info(self, identifier_type: StrictStr, identifier_value: StrictStr, scope: StrictStr, identifier_scope: StrictStr, access_metadata_operation: List[AccessMetadataOperation], effective_at: Optional[StrictStr] = None, effective_until: Optional[datetime] = None, **kwargs) -> ApiResponse[Dict[str, List[AccessMetadataValue]]]:
@@ -1269,12 +1269,12 @@ class InvestorRecordsApi:
         :return: Returns the result object.
         :rtype: UpsertInvestorRecordsResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_investor_records_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_investor_records_with_http_info(success_mode, request_body, **kwargs)  # noqa: E501
+        response = self.upsert_investor_records_with_http_info(success_mode, request_body, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_investor_records_with_http_info(self, success_mode: StrictStr, request_body: Dict[str, UpsertInvestorRecordRequest], **kwargs) -> ApiResponse[UpsertInvestorRecordsResponse]:
@@ -1412,12 +1412,12 @@ class InvestorRecordsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_investor_record_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_investor_record_with_http_info_async(identifier_type, identifier_value, scope, identifier_scope, **kwargs)  # noqa: E501
+            response = await self.delete_investor_record_with_http_info_async(identifier_type, identifier_value, scope, identifier_scope, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_investor_record_with_http_info_async(self, identifier_type: StrictStr, identifier_value: StrictStr, scope: StrictStr, identifier_scope: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -1563,12 +1563,12 @@ class InvestorRecordsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_investor_record_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_investor_record_access_metadata_with_http_info_async(identifier_type, identifier_value, metadata_key, scope, identifier_scope, effective_at, effective_until, **kwargs)  # noqa: E501
+            response = await self.delete_investor_record_access_metadata_with_http_info_async(identifier_type, identifier_value, metadata_key, scope, identifier_scope, effective_at, effective_until, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_investor_record_access_metadata_with_http_info_async(self, identifier_type: StrictStr, identifier_value: StrictStr, metadata_key: StrictStr, scope: StrictStr, identifier_scope: StrictStr, effective_at: Optional[StrictStr] = None, effective_until: Optional[datetime] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -1733,12 +1733,12 @@ class InvestorRecordsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Dict[str, List[AccessMetadataValue]]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_all_investor_record_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_all_investor_record_access_metadata_with_http_info_async(identifier_type, identifier_value, scope, identifier_scope, effective_at, as_at, **kwargs)  # noqa: E501
+            response = await self.get_all_investor_record_access_metadata_with_http_info_async(identifier_type, identifier_value, scope, identifier_scope, effective_at, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_all_investor_record_access_metadata_with_http_info_async(self, identifier_type: StrictStr, identifier_value: StrictStr, scope: StrictStr, identifier_scope: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[Dict[str, List[AccessMetadataValue]]]:
@@ -1901,12 +1901,12 @@ class InvestorRecordsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: InvestorRecord
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_investor_record_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_investor_record_with_http_info_async(identifier_type, identifier_value, scope, identifier_scope, property_keys, effective_at, as_at, relationship_definition_ids, **kwargs)  # noqa: E501
+            response = await self.get_investor_record_with_http_info_async(identifier_type, identifier_value, scope, identifier_scope, property_keys, effective_at, as_at, relationship_definition_ids, **kwargs)
+            return response.data
 
     @validate_call
     async def get_investor_record_with_http_info_async(self, identifier_type: StrictStr, identifier_value: StrictStr, scope: StrictStr, identifier_scope: StrictStr, property_keys: Optional[List[str]] = None, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> ApiResponse[InvestorRecord]:
@@ -2083,12 +2083,12 @@ class InvestorRecordsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfRelationship
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_investor_record_relationships_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_investor_record_relationships_with_http_info_async(identifier_type, identifier_value, scope, identifier_scope, effective_at, as_at, filter, identifier_types, **kwargs)  # noqa: E501
+            response = await self.get_investor_record_relationships_with_http_info_async(identifier_type, identifier_value, scope, identifier_scope, effective_at, as_at, filter, identifier_types, **kwargs)
+            return response.data
 
     @validate_call
     async def get_investor_record_relationships_with_http_info_async(self, identifier_type: StrictStr, identifier_value: StrictStr, scope: StrictStr, identifier_scope: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, identifier_types: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfRelationship]:
@@ -2264,12 +2264,12 @@ class InvestorRecordsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfInvestorRecord
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_all_investor_records_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_all_investor_records_with_http_info_async(effective_at, as_at, page, limit, filter, sort_by, property_keys, relationship_definition_ids, **kwargs)  # noqa: E501
+            response = await self.list_all_investor_records_with_http_info_async(effective_at, as_at, page, limit, filter, sort_by, property_keys, relationship_definition_ids, **kwargs)
+            return response.data
 
     @validate_call
     async def list_all_investor_records_with_http_info_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfInvestorRecord]:
@@ -2445,12 +2445,12 @@ class InvestorRecordsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Dict[str, List[AccessMetadataValue]]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the patch_investor_record_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.patch_investor_record_access_metadata_with_http_info_async(identifier_type, identifier_value, scope, identifier_scope, access_metadata_operation, effective_at, effective_until, **kwargs)  # noqa: E501
+            response = await self.patch_investor_record_access_metadata_with_http_info_async(identifier_type, identifier_value, scope, identifier_scope, access_metadata_operation, effective_at, effective_until, **kwargs)
+            return response.data
 
     @validate_call
     async def patch_investor_record_access_metadata_with_http_info_async(self, identifier_type: StrictStr, identifier_value: StrictStr, scope: StrictStr, identifier_scope: StrictStr, access_metadata_operation: List[AccessMetadataOperation], effective_at: Optional[StrictStr] = None, effective_until: Optional[datetime] = None, **kwargs) -> ApiResponse[Dict[str, List[AccessMetadataValue]]]:
@@ -2614,12 +2614,12 @@ class InvestorRecordsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: UpsertInvestorRecordsResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_investor_records_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_investor_records_with_http_info_async(success_mode, request_body, **kwargs)  # noqa: E501
+            response = await self.upsert_investor_records_with_http_info_async(success_mode, request_body, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_investor_records_with_http_info_async(self, success_mode: StrictStr, request_body: Dict[str, UpsertInvestorRecordRequest], **kwargs) -> ApiResponse[UpsertInvestorRecordsResponse]:

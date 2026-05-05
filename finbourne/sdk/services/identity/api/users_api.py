@@ -68,12 +68,12 @@ class UsersApi:
         :return: Returns the result object.
         :rtype: UserResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_user_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_user_with_http_info(create_user_request, wait_for_reindex, **kwargs)  # noqa: E501
+        response = self.create_user_with_http_info(create_user_request, wait_for_reindex, **kwargs)
+        return response.data
 
     @validate_call
     def create_user_with_http_info(self, create_user_request: CreateUserRequest, wait_for_reindex: Optional[bool] = None, **kwargs) -> ApiResponse[UserResponse]:
@@ -203,15 +203,15 @@ class UsersApi:
         :return: Returns the result object.
         :rtype: None
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_user_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_user_with_http_info(id, purge, **kwargs)  # noqa: E501
+        response = self.delete_user_with_http_info(id, purge, **kwargs)
+        return response.data
 
     @validate_call
-    def delete_user_with_http_info(self, id: StrictStr, purge: Optional[bool] = None, **kwargs) -> None:
+    def delete_user_with_http_info(self, id: StrictStr, purge: Optional[bool] = None, **kwargs) -> ApiResponse[None]:
         """DeleteUser: Delete User  # noqa: E501
 
         By default the user will be de-provisioned and inactive, however their record will remain in the identity provider for audit purposes. If this is not desirable and removal of all trace of the user is required, the purge parameter can be specified to indicate the details should be purged completely.  # noqa: E501
@@ -326,12 +326,12 @@ class UsersApi:
         :return: Returns the result object.
         :rtype: TemporaryPassword
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the expire_password_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.expire_password_with_http_info(id, **kwargs)  # noqa: E501
+        response = self.expire_password_with_http_info(id, **kwargs)
+        return response.data
 
     @validate_call
     def expire_password_with_http_info(self, id: StrictStr, **kwargs) -> ApiResponse[TemporaryPassword]:
@@ -446,12 +446,12 @@ class UsersApi:
         :return: Returns the result object.
         :rtype: ListUsersResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the find_users_by_id_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.find_users_by_id_with_http_info(id, **kwargs)  # noqa: E501
+        response = self.find_users_by_id_with_http_info(id, **kwargs)
+        return response.data
 
     @validate_call
     def find_users_by_id_with_http_info(self, id: List[str], **kwargs) -> ApiResponse[ListUsersResponse]:
@@ -569,12 +569,12 @@ class UsersApi:
         :return: Returns the result object.
         :rtype: UserResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_user_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_user_with_http_info(id, include_roles, **kwargs)  # noqa: E501
+        response = self.get_user_with_http_info(id, include_roles, **kwargs)
+        return response.data
 
     @validate_call
     def get_user_with_http_info(self, id: StrictStr, include_roles: Optional[bool] = None, **kwargs) -> ApiResponse[UserResponse]:
@@ -693,12 +693,12 @@ class UsersApi:
         :return: Returns the result object.
         :rtype: UserSchemaResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_user_schema_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_user_schema_with_http_info(**kwargs)  # noqa: E501
+        response = self.get_user_schema_with_http_info(**kwargs)
+        return response.data
 
     @validate_call
     def get_user_schema_with_http_info(self, **kwargs) -> ApiResponse[UserSchemaResponse]:
@@ -804,12 +804,12 @@ class UsersApi:
         :return: Returns the result object.
         :rtype: List[UserResponse]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_runnable_users_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_runnable_users_with_http_info(**kwargs)  # noqa: E501
+        response = self.list_runnable_users_with_http_info(**kwargs)
+        return response.data
 
     @validate_call
     def list_runnable_users_with_http_info(self, **kwargs) -> ApiResponse[List[UserResponse]]:
@@ -917,12 +917,12 @@ class UsersApi:
         :return: Returns the result object.
         :rtype: List[UserResponse]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_users_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_users_with_http_info(include_deactivated, **kwargs)  # noqa: E501
+        response = self.list_users_with_http_info(include_deactivated, **kwargs)
+        return response.data
 
     @validate_call
     def list_users_with_http_info(self, include_deactivated: Optional[bool] = None, **kwargs) -> ApiResponse[List[UserResponse]]:
@@ -1037,15 +1037,15 @@ class UsersApi:
         :return: Returns the result object.
         :rtype: None
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the reset_factors_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.reset_factors_with_http_info(id, **kwargs)  # noqa: E501
+        response = self.reset_factors_with_http_info(id, **kwargs)
+        return response.data
 
     @validate_call
-    def reset_factors_with_http_info(self, id: StrictStr, **kwargs) -> None:
+    def reset_factors_with_http_info(self, id: StrictStr, **kwargs) -> ApiResponse[None]:
         """ResetFactors: Reset MFA factors  # noqa: E501
 
         Resets the MFA factors of the specified User  # noqa: E501
@@ -1154,15 +1154,15 @@ class UsersApi:
         :return: Returns the result object.
         :rtype: None
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the reset_password_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.reset_password_with_http_info(id, **kwargs)  # noqa: E501
+        response = self.reset_password_with_http_info(id, **kwargs)
+        return response.data
 
     @validate_call
-    def reset_password_with_http_info(self, id: StrictStr, **kwargs) -> None:
+    def reset_password_with_http_info(self, id: StrictStr, **kwargs) -> ApiResponse[None]:
         """ResetPassword: Reset Password  # noqa: E501
 
         Resets the password of the specified User  # noqa: E501
@@ -1271,15 +1271,15 @@ class UsersApi:
         :return: Returns the result object.
         :rtype: None
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the send_activation_email_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.send_activation_email_with_http_info(id, **kwargs)  # noqa: E501
+        response = self.send_activation_email_with_http_info(id, **kwargs)
+        return response.data
 
     @validate_call
-    def send_activation_email_with_http_info(self, id: StrictStr, **kwargs) -> None:
+    def send_activation_email_with_http_info(self, id: StrictStr, **kwargs) -> ApiResponse[None]:
         """SendActivationEmail: Sends an activation email to the User  # noqa: E501
 
         Sends an activation email to the specified User  # noqa: E501
@@ -1388,15 +1388,15 @@ class UsersApi:
         :return: Returns the result object.
         :rtype: None
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the unlock_user_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.unlock_user_with_http_info(id, **kwargs)  # noqa: E501
+        response = self.unlock_user_with_http_info(id, **kwargs)
+        return response.data
 
     @validate_call
-    def unlock_user_with_http_info(self, id: StrictStr, **kwargs) -> None:
+    def unlock_user_with_http_info(self, id: StrictStr, **kwargs) -> ApiResponse[None]:
         """UnlockUser: Unlock User  # noqa: E501
 
         Unlocks the specified User  # noqa: E501
@@ -1505,15 +1505,15 @@ class UsersApi:
         :return: Returns the result object.
         :rtype: None
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the unsuspend_user_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.unsuspend_user_with_http_info(id, **kwargs)  # noqa: E501
+        response = self.unsuspend_user_with_http_info(id, **kwargs)
+        return response.data
 
     @validate_call
-    def unsuspend_user_with_http_info(self, id: StrictStr, **kwargs) -> None:
+    def unsuspend_user_with_http_info(self, id: StrictStr, **kwargs) -> ApiResponse[None]:
         """[EXPERIMENTAL] UnsuspendUser: Unsuspend user  # noqa: E501
 
         Unsuspend the user  # noqa: E501
@@ -1624,12 +1624,12 @@ class UsersApi:
         :return: Returns the result object.
         :rtype: UserResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_user_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_user_with_http_info(id, update_user_request, **kwargs)  # noqa: E501
+        response = self.update_user_with_http_info(id, update_user_request, **kwargs)
+        return response.data
 
     @validate_call
     def update_user_with_http_info(self, id: StrictStr, update_user_request: UpdateUserRequest, **kwargs) -> ApiResponse[UserResponse]:
@@ -1757,12 +1757,12 @@ class UsersApi:
         :return: Returns the result object.
         :rtype: UserSchemaResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_user_schema_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_user_schema_with_http_info(update_user_schema_request, **kwargs)  # noqa: E501
+        response = self.update_user_schema_with_http_info(update_user_schema_request, **kwargs)
+        return response.data
 
     @validate_call
     def update_user_schema_with_http_info(self, update_user_schema_request: UpdateUserSchemaRequest, **kwargs) -> ApiResponse[UserSchemaResponse]:
@@ -1890,12 +1890,12 @@ class UsersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: UserResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_user_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_user_with_http_info_async(create_user_request, wait_for_reindex, **kwargs)  # noqa: E501
+            response = await self.create_user_with_http_info_async(create_user_request, wait_for_reindex, **kwargs)
+            return response.data
 
     @validate_call
     async def create_user_with_http_info_async(self, create_user_request: CreateUserRequest, wait_for_reindex: Optional[bool] = None, **kwargs) -> ApiResponse[UserResponse]:
@@ -2026,15 +2026,15 @@ class UsersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: None
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_user_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_user_with_http_info_async(id, purge, **kwargs)  # noqa: E501
+            response = await self.delete_user_with_http_info_async(id, purge, **kwargs)
+            return response.data
 
     @validate_call
-    async def delete_user_with_http_info_async(self, id: StrictStr, purge: Optional[bool] = None, **kwargs) -> None:
+    async def delete_user_with_http_info_async(self, id: StrictStr, purge: Optional[bool] = None, **kwargs) -> ApiResponse[None]:
             """DeleteUser: Delete User  # noqa: E501
 
             By default the user will be de-provisioned and inactive, however their record will remain in the identity provider for audit purposes. If this is not desirable and removal of all trace of the user is required, the purge parameter can be specified to indicate the details should be purged completely.  # noqa: E501
@@ -2150,12 +2150,12 @@ class UsersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: TemporaryPassword
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the expire_password_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.expire_password_with_http_info_async(id, **kwargs)  # noqa: E501
+            response = await self.expire_password_with_http_info_async(id, **kwargs)
+            return response.data
 
     @validate_call
     async def expire_password_with_http_info_async(self, id: StrictStr, **kwargs) -> ApiResponse[TemporaryPassword]:
@@ -2271,12 +2271,12 @@ class UsersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ListUsersResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the find_users_by_id_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.find_users_by_id_with_http_info_async(id, **kwargs)  # noqa: E501
+            response = await self.find_users_by_id_with_http_info_async(id, **kwargs)
+            return response.data
 
     @validate_call
     async def find_users_by_id_with_http_info_async(self, id: List[str], **kwargs) -> ApiResponse[ListUsersResponse]:
@@ -2395,12 +2395,12 @@ class UsersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: UserResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_user_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_user_with_http_info_async(id, include_roles, **kwargs)  # noqa: E501
+            response = await self.get_user_with_http_info_async(id, include_roles, **kwargs)
+            return response.data
 
     @validate_call
     async def get_user_with_http_info_async(self, id: StrictStr, include_roles: Optional[bool] = None, **kwargs) -> ApiResponse[UserResponse]:
@@ -2520,12 +2520,12 @@ class UsersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: UserSchemaResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_user_schema_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_user_schema_with_http_info_async(**kwargs)  # noqa: E501
+            response = await self.get_user_schema_with_http_info_async(**kwargs)
+            return response.data
 
     @validate_call
     async def get_user_schema_with_http_info_async(self, **kwargs) -> ApiResponse[UserSchemaResponse]:
@@ -2632,12 +2632,12 @@ class UsersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: List[UserResponse]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_runnable_users_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_runnable_users_with_http_info_async(**kwargs)  # noqa: E501
+            response = await self.list_runnable_users_with_http_info_async(**kwargs)
+            return response.data
 
     @validate_call
     async def list_runnable_users_with_http_info_async(self, **kwargs) -> ApiResponse[List[UserResponse]]:
@@ -2746,12 +2746,12 @@ class UsersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: List[UserResponse]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_users_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_users_with_http_info_async(include_deactivated, **kwargs)  # noqa: E501
+            response = await self.list_users_with_http_info_async(include_deactivated, **kwargs)
+            return response.data
 
     @validate_call
     async def list_users_with_http_info_async(self, include_deactivated: Optional[bool] = None, **kwargs) -> ApiResponse[List[UserResponse]]:
@@ -2867,15 +2867,15 @@ class UsersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: None
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the reset_factors_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.reset_factors_with_http_info_async(id, **kwargs)  # noqa: E501
+            response = await self.reset_factors_with_http_info_async(id, **kwargs)
+            return response.data
 
     @validate_call
-    async def reset_factors_with_http_info_async(self, id: StrictStr, **kwargs) -> None:
+    async def reset_factors_with_http_info_async(self, id: StrictStr, **kwargs) -> ApiResponse[None]:
             """ResetFactors: Reset MFA factors  # noqa: E501
 
             Resets the MFA factors of the specified User  # noqa: E501
@@ -2985,15 +2985,15 @@ class UsersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: None
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the reset_password_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.reset_password_with_http_info_async(id, **kwargs)  # noqa: E501
+            response = await self.reset_password_with_http_info_async(id, **kwargs)
+            return response.data
 
     @validate_call
-    async def reset_password_with_http_info_async(self, id: StrictStr, **kwargs) -> None:
+    async def reset_password_with_http_info_async(self, id: StrictStr, **kwargs) -> ApiResponse[None]:
             """ResetPassword: Reset Password  # noqa: E501
 
             Resets the password of the specified User  # noqa: E501
@@ -3103,15 +3103,15 @@ class UsersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: None
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the send_activation_email_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.send_activation_email_with_http_info_async(id, **kwargs)  # noqa: E501
+            response = await self.send_activation_email_with_http_info_async(id, **kwargs)
+            return response.data
 
     @validate_call
-    async def send_activation_email_with_http_info_async(self, id: StrictStr, **kwargs) -> None:
+    async def send_activation_email_with_http_info_async(self, id: StrictStr, **kwargs) -> ApiResponse[None]:
             """SendActivationEmail: Sends an activation email to the User  # noqa: E501
 
             Sends an activation email to the specified User  # noqa: E501
@@ -3221,15 +3221,15 @@ class UsersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: None
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the unlock_user_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.unlock_user_with_http_info_async(id, **kwargs)  # noqa: E501
+            response = await self.unlock_user_with_http_info_async(id, **kwargs)
+            return response.data
 
     @validate_call
-    async def unlock_user_with_http_info_async(self, id: StrictStr, **kwargs) -> None:
+    async def unlock_user_with_http_info_async(self, id: StrictStr, **kwargs) -> ApiResponse[None]:
             """UnlockUser: Unlock User  # noqa: E501
 
             Unlocks the specified User  # noqa: E501
@@ -3339,15 +3339,15 @@ class UsersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: None
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the unsuspend_user_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.unsuspend_user_with_http_info_async(id, **kwargs)  # noqa: E501
+            response = await self.unsuspend_user_with_http_info_async(id, **kwargs)
+            return response.data
 
     @validate_call
-    async def unsuspend_user_with_http_info_async(self, id: StrictStr, **kwargs) -> None:
+    async def unsuspend_user_with_http_info_async(self, id: StrictStr, **kwargs) -> ApiResponse[None]:
             """[EXPERIMENTAL] UnsuspendUser: Unsuspend user  # noqa: E501
 
             Unsuspend the user  # noqa: E501
@@ -3459,12 +3459,12 @@ class UsersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: UserResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_user_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_user_with_http_info_async(id, update_user_request, **kwargs)  # noqa: E501
+            response = await self.update_user_with_http_info_async(id, update_user_request, **kwargs)
+            return response.data
 
     @validate_call
     async def update_user_with_http_info_async(self, id: StrictStr, update_user_request: UpdateUserRequest, **kwargs) -> ApiResponse[UserResponse]:
@@ -3593,12 +3593,12 @@ class UsersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: UserSchemaResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_user_schema_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_user_schema_with_http_info_async(update_user_schema_request, **kwargs)  # noqa: E501
+            response = await self.update_user_schema_with_http_info_async(update_user_schema_request, **kwargs)
+            return response.data
 
     @validate_call
     async def update_user_schema_with_http_info_async(self, update_user_schema_request: UpdateUserSchemaRequest, **kwargs) -> ApiResponse[UserSchemaResponse]:

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class CreateSubscription(BaseModel):
     status:  StrictStr = Field(...,alias="status", description="The current status of the subscription. Possible values are: Active, Inactive") 
     matching_pattern: MatchingPattern = Field(alias="matchingPattern")
     use_as_auth:  Optional[StrictStr] = Field(default=None,alias="useAsAuth", description="Id of user associated with subscription. All events associated with  the subscription will use this user to check entitlements against  the resource to send a notification. Can be null, in which case  we'll default to that of the user making this request") 
-    __properties = ["id", "displayName", "description", "status", "matchingPattern", "useAsAuth"]
+    __properties: ClassVar[List[str]] = ["id", "displayName", "description", "status", "matchingPattern", "useAsAuth"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -98,11 +98,11 @@ class CreateSubscription(BaseModel):
             return CreateSubscription.model_validate(obj)
 
         _obj = CreateSubscription.model_validate({
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
             "status": obj.get("status"),
-            "matching_pattern": MatchingPattern.from_dict(obj.get("matchingPattern")) if obj.get("matchingPattern") is not None else None,
+            "matching_pattern": MatchingPattern.from_dict(_v) if (_v := obj.get("matchingPattern")) is not None else None,
             "use_as_auth": obj.get("useAsAuth")
         })
         return _obj

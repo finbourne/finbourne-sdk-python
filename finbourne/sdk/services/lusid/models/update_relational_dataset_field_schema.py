@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class UpdateRelationalDatasetFieldSchema(BaseModel):
     add: Optional[RelationalDatasetFieldsToAdd] = None
     update: Optional[RelationalDatasetFieldsToUpdate] = None
     remove: Optional[RelationalDatasetFieldsToRemove] = None
-    __properties = ["add", "update", "remove"]
+    __properties: ClassVar[List[str]] = ["add", "update", "remove"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -89,9 +89,9 @@ class UpdateRelationalDatasetFieldSchema(BaseModel):
             return UpdateRelationalDatasetFieldSchema.model_validate(obj)
 
         _obj = UpdateRelationalDatasetFieldSchema.model_validate({
-            "add": RelationalDatasetFieldsToAdd.from_dict(obj.get("add")) if obj.get("add") is not None else None,
-            "update": RelationalDatasetFieldsToUpdate.from_dict(obj.get("update")) if obj.get("update") is not None else None,
-            "remove": RelationalDatasetFieldsToRemove.from_dict(obj.get("remove")) if obj.get("remove") is not None else None
+            "add": RelationalDatasetFieldsToAdd.from_dict(_v) if (_v := obj.get("add")) is not None else None,
+            "update": RelationalDatasetFieldsToUpdate.from_dict(_v) if (_v := obj.get("update")) is not None else None,
+            "remove": RelationalDatasetFieldsToRemove.from_dict(_v) if (_v := obj.get("remove")) is not None else None
         })
         return _obj
 

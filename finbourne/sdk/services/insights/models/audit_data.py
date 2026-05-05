@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class AuditData(BaseModel):
     resource: Optional[Resource] = None
     details_type:  Optional[StrictStr] = Field(default=None,alias="detailsType") 
     details: Optional[Any] = None
-    __properties = ["action", "category", "userId", "message", "resource", "detailsType", "details"]
+    __properties: ClassVar[List[str]] = ["action", "category", "userId", "message", "resource", "detailsType", "details"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -109,7 +109,7 @@ class AuditData(BaseModel):
             "category": obj.get("category"),
             "user_id": obj.get("userId"),
             "message": obj.get("message"),
-            "resource": Resource.from_dict(obj.get("resource")) if obj.get("resource") is not None else None,
+            "resource": Resource.from_dict(_v) if (_v := obj.get("resource")) is not None else None,
             "details_type": obj.get("detailsType"),
             "details": obj.get("details")
         })

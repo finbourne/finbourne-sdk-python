@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -39,7 +39,7 @@ class QueryDesign(BaseModel):
     offset: Optional[StrictInt] = Field(default=None, description="Row offset to apply, if any")
     warnings: Optional[List[StrictStr]] = Field(default=None, description="Any warnings to show the user when converting from SQL to this representation")
     available_fields: Optional[List[AvailableField]] = Field(default=None, description="Fields that are known to be available for design when parsing SQL", alias="availableFields")
-    __properties = ["tableName", "alias", "fields", "joinedTables", "orderBy", "limit", "offset", "warnings", "availableFields"]
+    __properties: ClassVar[List[str]] = ["tableName", "alias", "fields", "joinedTables", "orderBy", "limit", "offset", "warnings", "availableFields"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -152,13 +152,13 @@ class QueryDesign(BaseModel):
         _obj = QueryDesign.model_validate({
             "table_name": obj.get("tableName"),
             "alias": obj.get("alias"),
-            "fields": [FieldDesign.from_dict(_item) for _item in obj.get("fields")] if obj.get("fields") is not None else None,
-            "joined_tables": [JoinedTableDesign.from_dict(_item) for _item in obj.get("joinedTables")] if obj.get("joinedTables") is not None else None,
-            "order_by": [OrderByTermDesign.from_dict(_item) for _item in obj.get("orderBy")] if obj.get("orderBy") is not None else None,
+            "fields": [FieldDesign.from_dict(_item) for _item in _v] if (_v := obj.get("fields")) is not None else None,
+            "joined_tables": [JoinedTableDesign.from_dict(_item) for _item in _v] if (_v := obj.get("joinedTables")) is not None else None,
+            "order_by": [OrderByTermDesign.from_dict(_item) for _item in _v] if (_v := obj.get("orderBy")) is not None else None,
             "limit": obj.get("limit"),
             "offset": obj.get("offset"),
             "warnings": obj.get("warnings"),
-            "available_fields": [AvailableField.from_dict(_item) for _item in obj.get("availableFields")] if obj.get("availableFields") is not None else None
+            "available_fields": [AvailableField.from_dict(_item) for _item in _v] if (_v := obj.get("availableFields")) is not None else None
         })
         return _obj
 

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class McpToolSchedulerNotification(BaseModel):
     type:  StrictStr = Field(...,alias="type", description="The type of notification (e.g., \"Email\", \"Webhook\")") 
     target:  StrictStr = Field(...,alias="target", description="The target of the notification (e.g., email address, webhook URL)") 
     trigger:  StrictStr = Field(...,alias="trigger", description="When to send the notification (e.g., \"OnSuccess\", \"OnFailure\", \"Always\")") 
-    __properties = ["type", "target", "trigger"]
+    __properties: ClassVar[List[str]] = ["type", "target", "trigger"]
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class TransactionSettlementBucket(BaseModel):
     """
     TransactionSettlementBucket
     """
-    settlement_category:  StrictStr = Field(...,alias="settlementCategory", description="A category representing the set of movement types that this instruction applies to.") 
+    settlement_category:  StrictStr = Field(...,alias="settlementCategory", description="A category representing the set of movement types that this instruction applies to. Available values: StockSettlement, CashSettlement, DeferredCashReceipt.") 
     lusid_instrument_id:  StrictStr = Field(...,alias="lusidInstrumentId", description="The LusidInstrumentId of the instrument being settled.") 
     instrument_scope:  StrictStr = Field(...,alias="instrumentScope", description="The Scope of the instrument being settled.") 
     contractual_settlement_date: Optional[datetime] = Field(default=None, description="The contractual settlement date. Used to match the instruction to the correct settlement bucket.", alias="contractualSettlementDate")
@@ -36,11 +36,11 @@ class TransactionSettlementBucket(BaseModel):
     settled_units: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The settled units.", alias="settledUnits")
     unsettled_units: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The unsettled units.", alias="unsettledUnits")
     overdue_units: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The overdue units.", alias="overdueUnits")
-    configured_settlement:  Optional[StrictStr] = Field(default=None,alias="configuredSettlement", description="The method of settlement for the settlement bucket, as defined in the portfolio's SettlementConfiguration") 
-    status:  StrictStr = Field(...,alias="status", description="The Status of the settlement bucket - 'Settled', 'Part Settled' or 'Unsettled'.") 
+    configured_settlement:  Optional[StrictStr] = Field(default=None,alias="configuredSettlement", description="The effective method of settlement for the settlement bucket. This reflects any transaction-level settlement method overrides, falling back to the portfolio's SettlementConfiguration if no override applies. Available values: Automatic, Instructed, NotApplicable.") 
+    status:  StrictStr = Field(...,alias="status", description="The Status of the settlement bucket - 'Settled', 'Part Settled' or 'Unsettled'. Available values: Unsettled, PartSettled, Settled, None.") 
     settlement_instructions: Optional[List[TransactionSettlementInstruction]] = Field(default=None, description="The settlement instructions received for this settlement bucket.", alias="settlementInstructions")
     movements: Optional[List[TransactionSettlementMovement]] = Field(default=None, description="The movements for the settlement bucket.")
-    __properties = ["settlementCategory", "lusidInstrumentId", "instrumentScope", "contractualSettlementDate", "contractedUnits", "settledUnits", "unsettledUnits", "overdueUnits", "configuredSettlement", "status", "settlementInstructions", "movements"]
+    __properties: ClassVar[List[str]] = ["settlementCategory", "lusidInstrumentId", "instrumentScope", "contractualSettlementDate", "contractedUnits", "settledUnits", "unsettledUnits", "overdueUnits", "configuredSettlement", "status", "settlementInstructions", "movements"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -132,8 +132,8 @@ class TransactionSettlementBucket(BaseModel):
             "overdue_units": obj.get("overdueUnits"),
             "configured_settlement": obj.get("configuredSettlement"),
             "status": obj.get("status"),
-            "settlement_instructions": [TransactionSettlementInstruction.from_dict(_item) for _item in obj.get("settlementInstructions")] if obj.get("settlementInstructions") is not None else None,
-            "movements": [TransactionSettlementMovement.from_dict(_item) for _item in obj.get("movements")] if obj.get("movements") is not None else None
+            "settlement_instructions": [TransactionSettlementInstruction.from_dict(_item) for _item in _v] if (_v := obj.get("settlementInstructions")) is not None else None,
+            "movements": [TransactionSettlementMovement.from_dict(_item) for _item in _v] if (_v := obj.get("movements")) is not None else None
         })
         return _obj
 

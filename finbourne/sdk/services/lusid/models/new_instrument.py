@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class NewInstrument(BaseModel):
     lusid_instrument_id:  Optional[StrictStr] = Field(default=None,alias="lusidInstrumentId", description="LUSID's internal unique instrument identifier, resolved from the instrument identifiers.") 
     instrument_scope:  Optional[StrictStr] = Field(default=None,alias="instrumentScope", description="The scope in which the instrument lies, resolved from the instrument identifiers.") 
     dom_ccy:  Optional[StrictStr] = Field(default=None,alias="domCcy", description="The domestic currency of the instrument, resolved from the instrument identifiers.") 
-    __properties = ["instrumentIdentifiers", "lusidInstrumentId", "instrumentScope", "domCcy"]
+    __properties: ClassVar[List[str]] = ["instrumentIdentifiers", "lusidInstrumentId", "instrumentScope", "domCcy"]
 
     model_config = ConfigDict(
         populate_by_name=True,

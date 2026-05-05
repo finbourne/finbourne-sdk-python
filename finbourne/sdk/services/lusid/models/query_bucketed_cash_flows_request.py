@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -35,7 +35,7 @@ class QueryBucketedCashFlowsRequest(BaseModel):
     portfolio_entity_ids: List[PortfolioEntityId] = Field(description="The set of portfolios and portfolio groups to which the instrument events must belong.", alias="portfolioEntityIds")
     effective_at: datetime = Field(description="The valuation (pricing) effective datetime or cut label (inclusive) at which to evaluate the cashflows.  This determines whether cashflows are evaluated in a historic or forward looking context and will, for certain models, affect where data is looked up.  For example, on a swap if the effectiveAt is in the middle of the window, cashflows before it will be historic and resets assumed to exist where if the effectiveAt  is before the start of the range they are forward looking and will be expectations assuming the model supports that.  There is evidently a presumption here about availability of data and that the effectiveAt is realistically on or before the real-world today.", alias="effectiveAt")
     recipe_id: ResourceId = Field(alias="recipeId")
-    rounding_method:  StrictStr = Field(...,alias="roundingMethod", description="When bucketing, there is not a unique way to allocate the bucket points.  RoundingMethod Supported string (enumeration) values are: [RoundDown, RoundUp].") 
+    rounding_method:  StrictStr = Field(...,alias="roundingMethod", description="When bucketing, there is not a unique way to allocate the bucket points. Available values: RoundUp, RoundDown.") 
     bucketing_dates: Optional[List[datetime]] = Field(default=None, description="A list of dates to perform cashflow bucketing upon.  If this is provided, the list of tenors for bucketing should be empty.", alias="bucketingDates")
     bucketing_tenors: Optional[List[StrictStr]] = Field(default=None, description="A list of tenors to perform cashflow bucketing upon.  If this is provided, the list of dates for bucketing should be empty.", alias="bucketingTenors")
     report_currency:  StrictStr = Field(...,alias="reportCurrency", description="Three letter ISO currency string indicating what currency to report in for ReportCurrency denominated queries.") 
@@ -43,10 +43,10 @@ class QueryBucketedCashFlowsRequest(BaseModel):
     addresses: Optional[List[StrictStr]] = Field(default=None, description="The set of items that the user wishes to see in the results. If empty, will be defaulted to standard ones.")
     equip_with_subtotals: Optional[StrictBool] = Field(default=None, description="Flag directing the Valuation call to populate the results with subtotals of aggregates.", alias="equipWithSubtotals")
     exclude_unsettled_trades: Optional[StrictBool] = Field(default=None, description="Flag directing the Valuation call to exclude cashflows from unsettled trades.  If absent or set to false, cashflows will returned based on trade date - more specifically, cashflows from any unsettled trades will be included in the results. If set to true, unsettled trades will be excluded from the result set.", alias="excludeUnsettledTrades")
-    cash_flow_type:  Optional[StrictStr] = Field(default=None,alias="cashFlowType", description="Indicate the requested cash flow representation InstrumentCashFlows or PortfolioCashFlows (GetCashLadder uses this)  Options: [InstrumentCashFlow, PortfolioCashFlow]") 
+    cash_flow_type:  Optional[StrictStr] = Field(default=None,alias="cashFlowType", description="Indicate the requested cash flow representation InstrumentCashFlows or PortfolioCashFlows (GetCashLadder uses this). Available values: InstrumentCashFlow, PortfolioCashFlow, TransactionCashFlow.") 
     bucketing_schedule: Optional[BucketingSchedule] = Field(default=None, alias="bucketingSchedule")
     filter:  Optional[StrictStr] = Field(default=None,alias="filter", description="") 
-    __properties = ["asAt", "windowStart", "windowEnd", "portfolioEntityIds", "effectiveAt", "recipeId", "roundingMethod", "bucketingDates", "bucketingTenors", "reportCurrency", "groupBy", "addresses", "equipWithSubtotals", "excludeUnsettledTrades", "cashFlowType", "bucketingSchedule", "filter"]
+    __properties: ClassVar[List[str]] = ["asAt", "windowStart", "windowEnd", "portfolioEntityIds", "effectiveAt", "recipeId", "roundingMethod", "bucketingDates", "bucketingTenors", "reportCurrency", "groupBy", "addresses", "equipWithSubtotals", "excludeUnsettledTrades", "cashFlowType", "bucketingSchedule", "filter"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -145,9 +145,9 @@ class QueryBucketedCashFlowsRequest(BaseModel):
             "as_at": obj.get("asAt"),
             "window_start": obj.get("windowStart"),
             "window_end": obj.get("windowEnd"),
-            "portfolio_entity_ids": [PortfolioEntityId.from_dict(_item) for _item in obj.get("portfolioEntityIds")] if obj.get("portfolioEntityIds") is not None else None,
+            "portfolio_entity_ids": [PortfolioEntityId.from_dict(_item) for _item in _v] if (_v := obj.get("portfolioEntityIds")) is not None else None,
             "effective_at": obj.get("effectiveAt"),
-            "recipe_id": ResourceId.from_dict(obj.get("recipeId")) if obj.get("recipeId") is not None else None,
+            "recipe_id": ResourceId.from_dict(_v) if (_v := obj.get("recipeId")) is not None else None,
             "rounding_method": obj.get("roundingMethod"),
             "bucketing_dates": obj.get("bucketingDates"),
             "bucketing_tenors": obj.get("bucketingTenors"),
@@ -157,7 +157,7 @@ class QueryBucketedCashFlowsRequest(BaseModel):
             "equip_with_subtotals": obj.get("equipWithSubtotals"),
             "exclude_unsettled_trades": obj.get("excludeUnsettledTrades"),
             "cash_flow_type": obj.get("cashFlowType"),
-            "bucketing_schedule": BucketingSchedule.from_dict(obj.get("bucketingSchedule")) if obj.get("bucketingSchedule") is not None else None,
+            "bucketing_schedule": BucketingSchedule.from_dict(_v) if (_v := obj.get("bucketingSchedule")) is not None else None,
             "filter": obj.get("filter")
         })
         return _obj

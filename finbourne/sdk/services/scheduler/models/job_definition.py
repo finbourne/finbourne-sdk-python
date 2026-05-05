@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -43,7 +43,7 @@ class JobDefinition(BaseModel):
     argument_definitions: Optional[Dict[str, ArgumentDefinition]] = Field(default=None, description="All arguments for this job to run", alias="argumentDefinitions")
     command_line_argument_separator:  Optional[StrictStr] = Field(default=None,alias="commandLineArgumentSeparator", description="Value to separate command line arguments e.g : If a job has a command line argument named 'folder' and the runtime value is 's3://path' then this would be supplied to the command as 'folder{separatorValue}s3://path' Default to a space") 
     required_resources: Optional[RequiredResources] = Field(default=None, alias="requiredResources")
-    __properties = ["jobId", "name", "author", "dateCreated", "description", "dockerImage", "ttl", "minCpu", "maxCpu", "minMemory", "maxMemory", "argumentDefinitions", "commandLineArgumentSeparator", "requiredResources"]
+    __properties: ClassVar[List[str]] = ["jobId", "name", "author", "dateCreated", "description", "dockerImage", "ttl", "minCpu", "maxCpu", "minMemory", "maxMemory", "argumentDefinitions", "commandLineArgumentSeparator", "requiredResources"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -154,7 +154,7 @@ class JobDefinition(BaseModel):
             return JobDefinition.model_validate(obj)
 
         _obj = JobDefinition.model_validate({
-            "job_id": ResourceId.from_dict(obj.get("jobId")) if obj.get("jobId") is not None else None,
+            "job_id": ResourceId.from_dict(_v) if (_v := obj.get("jobId")) is not None else None,
             "name": obj.get("name"),
             "author": obj.get("author"),
             "date_created": obj.get("dateCreated"),
@@ -167,12 +167,12 @@ class JobDefinition(BaseModel):
             "max_memory": obj.get("maxMemory"),
             "argument_definitions": dict(
                 (_k, ArgumentDefinition.from_dict(_v))
-                for _k, _v in obj.get("argumentDefinitions").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("argumentDefinitions") is not None
+            if (_val := obj.get("argumentDefinitions")) is not None
             else None,
             "command_line_argument_separator": obj.get("commandLineArgumentSeparator"),
-            "required_resources": RequiredResources.from_dict(obj.get("requiredResources")) if obj.get("requiredResources") is not None else None
+            "required_resources": RequiredResources.from_dict(_v) if (_v := obj.get("requiredResources")) is not None else None
         })
         return _obj
 

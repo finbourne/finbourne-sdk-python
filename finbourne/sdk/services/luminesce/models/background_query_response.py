@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -40,7 +40,7 @@ class BackgroundQueryResponse(BaseModel):
     fetch_excel: Optional[Link] = Field(default=None, alias="fetchExcel")
     fetch_sqlite: Optional[Link] = Field(default=None, alias="fetchSqlite")
     histogram: Optional[Link] = None
-    __properties = ["executionId", "progress", "cancel", "fetchJson", "fetchJsonProper", "fetchJsonProperWithLineage", "fetchXml", "fetchParquet", "fetchCsv", "fetchPipe", "fetchExcel", "fetchSqlite", "histogram"]
+    __properties: ClassVar[List[str]] = ["executionId", "progress", "cancel", "fetchJson", "fetchJsonProper", "fetchJsonProperWithLineage", "fetchXml", "fetchParquet", "fetchCsv", "fetchPipe", "fetchExcel", "fetchSqlite", "histogram"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -130,18 +130,18 @@ class BackgroundQueryResponse(BaseModel):
 
         _obj = BackgroundQueryResponse.model_validate({
             "execution_id": obj.get("executionId"),
-            "progress": Link.from_dict(obj.get("progress")) if obj.get("progress") is not None else None,
-            "cancel": Link.from_dict(obj.get("cancel")) if obj.get("cancel") is not None else None,
-            "fetch_json": Link.from_dict(obj.get("fetchJson")) if obj.get("fetchJson") is not None else None,
-            "fetch_json_proper": Link.from_dict(obj.get("fetchJsonProper")) if obj.get("fetchJsonProper") is not None else None,
-            "fetch_json_proper_with_lineage": Link.from_dict(obj.get("fetchJsonProperWithLineage")) if obj.get("fetchJsonProperWithLineage") is not None else None,
-            "fetch_xml": Link.from_dict(obj.get("fetchXml")) if obj.get("fetchXml") is not None else None,
-            "fetch_parquet": Link.from_dict(obj.get("fetchParquet")) if obj.get("fetchParquet") is not None else None,
-            "fetch_csv": Link.from_dict(obj.get("fetchCsv")) if obj.get("fetchCsv") is not None else None,
-            "fetch_pipe": Link.from_dict(obj.get("fetchPipe")) if obj.get("fetchPipe") is not None else None,
-            "fetch_excel": Link.from_dict(obj.get("fetchExcel")) if obj.get("fetchExcel") is not None else None,
-            "fetch_sqlite": Link.from_dict(obj.get("fetchSqlite")) if obj.get("fetchSqlite") is not None else None,
-            "histogram": Link.from_dict(obj.get("histogram")) if obj.get("histogram") is not None else None
+            "progress": Link.from_dict(_v) if (_v := obj.get("progress")) is not None else None,
+            "cancel": Link.from_dict(_v) if (_v := obj.get("cancel")) is not None else None,
+            "fetch_json": Link.from_dict(_v) if (_v := obj.get("fetchJson")) is not None else None,
+            "fetch_json_proper": Link.from_dict(_v) if (_v := obj.get("fetchJsonProper")) is not None else None,
+            "fetch_json_proper_with_lineage": Link.from_dict(_v) if (_v := obj.get("fetchJsonProperWithLineage")) is not None else None,
+            "fetch_xml": Link.from_dict(_v) if (_v := obj.get("fetchXml")) is not None else None,
+            "fetch_parquet": Link.from_dict(_v) if (_v := obj.get("fetchParquet")) is not None else None,
+            "fetch_csv": Link.from_dict(_v) if (_v := obj.get("fetchCsv")) is not None else None,
+            "fetch_pipe": Link.from_dict(_v) if (_v := obj.get("fetchPipe")) is not None else None,
+            "fetch_excel": Link.from_dict(_v) if (_v := obj.get("fetchExcel")) is not None else None,
+            "fetch_sqlite": Link.from_dict(_v) if (_v := obj.get("fetchSqlite")) is not None else None,
+            "histogram": Link.from_dict(_v) if (_v := obj.get("histogram")) is not None else None
         })
         return _obj
 

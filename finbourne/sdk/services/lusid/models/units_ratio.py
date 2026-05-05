@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class UnitsRatio(BaseModel):
     """
     input: Union[StrictFloat, StrictInt] = Field(description="Input amount.  Denominator of the Ratio")
     output: Union[StrictFloat, StrictInt] = Field(description="Output amount. Numerator of the Ratio")
-    __properties = ["input", "output"]
+    __properties: ClassVar[List[str]] = ["input", "output"]
 
     model_config = ConfigDict(
         populate_by_name=True,

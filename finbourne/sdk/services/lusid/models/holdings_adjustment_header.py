@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,9 +30,9 @@ class HoldingsAdjustmentHeader(BaseModel):
     """
     effective_at: datetime = Field(description="The effective datetime from which the adjustment is valid. There can only be one holdings adjustment for a transaction portfolio at a specific effective datetime, so this uniquely identifies the adjustment.", alias="effectiveAt")
     version: Version
-    unmatched_holding_method:  StrictStr = Field(...,alias="unmatchedHoldingMethod", description="Describes how the holdings were adjusted. If 'PositionToZero' the entire transaction portfolio's holdings were set via a call to 'Set holdings'. If 'KeepTheSame' only the specified holdings were adjusted via a call to 'Adjust holdings'. The available values are: PositionToZero, KeepTheSame") 
+    unmatched_holding_method:  StrictStr = Field(...,alias="unmatchedHoldingMethod", description="Describes how the holdings were adjusted. If 'PositionToZero' the entire transaction portfolio's holdings were set via a call to 'Set holdings'. If 'KeepTheSame' only the specified holdings were adjusted via a call to 'Adjust holdings'. Available values: PositionToZero, KeepTheSame.") 
     links: Optional[List[Link]] = None
-    __properties = ["effectiveAt", "version", "unmatchedHoldingMethod", "links"]
+    __properties: ClassVar[List[str]] = ["effectiveAt", "version", "unmatchedHoldingMethod", "links"]
 
     @field_validator('unmatched_holding_method')
     def unmatched_holding_method_validate_enum(cls, value):
@@ -165,9 +165,9 @@ class HoldingsAdjustmentHeader(BaseModel):
 
         _obj = HoldingsAdjustmentHeader.model_validate({
             "effective_at": obj.get("effectiveAt"),
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
             "unmatched_holding_method": obj.get("unmatchedHoldingMethod"),
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

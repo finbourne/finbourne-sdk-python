@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class PortfolioSettlementConfiguration(BaseModel):
     cash_settlement: Optional[SettlementConfigurationCategory] = Field(default=None, alias="cashSettlement")
     deferred_cash_receipt: Optional[SettlementConfigurationCategory] = Field(default=None, alias="deferredCashReceipt")
     transaction_matching_alternative_id: Optional[TransactionMatchingAlternativeId] = Field(default=None, alias="transactionMatchingAlternativeId")
-    __properties = ["stockSettlement", "cashSettlement", "deferredCashReceipt", "transactionMatchingAlternativeId"]
+    __properties: ClassVar[List[str]] = ["stockSettlement", "cashSettlement", "deferredCashReceipt", "transactionMatchingAlternativeId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -92,10 +92,10 @@ class PortfolioSettlementConfiguration(BaseModel):
             return PortfolioSettlementConfiguration.model_validate(obj)
 
         _obj = PortfolioSettlementConfiguration.model_validate({
-            "stock_settlement": SettlementConfigurationCategory.from_dict(obj.get("stockSettlement")) if obj.get("stockSettlement") is not None else None,
-            "cash_settlement": SettlementConfigurationCategory.from_dict(obj.get("cashSettlement")) if obj.get("cashSettlement") is not None else None,
-            "deferred_cash_receipt": SettlementConfigurationCategory.from_dict(obj.get("deferredCashReceipt")) if obj.get("deferredCashReceipt") is not None else None,
-            "transaction_matching_alternative_id": TransactionMatchingAlternativeId.from_dict(obj.get("transactionMatchingAlternativeId")) if obj.get("transactionMatchingAlternativeId") is not None else None
+            "stock_settlement": SettlementConfigurationCategory.from_dict(_v) if (_v := obj.get("stockSettlement")) is not None else None,
+            "cash_settlement": SettlementConfigurationCategory.from_dict(_v) if (_v := obj.get("cashSettlement")) is not None else None,
+            "deferred_cash_receipt": SettlementConfigurationCategory.from_dict(_v) if (_v := obj.get("deferredCashReceipt")) is not None else None,
+            "transaction_matching_alternative_id": TransactionMatchingAlternativeId.from_dict(_v) if (_v := obj.get("transactionMatchingAlternativeId")) is not None else None
         })
         return _obj
 

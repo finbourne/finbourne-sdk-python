@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -49,7 +49,7 @@ class FileReaderBuilderDef(BaseModel):
     sq_lite: Optional[OptionsSqLite] = Field(default=None, alias="sqLite")
     xml: Optional[OptionsXml] = None
     parquet: Optional[OptionsParquet] = None
-    __properties = ["autoDetect", "columns", "limit", "source", "availableSources", "variableName", "filePath", "folderFilter", "zipFilter", "addFileName", "csv", "excel", "sqLite", "xml", "parquet"]
+    __properties: ClassVar[List[str]] = ["autoDetect", "columns", "limit", "source", "availableSources", "variableName", "filePath", "folderFilter", "zipFilter", "addFileName", "csv", "excel", "sqLite", "xml", "parquet"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -160,20 +160,20 @@ class FileReaderBuilderDef(BaseModel):
 
         _obj = FileReaderBuilderDef.model_validate({
             "auto_detect": obj.get("autoDetect"),
-            "columns": [ColumnInfo.from_dict(_item) for _item in obj.get("columns")] if obj.get("columns") is not None else None,
+            "columns": [ColumnInfo.from_dict(_item) for _item in _v] if (_v := obj.get("columns")) is not None else None,
             "limit": obj.get("limit"),
-            "source": Source.from_dict(obj.get("source")) if obj.get("source") is not None else None,
-            "available_sources": [Source.from_dict(_item) for _item in obj.get("availableSources")] if obj.get("availableSources") is not None else None,
+            "source": Source.from_dict(_v) if (_v := obj.get("source")) is not None else None,
+            "available_sources": [Source.from_dict(_item) for _item in _v] if (_v := obj.get("availableSources")) is not None else None,
             "variable_name": obj.get("variableName"),
             "file_path": obj.get("filePath"),
             "folder_filter": obj.get("folderFilter"),
             "zip_filter": obj.get("zipFilter"),
             "add_file_name": obj.get("addFileName"),
-            "csv": OptionsCsv.from_dict(obj.get("csv")) if obj.get("csv") is not None else None,
-            "excel": OptionsExcel.from_dict(obj.get("excel")) if obj.get("excel") is not None else None,
-            "sq_lite": OptionsSqLite.from_dict(obj.get("sqLite")) if obj.get("sqLite") is not None else None,
-            "xml": OptionsXml.from_dict(obj.get("xml")) if obj.get("xml") is not None else None,
-            "parquet": OptionsParquet.from_dict(obj.get("parquet")) if obj.get("parquet") is not None else None
+            "csv": OptionsCsv.from_dict(_v) if (_v := obj.get("csv")) is not None else None,
+            "excel": OptionsExcel.from_dict(_v) if (_v := obj.get("excel")) is not None else None,
+            "sq_lite": OptionsSqLite.from_dict(_v) if (_v := obj.get("sqLite")) is not None else None,
+            "xml": OptionsXml.from_dict(_v) if (_v := obj.get("xml")) is not None else None,
+            "parquet": OptionsParquet.from_dict(_v) if (_v := obj.get("parquet")) is not None else None
         })
         return _obj
 

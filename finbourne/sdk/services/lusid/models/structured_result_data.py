@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class StructuredResultData(BaseModel):
     name:  Optional[StrictStr] = Field(default=None,alias="name", description="The name or description for the document") 
     document:  StrictStr = Field(...,alias="document", description="The document that will be stored (or retrieved) and which describes a unit result data entity such as a set of prices or yields") 
     data_map_key: Optional[DataMapKey] = Field(default=None, alias="dataMapKey")
-    __properties = ["documentFormat", "version", "name", "document", "dataMapKey"]
+    __properties: ClassVar[List[str]] = ["documentFormat", "version", "name", "document", "dataMapKey"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -97,7 +97,7 @@ class StructuredResultData(BaseModel):
             "version": obj.get("version"),
             "name": obj.get("name"),
             "document": obj.get("document"),
-            "data_map_key": DataMapKey.from_dict(obj.get("dataMapKey")) if obj.get("dataMapKey") is not None else None
+            "data_map_key": DataMapKey.from_dict(_v) if (_v := obj.get("dataMapKey")) is not None else None
         })
         return _obj
 

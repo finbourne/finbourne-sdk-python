@@ -67,12 +67,12 @@ class ScopesApi:
         :return: Returns the result object.
         :rtype: ResourceListOfScopeDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_entity_scopes_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_entity_scopes_with_http_info(entity_type, as_at, page, limit, **kwargs)  # noqa: E501
+        response = self.list_entity_scopes_with_http_info(entity_type, as_at, page, limit, **kwargs)
+        return response.data
 
     @validate_call
     def list_entity_scopes_with_http_info(self, entity_type: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, **kwargs) -> ApiResponse[ResourceListOfScopeDefinition]:
@@ -208,12 +208,12 @@ class ScopesApi:
         :return: Returns the result object.
         :rtype: ResourceListOfScopeDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_scopes_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_scopes_with_http_info(filter, **kwargs)  # noqa: E501
+        response = self.list_scopes_with_http_info(filter, **kwargs)
+        return response.data
 
     @validate_call
     def list_scopes_with_http_info(self, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfScopeDefinition]:
@@ -338,12 +338,12 @@ class ScopesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfScopeDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_entity_scopes_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_entity_scopes_with_http_info_async(entity_type, as_at, page, limit, **kwargs)  # noqa: E501
+            response = await self.list_entity_scopes_with_http_info_async(entity_type, as_at, page, limit, **kwargs)
+            return response.data
 
     @validate_call
     async def list_entity_scopes_with_http_info_async(self, entity_type: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, **kwargs) -> ApiResponse[ResourceListOfScopeDefinition]:
@@ -480,12 +480,12 @@ class ScopesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfScopeDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_scopes_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_scopes_with_http_info_async(filter, **kwargs)  # noqa: E501
+            response = await self.list_scopes_with_http_info_async(filter, **kwargs)
+            return response.data
 
     @validate_call
     async def list_scopes_with_http_info_async(self, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfScopeDefinition]:

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -39,7 +39,7 @@ class LusidGridData(BaseModel):
     currency:  Optional[StrictStr] = Field(default=None,alias="currency", description="The currency to use for valuations") 
     tenor:  Optional[StrictStr] = Field(default=None,alias="tenor", description="The tenor to use for valuations") 
     order_flow:  Optional[StrictStr] = Field(default=None,alias="orderFlow", description="Type of order flow to include") 
-    __properties = ["lusidGridDesign", "resourceId", "dashboardType", "useSettleDate", "dates", "recipe", "currency", "tenor", "orderFlow"]
+    __properties: ClassVar[List[str]] = ["lusidGridDesign", "resourceId", "dashboardType", "useSettleDate", "dates", "recipe", "currency", "tenor", "orderFlow"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -121,11 +121,11 @@ class LusidGridData(BaseModel):
             return LusidGridData.model_validate(obj)
 
         _obj = LusidGridData.model_validate({
-            "lusid_grid_design": TableView.from_dict(obj.get("lusidGridDesign")) if obj.get("lusidGridDesign") is not None else None,
-            "resource_id": ResourceId.from_dict(obj.get("resourceId")) if obj.get("resourceId") is not None else None,
+            "lusid_grid_design": TableView.from_dict(_v) if (_v := obj.get("lusidGridDesign")) is not None else None,
+            "resource_id": ResourceId.from_dict(_v) if (_v := obj.get("resourceId")) is not None else None,
             "dashboard_type": obj.get("dashboardType"),
             "use_settle_date": obj.get("useSettleDate"),
-            "dates": DateParameters.from_dict(obj.get("dates")) if obj.get("dates") is not None else None,
+            "dates": DateParameters.from_dict(_v) if (_v := obj.get("dates")) is not None else None,
             "recipe": obj.get("recipe"),
             "currency": obj.get("currency"),
             "tenor": obj.get("tenor"),

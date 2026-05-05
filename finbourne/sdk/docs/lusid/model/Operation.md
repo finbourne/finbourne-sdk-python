@@ -6,7 +6,7 @@
 |------|------|----------|-------------|
 | **value** | **object** | Optional | *No description available.* |
 | **path** | **str** | Required | *No description available.* |
-| **op** | **str** | Required | *No description available.* |
+| **op** | **str** | Required | Available values: add, remove. |
 | **var_from** | **str** | Optional | *No description available.* |
 
 
@@ -20,7 +20,7 @@ from finbourne.sdk.services.lusid.models.Operation import Operation
 instance = Operation(
     value=,  # optional
     path="...",  # required
-    op="...",  # required
+    op="...",  # required — Available values: add, remove.
     var_from="..."  # optional
 )
 ```

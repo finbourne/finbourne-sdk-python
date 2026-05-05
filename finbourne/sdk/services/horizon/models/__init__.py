@@ -19,9 +19,8 @@ from finbourne.sdk.services.horizon.models.audit_file_details import AuditFileDe
 from finbourne.sdk.services.horizon.models.audit_update_request import AuditUpdateRequest
 from finbourne.sdk.services.horizon.models.audit_update_response import AuditUpdateResponse
 from finbourne.sdk.services.horizon.models.cancel_run_request import CancelRunRequest
-from finbourne.sdk.services.horizon.models.client_configuration_response import ClientConfigurationResponse
-from finbourne.sdk.services.horizon.models.create_client_configuration_draft_request import CreateClientConfigurationDraftRequest
 from finbourne.sdk.services.horizon.models.create_instance_request import CreateInstanceRequest
+from finbourne.sdk.services.horizon.models.create_versioned_configuration_draft_request import CreateVersionedConfigurationDraftRequest
 from finbourne.sdk.services.horizon.models.enrichment_response import EnrichmentResponse
 from finbourne.sdk.services.horizon.models.execute_instance_response import ExecuteInstanceResponse
 from finbourne.sdk.services.horizon.models.external_log_insertion_request import ExternalLogInsertionRequest
@@ -72,6 +71,7 @@ from finbourne.sdk.services.horizon.models.paged_resource_list_of_i_property_map
 from finbourne.sdk.services.horizon.models.paged_resource_list_of_integration_run_response import PagedResourceListOfIntegrationRunResponse
 from finbourne.sdk.services.horizon.models.paged_resource_list_of_process_information import PagedResourceListOfProcessInformation
 from finbourne.sdk.services.horizon.models.paged_resource_list_of_process_update_result import PagedResourceListOfProcessUpdateResult
+from finbourne.sdk.services.horizon.models.paged_resource_list_of_tpf_transaction_search_response import PagedResourceListOfTpfTransactionSearchResponse
 from finbourne.sdk.services.horizon.models.paged_resource_list_of_vendor_product import PagedResourceListOfVendorProduct
 from finbourne.sdk.services.horizon.models.perm_id_data import PermIdData
 from finbourne.sdk.services.horizon.models.post_process_task import PostProcessTask
@@ -85,11 +85,13 @@ from finbourne.sdk.services.horizon.models.query_request import QueryRequest
 from finbourne.sdk.services.horizon.models.query_specification import QuerySpecification
 from finbourne.sdk.services.horizon.models.resource_id import ResourceId
 from finbourne.sdk.services.horizon.models.row_details import RowDetails
+from finbourne.sdk.services.horizon.models.tpf_transaction_search_response import TpfTransactionSearchResponse
 from finbourne.sdk.services.horizon.models.trigger import Trigger
-from finbourne.sdk.services.horizon.models.update_client_configuration_draft_request import UpdateClientConfigurationDraftRequest
 from finbourne.sdk.services.horizon.models.update_instance_request import UpdateInstanceRequest
+from finbourne.sdk.services.horizon.models.update_versioned_configuration_draft_request import UpdateVersionedConfigurationDraftRequest
 from finbourne.sdk.services.horizon.models.vendor_field import VendorField
 from finbourne.sdk.services.horizon.models.vendor_product import VendorProduct
+from finbourne.sdk.services.horizon.models.versioned_configuration_response import VersionedConfigurationResponse
 
 
 __all__ = [
@@ -100,9 +102,8 @@ __all__ = [
     "AuditUpdateRequest",
     "AuditUpdateResponse",
     "CancelRunRequest",
-    "ClientConfigurationResponse",
-    "CreateClientConfigurationDraftRequest",
     "CreateInstanceRequest",
+    "CreateVersionedConfigurationDraftRequest",
     "EnrichmentResponse",
     "ExecuteInstanceResponse",
     "ExternalLogInsertionRequest",
@@ -153,6 +154,7 @@ __all__ = [
     "PagedResourceListOfIntegrationRunResponse",
     "PagedResourceListOfProcessInformation",
     "PagedResourceListOfProcessUpdateResult",
+    "PagedResourceListOfTpfTransactionSearchResponse",
     "PagedResourceListOfVendorProduct",
     "PermIdData",
     "PostProcessTask",
@@ -166,9 +168,11 @@ __all__ = [
     "QuerySpecification",
     "ResourceId",
     "RowDetails",
+    "TpfTransactionSearchResponse",
     "Trigger",
-    "UpdateClientConfigurationDraftRequest",
     "UpdateInstanceRequest",
+    "UpdateVersionedConfigurationDraftRequest",
     "VendorField",
-    "VendorProduct"
+    "VendorProduct",
+    "VersionedConfigurationResponse"
 ]

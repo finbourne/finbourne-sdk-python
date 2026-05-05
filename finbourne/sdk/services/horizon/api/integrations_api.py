@@ -33,6 +33,7 @@ from finbourne.sdk.services.horizon.models.j_schema import JSchema
 from finbourne.sdk.services.horizon.models.lusid_property_definition_overrides_by_type import LusidPropertyDefinitionOverridesByType
 from finbourne.sdk.services.horizon.models.paged_resource_list_of_i_field_mapping import PagedResourceListOfIFieldMapping
 from finbourne.sdk.services.horizon.models.paged_resource_list_of_i_property_mapping import PagedResourceListOfIPropertyMapping
+from finbourne.sdk.services.horizon.models.paged_resource_list_of_tpf_transaction_search_response import PagedResourceListOfTpfTransactionSearchResponse
 from finbourne.sdk.services.horizon.models.processor_description import ProcessorDescription
 from finbourne.sdk.services.horizon.models.processor_schema_response import ProcessorSchemaResponse
 from finbourne.sdk.services.horizon.models.update_instance_request import UpdateInstanceRequest
@@ -73,12 +74,12 @@ class IntegrationsApi:
         :return: Returns the result object.
         :rtype: InstanceIdentifier
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_instance_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_instance_with_http_info(create_instance_request, **kwargs)  # noqa: E501
+        response = self.create_instance_with_http_info(create_instance_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_instance_with_http_info(self, create_instance_request: CreateInstanceRequest, **kwargs) -> ApiResponse[InstanceIdentifier]:
@@ -201,15 +202,15 @@ class IntegrationsApi:
         :return: Returns the result object.
         :rtype: None
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_instance_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_instance_with_http_info(instance_id, **kwargs)  # noqa: E501
+        response = self.delete_instance_with_http_info(instance_id, **kwargs)
+        return response.data
 
     @validate_call
-    def delete_instance_with_http_info(self, instance_id: StrictStr, **kwargs) -> None:
+    def delete_instance_with_http_info(self, instance_id: StrictStr, **kwargs) -> ApiResponse[None]:
         """[EXPERIMENTAL] DeleteInstance: Delete a single integration instance.  # noqa: E501
 
         Deletes an existing instance of an integration, returning its identifier. The user must be authenticated, entitled to call this method, and the user's domain must be licensed for the integration.  # noqa: E501
@@ -318,12 +319,12 @@ class IntegrationsApi:
         :return: Returns the result object.
         :rtype: ExecuteInstanceResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the execute_instance_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.execute_instance_with_http_info(instance_id, **kwargs)  # noqa: E501
+        response = self.execute_instance_with_http_info(instance_id, **kwargs)
+        return response.data
 
     @validate_call
     def execute_instance_with_http_info(self, instance_id: StrictStr, **kwargs) -> ApiResponse[ExecuteInstanceResponse]:
@@ -441,12 +442,12 @@ class IntegrationsApi:
         :return: Returns the result object.
         :rtype: ExecuteInstanceResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the execute_instance_with_params_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.execute_instance_with_params_with_http_info(instance_id, request_body, **kwargs)  # noqa: E501
+        response = self.execute_instance_with_params_with_http_info(instance_id, request_body, **kwargs)
+        return response.data
 
     @validate_call
     def execute_instance_with_params_with_http_info(self, instance_id: StrictStr, request_body: Dict[str, str], **kwargs) -> ApiResponse[ExecuteInstanceResponse]:
@@ -574,12 +575,12 @@ class IntegrationsApi:
         :return: Returns the result object.
         :rtype: ProcessorSchemaResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_dataflow_processor_schema_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_dataflow_processor_schema_with_http_info(processor_type, **kwargs)  # noqa: E501
+        response = self.get_dataflow_processor_schema_with_http_info(processor_type, **kwargs)
+        return response.data
 
     @validate_call
     def get_dataflow_processor_schema_with_http_info(self, processor_type: StrictStr, **kwargs) -> ApiResponse[ProcessorSchemaResponse]:
@@ -696,12 +697,12 @@ class IntegrationsApi:
         :return: Returns the result object.
         :rtype: List[str]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_execution_ids_for_instance_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_execution_ids_for_instance_with_http_info(instance_id, limit, **kwargs)  # noqa: E501
+        response = self.get_execution_ids_for_instance_with_http_info(instance_id, limit, **kwargs)
+        return response.data
 
     @validate_call
     def get_execution_ids_for_instance_with_http_info(self, instance_id: StrictStr, limit: Optional[int] = None, **kwargs) -> ApiResponse[List[str]]:
@@ -823,12 +824,12 @@ class IntegrationsApi:
         :return: Returns the result object.
         :rtype: IntegrationInstanceResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_instance_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_instance_with_http_info(instance_id, **kwargs)  # noqa: E501
+        response = self.get_instance_with_http_info(instance_id, **kwargs)
+        return response.data
 
     @validate_call
     def get_instance_with_http_info(self, instance_id: StrictStr, **kwargs) -> ApiResponse[IntegrationInstanceResponse]:
@@ -946,12 +947,12 @@ class IntegrationsApi:
         :return: Returns the result object.
         :rtype: Dict[str, LusidPropertyDefinitionOverridesByType]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_instance_optional_property_mapping_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_instance_optional_property_mapping_with_http_info(integration, instance_id, **kwargs)  # noqa: E501
+        response = self.get_instance_optional_property_mapping_with_http_info(integration, instance_id, **kwargs)
+        return response.data
 
     @validate_call
     def get_instance_optional_property_mapping_with_http_info(self, integration: StrictStr, instance_id: StrictStr, **kwargs) -> ApiResponse[Dict[str, LusidPropertyDefinitionOverridesByType]]:
@@ -1073,12 +1074,12 @@ class IntegrationsApi:
         :return: Returns the result object.
         :rtype: IntegrationPropertyConfiguration
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_integration_configuration_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_integration_configuration_with_http_info(integration, **kwargs)  # noqa: E501
+        response = self.get_integration_configuration_with_http_info(integration, **kwargs)
+        return response.data
 
     @validate_call
     def get_integration_configuration_with_http_info(self, integration: StrictStr, **kwargs) -> ApiResponse[IntegrationPropertyConfiguration]:
@@ -1202,12 +1203,12 @@ class IntegrationsApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfIFieldMapping
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_integration_configuration_fields_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_integration_configuration_fields_with_http_info(integration, filter, sort_by, limit, page_token, **kwargs)  # noqa: E501
+        response = self.get_integration_configuration_fields_with_http_info(integration, filter, sort_by, limit, page_token, **kwargs)
+        return response.data
 
     @validate_call
     def get_integration_configuration_fields_with_http_info(self, integration: StrictStr, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, page_token: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfIFieldMapping]:
@@ -1356,12 +1357,12 @@ class IntegrationsApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfIPropertyMapping
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_integration_configuration_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_integration_configuration_properties_with_http_info(integration, filter, sort_by, limit, page_token, **kwargs)  # noqa: E501
+        response = self.get_integration_configuration_properties_with_http_info(integration, filter, sort_by, limit, page_token, **kwargs)
+        return response.data
 
     @validate_call
     def get_integration_configuration_properties_with_http_info(self, integration: StrictStr, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, page_token: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfIPropertyMapping]:
@@ -1502,12 +1503,12 @@ class IntegrationsApi:
         :return: Returns the result object.
         :rtype: JSchema
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_schema_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_schema_with_http_info(integration, **kwargs)  # noqa: E501
+        response = self.get_schema_with_http_info(integration, **kwargs)
+        return response.data
 
     @validate_call
     def get_schema_with_http_info(self, integration: StrictStr, **kwargs) -> ApiResponse[JSchema]:
@@ -1611,6 +1612,180 @@ class IntegrationsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    def get_tpf_transaction_history_search(self, transaction_id: Optional[StrictStr] = None, instrument_id: Optional[StrictStr] = None, date_from: Optional[StrictStr] = None, date_to: Optional[StrictStr] = None, status: Optional[StrictStr] = None, instance_id: Optional[StrictStr] = None, page_size: Optional[int] = None, page_token: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfTpfTransactionSearchResponse:
+        """[EARLY ACCESS] GetTpfTransactionHistorySearch: Endpoint to search TPF transaction by transaction ID and/or instrument identifier, with filtering by instance and date range  # noqa: E501
+
+        :param transaction_id: 
+        :type transaction_id: str
+        :param instrument_id: 
+        :type instrument_id: str
+        :param date_from: 
+        :type date_from: str
+        :param date_to: 
+        :type date_to: str
+        :param status: 
+        :type status: str
+        :param instance_id: 
+        :type instance_id: str
+        :param page_size: 
+        :type page_size: int
+        :param page_token: 
+        :type page_token: str
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: PagedResourceListOfTpfTransactionSearchResponse
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_tpf_transaction_history_search_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.get_tpf_transaction_history_search_with_http_info(transaction_id, instrument_id, date_from, date_to, status, instance_id, page_size, page_token, **kwargs)
+        return response.data
+
+    @validate_call
+    def get_tpf_transaction_history_search_with_http_info(self, transaction_id: Optional[StrictStr] = None, instrument_id: Optional[StrictStr] = None, date_from: Optional[StrictStr] = None, date_to: Optional[StrictStr] = None, status: Optional[StrictStr] = None, instance_id: Optional[StrictStr] = None, page_size: Optional[int] = None, page_token: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfTpfTransactionSearchResponse]:
+        """[EARLY ACCESS] GetTpfTransactionHistorySearch: Endpoint to search TPF transaction by transaction ID and/or instrument identifier, with filtering by instance and date range  # noqa: E501
+
+        :param transaction_id: 
+        :type transaction_id: str
+        :param instrument_id: 
+        :type instrument_id: str
+        :param date_from: 
+        :type date_from: str
+        :param date_to: 
+        :type date_to: str
+        :param status: 
+        :type status: str
+        :param instance_id: 
+        :type instance_id: str
+        :param page_size: 
+        :type page_size: int
+        :param page_token: 
+        :type page_token: str
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(PagedResourceListOfTpfTransactionSearchResponse, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'transaction_id',
+            'instrument_id',
+            'date_from',
+            'date_to',
+            'status',
+            'instance_id',
+            'page_size',
+            'page_token'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_tpf_transaction_history_search" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('transaction_id') is not None:  # noqa: E501
+            _query_params.append(('transactionId', _params['transaction_id']))
+
+        if _params.get('instrument_id') is not None:  # noqa: E501
+            _query_params.append(('instrumentId', _params['instrument_id']))
+
+        if _params.get('date_from') is not None:  # noqa: E501
+            _query_params.append(('dateFrom', _params['date_from']))
+
+        if _params.get('date_to') is not None:  # noqa: E501
+            _query_params.append(('dateTo', _params['date_to']))
+
+        if _params.get('status') is not None:  # noqa: E501
+            _query_params.append(('status', _params['status']))
+
+        if _params.get('instance_id') is not None:  # noqa: E501
+            _query_params.append(('instanceId', _params['instance_id']))
+
+        if _params.get('page_size') is not None:  # noqa: E501
+            _query_params.append(('pageSize', _params['page_size']))
+
+        if _params.get('page_token') is not None:  # noqa: E501
+            _query_params.append(('pageToken', _params['page_token']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "PagedResourceListOfTpfTransactionSearchResponse",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/horizon/api/integrations/trade-publication-framework/transactions/search', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     def list_dataflow_processors(self, **kwargs) -> List[ProcessorDescription]:
         """[EXPERIMENTAL] ListDataflowProcessors: List processor types.  # noqa: E501
 
@@ -1621,12 +1796,12 @@ class IntegrationsApi:
         :return: Returns the result object.
         :rtype: List[ProcessorDescription]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_dataflow_processors_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_dataflow_processors_with_http_info(**kwargs)  # noqa: E501
+        response = self.list_dataflow_processors_with_http_info(**kwargs)
+        return response.data
 
     @validate_call
     def list_dataflow_processors_with_http_info(self, **kwargs) -> ApiResponse[List[ProcessorDescription]]:
@@ -1733,12 +1908,12 @@ class IntegrationsApi:
         :return: Returns the result object.
         :rtype: List[IntegrationInstance]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_instances_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_instances_with_http_info(**kwargs)  # noqa: E501
+        response = self.list_instances_with_http_info(**kwargs)
+        return response.data
 
     @validate_call
     def list_instances_with_http_info(self, **kwargs) -> ApiResponse[List[IntegrationInstance]]:
@@ -1845,12 +2020,12 @@ class IntegrationsApi:
         :return: Returns the result object.
         :rtype: List[IntegrationDescription]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_integrations_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_integrations_with_http_info(**kwargs)  # noqa: E501
+        response = self.list_integrations_with_http_info(**kwargs)
+        return response.data
 
     @validate_call
     def list_integrations_with_http_info(self, **kwargs) -> ApiResponse[List[IntegrationDescription]]:
@@ -1962,12 +2137,12 @@ class IntegrationsApi:
         :return: Returns the result object.
         :rtype: Dict[str, LusidPropertyDefinitionOverridesByType]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the set_instance_optional_property_mapping_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.set_instance_optional_property_mapping_with_http_info(instance_id, integration, request_body, **kwargs)  # noqa: E501
+        response = self.set_instance_optional_property_mapping_with_http_info(instance_id, integration, request_body, **kwargs)
+        return response.data
 
     @validate_call
     def set_instance_optional_property_mapping_with_http_info(self, instance_id: StrictStr, integration: StrictStr, request_body: Optional[Dict[str, LusidPropertyDefinitionOverridesByType]] = None, **kwargs) -> ApiResponse[Dict[str, LusidPropertyDefinitionOverridesByType]]:
@@ -2104,15 +2279,15 @@ class IntegrationsApi:
         :return: Returns the result object.
         :rtype: None
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_instance_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_instance_with_http_info(instance_id, update_instance_request, **kwargs)  # noqa: E501
+        response = self.update_instance_with_http_info(instance_id, update_instance_request, **kwargs)
+        return response.data
 
     @validate_call
-    def update_instance_with_http_info(self, instance_id: StrictStr, update_instance_request: UpdateInstanceRequest, **kwargs) -> None:
+    def update_instance_with_http_info(self, instance_id: StrictStr, update_instance_request: UpdateInstanceRequest, **kwargs) -> ApiResponse[None]:
         """[EXPERIMENTAL] UpdateInstance: Update a single integration instance.  # noqa: E501
 
         Updates an existing instance of an integration, returning its identifier. The user must be authenticated, entitled to call this method, and the user's domain must be licensed for the integration.  # noqa: E501
@@ -2238,12 +2413,12 @@ class IntegrationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: InstanceIdentifier
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_instance_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_instance_with_http_info_async(create_instance_request, **kwargs)  # noqa: E501
+            response = await self.create_instance_with_http_info_async(create_instance_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_instance_with_http_info_async(self, create_instance_request: CreateInstanceRequest, **kwargs) -> ApiResponse[InstanceIdentifier]:
@@ -2367,15 +2542,15 @@ class IntegrationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: None
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_instance_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_instance_with_http_info_async(instance_id, **kwargs)  # noqa: E501
+            response = await self.delete_instance_with_http_info_async(instance_id, **kwargs)
+            return response.data
 
     @validate_call
-    async def delete_instance_with_http_info_async(self, instance_id: StrictStr, **kwargs) -> None:
+    async def delete_instance_with_http_info_async(self, instance_id: StrictStr, **kwargs) -> ApiResponse[None]:
             """[EXPERIMENTAL] DeleteInstance: Delete a single integration instance.  # noqa: E501
 
             Deletes an existing instance of an integration, returning its identifier. The user must be authenticated, entitled to call this method, and the user's domain must be licensed for the integration.  # noqa: E501
@@ -2485,12 +2660,12 @@ class IntegrationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ExecuteInstanceResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the execute_instance_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.execute_instance_with_http_info_async(instance_id, **kwargs)  # noqa: E501
+            response = await self.execute_instance_with_http_info_async(instance_id, **kwargs)
+            return response.data
 
     @validate_call
     async def execute_instance_with_http_info_async(self, instance_id: StrictStr, **kwargs) -> ApiResponse[ExecuteInstanceResponse]:
@@ -2609,12 +2784,12 @@ class IntegrationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ExecuteInstanceResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the execute_instance_with_params_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.execute_instance_with_params_with_http_info_async(instance_id, request_body, **kwargs)  # noqa: E501
+            response = await self.execute_instance_with_params_with_http_info_async(instance_id, request_body, **kwargs)
+            return response.data
 
     @validate_call
     async def execute_instance_with_params_with_http_info_async(self, instance_id: StrictStr, request_body: Dict[str, str], **kwargs) -> ApiResponse[ExecuteInstanceResponse]:
@@ -2743,12 +2918,12 @@ class IntegrationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ProcessorSchemaResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_dataflow_processor_schema_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_dataflow_processor_schema_with_http_info_async(processor_type, **kwargs)  # noqa: E501
+            response = await self.get_dataflow_processor_schema_with_http_info_async(processor_type, **kwargs)
+            return response.data
 
     @validate_call
     async def get_dataflow_processor_schema_with_http_info_async(self, processor_type: StrictStr, **kwargs) -> ApiResponse[ProcessorSchemaResponse]:
@@ -2866,12 +3041,12 @@ class IntegrationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: List[str]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_execution_ids_for_instance_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_execution_ids_for_instance_with_http_info_async(instance_id, limit, **kwargs)  # noqa: E501
+            response = await self.get_execution_ids_for_instance_with_http_info_async(instance_id, limit, **kwargs)
+            return response.data
 
     @validate_call
     async def get_execution_ids_for_instance_with_http_info_async(self, instance_id: StrictStr, limit: Optional[int] = None, **kwargs) -> ApiResponse[List[str]]:
@@ -2994,12 +3169,12 @@ class IntegrationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: IntegrationInstanceResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_instance_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_instance_with_http_info_async(instance_id, **kwargs)  # noqa: E501
+            response = await self.get_instance_with_http_info_async(instance_id, **kwargs)
+            return response.data
 
     @validate_call
     async def get_instance_with_http_info_async(self, instance_id: StrictStr, **kwargs) -> ApiResponse[IntegrationInstanceResponse]:
@@ -3118,12 +3293,12 @@ class IntegrationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Dict[str, LusidPropertyDefinitionOverridesByType]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_instance_optional_property_mapping_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_instance_optional_property_mapping_with_http_info_async(integration, instance_id, **kwargs)  # noqa: E501
+            response = await self.get_instance_optional_property_mapping_with_http_info_async(integration, instance_id, **kwargs)
+            return response.data
 
     @validate_call
     async def get_instance_optional_property_mapping_with_http_info_async(self, integration: StrictStr, instance_id: StrictStr, **kwargs) -> ApiResponse[Dict[str, LusidPropertyDefinitionOverridesByType]]:
@@ -3246,12 +3421,12 @@ class IntegrationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: IntegrationPropertyConfiguration
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_integration_configuration_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_integration_configuration_with_http_info_async(integration, **kwargs)  # noqa: E501
+            response = await self.get_integration_configuration_with_http_info_async(integration, **kwargs)
+            return response.data
 
     @validate_call
     async def get_integration_configuration_with_http_info_async(self, integration: StrictStr, **kwargs) -> ApiResponse[IntegrationPropertyConfiguration]:
@@ -3376,12 +3551,12 @@ class IntegrationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfIFieldMapping
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_integration_configuration_fields_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_integration_configuration_fields_with_http_info_async(integration, filter, sort_by, limit, page_token, **kwargs)  # noqa: E501
+            response = await self.get_integration_configuration_fields_with_http_info_async(integration, filter, sort_by, limit, page_token, **kwargs)
+            return response.data
 
     @validate_call
     async def get_integration_configuration_fields_with_http_info_async(self, integration: StrictStr, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, page_token: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfIFieldMapping]:
@@ -3531,12 +3706,12 @@ class IntegrationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfIPropertyMapping
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_integration_configuration_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_integration_configuration_properties_with_http_info_async(integration, filter, sort_by, limit, page_token, **kwargs)  # noqa: E501
+            response = await self.get_integration_configuration_properties_with_http_info_async(integration, filter, sort_by, limit, page_token, **kwargs)
+            return response.data
 
     @validate_call
     async def get_integration_configuration_properties_with_http_info_async(self, integration: StrictStr, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, page_token: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfIPropertyMapping]:
@@ -3678,12 +3853,12 @@ class IntegrationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: JSchema
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_schema_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_schema_with_http_info_async(integration, **kwargs)  # noqa: E501
+            response = await self.get_schema_with_http_info_async(integration, **kwargs)
+            return response.data
 
     @validate_call
     async def get_schema_with_http_info_async(self, integration: StrictStr, **kwargs) -> ApiResponse[JSchema]:
@@ -3788,6 +3963,181 @@ class IntegrationsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    async def get_tpf_transaction_history_search_async(self, transaction_id: Optional[StrictStr] = None, instrument_id: Optional[StrictStr] = None, date_from: Optional[StrictStr] = None, date_to: Optional[StrictStr] = None, status: Optional[StrictStr] = None, instance_id: Optional[StrictStr] = None, page_size: Optional[int] = None, page_token: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfTpfTransactionSearchResponse:
+            """[EARLY ACCESS] GetTpfTransactionHistorySearch: Endpoint to search TPF transaction by transaction ID and/or instrument identifier, with filtering by instance and date range  # noqa: E501
+            
+            :param transaction_id: 
+            :type transaction_id: str
+            :param instrument_id: 
+            :type instrument_id: str
+            :param date_from: 
+            :type date_from: str
+            :param date_to: 
+            :type date_to: str
+            :param status: 
+            :type status: str
+            :param instance_id: 
+            :type instance_id: str
+            :param page_size: 
+            :type page_size: int
+            :param page_token: 
+            :type page_token: str
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: PagedResourceListOfTpfTransactionSearchResponse
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the get_tpf_transaction_history_search_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.get_tpf_transaction_history_search_with_http_info_async(transaction_id, instrument_id, date_from, date_to, status, instance_id, page_size, page_token, **kwargs)
+            return response.data
+
+    @validate_call
+    async def get_tpf_transaction_history_search_with_http_info_async(self, transaction_id: Optional[StrictStr] = None, instrument_id: Optional[StrictStr] = None, date_from: Optional[StrictStr] = None, date_to: Optional[StrictStr] = None, status: Optional[StrictStr] = None, instance_id: Optional[StrictStr] = None, page_size: Optional[int] = None, page_token: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfTpfTransactionSearchResponse]:
+            """[EARLY ACCESS] GetTpfTransactionHistorySearch: Endpoint to search TPF transaction by transaction ID and/or instrument identifier, with filtering by instance and date range  # noqa: E501
+
+
+            :param transaction_id: 
+            :type transaction_id: str
+            :param instrument_id: 
+            :type instrument_id: str
+            :param date_from: 
+            :type date_from: str
+            :param date_to: 
+            :type date_to: str
+            :param status: 
+            :type status: str
+            :param instance_id: 
+            :type instance_id: str
+            :param page_size: 
+            :type page_size: int
+            :param page_token: 
+            :type page_token: str
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(PagedResourceListOfTpfTransactionSearchResponse, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'transaction_id',
+                'instrument_id',
+                'date_from',
+                'date_to',
+                'status',
+                'instance_id',
+                'page_size',
+                'page_token'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method get_tpf_transaction_history_search" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('transaction_id') is not None:  # noqa: E501
+                _query_params.append(('transactionId', _params['transaction_id']))
+
+            if _params.get('instrument_id') is not None:  # noqa: E501
+                _query_params.append(('instrumentId', _params['instrument_id']))
+
+            if _params.get('date_from') is not None:  # noqa: E501
+                _query_params.append(('dateFrom', _params['date_from']))
+
+            if _params.get('date_to') is not None:  # noqa: E501
+                _query_params.append(('dateTo', _params['date_to']))
+
+            if _params.get('status') is not None:  # noqa: E501
+                _query_params.append(('status', _params['status']))
+
+            if _params.get('instance_id') is not None:  # noqa: E501
+                _query_params.append(('instanceId', _params['instance_id']))
+
+            if _params.get('page_size') is not None:  # noqa: E501
+                _query_params.append(('pageSize', _params['page_size']))
+
+            if _params.get('page_token') is not None:  # noqa: E501
+                _query_params.append(('pageToken', _params['page_token']))
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['application/json'])  # noqa: E501
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "PagedResourceListOfTpfTransactionSearchResponse",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/horizon/api/integrations/trade-publication-framework/transactions/search', 'GET',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     async def list_dataflow_processors_async(self, **kwargs) -> List[ProcessorDescription]:
             """[EXPERIMENTAL] ListDataflowProcessors: List processor types.  # noqa: E501
             The user must be authenticated to call this method.  # noqa: E501
@@ -3798,12 +4148,12 @@ class IntegrationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: List[ProcessorDescription]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_dataflow_processors_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_dataflow_processors_with_http_info_async(**kwargs)  # noqa: E501
+            response = await self.list_dataflow_processors_with_http_info_async(**kwargs)
+            return response.data
 
     @validate_call
     async def list_dataflow_processors_with_http_info_async(self, **kwargs) -> ApiResponse[List[ProcessorDescription]]:
@@ -3911,12 +4261,12 @@ class IntegrationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: List[IntegrationInstance]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_instances_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_instances_with_http_info_async(**kwargs)  # noqa: E501
+            response = await self.list_instances_with_http_info_async(**kwargs)
+            return response.data
 
     @validate_call
     async def list_instances_with_http_info_async(self, **kwargs) -> ApiResponse[List[IntegrationInstance]]:
@@ -4024,12 +4374,12 @@ class IntegrationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: List[IntegrationDescription]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_integrations_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_integrations_with_http_info_async(**kwargs)  # noqa: E501
+            response = await self.list_integrations_with_http_info_async(**kwargs)
+            return response.data
 
     @validate_call
     async def list_integrations_with_http_info_async(self, **kwargs) -> ApiResponse[List[IntegrationDescription]]:
@@ -4142,12 +4492,12 @@ class IntegrationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Dict[str, LusidPropertyDefinitionOverridesByType]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the set_instance_optional_property_mapping_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.set_instance_optional_property_mapping_with_http_info_async(instance_id, integration, request_body, **kwargs)  # noqa: E501
+            response = await self.set_instance_optional_property_mapping_with_http_info_async(instance_id, integration, request_body, **kwargs)
+            return response.data
 
     @validate_call
     async def set_instance_optional_property_mapping_with_http_info_async(self, instance_id: StrictStr, integration: StrictStr, request_body: Optional[Dict[str, LusidPropertyDefinitionOverridesByType]] = None, **kwargs) -> ApiResponse[Dict[str, LusidPropertyDefinitionOverridesByType]]:
@@ -4285,15 +4635,15 @@ class IntegrationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: None
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_instance_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_instance_with_http_info_async(instance_id, update_instance_request, **kwargs)  # noqa: E501
+            response = await self.update_instance_with_http_info_async(instance_id, update_instance_request, **kwargs)
+            return response.data
 
     @validate_call
-    async def update_instance_with_http_info_async(self, instance_id: StrictStr, update_instance_request: UpdateInstanceRequest, **kwargs) -> None:
+    async def update_instance_with_http_info_async(self, instance_id: StrictStr, update_instance_request: UpdateInstanceRequest, **kwargs) -> ApiResponse[None]:
             """[EXPERIMENTAL] UpdateInstance: Update a single integration instance.  # noqa: E501
 
             Updates an existing instance of an integration, returning its identifier. The user must be authenticated, entitled to call this method, and the user's domain must be licensed for the integration.  # noqa: E501

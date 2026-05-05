@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -37,12 +37,12 @@ class FundDefinitionRequest(BaseModel):
     display_name:  StrictStr = Field(...,alias="displayName", description="The name of the Fund.") 
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="A description for the Fund.") 
     base_currency:  StrictStr = Field(...,alias="baseCurrency", description="The base currency of the Fund in ISO 4217 currency code format. All portfolios must be of a matching base currency.") 
-    investor_structure:  Optional[StrictStr] = Field(default=None,alias="investorStructure", description="The Investor structure to be used by the Fund. Supported values are 'NonUnitised' and 'Classes'.") 
-    portfolio_ids: List[PortfolioEntityId] = Field(description="A list of the Portfolio IDs associated with the fund, which are part of the Fund. Note: These must all have the same base currency, which must also much the Fund Base Currency.", alias="portfolioIds")
+    investor_structure:  Optional[StrictStr] = Field(default=None,alias="investorStructure", description="The Investor structure to be used by the Fund. Available values: NonUnitised, Classes.") 
+    portfolio_ids: List[PortfolioEntityId] = Field(description="A list of the Portfolio IDs associated with the fund, which are part of the Fund. Note: These must all have the same base currency, which must also match the Fund Base Currency.", alias="portfolioIds")
     fund_configuration_id: ResourceId = Field(alias="fundConfigurationId")
     share_class_instrument_scopes: Optional[List[StrictStr]] = Field(default=None, description="The scopes in which the instruments lie, currently limited to one.", alias="shareClassInstrumentScopes")
     share_class_instruments: Optional[List[InstrumentResolutionDetail]] = Field(default=None, description="Details the user-provided instrument identifiers and the instrument resolved from them. These would be decommissioned in favour of the new AllocationGroups and ShareClasses structures.", alias="shareClassInstruments")
-    type:  Optional[StrictStr] = Field(default=None,alias="type", description="The type of fund; 'Standalone', 'Master' or 'Feeder'") 
+    type:  Optional[StrictStr] = Field(default=None,alias="type", description="The type of fund. Available values: Standalone, Master, Feeder.") 
     inception_date: datetime = Field(description="Inception date of the Fund", alias="inceptionDate")
     decimal_places: Optional[StrictInt] = Field(default=None, description="Number of decimal places for reporting", alias="decimalPlaces")
     primary_nav_type: NavTypeDefinition = Field(alias="primaryNavType")
@@ -51,7 +51,7 @@ class FundDefinitionRequest(BaseModel):
     create_instrument: Optional[StrictBool] = Field(default=None, description="Whether to create instruments for the Fund's share classes, series, or partner classes upon creation. Defaults to false.", alias="createInstrument")
     apportionment_method_property: Optional[ApportionmentMethodProperty] = Field(default=None, alias="apportionmentMethodProperty")
     share_classes: Optional[List[ShareClassDefinition]] = Field(default=None, description="An optional list of Share Class definitions for the Fund.", alias="shareClasses")
-    __properties = ["code", "displayName", "description", "baseCurrency", "investorStructure", "portfolioIds", "fundConfigurationId", "shareClassInstrumentScopes", "shareClassInstruments", "type", "inceptionDate", "decimalPlaces", "primaryNavType", "additionalNavTypes", "properties", "createInstrument", "apportionmentMethodProperty", "shareClasses"]
+    __properties: ClassVar[List[str]] = ["code", "displayName", "description", "baseCurrency", "investorStructure", "portfolioIds", "fundConfigurationId", "shareClassInstrumentScopes", "shareClassInstruments", "type", "inceptionDate", "decimalPlaces", "primaryNavType", "additionalNavTypes", "properties", "createInstrument", "apportionmentMethodProperty", "shareClasses"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -193,24 +193,24 @@ class FundDefinitionRequest(BaseModel):
             "description": obj.get("description"),
             "base_currency": obj.get("baseCurrency"),
             "investor_structure": obj.get("investorStructure"),
-            "portfolio_ids": [PortfolioEntityId.from_dict(_item) for _item in obj.get("portfolioIds")] if obj.get("portfolioIds") is not None else None,
-            "fund_configuration_id": ResourceId.from_dict(obj.get("fundConfigurationId")) if obj.get("fundConfigurationId") is not None else None,
+            "portfolio_ids": [PortfolioEntityId.from_dict(_item) for _item in _v] if (_v := obj.get("portfolioIds")) is not None else None,
+            "fund_configuration_id": ResourceId.from_dict(_v) if (_v := obj.get("fundConfigurationId")) is not None else None,
             "share_class_instrument_scopes": obj.get("shareClassInstrumentScopes"),
-            "share_class_instruments": [InstrumentResolutionDetail.from_dict(_item) for _item in obj.get("shareClassInstruments")] if obj.get("shareClassInstruments") is not None else None,
+            "share_class_instruments": [InstrumentResolutionDetail.from_dict(_item) for _item in _v] if (_v := obj.get("shareClassInstruments")) is not None else None,
             "type": obj.get("type"),
             "inception_date": obj.get("inceptionDate"),
             "decimal_places": obj.get("decimalPlaces"),
-            "primary_nav_type": NavTypeDefinition.from_dict(obj.get("primaryNavType")) if obj.get("primaryNavType") is not None else None,
-            "additional_nav_types": [NavTypeDefinition.from_dict(_item) for _item in obj.get("additionalNavTypes")] if obj.get("additionalNavTypes") is not None else None,
+            "primary_nav_type": NavTypeDefinition.from_dict(_v) if (_v := obj.get("primaryNavType")) is not None else None,
+            "additional_nav_types": [NavTypeDefinition.from_dict(_item) for _item in _v] if (_v := obj.get("additionalNavTypes")) is not None else None,
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
             "create_instrument": obj.get("createInstrument"),
-            "apportionment_method_property": ApportionmentMethodProperty.from_dict(obj.get("apportionmentMethodProperty")) if obj.get("apportionmentMethodProperty") is not None else None,
-            "share_classes": [ShareClassDefinition.from_dict(_item) for _item in obj.get("shareClasses")] if obj.get("shareClasses") is not None else None
+            "apportionment_method_property": ApportionmentMethodProperty.from_dict(_v) if (_v := obj.get("apportionmentMethodProperty")) is not None else None,
+            "share_classes": [ShareClassDefinition.from_dict(_item) for _item in _v] if (_v := obj.get("shareClasses")) is not None else None
         })
         return _obj
 

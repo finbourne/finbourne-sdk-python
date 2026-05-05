@@ -7,7 +7,7 @@ A criterion that checks whether a SubHoldingKey Value is equal to the given stri
 |------|------|----------|-------------|
 | **sub_holding_key** | **str** | Required | The sub holding key whose value will form the left-hand side of the operation |
 | **value** | **str** | Required | The value to be compared against |
-| **criterion_type** | **str** | Required | The available values are: PropertyValueEquals, PropertyValueIn, SubHoldingKeyValueEquals |
+| **criterion_type** | **str** | Required | Available values: PropertyValueEquals, PropertyValueIn, SubHoldingKeyValueEquals. |
 
 
 ## Usage
@@ -20,7 +20,7 @@ from finbourne.sdk.services.lusid.models.SubHoldingKeyValueEquals import SubHold
 instance = SubHoldingKeyValueEquals(
     sub_holding_key="...",  # required — The sub holding key whose value will form the left-hand side of the operation
     value="...",  # required — The value to be compared against
-    criterion_type="..."  # required — The available values are: PropertyValueEquals, PropertyValueIn, SubHoldingKeyValueEquals
+    criterion_type="..."  # required — Available values: PropertyValueEquals, PropertyValueIn, SubHoldingKeyValueEquals.
 )
 ```
 

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,9 +32,9 @@ class UpdateDerivedPropertyDefinitionRequest(BaseModel):
     property_description:  Optional[StrictStr] = Field(default=None,alias="propertyDescription", description="Describes the property") 
     derivation_formula:  StrictStr = Field(...,alias="derivationFormula", description="The rule that defines how data is composed for a derived property.") 
     is_filterable: StrictBool = Field(description="Bool indicating whether the values of this property are fitlerable, this is true for all non-derived property defintions.  For a derived definition this must be set true to enable filtering.", alias="isFilterable")
-    value_format:  Optional[StrictStr] = Field(default=None,alias="valueFormat", description="The format in which values for this property definition should be represented.") 
+    value_format:  Optional[StrictStr] = Field(default=None,alias="valueFormat", description="The format in which values for this property definition should be represented. Available values: Text, Html.") 
     custom_entity_type:  Optional[StrictStr] = Field(default=None,alias="customEntityType", description="The custom entity type that this derived property definition can be applied to.") 
-    __properties = ["displayName", "dataTypeId", "propertyDescription", "derivationFormula", "isFilterable", "valueFormat", "customEntityType"]
+    __properties: ClassVar[List[str]] = ["displayName", "dataTypeId", "propertyDescription", "derivationFormula", "isFilterable", "valueFormat", "customEntityType"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -101,7 +101,7 @@ class UpdateDerivedPropertyDefinitionRequest(BaseModel):
 
         _obj = UpdateDerivedPropertyDefinitionRequest.model_validate({
             "display_name": obj.get("displayName"),
-            "data_type_id": ResourceId.from_dict(obj.get("dataTypeId")) if obj.get("dataTypeId") is not None else None,
+            "data_type_id": ResourceId.from_dict(_v) if (_v := obj.get("dataTypeId")) is not None else None,
             "property_description": obj.get("propertyDescription"),
             "derivation_formula": obj.get("derivationFormula"),
             "is_filterable": obj.get("isFilterable"),

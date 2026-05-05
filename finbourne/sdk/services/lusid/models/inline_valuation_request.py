@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -46,7 +46,7 @@ class InlineValuationRequest(BaseModel):
     instruments: List[WeightedInstrument] = Field(description="The set of instruments, weighted by the quantities held that are required.  It is identified by an identifier tag that can be used to identify it externally.  For a single, unique trade or transaction this can be thought of as equivalent to the transaction identifier, or  a composite of the sub-holding keys for a regular sub-holding. When there are multiple transactions sharing the same underlying instrument  such as purchase of shares on multiple dates where tax implications are different this would not be the case.")
     market_data_overrides: Optional[MarketDataOverrides] = Field(default=None, alias="marketDataOverrides")
     corporate_action_source_id: Optional[ResourceId] = Field(default=None, alias="corporateActionSourceId")
-    __properties = ["recipeId", "asAt", "metrics", "groupBy", "filters", "sort", "reportCurrency", "equipWithSubtotals", "returnResultAsExpandedTypes", "valuationSchedule", "instruments", "marketDataOverrides", "corporateActionSourceId"]
+    __properties: ClassVar[List[str]] = ["recipeId", "asAt", "metrics", "groupBy", "filters", "sort", "reportCurrency", "equipWithSubtotals", "returnResultAsExpandedTypes", "valuationSchedule", "instruments", "marketDataOverrides", "corporateActionSourceId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -159,19 +159,19 @@ class InlineValuationRequest(BaseModel):
             return InlineValuationRequest.model_validate(obj)
 
         _obj = InlineValuationRequest.model_validate({
-            "recipe_id": ResourceId.from_dict(obj.get("recipeId")) if obj.get("recipeId") is not None else None,
+            "recipe_id": ResourceId.from_dict(_v) if (_v := obj.get("recipeId")) is not None else None,
             "as_at": obj.get("asAt"),
-            "metrics": [AggregateSpec.from_dict(_item) for _item in obj.get("metrics")] if obj.get("metrics") is not None else None,
+            "metrics": [AggregateSpec.from_dict(_item) for _item in _v] if (_v := obj.get("metrics")) is not None else None,
             "group_by": obj.get("groupBy"),
-            "filters": [PropertyFilter.from_dict(_item) for _item in obj.get("filters")] if obj.get("filters") is not None else None,
-            "sort": [OrderBySpec.from_dict(_item) for _item in obj.get("sort")] if obj.get("sort") is not None else None,
+            "filters": [PropertyFilter.from_dict(_item) for _item in _v] if (_v := obj.get("filters")) is not None else None,
+            "sort": [OrderBySpec.from_dict(_item) for _item in _v] if (_v := obj.get("sort")) is not None else None,
             "report_currency": obj.get("reportCurrency"),
             "equip_with_subtotals": obj.get("equipWithSubtotals"),
             "return_result_as_expanded_types": obj.get("returnResultAsExpandedTypes"),
-            "valuation_schedule": ValuationSchedule.from_dict(obj.get("valuationSchedule")) if obj.get("valuationSchedule") is not None else None,
-            "instruments": [WeightedInstrument.from_dict(_item) for _item in obj.get("instruments")] if obj.get("instruments") is not None else None,
-            "market_data_overrides": MarketDataOverrides.from_dict(obj.get("marketDataOverrides")) if obj.get("marketDataOverrides") is not None else None,
-            "corporate_action_source_id": ResourceId.from_dict(obj.get("corporateActionSourceId")) if obj.get("corporateActionSourceId") is not None else None
+            "valuation_schedule": ValuationSchedule.from_dict(_v) if (_v := obj.get("valuationSchedule")) is not None else None,
+            "instruments": [WeightedInstrument.from_dict(_item) for _item in _v] if (_v := obj.get("instruments")) is not None else None,
+            "market_data_overrides": MarketDataOverrides.from_dict(_v) if (_v := obj.get("marketDataOverrides")) is not None else None,
+            "corporate_action_source_id": ResourceId.from_dict(_v) if (_v := obj.get("corporateActionSourceId")) is not None else None
         })
         return _obj
 

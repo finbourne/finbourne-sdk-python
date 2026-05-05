@@ -4,13 +4,13 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **type_value_range** | **str** | Required | The available values are: Open, Closed |
+| **type_value_range** | **str** | Required | Available values: Open, Closed. |
 | **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **display_name** | **str** | Required | *No description available.* |
 | **description** | **str** | Required | *No description available.* |
-| **value_type** | **str** | Required | The available values are: String, Int, Decimal, DateTime, Boolean, Map, List, PropertyArray, Percentage, Code, Id, Uri, CurrencyAndAmount, TradePrice, Currency, MetricValue, ResourceId, ResultValue, CutLocalTime, DateOrCutLabel, UnindexedText |
+| **value_type** | **str** | Required | Available values: String, Int, Decimal, DateTime, Boolean, Map, List, PropertyArray, Percentage, Code, Id, Uri, CurrencyAndAmount, TradePrice, Currency, MetricValue, ResourceId, ResultValue, CutLocalTime, DateOrCutLabel, UnindexedText. |
 | **acceptable_values** | **List[str]** | Optional | *No description available.* |
-| **unit_schema** | **str** | Optional | The available values are: NoUnits, Basic, Iso4217Currency |
+| **unit_schema** | **str** | Optional | Available values: NoUnits, Basic, Iso4217Currency. |
 | **acceptable_units** | [List[IUnitDefinitionDto]](IUnitDefinitionDto.md) | Optional | *No description available.* |
 | **reference_data** | [ReferenceData](ReferenceData.md) | Optional | *No description available.* |
 | **version** | [Version](Version.md) | Optional | *No description available.* |
@@ -27,13 +27,13 @@
 from finbourne.sdk.services.lusid.models.DataType import DataType
 
 instance = DataType(
-    type_value_range="...",  # required — The available values are: Open, Closed
+    type_value_range="...",  # required — Available values: Open, Closed.
     id=ResourceId(...),  # required
     display_name="...",  # required
     description="...",  # required
-    value_type="...",  # required — The available values are: String, Int, Decimal, DateTime, Boolean, Map, List, PropertyArray, Percentage, Code, Id, Uri, CurrencyAndAmount, TradePrice, Currency, MetricValue, ResourceId, ResultValue, CutLocalTime, DateOrCutLabel, UnindexedText
+    value_type="...",  # required — Available values: String, Int, Decimal, DateTime, Boolean, Map, List, PropertyArray, Percentage, Code, Id, Uri, CurrencyAndAmount, TradePrice, Currency, MetricValue, ResourceId, ResultValue, CutLocalTime, DateOrCutLabel, UnindexedText.
     acceptable_values=,  # optional
-    unit_schema="...",  # optional — The available values are: NoUnits, Basic, Iso4217Currency
+    unit_schema="...",  # optional — Available values: NoUnits, Basic, Iso4217Currency.
     acceptable_units=[],  # optional
     reference_data=ReferenceData(...),  # optional
     version=Version(...),  # optional

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class IntegrationRunVersion(BaseModel):
     """
     as_at_created: Optional[datetime] = Field(default=None, alias="asAtCreated")
     as_at_modified: Optional[datetime] = Field(default=None, alias="asAtModified")
-    __properties = ["asAtCreated", "asAtModified"]
+    __properties: ClassVar[List[str]] = ["asAtCreated", "asAtModified"]
 
     model_config = ConfigDict(
         populate_by_name=True,

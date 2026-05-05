@@ -34,7 +34,7 @@ class TcpKeepAliveConnector(aiohttp.TCPConnector):
     def __init__(
         self,
         connector: aiohttp.TCPConnector,
-        socket_options: Union[Tuple[Any, Any, Any], Tuple[Any, Any, None, int]]
+        socket_options: Any
     ) -> None:
         self.__connector = connector
         self.socket_options = socket_options or []
@@ -51,7 +51,7 @@ class TcpKeepAliveConnector(aiohttp.TCPConnector):
     def closed(self):
         return self.__connector.closed
 
-    async def close(self) -> None:
+    async def close(self) -> None:  # type: ignore[override]
         await self.__connector.close()
 
     async def connect(
@@ -70,9 +70,11 @@ class TcpKeepAliveConnector(aiohttp.TCPConnector):
         timeout : aiohttp.ClientTimeout
         """
         connection = await self.__connector.connect(req, traces, timeout)
-        sock = connection.protocol.transport.get_extra_info("socket")
-        for option in self.socket_options:
-            sock.setsockopt(*option)
+        transport = connection.protocol.transport  # type: ignore[union-attr]
+        sock = transport.get_extra_info("socket")  # type: ignore[union-attr]
+        if sock is not None:
+            for option in self.socket_options:
+                sock.setsockopt(*option)
         adjust_connection_socket(sock)
         return connection
 

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class RoleResponse(BaseModel):
     name:  StrictStr = Field(...,alias="name", description="The role name, which must be unique within the system.") 
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="The description for this role") 
     saml_name:  Optional[StrictStr] = Field(default=None,alias="samlName", description="The name to use on the SAML request if assigning this role via SAML Just in Time (JIT)") 
-    __properties = ["id", "roleId", "source", "name", "description", "samlName"]
+    __properties: ClassVar[List[str]] = ["id", "roleId", "source", "name", "description", "samlName"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -95,7 +95,7 @@ class RoleResponse(BaseModel):
 
         _obj = RoleResponse.model_validate({
             "id": obj.get("id"),
-            "role_id": RoleId.from_dict(obj.get("roleId")) if obj.get("roleId") is not None else None,
+            "role_id": RoleId.from_dict(_v) if (_v := obj.get("roleId")) is not None else None,
             "source": obj.get("source"),
             "name": obj.get("name"),
             "description": obj.get("description"),

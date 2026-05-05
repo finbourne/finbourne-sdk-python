@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,8 +28,8 @@ class SpecificHoldingPricingInfo(BaseModel):
     Allows a user to specify fallbacks/overrides using Holding fields for sources that match a particular DependencySourceFilter.  # noqa: E501
     """
     dependency_source_filter: DependencySourceFilter = Field(alias="dependencySourceFilter")
-    var_field:  StrictStr = Field(...,alias="field", description="The Holding field which the fallback/override should use to create a price quote.") 
-    __properties = ["dependencySourceFilter", "field"]
+    var_field:  StrictStr = Field(...,alias="field", description="The Holding field which the fallback/override should use to create a price quote. Available values: None, UnitCost, LastTradedPrice, UnitAmortisedCost, UnitCostClean, UnitCostDirty, UnitAmortisedCostClean, UnitAmortisedCostDirty.") 
+    __properties: ClassVar[List[str]] = ["dependencySourceFilter", "field"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,7 +80,7 @@ class SpecificHoldingPricingInfo(BaseModel):
             return SpecificHoldingPricingInfo.model_validate(obj)
 
         _obj = SpecificHoldingPricingInfo.model_validate({
-            "dependency_source_filter": DependencySourceFilter.from_dict(obj.get("dependencySourceFilter")) if obj.get("dependencySourceFilter") is not None else None,
+            "dependency_source_filter": DependencySourceFilter.from_dict(_v) if (_v := obj.get("dependencySourceFilter")) is not None else None,
             "var_field": obj.get("field")
         })
         return _obj

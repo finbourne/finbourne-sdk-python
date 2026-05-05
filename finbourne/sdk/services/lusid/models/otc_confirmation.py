@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class OtcConfirmation(BaseModel):
     For the storage of any information pertinent to the confirmation of an OTC trade. e.g the Counterparty Agreement Code  # noqa: E501
     """
     counterparty_agreement_id: Optional[ResourceId] = Field(default=None, alias="counterpartyAgreementId")
-    __properties = ["counterpartyAgreementId"]
+    __properties: ClassVar[List[str]] = ["counterpartyAgreementId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,7 +79,7 @@ class OtcConfirmation(BaseModel):
             return OtcConfirmation.model_validate(obj)
 
         _obj = OtcConfirmation.model_validate({
-            "counterparty_agreement_id": ResourceId.from_dict(obj.get("counterpartyAgreementId")) if obj.get("counterpartyAgreementId") is not None else None
+            "counterparty_agreement_id": ResourceId.from_dict(_v) if (_v := obj.get("counterpartyAgreementId")) is not None else None
         })
         return _obj
 

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class QuoteId(BaseModel):
     """
     quote_series_id: QuoteSeriesId = Field(alias="quoteSeriesId")
     effective_at:  StrictStr = Field(...,alias="effectiveAt", description="The effective datetime or cut label at which the quote is valid from.") 
-    __properties = ["quoteSeriesId", "effectiveAt"]
+    __properties: ClassVar[List[str]] = ["quoteSeriesId", "effectiveAt"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,7 +80,7 @@ class QuoteId(BaseModel):
             return QuoteId.model_validate(obj)
 
         _obj = QuoteId.model_validate({
-            "quote_series_id": QuoteSeriesId.from_dict(obj.get("quoteSeriesId")) if obj.get("quoteSeriesId") is not None else None,
+            "quote_series_id": QuoteSeriesId.from_dict(_v) if (_v := obj.get("quoteSeriesId")) is not None else None,
             "effective_at": obj.get("effectiveAt")
         })
         return _obj

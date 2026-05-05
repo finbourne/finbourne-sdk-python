@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -37,7 +37,7 @@ class RelationalDataPointResponse(BaseModel):
     meta_data_fields: Dict[str, RelationalDataPointFieldValueResponse] = Field(description="The metadata associated with the DataPoint, structured according to the FieldSchema of the parent RelationalDatasetDefinition.", alias="metaDataFields")
     effective_at_entered:  StrictStr = Field(...,alias="effectiveAtEntered", description="The effectiveAt datetime as entered when the DataPoint was created.") 
     data_point_version: Optional[DataPointVersion] = Field(default=None, alias="dataPointVersion")
-    __properties = ["relationalDatasetDefinitionId", "dataSeries", "effectiveAt", "valueFields", "metaDataFields", "effectiveAtEntered", "dataPointVersion"]
+    __properties: ClassVar[List[str]] = ["relationalDatasetDefinitionId", "dataSeries", "effectiveAt", "valueFields", "metaDataFields", "effectiveAtEntered", "dataPointVersion"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -108,23 +108,23 @@ class RelationalDataPointResponse(BaseModel):
             return RelationalDataPointResponse.model_validate(obj)
 
         _obj = RelationalDataPointResponse.model_validate({
-            "relational_dataset_definition_id": ResourceId.from_dict(obj.get("relationalDatasetDefinitionId")) if obj.get("relationalDatasetDefinitionId") is not None else None,
-            "data_series": RelationalDataSeriesResponse.from_dict(obj.get("dataSeries")) if obj.get("dataSeries") is not None else None,
+            "relational_dataset_definition_id": ResourceId.from_dict(_v) if (_v := obj.get("relationalDatasetDefinitionId")) is not None else None,
+            "data_series": RelationalDataSeriesResponse.from_dict(_v) if (_v := obj.get("dataSeries")) is not None else None,
             "effective_at": obj.get("effectiveAt"),
             "value_fields": dict(
                 (_k, RelationalDataPointFieldValueResponse.from_dict(_v))
-                for _k, _v in obj.get("valueFields").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("valueFields") is not None
+            if (_val := obj.get("valueFields")) is not None
             else None,
             "meta_data_fields": dict(
                 (_k, RelationalDataPointFieldValueResponse.from_dict(_v))
-                for _k, _v in obj.get("metaDataFields").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("metaDataFields") is not None
+            if (_val := obj.get("metaDataFields")) is not None
             else None,
             "effective_at_entered": obj.get("effectiveAtEntered"),
-            "data_point_version": DataPointVersion.from_dict(obj.get("dataPointVersion")) if obj.get("dataPointVersion") is not None else None
+            "data_point_version": DataPointVersion.from_dict(_v) if (_v := obj.get("dataPointVersion")) is not None else None
         })
         return _obj
 

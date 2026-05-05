@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class RunCheckRequest(BaseModel):
     """
     lusid_entity_dataset: Optional[LusidEntityDataset] = Field(default=None, alias="lusidEntityDataset")
     limit_individual_breaches_per_rule: Optional[StrictInt] = Field(default=None, description="The maximum number of individual breaches to return per rule. Defaults to 100 if not specified.", alias="limitIndividualBreachesPerRule")
-    __properties = ["lusidEntityDataset", "limitIndividualBreachesPerRule"]
+    __properties: ClassVar[List[str]] = ["lusidEntityDataset", "limitIndividualBreachesPerRule"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,7 +80,7 @@ class RunCheckRequest(BaseModel):
             return RunCheckRequest.model_validate(obj)
 
         _obj = RunCheckRequest.model_validate({
-            "lusid_entity_dataset": LusidEntityDataset.from_dict(obj.get("lusidEntityDataset")) if obj.get("lusidEntityDataset") is not None else None,
+            "lusid_entity_dataset": LusidEntityDataset.from_dict(_v) if (_v := obj.get("lusidEntityDataset")) is not None else None,
             "limit_individual_breaches_per_rule": obj.get("limitIndividualBreachesPerRule")
         })
         return _obj

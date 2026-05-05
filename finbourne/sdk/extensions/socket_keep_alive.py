@@ -1,4 +1,4 @@
-from typing import Sequence
+from typing import Any, Sequence, Tuple
 import socket
 import logging
 from urllib3.connection import HTTPConnection
@@ -15,7 +15,7 @@ TCP_KEEPALIVE_INTERVAL = 60
 TCP_KEEP_CNT = 3
 
 
-def keep_alive_socket_options() -> Sequence:
+def keep_alive_socket_options() -> Sequence[Tuple[Any, Any, Any]]:
     """Returns default socket options for all platforms for
     setting keep alives on tcp connections.
 

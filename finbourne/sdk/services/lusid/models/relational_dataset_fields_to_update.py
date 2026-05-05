@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class RelationalDatasetFieldsToUpdate(BaseModel):
     """
     series_identifiers: Optional[List[UpdateSeriesIdentifierField]] = Field(default=None, description="The schema defining the structure and data types of the relational dataset.", alias="seriesIdentifiers")
     value_and_metadata_fields: Optional[List[RelationalDatasetFieldDefinition]] = Field(default=None, description="The schema defining the structure and data types of the relational dataset.", alias="valueAndMetadataFields")
-    __properties = ["seriesIdentifiers", "valueAndMetadataFields"]
+    __properties: ClassVar[List[str]] = ["seriesIdentifiers", "valueAndMetadataFields"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -102,8 +102,8 @@ class RelationalDatasetFieldsToUpdate(BaseModel):
             return RelationalDatasetFieldsToUpdate.model_validate(obj)
 
         _obj = RelationalDatasetFieldsToUpdate.model_validate({
-            "series_identifiers": [UpdateSeriesIdentifierField.from_dict(_item) for _item in obj.get("seriesIdentifiers")] if obj.get("seriesIdentifiers") is not None else None,
-            "value_and_metadata_fields": [RelationalDatasetFieldDefinition.from_dict(_item) for _item in obj.get("valueAndMetadataFields")] if obj.get("valueAndMetadataFields") is not None else None
+            "series_identifiers": [UpdateSeriesIdentifierField.from_dict(_item) for _item in _v] if (_v := obj.get("seriesIdentifiers")) is not None else None,
+            "value_and_metadata_fields": [RelationalDatasetFieldDefinition.from_dict(_item) for _item in _v] if (_v := obj.get("valueAndMetadataFields")) is not None else None
         })
         return _obj
 

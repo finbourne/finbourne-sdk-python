@@ -66,12 +66,12 @@ class ProcessHistoryApi:
         :return: Returns the result object.
         :rtype: AuditCompleteResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_complete_event_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_complete_event_with_http_info(audit_complete_request, **kwargs)  # noqa: E501
+        response = self.create_complete_event_with_http_info(audit_complete_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_complete_event_with_http_info(self, audit_complete_request: AuditCompleteRequest, **kwargs) -> ApiResponse[AuditCompleteResponse]:
@@ -191,12 +191,12 @@ class ProcessHistoryApi:
         :return: Returns the result object.
         :rtype: AuditUpdateResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_update_event_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_update_event_with_http_info(audit_update_request, **kwargs)  # noqa: E501
+        response = self.create_update_event_with_http_info(audit_update_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_update_event_with_http_info(self, audit_update_request: AuditUpdateRequest, **kwargs) -> ApiResponse[AuditUpdateResponse]:
@@ -314,12 +314,12 @@ class ProcessHistoryApi:
         :return: Returns the result object.
         :rtype: List[ProcessInformation]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_latest_runs_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_latest_runs_with_http_info(**kwargs)  # noqa: E501
+        response = self.get_latest_runs_with_http_info(**kwargs)
+        return response.data
 
     @validate_call
     def get_latest_runs_with_http_info(self, **kwargs) -> ApiResponse[List[ProcessInformation]]:
@@ -427,12 +427,12 @@ class ProcessHistoryApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfProcessUpdateResult
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the process_entry_updates_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.process_entry_updates_with_http_info(run_id, query_request, **kwargs)  # noqa: E501
+        response = self.process_entry_updates_with_http_info(run_id, query_request, **kwargs)
+        return response.data
 
     @validate_call
     def process_entry_updates_with_http_info(self, run_id: StrictStr, query_request: QueryRequest, **kwargs) -> ApiResponse[PagedResourceListOfProcessUpdateResult]:
@@ -560,12 +560,12 @@ class ProcessHistoryApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfProcessInformation
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the process_history_entries_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.process_history_entries_with_http_info(query_request, process_name, **kwargs)  # noqa: E501
+        response = self.process_history_entries_with_http_info(query_request, process_name, **kwargs)
+        return response.data
 
     @validate_call
     def process_history_entries_with_http_info(self, query_request: QueryRequest, process_name: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfProcessInformation]:
@@ -695,12 +695,12 @@ class ProcessHistoryApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: AuditCompleteResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_complete_event_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_complete_event_with_http_info_async(audit_complete_request, **kwargs)  # noqa: E501
+            response = await self.create_complete_event_with_http_info_async(audit_complete_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_complete_event_with_http_info_async(self, audit_complete_request: AuditCompleteRequest, **kwargs) -> ApiResponse[AuditCompleteResponse]:
@@ -821,12 +821,12 @@ class ProcessHistoryApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: AuditUpdateResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_update_event_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_update_event_with_http_info_async(audit_update_request, **kwargs)  # noqa: E501
+            response = await self.create_update_event_with_http_info_async(audit_update_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_update_event_with_http_info_async(self, audit_update_request: AuditUpdateRequest, **kwargs) -> ApiResponse[AuditUpdateResponse]:
@@ -945,12 +945,12 @@ class ProcessHistoryApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: List[ProcessInformation]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_latest_runs_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_latest_runs_with_http_info_async(**kwargs)  # noqa: E501
+            response = await self.get_latest_runs_with_http_info_async(**kwargs)
+            return response.data
 
     @validate_call
     async def get_latest_runs_with_http_info_async(self, **kwargs) -> ApiResponse[List[ProcessInformation]]:
@@ -1059,12 +1059,12 @@ class ProcessHistoryApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfProcessUpdateResult
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the process_entry_updates_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.process_entry_updates_with_http_info_async(run_id, query_request, **kwargs)  # noqa: E501
+            response = await self.process_entry_updates_with_http_info_async(run_id, query_request, **kwargs)
+            return response.data
 
     @validate_call
     async def process_entry_updates_with_http_info_async(self, run_id: StrictStr, query_request: QueryRequest, **kwargs) -> ApiResponse[PagedResourceListOfProcessUpdateResult]:
@@ -1193,12 +1193,12 @@ class ProcessHistoryApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfProcessInformation
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the process_history_entries_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.process_history_entries_with_http_info_async(query_request, process_name, **kwargs)  # noqa: E501
+            response = await self.process_history_entries_with_http_info_async(query_request, process_name, **kwargs)
+            return response.data
 
     @validate_call
     async def process_history_entries_with_http_info_async(self, query_request: QueryRequest, process_name: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfProcessInformation]:

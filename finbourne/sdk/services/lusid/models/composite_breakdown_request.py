@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,11 +29,11 @@ class CompositeBreakdownRequest(BaseModel):
     """
     return_ids: Optional[List[ResourceId]] = Field(default=None, description="The Scope and code of the returns.", alias="returnIds")
     recipe_id: Optional[ResourceId] = Field(default=None, alias="recipeId")
-    composite_method:  Optional[StrictStr] = Field(default=None,alias="compositeMethod", description="The method used to calculate the Portfolio performance: Equal/Asset.") 
-    period:  Optional[StrictStr] = Field(default=None,alias="period", description="The type of the returns used to calculate the aggregation result: Daily/Monthly.") 
+    composite_method:  Optional[StrictStr] = Field(default=None,alias="compositeMethod", description="The method used to calculate the Portfolio performance. Available values: Equal, Asset.") 
+    period:  Optional[StrictStr] = Field(default=None,alias="period", description="The type of the returns used to calculate the aggregation result. Available values: Daily, Monthly.") 
     holiday_calendars: Optional[List[StrictStr]] = Field(default=None, description="The holiday calendar(s) that should be used in determining the date schedule. Holiday calendar(s) are supplied by their codes, for example, 'CoppClark'. Note that when the calendars are not available (e.g. when the user has insufficient permissions), a recipe setting will be used to determine whether the whole batch should then fail or whether the calendar not being available should simply be ignored.", alias="holidayCalendars")
     currency:  Optional[StrictStr] = Field(default=None,alias="currency", description="Optional - either a string or a property. If provided, the results will be converted to the specified currency") 
-    __properties = ["returnIds", "recipeId", "compositeMethod", "period", "holidayCalendars", "currency"]
+    __properties: ClassVar[List[str]] = ["returnIds", "recipeId", "compositeMethod", "period", "holidayCalendars", "currency"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -116,8 +116,8 @@ class CompositeBreakdownRequest(BaseModel):
             return CompositeBreakdownRequest.model_validate(obj)
 
         _obj = CompositeBreakdownRequest.model_validate({
-            "return_ids": [ResourceId.from_dict(_item) for _item in obj.get("returnIds")] if obj.get("returnIds") is not None else None,
-            "recipe_id": ResourceId.from_dict(obj.get("recipeId")) if obj.get("recipeId") is not None else None,
+            "return_ids": [ResourceId.from_dict(_item) for _item in _v] if (_v := obj.get("returnIds")) is not None else None,
+            "recipe_id": ResourceId.from_dict(_v) if (_v := obj.get("recipeId")) is not None else None,
             "composite_method": obj.get("compositeMethod"),
             "period": obj.get("period"),
             "holiday_calendars": obj.get("holidayCalendars"),

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class TriggerParentTaskActionResponse(BaseModel):
     """
     type:  Optional[StrictStr] = Field(default=None,alias="type", description="Type name for this Action") 
     trigger:  Optional[StrictStr] = Field(default=None,alias="trigger", description="Trigger on parent task to be invoked") 
-    __properties = ["type", "trigger"]
+    __properties: ClassVar[List[str]] = ["type", "trigger"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):

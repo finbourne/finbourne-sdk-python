@@ -70,12 +70,12 @@ class ReferencePortfolioApi:
         :return: Returns the result object.
         :rtype: Portfolio
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_reference_portfolio_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_reference_portfolio_with_http_info(scope, create_reference_portfolio_request, **kwargs)  # noqa: E501
+        response = self.create_reference_portfolio_with_http_info(scope, create_reference_portfolio_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_reference_portfolio_with_http_info(self, scope: StrictStr, create_reference_portfolio_request: CreateReferencePortfolioRequest, **kwargs) -> ApiResponse[Portfolio]:
@@ -211,12 +211,12 @@ class ReferencePortfolioApi:
         :return: Returns the result object.
         :rtype: GetReferencePortfolioConstituentsResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_reference_portfolio_constituents_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_reference_portfolio_constituents_with_http_info(scope, code, effective_at, as_at, property_keys, **kwargs)  # noqa: E501
+        response = self.get_reference_portfolio_constituents_with_http_info(scope, code, effective_at, as_at, property_keys, **kwargs)
+        return response.data
 
     @validate_call
     def get_reference_portfolio_constituents_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[GetReferencePortfolioConstituentsResponse]:
@@ -367,12 +367,12 @@ class ReferencePortfolioApi:
         :return: Returns the result object.
         :rtype: ResourceListOfConstituentsAdjustmentHeader
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_constituents_adjustments_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_constituents_adjustments_with_http_info(scope, code, from_effective_at, to_effective_at, as_at_time, **kwargs)  # noqa: E501
+        response = self.list_constituents_adjustments_with_http_info(scope, code, from_effective_at, to_effective_at, as_at_time, **kwargs)
+        return response.data
 
     @validate_call
     def list_constituents_adjustments_with_http_info(self, scope: StrictStr, code: StrictStr, from_effective_at: StrictStr, to_effective_at: StrictStr, as_at_time: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfConstituentsAdjustmentHeader]:
@@ -518,12 +518,12 @@ class ReferencePortfolioApi:
         :return: Returns the result object.
         :rtype: UpsertReferencePortfolioConstituentPropertiesResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_reference_portfolio_constituent_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_reference_portfolio_constituent_properties_with_http_info(scope, code, upsert_reference_portfolio_constituent_properties_request, **kwargs)  # noqa: E501
+        response = self.upsert_reference_portfolio_constituent_properties_with_http_info(scope, code, upsert_reference_portfolio_constituent_properties_request, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_reference_portfolio_constituent_properties_with_http_info(self, scope: StrictStr, code: StrictStr, upsert_reference_portfolio_constituent_properties_request: UpsertReferencePortfolioConstituentPropertiesRequest, **kwargs) -> ApiResponse[UpsertReferencePortfolioConstituentPropertiesResponse]:
@@ -661,12 +661,12 @@ class ReferencePortfolioApi:
         :return: Returns the result object.
         :rtype: UpsertReferencePortfolioConstituentsResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_reference_portfolio_constituents_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_reference_portfolio_constituents_with_http_info(scope, code, upsert_reference_portfolio_constituents_request, **kwargs)  # noqa: E501
+        response = self.upsert_reference_portfolio_constituents_with_http_info(scope, code, upsert_reference_portfolio_constituents_request, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_reference_portfolio_constituents_with_http_info(self, scope: StrictStr, code: StrictStr, upsert_reference_portfolio_constituents_request: UpsertReferencePortfolioConstituentsRequest, **kwargs) -> ApiResponse[UpsertReferencePortfolioConstituentsResponse]:
@@ -806,12 +806,12 @@ class ReferencePortfolioApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Portfolio
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_reference_portfolio_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_reference_portfolio_with_http_info_async(scope, create_reference_portfolio_request, **kwargs)  # noqa: E501
+            response = await self.create_reference_portfolio_with_http_info_async(scope, create_reference_portfolio_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_reference_portfolio_with_http_info_async(self, scope: StrictStr, create_reference_portfolio_request: CreateReferencePortfolioRequest, **kwargs) -> ApiResponse[Portfolio]:
@@ -948,12 +948,12 @@ class ReferencePortfolioApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: GetReferencePortfolioConstituentsResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_reference_portfolio_constituents_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_reference_portfolio_constituents_with_http_info_async(scope, code, effective_at, as_at, property_keys, **kwargs)  # noqa: E501
+            response = await self.get_reference_portfolio_constituents_with_http_info_async(scope, code, effective_at, as_at, property_keys, **kwargs)
+            return response.data
 
     @validate_call
     async def get_reference_portfolio_constituents_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[GetReferencePortfolioConstituentsResponse]:
@@ -1105,12 +1105,12 @@ class ReferencePortfolioApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfConstituentsAdjustmentHeader
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_constituents_adjustments_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_constituents_adjustments_with_http_info_async(scope, code, from_effective_at, to_effective_at, as_at_time, **kwargs)  # noqa: E501
+            response = await self.list_constituents_adjustments_with_http_info_async(scope, code, from_effective_at, to_effective_at, as_at_time, **kwargs)
+            return response.data
 
     @validate_call
     async def list_constituents_adjustments_with_http_info_async(self, scope: StrictStr, code: StrictStr, from_effective_at: StrictStr, to_effective_at: StrictStr, as_at_time: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfConstituentsAdjustmentHeader]:
@@ -1257,12 +1257,12 @@ class ReferencePortfolioApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: UpsertReferencePortfolioConstituentPropertiesResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_reference_portfolio_constituent_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_reference_portfolio_constituent_properties_with_http_info_async(scope, code, upsert_reference_portfolio_constituent_properties_request, **kwargs)  # noqa: E501
+            response = await self.upsert_reference_portfolio_constituent_properties_with_http_info_async(scope, code, upsert_reference_portfolio_constituent_properties_request, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_reference_portfolio_constituent_properties_with_http_info_async(self, scope: StrictStr, code: StrictStr, upsert_reference_portfolio_constituent_properties_request: UpsertReferencePortfolioConstituentPropertiesRequest, **kwargs) -> ApiResponse[UpsertReferencePortfolioConstituentPropertiesResponse]:
@@ -1401,12 +1401,12 @@ class ReferencePortfolioApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: UpsertReferencePortfolioConstituentsResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_reference_portfolio_constituents_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_reference_portfolio_constituents_with_http_info_async(scope, code, upsert_reference_portfolio_constituents_request, **kwargs)  # noqa: E501
+            response = await self.upsert_reference_portfolio_constituents_with_http_info_async(scope, code, upsert_reference_portfolio_constituents_request, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_reference_portfolio_constituents_with_http_info_async(self, scope: StrictStr, code: StrictStr, upsert_reference_portfolio_constituents_request: UpsertReferencePortfolioConstituentsRequest, **kwargs) -> ApiResponse[UpsertReferencePortfolioConstituentsResponse]:

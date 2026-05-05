@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -42,7 +42,7 @@ class OpenFigiData(BaseModel):
     search_input:  Optional[StrictStr] = Field(default=None,alias="searchInput", description="Search input used to generate this response") 
     lusid_instrument_id:  Optional[StrictStr] = Field(default=None,alias="lusidInstrumentId", description="If an instrument with this FIGI exists, the LUID of that instrument in LUSID") 
     lusid_instrument_scope:  Optional[StrictStr] = Field(default=None,alias="lusidInstrumentScope", description="If an instrument with this FIGI exists, the Scope of that instrument in LUSID") 
-    __properties = ["figi", "name", "ticker", "exchangeCode", "mic", "exchangeName", "marketSector", "generalSecurityType", "securityType", "securityDescription", "compositeFigi", "shareClassFigi", "matchType", "searchInput", "lusidInstrumentId", "lusidInstrumentScope"]
+    __properties: ClassVar[List[str]] = ["figi", "name", "ticker", "exchangeCode", "mic", "exchangeName", "marketSector", "generalSecurityType", "securityType", "securityDescription", "compositeFigi", "shareClassFigi", "matchType", "searchInput", "lusidInstrumentId", "lusidInstrumentScope"]
 
     model_config = ConfigDict(
         populate_by_name=True,

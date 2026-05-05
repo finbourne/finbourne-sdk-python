@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,13 +29,13 @@ class GetReferencePortfolioConstituentsResponse(BaseModel):
     GetReferencePortfolioConstituentsResponse
     """
     effective_from: datetime = Field(alias="effectiveFrom")
-    weight_type:  StrictStr = Field(...,alias="weightType", description="The available values are: Static, Floating, Periodical") 
-    period_type:  Optional[StrictStr] = Field(default=None,alias="periodType", description="The available values are: Daily, Weekly, Monthly, Quarterly, Annually") 
+    weight_type:  StrictStr = Field(...,alias="weightType", description="Available values: Static, Floating, Periodical.") 
+    period_type:  Optional[StrictStr] = Field(default=None,alias="periodType", description="Available values: Daily, Weekly, Monthly, Quarterly, Annually.") 
     period_count: Optional[StrictInt] = Field(default=None, alias="periodCount")
     constituents: List[ReferencePortfolioConstituent] = Field(description="Set of constituents (instrument/weight pairings)")
     href:  Optional[StrictStr] = Field(default=None,alias="href", description="The Uri that returns the same result as the original request,  but may include resolved as at time(s).") 
     links: Optional[List[Link]] = None
-    __properties = ["effectiveFrom", "weightType", "periodType", "periodCount", "constituents", "href", "links"]
+    __properties: ClassVar[List[str]] = ["effectiveFrom", "weightType", "periodType", "periodCount", "constituents", "href", "links"]
 
     @field_validator('weight_type')
     def weight_type_validate_enum(cls, value):
@@ -262,9 +262,9 @@ class GetReferencePortfolioConstituentsResponse(BaseModel):
             "weight_type": obj.get("weightType"),
             "period_type": obj.get("periodType"),
             "period_count": obj.get("periodCount"),
-            "constituents": [ReferencePortfolioConstituent.from_dict(_item) for _item in obj.get("constituents")] if obj.get("constituents") is not None else None,
+            "constituents": [ReferencePortfolioConstituent.from_dict(_item) for _item in _v] if (_v := obj.get("constituents")) is not None else None,
             "href": obj.get("href"),
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

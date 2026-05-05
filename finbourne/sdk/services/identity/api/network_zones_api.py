@@ -62,12 +62,12 @@ class NetworkZonesApi:
         :return: Returns the result object.
         :rtype: NetworkZoneDefinitionResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_network_zone_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_network_zone_with_http_info(create_network_zone_request, **kwargs)  # noqa: E501
+        response = self.create_network_zone_with_http_info(create_network_zone_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_network_zone_with_http_info(self, create_network_zone_request: CreateNetworkZoneRequest, **kwargs) -> ApiResponse[NetworkZoneDefinitionResponse]:
@@ -189,15 +189,15 @@ class NetworkZonesApi:
         :return: Returns the result object.
         :rtype: None
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_network_zone_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_network_zone_with_http_info(code, **kwargs)  # noqa: E501
+        response = self.delete_network_zone_with_http_info(code, **kwargs)
+        return response.data
 
     @validate_call
-    def delete_network_zone_with_http_info(self, code: StrictStr, **kwargs) -> None:
+    def delete_network_zone_with_http_info(self, code: StrictStr, **kwargs) -> ApiResponse[None]:
         """[EARLY ACCESS] DeleteNetworkZone: Deletes a network zone  # noqa: E501
 
         Will return a success if network zone already deleted  # noqa: E501
@@ -306,12 +306,12 @@ class NetworkZonesApi:
         :return: Returns the result object.
         :rtype: NetworkZoneDefinitionResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_network_zone_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_network_zone_with_http_info(code, **kwargs)  # noqa: E501
+        response = self.get_network_zone_with_http_info(code, **kwargs)
+        return response.data
 
     @validate_call
     def get_network_zone_with_http_info(self, code: StrictStr, **kwargs) -> ApiResponse[NetworkZoneDefinitionResponse]:
@@ -424,12 +424,12 @@ class NetworkZonesApi:
         :return: Returns the result object.
         :rtype: List[NetworkZoneDefinitionResponse]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_network_zones_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_network_zones_with_http_info(**kwargs)  # noqa: E501
+        response = self.list_network_zones_with_http_info(**kwargs)
+        return response.data
 
     @validate_call
     def list_network_zones_with_http_info(self, **kwargs) -> ApiResponse[List[NetworkZoneDefinitionResponse]]:
@@ -539,12 +539,12 @@ class NetworkZonesApi:
         :return: Returns the result object.
         :rtype: NetworkZoneDefinitionResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_network_zone_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_network_zone_with_http_info(code, update_network_zone_request, **kwargs)  # noqa: E501
+        response = self.update_network_zone_with_http_info(code, update_network_zone_request, **kwargs)
+        return response.data
 
     @validate_call
     def update_network_zone_with_http_info(self, code: StrictStr, update_network_zone_request: UpdateNetworkZoneRequest, **kwargs) -> ApiResponse[NetworkZoneDefinitionResponse]:
@@ -676,12 +676,12 @@ class NetworkZonesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: NetworkZoneDefinitionResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_network_zone_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_network_zone_with_http_info_async(create_network_zone_request, **kwargs)  # noqa: E501
+            response = await self.create_network_zone_with_http_info_async(create_network_zone_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_network_zone_with_http_info_async(self, create_network_zone_request: CreateNetworkZoneRequest, **kwargs) -> ApiResponse[NetworkZoneDefinitionResponse]:
@@ -804,15 +804,15 @@ class NetworkZonesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: None
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_network_zone_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_network_zone_with_http_info_async(code, **kwargs)  # noqa: E501
+            response = await self.delete_network_zone_with_http_info_async(code, **kwargs)
+            return response.data
 
     @validate_call
-    async def delete_network_zone_with_http_info_async(self, code: StrictStr, **kwargs) -> None:
+    async def delete_network_zone_with_http_info_async(self, code: StrictStr, **kwargs) -> ApiResponse[None]:
             """[EARLY ACCESS] DeleteNetworkZone: Deletes a network zone  # noqa: E501
 
             Will return a success if network zone already deleted  # noqa: E501
@@ -922,12 +922,12 @@ class NetworkZonesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: NetworkZoneDefinitionResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_network_zone_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_network_zone_with_http_info_async(code, **kwargs)  # noqa: E501
+            response = await self.get_network_zone_with_http_info_async(code, **kwargs)
+            return response.data
 
     @validate_call
     async def get_network_zone_with_http_info_async(self, code: StrictStr, **kwargs) -> ApiResponse[NetworkZoneDefinitionResponse]:
@@ -1041,12 +1041,12 @@ class NetworkZonesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: List[NetworkZoneDefinitionResponse]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_network_zones_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_network_zones_with_http_info_async(**kwargs)  # noqa: E501
+            response = await self.list_network_zones_with_http_info_async(**kwargs)
+            return response.data
 
     @validate_call
     async def list_network_zones_with_http_info_async(self, **kwargs) -> ApiResponse[List[NetworkZoneDefinitionResponse]]:
@@ -1157,12 +1157,12 @@ class NetworkZonesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: NetworkZoneDefinitionResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_network_zone_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_network_zone_with_http_info_async(code, update_network_zone_request, **kwargs)  # noqa: E501
+            response = await self.update_network_zone_with_http_info_async(code, update_network_zone_request, **kwargs)
+            return response.data
 
     @validate_call
     async def update_network_zone_with_http_info_async(self, code: StrictStr, update_network_zone_request: UpdateNetworkZoneRequest, **kwargs) -> ApiResponse[NetworkZoneDefinitionResponse]:

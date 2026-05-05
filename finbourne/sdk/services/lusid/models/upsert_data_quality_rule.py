@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class UpsertDataQualityRule(BaseModel):
     """
     rule_set_key:  Optional[StrictStr] = Field(default=None,alias="ruleSetKey") 
     rule: Optional[CheckDefinitionRule] = None
-    __properties = ["ruleSetKey", "rule"]
+    __properties: ClassVar[List[str]] = ["ruleSetKey", "rule"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -86,7 +86,7 @@ class UpsertDataQualityRule(BaseModel):
 
         _obj = UpsertDataQualityRule.model_validate({
             "rule_set_key": obj.get("ruleSetKey"),
-            "rule": CheckDefinitionRule.from_dict(obj.get("rule")) if obj.get("rule") is not None else None
+            "rule": CheckDefinitionRule.from_dict(_v) if (_v := obj.get("rule")) is not None else None
         })
         return _obj
 

@@ -5,7 +5,7 @@ Base class for types containing required data to append to complex market data.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **market_data_type** | **str** | Required | The available values are: AppendFxForwardCurveByQuoteReference, AppendFxForwardCurveData, AppendFxForwardPipsCurveData, AppendFxForwardTenorCurveData, AppendFxForwardTenorPipsCurveData |
+| **market_data_type** | **str** | Required | Available values: AppendFxForwardCurveByQuoteReference, AppendFxForwardCurveData, AppendFxForwardPipsCurveData, AppendFxForwardTenorCurveData, AppendFxForwardTenorPipsCurveData. |
 
 
 ## Usage
@@ -16,7 +16,7 @@ Base class for types containing required data to append to complex market data.
 from finbourne.sdk.services.lusid.models.AppendMarketData import AppendMarketData
 
 instance = AppendMarketData(
-    market_data_type="..."  # required — The available values are: AppendFxForwardCurveByQuoteReference, AppendFxForwardCurveData, AppendFxForwardPipsCurveData, AppendFxForwardTenorCurveData, AppendFxForwardTenorPipsCurveData
+    market_data_type="..."  # required — Available values: AppendFxForwardCurveByQuoteReference, AppendFxForwardCurveData, AppendFxForwardPipsCurveData, AppendFxForwardTenorCurveData, AppendFxForwardTenorPipsCurveData.
 )
 ```
 

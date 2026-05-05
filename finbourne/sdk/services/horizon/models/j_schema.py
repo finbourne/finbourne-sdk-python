@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -88,7 +88,7 @@ class JSchema(BaseModel):
     allow_unevaluated_items: Optional[StrictBool] = Field(default=None, alias="allowUnevaluatedItems")
     format:  Optional[StrictStr] = Field(default=None,alias="format") 
     validators: List[Dict[str, Any]]
-    __properties = ["schemaVersion", "valid", "reference", "ref", "recursiveReference", "recursiveAnchor", "id", "anchor", "type", "default", "properties", "items", "itemsPositionValidation", "required", "allOf", "anyOf", "oneOf", "if", "then", "else", "not", "contains", "propertyNames", "enum", "const", "uniqueItems", "minimumLength", "maximumLength", "exclusiveMinimum", "exclusiveMaximum", "minimumItems", "maximumItems", "minimumProperties", "maximumProperties", "minimumContains", "maximumContains", "contentEncoding", "contentMediaType", "writeOnly", "readOnly", "extensionData", "title", "description", "multipleOf", "pattern", "dependencies", "dependentRequired", "dependentSchemas", "patternProperties", "additionalProperties", "allowAdditionalProperties", "allowAdditionalPropertiesSpecified", "unevaluatedProperties", "allowUnevaluatedProperties", "additionalItems", "allowAdditionalItems", "allowAdditionalItemsSpecified", "unevaluatedItems", "allowUnevaluatedItems", "format", "validators"]
+    __properties: ClassVar[List[str]] = ["schemaVersion", "valid", "reference", "ref", "recursiveReference", "recursiveAnchor", "id", "anchor", "type", "default", "properties", "items", "itemsPositionValidation", "required", "allOf", "anyOf", "oneOf", "if", "then", "else", "not", "contains", "propertyNames", "enum", "const", "uniqueItems", "minimumLength", "maximumLength", "exclusiveMinimum", "exclusiveMaximum", "minimumItems", "maximumItems", "minimumProperties", "maximumProperties", "minimumContains", "maximumContains", "contentEncoding", "contentMediaType", "writeOnly", "readOnly", "extensionData", "title", "description", "multipleOf", "pattern", "dependencies", "dependentRequired", "dependentSchemas", "patternProperties", "additionalProperties", "allowAdditionalProperties", "allowAdditionalPropertiesSpecified", "unevaluatedProperties", "allowUnevaluatedProperties", "additionalItems", "allowAdditionalItems", "allowAdditionalItemsSpecified", "unevaluatedItems", "allowUnevaluatedItems", "format", "validators"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -197,9 +197,9 @@ class JSchema(BaseModel):
         _field_dict_of_array = {}
         if self.dependent_required:
             for _key in self.dependent_required:
-                if self.dependent_required[_key]:
+                if (_items_for_key := self.dependent_required[_key]):
                     _field_dict_of_array[_key] = [
-                        _item.to_dict() for _item in self.dependent_required[_key]
+                        _item.to_dict() for _item in _items_for_key
                     ]
             _dict['dependentRequired'] = _field_dict_of_array
         # override the default output from pydantic by calling `to_dict()` of each value in dependent_schemas (dict)
@@ -383,7 +383,7 @@ class JSchema(BaseModel):
             "schema_version": obj.get("schemaVersion"),
             "valid": obj.get("valid"),
             "reference": obj.get("reference"),
-            "ref": JSchema.from_dict(obj.get("ref")) if obj.get("ref") is not None else None,
+            "ref": JSchema.from_dict(_v) if (_v := obj.get("ref")) is not None else None,
             "recursive_reference": obj.get("recursiveReference"),
             "recursive_anchor": obj.get("recursiveAnchor"),
             "id": obj.get("id"),
@@ -392,22 +392,22 @@ class JSchema(BaseModel):
             "default": obj.get("default"),
             "properties": dict(
                 (_k, JSchema.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
-            "items": [JSchema.from_dict(_item) for _item in obj.get("items")] if obj.get("items") is not None else None,
+            "items": [JSchema.from_dict(_item) for _item in _v] if (_v := obj.get("items")) is not None else None,
             "items_position_validation": obj.get("itemsPositionValidation"),
             "required": obj.get("required"),
-            "all_of": [JSchema.from_dict(_item) for _item in obj.get("allOf")] if obj.get("allOf") is not None else None,
-            "any_of": [JSchema.from_dict(_item) for _item in obj.get("anyOf")] if obj.get("anyOf") is not None else None,
-            "one_of": [JSchema.from_dict(_item) for _item in obj.get("oneOf")] if obj.get("oneOf") is not None else None,
-            "var_if": JSchema.from_dict(obj.get("if")) if obj.get("if") is not None else None,
-            "then": JSchema.from_dict(obj.get("then")) if obj.get("then") is not None else None,
-            "var_else": JSchema.from_dict(obj.get("else")) if obj.get("else") is not None else None,
-            "var_not": JSchema.from_dict(obj.get("not")) if obj.get("not") is not None else None,
-            "contains": JSchema.from_dict(obj.get("contains")) if obj.get("contains") is not None else None,
-            "property_names": JSchema.from_dict(obj.get("propertyNames")) if obj.get("propertyNames") is not None else None,
+            "all_of": [JSchema.from_dict(_item) for _item in _v] if (_v := obj.get("allOf")) is not None else None,
+            "any_of": [JSchema.from_dict(_item) for _item in _v] if (_v := obj.get("anyOf")) is not None else None,
+            "one_of": [JSchema.from_dict(_item) for _item in _v] if (_v := obj.get("oneOf")) is not None else None,
+            "var_if": JSchema.from_dict(_v) if (_v := obj.get("if")) is not None else None,
+            "then": JSchema.from_dict(_v) if (_v := obj.get("then")) is not None else None,
+            "var_else": JSchema.from_dict(_v) if (_v := obj.get("else")) is not None else None,
+            "var_not": JSchema.from_dict(_v) if (_v := obj.get("not")) is not None else None,
+            "contains": JSchema.from_dict(_v) if (_v := obj.get("contains")) is not None else None,
+            "property_names": JSchema.from_dict(_v) if (_v := obj.get("propertyNames")) is not None else None,
             "enum": obj.get("enum"),
             "const": obj.get("const"),
             "unique_items": obj.get("uniqueItems"),
@@ -434,25 +434,25 @@ class JSchema(BaseModel):
             "dependent_required": obj.get("dependentRequired"),
             "dependent_schemas": dict(
                 (_k, JSchema.from_dict(_v))
-                for _k, _v in obj.get("dependentSchemas").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("dependentSchemas") is not None
+            if (_val := obj.get("dependentSchemas")) is not None
             else None,
             "pattern_properties": dict(
                 (_k, JSchema.from_dict(_v))
-                for _k, _v in obj.get("patternProperties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("patternProperties") is not None
+            if (_val := obj.get("patternProperties")) is not None
             else None,
-            "additional_properties": JSchema.from_dict(obj.get("additionalProperties")) if obj.get("additionalProperties") is not None else None,
+            "additional_properties": JSchema.from_dict(_v) if (_v := obj.get("additionalProperties")) is not None else None,
             "allow_additional_properties": obj.get("allowAdditionalProperties"),
             "allow_additional_properties_specified": obj.get("allowAdditionalPropertiesSpecified"),
-            "unevaluated_properties": JSchema.from_dict(obj.get("unevaluatedProperties")) if obj.get("unevaluatedProperties") is not None else None,
+            "unevaluated_properties": JSchema.from_dict(_v) if (_v := obj.get("unevaluatedProperties")) is not None else None,
             "allow_unevaluated_properties": obj.get("allowUnevaluatedProperties"),
-            "additional_items": JSchema.from_dict(obj.get("additionalItems")) if obj.get("additionalItems") is not None else None,
+            "additional_items": JSchema.from_dict(_v) if (_v := obj.get("additionalItems")) is not None else None,
             "allow_additional_items": obj.get("allowAdditionalItems"),
             "allow_additional_items_specified": obj.get("allowAdditionalItemsSpecified"),
-            "unevaluated_items": JSchema.from_dict(obj.get("unevaluatedItems")) if obj.get("unevaluatedItems") is not None else None,
+            "unevaluated_items": JSchema.from_dict(_v) if (_v := obj.get("unevaluatedItems")) is not None else None,
             "allow_unevaluated_items": obj.get("allowUnevaluatedItems"),
             "format": obj.get("format"),
             "validators": obj.get("validators")

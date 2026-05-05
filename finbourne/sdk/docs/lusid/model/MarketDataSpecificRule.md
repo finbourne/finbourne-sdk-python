@@ -8,7 +8,7 @@ Extends market data key rules to be able to catch dependencies depending on wher
 | **key** | **str** | Required | The market data key pattern which this is a rule for. A dot separated string (A.B.C.D.*) |
 | **supplier** | **str** | Required | The market data supplier (where the data comes from) |
 | **data_scope** | **str** | Required | The scope in which the data should be found when using this rule. |
-| **quote_type** | **str** | Required | The available values are: Price, Spread, Rate, LogNormalVol, NormalVol, ParSpread, IsdaSpread, Upfront, Index, Ratio, Delta, PoolFactor, InflationAssumption, DirtyPrice, PrincipalWriteOff, InterestDeferred, InterestShortfall, ConstituentWeightFactor |
+| **quote_type** | **str** | Required | Available values: Price, Spread, Rate, LogNormalVol, NormalVol, ParSpread, IsdaSpread, Upfront, Index, Ratio, Delta, PoolFactor, InflationAssumption, DirtyPrice, PrincipalWriteOff, InterestDeferred, InterestShortfall, ConstituentWeightFactor. |
 | **var_field** | **str** | Required | The conceptual qualification for the field, such as bid, mid, or ask.  The field must be one of a defined set for the given supplier, in the same way as it  is for the Quotes.QuoteSeriesId\&quot; |
 | **quote_interval** | **str** | Optional | Shorthand for the time interval used to select market data. This must be a dot-separated string              nominating a start and end date, for example &#39;5D.0D&#39; to look back 5 days from today (0 days ago). The syntax              is &lt;i&gt;int&lt;/i&gt;&lt;i&gt;char&lt;/i&gt;.&lt;i&gt;int&lt;/i&gt;&lt;i&gt;char&lt;/i&gt;, where &lt;i&gt;char&lt;/i&gt; is one of D(ay), W(eek), M(onth) or Y(ear). |
 | **as_at** | **datetime** | Optional | Deprecated field which no longer has any effect on market data resolution. |
@@ -30,7 +30,7 @@ instance = MarketDataSpecificRule(
     key="...",  # required — The market data key pattern which this is a rule for. A dot separated string (A.B.C.D.*)
     supplier="...",  # required — The market data supplier (where the data comes from)
     data_scope="...",  # required — The scope in which the data should be found when using this rule.
-    quote_type="...",  # required — The available values are: Price, Spread, Rate, LogNormalVol, NormalVol, ParSpread, IsdaSpread, Upfront, Index, Ratio, Delta, PoolFactor, InflationAssumption, DirtyPrice, PrincipalWriteOff, InterestDeferred, InterestShortfall, ConstituentWeightFactor
+    quote_type="...",  # required — Available values: Price, Spread, Rate, LogNormalVol, NormalVol, ParSpread, IsdaSpread, Upfront, Index, Ratio, Delta, PoolFactor, InflationAssumption, DirtyPrice, PrincipalWriteOff, InterestDeferred, InterestShortfall, ConstituentWeightFactor.
     var_field="...",  # required — The conceptual qualification for the field, such as bid, mid, or ask.  The field must be one of a defined set for the given supplier, in the same way as it  is for the Quotes.QuoteSeriesId\&quot;
     quote_interval="...",  # optional — Shorthand for the time interval used to select market data. This must be a dot-separated string              nominating a start and end date, for example &#39;5D.0D&#39; to look back 5 days from today (0 days ago). The syntax              is &lt;i&gt;int&lt;/i&gt;&lt;i&gt;char&lt;/i&gt;.&lt;i&gt;int&lt;/i&gt;&lt;i&gt;char&lt;/i&gt;, where &lt;i&gt;char&lt;/i&gt; is one of D(ay), W(eek), M(onth) or Y(ear).
     as_at=datetime.now(),  # optional — Deprecated field which no longer has any effect on market data resolution.

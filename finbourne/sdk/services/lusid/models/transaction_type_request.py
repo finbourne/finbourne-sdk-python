@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class TransactionTypeRequest(BaseModel):
     movements: List[TransactionTypeMovement] = Field(description="Movement data for the transaction type")
     properties: Optional[Dict[str, PerpetualProperty]] = Field(default=None, description="Properties attached to the transaction type")
     calculations: Optional[List[TransactionTypeCalculation]] = Field(default=None, description="Calculations to be performed for the transaction type")
-    __properties = ["aliases", "movements", "properties", "calculations"]
+    __properties: ClassVar[List[str]] = ["aliases", "movements", "properties", "calculations"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -120,15 +120,15 @@ class TransactionTypeRequest(BaseModel):
             return TransactionTypeRequest.model_validate(obj)
 
         _obj = TransactionTypeRequest.model_validate({
-            "aliases": [TransactionTypeAlias.from_dict(_item) for _item in obj.get("aliases")] if obj.get("aliases") is not None else None,
-            "movements": [TransactionTypeMovement.from_dict(_item) for _item in obj.get("movements")] if obj.get("movements") is not None else None,
+            "aliases": [TransactionTypeAlias.from_dict(_item) for _item in _v] if (_v := obj.get("aliases")) is not None else None,
+            "movements": [TransactionTypeMovement.from_dict(_item) for _item in _v] if (_v := obj.get("movements")) is not None else None,
             "properties": dict(
                 (_k, PerpetualProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
-            "calculations": [TransactionTypeCalculation.from_dict(_item) for _item in obj.get("calculations")] if obj.get("calculations") is not None else None
+            "calculations": [TransactionTypeCalculation.from_dict(_item) for _item in _v] if (_v := obj.get("calculations")) is not None else None
         })
         return _obj
 

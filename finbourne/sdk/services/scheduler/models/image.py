@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -35,7 +35,7 @@ class Image(BaseModel):
     size: Optional[StrictInt] = Field(default=None, description="The size of the image (in bytes)")
     tags: Optional[List[Tag]] = Field(default=None, description="The tags of the image")
     scan_report: Optional[ScanReport] = Field(default=None, alias="scanReport")
-    __properties = ["name", "pushTime", "pullTime", "digest", "size", "tags", "scanReport"]
+    __properties: ClassVar[List[str]] = ["name", "pushTime", "pullTime", "digest", "size", "tags", "scanReport"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -128,8 +128,8 @@ class Image(BaseModel):
             "pull_time": obj.get("pullTime"),
             "digest": obj.get("digest"),
             "size": obj.get("size"),
-            "tags": [Tag.from_dict(_item) for _item in obj.get("tags")] if obj.get("tags") is not None else None,
-            "scan_report": ScanReport.from_dict(obj.get("scanReport")) if obj.get("scanReport") is not None else None
+            "tags": [Tag.from_dict(_item) for _item in _v] if (_v := obj.get("tags")) is not None else None,
+            "scan_report": ScanReport.from_dict(_v) if (_v := obj.get("scanReport")) is not None else None
         })
         return _obj
 

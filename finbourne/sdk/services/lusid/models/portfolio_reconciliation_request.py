@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class PortfolioReconciliationRequest(BaseModel):
     portfolio_id: ResourceId = Field(alias="portfolioId")
     effective_at:  StrictStr = Field(...,alias="effectiveAt", description="The effective date of the portfolio") 
     as_at: Optional[datetime] = Field(default=None, description="Optional. The AsAt date of the portfolio", alias="asAt")
-    __properties = ["portfolioId", "effectiveAt", "asAt"]
+    __properties: ClassVar[List[str]] = ["portfolioId", "effectiveAt", "asAt"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -86,7 +86,7 @@ class PortfolioReconciliationRequest(BaseModel):
             return PortfolioReconciliationRequest.model_validate(obj)
 
         _obj = PortfolioReconciliationRequest.model_validate({
-            "portfolio_id": ResourceId.from_dict(obj.get("portfolioId")) if obj.get("portfolioId") is not None else None,
+            "portfolio_id": ResourceId.from_dict(_v) if (_v := obj.get("portfolioId")) is not None else None,
             "effective_at": obj.get("effectiveAt"),
             "as_at": obj.get("asAt")
         })

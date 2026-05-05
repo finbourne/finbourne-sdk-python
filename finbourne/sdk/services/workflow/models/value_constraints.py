@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class ValueConstraints(BaseModel):
     constraint_type:  StrictStr = Field(...,alias="constraintType", description="Whether the constraint is a suggestion or should be enforced via validation (e.g. Suggested, Validated)") 
     value_source_type:  StrictStr = Field(...,alias="valueSourceType", description="The source of the acceptable values (e.g. AcceptableValues)") 
     acceptable_values: List[Any] = Field(description="The acceptable values for the field", alias="acceptableValues")
-    __properties = ["constraintType", "valueSourceType", "acceptableValues"]
+    __properties: ClassVar[List[str]] = ["constraintType", "valueSourceType", "acceptableValues"]
 
     model_config = ConfigDict(
         populate_by_name=True,

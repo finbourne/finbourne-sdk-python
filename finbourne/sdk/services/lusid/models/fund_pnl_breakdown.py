@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class FundPnlBreakdown(BaseModel):
     non_class_specific_pnl: Dict[str, FundAmount] = Field(description="Bucket of detail for PnL within the queried period that is not specific to any share class.", alias="nonClassSpecificPnl")
     aggregated_class_pnl: Dict[str, FundAmount] = Field(description="Bucket of detail for the sum of class PnL across all share classes in a fund and within the queried period.", alias="aggregatedClassPnl")
     total_pnl: Dict[str, FundAmount] = Field(description="Bucket of detail for the sum of class PnL and PnL not specific to a class within the queried period.", alias="totalPnl")
-    __properties = ["nonClassSpecificPnl", "aggregatedClassPnl", "totalPnl"]
+    __properties: ClassVar[List[str]] = ["nonClassSpecificPnl", "aggregatedClassPnl", "totalPnl"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -101,21 +101,21 @@ class FundPnlBreakdown(BaseModel):
         _obj = FundPnlBreakdown.model_validate({
             "non_class_specific_pnl": dict(
                 (_k, FundAmount.from_dict(_v))
-                for _k, _v in obj.get("nonClassSpecificPnl").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("nonClassSpecificPnl") is not None
+            if (_val := obj.get("nonClassSpecificPnl")) is not None
             else None,
             "aggregated_class_pnl": dict(
                 (_k, FundAmount.from_dict(_v))
-                for _k, _v in obj.get("aggregatedClassPnl").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("aggregatedClassPnl") is not None
+            if (_val := obj.get("aggregatedClassPnl")) is not None
             else None,
             "total_pnl": dict(
                 (_k, FundAmount.from_dict(_v))
-                for _k, _v in obj.get("totalPnl").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("totalPnl") is not None
+            if (_val := obj.get("totalPnl")) is not None
             else None
         })
         return _obj

@@ -74,12 +74,12 @@ class CalendarsApi:
         :return: Returns the result object.
         :rtype: AddBusinessDaysToDateResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the add_business_days_to_date_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.add_business_days_to_date_with_http_info(scope, add_business_days_to_date_request, **kwargs)  # noqa: E501
+        response = self.add_business_days_to_date_with_http_info(scope, add_business_days_to_date_request, **kwargs)
+        return response.data
 
     @validate_call
     def add_business_days_to_date_with_http_info(self, scope: StrictStr, add_business_days_to_date_request: AddBusinessDaysToDateRequest, **kwargs) -> ApiResponse[AddBusinessDaysToDateResponse]:
@@ -211,12 +211,12 @@ class CalendarsApi:
         :return: Returns the result object.
         :rtype: CalendarDate
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the add_date_to_calendar_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.add_date_to_calendar_with_http_info(scope, code, create_date_request, **kwargs)  # noqa: E501
+        response = self.add_date_to_calendar_with_http_info(scope, code, create_date_request, **kwargs)
+        return response.data
 
     @validate_call
     def add_date_to_calendar_with_http_info(self, scope: StrictStr, code: StrictStr, create_date_request: CreateDateRequest, **kwargs) -> ApiResponse[CalendarDate]:
@@ -356,12 +356,12 @@ class CalendarsApi:
         :return: Returns the result object.
         :rtype: BatchUpsertDatesForCalendarResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the batch_upsert_dates_for_calendar_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.batch_upsert_dates_for_calendar_with_http_info(scope, code, success_mode, request_body, **kwargs)  # noqa: E501
+        response = self.batch_upsert_dates_for_calendar_with_http_info(scope, code, success_mode, request_body, **kwargs)
+        return response.data
 
     @validate_call
     def batch_upsert_dates_for_calendar_with_http_info(self, scope: StrictStr, code: StrictStr, success_mode: StrictStr, request_body: Dict[str, CreateDateRequest], **kwargs) -> ApiResponse[BatchUpsertDatesForCalendarResponse]:
@@ -501,12 +501,12 @@ class CalendarsApi:
         :return: Returns the result object.
         :rtype: Calendar
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_calendar_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_calendar_with_http_info(create_calendar_request, **kwargs)  # noqa: E501
+        response = self.create_calendar_with_http_info(create_calendar_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_calendar_with_http_info(self, create_calendar_request: CreateCalendarRequest, **kwargs) -> ApiResponse[Calendar]:
@@ -630,12 +630,12 @@ class CalendarsApi:
         :return: Returns the result object.
         :rtype: Calendar
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_calendar_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_calendar_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_calendar_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_calendar_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[Calendar]:
@@ -760,12 +760,12 @@ class CalendarsApi:
         :return: Returns the result object.
         :rtype: CalendarDate
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_date_from_calendar_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_date_from_calendar_with_http_info(scope, code, date_id, **kwargs)  # noqa: E501
+        response = self.delete_date_from_calendar_with_http_info(scope, code, date_id, **kwargs)
+        return response.data
 
     @validate_call
     def delete_date_from_calendar_with_http_info(self, scope: StrictStr, code: StrictStr, date_id: StrictStr, **kwargs) -> ApiResponse[CalendarDate]:
@@ -896,12 +896,12 @@ class CalendarsApi:
         :return: Returns the result object.
         :rtype: Dict[str, CalendarDate]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_dates_from_calendar_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_dates_from_calendar_with_http_info(scope, code, request_body, **kwargs)  # noqa: E501
+        response = self.delete_dates_from_calendar_with_http_info(scope, code, request_body, **kwargs)
+        return response.data
 
     @validate_call
     def delete_dates_from_calendar_with_http_info(self, scope: StrictStr, code: StrictStr, request_body: List[str], **kwargs) -> ApiResponse[Dict[str, CalendarDate]]:
@@ -1039,12 +1039,12 @@ class CalendarsApi:
         :return: Returns the result object.
         :rtype: List[datetime]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the generate_schedule_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.generate_schedule_with_http_info(scope, valuation_schedule, as_at, **kwargs)  # noqa: E501
+        response = self.generate_schedule_with_http_info(scope, valuation_schedule, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def generate_schedule_with_http_info(self, scope: StrictStr, valuation_schedule: ValuationSchedule, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[List[datetime]]:
@@ -1187,12 +1187,12 @@ class CalendarsApi:
         :return: Returns the result object.
         :rtype: Calendar
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_calendar_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_calendar_with_http_info(scope, code, property_keys, as_at, **kwargs)  # noqa: E501
+        response = self.get_calendar_with_http_info(scope, code, property_keys, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_calendar_with_http_info(self, scope: StrictStr, code: StrictStr, property_keys: Optional[List[str]] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[Calendar]:
@@ -1339,12 +1339,12 @@ class CalendarsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfCalendarDate
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_dates_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_dates_with_http_info(scope, code, from_effective_at, to_effective_at, as_at, id_filter, **kwargs)  # noqa: E501
+        response = self.get_dates_with_http_info(scope, code, from_effective_at, to_effective_at, as_at, id_filter, **kwargs)
+        return response.data
 
     @validate_call
     def get_dates_with_http_info(self, scope: StrictStr, code: StrictStr, from_effective_at: Optional[StrictStr] = None, to_effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, id_filter: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfCalendarDate]:
@@ -1499,12 +1499,12 @@ class CalendarsApi:
         :return: Returns the result object.
         :rtype: IsBusinessDayResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the is_business_date_time_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.is_business_date_time_with_http_info(date_time, scope, code, as_at, **kwargs)  # noqa: E501
+        response = self.is_business_date_time_with_http_info(date_time, scope, code, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def is_business_date_time_with_http_info(self, date_time: datetime, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[IsBusinessDayResponse]:
@@ -1651,12 +1651,12 @@ class CalendarsApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfCalendar
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_calendars_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_calendars_with_http_info(as_at, page, limit, property_keys, filter, **kwargs)  # noqa: E501
+        response = self.list_calendars_with_http_info(as_at, page, limit, property_keys, filter, **kwargs)
+        return response.data
 
     @validate_call
     def list_calendars_with_http_info(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, property_keys: Optional[List[str]] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfCalendar]:
@@ -1809,12 +1809,12 @@ class CalendarsApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfCalendar
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_calendars_in_scope_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_calendars_in_scope_with_http_info(scope, as_at, page, limit, property_keys, filter, **kwargs)  # noqa: E501
+        response = self.list_calendars_in_scope_with_http_info(scope, as_at, page, limit, property_keys, filter, **kwargs)
+        return response.data
 
     @validate_call
     def list_calendars_in_scope_with_http_info(self, scope: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, property_keys: Optional[List[str]] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfCalendar]:
@@ -1967,12 +1967,12 @@ class CalendarsApi:
         :return: Returns the result object.
         :rtype: Calendar
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_calendar_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_calendar_with_http_info(scope, code, update_calendar_request, **kwargs)  # noqa: E501
+        response = self.update_calendar_with_http_info(scope, code, update_calendar_request, **kwargs)
+        return response.data
 
     @validate_call
     def update_calendar_with_http_info(self, scope: StrictStr, code: StrictStr, update_calendar_request: UpdateCalendarRequest, **kwargs) -> ApiResponse[Calendar]:
@@ -2112,12 +2112,12 @@ class CalendarsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: AddBusinessDaysToDateResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the add_business_days_to_date_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.add_business_days_to_date_with_http_info_async(scope, add_business_days_to_date_request, **kwargs)  # noqa: E501
+            response = await self.add_business_days_to_date_with_http_info_async(scope, add_business_days_to_date_request, **kwargs)
+            return response.data
 
     @validate_call
     async def add_business_days_to_date_with_http_info_async(self, scope: StrictStr, add_business_days_to_date_request: AddBusinessDaysToDateRequest, **kwargs) -> ApiResponse[AddBusinessDaysToDateResponse]:
@@ -2250,12 +2250,12 @@ class CalendarsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: CalendarDate
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the add_date_to_calendar_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.add_date_to_calendar_with_http_info_async(scope, code, create_date_request, **kwargs)  # noqa: E501
+            response = await self.add_date_to_calendar_with_http_info_async(scope, code, create_date_request, **kwargs)
+            return response.data
 
     @validate_call
     async def add_date_to_calendar_with_http_info_async(self, scope: StrictStr, code: StrictStr, create_date_request: CreateDateRequest, **kwargs) -> ApiResponse[CalendarDate]:
@@ -2396,12 +2396,12 @@ class CalendarsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: BatchUpsertDatesForCalendarResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the batch_upsert_dates_for_calendar_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.batch_upsert_dates_for_calendar_with_http_info_async(scope, code, success_mode, request_body, **kwargs)  # noqa: E501
+            response = await self.batch_upsert_dates_for_calendar_with_http_info_async(scope, code, success_mode, request_body, **kwargs)
+            return response.data
 
     @validate_call
     async def batch_upsert_dates_for_calendar_with_http_info_async(self, scope: StrictStr, code: StrictStr, success_mode: StrictStr, request_body: Dict[str, CreateDateRequest], **kwargs) -> ApiResponse[BatchUpsertDatesForCalendarResponse]:
@@ -2542,12 +2542,12 @@ class CalendarsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Calendar
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_calendar_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_calendar_with_http_info_async(create_calendar_request, **kwargs)  # noqa: E501
+            response = await self.create_calendar_with_http_info_async(create_calendar_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_calendar_with_http_info_async(self, create_calendar_request: CreateCalendarRequest, **kwargs) -> ApiResponse[Calendar]:
@@ -2672,12 +2672,12 @@ class CalendarsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Calendar
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_calendar_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_calendar_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_calendar_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_calendar_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[Calendar]:
@@ -2803,12 +2803,12 @@ class CalendarsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: CalendarDate
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_date_from_calendar_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_date_from_calendar_with_http_info_async(scope, code, date_id, **kwargs)  # noqa: E501
+            response = await self.delete_date_from_calendar_with_http_info_async(scope, code, date_id, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_date_from_calendar_with_http_info_async(self, scope: StrictStr, code: StrictStr, date_id: StrictStr, **kwargs) -> ApiResponse[CalendarDate]:
@@ -2940,12 +2940,12 @@ class CalendarsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Dict[str, CalendarDate]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_dates_from_calendar_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_dates_from_calendar_with_http_info_async(scope, code, request_body, **kwargs)  # noqa: E501
+            response = await self.delete_dates_from_calendar_with_http_info_async(scope, code, request_body, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_dates_from_calendar_with_http_info_async(self, scope: StrictStr, code: StrictStr, request_body: List[str], **kwargs) -> ApiResponse[Dict[str, CalendarDate]]:
@@ -3084,12 +3084,12 @@ class CalendarsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: List[datetime]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the generate_schedule_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.generate_schedule_with_http_info_async(scope, valuation_schedule, as_at, **kwargs)  # noqa: E501
+            response = await self.generate_schedule_with_http_info_async(scope, valuation_schedule, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def generate_schedule_with_http_info_async(self, scope: StrictStr, valuation_schedule: ValuationSchedule, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[List[datetime]]:
@@ -3233,12 +3233,12 @@ class CalendarsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Calendar
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_calendar_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_calendar_with_http_info_async(scope, code, property_keys, as_at, **kwargs)  # noqa: E501
+            response = await self.get_calendar_with_http_info_async(scope, code, property_keys, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_calendar_with_http_info_async(self, scope: StrictStr, code: StrictStr, property_keys: Optional[List[str]] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[Calendar]:
@@ -3386,12 +3386,12 @@ class CalendarsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfCalendarDate
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_dates_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_dates_with_http_info_async(scope, code, from_effective_at, to_effective_at, as_at, id_filter, **kwargs)  # noqa: E501
+            response = await self.get_dates_with_http_info_async(scope, code, from_effective_at, to_effective_at, as_at, id_filter, **kwargs)
+            return response.data
 
     @validate_call
     async def get_dates_with_http_info_async(self, scope: StrictStr, code: StrictStr, from_effective_at: Optional[StrictStr] = None, to_effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, id_filter: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfCalendarDate]:
@@ -3547,12 +3547,12 @@ class CalendarsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: IsBusinessDayResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the is_business_date_time_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.is_business_date_time_with_http_info_async(date_time, scope, code, as_at, **kwargs)  # noqa: E501
+            response = await self.is_business_date_time_with_http_info_async(date_time, scope, code, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def is_business_date_time_with_http_info_async(self, date_time: datetime, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[IsBusinessDayResponse]:
@@ -3700,12 +3700,12 @@ class CalendarsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfCalendar
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_calendars_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_calendars_with_http_info_async(as_at, page, limit, property_keys, filter, **kwargs)  # noqa: E501
+            response = await self.list_calendars_with_http_info_async(as_at, page, limit, property_keys, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def list_calendars_with_http_info_async(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, property_keys: Optional[List[str]] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfCalendar]:
@@ -3859,12 +3859,12 @@ class CalendarsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfCalendar
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_calendars_in_scope_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_calendars_in_scope_with_http_info_async(scope, as_at, page, limit, property_keys, filter, **kwargs)  # noqa: E501
+            response = await self.list_calendars_in_scope_with_http_info_async(scope, as_at, page, limit, property_keys, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def list_calendars_in_scope_with_http_info_async(self, scope: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, property_keys: Optional[List[str]] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfCalendar]:
@@ -4018,12 +4018,12 @@ class CalendarsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Calendar
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_calendar_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_calendar_with_http_info_async(scope, code, update_calendar_request, **kwargs)  # noqa: E501
+            response = await self.update_calendar_with_http_info_async(scope, code, update_calendar_request, **kwargs)
+            return response.data
 
     @validate_call
     async def update_calendar_with_http_info_async(self, scope: StrictStr, code: StrictStr, update_calendar_request: UpdateCalendarRequest, **kwargs) -> ApiResponse[Calendar]:

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class VendorRequest(BaseModel):
     id:  StrictStr = Field(...,alias="id", description="The ID of the log.") 
     request:  StrictStr = Field(...,alias="request", description="The body of the request.") 
     links: Optional[List[Link]] = None
-    __properties = ["id", "request", "links"]
+    __properties: ClassVar[List[str]] = ["id", "request", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -92,7 +92,7 @@ class VendorRequest(BaseModel):
         _obj = VendorRequest.model_validate({
             "id": obj.get("id"),
             "request": obj.get("request"),
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

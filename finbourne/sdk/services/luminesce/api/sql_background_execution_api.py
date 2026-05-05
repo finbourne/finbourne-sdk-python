@@ -64,12 +64,12 @@ class SqlBackgroundExecutionApi:
         :return: Returns the result object.
         :rtype: BackgroundQueryCancelResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the cancel_query_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.cancel_query_with_http_info(execution_id, **kwargs)  # noqa: E501
+        response = self.cancel_query_with_http_info(execution_id, **kwargs)
+        return response.data
 
     @validate_call
     def cancel_query_with_http_info(self, execution_id: StrictStr, **kwargs) -> ApiResponse[BackgroundQueryCancelResponse]:
@@ -205,12 +205,12 @@ class SqlBackgroundExecutionApi:
         :return: Returns the result object.
         :rtype: str
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the fetch_query_result_csv_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.fetch_query_result_csv_with_http_info(execution_id, download, sort_by, filter, select, group_by, limit, page, delimiter, escape, date_time_format, load_wait_milliseconds, **kwargs)  # noqa: E501
+        response = self.fetch_query_result_csv_with_http_info(execution_id, download, sort_by, filter, select, group_by, limit, page, delimiter, escape, date_time_format, load_wait_milliseconds, **kwargs)
+        return response.data
 
     @validate_call
     def fetch_query_result_csv_with_http_info(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, delimiter: Optional[StrictStr] = None, escape: Optional[StrictStr] = None, date_time_format: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
@@ -404,12 +404,12 @@ class SqlBackgroundExecutionApi:
         :return: Returns the result object.
         :rtype: bytes
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the fetch_query_result_excel_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.fetch_query_result_excel_with_http_info(execution_id, sort_by, filter, select, group_by, date_time_format, load_wait_milliseconds, **kwargs)  # noqa: E501
+        response = self.fetch_query_result_excel_with_http_info(execution_id, sort_by, filter, select, group_by, date_time_format, load_wait_milliseconds, **kwargs)
+        return response.data
 
     @validate_call
     def fetch_query_result_excel_with_http_info(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, date_time_format: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[bytes]:
@@ -573,12 +573,12 @@ class SqlBackgroundExecutionApi:
         :return: Returns the result object.
         :rtype: str
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the fetch_query_result_histogram_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.fetch_query_result_histogram_with_http_info(execution_id, timestamp_field_name, start_at, end_at, bucket_size, filter, json_proper, **kwargs)  # noqa: E501
+        response = self.fetch_query_result_histogram_with_http_info(execution_id, timestamp_field_name, start_at, end_at, bucket_size, filter, json_proper, **kwargs)
+        return response.data
 
     @validate_call
     def fetch_query_result_histogram_with_http_info(self, execution_id: StrictStr, timestamp_field_name: StrictStr, start_at: Optional[datetime] = None, end_at: Optional[datetime] = None, bucket_size: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, json_proper: Optional[bool] = None, **kwargs) -> ApiResponse[str]:
@@ -750,12 +750,12 @@ class SqlBackgroundExecutionApi:
         :return: Returns the result object.
         :rtype: str
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the fetch_query_result_json_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.fetch_query_result_json_with_http_info(execution_id, sort_by, filter, select, group_by, limit, page, load_wait_milliseconds, **kwargs)  # noqa: E501
+        response = self.fetch_query_result_json_with_http_info(execution_id, sort_by, filter, select, group_by, limit, page, load_wait_milliseconds, **kwargs)
+        return response.data
 
     @validate_call
     def fetch_query_result_json_with_http_info(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
@@ -929,12 +929,12 @@ class SqlBackgroundExecutionApi:
         :return: Returns the result object.
         :rtype: str
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the fetch_query_result_json_proper_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.fetch_query_result_json_proper_with_http_info(execution_id, download, sort_by, filter, select, group_by, limit, page, load_wait_milliseconds, **kwargs)  # noqa: E501
+        response = self.fetch_query_result_json_proper_with_http_info(execution_id, download, sort_by, filter, select, group_by, limit, page, load_wait_milliseconds, **kwargs)
+        return response.data
 
     @validate_call
     def fetch_query_result_json_proper_with_http_info(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
@@ -1114,12 +1114,12 @@ class SqlBackgroundExecutionApi:
         :return: Returns the result object.
         :rtype: str
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the fetch_query_result_json_proper_with_lineage_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.fetch_query_result_json_proper_with_lineage_with_http_info(execution_id, download, sort_by, filter, select, group_by, limit, page, load_wait_milliseconds, **kwargs)  # noqa: E501
+        response = self.fetch_query_result_json_proper_with_lineage_with_http_info(execution_id, download, sort_by, filter, select, group_by, limit, page, load_wait_milliseconds, **kwargs)
+        return response.data
 
     @validate_call
     def fetch_query_result_json_proper_with_lineage_with_http_info(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
@@ -1293,12 +1293,12 @@ class SqlBackgroundExecutionApi:
         :return: Returns the result object.
         :rtype: bytes
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the fetch_query_result_parquet_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.fetch_query_result_parquet_with_http_info(execution_id, sort_by, filter, select, group_by, load_wait_milliseconds, **kwargs)  # noqa: E501
+        response = self.fetch_query_result_parquet_with_http_info(execution_id, sort_by, filter, select, group_by, load_wait_milliseconds, **kwargs)
+        return response.data
 
     @validate_call
     def fetch_query_result_parquet_with_http_info(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[bytes]:
@@ -1462,12 +1462,12 @@ class SqlBackgroundExecutionApi:
         :return: Returns the result object.
         :rtype: str
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the fetch_query_result_pipe_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.fetch_query_result_pipe_with_http_info(execution_id, download, sort_by, filter, select, group_by, limit, page, date_time_format, load_wait_milliseconds, **kwargs)  # noqa: E501
+        response = self.fetch_query_result_pipe_with_http_info(execution_id, download, sort_by, filter, select, group_by, limit, page, date_time_format, load_wait_milliseconds, **kwargs)
+        return response.data
 
     @validate_call
     def fetch_query_result_pipe_with_http_info(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, date_time_format: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
@@ -1647,12 +1647,12 @@ class SqlBackgroundExecutionApi:
         :return: Returns the result object.
         :rtype: bytes
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the fetch_query_result_sqlite_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.fetch_query_result_sqlite_with_http_info(execution_id, sort_by, filter, select, group_by, load_wait_milliseconds, **kwargs)  # noqa: E501
+        response = self.fetch_query_result_sqlite_with_http_info(execution_id, sort_by, filter, select, group_by, load_wait_milliseconds, **kwargs)
+        return response.data
 
     @validate_call
     def fetch_query_result_sqlite_with_http_info(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[bytes]:
@@ -1814,12 +1814,12 @@ class SqlBackgroundExecutionApi:
         :return: Returns the result object.
         :rtype: str
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the fetch_query_result_xml_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.fetch_query_result_xml_with_http_info(execution_id, download, sort_by, filter, select, group_by, limit, page, load_wait_milliseconds, **kwargs)  # noqa: E501
+        response = self.fetch_query_result_xml_with_http_info(execution_id, download, sort_by, filter, select, group_by, limit, page, load_wait_milliseconds, **kwargs)
+        return response.data
 
     @validate_call
     def fetch_query_result_xml_with_http_info(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
@@ -1987,12 +1987,12 @@ class SqlBackgroundExecutionApi:
         :return: Returns the result object.
         :rtype: BackgroundQueryProgressResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_historical_feedback_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_historical_feedback_with_http_info(execution_id, next_message_wait_seconds, started_at, **kwargs)  # noqa: E501
+        response = self.get_historical_feedback_with_http_info(execution_id, next_message_wait_seconds, started_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_historical_feedback_with_http_info(self, execution_id: StrictStr, next_message_wait_seconds: Optional[int] = None, started_at: Optional[datetime] = None, **kwargs) -> ApiResponse[BackgroundQueryProgressResponse]:
@@ -2125,12 +2125,12 @@ class SqlBackgroundExecutionApi:
         :return: Returns the result object.
         :rtype: BackgroundQueryProgressResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_progress_of_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_progress_of_with_http_info(execution_id, build_from_logs, include_all_feedback, **kwargs)  # noqa: E501
+        response = self.get_progress_of_with_http_info(execution_id, build_from_logs, include_all_feedback, **kwargs)
+        return response.data
 
     @validate_call
     def get_progress_of_with_http_info(self, execution_id: StrictStr, build_from_logs: Optional[bool] = None, include_all_feedback: Optional[bool] = None, **kwargs) -> ApiResponse[BackgroundQueryProgressResponse]:
@@ -2268,12 +2268,12 @@ class SqlBackgroundExecutionApi:
         :return: Returns the result object.
         :rtype: BackgroundQueryResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the start_query_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.start_query_with_http_info(body, execution_id, scalar_parameters, query_name, timeout_seconds, keep_for_seconds, execution_flags, **kwargs)  # noqa: E501
+        response = self.start_query_with_http_info(body, execution_id, scalar_parameters, query_name, timeout_seconds, keep_for_seconds, execution_flags, **kwargs)
+        return response.data
 
     @validate_call
     def start_query_with_http_info(self, body: StrictStr, execution_id: Optional[StrictStr] = None, scalar_parameters: Optional[Dict[str, str]] = None, query_name: Optional[StrictStr] = None, timeout_seconds: Optional[int] = None, keep_for_seconds: Optional[int] = None, execution_flags: Optional[str] = None, **kwargs) -> ApiResponse[BackgroundQueryResponse]:
@@ -2436,12 +2436,12 @@ class SqlBackgroundExecutionApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: BackgroundQueryCancelResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the cancel_query_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.cancel_query_with_http_info_async(execution_id, **kwargs)  # noqa: E501
+            response = await self.cancel_query_with_http_info_async(execution_id, **kwargs)
+            return response.data
 
     @validate_call
     async def cancel_query_with_http_info_async(self, execution_id: StrictStr, **kwargs) -> ApiResponse[BackgroundQueryCancelResponse]:
@@ -2578,12 +2578,12 @@ class SqlBackgroundExecutionApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: str
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the fetch_query_result_csv_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.fetch_query_result_csv_with_http_info_async(execution_id, download, sort_by, filter, select, group_by, limit, page, delimiter, escape, date_time_format, load_wait_milliseconds, **kwargs)  # noqa: E501
+            response = await self.fetch_query_result_csv_with_http_info_async(execution_id, download, sort_by, filter, select, group_by, limit, page, delimiter, escape, date_time_format, load_wait_milliseconds, **kwargs)
+            return response.data
 
     @validate_call
     async def fetch_query_result_csv_with_http_info_async(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, delimiter: Optional[StrictStr] = None, escape: Optional[StrictStr] = None, date_time_format: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
@@ -2778,12 +2778,12 @@ class SqlBackgroundExecutionApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: bytes
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the fetch_query_result_excel_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.fetch_query_result_excel_with_http_info_async(execution_id, sort_by, filter, select, group_by, date_time_format, load_wait_milliseconds, **kwargs)  # noqa: E501
+            response = await self.fetch_query_result_excel_with_http_info_async(execution_id, sort_by, filter, select, group_by, date_time_format, load_wait_milliseconds, **kwargs)
+            return response.data
 
     @validate_call
     async def fetch_query_result_excel_with_http_info_async(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, date_time_format: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[bytes]:
@@ -2948,12 +2948,12 @@ class SqlBackgroundExecutionApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: str
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the fetch_query_result_histogram_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.fetch_query_result_histogram_with_http_info_async(execution_id, timestamp_field_name, start_at, end_at, bucket_size, filter, json_proper, **kwargs)  # noqa: E501
+            response = await self.fetch_query_result_histogram_with_http_info_async(execution_id, timestamp_field_name, start_at, end_at, bucket_size, filter, json_proper, **kwargs)
+            return response.data
 
     @validate_call
     async def fetch_query_result_histogram_with_http_info_async(self, execution_id: StrictStr, timestamp_field_name: StrictStr, start_at: Optional[datetime] = None, end_at: Optional[datetime] = None, bucket_size: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, json_proper: Optional[bool] = None, **kwargs) -> ApiResponse[str]:
@@ -3126,12 +3126,12 @@ class SqlBackgroundExecutionApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: str
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the fetch_query_result_json_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.fetch_query_result_json_with_http_info_async(execution_id, sort_by, filter, select, group_by, limit, page, load_wait_milliseconds, **kwargs)  # noqa: E501
+            response = await self.fetch_query_result_json_with_http_info_async(execution_id, sort_by, filter, select, group_by, limit, page, load_wait_milliseconds, **kwargs)
+            return response.data
 
     @validate_call
     async def fetch_query_result_json_with_http_info_async(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
@@ -3306,12 +3306,12 @@ class SqlBackgroundExecutionApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: str
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the fetch_query_result_json_proper_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.fetch_query_result_json_proper_with_http_info_async(execution_id, download, sort_by, filter, select, group_by, limit, page, load_wait_milliseconds, **kwargs)  # noqa: E501
+            response = await self.fetch_query_result_json_proper_with_http_info_async(execution_id, download, sort_by, filter, select, group_by, limit, page, load_wait_milliseconds, **kwargs)
+            return response.data
 
     @validate_call
     async def fetch_query_result_json_proper_with_http_info_async(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
@@ -3492,12 +3492,12 @@ class SqlBackgroundExecutionApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: str
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the fetch_query_result_json_proper_with_lineage_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.fetch_query_result_json_proper_with_lineage_with_http_info_async(execution_id, download, sort_by, filter, select, group_by, limit, page, load_wait_milliseconds, **kwargs)  # noqa: E501
+            response = await self.fetch_query_result_json_proper_with_lineage_with_http_info_async(execution_id, download, sort_by, filter, select, group_by, limit, page, load_wait_milliseconds, **kwargs)
+            return response.data
 
     @validate_call
     async def fetch_query_result_json_proper_with_lineage_with_http_info_async(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
@@ -3672,12 +3672,12 @@ class SqlBackgroundExecutionApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: bytes
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the fetch_query_result_parquet_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.fetch_query_result_parquet_with_http_info_async(execution_id, sort_by, filter, select, group_by, load_wait_milliseconds, **kwargs)  # noqa: E501
+            response = await self.fetch_query_result_parquet_with_http_info_async(execution_id, sort_by, filter, select, group_by, load_wait_milliseconds, **kwargs)
+            return response.data
 
     @validate_call
     async def fetch_query_result_parquet_with_http_info_async(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[bytes]:
@@ -3842,12 +3842,12 @@ class SqlBackgroundExecutionApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: str
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the fetch_query_result_pipe_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.fetch_query_result_pipe_with_http_info_async(execution_id, download, sort_by, filter, select, group_by, limit, page, date_time_format, load_wait_milliseconds, **kwargs)  # noqa: E501
+            response = await self.fetch_query_result_pipe_with_http_info_async(execution_id, download, sort_by, filter, select, group_by, limit, page, date_time_format, load_wait_milliseconds, **kwargs)
+            return response.data
 
     @validate_call
     async def fetch_query_result_pipe_with_http_info_async(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, date_time_format: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
@@ -4028,12 +4028,12 @@ class SqlBackgroundExecutionApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: bytes
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the fetch_query_result_sqlite_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.fetch_query_result_sqlite_with_http_info_async(execution_id, sort_by, filter, select, group_by, load_wait_milliseconds, **kwargs)  # noqa: E501
+            response = await self.fetch_query_result_sqlite_with_http_info_async(execution_id, sort_by, filter, select, group_by, load_wait_milliseconds, **kwargs)
+            return response.data
 
     @validate_call
     async def fetch_query_result_sqlite_with_http_info_async(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[bytes]:
@@ -4196,12 +4196,12 @@ class SqlBackgroundExecutionApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: str
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the fetch_query_result_xml_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.fetch_query_result_xml_with_http_info_async(execution_id, download, sort_by, filter, select, group_by, limit, page, load_wait_milliseconds, **kwargs)  # noqa: E501
+            response = await self.fetch_query_result_xml_with_http_info_async(execution_id, download, sort_by, filter, select, group_by, limit, page, load_wait_milliseconds, **kwargs)
+            return response.data
 
     @validate_call
     async def fetch_query_result_xml_with_http_info_async(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
@@ -4370,12 +4370,12 @@ class SqlBackgroundExecutionApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: BackgroundQueryProgressResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_historical_feedback_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_historical_feedback_with_http_info_async(execution_id, next_message_wait_seconds, started_at, **kwargs)  # noqa: E501
+            response = await self.get_historical_feedback_with_http_info_async(execution_id, next_message_wait_seconds, started_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_historical_feedback_with_http_info_async(self, execution_id: StrictStr, next_message_wait_seconds: Optional[int] = None, started_at: Optional[datetime] = None, **kwargs) -> ApiResponse[BackgroundQueryProgressResponse]:
@@ -4509,12 +4509,12 @@ class SqlBackgroundExecutionApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: BackgroundQueryProgressResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_progress_of_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_progress_of_with_http_info_async(execution_id, build_from_logs, include_all_feedback, **kwargs)  # noqa: E501
+            response = await self.get_progress_of_with_http_info_async(execution_id, build_from_logs, include_all_feedback, **kwargs)
+            return response.data
 
     @validate_call
     async def get_progress_of_with_http_info_async(self, execution_id: StrictStr, build_from_logs: Optional[bool] = None, include_all_feedback: Optional[bool] = None, **kwargs) -> ApiResponse[BackgroundQueryProgressResponse]:
@@ -4653,12 +4653,12 @@ class SqlBackgroundExecutionApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: BackgroundQueryResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the start_query_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.start_query_with_http_info_async(body, execution_id, scalar_parameters, query_name, timeout_seconds, keep_for_seconds, execution_flags, **kwargs)  # noqa: E501
+            response = await self.start_query_with_http_info_async(body, execution_id, scalar_parameters, query_name, timeout_seconds, keep_for_seconds, execution_flags, **kwargs)
+            return response.data
 
     @validate_call
     async def start_query_with_http_info_async(self, body: StrictStr, execution_id: Optional[StrictStr] = None, scalar_parameters: Optional[Dict[str, str]] = None, query_name: Optional[StrictStr] = None, timeout_seconds: Optional[int] = None, keep_for_seconds: Optional[int] = None, execution_flags: Optional[str] = None, **kwargs) -> ApiResponse[BackgroundQueryResponse]:

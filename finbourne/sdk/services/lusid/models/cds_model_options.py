@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,9 +28,9 @@ class CdsModelOptions(ModelOptions):
     Model options for credit default instrument.  # noqa: E501
     """
     use_factors_for_current_notional: StrictBool = Field(description="Determines if calculations that use current notional apply use a constituent weight factor from a quote representing a default.", alias="useFactorsForCurrentNotional")
-    model_options_type:  StrictStr = Field(...,alias="modelOptionsType", description="The available values are: Invalid, OpaqueModelOptions, EmptyModelOptions, IndexModelOptions, FxForwardModelOptions, FundingLegModelOptions, EquityModelOptions, CdsModelOptions") 
+    model_options_type:  StrictStr = Field(...,alias="modelOptionsType", description="Available values: Invalid, OpaqueModelOptions, EmptyModelOptions, IndexModelOptions, FxForwardModelOptions, FundingLegModelOptions, EquityModelOptions, CdsModelOptions.") 
     additional_properties: Dict[str, Any] = {}
-    __properties = ["modelOptionsType", "useFactorsForCurrentNotional"]
+    __properties: ClassVar[List[str]] = ["modelOptionsType", "useFactorsForCurrentNotional"]
 
     @field_validator('model_options_type')
     def model_options_type_validate_enum(cls, value):
@@ -157,13 +157,8 @@ class CdsModelOptions(ModelOptions):
             "use_factors_for_current_notional": obj.get("useFactorsForCurrentNotional")
         })
         # store additional fields in additional_properties
-        
-        properties = cls.__properties
-        if not isinstance(cls.__properties, dict) and getattr(cls.__properties, 'default', None):
-            properties = cls.__properties.default
-    
         for _key in obj.keys():
-            if _key not in properties:
+            if _key not in cls.__properties:
                 _obj.additional_properties[_key] = obj.get(_key)
 
         return _obj

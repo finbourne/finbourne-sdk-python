@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class IntellisenseItem(BaseModel):
     score: Optional[StrictInt] = Field(default=None, description="How important is this.  Bigger is more important.")
     doc_html:  Optional[StrictStr] = Field(default=None,alias="docHTML", description="Popup further info (as in a whole documentation article!)") 
     type: Optional[IntellisenseType] = None
-    __properties = ["caption", "value", "meta", "score", "docHTML", "type"]
+    __properties: ClassVar[List[str]] = ["caption", "value", "meta", "score", "docHTML", "type"]
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class RoleResourceRequest(BaseModel):
     """
     non_transitive_supervisor_role_resource: Optional[NonTransitiveSupervisorRoleResource] = Field(default=None, alias="nonTransitiveSupervisorRoleResource")
     policy_id_role_resource: Optional[PolicyIdRoleResource] = Field(default=None, alias="policyIdRoleResource")
-    __properties = ["nonTransitiveSupervisorRoleResource", "policyIdRoleResource"]
+    __properties: ClassVar[List[str]] = ["nonTransitiveSupervisorRoleResource", "policyIdRoleResource"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -84,8 +84,8 @@ class RoleResourceRequest(BaseModel):
             return RoleResourceRequest.model_validate(obj)
 
         _obj = RoleResourceRequest.model_validate({
-            "non_transitive_supervisor_role_resource": NonTransitiveSupervisorRoleResource.from_dict(obj.get("nonTransitiveSupervisorRoleResource")) if obj.get("nonTransitiveSupervisorRoleResource") is not None else None,
-            "policy_id_role_resource": PolicyIdRoleResource.from_dict(obj.get("policyIdRoleResource")) if obj.get("policyIdRoleResource") is not None else None
+            "non_transitive_supervisor_role_resource": NonTransitiveSupervisorRoleResource.from_dict(_v) if (_v := obj.get("nonTransitiveSupervisorRoleResource")) is not None else None,
+            "policy_id_role_resource": PolicyIdRoleResource.from_dict(_v) if (_v := obj.get("policyIdRoleResource")) is not None else None
         })
         return _obj
 

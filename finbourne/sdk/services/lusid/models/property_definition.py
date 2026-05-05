@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,21 +33,21 @@ class PropertyDefinition(BaseModel):
     """
     href:  Optional[StrictStr] = Field(default=None,alias="href", description="The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime.") 
     key:  Optional[StrictStr] = Field(default=None,alias="key", description="The property key which uniquely identifies the property. The format for the property key is {domain}/{scope}/{code}, e.g. 'Portfolio/Manager/Id'.") 
-    value_type:  Optional[StrictStr] = Field(default=None,alias="valueType", description="The type of values that can be associated with this property. This is defined by the property's data type. The available values are: String, Int, Decimal, DateTime, Boolean, Map, List, PropertyArray, Percentage, Code, Id, Uri, CurrencyAndAmount, TradePrice, Currency, MetricValue, ResourceId, ResultValue, CutLocalTime, DateOrCutLabel, UnindexedText") 
+    value_type:  Optional[StrictStr] = Field(default=None,alias="valueType", description="The type of values that can be associated with this property. This is defined by the property's data type. Available values: String, Int, Decimal, DateTime, Boolean, Map, List, PropertyArray, Percentage, Code, Id, Uri, CurrencyAndAmount, TradePrice, Currency, MetricValue, ResourceId, ResultValue, CutLocalTime, DateOrCutLabel, UnindexedText.") 
     display_name:  Optional[StrictStr] = Field(default=None,alias="displayName", description="The display name of the property.") 
     data_type_id: Optional[ResourceId] = Field(default=None, alias="dataTypeId")
-    type:  Optional[StrictStr] = Field(default=None,alias="type", description="The type of the property. The available values are: Label, Metric, Information") 
-    unit_schema:  Optional[StrictStr] = Field(default=None,alias="unitSchema", description="The units that can be associated with the property's values. This is defined by the property's data type. The available values are: NoUnits, Basic, Iso4217Currency") 
-    domain:  Optional[StrictStr] = Field(default=None,alias="domain", description="The domain that the property exists in. The available values are: NotDefined, Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, CutLabelDefinition, Analytic, PortfolioGroup, Person, AccessMetadata, Order, UnitResult, MarketData, ConfigurationRecipe, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, NextBestAction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, AddressKeyDefinition, AmortisationRuleSet, AnalyticsSetInventory, AtomUnitResult, CleardownModule, ComplexMarketData, ComplianceRunSummary, ComplianceRule, ComplianceRunInfo, CorporateActionSource, CounterpartyAgreement, CustomEntityDefinition, DataType, Dialect, EventHandler, GeneralLedgerProfile, PostingModule, Quote, RecipeComposer, ReconciliationRunBreak, ReferenceList, RelationDefinition, ReturnBlockIndex, SRSDocument, SRSIndex, TransactionTemplate, TransactionTemplateScope, TransactionType, TransactionTypeConfig, TranslationScript, TaskDefinition, TaskInstance, Worker, StagingRuleSet, IdentifierDefinition, SettlementInstruction, TransactionFee") 
+    type:  Optional[StrictStr] = Field(default=None,alias="type", description="The type of the property. Available values: Label, Metric, Information.") 
+    unit_schema:  Optional[StrictStr] = Field(default=None,alias="unitSchema", description="The units that can be associated with the property's values. This is defined by the property's data type. Available values: NoUnits, Basic, Iso4217Currency.") 
+    domain:  Optional[StrictStr] = Field(default=None,alias="domain", description="The domain that the property exists in. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee.") 
     scope:  Optional[StrictStr] = Field(default=None,alias="scope", description="The scope that the property exists in.") 
     code:  Optional[StrictStr] = Field(default=None,alias="code", description="The code of the property. Together with the domain and scope this uniquely identifies the property.") 
     value_required: Optional[StrictBool] = Field(default=None, description="This field is not implemented and should be disregarded.", alias="valueRequired")
-    life_time:  Optional[StrictStr] = Field(default=None,alias="lifeTime", description="Describes how the property's values can change over time. The available values are: Perpetual, TimeVariant") 
+    life_time:  Optional[StrictStr] = Field(default=None,alias="lifeTime", description="Describes how the property's values can change over time. Available values: Perpetual, TimeVariant.") 
     constraint_style:  Optional[StrictStr] = Field(default=None,alias="constraintStyle", description="Describes the uniqueness and cardinality of the property for entity objects under the property domain specified in Key.") 
-    property_definition_type:  Optional[StrictStr] = Field(default=None,alias="propertyDefinitionType", description="The definition type (DerivedDefinition or Definition). The available values are: ValueProperty, DerivedDefinition") 
+    property_definition_type:  Optional[StrictStr] = Field(default=None,alias="propertyDefinitionType", description="The definition type. Available values: ValueProperty, DerivedDefinition.") 
     property_description:  Optional[StrictStr] = Field(default=None,alias="propertyDescription", description="A brief description of what a property of this property definition contains.") 
     derivation_formula:  Optional[StrictStr] = Field(default=None,alias="derivationFormula", description="The rule that defines how data is composed for a derived property.") 
-    collection_type:  Optional[StrictStr] = Field(default=None,alias="collectionType", description="Describes whether a collection property should behave as a set or as an array.") 
+    collection_type:  Optional[StrictStr] = Field(default=None,alias="collectionType", description="Describes whether a collection property should behave as a Set or as an Array.") 
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="Set of unique property definition properties and associated values to store with the property definition. Each property must be from the 'PropertyDefinition' domain.")
     version: Optional[Version] = None
     staged_modifications: Optional[StagedModificationsInfo] = Field(default=None, alias="stagedModifications")
@@ -55,7 +55,7 @@ class PropertyDefinition(BaseModel):
     custom_entity_types: Optional[List[StrictStr]] = Field(default=None, description="The custom entity types that properties relating to this property definition can be applied to.", alias="customEntityTypes")
     value_format:  Optional[StrictStr] = Field(default=None,alias="valueFormat", description="The format in which values for this property definition should be represented.") 
     links: Optional[List[Link]] = None
-    __properties = ["href", "key", "valueType", "displayName", "dataTypeId", "type", "unitSchema", "domain", "scope", "code", "valueRequired", "lifeTime", "constraintStyle", "propertyDefinitionType", "propertyDescription", "derivationFormula", "collectionType", "properties", "version", "stagedModifications", "isFilterable", "customEntityTypes", "valueFormat", "links"]
+    __properties: ClassVar[List[str]] = ["href", "key", "valueType", "displayName", "dataTypeId", "type", "unitSchema", "domain", "scope", "code", "valueRequired", "lifeTime", "constraintStyle", "propertyDefinitionType", "propertyDescription", "derivationFormula", "collectionType", "properties", "version", "stagedModifications", "isFilterable", "customEntityTypes", "valueFormat", "links"]
 
     @field_validator('value_type')
     def value_type_validate_enum(cls, value):
@@ -629,7 +629,7 @@ class PropertyDefinition(BaseModel):
             "key": obj.get("key"),
             "value_type": obj.get("valueType"),
             "display_name": obj.get("displayName"),
-            "data_type_id": ResourceId.from_dict(obj.get("dataTypeId")) if obj.get("dataTypeId") is not None else None,
+            "data_type_id": ResourceId.from_dict(_v) if (_v := obj.get("dataTypeId")) is not None else None,
             "type": obj.get("type"),
             "unit_schema": obj.get("unitSchema"),
             "domain": obj.get("domain"),
@@ -644,16 +644,16 @@ class PropertyDefinition(BaseModel):
             "collection_type": obj.get("collectionType"),
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
-            "staged_modifications": StagedModificationsInfo.from_dict(obj.get("stagedModifications")) if obj.get("stagedModifications") is not None else None,
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "staged_modifications": StagedModificationsInfo.from_dict(_v) if (_v := obj.get("stagedModifications")) is not None else None,
             "is_filterable": obj.get("isFilterable"),
             "custom_entity_types": obj.get("customEntityTypes"),
             "value_format": obj.get("valueFormat"),
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -37,7 +37,7 @@ class CustomEntityType(BaseModel):
     field_schema: List[CustomEntityFieldDefinition] = Field(description="The description of the fields on the custom entity type.", alias="fieldSchema")
     version: Version
     links: Optional[List[Link]] = None
-    __properties = ["href", "entityTypeName", "displayName", "description", "entityType", "fieldSchema", "version", "links"]
+    __properties: ClassVar[List[str]] = ["href", "entityTypeName", "displayName", "description", "entityType", "fieldSchema", "version", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -122,9 +122,9 @@ class CustomEntityType(BaseModel):
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
             "entity_type": obj.get("entityType"),
-            "field_schema": [CustomEntityFieldDefinition.from_dict(_item) for _item in obj.get("fieldSchema")] if obj.get("fieldSchema") is not None else None,
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "field_schema": [CustomEntityFieldDefinition.from_dict(_item) for _item in _v] if (_v := obj.get("fieldSchema")) is not None else None,
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

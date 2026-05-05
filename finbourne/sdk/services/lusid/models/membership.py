@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class Membership(BaseModel):
     scope:  StrictStr = Field(...,alias="scope", description="The scope of the unique identifier associated with the Custom Data Model.") 
     code:  StrictStr = Field(...,alias="code", description="The code of the unique identifier associated with the Custom Data Model.") 
     display_name:  StrictStr = Field(...,alias="displayName", description="The name of the Custom Data Model.") 
-    __properties = ["scope", "code", "displayName"]
+    __properties: ClassVar[List[str]] = ["scope", "code", "displayName"]
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -66,12 +66,12 @@ class SystemConfigurationApi:
         :return: Returns the result object.
         :rtype: TransactionSetConfigurationData
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_configuration_transaction_type_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_configuration_transaction_type_with_http_info(transaction_configuration_data_request, **kwargs)  # noqa: E501
+        response = self.create_configuration_transaction_type_with_http_info(transaction_configuration_data_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_configuration_transaction_type_with_http_info(self, transaction_configuration_data_request: Optional[TransactionConfigurationDataRequest] = None, **kwargs) -> ApiResponse[TransactionSetConfigurationData]:
@@ -193,12 +193,12 @@ class SystemConfigurationApi:
         :return: Returns the result object.
         :rtype: TransactionSetConfigurationData
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_side_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_side_definition_with_http_info(side_configuration_data_request, **kwargs)  # noqa: E501
+        response = self.create_side_definition_with_http_info(side_configuration_data_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_side_definition_with_http_info(self, side_configuration_data_request: Optional[SideConfigurationDataRequest] = None, **kwargs) -> ApiResponse[TransactionSetConfigurationData]:
@@ -320,12 +320,12 @@ class SystemConfigurationApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_transaction_configuration_source_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_transaction_configuration_source_with_http_info(source, **kwargs)  # noqa: E501
+        response = self.delete_transaction_configuration_source_with_http_info(source, **kwargs)
+        return response.data
 
     @validate_call
     def delete_transaction_configuration_source_with_http_info(self, source: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -442,12 +442,12 @@ class SystemConfigurationApi:
         :return: Returns the result object.
         :rtype: TransactionSetConfigurationData
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_transaction_configuration_source_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_transaction_configuration_source_with_http_info(source, as_at, **kwargs)  # noqa: E501
+        response = self.get_transaction_configuration_source_with_http_info(source, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_transaction_configuration_source_with_http_info(self, source: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[TransactionSetConfigurationData]:
@@ -571,12 +571,12 @@ class SystemConfigurationApi:
         :return: Returns the result object.
         :rtype: TransactionSetConfigurationData
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_configuration_transaction_types_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_configuration_transaction_types_with_http_info(as_at, **kwargs)  # noqa: E501
+        response = self.list_configuration_transaction_types_with_http_info(as_at, **kwargs)
+        return response.data
 
     @validate_call
     def list_configuration_transaction_types_with_http_info(self, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[TransactionSetConfigurationData]:
@@ -694,12 +694,12 @@ class SystemConfigurationApi:
         :return: Returns the result object.
         :rtype: TransactionSetConfigurationData
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the set_configuration_transaction_types_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.set_configuration_transaction_types_with_http_info(transaction_set_configuration_data_request, **kwargs)  # noqa: E501
+        response = self.set_configuration_transaction_types_with_http_info(transaction_set_configuration_data_request, **kwargs)
+        return response.data
 
     @validate_call
     def set_configuration_transaction_types_with_http_info(self, transaction_set_configuration_data_request: Optional[TransactionSetConfigurationDataRequest] = None, **kwargs) -> ApiResponse[TransactionSetConfigurationData]:
@@ -823,12 +823,12 @@ class SystemConfigurationApi:
         :return: Returns the result object.
         :rtype: TransactionSetConfigurationData
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the set_transaction_configuration_source_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.set_transaction_configuration_source_with_http_info(source, set_transaction_configuration_source_request, **kwargs)  # noqa: E501
+        response = self.set_transaction_configuration_source_with_http_info(source, set_transaction_configuration_source_request, **kwargs)
+        return response.data
 
     @validate_call
     def set_transaction_configuration_source_with_http_info(self, source: StrictStr, set_transaction_configuration_source_request: List[SetTransactionConfigurationSourceRequest], **kwargs) -> ApiResponse[TransactionSetConfigurationData]:
@@ -960,12 +960,12 @@ class SystemConfigurationApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: TransactionSetConfigurationData
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_configuration_transaction_type_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_configuration_transaction_type_with_http_info_async(transaction_configuration_data_request, **kwargs)  # noqa: E501
+            response = await self.create_configuration_transaction_type_with_http_info_async(transaction_configuration_data_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_configuration_transaction_type_with_http_info_async(self, transaction_configuration_data_request: Optional[TransactionConfigurationDataRequest] = None, **kwargs) -> ApiResponse[TransactionSetConfigurationData]:
@@ -1088,12 +1088,12 @@ class SystemConfigurationApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: TransactionSetConfigurationData
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_side_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_side_definition_with_http_info_async(side_configuration_data_request, **kwargs)  # noqa: E501
+            response = await self.create_side_definition_with_http_info_async(side_configuration_data_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_side_definition_with_http_info_async(self, side_configuration_data_request: Optional[SideConfigurationDataRequest] = None, **kwargs) -> ApiResponse[TransactionSetConfigurationData]:
@@ -1216,12 +1216,12 @@ class SystemConfigurationApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_transaction_configuration_source_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_transaction_configuration_source_with_http_info_async(source, **kwargs)  # noqa: E501
+            response = await self.delete_transaction_configuration_source_with_http_info_async(source, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_transaction_configuration_source_with_http_info_async(self, source: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -1339,12 +1339,12 @@ class SystemConfigurationApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: TransactionSetConfigurationData
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_transaction_configuration_source_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_transaction_configuration_source_with_http_info_async(source, as_at, **kwargs)  # noqa: E501
+            response = await self.get_transaction_configuration_source_with_http_info_async(source, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_transaction_configuration_source_with_http_info_async(self, source: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[TransactionSetConfigurationData]:
@@ -1469,12 +1469,12 @@ class SystemConfigurationApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: TransactionSetConfigurationData
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_configuration_transaction_types_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_configuration_transaction_types_with_http_info_async(as_at, **kwargs)  # noqa: E501
+            response = await self.list_configuration_transaction_types_with_http_info_async(as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def list_configuration_transaction_types_with_http_info_async(self, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[TransactionSetConfigurationData]:
@@ -1593,12 +1593,12 @@ class SystemConfigurationApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: TransactionSetConfigurationData
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the set_configuration_transaction_types_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.set_configuration_transaction_types_with_http_info_async(transaction_set_configuration_data_request, **kwargs)  # noqa: E501
+            response = await self.set_configuration_transaction_types_with_http_info_async(transaction_set_configuration_data_request, **kwargs)
+            return response.data
 
     @validate_call
     async def set_configuration_transaction_types_with_http_info_async(self, transaction_set_configuration_data_request: Optional[TransactionSetConfigurationDataRequest] = None, **kwargs) -> ApiResponse[TransactionSetConfigurationData]:
@@ -1723,12 +1723,12 @@ class SystemConfigurationApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: TransactionSetConfigurationData
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the set_transaction_configuration_source_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.set_transaction_configuration_source_with_http_info_async(source, set_transaction_configuration_source_request, **kwargs)  # noqa: E501
+            response = await self.set_transaction_configuration_source_with_http_info_async(source, set_transaction_configuration_source_request, **kwargs)
+            return response.data
 
     @validate_call
     async def set_transaction_configuration_source_with_http_info_async(self, source: StrictStr, set_transaction_configuration_source_request: List[SetTransactionConfigurationSourceRequest], **kwargs) -> ApiResponse[TransactionSetConfigurationData]:

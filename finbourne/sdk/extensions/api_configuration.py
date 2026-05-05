@@ -156,7 +156,7 @@ class ApiConfiguration:
         super(ApiConfiguration, self).__setattr__(name, value)
 
     def get_access_token(
-        self, id_provider_response_handler: Callable[[Response], None] = None
+        self, id_provider_response_handler: Optional[Callable[[Response], None]] = None
     ) -> Union[str, RefreshingToken]:
         """Gets either the set personal access token, or a RefreshingToken using OIDC parameters
 
@@ -222,9 +222,9 @@ class ApiConfiguration:
     def build_api_client_config(
         self,
         tcp_keep_alive: bool = True,
-        socket_options: Sequence[Tuple[Any, Any, Any]] = keep_alive_socket_options(),
+        socket_options: Optional[Sequence[Tuple[Any, Any, Any]]] = keep_alive_socket_options(),
         id_provider_response_handler: Optional[Callable[[Response], None]] = None,
-        opts: ConfigurationOptions | None = None,
+        opts: Optional[ConfigurationOptions] = None,
     ) -> Configuration:
         """Builds lusid.Configuration for initialising an api client.
 
@@ -259,15 +259,15 @@ class ApiConfiguration:
                 username=self.username,
                 password=self.password,
                 timeouts=Timeouts(
-                    total_timeout_ms=opts.total_timeout_ms if opts and opts.total_timeout_ms != None else 
-                        self.total_timeout_ms if self.total_timeout_ms != None else Configuration.DEFAULT_TOTAL_TIMEOUT_MS,
-                    connect_timeout_ms=opts.connect_timeout_ms if opts and opts.connect_timeout_ms != None else 
-                        self.connect_timeout_ms if self.connect_timeout_ms != None else Configuration.DEFAULT_CONNECT_TIMEOUT_MS,
-                    read_timeout_ms=opts.read_timeout_ms if opts and opts.read_timeout_ms != None else 
-                        self.read_timeout_ms if self.read_timeout_ms != None else Configuration.DEFAULT_READ_TIMEOUT_MS
+                    total_timeout_ms=opts.total_timeout_ms if opts and opts.total_timeout_ms is not None else 
+                        self.total_timeout_ms if self.total_timeout_ms is not None else Configuration.DEFAULT_TOTAL_TIMEOUT_MS,
+                    connect_timeout_ms=opts.connect_timeout_ms if opts and opts.connect_timeout_ms is not None else 
+                        self.connect_timeout_ms if self.connect_timeout_ms is not None else Configuration.DEFAULT_CONNECT_TIMEOUT_MS,
+                    read_timeout_ms=opts.read_timeout_ms if opts and opts.read_timeout_ms is not None else 
+                        self.read_timeout_ms if self.read_timeout_ms is not None else Configuration.DEFAULT_READ_TIMEOUT_MS
                 ),
-                rate_limit_retries=opts.rate_limit_retries if opts != None and opts.rate_limit_retries != None else 
-                        self.rate_limit_retries if self.rate_limit_retries != None else Configuration.DEFAULT_RATE_LIMIT_RETRIES
+                rate_limit_retries=opts.rate_limit_retries if opts is not None and opts.rate_limit_retries is not None else 
+                        self.rate_limit_retries if self.rate_limit_retries is not None else Configuration.DEFAULT_RATE_LIMIT_RETRIES
             )
             if tcp_keep_alive:
                 config.socket_options = socket_options or keep_alive_socket_options()

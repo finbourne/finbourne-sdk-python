@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class GroupReconciliationRunDetails(BaseModel):
     """
     completion_status:  StrictStr = Field(...,alias="completionStatus", description="Provides the reconciliation completion status \"Completed\" | \"FailedToComplete\"") 
     error_detail:  Optional[StrictStr] = Field(default=None,alias="errorDetail", description="Error information if the reconciliation failed to complete") 
-    __properties = ["completionStatus", "errorDetail"]
+    __properties: ClassVar[List[str]] = ["completionStatus", "errorDetail"]
 
     model_config = ConfigDict(
         populate_by_name=True,

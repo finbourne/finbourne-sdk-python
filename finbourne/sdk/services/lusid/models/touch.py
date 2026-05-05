@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class Touch(BaseModel):
     level: Union[StrictFloat, StrictInt] = Field(description="Trigger level, which the underlying should (or should not) cross/touch.")
     monitoring:  Optional[StrictStr] = Field(default=None,alias="monitoring", description="Supported string (enumeration) values are: [European, Bermudan, American].  Defaults to \"European\" if not set.") 
     type:  StrictStr = Field(...,alias="type", description="Supported string (enumeration) values are: [Touch, Notouch].") 
-    __properties = ["direction", "level", "monitoring", "type"]
+    __properties: ClassVar[List[str]] = ["direction", "level", "monitoring", "type"]
 
     model_config = ConfigDict(
         populate_by_name=True,

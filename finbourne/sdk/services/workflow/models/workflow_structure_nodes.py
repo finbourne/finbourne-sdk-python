@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class WorkflowStructureNodes(BaseModel):
     The nodes of a Workflow structure graph — the Task Definitions involved  # noqa: E501
     """
     task_definitions: Optional[List[TaskDefinition]] = Field(default=None, description="The Task Definitions that make up the nodes of this Workflow", alias="taskDefinitions")
-    __properties = ["taskDefinitions"]
+    __properties: ClassVar[List[str]] = ["taskDefinitions"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,7 +88,7 @@ class WorkflowStructureNodes(BaseModel):
             return WorkflowStructureNodes.model_validate(obj)
 
         _obj = WorkflowStructureNodes.model_validate({
-            "task_definitions": [TaskDefinition.from_dict(_item) for _item in obj.get("taskDefinitions")] if obj.get("taskDefinitions") is not None else None
+            "task_definitions": [TaskDefinition.from_dict(_item) for _item in _v] if (_v := obj.get("taskDefinitions")) is not None else None
         })
         return _obj
 

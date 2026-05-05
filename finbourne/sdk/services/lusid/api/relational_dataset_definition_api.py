@@ -67,12 +67,12 @@ class RelationalDatasetDefinitionApi:
         :return: Returns the result object.
         :rtype: RelationalDatasetDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_relational_dataset_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_relational_dataset_definition_with_http_info(create_relational_dataset_definition_request, **kwargs)  # noqa: E501
+        response = self.create_relational_dataset_definition_with_http_info(create_relational_dataset_definition_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_relational_dataset_definition_with_http_info(self, create_relational_dataset_definition_request: CreateRelationalDatasetDefinitionRequest, **kwargs) -> ApiResponse[RelationalDatasetDefinition]:
@@ -196,12 +196,12 @@ class RelationalDatasetDefinitionApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_relational_dataset_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_relational_dataset_definition_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_relational_dataset_definition_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_relational_dataset_definition_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -326,12 +326,12 @@ class RelationalDatasetDefinitionApi:
         :return: Returns the result object.
         :rtype: RelationalDatasetDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_relational_dataset_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_relational_dataset_definition_with_http_info(scope, code, as_at, **kwargs)  # noqa: E501
+        response = self.get_relational_dataset_definition_with_http_info(scope, code, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_relational_dataset_definition_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[RelationalDatasetDefinition]:
@@ -469,12 +469,12 @@ class RelationalDatasetDefinitionApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfRelationalDatasetDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_relational_dataset_definitions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_relational_dataset_definitions_with_http_info(as_at, page, sort_by, limit, filter, **kwargs)  # noqa: E501
+        response = self.list_relational_dataset_definitions_with_http_info(as_at, page, sort_by, limit, filter, **kwargs)
+        return response.data
 
     @validate_call
     def list_relational_dataset_definitions_with_http_info(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfRelationalDatasetDefinition]:
@@ -621,12 +621,12 @@ class RelationalDatasetDefinitionApi:
         :return: Returns the result object.
         :rtype: RelationalDatasetDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_relational_dataset_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_relational_dataset_definition_with_http_info(scope, code, update_relational_dataset_definition_request, **kwargs)  # noqa: E501
+        response = self.update_relational_dataset_definition_with_http_info(scope, code, update_relational_dataset_definition_request, **kwargs)
+        return response.data
 
     @validate_call
     def update_relational_dataset_definition_with_http_info(self, scope: StrictStr, code: StrictStr, update_relational_dataset_definition_request: Optional[UpdateRelationalDatasetDefinitionRequest] = None, **kwargs) -> ApiResponse[RelationalDatasetDefinition]:
@@ -764,12 +764,12 @@ class RelationalDatasetDefinitionApi:
         :return: Returns the result object.
         :rtype: RelationalDatasetDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_relational_dataset_details_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_relational_dataset_details_with_http_info(scope, code, update_relational_dataset_details, **kwargs)  # noqa: E501
+        response = self.update_relational_dataset_details_with_http_info(scope, code, update_relational_dataset_details, **kwargs)
+        return response.data
 
     @validate_call
     def update_relational_dataset_details_with_http_info(self, scope: StrictStr, code: StrictStr, update_relational_dataset_details: Optional[UpdateRelationalDatasetDetails] = None, **kwargs) -> ApiResponse[RelationalDatasetDefinition]:
@@ -907,12 +907,12 @@ class RelationalDatasetDefinitionApi:
         :return: Returns the result object.
         :rtype: RelationalDatasetDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_relational_dataset_field_schema_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_relational_dataset_field_schema_with_http_info(scope, code, update_relational_dataset_field_schema, **kwargs)  # noqa: E501
+        response = self.update_relational_dataset_field_schema_with_http_info(scope, code, update_relational_dataset_field_schema, **kwargs)
+        return response.data
 
     @validate_call
     def update_relational_dataset_field_schema_with_http_info(self, scope: StrictStr, code: StrictStr, update_relational_dataset_field_schema: Optional[UpdateRelationalDatasetFieldSchema] = None, **kwargs) -> ApiResponse[RelationalDatasetDefinition]:
@@ -1050,12 +1050,12 @@ class RelationalDatasetDefinitionApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: RelationalDatasetDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_relational_dataset_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_relational_dataset_definition_with_http_info_async(create_relational_dataset_definition_request, **kwargs)  # noqa: E501
+            response = await self.create_relational_dataset_definition_with_http_info_async(create_relational_dataset_definition_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_relational_dataset_definition_with_http_info_async(self, create_relational_dataset_definition_request: CreateRelationalDatasetDefinitionRequest, **kwargs) -> ApiResponse[RelationalDatasetDefinition]:
@@ -1180,12 +1180,12 @@ class RelationalDatasetDefinitionApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_relational_dataset_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_relational_dataset_definition_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_relational_dataset_definition_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_relational_dataset_definition_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -1311,12 +1311,12 @@ class RelationalDatasetDefinitionApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: RelationalDatasetDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_relational_dataset_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_relational_dataset_definition_with_http_info_async(scope, code, as_at, **kwargs)  # noqa: E501
+            response = await self.get_relational_dataset_definition_with_http_info_async(scope, code, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_relational_dataset_definition_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[RelationalDatasetDefinition]:
@@ -1455,12 +1455,12 @@ class RelationalDatasetDefinitionApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfRelationalDatasetDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_relational_dataset_definitions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_relational_dataset_definitions_with_http_info_async(as_at, page, sort_by, limit, filter, **kwargs)  # noqa: E501
+            response = await self.list_relational_dataset_definitions_with_http_info_async(as_at, page, sort_by, limit, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def list_relational_dataset_definitions_with_http_info_async(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfRelationalDatasetDefinition]:
@@ -1608,12 +1608,12 @@ class RelationalDatasetDefinitionApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: RelationalDatasetDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_relational_dataset_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_relational_dataset_definition_with_http_info_async(scope, code, update_relational_dataset_definition_request, **kwargs)  # noqa: E501
+            response = await self.update_relational_dataset_definition_with_http_info_async(scope, code, update_relational_dataset_definition_request, **kwargs)
+            return response.data
 
     @validate_call
     async def update_relational_dataset_definition_with_http_info_async(self, scope: StrictStr, code: StrictStr, update_relational_dataset_definition_request: Optional[UpdateRelationalDatasetDefinitionRequest] = None, **kwargs) -> ApiResponse[RelationalDatasetDefinition]:
@@ -1752,12 +1752,12 @@ class RelationalDatasetDefinitionApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: RelationalDatasetDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_relational_dataset_details_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_relational_dataset_details_with_http_info_async(scope, code, update_relational_dataset_details, **kwargs)  # noqa: E501
+            response = await self.update_relational_dataset_details_with_http_info_async(scope, code, update_relational_dataset_details, **kwargs)
+            return response.data
 
     @validate_call
     async def update_relational_dataset_details_with_http_info_async(self, scope: StrictStr, code: StrictStr, update_relational_dataset_details: Optional[UpdateRelationalDatasetDetails] = None, **kwargs) -> ApiResponse[RelationalDatasetDefinition]:
@@ -1896,12 +1896,12 @@ class RelationalDatasetDefinitionApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: RelationalDatasetDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_relational_dataset_field_schema_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_relational_dataset_field_schema_with_http_info_async(scope, code, update_relational_dataset_field_schema, **kwargs)  # noqa: E501
+            response = await self.update_relational_dataset_field_schema_with_http_info_async(scope, code, update_relational_dataset_field_schema, **kwargs)
+            return response.data
 
     @validate_call
     async def update_relational_dataset_field_schema_with_http_info_async(self, scope: StrictStr, code: StrictStr, update_relational_dataset_field_schema: Optional[UpdateRelationalDatasetFieldSchema] = None, **kwargs) -> ApiResponse[RelationalDatasetDefinition]:

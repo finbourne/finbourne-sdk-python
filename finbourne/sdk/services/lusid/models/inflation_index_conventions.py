@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class InflationIndexConventions(BaseModel):
     inflation_interpolation:  Optional[StrictStr] = Field(default=None,alias="inflationInterpolation", description="Inflation Interpolation. This is optional and defaults to Linear if not set.    Supported string (enumeration) values are: [Linear, Flat].") 
     inflation_frequency:  Optional[StrictStr] = Field(default=None,alias="inflationFrequency", description="Frequency of inflation updated. Optional and defaults to Monthly which is the most common.  However both Australian and New Zealand inflation is published Quarterly. Only tenors of 1M or 3M are supported.    For more information on tenors, see [knowledge base article KA-02097](https://support.lusid.com/knowledgebase/article/KA-02097)") 
     inflation_roll_day: Optional[StrictInt] = Field(default=1, description="Day of the month that inflation rolls from one month to the next. This is optional and defaults to 1, which is  the typically value for the majority of inflation bonds (exceptions include Japan which rolls on the 10th  and some LatAm bonds which roll on the 15th).", alias="inflationRollDay")
-    __properties = ["inflationIndexName", "currency", "observationLag", "inflationInterpolation", "inflationFrequency", "inflationRollDay"]
+    __properties: ClassVar[List[str]] = ["inflationIndexName", "currency", "observationLag", "inflationInterpolation", "inflationFrequency", "inflationRollDay"]
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class DeleteCustodianAccountsResponse(BaseModel):
     version: Optional[Version] = None
     custodian_account_ids: Optional[List[ResourceId]] = Field(default=None, description="The Custodian Accounts which have been soft/hard deleted.", alias="custodianAccountIds")
     links: Optional[List[Link]] = None
-    __properties = ["version", "custodianAccountIds", "links"]
+    __properties: ClassVar[List[str]] = ["version", "custodianAccountIds", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -107,9 +107,9 @@ class DeleteCustodianAccountsResponse(BaseModel):
             return DeleteCustodianAccountsResponse.model_validate(obj)
 
         _obj = DeleteCustodianAccountsResponse.model_validate({
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
-            "custodian_account_ids": [ResourceId.from_dict(_item) for _item in obj.get("custodianAccountIds")] if obj.get("custodianAccountIds") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "custodian_account_ids": [ResourceId.from_dict(_item) for _item in _v] if (_v := obj.get("custodianAccountIds")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

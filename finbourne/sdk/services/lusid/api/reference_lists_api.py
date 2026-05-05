@@ -66,12 +66,12 @@ class ReferenceListsApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_reference_list_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_reference_list_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_reference_list_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_reference_list_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -196,12 +196,12 @@ class ReferenceListsApi:
         :return: Returns the result object.
         :rtype: ReferenceListResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_reference_list_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_reference_list_with_http_info(scope, code, as_at, **kwargs)  # noqa: E501
+        response = self.get_reference_list_with_http_info(scope, code, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_reference_list_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ReferenceListResponse]:
@@ -337,12 +337,12 @@ class ReferenceListsApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfReferenceListResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_reference_lists_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_reference_lists_with_http_info(as_at, page, limit, filter, **kwargs)  # noqa: E501
+        response = self.list_reference_lists_with_http_info(as_at, page, limit, filter, **kwargs)
+        return response.data
 
     @validate_call
     def list_reference_lists_with_http_info(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfReferenceListResponse]:
@@ -478,12 +478,12 @@ class ReferenceListsApi:
         :return: Returns the result object.
         :rtype: ReferenceListResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_reference_list_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_reference_list_with_http_info(reference_list_request, **kwargs)  # noqa: E501
+        response = self.upsert_reference_list_with_http_info(reference_list_request, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_reference_list_with_http_info(self, reference_list_request: Optional[ReferenceListRequest] = None, **kwargs) -> ApiResponse[ReferenceListResponse]:
@@ -611,12 +611,12 @@ class ReferenceListsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_reference_list_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_reference_list_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_reference_list_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_reference_list_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -742,12 +742,12 @@ class ReferenceListsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ReferenceListResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_reference_list_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_reference_list_with_http_info_async(scope, code, as_at, **kwargs)  # noqa: E501
+            response = await self.get_reference_list_with_http_info_async(scope, code, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_reference_list_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ReferenceListResponse]:
@@ -884,12 +884,12 @@ class ReferenceListsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfReferenceListResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_reference_lists_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_reference_lists_with_http_info_async(as_at, page, limit, filter, **kwargs)  # noqa: E501
+            response = await self.list_reference_lists_with_http_info_async(as_at, page, limit, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def list_reference_lists_with_http_info_async(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfReferenceListResponse]:
@@ -1026,12 +1026,12 @@ class ReferenceListsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ReferenceListResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_reference_list_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_reference_list_with_http_info_async(reference_list_request, **kwargs)  # noqa: E501
+            response = await self.upsert_reference_list_with_http_info_async(reference_list_request, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_reference_list_with_http_info_async(self, reference_list_request: Optional[ReferenceListRequest] = None, **kwargs) -> ApiResponse[ReferenceListResponse]:

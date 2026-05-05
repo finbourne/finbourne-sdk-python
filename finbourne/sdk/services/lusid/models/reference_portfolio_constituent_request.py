@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class ReferencePortfolioConstituentRequest(BaseModel):
     properties: Optional[Dict[str, PerpetualProperty]] = None
     weight: Union[StrictFloat, StrictInt]
     currency:  Optional[StrictStr] = Field(default=None,alias="currency", description="") 
-    __properties = ["instrumentIdentifiers", "properties", "weight", "currency"]
+    __properties: ClassVar[List[str]] = ["instrumentIdentifiers", "properties", "weight", "currency"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -99,9 +99,9 @@ class ReferencePortfolioConstituentRequest(BaseModel):
             "instrument_identifiers": obj.get("instrumentIdentifiers"),
             "properties": dict(
                 (_k, PerpetualProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
             "weight": obj.get("weight"),
             "currency": obj.get("currency")

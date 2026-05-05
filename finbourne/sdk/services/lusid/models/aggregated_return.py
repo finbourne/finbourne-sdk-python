@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -36,7 +36,7 @@ class AggregatedReturn(BaseModel):
     composite_members: Optional[StrictInt] = Field(default=None, description="The number of members in the Composite on the given day.", alias="compositeMembers")
     composite_members_without_return: Optional[List[ResourceId]] = Field(default=None, description="List containing Composite members which post no return on the given day.", alias="compositeMembersWithoutReturn")
     warnings: Optional[List[StrictStr]] = Field(default=None, description="List of the warnings about the calculation of the aggregated return.")
-    __properties = ["effectiveAt", "endOfPeriod", "openingMarketValue", "closingMarketValue", "metricsValue", "frequency", "compositeMembers", "compositeMembersWithoutReturn", "warnings"]
+    __properties: ClassVar[List[str]] = ["effectiveAt", "endOfPeriod", "openingMarketValue", "closingMarketValue", "metricsValue", "frequency", "compositeMembers", "compositeMembersWithoutReturn", "warnings"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -128,7 +128,7 @@ class AggregatedReturn(BaseModel):
             "metrics_value": obj.get("metricsValue"),
             "frequency": obj.get("frequency"),
             "composite_members": obj.get("compositeMembers"),
-            "composite_members_without_return": [ResourceId.from_dict(_item) for _item in obj.get("compositeMembersWithoutReturn")] if obj.get("compositeMembersWithoutReturn") is not None else None,
+            "composite_members_without_return": [ResourceId.from_dict(_item) for _item in _v] if (_v := obj.get("compositeMembersWithoutReturn")) is not None else None,
             "warnings": obj.get("warnings")
         })
         return _obj

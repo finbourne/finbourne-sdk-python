@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -27,7 +27,7 @@ class SettlementConfigurationMethodOverride(BaseModel):
     SettlementConfigurationMethodOverride
     """
     property_key:  StrictStr = Field(...,alias="propertyKey", description="Property Key to override the settlement method. Allowed values: 'Automatic', 'Instructed' and 'Default', property key must be in the 'Transaction' domain. For a derived property keys, the derivation formula should resolve one of the of the allowed values. 'Default' will be treated the same as no or an invalid derived value, will fall back to use the regular settlement method.") 
-    __properties = ["propertyKey"]
+    __properties: ClassVar[List[str]] = ["propertyKey"]
 
     model_config = ConfigDict(
         populate_by_name=True,

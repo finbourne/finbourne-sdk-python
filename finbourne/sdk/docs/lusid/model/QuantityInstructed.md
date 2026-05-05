@@ -5,7 +5,7 @@ The quantity of the event that was instructed, represented either as a percentag
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **type** | **str** | Required | The type of quantity instructed, either Percentage or Units. |
+| **type** | **str** | Required | The type of quantity instructed. Available values: Percentage, Units, Invalid. |
 | **amount** | **float** | Required | The actual amount instructed. For Type Percentage, this is between 0 and 100. |
 
 
@@ -17,7 +17,7 @@ The quantity of the event that was instructed, represented either as a percentag
 from finbourne.sdk.services.lusid.models.QuantityInstructed import QuantityInstructed
 
 instance = QuantityInstructed(
-    type="...",  # required — The type of quantity instructed, either Percentage or Units.
+    type="...",  # required — The type of quantity instructed. Available values: Percentage, Units, Invalid.
     amount=0.0  # required — The actual amount instructed. For Type Percentage, this is between 0 and 100.
 )
 ```

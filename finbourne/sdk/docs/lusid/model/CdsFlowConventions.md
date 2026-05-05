@@ -13,7 +13,7 @@
 | **reset_calendars** | **List[str]** | Required | An array of strings denoting holiday calendars that apply to generation of reset schedules. |
 | **settle_days** | **int** | Optional | Number of Good Business Days between the trade date and the effective or settlement date of the instrument. Defaults to 0 if not set. |
 | **reset_days** | **int** | Optional | The number of Good Business Days between determination and payment of reset. Defaults to 0 if not set. |
-| **business_day_convention** | **str** | Optional | When generating a set of dates, what convention should be used for adjusting dates that coincide with a non-business day.    Supported string (enumeration) values are: [NoAdjustment, None, Previous, P, Following, F, ModifiedPrevious, MP, ModifiedFollowing, MF, HalfMonthModifiedFollowing, Nearest]. |
+| **business_day_convention** | **str** | Optional | When generating a set of dates, what convention should be used for adjusting dates that coincide with a non-business day. Available values: NoAdjustment, None, Previous, P, Following, F, ModifiedPrevious, MP, ModifiedFollowing, MF, HalfMonthModifiedFollowing, Nearest, Invalid. |
 | **scope** | **str** | Optional | The scope used when updating or inserting the convention. |
 | **code** | **str** | Optional | The code of the convention. |
 
@@ -35,7 +35,7 @@ instance = CdsFlowConventions(
     reset_calendars=,  # required — An array of strings denoting holiday calendars that apply to generation of reset schedules.
     settle_days=0,  # optional — Number of Good Business Days between the trade date and the effective or settlement date of the instrument. Defaults to 0 if not set.
     reset_days=0,  # optional — The number of Good Business Days between determination and payment of reset. Defaults to 0 if not set.
-    business_day_convention="...",  # optional — When generating a set of dates, what convention should be used for adjusting dates that coincide with a non-business day.    Supported string (enumeration) values are: [NoAdjustment, None, Previous, P, Following, F, ModifiedPrevious, MP, ModifiedFollowing, MF, HalfMonthModifiedFollowing, Nearest].
+    business_day_convention="...",  # optional — When generating a set of dates, what convention should be used for adjusting dates that coincide with a non-business day. Available values: NoAdjustment, None, Previous, P, Following, F, ModifiedPrevious, MP, ModifiedFollowing, MF, HalfMonthModifiedFollowing, Nearest, Invalid.
     scope="...",  # optional — The scope used when updating or inserting the convention.
     code="..."  # optional — The code of the convention.
 )

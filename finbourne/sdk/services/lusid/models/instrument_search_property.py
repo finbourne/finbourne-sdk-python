@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class InstrumentSearchProperty(BaseModel):
     """
     key:  StrictStr = Field(...,alias="key", description="The property key of instrument property to search for. This will be from the 'Instrument' domain and will take the format {domain}/{scope}/{code} e.g. 'Instrument/system/Isin' or 'Instrument/MyScope/AssetClass'.") 
     value:  StrictStr = Field(...,alias="value", description="The value of the property e.g. 'US0378331005' or 'Equity'.") 
-    __properties = ["key", "value"]
+    __properties: ClassVar[List[str]] = ["key", "value"]
 
     model_config = ConfigDict(
         populate_by_name=True,

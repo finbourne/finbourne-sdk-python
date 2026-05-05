@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class PostingModuleRequest(BaseModel):
     display_name:  StrictStr = Field(...,alias="displayName", description="The name of the Posting Module.") 
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="A description for the Posting Module.") 
     rules: Optional[List[PostingModuleRule]] = Field(default=None, description="The Posting Rules that apply for the Posting Module. Rules are evaluated in the order they occur in this collection.")
-    __properties = ["code", "displayName", "description", "rules"]
+    __properties: ClassVar[List[str]] = ["code", "displayName", "description", "rules"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -99,7 +99,7 @@ class PostingModuleRequest(BaseModel):
             "code": obj.get("code"),
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
-            "rules": [PostingModuleRule.from_dict(_item) for _item in obj.get("rules")] if obj.get("rules") is not None else None
+            "rules": [PostingModuleRule.from_dict(_item) for _item in _v] if (_v := obj.get("rules")) is not None else None
         })
         return _obj
 

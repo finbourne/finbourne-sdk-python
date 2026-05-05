@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class ProcessorSchemaResponse(BaseModel):
     processor_name:  StrictStr = Field(...,alias="processorName") 
     version:  StrictStr = Field(...,alias="version") 
     configuration_schema: Optional[Any] = Field(alias="configurationSchema")
-    __properties = ["processorName", "version", "configurationSchema"]
+    __properties: ClassVar[List[str]] = ["processorName", "version", "configurationSchema"]
 
     model_config = ConfigDict(
         populate_by_name=True,

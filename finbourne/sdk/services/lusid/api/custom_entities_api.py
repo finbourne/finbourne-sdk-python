@@ -76,12 +76,12 @@ class CustomEntitiesApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_custom_entity_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_custom_entity_with_http_info(entity_type, identifier_type, identifier_value, identifier_scope, **kwargs)  # noqa: E501
+        response = self.delete_custom_entity_with_http_info(entity_type, identifier_type, identifier_value, identifier_scope, **kwargs)
+        return response.data
 
     @validate_call
     def delete_custom_entity_with_http_info(self, entity_type: StrictStr, identifier_type: StrictStr, identifier_value: StrictStr, identifier_scope: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -226,12 +226,12 @@ class CustomEntitiesApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_custom_entity_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_custom_entity_access_metadata_with_http_info(entity_type, identifier_type, identifier_value, metadata_key, identifier_scope, effective_at, effective_until, **kwargs)  # noqa: E501
+        response = self.delete_custom_entity_access_metadata_with_http_info(entity_type, identifier_type, identifier_value, metadata_key, identifier_scope, effective_at, effective_until, **kwargs)
+        return response.data
 
     @validate_call
     def delete_custom_entity_access_metadata_with_http_info(self, entity_type: StrictStr, identifier_type: StrictStr, identifier_value: StrictStr, metadata_key: StrictStr, identifier_scope: StrictStr, effective_at: Optional[StrictStr] = None, effective_until: Optional[datetime] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -395,12 +395,12 @@ class CustomEntitiesApi:
         :return: Returns the result object.
         :rtype: Dict[str, List[AccessMetadataValue]]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_all_custom_entity_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_all_custom_entity_access_metadata_with_http_info(entity_type, identifier_type, identifier_value, identifier_scope, effective_at, as_at, **kwargs)  # noqa: E501
+        response = self.get_all_custom_entity_access_metadata_with_http_info(entity_type, identifier_type, identifier_value, identifier_scope, effective_at, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_all_custom_entity_access_metadata_with_http_info(self, entity_type: StrictStr, identifier_type: StrictStr, identifier_value: StrictStr, identifier_scope: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[Dict[str, List[AccessMetadataValue]]]:
@@ -558,12 +558,12 @@ class CustomEntitiesApi:
         :return: Returns the result object.
         :rtype: CustomEntityProperties
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_all_custom_entity_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_all_custom_entity_properties_with_http_info(entity_type, identifier_type, identifier_value, identifier_scope, as_at, effective_at, **kwargs)  # noqa: E501
+        response = self.get_all_custom_entity_properties_with_http_info(entity_type, identifier_type, identifier_value, identifier_scope, as_at, effective_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_all_custom_entity_properties_with_http_info(self, entity_type: StrictStr, identifier_type: StrictStr, identifier_value: StrictStr, identifier_scope: StrictStr, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[CustomEntityProperties]:
@@ -727,12 +727,12 @@ class CustomEntitiesApi:
         :return: Returns the result object.
         :rtype: CustomEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_custom_entity_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_custom_entity_with_http_info(entity_type, identifier_type, identifier_value, identifier_scope, as_at, effective_at, related_entity_property_keys, relationship_definition_ids, property_keys, **kwargs)  # noqa: E501
+        response = self.get_custom_entity_with_http_info(entity_type, identifier_type, identifier_value, identifier_scope, as_at, effective_at, related_entity_property_keys, relationship_definition_ids, property_keys, **kwargs)
+        return response.data
 
     @validate_call
     def get_custom_entity_with_http_info(self, entity_type: StrictStr, identifier_type: StrictStr, identifier_value: StrictStr, identifier_scope: StrictStr, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, related_entity_property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[CustomEntityResponse]:
@@ -913,12 +913,12 @@ class CustomEntitiesApi:
         :return: Returns the result object.
         :rtype: List[AccessMetadataValue]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_custom_entity_access_metadata_by_key_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_custom_entity_access_metadata_by_key_with_http_info(entity_type, identifier_type, identifier_value, metadata_key, identifier_scope, effective_at, as_at, **kwargs)  # noqa: E501
+        response = self.get_custom_entity_access_metadata_by_key_with_http_info(entity_type, identifier_type, identifier_value, metadata_key, identifier_scope, effective_at, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_custom_entity_access_metadata_by_key_with_http_info(self, entity_type: StrictStr, identifier_type: StrictStr, identifier_value: StrictStr, metadata_key: StrictStr, identifier_scope: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[List[AccessMetadataValue]]:
@@ -1086,12 +1086,12 @@ class CustomEntitiesApi:
         :return: Returns the result object.
         :rtype: ResourceListOfRelationship
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_custom_entity_relationships_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_custom_entity_relationships_with_http_info(entity_type, identifier_scope, identifier_type, identifier_value, effective_at, as_at, filter, identifier_types, **kwargs)  # noqa: E501
+        response = self.get_custom_entity_relationships_with_http_info(entity_type, identifier_scope, identifier_type, identifier_value, effective_at, as_at, filter, identifier_types, **kwargs)
+        return response.data
 
     @validate_call
     def get_custom_entity_relationships_with_http_info(self, entity_type: StrictStr, identifier_scope: StrictStr, identifier_type: StrictStr, identifier_value: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, identifier_types: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfRelationship]:
@@ -1270,12 +1270,12 @@ class CustomEntitiesApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfCustomEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_custom_entities_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_custom_entities_with_http_info(entity_type, effective_at, as_at, limit, filter, sort_by, page, related_entity_property_keys, relationship_definition_ids, property_keys, **kwargs)  # noqa: E501
+        response = self.list_custom_entities_with_http_info(entity_type, effective_at, as_at, limit, filter, sort_by, page, related_entity_property_keys, relationship_definition_ids, property_keys, **kwargs)
+        return response.data
 
     @validate_call
     def list_custom_entities_with_http_info(self, entity_type: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, page: Optional[StrictStr] = None, related_entity_property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfCustomEntityResponse]:
@@ -1463,12 +1463,12 @@ class CustomEntitiesApi:
         :return: Returns the result object.
         :rtype: Dict[str, List[AccessMetadataValue]]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the patch_custom_entity_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.patch_custom_entity_access_metadata_with_http_info(entity_type, identifier_type, identifier_value, identifier_scope, access_metadata_operation, effective_at, effective_until, **kwargs)  # noqa: E501
+        response = self.patch_custom_entity_access_metadata_with_http_info(entity_type, identifier_type, identifier_value, identifier_scope, access_metadata_operation, effective_at, effective_until, **kwargs)
+        return response.data
 
     @validate_call
     def patch_custom_entity_access_metadata_with_http_info(self, entity_type: StrictStr, identifier_type: StrictStr, identifier_value: StrictStr, identifier_scope: StrictStr, access_metadata_operation: List[AccessMetadataOperation], effective_at: Optional[StrictStr] = None, effective_until: Optional[datetime] = None, **kwargs) -> ApiResponse[Dict[str, List[AccessMetadataValue]]]:
@@ -1633,12 +1633,12 @@ class CustomEntitiesApi:
         :return: Returns the result object.
         :rtype: UpsertCustomEntitiesResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_custom_entities_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_custom_entities_with_http_info(entity_type, success_mode, request_body, **kwargs)  # noqa: E501
+        response = self.upsert_custom_entities_with_http_info(entity_type, success_mode, request_body, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_custom_entities_with_http_info(self, entity_type: StrictStr, success_mode: StrictStr, request_body: Dict[str, CustomEntityRequest], **kwargs) -> ApiResponse[UpsertCustomEntitiesResponse]:
@@ -1774,12 +1774,12 @@ class CustomEntitiesApi:
         :return: Returns the result object.
         :rtype: CustomEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_custom_entity_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_custom_entity_with_http_info(entity_type, custom_entity_request, **kwargs)  # noqa: E501
+        response = self.upsert_custom_entity_with_http_info(entity_type, custom_entity_request, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_custom_entity_with_http_info(self, entity_type: StrictStr, custom_entity_request: CustomEntityRequest, **kwargs) -> ApiResponse[CustomEntityResponse]:
@@ -1921,12 +1921,12 @@ class CustomEntitiesApi:
         :return: Returns the result object.
         :rtype: List[AccessMetadataValue]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_custom_entity_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_custom_entity_access_metadata_with_http_info(entity_type, identifier_type, identifier_value, metadata_key, identifier_scope, upsert_custom_entity_access_metadata_request, effective_at, effective_until, **kwargs)  # noqa: E501
+        response = self.upsert_custom_entity_access_metadata_with_http_info(entity_type, identifier_type, identifier_value, metadata_key, identifier_scope, upsert_custom_entity_access_metadata_request, effective_at, effective_until, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_custom_entity_access_metadata_with_http_info(self, entity_type: StrictStr, identifier_type: StrictStr, identifier_value: StrictStr, metadata_key: StrictStr, identifier_scope: StrictStr, upsert_custom_entity_access_metadata_request: UpsertCustomEntityAccessMetadataRequest, effective_at: Optional[StrictStr] = None, effective_until: Optional[datetime] = None, **kwargs) -> ApiResponse[List[AccessMetadataValue]]:
@@ -2103,12 +2103,12 @@ class CustomEntitiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_custom_entity_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_custom_entity_with_http_info_async(entity_type, identifier_type, identifier_value, identifier_scope, **kwargs)  # noqa: E501
+            response = await self.delete_custom_entity_with_http_info_async(entity_type, identifier_type, identifier_value, identifier_scope, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_custom_entity_with_http_info_async(self, entity_type: StrictStr, identifier_type: StrictStr, identifier_value: StrictStr, identifier_scope: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -2254,12 +2254,12 @@ class CustomEntitiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_custom_entity_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_custom_entity_access_metadata_with_http_info_async(entity_type, identifier_type, identifier_value, metadata_key, identifier_scope, effective_at, effective_until, **kwargs)  # noqa: E501
+            response = await self.delete_custom_entity_access_metadata_with_http_info_async(entity_type, identifier_type, identifier_value, metadata_key, identifier_scope, effective_at, effective_until, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_custom_entity_access_metadata_with_http_info_async(self, entity_type: StrictStr, identifier_type: StrictStr, identifier_value: StrictStr, metadata_key: StrictStr, identifier_scope: StrictStr, effective_at: Optional[StrictStr] = None, effective_until: Optional[datetime] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -2424,12 +2424,12 @@ class CustomEntitiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Dict[str, List[AccessMetadataValue]]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_all_custom_entity_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_all_custom_entity_access_metadata_with_http_info_async(entity_type, identifier_type, identifier_value, identifier_scope, effective_at, as_at, **kwargs)  # noqa: E501
+            response = await self.get_all_custom_entity_access_metadata_with_http_info_async(entity_type, identifier_type, identifier_value, identifier_scope, effective_at, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_all_custom_entity_access_metadata_with_http_info_async(self, entity_type: StrictStr, identifier_type: StrictStr, identifier_value: StrictStr, identifier_scope: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[Dict[str, List[AccessMetadataValue]]]:
@@ -2588,12 +2588,12 @@ class CustomEntitiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: CustomEntityProperties
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_all_custom_entity_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_all_custom_entity_properties_with_http_info_async(entity_type, identifier_type, identifier_value, identifier_scope, as_at, effective_at, **kwargs)  # noqa: E501
+            response = await self.get_all_custom_entity_properties_with_http_info_async(entity_type, identifier_type, identifier_value, identifier_scope, as_at, effective_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_all_custom_entity_properties_with_http_info_async(self, entity_type: StrictStr, identifier_type: StrictStr, identifier_value: StrictStr, identifier_scope: StrictStr, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[CustomEntityProperties]:
@@ -2758,12 +2758,12 @@ class CustomEntitiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: CustomEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_custom_entity_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_custom_entity_with_http_info_async(entity_type, identifier_type, identifier_value, identifier_scope, as_at, effective_at, related_entity_property_keys, relationship_definition_ids, property_keys, **kwargs)  # noqa: E501
+            response = await self.get_custom_entity_with_http_info_async(entity_type, identifier_type, identifier_value, identifier_scope, as_at, effective_at, related_entity_property_keys, relationship_definition_ids, property_keys, **kwargs)
+            return response.data
 
     @validate_call
     async def get_custom_entity_with_http_info_async(self, entity_type: StrictStr, identifier_type: StrictStr, identifier_value: StrictStr, identifier_scope: StrictStr, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, related_entity_property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[CustomEntityResponse]:
@@ -2945,12 +2945,12 @@ class CustomEntitiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: List[AccessMetadataValue]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_custom_entity_access_metadata_by_key_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_custom_entity_access_metadata_by_key_with_http_info_async(entity_type, identifier_type, identifier_value, metadata_key, identifier_scope, effective_at, as_at, **kwargs)  # noqa: E501
+            response = await self.get_custom_entity_access_metadata_by_key_with_http_info_async(entity_type, identifier_type, identifier_value, metadata_key, identifier_scope, effective_at, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_custom_entity_access_metadata_by_key_with_http_info_async(self, entity_type: StrictStr, identifier_type: StrictStr, identifier_value: StrictStr, metadata_key: StrictStr, identifier_scope: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[List[AccessMetadataValue]]:
@@ -3119,12 +3119,12 @@ class CustomEntitiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfRelationship
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_custom_entity_relationships_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_custom_entity_relationships_with_http_info_async(entity_type, identifier_scope, identifier_type, identifier_value, effective_at, as_at, filter, identifier_types, **kwargs)  # noqa: E501
+            response = await self.get_custom_entity_relationships_with_http_info_async(entity_type, identifier_scope, identifier_type, identifier_value, effective_at, as_at, filter, identifier_types, **kwargs)
+            return response.data
 
     @validate_call
     async def get_custom_entity_relationships_with_http_info_async(self, entity_type: StrictStr, identifier_scope: StrictStr, identifier_type: StrictStr, identifier_value: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, identifier_types: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfRelationship]:
@@ -3304,12 +3304,12 @@ class CustomEntitiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfCustomEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_custom_entities_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_custom_entities_with_http_info_async(entity_type, effective_at, as_at, limit, filter, sort_by, page, related_entity_property_keys, relationship_definition_ids, property_keys, **kwargs)  # noqa: E501
+            response = await self.list_custom_entities_with_http_info_async(entity_type, effective_at, as_at, limit, filter, sort_by, page, related_entity_property_keys, relationship_definition_ids, property_keys, **kwargs)
+            return response.data
 
     @validate_call
     async def list_custom_entities_with_http_info_async(self, entity_type: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, page: Optional[StrictStr] = None, related_entity_property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfCustomEntityResponse]:
@@ -3498,12 +3498,12 @@ class CustomEntitiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Dict[str, List[AccessMetadataValue]]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the patch_custom_entity_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.patch_custom_entity_access_metadata_with_http_info_async(entity_type, identifier_type, identifier_value, identifier_scope, access_metadata_operation, effective_at, effective_until, **kwargs)  # noqa: E501
+            response = await self.patch_custom_entity_access_metadata_with_http_info_async(entity_type, identifier_type, identifier_value, identifier_scope, access_metadata_operation, effective_at, effective_until, **kwargs)
+            return response.data
 
     @validate_call
     async def patch_custom_entity_access_metadata_with_http_info_async(self, entity_type: StrictStr, identifier_type: StrictStr, identifier_value: StrictStr, identifier_scope: StrictStr, access_metadata_operation: List[AccessMetadataOperation], effective_at: Optional[StrictStr] = None, effective_until: Optional[datetime] = None, **kwargs) -> ApiResponse[Dict[str, List[AccessMetadataValue]]]:
@@ -3669,12 +3669,12 @@ class CustomEntitiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: UpsertCustomEntitiesResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_custom_entities_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_custom_entities_with_http_info_async(entity_type, success_mode, request_body, **kwargs)  # noqa: E501
+            response = await self.upsert_custom_entities_with_http_info_async(entity_type, success_mode, request_body, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_custom_entities_with_http_info_async(self, entity_type: StrictStr, success_mode: StrictStr, request_body: Dict[str, CustomEntityRequest], **kwargs) -> ApiResponse[UpsertCustomEntitiesResponse]:
@@ -3811,12 +3811,12 @@ class CustomEntitiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: CustomEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_custom_entity_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_custom_entity_with_http_info_async(entity_type, custom_entity_request, **kwargs)  # noqa: E501
+            response = await self.upsert_custom_entity_with_http_info_async(entity_type, custom_entity_request, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_custom_entity_with_http_info_async(self, entity_type: StrictStr, custom_entity_request: CustomEntityRequest, **kwargs) -> ApiResponse[CustomEntityResponse]:
@@ -3959,12 +3959,12 @@ class CustomEntitiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: List[AccessMetadataValue]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_custom_entity_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_custom_entity_access_metadata_with_http_info_async(entity_type, identifier_type, identifier_value, metadata_key, identifier_scope, upsert_custom_entity_access_metadata_request, effective_at, effective_until, **kwargs)  # noqa: E501
+            response = await self.upsert_custom_entity_access_metadata_with_http_info_async(entity_type, identifier_type, identifier_value, metadata_key, identifier_scope, upsert_custom_entity_access_metadata_request, effective_at, effective_until, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_custom_entity_access_metadata_with_http_info_async(self, entity_type: StrictStr, identifier_type: StrictStr, identifier_value: StrictStr, metadata_key: StrictStr, identifier_scope: StrictStr, upsert_custom_entity_access_metadata_request: UpsertCustomEntityAccessMetadataRequest, effective_at: Optional[StrictStr] = None, effective_until: Optional[datetime] = None, **kwargs) -> ApiResponse[List[AccessMetadataValue]]:

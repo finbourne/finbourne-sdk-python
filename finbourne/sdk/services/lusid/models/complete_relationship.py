@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -38,7 +38,7 @@ class CompleteRelationship(BaseModel):
     inward_description:  StrictStr = Field(...,alias="inwardDescription", description="Description of the relationship based on relationship definition's inward description.") 
     effective_from: Optional[datetime] = Field(default=None, description="The effective datetime from which the relationship is valid.", alias="effectiveFrom")
     effective_until: Optional[datetime] = Field(default=None, description="The effective datetime to which the relationship is valid until.", alias="effectiveUntil")
-    __properties = ["href", "version", "relationshipDefinitionId", "sourceEntity", "targetEntity", "outwardDescription", "inwardDescription", "effectiveFrom", "effectiveUntil"]
+    __properties: ClassVar[List[str]] = ["href", "version", "relationshipDefinitionId", "sourceEntity", "targetEntity", "outwardDescription", "inwardDescription", "effectiveFrom", "effectiveUntil"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -104,10 +104,10 @@ class CompleteRelationship(BaseModel):
 
         _obj = CompleteRelationship.model_validate({
             "href": obj.get("href"),
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
-            "relationship_definition_id": ResourceId.from_dict(obj.get("relationshipDefinitionId")) if obj.get("relationshipDefinitionId") is not None else None,
-            "source_entity": RelatedEntity.from_dict(obj.get("sourceEntity")) if obj.get("sourceEntity") is not None else None,
-            "target_entity": RelatedEntity.from_dict(obj.get("targetEntity")) if obj.get("targetEntity") is not None else None,
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "relationship_definition_id": ResourceId.from_dict(_v) if (_v := obj.get("relationshipDefinitionId")) is not None else None,
+            "source_entity": RelatedEntity.from_dict(_v) if (_v := obj.get("sourceEntity")) is not None else None,
+            "target_entity": RelatedEntity.from_dict(_v) if (_v := obj.get("targetEntity")) is not None else None,
             "outward_description": obj.get("outwardDescription"),
             "inward_description": obj.get("inwardDescription"),
             "effective_from": obj.get("effectiveFrom"),

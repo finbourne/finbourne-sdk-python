@@ -10,6 +10,7 @@
     Do not edit the class manually.
 """
 
+from __future__ import annotations
 import json
 import pprint
 import re  # noqa: F401
@@ -19,7 +20,7 @@ from aenum import Enum, no_arg
 
 
 
-class ResultValueType(str, Enum):
+class ResultValueType(str, Enum):  # type: ignore[misc]
     """
     Enum of possible result value type. Used discriminate the result values
     """

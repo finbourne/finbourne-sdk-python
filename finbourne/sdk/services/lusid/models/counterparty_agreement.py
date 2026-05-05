@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class CounterpartyAgreement(BaseModel):
     dated_as_of: datetime = Field(description="The date on which the CounterpartyAgreement was signed by both parties.", alias="datedAsOf")
     credit_support_annex_id: ResourceId = Field(alias="creditSupportAnnexId")
     id: ResourceId
-    __properties = ["displayName", "agreementType", "counterpartySignatory", "datedAsOf", "creditSupportAnnexId", "id"]
+    __properties: ClassVar[List[str]] = ["displayName", "agreementType", "counterpartySignatory", "datedAsOf", "creditSupportAnnexId", "id"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -93,10 +93,10 @@ class CounterpartyAgreement(BaseModel):
         _obj = CounterpartyAgreement.model_validate({
             "display_name": obj.get("displayName"),
             "agreement_type": obj.get("agreementType"),
-            "counterparty_signatory": CounterpartySignatory.from_dict(obj.get("counterpartySignatory")) if obj.get("counterpartySignatory") is not None else None,
+            "counterparty_signatory": CounterpartySignatory.from_dict(_v) if (_v := obj.get("counterpartySignatory")) is not None else None,
             "dated_as_of": obj.get("datedAsOf"),
-            "credit_support_annex_id": ResourceId.from_dict(obj.get("creditSupportAnnexId")) if obj.get("creditSupportAnnexId") is not None else None,
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None
+            "credit_support_annex_id": ResourceId.from_dict(_v) if (_v := obj.get("creditSupportAnnexId")) is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None
         })
         return _obj
 

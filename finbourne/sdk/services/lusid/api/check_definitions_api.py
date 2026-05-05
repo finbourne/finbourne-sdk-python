@@ -69,12 +69,12 @@ class CheckDefinitionsApi:
         :return: Returns the result object.
         :rtype: CheckDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_check_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_check_definition_with_http_info(create_check_definition_request, **kwargs)  # noqa: E501
+        response = self.create_check_definition_with_http_info(create_check_definition_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_check_definition_with_http_info(self, create_check_definition_request: Optional[CreateCheckDefinitionRequest] = None, **kwargs) -> ApiResponse[CheckDefinition]:
@@ -198,12 +198,12 @@ class CheckDefinitionsApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_check_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_check_definition_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_check_definition_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_check_definition_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -328,12 +328,12 @@ class CheckDefinitionsApi:
         :return: Returns the result object.
         :rtype: CheckDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_rules_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_rules_with_http_info(scope, code, delete_data_quality_rule, **kwargs)  # noqa: E501
+        response = self.delete_rules_with_http_info(scope, code, delete_data_quality_rule, **kwargs)
+        return response.data
 
     @validate_call
     def delete_rules_with_http_info(self, scope: StrictStr, code: StrictStr, delete_data_quality_rule: Optional[List[DeleteDataQualityRule]] = None, **kwargs) -> ApiResponse[CheckDefinition]:
@@ -475,12 +475,12 @@ class CheckDefinitionsApi:
         :return: Returns the result object.
         :rtype: CheckDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_check_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_check_definition_with_http_info(scope, code, as_at, effective_at, property_keys, **kwargs)  # noqa: E501
+        response = self.get_check_definition_with_http_info(scope, code, as_at, effective_at, property_keys, **kwargs)
+        return response.data
 
     @validate_call
     def get_check_definition_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[CheckDefinition]:
@@ -635,12 +635,12 @@ class CheckDefinitionsApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfCheckDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_check_definitions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_check_definitions_with_http_info(as_at, effective_at, page, limit, filter, sort_by, property_keys, **kwargs)  # noqa: E501
+        response = self.list_check_definitions_with_http_info(as_at, effective_at, page, limit, filter, sort_by, property_keys, **kwargs)
+        return response.data
 
     @validate_call
     def list_check_definitions_with_http_info(self, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfCheckDefinition]:
@@ -800,12 +800,12 @@ class CheckDefinitionsApi:
         :return: Returns the result object.
         :rtype: RunCheckResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the run_check_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.run_check_definition_with_http_info(scope, code, run_check_request, **kwargs)  # noqa: E501
+        response = self.run_check_definition_with_http_info(scope, code, run_check_request, **kwargs)
+        return response.data
 
     @validate_call
     def run_check_definition_with_http_info(self, scope: StrictStr, code: StrictStr, run_check_request: Optional[RunCheckRequest] = None, **kwargs) -> ApiResponse[RunCheckResponse]:
@@ -943,12 +943,12 @@ class CheckDefinitionsApi:
         :return: Returns the result object.
         :rtype: CheckDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_check_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_check_definition_with_http_info(scope, code, update_check_definition_request, **kwargs)  # noqa: E501
+        response = self.update_check_definition_with_http_info(scope, code, update_check_definition_request, **kwargs)
+        return response.data
 
     @validate_call
     def update_check_definition_with_http_info(self, scope: StrictStr, code: StrictStr, update_check_definition_request: Optional[UpdateCheckDefinitionRequest] = None, **kwargs) -> ApiResponse[CheckDefinition]:
@@ -1086,12 +1086,12 @@ class CheckDefinitionsApi:
         :return: Returns the result object.
         :rtype: CheckDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_rules_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_rules_with_http_info(scope, code, upsert_data_quality_rule, **kwargs)  # noqa: E501
+        response = self.upsert_rules_with_http_info(scope, code, upsert_data_quality_rule, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_rules_with_http_info(self, scope: StrictStr, code: StrictStr, upsert_data_quality_rule: Optional[List[UpsertDataQualityRule]] = None, **kwargs) -> ApiResponse[CheckDefinition]:
@@ -1229,12 +1229,12 @@ class CheckDefinitionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: CheckDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_check_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_check_definition_with_http_info_async(create_check_definition_request, **kwargs)  # noqa: E501
+            response = await self.create_check_definition_with_http_info_async(create_check_definition_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_check_definition_with_http_info_async(self, create_check_definition_request: Optional[CreateCheckDefinitionRequest] = None, **kwargs) -> ApiResponse[CheckDefinition]:
@@ -1359,12 +1359,12 @@ class CheckDefinitionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_check_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_check_definition_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_check_definition_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_check_definition_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -1490,12 +1490,12 @@ class CheckDefinitionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: CheckDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_rules_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_rules_with_http_info_async(scope, code, delete_data_quality_rule, **kwargs)  # noqa: E501
+            response = await self.delete_rules_with_http_info_async(scope, code, delete_data_quality_rule, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_rules_with_http_info_async(self, scope: StrictStr, code: StrictStr, delete_data_quality_rule: Optional[List[DeleteDataQualityRule]] = None, **kwargs) -> ApiResponse[CheckDefinition]:
@@ -1638,12 +1638,12 @@ class CheckDefinitionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: CheckDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_check_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_check_definition_with_http_info_async(scope, code, as_at, effective_at, property_keys, **kwargs)  # noqa: E501
+            response = await self.get_check_definition_with_http_info_async(scope, code, as_at, effective_at, property_keys, **kwargs)
+            return response.data
 
     @validate_call
     async def get_check_definition_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[CheckDefinition]:
@@ -1799,12 +1799,12 @@ class CheckDefinitionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfCheckDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_check_definitions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_check_definitions_with_http_info_async(as_at, effective_at, page, limit, filter, sort_by, property_keys, **kwargs)  # noqa: E501
+            response = await self.list_check_definitions_with_http_info_async(as_at, effective_at, page, limit, filter, sort_by, property_keys, **kwargs)
+            return response.data
 
     @validate_call
     async def list_check_definitions_with_http_info_async(self, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfCheckDefinition]:
@@ -1965,12 +1965,12 @@ class CheckDefinitionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: RunCheckResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the run_check_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.run_check_definition_with_http_info_async(scope, code, run_check_request, **kwargs)  # noqa: E501
+            response = await self.run_check_definition_with_http_info_async(scope, code, run_check_request, **kwargs)
+            return response.data
 
     @validate_call
     async def run_check_definition_with_http_info_async(self, scope: StrictStr, code: StrictStr, run_check_request: Optional[RunCheckRequest] = None, **kwargs) -> ApiResponse[RunCheckResponse]:
@@ -2109,12 +2109,12 @@ class CheckDefinitionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: CheckDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_check_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_check_definition_with_http_info_async(scope, code, update_check_definition_request, **kwargs)  # noqa: E501
+            response = await self.update_check_definition_with_http_info_async(scope, code, update_check_definition_request, **kwargs)
+            return response.data
 
     @validate_call
     async def update_check_definition_with_http_info_async(self, scope: StrictStr, code: StrictStr, update_check_definition_request: Optional[UpdateCheckDefinitionRequest] = None, **kwargs) -> ApiResponse[CheckDefinition]:
@@ -2253,12 +2253,12 @@ class CheckDefinitionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: CheckDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_rules_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_rules_with_http_info_async(scope, code, upsert_data_quality_rule, **kwargs)  # noqa: E501
+            response = await self.upsert_rules_with_http_info_async(scope, code, upsert_data_quality_rule, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_rules_with_http_info_async(self, scope: StrictStr, code: StrictStr, upsert_data_quality_rule: Optional[List[UpsertDataQualityRule]] = None, **kwargs) -> ApiResponse[CheckDefinition]:

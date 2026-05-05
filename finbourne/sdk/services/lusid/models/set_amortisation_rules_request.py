@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class SetAmortisationRulesRequest(BaseModel):
     SetAmortisationRulesRequest
     """
     rules_interval: RulesInterval = Field(alias="rulesInterval")
-    __properties = ["rulesInterval"]
+    __properties: ClassVar[List[str]] = ["rulesInterval"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,7 +79,7 @@ class SetAmortisationRulesRequest(BaseModel):
             return SetAmortisationRulesRequest.model_validate(obj)
 
         _obj = SetAmortisationRulesRequest.model_validate({
-            "rules_interval": RulesInterval.from_dict(obj.get("rulesInterval")) if obj.get("rulesInterval") is not None else None
+            "rules_interval": RulesInterval.from_dict(_v) if (_v := obj.get("rulesInterval")) is not None else None
         })
         return _obj
 

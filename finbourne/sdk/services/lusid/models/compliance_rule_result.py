@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -37,7 +37,7 @@ class ComplianceRuleResult(BaseModel):
     rule_information_key:  StrictStr = Field(...,alias="ruleInformationKey", description="The property key matched by the rule") 
     rule_lower_limit: Union[StrictFloat, StrictInt] = Field(description="The lower limit of the rule", alias="ruleLowerLimit")
     rule_upper_limit: Union[StrictFloat, StrictInt] = Field(description="The upper limit of the rule", alias="ruleUpperLimit")
-    __properties = ["ruleId", "ruleName", "ruleDescription", "portfolio", "passed", "resultValue", "ruleInformationMatch", "ruleInformationKey", "ruleLowerLimit", "ruleUpperLimit"]
+    __properties: ClassVar[List[str]] = ["ruleId", "ruleName", "ruleDescription", "portfolio", "passed", "resultValue", "ruleInformationMatch", "ruleInformationKey", "ruleLowerLimit", "ruleUpperLimit"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,7 +91,7 @@ class ComplianceRuleResult(BaseModel):
             "rule_id": obj.get("ruleId"),
             "rule_name": obj.get("ruleName"),
             "rule_description": obj.get("ruleDescription"),
-            "portfolio": ResourceId.from_dict(obj.get("portfolio")) if obj.get("portfolio") is not None else None,
+            "portfolio": ResourceId.from_dict(_v) if (_v := obj.get("portfolio")) is not None else None,
             "passed": obj.get("passed"),
             "result_value": obj.get("resultValue"),
             "rule_information_match": obj.get("ruleInformationMatch"),

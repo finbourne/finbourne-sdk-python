@@ -96,12 +96,12 @@ class PortfoliosApi:
         :return: Returns the result object.
         :rtype: BatchUpsertPortfolioAccessMetadataResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the batch_upsert_portfolio_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.batch_upsert_portfolio_access_metadata_with_http_info(request_body, effective_at, effective_until, **kwargs)  # noqa: E501
+        response = self.batch_upsert_portfolio_access_metadata_with_http_info(request_body, effective_at, effective_until, **kwargs)
+        return response.data
 
     @validate_call
     def batch_upsert_portfolio_access_metadata_with_http_info(self, request_body: Dict[str, BatchUpsertPortfolioAccessMetadataRequest], effective_at: Optional[StrictStr] = None, effective_until: Optional[StrictStr] = None, **kwargs) -> ApiResponse[BatchUpsertPortfolioAccessMetadataResponse]:
@@ -241,12 +241,12 @@ class PortfoliosApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_instrument_event_instruction_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_instrument_event_instruction_with_http_info(scope, code, instrument_event_instruction_id, portfolio_effective_at, **kwargs)  # noqa: E501
+        response = self.delete_instrument_event_instruction_with_http_info(scope, code, instrument_event_instruction_id, portfolio_effective_at, **kwargs)
+        return response.data
 
     @validate_call
     def delete_instrument_event_instruction_with_http_info(self, scope: StrictStr, code: StrictStr, instrument_event_instruction_id: StrictStr, portfolio_effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -387,12 +387,12 @@ class PortfoliosApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_key_from_portfolio_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_key_from_portfolio_access_metadata_with_http_info(scope, code, metadata_key, effective_at, effective_until, **kwargs)  # noqa: E501
+        response = self.delete_key_from_portfolio_access_metadata_with_http_info(scope, code, metadata_key, effective_at, effective_until, **kwargs)
+        return response.data
 
     @validate_call
     def delete_key_from_portfolio_access_metadata_with_http_info(self, scope: StrictStr, code: StrictStr, metadata_key: StrictStr, effective_at: Optional[StrictStr] = None, effective_until: Optional[datetime] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -536,12 +536,12 @@ class PortfoliosApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_portfolio_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_portfolio_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_portfolio_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_portfolio_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -668,12 +668,12 @@ class PortfoliosApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_portfolio_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_portfolio_properties_with_http_info(scope, code, property_keys, effective_at, **kwargs)  # noqa: E501
+        response = self.delete_portfolio_properties_with_http_info(scope, code, property_keys, effective_at, **kwargs)
+        return response.data
 
     @validate_call
     def delete_portfolio_properties_with_http_info(self, scope: StrictStr, code: StrictStr, property_keys: List[str], effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -811,7 +811,7 @@ class PortfoliosApi:
         :type from_effective_at: str
         :param to_effective_at: The end date from which to delete the Returns. (required)
         :type to_effective_at: str
-        :param period: The Period (Daily or Monthly) of the Returns to be deleted. Defaults to Daily.
+        :param period: The period of the Returns to be deleted. Default value: Daily. Available values: Daily, Monthly.
         :type period: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -819,12 +819,12 @@ class PortfoliosApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_portfolio_returns_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_portfolio_returns_with_http_info(scope, code, return_scope, return_code, from_effective_at, to_effective_at, period, **kwargs)  # noqa: E501
+        response = self.delete_portfolio_returns_with_http_info(scope, code, return_scope, return_code, from_effective_at, to_effective_at, period, **kwargs)
+        return response.data
 
     @validate_call
     def delete_portfolio_returns_with_http_info(self, scope: StrictStr, code: StrictStr, return_scope: StrictStr, return_code: StrictStr, from_effective_at: StrictStr, to_effective_at: StrictStr, period: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -843,7 +843,7 @@ class PortfoliosApi:
         :type from_effective_at: str
         :param to_effective_at: The end date from which to delete the Returns. (required)
         :type to_effective_at: str
-        :param period: The Period (Daily or Monthly) of the Returns to be deleted. Defaults to Daily.
+        :param period: The period of the Returns to be deleted. Default value: Daily. Available values: Daily, Monthly.
         :type period: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -981,12 +981,12 @@ class PortfoliosApi:
         :return: Returns the result object.
         :rtype: CompositeDispersionResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_aggregated_returns_dispersion_metrics_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_aggregated_returns_dispersion_metrics_with_http_info(scope, code, aggregated_returns_dispersion_request, as_at, **kwargs)  # noqa: E501
+        response = self.get_aggregated_returns_dispersion_metrics_with_http_info(scope, code, aggregated_returns_dispersion_request, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_aggregated_returns_dispersion_metrics_with_http_info(self, scope: StrictStr, code: StrictStr, aggregated_returns_dispersion_request: AggregatedReturnsDispersionRequest, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[CompositeDispersionResponse]:
@@ -1139,12 +1139,12 @@ class PortfoliosApi:
         :return: Returns the result object.
         :rtype: CompositeBreakdownResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_composite_breakdown_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_composite_breakdown_with_http_info(scope, code, composite_breakdown_request, from_effective_at, to_effective_at, as_at, **kwargs)  # noqa: E501
+        response = self.get_composite_breakdown_with_http_info(scope, code, composite_breakdown_request, from_effective_at, to_effective_at, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_composite_breakdown_with_http_info(self, scope: StrictStr, code: StrictStr, composite_breakdown_request: CompositeBreakdownRequest, from_effective_at: Optional[StrictStr] = None, to_effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[CompositeBreakdownResponse]:
@@ -1313,12 +1313,12 @@ class PortfoliosApi:
         :return: Returns the result object.
         :rtype: InstrumentEventInstruction
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_instrument_event_instruction_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_instrument_event_instruction_with_http_info(scope, code, instrument_event_instruction_id, portfolio_effective_at, as_at, timeline_scope, timeline_code, closed_period_id, **kwargs)  # noqa: E501
+        response = self.get_instrument_event_instruction_with_http_info(scope, code, instrument_event_instruction_id, portfolio_effective_at, as_at, timeline_scope, timeline_code, closed_period_id, **kwargs)
+        return response.data
 
     @validate_call
     def get_instrument_event_instruction_with_http_info(self, scope: StrictStr, code: StrictStr, instrument_event_instruction_id: StrictStr, portfolio_effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[InstrumentEventInstruction]:
@@ -1488,12 +1488,12 @@ class PortfoliosApi:
         :return: Returns the result object.
         :rtype: Portfolio
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_portfolio_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_portfolio_with_http_info(scope, code, effective_at, as_at, property_keys, relationship_definition_ids, **kwargs)  # noqa: E501
+        response = self.get_portfolio_with_http_info(scope, code, effective_at, as_at, property_keys, relationship_definition_ids, **kwargs)
+        return response.data
 
     @validate_call
     def get_portfolio_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> ApiResponse[Portfolio]:
@@ -1651,11 +1651,11 @@ class PortfoliosApi:
         :type from_effective_at: str
         :param to_effective_at: The end date for which to calculate the Returns.
         :type to_effective_at: str
-        :param composite_method: The method used to calculate the Portfolio performance:              Equal/Asset.
+        :param composite_method: The method used to calculate the Portfolio performance. Available values: Equal, Asset.
         :type composite_method: str
-        :param period: The type of the returns used to calculate the aggregation result: Daily/Monthly.
+        :param period: The type of the returns used to calculate the aggregation result. Available values: Daily, Monthly.
         :type period: str
-        :param output_frequency: The type of calculated output: Daily/Weekly/Monthly/Quarterly/Half-Yearly/Yearly.
+        :param output_frequency: The type of calculated output. Available values: Daily, Weekly, Monthly, Quarterly, HalfYearly, Yearly.
         :type output_frequency: str
         :param metrics: Determines what type of returns should be calculated, see https://support.lusid.com/knowledgebase/article/KA-01675/en-us for a list of available metrics.
         :type metrics: List[str]
@@ -1669,12 +1669,12 @@ class PortfoliosApi:
         :return: Returns the result object.
         :rtype: ResourceListOfAggregatedReturn
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_portfolio_aggregate_returns_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_portfolio_aggregate_returns_with_http_info(scope, code, return_scope, return_code, recipe_id_scope, recipe_id_code, from_effective_at, to_effective_at, composite_method, period, output_frequency, metrics, as_at, alternative_inc_date, **kwargs)  # noqa: E501
+        response = self.get_portfolio_aggregate_returns_with_http_info(scope, code, return_scope, return_code, recipe_id_scope, recipe_id_code, from_effective_at, to_effective_at, composite_method, period, output_frequency, metrics, as_at, alternative_inc_date, **kwargs)
+        return response.data
 
     @validate_call
     def get_portfolio_aggregate_returns_with_http_info(self, scope: StrictStr, code: StrictStr, return_scope: StrictStr, return_code: StrictStr, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, from_effective_at: Optional[StrictStr] = None, to_effective_at: Optional[StrictStr] = None, composite_method: Optional[StrictStr] = None, period: Optional[StrictStr] = None, output_frequency: Optional[StrictStr] = None, metrics: Optional[List[str]] = None, as_at: Optional[datetime] = None, alternative_inc_date: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfAggregatedReturn]:
@@ -1697,11 +1697,11 @@ class PortfoliosApi:
         :type from_effective_at: str
         :param to_effective_at: The end date for which to calculate the Returns.
         :type to_effective_at: str
-        :param composite_method: The method used to calculate the Portfolio performance:              Equal/Asset.
+        :param composite_method: The method used to calculate the Portfolio performance. Available values: Equal, Asset.
         :type composite_method: str
-        :param period: The type of the returns used to calculate the aggregation result: Daily/Monthly.
+        :param period: The type of the returns used to calculate the aggregation result. Available values: Daily, Monthly.
         :type period: str
-        :param output_frequency: The type of calculated output: Daily/Weekly/Monthly/Quarterly/Half-Yearly/Yearly.
+        :param output_frequency: The type of calculated output. Available values: Daily, Weekly, Monthly, Quarterly, HalfYearly, Yearly.
         :type output_frequency: str
         :param metrics: Determines what type of returns should be calculated, see https://support.lusid.com/knowledgebase/article/KA-01675/en-us for a list of available metrics.
         :type metrics: List[str]
@@ -1881,12 +1881,12 @@ class PortfoliosApi:
         :return: Returns the result object.
         :rtype: AggregatedReturnsResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_portfolio_aggregated_returns_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_portfolio_aggregated_returns_with_http_info(scope, code, aggregated_returns_request, from_effective_at, to_effective_at, as_at, **kwargs)  # noqa: E501
+        response = self.get_portfolio_aggregated_returns_with_http_info(scope, code, aggregated_returns_request, from_effective_at, to_effective_at, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_portfolio_aggregated_returns_with_http_info(self, scope: StrictStr, code: StrictStr, aggregated_returns_request: AggregatedReturnsRequest, from_effective_at: Optional[StrictStr] = None, to_effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[AggregatedReturnsResponse]:
@@ -2053,12 +2053,12 @@ class PortfoliosApi:
         :return: Returns the result object.
         :rtype: ResourceListOfProcessedCommand
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_portfolio_commands_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_portfolio_commands_with_http_info(scope, code, from_as_at, to_as_at, filter, page, limit, **kwargs)  # noqa: E501
+        response = self.get_portfolio_commands_with_http_info(scope, code, from_as_at, to_as_at, filter, page, limit, **kwargs)
+        return response.data
 
     @validate_call
     def get_portfolio_commands_with_http_info(self, scope: StrictStr, code: StrictStr, from_as_at: Optional[datetime] = None, to_as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, **kwargs) -> ApiResponse[ResourceListOfProcessedCommand]:
@@ -2221,12 +2221,12 @@ class PortfoliosApi:
         :return: Returns the result object.
         :rtype: Dict[str, List[AccessMetadataValue]]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_portfolio_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_portfolio_metadata_with_http_info(scope, code, effective_at, as_at, **kwargs)  # noqa: E501
+        response = self.get_portfolio_metadata_with_http_info(scope, code, effective_at, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_portfolio_metadata_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[Dict[str, List[AccessMetadataValue]]]:
@@ -2368,12 +2368,12 @@ class PortfoliosApi:
         :return: Returns the result object.
         :rtype: PortfolioProperties
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_portfolio_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_portfolio_properties_with_http_info(scope, code, effective_at, as_at, **kwargs)  # noqa: E501
+        response = self.get_portfolio_properties_with_http_info(scope, code, effective_at, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_portfolio_properties_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[PortfolioProperties]:
@@ -2523,12 +2523,12 @@ class PortfoliosApi:
         :return: Returns the result object.
         :rtype: ResourceListOfPropertyInterval
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_portfolio_property_time_series_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_portfolio_property_time_series_with_http_info(scope, code, property_key, portfolio_effective_at, as_at, filter, page, limit, **kwargs)  # noqa: E501
+        response = self.get_portfolio_property_time_series_with_http_info(scope, code, property_key, portfolio_effective_at, as_at, filter, page, limit, **kwargs)
+        return response.data
 
     @validate_call
     def get_portfolio_property_time_series_with_http_info(self, scope: StrictStr, code: StrictStr, property_key: StrictStr, portfolio_effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, **kwargs) -> ApiResponse[ResourceListOfPropertyInterval]:
@@ -2698,12 +2698,12 @@ class PortfoliosApi:
         :return: Returns the result object.
         :rtype: ResourceListOfRelation
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_portfolio_relations_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_portfolio_relations_with_http_info(scope, code, effective_at, as_at, filter, identifier_types, **kwargs)  # noqa: E501
+        response = self.get_portfolio_relations_with_http_info(scope, code, effective_at, as_at, filter, identifier_types, **kwargs)
+        return response.data
 
     @validate_call
     def get_portfolio_relations_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, identifier_types: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfRelation]:
@@ -2862,12 +2862,12 @@ class PortfoliosApi:
         :return: Returns the result object.
         :rtype: ResourceListOfRelationship
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_portfolio_relationships_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_portfolio_relationships_with_http_info(scope, code, effective_at, as_at, filter, identifier_types, **kwargs)  # noqa: E501
+        response = self.get_portfolio_relationships_with_http_info(scope, code, effective_at, as_at, filter, identifier_types, **kwargs)
+        return response.data
 
     @validate_call
     def get_portfolio_relationships_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, identifier_types: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfRelationship]:
@@ -3020,7 +3020,7 @@ class PortfoliosApi:
         :type from_effective_at: str
         :param to_effective_at: The end date from which to get the Returns.
         :type to_effective_at: str
-        :param period: Show the Returns on a Daily or Monthly period. Defaults to Daily.
+        :param period: The period for which to show the Returns. Default value: Daily. Available values: Daily, Monthly.
         :type period: str
         :param as_at: The asAt datetime at which to retrieve the Returns. Defaults to the latest.
         :type as_at: datetime
@@ -3030,12 +3030,12 @@ class PortfoliosApi:
         :return: Returns the result object.
         :rtype: ResourceListOfPerformanceReturn
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_portfolio_returns_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_portfolio_returns_with_http_info(scope, code, return_scope, return_code, from_effective_at, to_effective_at, period, as_at, **kwargs)  # noqa: E501
+        response = self.get_portfolio_returns_with_http_info(scope, code, return_scope, return_code, from_effective_at, to_effective_at, period, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_portfolio_returns_with_http_info(self, scope: StrictStr, code: StrictStr, return_scope: StrictStr, return_code: StrictStr, from_effective_at: Optional[StrictStr] = None, to_effective_at: Optional[StrictStr] = None, period: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfPerformanceReturn]:
@@ -3054,7 +3054,7 @@ class PortfoliosApi:
         :type from_effective_at: str
         :param to_effective_at: The end date from which to get the Returns.
         :type to_effective_at: str
-        :param period: Show the Returns on a Daily or Monthly period. Defaults to Daily.
+        :param period: The period for which to show the Returns. Default value: Daily. Available values: Daily, Monthly.
         :type period: str
         :param as_at: The asAt datetime at which to retrieve the Returns. Defaults to the latest.
         :type as_at: datetime
@@ -3203,12 +3203,12 @@ class PortfoliosApi:
         :return: Returns the result object.
         :rtype: List[AccessMetadataValue]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_portfolios_access_metadata_by_key_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_portfolios_access_metadata_by_key_with_http_info(scope, code, metadata_key, effective_at, as_at, **kwargs)  # noqa: E501
+        response = self.get_portfolios_access_metadata_by_key_with_http_info(scope, code, metadata_key, effective_at, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_portfolios_access_metadata_by_key_with_http_info(self, scope: StrictStr, code: StrictStr, metadata_key: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[List[AccessMetadataValue]]:
@@ -3370,12 +3370,12 @@ class PortfoliosApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfInstrumentEventInstruction
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_instrument_event_instructions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_instrument_event_instructions_with_http_info(scope, code, portfolio_effective_at, as_at, page, limit, filter, sort_by, timeline_scope, timeline_code, closed_period_id, **kwargs)  # noqa: E501
+        response = self.list_instrument_event_instructions_with_http_info(scope, code, portfolio_effective_at, as_at, page, limit, filter, sort_by, timeline_scope, timeline_code, closed_period_id, **kwargs)
+        return response.data
 
     @validate_call
     def list_instrument_event_instructions_with_http_info(self, scope: StrictStr, code: StrictStr, portfolio_effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfInstrumentEventInstruction]:
@@ -3564,12 +3564,12 @@ class PortfoliosApi:
         :return: Returns the result object.
         :rtype: ResourceListOfProperty
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_portfolio_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_portfolio_properties_with_http_info(scope, code, effective_at, as_at, page, limit, **kwargs)  # noqa: E501
+        response = self.list_portfolio_properties_with_http_info(scope, code, effective_at, as_at, page, limit, **kwargs)
+        return response.data
 
     @validate_call
     def list_portfolio_properties_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, **kwargs) -> ApiResponse[ResourceListOfProperty]:
@@ -3733,12 +3733,12 @@ class PortfoliosApi:
         :return: Returns the result object.
         :rtype: ResourceListOfPortfolio
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_portfolios_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_portfolios_with_http_info(effective_at, as_at, page, limit, filter, sort_by, query, property_keys, relationship_definition_ids, **kwargs)  # noqa: E501
+        response = self.list_portfolios_with_http_info(effective_at, as_at, page, limit, filter, sort_by, query, property_keys, relationship_definition_ids, **kwargs)
+        return response.data
 
     @validate_call
     def list_portfolios_with_http_info(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, query: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfPortfolio]:
@@ -3923,12 +3923,12 @@ class PortfoliosApi:
         :return: Returns the result object.
         :rtype: ResourceListOfPortfolio
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_portfolios_for_scope_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_portfolios_for_scope_with_http_info(scope, effective_at, as_at, page, limit, filter, sort_by, property_keys, relationship_definition_ids, **kwargs)  # noqa: E501
+        response = self.list_portfolios_for_scope_with_http_info(scope, effective_at, as_at, page, limit, filter, sort_by, property_keys, relationship_definition_ids, **kwargs)
+        return response.data
 
     @validate_call
     def list_portfolios_for_scope_with_http_info(self, scope: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfPortfolio]:
@@ -4101,12 +4101,12 @@ class PortfoliosApi:
         :return: Returns the result object.
         :rtype: Portfolio
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the patch_portfolio_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.patch_portfolio_with_http_info(scope, code, operation, **kwargs)  # noqa: E501
+        response = self.patch_portfolio_with_http_info(scope, code, operation, **kwargs)
+        return response.data
 
     @validate_call
     def patch_portfolio_with_http_info(self, scope: StrictStr, code: StrictStr, operation: List[Operation], **kwargs) -> ApiResponse[Portfolio]:
@@ -4248,12 +4248,12 @@ class PortfoliosApi:
         :return: Returns the result object.
         :rtype: Dict[str, List[AccessMetadataValue]]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the patch_portfolio_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.patch_portfolio_access_metadata_with_http_info(scope, code, access_metadata_operation, effective_at, effective_until, **kwargs)  # noqa: E501
+        response = self.patch_portfolio_access_metadata_with_http_info(scope, code, access_metadata_operation, effective_at, effective_until, **kwargs)
+        return response.data
 
     @validate_call
     def patch_portfolio_access_metadata_with_http_info(self, scope: StrictStr, code: StrictStr, access_metadata_operation: List[AccessMetadataOperation], effective_at: Optional[StrictStr] = None, effective_until: Optional[datetime] = None, **kwargs) -> ApiResponse[Dict[str, List[AccessMetadataValue]]]:
@@ -4408,12 +4408,12 @@ class PortfoliosApi:
         :return: Returns the result object.
         :rtype: Portfolio
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_portfolio_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_portfolio_with_http_info(scope, code, update_portfolio_request, effective_at, **kwargs)  # noqa: E501
+        response = self.update_portfolio_with_http_info(scope, code, update_portfolio_request, effective_at, **kwargs)
+        return response.data
 
     @validate_call
     def update_portfolio_with_http_info(self, scope: StrictStr, code: StrictStr, update_portfolio_request: UpdatePortfolioRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[Portfolio]:
@@ -4561,12 +4561,12 @@ class PortfoliosApi:
         :return: Returns the result object.
         :rtype: InstrumentEventInstructionsResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_instrument_event_instructions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_instrument_event_instructions_with_http_info(scope, code, success_mode, request_body, portfolio_effective_at, **kwargs)  # noqa: E501
+        response = self.upsert_instrument_event_instructions_with_http_info(scope, code, success_mode, request_body, portfolio_effective_at, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_instrument_event_instructions_with_http_info(self, scope: StrictStr, code: StrictStr, success_mode: StrictStr, request_body: Dict[str, InstrumentEventInstructionRequest], portfolio_effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[InstrumentEventInstructionsResponse]:
@@ -4722,12 +4722,12 @@ class PortfoliosApi:
         :return: Returns the result object.
         :rtype: ResourceListOfAccessMetadataValueOf
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_portfolio_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_portfolio_access_metadata_with_http_info(scope, code, metadata_key, upsert_portfolio_access_metadata_request, effective_at, effective_until, **kwargs)  # noqa: E501
+        response = self.upsert_portfolio_access_metadata_with_http_info(scope, code, metadata_key, upsert_portfolio_access_metadata_request, effective_at, effective_until, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_portfolio_access_metadata_with_http_info(self, scope: StrictStr, code: StrictStr, metadata_key: StrictStr, upsert_portfolio_access_metadata_request: UpsertPortfolioAccessMetadataRequest, effective_at: Optional[StrictStr] = None, effective_until: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfAccessMetadataValueOf]:
@@ -4886,12 +4886,12 @@ class PortfoliosApi:
         :return: Returns the result object.
         :rtype: PortfolioProperties
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_portfolio_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_portfolio_properties_with_http_info(scope, code, request_body, **kwargs)  # noqa: E501
+        response = self.upsert_portfolio_properties_with_http_info(scope, code, request_body, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_portfolio_properties_with_http_info(self, scope: StrictStr, code: StrictStr, request_body: Dict[str, ModelProperty], **kwargs) -> ApiResponse[PortfolioProperties]:
@@ -5033,12 +5033,12 @@ class PortfoliosApi:
         :return: Returns the result object.
         :rtype: UpsertReturnsResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_portfolio_returns_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_portfolio_returns_with_http_info(scope, code, return_scope, return_code, performance_return, **kwargs)  # noqa: E501
+        response = self.upsert_portfolio_returns_with_http_info(scope, code, return_scope, return_code, performance_return, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_portfolio_returns_with_http_info(self, scope: StrictStr, code: StrictStr, return_scope: StrictStr, return_code: StrictStr, performance_return: List[PerformanceReturn], **kwargs) -> ApiResponse[UpsertReturnsResponse]:
@@ -5192,12 +5192,12 @@ class PortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: BatchUpsertPortfolioAccessMetadataResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the batch_upsert_portfolio_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.batch_upsert_portfolio_access_metadata_with_http_info_async(request_body, effective_at, effective_until, **kwargs)  # noqa: E501
+            response = await self.batch_upsert_portfolio_access_metadata_with_http_info_async(request_body, effective_at, effective_until, **kwargs)
+            return response.data
 
     @validate_call
     async def batch_upsert_portfolio_access_metadata_with_http_info_async(self, request_body: Dict[str, BatchUpsertPortfolioAccessMetadataRequest], effective_at: Optional[StrictStr] = None, effective_until: Optional[StrictStr] = None, **kwargs) -> ApiResponse[BatchUpsertPortfolioAccessMetadataResponse]:
@@ -5338,12 +5338,12 @@ class PortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_instrument_event_instruction_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_instrument_event_instruction_with_http_info_async(scope, code, instrument_event_instruction_id, portfolio_effective_at, **kwargs)  # noqa: E501
+            response = await self.delete_instrument_event_instruction_with_http_info_async(scope, code, instrument_event_instruction_id, portfolio_effective_at, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_instrument_event_instruction_with_http_info_async(self, scope: StrictStr, code: StrictStr, instrument_event_instruction_id: StrictStr, portfolio_effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -5485,12 +5485,12 @@ class PortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_key_from_portfolio_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_key_from_portfolio_access_metadata_with_http_info_async(scope, code, metadata_key, effective_at, effective_until, **kwargs)  # noqa: E501
+            response = await self.delete_key_from_portfolio_access_metadata_with_http_info_async(scope, code, metadata_key, effective_at, effective_until, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_key_from_portfolio_access_metadata_with_http_info_async(self, scope: StrictStr, code: StrictStr, metadata_key: StrictStr, effective_at: Optional[StrictStr] = None, effective_until: Optional[datetime] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -5635,12 +5635,12 @@ class PortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_portfolio_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_portfolio_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_portfolio_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_portfolio_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -5768,12 +5768,12 @@ class PortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_portfolio_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_portfolio_properties_with_http_info_async(scope, code, property_keys, effective_at, **kwargs)  # noqa: E501
+            response = await self.delete_portfolio_properties_with_http_info_async(scope, code, property_keys, effective_at, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_portfolio_properties_with_http_info_async(self, scope: StrictStr, code: StrictStr, property_keys: List[str], effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -5912,7 +5912,7 @@ class PortfoliosApi:
             :type from_effective_at: str
             :param to_effective_at: The end date from which to delete the Returns. (required)
             :type to_effective_at: str
-            :param period: The Period (Daily or Monthly) of the Returns to be deleted. Defaults to Daily.
+            :param period: The period of the Returns to be deleted. Default value: Daily. Available values: Daily, Monthly.
             :type period: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -5920,12 +5920,12 @@ class PortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_portfolio_returns_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_portfolio_returns_with_http_info_async(scope, code, return_scope, return_code, from_effective_at, to_effective_at, period, **kwargs)  # noqa: E501
+            response = await self.delete_portfolio_returns_with_http_info_async(scope, code, return_scope, return_code, from_effective_at, to_effective_at, period, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_portfolio_returns_with_http_info_async(self, scope: StrictStr, code: StrictStr, return_scope: StrictStr, return_code: StrictStr, from_effective_at: StrictStr, to_effective_at: StrictStr, period: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -5945,7 +5945,7 @@ class PortfoliosApi:
             :type from_effective_at: str
             :param to_effective_at: The end date from which to delete the Returns. (required)
             :type to_effective_at: str
-            :param period: The Period (Daily or Monthly) of the Returns to be deleted. Defaults to Daily.
+            :param period: The period of the Returns to be deleted. Default value: Daily. Available values: Daily, Monthly.
             :type period: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
@@ -6083,12 +6083,12 @@ class PortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: CompositeDispersionResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_aggregated_returns_dispersion_metrics_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_aggregated_returns_dispersion_metrics_with_http_info_async(scope, code, aggregated_returns_dispersion_request, as_at, **kwargs)  # noqa: E501
+            response = await self.get_aggregated_returns_dispersion_metrics_with_http_info_async(scope, code, aggregated_returns_dispersion_request, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_aggregated_returns_dispersion_metrics_with_http_info_async(self, scope: StrictStr, code: StrictStr, aggregated_returns_dispersion_request: AggregatedReturnsDispersionRequest, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[CompositeDispersionResponse]:
@@ -6242,12 +6242,12 @@ class PortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: CompositeBreakdownResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_composite_breakdown_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_composite_breakdown_with_http_info_async(scope, code, composite_breakdown_request, from_effective_at, to_effective_at, as_at, **kwargs)  # noqa: E501
+            response = await self.get_composite_breakdown_with_http_info_async(scope, code, composite_breakdown_request, from_effective_at, to_effective_at, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_composite_breakdown_with_http_info_async(self, scope: StrictStr, code: StrictStr, composite_breakdown_request: CompositeBreakdownRequest, from_effective_at: Optional[StrictStr] = None, to_effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[CompositeBreakdownResponse]:
@@ -6417,12 +6417,12 @@ class PortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: InstrumentEventInstruction
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_instrument_event_instruction_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_instrument_event_instruction_with_http_info_async(scope, code, instrument_event_instruction_id, portfolio_effective_at, as_at, timeline_scope, timeline_code, closed_period_id, **kwargs)  # noqa: E501
+            response = await self.get_instrument_event_instruction_with_http_info_async(scope, code, instrument_event_instruction_id, portfolio_effective_at, as_at, timeline_scope, timeline_code, closed_period_id, **kwargs)
+            return response.data
 
     @validate_call
     async def get_instrument_event_instruction_with_http_info_async(self, scope: StrictStr, code: StrictStr, instrument_event_instruction_id: StrictStr, portfolio_effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[InstrumentEventInstruction]:
@@ -6593,12 +6593,12 @@ class PortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Portfolio
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_portfolio_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_portfolio_with_http_info_async(scope, code, effective_at, as_at, property_keys, relationship_definition_ids, **kwargs)  # noqa: E501
+            response = await self.get_portfolio_with_http_info_async(scope, code, effective_at, as_at, property_keys, relationship_definition_ids, **kwargs)
+            return response.data
 
     @validate_call
     async def get_portfolio_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> ApiResponse[Portfolio]:
@@ -6757,11 +6757,11 @@ class PortfoliosApi:
             :type from_effective_at: str
             :param to_effective_at: The end date for which to calculate the Returns.
             :type to_effective_at: str
-            :param composite_method: The method used to calculate the Portfolio performance:              Equal/Asset.
+            :param composite_method: The method used to calculate the Portfolio performance. Available values: Equal, Asset.
             :type composite_method: str
-            :param period: The type of the returns used to calculate the aggregation result: Daily/Monthly.
+            :param period: The type of the returns used to calculate the aggregation result. Available values: Daily, Monthly.
             :type period: str
-            :param output_frequency: The type of calculated output: Daily/Weekly/Monthly/Quarterly/Half-Yearly/Yearly.
+            :param output_frequency: The type of calculated output. Available values: Daily, Weekly, Monthly, Quarterly, HalfYearly, Yearly.
             :type output_frequency: str
             :param metrics: Determines what type of returns should be calculated, see https://support.lusid.com/knowledgebase/article/KA-01675/en-us for a list of available metrics.
             :type metrics: List[str]
@@ -6775,12 +6775,12 @@ class PortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfAggregatedReturn
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_portfolio_aggregate_returns_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_portfolio_aggregate_returns_with_http_info_async(scope, code, return_scope, return_code, recipe_id_scope, recipe_id_code, from_effective_at, to_effective_at, composite_method, period, output_frequency, metrics, as_at, alternative_inc_date, **kwargs)  # noqa: E501
+            response = await self.get_portfolio_aggregate_returns_with_http_info_async(scope, code, return_scope, return_code, recipe_id_scope, recipe_id_code, from_effective_at, to_effective_at, composite_method, period, output_frequency, metrics, as_at, alternative_inc_date, **kwargs)
+            return response.data
 
     @validate_call
     async def get_portfolio_aggregate_returns_with_http_info_async(self, scope: StrictStr, code: StrictStr, return_scope: StrictStr, return_code: StrictStr, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, from_effective_at: Optional[StrictStr] = None, to_effective_at: Optional[StrictStr] = None, composite_method: Optional[StrictStr] = None, period: Optional[StrictStr] = None, output_frequency: Optional[StrictStr] = None, metrics: Optional[List[str]] = None, as_at: Optional[datetime] = None, alternative_inc_date: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfAggregatedReturn]:
@@ -6804,11 +6804,11 @@ class PortfoliosApi:
             :type from_effective_at: str
             :param to_effective_at: The end date for which to calculate the Returns.
             :type to_effective_at: str
-            :param composite_method: The method used to calculate the Portfolio performance:              Equal/Asset.
+            :param composite_method: The method used to calculate the Portfolio performance. Available values: Equal, Asset.
             :type composite_method: str
-            :param period: The type of the returns used to calculate the aggregation result: Daily/Monthly.
+            :param period: The type of the returns used to calculate the aggregation result. Available values: Daily, Monthly.
             :type period: str
-            :param output_frequency: The type of calculated output: Daily/Weekly/Monthly/Quarterly/Half-Yearly/Yearly.
+            :param output_frequency: The type of calculated output. Available values: Daily, Weekly, Monthly, Quarterly, HalfYearly, Yearly.
             :type output_frequency: str
             :param metrics: Determines what type of returns should be calculated, see https://support.lusid.com/knowledgebase/article/KA-01675/en-us for a list of available metrics.
             :type metrics: List[str]
@@ -6988,12 +6988,12 @@ class PortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: AggregatedReturnsResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_portfolio_aggregated_returns_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_portfolio_aggregated_returns_with_http_info_async(scope, code, aggregated_returns_request, from_effective_at, to_effective_at, as_at, **kwargs)  # noqa: E501
+            response = await self.get_portfolio_aggregated_returns_with_http_info_async(scope, code, aggregated_returns_request, from_effective_at, to_effective_at, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_portfolio_aggregated_returns_with_http_info_async(self, scope: StrictStr, code: StrictStr, aggregated_returns_request: AggregatedReturnsRequest, from_effective_at: Optional[StrictStr] = None, to_effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[AggregatedReturnsResponse]:
@@ -7161,12 +7161,12 @@ class PortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfProcessedCommand
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_portfolio_commands_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_portfolio_commands_with_http_info_async(scope, code, from_as_at, to_as_at, filter, page, limit, **kwargs)  # noqa: E501
+            response = await self.get_portfolio_commands_with_http_info_async(scope, code, from_as_at, to_as_at, filter, page, limit, **kwargs)
+            return response.data
 
     @validate_call
     async def get_portfolio_commands_with_http_info_async(self, scope: StrictStr, code: StrictStr, from_as_at: Optional[datetime] = None, to_as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, **kwargs) -> ApiResponse[ResourceListOfProcessedCommand]:
@@ -7330,12 +7330,12 @@ class PortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Dict[str, List[AccessMetadataValue]]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_portfolio_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_portfolio_metadata_with_http_info_async(scope, code, effective_at, as_at, **kwargs)  # noqa: E501
+            response = await self.get_portfolio_metadata_with_http_info_async(scope, code, effective_at, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_portfolio_metadata_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[Dict[str, List[AccessMetadataValue]]]:
@@ -7478,12 +7478,12 @@ class PortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PortfolioProperties
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_portfolio_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_portfolio_properties_with_http_info_async(scope, code, effective_at, as_at, **kwargs)  # noqa: E501
+            response = await self.get_portfolio_properties_with_http_info_async(scope, code, effective_at, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_portfolio_properties_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[PortfolioProperties]:
@@ -7634,12 +7634,12 @@ class PortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfPropertyInterval
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_portfolio_property_time_series_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_portfolio_property_time_series_with_http_info_async(scope, code, property_key, portfolio_effective_at, as_at, filter, page, limit, **kwargs)  # noqa: E501
+            response = await self.get_portfolio_property_time_series_with_http_info_async(scope, code, property_key, portfolio_effective_at, as_at, filter, page, limit, **kwargs)
+            return response.data
 
     @validate_call
     async def get_portfolio_property_time_series_with_http_info_async(self, scope: StrictStr, code: StrictStr, property_key: StrictStr, portfolio_effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, **kwargs) -> ApiResponse[ResourceListOfPropertyInterval]:
@@ -7810,12 +7810,12 @@ class PortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfRelation
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_portfolio_relations_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_portfolio_relations_with_http_info_async(scope, code, effective_at, as_at, filter, identifier_types, **kwargs)  # noqa: E501
+            response = await self.get_portfolio_relations_with_http_info_async(scope, code, effective_at, as_at, filter, identifier_types, **kwargs)
+            return response.data
 
     @validate_call
     async def get_portfolio_relations_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, identifier_types: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfRelation]:
@@ -7975,12 +7975,12 @@ class PortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfRelationship
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_portfolio_relationships_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_portfolio_relationships_with_http_info_async(scope, code, effective_at, as_at, filter, identifier_types, **kwargs)  # noqa: E501
+            response = await self.get_portfolio_relationships_with_http_info_async(scope, code, effective_at, as_at, filter, identifier_types, **kwargs)
+            return response.data
 
     @validate_call
     async def get_portfolio_relationships_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, identifier_types: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfRelationship]:
@@ -8134,7 +8134,7 @@ class PortfoliosApi:
             :type from_effective_at: str
             :param to_effective_at: The end date from which to get the Returns.
             :type to_effective_at: str
-            :param period: Show the Returns on a Daily or Monthly period. Defaults to Daily.
+            :param period: The period for which to show the Returns. Default value: Daily. Available values: Daily, Monthly.
             :type period: str
             :param as_at: The asAt datetime at which to retrieve the Returns. Defaults to the latest.
             :type as_at: datetime
@@ -8144,12 +8144,12 @@ class PortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfPerformanceReturn
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_portfolio_returns_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_portfolio_returns_with_http_info_async(scope, code, return_scope, return_code, from_effective_at, to_effective_at, period, as_at, **kwargs)  # noqa: E501
+            response = await self.get_portfolio_returns_with_http_info_async(scope, code, return_scope, return_code, from_effective_at, to_effective_at, period, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_portfolio_returns_with_http_info_async(self, scope: StrictStr, code: StrictStr, return_scope: StrictStr, return_code: StrictStr, from_effective_at: Optional[StrictStr] = None, to_effective_at: Optional[StrictStr] = None, period: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfPerformanceReturn]:
@@ -8169,7 +8169,7 @@ class PortfoliosApi:
             :type from_effective_at: str
             :param to_effective_at: The end date from which to get the Returns.
             :type to_effective_at: str
-            :param period: Show the Returns on a Daily or Monthly period. Defaults to Daily.
+            :param period: The period for which to show the Returns. Default value: Daily. Available values: Daily, Monthly.
             :type period: str
             :param as_at: The asAt datetime at which to retrieve the Returns. Defaults to the latest.
             :type as_at: datetime
@@ -8318,12 +8318,12 @@ class PortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: List[AccessMetadataValue]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_portfolios_access_metadata_by_key_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_portfolios_access_metadata_by_key_with_http_info_async(scope, code, metadata_key, effective_at, as_at, **kwargs)  # noqa: E501
+            response = await self.get_portfolios_access_metadata_by_key_with_http_info_async(scope, code, metadata_key, effective_at, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_portfolios_access_metadata_by_key_with_http_info_async(self, scope: StrictStr, code: StrictStr, metadata_key: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[List[AccessMetadataValue]]:
@@ -8486,12 +8486,12 @@ class PortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfInstrumentEventInstruction
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_instrument_event_instructions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_instrument_event_instructions_with_http_info_async(scope, code, portfolio_effective_at, as_at, page, limit, filter, sort_by, timeline_scope, timeline_code, closed_period_id, **kwargs)  # noqa: E501
+            response = await self.list_instrument_event_instructions_with_http_info_async(scope, code, portfolio_effective_at, as_at, page, limit, filter, sort_by, timeline_scope, timeline_code, closed_period_id, **kwargs)
+            return response.data
 
     @validate_call
     async def list_instrument_event_instructions_with_http_info_async(self, scope: StrictStr, code: StrictStr, portfolio_effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfInstrumentEventInstruction]:
@@ -8681,12 +8681,12 @@ class PortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfProperty
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_portfolio_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_portfolio_properties_with_http_info_async(scope, code, effective_at, as_at, page, limit, **kwargs)  # noqa: E501
+            response = await self.list_portfolio_properties_with_http_info_async(scope, code, effective_at, as_at, page, limit, **kwargs)
+            return response.data
 
     @validate_call
     async def list_portfolio_properties_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, **kwargs) -> ApiResponse[ResourceListOfProperty]:
@@ -8851,12 +8851,12 @@ class PortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfPortfolio
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_portfolios_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_portfolios_with_http_info_async(effective_at, as_at, page, limit, filter, sort_by, query, property_keys, relationship_definition_ids, **kwargs)  # noqa: E501
+            response = await self.list_portfolios_with_http_info_async(effective_at, as_at, page, limit, filter, sort_by, query, property_keys, relationship_definition_ids, **kwargs)
+            return response.data
 
     @validate_call
     async def list_portfolios_with_http_info_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, query: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfPortfolio]:
@@ -9042,12 +9042,12 @@ class PortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfPortfolio
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_portfolios_for_scope_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_portfolios_for_scope_with_http_info_async(scope, effective_at, as_at, page, limit, filter, sort_by, property_keys, relationship_definition_ids, **kwargs)  # noqa: E501
+            response = await self.list_portfolios_for_scope_with_http_info_async(scope, effective_at, as_at, page, limit, filter, sort_by, property_keys, relationship_definition_ids, **kwargs)
+            return response.data
 
     @validate_call
     async def list_portfolios_for_scope_with_http_info_async(self, scope: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfPortfolio]:
@@ -9221,12 +9221,12 @@ class PortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Portfolio
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the patch_portfolio_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.patch_portfolio_with_http_info_async(scope, code, operation, **kwargs)  # noqa: E501
+            response = await self.patch_portfolio_with_http_info_async(scope, code, operation, **kwargs)
+            return response.data
 
     @validate_call
     async def patch_portfolio_with_http_info_async(self, scope: StrictStr, code: StrictStr, operation: List[Operation], **kwargs) -> ApiResponse[Portfolio]:
@@ -9369,12 +9369,12 @@ class PortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Dict[str, List[AccessMetadataValue]]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the patch_portfolio_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.patch_portfolio_access_metadata_with_http_info_async(scope, code, access_metadata_operation, effective_at, effective_until, **kwargs)  # noqa: E501
+            response = await self.patch_portfolio_access_metadata_with_http_info_async(scope, code, access_metadata_operation, effective_at, effective_until, **kwargs)
+            return response.data
 
     @validate_call
     async def patch_portfolio_access_metadata_with_http_info_async(self, scope: StrictStr, code: StrictStr, access_metadata_operation: List[AccessMetadataOperation], effective_at: Optional[StrictStr] = None, effective_until: Optional[datetime] = None, **kwargs) -> ApiResponse[Dict[str, List[AccessMetadataValue]]]:
@@ -9530,12 +9530,12 @@ class PortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Portfolio
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_portfolio_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_portfolio_with_http_info_async(scope, code, update_portfolio_request, effective_at, **kwargs)  # noqa: E501
+            response = await self.update_portfolio_with_http_info_async(scope, code, update_portfolio_request, effective_at, **kwargs)
+            return response.data
 
     @validate_call
     async def update_portfolio_with_http_info_async(self, scope: StrictStr, code: StrictStr, update_portfolio_request: UpdatePortfolioRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[Portfolio]:
@@ -9684,12 +9684,12 @@ class PortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: InstrumentEventInstructionsResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_instrument_event_instructions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_instrument_event_instructions_with_http_info_async(scope, code, success_mode, request_body, portfolio_effective_at, **kwargs)  # noqa: E501
+            response = await self.upsert_instrument_event_instructions_with_http_info_async(scope, code, success_mode, request_body, portfolio_effective_at, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_instrument_event_instructions_with_http_info_async(self, scope: StrictStr, code: StrictStr, success_mode: StrictStr, request_body: Dict[str, InstrumentEventInstructionRequest], portfolio_effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[InstrumentEventInstructionsResponse]:
@@ -9846,12 +9846,12 @@ class PortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfAccessMetadataValueOf
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_portfolio_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_portfolio_access_metadata_with_http_info_async(scope, code, metadata_key, upsert_portfolio_access_metadata_request, effective_at, effective_until, **kwargs)  # noqa: E501
+            response = await self.upsert_portfolio_access_metadata_with_http_info_async(scope, code, metadata_key, upsert_portfolio_access_metadata_request, effective_at, effective_until, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_portfolio_access_metadata_with_http_info_async(self, scope: StrictStr, code: StrictStr, metadata_key: StrictStr, upsert_portfolio_access_metadata_request: UpsertPortfolioAccessMetadataRequest, effective_at: Optional[StrictStr] = None, effective_until: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfAccessMetadataValueOf]:
@@ -10011,12 +10011,12 @@ class PortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PortfolioProperties
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_portfolio_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_portfolio_properties_with_http_info_async(scope, code, request_body, **kwargs)  # noqa: E501
+            response = await self.upsert_portfolio_properties_with_http_info_async(scope, code, request_body, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_portfolio_properties_with_http_info_async(self, scope: StrictStr, code: StrictStr, request_body: Dict[str, ModelProperty], **kwargs) -> ApiResponse[PortfolioProperties]:
@@ -10159,12 +10159,12 @@ class PortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: UpsertReturnsResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_portfolio_returns_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_portfolio_returns_with_http_info_async(scope, code, return_scope, return_code, performance_return, **kwargs)  # noqa: E501
+            response = await self.upsert_portfolio_returns_with_http_info_async(scope, code, return_scope, return_code, performance_return, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_portfolio_returns_with_http_info_async(self, scope: StrictStr, code: StrictStr, return_scope: StrictStr, return_code: StrictStr, performance_return: List[PerformanceReturn], **kwargs) -> ApiResponse[UpsertReturnsResponse]:

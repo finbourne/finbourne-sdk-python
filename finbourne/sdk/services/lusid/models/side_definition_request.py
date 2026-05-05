@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class SideDefinitionRequest(BaseModel):
     amount:  StrictStr = Field(...,alias="amount", description="The value, field or property key defining the side's amount") 
     notional_amount:  Optional[StrictStr] = Field(default=None,alias="notionalAmount", description="The value, field or property key defining the side's notional amount") 
     current_face:  Optional[StrictStr] = Field(default=None,alias="currentFace", description="The value, field or property key defining the side's current face / outstanding notional.") 
-    __properties = ["security", "currency", "rate", "units", "amount", "notionalAmount", "currentFace"]
+    __properties: ClassVar[List[str]] = ["security", "currency", "rate", "units", "amount", "notionalAmount", "currentFace"]
 
     model_config = ConfigDict(
         populate_by_name=True,

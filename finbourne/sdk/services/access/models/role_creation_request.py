@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class RoleCreationRequest(BaseModel):
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="The description of the role") 
     resource: RoleResourceRequest
     when: WhenSpec
-    __properties = ["code", "description", "resource", "when"]
+    __properties: ClassVar[List[str]] = ["code", "description", "resource", "when"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -93,8 +93,8 @@ class RoleCreationRequest(BaseModel):
         _obj = RoleCreationRequest.model_validate({
             "code": obj.get("code"),
             "description": obj.get("description"),
-            "resource": RoleResourceRequest.from_dict(obj.get("resource")) if obj.get("resource") is not None else None,
-            "when": WhenSpec.from_dict(obj.get("when")) if obj.get("when") is not None else None
+            "resource": RoleResourceRequest.from_dict(_v) if (_v := obj.get("resource")) is not None else None,
+            "when": WhenSpec.from_dict(_v) if (_v := obj.get("when")) is not None else None
         })
         return _obj
 

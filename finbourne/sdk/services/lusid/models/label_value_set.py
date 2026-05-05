@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -27,7 +27,7 @@ class LabelValueSet(BaseModel):
     The set of string labels in a multi-value property.  # noqa: E501
     """
     values: List[StrictStr]
-    __properties = ["values"]
+    __properties: ClassVar[List[str]] = ["values"]
 
     model_config = ConfigDict(
         populate_by_name=True,

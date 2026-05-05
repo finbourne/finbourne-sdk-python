@@ -7,13 +7,13 @@
 | **scope** | **str** | Required |  |
 | **code** | **str** | Required |  |
 | **display_name** | **str** | Required |  |
-| **type** | **str** | Required |  |
+| **type** | **str** | Required | Available values: RangeNumberSecurities, RangePercentSecurityType, RangePercentCash, RangePercentPropertyKey. |
 | **property_key** | **str** | Optional |  |
 | **value** | **str** | Optional |  |
 | **address_key** | **str** | Optional |  |
 | **lower_bound** | **float** | Required |  |
 | **upper_bound** | **float** | Required |  |
-| **schedule** | **str** | Required |  |
+| **schedule** | **str** | Required | Available values: PreTrade, PostTrade, PreAndPostTrade. |
 | **hard_requirement** | **bool** | Required |  |
 | **target_portfolio_ids** | [List[ResourceId]](ResourceId.md) | Required |  |
 | **description** | **str** | Optional |  |
@@ -31,13 +31,13 @@ instance = ComplianceRule(
     scope="...",  # required — 
     code="...",  # required — 
     display_name="...",  # required — 
-    type="...",  # required — 
+    type="...",  # required — Available values: RangeNumberSecurities, RangePercentSecurityType, RangePercentCash, RangePercentPropertyKey.
     property_key="...",  # optional — 
     value="...",  # optional — 
     address_key="...",  # optional — 
     lower_bound=0.0,  # required — 
     upper_bound=0.0,  # required — 
-    schedule="...",  # required — 
+    schedule="...",  # required — Available values: PreTrade, PostTrade, PreAndPostTrade.
     hard_requirement=True,  # required — 
     target_portfolio_ids=[],  # required — 
     description="...",  # optional — 

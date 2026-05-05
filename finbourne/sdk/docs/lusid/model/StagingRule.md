@@ -6,7 +6,7 @@
 |------|------|----------|-------------|
 | **rule_id** | **str** | Required | The ID of the staging rule. |
 | **description** | **str** | Optional | A description for the staging rule. |
-| **status** | **str** | Required | Whether the rule is &#39;Active&#39; or &#39;Inactive&#39;. |
+| **status** | **str** | Required | Status of the rule. Available values: Active, Inactive. |
 | **match_criteria** | [StagingRuleMatchCriteria](StagingRuleMatchCriteria.md) | Required | *No description available.* |
 | **approval_criteria** | [StagingRuleApprovalCriteria](StagingRuleApprovalCriteria.md) | Required | *No description available.* |
 
@@ -21,7 +21,7 @@ from finbourne.sdk.services.lusid.models.StagingRule import StagingRule
 instance = StagingRule(
     rule_id="...",  # required — The ID of the staging rule.
     description="...",  # optional — A description for the staging rule.
-    status="...",  # required — Whether the rule is &#39;Active&#39; or &#39;Inactive&#39;.
+    status="...",  # required — Status of the rule. Available values: Active, Inactive.
     match_criteria=StagingRuleMatchCriteria(...),  # required
     approval_criteria=StagingRuleApprovalCriteria(...)  # required
 )

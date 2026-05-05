@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class AuditEntryNote(BaseModel):
     user_id:  StrictStr = Field(...,alias="userId") 
     text:  StrictStr = Field(...,alias="text") 
     var_date: datetime = Field(alias="date")
-    __properties = ["userId", "text", "date"]
+    __properties: ClassVar[List[str]] = ["userId", "text", "date"]
 
     model_config = ConfigDict(
         populate_by_name=True,

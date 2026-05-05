@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class DeletedEntityResponse(BaseModel):
     effective_from: Optional[datetime] = Field(default=None, description="The EffectiveFrom for this response", alias="effectiveFrom")
     as_at: datetime = Field(description="The AsAt for this response", alias="asAt")
     links: Optional[List[Link]] = None
-    __properties = ["href", "effectiveFrom", "asAt", "links"]
+    __properties: ClassVar[List[str]] = ["href", "effectiveFrom", "asAt", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -104,7 +104,7 @@ class DeletedEntityResponse(BaseModel):
             "href": obj.get("href"),
             "effective_from": obj.get("effectiveFrom"),
             "as_at": obj.get("asAt"),
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

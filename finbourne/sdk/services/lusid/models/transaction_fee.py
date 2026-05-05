@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -42,7 +42,7 @@ class TransactionFee(BaseModel):
     href:  Optional[StrictStr] = Field(default=None,alias="href", description="The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime.") 
     is_active: Optional[StrictBool] = Field(default=None, description="Indicates whether the transaction fee is currently active and should be applied to transactions. Optional when creating a transaction fee, defaults to true, if a value is not provided.", alias="isActive")
     links: Optional[List[Link]] = None
-    __properties = ["id", "name", "description", "calculation", "condition", "txnPropertyKey", "properties", "version", "href", "isActive", "links"]
+    __properties: ClassVar[List[str]] = ["id", "name", "description", "calculation", "condition", "txnPropertyKey", "properties", "version", "href", "isActive", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -148,22 +148,22 @@ class TransactionFee(BaseModel):
             return TransactionFee.model_validate(obj)
 
         _obj = TransactionFee.model_validate({
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
             "name": obj.get("name"),
             "description": obj.get("description"),
-            "calculation": FeeCalculationRequest.from_dict(obj.get("calculation")) if obj.get("calculation") is not None else None,
+            "calculation": FeeCalculationRequest.from_dict(_v) if (_v := obj.get("calculation")) is not None else None,
             "condition": obj.get("condition"),
             "txn_property_key": obj.get("txnPropertyKey"),
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
             "href": obj.get("href"),
             "is_active": obj.get("isActive"),
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

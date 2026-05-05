@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -35,7 +35,7 @@ class PortfolioCashLadder(BaseModel):
     records: List[CashLadderRecord] = Field(description="A record of cash flows on a specific date.")
     failed: Optional[Dict[str, ErrorDetail]] = Field(default=None, description="The records that could not be returned along with a reason for their failure.")
     links: Optional[List[Link]] = None
-    __properties = ["currency", "subHoldingKeys", "records", "failed", "links"]
+    __properties: ClassVar[List[str]] = ["currency", "subHoldingKeys", "records", "failed", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -129,18 +129,18 @@ class PortfolioCashLadder(BaseModel):
             "currency": obj.get("currency"),
             "sub_holding_keys": dict(
                 (_k, PerpetualProperty.from_dict(_v))
-                for _k, _v in obj.get("subHoldingKeys").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("subHoldingKeys") is not None
+            if (_val := obj.get("subHoldingKeys")) is not None
             else None,
-            "records": [CashLadderRecord.from_dict(_item) for _item in obj.get("records")] if obj.get("records") is not None else None,
+            "records": [CashLadderRecord.from_dict(_item) for _item in _v] if (_v := obj.get("records")) is not None else None,
             "failed": dict(
                 (_k, ErrorDetail.from_dict(_v))
-                for _k, _v in obj.get("failed").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("failed") is not None
+            if (_val := obj.get("failed")) is not None
             else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

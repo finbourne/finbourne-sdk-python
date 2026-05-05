@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class LusidPropertyDefinitionOverridesByType(BaseModel):
     entity_type:  Optional[StrictStr] = Field(default=None,alias="entityType") 
     entity_sub_type: Optional[List[StrictStr]] = Field(default=None, alias="entitySubType")
     vendor_package: Optional[List[StrictStr]] = Field(default=None, alias="vendorPackage")
-    __properties = ["displayNameOverride", "descriptionOverride", "entityType", "entitySubType", "vendorPackage"]
+    __properties: ClassVar[List[str]] = ["displayNameOverride", "descriptionOverride", "entityType", "entitySubType", "vendorPackage"]
 
     model_config = ConfigDict(
         populate_by_name=True,

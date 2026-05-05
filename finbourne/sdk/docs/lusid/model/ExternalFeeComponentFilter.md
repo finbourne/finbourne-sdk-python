@@ -6,7 +6,7 @@
 |------|------|----------|-------------|
 | **filter_id** | **str** | Required | *No description available.* |
 | **filter** | **str** | Required | *No description available.* |
-| **applies_to** | **str** | Required | *No description available.* |
+| **applies_to** | **str** | Required | Available values: Undefined, PnLBucket, Fees. |
 
 
 ## Usage
@@ -19,7 +19,7 @@ from finbourne.sdk.services.lusid.models.ExternalFeeComponentFilter import Exter
 instance = ExternalFeeComponentFilter(
     filter_id="...",  # required
     filter="...",  # required
-    applies_to="..."  # required
+    applies_to="..."  # required — Available values: Undefined, PnLBucket, Fees.
 )
 ```
 

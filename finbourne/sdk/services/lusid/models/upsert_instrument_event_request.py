@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -35,9 +35,9 @@ class UpsertInstrumentEventRequest(BaseModel):
     instrument_event: InstrumentEvent = Field(alias="instrumentEvent")
     properties: Optional[List[PerpetualProperty]] = Field(default=None, description="The properties attached to this instrument event.")
     sequence_number: Optional[StrictInt] = Field(default=None, description="The order of the instrument event relative others on the same date (0 being processed first). Must be non negative.", alias="sequenceNumber")
-    participation_type:  Optional[StrictStr] = Field(default=None,alias="participationType", description="Is participation in this event Mandatory, MandatoryWithChoices, or Voluntary.") 
+    participation_type:  Optional[StrictStr] = Field(default=None,alias="participationType", description="Indicates the type of participation in this event. Default value: Mandatory. Available values: Mandatory, MandatoryWithChoices, Voluntary.") 
     event_date_stamps: Optional[Dict[str, YearMonthDay]] = Field(default=None, description="The date stamps corresponding to the relevant date-time fields for the instrument event. The key for each provided date stamp must match the field name of a valid datetime field from the InstrumentEvent DTO.", alias="eventDateStamps")
-    __properties = ["instrumentEventId", "instrumentIdentifiers", "description", "instrumentEvent", "properties", "sequenceNumber", "participationType", "eventDateStamps"]
+    __properties: ClassVar[List[str]] = ["instrumentEventId", "instrumentIdentifiers", "description", "instrumentEvent", "properties", "sequenceNumber", "participationType", "eventDateStamps"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -130,15 +130,15 @@ class UpsertInstrumentEventRequest(BaseModel):
             "instrument_event_id": obj.get("instrumentEventId"),
             "instrument_identifiers": obj.get("instrumentIdentifiers"),
             "description": obj.get("description"),
-            "instrument_event": InstrumentEvent.from_dict(obj.get("instrumentEvent")) if obj.get("instrumentEvent") is not None else None,
-            "properties": [PerpetualProperty.from_dict(_item) for _item in obj.get("properties")] if obj.get("properties") is not None else None,
+            "instrument_event": InstrumentEvent.from_dict(_v) if (_v := obj.get("instrumentEvent")) is not None else None,
+            "properties": [PerpetualProperty.from_dict(_item) for _item in _v] if (_v := obj.get("properties")) is not None else None,
             "sequence_number": obj.get("sequenceNumber"),
             "participation_type": obj.get("participationType") if obj.get("participationType") is not None else 'Mandatory',
             "event_date_stamps": dict(
                 (_k, YearMonthDay.from_dict(_v))
-                for _k, _v in obj.get("eventDateStamps").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("eventDateStamps") is not None
+            if (_val := obj.get("eventDateStamps")) is not None
             else None
         })
         return _obj

@@ -68,12 +68,12 @@ class TasksApi:
         :return: Returns the result object.
         :rtype: BatchUpdateTasksResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the batch_update_tasks_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.batch_update_tasks_with_http_info(batch_update_tasks_request, **kwargs)  # noqa: E501
+        response = self.batch_update_tasks_with_http_info(batch_update_tasks_request, **kwargs)
+        return response.data
 
     @validate_call
     def batch_update_tasks_with_http_info(self, batch_update_tasks_request: Optional[BatchUpdateTasksRequest] = None, **kwargs) -> ApiResponse[BatchUpdateTasksResponse]:
@@ -195,12 +195,12 @@ class TasksApi:
         :return: Returns the result object.
         :rtype: Task
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_task_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_task_with_http_info(create_task_request, trigger, **kwargs)  # noqa: E501
+        response = self.create_task_with_http_info(create_task_request, trigger, **kwargs)
+        return response.data
 
     @validate_call
     def create_task_with_http_info(self, create_task_request: CreateTaskRequest, trigger: Optional[StrictStr] = None, **kwargs) -> ApiResponse[Task]:
@@ -326,12 +326,12 @@ class TasksApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_task_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_task_with_http_info(id, **kwargs)  # noqa: E501
+        response = self.delete_task_with_http_info(id, **kwargs)
+        return response.data
 
     @validate_call
     def delete_task_with_http_info(self, id: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -445,12 +445,12 @@ class TasksApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_tasks_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_tasks_with_http_info(delete_tasks_request, **kwargs)  # noqa: E501
+        response = self.delete_tasks_with_http_info(delete_tasks_request, **kwargs)
+        return response.data
 
     @validate_call
     def delete_tasks_with_http_info(self, delete_tasks_request: Optional[DeleteTasksRequest] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -573,12 +573,12 @@ class TasksApi:
         :return: Returns the result object.
         :rtype: Task
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_task_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_task_with_http_info(id, as_at, **kwargs)  # noqa: E501
+        response = self.get_task_with_http_info(id, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_task_with_http_info(self, id: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[Task]:
@@ -703,12 +703,12 @@ class TasksApi:
         :return: Returns the result object.
         :rtype: ResourceListOfChangeItem
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_task_history_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_task_history_with_http_info(id, as_at, **kwargs)  # noqa: E501
+        response = self.get_task_history_with_http_info(id, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_task_history_with_http_info(self, id: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfChangeItem]:
@@ -839,12 +839,12 @@ class TasksApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfTask
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_tasks_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_tasks_with_http_info(as_at, filter, sort_by, limit, page, **kwargs)  # noqa: E501
+        response = self.list_tasks_with_http_info(as_at, filter, sort_by, limit, page, **kwargs)
+        return response.data
 
     @validate_call
     def list_tasks_with_http_info(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfTask]:
@@ -990,12 +990,12 @@ class TasksApi:
         :return: Returns the result object.
         :rtype: Task
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_task_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_task_with_http_info(id, trigger, update_task_request, **kwargs)  # noqa: E501
+        response = self.update_task_with_http_info(id, trigger, update_task_request, **kwargs)
+        return response.data
 
     @validate_call
     def update_task_with_http_info(self, id: StrictStr, trigger: Optional[StrictStr] = None, update_task_request: Optional[UpdateTaskRequest] = None, **kwargs) -> ApiResponse[Task]:
@@ -1132,12 +1132,12 @@ class TasksApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: BatchUpdateTasksResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the batch_update_tasks_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.batch_update_tasks_with_http_info_async(batch_update_tasks_request, **kwargs)  # noqa: E501
+            response = await self.batch_update_tasks_with_http_info_async(batch_update_tasks_request, **kwargs)
+            return response.data
 
     @validate_call
     async def batch_update_tasks_with_http_info_async(self, batch_update_tasks_request: Optional[BatchUpdateTasksRequest] = None, **kwargs) -> ApiResponse[BatchUpdateTasksResponse]:
@@ -1260,12 +1260,12 @@ class TasksApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Task
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_task_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_task_with_http_info_async(create_task_request, trigger, **kwargs)  # noqa: E501
+            response = await self.create_task_with_http_info_async(create_task_request, trigger, **kwargs)
+            return response.data
 
     @validate_call
     async def create_task_with_http_info_async(self, create_task_request: CreateTaskRequest, trigger: Optional[StrictStr] = None, **kwargs) -> ApiResponse[Task]:
@@ -1392,12 +1392,12 @@ class TasksApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_task_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_task_with_http_info_async(id, **kwargs)  # noqa: E501
+            response = await self.delete_task_with_http_info_async(id, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_task_with_http_info_async(self, id: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -1512,12 +1512,12 @@ class TasksApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_tasks_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_tasks_with_http_info_async(delete_tasks_request, **kwargs)  # noqa: E501
+            response = await self.delete_tasks_with_http_info_async(delete_tasks_request, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_tasks_with_http_info_async(self, delete_tasks_request: Optional[DeleteTasksRequest] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -1641,12 +1641,12 @@ class TasksApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Task
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_task_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_task_with_http_info_async(id, as_at, **kwargs)  # noqa: E501
+            response = await self.get_task_with_http_info_async(id, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_task_with_http_info_async(self, id: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[Task]:
@@ -1772,12 +1772,12 @@ class TasksApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfChangeItem
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_task_history_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_task_history_with_http_info_async(id, as_at, **kwargs)  # noqa: E501
+            response = await self.get_task_history_with_http_info_async(id, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_task_history_with_http_info_async(self, id: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfChangeItem]:
@@ -1909,12 +1909,12 @@ class TasksApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfTask
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_tasks_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_tasks_with_http_info_async(as_at, filter, sort_by, limit, page, **kwargs)  # noqa: E501
+            response = await self.list_tasks_with_http_info_async(as_at, filter, sort_by, limit, page, **kwargs)
+            return response.data
 
     @validate_call
     async def list_tasks_with_http_info_async(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfTask]:
@@ -2061,12 +2061,12 @@ class TasksApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Task
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_task_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_task_with_http_info_async(id, trigger, update_task_request, **kwargs)  # noqa: E501
+            response = await self.update_task_with_http_info_async(id, trigger, update_task_request, **kwargs)
+            return response.data
 
     @validate_call
     async def update_task_with_http_info_async(self, id: StrictStr, trigger: Optional[StrictStr] = None, update_task_request: Optional[UpdateTaskRequest] = None, **kwargs) -> ApiResponse[Task]:

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -35,7 +35,7 @@ class IPropertyMapping(BaseModel):
     transformation_description:  Optional[StrictStr] = Field(default=None,alias="transformationDescription") 
     vendor_fields: List[VendorField] = Field(alias="vendorFields")
     versions: List[StrictStr]
-    __properties = ["entitySubType", "entityType", "optionality", "property", "transformationDescription", "vendorFields", "versions"]
+    __properties: ClassVar[List[str]] = ["entitySubType", "entityType", "optionality", "property", "transformationDescription", "vendorFields", "versions"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -106,9 +106,9 @@ class IPropertyMapping(BaseModel):
             "entity_sub_type": obj.get("entitySubType"),
             "entity_type": obj.get("entityType"),
             "optionality": obj.get("optionality"),
-            "var_property": LusidPropertyDefinition.from_dict(obj.get("property")) if obj.get("property") is not None else None,
+            "var_property": LusidPropertyDefinition.from_dict(_v) if (_v := obj.get("property")) is not None else None,
             "transformation_description": obj.get("transformationDescription"),
-            "vendor_fields": [VendorField.from_dict(_item) for _item in obj.get("vendorFields")] if obj.get("vendorFields") is not None else None,
+            "vendor_fields": [VendorField.from_dict(_item) for _item in _v] if (_v := obj.get("vendorFields")) is not None else None,
             "versions": obj.get("versions")
         })
         return _obj

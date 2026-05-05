@@ -73,12 +73,12 @@ class PropertyDefinitionsApi:
         :return: Returns the result object.
         :rtype: PropertyDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_derived_property_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_derived_property_definition_with_http_info(create_derived_property_definition_request, **kwargs)  # noqa: E501
+        response = self.create_derived_property_definition_with_http_info(create_derived_property_definition_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_derived_property_definition_with_http_info(self, create_derived_property_definition_request: CreateDerivedPropertyDefinitionRequest, **kwargs) -> ApiResponse[PropertyDefinition]:
@@ -200,12 +200,12 @@ class PropertyDefinitionsApi:
         :return: Returns the result object.
         :rtype: PropertyDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_property_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_property_definition_with_http_info(create_property_definition_request, **kwargs)  # noqa: E501
+        response = self.create_property_definition_with_http_info(create_property_definition_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_property_definition_with_http_info(self, create_property_definition_request: CreatePropertyDefinitionRequest, **kwargs) -> ApiResponse[PropertyDefinition]:
@@ -319,7 +319,7 @@ class PropertyDefinitionsApi:
         """DeletePropertyDefinition: Delete property definition  # noqa: E501
 
         Delete the definition of the specified property.  # noqa: E501
-        :param domain: The domain of the property to be deleted. (required)
+        :param domain: The domain of the property to be deleted. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee. (required)
         :type domain: str
         :param scope: The scope of the property to be deleted. (required)
         :type scope: str
@@ -331,19 +331,19 @@ class PropertyDefinitionsApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_property_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_property_definition_with_http_info(domain, scope, code, **kwargs)  # noqa: E501
+        response = self.delete_property_definition_with_http_info(domain, scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_property_definition_with_http_info(self, domain: StrictStr, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
         """DeletePropertyDefinition: Delete property definition  # noqa: E501
 
         Delete the definition of the specified property.  # noqa: E501
-        :param domain: The domain of the property to be deleted. (required)
+        :param domain: The domain of the property to be deleted. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee. (required)
         :type domain: str
         :param scope: The scope of the property to be deleted. (required)
         :type scope: str
@@ -455,7 +455,7 @@ class PropertyDefinitionsApi:
         """[EARLY ACCESS] DeletePropertyDefinitionProperties: Delete property definition properties  # noqa: E501
 
         Delete one or more properties from a single property definition. If the properties are time-variant then an effective date time from which the  properties will be deleted must be specified. If the properties are perpetual then it is invalid to specify an effective date time for deletion.  # noqa: E501
-        :param domain: The domain of the property definition to delete properties from. (required)
+        :param domain: The domain of the property definition to delete properties from. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee. (required)
         :type domain: str
         :param scope: The scope of the property definition to delete properties from. (required)
         :type scope: str
@@ -471,19 +471,19 @@ class PropertyDefinitionsApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_property_definition_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_property_definition_properties_with_http_info(domain, scope, code, request_body, effective_at, **kwargs)  # noqa: E501
+        response = self.delete_property_definition_properties_with_http_info(domain, scope, code, request_body, effective_at, **kwargs)
+        return response.data
 
     @validate_call
     def delete_property_definition_properties_with_http_info(self, domain: StrictStr, scope: StrictStr, code: StrictStr, request_body: List[str], effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
         """[EARLY ACCESS] DeletePropertyDefinitionProperties: Delete property definition properties  # noqa: E501
 
         Delete one or more properties from a single property definition. If the properties are time-variant then an effective date time from which the  properties will be deleted must be specified. If the properties are perpetual then it is invalid to specify an effective date time for deletion.  # noqa: E501
-        :param domain: The domain of the property definition to delete properties from. (required)
+        :param domain: The domain of the property definition to delete properties from. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee. (required)
         :type domain: str
         :param scope: The scope of the property definition to delete properties from. (required)
         :type scope: str
@@ -626,12 +626,12 @@ class PropertyDefinitionsApi:
         :return: Returns the result object.
         :rtype: DerivedPropertyComponent
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_derived_formula_explanation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_derived_formula_explanation_with_http_info(derivation_formula_explain_request, as_at, effective_at, **kwargs)  # noqa: E501
+        response = self.get_derived_formula_explanation_with_http_info(derivation_formula_explain_request, as_at, effective_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_derived_formula_explanation_with_http_info(self, derivation_formula_explain_request: DerivationFormulaExplainRequest, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DerivedPropertyComponent]:
@@ -774,12 +774,12 @@ class PropertyDefinitionsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfPropertyDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_multiple_property_definitions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_multiple_property_definitions_with_http_info(property_keys, as_at, filter, effective_at, **kwargs)  # noqa: E501
+        response = self.get_multiple_property_definitions_with_http_info(property_keys, as_at, filter, effective_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_multiple_property_definitions_with_http_info(self, property_keys: List[str], as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfPropertyDefinition]:
@@ -908,7 +908,7 @@ class PropertyDefinitionsApi:
         """GetPropertyDefinition: Get property definition  # noqa: E501
 
         Retrieve the definition of a specified property.  # noqa: E501
-        :param domain: The domain of the specified property. (required)
+        :param domain: The domain of the specified property. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee. (required)
         :type domain: str
         :param scope: The scope of the specified property. (required)
         :type scope: str
@@ -924,19 +924,19 @@ class PropertyDefinitionsApi:
         :return: Returns the result object.
         :rtype: PropertyDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_property_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_property_definition_with_http_info(domain, scope, code, as_at, effective_at, **kwargs)  # noqa: E501
+        response = self.get_property_definition_with_http_info(domain, scope, code, as_at, effective_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_property_definition_with_http_info(self, domain: StrictStr, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PropertyDefinition]:
         """GetPropertyDefinition: Get property definition  # noqa: E501
 
         Retrieve the definition of a specified property.  # noqa: E501
-        :param domain: The domain of the specified property. (required)
+        :param domain: The domain of the specified property. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee. (required)
         :type domain: str
         :param scope: The scope of the specified property. (required)
         :type scope: str
@@ -1063,7 +1063,7 @@ class PropertyDefinitionsApi:
         """[EARLY ACCESS] GetPropertyDefinitionPropertyTimeSeries: Get Property Definition Property Time Series  # noqa: E501
 
         List the complete time series of a property definition property.  # noqa: E501
-        :param domain: The domain of the property definition to which the property is attached (required)
+        :param domain: The domain of the property definition to which the property is attached. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee. (required)
         :type domain: str
         :param scope: The scope of the property definition to which the property is attached (required)
         :type scope: str
@@ -1085,19 +1085,19 @@ class PropertyDefinitionsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfPropertyInterval
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_property_definition_property_time_series_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_property_definition_property_time_series_with_http_info(domain, scope, code, property_key, as_at, filter, page, limit, **kwargs)  # noqa: E501
+        response = self.get_property_definition_property_time_series_with_http_info(domain, scope, code, property_key, as_at, filter, page, limit, **kwargs)
+        return response.data
 
     @validate_call
     def get_property_definition_property_time_series_with_http_info(self, domain: StrictStr, scope: StrictStr, code: StrictStr, property_key: StrictStr, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, **kwargs) -> ApiResponse[ResourceListOfPropertyInterval]:
         """[EARLY ACCESS] GetPropertyDefinitionPropertyTimeSeries: Get Property Definition Property Time Series  # noqa: E501
 
         List the complete time series of a property definition property.  # noqa: E501
-        :param domain: The domain of the property definition to which the property is attached (required)
+        :param domain: The domain of the property definition to which the property is attached. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee. (required)
         :type domain: str
         :param scope: The scope of the property definition to which the property is attached (required)
         :type scope: str
@@ -1262,12 +1262,12 @@ class PropertyDefinitionsApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfPropertyDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_property_definitions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_property_definitions_with_http_info(effective_at, as_at, property_keys, page, limit, filter, sort_by, **kwargs)  # noqa: E501
+        response = self.list_property_definitions_with_http_info(effective_at, as_at, property_keys, page, limit, filter, sort_by, **kwargs)
+        return response.data
 
     @validate_call
     def list_property_definitions_with_http_info(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfPropertyDefinition]:
@@ -1415,7 +1415,7 @@ class PropertyDefinitionsApi:
         """[EARLY ACCESS] UpdateDerivedPropertyDefinition: Update a pre-existing derived property definition  # noqa: E501
 
         This will fail if the property definition does not exist  # noqa: E501
-        :param domain: Domain of the property definition (required)
+        :param domain: Domain of the property definition. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee. (required)
         :type domain: str
         :param scope: Scope of the property definition (required)
         :type scope: str
@@ -1429,19 +1429,19 @@ class PropertyDefinitionsApi:
         :return: Returns the result object.
         :rtype: PropertyDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_derived_property_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_derived_property_definition_with_http_info(domain, scope, code, update_derived_property_definition_request, **kwargs)  # noqa: E501
+        response = self.update_derived_property_definition_with_http_info(domain, scope, code, update_derived_property_definition_request, **kwargs)
+        return response.data
 
     @validate_call
     def update_derived_property_definition_with_http_info(self, domain: StrictStr, scope: StrictStr, code: StrictStr, update_derived_property_definition_request: UpdateDerivedPropertyDefinitionRequest, **kwargs) -> ApiResponse[PropertyDefinition]:
         """[EARLY ACCESS] UpdateDerivedPropertyDefinition: Update a pre-existing derived property definition  # noqa: E501
 
         This will fail if the property definition does not exist  # noqa: E501
-        :param domain: Domain of the property definition (required)
+        :param domain: Domain of the property definition. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee. (required)
         :type domain: str
         :param scope: Scope of the property definition (required)
         :type scope: str
@@ -1566,7 +1566,7 @@ class PropertyDefinitionsApi:
         """UpdatePropertyDefinition: Update property definition  # noqa: E501
 
         Update the definition of a specified existing property. Not all elements within a property definition  are modifiable due to the potential implications for values already stored against the property.  # noqa: E501
-        :param domain: The domain of the property being updated. (required)
+        :param domain: The domain of the property being updated. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee. (required)
         :type domain: str
         :param scope: The scope of the property being updated. (required)
         :type scope: str
@@ -1580,19 +1580,19 @@ class PropertyDefinitionsApi:
         :return: Returns the result object.
         :rtype: PropertyDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_property_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_property_definition_with_http_info(domain, scope, code, update_property_definition_request, **kwargs)  # noqa: E501
+        response = self.update_property_definition_with_http_info(domain, scope, code, update_property_definition_request, **kwargs)
+        return response.data
 
     @validate_call
     def update_property_definition_with_http_info(self, domain: StrictStr, scope: StrictStr, code: StrictStr, update_property_definition_request: UpdatePropertyDefinitionRequest, **kwargs) -> ApiResponse[PropertyDefinition]:
         """UpdatePropertyDefinition: Update property definition  # noqa: E501
 
         Update the definition of a specified existing property. Not all elements within a property definition  are modifiable due to the potential implications for values already stored against the property.  # noqa: E501
-        :param domain: The domain of the property being updated. (required)
+        :param domain: The domain of the property being updated. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee. (required)
         :type domain: str
         :param scope: The scope of the property being updated. (required)
         :type scope: str
@@ -1717,7 +1717,7 @@ class PropertyDefinitionsApi:
         """UpsertPropertyDefinitionProperties: Upsert properties to a property definition  # noqa: E501
 
         Create or update properties for a particular property definition  # noqa: E501
-        :param domain: The domain of the specified property. (required)
+        :param domain: The domain of the specified property. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee. (required)
         :type domain: str
         :param scope: The scope of the specified property. (required)
         :type scope: str
@@ -1733,19 +1733,19 @@ class PropertyDefinitionsApi:
         :return: Returns the result object.
         :rtype: BatchUpsertPropertyDefinitionPropertiesResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_property_definition_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_property_definition_properties_with_http_info(domain, scope, code, request_body, success_mode, **kwargs)  # noqa: E501
+        response = self.upsert_property_definition_properties_with_http_info(domain, scope, code, request_body, success_mode, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_property_definition_properties_with_http_info(self, domain: StrictStr, scope: StrictStr, code: StrictStr, request_body: Dict[str, ModelProperty], success_mode: Optional[StrictStr] = None, **kwargs) -> ApiResponse[BatchUpsertPropertyDefinitionPropertiesResponse]:
         """UpsertPropertyDefinitionProperties: Upsert properties to a property definition  # noqa: E501
 
         Create or update properties for a particular property definition  # noqa: E501
-        :param domain: The domain of the specified property. (required)
+        :param domain: The domain of the specified property. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee. (required)
         :type domain: str
         :param scope: The scope of the specified property. (required)
         :type scope: str
@@ -1888,12 +1888,12 @@ class PropertyDefinitionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PropertyDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_derived_property_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_derived_property_definition_with_http_info_async(create_derived_property_definition_request, **kwargs)  # noqa: E501
+            response = await self.create_derived_property_definition_with_http_info_async(create_derived_property_definition_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_derived_property_definition_with_http_info_async(self, create_derived_property_definition_request: CreateDerivedPropertyDefinitionRequest, **kwargs) -> ApiResponse[PropertyDefinition]:
@@ -2016,12 +2016,12 @@ class PropertyDefinitionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PropertyDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_property_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_property_definition_with_http_info_async(create_property_definition_request, **kwargs)  # noqa: E501
+            response = await self.create_property_definition_with_http_info_async(create_property_definition_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_property_definition_with_http_info_async(self, create_property_definition_request: CreatePropertyDefinitionRequest, **kwargs) -> ApiResponse[PropertyDefinition]:
@@ -2136,7 +2136,7 @@ class PropertyDefinitionsApi:
             """DeletePropertyDefinition: Delete property definition  # noqa: E501
             Delete the definition of the specified property.  # noqa: E501
             
-            :param domain: The domain of the property to be deleted. (required)
+            :param domain: The domain of the property to be deleted. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee. (required)
             :type domain: str
             :param scope: The scope of the property to be deleted. (required)
             :type scope: str
@@ -2148,12 +2148,12 @@ class PropertyDefinitionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_property_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_property_definition_with_http_info_async(domain, scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_property_definition_with_http_info_async(domain, scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_property_definition_with_http_info_async(self, domain: StrictStr, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -2161,7 +2161,7 @@ class PropertyDefinitionsApi:
 
             Delete the definition of the specified property.  # noqa: E501
 
-            :param domain: The domain of the property to be deleted. (required)
+            :param domain: The domain of the property to be deleted. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee. (required)
             :type domain: str
             :param scope: The scope of the property to be deleted. (required)
             :type scope: str
@@ -2273,7 +2273,7 @@ class PropertyDefinitionsApi:
             """[EARLY ACCESS] DeletePropertyDefinitionProperties: Delete property definition properties  # noqa: E501
             Delete one or more properties from a single property definition. If the properties are time-variant then an effective date time from which the  properties will be deleted must be specified. If the properties are perpetual then it is invalid to specify an effective date time for deletion.  # noqa: E501
             
-            :param domain: The domain of the property definition to delete properties from. (required)
+            :param domain: The domain of the property definition to delete properties from. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee. (required)
             :type domain: str
             :param scope: The scope of the property definition to delete properties from. (required)
             :type scope: str
@@ -2289,12 +2289,12 @@ class PropertyDefinitionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_property_definition_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_property_definition_properties_with_http_info_async(domain, scope, code, request_body, effective_at, **kwargs)  # noqa: E501
+            response = await self.delete_property_definition_properties_with_http_info_async(domain, scope, code, request_body, effective_at, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_property_definition_properties_with_http_info_async(self, domain: StrictStr, scope: StrictStr, code: StrictStr, request_body: List[str], effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -2302,7 +2302,7 @@ class PropertyDefinitionsApi:
 
             Delete one or more properties from a single property definition. If the properties are time-variant then an effective date time from which the  properties will be deleted must be specified. If the properties are perpetual then it is invalid to specify an effective date time for deletion.  # noqa: E501
 
-            :param domain: The domain of the property definition to delete properties from. (required)
+            :param domain: The domain of the property definition to delete properties from. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee. (required)
             :type domain: str
             :param scope: The scope of the property definition to delete properties from. (required)
             :type scope: str
@@ -2445,12 +2445,12 @@ class PropertyDefinitionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DerivedPropertyComponent
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_derived_formula_explanation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_derived_formula_explanation_with_http_info_async(derivation_formula_explain_request, as_at, effective_at, **kwargs)  # noqa: E501
+            response = await self.get_derived_formula_explanation_with_http_info_async(derivation_formula_explain_request, as_at, effective_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_derived_formula_explanation_with_http_info_async(self, derivation_formula_explain_request: DerivationFormulaExplainRequest, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DerivedPropertyComponent]:
@@ -2594,12 +2594,12 @@ class PropertyDefinitionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfPropertyDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_multiple_property_definitions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_multiple_property_definitions_with_http_info_async(property_keys, as_at, filter, effective_at, **kwargs)  # noqa: E501
+            response = await self.get_multiple_property_definitions_with_http_info_async(property_keys, as_at, filter, effective_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_multiple_property_definitions_with_http_info_async(self, property_keys: List[str], as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfPropertyDefinition]:
@@ -2729,7 +2729,7 @@ class PropertyDefinitionsApi:
             """GetPropertyDefinition: Get property definition  # noqa: E501
             Retrieve the definition of a specified property.  # noqa: E501
             
-            :param domain: The domain of the specified property. (required)
+            :param domain: The domain of the specified property. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee. (required)
             :type domain: str
             :param scope: The scope of the specified property. (required)
             :type scope: str
@@ -2745,12 +2745,12 @@ class PropertyDefinitionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PropertyDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_property_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_property_definition_with_http_info_async(domain, scope, code, as_at, effective_at, **kwargs)  # noqa: E501
+            response = await self.get_property_definition_with_http_info_async(domain, scope, code, as_at, effective_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_property_definition_with_http_info_async(self, domain: StrictStr, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PropertyDefinition]:
@@ -2758,7 +2758,7 @@ class PropertyDefinitionsApi:
 
             Retrieve the definition of a specified property.  # noqa: E501
 
-            :param domain: The domain of the specified property. (required)
+            :param domain: The domain of the specified property. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee. (required)
             :type domain: str
             :param scope: The scope of the specified property. (required)
             :type scope: str
@@ -2885,7 +2885,7 @@ class PropertyDefinitionsApi:
             """[EARLY ACCESS] GetPropertyDefinitionPropertyTimeSeries: Get Property Definition Property Time Series  # noqa: E501
             List the complete time series of a property definition property.  # noqa: E501
             
-            :param domain: The domain of the property definition to which the property is attached (required)
+            :param domain: The domain of the property definition to which the property is attached. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee. (required)
             :type domain: str
             :param scope: The scope of the property definition to which the property is attached (required)
             :type scope: str
@@ -2907,12 +2907,12 @@ class PropertyDefinitionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfPropertyInterval
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_property_definition_property_time_series_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_property_definition_property_time_series_with_http_info_async(domain, scope, code, property_key, as_at, filter, page, limit, **kwargs)  # noqa: E501
+            response = await self.get_property_definition_property_time_series_with_http_info_async(domain, scope, code, property_key, as_at, filter, page, limit, **kwargs)
+            return response.data
 
     @validate_call
     async def get_property_definition_property_time_series_with_http_info_async(self, domain: StrictStr, scope: StrictStr, code: StrictStr, property_key: StrictStr, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, **kwargs) -> ApiResponse[ResourceListOfPropertyInterval]:
@@ -2920,7 +2920,7 @@ class PropertyDefinitionsApi:
 
             List the complete time series of a property definition property.  # noqa: E501
 
-            :param domain: The domain of the property definition to which the property is attached (required)
+            :param domain: The domain of the property definition to which the property is attached. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee. (required)
             :type domain: str
             :param scope: The scope of the property definition to which the property is attached (required)
             :type scope: str
@@ -3085,12 +3085,12 @@ class PropertyDefinitionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfPropertyDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_property_definitions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_property_definitions_with_http_info_async(effective_at, as_at, property_keys, page, limit, filter, sort_by, **kwargs)  # noqa: E501
+            response = await self.list_property_definitions_with_http_info_async(effective_at, as_at, property_keys, page, limit, filter, sort_by, **kwargs)
+            return response.data
 
     @validate_call
     async def list_property_definitions_with_http_info_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfPropertyDefinition]:
@@ -3239,7 +3239,7 @@ class PropertyDefinitionsApi:
             """[EARLY ACCESS] UpdateDerivedPropertyDefinition: Update a pre-existing derived property definition  # noqa: E501
             This will fail if the property definition does not exist  # noqa: E501
             
-            :param domain: Domain of the property definition (required)
+            :param domain: Domain of the property definition. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee. (required)
             :type domain: str
             :param scope: Scope of the property definition (required)
             :type scope: str
@@ -3253,12 +3253,12 @@ class PropertyDefinitionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PropertyDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_derived_property_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_derived_property_definition_with_http_info_async(domain, scope, code, update_derived_property_definition_request, **kwargs)  # noqa: E501
+            response = await self.update_derived_property_definition_with_http_info_async(domain, scope, code, update_derived_property_definition_request, **kwargs)
+            return response.data
 
     @validate_call
     async def update_derived_property_definition_with_http_info_async(self, domain: StrictStr, scope: StrictStr, code: StrictStr, update_derived_property_definition_request: UpdateDerivedPropertyDefinitionRequest, **kwargs) -> ApiResponse[PropertyDefinition]:
@@ -3266,7 +3266,7 @@ class PropertyDefinitionsApi:
 
             This will fail if the property definition does not exist  # noqa: E501
 
-            :param domain: Domain of the property definition (required)
+            :param domain: Domain of the property definition. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee. (required)
             :type domain: str
             :param scope: Scope of the property definition (required)
             :type scope: str
@@ -3391,7 +3391,7 @@ class PropertyDefinitionsApi:
             """UpdatePropertyDefinition: Update property definition  # noqa: E501
             Update the definition of a specified existing property. Not all elements within a property definition  are modifiable due to the potential implications for values already stored against the property.  # noqa: E501
             
-            :param domain: The domain of the property being updated. (required)
+            :param domain: The domain of the property being updated. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee. (required)
             :type domain: str
             :param scope: The scope of the property being updated. (required)
             :type scope: str
@@ -3405,12 +3405,12 @@ class PropertyDefinitionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PropertyDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_property_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_property_definition_with_http_info_async(domain, scope, code, update_property_definition_request, **kwargs)  # noqa: E501
+            response = await self.update_property_definition_with_http_info_async(domain, scope, code, update_property_definition_request, **kwargs)
+            return response.data
 
     @validate_call
     async def update_property_definition_with_http_info_async(self, domain: StrictStr, scope: StrictStr, code: StrictStr, update_property_definition_request: UpdatePropertyDefinitionRequest, **kwargs) -> ApiResponse[PropertyDefinition]:
@@ -3418,7 +3418,7 @@ class PropertyDefinitionsApi:
 
             Update the definition of a specified existing property. Not all elements within a property definition  are modifiable due to the potential implications for values already stored against the property.  # noqa: E501
 
-            :param domain: The domain of the property being updated. (required)
+            :param domain: The domain of the property being updated. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee. (required)
             :type domain: str
             :param scope: The scope of the property being updated. (required)
             :type scope: str
@@ -3543,7 +3543,7 @@ class PropertyDefinitionsApi:
             """UpsertPropertyDefinitionProperties: Upsert properties to a property definition  # noqa: E501
             Create or update properties for a particular property definition  # noqa: E501
             
-            :param domain: The domain of the specified property. (required)
+            :param domain: The domain of the specified property. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee. (required)
             :type domain: str
             :param scope: The scope of the specified property. (required)
             :type scope: str
@@ -3559,12 +3559,12 @@ class PropertyDefinitionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: BatchUpsertPropertyDefinitionPropertiesResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_property_definition_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_property_definition_properties_with_http_info_async(domain, scope, code, request_body, success_mode, **kwargs)  # noqa: E501
+            response = await self.upsert_property_definition_properties_with_http_info_async(domain, scope, code, request_body, success_mode, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_property_definition_properties_with_http_info_async(self, domain: StrictStr, scope: StrictStr, code: StrictStr, request_body: Dict[str, ModelProperty], success_mode: Optional[StrictStr] = None, **kwargs) -> ApiResponse[BatchUpsertPropertyDefinitionPropertiesResponse]:
@@ -3572,7 +3572,7 @@ class PropertyDefinitionsApi:
 
             Create or update properties for a particular property definition  # noqa: E501
 
-            :param domain: The domain of the specified property. (required)
+            :param domain: The domain of the specified property. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee. (required)
             :type domain: str
             :param scope: The scope of the specified property. (required)
             :type scope: str

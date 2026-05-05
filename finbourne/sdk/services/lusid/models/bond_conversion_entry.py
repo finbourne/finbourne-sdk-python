@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class BondConversionEntry(BaseModel):
     denomination: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The number of shares to be issued on conversion will be equal to the denomination of the  bond divided by the conversion price.  Two (and only two) entries out of (Price, Ratio, Denomination) must be provided.  So, to allow one entry out of the three to not be provided, we make all the three  nullable defaulting to zero and during validation we check if there is exactly one  of the three equal to zero.")
     price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The conversion price  Two (and only two) entries out of (Price, Ratio, Denomination) must be provided.  So, to allow one entry out of the three to not be provided, we make all the three  nullable defaulting to zero and during validation we check if there is exactly one  of the three equal to zero.")
     ratio: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The number of common shares received at the time of conversion for each convertible bond  Two (and only two) entries out of (Price, Ratio, Denomination) must be provided.  So, to allow one entry out of the three to not be provided, we make all the three  nullable defaulting to zero and during validation we check if there is exactly one  of the three equal to zero.")
-    __properties = ["date", "denomination", "price", "ratio"]
+    __properties: ClassVar[List[str]] = ["date", "denomination", "price", "ratio"]
 
     model_config = ConfigDict(
         populate_by_name=True,

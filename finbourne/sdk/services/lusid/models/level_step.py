@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class LevelStep(BaseModel):
     """
     var_date: datetime = Field(description="The date from which the level should apply.", alias="date")
     quantity: Union[StrictFloat, StrictInt] = Field(description="The quantity which is applied. This might be an absolute, percentage, fractional or other value.")
-    __properties = ["date", "quantity"]
+    __properties: ClassVar[List[str]] = ["date", "quantity"]
 
     model_config = ConfigDict(
         populate_by_name=True,

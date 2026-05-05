@@ -12,13 +12,13 @@ An instrument event equipped with additional metadata.
 | **instrument_scope** | **str** | Required | The scope of the instrument. |
 | **description** | **str** | Required | The description of the instrument event. |
 | **event_date_range** | [EventDateRange](EventDateRange.md) | Required | *No description available.* |
-| **completeness** | **str** | Optional | Is the event Economically Complete, or is it missing some DataDependent fields (Incomplete). *(read-only)* |
+| **completeness** | **str** | Optional | Is the event Economically Complete, or is it missing some DataDependent fields (Incomplete). Available values: Complete, Incomplete. *(read-only)* |
 | **instrument_event** | [InstrumentEvent](InstrumentEvent.md) | Required | *No description available.* |
 | **properties** | [List[PerpetualProperty]](PerpetualProperty.md) | Optional | The properties attached to this instrument event. |
 | **sequence_number** | **int** | Optional | The order of the instrument event relative others on the same date (0 being processed first). Must be non negative. |
-| **participation_type** | **str** | Optional | Is participation in this event Mandatory, MandatoryWithChoices, or Voluntary. Default: `'Mandatory'` |
+| **participation_type** | **str** | Optional | Indicates the type of participation in this event. Default value: Mandatory. Available values: Mandatory, MandatoryWithChoices, Voluntary. Default: `'Mandatory'` |
 | **as_at** | **datetime** | Optional | The AsAt time of the instrument event, if available. This is a readonly field and should not be provided on upsert. *(read-only)* |
-| **group_code** | **str** | Optional | The group code that determines the processing order of instrument events with the same effective datetime. |
+| **group_code** | **str** | Optional | The group code that determines the processing order of instrument events with the same effective datetime. Available values: Tier1, Tier2, Tier3, Legacy. |
 
 
 ## Usage
@@ -36,13 +36,13 @@ instance = InstrumentEventHolder(
     instrument_scope="...",  # required — The scope of the instrument.
     description="...",  # required — The description of the instrument event.
     event_date_range=EventDateRange(...),  # required
-    completeness="...",  # optional — Is the event Economically Complete, or is it missing some DataDependent fields (Incomplete).
+    completeness="...",  # optional — Is the event Economically Complete, or is it missing some DataDependent fields (Incomplete). Available values: Complete, Incomplete.
     instrument_event=InstrumentEvent(...),  # required
     properties=[],  # optional — The properties attached to this instrument event.
     sequence_number=0,  # optional — The order of the instrument event relative others on the same date (0 being processed first). Must be non negative.
-    participation_type="...",  # optional — Is participation in this event Mandatory, MandatoryWithChoices, or Voluntary.
+    participation_type="...",  # optional — Indicates the type of participation in this event. Default value: Mandatory. Available values: Mandatory, MandatoryWithChoices, Voluntary.
     as_at=datetime.now(),  # optional — The AsAt time of the instrument event, if available. This is a readonly field and should not be provided on upsert.
-    group_code="..."  # optional — The group code that determines the processing order of instrument events with the same effective datetime.
+    group_code="..."  # optional — The group code that determines the processing order of instrument events with the same effective datetime. Available values: Tier1, Tier2, Tier3, Legacy.
 )
 ```
 

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,14 +29,14 @@ class OrderGraphBlockOrderDetail(BaseModel):
     OrderGraphBlockOrderDetail
     """
     id: ResourceId
-    compliance_state:  StrictStr = Field(...,alias="complianceState", description="The compliance state of this order. Possible values are 'Pending', 'Failed', 'Manually approved', 'Passed' and 'Warning'.") 
-    approval_state:  StrictStr = Field(...,alias="approvalState", description="The approval state of this order. Possible values are 'Pending', 'Rejected' and 'Approved'.") 
+    compliance_state:  StrictStr = Field(...,alias="complianceState", description="The compliance state of this order. Available values: Pending, Failed, Passed, ManuallyApproved, PartiallyOverridden, Warning.") 
+    approval_state:  StrictStr = Field(...,alias="approvalState", description="The approval state of this order. Available values: Pending, Rejected, Approved.") 
     portfolio_id: Optional[ResourceId] = Field(default=None, alias="portfolioId")
     portfolio_name:  Optional[StrictStr] = Field(default=None,alias="portfolioName", description="The name of the order's referenced Portfolio.") 
     order_approval_task_id:  Optional[StrictStr] = Field(default=None,alias="orderApprovalTaskId", description="The task id associated with the approval state of the order.") 
     order_approval_task_definition_id: Optional[ResourceId] = Field(default=None, alias="orderApprovalTaskDefinitionId")
     non_passing_compliance_rule_results: Optional[List[ContributionToNonPassingRuleDetail]] = Field(default=None, description="The details of compliance rules in non-passing states.", alias="nonPassingComplianceRuleResults")
-    __properties = ["id", "complianceState", "approvalState", "portfolioId", "portfolioName", "orderApprovalTaskId", "orderApprovalTaskDefinitionId", "nonPassingComplianceRuleResults"]
+    __properties: ClassVar[List[str]] = ["id", "complianceState", "approvalState", "portfolioId", "portfolioName", "orderApprovalTaskId", "orderApprovalTaskDefinitionId", "nonPassingComplianceRuleResults"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -115,14 +115,14 @@ class OrderGraphBlockOrderDetail(BaseModel):
             return OrderGraphBlockOrderDetail.model_validate(obj)
 
         _obj = OrderGraphBlockOrderDetail.model_validate({
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
             "compliance_state": obj.get("complianceState"),
             "approval_state": obj.get("approvalState"),
-            "portfolio_id": ResourceId.from_dict(obj.get("portfolioId")) if obj.get("portfolioId") is not None else None,
+            "portfolio_id": ResourceId.from_dict(_v) if (_v := obj.get("portfolioId")) is not None else None,
             "portfolio_name": obj.get("portfolioName"),
             "order_approval_task_id": obj.get("orderApprovalTaskId"),
-            "order_approval_task_definition_id": ResourceId.from_dict(obj.get("orderApprovalTaskDefinitionId")) if obj.get("orderApprovalTaskDefinitionId") is not None else None,
-            "non_passing_compliance_rule_results": [ContributionToNonPassingRuleDetail.from_dict(_item) for _item in obj.get("nonPassingComplianceRuleResults")] if obj.get("nonPassingComplianceRuleResults") is not None else None
+            "order_approval_task_definition_id": ResourceId.from_dict(_v) if (_v := obj.get("orderApprovalTaskDefinitionId")) is not None else None,
+            "non_passing_compliance_rule_results": [ContributionToNonPassingRuleDetail.from_dict(_item) for _item in _v] if (_v := obj.get("nonPassingComplianceRuleResults")) is not None else None
         })
         return _obj
 

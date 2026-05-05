@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class MetricValue(BaseModel):
     """
     value: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The numerical value of the property.")
     unit:  Optional[StrictStr] = Field(default=None,alias="unit") 
-    __properties = ["value", "unit"]
+    __properties: ClassVar[List[str]] = ["value", "unit"]
 
     model_config = ConfigDict(
         populate_by_name=True,

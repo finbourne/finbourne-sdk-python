@@ -7,11 +7,11 @@ Returns entity, used for configuring the calculation of aggregated returns.
 |------|------|----------|-------------|
 | **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **recipe_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
-| **recipe_entity** | **str** | Optional | Entity a recipe is retrieved from for use in the aggregated returns calculation. Either RecipeId or RecipeEntity must be specified. |
-| **fee_handling** | **str** | Optional | Configures how fees are handled in the aggregated returns calculation. |
-| **flow_handling** | **str** | Optional | Configures how flows are handled in the aggregated returns calculation. |
+| **recipe_entity** | **str** | Optional | Entity a recipe is retrieved from for use in the aggregated returns calculation. Either RecipeId or RecipeEntity must be specified. Available values: Portfolio, PortfolioGroup, ABOR. |
+| **fee_handling** | **str** | Optional | Configures how fees are handled in the aggregated returns calculation. Available values: Net, Gross. |
+| **flow_handling** | **str** | Optional | Configures how flows are handled in the aggregated returns calculation. Available values: BeginningOfDay, EndOfDay. |
 | **business_calendar** | **str** | Optional | Calendar used in the aggregated returns calculation. |
-| **handle_flow_discrepancy** | **str** | Optional | Configures handling for the case where net flows do not match the sum of tagged flows. |
+| **handle_flow_discrepancy** | **str** | Optional | Configures handling for the case where net flows do not match the sum of tagged flows. Available values: TreatAsFlow, TreatAsGainloss, Error. |
 
 
 ## Usage
@@ -24,11 +24,11 @@ from finbourne.sdk.services.lusid.models.ReturnsEntity import ReturnsEntity
 instance = ReturnsEntity(
     id=ResourceId(...),  # required
     recipe_id=ResourceId(...),  # optional
-    recipe_entity="...",  # optional — Entity a recipe is retrieved from for use in the aggregated returns calculation. Either RecipeId or RecipeEntity must be specified.
-    fee_handling="...",  # optional — Configures how fees are handled in the aggregated returns calculation.
-    flow_handling="...",  # optional — Configures how flows are handled in the aggregated returns calculation.
+    recipe_entity="...",  # optional — Entity a recipe is retrieved from for use in the aggregated returns calculation. Either RecipeId or RecipeEntity must be specified. Available values: Portfolio, PortfolioGroup, ABOR.
+    fee_handling="...",  # optional — Configures how fees are handled in the aggregated returns calculation. Available values: Net, Gross.
+    flow_handling="...",  # optional — Configures how flows are handled in the aggregated returns calculation. Available values: BeginningOfDay, EndOfDay.
     business_calendar="...",  # optional — Calendar used in the aggregated returns calculation.
-    handle_flow_discrepancy="..."  # optional — Configures handling for the case where net flows do not match the sum of tagged flows.
+    handle_flow_discrepancy="..."  # optional — Configures handling for the case where net flows do not match the sum of tagged flows. Available values: TreatAsFlow, TreatAsGainloss, Error.
 )
 ```
 

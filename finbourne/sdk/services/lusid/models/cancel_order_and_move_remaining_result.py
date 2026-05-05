@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class CancelOrderAndMoveRemainingResult(BaseModel):
     cancelled_order: Optional[Order] = Field(default=None, alias="cancelledOrder")
     new_order: Optional[Order] = Field(default=None, alias="newOrder")
     new_block_id: Optional[ResourceId] = Field(default=None, alias="newBlockId")
-    __properties = ["cancelledOrder", "newOrder", "newBlockId"]
+    __properties: ClassVar[List[str]] = ["cancelledOrder", "newOrder", "newBlockId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,9 +88,9 @@ class CancelOrderAndMoveRemainingResult(BaseModel):
             return CancelOrderAndMoveRemainingResult.model_validate(obj)
 
         _obj = CancelOrderAndMoveRemainingResult.model_validate({
-            "cancelled_order": Order.from_dict(obj.get("cancelledOrder")) if obj.get("cancelledOrder") is not None else None,
-            "new_order": Order.from_dict(obj.get("newOrder")) if obj.get("newOrder") is not None else None,
-            "new_block_id": ResourceId.from_dict(obj.get("newBlockId")) if obj.get("newBlockId") is not None else None
+            "cancelled_order": Order.from_dict(_v) if (_v := obj.get("cancelledOrder")) is not None else None,
+            "new_order": Order.from_dict(_v) if (_v := obj.get("newOrder")) is not None else None,
+            "new_block_id": ResourceId.from_dict(_v) if (_v := obj.get("newBlockId")) is not None else None
         })
         return _obj
 

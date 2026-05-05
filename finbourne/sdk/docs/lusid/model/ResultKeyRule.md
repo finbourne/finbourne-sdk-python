@@ -5,7 +5,7 @@ Base class for representing result key rules in LUSID, which describe how to res
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **result_key_rule_type** | **str** | Required | The available values are: Invalid, ResultDataKeyRule, PortfolioResultDataKeyRule |
+| **result_key_rule_type** | **str** | Required | Available values: Invalid, ResultDataKeyRule, PortfolioResultDataKeyRule. |
 
 
 ## Usage
@@ -16,7 +16,7 @@ Base class for representing result key rules in LUSID, which describe how to res
 from finbourne.sdk.services.lusid.models.ResultKeyRule import ResultKeyRule
 
 instance = ResultKeyRule(
-    result_key_rule_type="..."  # required — The available values are: Invalid, ResultDataKeyRule, PortfolioResultDataKeyRule
+    result_key_rule_type="..."  # required — Available values: Invalid, ResultDataKeyRule, PortfolioResultDataKeyRule.
 )
 ```
 

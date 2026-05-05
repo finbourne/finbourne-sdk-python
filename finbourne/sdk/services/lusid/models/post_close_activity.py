@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class PostCloseActivity(BaseModel):
     entity_unique_id:  StrictStr = Field(...,alias="entityUniqueId", description="The entity unique ID. The expected format for each entity is: | entityType                       | entityUniqueId                                    | |----------------------------------|---------------------------------------------------| | `PortfolioTransaction`           | `portfolioUniqueId_transactionId`                 | | `Instrument`                     | `instrumentUniqueId`                              | | `InstrumentEvent`                | `corporateActionSourceUniqueId_instrumentEventId` | | `InstrumentEventInstruction`     | `portfolioUniqueId_instructionId`                 | | `PortfolioSettlementInstruction` | `portfolioUniqueId_settlementInstructionId`       | | `Quote`                          | `quoteSeriesUniqueId_quoteSeriesInstrumentId`     |") 
     as_at: datetime = Field(description="The `AsAt` time of the event that needs to be added to the closed period.", alias="asAt")
     effective_at:  Optional[StrictStr] = Field(default=None,alias="effectiveAt", description="The `EffectiveAt` time of the event that need to be added to the closed period. This can be a date or cut label. Only applicable for `Quote` post-close activities.") 
-    __properties = ["entityType", "entityUniqueId", "asAt", "effectiveAt"]
+    __properties: ClassVar[List[str]] = ["entityType", "entityUniqueId", "asAt", "effectiveAt"]
 
     model_config = ConfigDict(
         populate_by_name=True,

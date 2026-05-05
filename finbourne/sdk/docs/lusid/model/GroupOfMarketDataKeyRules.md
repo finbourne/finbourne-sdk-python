@@ -5,7 +5,7 @@ Represents a collection of MarketDataKeyRules that should be resolved together w
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **market_data_key_rule_group_operation** | **str** | Required | The operation that will be used to process the collection of market data items and failures found on resolution  into a single market data item or failure to be used.  Supported values: [FirstLatest, AverageOfQuotesFound, AverageOfAllQuotes, FirstMinimum, FirstMaximum] |
+| **market_data_key_rule_group_operation** | **str** | Required | The operation that will be used to process the collection of market data items and failures found on resolution  into a single market data item or failure to be used. Available values: FirstLatest, AverageOfQuotesFound, AverageOfAllQuotes, FirstMinimum, FirstMaximum. |
 | **market_rules** | [List[MarketDataKeyRule]](MarketDataKeyRule.md) | Required | The rules that should be grouped together in market data resolution. |
 
 
@@ -17,7 +17,7 @@ Represents a collection of MarketDataKeyRules that should be resolved together w
 from finbourne.sdk.services.lusid.models.GroupOfMarketDataKeyRules import GroupOfMarketDataKeyRules
 
 instance = GroupOfMarketDataKeyRules(
-    market_data_key_rule_group_operation="...",  # required — The operation that will be used to process the collection of market data items and failures found on resolution  into a single market data item or failure to be used.  Supported values: [FirstLatest, AverageOfQuotesFound, AverageOfAllQuotes, FirstMinimum, FirstMaximum]
+    market_data_key_rule_group_operation="...",  # required — The operation that will be used to process the collection of market data items and failures found on resolution  into a single market data item or failure to be used. Available values: FirstLatest, AverageOfQuotesFound, AverageOfAllQuotes, FirstMinimum, FirstMaximum.
     market_rules=[]  # required — The rules that should be grouped together in market data resolution.
 )
 ```

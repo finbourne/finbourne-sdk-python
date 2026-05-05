@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,9 +33,9 @@ class FlexibleRepo(LusidInstrument):
     """
     start_date: datetime = Field(description="The start date of the instrument. This is normally synonymous with the trade-date.", alias="startDate")
     maturity_date: Optional[datetime] = Field(default=None, description="The maturity date of the instrument. This is the date at which the repurchase will occur for a TermRepo.  Optional for OpenRepo, but if not provided, defaults to the StartDate plus a long period (e.g. 2099-12-31).", alias="maturityDate")
-    buyer_or_seller:  StrictStr = Field(...,alias="buyerOrSeller", description="Is the user the Buyer or the Seller of this repo?  Every repo agreement has two sides, a buyer and a seller.  The Buyer pays the PurchasePrice to the Seller in exchange for legal ownership of the collateral.  At Maturity, the Buyer then receives the RepurchasePrice in exchange for returning legal ownership of the collateral.  Controls the direction of purchase and repurchase cashflows, as well as the recipient of cashflows from the collateral.    Supported string (enumeration) values are: [Buyer, Seller].") 
+    buyer_or_seller:  StrictStr = Field(...,alias="buyerOrSeller", description="Is the user the Buyer or the Seller of this repo?  Every repo agreement has two sides, a buyer and a seller.  The Buyer pays the PurchasePrice to the Seller in exchange for legal ownership of the collateral.  At Maturity, the Buyer then receives the RepurchasePrice in exchange for returning legal ownership of the collateral.  Controls the direction of purchase and repurchase cashflows, as well as the recipient of cashflows from the collateral. Available values: Buyer, Seller.") 
     repo_ccy:  StrictStr = Field(...,alias="repoCcy", description="Currency of the purchase and repurchase prices. May differ from the currencies on any collateral.") 
-    repo_type:  StrictStr = Field(...,alias="repoType", description="The type of the repurchase agreement, Open or Term.  If Term, the repurchase automatically takes place at Maturity.  If Open, the agreement is rolled by the given tenor, and an interest cashflow is paid out with each roll,  unless manually triggered by a FlexibleRepoFullClosureEvent.    Supported string (enumeration) values are: [OpenRepo, TermRepo].") 
+    repo_type:  StrictStr = Field(...,alias="repoType", description="The type of the repurchase agreement, Open or Term.  If Term, the repurchase automatically takes place at Maturity.  If Open, the agreement is rolled by the given tenor, and an interest cashflow is paid out with each roll,  unless manually triggered by a FlexibleRepoFullClosureEvent. Available values: OpenRepo, TermRepo.") 
     accrual_basis:  Optional[StrictStr] = Field(default=None,alias="accrualBasis", description="For calculation of interest, the accrual day count to be used.  Required if no RepoRateSchedules are provided.  If both RepoRateSchedules and AccrualBasis are provided,  then AccrualBasis will take precedence.    Supported string (enumeration) values are: [Actual360, Act360, MoneyMarket, Actual365, Act365, Thirty360, ThirtyU360, Bond, ThirtyE360, EuroBond, ActualActual, ActAct, ActActIsda, ActActIsma, ActActIcma, OneOne, Act364, Act365F, Act365L, Act365_25, Act252, Bus252, NL360, NL365, ActActAFB, Act365Cad, ThirtyActIsda, Thirty365Isda, ThirtyEActIsda, ThirtyE360Isda, ThirtyE365Isda, ThirtyU360EOM].") 
     collateral: Optional[Collateral] = None
     haircut: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Haircut on the value of the collateral, used to calculate PurchasePrice if not provided directly.  Haircut or Margin should be specified if PurchasePrice is not specified.")
@@ -47,9 +47,9 @@ class FlexibleRepo(LusidInstrument):
     time_zone_conventions: Optional[TimeZoneConventions] = Field(default=None, alias="timeZoneConventions")
     trading_conventions: Optional[TradingConventions] = Field(default=None, alias="tradingConventions")
     is_collateral_transfer_activated: Optional[StrictBool] = Field(default=None, description="Indicates whether the FlexibleRepoCollateralTransfer event is activated.  Determines the behavior of manufactured coupons and related boolean parameters.  Defaults to false.  When true:  - Generates the FlexibleRepoCollateralTransfer event  - Processes collateral transfer transactions into holding changes  - Generates manufactured payments when due to be paid                When false:  - Does not generate the event  - Generates manufactured payments when due to be received", alias="isCollateralTransferActivated")
-    instrument_type:  StrictStr = Field(...,alias="instrumentType", description="The available values are: QuotedSecurity, InterestRateSwap, FxForward, Future, ExoticInstrument, FxOption, CreditDefaultSwap, InterestRateSwaption, Bond, EquityOption, FixedLeg, FloatingLeg, BespokeCashFlowsLeg, Unknown, TermDeposit, ContractForDifference, EquitySwap, CashPerpetual, CapFloor, CashSettled, CdsIndex, Basket, FundingLeg, FxSwap, ForwardRateAgreement, SimpleInstrument, Repo, Equity, ExchangeTradedOption, ReferenceInstrument, ComplexBond, InflationLinkedBond, InflationSwap, SimpleCashFlowLoan, TotalReturnSwap, InflationLeg, FundShareClass, FlexibleLoan, UnsettledCash, Cash, MasteredInstrument, LoanFacility, FlexibleDeposit, FlexibleRepo") 
+    instrument_type:  StrictStr = Field(...,alias="instrumentType", description="Available values: QuotedSecurity, InterestRateSwap, FxForward, Future, ExoticInstrument, FxOption, CreditDefaultSwap, InterestRateSwaption, Bond, EquityOption, FixedLeg, FloatingLeg, BespokeCashFlowsLeg, Unknown, TermDeposit, ContractForDifference, EquitySwap, CashPerpetual, CapFloor, CashSettled, CdsIndex, Basket, FundingLeg, FxSwap, ForwardRateAgreement, SimpleInstrument, Repo, Equity, ExchangeTradedOption, ReferenceInstrument, ComplexBond, InflationLinkedBond, InflationSwap, SimpleCashFlowLoan, TotalReturnSwap, InflationLeg, FundShareClass, FlexibleLoan, UnsettledCash, Cash, MasteredInstrument, LoanFacility, FlexibleDeposit, FlexibleRepo.") 
     additional_properties: Dict[str, Any] = {}
-    __properties = ["instrumentType", "startDate", "maturityDate", "buyerOrSeller", "repoCcy", "repoType", "accrualBasis", "collateral", "haircut", "margin", "openRepoRollingPeriod", "purchasePrice", "repoRateSchedules", "repurchasePrice", "timeZoneConventions", "tradingConventions", "isCollateralTransferActivated"]
+    __properties: ClassVar[List[str]] = ["instrumentType", "startDate", "maturityDate", "buyerOrSeller", "repoCcy", "repoType", "accrualBasis", "collateral", "haircut", "margin", "openRepoRollingPeriod", "purchasePrice", "repoRateSchedules", "repurchasePrice", "timeZoneConventions", "tradingConventions", "isCollateralTransferActivated"]
 
     @field_validator('instrument_type')
     def instrument_type_validate_enum(cls, value):
@@ -235,25 +235,20 @@ class FlexibleRepo(LusidInstrument):
             "repo_ccy": obj.get("repoCcy"),
             "repo_type": obj.get("repoType"),
             "accrual_basis": obj.get("accrualBasis"),
-            "collateral": Collateral.from_dict(obj.get("collateral")) if obj.get("collateral") is not None else None,
+            "collateral": Collateral.from_dict(_v) if (_v := obj.get("collateral")) is not None else None,
             "haircut": obj.get("haircut"),
             "margin": obj.get("margin"),
             "open_repo_rolling_period": obj.get("openRepoRollingPeriod"),
             "purchase_price": obj.get("purchasePrice"),
-            "repo_rate_schedules": [Schedule.from_dict(_item) for _item in obj.get("repoRateSchedules")] if obj.get("repoRateSchedules") is not None else None,
+            "repo_rate_schedules": [Schedule.from_dict(_item) for _item in _v] if (_v := obj.get("repoRateSchedules")) is not None else None,
             "repurchase_price": obj.get("repurchasePrice"),
-            "time_zone_conventions": TimeZoneConventions.from_dict(obj.get("timeZoneConventions")) if obj.get("timeZoneConventions") is not None else None,
-            "trading_conventions": TradingConventions.from_dict(obj.get("tradingConventions")) if obj.get("tradingConventions") is not None else None,
+            "time_zone_conventions": TimeZoneConventions.from_dict(_v) if (_v := obj.get("timeZoneConventions")) is not None else None,
+            "trading_conventions": TradingConventions.from_dict(_v) if (_v := obj.get("tradingConventions")) is not None else None,
             "is_collateral_transfer_activated": obj.get("isCollateralTransferActivated")
         })
         # store additional fields in additional_properties
-        
-        properties = cls.__properties
-        if not isinstance(cls.__properties, dict) and getattr(cls.__properties, 'default', None):
-            properties = cls.__properties.default
-    
         for _key in obj.keys():
-            if _key not in properties:
+            if _key not in cls.__properties:
                 _obj.additional_properties[_key] = obj.get(_key)
 
         return _obj

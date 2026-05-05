@@ -68,12 +68,12 @@ class AmortisationRuleSetsApi:
         :return: Returns the result object.
         :rtype: AmortisationRuleSet
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_amortisation_rule_set_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_amortisation_rule_set_with_http_info(scope, create_amortisation_rule_set_request, **kwargs)  # noqa: E501
+        response = self.create_amortisation_rule_set_with_http_info(scope, create_amortisation_rule_set_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_amortisation_rule_set_with_http_info(self, scope: StrictStr, create_amortisation_rule_set_request: CreateAmortisationRuleSetRequest, **kwargs) -> ApiResponse[AmortisationRuleSet]:
@@ -203,12 +203,12 @@ class AmortisationRuleSetsApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_amortisation_ruleset_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_amortisation_ruleset_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_amortisation_ruleset_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_amortisation_ruleset_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -335,12 +335,12 @@ class AmortisationRuleSetsApi:
         :return: Returns the result object.
         :rtype: AmortisationRuleSet
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_amortisation_rule_set_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_amortisation_rule_set_with_http_info(scope, code, effective_at, as_at, **kwargs)  # noqa: E501
+        response = self.get_amortisation_rule_set_with_http_info(scope, code, effective_at, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_amortisation_rule_set_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[AmortisationRuleSet]:
@@ -486,12 +486,12 @@ class AmortisationRuleSetsApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfAmortisationRuleSet
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_amortisation_rule_sets_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_amortisation_rule_sets_with_http_info(effective_at, as_at, page, limit, filter, sort_by, **kwargs)  # noqa: E501
+        response = self.list_amortisation_rule_sets_with_http_info(effective_at, as_at, page, limit, filter, sort_by, **kwargs)
+        return response.data
 
     @validate_call
     def list_amortisation_rule_sets_with_http_info(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfAmortisationRuleSet]:
@@ -644,12 +644,12 @@ class AmortisationRuleSetsApi:
         :return: Returns the result object.
         :rtype: AmortisationRuleSet
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the set_amortisation_rules_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.set_amortisation_rules_with_http_info(scope, code, set_amortisation_rules_request, **kwargs)  # noqa: E501
+        response = self.set_amortisation_rules_with_http_info(scope, code, set_amortisation_rules_request, **kwargs)
+        return response.data
 
     @validate_call
     def set_amortisation_rules_with_http_info(self, scope: StrictStr, code: StrictStr, set_amortisation_rules_request: SetAmortisationRulesRequest, **kwargs) -> ApiResponse[AmortisationRuleSet]:
@@ -787,12 +787,12 @@ class AmortisationRuleSetsApi:
         :return: Returns the result object.
         :rtype: AmortisationRuleSet
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_amortisation_rule_set_details_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_amortisation_rule_set_details_with_http_info(scope, code, update_amortisation_rule_set_details_request, **kwargs)  # noqa: E501
+        response = self.update_amortisation_rule_set_details_with_http_info(scope, code, update_amortisation_rule_set_details_request, **kwargs)
+        return response.data
 
     @validate_call
     def update_amortisation_rule_set_details_with_http_info(self, scope: StrictStr, code: StrictStr, update_amortisation_rule_set_details_request: UpdateAmortisationRuleSetDetailsRequest, **kwargs) -> ApiResponse[AmortisationRuleSet]:
@@ -932,12 +932,12 @@ class AmortisationRuleSetsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: AmortisationRuleSet
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_amortisation_rule_set_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_amortisation_rule_set_with_http_info_async(scope, create_amortisation_rule_set_request, **kwargs)  # noqa: E501
+            response = await self.create_amortisation_rule_set_with_http_info_async(scope, create_amortisation_rule_set_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_amortisation_rule_set_with_http_info_async(self, scope: StrictStr, create_amortisation_rule_set_request: CreateAmortisationRuleSetRequest, **kwargs) -> ApiResponse[AmortisationRuleSet]:
@@ -1068,12 +1068,12 @@ class AmortisationRuleSetsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_amortisation_ruleset_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_amortisation_ruleset_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_amortisation_ruleset_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_amortisation_ruleset_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -1201,12 +1201,12 @@ class AmortisationRuleSetsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: AmortisationRuleSet
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_amortisation_rule_set_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_amortisation_rule_set_with_http_info_async(scope, code, effective_at, as_at, **kwargs)  # noqa: E501
+            response = await self.get_amortisation_rule_set_with_http_info_async(scope, code, effective_at, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_amortisation_rule_set_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[AmortisationRuleSet]:
@@ -1353,12 +1353,12 @@ class AmortisationRuleSetsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfAmortisationRuleSet
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_amortisation_rule_sets_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_amortisation_rule_sets_with_http_info_async(effective_at, as_at, page, limit, filter, sort_by, **kwargs)  # noqa: E501
+            response = await self.list_amortisation_rule_sets_with_http_info_async(effective_at, as_at, page, limit, filter, sort_by, **kwargs)
+            return response.data
 
     @validate_call
     async def list_amortisation_rule_sets_with_http_info_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfAmortisationRuleSet]:
@@ -1512,12 +1512,12 @@ class AmortisationRuleSetsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: AmortisationRuleSet
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the set_amortisation_rules_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.set_amortisation_rules_with_http_info_async(scope, code, set_amortisation_rules_request, **kwargs)  # noqa: E501
+            response = await self.set_amortisation_rules_with_http_info_async(scope, code, set_amortisation_rules_request, **kwargs)
+            return response.data
 
     @validate_call
     async def set_amortisation_rules_with_http_info_async(self, scope: StrictStr, code: StrictStr, set_amortisation_rules_request: SetAmortisationRulesRequest, **kwargs) -> ApiResponse[AmortisationRuleSet]:
@@ -1656,12 +1656,12 @@ class AmortisationRuleSetsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: AmortisationRuleSet
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_amortisation_rule_set_details_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_amortisation_rule_set_details_with_http_info_async(scope, code, update_amortisation_rule_set_details_request, **kwargs)  # noqa: E501
+            response = await self.update_amortisation_rule_set_details_with_http_info_async(scope, code, update_amortisation_rule_set_details_request, **kwargs)
+            return response.data
 
     @validate_call
     async def update_amortisation_rule_set_details_with_http_info_async(self, scope: StrictStr, code: StrictStr, update_amortisation_rule_set_details_request: UpdateAmortisationRuleSetDetailsRequest, **kwargs) -> ApiResponse[AmortisationRuleSet]:

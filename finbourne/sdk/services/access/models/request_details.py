@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class RequestDetails(BaseModel):
     to_effective_date: Optional[datetime] = Field(default=None, description="The end date for the requested effective date range for the resource (if null, same as from date)", alias="toEffectiveDate")
     from_as_at: Optional[datetime] = Field(default=None, description="The requested AsAt date for the resource (if null, Latest). If specifying a range of AsAt dates, this is the lower bounds.", alias="fromAsAt")
     to_as_at: Optional[datetime] = Field(default=None, description="Upper bound if specifying a request that requires a range of AsAt dates. This is used if specifying the desire to grant access for a user between an AsAt range.", alias="toAsAt")
-    __properties = ["action", "fromEffectiveDate", "toEffectiveDate", "fromAsAt", "toAsAt"]
+    __properties: ClassVar[List[str]] = ["action", "fromEffectiveDate", "toEffectiveDate", "fromAsAt", "toAsAt"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -103,7 +103,7 @@ class RequestDetails(BaseModel):
             return RequestDetails.model_validate(obj)
 
         _obj = RequestDetails.model_validate({
-            "action": RequestedActionKey.from_dict(obj.get("action")) if obj.get("action") is not None else None,
+            "action": RequestedActionKey.from_dict(_v) if (_v := obj.get("action")) is not None else None,
             "from_effective_date": obj.get("fromEffectiveDate"),
             "to_effective_date": obj.get("toEffectiveDate"),
             "from_as_at": obj.get("fromAsAt"),

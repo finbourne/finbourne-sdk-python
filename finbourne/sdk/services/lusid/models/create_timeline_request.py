@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class CreateTimelineRequest(BaseModel):
     display_name:  StrictStr = Field(...,alias="displayName", description="The name of the Timeline.") 
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="A description for the Timeline.") 
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="The Timelines properties. These will be from the 'Timeline' domain.")
-    __properties = ["id", "displayName", "description", "properties"]
+    __properties: ClassVar[List[str]] = ["id", "displayName", "description", "properties"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -100,14 +100,14 @@ class CreateTimelineRequest(BaseModel):
             return CreateTimelineRequest.model_validate(obj)
 
         _obj = CreateTimelineRequest.model_validate({
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None
         })
         return _obj

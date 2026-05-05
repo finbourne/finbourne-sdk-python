@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class ActionLog(BaseModel):
     action_type:  StrictStr = Field(...,alias="actionType", description="The type of the Action") 
     run_as_user_id:  Optional[StrictStr] = Field(default=None,alias="runAsUserId", description="The ID of the user that the Action was performed by. If not specified, the actions were performed by the \"current user\".") 
     logged_items: List[ActionLogItem] = Field(description="The logged items for this Action", alias="loggedItems")
-    __properties = ["id", "origin", "actionType", "runAsUserId", "loggedItems"]
+    __properties: ClassVar[List[str]] = ["id", "origin", "actionType", "runAsUserId", "loggedItems"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -97,10 +97,10 @@ class ActionLog(BaseModel):
 
         _obj = ActionLog.model_validate({
             "id": obj.get("id"),
-            "origin": ActionLogOrigin.from_dict(obj.get("origin")) if obj.get("origin") is not None else None,
+            "origin": ActionLogOrigin.from_dict(_v) if (_v := obj.get("origin")) is not None else None,
             "action_type": obj.get("actionType"),
             "run_as_user_id": obj.get("runAsUserId"),
-            "logged_items": [ActionLogItem.from_dict(_item) for _item in obj.get("loggedItems")] if obj.get("loggedItems") is not None else None
+            "logged_items": [ActionLogItem.from_dict(_item) for _item in _v] if (_v := obj.get("loggedItems")) is not None else None
         })
         return _obj
 

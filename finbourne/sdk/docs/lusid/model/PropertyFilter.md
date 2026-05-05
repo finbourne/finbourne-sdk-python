@@ -5,9 +5,9 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **left** | **str** | Optional | The key that uniquely identifies a queryable address in Lusid. |
-| **operator** | **str** | Optional | The available values are: Equals, NotEquals, GreaterThan, GreaterThanOrEqualTo, LessThan, LessThanOrEqualTo, In, StartsWith |
+| **operator** | **str** | Optional | Available values: Equals, NotEquals, GreaterThan, GreaterThanOrEqualTo, LessThan, LessThanOrEqualTo, In, StartsWith. |
 | **right** | **object** | Optional | *No description available.* |
-| **right_operand_type** | **str** | Optional | The available values are: Absolute, Property |
+| **right_operand_type** | **str** | Optional | Available values: Absolute, Property. |
 
 
 ## Usage
@@ -19,9 +19,9 @@ from finbourne.sdk.services.lusid.models.PropertyFilter import PropertyFilter
 
 instance = PropertyFilter(
     left="...",  # optional — The key that uniquely identifies a queryable address in Lusid.
-    operator="...",  # optional — The available values are: Equals, NotEquals, GreaterThan, GreaterThanOrEqualTo, LessThan, LessThanOrEqualTo, In, StartsWith
+    operator="...",  # optional — Available values: Equals, NotEquals, GreaterThan, GreaterThanOrEqualTo, LessThan, LessThanOrEqualTo, In, StartsWith.
     right=,  # optional
-    right_operand_type="..."  # optional — The available values are: Absolute, Property
+    right_operand_type="..."  # optional — Available values: Absolute, Property.
 )
 ```
 

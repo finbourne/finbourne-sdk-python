@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -27,8 +27,8 @@ class LockPeriodDiaryEntryRequest(BaseModel):
     A definition for the period you wish to lock  # noqa: E501
     """
     diary_entry_code:  Optional[StrictStr] = Field(default=None,alias="diaryEntryCode", description="Unique code assigned to a period. When left blank last closed period will be located.") 
-    closing_options: Optional[List[StrictStr]] = Field(default=None, description="The options which will be executed once a period is closed or locked.", alias="closingOptions")
-    __properties = ["diaryEntryCode", "closingOptions"]
+    closing_options: Optional[List[StrictStr]] = Field(default=None, description="The options which will be executed once a period is closed or locked. Available values: ApplyClearDown.", alias="closingOptions")
+    __properties: ClassVar[List[str]] = ["diaryEntryCode", "closingOptions"]
 
     model_config = ConfigDict(
         populate_by_name=True,

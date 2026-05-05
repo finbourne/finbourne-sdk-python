@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class Parameter(BaseModel):
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="Description") 
     required: StrictBool = Field(description="Required or not")
     default_value:  Optional[StrictStr] = Field(default=None,alias="defaultValue", description="DefaultValue") 
-    __properties = ["type", "name", "displayName", "description", "required", "defaultValue"]
+    __properties: ClassVar[List[str]] = ["type", "name", "displayName", "description", "required", "defaultValue"]
 
     model_config = ConfigDict(
         populate_by_name=True,

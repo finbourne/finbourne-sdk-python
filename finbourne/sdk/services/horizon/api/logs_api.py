@@ -67,12 +67,12 @@ class LogsApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfIIntegrationLogResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_integration_log_results_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_integration_log_results_with_http_info(filter, sort_by, limit, page_token, **kwargs)  # noqa: E501
+        response = self.get_integration_log_results_with_http_info(filter, sort_by, limit, page_token, **kwargs)
+        return response.data
 
     @validate_call
     def get_integration_log_results_with_http_info(self, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, page_token: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfIIntegrationLogResponse]:
@@ -210,12 +210,12 @@ class LogsApi:
         :return: Returns the result object.
         :rtype: object
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the insert_external_logs_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.insert_external_logs_with_http_info(instanceid, runid, external_log_insertion_request, **kwargs)  # noqa: E501
+        response = self.insert_external_logs_with_http_info(instanceid, runid, external_log_insertion_request, **kwargs)
+        return response.data
 
     @validate_call
     def insert_external_logs_with_http_info(self, instanceid: StrictStr, runid: StrictStr, external_log_insertion_request: ExternalLogInsertionRequest, **kwargs) -> ApiResponse[object]:
@@ -358,12 +358,12 @@ class LogsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfIIntegrationLogResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_integration_log_results_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_integration_log_results_with_http_info_async(filter, sort_by, limit, page_token, **kwargs)  # noqa: E501
+            response = await self.get_integration_log_results_with_http_info_async(filter, sort_by, limit, page_token, **kwargs)
+            return response.data
 
     @validate_call
     async def get_integration_log_results_with_http_info_async(self, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, page_token: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfIIntegrationLogResponse]:
@@ -502,12 +502,12 @@ class LogsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: object
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the insert_external_logs_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.insert_external_logs_with_http_info_async(instanceid, runid, external_log_insertion_request, **kwargs)  # noqa: E501
+            response = await self.insert_external_logs_with_http_info_async(instanceid, runid, external_log_insertion_request, **kwargs)
+            return response.data
 
     @validate_call
     async def insert_external_logs_with_http_info_async(self, instanceid: StrictStr, runid: StrictStr, external_log_insertion_request: ExternalLogInsertionRequest, **kwargs) -> ApiResponse[object]:

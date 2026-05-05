@@ -11,8 +11,8 @@
 | **allocated** | [OrderGraphBlockAllocationSynopsis](OrderGraphBlockAllocationSynopsis.md) | Required | *No description available.* |
 | **booked** | [OrderGraphBlockTransactionSynopsis](OrderGraphBlockTransactionSynopsis.md) | Required | *No description available.* |
 | **derived_state** | **str** | Required | A simple description of the overall state of a block. |
-| **derived_compliance_state** | **str** | Required | The overall compliance state of a block, derived from the block&#39;s orders. Possible values are &#39;Pending&#39;, &#39;Failed&#39;, &#39;Manually approved&#39; and &#39;Passed&#39;. |
-| **derived_approval_state** | **str** | Required | The overall approval state of a block, derived from approval of the block&#39;s orders. Possible values are &#39;Pending&#39;, &#39;Approved&#39; and &#39;Rejected&#39;. |
+| **derived_compliance_state** | **str** | Required | The overall compliance state of a block, derived from the block&#39;s orders. Available values: Pending, Failed, Passed, ManuallyApproved, PartiallyOverridden, Warning. |
+| **derived_approval_state** | **str** | Required | The overall approval state of a block, derived from approval of the block&#39;s orders. Available values: Pending, Rejected, Approved. |
 
 
 ## Usage
@@ -30,8 +30,8 @@ instance = OrderGraphBlock(
     allocated=OrderGraphBlockAllocationSynopsis(...),  # required
     booked=OrderGraphBlockTransactionSynopsis(...),  # required
     derived_state="...",  # required — A simple description of the overall state of a block.
-    derived_compliance_state="...",  # required — The overall compliance state of a block, derived from the block&#39;s orders. Possible values are &#39;Pending&#39;, &#39;Failed&#39;, &#39;Manually approved&#39; and &#39;Passed&#39;.
-    derived_approval_state="..."  # required — The overall approval state of a block, derived from approval of the block&#39;s orders. Possible values are &#39;Pending&#39;, &#39;Approved&#39; and &#39;Rejected&#39;.
+    derived_compliance_state="...",  # required — The overall compliance state of a block, derived from the block&#39;s orders. Available values: Pending, Failed, Passed, ManuallyApproved, PartiallyOverridden, Warning.
+    derived_approval_state="..."  # required — The overall approval state of a block, derived from approval of the block&#39;s orders. Available values: Pending, Rejected, Approved.
 )
 ```
 

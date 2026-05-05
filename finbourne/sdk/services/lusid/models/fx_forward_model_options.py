@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -27,12 +27,12 @@ class FxForwardModelOptions(ModelOptions):
     """
     FxForwardModelOptions
     """
-    forward_rate_observable_type:  StrictStr = Field(...,alias="forwardRateObservableType", description="The available values are: ForwardPoints, ForwardRate, RatesCurve, FxForwardCurve, Invalid") 
-    discounting_method:  StrictStr = Field(...,alias="discountingMethod", description="The available values are: Standard, ConstantTimeValueOfMoney, Invalid") 
+    forward_rate_observable_type:  StrictStr = Field(...,alias="forwardRateObservableType", description="Available values: ForwardPoints, ForwardRate, RatesCurve, FxForwardCurve, Invalid.") 
+    discounting_method:  StrictStr = Field(...,alias="discountingMethod", description="Available values: Standard, ConstantTimeValueOfMoney, Invalid.") 
     convert_to_report_ccy: StrictBool = Field(description="Convert all FX flows to the report currency  By setting this all FX forwards will be priced using Forward Curves that have Report Currency as the base.", alias="convertToReportCcy")
-    model_options_type:  StrictStr = Field(...,alias="modelOptionsType", description="The available values are: Invalid, OpaqueModelOptions, EmptyModelOptions, IndexModelOptions, FxForwardModelOptions, FundingLegModelOptions, EquityModelOptions, CdsModelOptions") 
+    model_options_type:  StrictStr = Field(...,alias="modelOptionsType", description="Available values: Invalid, OpaqueModelOptions, EmptyModelOptions, IndexModelOptions, FxForwardModelOptions, FundingLegModelOptions, EquityModelOptions, CdsModelOptions.") 
     additional_properties: Dict[str, Any] = {}
-    __properties = ["modelOptionsType", "forwardRateObservableType", "discountingMethod", "convertToReportCcy"]
+    __properties: ClassVar[List[str]] = ["modelOptionsType", "forwardRateObservableType", "discountingMethod", "convertToReportCcy"]
 
     @field_validator('forward_rate_observable_type')
     def forward_rate_observable_type_validate_enum(cls, value):
@@ -299,13 +299,8 @@ class FxForwardModelOptions(ModelOptions):
             "convert_to_report_ccy": obj.get("convertToReportCcy")
         })
         # store additional fields in additional_properties
-        
-        properties = cls.__properties
-        if not isinstance(cls.__properties, dict) and getattr(cls.__properties, 'default', None):
-            properties = cls.__properties.default
-    
         for _key in obj.keys():
-            if _key not in properties:
+            if _key not in cls.__properties:
                 _obj.additional_properties[_key] = obj.get(_key)
 
         return _obj

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class CreateApplicationRequest(BaseModel):
     type:  StrictStr = Field(...,alias="type", description="The Type of the application. This must be either Native or Web") 
     redirect_uris: Optional[List[StrictStr]] = Field(default=None, description="A web application's acceptable list of post-login redirect URIs", alias="redirectUris")
     post_logout_redirect_uris: Optional[List[StrictStr]] = Field(default=None, description="A web application's acceptable list of post-logout redirect URIs", alias="postLogoutRedirectUris")
-    __properties = ["displayName", "clientId", "type", "redirectUris", "postLogoutRedirectUris"]
+    __properties: ClassVar[List[str]] = ["displayName", "clientId", "type", "redirectUris", "postLogoutRedirectUris"]
 
     model_config = ConfigDict(
         populate_by_name=True,

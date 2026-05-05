@@ -19,6 +19,7 @@ The response representation of an MCP tool
 | **payload_type** | **str** | Optional | The type of payload (Luminesce or Scheduler) |
 | **luminesce_payload** | [McpToolLuminescePayload](McpToolLuminescePayload.md) | Optional | *No description available.* |
 | **scheduler_payload** | [McpToolSchedulerPayload](McpToolSchedulerPayload.md) | Optional | *No description available.* |
+| **destructive_action_summary_template** | **str** | Optional | Template for human-readable destructive action summary (e.g. \&quot;Delete file &#39;{filePath}&#39;\&quot;) |
 | **created_at** | **datetime** | Optional | When the MCP tool was created |
 | **created_by** | **str** | Optional | Who created the MCP tool |
 | **updated_at** | **datetime** | Optional | When the MCP tool was last updated |
@@ -47,6 +48,7 @@ instance = McpToolResponse(
     payload_type="...",  # optional — The type of payload (Luminesce or Scheduler)
     luminesce_payload=McpToolLuminescePayload(...),  # optional
     scheduler_payload=McpToolSchedulerPayload(...),  # optional
+    destructive_action_summary_template="...",  # optional — Template for human-readable destructive action summary (e.g. \&quot;Delete file &#39;{filePath}&#39;\&quot;)
     created_at=datetime.now(),  # optional — When the MCP tool was created
     created_by="...",  # optional — Who created the MCP tool
     updated_at=datetime.now(),  # optional — When the MCP tool was last updated

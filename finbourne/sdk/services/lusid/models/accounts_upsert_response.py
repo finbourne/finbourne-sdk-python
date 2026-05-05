@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class AccountsUpsertResponse(BaseModel):
     version: Optional[Version] = None
     accounts: Optional[List[Account]] = Field(default=None, description="The Accounts which have been upserted.")
     links: Optional[List[Link]] = None
-    __properties = ["href", "version", "accounts", "links"]
+    __properties: ClassVar[List[str]] = ["href", "version", "accounts", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -114,9 +114,9 @@ class AccountsUpsertResponse(BaseModel):
 
         _obj = AccountsUpsertResponse.model_validate({
             "href": obj.get("href"),
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
-            "accounts": [Account.from_dict(_item) for _item in obj.get("accounts")] if obj.get("accounts") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "accounts": [Account.from_dict(_item) for _item in _v] if (_v := obj.get("accounts")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

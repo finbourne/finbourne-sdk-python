@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class ExternalLogInsertionRequest(BaseModel):
     A request to insert external log records.  # noqa: E501
     """
     logs: List[ExternalLogRecord] = Field(description="The collection of external log records to insert.")
-    __properties = ["logs"]
+    __properties: ClassVar[List[str]] = ["logs"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -83,7 +83,7 @@ class ExternalLogInsertionRequest(BaseModel):
             return ExternalLogInsertionRequest.model_validate(obj)
 
         _obj = ExternalLogInsertionRequest.model_validate({
-            "logs": [ExternalLogRecord.from_dict(_item) for _item in obj.get("logs")] if obj.get("logs") is not None else None
+            "logs": [ExternalLogRecord.from_dict(_item) for _item in _v] if (_v := obj.get("logs")) is not None else None
         })
         return _obj
 

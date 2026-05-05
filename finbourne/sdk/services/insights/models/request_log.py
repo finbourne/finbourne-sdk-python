@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -47,7 +47,7 @@ class RequestLog(BaseModel):
     correlation_id: Optional[List[StrictStr]] = Field(default=None, description="The chain of requestIds preceding this request", alias="correlationId")
     impersonating_user:  Optional[StrictStr] = Field(default=None,alias="impersonatingUser", description="The impersonating user. Only present if the request is an impersonated one") 
     links: Optional[List[Link]] = None
-    __properties = ["timestamp", "application", "id", "sessionId", "verb", "url", "domain", "user", "userType", "operation", "outcome", "duration", "httpStatusCode", "errorCode", "sdkLanguage", "sdkVersion", "sourceApplication", "correlationId", "impersonatingUser", "links"]
+    __properties: ClassVar[List[str]] = ["timestamp", "application", "id", "sessionId", "verb", "url", "domain", "user", "userType", "operation", "outcome", "duration", "httpStatusCode", "errorCode", "sdkLanguage", "sdkVersion", "sourceApplication", "correlationId", "impersonatingUser", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -176,7 +176,7 @@ class RequestLog(BaseModel):
             "source_application": obj.get("sourceApplication"),
             "correlation_id": obj.get("correlationId"),
             "impersonating_user": obj.get("impersonatingUser"),
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

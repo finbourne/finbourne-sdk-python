@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -51,7 +51,7 @@ class TransactionRequest(BaseModel):
     custodian_account_id: Optional[ResourceId] = Field(default=None, alias="custodianAccountId")
     transaction_group_id:  Optional[StrictStr] = Field(default=None,alias="transactionGroupId", description="The identifier for grouping economic events across multiple transactions") 
     strategy_tag: Optional[List[Strategy]] = Field(default=None, description="A list of strategies representing the allocation of units across multiple sub-holding keys", alias="strategyTag")
-    __properties = ["transactionId", "type", "instrumentIdentifiers", "transactionDate", "settlementDate", "units", "transactionPrice", "totalConsideration", "exchangeRate", "transactionCurrency", "properties", "counterpartyId", "source", "otcConfirmation", "orderId", "allocationId", "custodianAccountId", "transactionGroupId", "strategyTag"]
+    __properties: ClassVar[List[str]] = ["transactionId", "type", "instrumentIdentifiers", "transactionDate", "settlementDate", "units", "transactionPrice", "totalConsideration", "exchangeRate", "transactionCurrency", "properties", "counterpartyId", "source", "otcConfirmation", "orderId", "allocationId", "custodianAccountId", "transactionGroupId", "strategyTag"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -172,24 +172,24 @@ class TransactionRequest(BaseModel):
             "transaction_date": obj.get("transactionDate"),
             "settlement_date": obj.get("settlementDate"),
             "units": obj.get("units"),
-            "transaction_price": TransactionPrice.from_dict(obj.get("transactionPrice")) if obj.get("transactionPrice") is not None else None,
-            "total_consideration": CurrencyAndAmount.from_dict(obj.get("totalConsideration")) if obj.get("totalConsideration") is not None else None,
+            "transaction_price": TransactionPrice.from_dict(_v) if (_v := obj.get("transactionPrice")) is not None else None,
+            "total_consideration": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("totalConsideration")) is not None else None,
             "exchange_rate": obj.get("exchangeRate"),
             "transaction_currency": obj.get("transactionCurrency"),
             "properties": dict(
                 (_k, PerpetualProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
             "counterparty_id": obj.get("counterpartyId"),
             "source": obj.get("source"),
-            "otc_confirmation": OtcConfirmation.from_dict(obj.get("otcConfirmation")) if obj.get("otcConfirmation") is not None else None,
-            "order_id": ResourceId.from_dict(obj.get("orderId")) if obj.get("orderId") is not None else None,
-            "allocation_id": ResourceId.from_dict(obj.get("allocationId")) if obj.get("allocationId") is not None else None,
-            "custodian_account_id": ResourceId.from_dict(obj.get("custodianAccountId")) if obj.get("custodianAccountId") is not None else None,
+            "otc_confirmation": OtcConfirmation.from_dict(_v) if (_v := obj.get("otcConfirmation")) is not None else None,
+            "order_id": ResourceId.from_dict(_v) if (_v := obj.get("orderId")) is not None else None,
+            "allocation_id": ResourceId.from_dict(_v) if (_v := obj.get("allocationId")) is not None else None,
+            "custodian_account_id": ResourceId.from_dict(_v) if (_v := obj.get("custodianAccountId")) is not None else None,
             "transaction_group_id": obj.get("transactionGroupId"),
-            "strategy_tag": [Strategy.from_dict(_item) for _item in obj.get("strategyTag")] if obj.get("strategyTag") is not None else None
+            "strategy_tag": [Strategy.from_dict(_item) for _item in _v] if (_v := obj.get("strategyTag")) is not None else None
         })
         return _obj
 

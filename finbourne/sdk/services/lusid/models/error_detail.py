@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class ErrorDetail(BaseModel):
     type:  Optional[StrictStr] = Field(default=None,alias="type", description="The type of failure that occurred.") 
     detail:  Optional[StrictStr] = Field(default=None,alias="detail", description="Description of the failure that occurred.") 
     error_details: Optional[List[Dict[str, StrictStr]]] = Field(default=None, description="Information about the particular instance of the failure (supplied information depends on the type of failure).", alias="errorDetails")
-    __properties = ["id", "type", "detail", "errorDetails"]
+    __properties: ClassVar[List[str]] = ["id", "type", "detail", "errorDetails"]
 
     model_config = ConfigDict(
         populate_by_name=True,

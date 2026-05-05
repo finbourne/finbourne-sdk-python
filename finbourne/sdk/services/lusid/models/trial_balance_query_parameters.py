@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,11 +29,11 @@ class TrialBalanceQueryParameters(BaseModel):
     """
     start: Optional[DateOrDiaryEntry] = None
     end: Optional[DateOrDiaryEntry] = None
-    date_mode:  Optional[StrictStr] = Field(default=None,alias="dateMode", description="The mode of calculation of the trial balance. The available values are: ActivityDate, AccountingDate.") 
+    date_mode:  Optional[StrictStr] = Field(default=None,alias="dateMode", description="The mode of calculation of the trial balance. Available values: ActivityDate, AccountingDate.") 
     general_ledger_profile_code:  Optional[StrictStr] = Field(default=None,alias="generalLedgerProfileCode", description="The optional code of a general ledger profile used to decorate trial balance with levels.") 
     property_keys: Optional[List[StrictStr]] = Field(default=None, description="A list of property keys from the 'Account' domain to decorate onto the trial balance.", alias="propertyKeys")
     exclude_cleardown_module: Optional[StrictBool] = Field(default=None, description="By deafult this flag is set to false, if this is set to true, no cleardown module will be applied to the trial balance.", alias="excludeCleardownModule")
-    __properties = ["start", "end", "dateMode", "generalLedgerProfileCode", "propertyKeys", "excludeCleardownModule"]
+    __properties: ClassVar[List[str]] = ["start", "end", "dateMode", "generalLedgerProfileCode", "propertyKeys", "excludeCleardownModule"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -102,8 +102,8 @@ class TrialBalanceQueryParameters(BaseModel):
             return TrialBalanceQueryParameters.model_validate(obj)
 
         _obj = TrialBalanceQueryParameters.model_validate({
-            "start": DateOrDiaryEntry.from_dict(obj.get("start")) if obj.get("start") is not None else None,
-            "end": DateOrDiaryEntry.from_dict(obj.get("end")) if obj.get("end") is not None else None,
+            "start": DateOrDiaryEntry.from_dict(_v) if (_v := obj.get("start")) is not None else None,
+            "end": DateOrDiaryEntry.from_dict(_v) if (_v := obj.get("end")) is not None else None,
             "date_mode": obj.get("dateMode"),
             "general_ledger_profile_code": obj.get("generalLedgerProfileCode"),
             "property_keys": obj.get("propertyKeys"),

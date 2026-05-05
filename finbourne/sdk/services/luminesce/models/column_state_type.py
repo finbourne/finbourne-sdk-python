@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class ColumnStateType(BaseModel):
     hide: StrictBool = Field(description="Flag to determine whether the column is visible in the grid")
     sort:  Optional[StrictStr] = Field(default=None,alias="sort", description="The sort order (asc or desc)") 
     sort_index: Optional[StrictInt] = Field(default=None, description="The index of the sort to determine the order in which the sorts are applied", alias="sortIndex")
-    __properties = ["colId", "hide", "sort", "sortIndex"]
+    __properties: ClassVar[List[str]] = ["colId", "hide", "sort", "sortIndex"]
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -19,7 +19,7 @@ Most, if not all, information about contracts is standardized. See, e.g. https:/
 | **ticker_step** | **float** | Optional | Minimal step size change in ticker. |
 | **unit_value** | **float** | Optional | The value in the currency of a 1 unit change in the contract price. |
 | **calendars** | **List[str]** | Optional | Holiday calendars that apply to yield-to-price conversions (i.e. for BRL futures). |
-| **delivery_type** | **str** | Optional | Delivery type to be used on settling the contract.  Optional: Defaults to DeliveryType.Physical if not provided.    Supported string (enumeration) values are: [Cash, Physical]. |
+| **delivery_type** | **str** | Optional | Delivery type to be used on settling the contract.  Default value: Physical. Available values: Cash, Physical. |
 
 
 ## Usage
@@ -44,7 +44,7 @@ instance = FuturesContractDetails(
     ticker_step=0.0,  # optional — Minimal step size change in ticker.
     unit_value=0.0,  # optional — The value in the currency of a 1 unit change in the contract price.
     calendars=,  # optional — Holiday calendars that apply to yield-to-price conversions (i.e. for BRL futures).
-    delivery_type="..."  # optional — Delivery type to be used on settling the contract.  Optional: Defaults to DeliveryType.Physical if not provided.    Supported string (enumeration) values are: [Cash, Physical].
+    delivery_type="..."  # optional — Delivery type to be used on settling the contract.  Default value: Physical. Available values: Cash, Physical.
 )
 ```
 

@@ -127,12 +127,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: AdjustHolding
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the adjust_holdings_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.adjust_holdings_with_http_info(scope, code, effective_at, adjust_holding_request, reconciliation_methods, override_movement_name, override_offset_movement_name, **kwargs)  # noqa: E501
+        response = self.adjust_holdings_with_http_info(scope, code, effective_at, adjust_holding_request, reconciliation_methods, override_movement_name, override_offset_movement_name, **kwargs)
+        return response.data
 
     @validate_call
     def adjust_holdings_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: StrictStr, adjust_holding_request: List[AdjustHoldingRequest], reconciliation_methods: Optional[List[str]] = None, override_movement_name: Optional[StrictStr] = None, override_offset_movement_name: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AdjustHolding]:
@@ -299,12 +299,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: BatchAdjustHoldingsResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the batch_adjust_holdings_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.batch_adjust_holdings_with_http_info(scope, code, success_mode, request_body, reconciliation_methods, **kwargs)  # noqa: E501
+        response = self.batch_adjust_holdings_with_http_info(scope, code, success_mode, request_body, reconciliation_methods, **kwargs)
+        return response.data
 
     @validate_call
     def batch_adjust_holdings_with_http_info(self, scope: StrictStr, code: StrictStr, success_mode: StrictStr, request_body: Dict[str, AdjustHoldingForDateRequest], reconciliation_methods: Optional[List[str]] = None, **kwargs) -> ApiResponse[BatchAdjustHoldingsResponse]:
@@ -457,12 +457,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: BatchAmendTransactionSettlementInstructionResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the batch_amend_settlement_instructions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.batch_amend_settlement_instructions_with_http_info(scope, code, request_body, success_mode, **kwargs)  # noqa: E501
+        response = self.batch_amend_settlement_instructions_with_http_info(scope, code, request_body, success_mode, **kwargs)
+        return response.data
 
     @validate_call
     def batch_amend_settlement_instructions_with_http_info(self, scope: StrictStr, code: StrictStr, request_body: Dict[str, SettlementInstructionAmendRequest], success_mode: Optional[StrictStr] = None, **kwargs) -> ApiResponse[BatchAmendTransactionSettlementInstructionResponse]:
@@ -606,12 +606,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: CreateTradeTicketsResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the batch_create_trade_tickets_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.batch_create_trade_tickets_with_http_info(scope, code, lusid_trade_ticket, **kwargs)  # noqa: E501
+        response = self.batch_create_trade_tickets_with_http_info(scope, code, lusid_trade_ticket, **kwargs)
+        return response.data
 
     @validate_call
     def batch_create_trade_tickets_with_http_info(self, scope: StrictStr, code: StrictStr, lusid_trade_ticket: List[LusidTradeTicket], **kwargs) -> ApiResponse[CreateTradeTicketsResponse]:
@@ -745,7 +745,7 @@ class TransactionPortfoliosApi:
         :type success_mode: str
         :param request_body: The selected set of holdings to adjust to the provided targets for the               transaction portfolio. (required)
         :type request_body: Dict[str, AdjustHoldingForDateRequest]
-        :param reconciliation_methods: Optional parameter for specifying a reconciliation method: e.g. FxForward.
+        :param reconciliation_methods: Optional parameter for specifying a reconciliation method: e.g. FxForward. Available values: FxForward.
         :type reconciliation_methods: List[str]
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -753,12 +753,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: BatchAdjustHoldingsResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the batch_set_holdings_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.batch_set_holdings_with_http_info(scope, code, success_mode, request_body, reconciliation_methods, **kwargs)  # noqa: E501
+        response = self.batch_set_holdings_with_http_info(scope, code, success_mode, request_body, reconciliation_methods, **kwargs)
+        return response.data
 
     @validate_call
     def batch_set_holdings_with_http_info(self, scope: StrictStr, code: StrictStr, success_mode: StrictStr, request_body: Dict[str, AdjustHoldingForDateRequest], reconciliation_methods: Optional[List[str]] = None, **kwargs) -> ApiResponse[BatchAdjustHoldingsResponse]:
@@ -773,7 +773,7 @@ class TransactionPortfoliosApi:
         :type success_mode: str
         :param request_body: The selected set of holdings to adjust to the provided targets for the               transaction portfolio. (required)
         :type request_body: Dict[str, AdjustHoldingForDateRequest]
-        :param reconciliation_methods: Optional parameter for specifying a reconciliation method: e.g. FxForward.
+        :param reconciliation_methods: Optional parameter for specifying a reconciliation method: e.g. FxForward. Available values: FxForward.
         :type reconciliation_methods: List[str]
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -911,12 +911,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: BatchUpsertTransactionSettlementInstructionResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the batch_upsert_settlement_instructions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.batch_upsert_settlement_instructions_with_http_info(scope, code, request_body, success_mode, **kwargs)  # noqa: E501
+        response = self.batch_upsert_settlement_instructions_with_http_info(scope, code, request_body, success_mode, **kwargs)
+        return response.data
 
     @validate_call
     def batch_upsert_settlement_instructions_with_http_info(self, scope: StrictStr, code: StrictStr, request_body: Dict[str, SettlementInstructionRequest], success_mode: Optional[StrictStr] = None, **kwargs) -> ApiResponse[BatchUpsertTransactionSettlementInstructionResponse]:
@@ -1064,12 +1064,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: BatchUpsertPortfolioTransactionsResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the batch_upsert_transactions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.batch_upsert_transactions_with_http_info(scope, code, success_mode, request_body, preserve_properties, **kwargs)  # noqa: E501
+        response = self.batch_upsert_transactions_with_http_info(scope, code, success_mode, request_body, preserve_properties, **kwargs)
+        return response.data
 
     @validate_call
     def batch_upsert_transactions_with_http_info(self, scope: StrictStr, code: StrictStr, success_mode: StrictStr, request_body: Dict[str, TransactionRequest], preserve_properties: Optional[bool] = None, **kwargs) -> ApiResponse[BatchUpsertPortfolioTransactionsResponse]:
@@ -1219,12 +1219,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: VersionedResourceListWithPostBodiesOfSettlementInstructionWithTransactionToSettlementInstructionQuery
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the build_settlement_instructions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.build_settlement_instructions_with_http_info(scope, code, settlement_instruction_query, **kwargs)  # noqa: E501
+        response = self.build_settlement_instructions_with_http_info(scope, code, settlement_instruction_query, **kwargs)
+        return response.data
 
     @validate_call
     def build_settlement_instructions_with_http_info(self, scope: StrictStr, code: StrictStr, settlement_instruction_query: SettlementInstructionQuery, **kwargs) -> ApiResponse[VersionedResourceListWithPostBodiesOfSettlementInstructionWithTransactionToSettlementInstructionQuery]:
@@ -1370,7 +1370,7 @@ class TransactionPortfoliosApi:
         :type data_model_scope: str
         :param data_model_code: The optional code of a Custom Data Model to use
         :type data_model_code: str
-        :param membership_type: The membership types of the specified Custom Data Model to return. Allowable values are Member, Candidate and All. Defaults to Member.
+        :param membership_type: The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate.
         :type membership_type: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -1378,12 +1378,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: VersionedResourceListOfOutputTransaction
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the build_transactions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.build_transactions_with_http_info(scope, code, transaction_query_parameters, as_at, filter, property_keys, limit, page, data_model_scope, data_model_code, membership_type, **kwargs)  # noqa: E501
+        response = self.build_transactions_with_http_info(scope, code, transaction_query_parameters, as_at, filter, property_keys, limit, page, data_model_scope, data_model_code, membership_type, **kwargs)
+        return response.data
 
     @validate_call
     def build_transactions_with_http_info(self, scope: StrictStr, code: StrictStr, transaction_query_parameters: TransactionQueryParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, membership_type: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfOutputTransaction]:
@@ -1410,7 +1410,7 @@ class TransactionPortfoliosApi:
         :type data_model_scope: str
         :param data_model_code: The optional code of a Custom Data Model to use
         :type data_model_code: str
-        :param membership_type: The membership types of the specified Custom Data Model to return. Allowable values are Member, Candidate and All. Defaults to Member.
+        :param membership_type: The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate.
         :type membership_type: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -1573,12 +1573,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the cancel_adjust_holdings_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.cancel_adjust_holdings_with_http_info(scope, code, effective_at, **kwargs)  # noqa: E501
+        response = self.cancel_adjust_holdings_with_http_info(scope, code, effective_at, **kwargs)
+        return response.data
 
     @validate_call
     def cancel_adjust_holdings_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -1711,12 +1711,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the cancel_single_adjust_holding_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.cancel_single_adjust_holding_with_http_info(scope, code, effective_at, cancel_single_holding_adjustment_request, **kwargs)  # noqa: E501
+        response = self.cancel_single_adjust_holding_with_http_info(scope, code, effective_at, cancel_single_holding_adjustment_request, **kwargs)
+        return response.data
 
     @validate_call
     def cancel_single_adjust_holding_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: StrictStr, cancel_single_holding_adjustment_request: CancelSingleHoldingAdjustmentRequest, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -1860,12 +1860,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the cancel_transactions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.cancel_transactions_with_http_info(scope, code, transaction_ids, **kwargs)  # noqa: E501
+        response = self.cancel_transactions_with_http_info(scope, code, transaction_ids, **kwargs)
+        return response.data
 
     @validate_call
     def cancel_transactions_with_http_info(self, scope: StrictStr, code: StrictStr, transaction_ids: List[str], **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -1995,12 +1995,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: Portfolio
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_portfolio_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_portfolio_with_http_info(scope, create_transaction_portfolio_request, **kwargs)  # noqa: E501
+        response = self.create_portfolio_with_http_info(scope, create_transaction_portfolio_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_portfolio_with_http_info(self, scope: StrictStr, create_transaction_portfolio_request: CreateTransactionPortfolioRequest, **kwargs) -> ApiResponse[Portfolio]:
@@ -2132,12 +2132,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: LusidTradeTicket
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_trade_ticket_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_trade_ticket_with_http_info(scope, code, lusid_trade_ticket, **kwargs)  # noqa: E501
+        response = self.create_trade_ticket_with_http_info(scope, code, lusid_trade_ticket, **kwargs)
+        return response.data
 
     @validate_call
     def create_trade_ticket_with_http_info(self, scope: StrictStr, code: StrictStr, lusid_trade_ticket: Optional[LusidTradeTicket] = None, **kwargs) -> ApiResponse[LusidTradeTicket]:
@@ -2269,7 +2269,7 @@ class TransactionPortfoliosApi:
         :type code: str
         :param resource_id: The scope and codes of the custodian accounts to delete. (required)
         :type resource_id: List[ResourceId]
-        :param delete_mode: The delete mode to use (defaults to 'Soft').
+        :param delete_mode: The delete mode to use. Default value: Soft. Available values: Soft, Hard.
         :type delete_mode: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -2277,12 +2277,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: DeleteCustodianAccountsResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_custodian_accounts_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_custodian_accounts_with_http_info(scope, code, resource_id, delete_mode, **kwargs)  # noqa: E501
+        response = self.delete_custodian_accounts_with_http_info(scope, code, resource_id, delete_mode, **kwargs)
+        return response.data
 
     @validate_call
     def delete_custodian_accounts_with_http_info(self, scope: StrictStr, code: StrictStr, resource_id: List[ResourceId], delete_mode: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeleteCustodianAccountsResponse]:
@@ -2295,7 +2295,7 @@ class TransactionPortfoliosApi:
         :type code: str
         :param resource_id: The scope and codes of the custodian accounts to delete. (required)
         :type resource_id: List[ResourceId]
-        :param delete_mode: The delete mode to use (defaults to 'Soft').
+        :param delete_mode: The delete mode to use. Default value: Soft. Available values: Soft, Hard.
         :type delete_mode: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -2428,12 +2428,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_properties_from_transaction_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_properties_from_transaction_with_http_info(scope, code, transaction_id, property_keys, **kwargs)  # noqa: E501
+        response = self.delete_properties_from_transaction_with_http_info(scope, code, transaction_id, property_keys, **kwargs)
+        return response.data
 
     @validate_call
     def delete_properties_from_transaction_with_http_info(self, scope: StrictStr, code: StrictStr, transaction_id: StrictStr, property_keys: List[str], **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -2571,12 +2571,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_settlement_instructions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_settlement_instructions_with_http_info(scope, code, settlement_instruction_ids, **kwargs)  # noqa: E501
+        response = self.delete_settlement_instructions_with_http_info(scope, code, settlement_instruction_ids, **kwargs)
+        return response.data
 
     @validate_call
     def delete_settlement_instructions_with_http_info(self, scope: StrictStr, code: StrictStr, settlement_instruction_ids: List[str], **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -2720,12 +2720,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: VersionedResourceListOfA2BDataRecord
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_a2_b_data_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_a2_b_data_with_http_info(scope, code, from_effective_at, to_effective_at, as_at, recipe_id_scope, recipe_id_code, property_keys, filter, **kwargs)  # noqa: E501
+        response = self.get_a2_b_data_with_http_info(scope, code, from_effective_at, to_effective_at, as_at, recipe_id_scope, recipe_id_code, property_keys, filter, **kwargs)
+        return response.data
 
     @validate_call
     def get_a2_b_data_with_http_info(self, scope: StrictStr, code: StrictStr, from_effective_at: StrictStr, to_effective_at: StrictStr, as_at: Optional[datetime] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfA2BDataRecord]:
@@ -2908,12 +2908,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: VersionedResourceListOfA2BMovementRecord
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_a2_b_movements_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_a2_b_movements_with_http_info(scope, code, from_effective_at, to_effective_at, as_at, recipe_id_scope, recipe_id_code, property_keys, filter, **kwargs)  # noqa: E501
+        response = self.get_a2_b_movements_with_http_info(scope, code, from_effective_at, to_effective_at, as_at, recipe_id_scope, recipe_id_code, property_keys, filter, **kwargs)
+        return response.data
 
     @validate_call
     def get_a2_b_movements_with_http_info(self, scope: StrictStr, code: StrictStr, from_effective_at: StrictStr, to_effective_at: StrictStr, as_at: Optional[datetime] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfA2BMovementRecord]:
@@ -3096,12 +3096,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: VersionedResourceListOfA2BMovementRecord
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_a2_b_movements_trading_vs_holding_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_a2_b_movements_trading_vs_holding_with_http_info(scope, code, from_effective_at, to_effective_at, as_at, recipe_id_scope, recipe_id_code, property_keys, filter, **kwargs)  # noqa: E501
+        response = self.get_a2_b_movements_trading_vs_holding_with_http_info(scope, code, from_effective_at, to_effective_at, as_at, recipe_id_scope, recipe_id_code, property_keys, filter, **kwargs)
+        return response.data
 
     @validate_call
     def get_a2_b_movements_trading_vs_holding_with_http_info(self, scope: StrictStr, code: StrictStr, from_effective_at: StrictStr, to_effective_at: StrictStr, as_at: Optional[datetime] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfA2BMovementRecord]:
@@ -3272,12 +3272,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: BucketedCashFlowResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_bucketed_cash_flows_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_bucketed_cash_flows_with_http_info(scope, code, bucketed_cash_flow_request, **kwargs)  # noqa: E501
+        response = self.get_bucketed_cash_flows_with_http_info(scope, code, bucketed_cash_flow_request, **kwargs)
+        return response.data
 
     @validate_call
     def get_bucketed_cash_flows_with_http_info(self, scope: StrictStr, code: StrictStr, bucketed_cash_flow_request: Optional[BucketedCashFlowRequest] = None, **kwargs) -> ApiResponse[BucketedCashFlowResponse]:
@@ -3423,12 +3423,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: CustodianAccount
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_custodian_account_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_custodian_account_with_http_info(scope, code, custodian_account_scope, custodian_account_code, effective_at, as_at, property_keys, **kwargs)  # noqa: E501
+        response = self.get_custodian_account_with_http_info(scope, code, custodian_account_scope, custodian_account_code, effective_at, as_at, property_keys, **kwargs)
+        return response.data
 
     @validate_call
     def get_custodian_account_with_http_info(self, scope: StrictStr, code: StrictStr, custodian_account_scope: StrictStr, custodian_account_code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[CustodianAccount]:
@@ -3589,12 +3589,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: PortfolioDetails
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_details_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_details_with_http_info(scope, code, effective_at, as_at, **kwargs)  # noqa: E501
+        response = self.get_details_with_http_info(scope, code, effective_at, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_details_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[PortfolioDetails]:
@@ -3756,12 +3756,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: VersionedResourceListOfHoldingContributor
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_holding_contributors_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_holding_contributors_with_http_info(scope, code, holding_id, effective_date, from_trade_date, to_trade_date, include_historic, tax_lot_id, include_unsettled_movements, limit, as_at, page, timeline_scope, timeline_code, **kwargs)  # noqa: E501
+        response = self.get_holding_contributors_with_http_info(scope, code, holding_id, effective_date, from_trade_date, to_trade_date, include_historic, tax_lot_id, include_unsettled_movements, limit, as_at, page, timeline_scope, timeline_code, **kwargs)
+        return response.data
 
     @validate_call
     def get_holding_contributors_with_http_info(self, scope: StrictStr, code: StrictStr, holding_id: int, effective_date: Optional[StrictStr] = None, from_trade_date: Optional[StrictStr] = None, to_trade_date: Optional[StrictStr] = None, include_historic: Optional[bool] = None, tax_lot_id: Optional[StrictStr] = None, include_unsettled_movements: Optional[bool] = None, limit: Optional[int] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfHoldingContributor]:
@@ -3977,12 +3977,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: VersionedResourceListOfPortfolioHolding
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_holdings_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_holdings_with_http_info(scope, code, effective_at, as_at, filter, property_keys, by_taxlots, include_settlement_events_after_days, timeline_scope, timeline_code, closed_period_id, **kwargs)  # noqa: E501
+        response = self.get_holdings_with_http_info(scope, code, effective_at, as_at, filter, property_keys, by_taxlots, include_settlement_events_after_days, timeline_scope, timeline_code, closed_period_id, **kwargs)
+        return response.data
 
     @validate_call
     def get_holdings_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, by_taxlots: Optional[bool] = None, include_settlement_events_after_days: Optional[int] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfPortfolioHolding]:
@@ -4171,12 +4171,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: HoldingsAdjustment
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_holdings_adjustment_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_holdings_adjustment_with_http_info(scope, code, effective_at, as_at, property_keys, filter, **kwargs)  # noqa: E501
+        response = self.get_holdings_adjustment_with_http_info(scope, code, effective_at, as_at, property_keys, filter, **kwargs)
+        return response.data
 
     @validate_call
     def get_holdings_adjustment_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[HoldingsAdjustment]:
@@ -4343,12 +4343,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: VersionedResourceListWithWarningsOfPortfolioHolding
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_holdings_with_orders_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_holdings_with_orders_with_http_info(scope, code, effective_at, as_at, filter, property_keys, by_taxlots, recipe_id_scope, recipe_id_code, include_settlement_events_after_days, **kwargs)  # noqa: E501
+        response = self.get_holdings_with_orders_with_http_info(scope, code, effective_at, as_at, filter, property_keys, by_taxlots, recipe_id_scope, recipe_id_code, include_settlement_events_after_days, **kwargs)
+        return response.data
 
     @validate_call
     def get_holdings_with_orders_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, by_taxlots: Optional[bool] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, include_settlement_events_after_days: Optional[int] = None, **kwargs) -> ApiResponse[VersionedResourceListWithWarningsOfPortfolioHolding]:
@@ -4547,12 +4547,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: VersionedResourceListOfHoldingContributor
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_multiple_holding_contributors_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_multiple_holding_contributors_with_http_info(scope, code, holding_ids_request, effective_date, from_transaction_date, to_transaction_date, include_historic, tax_lot_id, include_unsettled_movements, limit, as_at, page, timeline_scope, timeline_code, **kwargs)  # noqa: E501
+        response = self.get_multiple_holding_contributors_with_http_info(scope, code, holding_ids_request, effective_date, from_transaction_date, to_transaction_date, include_historic, tax_lot_id, include_unsettled_movements, limit, as_at, page, timeline_scope, timeline_code, **kwargs)
+        return response.data
 
     @validate_call
     def get_multiple_holding_contributors_with_http_info(self, scope: StrictStr, code: StrictStr, holding_ids_request: HoldingIdsRequest, effective_date: Optional[StrictStr] = None, from_transaction_date: Optional[StrictStr] = None, to_transaction_date: Optional[StrictStr] = None, include_historic: Optional[bool] = None, tax_lot_id: Optional[StrictStr] = None, include_unsettled_movements: Optional[bool] = None, limit: Optional[int] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfHoldingContributor]:
@@ -4773,12 +4773,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: ResourceListOfInstrumentCashFlow
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_portfolio_cash_flows_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_portfolio_cash_flows_with_http_info(scope, code, effective_at, window_start, window_end, as_at, filter, recipe_id_scope, recipe_id_code, exclude_unsettled_trades, **kwargs)  # noqa: E501
+        response = self.get_portfolio_cash_flows_with_http_info(scope, code, effective_at, window_start, window_end, as_at, filter, recipe_id_scope, recipe_id_code, exclude_unsettled_trades, **kwargs)
+        return response.data
 
     @validate_call
     def get_portfolio_cash_flows_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, window_start: Optional[StrictStr] = None, window_end: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, exclude_unsettled_trades: Optional[bool] = None, **kwargs) -> ApiResponse[ResourceListOfInstrumentCashFlow]:
@@ -4968,12 +4968,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: ResourceListOfPortfolioCashLadder
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_portfolio_cash_ladder_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_portfolio_cash_ladder_with_http_info(scope, code, from_effective_at, to_effective_at, effective_at, as_at, filter, recipe_id_scope, recipe_id_code, exclude_unsettled_trades, **kwargs)  # noqa: E501
+        response = self.get_portfolio_cash_ladder_with_http_info(scope, code, from_effective_at, to_effective_at, effective_at, as_at, filter, recipe_id_scope, recipe_id_code, exclude_unsettled_trades, **kwargs)
+        return response.data
 
     @validate_call
     def get_portfolio_cash_ladder_with_http_info(self, scope: StrictStr, code: StrictStr, from_effective_at: StrictStr, to_effective_at: StrictStr, effective_at: StrictStr, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, exclude_unsettled_trades: Optional[bool] = None, **kwargs) -> ApiResponse[ResourceListOfPortfolioCashLadder]:
@@ -5161,12 +5161,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: ResourceListOfPortfolioCashFlow
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_portfolio_cash_statement_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_portfolio_cash_statement_with_http_info(scope, code, from_effective_at, to_effective_at, as_at, filter, recipe_id_scope, recipe_id_code, property_keys, **kwargs)  # noqa: E501
+        response = self.get_portfolio_cash_statement_with_http_info(scope, code, from_effective_at, to_effective_at, as_at, filter, recipe_id_scope, recipe_id_code, property_keys, **kwargs)
+        return response.data
 
     @validate_call
     def get_portfolio_cash_statement_with_http_info(self, scope: StrictStr, code: StrictStr, from_effective_at: StrictStr, to_effective_at: StrictStr, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfPortfolioCashFlow]:
@@ -5339,12 +5339,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: ResourceListOfChangeHistory
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_transaction_history_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_transaction_history_with_http_info(scope, code, transaction_id, as_at, **kwargs)  # noqa: E501
+        response = self.get_transaction_history_with_http_info(scope, code, transaction_id, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_transaction_history_with_http_info(self, scope: StrictStr, code: StrictStr, transaction_id: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfChangeHistory]:
@@ -5490,12 +5490,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: TransactionSettlementStatus
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_transaction_settlement_status_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_transaction_settlement_status_with_http_info(scope, code, transaction_id, effective_at, as_at, property_keys, **kwargs)  # noqa: E501
+        response = self.get_transaction_settlement_status_with_http_info(scope, code, transaction_id, effective_at, as_at, property_keys, **kwargs)
+        return response.data
 
     @validate_call
     def get_transaction_settlement_status_with_http_info(self, scope: StrictStr, code: StrictStr, transaction_id: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[TransactionSettlementStatus]:
@@ -5662,7 +5662,7 @@ class TransactionPortfoliosApi:
         :type data_model_scope: str
         :param data_model_code: The optional code of a Custom Data Model to use
         :type data_model_code: str
-        :param membership_type: The membership types of the specified Custom Data Model to return. Allowable values are Member, Candidate and All. Defaults to Member.
+        :param membership_type: The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate.
         :type membership_type: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -5670,12 +5670,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: VersionedResourceListOfTransaction
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_transactions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_transactions_with_http_info(scope, code, from_transaction_date, to_transaction_date, as_at, filter, property_keys, page, limit, show_cancelled_transactions, sort_by, data_model_scope, data_model_code, membership_type, **kwargs)  # noqa: E501
+        response = self.get_transactions_with_http_info(scope, code, from_transaction_date, to_transaction_date, as_at, filter, property_keys, page, limit, show_cancelled_transactions, sort_by, data_model_scope, data_model_code, membership_type, **kwargs)
+        return response.data
 
     @validate_call
     def get_transactions_with_http_info(self, scope: StrictStr, code: StrictStr, from_transaction_date: Optional[StrictStr] = None, to_transaction_date: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, show_cancelled_transactions: Optional[bool] = None, sort_by: Optional[List[str]] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, membership_type: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfTransaction]:
@@ -5708,7 +5708,7 @@ class TransactionPortfoliosApi:
         :type data_model_scope: str
         :param data_model_code: The optional code of a Custom Data Model to use
         :type data_model_code: str
-        :param membership_type: The membership types of the specified Custom Data Model to return. Allowable values are Member, Candidate and All. Defaults to Member.
+        :param membership_type: The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate.
         :type membership_type: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -5891,12 +5891,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: ResourceListOfTransaction
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_upsertable_portfolio_cash_flows_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_upsertable_portfolio_cash_flows_with_http_info(scope, code, effective_at, window_start, window_end, as_at, filter, recipe_id_scope, recipe_id_code, exclude_unsettled_trades, **kwargs)  # noqa: E501
+        response = self.get_upsertable_portfolio_cash_flows_with_http_info(scope, code, effective_at, window_start, window_end, as_at, filter, recipe_id_scope, recipe_id_code, exclude_unsettled_trades, **kwargs)
+        return response.data
 
     @validate_call
     def get_upsertable_portfolio_cash_flows_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, window_start: Optional[StrictStr] = None, window_end: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, exclude_unsettled_trades: Optional[bool] = None, **kwargs) -> ApiResponse[ResourceListOfTransaction]:
@@ -6082,12 +6082,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfCustodianAccount
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_custodian_accounts_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_custodian_accounts_with_http_info(scope, code, effective_at, as_at, page, limit, filter, property_keys, **kwargs)  # noqa: E501
+        response = self.list_custodian_accounts_with_http_info(scope, code, effective_at, as_at, page, limit, filter, property_keys, **kwargs)
+        return response.data
 
     @validate_call
     def list_custodian_accounts_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfCustodianAccount]:
@@ -6258,12 +6258,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: ResourceListOfHoldingsAdjustmentHeader
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_holdings_adjustments_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_holdings_adjustments_with_http_info(scope, code, from_effective_at, to_effective_at, as_at, filter, **kwargs)  # noqa: E501
+        response = self.list_holdings_adjustments_with_http_info(scope, code, from_effective_at, to_effective_at, as_at, filter, **kwargs)
+        return response.data
 
     @validate_call
     def list_holdings_adjustments_with_http_info(self, scope: StrictStr, code: StrictStr, from_effective_at: Optional[StrictStr] = None, to_effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfHoldingsAdjustmentHeader]:
@@ -6433,12 +6433,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: VersionedResourceListOfTransactionSettlementInstruction
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_settlement_instructions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_settlement_instructions_with_http_info(scope, code, from_date, to_date, page, limit, filter, as_at, property_keys, timeline_scope, timeline_code, closed_period_id, **kwargs)  # noqa: E501
+        response = self.list_settlement_instructions_with_http_info(scope, code, from_date, to_date, page, limit, filter, as_at, property_keys, timeline_scope, timeline_code, closed_period_id, **kwargs)
+        return response.data
 
     @validate_call
     def list_settlement_instructions_with_http_info(self, scope: StrictStr, code: StrictStr, from_date: Optional[StrictStr] = None, to_date: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfTransactionSettlementInstruction]:
@@ -6637,12 +6637,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: OverrideVirtualTransactionsResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the override_virtual_transactions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.override_virtual_transactions_with_http_info(scope, code, instrument_event_id, transaction_request, portfolio_effective_at, preserve_properties, data_model_scope, data_model_code, **kwargs)  # noqa: E501
+        response = self.override_virtual_transactions_with_http_info(scope, code, instrument_event_id, transaction_request, portfolio_effective_at, preserve_properties, data_model_scope, data_model_code, **kwargs)
+        return response.data
 
     @validate_call
     def override_virtual_transactions_with_http_info(self, scope: StrictStr, code: StrictStr, instrument_event_id: StrictStr, transaction_request: List[TransactionRequest], portfolio_effective_at: Optional[StrictStr] = None, preserve_properties: Optional[bool] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[OverrideVirtualTransactionsResponse]:
@@ -6812,12 +6812,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: PortfolioDetails
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the patch_portfolio_details_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.patch_portfolio_details_with_http_info(scope, code, operation, effective_at, **kwargs)  # noqa: E501
+        response = self.patch_portfolio_details_with_http_info(scope, code, operation, effective_at, **kwargs)
+        return response.data
 
     @validate_call
     def patch_portfolio_details_with_http_info(self, scope: StrictStr, code: StrictStr, operation: List[Operation], effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PortfolioDetails]:
@@ -6971,12 +6971,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: ResourceListOfOutputTransaction
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the preview_transaction_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.preview_transaction_with_http_info(scope, code, transaction_request, property_keys, show_cancelled_transactions, preserve_properties, data_model_scope, data_model_code, **kwargs)  # noqa: E501
+        response = self.preview_transaction_with_http_info(scope, code, transaction_request, property_keys, show_cancelled_transactions, preserve_properties, data_model_scope, data_model_code, **kwargs)
+        return response.data
 
     @validate_call
     def preview_transaction_with_http_info(self, scope: StrictStr, code: StrictStr, transaction_request: TransactionRequest, property_keys: Optional[List[str]] = None, show_cancelled_transactions: Optional[bool] = None, preserve_properties: Optional[bool] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfOutputTransaction]:
@@ -7153,12 +7153,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: UpsertPortfolioTransactionsResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the resolve_instrument_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.resolve_instrument_with_http_info(scope, code, instrument_identifier_type, instrument_identifier_value, from_effective_at, re_resolve, request_body, **kwargs)  # noqa: E501
+        response = self.resolve_instrument_with_http_info(scope, code, instrument_identifier_type, instrument_identifier_value, from_effective_at, re_resolve, request_body, **kwargs)
+        return response.data
 
     @validate_call
     def resolve_instrument_with_http_info(self, scope: StrictStr, code: StrictStr, instrument_identifier_type: StrictStr, instrument_identifier_value: StrictStr, from_effective_at: Optional[StrictStr] = None, re_resolve: Optional[bool] = None, request_body: Optional[Dict[str, str]] = None, **kwargs) -> ApiResponse[UpsertPortfolioTransactionsResponse]:
@@ -7328,12 +7328,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: AdjustHolding
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the set_holdings_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.set_holdings_with_http_info(scope, code, effective_at, adjust_holding_request, reconciliation_methods, override_movement_name, override_offset_movement_name, **kwargs)  # noqa: E501
+        response = self.set_holdings_with_http_info(scope, code, effective_at, adjust_holding_request, reconciliation_methods, override_movement_name, override_offset_movement_name, **kwargs)
+        return response.data
 
     @validate_call
     def set_holdings_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: StrictStr, adjust_holding_request: List[AdjustHoldingRequest], reconciliation_methods: Optional[List[str]] = None, override_movement_name: Optional[StrictStr] = None, override_offset_movement_name: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AdjustHolding]:
@@ -7496,12 +7496,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: CustodianAccountsUpsertResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_custodian_accounts_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_custodian_accounts_with_http_info(scope, code, custodian_account_request, **kwargs)  # noqa: E501
+        response = self.upsert_custodian_accounts_with_http_info(scope, code, custodian_account_request, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_custodian_accounts_with_http_info(self, scope: StrictStr, code: StrictStr, custodian_account_request: List[CustodianAccountRequest], **kwargs) -> ApiResponse[CustodianAccountsUpsertResponse]:
@@ -7643,12 +7643,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: CustodianAccountProperties
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_custodian_accounts_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_custodian_accounts_properties_with_http_info(scope, code, custodian_account_scope, custodian_account_code, request_body, **kwargs)  # noqa: E501
+        response = self.upsert_custodian_accounts_properties_with_http_info(scope, code, custodian_account_scope, custodian_account_code, request_body, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_custodian_accounts_properties_with_http_info(self, scope: StrictStr, code: StrictStr, custodian_account_scope: StrictStr, custodian_account_code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> ApiResponse[CustodianAccountProperties]:
@@ -7800,12 +7800,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: PortfolioDetails
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_portfolio_details_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_portfolio_details_with_http_info(scope, code, create_portfolio_details, effective_at, **kwargs)  # noqa: E501
+        response = self.upsert_portfolio_details_with_http_info(scope, code, create_portfolio_details, effective_at, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_portfolio_details_with_http_info(self, scope: StrictStr, code: StrictStr, create_portfolio_details: CreatePortfolioDetails, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PortfolioDetails]:
@@ -7949,12 +7949,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: ResourceListOfTransactionSettlementInstruction
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_settlement_instructions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_settlement_instructions_with_http_info(scope, code, settlement_instruction_request, **kwargs)  # noqa: E501
+        response = self.upsert_settlement_instructions_with_http_info(scope, code, settlement_instruction_request, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_settlement_instructions_with_http_info(self, scope: StrictStr, code: StrictStr, settlement_instruction_request: List[SettlementInstructionRequest], **kwargs) -> ApiResponse[ResourceListOfTransactionSettlementInstruction]:
@@ -8094,12 +8094,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: UpsertTransactionPropertiesResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_transaction_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_transaction_properties_with_http_info(scope, code, transaction_id, request_body, **kwargs)  # noqa: E501
+        response = self.upsert_transaction_properties_with_http_info(scope, code, transaction_id, request_body, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_transaction_properties_with_http_info(self, scope: StrictStr, code: StrictStr, transaction_id: StrictStr, request_body: Dict[str, PerpetualProperty], **kwargs) -> ApiResponse[UpsertTransactionPropertiesResponse]:
@@ -8249,12 +8249,12 @@ class TransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: UpsertPortfolioTransactionsResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_transactions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_transactions_with_http_info(scope, code, transaction_request, preserve_properties, data_model_scope, data_model_code, **kwargs)  # noqa: E501
+        response = self.upsert_transactions_with_http_info(scope, code, transaction_request, preserve_properties, data_model_scope, data_model_code, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_transactions_with_http_info(self, scope: StrictStr, code: StrictStr, transaction_request: List[TransactionRequest], preserve_properties: Optional[bool] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[UpsertPortfolioTransactionsResponse]:
@@ -8422,12 +8422,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: AdjustHolding
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the adjust_holdings_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.adjust_holdings_with_http_info_async(scope, code, effective_at, adjust_holding_request, reconciliation_methods, override_movement_name, override_offset_movement_name, **kwargs)  # noqa: E501
+            response = await self.adjust_holdings_with_http_info_async(scope, code, effective_at, adjust_holding_request, reconciliation_methods, override_movement_name, override_offset_movement_name, **kwargs)
+            return response.data
 
     @validate_call
     async def adjust_holdings_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: StrictStr, adjust_holding_request: List[AdjustHoldingRequest], reconciliation_methods: Optional[List[str]] = None, override_movement_name: Optional[StrictStr] = None, override_offset_movement_name: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AdjustHolding]:
@@ -8595,12 +8595,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: BatchAdjustHoldingsResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the batch_adjust_holdings_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.batch_adjust_holdings_with_http_info_async(scope, code, success_mode, request_body, reconciliation_methods, **kwargs)  # noqa: E501
+            response = await self.batch_adjust_holdings_with_http_info_async(scope, code, success_mode, request_body, reconciliation_methods, **kwargs)
+            return response.data
 
     @validate_call
     async def batch_adjust_holdings_with_http_info_async(self, scope: StrictStr, code: StrictStr, success_mode: StrictStr, request_body: Dict[str, AdjustHoldingForDateRequest], reconciliation_methods: Optional[List[str]] = None, **kwargs) -> ApiResponse[BatchAdjustHoldingsResponse]:
@@ -8754,12 +8754,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: BatchAmendTransactionSettlementInstructionResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the batch_amend_settlement_instructions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.batch_amend_settlement_instructions_with_http_info_async(scope, code, request_body, success_mode, **kwargs)  # noqa: E501
+            response = await self.batch_amend_settlement_instructions_with_http_info_async(scope, code, request_body, success_mode, **kwargs)
+            return response.data
 
     @validate_call
     async def batch_amend_settlement_instructions_with_http_info_async(self, scope: StrictStr, code: StrictStr, request_body: Dict[str, SettlementInstructionAmendRequest], success_mode: Optional[StrictStr] = None, **kwargs) -> ApiResponse[BatchAmendTransactionSettlementInstructionResponse]:
@@ -8904,12 +8904,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: CreateTradeTicketsResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the batch_create_trade_tickets_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.batch_create_trade_tickets_with_http_info_async(scope, code, lusid_trade_ticket, **kwargs)  # noqa: E501
+            response = await self.batch_create_trade_tickets_with_http_info_async(scope, code, lusid_trade_ticket, **kwargs)
+            return response.data
 
     @validate_call
     async def batch_create_trade_tickets_with_http_info_async(self, scope: StrictStr, code: StrictStr, lusid_trade_ticket: List[LusidTradeTicket], **kwargs) -> ApiResponse[CreateTradeTicketsResponse]:
@@ -9044,7 +9044,7 @@ class TransactionPortfoliosApi:
             :type success_mode: str
             :param request_body: The selected set of holdings to adjust to the provided targets for the               transaction portfolio. (required)
             :type request_body: Dict[str, AdjustHoldingForDateRequest]
-            :param reconciliation_methods: Optional parameter for specifying a reconciliation method: e.g. FxForward.
+            :param reconciliation_methods: Optional parameter for specifying a reconciliation method: e.g. FxForward. Available values: FxForward.
             :type reconciliation_methods: List[str]
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -9052,12 +9052,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: BatchAdjustHoldingsResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the batch_set_holdings_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.batch_set_holdings_with_http_info_async(scope, code, success_mode, request_body, reconciliation_methods, **kwargs)  # noqa: E501
+            response = await self.batch_set_holdings_with_http_info_async(scope, code, success_mode, request_body, reconciliation_methods, **kwargs)
+            return response.data
 
     @validate_call
     async def batch_set_holdings_with_http_info_async(self, scope: StrictStr, code: StrictStr, success_mode: StrictStr, request_body: Dict[str, AdjustHoldingForDateRequest], reconciliation_methods: Optional[List[str]] = None, **kwargs) -> ApiResponse[BatchAdjustHoldingsResponse]:
@@ -9073,7 +9073,7 @@ class TransactionPortfoliosApi:
             :type success_mode: str
             :param request_body: The selected set of holdings to adjust to the provided targets for the               transaction portfolio. (required)
             :type request_body: Dict[str, AdjustHoldingForDateRequest]
-            :param reconciliation_methods: Optional parameter for specifying a reconciliation method: e.g. FxForward.
+            :param reconciliation_methods: Optional parameter for specifying a reconciliation method: e.g. FxForward. Available values: FxForward.
             :type reconciliation_methods: List[str]
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
@@ -9211,12 +9211,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: BatchUpsertTransactionSettlementInstructionResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the batch_upsert_settlement_instructions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.batch_upsert_settlement_instructions_with_http_info_async(scope, code, request_body, success_mode, **kwargs)  # noqa: E501
+            response = await self.batch_upsert_settlement_instructions_with_http_info_async(scope, code, request_body, success_mode, **kwargs)
+            return response.data
 
     @validate_call
     async def batch_upsert_settlement_instructions_with_http_info_async(self, scope: StrictStr, code: StrictStr, request_body: Dict[str, SettlementInstructionRequest], success_mode: Optional[StrictStr] = None, **kwargs) -> ApiResponse[BatchUpsertTransactionSettlementInstructionResponse]:
@@ -9365,12 +9365,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: BatchUpsertPortfolioTransactionsResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the batch_upsert_transactions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.batch_upsert_transactions_with_http_info_async(scope, code, success_mode, request_body, preserve_properties, **kwargs)  # noqa: E501
+            response = await self.batch_upsert_transactions_with_http_info_async(scope, code, success_mode, request_body, preserve_properties, **kwargs)
+            return response.data
 
     @validate_call
     async def batch_upsert_transactions_with_http_info_async(self, scope: StrictStr, code: StrictStr, success_mode: StrictStr, request_body: Dict[str, TransactionRequest], preserve_properties: Optional[bool] = None, **kwargs) -> ApiResponse[BatchUpsertPortfolioTransactionsResponse]:
@@ -9521,12 +9521,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: VersionedResourceListWithPostBodiesOfSettlementInstructionWithTransactionToSettlementInstructionQuery
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the build_settlement_instructions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.build_settlement_instructions_with_http_info_async(scope, code, settlement_instruction_query, **kwargs)  # noqa: E501
+            response = await self.build_settlement_instructions_with_http_info_async(scope, code, settlement_instruction_query, **kwargs)
+            return response.data
 
     @validate_call
     async def build_settlement_instructions_with_http_info_async(self, scope: StrictStr, code: StrictStr, settlement_instruction_query: SettlementInstructionQuery, **kwargs) -> ApiResponse[VersionedResourceListWithPostBodiesOfSettlementInstructionWithTransactionToSettlementInstructionQuery]:
@@ -9673,7 +9673,7 @@ class TransactionPortfoliosApi:
             :type data_model_scope: str
             :param data_model_code: The optional code of a Custom Data Model to use
             :type data_model_code: str
-            :param membership_type: The membership types of the specified Custom Data Model to return. Allowable values are Member, Candidate and All. Defaults to Member.
+            :param membership_type: The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate.
             :type membership_type: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -9681,12 +9681,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: VersionedResourceListOfOutputTransaction
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the build_transactions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.build_transactions_with_http_info_async(scope, code, transaction_query_parameters, as_at, filter, property_keys, limit, page, data_model_scope, data_model_code, membership_type, **kwargs)  # noqa: E501
+            response = await self.build_transactions_with_http_info_async(scope, code, transaction_query_parameters, as_at, filter, property_keys, limit, page, data_model_scope, data_model_code, membership_type, **kwargs)
+            return response.data
 
     @validate_call
     async def build_transactions_with_http_info_async(self, scope: StrictStr, code: StrictStr, transaction_query_parameters: TransactionQueryParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, membership_type: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfOutputTransaction]:
@@ -9714,7 +9714,7 @@ class TransactionPortfoliosApi:
             :type data_model_scope: str
             :param data_model_code: The optional code of a Custom Data Model to use
             :type data_model_code: str
-            :param membership_type: The membership types of the specified Custom Data Model to return. Allowable values are Member, Candidate and All. Defaults to Member.
+            :param membership_type: The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate.
             :type membership_type: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
@@ -9877,12 +9877,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the cancel_adjust_holdings_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.cancel_adjust_holdings_with_http_info_async(scope, code, effective_at, **kwargs)  # noqa: E501
+            response = await self.cancel_adjust_holdings_with_http_info_async(scope, code, effective_at, **kwargs)
+            return response.data
 
     @validate_call
     async def cancel_adjust_holdings_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -10016,12 +10016,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the cancel_single_adjust_holding_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.cancel_single_adjust_holding_with_http_info_async(scope, code, effective_at, cancel_single_holding_adjustment_request, **kwargs)  # noqa: E501
+            response = await self.cancel_single_adjust_holding_with_http_info_async(scope, code, effective_at, cancel_single_holding_adjustment_request, **kwargs)
+            return response.data
 
     @validate_call
     async def cancel_single_adjust_holding_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: StrictStr, cancel_single_holding_adjustment_request: CancelSingleHoldingAdjustmentRequest, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -10166,12 +10166,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the cancel_transactions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.cancel_transactions_with_http_info_async(scope, code, transaction_ids, **kwargs)  # noqa: E501
+            response = await self.cancel_transactions_with_http_info_async(scope, code, transaction_ids, **kwargs)
+            return response.data
 
     @validate_call
     async def cancel_transactions_with_http_info_async(self, scope: StrictStr, code: StrictStr, transaction_ids: List[str], **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -10302,12 +10302,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Portfolio
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_portfolio_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_portfolio_with_http_info_async(scope, create_transaction_portfolio_request, **kwargs)  # noqa: E501
+            response = await self.create_portfolio_with_http_info_async(scope, create_transaction_portfolio_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_portfolio_with_http_info_async(self, scope: StrictStr, create_transaction_portfolio_request: CreateTransactionPortfolioRequest, **kwargs) -> ApiResponse[Portfolio]:
@@ -10440,12 +10440,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: LusidTradeTicket
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_trade_ticket_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_trade_ticket_with_http_info_async(scope, code, lusid_trade_ticket, **kwargs)  # noqa: E501
+            response = await self.create_trade_ticket_with_http_info_async(scope, code, lusid_trade_ticket, **kwargs)
+            return response.data
 
     @validate_call
     async def create_trade_ticket_with_http_info_async(self, scope: StrictStr, code: StrictStr, lusid_trade_ticket: Optional[LusidTradeTicket] = None, **kwargs) -> ApiResponse[LusidTradeTicket]:
@@ -10578,7 +10578,7 @@ class TransactionPortfoliosApi:
             :type code: str
             :param resource_id: The scope and codes of the custodian accounts to delete. (required)
             :type resource_id: List[ResourceId]
-            :param delete_mode: The delete mode to use (defaults to 'Soft').
+            :param delete_mode: The delete mode to use. Default value: Soft. Available values: Soft, Hard.
             :type delete_mode: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -10586,12 +10586,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeleteCustodianAccountsResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_custodian_accounts_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_custodian_accounts_with_http_info_async(scope, code, resource_id, delete_mode, **kwargs)  # noqa: E501
+            response = await self.delete_custodian_accounts_with_http_info_async(scope, code, resource_id, delete_mode, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_custodian_accounts_with_http_info_async(self, scope: StrictStr, code: StrictStr, resource_id: List[ResourceId], delete_mode: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeleteCustodianAccountsResponse]:
@@ -10605,7 +10605,7 @@ class TransactionPortfoliosApi:
             :type code: str
             :param resource_id: The scope and codes of the custodian accounts to delete. (required)
             :type resource_id: List[ResourceId]
-            :param delete_mode: The delete mode to use (defaults to 'Soft').
+            :param delete_mode: The delete mode to use. Default value: Soft. Available values: Soft, Hard.
             :type delete_mode: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
@@ -10738,12 +10738,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_properties_from_transaction_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_properties_from_transaction_with_http_info_async(scope, code, transaction_id, property_keys, **kwargs)  # noqa: E501
+            response = await self.delete_properties_from_transaction_with_http_info_async(scope, code, transaction_id, property_keys, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_properties_from_transaction_with_http_info_async(self, scope: StrictStr, code: StrictStr, transaction_id: StrictStr, property_keys: List[str], **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -10882,12 +10882,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_settlement_instructions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_settlement_instructions_with_http_info_async(scope, code, settlement_instruction_ids, **kwargs)  # noqa: E501
+            response = await self.delete_settlement_instructions_with_http_info_async(scope, code, settlement_instruction_ids, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_settlement_instructions_with_http_info_async(self, scope: StrictStr, code: StrictStr, settlement_instruction_ids: List[str], **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -11032,12 +11032,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: VersionedResourceListOfA2BDataRecord
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_a2_b_data_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_a2_b_data_with_http_info_async(scope, code, from_effective_at, to_effective_at, as_at, recipe_id_scope, recipe_id_code, property_keys, filter, **kwargs)  # noqa: E501
+            response = await self.get_a2_b_data_with_http_info_async(scope, code, from_effective_at, to_effective_at, as_at, recipe_id_scope, recipe_id_code, property_keys, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def get_a2_b_data_with_http_info_async(self, scope: StrictStr, code: StrictStr, from_effective_at: StrictStr, to_effective_at: StrictStr, as_at: Optional[datetime] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfA2BDataRecord]:
@@ -11221,12 +11221,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: VersionedResourceListOfA2BMovementRecord
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_a2_b_movements_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_a2_b_movements_with_http_info_async(scope, code, from_effective_at, to_effective_at, as_at, recipe_id_scope, recipe_id_code, property_keys, filter, **kwargs)  # noqa: E501
+            response = await self.get_a2_b_movements_with_http_info_async(scope, code, from_effective_at, to_effective_at, as_at, recipe_id_scope, recipe_id_code, property_keys, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def get_a2_b_movements_with_http_info_async(self, scope: StrictStr, code: StrictStr, from_effective_at: StrictStr, to_effective_at: StrictStr, as_at: Optional[datetime] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfA2BMovementRecord]:
@@ -11410,12 +11410,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: VersionedResourceListOfA2BMovementRecord
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_a2_b_movements_trading_vs_holding_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_a2_b_movements_trading_vs_holding_with_http_info_async(scope, code, from_effective_at, to_effective_at, as_at, recipe_id_scope, recipe_id_code, property_keys, filter, **kwargs)  # noqa: E501
+            response = await self.get_a2_b_movements_trading_vs_holding_with_http_info_async(scope, code, from_effective_at, to_effective_at, as_at, recipe_id_scope, recipe_id_code, property_keys, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def get_a2_b_movements_trading_vs_holding_with_http_info_async(self, scope: StrictStr, code: StrictStr, from_effective_at: StrictStr, to_effective_at: StrictStr, as_at: Optional[datetime] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfA2BMovementRecord]:
@@ -11587,12 +11587,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: BucketedCashFlowResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_bucketed_cash_flows_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_bucketed_cash_flows_with_http_info_async(scope, code, bucketed_cash_flow_request, **kwargs)  # noqa: E501
+            response = await self.get_bucketed_cash_flows_with_http_info_async(scope, code, bucketed_cash_flow_request, **kwargs)
+            return response.data
 
     @validate_call
     async def get_bucketed_cash_flows_with_http_info_async(self, scope: StrictStr, code: StrictStr, bucketed_cash_flow_request: Optional[BucketedCashFlowRequest] = None, **kwargs) -> ApiResponse[BucketedCashFlowResponse]:
@@ -11739,12 +11739,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: CustodianAccount
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_custodian_account_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_custodian_account_with_http_info_async(scope, code, custodian_account_scope, custodian_account_code, effective_at, as_at, property_keys, **kwargs)  # noqa: E501
+            response = await self.get_custodian_account_with_http_info_async(scope, code, custodian_account_scope, custodian_account_code, effective_at, as_at, property_keys, **kwargs)
+            return response.data
 
     @validate_call
     async def get_custodian_account_with_http_info_async(self, scope: StrictStr, code: StrictStr, custodian_account_scope: StrictStr, custodian_account_code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[CustodianAccount]:
@@ -11906,12 +11906,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PortfolioDetails
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_details_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_details_with_http_info_async(scope, code, effective_at, as_at, **kwargs)  # noqa: E501
+            response = await self.get_details_with_http_info_async(scope, code, effective_at, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_details_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[PortfolioDetails]:
@@ -12074,12 +12074,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: VersionedResourceListOfHoldingContributor
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_holding_contributors_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_holding_contributors_with_http_info_async(scope, code, holding_id, effective_date, from_trade_date, to_trade_date, include_historic, tax_lot_id, include_unsettled_movements, limit, as_at, page, timeline_scope, timeline_code, **kwargs)  # noqa: E501
+            response = await self.get_holding_contributors_with_http_info_async(scope, code, holding_id, effective_date, from_trade_date, to_trade_date, include_historic, tax_lot_id, include_unsettled_movements, limit, as_at, page, timeline_scope, timeline_code, **kwargs)
+            return response.data
 
     @validate_call
     async def get_holding_contributors_with_http_info_async(self, scope: StrictStr, code: StrictStr, holding_id: int, effective_date: Optional[StrictStr] = None, from_trade_date: Optional[StrictStr] = None, to_trade_date: Optional[StrictStr] = None, include_historic: Optional[bool] = None, tax_lot_id: Optional[StrictStr] = None, include_unsettled_movements: Optional[bool] = None, limit: Optional[int] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfHoldingContributor]:
@@ -12296,12 +12296,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: VersionedResourceListOfPortfolioHolding
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_holdings_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_holdings_with_http_info_async(scope, code, effective_at, as_at, filter, property_keys, by_taxlots, include_settlement_events_after_days, timeline_scope, timeline_code, closed_period_id, **kwargs)  # noqa: E501
+            response = await self.get_holdings_with_http_info_async(scope, code, effective_at, as_at, filter, property_keys, by_taxlots, include_settlement_events_after_days, timeline_scope, timeline_code, closed_period_id, **kwargs)
+            return response.data
 
     @validate_call
     async def get_holdings_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, by_taxlots: Optional[bool] = None, include_settlement_events_after_days: Optional[int] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfPortfolioHolding]:
@@ -12491,12 +12491,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: HoldingsAdjustment
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_holdings_adjustment_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_holdings_adjustment_with_http_info_async(scope, code, effective_at, as_at, property_keys, filter, **kwargs)  # noqa: E501
+            response = await self.get_holdings_adjustment_with_http_info_async(scope, code, effective_at, as_at, property_keys, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def get_holdings_adjustment_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[HoldingsAdjustment]:
@@ -12664,12 +12664,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: VersionedResourceListWithWarningsOfPortfolioHolding
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_holdings_with_orders_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_holdings_with_orders_with_http_info_async(scope, code, effective_at, as_at, filter, property_keys, by_taxlots, recipe_id_scope, recipe_id_code, include_settlement_events_after_days, **kwargs)  # noqa: E501
+            response = await self.get_holdings_with_orders_with_http_info_async(scope, code, effective_at, as_at, filter, property_keys, by_taxlots, recipe_id_scope, recipe_id_code, include_settlement_events_after_days, **kwargs)
+            return response.data
 
     @validate_call
     async def get_holdings_with_orders_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, by_taxlots: Optional[bool] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, include_settlement_events_after_days: Optional[int] = None, **kwargs) -> ApiResponse[VersionedResourceListWithWarningsOfPortfolioHolding]:
@@ -12869,12 +12869,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: VersionedResourceListOfHoldingContributor
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_multiple_holding_contributors_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_multiple_holding_contributors_with_http_info_async(scope, code, holding_ids_request, effective_date, from_transaction_date, to_transaction_date, include_historic, tax_lot_id, include_unsettled_movements, limit, as_at, page, timeline_scope, timeline_code, **kwargs)  # noqa: E501
+            response = await self.get_multiple_holding_contributors_with_http_info_async(scope, code, holding_ids_request, effective_date, from_transaction_date, to_transaction_date, include_historic, tax_lot_id, include_unsettled_movements, limit, as_at, page, timeline_scope, timeline_code, **kwargs)
+            return response.data
 
     @validate_call
     async def get_multiple_holding_contributors_with_http_info_async(self, scope: StrictStr, code: StrictStr, holding_ids_request: HoldingIdsRequest, effective_date: Optional[StrictStr] = None, from_transaction_date: Optional[StrictStr] = None, to_transaction_date: Optional[StrictStr] = None, include_historic: Optional[bool] = None, tax_lot_id: Optional[StrictStr] = None, include_unsettled_movements: Optional[bool] = None, limit: Optional[int] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfHoldingContributor]:
@@ -13096,12 +13096,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfInstrumentCashFlow
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_portfolio_cash_flows_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_portfolio_cash_flows_with_http_info_async(scope, code, effective_at, window_start, window_end, as_at, filter, recipe_id_scope, recipe_id_code, exclude_unsettled_trades, **kwargs)  # noqa: E501
+            response = await self.get_portfolio_cash_flows_with_http_info_async(scope, code, effective_at, window_start, window_end, as_at, filter, recipe_id_scope, recipe_id_code, exclude_unsettled_trades, **kwargs)
+            return response.data
 
     @validate_call
     async def get_portfolio_cash_flows_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, window_start: Optional[StrictStr] = None, window_end: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, exclude_unsettled_trades: Optional[bool] = None, **kwargs) -> ApiResponse[ResourceListOfInstrumentCashFlow]:
@@ -13292,12 +13292,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfPortfolioCashLadder
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_portfolio_cash_ladder_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_portfolio_cash_ladder_with_http_info_async(scope, code, from_effective_at, to_effective_at, effective_at, as_at, filter, recipe_id_scope, recipe_id_code, exclude_unsettled_trades, **kwargs)  # noqa: E501
+            response = await self.get_portfolio_cash_ladder_with_http_info_async(scope, code, from_effective_at, to_effective_at, effective_at, as_at, filter, recipe_id_scope, recipe_id_code, exclude_unsettled_trades, **kwargs)
+            return response.data
 
     @validate_call
     async def get_portfolio_cash_ladder_with_http_info_async(self, scope: StrictStr, code: StrictStr, from_effective_at: StrictStr, to_effective_at: StrictStr, effective_at: StrictStr, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, exclude_unsettled_trades: Optional[bool] = None, **kwargs) -> ApiResponse[ResourceListOfPortfolioCashLadder]:
@@ -13486,12 +13486,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfPortfolioCashFlow
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_portfolio_cash_statement_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_portfolio_cash_statement_with_http_info_async(scope, code, from_effective_at, to_effective_at, as_at, filter, recipe_id_scope, recipe_id_code, property_keys, **kwargs)  # noqa: E501
+            response = await self.get_portfolio_cash_statement_with_http_info_async(scope, code, from_effective_at, to_effective_at, as_at, filter, recipe_id_scope, recipe_id_code, property_keys, **kwargs)
+            return response.data
 
     @validate_call
     async def get_portfolio_cash_statement_with_http_info_async(self, scope: StrictStr, code: StrictStr, from_effective_at: StrictStr, to_effective_at: StrictStr, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfPortfolioCashFlow]:
@@ -13665,12 +13665,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfChangeHistory
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_transaction_history_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_transaction_history_with_http_info_async(scope, code, transaction_id, as_at, **kwargs)  # noqa: E501
+            response = await self.get_transaction_history_with_http_info_async(scope, code, transaction_id, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_transaction_history_with_http_info_async(self, scope: StrictStr, code: StrictStr, transaction_id: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfChangeHistory]:
@@ -13817,12 +13817,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: TransactionSettlementStatus
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_transaction_settlement_status_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_transaction_settlement_status_with_http_info_async(scope, code, transaction_id, effective_at, as_at, property_keys, **kwargs)  # noqa: E501
+            response = await self.get_transaction_settlement_status_with_http_info_async(scope, code, transaction_id, effective_at, as_at, property_keys, **kwargs)
+            return response.data
 
     @validate_call
     async def get_transaction_settlement_status_with_http_info_async(self, scope: StrictStr, code: StrictStr, transaction_id: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[TransactionSettlementStatus]:
@@ -13990,7 +13990,7 @@ class TransactionPortfoliosApi:
             :type data_model_scope: str
             :param data_model_code: The optional code of a Custom Data Model to use
             :type data_model_code: str
-            :param membership_type: The membership types of the specified Custom Data Model to return. Allowable values are Member, Candidate and All. Defaults to Member.
+            :param membership_type: The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate.
             :type membership_type: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -13998,12 +13998,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: VersionedResourceListOfTransaction
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_transactions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_transactions_with_http_info_async(scope, code, from_transaction_date, to_transaction_date, as_at, filter, property_keys, page, limit, show_cancelled_transactions, sort_by, data_model_scope, data_model_code, membership_type, **kwargs)  # noqa: E501
+            response = await self.get_transactions_with_http_info_async(scope, code, from_transaction_date, to_transaction_date, as_at, filter, property_keys, page, limit, show_cancelled_transactions, sort_by, data_model_scope, data_model_code, membership_type, **kwargs)
+            return response.data
 
     @validate_call
     async def get_transactions_with_http_info_async(self, scope: StrictStr, code: StrictStr, from_transaction_date: Optional[StrictStr] = None, to_transaction_date: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, show_cancelled_transactions: Optional[bool] = None, sort_by: Optional[List[str]] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, membership_type: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfTransaction]:
@@ -14037,7 +14037,7 @@ class TransactionPortfoliosApi:
             :type data_model_scope: str
             :param data_model_code: The optional code of a Custom Data Model to use
             :type data_model_code: str
-            :param membership_type: The membership types of the specified Custom Data Model to return. Allowable values are Member, Candidate and All. Defaults to Member.
+            :param membership_type: The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate.
             :type membership_type: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
@@ -14220,12 +14220,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfTransaction
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_upsertable_portfolio_cash_flows_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_upsertable_portfolio_cash_flows_with_http_info_async(scope, code, effective_at, window_start, window_end, as_at, filter, recipe_id_scope, recipe_id_code, exclude_unsettled_trades, **kwargs)  # noqa: E501
+            response = await self.get_upsertable_portfolio_cash_flows_with_http_info_async(scope, code, effective_at, window_start, window_end, as_at, filter, recipe_id_scope, recipe_id_code, exclude_unsettled_trades, **kwargs)
+            return response.data
 
     @validate_call
     async def get_upsertable_portfolio_cash_flows_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, window_start: Optional[StrictStr] = None, window_end: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, exclude_unsettled_trades: Optional[bool] = None, **kwargs) -> ApiResponse[ResourceListOfTransaction]:
@@ -14412,12 +14412,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfCustodianAccount
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_custodian_accounts_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_custodian_accounts_with_http_info_async(scope, code, effective_at, as_at, page, limit, filter, property_keys, **kwargs)  # noqa: E501
+            response = await self.list_custodian_accounts_with_http_info_async(scope, code, effective_at, as_at, page, limit, filter, property_keys, **kwargs)
+            return response.data
 
     @validate_call
     async def list_custodian_accounts_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfCustodianAccount]:
@@ -14589,12 +14589,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfHoldingsAdjustmentHeader
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_holdings_adjustments_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_holdings_adjustments_with_http_info_async(scope, code, from_effective_at, to_effective_at, as_at, filter, **kwargs)  # noqa: E501
+            response = await self.list_holdings_adjustments_with_http_info_async(scope, code, from_effective_at, to_effective_at, as_at, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def list_holdings_adjustments_with_http_info_async(self, scope: StrictStr, code: StrictStr, from_effective_at: Optional[StrictStr] = None, to_effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfHoldingsAdjustmentHeader]:
@@ -14765,12 +14765,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: VersionedResourceListOfTransactionSettlementInstruction
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_settlement_instructions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_settlement_instructions_with_http_info_async(scope, code, from_date, to_date, page, limit, filter, as_at, property_keys, timeline_scope, timeline_code, closed_period_id, **kwargs)  # noqa: E501
+            response = await self.list_settlement_instructions_with_http_info_async(scope, code, from_date, to_date, page, limit, filter, as_at, property_keys, timeline_scope, timeline_code, closed_period_id, **kwargs)
+            return response.data
 
     @validate_call
     async def list_settlement_instructions_with_http_info_async(self, scope: StrictStr, code: StrictStr, from_date: Optional[StrictStr] = None, to_date: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfTransactionSettlementInstruction]:
@@ -14970,12 +14970,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: OverrideVirtualTransactionsResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the override_virtual_transactions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.override_virtual_transactions_with_http_info_async(scope, code, instrument_event_id, transaction_request, portfolio_effective_at, preserve_properties, data_model_scope, data_model_code, **kwargs)  # noqa: E501
+            response = await self.override_virtual_transactions_with_http_info_async(scope, code, instrument_event_id, transaction_request, portfolio_effective_at, preserve_properties, data_model_scope, data_model_code, **kwargs)
+            return response.data
 
     @validate_call
     async def override_virtual_transactions_with_http_info_async(self, scope: StrictStr, code: StrictStr, instrument_event_id: StrictStr, transaction_request: List[TransactionRequest], portfolio_effective_at: Optional[StrictStr] = None, preserve_properties: Optional[bool] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[OverrideVirtualTransactionsResponse]:
@@ -15146,12 +15146,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PortfolioDetails
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the patch_portfolio_details_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.patch_portfolio_details_with_http_info_async(scope, code, operation, effective_at, **kwargs)  # noqa: E501
+            response = await self.patch_portfolio_details_with_http_info_async(scope, code, operation, effective_at, **kwargs)
+            return response.data
 
     @validate_call
     async def patch_portfolio_details_with_http_info_async(self, scope: StrictStr, code: StrictStr, operation: List[Operation], effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PortfolioDetails]:
@@ -15306,12 +15306,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfOutputTransaction
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the preview_transaction_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.preview_transaction_with_http_info_async(scope, code, transaction_request, property_keys, show_cancelled_transactions, preserve_properties, data_model_scope, data_model_code, **kwargs)  # noqa: E501
+            response = await self.preview_transaction_with_http_info_async(scope, code, transaction_request, property_keys, show_cancelled_transactions, preserve_properties, data_model_scope, data_model_code, **kwargs)
+            return response.data
 
     @validate_call
     async def preview_transaction_with_http_info_async(self, scope: StrictStr, code: StrictStr, transaction_request: TransactionRequest, property_keys: Optional[List[str]] = None, show_cancelled_transactions: Optional[bool] = None, preserve_properties: Optional[bool] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfOutputTransaction]:
@@ -15489,12 +15489,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: UpsertPortfolioTransactionsResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the resolve_instrument_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.resolve_instrument_with_http_info_async(scope, code, instrument_identifier_type, instrument_identifier_value, from_effective_at, re_resolve, request_body, **kwargs)  # noqa: E501
+            response = await self.resolve_instrument_with_http_info_async(scope, code, instrument_identifier_type, instrument_identifier_value, from_effective_at, re_resolve, request_body, **kwargs)
+            return response.data
 
     @validate_call
     async def resolve_instrument_with_http_info_async(self, scope: StrictStr, code: StrictStr, instrument_identifier_type: StrictStr, instrument_identifier_value: StrictStr, from_effective_at: Optional[StrictStr] = None, re_resolve: Optional[bool] = None, request_body: Optional[Dict[str, str]] = None, **kwargs) -> ApiResponse[UpsertPortfolioTransactionsResponse]:
@@ -15665,12 +15665,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: AdjustHolding
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the set_holdings_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.set_holdings_with_http_info_async(scope, code, effective_at, adjust_holding_request, reconciliation_methods, override_movement_name, override_offset_movement_name, **kwargs)  # noqa: E501
+            response = await self.set_holdings_with_http_info_async(scope, code, effective_at, adjust_holding_request, reconciliation_methods, override_movement_name, override_offset_movement_name, **kwargs)
+            return response.data
 
     @validate_call
     async def set_holdings_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: StrictStr, adjust_holding_request: List[AdjustHoldingRequest], reconciliation_methods: Optional[List[str]] = None, override_movement_name: Optional[StrictStr] = None, override_offset_movement_name: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AdjustHolding]:
@@ -15834,12 +15834,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: CustodianAccountsUpsertResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_custodian_accounts_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_custodian_accounts_with_http_info_async(scope, code, custodian_account_request, **kwargs)  # noqa: E501
+            response = await self.upsert_custodian_accounts_with_http_info_async(scope, code, custodian_account_request, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_custodian_accounts_with_http_info_async(self, scope: StrictStr, code: StrictStr, custodian_account_request: List[CustodianAccountRequest], **kwargs) -> ApiResponse[CustodianAccountsUpsertResponse]:
@@ -15982,12 +15982,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: CustodianAccountProperties
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_custodian_accounts_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_custodian_accounts_properties_with_http_info_async(scope, code, custodian_account_scope, custodian_account_code, request_body, **kwargs)  # noqa: E501
+            response = await self.upsert_custodian_accounts_properties_with_http_info_async(scope, code, custodian_account_scope, custodian_account_code, request_body, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_custodian_accounts_properties_with_http_info_async(self, scope: StrictStr, code: StrictStr, custodian_account_scope: StrictStr, custodian_account_code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> ApiResponse[CustodianAccountProperties]:
@@ -16140,12 +16140,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PortfolioDetails
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_portfolio_details_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_portfolio_details_with_http_info_async(scope, code, create_portfolio_details, effective_at, **kwargs)  # noqa: E501
+            response = await self.upsert_portfolio_details_with_http_info_async(scope, code, create_portfolio_details, effective_at, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_portfolio_details_with_http_info_async(self, scope: StrictStr, code: StrictStr, create_portfolio_details: CreatePortfolioDetails, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PortfolioDetails]:
@@ -16290,12 +16290,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfTransactionSettlementInstruction
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_settlement_instructions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_settlement_instructions_with_http_info_async(scope, code, settlement_instruction_request, **kwargs)  # noqa: E501
+            response = await self.upsert_settlement_instructions_with_http_info_async(scope, code, settlement_instruction_request, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_settlement_instructions_with_http_info_async(self, scope: StrictStr, code: StrictStr, settlement_instruction_request: List[SettlementInstructionRequest], **kwargs) -> ApiResponse[ResourceListOfTransactionSettlementInstruction]:
@@ -16436,12 +16436,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: UpsertTransactionPropertiesResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_transaction_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_transaction_properties_with_http_info_async(scope, code, transaction_id, request_body, **kwargs)  # noqa: E501
+            response = await self.upsert_transaction_properties_with_http_info_async(scope, code, transaction_id, request_body, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_transaction_properties_with_http_info_async(self, scope: StrictStr, code: StrictStr, transaction_id: StrictStr, request_body: Dict[str, PerpetualProperty], **kwargs) -> ApiResponse[UpsertTransactionPropertiesResponse]:
@@ -16592,12 +16592,12 @@ class TransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: UpsertPortfolioTransactionsResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_transactions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_transactions_with_http_info_async(scope, code, transaction_request, preserve_properties, data_model_scope, data_model_code, **kwargs)  # noqa: E501
+            response = await self.upsert_transactions_with_http_info_async(scope, code, transaction_request, preserve_properties, data_model_scope, data_model_code, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_transactions_with_http_info_async(self, scope: StrictStr, code: StrictStr, transaction_request: List[TransactionRequest], preserve_properties: Optional[bool] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[UpsertPortfolioTransactionsResponse]:

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class PropertySchema(BaseModel):
     href:  Optional[StrictStr] = Field(default=None,alias="href") 
     values: Optional[Dict[str, FieldSchema]] = None
     links: Optional[List[Link]] = None
-    __properties = ["href", "values", "links"]
+    __properties: ClassVar[List[str]] = ["href", "values", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -111,11 +111,11 @@ class PropertySchema(BaseModel):
             "href": obj.get("href"),
             "values": dict(
                 (_k, FieldSchema.from_dict(_v))
-                for _k, _v in obj.get("values").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("values") is not None
+            if (_val := obj.get("values")) is not None
             else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

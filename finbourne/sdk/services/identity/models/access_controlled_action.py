@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class AccessControlledAction(BaseModel):
     action: ActionId
     limited_set: Optional[List[IdSelectorDefinition]] = Field(default=None, alias="limitedSet")
     links: Optional[List[Link]] = None
-    __properties = ["description", "action", "limitedSet", "links"]
+    __properties: ClassVar[List[str]] = ["description", "action", "limitedSet", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -109,9 +109,9 @@ class AccessControlledAction(BaseModel):
 
         _obj = AccessControlledAction.model_validate({
             "description": obj.get("description"),
-            "action": ActionId.from_dict(obj.get("action")) if obj.get("action") is not None else None,
-            "limited_set": [IdSelectorDefinition.from_dict(_item) for _item in obj.get("limitedSet")] if obj.get("limitedSet") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "action": ActionId.from_dict(_v) if (_v := obj.get("action")) is not None else None,
+            "limited_set": [IdSelectorDefinition.from_dict(_item) for _item in _v] if (_v := obj.get("limitedSet")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

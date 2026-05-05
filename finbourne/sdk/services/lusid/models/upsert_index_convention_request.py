@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class UpsertIndexConventionRequest(BaseModel):
     Index convention that is to be stored in the convention data store.  Only one of these must be present.  # noqa: E501
     """
     index_convention: Optional[IndexConvention] = Field(default=None, alias="indexConvention")
-    __properties = ["indexConvention"]
+    __properties: ClassVar[List[str]] = ["indexConvention"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,7 +79,7 @@ class UpsertIndexConventionRequest(BaseModel):
             return UpsertIndexConventionRequest.model_validate(obj)
 
         _obj = UpsertIndexConventionRequest.model_validate({
-            "index_convention": IndexConvention.from_dict(obj.get("indexConvention")) if obj.get("indexConvention") is not None else None
+            "index_convention": IndexConvention.from_dict(_v) if (_v := obj.get("indexConvention")) is not None else None
         })
         return _obj
 

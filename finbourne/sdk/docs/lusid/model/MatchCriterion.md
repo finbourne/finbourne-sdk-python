@@ -5,7 +5,7 @@ A condition to be evaluated.  Each supported CriterionType has a corresponding s
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **criterion_type** | **str** | Required | The available values are: PropertyValueEquals, PropertyValueIn, SubHoldingKeyValueEquals |
+| **criterion_type** | **str** | Required | Available values: PropertyValueEquals, PropertyValueIn, SubHoldingKeyValueEquals. |
 
 
 ## Usage
@@ -16,7 +16,7 @@ A condition to be evaluated.  Each supported CriterionType has a corresponding s
 from finbourne.sdk.services.lusid.models.MatchCriterion import MatchCriterion
 
 instance = MatchCriterion(
-    criterion_type="..."  # required — The available values are: PropertyValueEquals, PropertyValueIn, SubHoldingKeyValueEquals
+    criterion_type="..."  # required — Available values: PropertyValueEquals, PropertyValueIn, SubHoldingKeyValueEquals.
 )
 ```
 

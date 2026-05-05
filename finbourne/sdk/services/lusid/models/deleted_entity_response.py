@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -35,7 +35,7 @@ class DeletedEntityResponse(BaseModel):
     entity_unique_id:  Optional[StrictStr] = Field(default=None,alias="entityUniqueId", description="The unique Id of the entity that the deleted response applies to.") 
     staged_modifications: Optional[StagedModificationsInfo] = Field(default=None, alias="stagedModifications")
     links: Optional[List[Link]] = None
-    __properties = ["href", "effectiveFrom", "asAt", "entityType", "entityUniqueId", "stagedModifications", "links"]
+    __properties: ClassVar[List[str]] = ["href", "effectiveFrom", "asAt", "entityType", "entityUniqueId", "stagedModifications", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -123,8 +123,8 @@ class DeletedEntityResponse(BaseModel):
             "as_at": obj.get("asAt"),
             "entity_type": obj.get("entityType"),
             "entity_unique_id": obj.get("entityUniqueId"),
-            "staged_modifications": StagedModificationsInfo.from_dict(obj.get("stagedModifications")) if obj.get("stagedModifications") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "staged_modifications": StagedModificationsInfo.from_dict(_v) if (_v := obj.get("stagedModifications")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

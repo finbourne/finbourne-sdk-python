@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -38,8 +38,8 @@ class QueryableKey(BaseModel):
     life_cycle_status:  StrictStr = Field(...,alias="lifeCycleStatus", description="Within an API where an item can be accessed through an address or property, there is an associated status that determines whether the item is stable or likely to change. This status is one of [Experimental, Beta, EAP, Prod,  Deprecated]. If the item is deprecated it will be removed on or after the associated DateTime RemovalDate field. That field will not otherwise be set.") 
     removal_date: Optional[datetime] = Field(default=None, description="If the life cycle status is set to deprecated then this will be populated with the date on or after which removal of the address query will happen", alias="removalDate")
     applicable_options: Optional[Dict[str, AddressKeyOptionDefinition]] = Field(default=None, description="A mapping from option names to the definition that the corresponding option value must match.", alias="applicableOptions")
-    derivation_formula:  Optional[StrictStr] = Field(default=None,alias="derivationFormula", description="Derivation formula for when the for when the query key represents a DerivedValuation property.") 
-    __properties = ["addressKey", "description", "displayName", "type", "flattenedType", "holdingQuantityScaling", "supportedUsages", "supportedOperations", "lifeCycleStatus", "removalDate", "applicableOptions", "derivationFormula"]
+    derivation_formula:  Optional[StrictStr] = Field(default=None,alias="derivationFormula", description="Derivation formula for when the query key represents a DerivedValuation property.") 
+    __properties: ClassVar[List[str]] = ["addressKey", "description", "displayName", "type", "flattenedType", "holdingQuantityScaling", "supportedUsages", "supportedOperations", "lifeCycleStatus", "removalDate", "applicableOptions", "derivationFormula"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -126,9 +126,9 @@ class QueryableKey(BaseModel):
             "removal_date": obj.get("removalDate"),
             "applicable_options": dict(
                 (_k, AddressKeyOptionDefinition.from_dict(_v))
-                for _k, _v in obj.get("applicableOptions").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("applicableOptions") is not None
+            if (_val := obj.get("applicableOptions")) is not None
             else None,
             "derivation_formula": obj.get("derivationFormula")
         })

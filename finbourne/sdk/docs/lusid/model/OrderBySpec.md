@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **key** | **str** | Required | The key that uniquely identifies a queryable address in Lusid. |
-| **sort_order** | **str** | Required | The available values are: Ascending, Descending |
+| **sort_order** | **str** | Required | Available values: Ascending, Descending. |
 
 
 ## Usage
@@ -17,7 +17,7 @@ from finbourne.sdk.services.lusid.models.OrderBySpec import OrderBySpec
 
 instance = OrderBySpec(
     key="...",  # required — The key that uniquely identifies a queryable address in Lusid.
-    sort_order="..."  # required — The available values are: Ascending, Descending
+    sort_order="..."  # required — Available values: Ascending, Descending.
 )
 ```
 

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class EvaluationResponse(BaseModel):
     """
     result: EvaluationResult
     detailed_message:  Optional[StrictStr] = Field(default=None,alias="detailedMessage", description="In the case of the evaluation being denied a message may be returned") 
-    __properties = ["result", "detailedMessage"]
+    __properties: ClassVar[List[str]] = ["result", "detailedMessage"]
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class CreateTradeTicketsResponse(BaseModel):
     """
     values: List[LusidTradeTicket]
     failures: List[ErrorDetail]
-    __properties = ["values", "failures"]
+    __properties: ClassVar[List[str]] = ["values", "failures"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -92,8 +92,8 @@ class CreateTradeTicketsResponse(BaseModel):
             return CreateTradeTicketsResponse.model_validate(obj)
 
         _obj = CreateTradeTicketsResponse.model_validate({
-            "values": [LusidTradeTicket.from_dict(_item) for _item in obj.get("values")] if obj.get("values") is not None else None,
-            "failures": [ErrorDetail.from_dict(_item) for _item in obj.get("failures")] if obj.get("failures") is not None else None
+            "values": [LusidTradeTicket.from_dict(_item) for _item in _v] if (_v := obj.get("values")) is not None else None,
+            "failures": [ErrorDetail.from_dict(_item) for _item in _v] if (_v := obj.get("failures")) is not None else None
         })
         return _obj
 

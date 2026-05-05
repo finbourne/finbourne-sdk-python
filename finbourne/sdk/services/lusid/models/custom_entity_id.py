@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class CustomEntityId(BaseModel):
     identifier_value:  StrictStr = Field(...,alias="identifierValue", description="The value of the identifier for this entity.") 
     effective_from: Optional[datetime] = Field(default=None, description="The effective datetime from which the identifier is valid.", alias="effectiveFrom")
     effective_until: Optional[datetime] = Field(default=None, description="The effective datetime until which the identifier is valid. If not supplied this will be valid indefinitely, or until the next 'effectiveFrom' datetime of the identifier.", alias="effectiveUntil")
-    __properties = ["identifierScope", "identifierType", "identifierValue", "effectiveFrom", "effectiveUntil"]
+    __properties: ClassVar[List[str]] = ["identifierScope", "identifierType", "identifierValue", "effectiveFrom", "effectiveUntil"]
 
     model_config = ConfigDict(
         populate_by_name=True,

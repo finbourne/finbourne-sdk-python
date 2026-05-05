@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,10 +30,10 @@ class JournalEntryLinesQueryParameters(BaseModel):
     start: Optional[DateOrDiaryEntry] = None
     end: Optional[DateOrDiaryEntry] = None
     variant:  Optional[StrictStr] = Field(default=None,alias="variant", description="Unique Variant for the given Valuation points. If not provided, defaults to empty string.") 
-    date_mode:  Optional[StrictStr] = Field(default=None,alias="dateMode", description="The mode of calculation of the journal entry lines. The available values are: ActivityDate, AccountingDate.") 
+    date_mode:  Optional[StrictStr] = Field(default=None,alias="dateMode", description="The mode of calculation of the journal entry lines. Available values: ActivityDate, AccountingDate.") 
     general_ledger_profile_code:  Optional[StrictStr] = Field(default=None,alias="generalLedgerProfileCode", description="The optional code of a general ledger profile used to decorate journal entry lines with levels.") 
     property_keys: Optional[List[StrictStr]] = Field(default=None, description="A list of property keys from the 'Instrument', 'Transaction', 'Portfolio', 'Account', 'LegalEntity' or 'CustodianAccount' domain to decorate onto the journal entry lines.", alias="propertyKeys")
-    __properties = ["start", "end", "variant", "dateMode", "generalLedgerProfileCode", "propertyKeys"]
+    __properties: ClassVar[List[str]] = ["start", "end", "variant", "dateMode", "generalLedgerProfileCode", "propertyKeys"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -107,8 +107,8 @@ class JournalEntryLinesQueryParameters(BaseModel):
             return JournalEntryLinesQueryParameters.model_validate(obj)
 
         _obj = JournalEntryLinesQueryParameters.model_validate({
-            "start": DateOrDiaryEntry.from_dict(obj.get("start")) if obj.get("start") is not None else None,
-            "end": DateOrDiaryEntry.from_dict(obj.get("end")) if obj.get("end") is not None else None,
+            "start": DateOrDiaryEntry.from_dict(_v) if (_v := obj.get("start")) is not None else None,
+            "end": DateOrDiaryEntry.from_dict(_v) if (_v := obj.get("end")) is not None else None,
             "variant": obj.get("variant"),
             "date_mode": obj.get("dateMode"),
             "general_ledger_profile_code": obj.get("generalLedgerProfileCode"),

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class GroupReconciliationDefinitionCurrencies(BaseModel):
     """
     left:  StrictStr = Field(...,alias="left", description="Currency for the left side of a reconciliation") 
     right:  StrictStr = Field(...,alias="right", description="Currency for the right side of a reconciliation") 
-    __properties = ["left", "right"]
+    __properties: ClassVar[List[str]] = ["left", "right"]
 
     model_config = ConfigDict(
         populate_by_name=True,

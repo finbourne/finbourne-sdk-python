@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class GroupReconciliationCoreAttributeRule(BaseModel):
     right: GroupReconciliationCoreComparisonRuleOperand
     allowable_string_mappings: Optional[List[GroupReconciliationComparisonRuleStringValueMap]] = Field(default=None, description="The string mappings to use when comparing", alias="allowableStringMappings")
     is_comparison_case_sensitive: StrictBool = Field(description="Whether the compare keys and strings mappings case sensitive or not", alias="isComparisonCaseSensitive")
-    __properties = ["left", "right", "allowableStringMappings", "isComparisonCaseSensitive"]
+    __properties: ClassVar[List[str]] = ["left", "right", "allowableStringMappings", "isComparisonCaseSensitive"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -98,9 +98,9 @@ class GroupReconciliationCoreAttributeRule(BaseModel):
             return GroupReconciliationCoreAttributeRule.model_validate(obj)
 
         _obj = GroupReconciliationCoreAttributeRule.model_validate({
-            "left": GroupReconciliationCoreComparisonRuleOperand.from_dict(obj.get("left")) if obj.get("left") is not None else None,
-            "right": GroupReconciliationCoreComparisonRuleOperand.from_dict(obj.get("right")) if obj.get("right") is not None else None,
-            "allowable_string_mappings": [GroupReconciliationComparisonRuleStringValueMap.from_dict(_item) for _item in obj.get("allowableStringMappings")] if obj.get("allowableStringMappings") is not None else None,
+            "left": GroupReconciliationCoreComparisonRuleOperand.from_dict(_v) if (_v := obj.get("left")) is not None else None,
+            "right": GroupReconciliationCoreComparisonRuleOperand.from_dict(_v) if (_v := obj.get("right")) is not None else None,
+            "allowable_string_mappings": [GroupReconciliationComparisonRuleStringValueMap.from_dict(_item) for _item in _v] if (_v := obj.get("allowableStringMappings")) is not None else None,
             "is_comparison_case_sensitive": obj.get("isComparisonCaseSensitive")
         })
         return _obj

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class ExDividendConfiguration(BaseModel):
     ex_dividend_days: StrictInt = Field(description="Number of days in the ex-dividend period.  If the settlement date falls in the ex-dividend period then the coupon paid is zero and the accrued interest is negative.  If set, this must be a non-negative number.  If not set, or set to 0, than there is no ex-dividend period.", alias="exDividendDays")
     return_negative_accrued: Optional[StrictBool] = Field(default=None, description="Does the accrued interest go negative in the ex-dividend period, or does it go to zero.  Defaults to true if not set.", alias="returnNegativeAccrued")
     apply_thirty360_pay_delay: Optional[StrictBool] = Field(default=None, description="Set this flag to true if the ex-dividend days represent a pay delay from the accrual end date in calendar  days under the 30/360 day count convention. The typical use case for this flag are Mortgage Backed Securities  with pay delay between 1 and 60 days, such as FreddieMac and FannieMae. If this flag is set, the useBusinessDays  setting will be ignored.  Defaults to false if not provided.", alias="applyThirty360PayDelay")
-    __properties = ["useBusinessDays", "exDividendDays", "returnNegativeAccrued", "applyThirty360PayDelay"]
+    __properties: ClassVar[List[str]] = ["useBusinessDays", "exDividendDays", "returnNegativeAccrued", "applyThirty360PayDelay"]
 
     model_config = ConfigDict(
         populate_by_name=True,

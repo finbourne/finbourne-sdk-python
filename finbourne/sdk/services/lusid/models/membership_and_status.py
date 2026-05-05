@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class MembershipAndStatus(BaseModel):
     code:  StrictStr = Field(...,alias="code", description="The code of the unique identifier associated with the Custom Data Model.") 
     display_name:  StrictStr = Field(...,alias="displayName", description="The name of the Custom Data Model.") 
     validation_failures: List[StrictStr] = Field(description="A list of validation failures returned when the entity's status with respect to the current model is 'Invalid' or 'Inadmissible'", alias="validationFailures")
-    __properties = ["status", "scope", "code", "displayName", "validationFailures"]
+    __properties: ClassVar[List[str]] = ["status", "scope", "code", "displayName", "validationFailures"]
 
     model_config = ConfigDict(
         populate_by_name=True,

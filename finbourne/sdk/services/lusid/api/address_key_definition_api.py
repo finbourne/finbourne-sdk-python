@@ -63,12 +63,12 @@ class AddressKeyDefinitionApi:
         :return: Returns the result object.
         :rtype: AddressKeyDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_address_key_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_address_key_definition_with_http_info(create_address_key_definition_request, **kwargs)  # noqa: E501
+        response = self.create_address_key_definition_with_http_info(create_address_key_definition_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_address_key_definition_with_http_info(self, create_address_key_definition_request: CreateAddressKeyDefinitionRequest, **kwargs) -> ApiResponse[AddressKeyDefinition]:
@@ -192,12 +192,12 @@ class AddressKeyDefinitionApi:
         :return: Returns the result object.
         :rtype: AddressKeyDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_address_key_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_address_key_definition_with_http_info(key, as_at, **kwargs)  # noqa: E501
+        response = self.get_address_key_definition_with_http_info(key, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_address_key_definition_with_http_info(self, key: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[AddressKeyDefinition]:
@@ -327,12 +327,12 @@ class AddressKeyDefinitionApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfAddressKeyDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_address_key_definitions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_address_key_definitions_with_http_info(as_at, page, limit, filter, **kwargs)  # noqa: E501
+        response = self.list_address_key_definitions_with_http_info(as_at, page, limit, filter, **kwargs)
+        return response.data
 
     @validate_call
     def list_address_key_definitions_with_http_info(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfAddressKeyDefinition]:
@@ -472,12 +472,12 @@ class AddressKeyDefinitionApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: AddressKeyDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_address_key_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_address_key_definition_with_http_info_async(create_address_key_definition_request, **kwargs)  # noqa: E501
+            response = await self.create_address_key_definition_with_http_info_async(create_address_key_definition_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_address_key_definition_with_http_info_async(self, create_address_key_definition_request: CreateAddressKeyDefinitionRequest, **kwargs) -> ApiResponse[AddressKeyDefinition]:
@@ -602,12 +602,12 @@ class AddressKeyDefinitionApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: AddressKeyDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_address_key_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_address_key_definition_with_http_info_async(key, as_at, **kwargs)  # noqa: E501
+            response = await self.get_address_key_definition_with_http_info_async(key, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_address_key_definition_with_http_info_async(self, key: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[AddressKeyDefinition]:
@@ -738,12 +738,12 @@ class AddressKeyDefinitionApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfAddressKeyDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_address_key_definitions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_address_key_definitions_with_http_info_async(as_at, page, limit, filter, **kwargs)  # noqa: E501
+            response = await self.list_address_key_definitions_with_http_info_async(as_at, page, limit, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def list_address_key_definitions_with_http_info_async(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfAddressKeyDefinition]:

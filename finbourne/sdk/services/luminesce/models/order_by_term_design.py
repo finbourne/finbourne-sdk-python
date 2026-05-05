@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class OrderByTermDesign(BaseModel):
     var_field:  StrictStr = Field(...,alias="field", description="Name of the field to order by") 
     direction: Optional[OrderByDirection] = None
     table_alias:  Optional[StrictStr] = Field(default=None,alias="tableAlias", description="Table Alias of the field to order by") 
-    __properties = ["field", "direction", "tableAlias"]
+    __properties: ClassVar[List[str]] = ["field", "direction", "tableAlias"]
 
     model_config = ConfigDict(
         populate_by_name=True,

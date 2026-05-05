@@ -75,12 +75,12 @@ class SqlDesignApi:
         :return: Returns the result object.
         :rtype: bytes
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_provider_template_for_export_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_provider_template_for_export_with_http_info(provider, content_type, **kwargs)  # noqa: E501
+        response = self.get_provider_template_for_export_with_http_info(provider, content_type, **kwargs)
+        return response.data
 
     @validate_call
     def get_provider_template_for_export_with_http_info(self, provider: StrictStr, content_type: StrictStr, **kwargs) -> ApiResponse[bytes]:
@@ -202,12 +202,12 @@ class SqlDesignApi:
         :return: Returns the result object.
         :rtype: CaseStatementDesign
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the put_case_statement_design_sql_to_design_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.put_case_statement_design_sql_to_design_with_http_info(body, **kwargs)  # noqa: E501
+        response = self.put_case_statement_design_sql_to_design_with_http_info(body, **kwargs)
+        return response.data
 
     @validate_call
     def put_case_statement_design_sql_to_design_with_http_info(self, body: Optional[StrictStr] = None, **kwargs) -> ApiResponse[CaseStatementDesign]:
@@ -330,12 +330,12 @@ class SqlDesignApi:
         :return: Returns the result object.
         :rtype: str
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the put_case_statement_design_to_sql_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.put_case_statement_design_to_sql_with_http_info(case_statement_design, **kwargs)  # noqa: E501
+        response = self.put_case_statement_design_to_sql_with_http_info(case_statement_design, **kwargs)
+        return response.data
 
     @validate_call
     def put_case_statement_design_to_sql_with_http_info(self, case_statement_design: CaseStatementDesign, **kwargs) -> ApiResponse[str]:
@@ -460,12 +460,12 @@ class SqlDesignApi:
         :return: Returns the result object.
         :rtype: FileReaderBuilderResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the put_file_read_design_to_sql_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.put_file_read_design_to_sql_with_http_info(file_reader_builder_def, execute_query, **kwargs)  # noqa: E501
+        response = self.put_file_read_design_to_sql_with_http_info(file_reader_builder_def, execute_query, **kwargs)
+        return response.data
 
     @validate_call
     def put_file_read_design_to_sql_with_http_info(self, file_reader_builder_def: FileReaderBuilderDef, execute_query: Optional[bool] = None, **kwargs) -> ApiResponse[FileReaderBuilderResponse]:
@@ -594,12 +594,12 @@ class SqlDesignApi:
         :return: Returns the result object.
         :rtype: InlinedPropertyDesign
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the put_inlined_properties_design_sql_to_design_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.put_inlined_properties_design_sql_to_design_with_http_info(body, **kwargs)  # noqa: E501
+        response = self.put_inlined_properties_design_sql_to_design_with_http_info(body, **kwargs)
+        return response.data
 
     @validate_call
     def put_inlined_properties_design_sql_to_design_with_http_info(self, body: Optional[StrictStr] = None, **kwargs) -> ApiResponse[InlinedPropertyDesign]:
@@ -722,12 +722,12 @@ class SqlDesignApi:
         :return: Returns the result object.
         :rtype: str
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the put_inlined_properties_design_to_sql_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.put_inlined_properties_design_to_sql_with_http_info(inlined_property_design, **kwargs)  # noqa: E501
+        response = self.put_inlined_properties_design_to_sql_with_http_info(inlined_property_design, **kwargs)
+        return response.data
 
     @validate_call
     def put_inlined_properties_design_to_sql_with_http_info(self, inlined_property_design: InlinedPropertyDesign, **kwargs) -> ApiResponse[str]:
@@ -850,12 +850,12 @@ class SqlDesignApi:
         :return: Returns the result object.
         :rtype: IntellisenseResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the put_intellisense_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.put_intellisense_with_http_info(intellisense_request, **kwargs)  # noqa: E501
+        response = self.put_intellisense_with_http_info(intellisense_request, **kwargs)
+        return response.data
 
     @validate_call
     def put_intellisense_with_http_info(self, intellisense_request: IntellisenseRequest, **kwargs) -> ApiResponse[IntellisenseResponse]:
@@ -978,12 +978,12 @@ class SqlDesignApi:
         :return: Returns the result object.
         :rtype: ErrorHighlightResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the put_intellisense_error_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.put_intellisense_error_with_http_info(error_highlight_request, **kwargs)  # noqa: E501
+        response = self.put_intellisense_error_with_http_info(error_highlight_request, **kwargs)
+        return response.data
 
     @validate_call
     def put_intellisense_error_with_http_info(self, error_highlight_request: ErrorHighlightRequest, **kwargs) -> ApiResponse[ErrorHighlightResponse]:
@@ -1106,12 +1106,12 @@ class SqlDesignApi:
         :return: Returns the result object.
         :rtype: str
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the put_lusid_grid_to_query_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.put_lusid_grid_to_query_with_http_info(lusid_grid_data, **kwargs)  # noqa: E501
+        response = self.put_lusid_grid_to_query_with_http_info(lusid_grid_data, **kwargs)
+        return response.data
 
     @validate_call
     def put_lusid_grid_to_query_with_http_info(self, lusid_grid_data: LusidGridData, **kwargs) -> ApiResponse[str]:
@@ -1234,12 +1234,12 @@ class SqlDesignApi:
         :return: Returns the result object.
         :rtype: str
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the put_query_design_to_sql_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.put_query_design_to_sql_with_http_info(query_design, **kwargs)  # noqa: E501
+        response = self.put_query_design_to_sql_with_http_info(query_design, **kwargs)
+        return response.data
 
     @validate_call
     def put_query_design_to_sql_with_http_info(self, query_design: QueryDesign, **kwargs) -> ApiResponse[str]:
@@ -1388,12 +1388,12 @@ class SqlDesignApi:
         :return: Returns the result object.
         :rtype: str
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the put_query_to_format_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.put_query_to_format_with_http_info(body, trailing_commas, uppercase_keywords, break_join_on_sections, space_after_expanded_comma, keyword_standardization, expand_comma_lists, expand_in_lists, expand_boolean_expressions, expand_between_conditions, expand_case_statements, max_line_width, space_before_trailing_single_line_comments, multiline_comment_extra_line_break, **kwargs)  # noqa: E501
+        response = self.put_query_to_format_with_http_info(body, trailing_commas, uppercase_keywords, break_join_on_sections, space_after_expanded_comma, keyword_standardization, expand_comma_lists, expand_in_lists, expand_boolean_expressions, expand_between_conditions, expand_case_statements, max_line_width, space_before_trailing_single_line_comments, multiline_comment_extra_line_break, **kwargs)
+        return response.data
 
     @validate_call
     def put_query_to_format_with_http_info(self, body: StrictStr, trailing_commas: Optional[bool] = None, uppercase_keywords: Optional[bool] = None, break_join_on_sections: Optional[bool] = None, space_after_expanded_comma: Optional[bool] = None, keyword_standardization: Optional[bool] = None, expand_comma_lists: Optional[bool] = None, expand_in_lists: Optional[bool] = None, expand_boolean_expressions: Optional[bool] = None, expand_between_conditions: Optional[bool] = None, expand_case_statements: Optional[bool] = None, max_line_width: Optional[int] = None, space_before_trailing_single_line_comments: Optional[bool] = None, multiline_comment_extra_line_break: Optional[bool] = None, **kwargs) -> ApiResponse[str]:
@@ -1594,12 +1594,12 @@ class SqlDesignApi:
         :return: Returns the result object.
         :rtype: List[ScalarParameter]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the put_sql_to_extract_scalar_parameters_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.put_sql_to_extract_scalar_parameters_with_http_info(body, **kwargs)  # noqa: E501
+        response = self.put_sql_to_extract_scalar_parameters_with_http_info(body, **kwargs)
+        return response.data
 
     @validate_call
     def put_sql_to_extract_scalar_parameters_with_http_info(self, body: StrictStr, **kwargs) -> ApiResponse[List[ScalarParameter]]:
@@ -1724,12 +1724,12 @@ class SqlDesignApi:
         :return: Returns the result object.
         :rtype: FileReaderBuilderDef
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the put_sql_to_file_read_design_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.put_sql_to_file_read_design_with_http_info(determine_available_sources, body, **kwargs)  # noqa: E501
+        response = self.put_sql_to_file_read_design_with_http_info(determine_available_sources, body, **kwargs)
+        return response.data
 
     @validate_call
     def put_sql_to_file_read_design_with_http_info(self, determine_available_sources: Optional[bool] = None, body: Optional[StrictStr] = None, **kwargs) -> ApiResponse[FileReaderBuilderDef]:
@@ -1862,12 +1862,12 @@ class SqlDesignApi:
         :return: Returns the result object.
         :rtype: QueryDesign
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the put_sql_to_query_design_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.put_sql_to_query_design_with_http_info(body, validate_with_metadata, version, **kwargs)  # noqa: E501
+        response = self.put_sql_to_query_design_with_http_info(body, validate_with_metadata, version, **kwargs)
+        return response.data
 
     @validate_call
     def put_sql_to_query_design_with_http_info(self, body: StrictStr, validate_with_metadata: Optional[bool] = None, version: Optional[str] = None, **kwargs) -> ApiResponse[QueryDesign]:
@@ -2002,12 +2002,12 @@ class SqlDesignApi:
         :return: Returns the result object.
         :rtype: ConvertToViewData
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the put_sql_to_view_design_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.put_sql_to_view_design_with_http_info(body, **kwargs)  # noqa: E501
+        response = self.put_sql_to_view_design_with_http_info(body, **kwargs)
+        return response.data
 
     @validate_call
     def put_sql_to_view_design_with_http_info(self, body: StrictStr, **kwargs) -> ApiResponse[ConvertToViewData]:
@@ -2132,12 +2132,12 @@ class SqlDesignApi:
         :return: Returns the result object.
         :rtype: WriterDesign
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the put_sql_to_writer_design_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.put_sql_to_writer_design_with_http_info(body, merge_additional_mapping_fields, **kwargs)  # noqa: E501
+        response = self.put_sql_to_writer_design_with_http_info(body, merge_additional_mapping_fields, **kwargs)
+        return response.data
 
     @validate_call
     def put_sql_to_writer_design_with_http_info(self, body: StrictStr, merge_additional_mapping_fields: Optional[bool] = None, **kwargs) -> ApiResponse[WriterDesign]:
@@ -2266,12 +2266,12 @@ class SqlDesignApi:
         :return: Returns the result object.
         :rtype: str
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the put_view_design_to_sql_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.put_view_design_to_sql_with_http_info(convert_to_view_data, **kwargs)  # noqa: E501
+        response = self.put_view_design_to_sql_with_http_info(convert_to_view_data, **kwargs)
+        return response.data
 
     @validate_call
     def put_view_design_to_sql_with_http_info(self, convert_to_view_data: ConvertToViewData, **kwargs) -> ApiResponse[str]:
@@ -2394,12 +2394,12 @@ class SqlDesignApi:
         :return: Returns the result object.
         :rtype: str
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the put_writer_design_to_sql_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.put_writer_design_to_sql_with_http_info(writer_design, **kwargs)  # noqa: E501
+        response = self.put_writer_design_to_sql_with_http_info(writer_design, **kwargs)
+        return response.data
 
     @validate_call
     def put_writer_design_to_sql_with_http_info(self, writer_design: WriterDesign, **kwargs) -> ApiResponse[str]:
@@ -2528,12 +2528,12 @@ class SqlDesignApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: bytes
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_provider_template_for_export_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_provider_template_for_export_with_http_info_async(provider, content_type, **kwargs)  # noqa: E501
+            response = await self.get_provider_template_for_export_with_http_info_async(provider, content_type, **kwargs)
+            return response.data
 
     @validate_call
     async def get_provider_template_for_export_with_http_info_async(self, provider: StrictStr, content_type: StrictStr, **kwargs) -> ApiResponse[bytes]:
@@ -2656,12 +2656,12 @@ class SqlDesignApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: CaseStatementDesign
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the put_case_statement_design_sql_to_design_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.put_case_statement_design_sql_to_design_with_http_info_async(body, **kwargs)  # noqa: E501
+            response = await self.put_case_statement_design_sql_to_design_with_http_info_async(body, **kwargs)
+            return response.data
 
     @validate_call
     async def put_case_statement_design_sql_to_design_with_http_info_async(self, body: Optional[StrictStr] = None, **kwargs) -> ApiResponse[CaseStatementDesign]:
@@ -2785,12 +2785,12 @@ class SqlDesignApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: str
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the put_case_statement_design_to_sql_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.put_case_statement_design_to_sql_with_http_info_async(case_statement_design, **kwargs)  # noqa: E501
+            response = await self.put_case_statement_design_to_sql_with_http_info_async(case_statement_design, **kwargs)
+            return response.data
 
     @validate_call
     async def put_case_statement_design_to_sql_with_http_info_async(self, case_statement_design: CaseStatementDesign, **kwargs) -> ApiResponse[str]:
@@ -2916,12 +2916,12 @@ class SqlDesignApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: FileReaderBuilderResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the put_file_read_design_to_sql_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.put_file_read_design_to_sql_with_http_info_async(file_reader_builder_def, execute_query, **kwargs)  # noqa: E501
+            response = await self.put_file_read_design_to_sql_with_http_info_async(file_reader_builder_def, execute_query, **kwargs)
+            return response.data
 
     @validate_call
     async def put_file_read_design_to_sql_with_http_info_async(self, file_reader_builder_def: FileReaderBuilderDef, execute_query: Optional[bool] = None, **kwargs) -> ApiResponse[FileReaderBuilderResponse]:
@@ -3051,12 +3051,12 @@ class SqlDesignApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: InlinedPropertyDesign
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the put_inlined_properties_design_sql_to_design_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.put_inlined_properties_design_sql_to_design_with_http_info_async(body, **kwargs)  # noqa: E501
+            response = await self.put_inlined_properties_design_sql_to_design_with_http_info_async(body, **kwargs)
+            return response.data
 
     @validate_call
     async def put_inlined_properties_design_sql_to_design_with_http_info_async(self, body: Optional[StrictStr] = None, **kwargs) -> ApiResponse[InlinedPropertyDesign]:
@@ -3180,12 +3180,12 @@ class SqlDesignApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: str
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the put_inlined_properties_design_to_sql_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.put_inlined_properties_design_to_sql_with_http_info_async(inlined_property_design, **kwargs)  # noqa: E501
+            response = await self.put_inlined_properties_design_to_sql_with_http_info_async(inlined_property_design, **kwargs)
+            return response.data
 
     @validate_call
     async def put_inlined_properties_design_to_sql_with_http_info_async(self, inlined_property_design: InlinedPropertyDesign, **kwargs) -> ApiResponse[str]:
@@ -3309,12 +3309,12 @@ class SqlDesignApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: IntellisenseResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the put_intellisense_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.put_intellisense_with_http_info_async(intellisense_request, **kwargs)  # noqa: E501
+            response = await self.put_intellisense_with_http_info_async(intellisense_request, **kwargs)
+            return response.data
 
     @validate_call
     async def put_intellisense_with_http_info_async(self, intellisense_request: IntellisenseRequest, **kwargs) -> ApiResponse[IntellisenseResponse]:
@@ -3438,12 +3438,12 @@ class SqlDesignApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ErrorHighlightResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the put_intellisense_error_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.put_intellisense_error_with_http_info_async(error_highlight_request, **kwargs)  # noqa: E501
+            response = await self.put_intellisense_error_with_http_info_async(error_highlight_request, **kwargs)
+            return response.data
 
     @validate_call
     async def put_intellisense_error_with_http_info_async(self, error_highlight_request: ErrorHighlightRequest, **kwargs) -> ApiResponse[ErrorHighlightResponse]:
@@ -3567,12 +3567,12 @@ class SqlDesignApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: str
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the put_lusid_grid_to_query_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.put_lusid_grid_to_query_with_http_info_async(lusid_grid_data, **kwargs)  # noqa: E501
+            response = await self.put_lusid_grid_to_query_with_http_info_async(lusid_grid_data, **kwargs)
+            return response.data
 
     @validate_call
     async def put_lusid_grid_to_query_with_http_info_async(self, lusid_grid_data: LusidGridData, **kwargs) -> ApiResponse[str]:
@@ -3696,12 +3696,12 @@ class SqlDesignApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: str
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the put_query_design_to_sql_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.put_query_design_to_sql_with_http_info_async(query_design, **kwargs)  # noqa: E501
+            response = await self.put_query_design_to_sql_with_http_info_async(query_design, **kwargs)
+            return response.data
 
     @validate_call
     async def put_query_design_to_sql_with_http_info_async(self, query_design: QueryDesign, **kwargs) -> ApiResponse[str]:
@@ -3851,12 +3851,12 @@ class SqlDesignApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: str
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the put_query_to_format_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.put_query_to_format_with_http_info_async(body, trailing_commas, uppercase_keywords, break_join_on_sections, space_after_expanded_comma, keyword_standardization, expand_comma_lists, expand_in_lists, expand_boolean_expressions, expand_between_conditions, expand_case_statements, max_line_width, space_before_trailing_single_line_comments, multiline_comment_extra_line_break, **kwargs)  # noqa: E501
+            response = await self.put_query_to_format_with_http_info_async(body, trailing_commas, uppercase_keywords, break_join_on_sections, space_after_expanded_comma, keyword_standardization, expand_comma_lists, expand_in_lists, expand_boolean_expressions, expand_between_conditions, expand_case_statements, max_line_width, space_before_trailing_single_line_comments, multiline_comment_extra_line_break, **kwargs)
+            return response.data
 
     @validate_call
     async def put_query_to_format_with_http_info_async(self, body: StrictStr, trailing_commas: Optional[bool] = None, uppercase_keywords: Optional[bool] = None, break_join_on_sections: Optional[bool] = None, space_after_expanded_comma: Optional[bool] = None, keyword_standardization: Optional[bool] = None, expand_comma_lists: Optional[bool] = None, expand_in_lists: Optional[bool] = None, expand_boolean_expressions: Optional[bool] = None, expand_between_conditions: Optional[bool] = None, expand_case_statements: Optional[bool] = None, max_line_width: Optional[int] = None, space_before_trailing_single_line_comments: Optional[bool] = None, multiline_comment_extra_line_break: Optional[bool] = None, **kwargs) -> ApiResponse[str]:
@@ -4058,12 +4058,12 @@ class SqlDesignApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: List[ScalarParameter]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the put_sql_to_extract_scalar_parameters_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.put_sql_to_extract_scalar_parameters_with_http_info_async(body, **kwargs)  # noqa: E501
+            response = await self.put_sql_to_extract_scalar_parameters_with_http_info_async(body, **kwargs)
+            return response.data
 
     @validate_call
     async def put_sql_to_extract_scalar_parameters_with_http_info_async(self, body: StrictStr, **kwargs) -> ApiResponse[List[ScalarParameter]]:
@@ -4189,12 +4189,12 @@ class SqlDesignApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: FileReaderBuilderDef
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the put_sql_to_file_read_design_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.put_sql_to_file_read_design_with_http_info_async(determine_available_sources, body, **kwargs)  # noqa: E501
+            response = await self.put_sql_to_file_read_design_with_http_info_async(determine_available_sources, body, **kwargs)
+            return response.data
 
     @validate_call
     async def put_sql_to_file_read_design_with_http_info_async(self, determine_available_sources: Optional[bool] = None, body: Optional[StrictStr] = None, **kwargs) -> ApiResponse[FileReaderBuilderDef]:
@@ -4328,12 +4328,12 @@ class SqlDesignApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: QueryDesign
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the put_sql_to_query_design_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.put_sql_to_query_design_with_http_info_async(body, validate_with_metadata, version, **kwargs)  # noqa: E501
+            response = await self.put_sql_to_query_design_with_http_info_async(body, validate_with_metadata, version, **kwargs)
+            return response.data
 
     @validate_call
     async def put_sql_to_query_design_with_http_info_async(self, body: StrictStr, validate_with_metadata: Optional[bool] = None, version: Optional[str] = None, **kwargs) -> ApiResponse[QueryDesign]:
@@ -4469,12 +4469,12 @@ class SqlDesignApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ConvertToViewData
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the put_sql_to_view_design_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.put_sql_to_view_design_with_http_info_async(body, **kwargs)  # noqa: E501
+            response = await self.put_sql_to_view_design_with_http_info_async(body, **kwargs)
+            return response.data
 
     @validate_call
     async def put_sql_to_view_design_with_http_info_async(self, body: StrictStr, **kwargs) -> ApiResponse[ConvertToViewData]:
@@ -4600,12 +4600,12 @@ class SqlDesignApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: WriterDesign
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the put_sql_to_writer_design_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.put_sql_to_writer_design_with_http_info_async(body, merge_additional_mapping_fields, **kwargs)  # noqa: E501
+            response = await self.put_sql_to_writer_design_with_http_info_async(body, merge_additional_mapping_fields, **kwargs)
+            return response.data
 
     @validate_call
     async def put_sql_to_writer_design_with_http_info_async(self, body: StrictStr, merge_additional_mapping_fields: Optional[bool] = None, **kwargs) -> ApiResponse[WriterDesign]:
@@ -4735,12 +4735,12 @@ class SqlDesignApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: str
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the put_view_design_to_sql_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.put_view_design_to_sql_with_http_info_async(convert_to_view_data, **kwargs)  # noqa: E501
+            response = await self.put_view_design_to_sql_with_http_info_async(convert_to_view_data, **kwargs)
+            return response.data
 
     @validate_call
     async def put_view_design_to_sql_with_http_info_async(self, convert_to_view_data: ConvertToViewData, **kwargs) -> ApiResponse[str]:
@@ -4864,12 +4864,12 @@ class SqlDesignApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: str
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the put_writer_design_to_sql_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.put_writer_design_to_sql_with_http_info_async(writer_design, **kwargs)  # noqa: E501
+            response = await self.put_writer_design_to_sql_with_http_info_async(writer_design, **kwargs)
+            return response.data
 
     @validate_call
     async def put_writer_design_to_sql_with_http_info_async(self, writer_design: WriterDesign, **kwargs) -> ApiResponse[str]:

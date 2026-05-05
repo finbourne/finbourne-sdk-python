@@ -92,12 +92,12 @@ class ChartOfAccountsApi:
         :return: Returns the result object.
         :rtype: ChartOfAccounts
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_chart_of_accounts_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_chart_of_accounts_with_http_info(scope, chart_of_accounts_request, **kwargs)  # noqa: E501
+        response = self.create_chart_of_accounts_with_http_info(scope, chart_of_accounts_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_chart_of_accounts_with_http_info(self, scope: StrictStr, chart_of_accounts_request: ChartOfAccountsRequest, **kwargs) -> ApiResponse[ChartOfAccounts]:
@@ -229,12 +229,12 @@ class ChartOfAccountsApi:
         :return: Returns the result object.
         :rtype: CleardownModuleResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_cleardown_module_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_cleardown_module_with_http_info(scope, code, cleardown_module_request, **kwargs)  # noqa: E501
+        response = self.create_cleardown_module_with_http_info(scope, code, cleardown_module_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_cleardown_module_with_http_info(self, scope: StrictStr, code: StrictStr, cleardown_module_request: CleardownModuleRequest, **kwargs) -> ApiResponse[CleardownModuleResponse]:
@@ -372,12 +372,12 @@ class ChartOfAccountsApi:
         :return: Returns the result object.
         :rtype: GeneralLedgerProfileResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_general_ledger_profile_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_general_ledger_profile_with_http_info(scope, code, general_ledger_profile_request, **kwargs)  # noqa: E501
+        response = self.create_general_ledger_profile_with_http_info(scope, code, general_ledger_profile_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_general_ledger_profile_with_http_info(self, scope: StrictStr, code: StrictStr, general_ledger_profile_request: GeneralLedgerProfileRequest, **kwargs) -> ApiResponse[GeneralLedgerProfileResponse]:
@@ -515,12 +515,12 @@ class ChartOfAccountsApi:
         :return: Returns the result object.
         :rtype: PostingModuleResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_posting_module_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_posting_module_with_http_info(scope, code, posting_module_request, **kwargs)  # noqa: E501
+        response = self.create_posting_module_with_http_info(scope, code, posting_module_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_posting_module_with_http_info(self, scope: StrictStr, code: StrictStr, posting_module_request: PostingModuleRequest, **kwargs) -> ApiResponse[PostingModuleResponse]:
@@ -652,7 +652,7 @@ class ChartOfAccountsApi:
         :type code: str
         :param request_body: The codes of the accounts to delete. (required)
         :type request_body: List[str]
-        :param delete_mode: The delete mode to use (defaults to 'Soft').
+        :param delete_mode: The delete mode to use. Default value: Soft. Available values: Soft, Hard.
         :type delete_mode: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -660,12 +660,12 @@ class ChartOfAccountsApi:
         :return: Returns the result object.
         :rtype: DeleteAccountsResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_accounts_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_accounts_with_http_info(scope, code, request_body, delete_mode, **kwargs)  # noqa: E501
+        response = self.delete_accounts_with_http_info(scope, code, request_body, delete_mode, **kwargs)
+        return response.data
 
     @validate_call
     def delete_accounts_with_http_info(self, scope: StrictStr, code: StrictStr, request_body: List[str], delete_mode: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeleteAccountsResponse]:
@@ -678,7 +678,7 @@ class ChartOfAccountsApi:
         :type code: str
         :param request_body: The codes of the accounts to delete. (required)
         :type request_body: List[str]
-        :param delete_mode: The delete mode to use (defaults to 'Soft').
+        :param delete_mode: The delete mode to use. Default value: Soft. Available values: Soft, Hard.
         :type delete_mode: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -807,12 +807,12 @@ class ChartOfAccountsApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_chart_of_accounts_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_chart_of_accounts_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_chart_of_accounts_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_chart_of_accounts_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -937,12 +937,12 @@ class ChartOfAccountsApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_cleardown_module_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_cleardown_module_with_http_info(scope, code, cleardown_module_code, **kwargs)  # noqa: E501
+        response = self.delete_cleardown_module_with_http_info(scope, code, cleardown_module_code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_cleardown_module_with_http_info(self, scope: StrictStr, code: StrictStr, cleardown_module_code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -1073,12 +1073,12 @@ class ChartOfAccountsApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_general_ledger_profile_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_general_ledger_profile_with_http_info(scope, code, general_ledger_profile_code, **kwargs)  # noqa: E501
+        response = self.delete_general_ledger_profile_with_http_info(scope, code, general_ledger_profile_code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_general_ledger_profile_with_http_info(self, scope: StrictStr, code: StrictStr, general_ledger_profile_code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -1209,12 +1209,12 @@ class ChartOfAccountsApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_posting_module_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_posting_module_with_http_info(scope, code, posting_module_code, **kwargs)  # noqa: E501
+        response = self.delete_posting_module_with_http_info(scope, code, posting_module_code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_posting_module_with_http_info(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -1351,12 +1351,12 @@ class ChartOfAccountsApi:
         :return: Returns the result object.
         :rtype: Account
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_account_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_account_with_http_info(scope, code, account_code, effective_at, as_at, property_keys, **kwargs)  # noqa: E501
+        response = self.get_account_with_http_info(scope, code, account_code, effective_at, as_at, property_keys, **kwargs)
+        return response.data
 
     @validate_call
     def get_account_with_http_info(self, scope: StrictStr, code: StrictStr, account_code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[Account]:
@@ -1513,12 +1513,12 @@ class ChartOfAccountsApi:
         :return: Returns the result object.
         :rtype: AccountProperties
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_account_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_account_properties_with_http_info(scope, code, account_code, effective_at, as_at, **kwargs)  # noqa: E501
+        response = self.get_account_properties_with_http_info(scope, code, account_code, effective_at, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_account_properties_with_http_info(self, scope: StrictStr, code: StrictStr, account_code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[AccountProperties]:
@@ -1668,12 +1668,12 @@ class ChartOfAccountsApi:
         :return: Returns the result object.
         :rtype: ChartOfAccounts
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_chart_of_accounts_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_chart_of_accounts_with_http_info(scope, code, effective_at, as_at, property_keys, **kwargs)  # noqa: E501
+        response = self.get_chart_of_accounts_with_http_info(scope, code, effective_at, as_at, property_keys, **kwargs)
+        return response.data
 
     @validate_call
     def get_chart_of_accounts_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[ChartOfAccounts]:
@@ -1822,12 +1822,12 @@ class ChartOfAccountsApi:
         :return: Returns the result object.
         :rtype: ChartOfAccountsProperties
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_chart_of_accounts_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_chart_of_accounts_properties_with_http_info(scope, code, effective_at, as_at, **kwargs)  # noqa: E501
+        response = self.get_chart_of_accounts_properties_with_http_info(scope, code, effective_at, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_chart_of_accounts_properties_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ChartOfAccountsProperties]:
@@ -1969,12 +1969,12 @@ class ChartOfAccountsApi:
         :return: Returns the result object.
         :rtype: CleardownModuleResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_cleardown_module_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_cleardown_module_with_http_info(scope, code, cleardown_module_code, as_at, **kwargs)  # noqa: E501
+        response = self.get_cleardown_module_with_http_info(scope, code, cleardown_module_code, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_cleardown_module_with_http_info(self, scope: StrictStr, code: StrictStr, cleardown_module_code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[CleardownModuleResponse]:
@@ -2116,12 +2116,12 @@ class ChartOfAccountsApi:
         :return: Returns the result object.
         :rtype: GeneralLedgerProfileResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_general_ledger_profile_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_general_ledger_profile_with_http_info(scope, code, general_ledger_profile_code, as_at, **kwargs)  # noqa: E501
+        response = self.get_general_ledger_profile_with_http_info(scope, code, general_ledger_profile_code, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_general_ledger_profile_with_http_info(self, scope: StrictStr, code: StrictStr, general_ledger_profile_code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[GeneralLedgerProfileResponse]:
@@ -2263,12 +2263,12 @@ class ChartOfAccountsApi:
         :return: Returns the result object.
         :rtype: PostingModuleResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_posting_module_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_posting_module_with_http_info(scope, code, posting_module_code, as_at, **kwargs)  # noqa: E501
+        response = self.get_posting_module_with_http_info(scope, code, posting_module_code, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_posting_module_with_http_info(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[PostingModuleResponse]:
@@ -2418,12 +2418,12 @@ class ChartOfAccountsApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfAccount
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_accounts_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_accounts_with_http_info(scope, code, effective_at, as_at, page, limit, filter, property_keys, **kwargs)  # noqa: E501
+        response = self.list_accounts_with_http_info(scope, code, effective_at, as_at, page, limit, filter, property_keys, **kwargs)
+        return response.data
 
     @validate_call
     def list_accounts_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfAccount]:
@@ -2596,12 +2596,12 @@ class ChartOfAccountsApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfChartOfAccounts
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_charts_of_accounts_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_charts_of_accounts_with_http_info(effective_at, as_at, page, limit, filter, sort_by, property_keys, **kwargs)  # noqa: E501
+        response = self.list_charts_of_accounts_with_http_info(effective_at, as_at, page, limit, filter, sort_by, property_keys, **kwargs)
+        return response.data
 
     @validate_call
     def list_charts_of_accounts_with_http_info(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfChartOfAccounts]:
@@ -2769,12 +2769,12 @@ class ChartOfAccountsApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfCleardownModuleRule
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_cleardown_module_rules_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_cleardown_module_rules_with_http_info(scope, code, cleardown_module_code, as_at, page, limit, filter, **kwargs)  # noqa: E501
+        response = self.list_cleardown_module_rules_with_http_info(scope, code, cleardown_module_code, as_at, page, limit, filter, **kwargs)
+        return response.data
 
     @validate_call
     def list_cleardown_module_rules_with_http_info(self, scope: StrictStr, code: StrictStr, cleardown_module_code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfCleardownModuleRule]:
@@ -2940,12 +2940,12 @@ class ChartOfAccountsApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfCleardownModuleResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_cleardown_modules_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_cleardown_modules_with_http_info(scope, code, as_at, page, limit, filter, sort_by, **kwargs)  # noqa: E501
+        response = self.list_cleardown_modules_with_http_info(scope, code, as_at, page, limit, filter, sort_by, **kwargs)
+        return response.data
 
     @validate_call
     def list_cleardown_modules_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfCleardownModuleResponse]:
@@ -3112,12 +3112,12 @@ class ChartOfAccountsApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfGeneralLedgerProfileResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_general_ledger_profiles_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_general_ledger_profiles_with_http_info(scope, code, as_at, page, limit, filter, sort_by, **kwargs)  # noqa: E501
+        response = self.list_general_ledger_profiles_with_http_info(scope, code, as_at, page, limit, filter, sort_by, **kwargs)
+        return response.data
 
     @validate_call
     def list_general_ledger_profiles_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfGeneralLedgerProfileResponse]:
@@ -3284,12 +3284,12 @@ class ChartOfAccountsApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfPostingModuleRule
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_posting_module_rules_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_posting_module_rules_with_http_info(scope, code, posting_module_code, as_at, page, limit, filter, **kwargs)  # noqa: E501
+        response = self.list_posting_module_rules_with_http_info(scope, code, posting_module_code, as_at, page, limit, filter, **kwargs)
+        return response.data
 
     @validate_call
     def list_posting_module_rules_with_http_info(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfPostingModuleRule]:
@@ -3455,12 +3455,12 @@ class ChartOfAccountsApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfPostingModuleResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_posting_modules_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_posting_modules_with_http_info(scope, code, as_at, page, limit, filter, sort_by, **kwargs)  # noqa: E501
+        response = self.list_posting_modules_with_http_info(scope, code, as_at, page, limit, filter, sort_by, **kwargs)
+        return response.data
 
     @validate_call
     def list_posting_modules_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfPostingModuleResponse]:
@@ -3619,12 +3619,12 @@ class ChartOfAccountsApi:
         :return: Returns the result object.
         :rtype: ChartOfAccounts
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the patch_chart_of_accounts_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.patch_chart_of_accounts_with_http_info(scope, code, operation, **kwargs)  # noqa: E501
+        response = self.patch_chart_of_accounts_with_http_info(scope, code, operation, **kwargs)
+        return response.data
 
     @validate_call
     def patch_chart_of_accounts_with_http_info(self, scope: StrictStr, code: StrictStr, operation: List[Operation], **kwargs) -> ApiResponse[ChartOfAccounts]:
@@ -3764,12 +3764,12 @@ class ChartOfAccountsApi:
         :return: Returns the result object.
         :rtype: CleardownModuleResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the patch_cleardown_module_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.patch_cleardown_module_with_http_info(scope, code, cleardown_module_code, operation, **kwargs)  # noqa: E501
+        response = self.patch_cleardown_module_with_http_info(scope, code, cleardown_module_code, operation, **kwargs)
+        return response.data
 
     @validate_call
     def patch_cleardown_module_with_http_info(self, scope: StrictStr, code: StrictStr, cleardown_module_code: StrictStr, operation: List[Operation], **kwargs) -> ApiResponse[CleardownModuleResponse]:
@@ -3915,12 +3915,12 @@ class ChartOfAccountsApi:
         :return: Returns the result object.
         :rtype: PostingModuleResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the patch_posting_module_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.patch_posting_module_with_http_info(scope, code, posting_module_code, operation, **kwargs)  # noqa: E501
+        response = self.patch_posting_module_with_http_info(scope, code, posting_module_code, operation, **kwargs)
+        return response.data
 
     @validate_call
     def patch_posting_module_with_http_info(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, operation: List[Operation], **kwargs) -> ApiResponse[PostingModuleResponse]:
@@ -4066,12 +4066,12 @@ class ChartOfAccountsApi:
         :return: Returns the result object.
         :rtype: CleardownModuleResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the set_cleardown_module_details_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.set_cleardown_module_details_with_http_info(scope, code, cleardown_module_code, cleardown_module_details, **kwargs)  # noqa: E501
+        response = self.set_cleardown_module_details_with_http_info(scope, code, cleardown_module_code, cleardown_module_details, **kwargs)
+        return response.data
 
     @validate_call
     def set_cleardown_module_details_with_http_info(self, scope: StrictStr, code: StrictStr, cleardown_module_code: StrictStr, cleardown_module_details: CleardownModuleDetails, **kwargs) -> ApiResponse[CleardownModuleResponse]:
@@ -4217,12 +4217,12 @@ class ChartOfAccountsApi:
         :return: Returns the result object.
         :rtype: CleardownModuleRulesUpdatedResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the set_cleardown_module_rules_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.set_cleardown_module_rules_with_http_info(scope, code, cleardown_module_code, cleardown_module_rule, **kwargs)  # noqa: E501
+        response = self.set_cleardown_module_rules_with_http_info(scope, code, cleardown_module_code, cleardown_module_rule, **kwargs)
+        return response.data
 
     @validate_call
     def set_cleardown_module_rules_with_http_info(self, scope: StrictStr, code: StrictStr, cleardown_module_code: StrictStr, cleardown_module_rule: List[CleardownModuleRule], **kwargs) -> ApiResponse[CleardownModuleRulesUpdatedResponse]:
@@ -4368,12 +4368,12 @@ class ChartOfAccountsApi:
         :return: Returns the result object.
         :rtype: GeneralLedgerProfileResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the set_general_ledger_profile_mappings_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.set_general_ledger_profile_mappings_with_http_info(scope, code, general_ledger_profile_code, general_ledger_profile_mapping, **kwargs)  # noqa: E501
+        response = self.set_general_ledger_profile_mappings_with_http_info(scope, code, general_ledger_profile_code, general_ledger_profile_mapping, **kwargs)
+        return response.data
 
     @validate_call
     def set_general_ledger_profile_mappings_with_http_info(self, scope: StrictStr, code: StrictStr, general_ledger_profile_code: StrictStr, general_ledger_profile_mapping: List[GeneralLedgerProfileMapping], **kwargs) -> ApiResponse[GeneralLedgerProfileResponse]:
@@ -4519,12 +4519,12 @@ class ChartOfAccountsApi:
         :return: Returns the result object.
         :rtype: PostingModuleResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the set_posting_module_details_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.set_posting_module_details_with_http_info(scope, code, posting_module_code, posting_module_details, **kwargs)  # noqa: E501
+        response = self.set_posting_module_details_with_http_info(scope, code, posting_module_code, posting_module_details, **kwargs)
+        return response.data
 
     @validate_call
     def set_posting_module_details_with_http_info(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, posting_module_details: PostingModuleDetails, **kwargs) -> ApiResponse[PostingModuleResponse]:
@@ -4670,12 +4670,12 @@ class ChartOfAccountsApi:
         :return: Returns the result object.
         :rtype: PostingModuleRulesUpdatedResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the set_posting_module_rules_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.set_posting_module_rules_with_http_info(scope, code, posting_module_code, posting_module_rule, **kwargs)  # noqa: E501
+        response = self.set_posting_module_rules_with_http_info(scope, code, posting_module_code, posting_module_rule, **kwargs)
+        return response.data
 
     @validate_call
     def set_posting_module_rules_with_http_info(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, posting_module_rule: List[PostingModuleRule], **kwargs) -> ApiResponse[PostingModuleRulesUpdatedResponse]:
@@ -4821,12 +4821,12 @@ class ChartOfAccountsApi:
         :return: Returns the result object.
         :rtype: AccountProperties
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_account_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_account_properties_with_http_info(scope, code, account_code, request_body, **kwargs)  # noqa: E501
+        response = self.upsert_account_properties_with_http_info(scope, code, account_code, request_body, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_account_properties_with_http_info(self, scope: StrictStr, code: StrictStr, account_code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> ApiResponse[AccountProperties]:
@@ -4970,12 +4970,12 @@ class ChartOfAccountsApi:
         :return: Returns the result object.
         :rtype: AccountsUpsertResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_accounts_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_accounts_with_http_info(scope, code, account, **kwargs)  # noqa: E501
+        response = self.upsert_accounts_with_http_info(scope, code, account, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_accounts_with_http_info(self, scope: StrictStr, code: StrictStr, account: List[Account], **kwargs) -> ApiResponse[AccountsUpsertResponse]:
@@ -5113,12 +5113,12 @@ class ChartOfAccountsApi:
         :return: Returns the result object.
         :rtype: ChartOfAccountsProperties
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_chart_of_accounts_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_chart_of_accounts_properties_with_http_info(scope, code, request_body, **kwargs)  # noqa: E501
+        response = self.upsert_chart_of_accounts_properties_with_http_info(scope, code, request_body, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_chart_of_accounts_properties_with_http_info(self, scope: StrictStr, code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> ApiResponse[ChartOfAccountsProperties]:
@@ -5258,12 +5258,12 @@ class ChartOfAccountsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ChartOfAccounts
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_chart_of_accounts_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_chart_of_accounts_with_http_info_async(scope, chart_of_accounts_request, **kwargs)  # noqa: E501
+            response = await self.create_chart_of_accounts_with_http_info_async(scope, chart_of_accounts_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_chart_of_accounts_with_http_info_async(self, scope: StrictStr, chart_of_accounts_request: ChartOfAccountsRequest, **kwargs) -> ApiResponse[ChartOfAccounts]:
@@ -5396,12 +5396,12 @@ class ChartOfAccountsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: CleardownModuleResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_cleardown_module_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_cleardown_module_with_http_info_async(scope, code, cleardown_module_request, **kwargs)  # noqa: E501
+            response = await self.create_cleardown_module_with_http_info_async(scope, code, cleardown_module_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_cleardown_module_with_http_info_async(self, scope: StrictStr, code: StrictStr, cleardown_module_request: CleardownModuleRequest, **kwargs) -> ApiResponse[CleardownModuleResponse]:
@@ -5540,12 +5540,12 @@ class ChartOfAccountsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: GeneralLedgerProfileResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_general_ledger_profile_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_general_ledger_profile_with_http_info_async(scope, code, general_ledger_profile_request, **kwargs)  # noqa: E501
+            response = await self.create_general_ledger_profile_with_http_info_async(scope, code, general_ledger_profile_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_general_ledger_profile_with_http_info_async(self, scope: StrictStr, code: StrictStr, general_ledger_profile_request: GeneralLedgerProfileRequest, **kwargs) -> ApiResponse[GeneralLedgerProfileResponse]:
@@ -5684,12 +5684,12 @@ class ChartOfAccountsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PostingModuleResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_posting_module_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_posting_module_with_http_info_async(scope, code, posting_module_request, **kwargs)  # noqa: E501
+            response = await self.create_posting_module_with_http_info_async(scope, code, posting_module_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_posting_module_with_http_info_async(self, scope: StrictStr, code: StrictStr, posting_module_request: PostingModuleRequest, **kwargs) -> ApiResponse[PostingModuleResponse]:
@@ -5822,7 +5822,7 @@ class ChartOfAccountsApi:
             :type code: str
             :param request_body: The codes of the accounts to delete. (required)
             :type request_body: List[str]
-            :param delete_mode: The delete mode to use (defaults to 'Soft').
+            :param delete_mode: The delete mode to use. Default value: Soft. Available values: Soft, Hard.
             :type delete_mode: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -5830,12 +5830,12 @@ class ChartOfAccountsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeleteAccountsResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_accounts_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_accounts_with_http_info_async(scope, code, request_body, delete_mode, **kwargs)  # noqa: E501
+            response = await self.delete_accounts_with_http_info_async(scope, code, request_body, delete_mode, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_accounts_with_http_info_async(self, scope: StrictStr, code: StrictStr, request_body: List[str], delete_mode: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeleteAccountsResponse]:
@@ -5849,7 +5849,7 @@ class ChartOfAccountsApi:
             :type code: str
             :param request_body: The codes of the accounts to delete. (required)
             :type request_body: List[str]
-            :param delete_mode: The delete mode to use (defaults to 'Soft').
+            :param delete_mode: The delete mode to use. Default value: Soft. Available values: Soft, Hard.
             :type delete_mode: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
@@ -5978,12 +5978,12 @@ class ChartOfAccountsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_chart_of_accounts_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_chart_of_accounts_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_chart_of_accounts_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_chart_of_accounts_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -6109,12 +6109,12 @@ class ChartOfAccountsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_cleardown_module_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_cleardown_module_with_http_info_async(scope, code, cleardown_module_code, **kwargs)  # noqa: E501
+            response = await self.delete_cleardown_module_with_http_info_async(scope, code, cleardown_module_code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_cleardown_module_with_http_info_async(self, scope: StrictStr, code: StrictStr, cleardown_module_code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -6246,12 +6246,12 @@ class ChartOfAccountsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_general_ledger_profile_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_general_ledger_profile_with_http_info_async(scope, code, general_ledger_profile_code, **kwargs)  # noqa: E501
+            response = await self.delete_general_ledger_profile_with_http_info_async(scope, code, general_ledger_profile_code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_general_ledger_profile_with_http_info_async(self, scope: StrictStr, code: StrictStr, general_ledger_profile_code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -6383,12 +6383,12 @@ class ChartOfAccountsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_posting_module_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_posting_module_with_http_info_async(scope, code, posting_module_code, **kwargs)  # noqa: E501
+            response = await self.delete_posting_module_with_http_info_async(scope, code, posting_module_code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_posting_module_with_http_info_async(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -6526,12 +6526,12 @@ class ChartOfAccountsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Account
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_account_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_account_with_http_info_async(scope, code, account_code, effective_at, as_at, property_keys, **kwargs)  # noqa: E501
+            response = await self.get_account_with_http_info_async(scope, code, account_code, effective_at, as_at, property_keys, **kwargs)
+            return response.data
 
     @validate_call
     async def get_account_with_http_info_async(self, scope: StrictStr, code: StrictStr, account_code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[Account]:
@@ -6689,12 +6689,12 @@ class ChartOfAccountsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: AccountProperties
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_account_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_account_properties_with_http_info_async(scope, code, account_code, effective_at, as_at, **kwargs)  # noqa: E501
+            response = await self.get_account_properties_with_http_info_async(scope, code, account_code, effective_at, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_account_properties_with_http_info_async(self, scope: StrictStr, code: StrictStr, account_code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[AccountProperties]:
@@ -6845,12 +6845,12 @@ class ChartOfAccountsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ChartOfAccounts
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_chart_of_accounts_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_chart_of_accounts_with_http_info_async(scope, code, effective_at, as_at, property_keys, **kwargs)  # noqa: E501
+            response = await self.get_chart_of_accounts_with_http_info_async(scope, code, effective_at, as_at, property_keys, **kwargs)
+            return response.data
 
     @validate_call
     async def get_chart_of_accounts_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[ChartOfAccounts]:
@@ -7000,12 +7000,12 @@ class ChartOfAccountsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ChartOfAccountsProperties
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_chart_of_accounts_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_chart_of_accounts_properties_with_http_info_async(scope, code, effective_at, as_at, **kwargs)  # noqa: E501
+            response = await self.get_chart_of_accounts_properties_with_http_info_async(scope, code, effective_at, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_chart_of_accounts_properties_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ChartOfAccountsProperties]:
@@ -7148,12 +7148,12 @@ class ChartOfAccountsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: CleardownModuleResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_cleardown_module_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_cleardown_module_with_http_info_async(scope, code, cleardown_module_code, as_at, **kwargs)  # noqa: E501
+            response = await self.get_cleardown_module_with_http_info_async(scope, code, cleardown_module_code, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_cleardown_module_with_http_info_async(self, scope: StrictStr, code: StrictStr, cleardown_module_code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[CleardownModuleResponse]:
@@ -7296,12 +7296,12 @@ class ChartOfAccountsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: GeneralLedgerProfileResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_general_ledger_profile_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_general_ledger_profile_with_http_info_async(scope, code, general_ledger_profile_code, as_at, **kwargs)  # noqa: E501
+            response = await self.get_general_ledger_profile_with_http_info_async(scope, code, general_ledger_profile_code, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_general_ledger_profile_with_http_info_async(self, scope: StrictStr, code: StrictStr, general_ledger_profile_code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[GeneralLedgerProfileResponse]:
@@ -7444,12 +7444,12 @@ class ChartOfAccountsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PostingModuleResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_posting_module_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_posting_module_with_http_info_async(scope, code, posting_module_code, as_at, **kwargs)  # noqa: E501
+            response = await self.get_posting_module_with_http_info_async(scope, code, posting_module_code, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_posting_module_with_http_info_async(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[PostingModuleResponse]:
@@ -7600,12 +7600,12 @@ class ChartOfAccountsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfAccount
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_accounts_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_accounts_with_http_info_async(scope, code, effective_at, as_at, page, limit, filter, property_keys, **kwargs)  # noqa: E501
+            response = await self.list_accounts_with_http_info_async(scope, code, effective_at, as_at, page, limit, filter, property_keys, **kwargs)
+            return response.data
 
     @validate_call
     async def list_accounts_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfAccount]:
@@ -7779,12 +7779,12 @@ class ChartOfAccountsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfChartOfAccounts
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_charts_of_accounts_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_charts_of_accounts_with_http_info_async(effective_at, as_at, page, limit, filter, sort_by, property_keys, **kwargs)  # noqa: E501
+            response = await self.list_charts_of_accounts_with_http_info_async(effective_at, as_at, page, limit, filter, sort_by, property_keys, **kwargs)
+            return response.data
 
     @validate_call
     async def list_charts_of_accounts_with_http_info_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfChartOfAccounts]:
@@ -7953,12 +7953,12 @@ class ChartOfAccountsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfCleardownModuleRule
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_cleardown_module_rules_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_cleardown_module_rules_with_http_info_async(scope, code, cleardown_module_code, as_at, page, limit, filter, **kwargs)  # noqa: E501
+            response = await self.list_cleardown_module_rules_with_http_info_async(scope, code, cleardown_module_code, as_at, page, limit, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def list_cleardown_module_rules_with_http_info_async(self, scope: StrictStr, code: StrictStr, cleardown_module_code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfCleardownModuleRule]:
@@ -8125,12 +8125,12 @@ class ChartOfAccountsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfCleardownModuleResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_cleardown_modules_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_cleardown_modules_with_http_info_async(scope, code, as_at, page, limit, filter, sort_by, **kwargs)  # noqa: E501
+            response = await self.list_cleardown_modules_with_http_info_async(scope, code, as_at, page, limit, filter, sort_by, **kwargs)
+            return response.data
 
     @validate_call
     async def list_cleardown_modules_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfCleardownModuleResponse]:
@@ -8298,12 +8298,12 @@ class ChartOfAccountsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfGeneralLedgerProfileResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_general_ledger_profiles_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_general_ledger_profiles_with_http_info_async(scope, code, as_at, page, limit, filter, sort_by, **kwargs)  # noqa: E501
+            response = await self.list_general_ledger_profiles_with_http_info_async(scope, code, as_at, page, limit, filter, sort_by, **kwargs)
+            return response.data
 
     @validate_call
     async def list_general_ledger_profiles_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfGeneralLedgerProfileResponse]:
@@ -8471,12 +8471,12 @@ class ChartOfAccountsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfPostingModuleRule
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_posting_module_rules_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_posting_module_rules_with_http_info_async(scope, code, posting_module_code, as_at, page, limit, filter, **kwargs)  # noqa: E501
+            response = await self.list_posting_module_rules_with_http_info_async(scope, code, posting_module_code, as_at, page, limit, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def list_posting_module_rules_with_http_info_async(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfPostingModuleRule]:
@@ -8643,12 +8643,12 @@ class ChartOfAccountsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfPostingModuleResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_posting_modules_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_posting_modules_with_http_info_async(scope, code, as_at, page, limit, filter, sort_by, **kwargs)  # noqa: E501
+            response = await self.list_posting_modules_with_http_info_async(scope, code, as_at, page, limit, filter, sort_by, **kwargs)
+            return response.data
 
     @validate_call
     async def list_posting_modules_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfPostingModuleResponse]:
@@ -8808,12 +8808,12 @@ class ChartOfAccountsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ChartOfAccounts
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the patch_chart_of_accounts_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.patch_chart_of_accounts_with_http_info_async(scope, code, operation, **kwargs)  # noqa: E501
+            response = await self.patch_chart_of_accounts_with_http_info_async(scope, code, operation, **kwargs)
+            return response.data
 
     @validate_call
     async def patch_chart_of_accounts_with_http_info_async(self, scope: StrictStr, code: StrictStr, operation: List[Operation], **kwargs) -> ApiResponse[ChartOfAccounts]:
@@ -8954,12 +8954,12 @@ class ChartOfAccountsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: CleardownModuleResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the patch_cleardown_module_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.patch_cleardown_module_with_http_info_async(scope, code, cleardown_module_code, operation, **kwargs)  # noqa: E501
+            response = await self.patch_cleardown_module_with_http_info_async(scope, code, cleardown_module_code, operation, **kwargs)
+            return response.data
 
     @validate_call
     async def patch_cleardown_module_with_http_info_async(self, scope: StrictStr, code: StrictStr, cleardown_module_code: StrictStr, operation: List[Operation], **kwargs) -> ApiResponse[CleardownModuleResponse]:
@@ -9106,12 +9106,12 @@ class ChartOfAccountsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PostingModuleResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the patch_posting_module_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.patch_posting_module_with_http_info_async(scope, code, posting_module_code, operation, **kwargs)  # noqa: E501
+            response = await self.patch_posting_module_with_http_info_async(scope, code, posting_module_code, operation, **kwargs)
+            return response.data
 
     @validate_call
     async def patch_posting_module_with_http_info_async(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, operation: List[Operation], **kwargs) -> ApiResponse[PostingModuleResponse]:
@@ -9258,12 +9258,12 @@ class ChartOfAccountsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: CleardownModuleResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the set_cleardown_module_details_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.set_cleardown_module_details_with_http_info_async(scope, code, cleardown_module_code, cleardown_module_details, **kwargs)  # noqa: E501
+            response = await self.set_cleardown_module_details_with_http_info_async(scope, code, cleardown_module_code, cleardown_module_details, **kwargs)
+            return response.data
 
     @validate_call
     async def set_cleardown_module_details_with_http_info_async(self, scope: StrictStr, code: StrictStr, cleardown_module_code: StrictStr, cleardown_module_details: CleardownModuleDetails, **kwargs) -> ApiResponse[CleardownModuleResponse]:
@@ -9410,12 +9410,12 @@ class ChartOfAccountsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: CleardownModuleRulesUpdatedResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the set_cleardown_module_rules_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.set_cleardown_module_rules_with_http_info_async(scope, code, cleardown_module_code, cleardown_module_rule, **kwargs)  # noqa: E501
+            response = await self.set_cleardown_module_rules_with_http_info_async(scope, code, cleardown_module_code, cleardown_module_rule, **kwargs)
+            return response.data
 
     @validate_call
     async def set_cleardown_module_rules_with_http_info_async(self, scope: StrictStr, code: StrictStr, cleardown_module_code: StrictStr, cleardown_module_rule: List[CleardownModuleRule], **kwargs) -> ApiResponse[CleardownModuleRulesUpdatedResponse]:
@@ -9562,12 +9562,12 @@ class ChartOfAccountsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: GeneralLedgerProfileResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the set_general_ledger_profile_mappings_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.set_general_ledger_profile_mappings_with_http_info_async(scope, code, general_ledger_profile_code, general_ledger_profile_mapping, **kwargs)  # noqa: E501
+            response = await self.set_general_ledger_profile_mappings_with_http_info_async(scope, code, general_ledger_profile_code, general_ledger_profile_mapping, **kwargs)
+            return response.data
 
     @validate_call
     async def set_general_ledger_profile_mappings_with_http_info_async(self, scope: StrictStr, code: StrictStr, general_ledger_profile_code: StrictStr, general_ledger_profile_mapping: List[GeneralLedgerProfileMapping], **kwargs) -> ApiResponse[GeneralLedgerProfileResponse]:
@@ -9714,12 +9714,12 @@ class ChartOfAccountsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PostingModuleResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the set_posting_module_details_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.set_posting_module_details_with_http_info_async(scope, code, posting_module_code, posting_module_details, **kwargs)  # noqa: E501
+            response = await self.set_posting_module_details_with_http_info_async(scope, code, posting_module_code, posting_module_details, **kwargs)
+            return response.data
 
     @validate_call
     async def set_posting_module_details_with_http_info_async(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, posting_module_details: PostingModuleDetails, **kwargs) -> ApiResponse[PostingModuleResponse]:
@@ -9866,12 +9866,12 @@ class ChartOfAccountsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PostingModuleRulesUpdatedResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the set_posting_module_rules_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.set_posting_module_rules_with_http_info_async(scope, code, posting_module_code, posting_module_rule, **kwargs)  # noqa: E501
+            response = await self.set_posting_module_rules_with_http_info_async(scope, code, posting_module_code, posting_module_rule, **kwargs)
+            return response.data
 
     @validate_call
     async def set_posting_module_rules_with_http_info_async(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, posting_module_rule: List[PostingModuleRule], **kwargs) -> ApiResponse[PostingModuleRulesUpdatedResponse]:
@@ -10018,12 +10018,12 @@ class ChartOfAccountsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: AccountProperties
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_account_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_account_properties_with_http_info_async(scope, code, account_code, request_body, **kwargs)  # noqa: E501
+            response = await self.upsert_account_properties_with_http_info_async(scope, code, account_code, request_body, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_account_properties_with_http_info_async(self, scope: StrictStr, code: StrictStr, account_code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> ApiResponse[AccountProperties]:
@@ -10168,12 +10168,12 @@ class ChartOfAccountsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: AccountsUpsertResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_accounts_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_accounts_with_http_info_async(scope, code, account, **kwargs)  # noqa: E501
+            response = await self.upsert_accounts_with_http_info_async(scope, code, account, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_accounts_with_http_info_async(self, scope: StrictStr, code: StrictStr, account: List[Account], **kwargs) -> ApiResponse[AccountsUpsertResponse]:
@@ -10312,12 +10312,12 @@ class ChartOfAccountsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ChartOfAccountsProperties
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_chart_of_accounts_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_chart_of_accounts_properties_with_http_info_async(scope, code, request_body, **kwargs)  # noqa: E501
+            response = await self.upsert_chart_of_accounts_properties_with_http_info_async(scope, code, request_body, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_chart_of_accounts_properties_with_http_info_async(self, scope: StrictStr, code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> ApiResponse[ChartOfAccountsProperties]:

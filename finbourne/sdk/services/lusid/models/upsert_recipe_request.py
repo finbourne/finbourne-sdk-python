@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class UpsertRecipeRequest(BaseModel):
     A recipe that is to be stored in the recipe structured data store.  Only one of these must be present.  # noqa: E501
     """
     configuration_recipe: Optional[ConfigurationRecipe] = Field(default=None, alias="configurationRecipe")
-    __properties = ["configurationRecipe"]
+    __properties: ClassVar[List[str]] = ["configurationRecipe"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,7 +79,7 @@ class UpsertRecipeRequest(BaseModel):
             return UpsertRecipeRequest.model_validate(obj)
 
         _obj = UpsertRecipeRequest.model_validate({
-            "configuration_recipe": ConfigurationRecipe.from_dict(obj.get("configurationRecipe")) if obj.get("configurationRecipe") is not None else None
+            "configuration_recipe": ConfigurationRecipe.from_dict(_v) if (_v := obj.get("configurationRecipe")) is not None else None
         })
         return _obj
 

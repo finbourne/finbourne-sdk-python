@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -27,12 +27,12 @@ class AddressKeyOptionDefinition(BaseModel):
     The definition of an Address Key Option  # noqa: E501
     """
     name:  StrictStr = Field(...,alias="name", description="The name of the option") 
-    type:  StrictStr = Field(...,alias="type", description="The type of the option") 
+    type:  StrictStr = Field(...,alias="type", description="The type of the option. Available values: Bool, Int, Decimal, DateTimeOffset, String, Enum, TimeZoneId, Invalid.") 
     description:  StrictStr = Field(...,alias="description", description="The description of the option") 
     optional: StrictBool = Field(description="Is this option required or optional?")
     allowed_value_set: Optional[List[StrictStr]] = Field(default=None, description="If the option is a string or enum, the allowed set of values it can take.", alias="allowedValueSet")
     default_value:  Optional[StrictStr] = Field(default=None,alias="defaultValue", description="If the option is not required, what is the default value?") 
-    __properties = ["name", "type", "description", "optional", "allowedValueSet", "defaultValue"]
+    __properties: ClassVar[List[str]] = ["name", "type", "description", "optional", "allowedValueSet", "defaultValue"]
 
     model_config = ConfigDict(
         populate_by_name=True,

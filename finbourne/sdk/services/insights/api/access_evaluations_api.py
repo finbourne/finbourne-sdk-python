@@ -61,12 +61,12 @@ class AccessEvaluationsApi:
         :return: Returns the result object.
         :rtype: AccessEvaluationLog
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_access_evaluation_log_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_access_evaluation_log_with_http_info(id, **kwargs)  # noqa: E501
+        response = self.get_access_evaluation_log_with_http_info(id, **kwargs)
+        return response.data
 
     @validate_call
     def get_access_evaluation_log_with_http_info(self, id: StrictStr, **kwargs) -> ApiResponse[AccessEvaluationLog]:
@@ -191,12 +191,12 @@ class AccessEvaluationsApi:
         :return: Returns the result object.
         :rtype: ResourceListWithHistogramOfAccessEvaluationLog
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_access_evaluation_logs_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_access_evaluation_logs_with_http_info(start_at, end_at, filter, sort_by, limit, page, histogram_interval, **kwargs)  # noqa: E501
+        response = self.list_access_evaluation_logs_with_http_info(start_at, end_at, filter, sort_by, limit, page, histogram_interval, **kwargs)
+        return response.data
 
     @validate_call
     def list_access_evaluation_logs_with_http_info(self, start_at: Optional[datetime] = None, end_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, sort_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, histogram_interval: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListWithHistogramOfAccessEvaluationLog]:
@@ -355,12 +355,12 @@ class AccessEvaluationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: AccessEvaluationLog
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_access_evaluation_log_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_access_evaluation_log_with_http_info_async(id, **kwargs)  # noqa: E501
+            response = await self.get_access_evaluation_log_with_http_info_async(id, **kwargs)
+            return response.data
 
     @validate_call
     async def get_access_evaluation_log_with_http_info_async(self, id: StrictStr, **kwargs) -> ApiResponse[AccessEvaluationLog]:
@@ -486,12 +486,12 @@ class AccessEvaluationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListWithHistogramOfAccessEvaluationLog
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_access_evaluation_logs_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_access_evaluation_logs_with_http_info_async(start_at, end_at, filter, sort_by, limit, page, histogram_interval, **kwargs)  # noqa: E501
+            response = await self.list_access_evaluation_logs_with_http_info_async(start_at, end_at, filter, sort_by, limit, page, histogram_interval, **kwargs)
+            return response.data
 
     @validate_call
     async def list_access_evaluation_logs_with_http_info_async(self, start_at: Optional[datetime] = None, end_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, sort_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, histogram_interval: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListWithHistogramOfAccessEvaluationLog]:

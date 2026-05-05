@@ -79,12 +79,12 @@ class PersonsApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_person_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_person_with_http_info(id_type_scope, id_type_code, code, **kwargs)  # noqa: E501
+        response = self.delete_person_with_http_info(id_type_scope, id_type_code, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_person_with_http_info(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -221,12 +221,12 @@ class PersonsApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_person_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_person_access_metadata_with_http_info(id_type_scope, id_type_code, code, metadata_key, effective_at, effective_until, **kwargs)  # noqa: E501
+        response = self.delete_person_access_metadata_with_http_info(id_type_scope, id_type_code, code, metadata_key, effective_at, effective_until, **kwargs)
+        return response.data
 
     @validate_call
     def delete_person_access_metadata_with_http_info(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, metadata_key: StrictStr, effective_at: Optional[StrictStr] = None, effective_until: Optional[datetime] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -382,12 +382,12 @@ class PersonsApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_person_identifiers_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_person_identifiers_with_http_info(id_type_scope, id_type_code, code, property_keys, effective_at, **kwargs)  # noqa: E501
+        response = self.delete_person_identifiers_with_http_info(id_type_scope, id_type_code, code, property_keys, effective_at, **kwargs)
+        return response.data
 
     @validate_call
     def delete_person_identifiers_with_http_info(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, property_keys: List[str], effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -535,12 +535,12 @@ class PersonsApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_person_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_person_properties_with_http_info(id_type_scope, id_type_code, code, property_keys, effective_at, **kwargs)  # noqa: E501
+        response = self.delete_person_properties_with_http_info(id_type_scope, id_type_code, code, property_keys, effective_at, **kwargs)
+        return response.data
 
     @validate_call
     def delete_person_properties_with_http_info(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, property_keys: List[str], effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -688,12 +688,12 @@ class PersonsApi:
         :return: Returns the result object.
         :rtype: Dict[str, List[AccessMetadataValue]]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_all_person_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_all_person_access_metadata_with_http_info(id_type_scope, id_type_code, code, effective_at, as_at, **kwargs)  # noqa: E501
+        response = self.get_all_person_access_metadata_with_http_info(id_type_scope, id_type_code, code, effective_at, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_all_person_access_metadata_with_http_info(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[Dict[str, List[AccessMetadataValue]]]:
@@ -847,12 +847,12 @@ class PersonsApi:
         :return: Returns the result object.
         :rtype: Person
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_person_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_person_with_http_info(id_type_scope, id_type_code, code, property_keys, effective_at, as_at, relationship_definition_ids, **kwargs)  # noqa: E501
+        response = self.get_person_with_http_info(id_type_scope, id_type_code, code, property_keys, effective_at, as_at, relationship_definition_ids, **kwargs)
+        return response.data
 
     @validate_call
     def get_person_with_http_info(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, property_keys: Optional[List[str]] = None, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> ApiResponse[Person]:
@@ -1018,12 +1018,12 @@ class PersonsApi:
         :return: Returns the result object.
         :rtype: List[AccessMetadataValue]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_person_access_metadata_by_key_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_person_access_metadata_by_key_with_http_info(id_type_scope, id_type_code, code, metadata_key, effective_at, as_at, **kwargs)  # noqa: E501
+        response = self.get_person_access_metadata_by_key_with_http_info(id_type_scope, id_type_code, code, metadata_key, effective_at, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_person_access_metadata_by_key_with_http_info(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, metadata_key: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[List[AccessMetadataValue]]:
@@ -1185,12 +1185,12 @@ class PersonsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfPropertyInterval
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_person_property_time_series_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_person_property_time_series_with_http_info(id_type_scope, id_type_code, code, property_key, as_at, filter, page, limit, **kwargs)  # noqa: E501
+        response = self.get_person_property_time_series_with_http_info(id_type_scope, id_type_code, code, property_key, as_at, filter, page, limit, **kwargs)
+        return response.data
 
     @validate_call
     def get_person_property_time_series_with_http_info(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, property_key: StrictStr, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, **kwargs) -> ApiResponse[ResourceListOfPropertyInterval]:
@@ -1362,12 +1362,12 @@ class PersonsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfRelation
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_person_relations_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_person_relations_with_http_info(id_type_scope, id_type_code, code, effective_at, as_at, filter, identifier_types, **kwargs)  # noqa: E501
+        response = self.get_person_relations_with_http_info(id_type_scope, id_type_code, code, effective_at, as_at, filter, identifier_types, **kwargs)
+        return response.data
 
     @validate_call
     def get_person_relations_with_http_info(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, identifier_types: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfRelation]:
@@ -1534,12 +1534,12 @@ class PersonsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfRelationship
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_person_relationships_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_person_relationships_with_http_info(id_type_scope, id_type_code, code, effective_at, as_at, filter, identifier_types, **kwargs)  # noqa: E501
+        response = self.get_person_relationships_with_http_info(id_type_scope, id_type_code, code, effective_at, as_at, filter, identifier_types, **kwargs)
+        return response.data
 
     @validate_call
     def get_person_relationships_with_http_info(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, identifier_types: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfRelationship]:
@@ -1706,12 +1706,12 @@ class PersonsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfPerson
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_all_persons_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_all_persons_with_http_info(effective_at, as_at, page, limit, filter, property_keys, relationship_definition_ids, **kwargs)  # noqa: E501
+        response = self.list_all_persons_with_http_info(effective_at, as_at, page, limit, filter, property_keys, relationship_definition_ids, **kwargs)
+        return response.data
 
     @validate_call
     def list_all_persons_with_http_info(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfPerson]:
@@ -1883,12 +1883,12 @@ class PersonsApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfPerson
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_persons_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_persons_with_http_info(id_type_scope, id_type_code, effective_at, as_at, page, limit, filter, property_keys, relationship_definition_ids, **kwargs)  # noqa: E501
+        response = self.list_persons_with_http_info(id_type_scope, id_type_code, effective_at, as_at, page, limit, filter, property_keys, relationship_definition_ids, **kwargs)
+        return response.data
 
     @validate_call
     def list_persons_with_http_info(self, id_type_scope: StrictStr, id_type_code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfPerson]:
@@ -2066,12 +2066,12 @@ class PersonsApi:
         :return: Returns the result object.
         :rtype: Dict[str, List[AccessMetadataValue]]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the patch_person_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.patch_person_access_metadata_with_http_info(id_type_scope, id_type_code, code, access_metadata_operation, effective_at, effective_until, **kwargs)  # noqa: E501
+        response = self.patch_person_access_metadata_with_http_info(id_type_scope, id_type_code, code, access_metadata_operation, effective_at, effective_until, **kwargs)
+        return response.data
 
     @validate_call
     def patch_person_access_metadata_with_http_info(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, access_metadata_operation: List[AccessMetadataOperation], effective_at: Optional[StrictStr] = None, effective_until: Optional[datetime] = None, **kwargs) -> ApiResponse[Dict[str, List[AccessMetadataValue]]]:
@@ -2232,12 +2232,12 @@ class PersonsApi:
         :return: Returns the result object.
         :rtype: Person
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the set_person_identifiers_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.set_person_identifiers_with_http_info(id_type_scope, id_type_code, code, set_person_identifiers_request, **kwargs)  # noqa: E501
+        response = self.set_person_identifiers_with_http_info(id_type_scope, id_type_code, code, set_person_identifiers_request, **kwargs)
+        return response.data
 
     @validate_call
     def set_person_identifiers_with_http_info(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, set_person_identifiers_request: SetPersonIdentifiersRequest, **kwargs) -> ApiResponse[Person]:
@@ -2383,12 +2383,12 @@ class PersonsApi:
         :return: Returns the result object.
         :rtype: Person
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the set_person_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.set_person_properties_with_http_info(id_type_scope, id_type_code, code, set_person_properties_request, **kwargs)  # noqa: E501
+        response = self.set_person_properties_with_http_info(id_type_scope, id_type_code, code, set_person_properties_request, **kwargs)
+        return response.data
 
     @validate_call
     def set_person_properties_with_http_info(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, set_person_properties_request: SetPersonPropertiesRequest, **kwargs) -> ApiResponse[Person]:
@@ -2528,12 +2528,12 @@ class PersonsApi:
         :return: Returns the result object.
         :rtype: Person
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_person_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_person_with_http_info(upsert_person_request, **kwargs)  # noqa: E501
+        response = self.upsert_person_with_http_info(upsert_person_request, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_person_with_http_info(self, upsert_person_request: UpsertPersonRequest, **kwargs) -> ApiResponse[Person]:
@@ -2667,12 +2667,12 @@ class PersonsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfAccessMetadataValueOf
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_person_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_person_access_metadata_with_http_info(id_type_scope, id_type_code, code, metadata_key, upsert_person_access_metadata_request, effective_at, effective_until, **kwargs)  # noqa: E501
+        response = self.upsert_person_access_metadata_with_http_info(id_type_scope, id_type_code, code, metadata_key, upsert_person_access_metadata_request, effective_at, effective_until, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_person_access_metadata_with_http_info(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, metadata_key: StrictStr, upsert_person_access_metadata_request: UpsertPersonAccessMetadataRequest, effective_at: Optional[StrictStr] = None, effective_until: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfAccessMetadataValueOf]:
@@ -2835,12 +2835,12 @@ class PersonsApi:
         :return: Returns the result object.
         :rtype: UpsertPersonsResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_persons_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_persons_with_http_info(success_mode, request_body, **kwargs)  # noqa: E501
+        response = self.upsert_persons_with_http_info(success_mode, request_body, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_persons_with_http_info(self, success_mode: StrictStr, request_body: Dict[str, UpsertPersonRequest], **kwargs) -> ApiResponse[UpsertPersonsResponse]:
@@ -2976,12 +2976,12 @@ class PersonsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_person_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_person_with_http_info_async(id_type_scope, id_type_code, code, **kwargs)  # noqa: E501
+            response = await self.delete_person_with_http_info_async(id_type_scope, id_type_code, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_person_with_http_info_async(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -3119,12 +3119,12 @@ class PersonsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_person_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_person_access_metadata_with_http_info_async(id_type_scope, id_type_code, code, metadata_key, effective_at, effective_until, **kwargs)  # noqa: E501
+            response = await self.delete_person_access_metadata_with_http_info_async(id_type_scope, id_type_code, code, metadata_key, effective_at, effective_until, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_person_access_metadata_with_http_info_async(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, metadata_key: StrictStr, effective_at: Optional[StrictStr] = None, effective_until: Optional[datetime] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -3281,12 +3281,12 @@ class PersonsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_person_identifiers_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_person_identifiers_with_http_info_async(id_type_scope, id_type_code, code, property_keys, effective_at, **kwargs)  # noqa: E501
+            response = await self.delete_person_identifiers_with_http_info_async(id_type_scope, id_type_code, code, property_keys, effective_at, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_person_identifiers_with_http_info_async(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, property_keys: List[str], effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -3435,12 +3435,12 @@ class PersonsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_person_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_person_properties_with_http_info_async(id_type_scope, id_type_code, code, property_keys, effective_at, **kwargs)  # noqa: E501
+            response = await self.delete_person_properties_with_http_info_async(id_type_scope, id_type_code, code, property_keys, effective_at, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_person_properties_with_http_info_async(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, property_keys: List[str], effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -3589,12 +3589,12 @@ class PersonsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Dict[str, List[AccessMetadataValue]]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_all_person_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_all_person_access_metadata_with_http_info_async(id_type_scope, id_type_code, code, effective_at, as_at, **kwargs)  # noqa: E501
+            response = await self.get_all_person_access_metadata_with_http_info_async(id_type_scope, id_type_code, code, effective_at, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_all_person_access_metadata_with_http_info_async(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[Dict[str, List[AccessMetadataValue]]]:
@@ -3749,12 +3749,12 @@ class PersonsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Person
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_person_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_person_with_http_info_async(id_type_scope, id_type_code, code, property_keys, effective_at, as_at, relationship_definition_ids, **kwargs)  # noqa: E501
+            response = await self.get_person_with_http_info_async(id_type_scope, id_type_code, code, property_keys, effective_at, as_at, relationship_definition_ids, **kwargs)
+            return response.data
 
     @validate_call
     async def get_person_with_http_info_async(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, property_keys: Optional[List[str]] = None, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> ApiResponse[Person]:
@@ -3921,12 +3921,12 @@ class PersonsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: List[AccessMetadataValue]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_person_access_metadata_by_key_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_person_access_metadata_by_key_with_http_info_async(id_type_scope, id_type_code, code, metadata_key, effective_at, as_at, **kwargs)  # noqa: E501
+            response = await self.get_person_access_metadata_by_key_with_http_info_async(id_type_scope, id_type_code, code, metadata_key, effective_at, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_person_access_metadata_by_key_with_http_info_async(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, metadata_key: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[List[AccessMetadataValue]]:
@@ -4089,12 +4089,12 @@ class PersonsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfPropertyInterval
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_person_property_time_series_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_person_property_time_series_with_http_info_async(id_type_scope, id_type_code, code, property_key, as_at, filter, page, limit, **kwargs)  # noqa: E501
+            response = await self.get_person_property_time_series_with_http_info_async(id_type_scope, id_type_code, code, property_key, as_at, filter, page, limit, **kwargs)
+            return response.data
 
     @validate_call
     async def get_person_property_time_series_with_http_info_async(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, property_key: StrictStr, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, **kwargs) -> ApiResponse[ResourceListOfPropertyInterval]:
@@ -4267,12 +4267,12 @@ class PersonsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfRelation
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_person_relations_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_person_relations_with_http_info_async(id_type_scope, id_type_code, code, effective_at, as_at, filter, identifier_types, **kwargs)  # noqa: E501
+            response = await self.get_person_relations_with_http_info_async(id_type_scope, id_type_code, code, effective_at, as_at, filter, identifier_types, **kwargs)
+            return response.data
 
     @validate_call
     async def get_person_relations_with_http_info_async(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, identifier_types: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfRelation]:
@@ -4440,12 +4440,12 @@ class PersonsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfRelationship
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_person_relationships_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_person_relationships_with_http_info_async(id_type_scope, id_type_code, code, effective_at, as_at, filter, identifier_types, **kwargs)  # noqa: E501
+            response = await self.get_person_relationships_with_http_info_async(id_type_scope, id_type_code, code, effective_at, as_at, filter, identifier_types, **kwargs)
+            return response.data
 
     @validate_call
     async def get_person_relationships_with_http_info_async(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, identifier_types: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfRelationship]:
@@ -4613,12 +4613,12 @@ class PersonsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfPerson
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_all_persons_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_all_persons_with_http_info_async(effective_at, as_at, page, limit, filter, property_keys, relationship_definition_ids, **kwargs)  # noqa: E501
+            response = await self.list_all_persons_with_http_info_async(effective_at, as_at, page, limit, filter, property_keys, relationship_definition_ids, **kwargs)
+            return response.data
 
     @validate_call
     async def list_all_persons_with_http_info_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfPerson]:
@@ -4791,12 +4791,12 @@ class PersonsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfPerson
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_persons_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_persons_with_http_info_async(id_type_scope, id_type_code, effective_at, as_at, page, limit, filter, property_keys, relationship_definition_ids, **kwargs)  # noqa: E501
+            response = await self.list_persons_with_http_info_async(id_type_scope, id_type_code, effective_at, as_at, page, limit, filter, property_keys, relationship_definition_ids, **kwargs)
+            return response.data
 
     @validate_call
     async def list_persons_with_http_info_async(self, id_type_scope: StrictStr, id_type_code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfPerson]:
@@ -4975,12 +4975,12 @@ class PersonsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Dict[str, List[AccessMetadataValue]]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the patch_person_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.patch_person_access_metadata_with_http_info_async(id_type_scope, id_type_code, code, access_metadata_operation, effective_at, effective_until, **kwargs)  # noqa: E501
+            response = await self.patch_person_access_metadata_with_http_info_async(id_type_scope, id_type_code, code, access_metadata_operation, effective_at, effective_until, **kwargs)
+            return response.data
 
     @validate_call
     async def patch_person_access_metadata_with_http_info_async(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, access_metadata_operation: List[AccessMetadataOperation], effective_at: Optional[StrictStr] = None, effective_until: Optional[datetime] = None, **kwargs) -> ApiResponse[Dict[str, List[AccessMetadataValue]]]:
@@ -5142,12 +5142,12 @@ class PersonsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Person
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the set_person_identifiers_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.set_person_identifiers_with_http_info_async(id_type_scope, id_type_code, code, set_person_identifiers_request, **kwargs)  # noqa: E501
+            response = await self.set_person_identifiers_with_http_info_async(id_type_scope, id_type_code, code, set_person_identifiers_request, **kwargs)
+            return response.data
 
     @validate_call
     async def set_person_identifiers_with_http_info_async(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, set_person_identifiers_request: SetPersonIdentifiersRequest, **kwargs) -> ApiResponse[Person]:
@@ -5294,12 +5294,12 @@ class PersonsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Person
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the set_person_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.set_person_properties_with_http_info_async(id_type_scope, id_type_code, code, set_person_properties_request, **kwargs)  # noqa: E501
+            response = await self.set_person_properties_with_http_info_async(id_type_scope, id_type_code, code, set_person_properties_request, **kwargs)
+            return response.data
 
     @validate_call
     async def set_person_properties_with_http_info_async(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, set_person_properties_request: SetPersonPropertiesRequest, **kwargs) -> ApiResponse[Person]:
@@ -5440,12 +5440,12 @@ class PersonsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Person
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_person_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_person_with_http_info_async(upsert_person_request, **kwargs)  # noqa: E501
+            response = await self.upsert_person_with_http_info_async(upsert_person_request, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_person_with_http_info_async(self, upsert_person_request: UpsertPersonRequest, **kwargs) -> ApiResponse[Person]:
@@ -5580,12 +5580,12 @@ class PersonsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfAccessMetadataValueOf
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_person_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_person_access_metadata_with_http_info_async(id_type_scope, id_type_code, code, metadata_key, upsert_person_access_metadata_request, effective_at, effective_until, **kwargs)  # noqa: E501
+            response = await self.upsert_person_access_metadata_with_http_info_async(id_type_scope, id_type_code, code, metadata_key, upsert_person_access_metadata_request, effective_at, effective_until, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_person_access_metadata_with_http_info_async(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, metadata_key: StrictStr, upsert_person_access_metadata_request: UpsertPersonAccessMetadataRequest, effective_at: Optional[StrictStr] = None, effective_until: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfAccessMetadataValueOf]:
@@ -5749,12 +5749,12 @@ class PersonsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: UpsertPersonsResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_persons_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_persons_with_http_info_async(success_mode, request_body, **kwargs)  # noqa: E501
+            response = await self.upsert_persons_with_http_info_async(success_mode, request_body, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_persons_with_http_info_async(self, success_mode: StrictStr, request_body: Dict[str, UpsertPersonRequest], **kwargs) -> ApiResponse[UpsertPersonsResponse]:

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class ComplianceRuleResultPortfolioDetail(BaseModel):
     """
     id: ResourceId
     name:  StrictStr = Field(...,alias="name") 
-    __properties = ["id", "name"]
+    __properties: ClassVar[List[str]] = ["id", "name"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,7 +80,7 @@ class ComplianceRuleResultPortfolioDetail(BaseModel):
             return ComplianceRuleResultPortfolioDetail.model_validate(obj)
 
         _obj = ComplianceRuleResultPortfolioDetail.model_validate({
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
             "name": obj.get("name")
         })
         return _obj

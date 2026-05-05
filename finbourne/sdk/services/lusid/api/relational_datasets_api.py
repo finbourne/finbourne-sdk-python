@@ -72,12 +72,12 @@ class RelationalDatasetsApi:
         :return: Returns the result object.
         :rtype: BatchDeleteRelationalDataResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the batch_delete_relational_data_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.batch_delete_relational_data_with_http_info(relational_dataset_definition_scope, relational_dataset_definition_code, request_body, success_mode, **kwargs)  # noqa: E501
+        response = self.batch_delete_relational_data_with_http_info(relational_dataset_definition_scope, relational_dataset_definition_code, request_body, success_mode, **kwargs)
+        return response.data
 
     @validate_call
     def batch_delete_relational_data_with_http_info(self, relational_dataset_definition_scope: StrictStr, relational_dataset_definition_code: StrictStr, request_body: Dict[str, DeleteRelationalDataPointRequest], success_mode: Optional[StrictStr] = None, **kwargs) -> ApiResponse[BatchDeleteRelationalDataResponse]:
@@ -223,12 +223,12 @@ class RelationalDatasetsApi:
         :return: Returns the result object.
         :rtype: BatchUpsertRelationalDatasetsResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the batch_upsert_relational_data_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.batch_upsert_relational_data_with_http_info(relational_dataset_definition_scope, relational_dataset_definition_code, request_body, success_mode, **kwargs)  # noqa: E501
+        response = self.batch_upsert_relational_data_with_http_info(relational_dataset_definition_scope, relational_dataset_definition_code, request_body, success_mode, **kwargs)
+        return response.data
 
     @validate_call
     def batch_upsert_relational_data_with_http_info(self, relational_dataset_definition_scope: StrictStr, relational_dataset_definition_code: StrictStr, request_body: Dict[str, UpsertRelationalDataPointRequest], success_mode: Optional[StrictStr] = None, **kwargs) -> ApiResponse[BatchUpsertRelationalDatasetsResponse]:
@@ -380,12 +380,12 @@ class RelationalDatasetsApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfRelationalDataPointResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the query_relational_data_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.query_relational_data_with_http_info(relational_dataset_definition_scope, relational_dataset_definition_code, as_at, effective_at, page, limit, query_relational_dataset_request, **kwargs)  # noqa: E501
+        response = self.query_relational_data_with_http_info(relational_dataset_definition_scope, relational_dataset_definition_code, as_at, effective_at, page, limit, query_relational_dataset_request, **kwargs)
+        return response.data
 
     @validate_call
     def query_relational_data_with_http_info(self, relational_dataset_definition_scope: StrictStr, relational_dataset_definition_code: StrictStr, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, query_relational_dataset_request: Optional[QueryRelationalDatasetRequest] = None, **kwargs) -> ApiResponse[PagedResourceListOfRelationalDataPointResponse]:
@@ -556,12 +556,12 @@ class RelationalDatasetsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: BatchDeleteRelationalDataResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the batch_delete_relational_data_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.batch_delete_relational_data_with_http_info_async(relational_dataset_definition_scope, relational_dataset_definition_code, request_body, success_mode, **kwargs)  # noqa: E501
+            response = await self.batch_delete_relational_data_with_http_info_async(relational_dataset_definition_scope, relational_dataset_definition_code, request_body, success_mode, **kwargs)
+            return response.data
 
     @validate_call
     async def batch_delete_relational_data_with_http_info_async(self, relational_dataset_definition_scope: StrictStr, relational_dataset_definition_code: StrictStr, request_body: Dict[str, DeleteRelationalDataPointRequest], success_mode: Optional[StrictStr] = None, **kwargs) -> ApiResponse[BatchDeleteRelationalDataResponse]:
@@ -708,12 +708,12 @@ class RelationalDatasetsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: BatchUpsertRelationalDatasetsResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the batch_upsert_relational_data_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.batch_upsert_relational_data_with_http_info_async(relational_dataset_definition_scope, relational_dataset_definition_code, request_body, success_mode, **kwargs)  # noqa: E501
+            response = await self.batch_upsert_relational_data_with_http_info_async(relational_dataset_definition_scope, relational_dataset_definition_code, request_body, success_mode, **kwargs)
+            return response.data
 
     @validate_call
     async def batch_upsert_relational_data_with_http_info_async(self, relational_dataset_definition_scope: StrictStr, relational_dataset_definition_code: StrictStr, request_body: Dict[str, UpsertRelationalDataPointRequest], success_mode: Optional[StrictStr] = None, **kwargs) -> ApiResponse[BatchUpsertRelationalDatasetsResponse]:
@@ -866,12 +866,12 @@ class RelationalDatasetsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfRelationalDataPointResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the query_relational_data_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.query_relational_data_with_http_info_async(relational_dataset_definition_scope, relational_dataset_definition_code, as_at, effective_at, page, limit, query_relational_dataset_request, **kwargs)  # noqa: E501
+            response = await self.query_relational_data_with_http_info_async(relational_dataset_definition_scope, relational_dataset_definition_code, as_at, effective_at, page, limit, query_relational_dataset_request, **kwargs)
+            return response.data
 
     @validate_call
     async def query_relational_data_with_http_info_async(self, relational_dataset_definition_scope: StrictStr, relational_dataset_definition_code: StrictStr, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, query_relational_dataset_request: Optional[QueryRelationalDatasetRequest] = None, **kwargs) -> ApiResponse[PagedResourceListOfRelationalDataPointResponse]:

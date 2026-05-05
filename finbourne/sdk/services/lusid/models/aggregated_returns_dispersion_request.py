@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,9 +31,9 @@ class AggregatedReturnsDispersionRequest(BaseModel):
     years_count: Optional[StrictInt] = Field(default=None, description="For how many years to calculate the dispersion. Default to 10.", alias="yearsCount")
     return_ids: Optional[List[ResourceId]] = Field(default=None, description="The Scope and code of the returns.", alias="returnIds")
     recipe_id: Optional[ResourceId] = Field(default=None, alias="recipeId")
-    composite_method:  Optional[StrictStr] = Field(default=None,alias="compositeMethod", description="The method used to calculate the Portfolio performance: Equal/Asset.") 
+    composite_method:  Optional[StrictStr] = Field(default=None,alias="compositeMethod", description="The method used to calculate the Portfolio performance. Available values: Equal, Asset.") 
     alternative_inception_date:  Optional[StrictStr] = Field(default=None,alias="alternativeInceptionDate", description="Optional - either a date, or the key for a portfolio property containing a date. If provided, the given date will override the inception date for this request.") 
-    __properties = ["toEffectiveAt", "yearsCount", "returnIds", "recipeId", "compositeMethod", "alternativeInceptionDate"]
+    __properties: ClassVar[List[str]] = ["toEffectiveAt", "yearsCount", "returnIds", "recipeId", "compositeMethod", "alternativeInceptionDate"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -113,8 +113,8 @@ class AggregatedReturnsDispersionRequest(BaseModel):
         _obj = AggregatedReturnsDispersionRequest.model_validate({
             "to_effective_at": obj.get("toEffectiveAt"),
             "years_count": obj.get("yearsCount"),
-            "return_ids": [ResourceId.from_dict(_item) for _item in obj.get("returnIds")] if obj.get("returnIds") is not None else None,
-            "recipe_id": ResourceId.from_dict(obj.get("recipeId")) if obj.get("recipeId") is not None else None,
+            "return_ids": [ResourceId.from_dict(_item) for _item in _v] if (_v := obj.get("returnIds")) is not None else None,
+            "recipe_id": ResourceId.from_dict(_v) if (_v := obj.get("recipeId")) is not None else None,
             "composite_method": obj.get("compositeMethod"),
             "alternative_inception_date": obj.get("alternativeInceptionDate")
         })

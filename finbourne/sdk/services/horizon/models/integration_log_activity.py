@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class IntegrationLogActivity(BaseModel):
     resulting_status:  StrictStr = Field(...,alias="resultingStatus") 
     message_type:  Optional[StrictStr] = Field(default=None,alias="messageType") 
     description:  Optional[StrictStr] = Field(default=None,alias="description") 
-    __properties = ["timestamp", "resultingStatus", "messageType", "description"]
+    __properties: ClassVar[List[str]] = ["timestamp", "resultingStatus", "messageType", "description"]
 
     model_config = ConfigDict(
         populate_by_name=True,

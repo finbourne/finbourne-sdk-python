@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,8 +28,8 @@ class SettlementProblem(BaseModel):
     """
     settlement_instruction_id:  StrictStr = Field(...,alias="settlementInstructionId", description="The id of the problematic settlement instruction. Combined with the portfolio id this uniquely identifies a settlement instruction") 
     category:  StrictStr = Field(...,alias="category", description="The category this instruction belongs to") 
-    status:  StrictStr = Field(...,alias="status", description="The status of the settlement instruction. Possible values are 'Invalid' or 'Rejected'.") 
-    __properties = ["settlementInstructionId", "category", "status"]
+    status:  StrictStr = Field(...,alias="status", description="The status of the settlement instruction. Available values: Invalid, Rejected, Applied, Orphan.") 
+    __properties: ClassVar[List[str]] = ["settlementInstructionId", "category", "status"]
 
     model_config = ConfigDict(
         populate_by_name=True,

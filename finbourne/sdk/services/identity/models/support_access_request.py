@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class SupportAccessRequest(BaseModel):
     duration:  StrictStr = Field(...,alias="duration", description="The duration for which access is requested (in any ISO-8601 format)") 
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="The description of why the support access has been granted (i.e. support ticket numbers)") 
     permitted_roles: Optional[List[StrictStr]] = Field(default=None, alias="permittedRoles")
-    __properties = ["duration", "description", "permittedRoles"]
+    __properties: ClassVar[List[str]] = ["duration", "description", "permittedRoles"]
 
     model_config = ConfigDict(
         populate_by_name=True,

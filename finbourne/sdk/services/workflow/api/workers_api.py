@@ -69,12 +69,12 @@ class WorkersApi:
         :return: Returns the result object.
         :rtype: Worker
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_worker_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_worker_with_http_info(create_worker_request, **kwargs)  # noqa: E501
+        response = self.create_worker_with_http_info(create_worker_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_worker_with_http_info(self, create_worker_request: CreateWorkerRequest, **kwargs) -> ApiResponse[Worker]:
@@ -198,12 +198,12 @@ class WorkersApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_worker_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_worker_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_worker_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_worker_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -329,12 +329,12 @@ class WorkersApi:
         :return: Returns the result object.
         :rtype: Worker
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_worker_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_worker_with_http_info(scope, code, as_at, **kwargs)  # noqa: E501
+        response = self.get_worker_with_http_info(scope, code, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_worker_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[Worker]:
@@ -463,12 +463,12 @@ class WorkersApi:
         :return: Returns the result object.
         :rtype: GetWorkerResultResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_worker_result_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_worker_result_with_http_info(run_id, **kwargs)  # noqa: E501
+        response = self.get_worker_result_with_http_info(run_id, **kwargs)
+        return response.data
 
     @validate_call
     def get_worker_result_with_http_info(self, run_id: StrictStr, **kwargs) -> ApiResponse[GetWorkerResultResponse]:
@@ -589,12 +589,12 @@ class WorkersApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfWorker
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_workers_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_workers_with_http_info(as_at, filter, sort_by, limit, page, **kwargs)  # noqa: E501
+        response = self.list_workers_with_http_info(as_at, filter, sort_by, limit, page, **kwargs)
+        return response.data
 
     @validate_call
     def list_workers_with_http_info(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfWorker]:
@@ -741,12 +741,12 @@ class WorkersApi:
         :return: Returns the result object.
         :rtype: RunWorkerResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the run_worker_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.run_worker_with_http_info(scope, code, run_worker_request, as_at, **kwargs)  # noqa: E501
+        response = self.run_worker_with_http_info(scope, code, run_worker_request, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def run_worker_with_http_info(self, scope: StrictStr, code: StrictStr, run_worker_request: RunWorkerRequest, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[RunWorkerResponse]:
@@ -892,12 +892,12 @@ class WorkersApi:
         :return: Returns the result object.
         :rtype: Worker
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_worker_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_worker_with_http_info(scope, code, update_worker_request, **kwargs)  # noqa: E501
+        response = self.update_worker_with_http_info(scope, code, update_worker_request, **kwargs)
+        return response.data
 
     @validate_call
     def update_worker_with_http_info(self, scope: StrictStr, code: StrictStr, update_worker_request: UpdateWorkerRequest, **kwargs) -> ApiResponse[Worker]:
@@ -1036,12 +1036,12 @@ class WorkersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Worker
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_worker_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_worker_with_http_info_async(create_worker_request, **kwargs)  # noqa: E501
+            response = await self.create_worker_with_http_info_async(create_worker_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_worker_with_http_info_async(self, create_worker_request: CreateWorkerRequest, **kwargs) -> ApiResponse[Worker]:
@@ -1166,12 +1166,12 @@ class WorkersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_worker_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_worker_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_worker_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_worker_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -1298,12 +1298,12 @@ class WorkersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Worker
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_worker_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_worker_with_http_info_async(scope, code, as_at, **kwargs)  # noqa: E501
+            response = await self.get_worker_with_http_info_async(scope, code, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_worker_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[Worker]:
@@ -1433,12 +1433,12 @@ class WorkersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: GetWorkerResultResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_worker_result_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_worker_result_with_http_info_async(run_id, **kwargs)  # noqa: E501
+            response = await self.get_worker_result_with_http_info_async(run_id, **kwargs)
+            return response.data
 
     @validate_call
     async def get_worker_result_with_http_info_async(self, run_id: StrictStr, **kwargs) -> ApiResponse[GetWorkerResultResponse]:
@@ -1560,12 +1560,12 @@ class WorkersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfWorker
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_workers_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_workers_with_http_info_async(as_at, filter, sort_by, limit, page, **kwargs)  # noqa: E501
+            response = await self.list_workers_with_http_info_async(as_at, filter, sort_by, limit, page, **kwargs)
+            return response.data
 
     @validate_call
     async def list_workers_with_http_info_async(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfWorker]:
@@ -1713,12 +1713,12 @@ class WorkersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: RunWorkerResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the run_worker_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.run_worker_with_http_info_async(scope, code, run_worker_request, as_at, **kwargs)  # noqa: E501
+            response = await self.run_worker_with_http_info_async(scope, code, run_worker_request, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def run_worker_with_http_info_async(self, scope: StrictStr, code: StrictStr, run_worker_request: RunWorkerRequest, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[RunWorkerResponse]:
@@ -1865,12 +1865,12 @@ class WorkersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Worker
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_worker_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_worker_with_http_info_async(scope, code, update_worker_request, **kwargs)  # noqa: E501
+            response = await self.update_worker_with_http_info_async(scope, code, update_worker_request, **kwargs)
+            return response.data
 
     @validate_call
     async def update_worker_with_http_info_async(self, scope: StrictStr, code: StrictStr, update_worker_request: UpdateWorkerRequest, **kwargs) -> ApiResponse[Worker]:

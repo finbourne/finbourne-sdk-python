@@ -68,12 +68,12 @@ class FeeTypesApi:
         :return: Returns the result object.
         :rtype: FeeType
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_fee_type_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_fee_type_with_http_info(scope, fee_type_request, **kwargs)  # noqa: E501
+        response = self.create_fee_type_with_http_info(scope, fee_type_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_fee_type_with_http_info(self, scope: StrictStr, fee_type_request: FeeTypeRequest, **kwargs) -> ApiResponse[FeeType]:
@@ -203,12 +203,12 @@ class FeeTypesApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_fee_type_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_fee_type_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_fee_type_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_fee_type_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -327,12 +327,12 @@ class FeeTypesApi:
         :return: Returns the result object.
         :rtype: FeeTransactionTemplateSpecification
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_fee_template_specifications_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_fee_template_specifications_with_http_info(**kwargs)  # noqa: E501
+        response = self.get_fee_template_specifications_with_http_info(**kwargs)
+        return response.data
 
     @validate_call
     def get_fee_template_specifications_with_http_info(self, **kwargs) -> ApiResponse[FeeTransactionTemplateSpecification]:
@@ -444,12 +444,12 @@ class FeeTypesApi:
         :return: Returns the result object.
         :rtype: FeeType
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_fee_type_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_fee_type_with_http_info(scope, code, as_at, **kwargs)  # noqa: E501
+        response = self.get_fee_type_with_http_info(scope, code, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_fee_type_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[FeeType]:
@@ -587,12 +587,12 @@ class FeeTypesApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfFeeType
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_fee_types_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_fee_types_with_http_info(as_at, page, limit, filter, sort_by, **kwargs)  # noqa: E501
+        response = self.list_fee_types_with_http_info(as_at, page, limit, filter, sort_by, **kwargs)
+        return response.data
 
     @validate_call
     def list_fee_types_with_http_info(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfFeeType]:
@@ -739,12 +739,12 @@ class FeeTypesApi:
         :return: Returns the result object.
         :rtype: FeeType
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_fee_type_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_fee_type_with_http_info(scope, code, update_fee_type_request, **kwargs)  # noqa: E501
+        response = self.update_fee_type_with_http_info(scope, code, update_fee_type_request, **kwargs)
+        return response.data
 
     @validate_call
     def update_fee_type_with_http_info(self, scope: StrictStr, code: StrictStr, update_fee_type_request: UpdateFeeTypeRequest, **kwargs) -> ApiResponse[FeeType]:
@@ -884,12 +884,12 @@ class FeeTypesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: FeeType
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_fee_type_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_fee_type_with_http_info_async(scope, fee_type_request, **kwargs)  # noqa: E501
+            response = await self.create_fee_type_with_http_info_async(scope, fee_type_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_fee_type_with_http_info_async(self, scope: StrictStr, fee_type_request: FeeTypeRequest, **kwargs) -> ApiResponse[FeeType]:
@@ -1020,12 +1020,12 @@ class FeeTypesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_fee_type_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_fee_type_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_fee_type_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_fee_type_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -1145,12 +1145,12 @@ class FeeTypesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: FeeTransactionTemplateSpecification
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_fee_template_specifications_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_fee_template_specifications_with_http_info_async(**kwargs)  # noqa: E501
+            response = await self.get_fee_template_specifications_with_http_info_async(**kwargs)
+            return response.data
 
     @validate_call
     async def get_fee_template_specifications_with_http_info_async(self, **kwargs) -> ApiResponse[FeeTransactionTemplateSpecification]:
@@ -1263,12 +1263,12 @@ class FeeTypesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: FeeType
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_fee_type_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_fee_type_with_http_info_async(scope, code, as_at, **kwargs)  # noqa: E501
+            response = await self.get_fee_type_with_http_info_async(scope, code, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_fee_type_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[FeeType]:
@@ -1407,12 +1407,12 @@ class FeeTypesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfFeeType
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_fee_types_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_fee_types_with_http_info_async(as_at, page, limit, filter, sort_by, **kwargs)  # noqa: E501
+            response = await self.list_fee_types_with_http_info_async(as_at, page, limit, filter, sort_by, **kwargs)
+            return response.data
 
     @validate_call
     async def list_fee_types_with_http_info_async(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfFeeType]:
@@ -1560,12 +1560,12 @@ class FeeTypesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: FeeType
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_fee_type_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_fee_type_with_http_info_async(scope, code, update_fee_type_request, **kwargs)  # noqa: E501
+            response = await self.update_fee_type_with_http_info_async(scope, code, update_fee_type_request, **kwargs)
+            return response.data
 
     @validate_call
     async def update_fee_type_with_http_info_async(self, scope: StrictStr, code: StrictStr, update_fee_type_request: UpdateFeeTypeRequest, **kwargs) -> ApiResponse[FeeType]:

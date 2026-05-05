@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -35,7 +35,7 @@ class UpsertFundBookmarkRequest(BaseModel):
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="A set of properties for the Bookmark.")
     holdings_as_at_override: Optional[datetime] = Field(default=None, description="The optional AsAt Override to use for building holdings in the Bookmark. Defaults to Latest.", alias="holdingsAsAtOverride")
     valuations_as_at_override: Optional[datetime] = Field(default=None, description="The optional AsAt Override to use for performing valuations in the Bookmark. Defaults to Latest.", alias="valuationsAsAtOverride")
-    __properties = ["bookmarkCode", "displayName", "description", "effectiveAt", "queryAsAt", "properties", "holdingsAsAtOverride", "valuationsAsAtOverride"]
+    __properties: ClassVar[List[str]] = ["bookmarkCode", "displayName", "description", "effectiveAt", "queryAsAt", "properties", "holdingsAsAtOverride", "valuationsAsAtOverride"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -122,9 +122,9 @@ class UpsertFundBookmarkRequest(BaseModel):
             "query_as_at": obj.get("queryAsAt"),
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
             "holdings_as_at_override": obj.get("holdingsAsAtOverride"),
             "valuations_as_at_override": obj.get("valuationsAsAtOverride")

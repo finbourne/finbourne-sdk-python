@@ -11,7 +11,7 @@ A Posting Module definition
 | **display_name** | **str** | Required | The name of the Posting Module. |
 | **description** | **str** | Optional | A description for the Posting Module. |
 | **rules** | [List[PostingModuleRule]](PostingModuleRule.md) | Optional | The Posting Rules that apply for the Posting Module. Rules are evaluated in the order they occur in this collection. |
-| **status** | **str** | Required | The Posting Module status. Can be Active, Inactive or Deleted. Defaults to Active. |
+| **status** | **str** | Required | The Posting Module status. Default value: Active. Available values: Active, Inactive, Deleted. |
 | **version** | [Version](Version.md) | Optional | *No description available.* |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
@@ -30,7 +30,7 @@ instance = PostingModuleResponse(
     display_name="...",  # required — The name of the Posting Module.
     description="...",  # optional — A description for the Posting Module.
     rules=[],  # optional — The Posting Rules that apply for the Posting Module. Rules are evaluated in the order they occur in this collection.
-    status="...",  # required — The Posting Module status. Can be Active, Inactive or Deleted. Defaults to Active.
+    status="...",  # required — The Posting Module status. Default value: Active. Available values: Active, Inactive, Deleted.
     version=Version(...),  # optional
     links=[]  # optional
 )

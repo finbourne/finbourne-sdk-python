@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -39,7 +39,7 @@ class UpdateScheduleRequest(BaseModel):
     notifications: Optional[List[Notification]] = Field(default=None, description="Updated notifications for this schedule")
     enabled: Optional[StrictBool] = Field(default=None, description="Specify whether schedule is enabled or not Defaults to true")
     use_as_auth:  Optional[StrictStr] = Field(default=None,alias="useAsAuth", description="Id of user associated with schedule. All calls to FINBOURNE services as part of execution of this schedule will be authenticated as this  user. Can be null, in which case we'll default to that of the user  making this request") 
-    __properties = ["jobId", "name", "description", "author", "owner", "arguments", "trigger", "notifications", "enabled", "useAsAuth"]
+    __properties: ClassVar[List[str]] = ["jobId", "name", "description", "author", "owner", "arguments", "trigger", "notifications", "enabled", "useAsAuth"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -125,14 +125,14 @@ class UpdateScheduleRequest(BaseModel):
             return UpdateScheduleRequest.model_validate(obj)
 
         _obj = UpdateScheduleRequest.model_validate({
-            "job_id": ResourceId.from_dict(obj.get("jobId")) if obj.get("jobId") is not None else None,
+            "job_id": ResourceId.from_dict(_v) if (_v := obj.get("jobId")) is not None else None,
             "name": obj.get("name"),
             "description": obj.get("description"),
             "author": obj.get("author"),
             "owner": obj.get("owner"),
             "arguments": obj.get("arguments"),
-            "trigger": Trigger.from_dict(obj.get("trigger")) if obj.get("trigger") is not None else None,
-            "notifications": [Notification.from_dict(_item) for _item in obj.get("notifications")] if obj.get("notifications") is not None else None,
+            "trigger": Trigger.from_dict(_v) if (_v := obj.get("trigger")) is not None else None,
+            "notifications": [Notification.from_dict(_item) for _item in _v] if (_v := obj.get("notifications")) is not None else None,
             "enabled": obj.get("enabled"),
             "use_as_auth": obj.get("useAsAuth")
         })

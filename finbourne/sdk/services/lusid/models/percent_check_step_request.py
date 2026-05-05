@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,9 +28,9 @@ class PercentCheckStepRequest(ComplianceStepRequest):
     PercentCheckStepRequest
     """
     label:  StrictStr = Field(...,alias="label", description="The label of the compliance step") 
-    compliance_step_type_request:  StrictStr = Field(...,alias="complianceStepTypeRequest", description=". The available values are: FilterStepRequest, GroupByStepRequest, GroupFilterStepRequest, BranchStepRequest, CheckStepRequest, PercentCheckStepRequest") 
+    compliance_step_type_request:  StrictStr = Field(...,alias="complianceStepTypeRequest", description="The type of the compliance step. Available values: FilterStepRequest, GroupByStepRequest, GroupFilterStepRequest, BranchStepRequest, CheckStepRequest, PercentCheckStepRequest.") 
     additional_properties: Dict[str, Any] = {}
-    __properties = ["complianceStepTypeRequest", "label"]
+    __properties: ClassVar[List[str]] = ["complianceStepTypeRequest", "label"]
 
     @field_validator('compliance_step_type_request')
     def compliance_step_type_request_validate_enum(cls, value):
@@ -157,13 +157,8 @@ class PercentCheckStepRequest(ComplianceStepRequest):
             "label": obj.get("label")
         })
         # store additional fields in additional_properties
-        
-        properties = cls.__properties
-        if not isinstance(cls.__properties, dict) and getattr(cls.__properties, 'default', None):
-            properties = cls.__properties.default
-    
         for _key in obj.keys():
-            if _key not in properties:
+            if _key not in cls.__properties:
                 _obj.additional_properties[_key] = obj.get(_key)
 
         return _obj

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class EventMatchingPattern(BaseModel):
     """
     event_type:  StrictStr = Field(...,alias="eventType", description="The type of event to subscribe to. The list of available event types can be discovered by calling the ‘List available EventTypes’ API endpoint in the Notifications service") 
     filter:  Optional[StrictStr] = Field(default=None,alias="filter", description="A filter on the event. See https://support.lusid.com/filtering-results-from-lusid for more information. If not provided, all events will be matched.") 
-    __properties = ["eventType", "filter"]
+    __properties: ClassVar[List[str]] = ["eventType", "filter"]
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class CreateChildTaskConfiguration(BaseModel):
     initial_trigger:  Optional[StrictStr] = Field(default=None,alias="initialTrigger", description="The Initial Trigger for automatic start") 
     child_task_fields: Optional[Dict[str, FieldMapping]] = Field(default=None, description="Field Mappings", alias="childTaskFields")
     map_stacking_key_from:  Optional[StrictStr] = Field(default=None,alias="mapStackingKeyFrom", description="If present, the value of this field on the parent task will be the Stacking Key on any created child tasks") 
-    __properties = ["taskDefinitionId", "taskDefinitionAsAt", "initialTrigger", "childTaskFields", "mapStackingKeyFrom"]
+    __properties: ClassVar[List[str]] = ["taskDefinitionId", "taskDefinitionAsAt", "initialTrigger", "childTaskFields", "mapStackingKeyFrom"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -111,14 +111,14 @@ class CreateChildTaskConfiguration(BaseModel):
             return CreateChildTaskConfiguration.model_validate(obj)
 
         _obj = CreateChildTaskConfiguration.model_validate({
-            "task_definition_id": ResourceId.from_dict(obj.get("taskDefinitionId")) if obj.get("taskDefinitionId") is not None else None,
+            "task_definition_id": ResourceId.from_dict(_v) if (_v := obj.get("taskDefinitionId")) is not None else None,
             "task_definition_as_at": obj.get("taskDefinitionAsAt"),
             "initial_trigger": obj.get("initialTrigger"),
             "child_task_fields": dict(
                 (_k, FieldMapping.from_dict(_v))
-                for _k, _v in obj.get("childTaskFields").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("childTaskFields") is not None
+            if (_val := obj.get("childTaskFields")) is not None
             else None,
             "map_stacking_key_from": obj.get("mapStackingKeyFrom")
         })

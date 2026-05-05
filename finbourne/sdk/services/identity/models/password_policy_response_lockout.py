@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -27,7 +27,7 @@ class PasswordPolicyResponseLockout(BaseModel):
     PasswordPolicyResponseLockout
     """
     max_attempts: StrictInt = Field(description="The maximum number of unsuccessful attempts before the user is locked out of their account", alias="maxAttempts")
-    __properties = ["maxAttempts"]
+    __properties: ClassVar[List[str]] = ["maxAttempts"]
 
     model_config = ConfigDict(
         populate_by_name=True,

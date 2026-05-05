@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class TransactionSettlementSummary(BaseModel):
     stock_status: CategorySettlementStatus = Field(alias="stockStatus")
     cash_status: CategorySettlementStatus = Field(alias="cashStatus")
     deferred_cash_receipt_status: CategorySettlementStatus = Field(alias="deferredCashReceiptStatus")
-    __properties = ["overallStatus", "stockStatus", "cashStatus", "deferredCashReceiptStatus"]
+    __properties: ClassVar[List[str]] = ["overallStatus", "stockStatus", "cashStatus", "deferredCashReceiptStatus"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,10 +91,10 @@ class TransactionSettlementSummary(BaseModel):
             return TransactionSettlementSummary.model_validate(obj)
 
         _obj = TransactionSettlementSummary.model_validate({
-            "overall_status": CategorySettlementStatus.from_dict(obj.get("overallStatus")) if obj.get("overallStatus") is not None else None,
-            "stock_status": CategorySettlementStatus.from_dict(obj.get("stockStatus")) if obj.get("stockStatus") is not None else None,
-            "cash_status": CategorySettlementStatus.from_dict(obj.get("cashStatus")) if obj.get("cashStatus") is not None else None,
-            "deferred_cash_receipt_status": CategorySettlementStatus.from_dict(obj.get("deferredCashReceiptStatus")) if obj.get("deferredCashReceiptStatus") is not None else None
+            "overall_status": CategorySettlementStatus.from_dict(_v) if (_v := obj.get("overallStatus")) is not None else None,
+            "stock_status": CategorySettlementStatus.from_dict(_v) if (_v := obj.get("stockStatus")) is not None else None,
+            "cash_status": CategorySettlementStatus.from_dict(_v) if (_v := obj.get("cashStatus")) is not None else None,
+            "deferred_cash_receipt_status": CategorySettlementStatus.from_dict(_v) if (_v := obj.get("deferredCashReceiptStatus")) is not None else None
         })
         return _obj
 

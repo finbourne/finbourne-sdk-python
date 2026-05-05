@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -47,7 +47,7 @@ class AttachedPolicyDefinitionResponse(BaseModel):
     var_if: Optional[List[IfExpression]] = Field(default=None, alias="if")
     when: Optional[WhenSpec] = None
     how: Optional[HowSpec] = None
-    __properties = ["sourceRole", "roleHierarchyIndex", "description", "applications", "policyType", "id", "grant", "selectors", "for", "if", "when", "how"]
+    __properties: ClassVar[List[str]] = ["sourceRole", "roleHierarchyIndex", "description", "applications", "policyType", "id", "grant", "selectors", "for", "if", "when", "how"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -153,18 +153,18 @@ class AttachedPolicyDefinitionResponse(BaseModel):
             return AttachedPolicyDefinitionResponse.model_validate(obj)
 
         _obj = AttachedPolicyDefinitionResponse.model_validate({
-            "source_role": RoleId.from_dict(obj.get("sourceRole")) if obj.get("sourceRole") is not None else None,
+            "source_role": RoleId.from_dict(_v) if (_v := obj.get("sourceRole")) is not None else None,
             "role_hierarchy_index": obj.get("roleHierarchyIndex"),
             "description": obj.get("description"),
             "applications": obj.get("applications"),
             "policy_type": obj.get("policyType"),
-            "id": PolicyId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
+            "id": PolicyId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
             "grant": obj.get("grant"),
-            "selectors": [SelectorDefinition.from_dict(_item) for _item in obj.get("selectors")] if obj.get("selectors") is not None else None,
-            "var_for": [ForSpec.from_dict(_item) for _item in obj.get("for")] if obj.get("for") is not None else None,
-            "var_if": [IfExpression.from_dict(_item) for _item in obj.get("if")] if obj.get("if") is not None else None,
-            "when": WhenSpec.from_dict(obj.get("when")) if obj.get("when") is not None else None,
-            "how": HowSpec.from_dict(obj.get("how")) if obj.get("how") is not None else None
+            "selectors": [SelectorDefinition.from_dict(_item) for _item in _v] if (_v := obj.get("selectors")) is not None else None,
+            "var_for": [ForSpec.from_dict(_item) for _item in _v] if (_v := obj.get("for")) is not None else None,
+            "var_if": [IfExpression.from_dict(_item) for _item in _v] if (_v := obj.get("if")) is not None else None,
+            "when": WhenSpec.from_dict(_v) if (_v := obj.get("when")) is not None else None,
+            "how": HowSpec.from_dict(_v) if (_v := obj.get("how")) is not None else None
         })
         return _obj
 

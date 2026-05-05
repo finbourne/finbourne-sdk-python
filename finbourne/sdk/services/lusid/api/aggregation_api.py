@@ -69,12 +69,12 @@ class AggregationApi:
         :return: Returns the result object.
         :rtype: ConfigurationRecipe
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the generate_configuration_recipe_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.generate_configuration_recipe_with_http_info(scope, code, create_recipe_request, **kwargs)  # noqa: E501
+        response = self.generate_configuration_recipe_with_http_info(scope, code, create_recipe_request, **kwargs)
+        return response.data
 
     @validate_call
     def generate_configuration_recipe_with_http_info(self, scope: StrictStr, code: StrictStr, create_recipe_request: Optional[CreateRecipeRequest] = None, **kwargs) -> ApiResponse[ConfigurationRecipe]:
@@ -212,12 +212,12 @@ class AggregationApi:
         :return: Returns the result object.
         :rtype: ResourceListOfAggregationQuery
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_queryable_keys_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_queryable_keys_with_http_info(page, limit, filter, **kwargs)  # noqa: E501
+        response = self.get_queryable_keys_with_http_info(page, limit, filter, **kwargs)
+        return response.data
 
     @validate_call
     def get_queryable_keys_with_http_info(self, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfAggregationQuery]:
@@ -344,12 +344,12 @@ class AggregationApi:
         :return: Returns the result object.
         :rtype: ListAggregationResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_valuation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_valuation_with_http_info(valuation_request, **kwargs)  # noqa: E501
+        response = self.get_valuation_with_http_info(valuation_request, **kwargs)
+        return response.data
 
     @validate_call
     def get_valuation_with_http_info(self, valuation_request: Optional[ValuationRequest] = None, **kwargs) -> ApiResponse[ListAggregationResponse]:
@@ -471,12 +471,12 @@ class AggregationApi:
         :return: Returns the result object.
         :rtype: ListAggregationResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_valuation_of_weighted_instruments_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_valuation_of_weighted_instruments_with_http_info(inline_valuation_request, **kwargs)  # noqa: E501
+        response = self.get_valuation_of_weighted_instruments_with_http_info(inline_valuation_request, **kwargs)
+        return response.data
 
     @validate_call
     def get_valuation_of_weighted_instruments_with_http_info(self, inline_valuation_request: Optional[InlineValuationRequest] = None, **kwargs) -> ApiResponse[ListAggregationResponse]:
@@ -606,12 +606,12 @@ class AggregationApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ConfigurationRecipe
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the generate_configuration_recipe_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.generate_configuration_recipe_with_http_info_async(scope, code, create_recipe_request, **kwargs)  # noqa: E501
+            response = await self.generate_configuration_recipe_with_http_info_async(scope, code, create_recipe_request, **kwargs)
+            return response.data
 
     @validate_call
     async def generate_configuration_recipe_with_http_info_async(self, scope: StrictStr, code: StrictStr, create_recipe_request: Optional[CreateRecipeRequest] = None, **kwargs) -> ApiResponse[ConfigurationRecipe]:
@@ -750,12 +750,12 @@ class AggregationApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfAggregationQuery
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_queryable_keys_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_queryable_keys_with_http_info_async(page, limit, filter, **kwargs)  # noqa: E501
+            response = await self.get_queryable_keys_with_http_info_async(page, limit, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def get_queryable_keys_with_http_info_async(self, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfAggregationQuery]:
@@ -883,12 +883,12 @@ class AggregationApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ListAggregationResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_valuation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_valuation_with_http_info_async(valuation_request, **kwargs)  # noqa: E501
+            response = await self.get_valuation_with_http_info_async(valuation_request, **kwargs)
+            return response.data
 
     @validate_call
     async def get_valuation_with_http_info_async(self, valuation_request: Optional[ValuationRequest] = None, **kwargs) -> ApiResponse[ListAggregationResponse]:
@@ -1011,12 +1011,12 @@ class AggregationApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ListAggregationResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_valuation_of_weighted_instruments_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_valuation_of_weighted_instruments_with_http_info_async(inline_valuation_request, **kwargs)  # noqa: E501
+            response = await self.get_valuation_of_weighted_instruments_with_http_info_async(inline_valuation_request, **kwargs)
+            return response.data
 
     @validate_call
     async def get_valuation_of_weighted_instruments_with_http_info_async(self, inline_valuation_request: Optional[InlineValuationRequest] = None, **kwargs) -> ApiResponse[ListAggregationResponse]:

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class TemplateSelection(BaseModel):
     scope:  StrictStr = Field(...,alias="scope", description="Scope identifying policy template to use for generation") 
     code:  StrictStr = Field(...,alias="code", description="Code identifying policy template to use for generation") 
     selector_tags: Optional[List[StrictStr]] = Field(default=None, description="List of selector tags to optionally filter in the template generation  (Eg: Feature, Data, etc)", alias="selectorTags")
-    __properties = ["scope", "code", "selectorTags"]
+    __properties: ClassVar[List[str]] = ["scope", "code", "selectorTags"]
 
     model_config = ConfigDict(
         populate_by_name=True,

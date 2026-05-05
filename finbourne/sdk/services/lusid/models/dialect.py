@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class Dialect(BaseModel):
     id: DialectId
     var_schema: DialectSchema = Field(alias="schema")
     version: Optional[Version] = None
-    __properties = ["id", "schema", "version"]
+    __properties: ClassVar[List[str]] = ["id", "schema", "version"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -89,9 +89,9 @@ class Dialect(BaseModel):
             return Dialect.model_validate(obj)
 
         _obj = Dialect.model_validate({
-            "id": DialectId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
-            "var_schema": DialectSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None
+            "id": DialectId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
+            "var_schema": DialectSchema.from_dict(_v) if (_v := obj.get("schema")) is not None else None,
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None
         })
         return _obj
 

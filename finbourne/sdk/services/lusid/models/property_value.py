@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class PropertyValue(BaseModel):
     label_value:  Optional[StrictStr] = Field(default=None,alias="labelValue", description="The text value of a property defined as having the 'Label' type.") 
     metric_value: Optional[MetricValue] = Field(default=None, alias="metricValue")
     label_value_set: Optional[LabelValueSet] = Field(default=None, alias="labelValueSet")
-    __properties = ["labelValue", "metricValue", "labelValueSet"]
+    __properties: ClassVar[List[str]] = ["labelValue", "metricValue", "labelValueSet"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,8 +91,8 @@ class PropertyValue(BaseModel):
 
         _obj = PropertyValue.model_validate({
             "label_value": obj.get("labelValue"),
-            "metric_value": MetricValue.from_dict(obj.get("metricValue")) if obj.get("metricValue") is not None else None,
-            "label_value_set": LabelValueSet.from_dict(obj.get("labelValueSet")) if obj.get("labelValueSet") is not None else None
+            "metric_value": MetricValue.from_dict(_v) if (_v := obj.get("metricValue")) is not None else None,
+            "label_value_set": LabelValueSet.from_dict(_v) if (_v := obj.get("labelValueSet")) is not None else None
         })
         return _obj
 

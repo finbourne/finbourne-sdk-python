@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class IFieldMapping(BaseModel):
     transformation_description:  Optional[StrictStr] = Field(default=None,alias="transformationDescription") 
     vendor_fields: List[VendorField] = Field(alias="vendorFields")
     versions: List[StrictStr]
-    __properties = ["defaultValue", "entitySubType", "entityType", "fieldName", "transformationDescription", "vendorFields", "versions"]
+    __properties: ClassVar[List[str]] = ["defaultValue", "entitySubType", "entityType", "fieldName", "transformationDescription", "vendorFields", "versions"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -109,7 +109,7 @@ class IFieldMapping(BaseModel):
             "entity_type": obj.get("entityType"),
             "field_name": obj.get("fieldName"),
             "transformation_description": obj.get("transformationDescription"),
-            "vendor_fields": [VendorField.from_dict(_item) for _item in obj.get("vendorFields")] if obj.get("vendorFields") is not None else None,
+            "vendor_fields": [VendorField.from_dict(_item) for _item in _v] if (_v := obj.get("vendorFields")) is not None else None,
             "versions": obj.get("versions")
         })
         return _obj

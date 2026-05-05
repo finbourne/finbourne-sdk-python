@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -40,7 +40,7 @@ class ChangeInterval(BaseModel):
     new_value: Optional[PropertyValue] = Field(default=None, alias="newValue")
     effective_range: Optional[EffectiveRange] = Field(default=None, alias="effectiveRange")
     is_inherited: Optional[StrictBool] = Field(default=None, description="Indicates whether this change interval is a result of a change to an ancestor or the entity itself.", alias="isInherited")
-    __properties = ["asAtModified", "userIdModified", "requestIdModified", "reasonModified", "asAtVersionNumber", "stagedModificationIdModified", "action", "attributeName", "previousValue", "newValue", "effectiveRange", "isInherited"]
+    __properties: ClassVar[List[str]] = ["asAtModified", "userIdModified", "requestIdModified", "reasonModified", "asAtVersionNumber", "stagedModificationIdModified", "action", "attributeName", "previousValue", "newValue", "effectiveRange", "isInherited"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -135,9 +135,9 @@ class ChangeInterval(BaseModel):
             "staged_modification_id_modified": obj.get("stagedModificationIdModified"),
             "action": obj.get("action"),
             "attribute_name": obj.get("attributeName"),
-            "previous_value": PropertyValue.from_dict(obj.get("previousValue")) if obj.get("previousValue") is not None else None,
-            "new_value": PropertyValue.from_dict(obj.get("newValue")) if obj.get("newValue") is not None else None,
-            "effective_range": EffectiveRange.from_dict(obj.get("effectiveRange")) if obj.get("effectiveRange") is not None else None,
+            "previous_value": PropertyValue.from_dict(_v) if (_v := obj.get("previousValue")) is not None else None,
+            "new_value": PropertyValue.from_dict(_v) if (_v := obj.get("newValue")) is not None else None,
+            "effective_range": EffectiveRange.from_dict(_v) if (_v := obj.get("effectiveRange")) is not None else None,
             "is_inherited": obj.get("isInherited")
         })
         return _obj

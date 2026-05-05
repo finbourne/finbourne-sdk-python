@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class ComplianceRunConfiguration(BaseModel):
     Specification object for the configuration parameters of a compliance run  # noqa: E501
     """
     pre_trade_configuration: PreTradeConfiguration = Field(alias="preTradeConfiguration")
-    __properties = ["preTradeConfiguration"]
+    __properties: ClassVar[List[str]] = ["preTradeConfiguration"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,7 +79,7 @@ class ComplianceRunConfiguration(BaseModel):
             return ComplianceRunConfiguration.model_validate(obj)
 
         _obj = ComplianceRunConfiguration.model_validate({
-            "pre_trade_configuration": PreTradeConfiguration.from_dict(obj.get("preTradeConfiguration")) if obj.get("preTradeConfiguration") is not None else None
+            "pre_trade_configuration": PreTradeConfiguration.from_dict(_v) if (_v := obj.get("preTradeConfiguration")) is not None else None
         })
         return _obj
 

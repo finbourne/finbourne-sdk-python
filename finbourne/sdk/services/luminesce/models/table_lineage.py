@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class TableLineage(BaseModel):
     column_lineage: Optional[List[Lineage]] = Field(default=None, alias="columnLineage")
     whole_table_lineage: Optional[Lineage] = Field(default=None, alias="wholeTableLineage")
     failure_reason:  Optional[StrictStr] = Field(default=None,alias="failureReason") 
-    __properties = ["columnLineage", "wholeTableLineage", "failureReason"]
+    __properties: ClassVar[List[str]] = ["columnLineage", "wholeTableLineage", "failureReason"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -98,8 +98,8 @@ class TableLineage(BaseModel):
             return TableLineage.model_validate(obj)
 
         _obj = TableLineage.model_validate({
-            "column_lineage": [Lineage.from_dict(_item) for _item in obj.get("columnLineage")] if obj.get("columnLineage") is not None else None,
-            "whole_table_lineage": Lineage.from_dict(obj.get("wholeTableLineage")) if obj.get("wholeTableLineage") is not None else None,
+            "column_lineage": [Lineage.from_dict(_item) for _item in _v] if (_v := obj.get("columnLineage")) is not None else None,
+            "whole_table_lineage": Lineage.from_dict(_v) if (_v := obj.get("wholeTableLineage")) is not None else None,
             "failure_reason": obj.get("failureReason")
         })
         return _obj

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class TransactionSetConfigurationDataRequest(BaseModel):
     """
     transaction_config_requests: List[TransactionConfigurationDataRequest] = Field(description="Collection of transaction type models", alias="transactionConfigRequests")
     side_config_requests: Optional[List[SideConfigurationDataRequest]] = Field(default=None, description="Collection of side definition requests.", alias="sideConfigRequests")
-    __properties = ["transactionConfigRequests", "sideConfigRequests"]
+    __properties: ClassVar[List[str]] = ["transactionConfigRequests", "sideConfigRequests"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -97,8 +97,8 @@ class TransactionSetConfigurationDataRequest(BaseModel):
             return TransactionSetConfigurationDataRequest.model_validate(obj)
 
         _obj = TransactionSetConfigurationDataRequest.model_validate({
-            "transaction_config_requests": [TransactionConfigurationDataRequest.from_dict(_item) for _item in obj.get("transactionConfigRequests")] if obj.get("transactionConfigRequests") is not None else None,
-            "side_config_requests": [SideConfigurationDataRequest.from_dict(_item) for _item in obj.get("sideConfigRequests")] if obj.get("sideConfigRequests") is not None else None
+            "transaction_config_requests": [TransactionConfigurationDataRequest.from_dict(_item) for _item in _v] if (_v := obj.get("transactionConfigRequests")) is not None else None,
+            "side_config_requests": [SideConfigurationDataRequest.from_dict(_item) for _item in _v] if (_v := obj.get("sideConfigRequests")) is not None else None
         })
         return _obj
 

@@ -76,12 +76,12 @@ class InstrumentEventsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfApplicableInstrumentEvent
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the query_applicable_instrument_events_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.query_applicable_instrument_events_with_http_info(as_at, limit, page, query_applicable_instrument_events_request, **kwargs)  # noqa: E501
+        response = self.query_applicable_instrument_events_with_http_info(as_at, limit, page, query_applicable_instrument_events_request, **kwargs)
+        return response.data
 
     @validate_call
     def query_applicable_instrument_events_with_http_info(self, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, query_applicable_instrument_events_request: Optional[QueryApplicableInstrumentEventsRequest] = None, **kwargs) -> ApiResponse[ResourceListOfApplicableInstrumentEvent]:
@@ -224,12 +224,12 @@ class InstrumentEventsApi:
         :return: Returns the result object.
         :rtype: BucketedCashFlowResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the query_bucketed_cash_flows_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.query_bucketed_cash_flows_with_http_info(query_bucketed_cash_flows_request, **kwargs)  # noqa: E501
+        response = self.query_bucketed_cash_flows_with_http_info(query_bucketed_cash_flows_request, **kwargs)
+        return response.data
 
     @validate_call
     def query_bucketed_cash_flows_with_http_info(self, query_bucketed_cash_flows_request: Optional[QueryBucketedCashFlowsRequest] = None, **kwargs) -> ApiResponse[BucketedCashFlowResponse]:
@@ -355,12 +355,12 @@ class InstrumentEventsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfInstrumentCashFlow
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the query_cash_flows_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.query_cash_flows_with_http_info(limit, page, query_cash_flows_request, **kwargs)  # noqa: E501
+        response = self.query_cash_flows_with_http_info(limit, page, query_cash_flows_request, **kwargs)
+        return response.data
 
     @validate_call
     def query_cash_flows_with_http_info(self, limit: Optional[int] = None, page: Optional[StrictStr] = None, query_cash_flows_request: Optional[QueryCashFlowsRequest] = None, **kwargs) -> ApiResponse[ResourceListOfInstrumentCashFlow]:
@@ -498,12 +498,12 @@ class InstrumentEventsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfInstrumentEventHolder
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the query_instrument_events_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.query_instrument_events_with_http_info(limit, page, query_instrument_events_request, **kwargs)  # noqa: E501
+        response = self.query_instrument_events_with_http_info(limit, page, query_instrument_events_request, **kwargs)
+        return response.data
 
     @validate_call
     def query_instrument_events_with_http_info(self, limit: Optional[int] = None, page: Optional[StrictStr] = None, query_instrument_events_request: Optional[QueryInstrumentEventsRequest] = None, **kwargs) -> ApiResponse[ResourceListOfInstrumentEventHolder]:
@@ -641,12 +641,12 @@ class InstrumentEventsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfPortfolioTradeTicket
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the query_trade_tickets_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.query_trade_tickets_with_http_info(limit, page, query_trade_tickets_request, **kwargs)  # noqa: E501
+        response = self.query_trade_tickets_with_http_info(limit, page, query_trade_tickets_request, **kwargs)
+        return response.data
 
     @validate_call
     def query_trade_tickets_with_http_info(self, limit: Optional[int] = None, page: Optional[StrictStr] = None, query_trade_tickets_request: Optional[QueryTradeTicketsRequest] = None, **kwargs) -> ApiResponse[ResourceListOfPortfolioTradeTicket]:
@@ -790,12 +790,12 @@ class InstrumentEventsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfApplicableInstrumentEvent
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the query_applicable_instrument_events_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.query_applicable_instrument_events_with_http_info_async(as_at, limit, page, query_applicable_instrument_events_request, **kwargs)  # noqa: E501
+            response = await self.query_applicable_instrument_events_with_http_info_async(as_at, limit, page, query_applicable_instrument_events_request, **kwargs)
+            return response.data
 
     @validate_call
     async def query_applicable_instrument_events_with_http_info_async(self, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, query_applicable_instrument_events_request: Optional[QueryApplicableInstrumentEventsRequest] = None, **kwargs) -> ApiResponse[ResourceListOfApplicableInstrumentEvent]:
@@ -939,12 +939,12 @@ class InstrumentEventsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: BucketedCashFlowResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the query_bucketed_cash_flows_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.query_bucketed_cash_flows_with_http_info_async(query_bucketed_cash_flows_request, **kwargs)  # noqa: E501
+            response = await self.query_bucketed_cash_flows_with_http_info_async(query_bucketed_cash_flows_request, **kwargs)
+            return response.data
 
     @validate_call
     async def query_bucketed_cash_flows_with_http_info_async(self, query_bucketed_cash_flows_request: Optional[QueryBucketedCashFlowsRequest] = None, **kwargs) -> ApiResponse[BucketedCashFlowResponse]:
@@ -1071,12 +1071,12 @@ class InstrumentEventsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfInstrumentCashFlow
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the query_cash_flows_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.query_cash_flows_with_http_info_async(limit, page, query_cash_flows_request, **kwargs)  # noqa: E501
+            response = await self.query_cash_flows_with_http_info_async(limit, page, query_cash_flows_request, **kwargs)
+            return response.data
 
     @validate_call
     async def query_cash_flows_with_http_info_async(self, limit: Optional[int] = None, page: Optional[StrictStr] = None, query_cash_flows_request: Optional[QueryCashFlowsRequest] = None, **kwargs) -> ApiResponse[ResourceListOfInstrumentCashFlow]:
@@ -1215,12 +1215,12 @@ class InstrumentEventsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfInstrumentEventHolder
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the query_instrument_events_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.query_instrument_events_with_http_info_async(limit, page, query_instrument_events_request, **kwargs)  # noqa: E501
+            response = await self.query_instrument_events_with_http_info_async(limit, page, query_instrument_events_request, **kwargs)
+            return response.data
 
     @validate_call
     async def query_instrument_events_with_http_info_async(self, limit: Optional[int] = None, page: Optional[StrictStr] = None, query_instrument_events_request: Optional[QueryInstrumentEventsRequest] = None, **kwargs) -> ApiResponse[ResourceListOfInstrumentEventHolder]:
@@ -1359,12 +1359,12 @@ class InstrumentEventsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfPortfolioTradeTicket
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the query_trade_tickets_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.query_trade_tickets_with_http_info_async(limit, page, query_trade_tickets_request, **kwargs)  # noqa: E501
+            response = await self.query_trade_tickets_with_http_info_async(limit, page, query_trade_tickets_request, **kwargs)
+            return response.data
 
     @validate_call
     async def query_trade_tickets_with_http_info_async(self, limit: Optional[int] = None, page: Optional[StrictStr] = None, query_trade_tickets_request: Optional[QueryTradeTicketsRequest] = None, **kwargs) -> ApiResponse[ResourceListOfPortfolioTradeTicket]:

@@ -67,12 +67,12 @@ class OrdersApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_order_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_order_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_order_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_order_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -199,12 +199,12 @@ class OrdersApi:
         :return: Returns the result object.
         :rtype: Order
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_order_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_order_with_http_info(scope, code, as_at, property_keys, **kwargs)  # noqa: E501
+        response = self.get_order_with_http_info(scope, code, as_at, property_keys, **kwargs)
+        return response.data
 
     @validate_call
     def get_order_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[Order]:
@@ -349,7 +349,7 @@ class OrdersApi:
         :type data_model_scope: str
         :param data_model_code: The optional code of a Custom Data Model to use
         :type data_model_code: str
-        :param membership_type: The membership types of the specified Custom Data Model to return. Allowable values are Member, Candidate and All. Defaults to Member.
+        :param membership_type: The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate.
         :type membership_type: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -357,12 +357,12 @@ class OrdersApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfOrder
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_orders_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_orders_with_http_info(as_at, page, sort_by, limit, filter, property_keys, data_model_scope, data_model_code, membership_type, **kwargs)  # noqa: E501
+        response = self.list_orders_with_http_info(as_at, page, sort_by, limit, filter, property_keys, data_model_scope, data_model_code, membership_type, **kwargs)
+        return response.data
 
     @validate_call
     def list_orders_with_http_info(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, membership_type: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfOrder]:
@@ -385,7 +385,7 @@ class OrdersApi:
         :type data_model_scope: str
         :param data_model_code: The optional code of a Custom Data Model to use
         :type data_model_code: str
-        :param membership_type: The membership types of the specified Custom Data Model to return. Allowable values are Member, Candidate and All. Defaults to Member.
+        :param membership_type: The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate.
         :type membership_type: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -534,12 +534,12 @@ class OrdersApi:
         :return: Returns the result object.
         :rtype: ResourceListOfOrder
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_orders_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_orders_with_http_info(order_set_request, data_model_scope, data_model_code, **kwargs)  # noqa: E501
+        response = self.upsert_orders_with_http_info(order_set_request, data_model_scope, data_model_code, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_orders_with_http_info(self, order_set_request: OrderSetRequest, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfOrder]:
@@ -679,12 +679,12 @@ class OrdersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_order_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_order_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_order_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_order_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -812,12 +812,12 @@ class OrdersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Order
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_order_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_order_with_http_info_async(scope, code, as_at, property_keys, **kwargs)  # noqa: E501
+            response = await self.get_order_with_http_info_async(scope, code, as_at, property_keys, **kwargs)
+            return response.data
 
     @validate_call
     async def get_order_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[Order]:
@@ -963,7 +963,7 @@ class OrdersApi:
             :type data_model_scope: str
             :param data_model_code: The optional code of a Custom Data Model to use
             :type data_model_code: str
-            :param membership_type: The membership types of the specified Custom Data Model to return. Allowable values are Member, Candidate and All. Defaults to Member.
+            :param membership_type: The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate.
             :type membership_type: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -971,12 +971,12 @@ class OrdersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfOrder
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_orders_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_orders_with_http_info_async(as_at, page, sort_by, limit, filter, property_keys, data_model_scope, data_model_code, membership_type, **kwargs)  # noqa: E501
+            response = await self.list_orders_with_http_info_async(as_at, page, sort_by, limit, filter, property_keys, data_model_scope, data_model_code, membership_type, **kwargs)
+            return response.data
 
     @validate_call
     async def list_orders_with_http_info_async(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, membership_type: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfOrder]:
@@ -1000,7 +1000,7 @@ class OrdersApi:
             :type data_model_scope: str
             :param data_model_code: The optional code of a Custom Data Model to use
             :type data_model_code: str
-            :param membership_type: The membership types of the specified Custom Data Model to return. Allowable values are Member, Candidate and All. Defaults to Member.
+            :param membership_type: The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate.
             :type membership_type: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
@@ -1149,12 +1149,12 @@ class OrdersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfOrder
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_orders_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_orders_with_http_info_async(order_set_request, data_model_scope, data_model_code, **kwargs)  # noqa: E501
+            response = await self.upsert_orders_with_http_info_async(order_set_request, data_model_scope, data_model_code, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_orders_with_http_info_async(self, order_set_request: OrderSetRequest, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfOrder]:

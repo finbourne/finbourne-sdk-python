@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class UpdateCheckDefinitionRequest(BaseModel):
     dataset_schema: Optional[CheckDefinitionDatasetSchema] = Field(default=None, alias="datasetSchema")
     rule_sets: List[UpdateCheckDefinitionRuleSet] = Field(description="A collection of rule sets for the Check Definition.", alias="ruleSets")
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="A set of properties for the Check Definition.")
-    __properties = ["displayName", "description", "datasetSchema", "ruleSets", "properties"]
+    __properties: ClassVar[List[str]] = ["displayName", "description", "datasetSchema", "ruleSets", "properties"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -106,13 +106,13 @@ class UpdateCheckDefinitionRequest(BaseModel):
         _obj = UpdateCheckDefinitionRequest.model_validate({
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
-            "dataset_schema": CheckDefinitionDatasetSchema.from_dict(obj.get("datasetSchema")) if obj.get("datasetSchema") is not None else None,
-            "rule_sets": [UpdateCheckDefinitionRuleSet.from_dict(_item) for _item in obj.get("ruleSets")] if obj.get("ruleSets") is not None else None,
+            "dataset_schema": CheckDefinitionDatasetSchema.from_dict(_v) if (_v := obj.get("datasetSchema")) is not None else None,
+            "rule_sets": [UpdateCheckDefinitionRuleSet.from_dict(_item) for _item in _v] if (_v := obj.get("ruleSets")) is not None else None,
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None
         })
         return _obj

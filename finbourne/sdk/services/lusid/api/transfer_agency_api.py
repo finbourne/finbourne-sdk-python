@@ -61,12 +61,12 @@ class TransferAgencyApi:
         :return: Returns the result object.
         :rtype: CalculateOrderDatesResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the calculate_order_dates_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.calculate_order_dates_with_http_info(request_body, **kwargs)  # noqa: E501
+        response = self.calculate_order_dates_with_http_info(request_body, **kwargs)
+        return response.data
 
     @validate_call
     def calculate_order_dates_with_http_info(self, request_body: Dict[str, CalculateOrderDatesRequest], **kwargs) -> ApiResponse[CalculateOrderDatesResponse]:
@@ -192,12 +192,12 @@ class TransferAgencyApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: CalculateOrderDatesResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the calculate_order_dates_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.calculate_order_dates_with_http_info_async(request_body, **kwargs)  # noqa: E501
+            response = await self.calculate_order_dates_with_http_info_async(request_body, **kwargs)
+            return response.data
 
     @validate_call
     async def calculate_order_dates_with_http_info_async(self, request_body: Dict[str, CalculateOrderDatesRequest], **kwargs) -> ApiResponse[CalculateOrderDatesResponse]:

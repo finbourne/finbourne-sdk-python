@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -36,7 +36,7 @@ class CustomEntityProperties(BaseModel):
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="The properties that decorate the custom entity.")
     version: Version
     links: Optional[List[Link]] = None
-    __properties = ["href", "entityType", "identifiers", "properties", "version", "links"]
+    __properties: ClassVar[List[str]] = ["href", "entityType", "identifiers", "properties", "version", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -120,15 +120,15 @@ class CustomEntityProperties(BaseModel):
         _obj = CustomEntityProperties.model_validate({
             "href": obj.get("href"),
             "entity_type": obj.get("entityType"),
-            "identifiers": [CustomEntityId.from_dict(_item) for _item in obj.get("identifiers")] if obj.get("identifiers") is not None else None,
+            "identifiers": [CustomEntityId.from_dict(_item) for _item in _v] if (_v := obj.get("identifiers")) is not None else None,
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

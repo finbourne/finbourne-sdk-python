@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -35,7 +35,7 @@ class FilterModel(BaseModel):
     values: Optional[List[StrictStr]] = Field(default=None, description="An array of possible values for the set filter type")
     date_from:  Optional[StrictStr] = Field(default=None,alias="dateFrom", description="A lower bound date for the date filter type") 
     date_to:  Optional[StrictStr] = Field(default=None,alias="dateTo", description="An upper bound date for the date filter type") 
-    __properties = ["filterType", "type", "filter", "filterTo", "values", "dateFrom", "dateTo"]
+    __properties: ClassVar[List[str]] = ["filterType", "type", "filter", "filterTo", "values", "dateFrom", "dateTo"]
 
     model_config = ConfigDict(
         populate_by_name=True,

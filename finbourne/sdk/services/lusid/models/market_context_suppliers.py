@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class MarketContextSuppliers(BaseModel):
     equity:  Optional[StrictStr] = Field(default=None,alias="Equity") 
     fx:  Optional[StrictStr] = Field(default=None,alias="Fx") 
     rates:  Optional[StrictStr] = Field(default=None,alias="Rates") 
-    __properties = ["Commodity", "Credit", "Equity", "Fx", "Rates"]
+    __properties: ClassVar[List[str]] = ["Commodity", "Credit", "Equity", "Fx", "Rates"]
 
     model_config = ConfigDict(
         populate_by_name=True,

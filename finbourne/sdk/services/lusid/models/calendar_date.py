@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -37,7 +37,7 @@ class CalendarDate(BaseModel):
     type:  Optional[StrictStr] = Field(default=None,alias="type") 
     attributes: Optional[DateAttributes] = None
     source_data: Optional[Dict[str, Optional[StrictStr]]] = Field(default=None, alias="sourceData")
-    __properties = ["href", "dateIdentifier", "fromUtc", "toUtc", "localDate", "timezone", "description", "type", "attributes", "sourceData"]
+    __properties: ClassVar[List[str]] = ["href", "dateIdentifier", "fromUtc", "toUtc", "localDate", "timezone", "description", "type", "attributes", "sourceData"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -111,7 +111,7 @@ class CalendarDate(BaseModel):
             "timezone": obj.get("timezone"),
             "description": obj.get("description"),
             "type": obj.get("type"),
-            "attributes": DateAttributes.from_dict(obj.get("attributes")) if obj.get("attributes") is not None else None,
+            "attributes": DateAttributes.from_dict(_v) if (_v := obj.get("attributes")) is not None else None,
             "source_data": obj.get("sourceData")
         })
         return _obj

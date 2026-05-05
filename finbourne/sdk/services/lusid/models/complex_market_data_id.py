@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class ComplexMarketDataId(BaseModel):
     lineage:  Optional[StrictStr] = Field(default=None,alias="lineage", description="This is obsolete. It is not used, it will not be stored, and has no effects.  If you wish to attach a Lineage to your ComplexMarketData,  you should provide it in the optional Lineage field in the ComplexMarketData class.") 
     effective_at:  Optional[StrictStr] = Field(default=None,alias="effectiveAt", description="The effectiveAt or cut label that this item of complex market data is/was updated/inserted with.") 
     market_asset:  StrictStr = Field(...,alias="marketAsset", description="The name of the market entity that the document represents") 
-    __properties = ["provider", "priceSource", "lineage", "effectiveAt", "marketAsset"]
+    __properties: ClassVar[List[str]] = ["provider", "priceSource", "lineage", "effectiveAt", "marketAsset"]
 
     model_config = ConfigDict(
         populate_by_name=True,

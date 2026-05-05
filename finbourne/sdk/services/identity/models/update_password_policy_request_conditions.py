@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class UpdatePasswordPolicyRequestConditions(BaseModel):
     complexity: UpdatePasswordPolicyRequestComplexity
     age: UpdatePasswordPolicyRequestAge
     lockout: UpdatePasswordPolicyRequestLockout
-    __properties = ["complexity", "age", "lockout"]
+    __properties: ClassVar[List[str]] = ["complexity", "age", "lockout"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -89,9 +89,9 @@ class UpdatePasswordPolicyRequestConditions(BaseModel):
             return UpdatePasswordPolicyRequestConditions.model_validate(obj)
 
         _obj = UpdatePasswordPolicyRequestConditions.model_validate({
-            "complexity": UpdatePasswordPolicyRequestComplexity.from_dict(obj.get("complexity")) if obj.get("complexity") is not None else None,
-            "age": UpdatePasswordPolicyRequestAge.from_dict(obj.get("age")) if obj.get("age") is not None else None,
-            "lockout": UpdatePasswordPolicyRequestLockout.from_dict(obj.get("lockout")) if obj.get("lockout") is not None else None
+            "complexity": UpdatePasswordPolicyRequestComplexity.from_dict(_v) if (_v := obj.get("complexity")) is not None else None,
+            "age": UpdatePasswordPolicyRequestAge.from_dict(_v) if (_v := obj.get("age")) is not None else None,
+            "lockout": UpdatePasswordPolicyRequestLockout.from_dict(_v) if (_v := obj.get("lockout")) is not None else None
         })
         return _obj
 

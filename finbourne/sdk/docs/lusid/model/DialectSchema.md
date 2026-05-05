@@ -5,7 +5,7 @@ A schema that a given document must obey. A representation of the validation of 
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **type** | **str** | Required | The type of schema this represents |
+| **type** | **str** | Required | The type of schema this represents. Available values: None, JsonSchema. |
 | **body** | **str** | Optional | The body of the schema |
 
 
@@ -17,7 +17,7 @@ A schema that a given document must obey. A representation of the validation of 
 from finbourne.sdk.services.lusid.models.DialectSchema import DialectSchema
 
 instance = DialectSchema(
-    type="...",  # required — The type of schema this represents
+    type="...",  # required — The type of schema this represents. Available values: None, JsonSchema.
     body="..."  # optional — The body of the schema
 )
 ```

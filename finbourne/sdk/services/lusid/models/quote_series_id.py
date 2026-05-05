@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,11 +29,11 @@ class QuoteSeriesId(BaseModel):
     provider:  StrictStr = Field(...,alias="provider", description="The platform or vendor that provided the quote. The available values are: Client, DataScope, Lusid, Edi, TraderMade, FactSet, SIX, Bloomberg, Rimes, ICE, LSEG") 
     price_source:  Optional[StrictStr] = Field(default=None,alias="priceSource", description="The source or originator of the quote, e.g. a bank or financial institution.") 
     instrument_id:  StrictStr = Field(...,alias="instrumentId", description="The value of the instrument identifier that uniquely identifies the instrument that the quote is for, e.g. 'BBG00JX0P539'.") 
-    instrument_id_type:  StrictStr = Field(...,alias="instrumentIdType", description="The type of instrument identifier used to uniquely identify the instrument that the quote is for, e.g. 'Figi'. The available values are: LusidInstrumentId, Figi, RIC, QuotePermId, Isin, CurrencyPair, ClientInternal, Sedol, Cusip") 
-    quote_type:  StrictStr = Field(...,alias="quoteType", description="The type of the quote. This allows for quotes other than prices e.g. rates or spreads to be used. The available values are: Price, Spread, Rate, LogNormalVol, NormalVol, ParSpread, IsdaSpread, Upfront, Index, Ratio, Delta, PoolFactor, InflationAssumption, DirtyPrice, PrincipalWriteOff, InterestDeferred, InterestShortfall, ConstituentWeightFactor") 
+    instrument_id_type:  StrictStr = Field(...,alias="instrumentIdType", description="The type of instrument identifier used to uniquely identify the instrument that the quote is for. Available values: LusidInstrumentId, Figi, RIC, QuotePermId, Isin, CurrencyPair, ClientInternal, Sedol, Cusip.") 
+    quote_type:  StrictStr = Field(...,alias="quoteType", description="The type of the quote. This allows for quotes other than prices e.g. rates or spreads to be used. Available values: Price, Spread, Rate, LogNormalVol, NormalVol, ParSpread, IsdaSpread, Upfront, Index, Ratio, Delta, PoolFactor, InflationAssumption, DirtyPrice, PrincipalWriteOff, InterestDeferred, InterestShortfall, ConstituentWeightFactor.") 
     var_field:  StrictStr = Field(...,alias="field", description="The field of the quote e.g. bid, mid, ask etc. This should be consistent across a time series of quotes. The allowed values depend on the provider according to the following rules: Client : *Any value is accepted*; DataScope : 'bid', 'mid', 'ask'; Lusid : *Any value is accepted*; Edi : 'bid', 'mid', 'ask', 'open', 'close', 'last'; TraderMade : 'bid', 'mid', 'ask', 'open', 'close', 'high', 'low'; FactSet : 'bid', 'mid', 'ask', 'open', 'close'; SIX : 'bid', 'mid', 'ask', 'open', 'close', 'last', 'referencePrice', 'highPrice', 'lowPrice', 'maxRedemptionPrice', 'maxSubscriptionPrice', 'openPrice', 'bestBidPrice', 'lastBidPrice', 'bestAskPrice', 'lastAskPrice', 'finalSettlementOptions', 'finalSettlementFutures', 'valuationPriceAmount'; Bloomberg : 'bid', 'mid', 'ask', 'open', 'close', 'last'; Rimes : 'bid', 'mid', 'ask', 'open', 'close', 'last'; ICE : 'ask', 'bid', 'close', 'high', 'low', 'open', 'primaryExchangeTradePrice', 'vwap', 'mid'; LSEG : 'ASK', 'BID', 'MID_PRICE'") 
     entity_unique_id:  Optional[StrictStr] = Field(default=None,alias="entityUniqueId", description="The entity unique ID of the quote series. Together with the InstrumentId, EffectiveAt and AsAt this can uniquely identify a single quote. This field is readonly and cannot be provided on upsert.") 
-    __properties = ["provider", "priceSource", "instrumentId", "instrumentIdType", "quoteType", "field", "entityUniqueId"]
+    __properties: ClassVar[List[str]] = ["provider", "priceSource", "instrumentId", "instrumentIdType", "quoteType", "field", "entityUniqueId"]
 
     @field_validator('instrument_id_type')
     def instrument_id_type_validate_enum(cls, value):

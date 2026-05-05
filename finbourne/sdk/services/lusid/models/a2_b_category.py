@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class A2BCategory(BaseModel):
     """
     holding_currency: Optional[A2BBreakdown] = Field(default=None, alias="holdingCurrency")
     portfolio_currency: Optional[A2BBreakdown] = Field(default=None, alias="portfolioCurrency")
-    __properties = ["holdingCurrency", "portfolioCurrency"]
+    __properties: ClassVar[List[str]] = ["holdingCurrency", "portfolioCurrency"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -83,8 +83,8 @@ class A2BCategory(BaseModel):
             return A2BCategory.model_validate(obj)
 
         _obj = A2BCategory.model_validate({
-            "holding_currency": A2BBreakdown.from_dict(obj.get("holdingCurrency")) if obj.get("holdingCurrency") is not None else None,
-            "portfolio_currency": A2BBreakdown.from_dict(obj.get("portfolioCurrency")) if obj.get("portfolioCurrency") is not None else None
+            "holding_currency": A2BBreakdown.from_dict(_v) if (_v := obj.get("holdingCurrency")) is not None else None,
+            "portfolio_currency": A2BBreakdown.from_dict(_v) if (_v := obj.get("portfolioCurrency")) is not None else None
         })
         return _obj
 

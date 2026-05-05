@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class VirtualDocumentRow(BaseModel):
     """
     row_id: Optional[Dict[str, Optional[StrictStr]]] = Field(default=None, description="The identifier for the row. This is keyed by address keys, and values obtained through applying the data map to the documents.", alias="rowId")
     row_data: Optional[GroupedResultOfAddressKey] = Field(default=None, alias="rowData")
-    __properties = ["rowId", "rowData"]
+    __properties: ClassVar[List[str]] = ["rowId", "rowData"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -86,7 +86,7 @@ class VirtualDocumentRow(BaseModel):
 
         _obj = VirtualDocumentRow.model_validate({
             "row_id": obj.get("rowId"),
-            "row_data": GroupedResultOfAddressKey.from_dict(obj.get("rowData")) if obj.get("rowData") is not None else None
+            "row_data": GroupedResultOfAddressKey.from_dict(_v) if (_v := obj.get("rowData")) is not None else None
         })
         return _obj
 

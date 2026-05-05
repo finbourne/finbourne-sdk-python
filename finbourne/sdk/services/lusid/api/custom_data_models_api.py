@@ -70,12 +70,12 @@ class CustomDataModelsApi:
         :return: Returns the result object.
         :rtype: BatchAmendCustomDataModelMembershipResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the batch_amend_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.batch_amend_with_http_info(success_mode, request_body, **kwargs)  # noqa: E501
+        response = self.batch_amend_with_http_info(success_mode, request_body, **kwargs)
+        return response.data
 
     @validate_call
     def batch_amend_with_http_info(self, success_mode: StrictStr, request_body: Dict[str, MembershipAmendmentRequest], **kwargs) -> ApiResponse[BatchAmendCustomDataModelMembershipResponse]:
@@ -205,12 +205,12 @@ class CustomDataModelsApi:
         :return: Returns the result object.
         :rtype: CustomDataModel
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_custom_data_model_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_custom_data_model_with_http_info(entity_type, create_custom_data_model_request, **kwargs)  # noqa: E501
+        response = self.create_custom_data_model_with_http_info(entity_type, create_custom_data_model_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_custom_data_model_with_http_info(self, entity_type: StrictStr, create_custom_data_model_request: Optional[CreateCustomDataModelRequest] = None, **kwargs) -> ApiResponse[CustomDataModel]:
@@ -342,12 +342,12 @@ class CustomDataModelsApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_custom_data_model_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_custom_data_model_with_http_info(entity_type, scope, code, **kwargs)  # noqa: E501
+        response = self.delete_custom_data_model_with_http_info(entity_type, scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_custom_data_model_with_http_info(self, entity_type: StrictStr, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -480,12 +480,12 @@ class CustomDataModelsApi:
         :return: Returns the result object.
         :rtype: CustomDataModel
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_custom_data_model_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_custom_data_model_with_http_info(entity_type, scope, code, as_at, **kwargs)  # noqa: E501
+        response = self.get_custom_data_model_with_http_info(entity_type, scope, code, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_custom_data_model_with_http_info(self, entity_type: StrictStr, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[CustomDataModel]:
@@ -625,12 +625,12 @@ class CustomDataModelsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfDataModelSummary
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_data_model_hierarchies_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_data_model_hierarchies_with_http_info(as_at, filter, sort_by, **kwargs)  # noqa: E501
+        response = self.list_data_model_hierarchies_with_http_info(as_at, filter, sort_by, **kwargs)
+        return response.data
 
     @validate_call
     def list_data_model_hierarchies_with_http_info(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfDataModelSummary]:
@@ -759,12 +759,12 @@ class CustomDataModelsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfString
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_supported_entity_types_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_supported_entity_types_with_http_info(**kwargs)  # noqa: E501
+        response = self.list_supported_entity_types_with_http_info(**kwargs)
+        return response.data
 
     @validate_call
     def list_supported_entity_types_with_http_info(self, **kwargs) -> ApiResponse[ResourceListOfString]:
@@ -878,12 +878,12 @@ class CustomDataModelsApi:
         :return: Returns the result object.
         :rtype: CustomDataModel
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_custom_data_model_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_custom_data_model_with_http_info(entity_type, scope, code, update_custom_data_model_request, **kwargs)  # noqa: E501
+        response = self.update_custom_data_model_with_http_info(entity_type, scope, code, update_custom_data_model_request, **kwargs)
+        return response.data
 
     @validate_call
     def update_custom_data_model_with_http_info(self, entity_type: StrictStr, scope: StrictStr, code: StrictStr, update_custom_data_model_request: Optional[UpdateCustomDataModelRequest] = None, **kwargs) -> ApiResponse[CustomDataModel]:
@@ -1029,12 +1029,12 @@ class CustomDataModelsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: BatchAmendCustomDataModelMembershipResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the batch_amend_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.batch_amend_with_http_info_async(success_mode, request_body, **kwargs)  # noqa: E501
+            response = await self.batch_amend_with_http_info_async(success_mode, request_body, **kwargs)
+            return response.data
 
     @validate_call
     async def batch_amend_with_http_info_async(self, success_mode: StrictStr, request_body: Dict[str, MembershipAmendmentRequest], **kwargs) -> ApiResponse[BatchAmendCustomDataModelMembershipResponse]:
@@ -1165,12 +1165,12 @@ class CustomDataModelsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: CustomDataModel
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_custom_data_model_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_custom_data_model_with_http_info_async(entity_type, create_custom_data_model_request, **kwargs)  # noqa: E501
+            response = await self.create_custom_data_model_with_http_info_async(entity_type, create_custom_data_model_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_custom_data_model_with_http_info_async(self, entity_type: StrictStr, create_custom_data_model_request: Optional[CreateCustomDataModelRequest] = None, **kwargs) -> ApiResponse[CustomDataModel]:
@@ -1303,12 +1303,12 @@ class CustomDataModelsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_custom_data_model_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_custom_data_model_with_http_info_async(entity_type, scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_custom_data_model_with_http_info_async(entity_type, scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_custom_data_model_with_http_info_async(self, entity_type: StrictStr, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -1442,12 +1442,12 @@ class CustomDataModelsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: CustomDataModel
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_custom_data_model_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_custom_data_model_with_http_info_async(entity_type, scope, code, as_at, **kwargs)  # noqa: E501
+            response = await self.get_custom_data_model_with_http_info_async(entity_type, scope, code, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_custom_data_model_with_http_info_async(self, entity_type: StrictStr, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[CustomDataModel]:
@@ -1588,12 +1588,12 @@ class CustomDataModelsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfDataModelSummary
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_data_model_hierarchies_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_data_model_hierarchies_with_http_info_async(as_at, filter, sort_by, **kwargs)  # noqa: E501
+            response = await self.list_data_model_hierarchies_with_http_info_async(as_at, filter, sort_by, **kwargs)
+            return response.data
 
     @validate_call
     async def list_data_model_hierarchies_with_http_info_async(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfDataModelSummary]:
@@ -1723,12 +1723,12 @@ class CustomDataModelsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfString
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_supported_entity_types_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_supported_entity_types_with_http_info_async(**kwargs)  # noqa: E501
+            response = await self.list_supported_entity_types_with_http_info_async(**kwargs)
+            return response.data
 
     @validate_call
     async def list_supported_entity_types_with_http_info_async(self, **kwargs) -> ApiResponse[ResourceListOfString]:
@@ -1843,12 +1843,12 @@ class CustomDataModelsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: CustomDataModel
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_custom_data_model_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_custom_data_model_with_http_info_async(entity_type, scope, code, update_custom_data_model_request, **kwargs)  # noqa: E501
+            response = await self.update_custom_data_model_with_http_info_async(entity_type, scope, code, update_custom_data_model_request, **kwargs)
+            return response.data
 
     @validate_call
     async def update_custom_data_model_with_http_info_async(self, entity_type: StrictStr, scope: StrictStr, code: StrictStr, update_custom_data_model_request: Optional[UpdateCustomDataModelRequest] = None, **kwargs) -> ApiResponse[CustomDataModel]:

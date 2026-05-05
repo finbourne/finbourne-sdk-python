@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class GroupReconciliationRunRequest(BaseModel):
     """
     instance_id:  StrictStr = Field(...,alias="instanceId", description="Reconciliation run Id. Consists of run type (manual or workflow) and identifier.") 
     dates_to_reconcile: Optional[GroupReconciliationDates] = Field(default=None, alias="datesToReconcile")
-    __properties = ["instanceId", "datesToReconcile"]
+    __properties: ClassVar[List[str]] = ["instanceId", "datesToReconcile"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -81,7 +81,7 @@ class GroupReconciliationRunRequest(BaseModel):
 
         _obj = GroupReconciliationRunRequest.model_validate({
             "instance_id": obj.get("instanceId"),
-            "dates_to_reconcile": GroupReconciliationDates.from_dict(obj.get("datesToReconcile")) if obj.get("datesToReconcile") is not None else None
+            "dates_to_reconcile": GroupReconciliationDates.from_dict(_v) if (_v := obj.get("datesToReconcile")) is not None else None
         })
         return _obj
 

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -27,7 +27,7 @@ class BucketingSchedule(BaseModel):
     A schedule for dates  # noqa: E501
     """
     tenor:  Optional[StrictStr] = Field(default=None,alias="tenor", description="Rolling tenor") 
-    __properties = ["tenor"]
+    __properties: ClassVar[List[str]] = ["tenor"]
 
     model_config = ConfigDict(
         populate_by_name=True,

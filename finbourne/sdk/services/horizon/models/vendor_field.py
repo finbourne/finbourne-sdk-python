@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class VendorField(BaseModel):
     """
     package:  StrictStr = Field(...,alias="package", description="The vendor package it is included in") 
     var_field:  StrictStr = Field(...,alias="field", description="The name of the field") 
-    __properties = ["package", "field"]
+    __properties: ClassVar[List[str]] = ["package", "field"]
 
     model_config = ConfigDict(
         populate_by_name=True,

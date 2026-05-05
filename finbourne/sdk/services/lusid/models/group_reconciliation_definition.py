@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -47,7 +47,7 @@ class GroupReconciliationDefinition(BaseModel):
     primary_schedule: Optional[PrimarySchedule] = Field(default=None, alias="primarySchedule")
     href:  Optional[StrictStr] = Field(default=None,alias="href", description="The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime.") 
     version: Optional[Version] = None
-    __properties = ["id", "displayName", "description", "portfolioEntityIds", "recipeIds", "currencies", "transactionDateWindows", "comparisonRulesetIds", "breakCodeSource", "primarySchedule", "href", "version"]
+    __properties: ClassVar[List[str]] = ["id", "displayName", "description", "portfolioEntityIds", "recipeIds", "currencies", "transactionDateWindows", "comparisonRulesetIds", "breakCodeSource", "primarySchedule", "href", "version"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -137,18 +137,18 @@ class GroupReconciliationDefinition(BaseModel):
             return GroupReconciliationDefinition.model_validate(obj)
 
         _obj = GroupReconciliationDefinition.model_validate({
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
-            "portfolio_entity_ids": GroupReconciliationDefinitionPortfolioEntityIds.from_dict(obj.get("portfolioEntityIds")) if obj.get("portfolioEntityIds") is not None else None,
-            "recipe_ids": GroupReconciliationDefinitionRecipeIds.from_dict(obj.get("recipeIds")) if obj.get("recipeIds") is not None else None,
-            "currencies": GroupReconciliationDefinitionCurrencies.from_dict(obj.get("currencies")) if obj.get("currencies") is not None else None,
-            "transaction_date_windows": TransactionDateWindows.from_dict(obj.get("transactionDateWindows")) if obj.get("transactionDateWindows") is not None else None,
-            "comparison_ruleset_ids": GroupReconciliationDefinitionComparisonRulesetIds.from_dict(obj.get("comparisonRulesetIds")) if obj.get("comparisonRulesetIds") is not None else None,
-            "break_code_source": BreakCodeSource.from_dict(obj.get("breakCodeSource")) if obj.get("breakCodeSource") is not None else None,
-            "primary_schedule": PrimarySchedule.from_dict(obj.get("primarySchedule")) if obj.get("primarySchedule") is not None else None,
+            "portfolio_entity_ids": GroupReconciliationDefinitionPortfolioEntityIds.from_dict(_v) if (_v := obj.get("portfolioEntityIds")) is not None else None,
+            "recipe_ids": GroupReconciliationDefinitionRecipeIds.from_dict(_v) if (_v := obj.get("recipeIds")) is not None else None,
+            "currencies": GroupReconciliationDefinitionCurrencies.from_dict(_v) if (_v := obj.get("currencies")) is not None else None,
+            "transaction_date_windows": TransactionDateWindows.from_dict(_v) if (_v := obj.get("transactionDateWindows")) is not None else None,
+            "comparison_ruleset_ids": GroupReconciliationDefinitionComparisonRulesetIds.from_dict(_v) if (_v := obj.get("comparisonRulesetIds")) is not None else None,
+            "break_code_source": BreakCodeSource.from_dict(_v) if (_v := obj.get("breakCodeSource")) is not None else None,
+            "primary_schedule": PrimarySchedule.from_dict(_v) if (_v := obj.get("primarySchedule")) is not None else None,
             "href": obj.get("href"),
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None
         })
         return _obj
 

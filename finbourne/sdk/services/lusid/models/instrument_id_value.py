@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class InstrumentIdValue(BaseModel):
     """
     value:  StrictStr = Field(...,alias="value", description="The value of the identifier.") 
     effective_at: Optional[datetime] = Field(default=None, description="The effective datetime from which the identifier will be valid. If left unspecified the default value is the beginning of time.", alias="effectiveAt")
-    __properties = ["value", "effectiveAt"]
+    __properties: ClassVar[List[str]] = ["value", "effectiveAt"]
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -37,7 +37,7 @@ class ReferenceListResponse(BaseModel):
     reference_list: ReferenceList = Field(alias="referenceList")
     version: Version
     links: Optional[List[Link]] = None
-    __properties = ["id", "name", "description", "tags", "referenceList", "version", "links"]
+    __properties: ClassVar[List[str]] = ["id", "name", "description", "tags", "referenceList", "version", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -116,13 +116,13 @@ class ReferenceListResponse(BaseModel):
             return ReferenceListResponse.model_validate(obj)
 
         _obj = ReferenceListResponse.model_validate({
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
             "name": obj.get("name"),
             "description": obj.get("description"),
             "tags": obj.get("tags"),
-            "reference_list": ReferenceList.from_dict(obj.get("referenceList")) if obj.get("referenceList") is not None else None,
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "reference_list": ReferenceList.from_dict(_v) if (_v := obj.get("referenceList")) is not None else None,
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

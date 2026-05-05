@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,14 +28,14 @@ class TransactionQueryParameters(BaseModel):
     """
     start_date:  StrictStr = Field(...,alias="startDate", description="The lower bound effective datetime or cut label (inclusive) from which to build the transactions.") 
     end_date:  StrictStr = Field(...,alias="endDate", description="The upper bound effective datetime or cut label (inclusive) from which to retrieve transactions.") 
-    query_mode:  Optional[StrictStr] = Field(default=None,alias="queryMode", description="The date to compare against the upper and lower bounds for the effective datetime or cut label. Defaults to 'TradeDate' if not specified. The available values are: TradeDate, SettleDate") 
+    query_mode:  Optional[StrictStr] = Field(default=None,alias="queryMode", description="The date to compare against the upper and lower bounds for the effective datetime or cut label. Default value: TradeDate. Available values: TradeDate, SettleDate.") 
     show_cancelled_transactions: Optional[StrictBool] = Field(default=None, description="Option to specify whether or not to include cancelled transactions in the output. Defaults to False if not specified.", alias="showCancelledTransactions")
     timeline_scope:  Optional[StrictStr] = Field(default=None,alias="timelineScope", description="Scope of the Timeline for the Portfolio. The Timeline to be used while building transactions") 
     timeline_code:  Optional[StrictStr] = Field(default=None,alias="timelineCode", description="Code of the Timeline for the Portfolio. The Timeline to be used while building transactions. This can optionally include a colon, followed by the Closed Period Id to use at the head of the timeline, for a timeline with unconfirmed periods.") 
     include_economics: Optional[StrictBool] = Field(default=None, description="By default is false. When set to true the Economics data would be populated in the response.", alias="includeEconomics")
     include_settlement_status: Optional[StrictBool] = Field(default=None, description="By default is false. When set to true the Settlement Status data would be populated in the response.", alias="includeSettlementStatus")
     settlement_status_date:  Optional[StrictStr] = Field(default=None,alias="settlementStatusDate", description="Optional date used to specify end of an extended window for settlement information. When provided, transactions will be returned between start and end date, but settlement information between start date and this date will be included. When provided, the value must be greater than or equal to end date.") 
-    __properties = ["startDate", "endDate", "queryMode", "showCancelledTransactions", "timelineScope", "timelineCode", "includeEconomics", "includeSettlementStatus", "settlementStatusDate"]
+    __properties: ClassVar[List[str]] = ["startDate", "endDate", "queryMode", "showCancelledTransactions", "timelineScope", "timelineCode", "includeEconomics", "includeSettlementStatus", "settlementStatusDate"]
 
     @field_validator('query_mode')
     def query_mode_validate_enum(cls, value):

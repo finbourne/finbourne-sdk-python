@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,8 +28,8 @@ class CleardownModuleDetails(BaseModel):
     """
     display_name:  StrictStr = Field(...,alias="displayName", description="The name of the Cleardown Module.") 
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="A description for the Cleardown Module.") 
-    status:  StrictStr = Field(...,alias="status", description="The Cleardown Module status. Can be Active or Inactive. Defaults to Active.") 
-    __properties = ["displayName", "description", "status"]
+    status:  StrictStr = Field(...,alias="status", description="The Cleardown Module status. Default value: Active. Available values: Active, Inactive.") 
+    __properties: ClassVar[List[str]] = ["displayName", "description", "status"]
 
     model_config = ConfigDict(
         populate_by_name=True,

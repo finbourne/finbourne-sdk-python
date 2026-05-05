@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,17 +29,17 @@ class IdentifierDefinition(BaseModel):
     IdentifierDefinition
     """
     href:  Optional[StrictStr] = Field(default=None,alias="href", description="The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime.") 
-    domain:  StrictStr = Field(...,alias="domain", description="The type of entity to which the identifier can be attached. Supported values are \"Instrument\", \"Person\", \"LegalEntity\"and \"CustomEntity\". The available values are: NotDefined, Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, CutLabelDefinition, Analytic, PortfolioGroup, Person, AccessMetadata, Order, UnitResult, MarketData, ConfigurationRecipe, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, NextBestAction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, AddressKeyDefinition, AmortisationRuleSet, AnalyticsSetInventory, AtomUnitResult, CleardownModule, ComplexMarketData, ComplianceRunSummary, ComplianceRule, ComplianceRunInfo, CorporateActionSource, CounterpartyAgreement, CustomEntityDefinition, DataType, Dialect, EventHandler, GeneralLedgerProfile, PostingModule, Quote, RecipeComposer, ReconciliationRunBreak, ReferenceList, RelationDefinition, ReturnBlockIndex, SRSDocument, SRSIndex, TransactionTemplate, TransactionTemplateScope, TransactionType, TransactionTypeConfig, TranslationScript, TaskDefinition, TaskInstance, Worker, StagingRuleSet, IdentifierDefinition, SettlementInstruction, TransactionFee") 
+    domain:  StrictStr = Field(...,alias="domain", description="The type of entity to which the identifier can be attached. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee.") 
     identifier_scope:  StrictStr = Field(...,alias="identifierScope", description="The scope that the identifier definition exists in.") 
     identifier_type:  StrictStr = Field(...,alias="identifierType", description="What the identifier represents. Together with \"domain\" and \"identifierScope\" this uniquely identifies the identifier definition.") 
-    life_time:  StrictStr = Field(...,alias="lifeTime", description="Describes whether an identifier value is associated with an entity for all effective dates (“Perpetual”) or applies within a specified effective date range (“TimeVariant”). The available values are: Perpetual, TimeVariant") 
-    hierarchy_usage:  Optional[StrictStr] = Field(default=None,alias="hierarchyUsage", description="Nullable, defaults to \"MasterIdentifier\" if no value provided. \"MasterIdentifier\" (aka unique) An entity can have one value for this identifier definition on a given effective date. A value for this identifier definition can only be associated with one entity (in a given scope) on a given effective date. \"ParentIdentifier\" (aka non-unique) An entity can have one value for this identifier definition on a given effective date. A value for this identifier definition can be associated with many entities (in a given scope) on a given effective date.") 
+    life_time:  StrictStr = Field(...,alias="lifeTime", description="Describes whether an identifier value is associated with an entity for all effective dates or applies within a specified effective date range. Available values: Perpetual, TimeVariant.") 
+    hierarchy_usage:  Optional[StrictStr] = Field(default=None,alias="hierarchyUsage", description="MasterIdentifier (aka unique) An entity can have one value for this identifier definition on a given effective date. A value for this identifier definition can only be associated with one entity (in a given scope) on a given effective date. ParentIdentifier (aka non-unique) An entity can have one value for this identifier definition on a given effective date. A value for this identifier definition can be associated with many entities (in a given scope) on a given effective date. Default value: MasterIdentifier. Available values: MasterIdentifier, ParentIdentifier.") 
     hierarchy_level:  Optional[StrictStr] = Field(default=None,alias="hierarchyLevel", description="Optional metadata associated with the identifier definition.") 
     display_name:  Optional[StrictStr] = Field(default=None,alias="displayName", description="A display name for the identifier. E.g. Figi.") 
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="An optional description for the identifier.") 
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="A set of properties for the identifier definition.")
     version: Optional[Version] = None
-    __properties = ["href", "domain", "identifierScope", "identifierType", "lifeTime", "hierarchyUsage", "hierarchyLevel", "displayName", "description", "properties", "version"]
+    __properties: ClassVar[List[str]] = ["href", "domain", "identifierScope", "identifierType", "lifeTime", "hierarchyUsage", "hierarchyLevel", "displayName", "description", "properties", "version"]
 
     @field_validator('domain')
     def domain_validate_enum(cls, value):
@@ -276,11 +276,11 @@ class IdentifierDefinition(BaseModel):
             "description": obj.get("description"),
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None
         })
         return _obj
 

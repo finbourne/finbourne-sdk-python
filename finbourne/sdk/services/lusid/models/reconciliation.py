@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -46,7 +46,7 @@ class Reconciliation(BaseModel):
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="Reconciliation properties")
     version: Optional[Version] = None
     links: Optional[List[Link]] = None
-    __properties = ["id", "href", "name", "description", "isPortfolioGroup", "left", "right", "transactions", "positions", "valuations", "properties", "version", "links"]
+    __properties: ClassVar[List[str]] = ["id", "href", "name", "description", "isPortfolioGroup", "left", "right", "transactions", "positions", "valuations", "properties", "version", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -154,24 +154,24 @@ class Reconciliation(BaseModel):
             return Reconciliation.model_validate(obj)
 
         _obj = Reconciliation.model_validate({
-            "id": ReconciliationId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
+            "id": ReconciliationId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
             "href": obj.get("href"),
             "name": obj.get("name"),
             "description": obj.get("description"),
             "is_portfolio_group": obj.get("isPortfolioGroup"),
-            "left": ResourceId.from_dict(obj.get("left")) if obj.get("left") is not None else None,
-            "right": ResourceId.from_dict(obj.get("right")) if obj.get("right") is not None else None,
-            "transactions": ReconciliationTransactions.from_dict(obj.get("transactions")) if obj.get("transactions") is not None else None,
-            "positions": ReconciliationConfiguration.from_dict(obj.get("positions")) if obj.get("positions") is not None else None,
-            "valuations": ReconciliationConfiguration.from_dict(obj.get("valuations")) if obj.get("valuations") is not None else None,
+            "left": ResourceId.from_dict(_v) if (_v := obj.get("left")) is not None else None,
+            "right": ResourceId.from_dict(_v) if (_v := obj.get("right")) is not None else None,
+            "transactions": ReconciliationTransactions.from_dict(_v) if (_v := obj.get("transactions")) is not None else None,
+            "positions": ReconciliationConfiguration.from_dict(_v) if (_v := obj.get("positions")) is not None else None,
+            "valuations": ReconciliationConfiguration.from_dict(_v) if (_v := obj.get("valuations")) is not None else None,
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

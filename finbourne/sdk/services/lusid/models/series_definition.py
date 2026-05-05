@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,12 +28,12 @@ class SeriesDefinition(BaseModel):
     SeriesDefinition
     """
     series_identifier:  StrictStr = Field(...,alias="seriesIdentifier", description="The identifier that uniquely identifies this Series within the Share Class.") 
-    series_type:  StrictStr = Field(...,alias="seriesType", description="The type of the Series. Valid values are: Lead, Standard.") 
+    series_type:  StrictStr = Field(...,alias="seriesType", description="The type of the Series. Available values: Lead, Standard.") 
     launch_date: datetime = Field(description="The date on which the Series was launched.", alias="launchDate")
-    launch_price_type:  StrictStr = Field(...,alias="launchPriceType", description="The type of launch price for the Series. Valid values are: Manual, Calculated.") 
+    launch_price_type:  StrictStr = Field(...,alias="launchPriceType", description="The type of launch price for the Series. Available values: Manual, Calculated.") 
     dom_ccy:  StrictStr = Field(...,alias="domCcy", description="The denomination currency of the Series.") 
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="An optional set of properties to associate with the Series. Only applied if createInstrument is set to true on the parent Fund.")
-    __properties = ["seriesIdentifier", "seriesType", "launchDate", "launchPriceType", "domCcy", "properties"]
+    __properties: ClassVar[List[str]] = ["seriesIdentifier", "seriesType", "launchDate", "launchPriceType", "domCcy", "properties"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -100,9 +100,9 @@ class SeriesDefinition(BaseModel):
             "dom_ccy": obj.get("domCcy"),
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None
         })
         return _obj

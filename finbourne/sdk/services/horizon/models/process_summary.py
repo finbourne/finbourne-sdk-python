@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class ProcessSummary(BaseModel):
     message:  StrictStr = Field(...,alias="message", description="") 
     rows: RowDetails
     file_details: Optional[List[FileDetails]] = Field(default=None, alias="fileDetails")
-    __properties = ["endTime", "category", "status", "message", "rows", "fileDetails"]
+    __properties: ClassVar[List[str]] = ["endTime", "category", "status", "message", "rows", "fileDetails"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -111,8 +111,8 @@ class ProcessSummary(BaseModel):
             "category": obj.get("category"),
             "status": obj.get("status"),
             "message": obj.get("message"),
-            "rows": RowDetails.from_dict(obj.get("rows")) if obj.get("rows") is not None else None,
-            "file_details": [FileDetails.from_dict(_item) for _item in obj.get("fileDetails")] if obj.get("fileDetails") is not None else None
+            "rows": RowDetails.from_dict(_v) if (_v := obj.get("rows")) is not None else None,
+            "file_details": [FileDetails.from_dict(_item) for _item in _v] if (_v := obj.get("fileDetails")) is not None else None
         })
         return _obj
 

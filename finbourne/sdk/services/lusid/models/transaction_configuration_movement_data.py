@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,14 +28,14 @@ class TransactionConfigurationMovementData(BaseModel):
     """
     TransactionConfigurationMovementData
     """
-    movement_types:  StrictStr = Field(...,alias="movementTypes", description="Movement types determine the impact of the movement on the holdings. The available values are: Settlement, Traded, StockMovement, FutureCash,  Commitment, Receivable, CashSettlement, CashForward, CashCommitment, CashReceivable, Accrual, CashAccrual, ForwardFx, CashFxForward, Carry, CarryAsPnl, VariationMargin, Capital, Fee, Deferred, CashDeferred. The available values are: Settlement, Traded, StockMovement, FutureCash, Commitment, Receivable, CashSettlement, CashForward, CashCommitment, CashReceivable, Accrual, CashAccrual, ForwardFx, CashFxForward, Carry, CarryAsPnl, VariationMargin, Capital, Fee, LimitAdjustment, BalanceAdjustment, Deferred, CashDeferred") 
+    movement_types:  StrictStr = Field(...,alias="movementTypes", description="Movement types determine the impact of the movement on the holdings. Available values: Settlement, Traded, StockMovement, FutureCash, Commitment, Receivable, CashSettlement, CashForward, CashCommitment, CashReceivable, Accrual, CashAccrual, ForwardFx, CashFxForward, Carry, CarryAsPnl, VariationMargin, Capital, Fee, LimitAdjustment, BalanceAdjustment, Deferred, CashDeferred.") 
     side:  StrictStr = Field(...,alias="side", description="The Side determines which of the fields from our transaction are used to generate the Movement. Side1 means the 'security' side of the transaction, ie the Instrument and Units; Side2 means the 'cash' side, ie the Total Consideration") 
     direction: StrictInt = Field(description=" A multiplier to apply to Transaction amounts; the values are -1 to indicate to reverse the signs and 1 to indicate to use the signed values from the Transaction directly. For a typical Transaction with unsigned values, 1 means increase, -1 means decrease")
     properties: Optional[Dict[str, PerpetualProperty]] = Field(default=None, description="The properties associated with the underlying Movement")
     mappings: Optional[List[TransactionPropertyMapping]] = Field(default=None, description="This allows you to map a transaction property to a property on the underlying holding")
     name:  Optional[StrictStr] = Field(default=None,alias="name", description="The movement name (optional)") 
     movement_options: Optional[List[StrictStr]] = Field(default=None, description="Allows extra specifications for the movement. The options currently available are 'DirectAdjustment', 'IncludesTradedInterest', 'Virtual', 'Income' and 'Expense'. A movement type of 'StockMovement' with an option of 'DirectAdjusment' will allow you to adjust the units of a holding without affecting its cost base. You will, therefore, be able to reflect the impact of a stock split by loading a Transaction. A movement type of 'Carry' with the option as 'Expense' will not impact the interest accrual for cash-type holdings such loans, loan facilities and deposits.", alias="movementOptions")
-    __properties = ["movementTypes", "side", "direction", "properties", "mappings", "name", "movementOptions"]
+    __properties: ClassVar[List[str]] = ["movementTypes", "side", "direction", "properties", "mappings", "name", "movementOptions"]
 
     @field_validator('movement_types')
     def movement_types_validate_enum(cls, value):
@@ -191,11 +191,11 @@ class TransactionConfigurationMovementData(BaseModel):
             "direction": obj.get("direction"),
             "properties": dict(
                 (_k, PerpetualProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
-            "mappings": [TransactionPropertyMapping.from_dict(_item) for _item in obj.get("mappings")] if obj.get("mappings") is not None else None,
+            "mappings": [TransactionPropertyMapping.from_dict(_item) for _item in _v] if (_v := obj.get("mappings")) is not None else None,
             "name": obj.get("name"),
             "movement_options": obj.get("movementOptions")
         })

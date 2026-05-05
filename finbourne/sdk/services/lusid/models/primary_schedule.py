@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class PrimarySchedule(BaseModel):
     PrimarySchedule
     """
     event_handler_id: ResourceId = Field(alias="eventHandlerId")
-    __properties = ["eventHandlerId"]
+    __properties: ClassVar[List[str]] = ["eventHandlerId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,7 +79,7 @@ class PrimarySchedule(BaseModel):
             return PrimarySchedule.model_validate(obj)
 
         _obj = PrimarySchedule.model_validate({
-            "event_handler_id": ResourceId.from_dict(obj.get("eventHandlerId")) if obj.get("eventHandlerId") is not None else None
+            "event_handler_id": ResourceId.from_dict(_v) if (_v := obj.get("eventHandlerId")) is not None else None
         })
         return _obj
 

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -36,7 +36,7 @@ class TargetTaxLotRequest(BaseModel):
     notional_cost: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The notional cost of the tax-lot's opening transaction.", alias="notionalCost")
     variation_margin: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The variation margin of the tax-lot's opening transaction.", alias="variationMargin")
     variation_margin_portfolio_ccy: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The variation margin in portfolio currency of the tax-lot's opening transaction.", alias="variationMarginPortfolioCcy")
-    __properties = ["units", "cost", "portfolioCost", "price", "purchaseDate", "settlementDate", "notionalCost", "variationMargin", "variationMarginPortfolioCcy"]
+    __properties: ClassVar[List[str]] = ["units", "cost", "portfolioCost", "price", "purchaseDate", "settlementDate", "notionalCost", "variationMargin", "variationMarginPortfolioCcy"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -123,7 +123,7 @@ class TargetTaxLotRequest(BaseModel):
 
         _obj = TargetTaxLotRequest.model_validate({
             "units": obj.get("units"),
-            "cost": CurrencyAndAmount.from_dict(obj.get("cost")) if obj.get("cost") is not None else None,
+            "cost": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("cost")) is not None else None,
             "portfolio_cost": obj.get("portfolioCost"),
             "price": obj.get("price"),
             "purchase_date": obj.get("purchaseDate"),

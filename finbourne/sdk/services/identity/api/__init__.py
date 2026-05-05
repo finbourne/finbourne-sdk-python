@@ -4,6 +4,7 @@
 from finbourne.sdk.services.identity.api.application_metadata_api import ApplicationMetadataApi
 from finbourne.sdk.services.identity.api.applications_api import ApplicationsApi
 from finbourne.sdk.services.identity.api.authentication_api import AuthenticationApi
+from finbourne.sdk.services.identity.api.cell_management_api import CellManagementApi
 from finbourne.sdk.services.identity.api.external_token_issuers_api import ExternalTokenIssuersApi
 from finbourne.sdk.services.identity.api.identity_logs_api import IdentityLogsApi
 from finbourne.sdk.services.identity.api.identity_provider_api import IdentityProviderApi
@@ -20,6 +21,7 @@ __all__ = [
     "ApplicationMetadataApi",
     "ApplicationsApi",
     "AuthenticationApi",
+    "CellManagementApi",
     "ExternalTokenIssuersApi",
     "IdentityLogsApi",
     "IdentityProviderApi",

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -37,7 +37,7 @@ class SequenceDefinition(BaseModel):
     cycle: StrictBool = Field(description="Indicates if the sequence would start from minimun value once it reaches maximum value. If set to false, a failure would return if the sequence reaches maximum value.")
     pattern:  Optional[StrictStr] = Field(default=None,alias="pattern", description="The pattern to be used to generate next values in the sequence.") 
     links: Optional[List[Link]] = None
-    __properties = ["id", "increment", "minValue", "maxValue", "start", "value", "cycle", "pattern", "links"]
+    __properties: ClassVar[List[str]] = ["id", "increment", "minValue", "maxValue", "start", "value", "cycle", "pattern", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -110,7 +110,7 @@ class SequenceDefinition(BaseModel):
             return SequenceDefinition.model_validate(obj)
 
         _obj = SequenceDefinition.model_validate({
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
             "increment": obj.get("increment"),
             "min_value": obj.get("minValue"),
             "max_value": obj.get("maxValue"),
@@ -118,7 +118,7 @@ class SequenceDefinition(BaseModel):
             "value": obj.get("value"),
             "cycle": obj.get("cycle"),
             "pattern": obj.get("pattern"),
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

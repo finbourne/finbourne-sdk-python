@@ -69,12 +69,12 @@ class AborConfigurationApi:
         :return: Returns the result object.
         :rtype: AborConfiguration
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_abor_configuration_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_abor_configuration_with_http_info(scope, abor_configuration_request, **kwargs)  # noqa: E501
+        response = self.create_abor_configuration_with_http_info(scope, abor_configuration_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_abor_configuration_with_http_info(self, scope: StrictStr, abor_configuration_request: AborConfigurationRequest, **kwargs) -> ApiResponse[AborConfiguration]:
@@ -204,12 +204,12 @@ class AborConfigurationApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_abor_configuration_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_abor_configuration_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_abor_configuration_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_abor_configuration_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -338,12 +338,12 @@ class AborConfigurationApi:
         :return: Returns the result object.
         :rtype: AborConfiguration
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_abor_configuration_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_abor_configuration_with_http_info(scope, code, effective_at, as_at, property_keys, **kwargs)  # noqa: E501
+        response = self.get_abor_configuration_with_http_info(scope, code, effective_at, as_at, property_keys, **kwargs)
+        return response.data
 
     @validate_call
     def get_abor_configuration_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[AborConfiguration]:
@@ -492,12 +492,12 @@ class AborConfigurationApi:
         :return: Returns the result object.
         :rtype: AborConfigurationProperties
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_abor_configuration_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_abor_configuration_properties_with_http_info(scope, code, effective_at, as_at, **kwargs)  # noqa: E501
+        response = self.get_abor_configuration_properties_with_http_info(scope, code, effective_at, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_abor_configuration_properties_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[AborConfigurationProperties]:
@@ -645,12 +645,12 @@ class AborConfigurationApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfAborConfiguration
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_abor_configurations_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_abor_configurations_with_http_info(effective_at, as_at, page, limit, filter, sort_by, property_keys, **kwargs)  # noqa: E501
+        response = self.list_abor_configurations_with_http_info(effective_at, as_at, page, limit, filter, sort_by, property_keys, **kwargs)
+        return response.data
 
     @validate_call
     def list_abor_configurations_with_http_info(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfAborConfiguration]:
@@ -810,12 +810,12 @@ class AborConfigurationApi:
         :return: Returns the result object.
         :rtype: AborConfiguration
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the patch_abor_configuration_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.patch_abor_configuration_with_http_info(scope, code, operation, **kwargs)  # noqa: E501
+        response = self.patch_abor_configuration_with_http_info(scope, code, operation, **kwargs)
+        return response.data
 
     @validate_call
     def patch_abor_configuration_with_http_info(self, scope: StrictStr, code: StrictStr, operation: List[Operation], **kwargs) -> ApiResponse[AborConfiguration]:
@@ -953,12 +953,12 @@ class AborConfigurationApi:
         :return: Returns the result object.
         :rtype: AborConfigurationProperties
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_abor_configuration_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_abor_configuration_properties_with_http_info(scope, code, request_body, **kwargs)  # noqa: E501
+        response = self.upsert_abor_configuration_properties_with_http_info(scope, code, request_body, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_abor_configuration_properties_with_http_info(self, scope: StrictStr, code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> ApiResponse[AborConfigurationProperties]:
@@ -1098,12 +1098,12 @@ class AborConfigurationApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: AborConfiguration
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_abor_configuration_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_abor_configuration_with_http_info_async(scope, abor_configuration_request, **kwargs)  # noqa: E501
+            response = await self.create_abor_configuration_with_http_info_async(scope, abor_configuration_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_abor_configuration_with_http_info_async(self, scope: StrictStr, abor_configuration_request: AborConfigurationRequest, **kwargs) -> ApiResponse[AborConfiguration]:
@@ -1234,12 +1234,12 @@ class AborConfigurationApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_abor_configuration_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_abor_configuration_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_abor_configuration_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_abor_configuration_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -1369,12 +1369,12 @@ class AborConfigurationApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: AborConfiguration
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_abor_configuration_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_abor_configuration_with_http_info_async(scope, code, effective_at, as_at, property_keys, **kwargs)  # noqa: E501
+            response = await self.get_abor_configuration_with_http_info_async(scope, code, effective_at, as_at, property_keys, **kwargs)
+            return response.data
 
     @validate_call
     async def get_abor_configuration_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[AborConfiguration]:
@@ -1524,12 +1524,12 @@ class AborConfigurationApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: AborConfigurationProperties
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_abor_configuration_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_abor_configuration_properties_with_http_info_async(scope, code, effective_at, as_at, **kwargs)  # noqa: E501
+            response = await self.get_abor_configuration_properties_with_http_info_async(scope, code, effective_at, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_abor_configuration_properties_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[AborConfigurationProperties]:
@@ -1678,12 +1678,12 @@ class AborConfigurationApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfAborConfiguration
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_abor_configurations_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_abor_configurations_with_http_info_async(effective_at, as_at, page, limit, filter, sort_by, property_keys, **kwargs)  # noqa: E501
+            response = await self.list_abor_configurations_with_http_info_async(effective_at, as_at, page, limit, filter, sort_by, property_keys, **kwargs)
+            return response.data
 
     @validate_call
     async def list_abor_configurations_with_http_info_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfAborConfiguration]:
@@ -1844,12 +1844,12 @@ class AborConfigurationApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: AborConfiguration
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the patch_abor_configuration_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.patch_abor_configuration_with_http_info_async(scope, code, operation, **kwargs)  # noqa: E501
+            response = await self.patch_abor_configuration_with_http_info_async(scope, code, operation, **kwargs)
+            return response.data
 
     @validate_call
     async def patch_abor_configuration_with_http_info_async(self, scope: StrictStr, code: StrictStr, operation: List[Operation], **kwargs) -> ApiResponse[AborConfiguration]:
@@ -1988,12 +1988,12 @@ class AborConfigurationApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: AborConfigurationProperties
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_abor_configuration_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_abor_configuration_properties_with_http_info_async(scope, code, request_body, **kwargs)  # noqa: E501
+            response = await self.upsert_abor_configuration_properties_with_http_info_async(scope, code, request_body, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_abor_configuration_properties_with_http_info_async(self, scope: StrictStr, code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> ApiResponse[AborConfigurationProperties]:

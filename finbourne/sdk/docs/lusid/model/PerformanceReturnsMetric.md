@@ -5,7 +5,7 @@ The request used in the AggregatedReturns.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **type** | **str** | Optional | The type of the metric. Default to Return |
+| **type** | **str** | Optional | The type of the metric. Default value: Return. Available values: Return, Volatility, IndicativeAmount, Dispersion. |
 | **window** | **str** | Optional | The given metric for the calculation i.e. 1Y, 1D. |
 | **allow_partial** | **bool** | Optional | Bool if the metric is allowed partial results. Default to false. |
 | **annualised** | **bool** | Optional | Bool if the metric is annualized. Default to false. |
@@ -22,7 +22,7 @@ The request used in the AggregatedReturns.
 from finbourne.sdk.services.lusid.models.PerformanceReturnsMetric import PerformanceReturnsMetric
 
 instance = PerformanceReturnsMetric(
-    type="...",  # optional — The type of the metric. Default to Return
+    type="...",  # optional — The type of the metric. Default value: Return. Available values: Return, Volatility, IndicativeAmount, Dispersion.
     window="...",  # optional — The given metric for the calculation i.e. 1Y, 1D.
     allow_partial=True,  # optional — Bool if the metric is allowed partial results. Default to false.
     annualised=True,  # optional — Bool if the metric is annualized. Default to false.

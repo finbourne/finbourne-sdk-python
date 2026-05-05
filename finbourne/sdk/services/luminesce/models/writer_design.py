@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class WriterDesign(BaseModel):
     available_to_map_from: Optional[List[ExpressionWithAlias]] = Field(default=None, description="The data able to be mapped from as derived from the Sql", alias="availableToMapFrom")
     parameter: Optional[AvailableParameter] = None
     available_parameters: Optional[List[AvailableParameter]] = Field(default=None, description="All the parameter the user may wish to design", alias="availableParameters")
-    __properties = ["sql", "availableToMapFrom", "parameter", "availableParameters"]
+    __properties: ClassVar[List[str]] = ["sql", "availableToMapFrom", "parameter", "availableParameters"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -108,9 +108,9 @@ class WriterDesign(BaseModel):
 
         _obj = WriterDesign.model_validate({
             "sql": obj.get("sql"),
-            "available_to_map_from": [ExpressionWithAlias.from_dict(_item) for _item in obj.get("availableToMapFrom")] if obj.get("availableToMapFrom") is not None else None,
-            "parameter": AvailableParameter.from_dict(obj.get("parameter")) if obj.get("parameter") is not None else None,
-            "available_parameters": [AvailableParameter.from_dict(_item) for _item in obj.get("availableParameters")] if obj.get("availableParameters") is not None else None
+            "available_to_map_from": [ExpressionWithAlias.from_dict(_item) for _item in _v] if (_v := obj.get("availableToMapFrom")) is not None else None,
+            "parameter": AvailableParameter.from_dict(_v) if (_v := obj.get("parameter")) is not None else None,
+            "available_parameters": [AvailableParameter.from_dict(_item) for _item in _v] if (_v := obj.get("availableParameters")) is not None else None
         })
         return _obj
 

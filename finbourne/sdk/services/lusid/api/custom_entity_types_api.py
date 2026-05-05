@@ -65,12 +65,12 @@ class CustomEntityTypesApi:
         :return: Returns the result object.
         :rtype: CustomEntityType
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_custom_entity_type_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_custom_entity_type_with_http_info(create_custom_entity_type_request, **kwargs)  # noqa: E501
+        response = self.create_custom_entity_type_with_http_info(create_custom_entity_type_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_custom_entity_type_with_http_info(self, create_custom_entity_type_request: CreateCustomEntityTypeRequest, **kwargs) -> ApiResponse[CustomEntityType]:
@@ -192,12 +192,12 @@ class CustomEntityTypesApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_custom_entity_type_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_custom_entity_type_with_http_info(entity_type, **kwargs)  # noqa: E501
+        response = self.delete_custom_entity_type_with_http_info(entity_type, **kwargs)
+        return response.data
 
     @validate_call
     def delete_custom_entity_type_with_http_info(self, entity_type: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -314,12 +314,12 @@ class CustomEntityTypesApi:
         :return: Returns the result object.
         :rtype: CustomEntityType
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_custom_entity_type_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_custom_entity_type_with_http_info(entity_type, as_at, **kwargs)  # noqa: E501
+        response = self.get_custom_entity_type_with_http_info(entity_type, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_custom_entity_type_with_http_info(self, entity_type: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[CustomEntityType]:
@@ -451,12 +451,12 @@ class CustomEntityTypesApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfCustomEntityType
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_custom_entity_types_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_custom_entity_types_with_http_info(as_at, limit, filter, sort_by, page, **kwargs)  # noqa: E501
+        response = self.list_custom_entity_types_with_http_info(as_at, limit, filter, sort_by, page, **kwargs)
+        return response.data
 
     @validate_call
     def list_custom_entity_types_with_http_info(self, as_at: Optional[datetime] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfCustomEntityType]:
@@ -601,12 +601,12 @@ class CustomEntityTypesApi:
         :return: Returns the result object.
         :rtype: CustomEntityType
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_custom_entity_type_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_custom_entity_type_with_http_info(entity_type, update_custom_entity_type_request, **kwargs)  # noqa: E501
+        response = self.update_custom_entity_type_with_http_info(entity_type, update_custom_entity_type_request, **kwargs)
+        return response.data
 
     @validate_call
     def update_custom_entity_type_with_http_info(self, entity_type: StrictStr, update_custom_entity_type_request: UpdateCustomEntityTypeRequest, **kwargs) -> ApiResponse[CustomEntityType]:
@@ -738,12 +738,12 @@ class CustomEntityTypesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: CustomEntityType
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_custom_entity_type_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_custom_entity_type_with_http_info_async(create_custom_entity_type_request, **kwargs)  # noqa: E501
+            response = await self.create_custom_entity_type_with_http_info_async(create_custom_entity_type_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_custom_entity_type_with_http_info_async(self, create_custom_entity_type_request: CreateCustomEntityTypeRequest, **kwargs) -> ApiResponse[CustomEntityType]:
@@ -866,12 +866,12 @@ class CustomEntityTypesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_custom_entity_type_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_custom_entity_type_with_http_info_async(entity_type, **kwargs)  # noqa: E501
+            response = await self.delete_custom_entity_type_with_http_info_async(entity_type, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_custom_entity_type_with_http_info_async(self, entity_type: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -989,12 +989,12 @@ class CustomEntityTypesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: CustomEntityType
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_custom_entity_type_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_custom_entity_type_with_http_info_async(entity_type, as_at, **kwargs)  # noqa: E501
+            response = await self.get_custom_entity_type_with_http_info_async(entity_type, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_custom_entity_type_with_http_info_async(self, entity_type: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[CustomEntityType]:
@@ -1127,12 +1127,12 @@ class CustomEntityTypesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfCustomEntityType
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_custom_entity_types_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_custom_entity_types_with_http_info_async(as_at, limit, filter, sort_by, page, **kwargs)  # noqa: E501
+            response = await self.list_custom_entity_types_with_http_info_async(as_at, limit, filter, sort_by, page, **kwargs)
+            return response.data
 
     @validate_call
     async def list_custom_entity_types_with_http_info_async(self, as_at: Optional[datetime] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfCustomEntityType]:
@@ -1278,12 +1278,12 @@ class CustomEntityTypesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: CustomEntityType
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_custom_entity_type_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_custom_entity_type_with_http_info_async(entity_type, update_custom_entity_type_request, **kwargs)  # noqa: E501
+            response = await self.update_custom_entity_type_with_http_info_async(entity_type, update_custom_entity_type_request, **kwargs)
+            return response.data
 
     @validate_call
     async def update_custom_entity_type_with_http_info_async(self, entity_type: StrictStr, update_custom_entity_type_request: UpdateCustomEntityTypeRequest, **kwargs) -> ApiResponse[CustomEntityType]:

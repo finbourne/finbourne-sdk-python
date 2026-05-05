@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class RecipeComposer(BaseModel):
     scope:  StrictStr = Field(...,alias="scope", description="The scope used when updating or inserting the Recipe Composer.") 
     code:  StrictStr = Field(...,alias="code", description="User given string name (code) to identify the recipe.") 
     operations: Optional[List[RecipeBlock]] = Field(default=None, description="Atomic operations used to compose a Configuration Recipe.")
-    __properties = ["scope", "code", "operations"]
+    __properties: ClassVar[List[str]] = ["scope", "code", "operations"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -92,7 +92,7 @@ class RecipeComposer(BaseModel):
         _obj = RecipeComposer.model_validate({
             "scope": obj.get("scope"),
             "code": obj.get("code"),
-            "operations": [RecipeBlock.from_dict(_item) for _item in obj.get("operations")] if obj.get("operations") is not None else None
+            "operations": [RecipeBlock.from_dict(_item) for _item in _v] if (_v := obj.get("operations")) is not None else None
         })
         return _obj
 

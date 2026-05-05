@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class AllocationGroupClassDefinition(BaseModel):
     share_class_fund_id: Optional[ResourceId] = Field(default=None, alias="shareClassFundId")
     apportionment_factor: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The weighting factor used for apportionment across this share class.", alias="apportionmentFactor")
     share_class_series_code:  Optional[StrictStr] = Field(default=None,alias="shareClassSeriesCode", description="An optional series identifier for the share class. If not provided, the share class will include all series.") 
-    __properties = ["shareClassShortCode", "shareClassFundId", "apportionmentFactor", "shareClassSeriesCode"]
+    __properties: ClassVar[List[str]] = ["shareClassShortCode", "shareClassFundId", "apportionmentFactor", "shareClassSeriesCode"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -93,7 +93,7 @@ class AllocationGroupClassDefinition(BaseModel):
 
         _obj = AllocationGroupClassDefinition.model_validate({
             "share_class_short_code": obj.get("shareClassShortCode"),
-            "share_class_fund_id": ResourceId.from_dict(obj.get("shareClassFundId")) if obj.get("shareClassFundId") is not None else None,
+            "share_class_fund_id": ResourceId.from_dict(_v) if (_v := obj.get("shareClassFundId")) is not None else None,
             "apportionment_factor": obj.get("apportionmentFactor"),
             "share_class_series_code": obj.get("shareClassSeriesCode")
         })

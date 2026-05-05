@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class TransactionDiagnostics(BaseModel):
     """
     transaction_display_name:  StrictStr = Field(...,alias="transactionDisplayName") 
     error_details: List[StrictStr] = Field(alias="errorDetails")
-    __properties = ["transactionDisplayName", "errorDetails"]
+    __properties: ClassVar[List[str]] = ["transactionDisplayName", "errorDetails"]
 
     model_config = ConfigDict(
         populate_by_name=True,

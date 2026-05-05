@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class Source(BaseModel):
     """
     location:  Optional[StrictStr] = Field(default=None,alias="location", description="The source location.  Start of a provider name, `Drive`, `LocalFs`, `AwsS3` etc.") 
     type: Optional[SourceType] = None
-    __properties = ["location", "type"]
+    __properties: ClassVar[List[str]] = ["location", "type"]
 
     model_config = ConfigDict(
         populate_by_name=True,

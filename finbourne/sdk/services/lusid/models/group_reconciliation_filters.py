@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class GroupReconciliationFilters(BaseModel):
     """
     left:  Optional[StrictStr] = Field(default=None,alias="left", description="The filters for the left-side portfolio or portfolio group related data.") 
     right:  Optional[StrictStr] = Field(default=None,alias="right", description="The filters for the right-side portfolio or portfolio group related data.") 
-    __properties = ["left", "right"]
+    __properties: ClassVar[List[str]] = ["left", "right"]
 
     model_config = ConfigDict(
         populate_by_name=True,

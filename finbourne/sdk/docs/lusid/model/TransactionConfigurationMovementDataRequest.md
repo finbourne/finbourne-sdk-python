@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **movement_types** | **str** | Required | . The available values are: Settlement, Traded, StockMovement, FutureCash, Commitment, Receivable, CashSettlement, CashForward, CashCommitment, CashReceivable, Accrual, CashAccrual, ForwardFx, CashFxForward, Carry, CarryAsPnl, VariationMargin, Capital, Fee, LimitAdjustment, BalanceAdjustment, Deferred, CashDeferred |
+| **movement_types** | **str** | Required | The movement types. Available values: Settlement, Traded, StockMovement, FutureCash, Commitment, Receivable, CashSettlement, CashForward, CashCommitment, CashReceivable, Accrual, CashAccrual, ForwardFx, CashFxForward, Carry, CarryAsPnl, VariationMargin, Capital, Fee, LimitAdjustment, BalanceAdjustment, Deferred, CashDeferred. |
 | **side** | **str** | Required | The movement side |
 | **direction** | **int** | Required | The movement direction |
 | **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | The properties associated with the underlying Movement. |
@@ -21,7 +21,7 @@
 from finbourne.sdk.services.lusid.models.TransactionConfigurationMovementDataRequest import TransactionConfigurationMovementDataRequest
 
 instance = TransactionConfigurationMovementDataRequest(
-    movement_types="...",  # required — . The available values are: Settlement, Traded, StockMovement, FutureCash, Commitment, Receivable, CashSettlement, CashForward, CashCommitment, CashReceivable, Accrual, CashAccrual, ForwardFx, CashFxForward, Carry, CarryAsPnl, VariationMargin, Capital, Fee, LimitAdjustment, BalanceAdjustment, Deferred, CashDeferred
+    movement_types="...",  # required — The movement types. Available values: Settlement, Traded, StockMovement, FutureCash, Commitment, Receivable, CashSettlement, CashForward, CashCommitment, CashReceivable, Accrual, CashAccrual, ForwardFx, CashFxForward, Carry, CarryAsPnl, VariationMargin, Capital, Fee, LimitAdjustment, BalanceAdjustment, Deferred, CashDeferred.
     side="...",  # required — The movement side
     direction=0,  # required — The movement direction
     properties=PerpetualProperty(...),  # optional — The properties associated with the underlying Movement.

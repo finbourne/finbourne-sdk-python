@@ -65,12 +65,12 @@ class TransactionFeesApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_transaction_fee_rule_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_transaction_fee_rule_with_http_info(code, **kwargs)  # noqa: E501
+        response = self.delete_transaction_fee_rule_with_http_info(code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_transaction_fee_rule_with_http_info(self, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -197,12 +197,12 @@ class TransactionFeesApi:
         :return: Returns the result object.
         :rtype: ResourceListOfFeeRule
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_applicable_transaction_fees_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_applicable_transaction_fees_with_http_info(effective_at, as_at, instrument_identifier_type, instrument_identifier, portfolio_scope, portfolio_code, request_body, **kwargs)  # noqa: E501
+        response = self.get_applicable_transaction_fees_with_http_info(effective_at, as_at, instrument_identifier_type, instrument_identifier, portfolio_scope, portfolio_code, request_body, **kwargs)
+        return response.data
 
     @validate_call
     def get_applicable_transaction_fees_with_http_info(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, instrument_identifier_type: Optional[StrictStr] = None, instrument_identifier: Optional[StrictStr] = None, portfolio_scope: Optional[StrictStr] = None, portfolio_code: Optional[StrictStr] = None, request_body: Optional[Dict[str, str]] = None, **kwargs) -> ApiResponse[ResourceListOfFeeRule]:
@@ -367,12 +367,12 @@ class TransactionFeesApi:
         :return: Returns the result object.
         :rtype: FeeRule
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_transaction_fee_rule_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_transaction_fee_rule_with_http_info(code, effective_at, as_at, **kwargs)  # noqa: E501
+        response = self.get_transaction_fee_rule_with_http_info(code, effective_at, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_transaction_fee_rule_with_http_info(self, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[FeeRule]:
@@ -510,12 +510,12 @@ class TransactionFeesApi:
         :return: Returns the result object.
         :rtype: ResourceListOfFeeRule
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_transaction_fee_rules_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_transaction_fee_rules_with_http_info(effective_at, as_at, limit, filter, page, **kwargs)  # noqa: E501
+        response = self.list_transaction_fee_rules_with_http_info(effective_at, as_at, limit, filter, page, **kwargs)
+        return response.data
 
     @validate_call
     def list_transaction_fee_rules_with_http_info(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfFeeRule]:
@@ -659,12 +659,12 @@ class TransactionFeesApi:
         :return: Returns the result object.
         :rtype: FeeRuleUpsertResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_transaction_fee_rules_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_transaction_fee_rules_with_http_info(request_body, effective_at, **kwargs)  # noqa: E501
+        response = self.upsert_transaction_fee_rules_with_http_info(request_body, effective_at, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_transaction_fee_rules_with_http_info(self, request_body: Dict[str, FeeRuleUpsertRequest], effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[FeeRuleUpsertResponse]:
@@ -796,12 +796,12 @@ class TransactionFeesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_transaction_fee_rule_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_transaction_fee_rule_with_http_info_async(code, **kwargs)  # noqa: E501
+            response = await self.delete_transaction_fee_rule_with_http_info_async(code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_transaction_fee_rule_with_http_info_async(self, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -929,12 +929,12 @@ class TransactionFeesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfFeeRule
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_applicable_transaction_fees_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_applicable_transaction_fees_with_http_info_async(effective_at, as_at, instrument_identifier_type, instrument_identifier, portfolio_scope, portfolio_code, request_body, **kwargs)  # noqa: E501
+            response = await self.get_applicable_transaction_fees_with_http_info_async(effective_at, as_at, instrument_identifier_type, instrument_identifier, portfolio_scope, portfolio_code, request_body, **kwargs)
+            return response.data
 
     @validate_call
     async def get_applicable_transaction_fees_with_http_info_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, instrument_identifier_type: Optional[StrictStr] = None, instrument_identifier: Optional[StrictStr] = None, portfolio_scope: Optional[StrictStr] = None, portfolio_code: Optional[StrictStr] = None, request_body: Optional[Dict[str, str]] = None, **kwargs) -> ApiResponse[ResourceListOfFeeRule]:
@@ -1100,12 +1100,12 @@ class TransactionFeesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: FeeRule
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_transaction_fee_rule_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_transaction_fee_rule_with_http_info_async(code, effective_at, as_at, **kwargs)  # noqa: E501
+            response = await self.get_transaction_fee_rule_with_http_info_async(code, effective_at, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_transaction_fee_rule_with_http_info_async(self, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[FeeRule]:
@@ -1244,12 +1244,12 @@ class TransactionFeesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfFeeRule
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_transaction_fee_rules_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_transaction_fee_rules_with_http_info_async(effective_at, as_at, limit, filter, page, **kwargs)  # noqa: E501
+            response = await self.list_transaction_fee_rules_with_http_info_async(effective_at, as_at, limit, filter, page, **kwargs)
+            return response.data
 
     @validate_call
     async def list_transaction_fee_rules_with_http_info_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfFeeRule]:
@@ -1394,12 +1394,12 @@ class TransactionFeesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: FeeRuleUpsertResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_transaction_fee_rules_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_transaction_fee_rules_with_http_info_async(request_body, effective_at, **kwargs)  # noqa: E501
+            response = await self.upsert_transaction_fee_rules_with_http_info_async(request_body, effective_at, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_transaction_fee_rules_with_http_info_async(self, request_body: Dict[str, FeeRuleUpsertRequest], effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[FeeRuleUpsertResponse]:

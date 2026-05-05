@@ -9,7 +9,7 @@ Schedule for notional changes based on the change in FX rate.  Used in the repre
 | **varying_notional_currency** | **str** | Required | The currency of the varying notional amount. |
 | **varying_notional_fixing_dates** | [RelativeDateOffset](RelativeDateOffset.md) | Required | *No description available.* |
 | **varying_notional_interim_exchange_payment_dates** | [RelativeDateOffset](RelativeDateOffset.md) | Optional | *No description available.* |
-| **schedule_type** | **str** | Required | The available values are: FixedSchedule, FloatSchedule, OptionalitySchedule, StepSchedule, Exercise, FxRateSchedule, FxLinkedNotionalSchedule, BondConversionSchedule, Invalid |
+| **schedule_type** | **str** | Required | Available values: FixedSchedule, FloatSchedule, OptionalitySchedule, StepSchedule, Exercise, FxRateSchedule, FxLinkedNotionalSchedule, BondConversionSchedule, Invalid. |
 
 
 ## Usage
@@ -24,7 +24,7 @@ instance = FxLinkedNotionalSchedule(
     varying_notional_currency="...",  # required — The currency of the varying notional amount.
     varying_notional_fixing_dates=RelativeDateOffset(...),  # required
     varying_notional_interim_exchange_payment_dates=RelativeDateOffset(...),  # optional
-    schedule_type="..."  # required — The available values are: FixedSchedule, FloatSchedule, OptionalitySchedule, StepSchedule, Exercise, FxRateSchedule, FxLinkedNotionalSchedule, BondConversionSchedule, Invalid
+    schedule_type="..."  # required — Available values: FixedSchedule, FloatSchedule, OptionalitySchedule, StepSchedule, Exercise, FxRateSchedule, FxLinkedNotionalSchedule, BondConversionSchedule, Invalid.
 )
 ```
 

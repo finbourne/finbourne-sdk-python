@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,9 +31,9 @@ class ComplianceRuleResultV2(BaseModel):
     run_id: ResourceId = Field(alias="runId")
     instigated_at: datetime = Field(alias="instigatedAt")
     completed_at: datetime = Field(alias="completedAt")
-    schedule:  StrictStr = Field(...,alias="schedule") 
+    schedule:  StrictStr = Field(...,alias="schedule", description="Available values: PreTrade, PostTrade, PreAndPostTrade.") 
     rule_result: ComplianceSummaryRuleResult = Field(alias="ruleResult")
-    __properties = ["runId", "instigatedAt", "completedAt", "schedule", "ruleResult"]
+    __properties: ClassVar[List[str]] = ["runId", "instigatedAt", "completedAt", "schedule", "ruleResult"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -87,11 +87,11 @@ class ComplianceRuleResultV2(BaseModel):
             return ComplianceRuleResultV2.model_validate(obj)
 
         _obj = ComplianceRuleResultV2.model_validate({
-            "run_id": ResourceId.from_dict(obj.get("runId")) if obj.get("runId") is not None else None,
+            "run_id": ResourceId.from_dict(_v) if (_v := obj.get("runId")) is not None else None,
             "instigated_at": obj.get("instigatedAt"),
             "completed_at": obj.get("completedAt"),
             "schedule": obj.get("schedule"),
-            "rule_result": ComplianceSummaryRuleResult.from_dict(obj.get("ruleResult")) if obj.get("ruleResult") is not None else None
+            "rule_result": ComplianceSummaryRuleResult.from_dict(_v) if (_v := obj.get("ruleResult")) is not None else None
         })
         return _obj
 

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class BreakCodeSource(BaseModel):
     BreakCodeSource
     """
     data_type_id: ResourceId = Field(alias="dataTypeId")
-    __properties = ["dataTypeId"]
+    __properties: ClassVar[List[str]] = ["dataTypeId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,7 +79,7 @@ class BreakCodeSource(BaseModel):
             return BreakCodeSource.model_validate(obj)
 
         _obj = BreakCodeSource.model_validate({
-            "data_type_id": ResourceId.from_dict(obj.get("dataTypeId")) if obj.get("dataTypeId") is not None else None
+            "data_type_id": ResourceId.from_dict(_v) if (_v := obj.get("dataTypeId")) is not None else None
         })
         return _obj
 

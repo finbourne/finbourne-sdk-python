@@ -64,7 +64,7 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **visibility** | **str**| The visibility for the containing workspace. Must be &#x60;shared&#x60; or &#x60;personal&#x60;; case is important. | [required] 
+ **visibility** | **str**| The visibility for the containing workspace; case is important. Available values: shared, personal. | [required] 
  **workspace_name** | **str**| The item&#39;s workspace name. | [required] 
  **workspace_item_creation_request** | [**WorkspaceItemCreationRequest**](WorkspaceItemCreationRequest.md)| The item to be created. | [optional] 
 
@@ -110,7 +110,7 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **visibility** | **str**| The visibility for the workspace being created. Must be &#x60;shared&#x60; or &#x60;personal&#x60;; case is important. | [required] 
+ **visibility** | **str**| The visibility for the workspace being created; case is important. Available values: shared, personal. | [required] 
  **workspace_creation_request** | [**WorkspaceCreationRequest**](WorkspaceCreationRequest.md)| The workspace to be created. | [required] 
  **include_item_access** | **bool**| If true, includes the workspace item actions the user is permitted to perform in the response. Defaults to false. | [optional] [default to False]
 
@@ -157,7 +157,7 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **visibility** | **str**| The visibility for the containing workspace. Must be &#x60;shared&#x60; or &#x60;personal&#x60;; case is important. | [required] 
+ **visibility** | **str**| The visibility for the containing workspace; case is important. Available values: shared, personal. | [required] 
  **workspace_name** | **str**| The name of the workspace. | [required] 
  **group_name** | **str**| The group containing the item. | [required] 
  **item_name** | **str**| The name of the item. | [required] 
@@ -204,7 +204,7 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **visibility** | **str**| The visibility for the workspace. Must be &#x60;shared&#x60; or &#x60;personal&#x60;; case is important. | [required] 
+ **visibility** | **str**| The visibility for the workspace; case is important. Available values: shared, personal. | [required] 
  **workspace_name** | **str**| The name of the workspace. | [required] 
  **recurse** | **bool**| If true, recursively delete items in the workspace. | [optional] [default to False]
 
@@ -252,7 +252,7 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **visibility** | **str**| The visibility for the containing workspace. Must be &#x60;shared&#x60; or &#x60;personal&#x60;; case is important. | [required] 
+ **visibility** | **str**| The visibility for the containing workspace; case is important. Available values: shared, personal. | [required] 
  **workspace_name** | **str**| The name of the workspace. | [required] 
  **group_name** | **str**| The group containing the item. | [required] 
  **item_name** | **str**| The name of the item. | [required] 
@@ -301,7 +301,7 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **visibility** | **str**| The visibility for the workspace. Must be &#x60;shared&#x60; or &#x60;personal&#x60;; case is important. | [required] 
+ **visibility** | **str**| The visibility for the workspace; case is important. Available values: shared, personal. | [required] 
  **workspace_name** | **str**| The workspace name. | [required] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve workspaces. Defaults to &#39;latest&#39; if not specified. | [optional] 
  **include_item_access** | **bool**| If true, includes the workspace item actions the user is permitted to perform in the response. Defaults to false. | [optional] [default to False]
@@ -352,7 +352,7 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **visibility** | **str**| The visibility for the containing workspace. Must be &#x60;shared&#x60; or &#x60;personal&#x60;; case is important. | [required] 
+ **visibility** | **str**| The visibility for the containing workspace; case is important. Available values: shared, personal. | [required] 
  **workspace_name** | **str**| The item&#39;s workspace name. | [required] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve workspace items. Defaults to &#39;latest&#39; if not specified. | [optional] 
  **page** | **str**| The pagination token to use to continue listing workspaces items from a previous call to list workspaces items.              This value is returned from the previous call. If a pagination token is provided the sortBy, filter, effectiveAt, and asAt fields              must not have changed since the original request. | [optional] 
@@ -406,7 +406,7 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **visibility** | **str**| The visibility for the workspaces. Must be &#x60;shared&#x60; or &#x60;personal&#x60;; case is important. | [required] 
+ **visibility** | **str**| The visibility for the workspaces; case is important. Available values: shared, personal. | [required] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve workspaces. Defaults to &#39;latest&#39; if not specified. | [optional] 
  **page** | **str**| The pagination token to use to continue listing workspaces from a previous call to list workspaces.              This value is returned from the previous call. If a pagination token is provided the sortBy, filter, effectiveAt, and asAt fields              must not have changed since the original request. | [optional] 
  **sort_by** | [**List[str]**](str.md)| A list of field names to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
@@ -459,7 +459,7 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **visibility** | **str**| The visibility for the containing workspace. Must be &#x60;shared&#x60; or &#x60;personal&#x60;; case is important. | [required] 
+ **visibility** | **str**| The visibility for the containing workspace; case is important. Available values: shared, personal. | [required] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve workspace items. Defaults to &#39;latest&#39; if not specified. | [optional] 
  **page** | **str**| The pagination token to use to continue listing workspaces items from a previous call to list workspaces items.              This value is returned from the previous call. If a pagination token is provided the sortBy, filter, effectiveAt, and asAt fields              must not have changed since the original request. | [optional] 
  **sort_by** | [**List[str]**](str.md)| A list of field names to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
@@ -510,7 +510,7 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **visibility** | **str**| The visibility for the containing workspace. Must be &#x60;shared&#x60; or &#x60;personal&#x60;; case is important. | [required] 
+ **visibility** | **str**| The visibility for the containing workspace; case is important. Available values: shared, personal. | [required] 
  **workspace_name** | **str**| The workspace name. | [required] 
  **group_name** | **str**| The group containing the item. | [required] 
  **item_name** | **str**| The item name. | [required] 
@@ -559,7 +559,7 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **visibility** | **str**| The visibility for the workspace. Must be &#x60;shared&#x60; or &#x60;personal&#x60;; case is important. | [required] 
+ **visibility** | **str**| The visibility for the workspace; case is important. Available values: shared, personal. | [required] 
  **workspace_name** | **str**| The workspace name. | [required] 
  **workspace_update_request** | [**WorkspaceUpdateRequest**](WorkspaceUpdateRequest.md)| The new workspace details. | [required] 
  **include_item_access** | **bool**| If true, includes the workspace item actions the user is permitted to perform in the response. Defaults to false. | [optional] [default to False]

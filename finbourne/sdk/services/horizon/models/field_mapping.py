@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class FieldMapping(BaseModel):
     entity_type:  StrictStr = Field(...,alias="entityType", description="The LUSID Entity this is valid for") 
     entity_sub_type:  Optional[StrictStr] = Field(default=None,alias="entitySubType", description="The LUSID Entity sub type this is valid for") 
     versions: List[StrictStr] = Field(description="The versions of the Vendor integration this mapping is valid for")
-    __properties = ["fieldName", "defaultValue", "vendorFields", "transformationDescription", "entityType", "entitySubType", "versions"]
+    __properties: ClassVar[List[str]] = ["fieldName", "defaultValue", "vendorFields", "transformationDescription", "entityType", "entitySubType", "versions"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -106,7 +106,7 @@ class FieldMapping(BaseModel):
         _obj = FieldMapping.model_validate({
             "field_name": obj.get("fieldName"),
             "default_value": obj.get("defaultValue"),
-            "vendor_fields": [VendorField.from_dict(_item) for _item in obj.get("vendorFields")] if obj.get("vendorFields") is not None else None,
+            "vendor_fields": [VendorField.from_dict(_item) for _item in _v] if (_v := obj.get("vendorFields")) is not None else None,
             "transformation_description": obj.get("transformationDescription"),
             "entity_type": obj.get("entityType"),
             "entity_sub_type": obj.get("entitySubType"),

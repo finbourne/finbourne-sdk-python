@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **keys** | [List[PerpetualProperty]](PerpetualProperty.md) | Required | *No description available.* |
-| **value_type** | **str** | Required | *No description available.* |
+| **value_type** | **str** | Required | Available values: Units, Weight. |
 | **value** | **float** | Required | *No description available.* |
 
 
@@ -18,7 +18,7 @@ from finbourne.sdk.services.lusid.models.Strategy import Strategy
 
 instance = Strategy(
     keys=[],  # required
-    value_type="...",  # required
+    value_type="...",  # required — Available values: Units, Weight.
     value=0.0  # required
 )
 ```

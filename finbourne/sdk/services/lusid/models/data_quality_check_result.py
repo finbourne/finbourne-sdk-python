@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -43,7 +43,7 @@ class DataQualityCheckResult(BaseModel):
     count_rule_breaches: Optional[StrictInt] = Field(default=None, description="The count of rule breaches (1 for RuleBreached, multiple for RuleBreachesOverLimit)", alias="countRuleBreaches")
     error_detail:  Optional[StrictStr] = Field(default=None,alias="errorDetail", description="Error details (for RulesetInvalid, RuleInvalid)") 
     result_id:  Optional[StrictStr] = Field(default=None,alias="resultId", description="Unique identifier for the result in format: {{GUID of Check Definition}}-{{resultType}}-{{rulesetKey}}-{{ruleKey}}-{{entity GUID}}") 
-    __properties = ["checkDefinitionScope", "checkDefinitionCode", "checkDefinitionDisplayName", "checkRunAsAt", "resultType", "ruleSetKey", "ruleSetDisplayName", "ruleKey", "ruleDisplayName", "ruleDescription", "ruleFormula", "severity", "lusidEntity", "countRuleBreaches", "errorDetail", "resultId"]
+    __properties: ClassVar[List[str]] = ["checkDefinitionScope", "checkDefinitionCode", "checkDefinitionDisplayName", "checkRunAsAt", "resultType", "ruleSetKey", "ruleSetDisplayName", "ruleKey", "ruleDisplayName", "ruleDescription", "ruleFormula", "severity", "lusidEntity", "countRuleBreaches", "errorDetail", "resultId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -176,7 +176,7 @@ class DataQualityCheckResult(BaseModel):
             "rule_description": obj.get("ruleDescription"),
             "rule_formula": obj.get("ruleFormula"),
             "severity": obj.get("severity"),
-            "lusid_entity": LusidEntityResult.from_dict(obj.get("lusidEntity")) if obj.get("lusidEntity") is not None else None,
+            "lusid_entity": LusidEntityResult.from_dict(_v) if (_v := obj.get("lusidEntity")) is not None else None,
             "count_rule_breaches": obj.get("countRuleBreaches"),
             "error_detail": obj.get("errorDetail"),
             "result_id": obj.get("resultId")

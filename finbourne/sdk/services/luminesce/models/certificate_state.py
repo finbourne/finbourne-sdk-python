@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -44,7 +44,7 @@ class CertificateState(BaseModel):
     created_by:  Optional[StrictStr] = Field(default=None,alias="createdBy", description="The user which created this") 
     serial_number:  Optional[StrictStr] = Field(default=None,alias="serialNumber", description="The Vault-issued serial number of the certificate, if any - used for revocation") 
     links: Optional[List[Link]] = Field(default=None, description="The location within Configuration Store that this is saved to")
-    __properties = ["key", "version", "commonName", "type", "creationStatus", "revocationStatus", "validityStart", "validityEnd", "revokedAt", "revokedBy", "createdAt", "permissionsSetAt", "createdBy", "serialNumber", "links"]
+    __properties: ClassVar[List[str]] = ["key", "version", "commonName", "type", "creationStatus", "revocationStatus", "validityStart", "validityEnd", "revokedAt", "revokedBy", "createdAt", "permissionsSetAt", "createdBy", "serialNumber", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -168,7 +168,7 @@ class CertificateState(BaseModel):
             "permissions_set_at": obj.get("permissionsSetAt"),
             "created_by": obj.get("createdBy"),
             "serial_number": obj.get("serialNumber"),
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

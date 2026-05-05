@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **status** | **str** | Required | The Status of the settlement category - &#39;Settled&#39;, &#39;Part Settled&#39; or &#39;Unsettled&#39;. |
+| **status** | **str** | Required | The Status of the settlement category. Available values: Unsettled, PartSettled, Settled, None. |
 | **is_overdue** | **bool** | Required | Whether the category has any overdue movements |
 | **problems** | [List[SettlementProblem]](SettlementProblem.md) | Required | Instruction level detail of rejected or invalid settlement instructions |
 
@@ -17,7 +17,7 @@
 from finbourne.sdk.services.lusid.models.CategorySettlementStatus import CategorySettlementStatus
 
 instance = CategorySettlementStatus(
-    status="...",  # required — The Status of the settlement category - &#39;Settled&#39;, &#39;Part Settled&#39; or &#39;Unsettled&#39;.
+    status="...",  # required — The Status of the settlement category. Available values: Unsettled, PartSettled, Settled, None.
     is_overdue=True,  # required — Whether the category has any overdue movements
     problems=[]  # required — Instruction level detail of rejected or invalid settlement instructions
 )

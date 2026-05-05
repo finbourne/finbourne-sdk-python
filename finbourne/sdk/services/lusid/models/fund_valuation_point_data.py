@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,14 +31,14 @@ class FundValuationPointData(BaseModel):
     The Valuation Point Data for a Fund on a specified date.  # noqa: E501
     """
     back_out: Dict[str, FundAmount] = Field(description="Bucket of detail for the Valuation Point where data points have been 'backed out'.", alias="backOut")
-    dealing: Dict[str, FundAmount] = Field(description="Bucket of detail for any 'Dealing' that has occured inside the queried period.")
+    dealing: Dict[str, FundAmount] = Field(description="Bucket of detail for any 'Dealing' that has occurred inside the queried period.")
     pn_l: FundPnlBreakdown = Field(alias="pnL")
     gav: Union[StrictFloat, StrictInt] = Field(description="The Gross Asset Value of the Fund or Share Class at the Valuation Point. This is effectively a summation of all Trial balance entries linked to accounts of types 'Asset' and 'Liabilities'.")
     fees: Dict[str, FeeAccrual] = Field(description="Bucket of detail for any 'Fees' that have been charged in the selected period.")
     nav: Union[StrictFloat, StrictInt] = Field(description="The Net Asset Value of the Fund or Share Class at the Valuation Point. This represents the GAV with any fees applied in the period.")
     miscellaneous: Optional[Dict[str, FundAmount]] = Field(default=None, description="Not used directly by the LUSID engines but serves as a holding area for any custom derived data points that may be useful in, for example, fee calculations).")
     previous_valuation_point_data: Optional[PreviousFundValuationPointData] = Field(default=None, alias="previousValuationPointData")
-    __properties = ["backOut", "dealing", "pnL", "gav", "fees", "nav", "miscellaneous", "previousValuationPointData"]
+    __properties: ClassVar[List[str]] = ["backOut", "dealing", "pnL", "gav", "fees", "nav", "miscellaneous", "previousValuationPointData"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -127,32 +127,32 @@ class FundValuationPointData(BaseModel):
         _obj = FundValuationPointData.model_validate({
             "back_out": dict(
                 (_k, FundAmount.from_dict(_v))
-                for _k, _v in obj.get("backOut").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("backOut") is not None
+            if (_val := obj.get("backOut")) is not None
             else None,
             "dealing": dict(
                 (_k, FundAmount.from_dict(_v))
-                for _k, _v in obj.get("dealing").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("dealing") is not None
+            if (_val := obj.get("dealing")) is not None
             else None,
-            "pn_l": FundPnlBreakdown.from_dict(obj.get("pnL")) if obj.get("pnL") is not None else None,
+            "pn_l": FundPnlBreakdown.from_dict(_v) if (_v := obj.get("pnL")) is not None else None,
             "gav": obj.get("gav"),
             "fees": dict(
                 (_k, FeeAccrual.from_dict(_v))
-                for _k, _v in obj.get("fees").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("fees") is not None
+            if (_val := obj.get("fees")) is not None
             else None,
             "nav": obj.get("nav"),
             "miscellaneous": dict(
                 (_k, FundAmount.from_dict(_v))
-                for _k, _v in obj.get("miscellaneous").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("miscellaneous") is not None
+            if (_val := obj.get("miscellaneous")) is not None
             else None,
-            "previous_valuation_point_data": PreviousFundValuationPointData.from_dict(obj.get("previousValuationPointData")) if obj.get("previousValuationPointData") is not None else None
+            "previous_valuation_point_data": PreviousFundValuationPointData.from_dict(_v) if (_v := obj.get("previousValuationPointData")) is not None else None
         })
         return _obj
 

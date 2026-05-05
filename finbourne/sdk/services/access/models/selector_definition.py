@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class SelectorDefinition(BaseModel):
     id_selector_definition: Optional[IdSelectorDefinition] = Field(default=None, alias="idSelectorDefinition")
     match_all_selector_definition: Optional[MatchAllSelectorDefinition] = Field(default=None, alias="matchAllSelectorDefinition")
     policy_selector_definition: Optional[PolicySelectorDefinition] = Field(default=None, alias="policySelectorDefinition")
-    __properties = ["metadataSelectorDefinition", "idSelectorDefinition", "matchAllSelectorDefinition", "policySelectorDefinition"]
+    __properties: ClassVar[List[str]] = ["metadataSelectorDefinition", "idSelectorDefinition", "matchAllSelectorDefinition", "policySelectorDefinition"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -93,10 +93,10 @@ class SelectorDefinition(BaseModel):
             return SelectorDefinition.model_validate(obj)
 
         _obj = SelectorDefinition.model_validate({
-            "metadata_selector_definition": MetadataSelectorDefinition.from_dict(obj.get("metadataSelectorDefinition")) if obj.get("metadataSelectorDefinition") is not None else None,
-            "id_selector_definition": IdSelectorDefinition.from_dict(obj.get("idSelectorDefinition")) if obj.get("idSelectorDefinition") is not None else None,
-            "match_all_selector_definition": MatchAllSelectorDefinition.from_dict(obj.get("matchAllSelectorDefinition")) if obj.get("matchAllSelectorDefinition") is not None else None,
-            "policy_selector_definition": PolicySelectorDefinition.from_dict(obj.get("policySelectorDefinition")) if obj.get("policySelectorDefinition") is not None else None
+            "metadata_selector_definition": MetadataSelectorDefinition.from_dict(_v) if (_v := obj.get("metadataSelectorDefinition")) is not None else None,
+            "id_selector_definition": IdSelectorDefinition.from_dict(_v) if (_v := obj.get("idSelectorDefinition")) is not None else None,
+            "match_all_selector_definition": MatchAllSelectorDefinition.from_dict(_v) if (_v := obj.get("matchAllSelectorDefinition")) is not None else None,
+            "policy_selector_definition": PolicySelectorDefinition.from_dict(_v) if (_v := obj.get("policySelectorDefinition")) is not None else None
         })
         return _obj
 

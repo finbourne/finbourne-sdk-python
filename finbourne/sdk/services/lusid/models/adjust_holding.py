@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class AdjustHolding(BaseModel):
     version: Version
     metadata: Optional[Dict[str, Optional[List[ResponseMetaData]]]] = Field(default=None, description="Contains warnings related to unresolved instruments")
     links: Optional[List[Link]] = None
-    __properties = ["href", "version", "metadata", "links"]
+    __properties: ClassVar[List[str]] = ["href", "version", "metadata", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -76,9 +76,9 @@ class AdjustHolding(BaseModel):
         _field_dict_of_array = {}
         if self.metadata:
             for _key in self.metadata:
-                if self.metadata[_key]:
+                if (_items_for_key := self.metadata[_key]):
                     _field_dict_of_array[_key] = [
-                        _item.to_dict() for _item in self.metadata[_key]
+                        _item.to_dict() for _item in _items_for_key
                     ]
             _dict['metadata'] = _field_dict_of_array
         # override the default output from pydantic by calling `to_dict()` of each item in links (list)
@@ -116,18 +116,18 @@ class AdjustHolding(BaseModel):
 
         _obj = AdjustHolding.model_validate({
             "href": obj.get("href"),
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
             "metadata": dict(
                 (_k,
                         [ResponseMetaData.from_dict(_item) for _item in _v]
                         if _v is not None
                         else None
                 )
-                for _k, _v in obj.get("metadata").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("metadata") is not None
+            if (_val := obj.get("metadata")) is not None
             else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

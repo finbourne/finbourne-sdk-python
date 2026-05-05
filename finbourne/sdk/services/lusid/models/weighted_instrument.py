@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class WeightedInstrument(BaseModel):
     instrument: Optional[LusidInstrument] = None
     in_line_lookup_identifiers: Optional[WeightedInstrumentInLineLookupIdentifiers] = Field(default=None, alias="inLineLookupIdentifiers")
     instrument_scope:  Optional[StrictStr] = Field(default=None,alias="instrumentScope", description="The scope in which to resolve the instrument, if no inlined definition is provided.  If left empty, the default scope will be used.") 
-    __properties = ["quantity", "holdingIdentifier", "instrument", "inLineLookupIdentifiers", "instrumentScope"]
+    __properties: ClassVar[List[str]] = ["quantity", "holdingIdentifier", "instrument", "inLineLookupIdentifiers", "instrumentScope"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -104,8 +104,8 @@ class WeightedInstrument(BaseModel):
         _obj = WeightedInstrument.model_validate({
             "quantity": obj.get("quantity"),
             "holding_identifier": obj.get("holdingIdentifier"),
-            "instrument": LusidInstrument.from_dict(obj.get("instrument")) if obj.get("instrument") is not None else None,
-            "in_line_lookup_identifiers": WeightedInstrumentInLineLookupIdentifiers.from_dict(obj.get("inLineLookupIdentifiers")) if obj.get("inLineLookupIdentifiers") is not None else None,
+            "instrument": LusidInstrument.from_dict(_v) if (_v := obj.get("instrument")) is not None else None,
+            "in_line_lookup_identifiers": WeightedInstrumentInLineLookupIdentifiers.from_dict(_v) if (_v := obj.get("inLineLookupIdentifiers")) is not None else None,
             "instrument_scope": obj.get("instrumentScope")
         })
         return _obj

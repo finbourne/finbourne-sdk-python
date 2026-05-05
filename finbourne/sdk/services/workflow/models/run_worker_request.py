@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class RunWorkerRequest(BaseModel):
     """
     parameters: List[ParameterValue] = Field(description="The Parameter and their values.")
     worker_timeout: Optional[StrictInt] = Field(default=None, description="The timeout in seconds for the worker", alias="workerTimeout")
-    __properties = ["parameters", "workerTimeout"]
+    __properties: ClassVar[List[str]] = ["parameters", "workerTimeout"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -89,7 +89,7 @@ class RunWorkerRequest(BaseModel):
             return RunWorkerRequest.model_validate(obj)
 
         _obj = RunWorkerRequest.model_validate({
-            "parameters": [ParameterValue.from_dict(_item) for _item in obj.get("parameters")] if obj.get("parameters") is not None else None,
+            "parameters": [ParameterValue.from_dict(_item) for _item in _v] if (_v := obj.get("parameters")) is not None else None,
             "worker_timeout": obj.get("workerTimeout")
         })
         return _obj

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class CreateAuditEntry(BaseModel):
     """
     process: AuditProcess
     data: AuditData
-    __properties = ["process", "data"]
+    __properties: ClassVar[List[str]] = ["process", "data"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -84,8 +84,8 @@ class CreateAuditEntry(BaseModel):
             return CreateAuditEntry.model_validate(obj)
 
         _obj = CreateAuditEntry.model_validate({
-            "process": AuditProcess.from_dict(obj.get("process")) if obj.get("process") is not None else None,
-            "data": AuditData.from_dict(obj.get("data")) if obj.get("data") is not None else None
+            "process": AuditProcess.from_dict(_v) if (_v := obj.get("process")) is not None else None,
+            "data": AuditData.from_dict(_v) if (_v := obj.get("data")) is not None else None
         })
         return _obj
 

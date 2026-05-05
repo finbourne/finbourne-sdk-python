@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class WorkerStatusTriggers(BaseModel):
     completed_no_results:  Optional[StrictStr] = Field(default=None,alias="completedNoResults", description="Trigger to invoke when the Worker has Completed (no results)") 
     failed_to_start:  Optional[StrictStr] = Field(default=None,alias="failedToStart", description="Trigger to invoke when the Worker has Failed to Start") 
     failed_to_complete:  Optional[StrictStr] = Field(default=None,alias="failedToComplete", description="Trigger to invoke when the Worker has Failed to Complete") 
-    __properties = ["started", "completedWithResults", "completedNoResults", "failedToStart", "failedToComplete"]
+    __properties: ClassVar[List[str]] = ["started", "completedWithResults", "completedNoResults", "failedToStart", "failedToComplete"]
 
     model_config = ConfigDict(
         populate_by_name=True,

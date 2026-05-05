@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class ParticipationRequest(BaseModel):
     id: ResourceId
     placement_id: ResourceId = Field(alias="placementId")
     order_id: ResourceId = Field(alias="orderId")
-    __properties = ["id", "placementId", "orderId"]
+    __properties: ClassVar[List[str]] = ["id", "placementId", "orderId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -87,9 +87,9 @@ class ParticipationRequest(BaseModel):
             return ParticipationRequest.model_validate(obj)
 
         _obj = ParticipationRequest.model_validate({
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
-            "placement_id": ResourceId.from_dict(obj.get("placementId")) if obj.get("placementId") is not None else None,
-            "order_id": ResourceId.from_dict(obj.get("orderId")) if obj.get("orderId") is not None else None
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
+            "placement_id": ResourceId.from_dict(_v) if (_v := obj.get("placementId")) is not None else None,
+            "order_id": ResourceId.from_dict(_v) if (_v := obj.get("orderId")) is not None else None
         })
         return _obj
 

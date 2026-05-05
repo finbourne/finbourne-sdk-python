@@ -20,7 +20,7 @@ A LUSID Trade Ticket comprising an instrument, a transaction, and a counterparty
 | **counterparty** | **str** | Optional | Counterparty |
 | **instrument_properties** | [List[ModelProperty]](ModelProperty.md) | Optional | Set of instrument properties (as defined by client/user). |
 | **transaction_properties** | [List[ModelProperty]](ModelProperty.md) | Optional | Set of transaction properties (as defined by client/user). |
-| **trade_ticket_type** | **str** | Required | The available values are: LusidTradeTicket, ExternalTradeTicket |
+| **trade_ticket_type** | **str** | Required | Available values: LusidTradeTicket, ExternalTradeTicket. |
 
 
 ## Usage
@@ -46,7 +46,7 @@ instance = LusidTradeTicket(
     counterparty="...",  # optional — Counterparty
     instrument_properties=[],  # optional — Set of instrument properties (as defined by client/user).
     transaction_properties=[],  # optional — Set of transaction properties (as defined by client/user).
-    trade_ticket_type="..."  # required — The available values are: LusidTradeTicket, ExternalTradeTicket
+    trade_ticket_type="..."  # required — Available values: LusidTradeTicket, ExternalTradeTicket.
 )
 ```
 

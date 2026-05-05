@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class Economics(BaseModel):
     lusid_instrument_id:  StrictStr = Field(...,alias="lusidInstrumentId", description="The unique Lusid Instrument Id (LUID) of the instrument that economics are for.") 
     sub_holding_keys: Optional[Dict[str, PerpetualProperty]] = Field(default=None, description="The sub-holding properties which identify the Economic. Each property will be from the 'Transaction' domain. These are configured on a transaction portfolio.", alias="subHoldingKeys")
     buckets: Optional[List[Bucket]] = Field(default=None, description="Set of economic data related with each of the side impact of the transaction.")
-    __properties = ["instrumentScope", "lusidInstrumentId", "subHoldingKeys", "buckets"]
+    __properties: ClassVar[List[str]] = ["instrumentScope", "lusidInstrumentId", "subHoldingKeys", "buckets"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -113,11 +113,11 @@ class Economics(BaseModel):
             "lusid_instrument_id": obj.get("lusidInstrumentId"),
             "sub_holding_keys": dict(
                 (_k, PerpetualProperty.from_dict(_v))
-                for _k, _v in obj.get("subHoldingKeys").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("subHoldingKeys") is not None
+            if (_val := obj.get("subHoldingKeys")) is not None
             else None,
-            "buckets": [Bucket.from_dict(_item) for _item in obj.get("buckets")] if obj.get("buckets") is not None else None
+            "buckets": [Bucket.from_dict(_item) for _item in _v] if (_v := obj.get("buckets")) is not None else None
         })
         return _obj
 

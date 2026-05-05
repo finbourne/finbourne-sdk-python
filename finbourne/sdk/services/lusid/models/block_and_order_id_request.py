@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class BlockAndOrderIdRequest(BaseModel):
     """
     destination_block_id: ResourceId = Field(alias="destinationBlockId")
     order_id: ResourceId = Field(alias="orderId")
-    __properties = ["destinationBlockId", "orderId"]
+    __properties: ClassVar[List[str]] = ["destinationBlockId", "orderId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -83,8 +83,8 @@ class BlockAndOrderIdRequest(BaseModel):
             return BlockAndOrderIdRequest.model_validate(obj)
 
         _obj = BlockAndOrderIdRequest.model_validate({
-            "destination_block_id": ResourceId.from_dict(obj.get("destinationBlockId")) if obj.get("destinationBlockId") is not None else None,
-            "order_id": ResourceId.from_dict(obj.get("orderId")) if obj.get("orderId") is not None else None
+            "destination_block_id": ResourceId.from_dict(_v) if (_v := obj.get("destinationBlockId")) is not None else None,
+            "order_id": ResourceId.from_dict(_v) if (_v := obj.get("orderId")) is not None else None
         })
         return _obj
 

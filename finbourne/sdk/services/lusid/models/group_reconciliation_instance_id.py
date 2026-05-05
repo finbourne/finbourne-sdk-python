@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -26,9 +26,9 @@ class GroupReconciliationInstanceId(BaseModel):
     """
     GroupReconciliationInstanceId
     """
-    instance_id_type:  StrictStr = Field(...,alias="instanceIdType", description="Type of the reconciliation run, manual or automatic (via the workflow). \"Manual\" | \"WorkflowServiceTaskId\"") 
+    instance_id_type:  StrictStr = Field(...,alias="instanceIdType", description="Type of the reconciliation run, manual or automatic (via the workflow). Available values: WorkflowServiceTaskId, Manual.") 
     instance_id_value:  StrictStr = Field(...,alias="instanceIdValue", description="Reconciliation run identifier: a manually-provided key or taskId.") 
-    __properties = ["instanceIdType", "instanceIdValue"]
+    __properties: ClassVar[List[str]] = ["instanceIdType", "instanceIdValue"]
 
     model_config = ConfigDict(
         populate_by_name=True,

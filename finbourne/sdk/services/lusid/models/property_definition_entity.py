@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,17 +31,17 @@ class PropertyDefinitionEntity(BaseModel):
     href:  StrictStr = Field(...,alias="href", description="The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime.") 
     entity_unique_id:  StrictStr = Field(...,alias="entityUniqueId", description="The unique id of the entity.") 
     as_at_version_number: Optional[StrictInt] = Field(default=None, description="The integer version number for the entity (the entity was created at version 1)", alias="asAtVersionNumber")
-    status:  StrictStr = Field(...,alias="status", description="The status of the entity at the current time.") 
+    status:  StrictStr = Field(...,alias="status", description="The status of the entity at the current time. Available values: Prevailing, Deleted, DoesNotExist.") 
     as_at_deleted: Optional[datetime] = Field(default=None, description="The asAt datetime at which the entity was deleted.", alias="asAtDeleted")
     user_id_deleted:  Optional[StrictStr] = Field(default=None,alias="userIdDeleted", description="The unique id of the user who deleted the entity.") 
     request_id_deleted:  Optional[StrictStr] = Field(default=None,alias="requestIdDeleted", description="The unique request id of the command that deleted the entity.") 
     effective_at_created: Optional[datetime] = Field(default=None, description="The EffectiveAt this Entity is created, if entity does not currently exist in EffectiveAt.", alias="effectiveAtCreated")
     prevailing_property_definition: Optional[PropertyDefinition] = Field(default=None, alias="prevailingPropertyDefinition")
     deleted_property_definition: Optional[PropertyDefinition] = Field(default=None, alias="deletedPropertyDefinition")
-    previewed_status:  Optional[StrictStr] = Field(default=None,alias="previewedStatus", description="The status of the previewed entity.") 
+    previewed_status:  Optional[StrictStr] = Field(default=None,alias="previewedStatus", description="The status of the previewed entity. Available values: Prevailing, Deleted, DoesNotExist.") 
     previewed_property_definition: Optional[PropertyDefinition] = Field(default=None, alias="previewedPropertyDefinition")
     links: Optional[List[Link]] = None
-    __properties = ["href", "entityUniqueId", "asAtVersionNumber", "status", "asAtDeleted", "userIdDeleted", "requestIdDeleted", "effectiveAtCreated", "prevailingPropertyDefinition", "deletedPropertyDefinition", "previewedStatus", "previewedPropertyDefinition", "links"]
+    __properties: ClassVar[List[str]] = ["href", "entityUniqueId", "asAtVersionNumber", "status", "asAtDeleted", "userIdDeleted", "requestIdDeleted", "effectiveAtCreated", "prevailingPropertyDefinition", "deletedPropertyDefinition", "previewedStatus", "previewedPropertyDefinition", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -148,11 +148,11 @@ class PropertyDefinitionEntity(BaseModel):
             "user_id_deleted": obj.get("userIdDeleted"),
             "request_id_deleted": obj.get("requestIdDeleted"),
             "effective_at_created": obj.get("effectiveAtCreated"),
-            "prevailing_property_definition": PropertyDefinition.from_dict(obj.get("prevailingPropertyDefinition")) if obj.get("prevailingPropertyDefinition") is not None else None,
-            "deleted_property_definition": PropertyDefinition.from_dict(obj.get("deletedPropertyDefinition")) if obj.get("deletedPropertyDefinition") is not None else None,
+            "prevailing_property_definition": PropertyDefinition.from_dict(_v) if (_v := obj.get("prevailingPropertyDefinition")) is not None else None,
+            "deleted_property_definition": PropertyDefinition.from_dict(_v) if (_v := obj.get("deletedPropertyDefinition")) is not None else None,
             "previewed_status": obj.get("previewedStatus"),
-            "previewed_property_definition": PropertyDefinition.from_dict(obj.get("previewedPropertyDefinition")) if obj.get("previewedPropertyDefinition") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "previewed_property_definition": PropertyDefinition.from_dict(_v) if (_v := obj.get("previewedPropertyDefinition")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class LuminesceView(BaseModel):
     """
     type:  StrictStr = Field(...,alias="type", description="The type of worker") 
     name:  StrictStr = Field(...,alias="name", description="Name of the view in Luminesce") 
-    __properties = ["type", "name"]
+    __properties: ClassVar[List[str]] = ["type", "name"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):

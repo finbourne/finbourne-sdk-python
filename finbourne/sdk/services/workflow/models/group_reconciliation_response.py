@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -27,7 +27,7 @@ class GroupReconciliationResponse(BaseModel):
     Readonly configuration for the Group Reconciliation Worker  # noqa: E501
     """
     type:  Optional[StrictStr] = Field(default=None,alias="type", description="The type of worker") 
-    __properties = ["type"]
+    __properties: ClassVar[List[str]] = ["type"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):

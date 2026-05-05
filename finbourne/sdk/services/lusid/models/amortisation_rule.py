@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,8 +29,8 @@ class AmortisationRule(BaseModel):
     name:  StrictStr = Field(...,alias="name", description="The name of the rule.") 
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="A description of the rule.") 
     filter:  StrictStr = Field(...,alias="filter", description="The filter for this rule.") 
-    amortisation_method:  StrictStr = Field(...,alias="amortisationMethod", description="The filter for this rule.") 
-    __properties = ["name", "description", "filter", "amortisationMethod"]
+    amortisation_method:  StrictStr = Field(...,alias="amortisationMethod", description="The filter for this rule. Available values: NoAmortisation, StraightLine, EffectiveYield, StraightLineSettlementDate, EffectiveYieldSettlementDate.") 
+    __properties: ClassVar[List[str]] = ["name", "description", "filter", "amortisationMethod"]
 
     model_config = ConfigDict(
         populate_by_name=True,

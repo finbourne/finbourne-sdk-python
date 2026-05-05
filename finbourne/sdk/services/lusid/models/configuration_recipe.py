@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -39,7 +39,7 @@ class ConfigurationRecipe(BaseModel):
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="User can assign a description to understand more humanly the recipe.") 
     holding: Optional[HoldingContext] = None
     translation: Optional[TranslationContext] = None
-    __properties = ["scope", "code", "market", "pricing", "aggregation", "description", "holding", "translation"]
+    __properties: ClassVar[List[str]] = ["scope", "code", "market", "pricing", "aggregation", "description", "holding", "translation"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -109,12 +109,12 @@ class ConfigurationRecipe(BaseModel):
         _obj = ConfigurationRecipe.model_validate({
             "scope": obj.get("scope"),
             "code": obj.get("code"),
-            "market": MarketContext.from_dict(obj.get("market")) if obj.get("market") is not None else None,
-            "pricing": PricingContext.from_dict(obj.get("pricing")) if obj.get("pricing") is not None else None,
-            "aggregation": AggregationContext.from_dict(obj.get("aggregation")) if obj.get("aggregation") is not None else None,
+            "market": MarketContext.from_dict(_v) if (_v := obj.get("market")) is not None else None,
+            "pricing": PricingContext.from_dict(_v) if (_v := obj.get("pricing")) is not None else None,
+            "aggregation": AggregationContext.from_dict(_v) if (_v := obj.get("aggregation")) is not None else None,
             "description": obj.get("description"),
-            "holding": HoldingContext.from_dict(obj.get("holding")) if obj.get("holding") is not None else None,
-            "translation": TranslationContext.from_dict(obj.get("translation")) if obj.get("translation") is not None else None
+            "holding": HoldingContext.from_dict(_v) if (_v := obj.get("holding")) is not None else None,
+            "translation": TranslationContext.from_dict(_v) if (_v := obj.get("translation")) is not None else None
         })
         return _obj
 

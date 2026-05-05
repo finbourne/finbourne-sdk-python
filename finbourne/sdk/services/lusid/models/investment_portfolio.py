@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class InvestmentPortfolio(BaseModel):
     identifiers: Optional[Dict[str, Optional[StrictStr]]] = Field(default=None, description="The code identifier of the Investment Portfolio")
     entity_unique_id:  Optional[StrictStr] = Field(default=None,alias="entityUniqueId", description="The unique Portfolio entity identifier") 
     portfolio: Optional[Portfolio] = None
-    __properties = ["key", "scope", "identifiers", "entityUniqueId", "portfolio"]
+    __properties: ClassVar[List[str]] = ["key", "scope", "identifiers", "entityUniqueId", "portfolio"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -107,7 +107,7 @@ class InvestmentPortfolio(BaseModel):
             "scope": obj.get("scope"),
             "identifiers": obj.get("identifiers"),
             "entity_unique_id": obj.get("entityUniqueId"),
-            "portfolio": Portfolio.from_dict(obj.get("portfolio")) if obj.get("portfolio") is not None else None
+            "portfolio": Portfolio.from_dict(_v) if (_v := obj.get("portfolio")) is not None else None
         })
         return _obj
 

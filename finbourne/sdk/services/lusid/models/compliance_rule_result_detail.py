@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -38,7 +38,7 @@ class ComplianceRuleResultDetail(BaseModel):
     rule_name:  StrictStr = Field(...,alias="ruleName") 
     rule_description:  StrictStr = Field(...,alias="ruleDescription") 
     outcome:  StrictStr = Field(...,alias="outcome") 
-    __properties = ["ruleId", "affectedPortfoliosDetails", "affectedOrders", "templateId", "templateDescription", "templateVariation", "status", "ruleName", "ruleDescription", "outcome"]
+    __properties: ClassVar[List[str]] = ["ruleId", "affectedPortfoliosDetails", "affectedOrders", "templateId", "templateDescription", "templateVariation", "status", "ruleName", "ruleDescription", "outcome"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -106,10 +106,10 @@ class ComplianceRuleResultDetail(BaseModel):
             return ComplianceRuleResultDetail.model_validate(obj)
 
         _obj = ComplianceRuleResultDetail.model_validate({
-            "rule_id": ResourceId.from_dict(obj.get("ruleId")) if obj.get("ruleId") is not None else None,
-            "affected_portfolios_details": [ComplianceRuleResultPortfolioDetail.from_dict(_item) for _item in obj.get("affectedPortfoliosDetails")] if obj.get("affectedPortfoliosDetails") is not None else None,
-            "affected_orders": [ResourceId.from_dict(_item) for _item in obj.get("affectedOrders")] if obj.get("affectedOrders") is not None else None,
-            "template_id": ResourceId.from_dict(obj.get("templateId")) if obj.get("templateId") is not None else None,
+            "rule_id": ResourceId.from_dict(_v) if (_v := obj.get("ruleId")) is not None else None,
+            "affected_portfolios_details": [ComplianceRuleResultPortfolioDetail.from_dict(_item) for _item in _v] if (_v := obj.get("affectedPortfoliosDetails")) is not None else None,
+            "affected_orders": [ResourceId.from_dict(_item) for _item in _v] if (_v := obj.get("affectedOrders")) is not None else None,
+            "template_id": ResourceId.from_dict(_v) if (_v := obj.get("templateId")) is not None else None,
             "template_description": obj.get("templateDescription"),
             "template_variation": obj.get("templateVariation"),
             "status": obj.get("status"),

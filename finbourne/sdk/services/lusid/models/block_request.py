@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -41,7 +41,7 @@ class BlockRequest(BaseModel):
     limit_price: Optional[CurrencyAndAmount] = Field(default=None, alias="limitPrice")
     stop_price: Optional[CurrencyAndAmount] = Field(default=None, alias="stopPrice")
     is_swept: Optional[StrictBool] = Field(default=None, description="Swept blocks are considered no longer of active interest, and no longer take part in various order management processes", alias="isSwept")
-    __properties = ["id", "orderIds", "properties", "instrumentIdentifiers", "quantity", "side", "type", "timeInForce", "createdDate", "limitPrice", "stopPrice", "isSwept"]
+    __properties: ClassVar[List[str]] = ["id", "orderIds", "properties", "instrumentIdentifiers", "quantity", "side", "type", "timeInForce", "createdDate", "limitPrice", "stopPrice", "isSwept"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -122,13 +122,13 @@ class BlockRequest(BaseModel):
             return BlockRequest.model_validate(obj)
 
         _obj = BlockRequest.model_validate({
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
-            "order_ids": [ResourceId.from_dict(_item) for _item in obj.get("orderIds")] if obj.get("orderIds") is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
+            "order_ids": [ResourceId.from_dict(_item) for _item in _v] if (_v := obj.get("orderIds")) is not None else None,
             "properties": dict(
                 (_k, PerpetualProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
             "instrument_identifiers": obj.get("instrumentIdentifiers"),
             "quantity": obj.get("quantity"),
@@ -136,8 +136,8 @@ class BlockRequest(BaseModel):
             "type": obj.get("type"),
             "time_in_force": obj.get("timeInForce"),
             "created_date": obj.get("createdDate"),
-            "limit_price": CurrencyAndAmount.from_dict(obj.get("limitPrice")) if obj.get("limitPrice") is not None else None,
-            "stop_price": CurrencyAndAmount.from_dict(obj.get("stopPrice")) if obj.get("stopPrice") is not None else None,
+            "limit_price": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("limitPrice")) is not None else None,
+            "stop_price": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("stopPrice")) is not None else None,
             "is_swept": obj.get("isSwept")
         })
         return _obj

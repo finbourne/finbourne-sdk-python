@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -39,7 +39,7 @@ class StorageObject(BaseModel):
     status:  Optional[StrictStr] = Field(default=None,alias="status", description="File status corresponding to virus scan status. (Active, Available, Checking, MalwareDetected, Failed)") 
     status_detail:  Optional[StrictStr] = Field(default=None,alias="statusDetail", description="Detailed description describing any negative terminal state of file") 
     links: Optional[List[Link]] = None
-    __properties = ["id", "path", "name", "createdBy", "createdOn", "updatedBy", "updatedOn", "type", "size", "status", "statusDetail", "links"]
+    __properties: ClassVar[List[str]] = ["id", "path", "name", "createdBy", "createdOn", "updatedBy", "updatedOn", "type", "size", "status", "statusDetail", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -125,7 +125,7 @@ class StorageObject(BaseModel):
             "size": obj.get("size"),
             "status": obj.get("status"),
             "status_detail": obj.get("statusDetail"),
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

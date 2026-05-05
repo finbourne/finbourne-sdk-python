@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class FileResponse(BaseModel):
     file_stream: Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]] = Field(default=None, alias="fileStream")
     content_type:  Optional[StrictStr] = Field(default=None,alias="contentType") 
     downloaded_filename:  Optional[StrictStr] = Field(default=None,alias="downloadedFilename") 
-    __properties = ["fileStream", "contentType", "downloadedFilename"]
+    __properties: ClassVar[List[str]] = ["fileStream", "contentType", "downloadedFilename"]
 
     model_config = ConfigDict(
         populate_by_name=True,

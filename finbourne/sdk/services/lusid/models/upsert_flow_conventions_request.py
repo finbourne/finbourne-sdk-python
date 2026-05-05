@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class UpsertFlowConventionsRequest(BaseModel):
     Flow conventions that is to be stored in the convention data store.  Only one of these must be present.  # noqa: E501
     """
     flow_conventions: Optional[FlowConventions] = Field(default=None, alias="flowConventions")
-    __properties = ["flowConventions"]
+    __properties: ClassVar[List[str]] = ["flowConventions"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,7 +79,7 @@ class UpsertFlowConventionsRequest(BaseModel):
             return UpsertFlowConventionsRequest.model_validate(obj)
 
         _obj = UpsertFlowConventionsRequest.model_validate({
-            "flow_conventions": FlowConventions.from_dict(obj.get("flowConventions")) if obj.get("flowConventions") is not None else None
+            "flow_conventions": FlowConventions.from_dict(_v) if (_v := obj.get("flowConventions")) is not None else None
         })
         return _obj
 

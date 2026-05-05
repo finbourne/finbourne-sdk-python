@@ -23,7 +23,7 @@ from finbourne.sdk.services.workflow.models.relative_month_regularity import Rel
 from finbourne.sdk.services.workflow.models.specific_month_regularity import SpecificMonthRegularity
 from finbourne.sdk.services.workflow.models.week_regularity import WeekRegularity
 from finbourne.sdk.services.workflow.models.year_regularity import YearRegularity
-from typing import Optional, List, Dict, Union, Annotated, Any, Literal, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Any, ClassVar, Literal, TYPE_CHECKING
 
 DATEREGULARITY_ONE_OF_SCHEMAS = ["DayRegularity", "RelativeMonthRegularity", "SpecificMonthRegularity", "WeekRegularity", "YearRegularity"]
 
@@ -45,25 +45,25 @@ class DateRegularity(BaseModel):
         actual_instance: Union[DayRegularity, RelativeMonthRegularity, SpecificMonthRegularity, WeekRegularity, YearRegularity]
     else:
         actual_instance: Any
-    one_of_schemas: Literal[DATEREGULARITY_ONE_OF_SCHEMAS] = DATEREGULARITY_ONE_OF_SCHEMAS
+    one_of_schemas: ClassVar[List[str]] = DATEREGULARITY_ONE_OF_SCHEMAS
 
     model_config = ConfigDict(
         validate_assignment=True
     )
 
-    def __init__(self, *args, **kwargs) -> None:
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         if args:
             if len(args) > 1:
                 raise ValueError("If a position argument is used, only 1 is allowed to set `actual_instance`")
             if kwargs:
                 raise ValueError("If a position argument is used, keyword arguments cannot be used.")
-            super().__init__(actual_instance=args[0])
+            super().__init__(actual_instance=args[0])  # type: ignore[index]
         else:
             super().__init__(**kwargs)
 
     @field_validator('actual_instance')
     def actual_instance_must_validate_oneof(cls, v):
-        instance = DateRegularity.model_construct()
+        _instance = DateRegularity.model_construct()
         error_messages = []
         match = 0
         matchclass = ""
@@ -175,7 +175,7 @@ class DateRegularity(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> dict:
+    def to_dict(self) -> Any:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

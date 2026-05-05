@@ -67,12 +67,12 @@ class UserRolesApi:
         :return: Returns the result object.
         :rtype: UserRoleResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the add_policy_collection_to_user_role_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.add_policy_collection_to_user_role_with_http_info(userid, add_policy_collection_to_role_request, **kwargs)  # noqa: E501
+        response = self.add_policy_collection_to_user_role_with_http_info(userid, add_policy_collection_to_role_request, **kwargs)
+        return response.data
 
     @validate_call
     def add_policy_collection_to_user_role_with_http_info(self, userid: StrictStr, add_policy_collection_to_role_request: AddPolicyCollectionToRoleRequest, **kwargs) -> ApiResponse[UserRoleResponse]:
@@ -202,12 +202,12 @@ class UserRolesApi:
         :return: Returns the result object.
         :rtype: UserRoleResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the add_policy_to_user_role_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.add_policy_to_user_role_with_http_info(userid, add_policy_to_role_request, **kwargs)  # noqa: E501
+        response = self.add_policy_to_user_role_with_http_info(userid, add_policy_to_role_request, **kwargs)
+        return response.data
 
     @validate_call
     def add_policy_to_user_role_with_http_info(self, userid: StrictStr, add_policy_to_role_request: AddPolicyToRoleRequest, **kwargs) -> ApiResponse[UserRoleResponse]:
@@ -335,12 +335,12 @@ class UserRolesApi:
         :return: Returns the result object.
         :rtype: UserRoleResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_user_role_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_user_role_with_http_info(user_role_creation_request, **kwargs)  # noqa: E501
+        response = self.create_user_role_with_http_info(user_role_creation_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_user_role_with_http_info(self, user_role_creation_request: UserRoleCreationRequest, **kwargs) -> ApiResponse[UserRoleResponse]:
@@ -462,15 +462,15 @@ class UserRolesApi:
         :return: Returns the result object.
         :rtype: None
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_user_role_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_user_role_with_http_info(userid, **kwargs)  # noqa: E501
+        response = self.delete_user_role_with_http_info(userid, **kwargs)
+        return response.data
 
     @validate_call
-    def delete_user_role_with_http_info(self, userid: StrictStr, **kwargs) -> None:
+    def delete_user_role_with_http_info(self, userid: StrictStr, **kwargs) -> ApiResponse[None]:
         """DeleteUserRole: Delete a user-role  # noqa: E501
 
         Deletes an identified user-role.  # noqa: E501
@@ -579,12 +579,12 @@ class UserRolesApi:
         :return: Returns the result object.
         :rtype: UserRoleResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_user_role_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_user_role_with_http_info(userid, **kwargs)  # noqa: E501
+        response = self.get_user_role_with_http_info(userid, **kwargs)
+        return response.data
 
     @validate_call
     def get_user_role_with_http_info(self, userid: StrictStr, **kwargs) -> ApiResponse[UserRoleResponse]:
@@ -705,12 +705,12 @@ class UserRolesApi:
         :return: Returns the result object.
         :rtype: ResourceListOfUserRoleResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_user_roles_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_user_roles_with_http_info(filter, sort_by, limit, page, **kwargs)  # noqa: E501
+        response = self.list_user_roles_with_http_info(filter, sort_by, limit, page, **kwargs)
+        return response.data
 
     @validate_call
     def list_user_roles_with_http_info(self, filter: Optional[StrictStr] = None, sort_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfUserRoleResponse]:
@@ -847,15 +847,15 @@ class UserRolesApi:
         :return: Returns the result object.
         :rtype: None
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the remove_policy_collection_from_user_role_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.remove_policy_collection_from_user_role_with_http_info(userid, policy_collection_scope, policy_collection_code, **kwargs)  # noqa: E501
+        response = self.remove_policy_collection_from_user_role_with_http_info(userid, policy_collection_scope, policy_collection_code, **kwargs)
+        return response.data
 
     @validate_call
-    def remove_policy_collection_from_user_role_with_http_info(self, userid: StrictStr, policy_collection_scope: StrictStr, policy_collection_code: StrictStr, **kwargs) -> None:
+    def remove_policy_collection_from_user_role_with_http_info(self, userid: StrictStr, policy_collection_scope: StrictStr, policy_collection_code: StrictStr, **kwargs) -> ApiResponse[None]:
         """RemovePolicyCollectionFromUserRole: Remove a policy collection from a user-role  # noqa: E501
 
         Removes a policy collection from a user-role.  # noqa: E501
@@ -980,15 +980,15 @@ class UserRolesApi:
         :return: Returns the result object.
         :rtype: None
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the remove_policy_from_user_role_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.remove_policy_from_user_role_with_http_info(userid, policy_scope, policy_code, **kwargs)  # noqa: E501
+        response = self.remove_policy_from_user_role_with_http_info(userid, policy_scope, policy_code, **kwargs)
+        return response.data
 
     @validate_call
-    def remove_policy_from_user_role_with_http_info(self, userid: StrictStr, policy_scope: StrictStr, policy_code: StrictStr, **kwargs) -> None:
+    def remove_policy_from_user_role_with_http_info(self, userid: StrictStr, policy_scope: StrictStr, policy_code: StrictStr, **kwargs) -> ApiResponse[None]:
         """RemovePolicyFromUserRole: Remove a policy from a user-role  # noqa: E501
 
         Removes a policy from a user-role.  # noqa: E501
@@ -1111,12 +1111,12 @@ class UserRolesApi:
         :return: Returns the result object.
         :rtype: UserRoleResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_user_role_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_user_role_with_http_info(userid, user_role_update_request, **kwargs)  # noqa: E501
+        response = self.update_user_role_with_http_info(userid, user_role_update_request, **kwargs)
+        return response.data
 
     @validate_call
     def update_user_role_with_http_info(self, userid: StrictStr, user_role_update_request: UserRoleUpdateRequest, **kwargs) -> ApiResponse[UserRoleResponse]:
@@ -1250,12 +1250,12 @@ class UserRolesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: UserRoleResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the add_policy_collection_to_user_role_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.add_policy_collection_to_user_role_with_http_info_async(userid, add_policy_collection_to_role_request, **kwargs)  # noqa: E501
+            response = await self.add_policy_collection_to_user_role_with_http_info_async(userid, add_policy_collection_to_role_request, **kwargs)
+            return response.data
 
     @validate_call
     async def add_policy_collection_to_user_role_with_http_info_async(self, userid: StrictStr, add_policy_collection_to_role_request: AddPolicyCollectionToRoleRequest, **kwargs) -> ApiResponse[UserRoleResponse]:
@@ -1386,12 +1386,12 @@ class UserRolesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: UserRoleResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the add_policy_to_user_role_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.add_policy_to_user_role_with_http_info_async(userid, add_policy_to_role_request, **kwargs)  # noqa: E501
+            response = await self.add_policy_to_user_role_with_http_info_async(userid, add_policy_to_role_request, **kwargs)
+            return response.data
 
     @validate_call
     async def add_policy_to_user_role_with_http_info_async(self, userid: StrictStr, add_policy_to_role_request: AddPolicyToRoleRequest, **kwargs) -> ApiResponse[UserRoleResponse]:
@@ -1520,12 +1520,12 @@ class UserRolesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: UserRoleResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_user_role_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_user_role_with_http_info_async(user_role_creation_request, **kwargs)  # noqa: E501
+            response = await self.create_user_role_with_http_info_async(user_role_creation_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_user_role_with_http_info_async(self, user_role_creation_request: UserRoleCreationRequest, **kwargs) -> ApiResponse[UserRoleResponse]:
@@ -1648,15 +1648,15 @@ class UserRolesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: None
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_user_role_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_user_role_with_http_info_async(userid, **kwargs)  # noqa: E501
+            response = await self.delete_user_role_with_http_info_async(userid, **kwargs)
+            return response.data
 
     @validate_call
-    async def delete_user_role_with_http_info_async(self, userid: StrictStr, **kwargs) -> None:
+    async def delete_user_role_with_http_info_async(self, userid: StrictStr, **kwargs) -> ApiResponse[None]:
             """DeleteUserRole: Delete a user-role  # noqa: E501
 
             Deletes an identified user-role.  # noqa: E501
@@ -1766,12 +1766,12 @@ class UserRolesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: UserRoleResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_user_role_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_user_role_with_http_info_async(userid, **kwargs)  # noqa: E501
+            response = await self.get_user_role_with_http_info_async(userid, **kwargs)
+            return response.data
 
     @validate_call
     async def get_user_role_with_http_info_async(self, userid: StrictStr, **kwargs) -> ApiResponse[UserRoleResponse]:
@@ -1893,12 +1893,12 @@ class UserRolesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfUserRoleResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_user_roles_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_user_roles_with_http_info_async(filter, sort_by, limit, page, **kwargs)  # noqa: E501
+            response = await self.list_user_roles_with_http_info_async(filter, sort_by, limit, page, **kwargs)
+            return response.data
 
     @validate_call
     async def list_user_roles_with_http_info_async(self, filter: Optional[StrictStr] = None, sort_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfUserRoleResponse]:
@@ -2036,15 +2036,15 @@ class UserRolesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: None
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the remove_policy_collection_from_user_role_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.remove_policy_collection_from_user_role_with_http_info_async(userid, policy_collection_scope, policy_collection_code, **kwargs)  # noqa: E501
+            response = await self.remove_policy_collection_from_user_role_with_http_info_async(userid, policy_collection_scope, policy_collection_code, **kwargs)
+            return response.data
 
     @validate_call
-    async def remove_policy_collection_from_user_role_with_http_info_async(self, userid: StrictStr, policy_collection_scope: StrictStr, policy_collection_code: StrictStr, **kwargs) -> None:
+    async def remove_policy_collection_from_user_role_with_http_info_async(self, userid: StrictStr, policy_collection_scope: StrictStr, policy_collection_code: StrictStr, **kwargs) -> ApiResponse[None]:
             """RemovePolicyCollectionFromUserRole: Remove a policy collection from a user-role  # noqa: E501
 
             Removes a policy collection from a user-role.  # noqa: E501
@@ -2170,15 +2170,15 @@ class UserRolesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: None
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the remove_policy_from_user_role_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.remove_policy_from_user_role_with_http_info_async(userid, policy_scope, policy_code, **kwargs)  # noqa: E501
+            response = await self.remove_policy_from_user_role_with_http_info_async(userid, policy_scope, policy_code, **kwargs)
+            return response.data
 
     @validate_call
-    async def remove_policy_from_user_role_with_http_info_async(self, userid: StrictStr, policy_scope: StrictStr, policy_code: StrictStr, **kwargs) -> None:
+    async def remove_policy_from_user_role_with_http_info_async(self, userid: StrictStr, policy_scope: StrictStr, policy_code: StrictStr, **kwargs) -> ApiResponse[None]:
             """RemovePolicyFromUserRole: Remove a policy from a user-role  # noqa: E501
 
             Removes a policy from a user-role.  # noqa: E501
@@ -2302,12 +2302,12 @@ class UserRolesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: UserRoleResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_user_role_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_user_role_with_http_info_async(userid, user_role_update_request, **kwargs)  # noqa: E501
+            response = await self.update_user_role_with_http_info_async(userid, user_role_update_request, **kwargs)
+            return response.data
 
     @validate_call
     async def update_user_role_with_http_info_async(self, userid: StrictStr, user_role_update_request: UserRoleUpdateRequest, **kwargs) -> ApiResponse[UserRoleResponse]:

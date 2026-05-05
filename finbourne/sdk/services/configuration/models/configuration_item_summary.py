@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class ConfigurationItemSummary(BaseModel):
     ref:  StrictStr = Field(...,alias="ref", description="The reference to the configuration item") 
     block_reveal: StrictBool = Field(description="Defines whether the value is blocked with non-internal request.", alias="blockReveal")
     links: Optional[List[Link]] = None
-    __properties = ["key", "value", "valueType", "isSecret", "ref", "blockReveal", "links"]
+    __properties: ClassVar[List[str]] = ["key", "value", "valueType", "isSecret", "ref", "blockReveal", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -101,7 +101,7 @@ class ConfigurationItemSummary(BaseModel):
             "is_secret": obj.get("isSecret"),
             "ref": obj.get("ref"),
             "block_reveal": obj.get("blockReveal"),
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

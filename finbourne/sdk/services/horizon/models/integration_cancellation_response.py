@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -27,7 +27,7 @@ class IntegrationCancellationResponse(BaseModel):
     No content is returned when an instance is cancelled.  # noqa: E501
     """
     response: Dict[str, StrictStr]
-    __properties = ["response"]
+    __properties: ClassVar[List[str]] = ["response"]
 
     model_config = ConfigDict(
         populate_by_name=True,

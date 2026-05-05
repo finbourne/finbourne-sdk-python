@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class DeleteRelationalDataPointRequest(BaseModel):
     """
     data_series: DataSeries = Field(alias="dataSeries")
     effective_at:  StrictStr = Field(...,alias="effectiveAt", description="The effectiveAt or cut-label datetime of the DataPoint.") 
-    __properties = ["dataSeries", "effectiveAt"]
+    __properties: ClassVar[List[str]] = ["dataSeries", "effectiveAt"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,7 +80,7 @@ class DeleteRelationalDataPointRequest(BaseModel):
             return DeleteRelationalDataPointRequest.model_validate(obj)
 
         _obj = DeleteRelationalDataPointRequest.model_validate({
-            "data_series": DataSeries.from_dict(obj.get("dataSeries")) if obj.get("dataSeries") is not None else None,
+            "data_series": DataSeries.from_dict(_v) if (_v := obj.get("dataSeries")) is not None else None,
             "effective_at": obj.get("effectiveAt")
         })
         return _obj

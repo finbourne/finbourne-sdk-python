@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class WeightedInstruments(BaseModel):
     Class that models a set of instruments of which each has some quantity and can be identified by a unique label.  # noqa: E501
     """
     instruments: List[WeightedInstrument] = Field(description="The instruments that are held in the set.")
-    __properties = ["instruments"]
+    __properties: ClassVar[List[str]] = ["instruments"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -83,7 +83,7 @@ class WeightedInstruments(BaseModel):
             return WeightedInstruments.model_validate(obj)
 
         _obj = WeightedInstruments.model_validate({
-            "instruments": [WeightedInstrument.from_dict(_item) for _item in obj.get("instruments")] if obj.get("instruments") is not None else None
+            "instruments": [WeightedInstrument.from_dict(_item) for _item in _v] if (_v := obj.get("instruments")) is not None else None
         })
         return _obj
 

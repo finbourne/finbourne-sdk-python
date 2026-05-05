@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -27,12 +27,12 @@ class DependencySourceFilter(BaseModel):
     """
     Encapsulates parts of a market data rule relating not to the nature of the market data requested, but rather the nature of the thing (instrument/model) that is requesting it.  In the first instance, this includes the instrument type, asset class, and the currency of the underlying instrument.  This can be used to differentiate requests for market data according to the source of the request. See MarketDataSpecificRule.  # noqa: E501
     """
-    instrument_type:  Optional[StrictStr] = Field(default=None,alias="instrumentType", description="Specify that a rule should only apply if the market data is requested by an instrument of a given instrument type.  If null, then no filtering on instrument type is applied.") 
-    asset_class:  Optional[StrictStr] = Field(default=None,alias="assetClass", description="Specify that a rule should only apply if the market data is requested by an instrument of a given asset class.  If null, then no filtering on asset class is applied.") 
+    instrument_type:  Optional[StrictStr] = Field(default=None,alias="instrumentType", description="Specify that a rule should only apply if the market data is requested by an instrument of a given instrument type.  If null, then no filtering on instrument type is applied. Available values: Bond, CashPerpetual, CapFloor, CashSettled, CreditDefaultSwap, ForwardRateAgreement, Future, FxForward, FxOption, Index, InterestRateSwap, QuotedSecurity, Repo, ExoticInstrument, Equity, InterestRateSwaption, EquityOption, FixedLeg, FloatingLeg, BespokeCashFlowsLeg, StructuredInstrument, TermDeposit, ContractForDifference, EquitySwap, CdsIndex, Basket, FundingLeg, FxSwap, SimpleInstrument, ExchangeTradedOption, ReferenceInstrument, ComplexBond, InflationLinkedBond, InflationSwap, SimpleCashFlowLoan, TotalReturnSwap, InflationLeg, FundShareClass, FlexibleLoan, Cash, UnsettledCash, MasteredInstrument, LoanFacility, FlexibleDeposit, FlexibleRepo, Unknown.") 
+    asset_class:  Optional[StrictStr] = Field(default=None,alias="assetClass", description="Specify that a rule should only apply if the market data is requested by an instrument of a given asset class.  If null, then no filtering on asset class is applied. Available values: InterestRates, FX, Inflation, Equities, Credit, Commodities, Money, Unknown.") 
     dom_ccy:  Optional[StrictStr] = Field(default=None,alias="domCcy", description="Specify that a rule should only apply if the market data is requested by an instrument with a given domestic currency.  If null, then no filtering on currency is applied.") 
-    long_or_short_indicator:  Optional[StrictStr] = Field(default=None,alias="longOrShortIndicator", description="Specify that a rule should apply if the market data is requested by a model with a given long or short indicator.  If none, then no filtering on LongOrShortIndicator is applied.") 
+    long_or_short_indicator:  Optional[StrictStr] = Field(default=None,alias="longOrShortIndicator", description="Specify that a rule should apply if the market data is requested by a model with a given Long or Short indicator.  If none, then no filtering on LongOrShortIndicator is applied. Available values: NA, Long, Short.") 
     address_key_filters: Optional[List[AddressKeyFilter]] = Field(default=None, description="Specify that a rule should apply if the market data is requested by an instrument with features or properties  satisfying all the given address key filters. If an empty list is given, no additional filtering is done.", alias="addressKeyFilters")
-    __properties = ["instrumentType", "assetClass", "domCcy", "longOrShortIndicator", "addressKeyFilters"]
+    __properties: ClassVar[List[str]] = ["instrumentType", "assetClass", "domCcy", "longOrShortIndicator", "addressKeyFilters"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -116,7 +116,7 @@ class DependencySourceFilter(BaseModel):
             "asset_class": obj.get("assetClass"),
             "dom_ccy": obj.get("domCcy"),
             "long_or_short_indicator": obj.get("longOrShortIndicator"),
-            "address_key_filters": [AddressKeyFilter.from_dict(_item) for _item in obj.get("addressKeyFilters")] if obj.get("addressKeyFilters") is not None else None
+            "address_key_filters": [AddressKeyFilter.from_dict(_item) for _item in _v] if (_v := obj.get("addressKeyFilters")) is not None else None
         })
         return _obj
 

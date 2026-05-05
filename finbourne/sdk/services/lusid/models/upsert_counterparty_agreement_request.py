@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class UpsertCounterpartyAgreementRequest(BaseModel):
     Counterparty Agreement that is to be stored in the convention data store.  There must be only one of these present.  # noqa: E501
     """
     counterparty_agreement: CounterpartyAgreement = Field(alias="counterpartyAgreement")
-    __properties = ["counterpartyAgreement"]
+    __properties: ClassVar[List[str]] = ["counterpartyAgreement"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,7 +79,7 @@ class UpsertCounterpartyAgreementRequest(BaseModel):
             return UpsertCounterpartyAgreementRequest.model_validate(obj)
 
         _obj = UpsertCounterpartyAgreementRequest.model_validate({
-            "counterparty_agreement": CounterpartyAgreement.from_dict(obj.get("counterpartyAgreement")) if obj.get("counterpartyAgreement") is not None else None
+            "counterparty_agreement": CounterpartyAgreement.from_dict(_v) if (_v := obj.get("counterpartyAgreement")) is not None else None
         })
         return _obj
 

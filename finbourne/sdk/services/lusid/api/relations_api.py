@@ -69,12 +69,12 @@ class RelationsApi:
         :return: Returns the result object.
         :rtype: CompleteRelation
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_relation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_relation_with_http_info(scope, code, create_relation_request, effective_at, **kwargs)  # noqa: E501
+        response = self.create_relation_with_http_info(scope, code, create_relation_request, effective_at, **kwargs)
+        return response.data
 
     @validate_call
     def create_relation_with_http_info(self, scope: StrictStr, code: StrictStr, create_relation_request: CreateRelationRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[CompleteRelation]:
@@ -220,12 +220,12 @@ class RelationsApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_relation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_relation_with_http_info(scope, code, delete_relation_request, effective_at, **kwargs)  # noqa: E501
+        response = self.delete_relation_with_http_info(scope, code, delete_relation_request, effective_at, **kwargs)
+        return response.data
 
     @validate_call
     def delete_relation_with_http_info(self, scope: StrictStr, code: StrictStr, delete_relation_request: DeleteRelationRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -375,12 +375,12 @@ class RelationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: CompleteRelation
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_relation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_relation_with_http_info_async(scope, code, create_relation_request, effective_at, **kwargs)  # noqa: E501
+            response = await self.create_relation_with_http_info_async(scope, code, create_relation_request, effective_at, **kwargs)
+            return response.data
 
     @validate_call
     async def create_relation_with_http_info_async(self, scope: StrictStr, code: StrictStr, create_relation_request: CreateRelationRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[CompleteRelation]:
@@ -527,12 +527,12 @@ class RelationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_relation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_relation_with_http_info_async(scope, code, delete_relation_request, effective_at, **kwargs)  # noqa: E501
+            response = await self.delete_relation_with_http_info_async(scope, code, delete_relation_request, effective_at, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_relation_with_http_info_async(self, scope: StrictStr, code: StrictStr, delete_relation_request: DeleteRelationRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:

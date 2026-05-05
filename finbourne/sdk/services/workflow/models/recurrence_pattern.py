@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class RecurrencePattern(BaseModel):
     time_constraints: TimeConstraints = Field(alias="timeConstraints")
     date_regularity: DateRegularity = Field(alias="dateRegularity")
     business_day_adjustment:  StrictStr = Field(...,alias="businessDayAdjustment", description="The Business Day Adjustment. One of None, Previous, Following, ModifiedPrevious, ModifiedFollowing, HalfMonthModifiedFollowing, Nearest") 
-    __properties = ["timeConstraints", "dateRegularity", "businessDayAdjustment"]
+    __properties: ClassVar[List[str]] = ["timeConstraints", "dateRegularity", "businessDayAdjustment"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,8 +85,8 @@ class RecurrencePattern(BaseModel):
             return RecurrencePattern.model_validate(obj)
 
         _obj = RecurrencePattern.model_validate({
-            "time_constraints": TimeConstraints.from_dict(obj.get("timeConstraints")) if obj.get("timeConstraints") is not None else None,
-            "date_regularity": DateRegularity.from_dict(obj.get("dateRegularity")) if obj.get("dateRegularity") is not None else None,
+            "time_constraints": TimeConstraints.from_dict(_v) if (_v := obj.get("timeConstraints")) is not None else None,
+            "date_regularity": DateRegularity.from_dict(_v) if (_v := obj.get("dateRegularity")) is not None else None,
             "business_day_adjustment": obj.get("businessDayAdjustment")
         })
         return _obj

@@ -8,7 +8,7 @@ Defines the rule set to be used to determine if entries should be considered as 
 | **scope** | **str** | Required | The scope for this mapping. |
 | **code** | **str** | Required | The code for this mapping. |
 | **name** | **str** | Required | The mapping name |
-| **reconciliation_type** | **str** | Required | What type of reconciliation this mapping is for |
+| **reconciliation_type** | **str** | Required | What type of reconciliation this mapping is for. Available values: Transaction, Holding, Valuation, Cash, CashHolding. |
 | **rules** | [List[MappingRule]](MappingRule.md) | Optional | The rules in this mapping, keyed by the left field/property name |
 
 
@@ -23,7 +23,7 @@ instance = Mapping(
     scope="...",  # required — The scope for this mapping.
     code="...",  # required — The code for this mapping.
     name="...",  # required — The mapping name
-    reconciliation_type="...",  # required — What type of reconciliation this mapping is for
+    reconciliation_type="...",  # required — What type of reconciliation this mapping is for. Available values: Transaction, Holding, Valuation, Cash, CashHolding.
     rules=[]  # optional — The rules in this mapping, keyed by the left field/property name
 )
 ```

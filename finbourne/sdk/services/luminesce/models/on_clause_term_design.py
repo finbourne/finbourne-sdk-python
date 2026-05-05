@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class OnClauseTermDesign(BaseModel):
     operator: QueryDesignerBinaryOperator
     filter_value:  Optional[StrictStr] = Field(default=None,alias="filterValue", description="The value to compare against (always as a string, but will be formatted to the correct type)") 
     filter_value_data_type: Optional[DataType] = Field(default=None, alias="filterValueDataType")
-    __properties = ["leftTableField", "rightTableField", "operator", "filterValue", "filterValueDataType"]
+    __properties: ClassVar[List[str]] = ["leftTableField", "rightTableField", "operator", "filterValue", "filterValueDataType"]
 
     model_config = ConfigDict(
         populate_by_name=True,

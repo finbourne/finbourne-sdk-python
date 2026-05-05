@@ -67,9 +67,9 @@ class RESTClientObject:
         self.proxy = configuration.proxy
         self.proxy_headers = configuration.proxy_headers
         self.timeout = aiohttp.ClientTimeout(
-            total=configuration.timeouts.total_timeout_ms / 1000.0 if configuration.timeouts != None and configuration.timeouts.total_timeout_ms != None else None,
-            connect=configuration.timeouts.connect_timeout_ms / 1000.0 if configuration.timeouts != None and configuration.timeouts.connect_timeout_ms != None else None,
-            sock_read=configuration.timeouts.read_timeout_ms / 1000.0 if configuration.timeouts != None and configuration.timeouts.read_timeout_ms != None else None,
+            total=configuration.timeouts.total_timeout_ms / 1000.0 if configuration.timeouts is not None and configuration.timeouts.total_timeout_ms is not None else None,
+            connect=configuration.timeouts.connect_timeout_ms / 1000.0 if configuration.timeouts is not None and configuration.timeouts.connect_timeout_ms is not None else None,
+            sock_read=configuration.timeouts.read_timeout_ms / 1000.0 if configuration.timeouts is not None and configuration.timeouts.read_timeout_ms is not None else None,
         )
 
         # https pool manager
@@ -120,38 +120,38 @@ class RESTClientObject:
         # try to get values from opts first, then _request_timeout, then self.timeout, else set to None
         # timeout = _request_timeout or self.timeout
         timeout = None
-        opts_total_timeout = opts.total_timeout_ms / 1000.0 if opts and opts.total_timeout_ms != None else None
-        opts_connect_timeout = opts.connect_timeout_ms / 1000.0 if opts and opts.connect_timeout_ms != None else None
-        opts_read_timeout = opts.read_timeout_ms / 1000.0 if opts and opts.read_timeout_ms != None else None
+        opts_total_timeout = opts.total_timeout_ms / 1000.0 if opts and opts.total_timeout_ms is not None else None
+        opts_connect_timeout = opts.connect_timeout_ms / 1000.0 if opts and opts.connect_timeout_ms is not None else None
+        opts_read_timeout = opts.read_timeout_ms / 1000.0 if opts and opts.read_timeout_ms is not None else None
         if not _request_timeout:
             timeout = aiohttp.ClientTimeout(
-                total=opts_total_timeout if opts_total_timeout != None
+                total=opts_total_timeout if opts_total_timeout is not None
                     else self.timeout.total, 
-                connect=opts_connect_timeout if opts_connect_timeout != None
+                connect=opts_connect_timeout if opts_connect_timeout is not None
                     else self.timeout.connect,
-                sock_read=opts_read_timeout if opts_read_timeout != None
+                sock_read=opts_read_timeout if opts_read_timeout is not None
                     else self.timeout.sock_read)
         elif isinstance(_request_timeout, aiohttp.ClientTimeout):
             timeout = aiohttp.ClientTimeout(
-                total=opts_total_timeout if opts_total_timeout != None
-                    else _request_timeout.total if _request_timeout.total != None
+                total=opts_total_timeout if opts_total_timeout is not None
+                    else _request_timeout.total if _request_timeout.total is not None
                         else self.timeout.total, 
-                connect=opts_connect_timeout if opts_connect_timeout != None
-                    else _request_timeout.connect if _request_timeout.connect != None
+                connect=opts_connect_timeout if opts_connect_timeout is not None
+                    else _request_timeout.connect if _request_timeout.connect is not None
                         else self.timeout.connect,
-                sock_read=opts_read_timeout if opts_read_timeout != None
-                    else _request_timeout.sock_read if _request_timeout.sock_read != None
+                sock_read=opts_read_timeout if opts_read_timeout is not None
+                    else _request_timeout.sock_read if _request_timeout.sock_read is not None
                         else self.timeout.sock_read)
         elif isinstance(_request_timeout, (int, float)):
             timeout = aiohttp.ClientTimeout(
-                total=opts_total_timeout if opts_total_timeout != None
+                total=opts_total_timeout if opts_total_timeout is not None
                     else _request_timeout, 
-                connect=opts_connect_timeout if opts_connect_timeout != None
+                connect=opts_connect_timeout if opts_connect_timeout is not None
                     else self.timeout.connect, 
-                sock_read=opts_read_timeout if opts_read_timeout != None
+                sock_read=opts_read_timeout if opts_read_timeout is not None
                     else self.timeout.sock_read)
         else:
-            raise f"unexpected type '{type(_request_timeout)}' for _request_timeout"
+            raise ValueError(f"unexpected type '{type(_request_timeout)}' for _request_timeout")
 
         if 'Content-Type' not in headers:
             headers['Content-Type'] = 'application/json'

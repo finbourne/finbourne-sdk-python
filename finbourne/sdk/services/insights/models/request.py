@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -35,7 +35,7 @@ class Request(BaseModel):
     method:  Optional[StrictStr] = Field(default=None,alias="method", description="Method called by the request") 
     url:  Optional[StrictStr] = Field(default=None,alias="url", description="URL of the request") 
     links: Optional[List[Link]] = None
-    __properties = ["headers", "contentLength", "contentType", "body", "bodyWasTruncated", "method", "url", "links"]
+    __properties: ClassVar[List[str]] = ["headers", "contentLength", "contentType", "body", "bodyWasTruncated", "method", "url", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -75,9 +75,9 @@ class Request(BaseModel):
         _field_dict_of_array = {}
         if self.headers:
             for _key in self.headers:
-                if self.headers[_key]:
+                if (_items_for_key := self.headers[_key]):
                     _field_dict_of_array[_key] = [
-                        _item.to_dict() for _item in self.headers[_key]
+                        _item.to_dict() for _item in _items_for_key
                     ]
             _dict['headers'] = _field_dict_of_array
         # override the default output from pydantic by calling `to_dict()` of each item in links (list)
@@ -141,7 +141,7 @@ class Request(BaseModel):
             "body_was_truncated": obj.get("bodyWasTruncated"),
             "method": obj.get("method"),
             "url": obj.get("url"),
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

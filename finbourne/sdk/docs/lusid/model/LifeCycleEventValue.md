@@ -8,7 +8,7 @@ The instrument life cycle event result value type
 | **effective_date** | **datetime** | Optional | The effective date of the event |
 | **event_values** | [ResultValueDictionary](ResultValueDictionary.md) | Optional | *No description available.* |
 | **event_lineage** | [LifeCycleEventLineage](LifeCycleEventLineage.md) | Optional | *No description available.* |
-| **result_value_type** | **str** | Required | The available values are: ResultValue, ResultValueDictionary, ResultValue0D, ResultValueDecimal, ResultValueInt, ResultValueString, ResultValueBool, ResultValueCurrency, CashFlowValue, CashFlowValueSet, ResultValueLifeCycleEventValue, ResultValueDateTimeOffset |
+| **result_value_type** | **str** | Required | Available values: ResultValue, ResultValueDictionary, ResultValue0D, ResultValueDecimal, ResultValueInt, ResultValueString, ResultValueBool, ResultValueCurrency, CashFlowValue, CashFlowValueSet, ResultValueLifeCycleEventValue, ResultValueDateTimeOffset. |
 
 
 ## Usage
@@ -22,7 +22,7 @@ instance = LifeCycleEventValue(
     effective_date=datetime.now(),  # optional — The effective date of the event
     event_values=ResultValueDictionary(...),  # optional
     event_lineage=LifeCycleEventLineage(...),  # optional
-    result_value_type="..."  # required — The available values are: ResultValue, ResultValueDictionary, ResultValue0D, ResultValueDecimal, ResultValueInt, ResultValueString, ResultValueBool, ResultValueCurrency, CashFlowValue, CashFlowValueSet, ResultValueLifeCycleEventValue, ResultValueDateTimeOffset
+    result_value_type="..."  # required — Available values: ResultValue, ResultValueDictionary, ResultValue0D, ResultValueDecimal, ResultValueInt, ResultValueString, ResultValueBool, ResultValueCurrency, CashFlowValue, CashFlowValueSet, ResultValueLifeCycleEventValue, ResultValueDateTimeOffset.
 )
 ```
 

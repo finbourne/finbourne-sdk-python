@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class ContractDetails(BaseModel):
     instrument_scope:  Optional[StrictStr] = Field(default=None,alias="instrumentScope", description="The scope in which the FlexibleLoan instrument lies - readonly field, resolved from the instrument identifiers.") 
     instrument_name:  Optional[StrictStr] = Field(default=None,alias="instrumentName", description="The name of the FlexibleLoan instrument - readonly field, resolved from the instrument identifiers.") 
     dom_ccy:  Optional[StrictStr] = Field(default=None,alias="domCcy", description="The domestic currency of the instrument - readonly field, resolved from the instrument identifiers.") 
-    __properties = ["identifiers", "lusidInstrumentId", "instrumentScope", "instrumentName", "domCcy"]
+    __properties: ClassVar[List[str]] = ["identifiers", "lusidInstrumentId", "instrumentScope", "instrumentName", "domCcy"]
 
     model_config = ConfigDict(
         populate_by_name=True,

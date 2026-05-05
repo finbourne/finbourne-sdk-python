@@ -10,6 +10,7 @@
     Do not edit the class manually.
 """
 
+from __future__ import annotations
 import json
 import pprint
 import re  # noqa: F401
@@ -19,7 +20,7 @@ from aenum import Enum, no_arg
 
 
 
-class ReferenceListType(str, Enum):
+class ReferenceListType(str, Enum):  # type: ignore[misc]
     """
     ReferenceListType
     """
@@ -35,6 +36,7 @@ class ReferenceListType(str, Enum):
     DECIMALLIST = 'DecimalList'
     PROPERTYLIST = 'PropertyList'
     FUNDIDLIST = 'FundIdList'
+    FILTEREDFUNDIDLIST = 'FilteredFundIdList'
 
     @classmethod
     def from_json(cls, json_str: str) -> ReferenceListType:

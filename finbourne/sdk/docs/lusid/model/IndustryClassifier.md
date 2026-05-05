@@ -5,7 +5,7 @@ Object describing a particular industry classifier,  which comprises a classific
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **classification_system_name** | **str** | Required | The name of the classification system to which the classification code belongs (e.g. GICS). |
+| **classification_system_name** | **str** | Required | The name of the classification system to which the classification code belongs (e.g. GICS). Available values: GICS2018. |
 | **classification_code** | **str** | Required | The specific industry classification code assigned to the legal entity. |
 
 
@@ -17,7 +17,7 @@ Object describing a particular industry classifier,  which comprises a classific
 from finbourne.sdk.services.lusid.models.IndustryClassifier import IndustryClassifier
 
 instance = IndustryClassifier(
-    classification_system_name="...",  # required — The name of the classification system to which the classification code belongs (e.g. GICS).
+    classification_system_name="...",  # required — The name of the classification system to which the classification code belongs (e.g. GICS). Available values: GICS2018.
     classification_code="..."  # required — The specific industry classification code assigned to the legal entity.
 )
 ```

@@ -9,7 +9,7 @@ Schedule to define fx conversion of cashflows on complex bonds. If an fx schedul
 | **fx_conversion_types** | **List[str]** | Optional | List of flags to indicate if coupon payments, principal payments or both are converted |
 | **rate** | **float** | Optional | FxRate used to convert payments. Assumed to be in units of the ToCurrency so conversion is paymentAmount x fxRate |
 | **to_currency** | **str** | Optional | Currency that payments are converted to |
-| **schedule_type** | **str** | Required | The available values are: FixedSchedule, FloatSchedule, OptionalitySchedule, StepSchedule, Exercise, FxRateSchedule, FxLinkedNotionalSchedule, BondConversionSchedule, Invalid |
+| **schedule_type** | **str** | Required | Available values: FixedSchedule, FloatSchedule, OptionalitySchedule, StepSchedule, Exercise, FxRateSchedule, FxLinkedNotionalSchedule, BondConversionSchedule, Invalid. |
 
 
 ## Usage
@@ -24,7 +24,7 @@ instance = FxRateSchedule(
     fx_conversion_types=,  # optional — List of flags to indicate if coupon payments, principal payments or both are converted
     rate=0.0,  # optional — FxRate used to convert payments. Assumed to be in units of the ToCurrency so conversion is paymentAmount x fxRate
     to_currency="...",  # optional — Currency that payments are converted to
-    schedule_type="..."  # required — The available values are: FixedSchedule, FloatSchedule, OptionalitySchedule, StepSchedule, Exercise, FxRateSchedule, FxLinkedNotionalSchedule, BondConversionSchedule, Invalid
+    schedule_type="..."  # required — Available values: FixedSchedule, FloatSchedule, OptionalitySchedule, StepSchedule, Exercise, FxRateSchedule, FxLinkedNotionalSchedule, BondConversionSchedule, Invalid.
 )
 ```
 

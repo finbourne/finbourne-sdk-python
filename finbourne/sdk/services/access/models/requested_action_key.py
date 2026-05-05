@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class RequestedActionKey(BaseModel):
     entity_code:  StrictStr = Field(...,alias="entityCode", description="The type of the resource on which the activity would be performed") 
     scope:  StrictStr = Field(...,alias="scope", description="The scope/provider/vendor of the activity") 
     activity:  StrictStr = Field(...,alias="activity", description="The identifier of the action to be performed on the resource") 
-    __properties = ["entityCode", "scope", "activity"]
+    __properties: ClassVar[List[str]] = ["entityCode", "scope", "activity"]
 
     model_config = ConfigDict(
         populate_by_name=True,

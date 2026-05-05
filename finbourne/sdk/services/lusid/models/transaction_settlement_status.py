@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class TransactionSettlementStatus(BaseModel):
     settlement_buckets: Optional[List[TransactionSettlementBucket]] = Field(default=None, description="The transaction's external movements (ie: with SettlementMode=External) are grouped into buckets with each bucket uniquely defined by the combination of SettlementCategory, LusidInstrumentId, InstrumentScope and ContractualSettlementDate.", alias="settlementBuckets")
     invalid_instructions: Optional[List[TransactionSettlementInstruction]] = Field(default=None, description="Invalid settlement instructions where the referenced transaction exists but the settlement bucket implied by the settlement instruction does not exist.", alias="invalidInstructions")
     links: Optional[List[Link]] = None
-    __properties = ["transactionId", "settlementBuckets", "invalidInstructions", "links"]
+    __properties: ClassVar[List[str]] = ["transactionId", "settlementBuckets", "invalidInstructions", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -118,9 +118,9 @@ class TransactionSettlementStatus(BaseModel):
 
         _obj = TransactionSettlementStatus.model_validate({
             "transaction_id": obj.get("transactionId"),
-            "settlement_buckets": [TransactionSettlementBucket.from_dict(_item) for _item in obj.get("settlementBuckets")] if obj.get("settlementBuckets") is not None else None,
-            "invalid_instructions": [TransactionSettlementInstruction.from_dict(_item) for _item in obj.get("invalidInstructions")] if obj.get("invalidInstructions") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "settlement_buckets": [TransactionSettlementBucket.from_dict(_item) for _item in _v] if (_v := obj.get("settlementBuckets")) is not None else None,
+            "invalid_instructions": [TransactionSettlementInstruction.from_dict(_item) for _item in _v] if (_v := obj.get("invalidInstructions")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

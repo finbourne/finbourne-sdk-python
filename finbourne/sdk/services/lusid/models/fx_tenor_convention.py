@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class FxTenorConvention(BaseModel):
     """
     calendar_code:  StrictStr = Field(...,alias="calendarCode", description="The code of the holiday calendar that should be used when interpreting FX tenors.") 
     spot_days: StrictInt = Field(description="The minimum number of business days that must pass within this calendar when calculating the spot date.", alias="spotDays")
-    __properties = ["calendarCode", "spotDays"]
+    __properties: ClassVar[List[str]] = ["calendarCode", "spotDays"]
 
     model_config = ConfigDict(
         populate_by_name=True,

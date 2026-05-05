@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class CreditRating(BaseModel):
     """
     rating_source:  StrictStr = Field(...,alias="ratingSource", description="The provider of the credit rating, which will typically be an agency such as Moody's or Standard and Poor.") 
     rating:  StrictStr = Field(...,alias="rating", description="The credit rating provided by the rating source. This would expected to be consistent with the rating scheme of that agency/source.") 
-    __properties = ["ratingSource", "rating"]
+    __properties: ClassVar[List[str]] = ["ratingSource", "rating"]
 
     model_config = ConfigDict(
         populate_by_name=True,

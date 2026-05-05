@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,11 +30,11 @@ class UpdateGroupReconciliationComparisonRulesetRequest(BaseModel):
     UpdateGroupReconciliationComparisonRulesetRequest
     """
     display_name:  StrictStr = Field(...,alias="displayName", description="The name of the ruleset") 
-    reconciliation_type:  StrictStr = Field(...,alias="reconciliationType", description="The type of reconciliation to perform. \"Holding\" | \"Transaction\" | \"Valuation\"") 
+    reconciliation_type:  StrictStr = Field(...,alias="reconciliationType", description="The type of reconciliation to perform. Available values: Holding, Transaction, Valuation, CashHolding.") 
     filters: Optional[GroupReconciliationFilters] = None
     core_attribute_rules: List[GroupReconciliationCoreAttributeRule] = Field(description="The core comparison rules", alias="coreAttributeRules")
     aggregate_attribute_rules: List[GroupReconciliationAggregateAttributeRule] = Field(description="The aggregate comparison rules", alias="aggregateAttributeRules")
-    __properties = ["displayName", "reconciliationType", "filters", "coreAttributeRules", "aggregateAttributeRules"]
+    __properties: ClassVar[List[str]] = ["displayName", "reconciliationType", "filters", "coreAttributeRules", "aggregateAttributeRules"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -101,9 +101,9 @@ class UpdateGroupReconciliationComparisonRulesetRequest(BaseModel):
         _obj = UpdateGroupReconciliationComparisonRulesetRequest.model_validate({
             "display_name": obj.get("displayName"),
             "reconciliation_type": obj.get("reconciliationType"),
-            "filters": GroupReconciliationFilters.from_dict(obj.get("filters")) if obj.get("filters") is not None else None,
-            "core_attribute_rules": [GroupReconciliationCoreAttributeRule.from_dict(_item) for _item in obj.get("coreAttributeRules")] if obj.get("coreAttributeRules") is not None else None,
-            "aggregate_attribute_rules": [GroupReconciliationAggregateAttributeRule.from_dict(_item) for _item in obj.get("aggregateAttributeRules")] if obj.get("aggregateAttributeRules") is not None else None
+            "filters": GroupReconciliationFilters.from_dict(_v) if (_v := obj.get("filters")) is not None else None,
+            "core_attribute_rules": [GroupReconciliationCoreAttributeRule.from_dict(_item) for _item in _v] if (_v := obj.get("coreAttributeRules")) is not None else None,
+            "aggregate_attribute_rules": [GroupReconciliationAggregateAttributeRule.from_dict(_item) for _item in _v] if (_v := obj.get("aggregateAttributeRules")) is not None else None
         })
         return _obj
 

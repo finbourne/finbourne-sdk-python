@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -26,11 +26,11 @@ class IUnitDefinitionDto(BaseModel):
     """
     IUnitDefinitionDto
     """
-    var_schema:  Optional[StrictStr] = Field(default=None,alias="schema", description="The available values are: NoUnits, Basic, Iso4217Currency") 
+    var_schema:  Optional[StrictStr] = Field(default=None,alias="schema", description="Available values: NoUnits, Basic, Iso4217Currency.") 
     code:  Optional[StrictStr] = Field(default=None,alias="code") 
     display_name:  Optional[StrictStr] = Field(default=None,alias="displayName") 
     description:  Optional[StrictStr] = Field(default=None,alias="description") 
-    __properties = ["schema", "code", "displayName", "description"]
+    __properties: ClassVar[List[str]] = ["schema", "code", "displayName", "description"]
 
     @field_validator('var_schema')
     def var_schema_validate_enum(cls, value):

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -35,7 +35,7 @@ class CreateClosedPeriodRequest(BaseModel):
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="A description for the Closed Period.") 
     holdings_as_at_closed_override: Optional[datetime] = Field(default=None, description="The optional AsAtClosed Override to use for building holdings in the Closed Period.If not specified, the AsAtClosed on the Closed Period will be used.", alias="holdingsAsAtClosedOverride")
     valuation_as_at_closed_override: Optional[datetime] = Field(default=None, description="The optional AsAtClosed Override to use for performing valuations in the Closed Period.If not specified, the AsAtClosed on the Closed Period will be used.", alias="valuationAsAtClosedOverride")
-    __properties = ["closedPeriodId", "effectiveEnd", "properties", "asAtClosed", "displayName", "description", "holdingsAsAtClosedOverride", "valuationAsAtClosedOverride"]
+    __properties: ClassVar[List[str]] = ["closedPeriodId", "effectiveEnd", "properties", "asAtClosed", "displayName", "description", "holdingsAsAtClosedOverride", "valuationAsAtClosedOverride"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -124,9 +124,9 @@ class CreateClosedPeriodRequest(BaseModel):
             "effective_end": obj.get("effectiveEnd"),
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
             "as_at_closed": obj.get("asAtClosed"),
             "display_name": obj.get("displayName"),

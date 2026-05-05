@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class TranslateInstrumentDefinitionsRequest(BaseModel):
     """
     instruments: Dict[str, LusidInstrument] = Field(description="The collection of instruments to translate.                Each instrument definition should be keyed by a unique correlation id. This id is ephemeral  and is not stored by LUSID. It serves only as a way to easily identify each instrument in the response.                Any instrument that is not already in the LUSID dialect should be given as an ExoticInstrument.")
     dialect:  StrictStr = Field(...,alias="dialect", description="The target dialect that the given instruments should be translated to.") 
-    __properties = ["instruments", "dialect"]
+    __properties: ClassVar[List[str]] = ["instruments", "dialect"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -86,9 +86,9 @@ class TranslateInstrumentDefinitionsRequest(BaseModel):
         _obj = TranslateInstrumentDefinitionsRequest.model_validate({
             "instruments": dict(
                 (_k, LusidInstrument.from_dict(_v))
-                for _k, _v in obj.get("instruments").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("instruments") is not None
+            if (_val := obj.get("instruments")) is not None
             else None,
             "dialect": obj.get("dialect")
         })

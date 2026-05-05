@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class InstrumentModels(BaseModel):
     instrument_id:  Optional[StrictStr] = Field(default=None,alias="instrumentId", description="The unique LUSID Instrument Identifier (LUID) of the instrument.") 
     supported_models: Optional[List[StrictStr]] = Field(default=None, description="The pricing models supported by the instrument e.g. 'Discounting'.", alias="supportedModels")
     links: Optional[List[Link]] = None
-    __properties = ["instrumentId", "supportedModels", "links"]
+    __properties: ClassVar[List[str]] = ["instrumentId", "supportedModels", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -102,7 +102,7 @@ class InstrumentModels(BaseModel):
         _obj = InstrumentModels.model_validate({
             "instrument_id": obj.get("instrumentId"),
             "supported_models": obj.get("supportedModels"),
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

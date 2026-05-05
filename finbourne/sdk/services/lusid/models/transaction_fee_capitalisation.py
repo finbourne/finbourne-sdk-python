@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -26,9 +26,9 @@ class TransactionFeeCapitalisation(BaseModel):
     """
     TransactionFeeCapitalisation
     """
-    capitalisation:  Optional[StrictStr] = Field(default=None,alias="capitalisation", description="Whether the transaction fee should be capitalised, not capitalised, or conditionally capitalised. The allowed values are Capitalised, NonCapitalised, Conditional.") 
+    capitalisation:  Optional[StrictStr] = Field(default=None,alias="capitalisation", description="Whether the transaction fee should be capitalised, not capitalised, or conditionally capitalised. Available values: Capitalised, NonCapitalised, Conditional.") 
     capitalised_condition:  Optional[StrictStr] = Field(default=None,alias="capitalisedCondition", description="The condition that determines whether the fee is capitalised when applied to the transaction. Required only when Capitalisation is 'Conditional'.") 
-    __properties = ["capitalisation", "capitalisedCondition"]
+    __properties: ClassVar[List[str]] = ["capitalisation", "capitalisedCondition"]
 
     model_config = ConfigDict(
         populate_by_name=True,

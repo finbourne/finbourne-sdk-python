@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class ItemAndWorkspace(BaseModel):
     """
     workspace_name:  StrictStr = Field(...,alias="workspaceName", description="A workspace's name.") 
     workspace_item: WorkspaceItem = Field(alias="workspaceItem")
-    __properties = ["workspaceName", "workspaceItem"]
+    __properties: ClassVar[List[str]] = ["workspaceName", "workspaceItem"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -81,7 +81,7 @@ class ItemAndWorkspace(BaseModel):
 
         _obj = ItemAndWorkspace.model_validate({
             "workspace_name": obj.get("workspaceName"),
-            "workspace_item": WorkspaceItem.from_dict(obj.get("workspaceItem")) if obj.get("workspaceItem") is not None else None
+            "workspace_item": WorkspaceItem.from_dict(_v) if (_v := obj.get("workspaceItem")) is not None else None
         })
         return _obj
 

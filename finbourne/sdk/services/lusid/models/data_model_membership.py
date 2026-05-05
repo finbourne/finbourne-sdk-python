@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class DataModelMembership(BaseModel):
     """
     membership: List[Membership] = Field(description="The collection of data models this entity is a member of.")
     current_model: Optional[MembershipAndStatus] = Field(default=None, alias="currentModel")
-    __properties = ["membership", "currentModel"]
+    __properties: ClassVar[List[str]] = ["membership", "currentModel"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,8 +88,8 @@ class DataModelMembership(BaseModel):
             return DataModelMembership.model_validate(obj)
 
         _obj = DataModelMembership.model_validate({
-            "membership": [Membership.from_dict(_item) for _item in obj.get("membership")] if obj.get("membership") is not None else None,
-            "current_model": MembershipAndStatus.from_dict(obj.get("currentModel")) if obj.get("currentModel") is not None else None
+            "membership": [Membership.from_dict(_item) for _item in _v] if (_v := obj.get("membership")) is not None else None,
+            "current_model": MembershipAndStatus.from_dict(_v) if (_v := obj.get("currentModel")) is not None else None
         })
         return _obj
 

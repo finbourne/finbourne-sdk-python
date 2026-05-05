@@ -65,12 +65,12 @@ class AggregatedReturnsApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_returns_entity_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_returns_entity_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_returns_entity_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_returns_entity_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -195,12 +195,12 @@ class AggregatedReturnsApi:
         :return: Returns the result object.
         :rtype: ReturnsEntity
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_returns_entity_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_returns_entity_with_http_info(scope, code, as_at, **kwargs)  # noqa: E501
+        response = self.get_returns_entity_with_http_info(scope, code, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_returns_entity_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ReturnsEntity]:
@@ -330,12 +330,12 @@ class AggregatedReturnsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfReturnsEntity
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_returns_entities_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_returns_entities_with_http_info(as_at, **kwargs)  # noqa: E501
+        response = self.list_returns_entities_with_http_info(as_at, **kwargs)
+        return response.data
 
     @validate_call
     def list_returns_entities_with_http_info(self, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfReturnsEntity]:
@@ -453,12 +453,12 @@ class AggregatedReturnsApi:
         :return: Returns the result object.
         :rtype: ReturnsEntity
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_returns_entity_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_returns_entity_with_http_info(returns_entity, **kwargs)  # noqa: E501
+        response = self.upsert_returns_entity_with_http_info(returns_entity, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_returns_entity_with_http_info(self, returns_entity: ReturnsEntity, **kwargs) -> ApiResponse[ReturnsEntity]:
@@ -586,12 +586,12 @@ class AggregatedReturnsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_returns_entity_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_returns_entity_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_returns_entity_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_returns_entity_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -717,12 +717,12 @@ class AggregatedReturnsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ReturnsEntity
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_returns_entity_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_returns_entity_with_http_info_async(scope, code, as_at, **kwargs)  # noqa: E501
+            response = await self.get_returns_entity_with_http_info_async(scope, code, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_returns_entity_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ReturnsEntity]:
@@ -853,12 +853,12 @@ class AggregatedReturnsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfReturnsEntity
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_returns_entities_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_returns_entities_with_http_info_async(as_at, **kwargs)  # noqa: E501
+            response = await self.list_returns_entities_with_http_info_async(as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def list_returns_entities_with_http_info_async(self, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfReturnsEntity]:
@@ -977,12 +977,12 @@ class AggregatedReturnsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ReturnsEntity
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_returns_entity_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_returns_entity_with_http_info_async(returns_entity, **kwargs)  # noqa: E501
+            response = await self.upsert_returns_entity_with_http_info_async(returns_entity, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_returns_entity_with_http_info_async(self, returns_entity: ReturnsEntity, **kwargs) -> ApiResponse[ReturnsEntity]:

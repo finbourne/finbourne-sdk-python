@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class LifeCycleEventLineage(BaseModel):
     instrument_id:  Optional[StrictStr] = Field(default=None,alias="instrumentId", description="The LUID of the instrument for the event.") 
     leg_id:  Optional[StrictStr] = Field(default=None,alias="legId", description="Leg id for the event.") 
     source_transaction_id:  Optional[StrictStr] = Field(default=None,alias="sourceTransactionId", description="The source transaction of the instrument for the event.") 
-    __properties = ["eventType", "instrumentType", "instrumentId", "legId", "sourceTransactionId"]
+    __properties: ClassVar[List[str]] = ["eventType", "instrumentType", "instrumentId", "legId", "sourceTransactionId"]
 
     model_config = ConfigDict(
         populate_by_name=True,

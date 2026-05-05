@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class EntityIdentifier(BaseModel):
     identifier_scope:  Optional[StrictStr] = Field(default=None,alias="identifierScope", description="The scope of the identifier") 
     identifier_type:  StrictStr = Field(...,alias="identifierType", description="The type of the identifier") 
     identifier_value:  StrictStr = Field(...,alias="identifierValue", description="The value of the identifier") 
-    __properties = ["identifierScope", "identifierType", "identifierValue"]
+    __properties: ClassVar[List[str]] = ["identifierScope", "identifierType", "identifierValue"]
 
     model_config = ConfigDict(
         populate_by_name=True,

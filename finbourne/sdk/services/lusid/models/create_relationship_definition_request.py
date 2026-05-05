@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,9 +33,9 @@ class CreateRelationshipDefinitionRequest(BaseModel):
     display_name:  StrictStr = Field(...,alias="displayName", description="The display name of the relationship definition.") 
     outward_description:  StrictStr = Field(...,alias="outwardDescription", description="The description to relate source entity object and target entity object.") 
     inward_description:  StrictStr = Field(...,alias="inwardDescription", description="The description to relate target entity object and source entity object.") 
-    life_time:  Optional[StrictStr] = Field(default=None,alias="lifeTime", description="Describes how the relationships can change over time. Allowed values are 'Perpetual' and 'TimeVariant', defaults to 'Perpetual' if not specified.") 
-    relationship_cardinality:  Optional[StrictStr] = Field(default=None,alias="relationshipCardinality", description="Describes the cardinality of the relationship with a specific source entity object and relationships under this definition. Allowed values are 'ManyToMany' and 'ManyToOne', defaults to 'ManyToMany' if not specified.") 
-    __properties = ["scope", "code", "sourceEntityType", "targetEntityType", "displayName", "outwardDescription", "inwardDescription", "lifeTime", "relationshipCardinality"]
+    life_time:  Optional[StrictStr] = Field(default=None,alias="lifeTime", description="Describes how the relationships can change over time. Default value: Perpetual. Available values: Perpetual, TimeVariant.") 
+    relationship_cardinality:  Optional[StrictStr] = Field(default=None,alias="relationshipCardinality", description="Describes the cardinality of the relationship with a specific source entity object and relationships under this definition. Default value: ManyToMany. Available values: ManyToOne, ManyToMany.") 
+    __properties: ClassVar[List[str]] = ["scope", "code", "sourceEntityType", "targetEntityType", "displayName", "outwardDescription", "inwardDescription", "lifeTime", "relationshipCardinality"]
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class RequestedChanges(BaseModel):
     """
     attribute_count: Optional[StrictInt] = Field(default=None, description="Number of attributes staged change applies to", alias="attributeCount")
     attribute_names: Optional[List[StrictStr]] = Field(default=None, description="Names of the attributes the staged change applies to.", alias="attributeNames")
-    __properties = ["attributeCount", "attributeNames"]
+    __properties: ClassVar[List[str]] = ["attributeCount", "attributeNames"]
 
     model_config = ConfigDict(
         populate_by_name=True,

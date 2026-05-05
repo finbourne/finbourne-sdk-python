@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class PortfolioWeight(BaseModel):
     """
     portfolio_id: ResourceId = Field(alias="portfolioId")
     weight: Union[StrictFloat, StrictInt] = Field(description="The relative weight of the Portfolio compared to the other Portfolios specified, used to determine the allocation split between Portfolios when there are no Orders within the Block to allocate to.")
-    __properties = ["portfolioId", "weight"]
+    __properties: ClassVar[List[str]] = ["portfolioId", "weight"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,7 +80,7 @@ class PortfolioWeight(BaseModel):
             return PortfolioWeight.model_validate(obj)
 
         _obj = PortfolioWeight.model_validate({
-            "portfolio_id": ResourceId.from_dict(obj.get("portfolioId")) if obj.get("portfolioId") is not None else None,
+            "portfolio_id": ResourceId.from_dict(_v) if (_v := obj.get("portfolioId")) is not None else None,
             "weight": obj.get("weight")
         })
         return _obj

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -39,7 +39,7 @@ class Subscription(BaseModel):
     user_id_modified:  StrictStr = Field(...,alias="userIdModified", description="The user who last modified the subscription") 
     use_as_auth:  StrictStr = Field(...,alias="useAsAuth", description="The user to use as auth for the subscription") 
     href:  Optional[StrictStr] = Field(default=None,alias="href", description="A URI for retrieving this subscription") 
-    __properties = ["id", "displayName", "description", "status", "matchingPattern", "createdAt", "userIdCreated", "modifiedAt", "userIdModified", "useAsAuth", "href"]
+    __properties: ClassVar[List[str]] = ["id", "displayName", "description", "status", "matchingPattern", "createdAt", "userIdCreated", "modifiedAt", "userIdModified", "useAsAuth", "href"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -103,11 +103,11 @@ class Subscription(BaseModel):
             return Subscription.model_validate(obj)
 
         _obj = Subscription.model_validate({
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
             "status": obj.get("status"),
-            "matching_pattern": MatchingPattern.from_dict(obj.get("matchingPattern")) if obj.get("matchingPattern") is not None else None,
+            "matching_pattern": MatchingPattern.from_dict(_v) if (_v := obj.get("matchingPattern")) is not None else None,
             "created_at": obj.get("createdAt"),
             "user_id_created": obj.get("userIdCreated"),
             "modified_at": obj.get("modifiedAt"),

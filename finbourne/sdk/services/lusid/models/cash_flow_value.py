@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,9 +34,9 @@ class CashFlowValue(ResultValue):
     cash_flow_lineage: Optional[CashFlowLineage] = Field(default=None, alias="cashFlowLineage")
     payment_amount: Union[StrictFloat, StrictInt] = Field(description="The amount paid or received", alias="paymentAmount")
     payment_ccy:  StrictStr = Field(...,alias="paymentCcy", description="The currency of the transaction") 
-    result_value_type:  StrictStr = Field(...,alias="resultValueType", description="The available values are: ResultValue, ResultValueDictionary, ResultValue0D, ResultValueDecimal, ResultValueInt, ResultValueString, ResultValueBool, ResultValueCurrency, CashFlowValue, CashFlowValueSet, ResultValueLifeCycleEventValue, ResultValueDateTimeOffset") 
+    result_value_type:  StrictStr = Field(...,alias="resultValueType", description="Available values: ResultValue, ResultValueDictionary, ResultValue0D, ResultValueDecimal, ResultValueInt, ResultValueString, ResultValueBool, ResultValueCurrency, CashFlowValue, CashFlowValueSet, ResultValueLifeCycleEventValue, ResultValueDateTimeOffset.") 
     additional_properties: Dict[str, Any] = {}
-    __properties = ["resultValueType", "paymentDate", "diagnostics", "cashFlowLineage", "paymentAmount", "paymentCcy"]
+    __properties: ClassVar[List[str]] = ["resultValueType", "paymentDate", "diagnostics", "cashFlowLineage", "paymentAmount", "paymentCcy"]
 
     @field_validator('result_value_type')
     def result_value_type_validate_enum(cls, value):
@@ -167,19 +167,14 @@ class CashFlowValue(ResultValue):
         _obj = CashFlowValue.model_validate({
             "result_value_type": obj.get("resultValueType"),
             "payment_date": obj.get("paymentDate"),
-            "diagnostics": ResultValueDictionary.from_dict(obj.get("diagnostics")) if obj.get("diagnostics") is not None else None,
-            "cash_flow_lineage": CashFlowLineage.from_dict(obj.get("cashFlowLineage")) if obj.get("cashFlowLineage") is not None else None,
+            "diagnostics": ResultValueDictionary.from_dict(_v) if (_v := obj.get("diagnostics")) is not None else None,
+            "cash_flow_lineage": CashFlowLineage.from_dict(_v) if (_v := obj.get("cashFlowLineage")) is not None else None,
             "payment_amount": obj.get("paymentAmount"),
             "payment_ccy": obj.get("paymentCcy")
         })
         # store additional fields in additional_properties
-        
-        properties = cls.__properties
-        if not isinstance(cls.__properties, dict) and getattr(cls.__properties, 'default', None):
-            properties = cls.__properties.default
-    
         for _key in obj.keys():
-            if _key not in properties:
+            if _key not in cls.__properties:
                 _obj.additional_properties[_key] = obj.get(_key)
 
         return _obj

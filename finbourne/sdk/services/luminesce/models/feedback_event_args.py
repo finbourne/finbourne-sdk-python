@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -36,7 +36,7 @@ class FeedbackEventArgs(BaseModel):
     message_template:  Optional[StrictStr] = Field(default=None,alias="messageTemplate") 
     property_values: Optional[List[Any]] = Field(default=None, alias="propertyValues")
     message:  Optional[StrictStr] = Field(default=None,alias="message") 
-    __properties = ["when", "sessionId", "executionId", "level", "sender", "stateId", "messageTemplate", "propertyValues", "message"]
+    __properties: ClassVar[List[str]] = ["when", "sessionId", "executionId", "level", "sender", "stateId", "messageTemplate", "propertyValues", "message"]
 
     model_config = ConfigDict(
         populate_by_name=True,

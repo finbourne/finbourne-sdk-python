@@ -10,6 +10,7 @@
     Do not edit the class manually.
 """
 
+from __future__ import annotations
 import json
 import pprint
 import re  # noqa: F401
@@ -19,7 +20,7 @@ from aenum import Enum, no_arg
 
 
 
-class DataTypeValueRange(str, Enum):
+class DataTypeValueRange(str, Enum):  # type: ignore[misc]
     """
     This class indicates what the range of data acceptable by a data type
     """

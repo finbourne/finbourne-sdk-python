@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class OrderSetRequest(BaseModel):
     A request to create or update multiple Orders.  # noqa: E501
     """
     order_requests: Optional[List[OrderRequest]] = Field(default=None, description="A collection of OrderRequests.", alias="orderRequests")
-    __properties = ["orderRequests"]
+    __properties: ClassVar[List[str]] = ["orderRequests"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,7 +88,7 @@ class OrderSetRequest(BaseModel):
             return OrderSetRequest.model_validate(obj)
 
         _obj = OrderSetRequest.model_validate({
-            "order_requests": [OrderRequest.from_dict(_item) for _item in obj.get("orderRequests")] if obj.get("orderRequests") is not None else None
+            "order_requests": [OrderRequest.from_dict(_item) for _item in _v] if (_v := obj.get("orderRequests")) is not None else None
         })
         return _obj
 

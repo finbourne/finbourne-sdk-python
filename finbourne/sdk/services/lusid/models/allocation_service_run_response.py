@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class AllocationServiceRunResponse(BaseModel):
     """
     values: Optional[List[ResourceId]] = None
     failed: Optional[Dict[str, ErrorDetail]] = None
-    __properties = ["values", "failed"]
+    __properties: ClassVar[List[str]] = ["values", "failed"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -102,12 +102,12 @@ class AllocationServiceRunResponse(BaseModel):
             return AllocationServiceRunResponse.model_validate(obj)
 
         _obj = AllocationServiceRunResponse.model_validate({
-            "values": [ResourceId.from_dict(_item) for _item in obj.get("values")] if obj.get("values") is not None else None,
+            "values": [ResourceId.from_dict(_item) for _item in _v] if (_v := obj.get("values")) is not None else None,
             "failed": dict(
                 (_k, ErrorDetail.from_dict(_v))
-                for _k, _v in obj.get("failed").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("failed") is not None
+            if (_val := obj.get("failed")) is not None
             else None
         })
         return _obj

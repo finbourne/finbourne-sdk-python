@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -55,7 +55,7 @@ class PortfolioHolding(BaseModel):
     custodian_account_id: Optional[ResourceId] = Field(default=None, alias="custodianAccountId")
     unsettled_units: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The number of unsettled units for the holding.", alias="unsettledUnits")
     overdue_units: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The number of unsettled units for the holding that are beyond their contractual settlement date.", alias="overdueUnits")
-    __properties = ["instrumentScope", "instrumentUid", "subHoldingKeys", "properties", "holdingType", "units", "settledUnits", "cost", "costPortfolioCcy", "transaction", "currency", "holdingTypeName", "holdingId", "notionalCost", "amortisedCost", "amortisedCostPortfolioCcy", "variationMargin", "variationMarginPortfolioCcy", "settlementSchedule", "currentFace", "custodianAccountId", "unsettledUnits", "overdueUnits"]
+    __properties: ClassVar[List[str]] = ["instrumentScope", "instrumentUid", "subHoldingKeys", "properties", "holdingType", "units", "settledUnits", "cost", "costPortfolioCcy", "transaction", "currency", "holdingTypeName", "holdingId", "notionalCost", "amortisedCost", "amortisedCostPortfolioCcy", "variationMargin", "variationMarginPortfolioCcy", "settlementSchedule", "currentFace", "custodianAccountId", "unsettledUnits", "overdueUnits"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -195,33 +195,33 @@ class PortfolioHolding(BaseModel):
             "instrument_uid": obj.get("instrumentUid"),
             "sub_holding_keys": dict(
                 (_k, PerpetualProperty.from_dict(_v))
-                for _k, _v in obj.get("subHoldingKeys").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("subHoldingKeys") is not None
+            if (_val := obj.get("subHoldingKeys")) is not None
             else None,
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
             "holding_type": obj.get("holdingType"),
             "units": obj.get("units"),
             "settled_units": obj.get("settledUnits"),
-            "cost": CurrencyAndAmount.from_dict(obj.get("cost")) if obj.get("cost") is not None else None,
-            "cost_portfolio_ccy": CurrencyAndAmount.from_dict(obj.get("costPortfolioCcy")) if obj.get("costPortfolioCcy") is not None else None,
-            "transaction": Transaction.from_dict(obj.get("transaction")) if obj.get("transaction") is not None else None,
+            "cost": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("cost")) is not None else None,
+            "cost_portfolio_ccy": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("costPortfolioCcy")) is not None else None,
+            "transaction": Transaction.from_dict(_v) if (_v := obj.get("transaction")) is not None else None,
             "currency": obj.get("currency"),
             "holding_type_name": obj.get("holdingTypeName"),
             "holding_id": obj.get("holdingId"),
-            "notional_cost": CurrencyAndAmount.from_dict(obj.get("notionalCost")) if obj.get("notionalCost") is not None else None,
-            "amortised_cost": CurrencyAndAmount.from_dict(obj.get("amortisedCost")) if obj.get("amortisedCost") is not None else None,
-            "amortised_cost_portfolio_ccy": CurrencyAndAmount.from_dict(obj.get("amortisedCostPortfolioCcy")) if obj.get("amortisedCostPortfolioCcy") is not None else None,
-            "variation_margin": CurrencyAndAmount.from_dict(obj.get("variationMargin")) if obj.get("variationMargin") is not None else None,
-            "variation_margin_portfolio_ccy": CurrencyAndAmount.from_dict(obj.get("variationMarginPortfolioCcy")) if obj.get("variationMarginPortfolioCcy") is not None else None,
-            "settlement_schedule": [SettlementSchedule.from_dict(_item) for _item in obj.get("settlementSchedule")] if obj.get("settlementSchedule") is not None else None,
+            "notional_cost": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("notionalCost")) is not None else None,
+            "amortised_cost": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("amortisedCost")) is not None else None,
+            "amortised_cost_portfolio_ccy": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("amortisedCostPortfolioCcy")) is not None else None,
+            "variation_margin": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("variationMargin")) is not None else None,
+            "variation_margin_portfolio_ccy": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("variationMarginPortfolioCcy")) is not None else None,
+            "settlement_schedule": [SettlementSchedule.from_dict(_item) for _item in _v] if (_v := obj.get("settlementSchedule")) is not None else None,
             "current_face": obj.get("currentFace"),
-            "custodian_account_id": ResourceId.from_dict(obj.get("custodianAccountId")) if obj.get("custodianAccountId") is not None else None,
+            "custodian_account_id": ResourceId.from_dict(_v) if (_v := obj.get("custodianAccountId")) is not None else None,
             "unsettled_units": obj.get("unsettledUnits"),
             "overdue_units": obj.get("overdueUnits")
         })

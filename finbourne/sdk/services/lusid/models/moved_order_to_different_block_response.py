@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class MovedOrderToDifferentBlockResponse(BaseModel):
     destination_block: Optional[Block] = Field(default=None, alias="destinationBlock")
     order: Optional[Order] = None
     source_block_id: Optional[ResourceId] = Field(default=None, alias="sourceBlockId")
-    __properties = ["destinationBlock", "order", "sourceBlockId"]
+    __properties: ClassVar[List[str]] = ["destinationBlock", "order", "sourceBlockId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -89,9 +89,9 @@ class MovedOrderToDifferentBlockResponse(BaseModel):
             return MovedOrderToDifferentBlockResponse.model_validate(obj)
 
         _obj = MovedOrderToDifferentBlockResponse.model_validate({
-            "destination_block": Block.from_dict(obj.get("destinationBlock")) if obj.get("destinationBlock") is not None else None,
-            "order": Order.from_dict(obj.get("order")) if obj.get("order") is not None else None,
-            "source_block_id": ResourceId.from_dict(obj.get("sourceBlockId")) if obj.get("sourceBlockId") is not None else None
+            "destination_block": Block.from_dict(_v) if (_v := obj.get("destinationBlock")) is not None else None,
+            "order": Order.from_dict(_v) if (_v := obj.get("order")) is not None else None,
+            "source_block_id": ResourceId.from_dict(_v) if (_v := obj.get("sourceBlockId")) is not None else None
         })
         return _obj
 

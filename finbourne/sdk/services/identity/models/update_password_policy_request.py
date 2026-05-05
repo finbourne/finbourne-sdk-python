@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class UpdatePasswordPolicyRequest(BaseModel):
     UpdatePasswordPolicyRequest
     """
     conditions: UpdatePasswordPolicyRequestConditions
-    __properties = ["conditions"]
+    __properties: ClassVar[List[str]] = ["conditions"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,7 +79,7 @@ class UpdatePasswordPolicyRequest(BaseModel):
             return UpdatePasswordPolicyRequest.model_validate(obj)
 
         _obj = UpdatePasswordPolicyRequest.model_validate({
-            "conditions": UpdatePasswordPolicyRequestConditions.from_dict(obj.get("conditions")) if obj.get("conditions") is not None else None
+            "conditions": UpdatePasswordPolicyRequestConditions.from_dict(_v) if (_v := obj.get("conditions")) is not None else None
         })
         return _obj
 

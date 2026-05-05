@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -27,8 +27,8 @@ class OrderBySpec(BaseModel):
     OrderBySpec
     """
     key:  StrictStr = Field(...,alias="key", description="The key that uniquely identifies a queryable address in Lusid.") 
-    sort_order:  StrictStr = Field(...,alias="sortOrder", description="The available values are: Ascending, Descending") 
-    __properties = ["key", "sortOrder"]
+    sort_order:  StrictStr = Field(...,alias="sortOrder", description="Available values: Ascending, Descending.") 
+    __properties: ClassVar[List[str]] = ["key", "sortOrder"]
 
     @field_validator('sort_order')
     def sort_order_validate_enum(cls, value):

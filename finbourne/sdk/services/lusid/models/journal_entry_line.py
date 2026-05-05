@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -46,22 +46,22 @@ class JournalEntryLine(BaseModel):
     posting_rule:  StrictStr = Field(...,alias="postingRule", description="The rule generating the Journal Entry Line.") 
     as_at_date: datetime = Field(description="The corresponding input date and time of the Transaction generating the Journal Entry Line.", alias="asAtDate")
     activities_description:  Optional[StrictStr] = Field(default=None,alias="activitiesDescription", description="This would be the description of the business activities this Journal Entry Line is for.") 
-    source_type:  StrictStr = Field(...,alias="sourceType", description="So far are 4 types: LusidTxn, LusidValuation, Manual and External.") 
+    source_type:  StrictStr = Field(...,alias="sourceType", description="The type of source for the Journal Entry Line. Available values: LusidTransaction, LusidValuation, Manual, External.") 
     source_id:  StrictStr = Field(...,alias="sourceId", description="For the Lusid Source Type this will be the txn Id. For the rest will be what the user populates.") 
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="A set of properties for the Abor.")
     movement_name:  Optional[StrictStr] = Field(default=None,alias="movementName", description="If the JE Line is generated from a transaction, the name of the side in the transaction type's movement. If from a valuation, this is 'MarkToMarket'.") 
     holding_type:  StrictStr = Field(...,alias="holdingType", description="One of the LUSID holding types such as 'P' for position or 'B' for settled cash balance.") 
     economic_bucket:  StrictStr = Field(...,alias="economicBucket", description="LUSID automatically categorises a JE Line into a broad economic bucket such as 'NA_Cost' or 'PL_RealPriceGL'.") 
-    economic_bucket_component:  Optional[StrictStr] = Field(default=None,alias="economicBucketComponent", description="Sub bucket of the economic bucket.") 
-    economic_bucket_variant:  Optional[StrictStr] = Field(default=None,alias="economicBucketVariant", description="Categorisation of a Mark-to-market journal entry line into LongTerm or ShortTerm based on whether the ActivityDate is more than a year after the purchase trade date or not.") 
+    economic_bucket_component:  Optional[StrictStr] = Field(default=None,alias="economicBucketComponent", description="Sub bucket of the economic bucket. Available values: Undefined, Premium, OID, MarketDiscount, AcquisitionPremium, CoreMarket, CrossGainLoss, TradedInterest, Income, Expense.") 
+    economic_bucket_variant:  Optional[StrictStr] = Field(default=None,alias="economicBucketVariant", description="Further categorisation of a journal entry line. LongTerm/ShortTerm: based on whether the ActivityDate is more than a year after the purchase trade date. TradeDateToSettlementDate: FX gain/loss between trade date and settlement date. InLieuSubstitution: FX gain/loss from settling in a different currency when the original settlement currency is the portfolio base currency. Available values: Undefined, ShortTerm, LongTerm, Bought, Sold, TradeDateToSettlementDate, Rounding, InLieuSubstitution.") 
     levels: Optional[List[StrictStr]] = Field(default=None, description="Resolved data from the general ledger profile where the GeneralLedgerProfileCode is specified in the GetJournalEntryLines request body.")
     source_levels: Optional[List[StrictStr]] = Field(default=None, description="Source data from the general ledger profile where the GeneralLedgerProfileCode is specified in the GetJournalEntryLines request body.", alias="sourceLevels")
-    movement_sign:  Optional[StrictStr] = Field(default=None,alias="movementSign", description="Indicates if the Journal Entry Line corresponds to a Long or Short movement.") 
-    holding_sign:  Optional[StrictStr] = Field(default=None,alias="holdingSign", description="Indicates if the Journal Entry Line is operating against a Long or Short holding.") 
-    ledger_column:  Optional[StrictStr] = Field(default=None,alias="ledgerColumn", description="Indicates if the Journal Entry Line is credit or debit.") 
-    journal_entry_line_type:  Optional[StrictStr] = Field(default=None,alias="journalEntryLineType", description="Indicates the Journal Entry Line type") 
+    movement_sign:  Optional[StrictStr] = Field(default=None,alias="movementSign", description="Indicates if the Journal Entry Line corresponds to a Long or Short movement. Available values: NA, Long, Short.") 
+    holding_sign:  Optional[StrictStr] = Field(default=None,alias="holdingSign", description="Indicates if the Journal Entry Line is operating against a Long or Short holding. Available values: NA, Long, Short.") 
+    ledger_column:  Optional[StrictStr] = Field(default=None,alias="ledgerColumn", description="Indicates if the Journal Entry Line is credit or debit. Available values: Debit, Credit.") 
+    journal_entry_line_type:  Optional[StrictStr] = Field(default=None,alias="journalEntryLineType", description="Indicates the Journal Entry Line type. Available values: Default, Reversal, TrueUp.") 
     links: Optional[List[Link]] = None
-    __properties = ["accountingDate", "activityDate", "portfolioId", "instrumentId", "instrumentScope", "subHoldingKeys", "taxLotId", "generalLedgerAccountCode", "local", "base", "units", "postingModuleCode", "postingRule", "asAtDate", "activitiesDescription", "sourceType", "sourceId", "properties", "movementName", "holdingType", "economicBucket", "economicBucketComponent", "economicBucketVariant", "levels", "sourceLevels", "movementSign", "holdingSign", "ledgerColumn", "journalEntryLineType", "links"]
+    __properties: ClassVar[List[str]] = ["accountingDate", "activityDate", "portfolioId", "instrumentId", "instrumentScope", "subHoldingKeys", "taxLotId", "generalLedgerAccountCode", "local", "base", "units", "postingModuleCode", "postingRule", "asAtDate", "activitiesDescription", "sourceType", "sourceId", "properties", "movementName", "holdingType", "economicBucket", "economicBucketComponent", "economicBucketVariant", "levels", "sourceLevels", "movementSign", "holdingSign", "ledgerColumn", "journalEntryLineType", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -216,19 +216,19 @@ class JournalEntryLine(BaseModel):
         _obj = JournalEntryLine.model_validate({
             "accounting_date": obj.get("accountingDate"),
             "activity_date": obj.get("activityDate"),
-            "portfolio_id": ResourceId.from_dict(obj.get("portfolioId")) if obj.get("portfolioId") is not None else None,
+            "portfolio_id": ResourceId.from_dict(_v) if (_v := obj.get("portfolioId")) is not None else None,
             "instrument_id": obj.get("instrumentId"),
             "instrument_scope": obj.get("instrumentScope"),
             "sub_holding_keys": dict(
                 (_k, PerpetualProperty.from_dict(_v))
-                for _k, _v in obj.get("subHoldingKeys").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("subHoldingKeys") is not None
+            if (_val := obj.get("subHoldingKeys")) is not None
             else None,
             "tax_lot_id": obj.get("taxLotId"),
             "general_ledger_account_code": obj.get("generalLedgerAccountCode"),
-            "local": CurrencyAndAmount.from_dict(obj.get("local")) if obj.get("local") is not None else None,
-            "base": CurrencyAndAmount.from_dict(obj.get("base")) if obj.get("base") is not None else None,
+            "local": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("local")) is not None else None,
+            "base": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("base")) is not None else None,
             "units": obj.get("units"),
             "posting_module_code": obj.get("postingModuleCode"),
             "posting_rule": obj.get("postingRule"),
@@ -238,9 +238,9 @@ class JournalEntryLine(BaseModel):
             "source_id": obj.get("sourceId"),
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
             "movement_name": obj.get("movementName"),
             "holding_type": obj.get("holdingType"),
@@ -253,7 +253,7 @@ class JournalEntryLine(BaseModel):
             "holding_sign": obj.get("holdingSign"),
             "ledger_column": obj.get("ledgerColumn"),
             "journal_entry_line_type": obj.get("journalEntryLineType"),
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

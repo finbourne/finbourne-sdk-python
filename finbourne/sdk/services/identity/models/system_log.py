@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -52,7 +52,7 @@ class SystemLog(BaseModel):
     transaction: Optional[LogTransaction] = None
     uuid:  Optional[StrictStr] = Field(default=None,alias="uuid", description="Represents Uuid in the Okta API") 
     version:  Optional[StrictStr] = Field(default=None,alias="version", description="Represents a Version in the Okta API") 
-    __properties = ["actor", "authenticationContext", "clientInfo", "debugContext", "displayMessage", "eventType", "legacyEventType", "outcome", "published", "request", "securityContext", "severity", "target", "transaction", "uuid", "version"]
+    __properties: ClassVar[List[str]] = ["actor", "authenticationContext", "clientInfo", "debugContext", "displayMessage", "eventType", "legacyEventType", "outcome", "published", "request", "securityContext", "severity", "target", "transaction", "uuid", "version"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -169,20 +169,20 @@ class SystemLog(BaseModel):
             return SystemLog.model_validate(obj)
 
         _obj = SystemLog.model_validate({
-            "actor": LogActor.from_dict(obj.get("actor")) if obj.get("actor") is not None else None,
-            "authentication_context": LogAuthenticationContext.from_dict(obj.get("authenticationContext")) if obj.get("authenticationContext") is not None else None,
-            "client_info": LogClientInfo.from_dict(obj.get("clientInfo")) if obj.get("clientInfo") is not None else None,
-            "debug_context": LogDebugContext.from_dict(obj.get("debugContext")) if obj.get("debugContext") is not None else None,
+            "actor": LogActor.from_dict(_v) if (_v := obj.get("actor")) is not None else None,
+            "authentication_context": LogAuthenticationContext.from_dict(_v) if (_v := obj.get("authenticationContext")) is not None else None,
+            "client_info": LogClientInfo.from_dict(_v) if (_v := obj.get("clientInfo")) is not None else None,
+            "debug_context": LogDebugContext.from_dict(_v) if (_v := obj.get("debugContext")) is not None else None,
             "display_message": obj.get("displayMessage"),
             "event_type": obj.get("eventType"),
             "legacy_event_type": obj.get("legacyEventType"),
-            "outcome": LogOutcome.from_dict(obj.get("outcome")) if obj.get("outcome") is not None else None,
+            "outcome": LogOutcome.from_dict(_v) if (_v := obj.get("outcome")) is not None else None,
             "published": obj.get("published"),
-            "request": LogRequest.from_dict(obj.get("request")) if obj.get("request") is not None else None,
-            "security_context": LogSecurityContext.from_dict(obj.get("securityContext")) if obj.get("securityContext") is not None else None,
-            "severity": LogSeverity.from_dict(obj.get("severity")) if obj.get("severity") is not None else None,
-            "target": [LogTarget.from_dict(_item) for _item in obj.get("target")] if obj.get("target") is not None else None,
-            "transaction": LogTransaction.from_dict(obj.get("transaction")) if obj.get("transaction") is not None else None,
+            "request": LogRequest.from_dict(_v) if (_v := obj.get("request")) is not None else None,
+            "security_context": LogSecurityContext.from_dict(_v) if (_v := obj.get("securityContext")) is not None else None,
+            "severity": LogSeverity.from_dict(_v) if (_v := obj.get("severity")) is not None else None,
+            "target": [LogTarget.from_dict(_item) for _item in _v] if (_v := obj.get("target")) is not None else None,
+            "transaction": LogTransaction.from_dict(_v) if (_v := obj.get("transaction")) is not None else None,
             "uuid": obj.get("uuid"),
             "version": obj.get("version")
         })

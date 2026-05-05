@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class LogSecurityContext(BaseModel):
     isp:  Optional[StrictStr] = Field(default=None,alias="isp") 
     domain:  Optional[StrictStr] = Field(default=None,alias="domain") 
     is_proxy: Optional[StrictBool] = Field(default=None, alias="isProxy")
-    __properties = ["asNumber", "asOrg", "isp", "domain", "isProxy"]
+    __properties: ClassVar[List[str]] = ["asNumber", "asOrg", "isp", "domain", "isProxy"]
 
     model_config = ConfigDict(
         populate_by_name=True,

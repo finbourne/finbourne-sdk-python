@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -27,10 +27,10 @@ class CategorySettlementStatus(BaseModel):
     """
     CategorySettlementStatus
     """
-    status:  StrictStr = Field(...,alias="status", description="The Status of the settlement category - 'Settled', 'Part Settled' or 'Unsettled'.") 
+    status:  StrictStr = Field(...,alias="status", description="The Status of the settlement category. Available values: Unsettled, PartSettled, Settled, None.") 
     is_overdue: StrictBool = Field(description="Whether the category has any overdue movements", alias="isOverdue")
     problems: List[SettlementProblem] = Field(description="Instruction level detail of rejected or invalid settlement instructions")
-    __properties = ["status", "isOverdue", "problems"]
+    __properties: ClassVar[List[str]] = ["status", "isOverdue", "problems"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -87,7 +87,7 @@ class CategorySettlementStatus(BaseModel):
         _obj = CategorySettlementStatus.model_validate({
             "status": obj.get("status"),
             "is_overdue": obj.get("isOverdue"),
-            "problems": [SettlementProblem.from_dict(_item) for _item in obj.get("problems")] if obj.get("problems") is not None else None
+            "problems": [SettlementProblem.from_dict(_item) for _item in _v] if (_v := obj.get("problems")) is not None else None
         })
         return _obj
 

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -37,7 +37,7 @@ class InstrumentCashFlow(BaseModel):
     source_instrument_id:  StrictStr = Field(...,alias="sourceInstrumentId", description="The unique Lusid Instrument Id (LUID) of the instrument that the holding is in.") 
     diagnostics: Dict[str, Optional[StrictStr]] = Field(description="Whilst a cash flow is defined by an (amount,ccy) pair and the date it is paid on there is additional information required for diagnostics. This includes a range of information and can be empty in the case of a simple cash quantity or where further information is not available. Typical information includes items such as reset dates, RIC, accrual start/end, number of days and curve data.")
     links: Optional[List[Link]] = None
-    __properties = ["paymentDate", "amount", "currency", "sourcePortfolioId", "sourceTransactionId", "sourceInstrumentScope", "sourceInstrumentId", "diagnostics", "links"]
+    __properties: ClassVar[List[str]] = ["paymentDate", "amount", "currency", "sourcePortfolioId", "sourceTransactionId", "sourceInstrumentScope", "sourceInstrumentId", "diagnostics", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -108,12 +108,12 @@ class InstrumentCashFlow(BaseModel):
             "payment_date": obj.get("paymentDate"),
             "amount": obj.get("amount"),
             "currency": obj.get("currency"),
-            "source_portfolio_id": ResourceId.from_dict(obj.get("sourcePortfolioId")) if obj.get("sourcePortfolioId") is not None else None,
+            "source_portfolio_id": ResourceId.from_dict(_v) if (_v := obj.get("sourcePortfolioId")) is not None else None,
             "source_transaction_id": obj.get("sourceTransactionId"),
             "source_instrument_scope": obj.get("sourceInstrumentScope"),
             "source_instrument_id": obj.get("sourceInstrumentId"),
             "diagnostics": obj.get("diagnostics"),
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

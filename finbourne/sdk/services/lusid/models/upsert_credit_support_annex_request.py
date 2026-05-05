@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class UpsertCreditSupportAnnexRequest(BaseModel):
     Credit Support Annex information. The interaction in terms of margining requirements between a set of trades for a given counterparty.  # noqa: E501
     """
     credit_support_annex: Optional[CreditSupportAnnex] = Field(default=None, alias="creditSupportAnnex")
-    __properties = ["creditSupportAnnex"]
+    __properties: ClassVar[List[str]] = ["creditSupportAnnex"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,7 +79,7 @@ class UpsertCreditSupportAnnexRequest(BaseModel):
             return UpsertCreditSupportAnnexRequest.model_validate(obj)
 
         _obj = UpsertCreditSupportAnnexRequest.model_validate({
-            "credit_support_annex": CreditSupportAnnex.from_dict(obj.get("creditSupportAnnex")) if obj.get("creditSupportAnnex") is not None else None
+            "credit_support_annex": CreditSupportAnnex.from_dict(_v) if (_v := obj.get("creditSupportAnnex")) is not None else None
         })
         return _obj
 

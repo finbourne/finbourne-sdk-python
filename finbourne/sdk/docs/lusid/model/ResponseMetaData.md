@@ -6,7 +6,7 @@ Metadata related to an api response
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **type** | **str** | Optional | The type of meta data information being provided |
-| **description** | **str** | Optional | The description of what occured for this specific piece of meta data |
+| **description** | **str** | Optional | The description of what occurred for this specific piece of meta data |
 | **identifier_type** | **str** | Optional | The type of the listed identifiers |
 | **identifiers** | **List[str]** | Optional | The related identifiers that were impacted by this event |
 
@@ -20,7 +20,7 @@ from finbourne.sdk.services.lusid.models.ResponseMetaData import ResponseMetaDat
 
 instance = ResponseMetaData(
     type="...",  # optional — The type of meta data information being provided
-    description="...",  # optional — The description of what occured for this specific piece of meta data
+    description="...",  # optional — The description of what occurred for this specific piece of meta data
     identifier_type="...",  # optional — The type of the listed identifiers
     identifiers=  # optional — The related identifiers that were impacted by this event
 )

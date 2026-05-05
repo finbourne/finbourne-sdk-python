@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class CustomEntityRequest(BaseModel):
     identifiers: List[CustomEntityId] = Field(description="The identifiers the custom entity will be upserted with.")
     fields: Optional[List[CustomEntityField]] = Field(default=None, description="The fields that decorate the custom entity.")
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="The properties that decorate the custom entity.")
-    __properties = ["displayName", "description", "identifiers", "fields", "properties"]
+    __properties: ClassVar[List[str]] = ["displayName", "description", "identifiers", "fields", "properties"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -115,13 +115,13 @@ class CustomEntityRequest(BaseModel):
         _obj = CustomEntityRequest.model_validate({
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
-            "identifiers": [CustomEntityId.from_dict(_item) for _item in obj.get("identifiers")] if obj.get("identifiers") is not None else None,
-            "fields": [CustomEntityField.from_dict(_item) for _item in obj.get("fields")] if obj.get("fields") is not None else None,
+            "identifiers": [CustomEntityId.from_dict(_item) for _item in _v] if (_v := obj.get("identifiers")) is not None else None,
+            "fields": [CustomEntityField.from_dict(_item) for _item in _v] if (_v := obj.get("fields")) is not None else None,
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None
         })
         return _obj

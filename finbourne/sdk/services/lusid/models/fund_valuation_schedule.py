@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -35,7 +35,7 @@ class FundValuationSchedule(BaseModel):
     holiday_calendars: Optional[List[StrictStr]] = Field(default=None, description="The holiday calendar(s) that should be used in determining the date schedule.  Holiday calendar(s) are supplied by their names, for example, \"CoppClark\".  Note that when the calendars are not available (e.g. when the user has insufficient permissions),  a recipe setting will be used to determine whether the whole batch should then fail or whether the calendar not being available should simply be ignored.", alias="holidayCalendars")
     valuation_date_times: Optional[List[StrictStr]] = Field(default=None, description="If given, this is the exact set of dates on which to perform a valuation. This will replace/override all other specified values if given.", alias="valuationDateTimes")
     business_day_convention:  Optional[StrictStr] = Field(default=None,alias="businessDayConvention", description="When Tenor is given and is not equal to \"1D\", there may be cases where \"date + tenor\" land on non-business days around month end.  In that case, the BusinessDayConvention, e.g. modified following \"MF\" would be applied to determine the next GBD.") 
-    __properties = ["effectiveFrom", "effectiveAt", "diaryEntry", "variant", "tenor", "rollConvention", "holidayCalendars", "valuationDateTimes", "businessDayConvention"]
+    __properties: ClassVar[List[str]] = ["effectiveFrom", "effectiveAt", "diaryEntry", "variant", "tenor", "rollConvention", "holidayCalendars", "valuationDateTimes", "businessDayConvention"]
 
     model_config = ConfigDict(
         populate_by_name=True,

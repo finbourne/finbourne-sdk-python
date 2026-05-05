@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class PasswordPolicyResponseComplexity(BaseModel):
     min_length: StrictInt = Field(description="The minimum length for a password", alias="minLength")
     exclude_first_name: StrictBool = Field(description="Rule determining whether a user's first name should be permitted in their password", alias="excludeFirstName")
     exclude_last_name: StrictBool = Field(description="Rule determining whether a user's last name should be permitted in their password", alias="excludeLastName")
-    __properties = ["minLength", "excludeFirstName", "excludeLastName"]
+    __properties: ClassVar[List[str]] = ["minLength", "excludeFirstName", "excludeLastName"]
 
     model_config = ConfigDict(
         populate_by_name=True,

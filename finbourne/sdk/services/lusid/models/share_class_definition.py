@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -38,8 +38,8 @@ class ShareClassDefinition(BaseModel):
     launch_date: Optional[datetime] = Field(default=None, description="The launch date set when a shareclass is added to the fund. Defaults to Fund Inception Date.", alias="launchDate")
     apportionment_factor: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The weighting factor used for apportionment across this share class.", alias="apportionmentFactor")
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="An optional set of properties to attach to the auto-created Instrument. Only applied when createInstrument is true.")
-    fund_share_class_type:  StrictStr = Field(...,alias="fundShareClassType", description="The Type of Share Class. Supported values are: Unitised / Non-Unitised / Series / Private Equity / Partnership.") 
-    distribution_type:  StrictStr = Field(...,alias="distributionType", description="The type of distribution the ShareClass will calculate. Supported values are: Income, Accumulation.") 
+    fund_share_class_type:  StrictStr = Field(...,alias="fundShareClassType", description="The Type of Share Class. Available values: Unitised, Inactive, Series, PrivateEquity, Partnership.") 
+    distribution_type:  StrictStr = Field(...,alias="distributionType", description="The type of distribution the ShareClass will calculate. Available values: Income, Accumulation.") 
     dom_ccy:  StrictStr = Field(...,alias="domCcy", description="The domestic currency of the ShareClass instrument.") 
     trading_conventions: Optional[TradingConventions] = Field(default=None, alias="tradingConventions")
     units_precision: Optional[StrictInt] = Field(default=None, description="Decimal places for the share class units.", alias="unitsPrecision")
@@ -47,9 +47,9 @@ class ShareClassDefinition(BaseModel):
     rounding_conventions: Optional[List[SimpleRoundingConvention]] = Field(default=None, description="Rounding conventions used for the ShareClass quotes.", alias="roundingConventions")
     rounding_conventions_units: Optional[List[SimpleRoundingConvention]] = Field(default=None, description="Rounding conventions used for the ShareClass units.", alias="roundingConventionsUnits")
     time_zone_conventions: Optional[TimeZoneConventions] = Field(default=None, alias="timeZoneConventions")
-    distribution_payment_type:  Optional[StrictStr] = Field(default=None,alias="distributionPaymentType", description="The tax treatment applied to distributions. Supported values are: Gross, Net.") 
-    hedging:  StrictStr = Field(...,alias="hedging", description="Indicates whether the ShareClass applies currency hedging. Supported values are: Invalid, None, ApplyHedging.") 
-    __properties = ["code", "name", "description", "shareClassShortCode", "launchPrice", "launchDate", "apportionmentFactor", "properties", "fundShareClassType", "distributionType", "domCcy", "tradingConventions", "unitsPrecision", "pricePrecision", "roundingConventions", "roundingConventionsUnits", "timeZoneConventions", "distributionPaymentType", "hedging"]
+    distribution_payment_type:  Optional[StrictStr] = Field(default=None,alias="distributionPaymentType", description="The tax treatment applied to distributions. Available values: Invalid, Gross, Net.") 
+    hedging:  StrictStr = Field(...,alias="hedging", description="Indicates whether the ShareClass applies currency hedging. Available values: Invalid, None, ApplyHedging.") 
+    __properties: ClassVar[List[str]] = ["code", "name", "description", "shareClassShortCode", "launchPrice", "launchDate", "apportionmentFactor", "properties", "fundShareClassType", "distributionType", "domCcy", "tradingConventions", "unitsPrecision", "pricePrecision", "roundingConventions", "roundingConventionsUnits", "timeZoneConventions", "distributionPaymentType", "hedging"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -183,19 +183,19 @@ class ShareClassDefinition(BaseModel):
             "apportionment_factor": obj.get("apportionmentFactor"),
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
             "fund_share_class_type": obj.get("fundShareClassType"),
             "distribution_type": obj.get("distributionType"),
             "dom_ccy": obj.get("domCcy"),
-            "trading_conventions": TradingConventions.from_dict(obj.get("tradingConventions")) if obj.get("tradingConventions") is not None else None,
+            "trading_conventions": TradingConventions.from_dict(_v) if (_v := obj.get("tradingConventions")) is not None else None,
             "units_precision": obj.get("unitsPrecision"),
             "price_precision": obj.get("pricePrecision"),
-            "rounding_conventions": [SimpleRoundingConvention.from_dict(_item) for _item in obj.get("roundingConventions")] if obj.get("roundingConventions") is not None else None,
-            "rounding_conventions_units": [SimpleRoundingConvention.from_dict(_item) for _item in obj.get("roundingConventionsUnits")] if obj.get("roundingConventionsUnits") is not None else None,
-            "time_zone_conventions": TimeZoneConventions.from_dict(obj.get("timeZoneConventions")) if obj.get("timeZoneConventions") is not None else None,
+            "rounding_conventions": [SimpleRoundingConvention.from_dict(_item) for _item in _v] if (_v := obj.get("roundingConventions")) is not None else None,
+            "rounding_conventions_units": [SimpleRoundingConvention.from_dict(_item) for _item in _v] if (_v := obj.get("roundingConventionsUnits")) is not None else None,
+            "time_zone_conventions": TimeZoneConventions.from_dict(_v) if (_v := obj.get("timeZoneConventions")) is not None else None,
             "distribution_payment_type": obj.get("distributionPaymentType"),
             "hedging": obj.get("hedging")
         })

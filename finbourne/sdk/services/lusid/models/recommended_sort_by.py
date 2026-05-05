@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class RecommendedSortBy(BaseModel):
     """
     attribute_name:  StrictStr = Field(...,alias="attributeName", description="The property key, identifier type, or field to be sorted by.") 
     sort_order:  Optional[StrictStr] = Field(default=None,alias="sortOrder", description="The sorting direction. Either ascending (ASC) or descending (DESC).") 
-    __properties = ["attributeName", "sortOrder"]
+    __properties: ClassVar[List[str]] = ["attributeName", "sortOrder"]
 
     model_config = ConfigDict(
         populate_by_name=True,

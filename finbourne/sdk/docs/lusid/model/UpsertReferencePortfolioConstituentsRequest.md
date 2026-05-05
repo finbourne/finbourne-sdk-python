@@ -5,8 +5,8 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **effective_from** | **str** | Required | The first date from which the weights will apply |
-| **weight_type** | **str** | Required | The available values are: Static, Floating, Periodical |
-| **period_type** | **str** | Optional | The available values are: Daily, Weekly, Monthly, Quarterly, Annually |
+| **weight_type** | **str** | Required | Available values: Static, Floating, Periodical. |
+| **period_type** | **str** | Optional | Available values: Daily, Weekly, Monthly, Quarterly, Annually. |
 | **period_count** | **int** | Optional |  |
 | **constituents** | [List[ReferencePortfolioConstituentRequest]](ReferencePortfolioConstituentRequest.md) | Required | Set of constituents (instrument/weight pairings) |
 
@@ -20,8 +20,8 @@ from finbourne.sdk.services.lusid.models.UpsertReferencePortfolioConstituentsReq
 
 instance = UpsertReferencePortfolioConstituentsRequest(
     effective_from="...",  # required — The first date from which the weights will apply
-    weight_type="...",  # required — The available values are: Static, Floating, Periodical
-    period_type="...",  # optional — The available values are: Daily, Weekly, Monthly, Quarterly, Annually
+    weight_type="...",  # required — Available values: Static, Floating, Periodical.
+    period_type="...",  # optional — Available values: Daily, Weekly, Monthly, Quarterly, Annually.
     period_count=0,  # optional — 
     constituents=[]  # required — Set of constituents (instrument/weight pairings)
 )

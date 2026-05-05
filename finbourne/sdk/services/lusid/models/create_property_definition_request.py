@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -27,19 +27,19 @@ class CreatePropertyDefinitionRequest(BaseModel):
     """
     CreatePropertyDefinitionRequest
     """
-    domain:  StrictStr = Field(...,alias="domain", description="The domain that the property exists in. The available values are: NotDefined, Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, CutLabelDefinition, Analytic, PortfolioGroup, Person, AccessMetadata, Order, UnitResult, MarketData, ConfigurationRecipe, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, NextBestAction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, AddressKeyDefinition, AmortisationRuleSet, AnalyticsSetInventory, AtomUnitResult, CleardownModule, ComplexMarketData, ComplianceRunSummary, ComplianceRule, ComplianceRunInfo, CorporateActionSource, CounterpartyAgreement, CustomEntityDefinition, DataType, Dialect, EventHandler, GeneralLedgerProfile, PostingModule, Quote, RecipeComposer, ReconciliationRunBreak, ReferenceList, RelationDefinition, ReturnBlockIndex, SRSDocument, SRSIndex, TransactionTemplate, TransactionTemplateScope, TransactionType, TransactionTypeConfig, TranslationScript, TaskDefinition, TaskInstance, Worker, StagingRuleSet, IdentifierDefinition, SettlementInstruction, TransactionFee") 
+    domain:  StrictStr = Field(...,alias="domain", description="The domain that the property exists in. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, IdentifierDefinition, SettlementInstruction, TransactionFee.") 
     scope:  StrictStr = Field(...,alias="scope", description="The scope that the property exists in.") 
     code:  StrictStr = Field(...,alias="code", description="The code of the property. Together with the domain and scope this uniquely identifies the property.") 
     value_required: Optional[StrictBool] = Field(default=None, description="This field is not implemented and should be disregarded.", alias="valueRequired")
     display_name:  StrictStr = Field(...,alias="displayName", description="The display name of the property.") 
     data_type_id: ResourceId = Field(alias="dataTypeId")
-    life_time:  Optional[StrictStr] = Field(default=None,alias="lifeTime", description="Describes how the property's values can change over time. The available values are: Perpetual, TimeVariant") 
+    life_time:  Optional[StrictStr] = Field(default=None,alias="lifeTime", description="Describes how the property's values can change over time. Available values: Perpetual, TimeVariant.") 
     constraint_style:  Optional[StrictStr] = Field(default=None,alias="constraintStyle", description="Describes the uniqueness and cardinality of the property for entity objects under the property domain specified in Key. Defaults to \"Property\" if not specified. Valid values for this field are: Property, Collection or Identifier.") 
     property_description:  Optional[StrictStr] = Field(default=None,alias="propertyDescription", description="Describes the property") 
-    collection_type:  Optional[StrictStr] = Field(default=None,alias="collectionType", description="Describes whether a collection property should behave as a set or as an array.") 
+    collection_type:  Optional[StrictStr] = Field(default=None,alias="collectionType", description="Describes whether a collection property should behave as a Set or as an Array. Available values: Set, Array.") 
     custom_entity_types: Optional[List[StrictStr]] = Field(default=None, description="The custom entity types that properties relating to this property definition can be applied to.", alias="customEntityTypes")
-    value_format:  Optional[StrictStr] = Field(default=None,alias="valueFormat", description="The format in which values for this property definition should be represented.") 
-    __properties = ["domain", "scope", "code", "valueRequired", "displayName", "dataTypeId", "lifeTime", "constraintStyle", "propertyDescription", "collectionType", "customEntityTypes", "valueFormat"]
+    value_format:  Optional[StrictStr] = Field(default=None,alias="valueFormat", description="The format in which values for this property definition should be represented. Available values: Text, Html.") 
+    __properties: ClassVar[List[str]] = ["domain", "scope", "code", "valueRequired", "displayName", "dataTypeId", "lifeTime", "constraintStyle", "propertyDescription", "collectionType", "customEntityTypes", "valueFormat"]
 
     @field_validator('domain')
     def domain_validate_enum(cls, value):
@@ -261,7 +261,7 @@ class CreatePropertyDefinitionRequest(BaseModel):
             "code": obj.get("code"),
             "value_required": obj.get("valueRequired"),
             "display_name": obj.get("displayName"),
-            "data_type_id": ResourceId.from_dict(obj.get("dataTypeId")) if obj.get("dataTypeId") is not None else None,
+            "data_type_id": ResourceId.from_dict(_v) if (_v := obj.get("dataTypeId")) is not None else None,
             "life_time": obj.get("lifeTime"),
             "constraint_style": obj.get("constraintStyle"),
             "property_description": obj.get("propertyDescription"),

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -26,11 +26,11 @@ class StagingRuleMatchCriteria(BaseModel):
     """
     StagingRuleMatchCriteria
     """
-    action_in: Optional[List[StrictStr]] = Field(default=None, alias="actionIn")
+    action_in: Optional[List[StrictStr]] = Field(default=None, description="Available values: Create, Update, Delete.", alias="actionIn")
     requesting_user:  Optional[StrictStr] = Field(default=None,alias="requestingUser") 
     entity_attributes:  Optional[StrictStr] = Field(default=None,alias="entityAttributes") 
     changed_attribute_name_in: Optional[List[StrictStr]] = Field(default=None, alias="changedAttributeNameIn")
-    __properties = ["actionIn", "requestingUser", "entityAttributes", "changedAttributeNameIn"]
+    __properties: ClassVar[List[str]] = ["actionIn", "requestingUser", "entityAttributes", "changedAttributeNameIn"]
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class DeleteInstrumentsResponse(BaseModel):
     as_at: datetime = Field(description="The as-at datetime at which the instrument was deleted.", alias="asAt")
     staged: Optional[Dict[str, StagedModificationsInfo]] = Field(default=None, description="Information about the pending staged modifications for the current entity.")
     links: Optional[List[Link]] = None
-    __properties = ["href", "asAt", "staged", "links"]
+    __properties: ClassVar[List[str]] = ["href", "asAt", "staged", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -114,11 +114,11 @@ class DeleteInstrumentsResponse(BaseModel):
             "as_at": obj.get("asAt"),
             "staged": dict(
                 (_k, StagedModificationsInfo.from_dict(_v))
-                for _k, _v in obj.get("staged").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("staged") is not None
+            if (_val := obj.get("staged")) is not None
             else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

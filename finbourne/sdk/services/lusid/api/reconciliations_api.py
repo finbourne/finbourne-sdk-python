@@ -79,12 +79,12 @@ class ReconciliationsApi:
         :return: Returns the result object.
         :rtype: Reconciliation
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_scheduled_reconciliation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_scheduled_reconciliation_with_http_info(scope, create_reconciliation_request, **kwargs)  # noqa: E501
+        response = self.create_scheduled_reconciliation_with_http_info(scope, create_reconciliation_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_scheduled_reconciliation_with_http_info(self, scope: StrictStr, create_reconciliation_request: Optional[CreateReconciliationRequest] = None, **kwargs) -> ApiResponse[Reconciliation]:
@@ -214,12 +214,12 @@ class ReconciliationsApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_reconciliation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_reconciliation_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_reconciliation_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_reconciliation_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -342,12 +342,12 @@ class ReconciliationsApi:
         :return: Returns the result object.
         :rtype: str
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_reconciliation_mapping_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_reconciliation_mapping_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_reconciliation_mapping_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_reconciliation_mapping_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[str]:
@@ -476,12 +476,12 @@ class ReconciliationsApi:
         :return: Returns the result object.
         :rtype: Reconciliation
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_reconciliation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_reconciliation_with_http_info(scope, code, effective_at, as_at, property_keys, **kwargs)  # noqa: E501
+        response = self.get_reconciliation_with_http_info(scope, code, effective_at, as_at, property_keys, **kwargs)
+        return response.data
 
     @validate_call
     def get_reconciliation_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[Reconciliation]:
@@ -626,12 +626,12 @@ class ReconciliationsApi:
         :return: Returns the result object.
         :rtype: Mapping
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_reconciliation_mapping_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_reconciliation_mapping_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.get_reconciliation_mapping_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def get_reconciliation_mapping_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[Mapping]:
@@ -744,7 +744,7 @@ class ReconciliationsApi:
         """[EARLY ACCESS] ListReconciliationMappings: List the reconciliation mappings  # noqa: E501
 
         Lists all mappings this user is entitled to see  # noqa: E501
-        :param reconciliation_type: Optional parameter to specify which type of mappings should be returned.  Defaults to Transaction if not provided.
+        :param reconciliation_type: Optional parameter to specify which type of mappings should be returned.  Default value: Transaction. Available values: Transaction, Holding, Valuation, Cash, CashHolding.
         :type reconciliation_type: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -752,19 +752,19 @@ class ReconciliationsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfMapping
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_reconciliation_mappings_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_reconciliation_mappings_with_http_info(reconciliation_type, **kwargs)  # noqa: E501
+        response = self.list_reconciliation_mappings_with_http_info(reconciliation_type, **kwargs)
+        return response.data
 
     @validate_call
     def list_reconciliation_mappings_with_http_info(self, reconciliation_type: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfMapping]:
         """[EARLY ACCESS] ListReconciliationMappings: List the reconciliation mappings  # noqa: E501
 
         Lists all mappings this user is entitled to see  # noqa: E501
-        :param reconciliation_type: Optional parameter to specify which type of mappings should be returned.  Defaults to Transaction if not provided.
+        :param reconciliation_type: Optional parameter to specify which type of mappings should be returned.  Default value: Transaction. Available values: Transaction, Holding, Valuation, Cash, CashHolding.
         :type reconciliation_type: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -882,12 +882,12 @@ class ReconciliationsApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfReconciliation
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_reconciliations_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_reconciliations_with_http_info(effective_at, as_at, page, limit, filter, property_keys, **kwargs)  # noqa: E501
+        response = self.list_reconciliations_with_http_info(effective_at, as_at, page, limit, filter, property_keys, **kwargs)
+        return response.data
 
     @validate_call
     def list_reconciliations_with_http_info(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfReconciliation]:
@@ -1036,12 +1036,12 @@ class ReconciliationsApi:
         :return: Returns the result object.
         :rtype: ReconciliationResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the reconcile_generic_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.reconcile_generic_with_http_info(reconciliation_request, **kwargs)  # noqa: E501
+        response = self.reconcile_generic_with_http_info(reconciliation_request, **kwargs)
+        return response.data
 
     @validate_call
     def reconcile_generic_with_http_info(self, reconciliation_request: Optional[ReconciliationRequest] = None, **kwargs) -> ApiResponse[ReconciliationResponse]:
@@ -1169,12 +1169,12 @@ class ReconciliationsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfReconciliationBreak
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the reconcile_holdings_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.reconcile_holdings_with_http_info(sort_by, limit, filter, portfolios_reconciliation_request, **kwargs)  # noqa: E501
+        response = self.reconcile_holdings_with_http_info(sort_by, limit, filter, portfolios_reconciliation_request, **kwargs)
+        return response.data
 
     @validate_call
     def reconcile_holdings_with_http_info(self, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, portfolios_reconciliation_request: Optional[PortfoliosReconciliationRequest] = None, **kwargs) -> ApiResponse[ResourceListOfReconciliationBreak]:
@@ -1315,12 +1315,12 @@ class ReconciliationsApi:
         :return: Returns the result object.
         :rtype: ListAggregationReconciliation
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the reconcile_inline_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.reconcile_inline_with_http_info(inline_valuations_reconciliation_request, **kwargs)  # noqa: E501
+        response = self.reconcile_inline_with_http_info(inline_valuations_reconciliation_request, **kwargs)
+        return response.data
 
     @validate_call
     def reconcile_inline_with_http_info(self, inline_valuations_reconciliation_request: Optional[InlineValuationsReconciliationRequest] = None, **kwargs) -> ApiResponse[ListAggregationReconciliation]:
@@ -1442,12 +1442,12 @@ class ReconciliationsApi:
         :return: Returns the result object.
         :rtype: TransactionsReconciliationsResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the reconcile_transactions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.reconcile_transactions_with_http_info(transaction_reconciliation_request, **kwargs)  # noqa: E501
+        response = self.reconcile_transactions_with_http_info(transaction_reconciliation_request, **kwargs)
+        return response.data
 
     @validate_call
     def reconcile_transactions_with_http_info(self, transaction_reconciliation_request: Optional[TransactionReconciliationRequest] = None, **kwargs) -> ApiResponse[TransactionsReconciliationsResponse]:
@@ -1569,12 +1569,12 @@ class ReconciliationsApi:
         :return: Returns the result object.
         :rtype: ReconciliationResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the reconcile_transactions_v2_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.reconcile_transactions_v2_with_http_info(transaction_reconciliation_request_v2, **kwargs)  # noqa: E501
+        response = self.reconcile_transactions_v2_with_http_info(transaction_reconciliation_request_v2, **kwargs)
+        return response.data
 
     @validate_call
     def reconcile_transactions_v2_with_http_info(self, transaction_reconciliation_request_v2: Optional[TransactionReconciliationRequestV2] = None, **kwargs) -> ApiResponse[ReconciliationResponse]:
@@ -1696,12 +1696,12 @@ class ReconciliationsApi:
         :return: Returns the result object.
         :rtype: ListAggregationReconciliation
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the reconcile_valuation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.reconcile_valuation_with_http_info(valuations_reconciliation_request, **kwargs)  # noqa: E501
+        response = self.reconcile_valuation_with_http_info(valuations_reconciliation_request, **kwargs)
+        return response.data
 
     @validate_call
     def reconcile_valuation_with_http_info(self, valuations_reconciliation_request: Optional[ValuationsReconciliationRequest] = None, **kwargs) -> ApiResponse[ListAggregationReconciliation]:
@@ -1827,12 +1827,12 @@ class ReconciliationsApi:
         :return: Returns the result object.
         :rtype: Reconciliation
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_reconciliation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_reconciliation_with_http_info(scope, code, update_reconciliation_request, **kwargs)  # noqa: E501
+        response = self.update_reconciliation_with_http_info(scope, code, update_reconciliation_request, **kwargs)
+        return response.data
 
     @validate_call
     def update_reconciliation_with_http_info(self, scope: StrictStr, code: StrictStr, update_reconciliation_request: Optional[UpdateReconciliationRequest] = None, **kwargs) -> ApiResponse[Reconciliation]:
@@ -1966,12 +1966,12 @@ class ReconciliationsApi:
         :return: Returns the result object.
         :rtype: Mapping
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_reconciliation_mapping_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_reconciliation_mapping_with_http_info(mapping, **kwargs)  # noqa: E501
+        response = self.upsert_reconciliation_mapping_with_http_info(mapping, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_reconciliation_mapping_with_http_info(self, mapping: Optional[Mapping] = None, **kwargs) -> ApiResponse[Mapping]:
@@ -2099,12 +2099,12 @@ class ReconciliationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Reconciliation
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_scheduled_reconciliation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_scheduled_reconciliation_with_http_info_async(scope, create_reconciliation_request, **kwargs)  # noqa: E501
+            response = await self.create_scheduled_reconciliation_with_http_info_async(scope, create_reconciliation_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_scheduled_reconciliation_with_http_info_async(self, scope: StrictStr, create_reconciliation_request: Optional[CreateReconciliationRequest] = None, **kwargs) -> ApiResponse[Reconciliation]:
@@ -2235,12 +2235,12 @@ class ReconciliationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_reconciliation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_reconciliation_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_reconciliation_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_reconciliation_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -2364,12 +2364,12 @@ class ReconciliationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: str
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_reconciliation_mapping_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_reconciliation_mapping_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_reconciliation_mapping_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_reconciliation_mapping_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[str]:
@@ -2499,12 +2499,12 @@ class ReconciliationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Reconciliation
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_reconciliation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_reconciliation_with_http_info_async(scope, code, effective_at, as_at, property_keys, **kwargs)  # noqa: E501
+            response = await self.get_reconciliation_with_http_info_async(scope, code, effective_at, as_at, property_keys, **kwargs)
+            return response.data
 
     @validate_call
     async def get_reconciliation_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[Reconciliation]:
@@ -2650,12 +2650,12 @@ class ReconciliationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Mapping
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_reconciliation_mapping_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_reconciliation_mapping_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.get_reconciliation_mapping_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def get_reconciliation_mapping_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[Mapping]:
@@ -2769,7 +2769,7 @@ class ReconciliationsApi:
             """[EARLY ACCESS] ListReconciliationMappings: List the reconciliation mappings  # noqa: E501
             Lists all mappings this user is entitled to see  # noqa: E501
             
-            :param reconciliation_type: Optional parameter to specify which type of mappings should be returned.  Defaults to Transaction if not provided.
+            :param reconciliation_type: Optional parameter to specify which type of mappings should be returned.  Default value: Transaction. Available values: Transaction, Holding, Valuation, Cash, CashHolding.
             :type reconciliation_type: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -2777,12 +2777,12 @@ class ReconciliationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfMapping
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_reconciliation_mappings_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_reconciliation_mappings_with_http_info_async(reconciliation_type, **kwargs)  # noqa: E501
+            response = await self.list_reconciliation_mappings_with_http_info_async(reconciliation_type, **kwargs)
+            return response.data
 
     @validate_call
     async def list_reconciliation_mappings_with_http_info_async(self, reconciliation_type: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfMapping]:
@@ -2790,7 +2790,7 @@ class ReconciliationsApi:
 
             Lists all mappings this user is entitled to see  # noqa: E501
 
-            :param reconciliation_type: Optional parameter to specify which type of mappings should be returned.  Defaults to Transaction if not provided.
+            :param reconciliation_type: Optional parameter to specify which type of mappings should be returned.  Default value: Transaction. Available values: Transaction, Holding, Valuation, Cash, CashHolding.
             :type reconciliation_type: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
@@ -2908,12 +2908,12 @@ class ReconciliationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfReconciliation
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_reconciliations_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_reconciliations_with_http_info_async(effective_at, as_at, page, limit, filter, property_keys, **kwargs)  # noqa: E501
+            response = await self.list_reconciliations_with_http_info_async(effective_at, as_at, page, limit, filter, property_keys, **kwargs)
+            return response.data
 
     @validate_call
     async def list_reconciliations_with_http_info_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfReconciliation]:
@@ -3063,12 +3063,12 @@ class ReconciliationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ReconciliationResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the reconcile_generic_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.reconcile_generic_with_http_info_async(reconciliation_request, **kwargs)  # noqa: E501
+            response = await self.reconcile_generic_with_http_info_async(reconciliation_request, **kwargs)
+            return response.data
 
     @validate_call
     async def reconcile_generic_with_http_info_async(self, reconciliation_request: Optional[ReconciliationRequest] = None, **kwargs) -> ApiResponse[ReconciliationResponse]:
@@ -3197,12 +3197,12 @@ class ReconciliationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfReconciliationBreak
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the reconcile_holdings_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.reconcile_holdings_with_http_info_async(sort_by, limit, filter, portfolios_reconciliation_request, **kwargs)  # noqa: E501
+            response = await self.reconcile_holdings_with_http_info_async(sort_by, limit, filter, portfolios_reconciliation_request, **kwargs)
+            return response.data
 
     @validate_call
     async def reconcile_holdings_with_http_info_async(self, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, portfolios_reconciliation_request: Optional[PortfoliosReconciliationRequest] = None, **kwargs) -> ApiResponse[ResourceListOfReconciliationBreak]:
@@ -3344,12 +3344,12 @@ class ReconciliationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ListAggregationReconciliation
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the reconcile_inline_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.reconcile_inline_with_http_info_async(inline_valuations_reconciliation_request, **kwargs)  # noqa: E501
+            response = await self.reconcile_inline_with_http_info_async(inline_valuations_reconciliation_request, **kwargs)
+            return response.data
 
     @validate_call
     async def reconcile_inline_with_http_info_async(self, inline_valuations_reconciliation_request: Optional[InlineValuationsReconciliationRequest] = None, **kwargs) -> ApiResponse[ListAggregationReconciliation]:
@@ -3472,12 +3472,12 @@ class ReconciliationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: TransactionsReconciliationsResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the reconcile_transactions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.reconcile_transactions_with_http_info_async(transaction_reconciliation_request, **kwargs)  # noqa: E501
+            response = await self.reconcile_transactions_with_http_info_async(transaction_reconciliation_request, **kwargs)
+            return response.data
 
     @validate_call
     async def reconcile_transactions_with_http_info_async(self, transaction_reconciliation_request: Optional[TransactionReconciliationRequest] = None, **kwargs) -> ApiResponse[TransactionsReconciliationsResponse]:
@@ -3600,12 +3600,12 @@ class ReconciliationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ReconciliationResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the reconcile_transactions_v2_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.reconcile_transactions_v2_with_http_info_async(transaction_reconciliation_request_v2, **kwargs)  # noqa: E501
+            response = await self.reconcile_transactions_v2_with_http_info_async(transaction_reconciliation_request_v2, **kwargs)
+            return response.data
 
     @validate_call
     async def reconcile_transactions_v2_with_http_info_async(self, transaction_reconciliation_request_v2: Optional[TransactionReconciliationRequestV2] = None, **kwargs) -> ApiResponse[ReconciliationResponse]:
@@ -3728,12 +3728,12 @@ class ReconciliationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ListAggregationReconciliation
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the reconcile_valuation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.reconcile_valuation_with_http_info_async(valuations_reconciliation_request, **kwargs)  # noqa: E501
+            response = await self.reconcile_valuation_with_http_info_async(valuations_reconciliation_request, **kwargs)
+            return response.data
 
     @validate_call
     async def reconcile_valuation_with_http_info_async(self, valuations_reconciliation_request: Optional[ValuationsReconciliationRequest] = None, **kwargs) -> ApiResponse[ListAggregationReconciliation]:
@@ -3860,12 +3860,12 @@ class ReconciliationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Reconciliation
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_reconciliation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_reconciliation_with_http_info_async(scope, code, update_reconciliation_request, **kwargs)  # noqa: E501
+            response = await self.update_reconciliation_with_http_info_async(scope, code, update_reconciliation_request, **kwargs)
+            return response.data
 
     @validate_call
     async def update_reconciliation_with_http_info_async(self, scope: StrictStr, code: StrictStr, update_reconciliation_request: Optional[UpdateReconciliationRequest] = None, **kwargs) -> ApiResponse[Reconciliation]:
@@ -4000,12 +4000,12 @@ class ReconciliationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Mapping
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_reconciliation_mapping_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_reconciliation_mapping_with_http_info_async(mapping, **kwargs)  # noqa: E501
+            response = await self.upsert_reconciliation_mapping_with_http_info_async(mapping, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_reconciliation_mapping_with_http_info_async(self, mapping: Optional[Mapping] = None, **kwargs) -> ApiResponse[Mapping]:

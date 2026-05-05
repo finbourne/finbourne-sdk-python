@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -27,10 +27,10 @@ class ResponseMetaData(BaseModel):
     Metadata related to an api response  # noqa: E501
     """
     type:  Optional[StrictStr] = Field(default=None,alias="type", description="The type of meta data information being provided") 
-    description:  Optional[StrictStr] = Field(default=None,alias="description", description="The description of what occured for this specific piece of meta data") 
+    description:  Optional[StrictStr] = Field(default=None,alias="description", description="The description of what occurred for this specific piece of meta data") 
     identifier_type:  Optional[StrictStr] = Field(default=None,alias="identifierType", description="The type of the listed identifiers") 
     identifiers: Optional[List[StrictStr]] = Field(default=None, description="The related identifiers that were impacted by this event")
-    __properties = ["type", "description", "identifierType", "identifiers"]
+    __properties: ClassVar[List[str]] = ["type", "description", "identifierType", "identifiers"]
 
     model_config = ConfigDict(
         populate_by_name=True,

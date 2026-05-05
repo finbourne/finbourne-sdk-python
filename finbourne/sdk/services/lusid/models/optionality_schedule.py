@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,9 +31,9 @@ class OptionalitySchedule(Schedule):
     exercise_type:  Optional[StrictStr] = Field(default=None,alias="exerciseType", description="The exercise type of the optionality schedule (American or European).  For American type, the bond is perpetually callable from a given exercise date until it matures, or the next date in the schedule.  For European type, the bond is only callable on a given exercise date.    Supported string (enumeration) values are: [European, American].  Defaults to \"European\" if not set.") 
     option_entries: Optional[List[OptionEntry]] = Field(default=None, description="The dates at which the bond call/put may be actioned, and associated strikes.", alias="optionEntries")
     option_type:  Optional[StrictStr] = Field(default=None,alias="optionType", description="Type of optionality for the schedule.    Supported string (enumeration) values are: [Call, Put].  Defaults to \"Call\" if not set.") 
-    schedule_type:  StrictStr = Field(...,alias="scheduleType", description="The available values are: FixedSchedule, FloatSchedule, OptionalitySchedule, StepSchedule, Exercise, FxRateSchedule, FxLinkedNotionalSchedule, BondConversionSchedule, Invalid") 
+    schedule_type:  StrictStr = Field(...,alias="scheduleType", description="Available values: FixedSchedule, FloatSchedule, OptionalitySchedule, StepSchedule, Exercise, FxRateSchedule, FxLinkedNotionalSchedule, BondConversionSchedule, Invalid.") 
     additional_properties: Dict[str, Any] = {}
-    __properties = ["scheduleType", "exerciseType", "optionEntries", "optionType"]
+    __properties: ClassVar[List[str]] = ["scheduleType", "exerciseType", "optionEntries", "optionType"]
 
     @field_validator('schedule_type')
     def schedule_type_validate_enum(cls, value):
@@ -180,17 +180,12 @@ class OptionalitySchedule(Schedule):
         _obj = OptionalitySchedule.model_validate({
             "schedule_type": obj.get("scheduleType"),
             "exercise_type": obj.get("exerciseType"),
-            "option_entries": [OptionEntry.from_dict(_item) for _item in obj.get("optionEntries")] if obj.get("optionEntries") is not None else None,
+            "option_entries": [OptionEntry.from_dict(_item) for _item in _v] if (_v := obj.get("optionEntries")) is not None else None,
             "option_type": obj.get("optionType")
         })
         # store additional fields in additional_properties
-        
-        properties = cls.__properties
-        if not isinstance(cls.__properties, dict) and getattr(cls.__properties, 'default', None):
-            properties = cls.__properties.default
-    
         for _key in obj.keys():
-            if _key not in properties:
+            if _key not in cls.__properties:
                 _obj.additional_properties[_key] = obj.get(_key)
 
         return _obj

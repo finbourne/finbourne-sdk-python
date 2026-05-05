@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -38,7 +38,7 @@ class HoldingAdjustmentWithDate(BaseModel):
     tax_lots: List[TargetTaxLot] = Field(description="The tax-lots that together make up the target holding.", alias="taxLots")
     currency:  Optional[StrictStr] = Field(default=None,alias="currency", description="The Holding currency.") 
     custodian_account_id: Optional[ResourceId] = Field(default=None, alias="custodianAccountId")
-    __properties = ["effectiveAt", "instrumentIdentifiers", "instrumentScope", "instrumentUid", "subHoldingKeys", "properties", "taxLots", "currency", "custodianAccountId"]
+    __properties: ClassVar[List[str]] = ["effectiveAt", "instrumentIdentifiers", "instrumentScope", "instrumentUid", "subHoldingKeys", "properties", "taxLots", "currency", "custodianAccountId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -141,19 +141,19 @@ class HoldingAdjustmentWithDate(BaseModel):
             "instrument_uid": obj.get("instrumentUid"),
             "sub_holding_keys": dict(
                 (_k, PerpetualProperty.from_dict(_v))
-                for _k, _v in obj.get("subHoldingKeys").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("subHoldingKeys") is not None
+            if (_val := obj.get("subHoldingKeys")) is not None
             else None,
             "properties": dict(
                 (_k, PerpetualProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
-            "tax_lots": [TargetTaxLot.from_dict(_item) for _item in obj.get("taxLots")] if obj.get("taxLots") is not None else None,
+            "tax_lots": [TargetTaxLot.from_dict(_item) for _item in _v] if (_v := obj.get("taxLots")) is not None else None,
             "currency": obj.get("currency"),
-            "custodian_account_id": ResourceId.from_dict(obj.get("custodianAccountId")) if obj.get("custodianAccountId") is not None else None
+            "custodian_account_id": ResourceId.from_dict(_v) if (_v := obj.get("custodianAccountId")) is not None else None
         })
         return _obj
 

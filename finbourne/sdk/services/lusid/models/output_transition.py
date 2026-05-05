@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class OutputTransition(BaseModel):
     lusid_instrument_id:  Optional[StrictStr] = Field(default=None,alias="lusidInstrumentId", description="LUSID's internal unique instrument identifier, resolved from the instrument identifiers") 
     instrument_scope:  Optional[StrictStr] = Field(default=None,alias="instrumentScope", description="The scope in which the instrument lies.") 
     rounding: Optional[RoundingConfiguration] = None
-    __properties = ["instrumentIdentifiers", "unitsFactor", "costFactor", "lusidInstrumentId", "instrumentScope", "rounding"]
+    __properties: ClassVar[List[str]] = ["instrumentIdentifiers", "unitsFactor", "costFactor", "lusidInstrumentId", "instrumentScope", "rounding"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -101,7 +101,7 @@ class OutputTransition(BaseModel):
             "cost_factor": obj.get("costFactor"),
             "lusid_instrument_id": obj.get("lusidInstrumentId"),
             "instrument_scope": obj.get("instrumentScope"),
-            "rounding": RoundingConfiguration.from_dict(obj.get("rounding")) if obj.get("rounding") is not None else None
+            "rounding": RoundingConfiguration.from_dict(_v) if (_v := obj.get("rounding")) is not None else None
         })
         return _obj
 

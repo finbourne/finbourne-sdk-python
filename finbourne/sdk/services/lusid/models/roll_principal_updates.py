@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class RollPrincipalUpdates(BaseModel):
     withdraw_principal_percentage: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The percentage of principal that should be withdrawn from the FlexibleDeposit.", alias="withdrawPrincipalPercentage")
     increase_principal_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The amount of principal that should be added to the FlexibleDeposit.", alias="increasePrincipalAmount")
     increase_principal_percentage: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The percentage of principal that should be added to the FlexibleDeposit.", alias="increasePrincipalPercentage")
-    __properties = ["withdrawPrincipalAmount", "withdrawPrincipalPercentage", "increasePrincipalAmount", "increasePrincipalPercentage"]
+    __properties: ClassVar[List[str]] = ["withdrawPrincipalAmount", "withdrawPrincipalPercentage", "increasePrincipalAmount", "increasePrincipalPercentage"]
 
     model_config = ConfigDict(
         populate_by_name=True,

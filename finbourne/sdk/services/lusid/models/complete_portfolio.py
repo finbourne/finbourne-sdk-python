@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -37,13 +37,13 @@ class CompletePortfolio(BaseModel):
     created: Optional[datetime] = Field(default=None, description="The effective datetime at which the portfolio was created. No transactions or constituents can be added to the portfolio before this date.")
     parent_portfolio_id: Optional[ResourceId] = Field(default=None, alias="parentPortfolioId")
     is_derived: Optional[StrictBool] = Field(default=None, description="Whether or not this is a derived portfolio.", alias="isDerived")
-    type:  Optional[StrictStr] = Field(default=None,alias="type", description="The type of the portfolio. The available values are: Transaction, Reference, DerivedTransaction, SimplePosition") 
+    type:  Optional[StrictStr] = Field(default=None,alias="type", description="The type of the portfolio. Available values: Transaction, Reference, DerivedTransaction, SimplePosition.") 
     version: Version
     properties: Optional[List[ModelProperty]] = Field(default=None, description="The requested portfolio properties. These will be from the 'Portfolio' domain.")
     base_currency:  Optional[StrictStr] = Field(default=None,alias="baseCurrency", description="If the portfolio is a transaction portfolio or derived transaction portfolio, this is the base currency of the portfolio.") 
     sub_holding_keys: Optional[List[StrictStr]] = Field(default=None, description="The sub holding key properties configured for the portfolio", alias="subHoldingKeys")
     links: Optional[List[Link]] = None
-    __properties = ["id", "href", "description", "displayName", "created", "parentPortfolioId", "isDerived", "type", "version", "properties", "baseCurrency", "subHoldingKeys", "links"]
+    __properties: ClassVar[List[str]] = ["id", "href", "description", "displayName", "created", "parentPortfolioId", "isDerived", "type", "version", "properties", "baseCurrency", "subHoldingKeys", "links"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -222,19 +222,19 @@ class CompletePortfolio(BaseModel):
             return CompletePortfolio.model_validate(obj)
 
         _obj = CompletePortfolio.model_validate({
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
             "href": obj.get("href"),
             "description": obj.get("description"),
             "display_name": obj.get("displayName"),
             "created": obj.get("created"),
-            "parent_portfolio_id": ResourceId.from_dict(obj.get("parentPortfolioId")) if obj.get("parentPortfolioId") is not None else None,
+            "parent_portfolio_id": ResourceId.from_dict(_v) if (_v := obj.get("parentPortfolioId")) is not None else None,
             "is_derived": obj.get("isDerived"),
             "type": obj.get("type"),
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
-            "properties": [ModelProperty.from_dict(_item) for _item in obj.get("properties")] if obj.get("properties") is not None else None,
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "properties": [ModelProperty.from_dict(_item) for _item in _v] if (_v := obj.get("properties")) is not None else None,
             "base_currency": obj.get("baseCurrency"),
             "sub_holding_keys": obj.get("subHoldingKeys"),
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

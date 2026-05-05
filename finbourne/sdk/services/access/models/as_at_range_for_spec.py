@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class AsAtRangeForSpec(BaseModel):
     """
     var_from: AsAtPredicateContract = Field(alias="from")
     to: AsAtPredicateContract
-    __properties = ["from", "to"]
+    __properties: ClassVar[List[str]] = ["from", "to"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -83,8 +83,8 @@ class AsAtRangeForSpec(BaseModel):
             return AsAtRangeForSpec.model_validate(obj)
 
         _obj = AsAtRangeForSpec.model_validate({
-            "var_from": AsAtPredicateContract.from_dict(obj.get("from")) if obj.get("from") is not None else None,
-            "to": AsAtPredicateContract.from_dict(obj.get("to")) if obj.get("to") is not None else None
+            "var_from": AsAtPredicateContract.from_dict(_v) if (_v := obj.get("from")) is not None else None,
+            "to": AsAtPredicateContract.from_dict(_v) if (_v := obj.get("to")) is not None else None
         })
         return _obj
 

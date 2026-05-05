@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class DataMapKey(BaseModel):
     """
     version:  Optional[StrictStr] = Field(default=None,alias="version", description="The version of the mappings. It is possible that a client will wish to update mappings over time. The version identifies the MAJOR.MINOR.PATCH version  of the mappings that the client assigns it.") 
     code:  Optional[StrictStr] = Field(default=None,alias="code", description="A unique name to semantically identify the mapping set.") 
-    __properties = ["version", "code"]
+    __properties: ClassVar[List[str]] = ["version", "code"]
 
     model_config = ConfigDict(
         populate_by_name=True,

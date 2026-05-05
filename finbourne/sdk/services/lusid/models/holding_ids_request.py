@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -27,7 +27,7 @@ class HoldingIdsRequest(BaseModel):
     HoldingIdsRequest
     """
     holding_ids: List[StrictInt] = Field(description="The array of unique holding identifiers", alias="holdingIds")
-    __properties = ["holdingIds"]
+    __properties: ClassVar[List[str]] = ["holdingIds"]
 
     model_config = ConfigDict(
         populate_by_name=True,

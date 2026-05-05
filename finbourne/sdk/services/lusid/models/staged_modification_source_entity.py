@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class StagedModificationSourceEntity(BaseModel):
     scope:  Optional[StrictStr] = Field(default=None,alias="scope", description="The scope of the source entity.") 
     entity_unique_id:  Optional[StrictStr] = Field(default=None,alias="entityUniqueId", description="The unique Id of the source entity.") 
     display_name:  Optional[StrictStr] = Field(default=None,alias="displayName", description="The display name of the source entity.") 
-    __properties = ["entityType", "scope", "entityUniqueId", "displayName"]
+    __properties: ClassVar[List[str]] = ["entityType", "scope", "entityUniqueId", "displayName"]
 
     model_config = ConfigDict(
         populate_by_name=True,

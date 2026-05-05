@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,9 +28,9 @@ class SettlementInstructionAmendRequest(BaseModel):
     SettlementInstructionAmendRequest
     """
     settlement_instruction_id:  StrictStr = Field(...,alias="settlementInstructionId") 
-    operation:  Optional[StrictStr] = Field(default=None,alias="operation") 
+    operation:  Optional[StrictStr] = Field(default=None,alias="operation", description="Available values: Activate, Deactivate.") 
     properties: Optional[List[PerpetualProperty]] = None
-    __properties = ["settlementInstructionId", "operation", "properties"]
+    __properties: ClassVar[List[str]] = ["settlementInstructionId", "operation", "properties"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -97,7 +97,7 @@ class SettlementInstructionAmendRequest(BaseModel):
         _obj = SettlementInstructionAmendRequest.model_validate({
             "settlement_instruction_id": obj.get("settlementInstructionId"),
             "operation": obj.get("operation"),
-            "properties": [PerpetualProperty.from_dict(_item) for _item in obj.get("properties")] if obj.get("properties") is not None else None
+            "properties": [PerpetualProperty.from_dict(_item) for _item in _v] if (_v := obj.get("properties")) is not None else None
         })
         return _obj
 

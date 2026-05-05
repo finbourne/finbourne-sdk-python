@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,15 +30,15 @@ class CustodianAccount(BaseModel):
     CustodianAccount
     """
     custodian_account_id: ResourceId = Field(alias="custodianAccountId")
-    status:  StrictStr = Field(...,alias="status", description="The Account status. Can be Active, Inactive or Deleted.") 
+    status:  StrictStr = Field(...,alias="status", description="The Account status. Available values: Active, Inactive, Deleted.") 
     account_number:  StrictStr = Field(...,alias="accountNumber", description="The Custodian Account Number") 
     account_name:  StrictStr = Field(...,alias="accountName", description="The identifiable name given to the Custodian Account") 
-    accounting_method:  StrictStr = Field(...,alias="accountingMethod", description="The Accounting method to be used") 
+    accounting_method:  StrictStr = Field(...,alias="accountingMethod", description="The Accounting method to be used. Available values: Default, AverageCost, FirstInFirstOut, LastInFirstOut, HighestCostFirst, LowestCostFirst, ProRateByUnits, ProRateByCost, ProRateByCostPortfolioCurrency, IntraDayThenFirstInFirstOut, LongTermHighestCostFirst, LongTermHighestCostFirstPortfolioCurrency, HighestCostFirstPortfolioCurrency, LowestCostFirstPortfolioCurrency, MaximumLossMinimumGain, MaximumLossMinimumGainPortfolioCurrency.") 
     currency:  StrictStr = Field(...,alias="currency", description="The Currency for the Account") 
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="Set of unique Custodian Account properties and associated values to store with the Custodian Account. Each property must be from the 'CustodianAccount' domain.")
     custodian: LegalEntity
-    account_type:  StrictStr = Field(...,alias="accountType", description="The Type of the Custodian Account. Can be Margin, Cash or Swap. Defaults to Margin.") 
-    __properties = ["custodianAccountId", "status", "accountNumber", "accountName", "accountingMethod", "currency", "properties", "custodian", "accountType"]
+    account_type:  StrictStr = Field(...,alias="accountType", description="The Type of the Custodian Account. Default value: Margin. Available values: Margin, Cash, Swap.") 
+    __properties: ClassVar[List[str]] = ["custodianAccountId", "status", "accountNumber", "accountName", "accountingMethod", "currency", "properties", "custodian", "accountType"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -104,7 +104,7 @@ class CustodianAccount(BaseModel):
             return CustodianAccount.model_validate(obj)
 
         _obj = CustodianAccount.model_validate({
-            "custodian_account_id": ResourceId.from_dict(obj.get("custodianAccountId")) if obj.get("custodianAccountId") is not None else None,
+            "custodian_account_id": ResourceId.from_dict(_v) if (_v := obj.get("custodianAccountId")) is not None else None,
             "status": obj.get("status"),
             "account_number": obj.get("accountNumber"),
             "account_name": obj.get("accountName"),
@@ -112,11 +112,11 @@ class CustodianAccount(BaseModel):
             "currency": obj.get("currency"),
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
-            "custodian": LegalEntity.from_dict(obj.get("custodian")) if obj.get("custodian") is not None else None,
+            "custodian": LegalEntity.from_dict(_v) if (_v := obj.get("custodian")) is not None else None,
             "account_type": obj.get("accountType")
         })
         return _obj

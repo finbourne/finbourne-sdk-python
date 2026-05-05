@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class TraceDiagramEdge(BaseModel):
     node_id:  Optional[StrictStr] = Field(default=None,alias="nodeId", description="Identifier of the parent node.") 
     child_node_id:  Optional[StrictStr] = Field(default=None,alias="childNodeId", description="Identifier of the child node.") 
     label:  Optional[StrictStr] = Field(default=None,alias="label", description="Label displayed for the edge.") 
-    __properties = ["id", "nodeId", "childNodeId", "label"]
+    __properties: ClassVar[List[str]] = ["id", "nodeId", "childNodeId", "label"]
 
     model_config = ConfigDict(
         populate_by_name=True,

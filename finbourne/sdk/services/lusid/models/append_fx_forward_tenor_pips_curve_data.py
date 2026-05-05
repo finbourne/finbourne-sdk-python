@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,9 +29,9 @@ class AppendFxForwardTenorPipsCurveData(AppendMarketData):
     """
     tenor:  StrictStr = Field(...,alias="tenor", description="Tenor for which the forward rate applies.") 
     pip_rate: Union[StrictFloat, StrictInt] = Field(description="Rate provided for the fx forward (price in FgnCcy per unit of DomCcy), expressed in pips.", alias="pipRate")
-    market_data_type:  StrictStr = Field(...,alias="marketDataType", description="The available values are: AppendFxForwardCurveByQuoteReference, AppendFxForwardCurveData, AppendFxForwardPipsCurveData, AppendFxForwardTenorCurveData, AppendFxForwardTenorPipsCurveData") 
+    market_data_type:  StrictStr = Field(...,alias="marketDataType", description="Available values: AppendFxForwardCurveByQuoteReference, AppendFxForwardCurveData, AppendFxForwardPipsCurveData, AppendFxForwardTenorCurveData, AppendFxForwardTenorPipsCurveData.") 
     additional_properties: Dict[str, Any] = {}
-    __properties = ["marketDataType", "tenor", "pipRate"]
+    __properties: ClassVar[List[str]] = ["marketDataType", "tenor", "pipRate"]
 
     @field_validator('market_data_type')
     def market_data_type_validate_enum(cls, value):
@@ -159,13 +159,8 @@ class AppendFxForwardTenorPipsCurveData(AppendMarketData):
             "pip_rate": obj.get("pipRate")
         })
         # store additional fields in additional_properties
-        
-        properties = cls.__properties
-        if not isinstance(cls.__properties, dict) and getattr(cls.__properties, 'default', None):
-            properties = cls.__properties.default
-    
         for _key in obj.keys():
-            if _key not in properties:
+            if _key not in cls.__properties:
                 _obj.additional_properties[_key] = obj.get(_key)
 
         return _obj

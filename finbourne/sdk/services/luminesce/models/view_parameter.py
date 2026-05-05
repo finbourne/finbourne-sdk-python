@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class ViewParameter(BaseModel):
     value:  StrictStr = Field(...,alias="value", description="Value of the provider") 
     is_table_data_mandatory: Optional[StrictBool] = Field(default=None, description="Should this be selected? False would imply it is only being filtered on. Ignored when Aggregations are present", alias="isTableDataMandatory")
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="Description of the parameter") 
-    __properties = ["name", "dataType", "value", "isTableDataMandatory", "description"]
+    __properties: ClassVar[List[str]] = ["name", "dataType", "value", "isTableDataMandatory", "description"]
 
     model_config = ConfigDict(
         populate_by_name=True,

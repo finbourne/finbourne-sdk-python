@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class CaseStatementDesign(BaseModel):
     """
     selected_field:  Optional[StrictStr] = Field(default=None,alias="selectedField", description="Selected field in the SQL query.") 
     case_statement_items: Optional[List[CaseStatementItem]] = Field(default=None, description="A list containing the filter, source, and target.", alias="caseStatementItems")
-    __properties = ["selectedField", "caseStatementItems"]
+    __properties: ClassVar[List[str]] = ["selectedField", "caseStatementItems"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -95,7 +95,7 @@ class CaseStatementDesign(BaseModel):
 
         _obj = CaseStatementDesign.model_validate({
             "selected_field": obj.get("selectedField"),
-            "case_statement_items": [CaseStatementItem.from_dict(_item) for _item in obj.get("caseStatementItems")] if obj.get("caseStatementItems") is not None else None
+            "case_statement_items": [CaseStatementItem.from_dict(_item) for _item in _v] if (_v := obj.get("caseStatementItems")) is not None else None
         })
         return _obj
 

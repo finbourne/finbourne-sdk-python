@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class FileDetails(BaseModel):
     file_name:  StrictStr = Field(...,alias="fileName", description="") 
     file_type:  Optional[StrictStr] = Field(default=None,alias="fileType", description="") 
     id:  StrictStr = Field(...,alias="id", description="") 
-    __properties = ["fileName", "fileType", "id"]
+    __properties: ClassVar[List[str]] = ["fileName", "fileType", "id"]
 
     model_config = ConfigDict(
         populate_by_name=True,

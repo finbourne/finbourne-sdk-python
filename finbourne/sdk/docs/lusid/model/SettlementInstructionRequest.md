@@ -6,8 +6,8 @@
 |------|------|----------|-------------|
 | **settlement_instruction_id** | **str** | Required | *No description available.* |
 | **transaction_id** | **str** | Required | *No description available.* |
-| **settlement_category** | **str** | Required | *No description available.* |
-| **instruction_type** | **str** | Optional | *No description available.* |
+| **settlement_category** | **str** | Required | Available values: StockSettlement, CashSettlement, DeferredCashReceipt. |
+| **instruction_type** | **str** | Optional | Available values: Complete, CancelAutomatic, Partial. |
 | **instrument_identifiers** | **Dict[str, Optional[str]]** | Required | *No description available.* |
 | **contractual_settlement_date** | **datetime** | Optional | *No description available.* |
 | **actual_settlement_date** | **datetime** | Required | *No description available.* |
@@ -29,8 +29,8 @@ from finbourne.sdk.services.lusid.models.SettlementInstructionRequest import Set
 instance = SettlementInstructionRequest(
     settlement_instruction_id="...",  # required
     transaction_id="...",  # required
-    settlement_category="...",  # required
-    instruction_type="...",  # optional
+    settlement_category="...",  # required — Available values: StockSettlement, CashSettlement, DeferredCashReceipt.
+    instruction_type="...",  # optional — Available values: Complete, CancelAutomatic, Partial.
     instrument_identifiers=,  # required
     contractual_settlement_date=datetime.now(),  # optional
     actual_settlement_date=datetime.now(),  # required

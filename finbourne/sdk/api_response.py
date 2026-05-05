@@ -13,7 +13,7 @@ class ApiResponse(Generic[T]):
 
     status_code: Optional[StrictInt] = Field(None, description="HTTP status code")
     headers: Optional[Dict[StrictStr, StrictStr]] = Field(None, description="HTTP headers")
-    data: Optional[T] = Field(None, description="Deserialized data given the data type")
+    data: T = Field(None, description="Deserialized data given the data type")  # type: ignore[assignment]
     raw_data: Optional[Any] = Field(None, description="Raw data (HTTP response body)")
 
     def __init__(self,

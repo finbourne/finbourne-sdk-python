@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -27,8 +27,8 @@ class OrderRuleBreach(BaseModel):
     OrderRuleBreach
     """
     breach_task_id:  StrictStr = Field(...,alias="breachTaskId", description="Uniquely identifies this historical order breach workflow task.") 
-    compliance_state:  StrictStr = Field(...,alias="complianceState", description="The compliance state of this order breach. Possible values are 'Pending', 'Failed', 'Manually approved', 'Passed' and 'Warning'.") 
-    __properties = ["breachTaskId", "complianceState"]
+    compliance_state:  StrictStr = Field(...,alias="complianceState", description="The compliance state of this order breach. Available values: Pending, Failed, Passed, ManuallyApproved, PartiallyOverridden, Warning.") 
+    __properties: ClassVar[List[str]] = ["breachTaskId", "complianceState"]
 
     model_config = ConfigDict(
         populate_by_name=True,

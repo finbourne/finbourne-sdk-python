@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class InlinedPropertyDesign(BaseModel):
     provider_name:  Optional[StrictStr] = Field(default=None,alias="providerName", description="The provider name for which these properties are to be inlined") 
     provider_name_extension:  Optional[StrictStr] = Field(default=None,alias="providerNameExtension", description="The provider extension name for extended providers") 
     inlined_property_items: Optional[List[InlinedPropertyItem]] = Field(default=None, description="Collection of Inlined properties", alias="inlinedPropertyItems")
-    __properties = ["providerName", "providerNameExtension", "inlinedPropertyItems"]
+    __properties: ClassVar[List[str]] = ["providerName", "providerNameExtension", "inlinedPropertyItems"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -102,7 +102,7 @@ class InlinedPropertyDesign(BaseModel):
         _obj = InlinedPropertyDesign.model_validate({
             "provider_name": obj.get("providerName"),
             "provider_name_extension": obj.get("providerNameExtension"),
-            "inlined_property_items": [InlinedPropertyItem.from_dict(_item) for _item in obj.get("inlinedPropertyItems")] if obj.get("inlinedPropertyItems") is not None else None
+            "inlined_property_items": [InlinedPropertyItem.from_dict(_item) for _item in _v] if (_v := obj.get("inlinedPropertyItems")) is not None else None
         })
         return _obj
 

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,9 +31,9 @@ class UpsertComplianceRunSummaryRequest(BaseModel):
     run_id: ResourceId = Field(alias="runId")
     instigated_at: datetime = Field(alias="instigatedAt")
     completed_at: datetime = Field(alias="completedAt")
-    schedule:  StrictStr = Field(...,alias="schedule") 
+    schedule:  StrictStr = Field(...,alias="schedule", description="Available values: None, PreTrade, PostTrade, PreAndPostTrade.") 
     results: List[ComplianceSummaryRuleResultRequest]
-    __properties = ["runId", "instigatedAt", "completedAt", "schedule", "results"]
+    __properties: ClassVar[List[str]] = ["runId", "instigatedAt", "completedAt", "schedule", "results"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,11 +91,11 @@ class UpsertComplianceRunSummaryRequest(BaseModel):
             return UpsertComplianceRunSummaryRequest.model_validate(obj)
 
         _obj = UpsertComplianceRunSummaryRequest.model_validate({
-            "run_id": ResourceId.from_dict(obj.get("runId")) if obj.get("runId") is not None else None,
+            "run_id": ResourceId.from_dict(_v) if (_v := obj.get("runId")) is not None else None,
             "instigated_at": obj.get("instigatedAt"),
             "completed_at": obj.get("completedAt"),
             "schedule": obj.get("schedule"),
-            "results": [ComplianceSummaryRuleResultRequest.from_dict(_item) for _item in obj.get("results")] if obj.get("results") is not None else None
+            "results": [ComplianceSummaryRuleResultRequest.from_dict(_item) for _item in _v] if (_v := obj.get("results")) is not None else None
         })
         return _obj
 

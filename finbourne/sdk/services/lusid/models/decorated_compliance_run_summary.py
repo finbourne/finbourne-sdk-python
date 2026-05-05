@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class DecoratedComplianceRunSummary(BaseModel):
     """
     run_id: ResourceId = Field(alias="runId")
     details: List[ComplianceRuleResultDetail]
-    __properties = ["runId", "details"]
+    __properties: ClassVar[List[str]] = ["runId", "details"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,8 +88,8 @@ class DecoratedComplianceRunSummary(BaseModel):
             return DecoratedComplianceRunSummary.model_validate(obj)
 
         _obj = DecoratedComplianceRunSummary.model_validate({
-            "run_id": ResourceId.from_dict(obj.get("runId")) if obj.get("runId") is not None else None,
-            "details": [ComplianceRuleResultDetail.from_dict(_item) for _item in obj.get("details")] if obj.get("details") is not None else None
+            "run_id": ResourceId.from_dict(_v) if (_v := obj.get("runId")) is not None else None,
+            "details": [ComplianceRuleResultDetail.from_dict(_item) for _item in _v] if (_v := obj.get("details")) is not None else None
         })
         return _obj
 

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class CreateWorkerRequest(BaseModel):
     display_name:  StrictStr = Field(...,alias="displayName", description="Human readable name") 
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="Human readable description") 
     worker_configuration: WorkerConfiguration = Field(alias="workerConfiguration")
-    __properties = ["id", "displayName", "description", "workerConfiguration"]
+    __properties: ClassVar[List[str]] = ["id", "displayName", "description", "workerConfiguration"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,10 +91,10 @@ class CreateWorkerRequest(BaseModel):
             return CreateWorkerRequest.model_validate(obj)
 
         _obj = CreateWorkerRequest.model_validate({
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
-            "worker_configuration": WorkerConfiguration.from_dict(obj.get("workerConfiguration")) if obj.get("workerConfiguration") is not None else None
+            "worker_configuration": WorkerConfiguration.from_dict(_v) if (_v := obj.get("workerConfiguration")) is not None else None
         })
         return _obj
 

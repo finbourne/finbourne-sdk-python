@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -36,18 +36,18 @@ class FeeRequest(BaseModel):
     origin:  Optional[StrictStr] = Field(default=None,alias="origin", description="The origin or source of the Fee accrual.") 
     calculation_base:  Optional[StrictStr] = Field(default=None,alias="calculationBase", description="The calculation base for a Fee that is calculated using a percentage (TotalAnnualAccrualAmount and CalculationBase cannot both be present). When the Fee is a ShareClass Fee (i.e: when ShareClasses contains at least one value), each of the following would be a valid CalculationBase: \"10000.00\", \"ShareClass.GAV\", \"ShareClass.GAV - ShareClass.Fees[ShareClassFeeCode1].Amount\", \"ShareClass.Fees[ShareClassFeeCode1].CalculationBase\". When the Fee is a NonShareClassSpecific Fee (i.e: when ShareClasses contains no values), each of the following would be a valid CalculationBase: \"10000.00\", \"GAV\", \"GAV - Fees[NonClassSpecificFeeCode1].Amount\", \"Fees[NonClassSpecificFeeCode1].CalculationBase\". ") 
     accrual_currency:  StrictStr = Field(...,alias="accrualCurrency", description="The accrual currency.") 
-    treatment:  StrictStr = Field(...,alias="treatment", description="The accrual period of the Fee; 'Monthly' or 'Daily'.") 
+    treatment:  StrictStr = Field(...,alias="treatment", description="The accrual period of the Fee. Available values: Daily, Monthly.") 
     total_annual_accrual_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The total annual accrued amount for the Fee. (TotalAnnualAccrualAmount and CalculationBase cannot both be present)", alias="totalAnnualAccrualAmount")
     fee_rate_percentage: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The fee rate percentage. (Required when CalculationBase is present and not compatible with TotalAnnualAccrualAmount)", alias="feeRatePercentage")
-    payable_frequency:  StrictStr = Field(...,alias="payableFrequency", description="The payable frequency for the Fee; 'Annually', 'Quarterly' or 'Monthly'.") 
-    business_day_convention:  StrictStr = Field(...,alias="businessDayConvention", description="The business day convention to use for Fee calculations on weekends or holidays. Supported string values are: [Previous, P, Following, F, None].") 
+    payable_frequency:  StrictStr = Field(...,alias="payableFrequency", description="The payable frequency for the Fee. Available values: Annually, Quarterly, Monthly.") 
+    business_day_convention:  StrictStr = Field(...,alias="businessDayConvention", description="The business day convention to use for Fee calculations on weekends or holidays. Available values: None, P, Previous, F, Following.") 
     start_date: datetime = Field(description="The start date of the Fee.", alias="startDate")
     end_date: Optional[datetime] = Field(default=None, description="The end date of the Fee.", alias="endDate")
     anchor_date: Optional[DayMonth] = Field(default=None, alias="anchorDate")
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="The Fee properties. These will be from the 'Fee' domain.")
     portfolio_id: Optional[ResourceId] = Field(default=None, alias="portfolioId")
     share_classes: Optional[List[StrictStr]] = Field(default=None, description="The short codes of the ShareClasses that the Fee should be applied to. Optional: if this is null or empty, then the Fee will be divided between all the ShareClasses of the Fund according to the capital ratio.", alias="shareClasses")
-    __properties = ["code", "feeTypeId", "displayName", "description", "origin", "calculationBase", "accrualCurrency", "treatment", "totalAnnualAccrualAmount", "feeRatePercentage", "payableFrequency", "businessDayConvention", "startDate", "endDate", "anchorDate", "properties", "portfolioId", "shareClasses"]
+    __properties: ClassVar[List[str]] = ["code", "feeTypeId", "displayName", "description", "origin", "calculationBase", "accrualCurrency", "treatment", "totalAnnualAccrualAmount", "feeRatePercentage", "payableFrequency", "businessDayConvention", "startDate", "endDate", "anchorDate", "properties", "portfolioId", "shareClasses"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -152,7 +152,7 @@ class FeeRequest(BaseModel):
 
         _obj = FeeRequest.model_validate({
             "code": obj.get("code"),
-            "fee_type_id": ResourceId.from_dict(obj.get("feeTypeId")) if obj.get("feeTypeId") is not None else None,
+            "fee_type_id": ResourceId.from_dict(_v) if (_v := obj.get("feeTypeId")) is not None else None,
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
             "origin": obj.get("origin"),
@@ -165,14 +165,14 @@ class FeeRequest(BaseModel):
             "business_day_convention": obj.get("businessDayConvention"),
             "start_date": obj.get("startDate"),
             "end_date": obj.get("endDate"),
-            "anchor_date": DayMonth.from_dict(obj.get("anchorDate")) if obj.get("anchorDate") is not None else None,
+            "anchor_date": DayMonth.from_dict(_v) if (_v := obj.get("anchorDate")) is not None else None,
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
-            "portfolio_id": ResourceId.from_dict(obj.get("portfolioId")) if obj.get("portfolioId") is not None else None,
+            "portfolio_id": ResourceId.from_dict(_v) if (_v := obj.get("portfolioId")) is not None else None,
             "share_classes": obj.get("shareClasses")
         })
         return _obj

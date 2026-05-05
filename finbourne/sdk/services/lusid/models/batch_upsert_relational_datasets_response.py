@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class BatchUpsertRelationalDatasetsResponse(BaseModel):
     failed: Optional[Dict[str, ErrorDetail]] = Field(default=None, description="A list of data points that failed to be upserted, along with the associated error message.")
     href:  Optional[StrictStr] = Field(default=None,alias="href", description="The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime.") 
     links: Optional[List[Link]] = None
-    __properties = ["values", "failed", "href", "links"]
+    __properties: ClassVar[List[str]] = ["values", "failed", "href", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -119,18 +119,18 @@ class BatchUpsertRelationalDatasetsResponse(BaseModel):
         _obj = BatchUpsertRelationalDatasetsResponse.model_validate({
             "values": dict(
                 (_k, RelationalDataPointResponse.from_dict(_v))
-                for _k, _v in obj.get("values").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("values") is not None
+            if (_val := obj.get("values")) is not None
             else None,
             "failed": dict(
                 (_k, ErrorDetail.from_dict(_v))
-                for _k, _v in obj.get("failed").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("failed") is not None
+            if (_val := obj.get("failed")) is not None
             else None,
             "href": obj.get("href"),
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

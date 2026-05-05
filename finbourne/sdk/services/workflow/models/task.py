@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -57,7 +57,7 @@ class Task(BaseModel):
     open_duration: Optional[StrictInt] = Field(default=None, description="Duration in seconds since the Task was created. If the Task is Completed, this is the duration from creation to the last transition.", alias="openDuration")
     open_duration_since_last_update: Optional[StrictInt] = Field(default=None, description="Duration in seconds since the Task was last updated. 0 if the Task is Completed.", alias="openDurationSinceLastUpdate")
     open_duration_since_last_transition: Optional[StrictInt] = Field(default=None, description="Duration in seconds since the Task last transitioned. 0 if the Task is Completed.", alias="openDurationSinceLastTransition")
-    __properties = ["id", "taskDefinitionId", "taskDefinitionVersion", "taskDefinitionDisplayName", "workflowId", "workflowDisplayName", "state", "ultimateParentTask", "parentTask", "childTasks", "correlationIds", "version", "terminalState", "asAtLastTransition", "fields", "stackingKey", "stack", "actionLogIdCreated", "actionLogIdModified", "actionLogIdSubmitted", "hierarchicalPosition", "completionStatus", "openDuration", "openDurationSinceLastUpdate", "openDurationSinceLastTransition"]
+    __properties: ClassVar[List[str]] = ["id", "taskDefinitionId", "taskDefinitionVersion", "taskDefinitionDisplayName", "workflowId", "workflowDisplayName", "state", "ultimateParentTask", "parentTask", "childTasks", "correlationIds", "version", "terminalState", "asAtLastTransition", "fields", "stackingKey", "stack", "actionLogIdCreated", "actionLogIdModified", "actionLogIdSubmitted", "hierarchicalPosition", "completionStatus", "openDuration", "openDurationSinceLastUpdate", "openDurationSinceLastTransition"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -211,22 +211,22 @@ class Task(BaseModel):
 
         _obj = Task.model_validate({
             "id": obj.get("id"),
-            "task_definition_id": ResourceId.from_dict(obj.get("taskDefinitionId")) if obj.get("taskDefinitionId") is not None else None,
-            "task_definition_version": TaskDefinitionVersion.from_dict(obj.get("taskDefinitionVersion")) if obj.get("taskDefinitionVersion") is not None else None,
+            "task_definition_id": ResourceId.from_dict(_v) if (_v := obj.get("taskDefinitionId")) is not None else None,
+            "task_definition_version": TaskDefinitionVersion.from_dict(_v) if (_v := obj.get("taskDefinitionVersion")) is not None else None,
             "task_definition_display_name": obj.get("taskDefinitionDisplayName"),
-            "workflow_id": ResourceId.from_dict(obj.get("workflowId")) if obj.get("workflowId") is not None else None,
+            "workflow_id": ResourceId.from_dict(_v) if (_v := obj.get("workflowId")) is not None else None,
             "workflow_display_name": obj.get("workflowDisplayName"),
             "state": obj.get("state"),
-            "ultimate_parent_task": TaskSummary.from_dict(obj.get("ultimateParentTask")) if obj.get("ultimateParentTask") is not None else None,
-            "parent_task": TaskSummary.from_dict(obj.get("parentTask")) if obj.get("parentTask") is not None else None,
-            "child_tasks": [TaskSummary.from_dict(_item) for _item in obj.get("childTasks")] if obj.get("childTasks") is not None else None,
+            "ultimate_parent_task": TaskSummary.from_dict(_v) if (_v := obj.get("ultimateParentTask")) is not None else None,
+            "parent_task": TaskSummary.from_dict(_v) if (_v := obj.get("parentTask")) is not None else None,
+            "child_tasks": [TaskSummary.from_dict(_item) for _item in _v] if (_v := obj.get("childTasks")) is not None else None,
             "correlation_ids": obj.get("correlationIds"),
-            "version": VersionInfo.from_dict(obj.get("version")) if obj.get("version") is not None else None,
+            "version": VersionInfo.from_dict(_v) if (_v := obj.get("version")) is not None else None,
             "terminal_state": obj.get("terminalState"),
             "as_at_last_transition": obj.get("asAtLastTransition"),
-            "fields": [TaskInstanceField.from_dict(_item) for _item in obj.get("fields")] if obj.get("fields") is not None else None,
+            "fields": [TaskInstanceField.from_dict(_item) for _item in _v] if (_v := obj.get("fields")) is not None else None,
             "stacking_key": obj.get("stackingKey"),
-            "stack": Stack.from_dict(obj.get("stack")) if obj.get("stack") is not None else None,
+            "stack": Stack.from_dict(_v) if (_v := obj.get("stack")) is not None else None,
             "action_log_id_created": obj.get("actionLogIdCreated"),
             "action_log_id_modified": obj.get("actionLogIdModified"),
             "action_log_id_submitted": obj.get("actionLogIdSubmitted"),

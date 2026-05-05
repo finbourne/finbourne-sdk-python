@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,8 +28,8 @@ class ExternalFeeComponentFilter(BaseModel):
     """
     filter_id:  StrictStr = Field(...,alias="filterId") 
     filter:  StrictStr = Field(...,alias="filter") 
-    applies_to:  StrictStr = Field(...,alias="appliesTo") 
-    __properties = ["filterId", "filter", "appliesTo"]
+    applies_to:  StrictStr = Field(...,alias="appliesTo", description="Available values: Undefined, PnLBucket, Fees.") 
+    __properties: ClassVar[List[str]] = ["filterId", "filter", "appliesTo"]
 
     model_config = ConfigDict(
         populate_by_name=True,

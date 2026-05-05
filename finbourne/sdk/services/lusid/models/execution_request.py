@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -44,7 +44,7 @@ class ExecutionRequest(BaseModel):
     settlement_currency_fx_rate: Union[StrictFloat, StrictInt] = Field(description="The exectuion's settlement currency rate.", alias="settlementCurrencyFxRate")
     counterparty:  StrictStr = Field(...,alias="counterparty", description="The market entity this placement is placed with.") 
     average_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The average price of all executions for a given placement at the time of upsert", alias="averagePrice")
-    __properties = ["id", "placementId", "properties", "instrumentIdentifiers", "quantity", "state", "side", "type", "createdDate", "settlementDate", "price", "settlementCurrency", "settlementCurrencyFxRate", "counterparty", "averagePrice"]
+    __properties: ClassVar[List[str]] = ["id", "placementId", "properties", "instrumentIdentifiers", "quantity", "state", "side", "type", "createdDate", "settlementDate", "price", "settlementCurrency", "settlementCurrencyFxRate", "counterparty", "averagePrice"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -123,13 +123,13 @@ class ExecutionRequest(BaseModel):
             return ExecutionRequest.model_validate(obj)
 
         _obj = ExecutionRequest.model_validate({
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
-            "placement_id": ResourceId.from_dict(obj.get("placementId")) if obj.get("placementId") is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
+            "placement_id": ResourceId.from_dict(_v) if (_v := obj.get("placementId")) is not None else None,
             "properties": dict(
                 (_k, PerpetualProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
             "instrument_identifiers": obj.get("instrumentIdentifiers"),
             "quantity": obj.get("quantity"),
@@ -138,7 +138,7 @@ class ExecutionRequest(BaseModel):
             "type": obj.get("type"),
             "created_date": obj.get("createdDate"),
             "settlement_date": obj.get("settlementDate"),
-            "price": CurrencyAndAmount.from_dict(obj.get("price")) if obj.get("price") is not None else None,
+            "price": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("price")) is not None else None,
             "settlement_currency": obj.get("settlementCurrency"),
             "settlement_currency_fx_rate": obj.get("settlementCurrencyFxRate"),
             "counterparty": obj.get("counterparty"),

@@ -11,8 +11,8 @@
 | **display_name** | **str** | Required | The display name of the relationship definition. |
 | **outward_description** | **str** | Required | The description to relate source entity object and target entity object. |
 | **inward_description** | **str** | Required | The description to relate target entity object and source entity object. |
-| **life_time** | **str** | Optional | Describes how the relationships can change over time. Allowed values are &#39;Perpetual&#39; and &#39;TimeVariant&#39;, defaults to &#39;Perpetual&#39; if not specified. |
-| **relationship_cardinality** | **str** | Optional | Describes the cardinality of the relationship with a specific source entity object and relationships under this definition. Allowed values are &#39;ManyToMany&#39; and &#39;ManyToOne&#39;, defaults to &#39;ManyToMany&#39; if not specified. |
+| **life_time** | **str** | Optional | Describes how the relationships can change over time. Default value: Perpetual. Available values: Perpetual, TimeVariant. |
+| **relationship_cardinality** | **str** | Optional | Describes the cardinality of the relationship with a specific source entity object and relationships under this definition. Default value: ManyToMany. Available values: ManyToOne, ManyToMany. |
 
 
 ## Usage
@@ -30,8 +30,8 @@ instance = CreateRelationshipDefinitionRequest(
     display_name="...",  # required — The display name of the relationship definition.
     outward_description="...",  # required — The description to relate source entity object and target entity object.
     inward_description="...",  # required — The description to relate target entity object and source entity object.
-    life_time="...",  # optional — Describes how the relationships can change over time. Allowed values are &#39;Perpetual&#39; and &#39;TimeVariant&#39;, defaults to &#39;Perpetual&#39; if not specified.
-    relationship_cardinality="..."  # optional — Describes the cardinality of the relationship with a specific source entity object and relationships under this definition. Allowed values are &#39;ManyToMany&#39; and &#39;ManyToOne&#39;, defaults to &#39;ManyToMany&#39; if not specified.
+    life_time="...",  # optional — Describes how the relationships can change over time. Default value: Perpetual. Available values: Perpetual, TimeVariant.
+    relationship_cardinality="..."  # optional — Describes the cardinality of the relationship with a specific source entity object and relationships under this definition. Default value: ManyToMany. Available values: ManyToOne, ManyToMany.
 )
 ```
 

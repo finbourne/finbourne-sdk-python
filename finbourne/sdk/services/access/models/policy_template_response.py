@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class PolicyTemplateResponse(BaseModel):
     applications: Optional[List[StrictStr]] = Field(default=None, description="List of applications that this policy template covers")
     tags: Optional[List[StrictStr]] = Field(default=None, description="List of policy types that this policy template covers")
     templated_selectors: Optional[List[PolicyTemplatedSelector]] = Field(default=None, description="The selector definitions of policies included in this policy template", alias="templatedSelectors")
-    __properties = ["displayName", "scope", "code", "description", "applications", "tags", "templatedSelectors"]
+    __properties: ClassVar[List[str]] = ["displayName", "scope", "code", "description", "applications", "tags", "templatedSelectors"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -130,7 +130,7 @@ class PolicyTemplateResponse(BaseModel):
             "description": obj.get("description"),
             "applications": obj.get("applications"),
             "tags": obj.get("tags"),
-            "templated_selectors": [PolicyTemplatedSelector.from_dict(_item) for _item in obj.get("templatedSelectors")] if obj.get("templatedSelectors") is not None else None
+            "templated_selectors": [PolicyTemplatedSelector.from_dict(_item) for _item in _v] if (_v := obj.get("templatedSelectors")) is not None else None
         })
         return _obj
 

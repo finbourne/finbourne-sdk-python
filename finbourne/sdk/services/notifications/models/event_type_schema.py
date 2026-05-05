@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class EventTypeSchema(BaseModel):
     header_schema: Optional[List[EventFieldDefinition]] = Field(default=None, description="The header schema for the event type", alias="headerSchema")
     body_schema: Optional[List[EventFieldDefinition]] = Field(default=None, description="The body schema for the event type", alias="bodySchema")
     href:  Optional[StrictStr] = Field(default=None,alias="href", description="A URI for retrieving this schema") 
-    __properties = ["id", "displayName", "description", "application", "headerSchema", "bodySchema", "href"]
+    __properties: ClassVar[List[str]] = ["id", "displayName", "description", "application", "headerSchema", "bodySchema", "href"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -137,8 +137,8 @@ class EventTypeSchema(BaseModel):
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
             "application": obj.get("application"),
-            "header_schema": [EventFieldDefinition.from_dict(_item) for _item in obj.get("headerSchema")] if obj.get("headerSchema") is not None else None,
-            "body_schema": [EventFieldDefinition.from_dict(_item) for _item in obj.get("bodySchema")] if obj.get("bodySchema") is not None else None,
+            "header_schema": [EventFieldDefinition.from_dict(_item) for _item in _v] if (_v := obj.get("headerSchema")) is not None else None,
+            "body_schema": [EventFieldDefinition.from_dict(_item) for _item in _v] if (_v := obj.get("bodySchema")) is not None else None,
             "href": obj.get("href")
         })
         return _obj

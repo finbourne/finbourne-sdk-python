@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -35,7 +35,7 @@ class BucketedCashFlowResponse(BaseModel):
     data_schema: Optional[ResultDataSchema] = Field(default=None, alias="dataSchema")
     failed: Optional[Dict[str, ErrorDetail]] = Field(default=None, description="Information about where instruments have failed to return cashflows in so far as it is available.  e.g., failure to retrieve a market quote for a floating rate instrument.")
     links: Optional[List[Link]] = None
-    __properties = ["href", "data", "reportCurrency", "dataSchema", "failed", "links"]
+    __properties: ClassVar[List[str]] = ["href", "data", "reportCurrency", "dataSchema", "failed", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -128,14 +128,14 @@ class BucketedCashFlowResponse(BaseModel):
             "href": obj.get("href"),
             "data": obj.get("data"),
             "report_currency": obj.get("reportCurrency"),
-            "data_schema": ResultDataSchema.from_dict(obj.get("dataSchema")) if obj.get("dataSchema") is not None else None,
+            "data_schema": ResultDataSchema.from_dict(_v) if (_v := obj.get("dataSchema")) is not None else None,
             "failed": dict(
                 (_k, ErrorDetail.from_dict(_v))
-                for _k, _v in obj.get("failed").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("failed") is not None
+            if (_val := obj.get("failed")) is not None
             else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

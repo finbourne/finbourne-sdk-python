@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class EconomicDependencyWithQuote(BaseModel):
     economic_dependency: EconomicDependency = Field(alias="economicDependency")
     metric_value: MetricValue = Field(alias="metricValue")
     scale_factor: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Scale factor for the quote - this can be null, in which case we default to 1.", alias="scaleFactor")
-    __properties = ["economicDependency", "metricValue", "scaleFactor"]
+    __properties: ClassVar[List[str]] = ["economicDependency", "metricValue", "scaleFactor"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -90,8 +90,8 @@ class EconomicDependencyWithQuote(BaseModel):
             return EconomicDependencyWithQuote.model_validate(obj)
 
         _obj = EconomicDependencyWithQuote.model_validate({
-            "economic_dependency": EconomicDependency.from_dict(obj.get("economicDependency")) if obj.get("economicDependency") is not None else None,
-            "metric_value": MetricValue.from_dict(obj.get("metricValue")) if obj.get("metricValue") is not None else None,
+            "economic_dependency": EconomicDependency.from_dict(_v) if (_v := obj.get("economicDependency")) is not None else None,
+            "metric_value": MetricValue.from_dict(_v) if (_v := obj.get("metricValue")) is not None else None,
             "scale_factor": obj.get("scaleFactor")
         })
         return _obj

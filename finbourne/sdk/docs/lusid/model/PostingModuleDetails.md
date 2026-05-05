@@ -7,7 +7,7 @@ A posting Module request definition
 |------|------|----------|-------------|
 | **display_name** | **str** | Required | The name of the Posting Module. |
 | **description** | **str** | Optional | A description for the Posting Module. |
-| **status** | **str** | Required | The Posting Module status. Can be Active or Inactive. Defaults to Active. |
+| **status** | **str** | Required | The Posting Module status. Default value: Active. Available values: Active, Inactive. |
 
 
 ## Usage
@@ -20,7 +20,7 @@ from finbourne.sdk.services.lusid.models.PostingModuleDetails import PostingModu
 instance = PostingModuleDetails(
     display_name="...",  # required — The name of the Posting Module.
     description="...",  # optional — A description for the Posting Module.
-    status="..."  # required — The Posting Module status. Can be Active or Inactive. Defaults to Active.
+    status="..."  # required — The Posting Module status. Default value: Active. Available values: Active, Inactive.
 )
 ```
 

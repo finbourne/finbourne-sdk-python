@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -37,7 +37,7 @@ class VersionedResourceListWithWarningsOfPortfolioHolding(BaseModel):
     previous_page:  Optional[StrictStr] = Field(default=None,alias="previousPage", description="The previous page of results.") 
     warnings: Optional[List[Warning]] = None
     links: Optional[List[Link]] = None
-    __properties = ["version", "values", "href", "nextPage", "previousPage", "warnings", "links"]
+    __properties: ClassVar[List[str]] = ["version", "values", "href", "nextPage", "previousPage", "warnings", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -134,13 +134,13 @@ class VersionedResourceListWithWarningsOfPortfolioHolding(BaseModel):
             return VersionedResourceListWithWarningsOfPortfolioHolding.model_validate(obj)
 
         _obj = VersionedResourceListWithWarningsOfPortfolioHolding.model_validate({
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
-            "values": [PortfolioHolding.from_dict(_item) for _item in obj.get("values")] if obj.get("values") is not None else None,
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "values": [PortfolioHolding.from_dict(_item) for _item in _v] if (_v := obj.get("values")) is not None else None,
             "href": obj.get("href"),
             "next_page": obj.get("nextPage"),
             "previous_page": obj.get("previousPage"),
-            "warnings": [Warning.from_dict(_item) for _item in obj.get("warnings")] if obj.get("warnings") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "warnings": [Warning.from_dict(_item) for _item in _v] if (_v := obj.get("warnings")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

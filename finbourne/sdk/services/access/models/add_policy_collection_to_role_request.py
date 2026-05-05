@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class AddPolicyCollectionToRoleRequest(BaseModel):
     Request body used to add Policy Collections to a Role  # noqa: E501
     """
     policy_collections: List[PolicyCollectionId] = Field(description="Identifiers of policy collections to add to a role", alias="policyCollections")
-    __properties = ["policyCollections"]
+    __properties: ClassVar[List[str]] = ["policyCollections"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -83,7 +83,7 @@ class AddPolicyCollectionToRoleRequest(BaseModel):
             return AddPolicyCollectionToRoleRequest.model_validate(obj)
 
         _obj = AddPolicyCollectionToRoleRequest.model_validate({
-            "policy_collections": [PolicyCollectionId.from_dict(_item) for _item in obj.get("policyCollections")] if obj.get("policyCollections") is not None else None
+            "policy_collections": [PolicyCollectionId.from_dict(_item) for _item in _v] if (_v := obj.get("policyCollections")) is not None else None
         })
         return _obj
 

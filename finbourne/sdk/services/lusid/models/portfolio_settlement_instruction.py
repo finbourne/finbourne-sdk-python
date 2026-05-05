@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,9 +31,9 @@ class PortfolioSettlementInstruction(NavActivityAdjustment):
     portfolio_scope:  StrictStr = Field(...,alias="portfolioScope", description="The portfolio scope of the given entity") 
     portfolio_code:  StrictStr = Field(...,alias="portfolioCode", description="The portfolio code of the given entity") 
     settlement_instruction_id:  StrictStr = Field(...,alias="settlementInstructionId", description="The settlement instruction Id of the SettlementInstruction being adjusted") 
-    nav_activity_adjustment_type:  StrictStr = Field(...,alias="navActivityAdjustmentType", description=". The available values are: PortfolioTransaction, PortfolioSettlementInstruction, InstrumentActivity, QuoteActivity") 
+    nav_activity_adjustment_type:  StrictStr = Field(...,alias="navActivityAdjustmentType", description="The type of the entity being applied, for example a PortfolioTransaction. Available values: PortfolioTransaction, PortfolioSettlementInstruction, InstrumentActivity, QuoteActivity.") 
     additional_properties: Dict[str, Any] = {}
-    __properties = ["navActivityAdjustmentType", "asAt", "portfolioScope", "portfolioCode", "settlementInstructionId"]
+    __properties: ClassVar[List[str]] = ["navActivityAdjustmentType", "asAt", "portfolioScope", "portfolioCode", "settlementInstructionId"]
 
     @field_validator('nav_activity_adjustment_type')
     def nav_activity_adjustment_type_validate_enum(cls, value):
@@ -163,13 +163,8 @@ class PortfolioSettlementInstruction(NavActivityAdjustment):
             "settlement_instruction_id": obj.get("settlementInstructionId")
         })
         # store additional fields in additional_properties
-        
-        properties = cls.__properties
-        if not isinstance(cls.__properties, dict) and getattr(cls.__properties, 'default', None):
-            properties = cls.__properties.default
-    
         for _key in obj.keys():
-            if _key not in properties:
+            if _key not in cls.__properties:
                 _obj.additional_properties[_key] = obj.get(_key)
 
         return _obj

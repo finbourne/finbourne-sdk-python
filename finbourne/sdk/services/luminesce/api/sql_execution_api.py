@@ -73,12 +73,12 @@ class SqlExecutionApi:
         :return: Returns the result object.
         :rtype: str
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_by_query_csv_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_by_query_csv_with_http_info(query, scalar_parameters, query_name, download, timeout, delimiter, escape, date_time_format, **kwargs)  # noqa: E501
+        response = self.get_by_query_csv_with_http_info(query, scalar_parameters, query_name, download, timeout, delimiter, escape, date_time_format, **kwargs)
+        return response.data
 
     @validate_call
     def get_by_query_csv_with_http_info(self, query: StrictStr, scalar_parameters: Optional[Dict[str, str]] = None, query_name: Optional[StrictStr] = None, download: Optional[bool] = None, timeout: Optional[int] = None, delimiter: Optional[StrictStr] = None, escape: Optional[StrictStr] = None, date_time_format: Optional[StrictStr] = None, **kwargs) -> ApiResponse[str]:
@@ -244,12 +244,12 @@ class SqlExecutionApi:
         :return: Returns the result object.
         :rtype: bytes
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_by_query_excel_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_by_query_excel_with_http_info(query, scalar_parameters, query_name, date_time_format, timeout, **kwargs)  # noqa: E501
+        response = self.get_by_query_excel_with_http_info(query, scalar_parameters, query_name, date_time_format, timeout, **kwargs)
+        return response.data
 
     @validate_call
     def get_by_query_excel_with_http_info(self, query: StrictStr, scalar_parameters: Optional[Dict[str, str]] = None, query_name: Optional[StrictStr] = None, date_time_format: Optional[StrictStr] = None, timeout: Optional[int] = None, **kwargs) -> ApiResponse[bytes]:
@@ -399,12 +399,12 @@ class SqlExecutionApi:
         :return: Returns the result object.
         :rtype: str
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_by_query_json_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_by_query_json_with_http_info(query, scalar_parameters, query_name, timeout, json_proper, include_lineage, **kwargs)  # noqa: E501
+        response = self.get_by_query_json_with_http_info(query, scalar_parameters, query_name, timeout, json_proper, include_lineage, **kwargs)
+        return response.data
 
     @validate_call
     def get_by_query_json_with_http_info(self, query: StrictStr, scalar_parameters: Optional[Dict[str, str]] = None, query_name: Optional[StrictStr] = None, timeout: Optional[int] = None, json_proper: Optional[bool] = None, include_lineage: Optional[bool] = None, **kwargs) -> ApiResponse[str]:
@@ -556,12 +556,12 @@ class SqlExecutionApi:
         :return: Returns the result object.
         :rtype: bytes
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_by_query_parquet_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_by_query_parquet_with_http_info(query, scalar_parameters, query_name, timeout, **kwargs)  # noqa: E501
+        response = self.get_by_query_parquet_with_http_info(query, scalar_parameters, query_name, timeout, **kwargs)
+        return response.data
 
     @validate_call
     def get_by_query_parquet_with_http_info(self, query: StrictStr, scalar_parameters: Optional[Dict[str, str]] = None, query_name: Optional[StrictStr] = None, timeout: Optional[int] = None, **kwargs) -> ApiResponse[bytes]:
@@ -705,12 +705,12 @@ class SqlExecutionApi:
         :return: Returns the result object.
         :rtype: str
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_by_query_pipe_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_by_query_pipe_with_http_info(query, scalar_parameters, query_name, download, date_time_format, timeout, **kwargs)  # noqa: E501
+        response = self.get_by_query_pipe_with_http_info(query, scalar_parameters, query_name, download, date_time_format, timeout, **kwargs)
+        return response.data
 
     @validate_call
     def get_by_query_pipe_with_http_info(self, query: StrictStr, scalar_parameters: Optional[Dict[str, str]] = None, query_name: Optional[StrictStr] = None, download: Optional[bool] = None, date_time_format: Optional[StrictStr] = None, timeout: Optional[int] = None, **kwargs) -> ApiResponse[str]:
@@ -862,12 +862,12 @@ class SqlExecutionApi:
         :return: Returns the result object.
         :rtype: bytes
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_by_query_sqlite_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_by_query_sqlite_with_http_info(query, scalar_parameters, query_name, timeout, **kwargs)  # noqa: E501
+        response = self.get_by_query_sqlite_with_http_info(query, scalar_parameters, query_name, timeout, **kwargs)
+        return response.data
 
     @validate_call
     def get_by_query_sqlite_with_http_info(self, query: StrictStr, scalar_parameters: Optional[Dict[str, str]] = None, query_name: Optional[StrictStr] = None, timeout: Optional[int] = None, **kwargs) -> ApiResponse[bytes]:
@@ -1009,12 +1009,12 @@ class SqlExecutionApi:
         :return: Returns the result object.
         :rtype: str
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_by_query_xml_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_by_query_xml_with_http_info(query, scalar_parameters, query_name, download, timeout, **kwargs)  # noqa: E501
+        response = self.get_by_query_xml_with_http_info(query, scalar_parameters, query_name, download, timeout, **kwargs)
+        return response.data
 
     @validate_call
     def get_by_query_xml_with_http_info(self, query: StrictStr, scalar_parameters: Optional[Dict[str, str]] = None, query_name: Optional[StrictStr] = None, download: Optional[bool] = None, timeout: Optional[int] = None, **kwargs) -> ApiResponse[str]:
@@ -1168,12 +1168,12 @@ class SqlExecutionApi:
         :return: Returns the result object.
         :rtype: str
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the put_by_query_csv_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.put_by_query_csv_with_http_info(body, scalar_parameters, query_name, download, timeout_seconds, delimiter, escape, date_time_format, **kwargs)  # noqa: E501
+        response = self.put_by_query_csv_with_http_info(body, scalar_parameters, query_name, download, timeout_seconds, delimiter, escape, date_time_format, **kwargs)
+        return response.data
 
     @validate_call
     def put_by_query_csv_with_http_info(self, body: StrictStr, scalar_parameters: Optional[Dict[str, str]] = None, query_name: Optional[StrictStr] = None, download: Optional[bool] = None, timeout_seconds: Optional[int] = None, delimiter: Optional[StrictStr] = None, escape: Optional[StrictStr] = None, date_time_format: Optional[StrictStr] = None, **kwargs) -> ApiResponse[str]:
@@ -1346,12 +1346,12 @@ class SqlExecutionApi:
         :return: Returns the result object.
         :rtype: bytes
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the put_by_query_excel_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.put_by_query_excel_with_http_info(body, scalar_parameters, query_name, date_time_format, timeout_seconds, **kwargs)  # noqa: E501
+        response = self.put_by_query_excel_with_http_info(body, scalar_parameters, query_name, date_time_format, timeout_seconds, **kwargs)
+        return response.data
 
     @validate_call
     def put_by_query_excel_with_http_info(self, body: StrictStr, scalar_parameters: Optional[Dict[str, str]] = None, query_name: Optional[StrictStr] = None, date_time_format: Optional[StrictStr] = None, timeout_seconds: Optional[int] = None, **kwargs) -> ApiResponse[bytes]:
@@ -1508,12 +1508,12 @@ class SqlExecutionApi:
         :return: Returns the result object.
         :rtype: str
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the put_by_query_json_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.put_by_query_json_with_http_info(body, scalar_parameters, query_name, timeout_seconds, json_proper, include_lineage, **kwargs)  # noqa: E501
+        response = self.put_by_query_json_with_http_info(body, scalar_parameters, query_name, timeout_seconds, json_proper, include_lineage, **kwargs)
+        return response.data
 
     @validate_call
     def put_by_query_json_with_http_info(self, body: StrictStr, scalar_parameters: Optional[Dict[str, str]] = None, query_name: Optional[StrictStr] = None, timeout_seconds: Optional[int] = None, json_proper: Optional[bool] = None, include_lineage: Optional[bool] = None, **kwargs) -> ApiResponse[str]:
@@ -1672,12 +1672,12 @@ class SqlExecutionApi:
         :return: Returns the result object.
         :rtype: bytes
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the put_by_query_parquet_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.put_by_query_parquet_with_http_info(body, scalar_parameters, query_name, timeout_seconds, **kwargs)  # noqa: E501
+        response = self.put_by_query_parquet_with_http_info(body, scalar_parameters, query_name, timeout_seconds, **kwargs)
+        return response.data
 
     @validate_call
     def put_by_query_parquet_with_http_info(self, body: StrictStr, scalar_parameters: Optional[Dict[str, str]] = None, query_name: Optional[StrictStr] = None, timeout_seconds: Optional[int] = None, **kwargs) -> ApiResponse[bytes]:
@@ -1828,12 +1828,12 @@ class SqlExecutionApi:
         :return: Returns the result object.
         :rtype: str
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the put_by_query_pipe_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.put_by_query_pipe_with_http_info(body, scalar_parameters, query_name, download, date_time_format, timeout_seconds, **kwargs)  # noqa: E501
+        response = self.put_by_query_pipe_with_http_info(body, scalar_parameters, query_name, download, date_time_format, timeout_seconds, **kwargs)
+        return response.data
 
     @validate_call
     def put_by_query_pipe_with_http_info(self, body: StrictStr, scalar_parameters: Optional[Dict[str, str]] = None, query_name: Optional[StrictStr] = None, download: Optional[bool] = None, date_time_format: Optional[StrictStr] = None, timeout_seconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
@@ -1992,12 +1992,12 @@ class SqlExecutionApi:
         :return: Returns the result object.
         :rtype: bytes
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the put_by_query_sqlite_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.put_by_query_sqlite_with_http_info(body, scalar_parameters, query_name, timeout_seconds, **kwargs)  # noqa: E501
+        response = self.put_by_query_sqlite_with_http_info(body, scalar_parameters, query_name, timeout_seconds, **kwargs)
+        return response.data
 
     @validate_call
     def put_by_query_sqlite_with_http_info(self, body: StrictStr, scalar_parameters: Optional[Dict[str, str]] = None, query_name: Optional[StrictStr] = None, timeout_seconds: Optional[int] = None, **kwargs) -> ApiResponse[bytes]:
@@ -2146,12 +2146,12 @@ class SqlExecutionApi:
         :return: Returns the result object.
         :rtype: str
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the put_by_query_xml_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.put_by_query_xml_with_http_info(body, scalar_parameters, query_name, download, timeout_seconds, **kwargs)  # noqa: E501
+        response = self.put_by_query_xml_with_http_info(body, scalar_parameters, query_name, download, timeout_seconds, **kwargs)
+        return response.data
 
     @validate_call
     def put_by_query_xml_with_http_info(self, body: StrictStr, scalar_parameters: Optional[Dict[str, str]] = None, query_name: Optional[StrictStr] = None, download: Optional[bool] = None, timeout_seconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
@@ -2316,12 +2316,12 @@ class SqlExecutionApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: str
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_by_query_csv_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_by_query_csv_with_http_info_async(query, scalar_parameters, query_name, download, timeout, delimiter, escape, date_time_format, **kwargs)  # noqa: E501
+            response = await self.get_by_query_csv_with_http_info_async(query, scalar_parameters, query_name, download, timeout, delimiter, escape, date_time_format, **kwargs)
+            return response.data
 
     @validate_call
     async def get_by_query_csv_with_http_info_async(self, query: StrictStr, scalar_parameters: Optional[Dict[str, str]] = None, query_name: Optional[StrictStr] = None, download: Optional[bool] = None, timeout: Optional[int] = None, delimiter: Optional[StrictStr] = None, escape: Optional[StrictStr] = None, date_time_format: Optional[StrictStr] = None, **kwargs) -> ApiResponse[str]:
@@ -2488,12 +2488,12 @@ class SqlExecutionApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: bytes
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_by_query_excel_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_by_query_excel_with_http_info_async(query, scalar_parameters, query_name, date_time_format, timeout, **kwargs)  # noqa: E501
+            response = await self.get_by_query_excel_with_http_info_async(query, scalar_parameters, query_name, date_time_format, timeout, **kwargs)
+            return response.data
 
     @validate_call
     async def get_by_query_excel_with_http_info_async(self, query: StrictStr, scalar_parameters: Optional[Dict[str, str]] = None, query_name: Optional[StrictStr] = None, date_time_format: Optional[StrictStr] = None, timeout: Optional[int] = None, **kwargs) -> ApiResponse[bytes]:
@@ -2644,12 +2644,12 @@ class SqlExecutionApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: str
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_by_query_json_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_by_query_json_with_http_info_async(query, scalar_parameters, query_name, timeout, json_proper, include_lineage, **kwargs)  # noqa: E501
+            response = await self.get_by_query_json_with_http_info_async(query, scalar_parameters, query_name, timeout, json_proper, include_lineage, **kwargs)
+            return response.data
 
     @validate_call
     async def get_by_query_json_with_http_info_async(self, query: StrictStr, scalar_parameters: Optional[Dict[str, str]] = None, query_name: Optional[StrictStr] = None, timeout: Optional[int] = None, json_proper: Optional[bool] = None, include_lineage: Optional[bool] = None, **kwargs) -> ApiResponse[str]:
@@ -2802,12 +2802,12 @@ class SqlExecutionApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: bytes
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_by_query_parquet_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_by_query_parquet_with_http_info_async(query, scalar_parameters, query_name, timeout, **kwargs)  # noqa: E501
+            response = await self.get_by_query_parquet_with_http_info_async(query, scalar_parameters, query_name, timeout, **kwargs)
+            return response.data
 
     @validate_call
     async def get_by_query_parquet_with_http_info_async(self, query: StrictStr, scalar_parameters: Optional[Dict[str, str]] = None, query_name: Optional[StrictStr] = None, timeout: Optional[int] = None, **kwargs) -> ApiResponse[bytes]:
@@ -2952,12 +2952,12 @@ class SqlExecutionApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: str
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_by_query_pipe_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_by_query_pipe_with_http_info_async(query, scalar_parameters, query_name, download, date_time_format, timeout, **kwargs)  # noqa: E501
+            response = await self.get_by_query_pipe_with_http_info_async(query, scalar_parameters, query_name, download, date_time_format, timeout, **kwargs)
+            return response.data
 
     @validate_call
     async def get_by_query_pipe_with_http_info_async(self, query: StrictStr, scalar_parameters: Optional[Dict[str, str]] = None, query_name: Optional[StrictStr] = None, download: Optional[bool] = None, date_time_format: Optional[StrictStr] = None, timeout: Optional[int] = None, **kwargs) -> ApiResponse[str]:
@@ -3110,12 +3110,12 @@ class SqlExecutionApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: bytes
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_by_query_sqlite_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_by_query_sqlite_with_http_info_async(query, scalar_parameters, query_name, timeout, **kwargs)  # noqa: E501
+            response = await self.get_by_query_sqlite_with_http_info_async(query, scalar_parameters, query_name, timeout, **kwargs)
+            return response.data
 
     @validate_call
     async def get_by_query_sqlite_with_http_info_async(self, query: StrictStr, scalar_parameters: Optional[Dict[str, str]] = None, query_name: Optional[StrictStr] = None, timeout: Optional[int] = None, **kwargs) -> ApiResponse[bytes]:
@@ -3258,12 +3258,12 @@ class SqlExecutionApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: str
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_by_query_xml_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_by_query_xml_with_http_info_async(query, scalar_parameters, query_name, download, timeout, **kwargs)  # noqa: E501
+            response = await self.get_by_query_xml_with_http_info_async(query, scalar_parameters, query_name, download, timeout, **kwargs)
+            return response.data
 
     @validate_call
     async def get_by_query_xml_with_http_info_async(self, query: StrictStr, scalar_parameters: Optional[Dict[str, str]] = None, query_name: Optional[StrictStr] = None, download: Optional[bool] = None, timeout: Optional[int] = None, **kwargs) -> ApiResponse[str]:
@@ -3418,12 +3418,12 @@ class SqlExecutionApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: str
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the put_by_query_csv_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.put_by_query_csv_with_http_info_async(body, scalar_parameters, query_name, download, timeout_seconds, delimiter, escape, date_time_format, **kwargs)  # noqa: E501
+            response = await self.put_by_query_csv_with_http_info_async(body, scalar_parameters, query_name, download, timeout_seconds, delimiter, escape, date_time_format, **kwargs)
+            return response.data
 
     @validate_call
     async def put_by_query_csv_with_http_info_async(self, body: StrictStr, scalar_parameters: Optional[Dict[str, str]] = None, query_name: Optional[StrictStr] = None, download: Optional[bool] = None, timeout_seconds: Optional[int] = None, delimiter: Optional[StrictStr] = None, escape: Optional[StrictStr] = None, date_time_format: Optional[StrictStr] = None, **kwargs) -> ApiResponse[str]:
@@ -3597,12 +3597,12 @@ class SqlExecutionApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: bytes
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the put_by_query_excel_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.put_by_query_excel_with_http_info_async(body, scalar_parameters, query_name, date_time_format, timeout_seconds, **kwargs)  # noqa: E501
+            response = await self.put_by_query_excel_with_http_info_async(body, scalar_parameters, query_name, date_time_format, timeout_seconds, **kwargs)
+            return response.data
 
     @validate_call
     async def put_by_query_excel_with_http_info_async(self, body: StrictStr, scalar_parameters: Optional[Dict[str, str]] = None, query_name: Optional[StrictStr] = None, date_time_format: Optional[StrictStr] = None, timeout_seconds: Optional[int] = None, **kwargs) -> ApiResponse[bytes]:
@@ -3760,12 +3760,12 @@ class SqlExecutionApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: str
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the put_by_query_json_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.put_by_query_json_with_http_info_async(body, scalar_parameters, query_name, timeout_seconds, json_proper, include_lineage, **kwargs)  # noqa: E501
+            response = await self.put_by_query_json_with_http_info_async(body, scalar_parameters, query_name, timeout_seconds, json_proper, include_lineage, **kwargs)
+            return response.data
 
     @validate_call
     async def put_by_query_json_with_http_info_async(self, body: StrictStr, scalar_parameters: Optional[Dict[str, str]] = None, query_name: Optional[StrictStr] = None, timeout_seconds: Optional[int] = None, json_proper: Optional[bool] = None, include_lineage: Optional[bool] = None, **kwargs) -> ApiResponse[str]:
@@ -3925,12 +3925,12 @@ class SqlExecutionApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: bytes
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the put_by_query_parquet_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.put_by_query_parquet_with_http_info_async(body, scalar_parameters, query_name, timeout_seconds, **kwargs)  # noqa: E501
+            response = await self.put_by_query_parquet_with_http_info_async(body, scalar_parameters, query_name, timeout_seconds, **kwargs)
+            return response.data
 
     @validate_call
     async def put_by_query_parquet_with_http_info_async(self, body: StrictStr, scalar_parameters: Optional[Dict[str, str]] = None, query_name: Optional[StrictStr] = None, timeout_seconds: Optional[int] = None, **kwargs) -> ApiResponse[bytes]:
@@ -4082,12 +4082,12 @@ class SqlExecutionApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: str
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the put_by_query_pipe_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.put_by_query_pipe_with_http_info_async(body, scalar_parameters, query_name, download, date_time_format, timeout_seconds, **kwargs)  # noqa: E501
+            response = await self.put_by_query_pipe_with_http_info_async(body, scalar_parameters, query_name, download, date_time_format, timeout_seconds, **kwargs)
+            return response.data
 
     @validate_call
     async def put_by_query_pipe_with_http_info_async(self, body: StrictStr, scalar_parameters: Optional[Dict[str, str]] = None, query_name: Optional[StrictStr] = None, download: Optional[bool] = None, date_time_format: Optional[StrictStr] = None, timeout_seconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
@@ -4247,12 +4247,12 @@ class SqlExecutionApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: bytes
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the put_by_query_sqlite_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.put_by_query_sqlite_with_http_info_async(body, scalar_parameters, query_name, timeout_seconds, **kwargs)  # noqa: E501
+            response = await self.put_by_query_sqlite_with_http_info_async(body, scalar_parameters, query_name, timeout_seconds, **kwargs)
+            return response.data
 
     @validate_call
     async def put_by_query_sqlite_with_http_info_async(self, body: StrictStr, scalar_parameters: Optional[Dict[str, str]] = None, query_name: Optional[StrictStr] = None, timeout_seconds: Optional[int] = None, **kwargs) -> ApiResponse[bytes]:
@@ -4402,12 +4402,12 @@ class SqlExecutionApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: str
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the put_by_query_xml_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.put_by_query_xml_with_http_info_async(body, scalar_parameters, query_name, download, timeout_seconds, **kwargs)  # noqa: E501
+            response = await self.put_by_query_xml_with_http_info_async(body, scalar_parameters, query_name, download, timeout_seconds, **kwargs)
+            return response.data
 
     @validate_call
     async def put_by_query_xml_with_http_info_async(self, body: StrictStr, scalar_parameters: Optional[Dict[str, str]] = None, query_name: Optional[StrictStr] = None, download: Optional[bool] = None, timeout_seconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:

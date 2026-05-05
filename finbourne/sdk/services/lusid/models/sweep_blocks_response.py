@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class SweepBlocksResponse(BaseModel):
     """
     values: Optional[Dict[str, ResourceId]] = Field(default=None, description="The identifiers of blocks which have been successfully swept, indexed by ephemeral request-lived id.")
     failed: Optional[Dict[str, ErrorDetail]] = Field(default=None, description="The identifiers of blocks that could not be swept, along with a reason for their failure.")
-    __properties = ["values", "failed"]
+    __properties: ClassVar[List[str]] = ["values", "failed"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -104,15 +104,15 @@ class SweepBlocksResponse(BaseModel):
         _obj = SweepBlocksResponse.model_validate({
             "values": dict(
                 (_k, ResourceId.from_dict(_v))
-                for _k, _v in obj.get("values").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("values") is not None
+            if (_val := obj.get("values")) is not None
             else None,
             "failed": dict(
                 (_k, ErrorDetail.from_dict(_v))
-                for _k, _v in obj.get("failed").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("failed") is not None
+            if (_val := obj.get("failed")) is not None
             else None
         })
         return _obj

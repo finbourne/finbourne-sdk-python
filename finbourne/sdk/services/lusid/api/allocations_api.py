@@ -67,12 +67,12 @@ class AllocationsApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_allocation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_allocation_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_allocation_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_allocation_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -199,12 +199,12 @@ class AllocationsApi:
         :return: Returns the result object.
         :rtype: Allocation
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_allocation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_allocation_with_http_info(scope, code, as_at, property_keys, **kwargs)  # noqa: E501
+        response = self.get_allocation_with_http_info(scope, code, as_at, property_keys, **kwargs)
+        return response.data
 
     @validate_call
     def get_allocation_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[Allocation]:
@@ -351,12 +351,12 @@ class AllocationsApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfAllocation
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_allocations_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_allocations_with_http_info(as_at, page, sort_by, limit, filter, property_keys, **kwargs)  # noqa: E501
+        response = self.list_allocations_with_http_info(as_at, page, sort_by, limit, filter, property_keys, **kwargs)
+        return response.data
 
     @validate_call
     def list_allocations_with_http_info(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfAllocation]:
@@ -510,12 +510,12 @@ class AllocationsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfAllocation
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_allocations_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_allocations_with_http_info(allocation_set_request, verification_as_at, retry_without_changed_entities, **kwargs)  # noqa: E501
+        response = self.upsert_allocations_with_http_info(allocation_set_request, verification_as_at, retry_without_changed_entities, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_allocations_with_http_info(self, allocation_set_request: AllocationSetRequest, verification_as_at: Optional[datetime] = None, retry_without_changed_entities: Optional[bool] = None, **kwargs) -> ApiResponse[ResourceListOfAllocation]:
@@ -658,12 +658,12 @@ class AllocationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_allocation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_allocation_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_allocation_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_allocation_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -791,12 +791,12 @@ class AllocationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Allocation
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_allocation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_allocation_with_http_info_async(scope, code, as_at, property_keys, **kwargs)  # noqa: E501
+            response = await self.get_allocation_with_http_info_async(scope, code, as_at, property_keys, **kwargs)
+            return response.data
 
     @validate_call
     async def get_allocation_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[Allocation]:
@@ -944,12 +944,12 @@ class AllocationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfAllocation
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_allocations_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_allocations_with_http_info_async(as_at, page, sort_by, limit, filter, property_keys, **kwargs)  # noqa: E501
+            response = await self.list_allocations_with_http_info_async(as_at, page, sort_by, limit, filter, property_keys, **kwargs)
+            return response.data
 
     @validate_call
     async def list_allocations_with_http_info_async(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfAllocation]:
@@ -1104,12 +1104,12 @@ class AllocationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfAllocation
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_allocations_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_allocations_with_http_info_async(allocation_set_request, verification_as_at, retry_without_changed_entities, **kwargs)  # noqa: E501
+            response = await self.upsert_allocations_with_http_info_async(allocation_set_request, verification_as_at, retry_without_changed_entities, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_allocations_with_http_info_async(self, allocation_set_request: AllocationSetRequest, verification_as_at: Optional[datetime] = None, retry_without_changed_entities: Optional[bool] = None, **kwargs) -> ApiResponse[ResourceListOfAllocation]:

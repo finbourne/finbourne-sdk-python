@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -56,12 +56,12 @@ class OutputTransaction(BaseModel):
     properties: Optional[Dict[str, PerpetualProperty]] = Field(default=None, description="Set of unique transaction properties and associated values to stored with the transaction. Each property will be from the 'Transaction' domain.")
     counterparty_id:  Optional[StrictStr] = Field(default=None,alias="counterpartyId", description="The identifier for the counterparty of the transaction.") 
     source:  Optional[StrictStr] = Field(default=None,alias="source", description="The source of the transaction. This is used to look up the appropriate transaction group set in the transaction type configuration.") 
-    transaction_status:  Optional[StrictStr] = Field(default=None,alias="transactionStatus", description="The status of the transaction. The available values are: Active, Amended, Cancelled, ActiveReversal, ActiveTrueUp, CancelledTrueUp") 
+    transaction_status:  Optional[StrictStr] = Field(default=None,alias="transactionStatus", description="The status of the transaction. Available values: Active, Amended, Cancelled, ActiveReversal, ActiveTrueUp, CancelledTrueUp.") 
     entry_date_time: Optional[datetime] = Field(default=None, description="The asAt datetime that the transaction was added to LUSID.", alias="entryDateTime")
     cancel_date_time: Optional[datetime] = Field(default=None, description="If the transaction has been cancelled, the asAt datetime that the transaction was cancelled.", alias="cancelDateTime")
     realised_gain_loss: Optional[List[RealisedGainLoss]] = Field(default=None, description="The collection of realised gains or losses resulting from relevant transactions e.g. a sale transaction. The cost used in calculating the realised gain or loss is determined by the accounting method defined when the transaction portfolio is created.", alias="realisedGainLoss")
     holding_ids: Optional[List[StrictInt]] = Field(default=None, description="The collection of single identifiers for the holding within the portfolio. The holdingId is constructed from the LusidInstrumentId, sub-holding keys and currrency and is unique within the portfolio.", alias="holdingIds")
-    source_type:  Optional[StrictStr] = Field(default=None,alias="sourceType", description="The type of source that the transaction originated from, eg: InputTransaction, InstrumentEvent, HoldingAdjustment, OverriddenVirtualTransaction") 
+    source_type:  Optional[StrictStr] = Field(default=None,alias="sourceType", description="The type of source that the transaction originated from. Available values: Unknown, InputTransaction, InstrumentEvent, HoldingAdjustment, OverriddenVirtualTransaction.") 
     source_instrument_event_id:  Optional[StrictStr] = Field(default=None,alias="sourceInstrumentEventId", description="The unique ID of the instrument event that the transaction is related to.") 
     custodian_account: Optional[CustodianAccount] = Field(default=None, alias="custodianAccount")
     transaction_group_id:  Optional[StrictStr] = Field(default=None,alias="transactionGroupId", description="The identifier for grouping economic events across multiple transactions") 
@@ -77,7 +77,7 @@ class OutputTransaction(BaseModel):
     sequence_priority: Optional[StrictInt] = Field(default=None, description="The calculated priority level for this transaction.", alias="sequencePriority")
     settlement_summary: Optional[TransactionSettlementSummary] = Field(default=None, alias="settlementSummary")
     version: Optional[Version] = None
-    __properties = ["transactionId", "type", "description", "instrumentIdentifiers", "instrumentScope", "instrumentUid", "transactionDate", "settlementDate", "units", "transactionAmount", "transactionPrice", "totalConsideration", "exchangeRate", "transactionToPortfolioRate", "transactionCurrency", "properties", "counterpartyId", "source", "transactionStatus", "entryDateTime", "cancelDateTime", "realisedGainLoss", "holdingIds", "sourceType", "sourceInstrumentEventId", "custodianAccount", "transactionGroupId", "resolvedTransactionTypeDetails", "grossTransactionAmount", "otcConfirmation", "orderId", "allocationId", "accountingDate", "economics", "dataModelMembership", "sequence", "sequencePriority", "settlementSummary", "version"]
+    __properties: ClassVar[List[str]] = ["transactionId", "type", "description", "instrumentIdentifiers", "instrumentScope", "instrumentUid", "transactionDate", "settlementDate", "units", "transactionAmount", "transactionPrice", "totalConsideration", "exchangeRate", "transactionToPortfolioRate", "transactionCurrency", "properties", "counterpartyId", "source", "transactionStatus", "entryDateTime", "cancelDateTime", "realisedGainLoss", "holdingIds", "sourceType", "sourceInstrumentEventId", "custodianAccount", "transactionGroupId", "resolvedTransactionTypeDetails", "grossTransactionAmount", "otcConfirmation", "orderId", "allocationId", "accountingDate", "economics", "dataModelMembership", "sequence", "sequencePriority", "settlementSummary", "version"]
 
     @field_validator('transaction_status')
     def transaction_status_validate_enum(cls, value):
@@ -348,40 +348,40 @@ class OutputTransaction(BaseModel):
             "settlement_date": obj.get("settlementDate"),
             "units": obj.get("units"),
             "transaction_amount": obj.get("transactionAmount"),
-            "transaction_price": TransactionPrice.from_dict(obj.get("transactionPrice")) if obj.get("transactionPrice") is not None else None,
-            "total_consideration": CurrencyAndAmount.from_dict(obj.get("totalConsideration")) if obj.get("totalConsideration") is not None else None,
+            "transaction_price": TransactionPrice.from_dict(_v) if (_v := obj.get("transactionPrice")) is not None else None,
+            "total_consideration": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("totalConsideration")) is not None else None,
             "exchange_rate": obj.get("exchangeRate"),
             "transaction_to_portfolio_rate": obj.get("transactionToPortfolioRate"),
             "transaction_currency": obj.get("transactionCurrency"),
             "properties": dict(
                 (_k, PerpetualProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
             "counterparty_id": obj.get("counterpartyId"),
             "source": obj.get("source"),
             "transaction_status": obj.get("transactionStatus"),
             "entry_date_time": obj.get("entryDateTime"),
             "cancel_date_time": obj.get("cancelDateTime"),
-            "realised_gain_loss": [RealisedGainLoss.from_dict(_item) for _item in obj.get("realisedGainLoss")] if obj.get("realisedGainLoss") is not None else None,
+            "realised_gain_loss": [RealisedGainLoss.from_dict(_item) for _item in _v] if (_v := obj.get("realisedGainLoss")) is not None else None,
             "holding_ids": obj.get("holdingIds"),
             "source_type": obj.get("sourceType"),
             "source_instrument_event_id": obj.get("sourceInstrumentEventId"),
-            "custodian_account": CustodianAccount.from_dict(obj.get("custodianAccount")) if obj.get("custodianAccount") is not None else None,
+            "custodian_account": CustodianAccount.from_dict(_v) if (_v := obj.get("custodianAccount")) is not None else None,
             "transaction_group_id": obj.get("transactionGroupId"),
-            "resolved_transaction_type_details": TransactionTypeDetails.from_dict(obj.get("resolvedTransactionTypeDetails")) if obj.get("resolvedTransactionTypeDetails") is not None else None,
+            "resolved_transaction_type_details": TransactionTypeDetails.from_dict(_v) if (_v := obj.get("resolvedTransactionTypeDetails")) is not None else None,
             "gross_transaction_amount": obj.get("grossTransactionAmount"),
-            "otc_confirmation": OtcConfirmation.from_dict(obj.get("otcConfirmation")) if obj.get("otcConfirmation") is not None else None,
-            "order_id": ResourceId.from_dict(obj.get("orderId")) if obj.get("orderId") is not None else None,
-            "allocation_id": ResourceId.from_dict(obj.get("allocationId")) if obj.get("allocationId") is not None else None,
+            "otc_confirmation": OtcConfirmation.from_dict(_v) if (_v := obj.get("otcConfirmation")) is not None else None,
+            "order_id": ResourceId.from_dict(_v) if (_v := obj.get("orderId")) is not None else None,
+            "allocation_id": ResourceId.from_dict(_v) if (_v := obj.get("allocationId")) is not None else None,
             "accounting_date": obj.get("accountingDate"),
-            "economics": [Economics.from_dict(_item) for _item in obj.get("economics")] if obj.get("economics") is not None else None,
-            "data_model_membership": DataModelMembership.from_dict(obj.get("dataModelMembership")) if obj.get("dataModelMembership") is not None else None,
+            "economics": [Economics.from_dict(_item) for _item in _v] if (_v := obj.get("economics")) is not None else None,
+            "data_model_membership": DataModelMembership.from_dict(_v) if (_v := obj.get("dataModelMembership")) is not None else None,
             "sequence": obj.get("sequence"),
             "sequence_priority": obj.get("sequencePriority"),
-            "settlement_summary": TransactionSettlementSummary.from_dict(obj.get("settlementSummary")) if obj.get("settlementSummary") is not None else None,
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None
+            "settlement_summary": TransactionSettlementSummary.from_dict(_v) if (_v := obj.get("settlementSummary")) is not None else None,
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None
         })
         return _obj
 

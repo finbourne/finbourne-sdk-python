@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -35,7 +35,7 @@ class JoinedTableDesign(BaseModel):
     join_type: DesignJoinType = Field(alias="joinType")
     on_clause_terms: List[OnClauseTermDesign] = Field(description="Filter clauses to apply to this join in the on clause", alias="onClauseTerms")
     right_table_available_fields: Optional[List[AvailableField]] = Field(default=None, description="Fields that are known to be available for design when parsing SQL, of the right hand table", alias="rightTableAvailableFields")
-    __properties = ["joinedTableName", "joinedTableAlias", "leftTableAlias", "joinType", "onClauseTerms", "rightTableAvailableFields"]
+    __properties: ClassVar[List[str]] = ["joinedTableName", "joinedTableAlias", "leftTableAlias", "joinType", "onClauseTerms", "rightTableAvailableFields"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -106,8 +106,8 @@ class JoinedTableDesign(BaseModel):
             "joined_table_alias": obj.get("joinedTableAlias"),
             "left_table_alias": obj.get("leftTableAlias"),
             "join_type": obj.get("joinType"),
-            "on_clause_terms": [OnClauseTermDesign.from_dict(_item) for _item in obj.get("onClauseTerms")] if obj.get("onClauseTerms") is not None else None,
-            "right_table_available_fields": [AvailableField.from_dict(_item) for _item in obj.get("rightTableAvailableFields")] if obj.get("rightTableAvailableFields") is not None else None
+            "on_clause_terms": [OnClauseTermDesign.from_dict(_item) for _item in _v] if (_v := obj.get("onClauseTerms")) is not None else None,
+            "right_table_available_fields": [AvailableField.from_dict(_item) for _item in _v] if (_v := obj.get("rightTableAvailableFields")) is not None else None
         })
         return _obj
 

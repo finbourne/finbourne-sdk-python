@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class BucketedCashFlowRequest(BaseModel):
     """
     Specification class consisting of parameters for BucketedCashFlow endpoint.  # noqa: E501
     """
-    rounding_method:  StrictStr = Field(...,alias="roundingMethod", description="When bucketing, there is not a unique way to allocate the bucket points.  RoundingMethod Supported string (enumeration) values are: [RoundDown, RoundUp].") 
+    rounding_method:  StrictStr = Field(...,alias="roundingMethod", description="When bucketing, there is not a unique way to allocate the bucket points. Available values: RoundUp, RoundDown.") 
     bucketing_dates: Optional[List[datetime]] = Field(default=None, description="A list of dates to perform cashflow bucketing upon.  If this is provided, the list of tenors for bucketing should be empty.", alias="bucketingDates")
     bucket_tenors: Optional[List[StrictStr]] = Field(default=None, description="A list of tenors to perform cashflow bucketing upon.  If this is provided, the list of dates for bucketing should be empty.", alias="bucketTenors")
     effective_at:  Optional[StrictStr] = Field(default=None,alias="effectiveAt", description="The valuation (pricing) effective datetime or cut label (inclusive) at which to evaluate the cashflows.  This determines whether cashflows are evaluated in a historic or forward looking context and will, for certain models, affect where data is looked up.  For example, on a swap if the effectiveAt is in the middle of the window, cashflows before it will be historic and resets assumed to exist where if the effectiveAt  is before the start of the range they are forward looking and will be expectations assuming the model supports that.  There is evidently a presumption here about availability of data and that the effectiveAt is realistically on or before the real-world today.") 
@@ -41,10 +41,10 @@ class BucketedCashFlowRequest(BaseModel):
     equip_with_subtotals: Optional[StrictBool] = Field(default=None, description="Flag directing the Valuation call to populate the results with subtotals of aggregates.", alias="equipWithSubtotals")
     as_at: Optional[datetime] = Field(default=None, description="The time of the system at which to query for bucketed cashflows.", alias="asAt")
     exclude_unsettled_trades: Optional[StrictBool] = Field(default=None, description="Flag directing the Valuation call to exclude cashflows from unsettled trades.  If absent or set to false, cashflows will returned based on trade date - more specifically, cashflows from any unsettled trades will be included in the results. If set to true, unsettled trades will be excluded from the result set.", alias="excludeUnsettledTrades")
-    cash_flow_type:  Optional[StrictStr] = Field(default=None,alias="cashFlowType", description="Indicate the requested cash flow representation InstrumentCashFlows or PortfolioCashFlows (GetCashLadder uses this)  Options: [InstrumentCashFlow, PortfolioCashFlow]") 
+    cash_flow_type:  Optional[StrictStr] = Field(default=None,alias="cashFlowType", description="Indicate the requested cash flow representation InstrumentCashFlows or PortfolioCashFlows (GetCashLadder uses this). Available values: InstrumentCashFlow, PortfolioCashFlow, TransactionCashFlow.") 
     bucketing_schedule: Optional[BucketingSchedule] = Field(default=None, alias="bucketingSchedule")
     filter:  Optional[StrictStr] = Field(default=None,alias="filter", description="") 
-    __properties = ["roundingMethod", "bucketingDates", "bucketTenors", "effectiveAt", "windowStart", "windowEnd", "recipeId", "reportCurrency", "groupBy", "addresses", "equipWithSubtotals", "asAt", "excludeUnsettledTrades", "cashFlowType", "bucketingSchedule", "filter"]
+    __properties: ClassVar[List[str]] = ["roundingMethod", "bucketingDates", "bucketTenors", "effectiveAt", "windowStart", "windowEnd", "recipeId", "reportCurrency", "groupBy", "addresses", "equipWithSubtotals", "asAt", "excludeUnsettledTrades", "cashFlowType", "bucketingSchedule", "filter"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -159,7 +159,7 @@ class BucketedCashFlowRequest(BaseModel):
             "effective_at": obj.get("effectiveAt"),
             "window_start": obj.get("windowStart"),
             "window_end": obj.get("windowEnd"),
-            "recipe_id": ResourceId.from_dict(obj.get("recipeId")) if obj.get("recipeId") is not None else None,
+            "recipe_id": ResourceId.from_dict(_v) if (_v := obj.get("recipeId")) is not None else None,
             "report_currency": obj.get("reportCurrency"),
             "group_by": obj.get("groupBy"),
             "addresses": obj.get("addresses"),
@@ -167,7 +167,7 @@ class BucketedCashFlowRequest(BaseModel):
             "as_at": obj.get("asAt"),
             "exclude_unsettled_trades": obj.get("excludeUnsettledTrades"),
             "cash_flow_type": obj.get("cashFlowType"),
-            "bucketing_schedule": BucketingSchedule.from_dict(obj.get("bucketingSchedule")) if obj.get("bucketingSchedule") is not None else None,
+            "bucketing_schedule": BucketingSchedule.from_dict(_v) if (_v := obj.get("bucketingSchedule")) is not None else None,
             "filter": obj.get("filter")
         })
         return _obj

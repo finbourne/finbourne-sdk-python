@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -38,7 +38,7 @@ class UpsertComplianceRuleRequest(BaseModel):
     portfolio_group_id: Optional[ResourceId] = Field(default=None, alias="portfolioGroupId")
     parameters: Dict[str, ComplianceParameter]
     properties: Dict[str, PerpetualProperty]
-    __properties = ["id", "name", "description", "active", "templateId", "variation", "portfolioGroupId", "parameters", "properties"]
+    __properties: ClassVar[List[str]] = ["id", "name", "description", "active", "templateId", "variation", "portfolioGroupId", "parameters", "properties"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -119,24 +119,24 @@ class UpsertComplianceRuleRequest(BaseModel):
             return UpsertComplianceRuleRequest.model_validate(obj)
 
         _obj = UpsertComplianceRuleRequest.model_validate({
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
             "name": obj.get("name"),
             "description": obj.get("description"),
             "active": obj.get("active"),
-            "template_id": ResourceId.from_dict(obj.get("templateId")) if obj.get("templateId") is not None else None,
+            "template_id": ResourceId.from_dict(_v) if (_v := obj.get("templateId")) is not None else None,
             "variation": obj.get("variation"),
-            "portfolio_group_id": ResourceId.from_dict(obj.get("portfolioGroupId")) if obj.get("portfolioGroupId") is not None else None,
+            "portfolio_group_id": ResourceId.from_dict(_v) if (_v := obj.get("portfolioGroupId")) is not None else None,
             "parameters": dict(
                 (_k, ComplianceParameter.from_dict(_v))
-                for _k, _v in obj.get("parameters").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("parameters") is not None
+            if (_val := obj.get("parameters")) is not None
             else None,
             "properties": dict(
                 (_k, PerpetualProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None
         })
         return _obj

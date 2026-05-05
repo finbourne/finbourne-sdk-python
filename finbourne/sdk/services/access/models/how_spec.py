@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class HowSpec(BaseModel):
     """
     type:  Optional[StrictStr] = Field(default=None,alias="type") 
     parameters: Optional[List[KeyValuePairOfStringToString]] = None
-    __properties = ["type", "parameters"]
+    __properties: ClassVar[List[str]] = ["type", "parameters"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -95,7 +95,7 @@ class HowSpec(BaseModel):
 
         _obj = HowSpec.model_validate({
             "type": obj.get("type"),
-            "parameters": [KeyValuePairOfStringToString.from_dict(_item) for _item in obj.get("parameters")] if obj.get("parameters") is not None else None
+            "parameters": [KeyValuePairOfStringToString.from_dict(_item) for _item in _v] if (_v := obj.get("parameters")) is not None else None
         })
         return _obj
 

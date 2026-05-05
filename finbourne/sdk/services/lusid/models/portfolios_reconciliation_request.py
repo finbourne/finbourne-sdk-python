@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class PortfoliosReconciliationRequest(BaseModel):
     left: PortfolioReconciliationRequest
     right: PortfolioReconciliationRequest
     instrument_property_keys: List[StrictStr] = Field(description="Instrument properties to be included with any identified breaks. These properties will be in the effective and AsAt dates of the left portfolio", alias="instrumentPropertyKeys")
-    __properties = ["left", "right", "instrumentPropertyKeys"]
+    __properties: ClassVar[List[str]] = ["left", "right", "instrumentPropertyKeys"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -84,8 +84,8 @@ class PortfoliosReconciliationRequest(BaseModel):
             return PortfoliosReconciliationRequest.model_validate(obj)
 
         _obj = PortfoliosReconciliationRequest.model_validate({
-            "left": PortfolioReconciliationRequest.from_dict(obj.get("left")) if obj.get("left") is not None else None,
-            "right": PortfolioReconciliationRequest.from_dict(obj.get("right")) if obj.get("right") is not None else None,
+            "left": PortfolioReconciliationRequest.from_dict(_v) if (_v := obj.get("left")) is not None else None,
+            "right": PortfolioReconciliationRequest.from_dict(_v) if (_v := obj.get("right")) is not None else None,
             "instrument_property_keys": obj.get("instrumentPropertyKeys")
         })
         return _obj

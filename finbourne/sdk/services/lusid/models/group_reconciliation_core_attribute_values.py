@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class GroupReconciliationCoreAttributeValues(BaseModel):
     """
     left_core_attributes: List[ComparisonAttributeValuePair] = Field(description="Core attribute names and values for the left hand entity being reconciled.", alias="leftCoreAttributes")
     right_core_attributes: List[ComparisonAttributeValuePair] = Field(description="Core attribute names and values for the right hand entity being reconciled.", alias="rightCoreAttributes")
-    __properties = ["leftCoreAttributes", "rightCoreAttributes"]
+    __properties: ClassVar[List[str]] = ["leftCoreAttributes", "rightCoreAttributes"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,8 +91,8 @@ class GroupReconciliationCoreAttributeValues(BaseModel):
             return GroupReconciliationCoreAttributeValues.model_validate(obj)
 
         _obj = GroupReconciliationCoreAttributeValues.model_validate({
-            "left_core_attributes": [ComparisonAttributeValuePair.from_dict(_item) for _item in obj.get("leftCoreAttributes")] if obj.get("leftCoreAttributes") is not None else None,
-            "right_core_attributes": [ComparisonAttributeValuePair.from_dict(_item) for _item in obj.get("rightCoreAttributes")] if obj.get("rightCoreAttributes") is not None else None
+            "left_core_attributes": [ComparisonAttributeValuePair.from_dict(_item) for _item in _v] if (_v := obj.get("leftCoreAttributes")) is not None else None,
+            "right_core_attributes": [ComparisonAttributeValuePair.from_dict(_item) for _item in _v] if (_v := obj.get("rightCoreAttributes")) is not None else None
         })
         return _obj
 

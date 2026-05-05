@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,9 +32,9 @@ class LifeCycleEventValue(ResultValue):
     effective_date: Optional[datetime] = Field(default=None, description="The effective date of the event", alias="effectiveDate")
     event_values: Optional[ResultValueDictionary] = Field(default=None, alias="eventValues")
     event_lineage: Optional[LifeCycleEventLineage] = Field(default=None, alias="eventLineage")
-    result_value_type:  StrictStr = Field(...,alias="resultValueType", description="The available values are: ResultValue, ResultValueDictionary, ResultValue0D, ResultValueDecimal, ResultValueInt, ResultValueString, ResultValueBool, ResultValueCurrency, CashFlowValue, CashFlowValueSet, ResultValueLifeCycleEventValue, ResultValueDateTimeOffset") 
+    result_value_type:  StrictStr = Field(...,alias="resultValueType", description="Available values: ResultValue, ResultValueDictionary, ResultValue0D, ResultValueDecimal, ResultValueInt, ResultValueString, ResultValueBool, ResultValueCurrency, CashFlowValue, CashFlowValueSet, ResultValueLifeCycleEventValue, ResultValueDateTimeOffset.") 
     additional_properties: Dict[str, Any] = {}
-    __properties = ["resultValueType", "effectiveDate", "eventValues", "eventLineage"]
+    __properties: ClassVar[List[str]] = ["resultValueType", "effectiveDate", "eventValues", "eventLineage"]
 
     @field_validator('result_value_type')
     def result_value_type_validate_enum(cls, value):
@@ -165,17 +165,12 @@ class LifeCycleEventValue(ResultValue):
         _obj = LifeCycleEventValue.model_validate({
             "result_value_type": obj.get("resultValueType"),
             "effective_date": obj.get("effectiveDate"),
-            "event_values": ResultValueDictionary.from_dict(obj.get("eventValues")) if obj.get("eventValues") is not None else None,
-            "event_lineage": LifeCycleEventLineage.from_dict(obj.get("eventLineage")) if obj.get("eventLineage") is not None else None
+            "event_values": ResultValueDictionary.from_dict(_v) if (_v := obj.get("eventValues")) is not None else None,
+            "event_lineage": LifeCycleEventLineage.from_dict(_v) if (_v := obj.get("eventLineage")) is not None else None
         })
         # store additional fields in additional_properties
-        
-        properties = cls.__properties
-        if not isinstance(cls.__properties, dict) and getattr(cls.__properties, 'default', None):
-            properties = cls.__properties.default
-    
         for _key in obj.keys():
-            if _key not in properties:
+            if _key not in cls.__properties:
                 _obj.additional_properties[_key] = obj.get(_key)
 
         return _obj

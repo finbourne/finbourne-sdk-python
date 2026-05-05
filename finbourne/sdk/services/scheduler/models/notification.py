@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class Notification(BaseModel):
     fire_on:  Optional[StrictStr] = Field(default=None,alias="fireOn", description="Condition for the notification") 
     transport:  Optional[StrictStr] = Field(default=None,alias="transport", description="The type of the notification") 
     destination: Optional[List[StrictStr]] = Field(default=None, description="Where the notification should be sent")
-    __properties = ["fireOn", "transport", "destination"]
+    __properties: ClassVar[List[str]] = ["fireOn", "transport", "destination"]
 
     model_config = ConfigDict(
         populate_by_name=True,

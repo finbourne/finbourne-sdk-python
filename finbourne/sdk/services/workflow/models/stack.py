@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class Stack(BaseModel):
     lead_task_id:  Optional[StrictStr] = Field(default=None,alias="leadTaskId", description="ID of the Lead Task") 
     lead_task_state:  Optional[StrictStr] = Field(default=None,alias="leadTaskState", description="State of the Lead Task") 
     tasks_in_stack: Optional[StrictInt] = Field(default=None, description="Number of Tasks in the Stack", alias="tasksInStack")
-    __properties = ["memberAddedAsAt", "stackOpenedAsAt", "stackClosedAsAt", "stackMembershipType", "stackStatus", "leadTaskId", "leadTaskState", "tasksInStack"]
+    __properties: ClassVar[List[str]] = ["memberAddedAsAt", "stackOpenedAsAt", "stackClosedAsAt", "stackMembershipType", "stackStatus", "leadTaskId", "leadTaskState", "tasksInStack"]
 
     model_config = ConfigDict(
         populate_by_name=True,

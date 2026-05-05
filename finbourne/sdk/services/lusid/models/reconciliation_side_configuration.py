@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class ReconciliationSideConfiguration(BaseModel):
     effective_at: Optional[datetime] = Field(default=None, alias="effectiveAt")
     as_at: Optional[datetime] = Field(default=None, alias="asAt")
     currency:  Optional[StrictStr] = Field(default=None,alias="currency") 
-    __properties = ["recipeId", "effectiveAt", "asAt", "currency"]
+    __properties: ClassVar[List[str]] = ["recipeId", "effectiveAt", "asAt", "currency"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -97,7 +97,7 @@ class ReconciliationSideConfiguration(BaseModel):
             return ReconciliationSideConfiguration.model_validate(obj)
 
         _obj = ReconciliationSideConfiguration.model_validate({
-            "recipe_id": ResourceId.from_dict(obj.get("recipeId")) if obj.get("recipeId") is not None else None,
+            "recipe_id": ResourceId.from_dict(_v) if (_v := obj.get("recipeId")) is not None else None,
             "effective_at": obj.get("effectiveAt"),
             "as_at": obj.get("asAt"),
             "currency": obj.get("currency")

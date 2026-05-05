@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -45,7 +45,7 @@ class UserResponse(BaseModel):
     password_changed: Optional[datetime] = Field(default=None, description="Last time the password was changed for this user", alias="passwordChanged")
     user_expiry: Optional[datetime] = Field(default=None, description="The user's expiry unix datetime", alias="userExpiry")
     links: Optional[List[Link]] = None
-    __properties = ["id", "alternativeUserIds", "emailAddress", "secondEmailAddress", "login", "firstName", "lastName", "roles", "type", "status", "external", "lastLogin", "lastUpdated", "created", "passwordChanged", "userExpiry", "links"]
+    __properties: ClassVar[List[str]] = ["id", "alternativeUserIds", "emailAddress", "secondEmailAddress", "login", "firstName", "lastName", "roles", "type", "status", "external", "lastLogin", "lastUpdated", "created", "passwordChanged", "userExpiry", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -159,7 +159,7 @@ class UserResponse(BaseModel):
             "login": obj.get("login"),
             "first_name": obj.get("firstName"),
             "last_name": obj.get("lastName"),
-            "roles": [RoleResponse.from_dict(_item) for _item in obj.get("roles")] if obj.get("roles") is not None else None,
+            "roles": [RoleResponse.from_dict(_item) for _item in _v] if (_v := obj.get("roles")) is not None else None,
             "type": obj.get("type"),
             "status": obj.get("status"),
             "external": obj.get("external"),
@@ -168,7 +168,7 @@ class UserResponse(BaseModel):
             "created": obj.get("created"),
             "password_changed": obj.get("passwordChanged"),
             "user_expiry": obj.get("userExpiry"),
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

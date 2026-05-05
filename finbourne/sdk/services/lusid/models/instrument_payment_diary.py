@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -36,7 +36,7 @@ class InstrumentPaymentDiary(BaseModel):
     legs: Optional[List[InstrumentPaymentDiaryLeg]] = Field(default=None, description="Aggregated sets of Cashflows.")
     href:  Optional[StrictStr] = Field(default=None,alias="href", description="The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime.") 
     links: Optional[List[Link]] = None
-    __properties = ["instrumentIdType", "instrumentId", "instrumentScope", "version", "legs", "href", "links"]
+    __properties: ClassVar[List[str]] = ["instrumentIdType", "instrumentId", "instrumentScope", "version", "legs", "href", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -134,10 +134,10 @@ class InstrumentPaymentDiary(BaseModel):
             "instrument_id_type": obj.get("instrumentIdType"),
             "instrument_id": obj.get("instrumentId"),
             "instrument_scope": obj.get("instrumentScope"),
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
-            "legs": [InstrumentPaymentDiaryLeg.from_dict(_item) for _item in obj.get("legs")] if obj.get("legs") is not None else None,
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "legs": [InstrumentPaymentDiaryLeg.from_dict(_item) for _item in _v] if (_v := obj.get("legs")) is not None else None,
             "href": obj.get("href"),
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

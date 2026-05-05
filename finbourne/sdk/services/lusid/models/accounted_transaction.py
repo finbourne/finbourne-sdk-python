@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,9 +32,10 @@ class AccountedTransaction(BaseModel):
     journal_entry_action:  Optional[StrictStr] = Field(default=None,alias="journalEntryAction", description="The journal entry line action associated with this transaction.") 
     transaction: Optional[OutputTransaction] = None
     portfolio_id: Optional[PortfolioId] = Field(default=None, alias="portfolioId")
-    valuation_point_origin:  Optional[StrictStr] = Field(default=None,alias="valuationPointOrigin", description="Designates if the transaction was originally part of the Valuation Point or if it was added as part of a Complex Close action.") 
+    valuation_point_origin:  Optional[StrictStr] = Field(default=None,alias="valuationPointOrigin", description="Designates if the transaction was originally part of the Valuation Point or if it was added as part of a Complex Close action. Available values: None, Original, Added.") 
     added_origin_valuation_point_code:  Optional[StrictStr] = Field(default=None,alias="addedOriginValuationPointCode", description="The Valuation Point, only for transaction added as part of a Complex Close action.") 
-    __properties = ["accountingDate", "journalEntryAction", "transaction", "portfolioId", "valuationPointOrigin", "addedOriginValuationPointCode"]
+    added_origin_valuation_point_variant_code:  Optional[StrictStr] = Field(default=None,alias="addedOriginValuationPointVariantCode", description="The Valuation Point variant, only for transactions added as part of a Complex Close action.") 
+    __properties: ClassVar[List[str]] = ["accountingDate", "journalEntryAction", "transaction", "portfolioId", "valuationPointOrigin", "addedOriginValuationPointCode", "addedOriginValuationPointVariantCode"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,6 +92,11 @@ class AccountedTransaction(BaseModel):
         if self.added_origin_valuation_point_code is None and "added_origin_valuation_point_code" in self.model_fields_set:
             _dict['addedOriginValuationPointCode'] = None
 
+        # set to None if added_origin_valuation_point_variant_code (nullable) is None
+        # and model_fields_set contains the field
+        if self.added_origin_valuation_point_variant_code is None and "added_origin_valuation_point_variant_code" in self.model_fields_set:
+            _dict['addedOriginValuationPointVariantCode'] = None
+
         return _dict
 
     @classmethod
@@ -105,10 +111,11 @@ class AccountedTransaction(BaseModel):
         _obj = AccountedTransaction.model_validate({
             "accounting_date": obj.get("accountingDate"),
             "journal_entry_action": obj.get("journalEntryAction"),
-            "transaction": OutputTransaction.from_dict(obj.get("transaction")) if obj.get("transaction") is not None else None,
-            "portfolio_id": PortfolioId.from_dict(obj.get("portfolioId")) if obj.get("portfolioId") is not None else None,
+            "transaction": OutputTransaction.from_dict(_v) if (_v := obj.get("transaction")) is not None else None,
+            "portfolio_id": PortfolioId.from_dict(_v) if (_v := obj.get("portfolioId")) is not None else None,
             "valuation_point_origin": obj.get("valuationPointOrigin"),
-            "added_origin_valuation_point_code": obj.get("addedOriginValuationPointCode")
+            "added_origin_valuation_point_code": obj.get("addedOriginValuationPointCode"),
+            "added_origin_valuation_point_variant_code": obj.get("addedOriginValuationPointVariantCode")
         })
         return _obj
 

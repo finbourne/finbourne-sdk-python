@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -27,8 +27,8 @@ class SimpleRoundingConvention(BaseModel):
     Certain bonds will follow certain rounding conventions.  For example, Thai government bonds will round accrued interest and cashflow values 2dp, whereas for  French government bonds, the rounding is to 7dp.  # noqa: E501
     """
     precision: Optional[StrictInt] = Field(default=None, description="The precision of the rounding. The decimal places or significant figures to which the rounding takes place.  Defaults to 0 if not set.")
-    rounding_type:  Optional[StrictStr] = Field(default=None,alias="roundingType", description="The type of rounding.  e.g. Round Up, Round Down    Supported string (enumeration) values are: [Down, Up, Nearest].  Defaults to \"None\" if not set.") 
-    __properties = ["precision", "roundingType"]
+    rounding_type:  Optional[StrictStr] = Field(default=None,alias="roundingType", description="The type of rounding.  Default value: None. Available values: None, Down, Up, Nearest.") 
+    __properties: ClassVar[List[str]] = ["precision", "roundingType"]
 
     model_config = ConfigDict(
         populate_by_name=True,

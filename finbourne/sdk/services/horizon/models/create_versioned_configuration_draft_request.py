@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -22,15 +22,15 @@ from datetime import datetime
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 
 
-class CreateClientConfigurationDraftRequest(BaseModel):
+class CreateVersionedConfigurationDraftRequest(BaseModel):
     """
-    Request to create a new draft client configuration.  # noqa: E501
+    Request to create a new draft versioned configuration.  # noqa: E501
     """
     major_version: Optional[StrictInt] = Field(default=None, description="The major version for the new draft. Must be supplied together with minorVersion, or both omitted to auto-assign the next version.", alias="majorVersion")
     minor_version: Optional[StrictInt] = Field(default=None, description="The minor version for the new draft. Must be supplied together with MajorVersion, or both omitted to auto-assign the next version.", alias="minorVersion")
     source_major_version: Optional[StrictInt] = Field(default=None, description="The major version of an existing record to copy the value from. Must be supplied together with SourceMinorVersion. If omitted, the new draft is initialised with an empty JSON object.", alias="sourceMajorVersion")
     source_minor_version: Optional[StrictInt] = Field(default=None, description="The minor version of an existing record to copy the value from. Must be supplied together with SourceMajorVersion. If omitted, the new draft is initialised with an empty JSON object.", alias="sourceMinorVersion")
-    __properties = ["majorVersion", "minorVersion", "sourceMajorVersion", "sourceMinorVersion"]
+    __properties: ClassVar[List[str]] = ["majorVersion", "minorVersion", "sourceMajorVersion", "sourceMinorVersion"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -55,8 +55,8 @@ class CreateClientConfigurationDraftRequest(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> CreateClientConfigurationDraftRequest:
-        """Create an instance of CreateClientConfigurationDraftRequest from a JSON string"""
+    def from_json(cls, json_str: str) -> CreateVersionedConfigurationDraftRequest:
+        """Create an instance of CreateVersionedConfigurationDraftRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -89,15 +89,15 @@ class CreateClientConfigurationDraftRequest(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> CreateClientConfigurationDraftRequest:
-        """Create an instance of CreateClientConfigurationDraftRequest from a dict"""
+    def from_dict(cls, obj: dict) -> CreateVersionedConfigurationDraftRequest:
+        """Create an instance of CreateVersionedConfigurationDraftRequest from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return CreateClientConfigurationDraftRequest.model_validate(obj)
+            return CreateVersionedConfigurationDraftRequest.model_validate(obj)
 
-        _obj = CreateClientConfigurationDraftRequest.model_validate({
+        _obj = CreateVersionedConfigurationDraftRequest.model_validate({
             "major_version": obj.get("majorVersion"),
             "minor_version": obj.get("minorVersion"),
             "source_major_version": obj.get("sourceMajorVersion"),
@@ -105,5 +105,5 @@ class CreateClientConfigurationDraftRequest(BaseModel):
         })
         return _obj
 
-CreateClientConfigurationDraftRequest.model_rebuild()
+CreateVersionedConfigurationDraftRequest.model_rebuild()
 

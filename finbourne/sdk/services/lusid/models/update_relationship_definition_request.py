@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class UpdateRelationshipDefinitionRequest(BaseModel):
     display_name:  StrictStr = Field(...,alias="displayName", description="The display name of the relation.") 
     outward_description:  StrictStr = Field(...,alias="outwardDescription", description="The description to relate source entity object and target entity object.") 
     inward_description:  StrictStr = Field(...,alias="inwardDescription", description="The description to relate target entity object and source entity object.") 
-    __properties = ["displayName", "outwardDescription", "inwardDescription"]
+    __properties: ClassVar[List[str]] = ["displayName", "outwardDescription", "inwardDescription"]
 
     model_config = ConfigDict(
         populate_by_name=True,

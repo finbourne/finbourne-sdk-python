@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class QuoteAccessMetadataRule(BaseModel):
     """
     id: QuoteAccessMetadataRuleId
     metadata: Dict[str, Optional[List[AccessMetadataValue]]] = Field(description="The access control metadata to assign to quotes that match the identifier")
-    __properties = ["id", "metadata"]
+    __properties: ClassVar[List[str]] = ["id", "metadata"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -73,9 +73,9 @@ class QuoteAccessMetadataRule(BaseModel):
         _field_dict_of_array = {}
         if self.metadata:
             for _key in self.metadata:
-                if self.metadata[_key]:
+                if (_items_for_key := self.metadata[_key]):
                     _field_dict_of_array[_key] = [
-                        _item.to_dict() for _item in self.metadata[_key]
+                        _item.to_dict() for _item in _items_for_key
                     ]
             _dict['metadata'] = _field_dict_of_array
         return _dict
@@ -90,16 +90,16 @@ class QuoteAccessMetadataRule(BaseModel):
             return QuoteAccessMetadataRule.model_validate(obj)
 
         _obj = QuoteAccessMetadataRule.model_validate({
-            "id": QuoteAccessMetadataRuleId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
+            "id": QuoteAccessMetadataRuleId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
             "metadata": dict(
                 (_k,
                         [AccessMetadataValue.from_dict(_item) for _item in _v]
                         if _v is not None
                         else None
                 )
-                for _k, _v in obj.get("metadata").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("metadata") is not None
+            if (_val := obj.get("metadata")) is not None
             else None
         })
         return _obj

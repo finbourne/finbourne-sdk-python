@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -39,9 +39,9 @@ class OrderGraphBlock(BaseModel):
     allocated: OrderGraphBlockAllocationSynopsis
     booked: OrderGraphBlockTransactionSynopsis
     derived_state:  StrictStr = Field(...,alias="derivedState", description="A simple description of the overall state of a block.") 
-    derived_compliance_state:  StrictStr = Field(...,alias="derivedComplianceState", description="The overall compliance state of a block, derived from the block's orders. Possible values are 'Pending', 'Failed', 'Manually approved' and 'Passed'.") 
-    derived_approval_state:  StrictStr = Field(...,alias="derivedApprovalState", description="The overall approval state of a block, derived from approval of the block's orders. Possible values are 'Pending', 'Approved' and 'Rejected'.") 
-    __properties = ["block", "ordered", "placed", "executed", "allocated", "booked", "derivedState", "derivedComplianceState", "derivedApprovalState"]
+    derived_compliance_state:  StrictStr = Field(...,alias="derivedComplianceState", description="The overall compliance state of a block, derived from the block's orders. Available values: Pending, Failed, Passed, ManuallyApproved, PartiallyOverridden, Warning.") 
+    derived_approval_state:  StrictStr = Field(...,alias="derivedApprovalState", description="The overall approval state of a block, derived from approval of the block's orders. Available values: Pending, Rejected, Approved.") 
+    __properties: ClassVar[List[str]] = ["block", "ordered", "placed", "executed", "allocated", "booked", "derivedState", "derivedComplianceState", "derivedApprovalState"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -107,12 +107,12 @@ class OrderGraphBlock(BaseModel):
             return OrderGraphBlock.model_validate(obj)
 
         _obj = OrderGraphBlock.model_validate({
-            "block": Block.from_dict(obj.get("block")) if obj.get("block") is not None else None,
-            "ordered": OrderGraphBlockOrderSynopsis.from_dict(obj.get("ordered")) if obj.get("ordered") is not None else None,
-            "placed": OrderGraphBlockPlacementSynopsis.from_dict(obj.get("placed")) if obj.get("placed") is not None else None,
-            "executed": OrderGraphBlockExecutionSynopsis.from_dict(obj.get("executed")) if obj.get("executed") is not None else None,
-            "allocated": OrderGraphBlockAllocationSynopsis.from_dict(obj.get("allocated")) if obj.get("allocated") is not None else None,
-            "booked": OrderGraphBlockTransactionSynopsis.from_dict(obj.get("booked")) if obj.get("booked") is not None else None,
+            "block": Block.from_dict(_v) if (_v := obj.get("block")) is not None else None,
+            "ordered": OrderGraphBlockOrderSynopsis.from_dict(_v) if (_v := obj.get("ordered")) is not None else None,
+            "placed": OrderGraphBlockPlacementSynopsis.from_dict(_v) if (_v := obj.get("placed")) is not None else None,
+            "executed": OrderGraphBlockExecutionSynopsis.from_dict(_v) if (_v := obj.get("executed")) is not None else None,
+            "allocated": OrderGraphBlockAllocationSynopsis.from_dict(_v) if (_v := obj.get("allocated")) is not None else None,
+            "booked": OrderGraphBlockTransactionSynopsis.from_dict(_v) if (_v := obj.get("booked")) is not None else None,
             "derived_state": obj.get("derivedState"),
             "derived_compliance_state": obj.get("derivedComplianceState"),
             "derived_approval_state": obj.get("derivedApprovalState")

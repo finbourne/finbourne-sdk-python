@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class A2BBreakdown(BaseModel):
     total: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The total value of all the components within this category.")
     currency:  Optional[StrictStr] = Field(default=None,alias="currency", description="The currency. Applies to the Total, as well as all the componenents.") 
     components: Optional[Dict[str, Union[StrictFloat, StrictInt]]] = Field(default=None, description="The individual components that make up the category. For example, the Start category may have Cost, Unrealised gains and accrued interest components.")
-    __properties = ["total", "currency", "components"]
+    __properties: ClassVar[List[str]] = ["total", "currency", "components"]
 
     model_config = ConfigDict(
         populate_by_name=True,

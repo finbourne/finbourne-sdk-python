@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class UpsertInvestorRecordRequest(BaseModel):
     display_name:  StrictStr = Field(...,alias="displayName", description="The display name of the Investor Record") 
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="The description of the Investor Record") 
     investor: InvestorIdentifier
-    __properties = ["scope", "identifiers", "properties", "displayName", "description", "investor"]
+    __properties: ClassVar[List[str]] = ["scope", "identifiers", "properties", "displayName", "description", "investor"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -112,19 +112,19 @@ class UpsertInvestorRecordRequest(BaseModel):
             "scope": obj.get("scope"),
             "identifiers": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("identifiers").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("identifiers") is not None
+            if (_val := obj.get("identifiers")) is not None
             else None,
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
-            "investor": InvestorIdentifier.from_dict(obj.get("investor")) if obj.get("investor") is not None else None
+            "investor": InvestorIdentifier.from_dict(_v) if (_v := obj.get("investor")) is not None else None
         })
         return _obj
 

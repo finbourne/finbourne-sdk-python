@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class DataMapping(BaseModel):
     When importing data from an external source there are essentially three levels of interaction with LUSID.  (1) The data is a raw document that LUSID does not understand. You can store and retrieve it but it does not full interact with other documents inside LUSID  (2) The data has a map from fields and paths to 'properties' in LUSID. In essence, LUSID can then treat the data as weakly typed (decimal, string) data that can be returned through queries      and where various aggregation requests will then work.  (3) The data is fully translatable into LUSID and understood, in some sense, natively. This means that it can be used for context sensitive calculations such as pricing or risk calculations.  The data map object is designed to allow data to transition from step 1 to 2 and in some cases as an alternative for step 2 to 3.  # noqa: E501
     """
     data_definitions: Optional[List[DataDefinition]] = Field(default=None, description="A map from LUSID item keys to data definitions that define the names, types and degree of uniqueness of data provided to LUSID in structured data stores.", alias="dataDefinitions")
-    __properties = ["dataDefinitions"]
+    __properties: ClassVar[List[str]] = ["dataDefinitions"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,7 +88,7 @@ class DataMapping(BaseModel):
             return DataMapping.model_validate(obj)
 
         _obj = DataMapping.model_validate({
-            "data_definitions": [DataDefinition.from_dict(_item) for _item in obj.get("dataDefinitions")] if obj.get("dataDefinitions") is not None else None
+            "data_definitions": [DataDefinition.from_dict(_item) for _item in _v] if (_v := obj.get("dataDefinitions")) is not None else None
         })
         return _obj
 

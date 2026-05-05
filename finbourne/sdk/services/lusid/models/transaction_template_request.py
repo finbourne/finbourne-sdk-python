@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class TransactionTemplateRequest(BaseModel):
     """
     description:  StrictStr = Field(...,alias="description", description="The description of the transaction template.") 
     component_transactions: List[ComponentTransaction] = Field(description="A set of component transactions that relate to the template to be created.", alias="componentTransactions")
-    __properties = ["description", "componentTransactions"]
+    __properties: ClassVar[List[str]] = ["description", "componentTransactions"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,7 +85,7 @@ class TransactionTemplateRequest(BaseModel):
 
         _obj = TransactionTemplateRequest.model_validate({
             "description": obj.get("description"),
-            "component_transactions": [ComponentTransaction.from_dict(_item) for _item in obj.get("componentTransactions")] if obj.get("componentTransactions") is not None else None
+            "component_transactions": [ComponentTransaction.from_dict(_item) for _item in _v] if (_v := obj.get("componentTransactions")) is not None else None
         })
         return _obj
 

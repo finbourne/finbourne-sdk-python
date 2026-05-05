@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class AggregatedReturnsResponse(BaseModel):
     href:  Optional[StrictStr] = Field(default=None,alias="href", description="The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime.") 
     results: Optional[Dict[str, Optional[List[AggregatedReturn]]]] = Field(default=None, description="Aggregated returns grouped by ReturnId")
     links: Optional[List[Link]] = None
-    __properties = ["href", "results", "links"]
+    __properties: ClassVar[List[str]] = ["href", "results", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -71,9 +71,9 @@ class AggregatedReturnsResponse(BaseModel):
         _field_dict_of_array = {}
         if self.results:
             for _key in self.results:
-                if self.results[_key]:
+                if (_items_for_key := self.results[_key]):
                     _field_dict_of_array[_key] = [
-                        _item.to_dict() for _item in self.results[_key]
+                        _item.to_dict() for _item in _items_for_key
                     ]
             _dict['results'] = _field_dict_of_array
         # override the default output from pydantic by calling `to_dict()` of each item in links (list)
@@ -117,11 +117,11 @@ class AggregatedReturnsResponse(BaseModel):
                         if _v is not None
                         else None
                 )
-                for _k, _v in obj.get("results").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("results") is not None
+            if (_val := obj.get("results")) is not None
             else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

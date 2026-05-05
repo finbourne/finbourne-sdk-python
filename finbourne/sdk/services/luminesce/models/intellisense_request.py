@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class IntellisenseRequest(BaseModel):
     """
     lines: List[StrictStr] = Field(description="The lines of text the user currently has in the editor")
     position: CursorPosition
-    __properties = ["lines", "position"]
+    __properties: ClassVar[List[str]] = ["lines", "position"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -81,7 +81,7 @@ class IntellisenseRequest(BaseModel):
 
         _obj = IntellisenseRequest.model_validate({
             "lines": obj.get("lines"),
-            "position": CursorPosition.from_dict(obj.get("position")) if obj.get("position") is not None else None
+            "position": CursorPosition.from_dict(_v) if (_v := obj.get("position")) is not None else None
         })
         return _obj
 

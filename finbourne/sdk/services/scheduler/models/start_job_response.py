@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class StartJobResponse(BaseModel):
     run_id:  Optional[StrictStr] = Field(default=None,alias="runId", description="Unique RunId of the started job run") 
     status:  Optional[StrictStr] = Field(default=None,alias="status", description="Link to the status of the started job") 
     result:  Optional[StrictStr] = Field(default=None,alias="result", description="Link to the result of the job run when completed") 
-    __properties = ["jobId", "runId", "status", "result"]
+    __properties: ClassVar[List[str]] = ["jobId", "runId", "status", "result"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -97,7 +97,7 @@ class StartJobResponse(BaseModel):
             return StartJobResponse.model_validate(obj)
 
         _obj = StartJobResponse.model_validate({
-            "job_id": ResourceId.from_dict(obj.get("jobId")) if obj.get("jobId") is not None else None,
+            "job_id": ResourceId.from_dict(_v) if (_v := obj.get("jobId")) is not None else None,
             "run_id": obj.get("runId"),
             "status": obj.get("status"),
             "result": obj.get("result")

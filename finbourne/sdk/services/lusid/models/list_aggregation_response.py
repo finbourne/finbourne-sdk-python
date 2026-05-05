@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -39,7 +39,7 @@ class ListAggregationResponse(BaseModel):
     aggregation_failures: Optional[List[AggregationMeasureFailureDetail]] = Field(default=None, alias="aggregationFailures")
     recipe_id: Optional[ResourceId] = Field(default=None, alias="recipeId")
     links: Optional[List[Link]] = None
-    __properties = ["aggregationEffectiveAt", "aggregationAsAt", "href", "data", "aggregationCurrency", "dataSchema", "aggregationFailures", "recipeId", "links"]
+    __properties: ClassVar[List[str]] = ["aggregationEffectiveAt", "aggregationAsAt", "href", "data", "aggregationCurrency", "dataSchema", "aggregationFailures", "recipeId", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -137,10 +137,10 @@ class ListAggregationResponse(BaseModel):
             "href": obj.get("href"),
             "data": obj.get("data"),
             "aggregation_currency": obj.get("aggregationCurrency"),
-            "data_schema": ResultDataSchema.from_dict(obj.get("dataSchema")) if obj.get("dataSchema") is not None else None,
-            "aggregation_failures": [AggregationMeasureFailureDetail.from_dict(_item) for _item in obj.get("aggregationFailures")] if obj.get("aggregationFailures") is not None else None,
-            "recipe_id": ResourceId.from_dict(obj.get("recipeId")) if obj.get("recipeId") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "data_schema": ResultDataSchema.from_dict(_v) if (_v := obj.get("dataSchema")) is not None else None,
+            "aggregation_failures": [AggregationMeasureFailureDetail.from_dict(_item) for _item in _v] if (_v := obj.get("aggregationFailures")) is not None else None,
+            "recipe_id": ResourceId.from_dict(_v) if (_v := obj.get("recipeId")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

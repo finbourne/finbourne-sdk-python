@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,14 +30,14 @@ class AggregationQuery(BaseModel):
     address_key:  StrictStr = Field(...,alias="addressKey", description="The address that is the query to be made into the system. e.g. a Valuation/PV or Instrument/MaturityDate") 
     description:  StrictStr = Field(...,alias="description", description="What does the information that is being queried by the address mean. What is the address for.") 
     display_name:  StrictStr = Field(...,alias="displayName", description="The suggested name that the user would wish to put on to the returned information for visualisation in preference to the address.") 
-    type:  StrictStr = Field(...,alias="type", description="Financially meaningful results can be presented as either simple flat types or more complex expanded types. This field gives the type of the more complex representation.  For example, the present value (PV) of a holding could be represented either as a simple decimal (with currency implied) or as a decimal-currency pair. In this example, the type returned in this field would be \"Result0D\", the decimal-currency pair. The available values are: String, Int, Decimal, DateTime, Boolean, ResultValue, Result0D, Json") 
-    flattened_type:  StrictStr = Field(...,alias="flattenedType", description="Financially meaningful results can be presented as either simple flat types or more complex expanded types. This field gives the type of the simpler representation.  For example, the present value (PV) of a holding could be represented either as a simple decimal (with currency implied) or as a decimal-currency pair. In this example, the type returned in this field would be \"Decimal\". The available values are: String, Int, Decimal, DateTime, Boolean, ResultValue, Result0D, Json") 
+    type:  StrictStr = Field(...,alias="type", description="Financially meaningful results can be presented as either simple flat types or more complex expanded types. This field gives the type of the more complex representation.  For example, the present value (PV) of a holding could be represented either as a simple decimal (with currency implied) or as a decimal-currency pair. In this example, the type returned in this field would be \"Result0D\", the decimal-currency pair. Available values: String, Int, Decimal, DateTime, Boolean, ResultValue, Result0D, Json.") 
+    flattened_type:  StrictStr = Field(...,alias="flattenedType", description="Financially meaningful results can be presented as either simple flat types or more complex expanded types. This field gives the type of the simpler representation.  For example, the present value (PV) of a holding could be represented either as a simple decimal (with currency implied) or as a decimal-currency pair. In this example, the type returned in this field would be \"Decimal\". Available values: String, Int, Decimal, DateTime, Boolean, ResultValue, Result0D, Json.") 
     scales_with_holding_quantity: StrictBool = Field(description="Is the data scaled when it is for, e.g. a holding in an instrument. A key example would be the difference between price and PV. The present value of an instrument would scale with the quantity held. The price would be that for a hypothetical unit of that instrument, typically associated with the contract size.", alias="scalesWithHoldingQuantity")
     supported_operations:  StrictStr = Field(...,alias="supportedOperations", description="When performing an aggregation operation, what column type operations can be performed on the data. For example, it makes sense to sum decimals but not strings. Either can be counted. With more complex types, e.g. ResultValues, operations may be linked to a semantic meaning such as the currency of the result. In such cases the operations may be supported but context specific. For example, it makes sense to sum PVs in a single currency but not when the currency is different. In such cases, an error would result (it being assumed that no fx rates for currency conversion were implicit in the context).") 
     life_cycle_status:  StrictStr = Field(...,alias="lifeCycleStatus", description="Within an API where an item can be accessed through an address or property, there is an associated status that determines whether the item is stable or likely to change. This status is one of [Experimental, Beta, EAP, Prod,  Deprecated]. If the item is deprecated it will be removed on or after the associated DateTime RemovalDate field. That field will not otherwise be set.") 
     removal_date: Optional[datetime] = Field(default=None, description="If the life cycle status is set to deprecated then this will be populated with the date on or after which removal of the address query will happen", alias="removalDate")
     applicable_options: Optional[Dict[str, AddressKeyOptionDefinition]] = Field(default=None, description="A mapping from option names to the definition that the corresponding option value must match.", alias="applicableOptions")
-    __properties = ["addressKey", "description", "displayName", "type", "flattenedType", "scalesWithHoldingQuantity", "supportedOperations", "lifeCycleStatus", "removalDate", "applicableOptions"]
+    __properties: ClassVar[List[str]] = ["addressKey", "description", "displayName", "type", "flattenedType", "scalesWithHoldingQuantity", "supportedOperations", "lifeCycleStatus", "removalDate", "applicableOptions"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -251,9 +251,9 @@ class AggregationQuery(BaseModel):
             "removal_date": obj.get("removalDate"),
             "applicable_options": dict(
                 (_k, AddressKeyOptionDefinition.from_dict(_v))
-                for _k, _v in obj.get("applicableOptions").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("applicableOptions") is not None
+            if (_val := obj.get("applicableOptions")) is not None
             else None
         })
         return _obj

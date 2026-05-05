@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class UpsertInstrumentPropertyRequest(BaseModel):
     identifier_type:  StrictStr = Field(...,alias="identifierType", description="The unique identifier type to search for the instrument, for example 'Figi'.") 
     identifier:  StrictStr = Field(...,alias="identifier", description="A value of that type to identify the instrument to upsert properties for, for example 'BBG000BLNNV0'.") 
     properties: Optional[List[ModelProperty]] = Field(default=None, description="A set of instrument properties and associated values to store for the instrument. Each property must be from the 'Instrument' domain.")
-    __properties = ["identifierType", "identifier", "properties"]
+    __properties: ClassVar[List[str]] = ["identifierType", "identifier", "properties"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -92,7 +92,7 @@ class UpsertInstrumentPropertyRequest(BaseModel):
         _obj = UpsertInstrumentPropertyRequest.model_validate({
             "identifier_type": obj.get("identifierType"),
             "identifier": obj.get("identifier"),
-            "properties": [ModelProperty.from_dict(_item) for _item in obj.get("properties")] if obj.get("properties") is not None else None
+            "properties": [ModelProperty.from_dict(_item) for _item in _v] if (_v := obj.get("properties")) is not None else None
         })
         return _obj
 

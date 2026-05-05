@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -36,7 +36,7 @@ class CustomDataModelCriteria(BaseModel):
     attribute_aliases: Optional[List[Alias]] = Field(default=None, description="The aliases for property keys, identifier types, and fields on the bound entity.", alias="attributeAliases")
     recommended_sort_by: Optional[List[RecommendedSortBy]] = Field(default=None, description="The preferred default sorting instructions.", alias="recommendedSortBy")
     supplemental_property_keys: Optional[List[StrictStr]] = Field(default=None, description="Additional property keys that should be decorated on the bound entity.", alias="supplementalPropertyKeys")
-    __properties = ["conditions", "properties", "identifierTypes", "attributeAliases", "recommendedSortBy", "supplementalPropertyKeys"]
+    __properties: ClassVar[List[str]] = ["conditions", "properties", "identifierTypes", "attributeAliases", "recommendedSortBy", "supplementalPropertyKeys"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -143,10 +143,10 @@ class CustomDataModelCriteria(BaseModel):
 
         _obj = CustomDataModelCriteria.model_validate({
             "conditions": obj.get("conditions"),
-            "properties": [CustomDataModelPropertySpecificationWithDisplayName.from_dict(_item) for _item in obj.get("properties")] if obj.get("properties") is not None else None,
-            "identifier_types": [CustomDataModelIdentifierTypeSpecificationWithDisplayName.from_dict(_item) for _item in obj.get("identifierTypes")] if obj.get("identifierTypes") is not None else None,
-            "attribute_aliases": [Alias.from_dict(_item) for _item in obj.get("attributeAliases")] if obj.get("attributeAliases") is not None else None,
-            "recommended_sort_by": [RecommendedSortBy.from_dict(_item) for _item in obj.get("recommendedSortBy")] if obj.get("recommendedSortBy") is not None else None,
+            "properties": [CustomDataModelPropertySpecificationWithDisplayName.from_dict(_item) for _item in _v] if (_v := obj.get("properties")) is not None else None,
+            "identifier_types": [CustomDataModelIdentifierTypeSpecificationWithDisplayName.from_dict(_item) for _item in _v] if (_v := obj.get("identifierTypes")) is not None else None,
+            "attribute_aliases": [Alias.from_dict(_item) for _item in _v] if (_v := obj.get("attributeAliases")) is not None else None,
+            "recommended_sort_by": [RecommendedSortBy.from_dict(_item) for _item in _v] if (_v := obj.get("recommendedSortBy")) is not None else None,
             "supplemental_property_keys": obj.get("supplementalPropertyKeys")
         })
         return _obj

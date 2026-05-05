@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class BasketIdentifier(BaseModel):
     name:  StrictStr = Field(...,alias="name", description="The index name within the set, e.g. \"MAIN\" or \"Crossover\".") 
     region:  StrictStr = Field(...,alias="region", description="Applicable geographic country or region. Typically something like \"Europe\", \"Asia ex-Japan\", \"Japan\" or \"Australia\".") 
     series_id: StrictInt = Field(description="The series identifier.", alias="seriesId")
-    __properties = ["index", "name", "region", "seriesId"]
+    __properties: ClassVar[List[str]] = ["index", "name", "region", "seriesId"]
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,9 +30,9 @@ class FieldSchema(BaseModel):
     id: Optional[ResourceId] = None
     display_name:  Optional[StrictStr] = Field(default=None,alias="displayName") 
     description:  Optional[StrictStr] = Field(default=None,alias="description") 
-    type:  Optional[StrictStr] = Field(default=None,alias="type", description="The available values are: String, Int, Decimal, DateTime, Boolean, Map, List, PropertyArray, Percentage, Code, Id, Uri, CurrencyAndAmount, TradePrice, Currency, MetricValue, ResourceId, ResultValue, CutLocalTime, DateOrCutLabel, UnindexedText") 
+    type:  Optional[StrictStr] = Field(default=None,alias="type", description="Available values: String, Int, Decimal, DateTime, Boolean, Map, List, PropertyArray, Percentage, Code, Id, Uri, CurrencyAndAmount, TradePrice, Currency, MetricValue, ResourceId, ResultValue, CutLocalTime, DateOrCutLabel, UnindexedText.") 
     display_order: Optional[StrictInt] = Field(default=None, alias="displayOrder")
-    __properties = ["id", "displayName", "description", "type", "displayOrder"]
+    __properties: ClassVar[List[str]] = ["id", "displayName", "description", "type", "displayOrder"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -165,7 +165,7 @@ class FieldSchema(BaseModel):
             return FieldSchema.model_validate(obj)
 
         _obj = FieldSchema.model_validate({
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
             "type": obj.get("type"),

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -36,7 +36,7 @@ class ForSpec(BaseModel):
     effective_date_has_quality: Optional[EffectiveDateHasQuality] = Field(default=None, alias="effectiveDateHasQuality")
     effective_date_relative: Optional[EffectiveDateRelative] = Field(default=None, alias="effectiveDateRelative")
     effective_range: Optional[EffectiveRange] = Field(default=None, alias="effectiveRange")
-    __properties = ["asAtRangeForSpec", "asAtRelative", "effectiveDateHasQuality", "effectiveDateRelative", "effectiveRange"]
+    __properties: ClassVar[List[str]] = ["asAtRangeForSpec", "asAtRelative", "effectiveDateHasQuality", "effectiveDateRelative", "effectiveRange"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -99,11 +99,11 @@ class ForSpec(BaseModel):
             return ForSpec.model_validate(obj)
 
         _obj = ForSpec.model_validate({
-            "as_at_range_for_spec": AsAtRangeForSpec.from_dict(obj.get("asAtRangeForSpec")) if obj.get("asAtRangeForSpec") is not None else None,
-            "as_at_relative": AsAtRelative.from_dict(obj.get("asAtRelative")) if obj.get("asAtRelative") is not None else None,
-            "effective_date_has_quality": EffectiveDateHasQuality.from_dict(obj.get("effectiveDateHasQuality")) if obj.get("effectiveDateHasQuality") is not None else None,
-            "effective_date_relative": EffectiveDateRelative.from_dict(obj.get("effectiveDateRelative")) if obj.get("effectiveDateRelative") is not None else None,
-            "effective_range": EffectiveRange.from_dict(obj.get("effectiveRange")) if obj.get("effectiveRange") is not None else None
+            "as_at_range_for_spec": AsAtRangeForSpec.from_dict(_v) if (_v := obj.get("asAtRangeForSpec")) is not None else None,
+            "as_at_relative": AsAtRelative.from_dict(_v) if (_v := obj.get("asAtRelative")) is not None else None,
+            "effective_date_has_quality": EffectiveDateHasQuality.from_dict(_v) if (_v := obj.get("effectiveDateHasQuality")) is not None else None,
+            "effective_date_relative": EffectiveDateRelative.from_dict(_v) if (_v := obj.get("effectiveDateRelative")) is not None else None,
+            "effective_range": EffectiveRange.from_dict(_v) if (_v := obj.get("effectiveRange")) is not None else None
         })
         return _obj
 

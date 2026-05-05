@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -37,12 +37,12 @@ class FundRequest(BaseModel):
     abor_id: ResourceId = Field(alias="aborId")
     share_class_instrument_scopes: Optional[List[StrictStr]] = Field(default=None, description="The scopes in which the instruments lie, currently limited to one.", alias="shareClassInstrumentScopes")
     share_class_instruments: Optional[List[InstrumentResolutionDetail]] = Field(default=None, description="Details the user-provided instrument identifiers and the instrument resolved from them. These would be decommissioned in favour of the new AllocationGroups and ShareClasses structures.", alias="shareClassInstruments")
-    type:  StrictStr = Field(...,alias="type", description="The type of fund; 'Standalone', 'Master' or 'Feeder'") 
+    type:  StrictStr = Field(...,alias="type", description="The type of fund. Available values: Standalone, Master, Feeder.") 
     inception_date: datetime = Field(description="Inception date of the Fund", alias="inceptionDate")
     decimal_places: Optional[StrictInt] = Field(default=None, description="Number of decimal places for reporting", alias="decimalPlaces")
     year_end_date: DayMonth = Field(alias="yearEndDate")
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="A set of properties for the Fund.")
-    __properties = ["code", "displayName", "description", "fundConfigurationId", "aborId", "shareClassInstrumentScopes", "shareClassInstruments", "type", "inceptionDate", "decimalPlaces", "yearEndDate", "properties"]
+    __properties: ClassVar[List[str]] = ["code", "displayName", "description", "fundConfigurationId", "aborId", "shareClassInstrumentScopes", "shareClassInstruments", "type", "inceptionDate", "decimalPlaces", "yearEndDate", "properties"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -146,19 +146,19 @@ class FundRequest(BaseModel):
             "code": obj.get("code"),
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
-            "fund_configuration_id": ResourceId.from_dict(obj.get("fundConfigurationId")) if obj.get("fundConfigurationId") is not None else None,
-            "abor_id": ResourceId.from_dict(obj.get("aborId")) if obj.get("aborId") is not None else None,
+            "fund_configuration_id": ResourceId.from_dict(_v) if (_v := obj.get("fundConfigurationId")) is not None else None,
+            "abor_id": ResourceId.from_dict(_v) if (_v := obj.get("aborId")) is not None else None,
             "share_class_instrument_scopes": obj.get("shareClassInstrumentScopes"),
-            "share_class_instruments": [InstrumentResolutionDetail.from_dict(_item) for _item in obj.get("shareClassInstruments")] if obj.get("shareClassInstruments") is not None else None,
+            "share_class_instruments": [InstrumentResolutionDetail.from_dict(_item) for _item in _v] if (_v := obj.get("shareClassInstruments")) is not None else None,
             "type": obj.get("type"),
             "inception_date": obj.get("inceptionDate"),
             "decimal_places": obj.get("decimalPlaces"),
-            "year_end_date": DayMonth.from_dict(obj.get("yearEndDate")) if obj.get("yearEndDate") is not None else None,
+            "year_end_date": DayMonth.from_dict(_v) if (_v := obj.get("yearEndDate")) is not None else None,
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None
         })
         return _obj

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,10 +31,10 @@ class ClosePeriodDiaryEntryRequest(BaseModel):
     name:  Optional[StrictStr] = Field(default=None,alias="name", description="Identifiable Name assigned to the period. Where left blank, the system will generate a name in the format 'yyyyMMDD'.") 
     effective_at: Optional[datetime] = Field(default=None, description="The effective time of the diary entry.", alias="effectiveAt")
     query_as_at: Optional[datetime] = Field(default=None, description="The query time of the diary entry. Defaults to latest.", alias="queryAsAt")
-    status:  Optional[StrictStr] = Field(default=None,alias="status", description="The status of a Diary Entry of Type 'PeriodBoundary'. Defaults to 'Estimate' when closing a period, and supports 'Estimate' and 'Final' for closing periods and 'Final' for locking periods.") 
+    status:  Optional[StrictStr] = Field(default=None,alias="status", description="The status of a Diary Entry of Type 'PeriodBoundary'. Defaults to 'Estimate' when closing a period, and supports 'Estimate' and 'Final' for closing periods and 'Final' for locking periods. Available values: Undefined, Estimate, Final, Candidate, Unofficial.") 
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="A set of properties for the diary entry.")
-    closing_options: Optional[List[StrictStr]] = Field(default=None, description="The options which will be executed once a period is closed or locked.", alias="closingOptions")
-    __properties = ["diaryEntryCode", "name", "effectiveAt", "queryAsAt", "status", "properties", "closingOptions"]
+    closing_options: Optional[List[StrictStr]] = Field(default=None, description="The options which will be executed once a period is closed or locked. Available values: ApplyClearDown.", alias="closingOptions")
+    __properties: ClassVar[List[str]] = ["diaryEntryCode", "name", "effectiveAt", "queryAsAt", "status", "properties", "closingOptions"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -131,9 +131,9 @@ class ClosePeriodDiaryEntryRequest(BaseModel):
             "status": obj.get("status"),
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
             "closing_options": obj.get("closingOptions")
         })

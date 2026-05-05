@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -40,8 +40,8 @@ class FuturesContractDetails(BaseModel):
     ticker_step: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Minimal step size change in ticker.", alias="tickerStep")
     unit_value: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The value in the currency of a 1 unit change in the contract price.", alias="unitValue")
     calendars: Optional[List[StrictStr]] = Field(default=None, description="Holiday calendars that apply to yield-to-price conversions (i.e. for BRL futures).")
-    delivery_type:  Optional[StrictStr] = Field(default=None,alias="deliveryType", description="Delivery type to be used on settling the contract.  Optional: Defaults to DeliveryType.Physical if not provided.    Supported string (enumeration) values are: [Cash, Physical].") 
-    __properties = ["domCcy", "fgnCcy", "assetClass", "contractCode", "contractMonth", "contractSize", "convention", "country", "description", "exchangeCode", "exchangeName", "tickerStep", "unitValue", "calendars", "deliveryType"]
+    delivery_type:  Optional[StrictStr] = Field(default=None,alias="deliveryType", description="Delivery type to be used on settling the contract.  Default value: Physical. Available values: Cash, Physical.") 
+    __properties: ClassVar[List[str]] = ["domCcy", "fgnCcy", "assetClass", "contractCode", "contractMonth", "contractSize", "convention", "country", "description", "exchangeCode", "exchangeName", "tickerStep", "unitValue", "calendars", "deliveryType"]
 
     model_config = ConfigDict(
         populate_by_name=True,

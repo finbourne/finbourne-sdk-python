@@ -20,7 +20,7 @@ import re  # noqa: F401
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist, ValidationError
 from finbourne.sdk.services.workflow.models.cut_label_reference import CutLabelReference
 from finbourne.sdk.services.workflow.models.specified_time import SpecifiedTime
-from typing import Optional, List, Dict, Union, Annotated, Any, Literal, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Any, ClassVar, Literal, TYPE_CHECKING
 
 TIMEOFDAY_ONE_OF_SCHEMAS = ["CutLabelReference", "SpecifiedTime"]
 
@@ -36,25 +36,25 @@ class TimeOfDay(BaseModel):
         actual_instance: Union[CutLabelReference, SpecifiedTime]
     else:
         actual_instance: Any
-    one_of_schemas: Literal[TIMEOFDAY_ONE_OF_SCHEMAS] = TIMEOFDAY_ONE_OF_SCHEMAS
+    one_of_schemas: ClassVar[List[str]] = TIMEOFDAY_ONE_OF_SCHEMAS
 
     model_config = ConfigDict(
         validate_assignment=True
     )
 
-    def __init__(self, *args, **kwargs) -> None:
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         if args:
             if len(args) > 1:
                 raise ValueError("If a position argument is used, only 1 is allowed to set `actual_instance`")
             if kwargs:
                 raise ValueError("If a position argument is used, keyword arguments cannot be used.")
-            super().__init__(actual_instance=args[0])
+            super().__init__(actual_instance=args[0])  # type: ignore[index]
         else:
             super().__init__(**kwargs)
 
     @field_validator('actual_instance')
     def actual_instance_must_validate_oneof(cls, v):
-        instance = TimeOfDay.model_construct()
+        _instance = TimeOfDay.model_construct()
         error_messages = []
         match = 0
         matchclass = ""
@@ -127,7 +127,7 @@ class TimeOfDay(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> dict:
+    def to_dict(self) -> Any:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class Relation(BaseModel):
     traversal_direction:  StrictStr = Field(...,alias="traversalDirection") 
     traversal_description:  StrictStr = Field(...,alias="traversalDescription") 
     effective_from: Optional[datetime] = Field(default=None, alias="effectiveFrom")
-    __properties = ["version", "relationDefinitionId", "relatedEntityId", "traversalDirection", "traversalDescription", "effectiveFrom"]
+    __properties: ClassVar[List[str]] = ["version", "relationDefinitionId", "relatedEntityId", "traversalDirection", "traversalDescription", "effectiveFrom"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,8 +88,8 @@ class Relation(BaseModel):
             return Relation.model_validate(obj)
 
         _obj = Relation.model_validate({
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
-            "relation_definition_id": ResourceId.from_dict(obj.get("relationDefinitionId")) if obj.get("relationDefinitionId") is not None else None,
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "relation_definition_id": ResourceId.from_dict(_v) if (_v := obj.get("relationDefinitionId")) is not None else None,
             "related_entity_id": obj.get("relatedEntityId"),
             "traversal_direction": obj.get("traversalDirection"),
             "traversal_description": obj.get("traversalDescription"),

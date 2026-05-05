@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class SetShareClassInstrumentsRequest(BaseModel):
     """
     share_class_instrument_scopes: List[StrictStr] = Field(description="The scopes in which the instruments lie, currently limited to one.", alias="shareClassInstrumentScopes")
     share_class_instruments: List[InstrumentResolutionDetail] = Field(description="Details the user-provided instrument identifiers and the instrument resolved from them. These would be decommissioned in favour of the new AllocationGroups and ShareClasses structures.", alias="shareClassInstruments")
-    __properties = ["shareClassInstrumentScopes", "shareClassInstruments"]
+    __properties: ClassVar[List[str]] = ["shareClassInstrumentScopes", "shareClassInstruments"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,7 +85,7 @@ class SetShareClassInstrumentsRequest(BaseModel):
 
         _obj = SetShareClassInstrumentsRequest.model_validate({
             "share_class_instrument_scopes": obj.get("shareClassInstrumentScopes"),
-            "share_class_instruments": [InstrumentResolutionDetail.from_dict(_item) for _item in obj.get("shareClassInstruments")] if obj.get("shareClassInstruments") is not None else None
+            "share_class_instruments": [InstrumentResolutionDetail.from_dict(_item) for _item in _v] if (_v := obj.get("shareClassInstruments")) is not None else None
         })
         return _obj
 

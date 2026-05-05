@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -36,7 +36,7 @@ class Notification(BaseModel):
     modified_at: datetime = Field(description="The time at which the subscription was last modified", alias="modifiedAt")
     user_id_modified:  StrictStr = Field(...,alias="userIdModified", description="The user who last modified the subscription") 
     href:  Optional[StrictStr] = Field(default=None,alias="href", description="A URI for retrieving this notification") 
-    __properties = ["notificationId", "displayName", "description", "notificationType", "createdAt", "userIdCreated", "modifiedAt", "userIdModified", "href"]
+    __properties: ClassVar[List[str]] = ["notificationId", "displayName", "description", "notificationType", "createdAt", "userIdCreated", "modifiedAt", "userIdModified", "href"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -100,7 +100,7 @@ class Notification(BaseModel):
             "notification_id": obj.get("notificationId"),
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
-            "notification_type": NotificationTypeResponse.from_dict(obj.get("notificationType")) if obj.get("notificationType") is not None else None,
+            "notification_type": NotificationTypeResponse.from_dict(_v) if (_v := obj.get("notificationType")) is not None else None,
             "created_at": obj.get("createdAt"),
             "user_id_created": obj.get("userIdCreated"),
             "modified_at": obj.get("modifiedAt"),

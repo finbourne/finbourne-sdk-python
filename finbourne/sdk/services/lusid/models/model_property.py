@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class ModelProperty(BaseModel):
     effective_from: Optional[datetime] = Field(default=None, description="The effective datetime from which the property is valid.", alias="effectiveFrom")
     effective_until: Optional[datetime] = Field(default=None, description="The effective datetime until which the property is valid. If not supplied this will be valid indefinitely, or until the next 'effectiveFrom' datetime of the property.", alias="effectiveUntil")
     reference_data: Optional[Dict[str, PropertyReferenceDataValue]] = Field(default=None, description="The ReferenceData linked to the value of the property. The ReferenceData is taken from the DataType on the PropertyDefinition that defines the property.", alias="referenceData")
-    __properties = ["key", "value", "effectiveFrom", "effectiveUntil", "referenceData"]
+    __properties: ClassVar[List[str]] = ["key", "value", "effectiveFrom", "effectiveUntil", "referenceData"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -108,14 +108,14 @@ class ModelProperty(BaseModel):
 
         _obj = ModelProperty.model_validate({
             "key": obj.get("key"),
-            "value": PropertyValue.from_dict(obj.get("value")) if obj.get("value") is not None else None,
+            "value": PropertyValue.from_dict(_v) if (_v := obj.get("value")) is not None else None,
             "effective_from": obj.get("effectiveFrom"),
             "effective_until": obj.get("effectiveUntil"),
             "reference_data": dict(
                 (_k, PropertyReferenceDataValue.from_dict(_v))
-                for _k, _v in obj.get("referenceData").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("referenceData") is not None
+            if (_val := obj.get("referenceData")) is not None
             else None
         })
         return _obj

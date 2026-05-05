@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class OptionEntry(BaseModel):
     strike: Union[StrictFloat, StrictInt] = Field(description="The strike on this date")
     var_date: datetime = Field(description="The date at which the option can be actioned at this strike", alias="date")
     end_date: Optional[datetime] = Field(default=None, description="If American exercise, this is the end of the exercise period.  Optional field. Defaults to the Date field if not set.", alias="endDate")
-    __properties = ["strike", "date", "endDate"]
+    __properties: ClassVar[List[str]] = ["strike", "date", "endDate"]
 
     model_config = ConfigDict(
         populate_by_name=True,

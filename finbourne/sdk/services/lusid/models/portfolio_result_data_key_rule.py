@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,9 +34,9 @@ class PortfolioResultDataKeyRule(ResultKeyRule):
     as_at: Optional[datetime] = Field(default=None, description="The AsAt predicate specification.", alias="asAt")
     portfolio_code:  Optional[StrictStr] = Field(default=None,alias="portfolioCode") 
     portfolio_scope:  Optional[StrictStr] = Field(default=None,alias="portfolioScope") 
-    result_key_rule_type:  StrictStr = Field(...,alias="resultKeyRuleType", description="The available values are: Invalid, ResultDataKeyRule, PortfolioResultDataKeyRule") 
+    result_key_rule_type:  StrictStr = Field(...,alias="resultKeyRuleType", description="Available values: Invalid, ResultDataKeyRule, PortfolioResultDataKeyRule.") 
     additional_properties: Dict[str, Any] = {}
-    __properties = ["resultKeyRuleType", "supplier", "dataScope", "documentCode", "quoteInterval", "asAt", "portfolioCode", "portfolioScope"]
+    __properties: ClassVar[List[str]] = ["resultKeyRuleType", "supplier", "dataScope", "documentCode", "quoteInterval", "asAt", "portfolioCode", "portfolioScope"]
 
     @field_validator('result_key_rule_type')
     def result_key_rule_type_validate_enum(cls, value):
@@ -189,13 +189,8 @@ class PortfolioResultDataKeyRule(ResultKeyRule):
             "portfolio_scope": obj.get("portfolioScope")
         })
         # store additional fields in additional_properties
-        
-        properties = cls.__properties
-        if not isinstance(cls.__properties, dict) and getattr(cls.__properties, 'default', None):
-            properties = cls.__properties.default
-    
         for _key in obj.keys():
-            if _key not in properties:
+            if _key not in cls.__properties:
                 _obj.additional_properties[_key] = obj.get(_key)
 
         return _obj

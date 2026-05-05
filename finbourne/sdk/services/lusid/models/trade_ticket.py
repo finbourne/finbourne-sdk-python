@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -26,8 +26,8 @@ class TradeTicket(BaseModel):
     """
     The base class for representing a Trade Ticket in LUSID.  # noqa: E501
     """
-    trade_ticket_type:  StrictStr = Field(...,alias="tradeTicketType", description="The available values are: LusidTradeTicket, ExternalTradeTicket") 
-    __properties = ["tradeTicketType"]
+    trade_ticket_type:  StrictStr = Field(...,alias="tradeTicketType", description="Available values: LusidTradeTicket, ExternalTradeTicket.") 
+    __properties: ClassVar[List[str]] = ["tradeTicketType"]
 
     @field_validator('trade_ticket_type')
     def trade_ticket_type_validate_enum(cls, value):

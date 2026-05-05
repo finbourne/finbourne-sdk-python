@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class UpsertLegalEntityAccessMetadataRequest(BaseModel):
     UpsertLegalEntityAccessMetadataRequest
     """
     metadata: Optional[List[AccessMetadataValue]] = Field(default=None, description="The access control metadata to assign to a Legal Entity that matches the identifier")
-    __properties = ["metadata"]
+    __properties: ClassVar[List[str]] = ["metadata"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,7 +88,7 @@ class UpsertLegalEntityAccessMetadataRequest(BaseModel):
             return UpsertLegalEntityAccessMetadataRequest.model_validate(obj)
 
         _obj = UpsertLegalEntityAccessMetadataRequest.model_validate({
-            "metadata": [AccessMetadataValue.from_dict(_item) for _item in obj.get("metadata")] if obj.get("metadata") is not None else None
+            "metadata": [AccessMetadataValue.from_dict(_item) for _item in _v] if (_v := obj.get("metadata")) is not None else None
         })
         return _obj
 

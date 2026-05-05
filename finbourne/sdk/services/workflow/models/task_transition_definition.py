@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -35,7 +35,7 @@ class TaskTransitionDefinition(BaseModel):
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="Description for transition") 
     guard_description:  Optional[StrictStr] = Field(default=None,alias="guardDescription", description="Guard description for transition") 
     guard_condition_not_met_message:  Optional[StrictStr] = Field(default=None,alias="guardConditionNotMetMessage", description="Message when guard has not been met") 
-    __properties = ["fromState", "toState", "trigger", "guard", "action", "displayName", "description", "guardDescription", "guardConditionNotMetMessage"]
+    __properties: ClassVar[List[str]] = ["fromState", "toState", "trigger", "guard", "action", "displayName", "description", "guardDescription", "guardConditionNotMetMessage"]
 
     model_config = ConfigDict(
         populate_by_name=True,

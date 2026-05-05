@@ -9,7 +9,7 @@ Request to create or update an investor record
 | **identifiers** | [Dict[str, ModelProperty]](ModelProperty.md) | Required | Unique client-defined identifiers of the Investment Account. |
 | **display_name** | **str** | Required | The display name of the Investment Account |
 | **description** | **str** | Optional | The description of the Investment Account |
-| **account_type** | **str** | Required | The type of the of the Investment Account. |
+| **account_type** | **str** | Required | The type of the of the Investment Account. Available values: Individual, Corporate, Joint, Nominee. |
 | **account_holders** | [List[AccountHolderIdentifier]](AccountHolderIdentifier.md) | Optional | The identification of the account holders associated with this investment account |
 | **investment_portfolios** | [List[InvestmentPortfolioIdentifier]](InvestmentPortfolioIdentifier.md) | Optional | The identification of the investment portfolios associated with this investment account |
 | **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties associated to the Investment Account. |
@@ -27,7 +27,7 @@ instance = UpsertInvestmentAccountRequest(
     identifiers=ModelProperty(...),  # required — Unique client-defined identifiers of the Investment Account.
     display_name="...",  # required — The display name of the Investment Account
     description="...",  # optional — The description of the Investment Account
-    account_type="...",  # required — The type of the of the Investment Account.
+    account_type="...",  # required — The type of the of the Investment Account. Available values: Individual, Corporate, Joint, Nominee.
     account_holders=[],  # optional — The identification of the account holders associated with this investment account
     investment_portfolios=[],  # optional — The identification of the investment portfolios associated with this investment account
     properties=ModelProperty(...)  # optional — A set of properties associated to the Investment Account.

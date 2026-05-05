@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class ValuationPointDataRequest(BaseModel):
     """
     diary_entry_code:  StrictStr = Field(...,alias="diaryEntryCode", description="Unique code for the Valuation Point.") 
     diary_entry_variant:  Optional[StrictStr] = Field(default=None,alias="diaryEntryVariant", description="Optional variant code. Only required when it is necessary to choose between scenarios with multiple estimates.") 
-    __properties = ["diaryEntryCode", "diaryEntryVariant"]
+    __properties: ClassVar[List[str]] = ["diaryEntryCode", "diaryEntryVariant"]
 
     model_config = ConfigDict(
         populate_by_name=True,

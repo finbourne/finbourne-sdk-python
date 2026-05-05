@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -40,7 +40,7 @@ class BlockAndOrdersRequest(BaseModel):
     var_date: Optional[datetime] = Field(default=None, description="The date on which the block was made", alias="date")
     limit_price: Optional[CurrencyAndAmount] = Field(default=None, alias="limitPrice")
     stop_price: Optional[CurrencyAndAmount] = Field(default=None, alias="stopPrice")
-    __properties = ["blockId", "orders", "blockProperties", "instrumentIdentifiers", "side", "type", "timeInForce", "date", "limitPrice", "stopPrice"]
+    __properties: ClassVar[List[str]] = ["blockId", "orders", "blockProperties", "instrumentIdentifiers", "side", "type", "timeInForce", "date", "limitPrice", "stopPrice"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -131,21 +131,21 @@ class BlockAndOrdersRequest(BaseModel):
             return BlockAndOrdersRequest.model_validate(obj)
 
         _obj = BlockAndOrdersRequest.model_validate({
-            "block_id": ResourceId.from_dict(obj.get("blockId")) if obj.get("blockId") is not None else None,
-            "orders": [BlockedOrderRequest.from_dict(_item) for _item in obj.get("orders")] if obj.get("orders") is not None else None,
+            "block_id": ResourceId.from_dict(_v) if (_v := obj.get("blockId")) is not None else None,
+            "orders": [BlockedOrderRequest.from_dict(_item) for _item in _v] if (_v := obj.get("orders")) is not None else None,
             "block_properties": dict(
                 (_k, PerpetualProperty.from_dict(_v))
-                for _k, _v in obj.get("blockProperties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("blockProperties") is not None
+            if (_val := obj.get("blockProperties")) is not None
             else None,
             "instrument_identifiers": obj.get("instrumentIdentifiers"),
             "side": obj.get("side"),
             "type": obj.get("type"),
             "time_in_force": obj.get("timeInForce"),
             "var_date": obj.get("date"),
-            "limit_price": CurrencyAndAmount.from_dict(obj.get("limitPrice")) if obj.get("limitPrice") is not None else None,
-            "stop_price": CurrencyAndAmount.from_dict(obj.get("stopPrice")) if obj.get("stopPrice") is not None else None
+            "limit_price": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("limitPrice")) is not None else None,
+            "stop_price": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("stopPrice")) is not None else None
         })
         return _obj
 

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class DateAdjustment(BaseModel):
     """
     delta_days: StrictInt = Field(description="The delta to apply to the date part of the scheduled time, in days", alias="deltaDays")
     business_day_adjustment:  StrictStr = Field(...,alias="businessDayAdjustment", description="The Business Day Adjustment") 
-    __properties = ["deltaDays", "businessDayAdjustment"]
+    __properties: ClassVar[List[str]] = ["deltaDays", "businessDayAdjustment"]
 
     model_config = ConfigDict(
         populate_by_name=True,

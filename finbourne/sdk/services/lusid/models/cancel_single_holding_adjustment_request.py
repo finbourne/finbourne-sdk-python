@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class CancelSingleHoldingAdjustmentRequest(BaseModel):
     sub_holding_keys: Optional[Dict[str, PerpetualProperty]] = Field(default=None, description="The sub-holding properties which identify the holding. Each property must be from the 'Transaction' domain.", alias="subHoldingKeys")
     currency:  StrictStr = Field(...,alias="currency", description="The Holding currency.") 
     custodian_account_id: Optional[ResourceId] = Field(default=None, alias="custodianAccountId")
-    __properties = ["instrumentIdentifiers", "subHoldingKeys", "currency", "custodianAccountId"]
+    __properties: ClassVar[List[str]] = ["instrumentIdentifiers", "subHoldingKeys", "currency", "custodianAccountId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -98,12 +98,12 @@ class CancelSingleHoldingAdjustmentRequest(BaseModel):
             "instrument_identifiers": obj.get("instrumentIdentifiers"),
             "sub_holding_keys": dict(
                 (_k, PerpetualProperty.from_dict(_v))
-                for _k, _v in obj.get("subHoldingKeys").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("subHoldingKeys") is not None
+            if (_val := obj.get("subHoldingKeys")) is not None
             else None,
             "currency": obj.get("currency"),
-            "custodian_account_id": ResourceId.from_dict(obj.get("custodianAccountId")) if obj.get("custodianAccountId") is not None else None
+            "custodian_account_id": ResourceId.from_dict(_v) if (_v := obj.get("custodianAccountId")) is not None else None
         })
         return _obj
 

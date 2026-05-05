@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class GeneralLedgerProfileRequest(BaseModel):
     display_name:  StrictStr = Field(...,alias="displayName", description="The name of the General Ledger Profile") 
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="A description for the General Ledger Profile") 
     general_ledger_profile_mappings: List[GeneralLedgerProfileMapping] = Field(description="Rules for mapping Account or property values to aggregation pattern definitions", alias="generalLedgerProfileMappings")
-    __properties = ["generalLedgerProfileCode", "displayName", "description", "generalLedgerProfileMappings"]
+    __properties: ClassVar[List[str]] = ["generalLedgerProfileCode", "displayName", "description", "generalLedgerProfileMappings"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -94,7 +94,7 @@ class GeneralLedgerProfileRequest(BaseModel):
             "general_ledger_profile_code": obj.get("generalLedgerProfileCode"),
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
-            "general_ledger_profile_mappings": [GeneralLedgerProfileMapping.from_dict(_item) for _item in obj.get("generalLedgerProfileMappings")] if obj.get("generalLedgerProfileMappings") is not None else None
+            "general_ledger_profile_mappings": [GeneralLedgerProfileMapping.from_dict(_item) for _item in _v] if (_v := obj.get("generalLedgerProfileMappings")) is not None else None
         })
         return _obj
 

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -53,7 +53,7 @@ class Transaction(BaseModel):
     source:  Optional[StrictStr] = Field(default=None,alias="source", description="The source of the transaction. This is used to look up the appropriate transaction group set in the transaction type configuration.") 
     entry_date_time: Optional[datetime] = Field(default=None, description="The asAt datetime that the transaction was added to LUSID.", alias="entryDateTime")
     otc_confirmation: Optional[OtcConfirmation] = Field(default=None, alias="otcConfirmation")
-    transaction_status:  Optional[StrictStr] = Field(default=None,alias="transactionStatus", description="The status of the transaction. The available values are: Active, Amended, Cancelled, ActiveReversal, ActiveTrueUp, CancelledTrueUp") 
+    transaction_status:  Optional[StrictStr] = Field(default=None,alias="transactionStatus", description="The status of the transaction. Available values: Active, Amended, Cancelled, ActiveReversal, ActiveTrueUp, CancelledTrueUp.") 
     cancel_date_time: Optional[datetime] = Field(default=None, description="If the transaction has been cancelled, the asAt datetime that the transaction was cancelled.", alias="cancelDateTime")
     order_id: Optional[ResourceId] = Field(default=None, alias="orderId")
     allocation_id: Optional[ResourceId] = Field(default=None, alias="allocationId")
@@ -63,7 +63,7 @@ class Transaction(BaseModel):
     resolved_transaction_type_details: Optional[TransactionTypeDetails] = Field(default=None, alias="resolvedTransactionTypeDetails")
     data_model_membership: Optional[DataModelMembership] = Field(default=None, alias="dataModelMembership")
     version: Optional[Version] = None
-    __properties = ["transactionId", "type", "instrumentIdentifiers", "instrumentScope", "instrumentUid", "transactionDate", "settlementDate", "units", "transactionPrice", "totalConsideration", "exchangeRate", "transactionCurrency", "properties", "counterpartyId", "source", "entryDateTime", "otcConfirmation", "transactionStatus", "cancelDateTime", "orderId", "allocationId", "custodianAccount", "transactionGroupId", "strategyTag", "resolvedTransactionTypeDetails", "dataModelMembership", "version"]
+    __properties: ClassVar[List[str]] = ["transactionId", "type", "instrumentIdentifiers", "instrumentScope", "instrumentUid", "transactionDate", "settlementDate", "units", "transactionPrice", "totalConsideration", "exchangeRate", "transactionCurrency", "properties", "counterpartyId", "source", "entryDateTime", "otcConfirmation", "transactionStatus", "cancelDateTime", "orderId", "allocationId", "custodianAccount", "transactionGroupId", "strategyTag", "resolvedTransactionTypeDetails", "dataModelMembership", "version"]
 
     @field_validator('transaction_status')
     def transaction_status_validate_enum(cls, value):
@@ -282,30 +282,30 @@ class Transaction(BaseModel):
             "transaction_date": obj.get("transactionDate"),
             "settlement_date": obj.get("settlementDate"),
             "units": obj.get("units"),
-            "transaction_price": TransactionPrice.from_dict(obj.get("transactionPrice")) if obj.get("transactionPrice") is not None else None,
-            "total_consideration": CurrencyAndAmount.from_dict(obj.get("totalConsideration")) if obj.get("totalConsideration") is not None else None,
+            "transaction_price": TransactionPrice.from_dict(_v) if (_v := obj.get("transactionPrice")) is not None else None,
+            "total_consideration": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("totalConsideration")) is not None else None,
             "exchange_rate": obj.get("exchangeRate"),
             "transaction_currency": obj.get("transactionCurrency"),
             "properties": dict(
                 (_k, PerpetualProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
             "counterparty_id": obj.get("counterpartyId"),
             "source": obj.get("source"),
             "entry_date_time": obj.get("entryDateTime"),
-            "otc_confirmation": OtcConfirmation.from_dict(obj.get("otcConfirmation")) if obj.get("otcConfirmation") is not None else None,
+            "otc_confirmation": OtcConfirmation.from_dict(_v) if (_v := obj.get("otcConfirmation")) is not None else None,
             "transaction_status": obj.get("transactionStatus"),
             "cancel_date_time": obj.get("cancelDateTime"),
-            "order_id": ResourceId.from_dict(obj.get("orderId")) if obj.get("orderId") is not None else None,
-            "allocation_id": ResourceId.from_dict(obj.get("allocationId")) if obj.get("allocationId") is not None else None,
-            "custodian_account": CustodianAccount.from_dict(obj.get("custodianAccount")) if obj.get("custodianAccount") is not None else None,
+            "order_id": ResourceId.from_dict(_v) if (_v := obj.get("orderId")) is not None else None,
+            "allocation_id": ResourceId.from_dict(_v) if (_v := obj.get("allocationId")) is not None else None,
+            "custodian_account": CustodianAccount.from_dict(_v) if (_v := obj.get("custodianAccount")) is not None else None,
             "transaction_group_id": obj.get("transactionGroupId"),
-            "strategy_tag": [Strategy.from_dict(_item) for _item in obj.get("strategyTag")] if obj.get("strategyTag") is not None else None,
-            "resolved_transaction_type_details": TransactionTypeDetails.from_dict(obj.get("resolvedTransactionTypeDetails")) if obj.get("resolvedTransactionTypeDetails") is not None else None,
-            "data_model_membership": DataModelMembership.from_dict(obj.get("dataModelMembership")) if obj.get("dataModelMembership") is not None else None,
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None
+            "strategy_tag": [Strategy.from_dict(_item) for _item in _v] if (_v := obj.get("strategyTag")) is not None else None,
+            "resolved_transaction_type_details": TransactionTypeDetails.from_dict(_v) if (_v := obj.get("resolvedTransactionTypeDetails")) is not None else None,
+            "data_model_membership": DataModelMembership.from_dict(_v) if (_v := obj.get("dataModelMembership")) is not None else None,
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None
         })
         return _obj
 

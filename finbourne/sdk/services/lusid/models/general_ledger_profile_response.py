@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -38,7 +38,7 @@ class GeneralLedgerProfileResponse(BaseModel):
     general_ledger_profile_mappings: List[GeneralLedgerProfileMapping] = Field(description="Rules for mapping Account or property values to aggregation pattern definitions", alias="generalLedgerProfileMappings")
     version: Optional[Version] = None
     links: Optional[List[Link]] = None
-    __properties = ["href", "chartOfAccountsId", "generalLedgerProfileCode", "displayName", "description", "generalLedgerProfileMappings", "version", "links"]
+    __properties: ClassVar[List[str]] = ["href", "chartOfAccountsId", "generalLedgerProfileCode", "displayName", "description", "generalLedgerProfileMappings", "version", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -122,13 +122,13 @@ class GeneralLedgerProfileResponse(BaseModel):
 
         _obj = GeneralLedgerProfileResponse.model_validate({
             "href": obj.get("href"),
-            "chart_of_accounts_id": ResourceId.from_dict(obj.get("chartOfAccountsId")) if obj.get("chartOfAccountsId") is not None else None,
+            "chart_of_accounts_id": ResourceId.from_dict(_v) if (_v := obj.get("chartOfAccountsId")) is not None else None,
             "general_ledger_profile_code": obj.get("generalLedgerProfileCode"),
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
-            "general_ledger_profile_mappings": [GeneralLedgerProfileMapping.from_dict(_item) for _item in obj.get("generalLedgerProfileMappings")] if obj.get("generalLedgerProfileMappings") is not None else None,
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "general_ledger_profile_mappings": [GeneralLedgerProfileMapping.from_dict(_item) for _item in _v] if (_v := obj.get("generalLedgerProfileMappings")) is not None else None,
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

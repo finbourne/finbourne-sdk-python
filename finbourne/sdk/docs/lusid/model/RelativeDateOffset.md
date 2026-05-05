@@ -6,8 +6,8 @@ Defines a date offset which is relative to some anchor date.
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **days** | **int** | Required | The number of days to add to the anchor date. |
-| **business_day_convention** | **str** | Required | The adjustment type to apply to dates that fall upon a non-business day, e.g. modified following or following.    Supported string (enumeration) values are: [NoAdjustment, Previous, P, Following, F, ModifiedPrevious, MP, ModifiedFollowing, MF, HalfMonthModifiedFollowing, Nearest]. |
-| **day_type** | **str** | Optional | Indicates if consideration is given to whether a day is a good business day or not when calculating the offset date.    Supported string (enumeration) values are: [Business, Calendar].  Defaults to \&quot;Business\&quot; if not set. |
+| **business_day_convention** | **str** | Required | The adjustment type to apply to dates that fall upon a non-business day, e.g. modified following or following. Available values: NoAdjustment, None, Previous, P, Following, F, ModifiedPrevious, MP, ModifiedFollowing, MF, HalfMonthModifiedFollowing, Nearest, Invalid. |
+| **day_type** | **str** | Optional | Indicates if consideration is given to whether a day is a good business day or not when calculating the offset date.    Default value: Business. Available values: Business, Calendar. |
 
 
 ## Usage
@@ -19,8 +19,8 @@ from finbourne.sdk.services.lusid.models.RelativeDateOffset import RelativeDateO
 
 instance = RelativeDateOffset(
     days=0,  # required — The number of days to add to the anchor date.
-    business_day_convention="...",  # required — The adjustment type to apply to dates that fall upon a non-business day, e.g. modified following or following.    Supported string (enumeration) values are: [NoAdjustment, Previous, P, Following, F, ModifiedPrevious, MP, ModifiedFollowing, MF, HalfMonthModifiedFollowing, Nearest].
-    day_type="..."  # optional — Indicates if consideration is given to whether a day is a good business day or not when calculating the offset date.    Supported string (enumeration) values are: [Business, Calendar].  Defaults to \&quot;Business\&quot; if not set.
+    business_day_convention="...",  # required — The adjustment type to apply to dates that fall upon a non-business day, e.g. modified following or following. Available values: NoAdjustment, None, Previous, P, Following, F, ModifiedPrevious, MP, ModifiedFollowing, MF, HalfMonthModifiedFollowing, Nearest, Invalid.
+    day_type="..."  # optional — Indicates if consideration is given to whether a day is a good business day or not when calculating the offset date.    Default value: Business. Available values: Business, Calendar.
 )
 ```
 

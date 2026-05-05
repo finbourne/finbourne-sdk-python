@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class CounterpartySignatory(BaseModel):
     """
     name:  StrictStr = Field(...,alias="name", description="A user-defined name or label for the counterparty signatory.  There is no requirement for this to match the \"displayName\" of the legal entity.") 
     legal_entity_identifier: TypedResourceId = Field(alias="legalEntityIdentifier")
-    __properties = ["name", "legalEntityIdentifier"]
+    __properties: ClassVar[List[str]] = ["name", "legalEntityIdentifier"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -81,7 +81,7 @@ class CounterpartySignatory(BaseModel):
 
         _obj = CounterpartySignatory.model_validate({
             "name": obj.get("name"),
-            "legal_entity_identifier": TypedResourceId.from_dict(obj.get("legalEntityIdentifier")) if obj.get("legalEntityIdentifier") is not None else None
+            "legal_entity_identifier": TypedResourceId.from_dict(_v) if (_v := obj.get("legalEntityIdentifier")) is not None else None
         })
         return _obj
 

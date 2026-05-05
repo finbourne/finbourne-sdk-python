@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class ReconciliationResponse(BaseModel):
     """
     comparisons: Optional[List[ReconciliationLine]] = Field(default=None, description="List of comparisons of left to right hand sides.")
     data_schema: Optional[ResultDataSchema] = Field(default=None, alias="dataSchema")
-    __properties = ["comparisons", "dataSchema"]
+    __properties: ClassVar[List[str]] = ["comparisons", "dataSchema"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -93,8 +93,8 @@ class ReconciliationResponse(BaseModel):
             return ReconciliationResponse.model_validate(obj)
 
         _obj = ReconciliationResponse.model_validate({
-            "comparisons": [ReconciliationLine.from_dict(_item) for _item in obj.get("comparisons")] if obj.get("comparisons") is not None else None,
-            "data_schema": ResultDataSchema.from_dict(obj.get("dataSchema")) if obj.get("dataSchema") is not None else None
+            "comparisons": [ReconciliationLine.from_dict(_item) for _item in _v] if (_v := obj.get("comparisons")) is not None else None,
+            "data_schema": ResultDataSchema.from_dict(_v) if (_v := obj.get("dataSchema")) is not None else None
         })
         return _obj
 

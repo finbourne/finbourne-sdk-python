@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class CollateralInstrument(BaseModel):
     """
     units: Union[StrictFloat, StrictInt] = Field(description="The amount of the instrument in the basket for this repurchase agreement.")
     instrument: MasteredInstrument
-    __properties = ["units", "instrument"]
+    __properties: ClassVar[List[str]] = ["units", "instrument"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -81,7 +81,7 @@ class CollateralInstrument(BaseModel):
 
         _obj = CollateralInstrument.model_validate({
             "units": obj.get("units"),
-            "instrument": MasteredInstrument.from_dict(obj.get("instrument")) if obj.get("instrument") is not None else None
+            "instrument": MasteredInstrument.from_dict(_v) if (_v := obj.get("instrument")) is not None else None
         })
         return _obj
 

@@ -6,7 +6,7 @@ The definition of an Address Key Option
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **name** | **str** | Required | The name of the option |
-| **type** | **str** | Required | The type of the option |
+| **type** | **str** | Required | The type of the option. Available values: Bool, Int, Decimal, DateTimeOffset, String, Enum, TimeZoneId, Invalid. |
 | **description** | **str** | Required | The description of the option |
 | **optional** | **bool** | Required | Is this option required or optional? |
 | **allowed_value_set** | **List[str]** | Optional | If the option is a string or enum, the allowed set of values it can take. |
@@ -22,7 +22,7 @@ from finbourne.sdk.services.lusid.models.AddressKeyOptionDefinition import Addre
 
 instance = AddressKeyOptionDefinition(
     name="...",  # required — The name of the option
-    type="...",  # required — The type of the option
+    type="...",  # required — The type of the option. Available values: Bool, Int, Decimal, DateTimeOffset, String, Enum, TimeZoneId, Invalid.
     description="...",  # required — The description of the option
     optional=True,  # required — Is this option required or optional?
     allowed_value_set=,  # optional — If the option is a string or enum, the allowed set of values it can take.

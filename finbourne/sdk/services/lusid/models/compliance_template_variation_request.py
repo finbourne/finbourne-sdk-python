@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class ComplianceTemplateVariationRequest(BaseModel):
     outcome_description:  Optional[StrictStr] = Field(default=None,alias="outcomeDescription") 
     referenced_group_label:  Optional[StrictStr] = Field(default=None,alias="referencedGroupLabel") 
     steps: List[ComplianceStepRequest]
-    __properties = ["label", "description", "outcomeDescription", "referencedGroupLabel", "steps"]
+    __properties: ClassVar[List[str]] = ["label", "description", "outcomeDescription", "referencedGroupLabel", "steps"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -101,7 +101,7 @@ class ComplianceTemplateVariationRequest(BaseModel):
             "description": obj.get("description"),
             "outcome_description": obj.get("outcomeDescription"),
             "referenced_group_label": obj.get("referencedGroupLabel"),
-            "steps": [ComplianceStepRequest.from_dict(_item) for _item in obj.get("steps")] if obj.get("steps") is not None else None
+            "steps": [ComplianceStepRequest.from_dict(_item) for _item in _v] if (_v := obj.get("steps")) is not None else None
         })
         return _obj
 

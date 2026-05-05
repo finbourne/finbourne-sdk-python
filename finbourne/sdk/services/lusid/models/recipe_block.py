@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class RecipeBlock(BaseModel):
     value: Optional[RecipeValue] = None
     path:  Optional[StrictStr] = Field(default=None,alias="path", description="Path of the Value that the operation is to be performed on.") 
     op:  Optional[StrictStr] = Field(default=None,alias="op", description="Operation to be performed on the part of the value.") 
-    __properties = ["value", "path", "op"]
+    __properties: ClassVar[List[str]] = ["value", "path", "op"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,7 +91,7 @@ class RecipeBlock(BaseModel):
             return RecipeBlock.model_validate(obj)
 
         _obj = RecipeBlock.model_validate({
-            "value": RecipeValue.from_dict(obj.get("value")) if obj.get("value") is not None else None,
+            "value": RecipeValue.from_dict(_v) if (_v := obj.get("value")) is not None else None,
             "path": obj.get("path"),
             "op": obj.get("op")
         })

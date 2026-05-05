@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class PasswordPolicyResponseAge(BaseModel):
     """
     max_age_days: StrictInt = Field(description="The maximum age (in days) a password can be before expiring and needing to be changed", alias="maxAgeDays")
     history_count: StrictInt = Field(description="The number of unique passwords that need to be used before a previous password is permitted again", alias="historyCount")
-    __properties = ["maxAgeDays", "historyCount"]
+    __properties: ClassVar[List[str]] = ["maxAgeDays", "historyCount"]
 
     model_config = ConfigDict(
         populate_by_name=True,

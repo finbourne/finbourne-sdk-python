@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class GetWorkerResultResponse(BaseModel):
     worker_status:  StrictStr = Field(...,alias="workerStatus", description="The final status of the Worker") 
     results: List[Dict[str, Any]] = Field(description="Results")
     status_detail:  Optional[StrictStr] = Field(default=None,alias="statusDetail", description="Detail on the final status") 
-    __properties = ["workerStatus", "results", "statusDetail"]
+    __properties: ClassVar[List[str]] = ["workerStatus", "results", "statusDetail"]
 
     model_config = ConfigDict(
         populate_by_name=True,

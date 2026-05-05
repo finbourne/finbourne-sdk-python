@@ -55,12 +55,12 @@ class ApplicationMetadataApi:
         :return: Returns the result object.
         :rtype: ResourceListOfAccessControlledResource
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_services_as_access_controlled_resources_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_services_as_access_controlled_resources_with_http_info(**kwargs)  # noqa: E501
+        response = self.get_services_as_access_controlled_resources_with_http_info(**kwargs)
+        return response.data
 
     @validate_call
     def get_services_as_access_controlled_resources_with_http_info(self, **kwargs) -> ApiResponse[ResourceListOfAccessControlledResource]:
@@ -170,12 +170,12 @@ class ApplicationMetadataApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfAccessControlledResource
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_services_as_access_controlled_resources_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_services_as_access_controlled_resources_with_http_info_async(**kwargs)  # noqa: E501
+            response = await self.get_services_as_access_controlled_resources_with_http_info_async(**kwargs)
+            return response.data
 
     @validate_call
     async def get_services_as_access_controlled_resources_with_http_info_async(self, **kwargs) -> ApiResponse[ResourceListOfAccessControlledResource]:

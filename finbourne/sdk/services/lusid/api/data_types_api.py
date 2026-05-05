@@ -69,12 +69,12 @@ class DataTypesApi:
         :return: Returns the result object.
         :rtype: DataType
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_data_type_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_data_type_with_http_info(create_data_type_request, **kwargs)  # noqa: E501
+        response = self.create_data_type_with_http_info(create_data_type_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_data_type_with_http_info(self, create_data_type_request: Optional[CreateDataTypeRequest] = None, **kwargs) -> ApiResponse[DataType]:
@@ -198,12 +198,12 @@ class DataTypesApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_data_type_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_data_type_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_data_type_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_data_type_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -328,12 +328,12 @@ class DataTypesApi:
         :return: Returns the result object.
         :rtype: DataType
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_data_type_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_data_type_with_http_info(scope, code, as_at, **kwargs)  # noqa: E501
+        response = self.get_data_type_with_http_info(scope, code, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_data_type_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[DataType]:
@@ -471,12 +471,12 @@ class DataTypesApi:
         :return: Returns the result object.
         :rtype: ResourceListOfIUnitDefinitionDto
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_units_from_data_type_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_units_from_data_type_with_http_info(scope, code, units, filter, as_at, **kwargs)  # noqa: E501
+        response = self.get_units_from_data_type_with_http_info(scope, code, units, filter, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_units_from_data_type_with_http_info(self, scope: StrictStr, code: StrictStr, units: Optional[List[str]] = None, filter: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfIUnitDefinitionDto]:
@@ -627,12 +627,12 @@ class DataTypesApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfDataTypeSummary
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_data_type_summaries_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_data_type_summaries_with_http_info(as_at, page, limit, filter, sort_by, **kwargs)  # noqa: E501
+        response = self.list_data_type_summaries_with_http_info(as_at, page, limit, filter, sort_by, **kwargs)
+        return response.data
 
     @validate_call
     def list_data_type_summaries_with_http_info(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfDataTypeSummary]:
@@ -785,12 +785,12 @@ class DataTypesApi:
         :return: Returns the result object.
         :rtype: ResourceListOfDataType
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_data_types_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_data_types_with_http_info(scope, as_at, include_system, sort_by, limit, filter, **kwargs)  # noqa: E501
+        response = self.list_data_types_with_http_info(scope, as_at, include_system, sort_by, limit, filter, **kwargs)
+        return response.data
 
     @validate_call
     def list_data_types_with_http_info(self, scope: StrictStr, as_at: Optional[datetime] = None, include_system: Optional[bool] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfDataType]:
@@ -943,12 +943,12 @@ class DataTypesApi:
         :return: Returns the result object.
         :rtype: DataType
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_data_type_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_data_type_with_http_info(scope, code, update_data_type_request, **kwargs)  # noqa: E501
+        response = self.update_data_type_with_http_info(scope, code, update_data_type_request, **kwargs)
+        return response.data
 
     @validate_call
     def update_data_type_with_http_info(self, scope: StrictStr, code: StrictStr, update_data_type_request: UpdateDataTypeRequest, **kwargs) -> ApiResponse[DataType]:
@@ -1086,12 +1086,12 @@ class DataTypesApi:
         :return: Returns the result object.
         :rtype: DataType
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_reference_data_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_reference_data_with_http_info(scope, code, update_reference_data_request, **kwargs)  # noqa: E501
+        response = self.update_reference_data_with_http_info(scope, code, update_reference_data_request, **kwargs)
+        return response.data
 
     @validate_call
     def update_reference_data_with_http_info(self, scope: StrictStr, code: StrictStr, update_reference_data_request: UpdateReferenceDataRequest, **kwargs) -> ApiResponse[DataType]:
@@ -1229,12 +1229,12 @@ class DataTypesApi:
         :return: Returns the result object.
         :rtype: DataType
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_reference_values_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_reference_values_with_http_info(scope, code, field_value, **kwargs)  # noqa: E501
+        response = self.update_reference_values_with_http_info(scope, code, field_value, **kwargs)
+        return response.data
 
     @validate_call
     def update_reference_values_with_http_info(self, scope: StrictStr, code: StrictStr, field_value: List[FieldValue], **kwargs) -> ApiResponse[DataType]:
@@ -1372,12 +1372,12 @@ class DataTypesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DataType
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_data_type_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_data_type_with_http_info_async(create_data_type_request, **kwargs)  # noqa: E501
+            response = await self.create_data_type_with_http_info_async(create_data_type_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_data_type_with_http_info_async(self, create_data_type_request: Optional[CreateDataTypeRequest] = None, **kwargs) -> ApiResponse[DataType]:
@@ -1502,12 +1502,12 @@ class DataTypesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_data_type_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_data_type_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_data_type_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_data_type_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -1633,12 +1633,12 @@ class DataTypesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DataType
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_data_type_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_data_type_with_http_info_async(scope, code, as_at, **kwargs)  # noqa: E501
+            response = await self.get_data_type_with_http_info_async(scope, code, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_data_type_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[DataType]:
@@ -1777,12 +1777,12 @@ class DataTypesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfIUnitDefinitionDto
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_units_from_data_type_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_units_from_data_type_with_http_info_async(scope, code, units, filter, as_at, **kwargs)  # noqa: E501
+            response = await self.get_units_from_data_type_with_http_info_async(scope, code, units, filter, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_units_from_data_type_with_http_info_async(self, scope: StrictStr, code: StrictStr, units: Optional[List[str]] = None, filter: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfIUnitDefinitionDto]:
@@ -1934,12 +1934,12 @@ class DataTypesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfDataTypeSummary
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_data_type_summaries_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_data_type_summaries_with_http_info_async(as_at, page, limit, filter, sort_by, **kwargs)  # noqa: E501
+            response = await self.list_data_type_summaries_with_http_info_async(as_at, page, limit, filter, sort_by, **kwargs)
+            return response.data
 
     @validate_call
     async def list_data_type_summaries_with_http_info_async(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfDataTypeSummary]:
@@ -2093,12 +2093,12 @@ class DataTypesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfDataType
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_data_types_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_data_types_with_http_info_async(scope, as_at, include_system, sort_by, limit, filter, **kwargs)  # noqa: E501
+            response = await self.list_data_types_with_http_info_async(scope, as_at, include_system, sort_by, limit, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def list_data_types_with_http_info_async(self, scope: StrictStr, as_at: Optional[datetime] = None, include_system: Optional[bool] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfDataType]:
@@ -2252,12 +2252,12 @@ class DataTypesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DataType
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_data_type_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_data_type_with_http_info_async(scope, code, update_data_type_request, **kwargs)  # noqa: E501
+            response = await self.update_data_type_with_http_info_async(scope, code, update_data_type_request, **kwargs)
+            return response.data
 
     @validate_call
     async def update_data_type_with_http_info_async(self, scope: StrictStr, code: StrictStr, update_data_type_request: UpdateDataTypeRequest, **kwargs) -> ApiResponse[DataType]:
@@ -2396,12 +2396,12 @@ class DataTypesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DataType
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_reference_data_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_reference_data_with_http_info_async(scope, code, update_reference_data_request, **kwargs)  # noqa: E501
+            response = await self.update_reference_data_with_http_info_async(scope, code, update_reference_data_request, **kwargs)
+            return response.data
 
     @validate_call
     async def update_reference_data_with_http_info_async(self, scope: StrictStr, code: StrictStr, update_reference_data_request: UpdateReferenceDataRequest, **kwargs) -> ApiResponse[DataType]:
@@ -2540,12 +2540,12 @@ class DataTypesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DataType
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_reference_values_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_reference_values_with_http_info_async(scope, code, field_value, **kwargs)  # noqa: E501
+            response = await self.update_reference_values_with_http_info_async(scope, code, field_value, **kwargs)
+            return response.data
 
     @validate_call
     async def update_reference_values_with_http_info_async(self, scope: StrictStr, code: StrictStr, field_value: List[FieldValue], **kwargs) -> ApiResponse[DataType]:

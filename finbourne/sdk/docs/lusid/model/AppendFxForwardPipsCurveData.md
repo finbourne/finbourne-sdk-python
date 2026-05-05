@@ -7,7 +7,7 @@ Used to append a new point to an FX curve defined using `FxForwardPipsCurveData`
 |------|------|----------|-------------|
 | **var_date** | **datetime** | Required | Date for which the forward rate applies. |
 | **pip_rate** | **float** | Required | Rate provided for the fx forward (price in FgnCcy per unit of DomCcy), expressed in pips. |
-| **market_data_type** | **str** | Required | The available values are: AppendFxForwardCurveByQuoteReference, AppendFxForwardCurveData, AppendFxForwardPipsCurveData, AppendFxForwardTenorCurveData, AppendFxForwardTenorPipsCurveData |
+| **market_data_type** | **str** | Required | Available values: AppendFxForwardCurveByQuoteReference, AppendFxForwardCurveData, AppendFxForwardPipsCurveData, AppendFxForwardTenorCurveData, AppendFxForwardTenorPipsCurveData. |
 
 
 ## Usage
@@ -20,7 +20,7 @@ from finbourne.sdk.services.lusid.models.AppendFxForwardPipsCurveData import App
 instance = AppendFxForwardPipsCurveData(
     var_date=datetime.now(),  # required — Date for which the forward rate applies.
     pip_rate=0.0,  # required — Rate provided for the fx forward (price in FgnCcy per unit of DomCcy), expressed in pips.
-    market_data_type="..."  # required — The available values are: AppendFxForwardCurveByQuoteReference, AppendFxForwardCurveData, AppendFxForwardPipsCurveData, AppendFxForwardTenorCurveData, AppendFxForwardTenorPipsCurveData
+    market_data_type="..."  # required — Available values: AppendFxForwardCurveByQuoteReference, AppendFxForwardCurveData, AppendFxForwardPipsCurveData, AppendFxForwardTenorCurveData, AppendFxForwardTenorPipsCurveData.
 )
 ```
 

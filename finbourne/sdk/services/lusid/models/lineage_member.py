@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class LineageMember(BaseModel):
     sub_label:  StrictStr = Field(...,alias="subLabel", description="SubLabel of the step corresponding to this lineage member") 
     info_type:  Optional[StrictStr] = Field(default=None,alias="infoType", description="Optional. Type of Information") 
     information:  Optional[StrictStr] = Field(default=None,alias="information", description="Optional. Information for the step corresponding to this lineage member, of type InfoType") 
-    __properties = ["index", "label", "subLabel", "infoType", "information"]
+    __properties: ClassVar[List[str]] = ["index", "label", "subLabel", "infoType", "information"]
 
     model_config = ConfigDict(
         populate_by_name=True,

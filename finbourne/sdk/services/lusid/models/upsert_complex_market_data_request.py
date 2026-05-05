@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class UpsertComplexMarketDataRequest(BaseModel):
     """
     market_data_id: ComplexMarketDataId = Field(alias="marketDataId")
     market_data: ComplexMarketData = Field(alias="marketData")
-    __properties = ["marketDataId", "marketData"]
+    __properties: ClassVar[List[str]] = ["marketDataId", "marketData"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -84,8 +84,8 @@ class UpsertComplexMarketDataRequest(BaseModel):
             return UpsertComplexMarketDataRequest.model_validate(obj)
 
         _obj = UpsertComplexMarketDataRequest.model_validate({
-            "market_data_id": ComplexMarketDataId.from_dict(obj.get("marketDataId")) if obj.get("marketDataId") is not None else None,
-            "market_data": ComplexMarketData.from_dict(obj.get("marketData")) if obj.get("marketData") is not None else None
+            "market_data_id": ComplexMarketDataId.from_dict(_v) if (_v := obj.get("marketDataId")) is not None else None,
+            "market_data": ComplexMarketData.from_dict(_v) if (_v := obj.get("marketData")) is not None else None
         })
         return _obj
 

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -48,7 +48,7 @@ class Block(BaseModel):
     version: Optional[Version] = None
     data_model_membership: Optional[DataModelMembership] = Field(default=None, alias="dataModelMembership")
     links: Optional[List[Link]] = None
-    __properties = ["id", "orderIds", "properties", "instrumentIdentifiers", "lusidInstrumentId", "quantity", "side", "type", "timeInForce", "createdDate", "limitPrice", "stopPrice", "isSwept", "version", "dataModelMembership", "links"]
+    __properties: ClassVar[List[str]] = ["id", "orderIds", "properties", "instrumentIdentifiers", "lusidInstrumentId", "quantity", "side", "type", "timeInForce", "createdDate", "limitPrice", "stopPrice", "isSwept", "version", "dataModelMembership", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -142,13 +142,13 @@ class Block(BaseModel):
             return Block.model_validate(obj)
 
         _obj = Block.model_validate({
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
-            "order_ids": [ResourceId.from_dict(_item) for _item in obj.get("orderIds")] if obj.get("orderIds") is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
+            "order_ids": [ResourceId.from_dict(_item) for _item in _v] if (_v := obj.get("orderIds")) is not None else None,
             "properties": dict(
                 (_k, PerpetualProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
             "instrument_identifiers": obj.get("instrumentIdentifiers"),
             "lusid_instrument_id": obj.get("lusidInstrumentId"),
@@ -157,12 +157,12 @@ class Block(BaseModel):
             "type": obj.get("type"),
             "time_in_force": obj.get("timeInForce"),
             "created_date": obj.get("createdDate"),
-            "limit_price": CurrencyAndAmount.from_dict(obj.get("limitPrice")) if obj.get("limitPrice") is not None else None,
-            "stop_price": CurrencyAndAmount.from_dict(obj.get("stopPrice")) if obj.get("stopPrice") is not None else None,
+            "limit_price": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("limitPrice")) is not None else None,
+            "stop_price": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("stopPrice")) is not None else None,
             "is_swept": obj.get("isSwept"),
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
-            "data_model_membership": DataModelMembership.from_dict(obj.get("dataModelMembership")) if obj.get("dataModelMembership") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "data_model_membership": DataModelMembership.from_dict(_v) if (_v := obj.get("dataModelMembership")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

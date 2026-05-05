@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -40,7 +40,7 @@ class TrialBalance(BaseModel):
     credit: MultiCurrencyAmounts
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="Properties found on the mapped 'Account', as specified in request.")
     links: Optional[List[Link]] = None
-    __properties = ["generalLedgerAccountCode", "description", "levels", "accountType", "localCurrency", "opening", "closing", "debit", "credit", "properties", "links"]
+    __properties: ClassVar[List[str]] = ["generalLedgerAccountCode", "description", "levels", "accountType", "localCurrency", "opening", "closing", "debit", "credit", "properties", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -134,17 +134,17 @@ class TrialBalance(BaseModel):
             "levels": obj.get("levels"),
             "account_type": obj.get("accountType"),
             "local_currency": obj.get("localCurrency"),
-            "opening": MultiCurrencyAmounts.from_dict(obj.get("opening")) if obj.get("opening") is not None else None,
-            "closing": MultiCurrencyAmounts.from_dict(obj.get("closing")) if obj.get("closing") is not None else None,
-            "debit": MultiCurrencyAmounts.from_dict(obj.get("debit")) if obj.get("debit") is not None else None,
-            "credit": MultiCurrencyAmounts.from_dict(obj.get("credit")) if obj.get("credit") is not None else None,
+            "opening": MultiCurrencyAmounts.from_dict(_v) if (_v := obj.get("opening")) is not None else None,
+            "closing": MultiCurrencyAmounts.from_dict(_v) if (_v := obj.get("closing")) is not None else None,
+            "debit": MultiCurrencyAmounts.from_dict(_v) if (_v := obj.get("debit")) is not None else None,
+            "credit": MultiCurrencyAmounts.from_dict(_v) if (_v := obj.get("credit")) is not None else None,
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

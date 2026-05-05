@@ -13,7 +13,7 @@
 | **previous_entry** | [PreviousFundCalendarEntry](PreviousFundCalendarEntry.md) | Optional | *No description available.* |
 | **effective_at** | **datetime** | Optional | The effective at of the Calendar Entry. |
 | **as_at** | **datetime** | Required | The asAt datetime for the Calendar Entry. |
-| **entry_type** | **str** | Required | The type of the Fund Calendar Entry. The available values are: ValuationPointFundCalendarEntry, BookmarkFundCalendarEntry |
+| **entry_type** | **str** | Required | The type of the Fund Calendar Entry. Available values: ValuationPointFundCalendarEntry, BookmarkFundCalendarEntry. |
 | **status** | **str** | Optional | The status of the Fund Calendar Entry. Can be &#39;Estimate&#39;, &#39;Unofficial&#39; or &#39;Final&#39;. |
 | **apply_clear_down** | **bool** | Required | Set to true if that closed period should have the clear down applied. |
 | **holdings_as_at_override** | **datetime** | Optional | The optional AsAt Override to use for building holdings in the Valuation Point. Defaults to QueryAsAt. |
@@ -41,7 +41,7 @@ instance = FundCalendarEntry(
     previous_entry=PreviousFundCalendarEntry(...),  # optional
     effective_at=datetime.now(),  # optional — The effective at of the Calendar Entry.
     as_at=datetime.now(),  # required — The asAt datetime for the Calendar Entry.
-    entry_type="...",  # required — The type of the Fund Calendar Entry. The available values are: ValuationPointFundCalendarEntry, BookmarkFundCalendarEntry
+    entry_type="...",  # required — The type of the Fund Calendar Entry. Available values: ValuationPointFundCalendarEntry, BookmarkFundCalendarEntry.
     status="...",  # optional — The status of the Fund Calendar Entry. Can be &#39;Estimate&#39;, &#39;Unofficial&#39; or &#39;Final&#39;.
     apply_clear_down=True,  # required — Set to true if that closed period should have the clear down applied.
     holdings_as_at_override=datetime.now(),  # optional — The optional AsAt Override to use for building holdings in the Valuation Point. Defaults to QueryAsAt.

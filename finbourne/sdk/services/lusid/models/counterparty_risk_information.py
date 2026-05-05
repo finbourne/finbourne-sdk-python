@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class CounterpartyRiskInformation(BaseModel):
     country_of_risk:  StrictStr = Field(...,alias="countryOfRisk", description="The country to which one would naturally ascribe risk, typically the legal entity's country of registration. This can be used to infer funding currency and related market data in the absence of a specific preference.") 
     credit_ratings: List[CreditRating] = Field(alias="creditRatings")
     industry_classifiers: List[IndustryClassifier] = Field(alias="industryClassifiers")
-    __properties = ["countryOfRisk", "creditRatings", "industryClassifiers"]
+    __properties: ClassVar[List[str]] = ["countryOfRisk", "creditRatings", "industryClassifiers"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -94,8 +94,8 @@ class CounterpartyRiskInformation(BaseModel):
 
         _obj = CounterpartyRiskInformation.model_validate({
             "country_of_risk": obj.get("countryOfRisk"),
-            "credit_ratings": [CreditRating.from_dict(_item) for _item in obj.get("creditRatings")] if obj.get("creditRatings") is not None else None,
-            "industry_classifiers": [IndustryClassifier.from_dict(_item) for _item in obj.get("industryClassifiers")] if obj.get("industryClassifiers") is not None else None
+            "credit_ratings": [CreditRating.from_dict(_item) for _item in _v] if (_v := obj.get("creditRatings")) is not None else None,
+            "industry_classifiers": [IndustryClassifier.from_dict(_item) for _item in _v] if (_v := obj.get("industryClassifiers")) is not None else None
         })
         return _obj
 

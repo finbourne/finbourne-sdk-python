@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class CreateConfigurationSet(BaseModel):
     id: ResourceId
     type:  StrictStr = Field(...,alias="type", description="The type (personal or shared) of the new configuration set") 
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="The description of the new configuration set") 
-    __properties = ["id", "type", "description"]
+    __properties: ClassVar[List[str]] = ["id", "type", "description"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -86,7 +86,7 @@ class CreateConfigurationSet(BaseModel):
             return CreateConfigurationSet.model_validate(obj)
 
         _obj = CreateConfigurationSet.model_validate({
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
             "type": obj.get("type"),
             "description": obj.get("description")
         })

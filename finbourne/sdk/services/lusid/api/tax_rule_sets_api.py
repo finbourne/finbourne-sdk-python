@@ -67,12 +67,12 @@ class TaxRuleSetsApi:
         :return: Returns the result object.
         :rtype: TaxRuleSet
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_tax_rule_set_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_tax_rule_set_with_http_info(create_tax_rule_set_request, effective_at, **kwargs)  # noqa: E501
+        response = self.create_tax_rule_set_with_http_info(create_tax_rule_set_request, effective_at, **kwargs)
+        return response.data
 
     @validate_call
     def create_tax_rule_set_with_http_info(self, create_tax_rule_set_request: CreateTaxRuleSetRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[TaxRuleSet]:
@@ -202,12 +202,12 @@ class TaxRuleSetsApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_tax_rule_set_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_tax_rule_set_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_tax_rule_set_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_tax_rule_set_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -334,12 +334,12 @@ class TaxRuleSetsApi:
         :return: Returns the result object.
         :rtype: TaxRuleSet
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_tax_rule_set_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_tax_rule_set_with_http_info(scope, code, effective_at, as_at, **kwargs)  # noqa: E501
+        response = self.get_tax_rule_set_with_http_info(scope, code, effective_at, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_tax_rule_set_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[TaxRuleSet]:
@@ -477,12 +477,12 @@ class TaxRuleSetsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfTaxRuleSet
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_tax_rule_sets_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_tax_rule_sets_with_http_info(effective_at, as_at, **kwargs)  # noqa: E501
+        response = self.list_tax_rule_sets_with_http_info(effective_at, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def list_tax_rule_sets_with_http_info(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfTaxRuleSet]:
@@ -612,12 +612,12 @@ class TaxRuleSetsApi:
         :return: Returns the result object.
         :rtype: TaxRuleSet
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_tax_rule_set_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_tax_rule_set_with_http_info(scope, code, update_tax_rule_set_request, effective_at, **kwargs)  # noqa: E501
+        response = self.update_tax_rule_set_with_http_info(scope, code, update_tax_rule_set_request, effective_at, **kwargs)
+        return response.data
 
     @validate_call
     def update_tax_rule_set_with_http_info(self, scope: StrictStr, code: StrictStr, update_tax_rule_set_request: UpdateTaxRuleSetRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[TaxRuleSet]:
@@ -763,12 +763,12 @@ class TaxRuleSetsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: TaxRuleSet
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_tax_rule_set_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_tax_rule_set_with_http_info_async(create_tax_rule_set_request, effective_at, **kwargs)  # noqa: E501
+            response = await self.create_tax_rule_set_with_http_info_async(create_tax_rule_set_request, effective_at, **kwargs)
+            return response.data
 
     @validate_call
     async def create_tax_rule_set_with_http_info_async(self, create_tax_rule_set_request: CreateTaxRuleSetRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[TaxRuleSet]:
@@ -899,12 +899,12 @@ class TaxRuleSetsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_tax_rule_set_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_tax_rule_set_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_tax_rule_set_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_tax_rule_set_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -1032,12 +1032,12 @@ class TaxRuleSetsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: TaxRuleSet
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_tax_rule_set_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_tax_rule_set_with_http_info_async(scope, code, effective_at, as_at, **kwargs)  # noqa: E501
+            response = await self.get_tax_rule_set_with_http_info_async(scope, code, effective_at, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_tax_rule_set_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[TaxRuleSet]:
@@ -1176,12 +1176,12 @@ class TaxRuleSetsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfTaxRuleSet
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_tax_rule_sets_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_tax_rule_sets_with_http_info_async(effective_at, as_at, **kwargs)  # noqa: E501
+            response = await self.list_tax_rule_sets_with_http_info_async(effective_at, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def list_tax_rule_sets_with_http_info_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfTaxRuleSet]:
@@ -1312,12 +1312,12 @@ class TaxRuleSetsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: TaxRuleSet
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_tax_rule_set_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_tax_rule_set_with_http_info_async(scope, code, update_tax_rule_set_request, effective_at, **kwargs)  # noqa: E501
+            response = await self.update_tax_rule_set_with_http_info_async(scope, code, update_tax_rule_set_request, effective_at, **kwargs)
+            return response.data
 
     @validate_call
     async def update_tax_rule_set_with_http_info_async(self, scope: StrictStr, code: StrictStr, update_tax_rule_set_request: UpdateTaxRuleSetRequest, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[TaxRuleSet]:

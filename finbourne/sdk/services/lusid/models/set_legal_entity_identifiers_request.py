@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class SetLegalEntityIdentifiersRequest(BaseModel):
     SetLegalEntityIdentifiersRequest
     """
     identifiers: Optional[Dict[str, ModelProperty]] = Field(default=None, description="Identifiers to set for a Legal Entity. Identifiers not included in the request will not be amended.")
-    __properties = ["identifiers"]
+    __properties: ClassVar[List[str]] = ["identifiers"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -90,9 +90,9 @@ class SetLegalEntityIdentifiersRequest(BaseModel):
         _obj = SetLegalEntityIdentifiersRequest.model_validate({
             "identifiers": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("identifiers").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("identifiers") is not None
+            if (_val := obj.get("identifiers")) is not None
             else None
         })
         return _obj

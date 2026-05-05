@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class McpToolSchedulerPayload(BaseModel):
     arguments: Optional[Dict[str, Optional[StrictStr]]] = Field(default=None, description="Arguments to pass to the scheduler job (key-value pairs)")
     run_as:  Optional[StrictStr] = Field(default=None,alias="runAs", description="Optional service user identifier to run the job as (if not the current user)") 
     notifications: Optional[List[McpToolSchedulerNotification]] = Field(default=None, description="Optional additional notifications for the job")
-    __properties = ["jobScope", "jobCode", "arguments", "runAs", "notifications"]
+    __properties: ClassVar[List[str]] = ["jobScope", "jobCode", "arguments", "runAs", "notifications"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -106,7 +106,7 @@ class McpToolSchedulerPayload(BaseModel):
             "job_code": obj.get("jobCode"),
             "arguments": obj.get("arguments"),
             "run_as": obj.get("runAs"),
-            "notifications": [McpToolSchedulerNotification.from_dict(_item) for _item in obj.get("notifications")] if obj.get("notifications") is not None else None
+            "notifications": [McpToolSchedulerNotification.from_dict(_item) for _item in _v] if (_v := obj.get("notifications")) is not None else None
         })
         return _obj
 

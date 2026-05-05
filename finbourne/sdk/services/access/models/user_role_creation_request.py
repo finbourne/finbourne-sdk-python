@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class UserRoleCreationRequest(BaseModel):
     """
     user_id:  StrictStr = Field(...,alias="userId", description="The Id of the user for whom to create the role.") 
     resource: PolicyIdRoleResource
-    __properties = ["userId", "resource"]
+    __properties: ClassVar[List[str]] = ["userId", "resource"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -81,7 +81,7 @@ class UserRoleCreationRequest(BaseModel):
 
         _obj = UserRoleCreationRequest.model_validate({
             "user_id": obj.get("userId"),
-            "resource": PolicyIdRoleResource.from_dict(obj.get("resource")) if obj.get("resource") is not None else None
+            "resource": PolicyIdRoleResource.from_dict(_v) if (_v := obj.get("resource")) is not None else None
         })
         return _obj
 

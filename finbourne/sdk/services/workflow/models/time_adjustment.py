@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class TimeAdjustment(BaseModel):
     A time adjustment to apply to the scheduled time of an EventHandler with a Finbourne.Workflow.WebApi.Common.Dto.Json.EventHandlers.ScheduleMatchingPattern  # noqa: E501
     """
     set_to: SpecifiedTime = Field(alias="setTo")
-    __properties = ["setTo"]
+    __properties: ClassVar[List[str]] = ["setTo"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,7 +79,7 @@ class TimeAdjustment(BaseModel):
             return TimeAdjustment.model_validate(obj)
 
         _obj = TimeAdjustment.model_validate({
-            "set_to": SpecifiedTime.from_dict(obj.get("setTo")) if obj.get("setTo") is not None else None
+            "set_to": SpecifiedTime.from_dict(_v) if (_v := obj.get("setTo")) is not None else None
         })
         return _obj
 

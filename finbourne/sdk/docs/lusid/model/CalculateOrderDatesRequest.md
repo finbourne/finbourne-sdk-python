@@ -9,7 +9,7 @@
 | **instrument_scope** | **str** | Optional | *No description available.* |
 | **received_date** | **datetime** | Optional | *No description available.* |
 | **price_date** | **datetime** | Optional | *No description available.* |
-| **transaction_category** | **str** | Optional | *No description available.* |
+| **transaction_category** | **str** | Optional | Available values: Subscription, Redemption, SwitchOut, SwitchIn, TransferOut, TransferIn. |
 | **liquidating_share_class_identifier** | **str** | Optional | *No description available.* |
 | **liquidating_share_class_identifier_type** | **str** | Optional | *No description available.* |
 | **liquidating_share_class_instrument_scope** | **str** | Optional | *No description available.* |
@@ -28,7 +28,7 @@ instance = CalculateOrderDatesRequest(
     instrument_scope="...",  # optional
     received_date=datetime.now(),  # optional
     price_date=datetime.now(),  # optional
-    transaction_category="...",  # optional
+    transaction_category="...",  # optional — Available values: Subscription, Redemption, SwitchOut, SwitchIn, TransferOut, TransferIn.
     liquidating_share_class_identifier="...",  # optional
     liquidating_share_class_identifier_type="...",  # optional
     liquidating_share_class_instrument_scope="..."  # optional

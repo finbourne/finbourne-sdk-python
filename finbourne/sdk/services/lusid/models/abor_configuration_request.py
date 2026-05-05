@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -36,7 +36,7 @@ class AborConfigurationRequest(BaseModel):
     posting_module_codes: Optional[List[StrictStr]] = Field(default=None, description="The Posting Module Codes from which the rules to be applied are retrieved.", alias="postingModuleCodes")
     cleardown_module_codes: Optional[List[StrictStr]] = Field(default=None, description="The Cleardown Module Codes from which the rules to be applied are retrieved.", alias="cleardownModuleCodes")
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="A set of properties for the Abor Configuration.")
-    __properties = ["code", "displayName", "description", "recipeId", "chartOfAccountsId", "postingModuleCodes", "cleardownModuleCodes", "properties"]
+    __properties: ClassVar[List[str]] = ["code", "displayName", "description", "recipeId", "chartOfAccountsId", "postingModuleCodes", "cleardownModuleCodes", "properties"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -125,15 +125,15 @@ class AborConfigurationRequest(BaseModel):
             "code": obj.get("code"),
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
-            "recipe_id": ResourceId.from_dict(obj.get("recipeId")) if obj.get("recipeId") is not None else None,
-            "chart_of_accounts_id": ResourceId.from_dict(obj.get("chartOfAccountsId")) if obj.get("chartOfAccountsId") is not None else None,
+            "recipe_id": ResourceId.from_dict(_v) if (_v := obj.get("recipeId")) is not None else None,
+            "chart_of_accounts_id": ResourceId.from_dict(_v) if (_v := obj.get("chartOfAccountsId")) is not None else None,
             "posting_module_codes": obj.get("postingModuleCodes"),
             "cleardown_module_codes": obj.get("cleardownModuleCodes"),
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None
         })
         return _obj

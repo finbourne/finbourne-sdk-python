@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class UpdateDataTypeRequest(BaseModel):
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="The description of the data type.") 
     acceptable_values: Optional[List[StrictStr]] = Field(default=None, description="The acceptable set of values for this data type. Only applies to 'open' value type range.", alias="acceptableValues")
     acceptable_units: Optional[List[UpdateUnitRequest]] = Field(default=None, description="The definitions of the acceptable units.", alias="acceptableUnits")
-    __properties = ["displayName", "description", "acceptableValues", "acceptableUnits"]
+    __properties: ClassVar[List[str]] = ["displayName", "description", "acceptableValues", "acceptableUnits"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -109,7 +109,7 @@ class UpdateDataTypeRequest(BaseModel):
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
             "acceptable_values": obj.get("acceptableValues"),
-            "acceptable_units": [UpdateUnitRequest.from_dict(_item) for _item in obj.get("acceptableUnits")] if obj.get("acceptableUnits") is not None else None
+            "acceptable_units": [UpdateUnitRequest.from_dict(_item) for _item in _v] if (_v := obj.get("acceptableUnits")) is not None else None
         })
         return _obj
 

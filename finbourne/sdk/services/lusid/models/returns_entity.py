@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,12 +29,12 @@ class ReturnsEntity(BaseModel):
     """
     id: ResourceId
     recipe_id: Optional[ResourceId] = Field(default=None, alias="recipeId")
-    recipe_entity:  Optional[StrictStr] = Field(default=None,alias="recipeEntity", description="Entity a recipe is retrieved from for use in the aggregated returns calculation. Either RecipeId or RecipeEntity must be specified.") 
-    fee_handling:  Optional[StrictStr] = Field(default=None,alias="feeHandling", description="Configures how fees are handled in the aggregated returns calculation.") 
-    flow_handling:  Optional[StrictStr] = Field(default=None,alias="flowHandling", description="Configures how flows are handled in the aggregated returns calculation.") 
+    recipe_entity:  Optional[StrictStr] = Field(default=None,alias="recipeEntity", description="Entity a recipe is retrieved from for use in the aggregated returns calculation. Either RecipeId or RecipeEntity must be specified. Available values: Portfolio, PortfolioGroup, ABOR.") 
+    fee_handling:  Optional[StrictStr] = Field(default=None,alias="feeHandling", description="Configures how fees are handled in the aggregated returns calculation. Available values: Net, Gross.") 
+    flow_handling:  Optional[StrictStr] = Field(default=None,alias="flowHandling", description="Configures how flows are handled in the aggregated returns calculation. Available values: BeginningOfDay, EndOfDay.") 
     business_calendar:  Optional[StrictStr] = Field(default=None,alias="businessCalendar", description="Calendar used in the aggregated returns calculation.") 
-    handle_flow_discrepancy:  Optional[StrictStr] = Field(default=None,alias="handleFlowDiscrepancy", description="Configures handling for the case where net flows do not match the sum of tagged flows.") 
-    __properties = ["id", "recipeId", "recipeEntity", "feeHandling", "flowHandling", "businessCalendar", "handleFlowDiscrepancy"]
+    handle_flow_discrepancy:  Optional[StrictStr] = Field(default=None,alias="handleFlowDiscrepancy", description="Configures handling for the case where net flows do not match the sum of tagged flows. Available values: TreatAsFlow, TreatAsGainloss, Error.") 
+    __properties: ClassVar[List[str]] = ["id", "recipeId", "recipeEntity", "feeHandling", "flowHandling", "businessCalendar", "handleFlowDiscrepancy"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -113,8 +113,8 @@ class ReturnsEntity(BaseModel):
             return ReturnsEntity.model_validate(obj)
 
         _obj = ReturnsEntity.model_validate({
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
-            "recipe_id": ResourceId.from_dict(obj.get("recipeId")) if obj.get("recipeId") is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
+            "recipe_id": ResourceId.from_dict(_v) if (_v := obj.get("recipeId")) is not None else None,
             "recipe_entity": obj.get("recipeEntity"),
             "fee_handling": obj.get("feeHandling"),
             "flow_handling": obj.get("flowHandling"),

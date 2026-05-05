@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class ShareClassPnlBreakdown(BaseModel):
     apportioned_non_class_specific_pnl: Dict[str, ShareClassAmount] = Field(description="Bucket of detail for PnL within the queried period not explicitly allocated to any share class but has been apportioned to the share class.", alias="apportionedNonClassSpecificPnl")
     class_pnl: Dict[str, ShareClassAmount] = Field(description="Bucket of detail for PnL specific to the share class within the queried period.", alias="classPnl")
     total_pnl: Dict[str, ShareClassAmount] = Field(description="Bucket of detail for the sum of class PnL and PnL not specific to a class within the queried period.", alias="totalPnl")
-    __properties = ["apportionedNonClassSpecificPnl", "classPnl", "totalPnl"]
+    __properties: ClassVar[List[str]] = ["apportionedNonClassSpecificPnl", "classPnl", "totalPnl"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -101,21 +101,21 @@ class ShareClassPnlBreakdown(BaseModel):
         _obj = ShareClassPnlBreakdown.model_validate({
             "apportioned_non_class_specific_pnl": dict(
                 (_k, ShareClassAmount.from_dict(_v))
-                for _k, _v in obj.get("apportionedNonClassSpecificPnl").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("apportionedNonClassSpecificPnl") is not None
+            if (_val := obj.get("apportionedNonClassSpecificPnl")) is not None
             else None,
             "class_pnl": dict(
                 (_k, ShareClassAmount.from_dict(_v))
-                for _k, _v in obj.get("classPnl").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("classPnl") is not None
+            if (_val := obj.get("classPnl")) is not None
             else None,
             "total_pnl": dict(
                 (_k, ShareClassAmount.from_dict(_v))
-                for _k, _v in obj.get("totalPnl").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("totalPnl") is not None
+            if (_val := obj.get("totalPnl")) is not None
             else None
         })
         return _obj

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class BackgroundQueryCancelResponse(BaseModel):
     previous_status: Optional[TaskStatus] = Field(default=None, alias="previousStatus")
     previous_state: Optional[BackgroundQueryState] = Field(default=None, alias="previousState")
     progress:  Optional[StrictStr] = Field(default=None,alias="progress") 
-    __properties = ["hadData", "previousStatus", "previousState", "progress"]
+    __properties: ClassVar[List[str]] = ["hadData", "previousStatus", "previousState", "progress"]
 
     model_config = ConfigDict(
         populate_by_name=True,

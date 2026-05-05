@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class InstrumentEventConfiguration(BaseModel):
     """
     transaction_template_scopes: Optional[List[StrictStr]] = Field(default=None, alias="transactionTemplateScopes")
     recipe_id: Optional[ResourceId] = Field(default=None, alias="recipeId")
-    __properties = ["transactionTemplateScopes", "recipeId"]
+    __properties: ClassVar[List[str]] = ["transactionTemplateScopes", "recipeId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -86,7 +86,7 @@ class InstrumentEventConfiguration(BaseModel):
 
         _obj = InstrumentEventConfiguration.model_validate({
             "transaction_template_scopes": obj.get("transactionTemplateScopes"),
-            "recipe_id": ResourceId.from_dict(obj.get("recipeId")) if obj.get("recipeId") is not None else None
+            "recipe_id": ResourceId.from_dict(_v) if (_v := obj.get("recipeId")) is not None else None
         })
         return _obj
 

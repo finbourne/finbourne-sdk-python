@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class JournalEntryLineShareClassBreakdown(BaseModel):
     apportionment_factor: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The share class apportionment factor (capital ratio).", alias="apportionmentFactor")
     local_value: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="This journal entry line's local value amount after apportionment is applied.", alias="localValue")
     base_value: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="This journal entry line's base value amount after apportionment is applied", alias="baseValue")
-    __properties = ["shortCode", "apportionmentFactor", "localValue", "baseValue"]
+    __properties: ClassVar[List[str]] = ["shortCode", "apportionmentFactor", "localValue", "baseValue"]
 
     model_config = ConfigDict(
         populate_by_name=True,

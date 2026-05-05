@@ -62,12 +62,12 @@ class AuditingApi:
         :return: Returns the result object.
         :rtype: AuditEntry
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_entry_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_entry_with_http_info(create_audit_entry, **kwargs)  # noqa: E501
+        response = self.create_entry_with_http_info(create_audit_entry, **kwargs)
+        return response.data
 
     @validate_call
     def create_entry_with_http_info(self, create_audit_entry: Optional[CreateAuditEntry] = None, **kwargs) -> ApiResponse[AuditEntry]:
@@ -187,12 +187,12 @@ class AuditingApi:
         :return: Returns the result object.
         :rtype: ResourceListOfAuditProcessSummary
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_processes_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_processes_with_http_info(**kwargs)  # noqa: E501
+        response = self.get_processes_with_http_info(**kwargs)
+        return response.data
 
     @validate_call
     def get_processes_with_http_info(self, **kwargs) -> ApiResponse[ResourceListOfAuditProcessSummary]:
@@ -306,12 +306,12 @@ class AuditingApi:
         :return: Returns the result object.
         :rtype: ScrollableCollectionOfAuditEntry
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_entries_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_entries_with_http_info(filter, sort_by, size, state, **kwargs)  # noqa: E501
+        response = self.list_entries_with_http_info(filter, sort_by, size, state, **kwargs)
+        return response.data
 
     @validate_call
     def list_entries_with_http_info(self, filter: Optional[StrictStr] = None, sort_by: Optional[StrictStr] = None, size: Optional[int] = None, state: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ScrollableCollectionOfAuditEntry]:
@@ -447,12 +447,12 @@ class AuditingApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: AuditEntry
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_entry_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_entry_with_http_info_async(create_audit_entry, **kwargs)  # noqa: E501
+            response = await self.create_entry_with_http_info_async(create_audit_entry, **kwargs)
+            return response.data
 
     @validate_call
     async def create_entry_with_http_info_async(self, create_audit_entry: Optional[CreateAuditEntry] = None, **kwargs) -> ApiResponse[AuditEntry]:
@@ -573,12 +573,12 @@ class AuditingApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfAuditProcessSummary
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_processes_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_processes_with_http_info_async(**kwargs)  # noqa: E501
+            response = await self.get_processes_with_http_info_async(**kwargs)
+            return response.data
 
     @validate_call
     async def get_processes_with_http_info_async(self, **kwargs) -> ApiResponse[ResourceListOfAuditProcessSummary]:
@@ -693,12 +693,12 @@ class AuditingApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ScrollableCollectionOfAuditEntry
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_entries_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_entries_with_http_info_async(filter, sort_by, size, state, **kwargs)  # noqa: E501
+            response = await self.list_entries_with_http_info_async(filter, sort_by, size, state, **kwargs)
+            return response.data
 
     @validate_call
     async def list_entries_with_http_info_async(self, filter: Optional[StrictStr] = None, sort_by: Optional[StrictStr] = None, size: Optional[int] = None, state: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ScrollableCollectionOfAuditEntry]:

@@ -84,12 +84,12 @@ class QuotesApi:
         :return: Returns the result object.
         :rtype: QuoteAccessMetadataRule
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_quote_access_metadata_rule_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_quote_access_metadata_rule_with_http_info(scope, provider, price_source, instrument_id_type, instrument_id, quote_type, var_field, effective_at, **kwargs)  # noqa: E501
+        response = self.delete_quote_access_metadata_rule_with_http_info(scope, provider, price_source, instrument_id_type, instrument_id, quote_type, var_field, effective_at, **kwargs)
+        return response.data
 
     @validate_call
     def delete_quote_access_metadata_rule_with_http_info(self, scope: StrictStr, provider: Optional[StrictStr] = None, price_source: Optional[StrictStr] = None, instrument_id_type: Optional[StrictStr] = None, instrument_id: Optional[StrictStr] = None, quote_type: Optional[StrictStr] = None, var_field: Optional[StrictStr] = None, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[QuoteAccessMetadataRule]:
@@ -248,12 +248,12 @@ class QuotesApi:
         :return: Returns the result object.
         :rtype: AnnulQuotesResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_quotes_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_quotes_with_http_info(scope, request_body, **kwargs)  # noqa: E501
+        response = self.delete_quotes_with_http_info(scope, request_body, **kwargs)
+        return response.data
 
     @validate_call
     def delete_quotes_with_http_info(self, scope: StrictStr, request_body: Optional[Dict[str, QuoteId]] = None, **kwargs) -> ApiResponse[AnnulQuotesResponse]:
@@ -389,12 +389,12 @@ class QuotesApi:
         :return: Returns the result object.
         :rtype: GetQuotesResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_quotes_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_quotes_with_http_info(scope, effective_at, as_at, max_age, request_body, **kwargs)  # noqa: E501
+        response = self.get_quotes_with_http_info(scope, effective_at, as_at, max_age, request_body, **kwargs)
+        return response.data
 
     @validate_call
     def get_quotes_with_http_info(self, scope: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, max_age: Optional[StrictStr] = None, request_body: Optional[Dict[str, QuoteSeriesId]] = None, **kwargs) -> ApiResponse[GetQuotesResponse]:
@@ -559,12 +559,12 @@ class QuotesApi:
         :return: Returns the result object.
         :rtype: QuoteAccessMetadataRule
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_quotes_access_metadata_rule_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_quotes_access_metadata_rule_with_http_info(scope, provider, price_source, instrument_id_type, instrument_id, quote_type, var_field, effective_at, as_at, **kwargs)  # noqa: E501
+        response = self.get_quotes_access_metadata_rule_with_http_info(scope, provider, price_source, instrument_id_type, instrument_id, quote_type, var_field, effective_at, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_quotes_access_metadata_rule_with_http_info(self, scope: StrictStr, provider: Optional[StrictStr] = None, price_source: Optional[StrictStr] = None, instrument_id_type: Optional[StrictStr] = None, instrument_id: Optional[StrictStr] = None, quote_type: Optional[StrictStr] = None, var_field: Optional[StrictStr] = None, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[QuoteAccessMetadataRule]:
@@ -738,12 +738,12 @@ class QuotesApi:
         :return: Returns the result object.
         :rtype: ResourceListOfQuote
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_quotes_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_quotes_with_http_info(scope, as_at, page, limit, filter, **kwargs)  # noqa: E501
+        response = self.list_quotes_with_http_info(scope, as_at, page, limit, filter, **kwargs)
+        return response.data
 
     @validate_call
     def list_quotes_with_http_info(self, scope: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfQuote]:
@@ -887,12 +887,12 @@ class QuotesApi:
         :return: Returns the result object.
         :rtype: ResourceListOfQuoteAccessMetadataRule
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_quotes_access_metadata_rules_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_quotes_access_metadata_rules_with_http_info(scope, as_at, **kwargs)  # noqa: E501
+        response = self.list_quotes_access_metadata_rules_with_http_info(scope, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def list_quotes_access_metadata_rules_with_http_info(self, scope: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfQuoteAccessMetadataRule]:
@@ -1024,12 +1024,12 @@ class QuotesApi:
         :return: Returns the result object.
         :rtype: ResourceListOfQuote
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_quotes_for_scope_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_quotes_for_scope_with_http_info(scope, as_at, page, limit, filter, **kwargs)  # noqa: E501
+        response = self.list_quotes_for_scope_with_http_info(scope, as_at, page, limit, filter, **kwargs)
+        return response.data
 
     @validate_call
     def list_quotes_for_scope_with_http_info(self, scope: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfQuote]:
@@ -1177,12 +1177,12 @@ class QuotesApi:
         :return: Returns the result object.
         :rtype: QuoteAccessMetadataRule
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_quote_access_metadata_rule_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_quote_access_metadata_rule_with_http_info(scope, upsert_quote_access_metadata_rule_request, effective_at, effective_until, **kwargs)  # noqa: E501
+        response = self.upsert_quote_access_metadata_rule_with_http_info(scope, upsert_quote_access_metadata_rule_request, effective_at, effective_until, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_quote_access_metadata_rule_with_http_info(self, scope: StrictStr, upsert_quote_access_metadata_rule_request: UpsertQuoteAccessMetadataRuleRequest, effective_at: Optional[StrictStr] = None, effective_until: Optional[datetime] = None, **kwargs) -> ApiResponse[QuoteAccessMetadataRule]:
@@ -1327,12 +1327,12 @@ class QuotesApi:
         :return: Returns the result object.
         :rtype: UpsertQuotesResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_quotes_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_quotes_with_http_info(scope, request_body, **kwargs)  # noqa: E501
+        response = self.upsert_quotes_with_http_info(scope, request_body, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_quotes_with_http_info(self, scope: StrictStr, request_body: Optional[Dict[str, UpsertQuoteRequest]] = None, **kwargs) -> ApiResponse[UpsertQuotesResponse]:
@@ -1478,12 +1478,12 @@ class QuotesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: QuoteAccessMetadataRule
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_quote_access_metadata_rule_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_quote_access_metadata_rule_with_http_info_async(scope, provider, price_source, instrument_id_type, instrument_id, quote_type, var_field, effective_at, **kwargs)  # noqa: E501
+            response = await self.delete_quote_access_metadata_rule_with_http_info_async(scope, provider, price_source, instrument_id_type, instrument_id, quote_type, var_field, effective_at, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_quote_access_metadata_rule_with_http_info_async(self, scope: StrictStr, provider: Optional[StrictStr] = None, price_source: Optional[StrictStr] = None, instrument_id_type: Optional[StrictStr] = None, instrument_id: Optional[StrictStr] = None, quote_type: Optional[StrictStr] = None, var_field: Optional[StrictStr] = None, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[QuoteAccessMetadataRule]:
@@ -1643,12 +1643,12 @@ class QuotesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: AnnulQuotesResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_quotes_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_quotes_with_http_info_async(scope, request_body, **kwargs)  # noqa: E501
+            response = await self.delete_quotes_with_http_info_async(scope, request_body, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_quotes_with_http_info_async(self, scope: StrictStr, request_body: Optional[Dict[str, QuoteId]] = None, **kwargs) -> ApiResponse[AnnulQuotesResponse]:
@@ -1785,12 +1785,12 @@ class QuotesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: GetQuotesResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_quotes_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_quotes_with_http_info_async(scope, effective_at, as_at, max_age, request_body, **kwargs)  # noqa: E501
+            response = await self.get_quotes_with_http_info_async(scope, effective_at, as_at, max_age, request_body, **kwargs)
+            return response.data
 
     @validate_call
     async def get_quotes_with_http_info_async(self, scope: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, max_age: Optional[StrictStr] = None, request_body: Optional[Dict[str, QuoteSeriesId]] = None, **kwargs) -> ApiResponse[GetQuotesResponse]:
@@ -1956,12 +1956,12 @@ class QuotesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: QuoteAccessMetadataRule
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_quotes_access_metadata_rule_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_quotes_access_metadata_rule_with_http_info_async(scope, provider, price_source, instrument_id_type, instrument_id, quote_type, var_field, effective_at, as_at, **kwargs)  # noqa: E501
+            response = await self.get_quotes_access_metadata_rule_with_http_info_async(scope, provider, price_source, instrument_id_type, instrument_id, quote_type, var_field, effective_at, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_quotes_access_metadata_rule_with_http_info_async(self, scope: StrictStr, provider: Optional[StrictStr] = None, price_source: Optional[StrictStr] = None, instrument_id_type: Optional[StrictStr] = None, instrument_id: Optional[StrictStr] = None, quote_type: Optional[StrictStr] = None, var_field: Optional[StrictStr] = None, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[QuoteAccessMetadataRule]:
@@ -2136,12 +2136,12 @@ class QuotesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfQuote
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_quotes_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_quotes_with_http_info_async(scope, as_at, page, limit, filter, **kwargs)  # noqa: E501
+            response = await self.list_quotes_with_http_info_async(scope, as_at, page, limit, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def list_quotes_with_http_info_async(self, scope: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfQuote]:
@@ -2286,12 +2286,12 @@ class QuotesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfQuoteAccessMetadataRule
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_quotes_access_metadata_rules_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_quotes_access_metadata_rules_with_http_info_async(scope, as_at, **kwargs)  # noqa: E501
+            response = await self.list_quotes_access_metadata_rules_with_http_info_async(scope, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def list_quotes_access_metadata_rules_with_http_info_async(self, scope: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfQuoteAccessMetadataRule]:
@@ -2424,12 +2424,12 @@ class QuotesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfQuote
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_quotes_for_scope_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_quotes_for_scope_with_http_info_async(scope, as_at, page, limit, filter, **kwargs)  # noqa: E501
+            response = await self.list_quotes_for_scope_with_http_info_async(scope, as_at, page, limit, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def list_quotes_for_scope_with_http_info_async(self, scope: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfQuote]:
@@ -2578,12 +2578,12 @@ class QuotesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: QuoteAccessMetadataRule
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_quote_access_metadata_rule_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_quote_access_metadata_rule_with_http_info_async(scope, upsert_quote_access_metadata_rule_request, effective_at, effective_until, **kwargs)  # noqa: E501
+            response = await self.upsert_quote_access_metadata_rule_with_http_info_async(scope, upsert_quote_access_metadata_rule_request, effective_at, effective_until, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_quote_access_metadata_rule_with_http_info_async(self, scope: StrictStr, upsert_quote_access_metadata_rule_request: UpsertQuoteAccessMetadataRuleRequest, effective_at: Optional[StrictStr] = None, effective_until: Optional[datetime] = None, **kwargs) -> ApiResponse[QuoteAccessMetadataRule]:
@@ -2729,12 +2729,12 @@ class QuotesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: UpsertQuotesResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_quotes_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_quotes_with_http_info_async(scope, request_body, **kwargs)  # noqa: E501
+            response = await self.upsert_quotes_with_http_info_async(scope, request_body, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_quotes_with_http_info_async(self, scope: StrictStr, request_body: Optional[Dict[str, UpsertQuoteRequest]] = None, **kwargs) -> ApiResponse[UpsertQuotesResponse]:

@@ -59,12 +59,12 @@ class HealthCheckingEndpointApi:
         :return: Returns the result object.
         :rtype: object
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the fake_node_reclaim_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.fake_node_reclaim_with_http_info(seconds_until_reclaim, **kwargs)  # noqa: E501
+        response = self.fake_node_reclaim_with_http_info(seconds_until_reclaim, **kwargs)
+        return response.data
 
     @validate_call
     def fake_node_reclaim_with_http_info(self, seconds_until_reclaim: Optional[int] = None, **kwargs) -> ApiResponse[object]:
@@ -182,12 +182,12 @@ class HealthCheckingEndpointApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: object
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the fake_node_reclaim_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.fake_node_reclaim_with_http_info_async(seconds_until_reclaim, **kwargs)  # noqa: E501
+            response = await self.fake_node_reclaim_with_http_info_async(seconds_until_reclaim, **kwargs)
+            return response.data
 
     @validate_call
     async def fake_node_reclaim_with_http_info_async(self, seconds_until_reclaim: Optional[int] = None, **kwargs) -> ApiResponse[object]:

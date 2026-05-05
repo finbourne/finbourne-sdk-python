@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -27,7 +27,7 @@ class TranslationInput(BaseModel):
     The input to a translation script.  # noqa: E501
     """
     entity:  StrictStr = Field(...,alias="entity", description="The serialised entity to be passed to the translation script. This could represent e.g. an instrument in any  dialect.") 
-    __properties = ["entity"]
+    __properties: ClassVar[List[str]] = ["entity"]
 
     model_config = ConfigDict(
         populate_by_name=True,

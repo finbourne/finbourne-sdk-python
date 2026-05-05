@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -41,7 +41,7 @@ class BackgroundQueryProgressResponse(BaseModel):
     query_name:  Optional[StrictStr] = Field(default=None,alias="queryName", description="The QueryName given in the original request") 
     columns_available: Optional[List[Column]] = Field(default=None, description="When HasData is true this is the schema of columns that will be returned if the data is requested", alias="columnsAvailable")
     lineage: Optional[TableLineage] = None
-    __properties = ["hasData", "rowCount", "status", "state", "progress", "feedback", "query", "queryName", "columnsAvailable", "lineage"]
+    __properties: ClassVar[List[str]] = ["hasData", "rowCount", "status", "state", "progress", "feedback", "query", "queryName", "columnsAvailable", "lineage"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -136,11 +136,11 @@ class BackgroundQueryProgressResponse(BaseModel):
             "status": obj.get("status"),
             "state": obj.get("state"),
             "progress": obj.get("progress"),
-            "feedback": [FeedbackEventArgs.from_dict(_item) for _item in obj.get("feedback")] if obj.get("feedback") is not None else None,
+            "feedback": [FeedbackEventArgs.from_dict(_item) for _item in _v] if (_v := obj.get("feedback")) is not None else None,
             "query": obj.get("query"),
             "query_name": obj.get("queryName"),
-            "columns_available": [Column.from_dict(_item) for _item in obj.get("columnsAvailable")] if obj.get("columnsAvailable") is not None else None,
-            "lineage": TableLineage.from_dict(obj.get("lineage")) if obj.get("lineage") is not None else None
+            "columns_available": [Column.from_dict(_item) for _item in _v] if (_v := obj.get("columnsAvailable")) is not None else None,
+            "lineage": TableLineage.from_dict(_v) if (_v := obj.get("lineage")) is not None else None
         })
         return _obj
 

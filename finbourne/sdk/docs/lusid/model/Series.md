@@ -5,9 +5,9 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **series_identifier** | **str** | Required | The identifier that uniquely identifies this Series within the Share Class. |
-| **series_type** | **str** | Required | The type of the Series. Valid values are: Lead, Standard. |
+| **series_type** | **str** | Required | The type of the Series. Available values: Lead, Standard. |
 | **launch_date** | **datetime** | Required | The date on which the Series was launched. |
-| **launch_price_type** | **str** | Required | The type of launch price for the Series. Valid values are: Manual, Calculated. |
+| **launch_price_type** | **str** | Required | The type of launch price for the Series. Available values: Manual, Calculated. |
 | **dom_ccy** | **str** | Required | The denomination currency of the Series. |
 | **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | An optional set of properties to associate with the Series. Only applied if createInstrument is set to true on the parent Fund. |
 
@@ -21,9 +21,9 @@ from finbourne.sdk.services.lusid.models.Series import Series
 
 instance = Series(
     series_identifier="...",  # required — The identifier that uniquely identifies this Series within the Share Class.
-    series_type="...",  # required — The type of the Series. Valid values are: Lead, Standard.
+    series_type="...",  # required — The type of the Series. Available values: Lead, Standard.
     launch_date=datetime.now(),  # required — The date on which the Series was launched.
-    launch_price_type="...",  # required — The type of launch price for the Series. Valid values are: Manual, Calculated.
+    launch_price_type="...",  # required — The type of launch price for the Series. Available values: Manual, Calculated.
     dom_ccy="...",  # required — The denomination currency of the Series.
     properties=ModelProperty(...)  # optional — An optional set of properties to associate with the Series. Only applied if createInstrument is set to true on the parent Fund.
 )

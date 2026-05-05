@@ -67,9 +67,9 @@ class ScriptedTranslationApi:
         :type vendor: str
         :param source_system: The source system of the dialect, the system that understands it. e.g. LUSID, QuantLib. (required)
         :type source_system: str
-        :param entity_type: The type of entity this dialect describes e.g. Instrument. (required)
+        :param entity_type: The type of entity this dialect describes e.g. Instrument. Available values: Instrument. (required)
         :type entity_type: str
-        :param serialisation_format: The serialisation format of a document in this dialect. e.g. JSON, XML. (required)
+        :param serialisation_format: The serialisation format of a document in this dialect. Available values: Json, Xml. (required)
         :type serialisation_format: str
         :param version: The semantic version of the dialect: MAJOR.MINOR.PATCH. (required)
         :type version: str
@@ -81,12 +81,12 @@ class ScriptedTranslationApi:
         :return: Returns the result object.
         :rtype: Dialect
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_translation_dialect_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_translation_dialect_with_http_info(scope, vendor, source_system, entity_type, serialisation_format, version, as_at, **kwargs)  # noqa: E501
+        response = self.get_translation_dialect_with_http_info(scope, vendor, source_system, entity_type, serialisation_format, version, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_translation_dialect_with_http_info(self, scope: StrictStr, vendor: StrictStr, source_system: StrictStr, entity_type: StrictStr, serialisation_format: StrictStr, version: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[Dialect]:
@@ -99,9 +99,9 @@ class ScriptedTranslationApi:
         :type vendor: str
         :param source_system: The source system of the dialect, the system that understands it. e.g. LUSID, QuantLib. (required)
         :type source_system: str
-        :param entity_type: The type of entity this dialect describes e.g. Instrument. (required)
+        :param entity_type: The type of entity this dialect describes e.g. Instrument. Available values: Instrument. (required)
         :type entity_type: str
-        :param serialisation_format: The serialisation format of a document in this dialect. e.g. JSON, XML. (required)
+        :param serialisation_format: The serialisation format of a document in this dialect. Available values: Json, Xml. (required)
         :type serialisation_format: str
         :param version: The semantic version of the dialect: MAJOR.MINOR.PATCH. (required)
         :type version: str
@@ -246,12 +246,12 @@ class ScriptedTranslationApi:
         :return: Returns the result object.
         :rtype: TranslationScript
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_translation_script_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_translation_script_with_http_info(scope, code, version, as_at, **kwargs)  # noqa: E501
+        response = self.get_translation_script_with_http_info(scope, code, version, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_translation_script_with_http_info(self, scope: StrictStr, code: StrictStr, version: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[TranslationScript]:
@@ -393,12 +393,12 @@ class ScriptedTranslationApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfDialectId
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_dialect_ids_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_dialect_ids_with_http_info(as_at, page, limit, filter, **kwargs)  # noqa: E501
+        response = self.list_dialect_ids_with_http_info(as_at, page, limit, filter, **kwargs)
+        return response.data
 
     @validate_call
     def list_dialect_ids_with_http_info(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfDialectId]:
@@ -540,12 +540,12 @@ class ScriptedTranslationApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfTranslationScriptId
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_translation_script_ids_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_translation_script_ids_with_http_info(as_at, limit, filter, page, **kwargs)  # noqa: E501
+        response = self.list_translation_script_ids_with_http_info(as_at, limit, filter, page, **kwargs)
+        return response.data
 
     @validate_call
     def list_translation_script_ids_with_http_info(self, as_at: Optional[datetime] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfTranslationScriptId]:
@@ -681,12 +681,12 @@ class ScriptedTranslationApi:
         :return: Returns the result object.
         :rtype: TranslateEntitiesResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the translate_entities_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.translate_entities_with_http_info(translate_entities_request, **kwargs)  # noqa: E501
+        response = self.translate_entities_with_http_info(translate_entities_request, **kwargs)
+        return response.data
 
     @validate_call
     def translate_entities_with_http_info(self, translate_entities_request: TranslateEntitiesRequest, **kwargs) -> ApiResponse[TranslateEntitiesResponse]:
@@ -808,12 +808,12 @@ class ScriptedTranslationApi:
         :return: Returns the result object.
         :rtype: TranslateEntitiesResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the translate_entities_inlined_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.translate_entities_inlined_with_http_info(translate_entities_inlined_request, **kwargs)  # noqa: E501
+        response = self.translate_entities_inlined_with_http_info(translate_entities_inlined_request, **kwargs)
+        return response.data
 
     @validate_call
     def translate_entities_inlined_with_http_info(self, translate_entities_inlined_request: TranslateEntitiesInlinedRequest, **kwargs) -> ApiResponse[TranslateEntitiesResponse]:
@@ -935,12 +935,12 @@ class ScriptedTranslationApi:
         :return: Returns the result object.
         :rtype: Dialect
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_translation_dialect_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_translation_dialect_with_http_info(upsert_dialect_request, **kwargs)  # noqa: E501
+        response = self.upsert_translation_dialect_with_http_info(upsert_dialect_request, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_translation_dialect_with_http_info(self, upsert_dialect_request: UpsertDialectRequest, **kwargs) -> ApiResponse[Dialect]:
@@ -1062,12 +1062,12 @@ class ScriptedTranslationApi:
         :return: Returns the result object.
         :rtype: TranslationScript
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_translation_script_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_translation_script_with_http_info(upsert_translation_script_request, **kwargs)  # noqa: E501
+        response = self.upsert_translation_script_with_http_info(upsert_translation_script_request, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_translation_script_with_http_info(self, upsert_translation_script_request: UpsertTranslationScriptRequest, **kwargs) -> ApiResponse[TranslationScript]:
@@ -1191,9 +1191,9 @@ class ScriptedTranslationApi:
             :type vendor: str
             :param source_system: The source system of the dialect, the system that understands it. e.g. LUSID, QuantLib. (required)
             :type source_system: str
-            :param entity_type: The type of entity this dialect describes e.g. Instrument. (required)
+            :param entity_type: The type of entity this dialect describes e.g. Instrument. Available values: Instrument. (required)
             :type entity_type: str
-            :param serialisation_format: The serialisation format of a document in this dialect. e.g. JSON, XML. (required)
+            :param serialisation_format: The serialisation format of a document in this dialect. Available values: Json, Xml. (required)
             :type serialisation_format: str
             :param version: The semantic version of the dialect: MAJOR.MINOR.PATCH. (required)
             :type version: str
@@ -1205,12 +1205,12 @@ class ScriptedTranslationApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Dialect
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_translation_dialect_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_translation_dialect_with_http_info_async(scope, vendor, source_system, entity_type, serialisation_format, version, as_at, **kwargs)  # noqa: E501
+            response = await self.get_translation_dialect_with_http_info_async(scope, vendor, source_system, entity_type, serialisation_format, version, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_translation_dialect_with_http_info_async(self, scope: StrictStr, vendor: StrictStr, source_system: StrictStr, entity_type: StrictStr, serialisation_format: StrictStr, version: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[Dialect]:
@@ -1224,9 +1224,9 @@ class ScriptedTranslationApi:
             :type vendor: str
             :param source_system: The source system of the dialect, the system that understands it. e.g. LUSID, QuantLib. (required)
             :type source_system: str
-            :param entity_type: The type of entity this dialect describes e.g. Instrument. (required)
+            :param entity_type: The type of entity this dialect describes e.g. Instrument. Available values: Instrument. (required)
             :type entity_type: str
-            :param serialisation_format: The serialisation format of a document in this dialect. e.g. JSON, XML. (required)
+            :param serialisation_format: The serialisation format of a document in this dialect. Available values: Json, Xml. (required)
             :type serialisation_format: str
             :param version: The semantic version of the dialect: MAJOR.MINOR.PATCH. (required)
             :type version: str
@@ -1371,12 +1371,12 @@ class ScriptedTranslationApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: TranslationScript
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_translation_script_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_translation_script_with_http_info_async(scope, code, version, as_at, **kwargs)  # noqa: E501
+            response = await self.get_translation_script_with_http_info_async(scope, code, version, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_translation_script_with_http_info_async(self, scope: StrictStr, code: StrictStr, version: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[TranslationScript]:
@@ -1519,12 +1519,12 @@ class ScriptedTranslationApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfDialectId
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_dialect_ids_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_dialect_ids_with_http_info_async(as_at, page, limit, filter, **kwargs)  # noqa: E501
+            response = await self.list_dialect_ids_with_http_info_async(as_at, page, limit, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def list_dialect_ids_with_http_info_async(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfDialectId]:
@@ -1667,12 +1667,12 @@ class ScriptedTranslationApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfTranslationScriptId
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_translation_script_ids_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_translation_script_ids_with_http_info_async(as_at, limit, filter, page, **kwargs)  # noqa: E501
+            response = await self.list_translation_script_ids_with_http_info_async(as_at, limit, filter, page, **kwargs)
+            return response.data
 
     @validate_call
     async def list_translation_script_ids_with_http_info_async(self, as_at: Optional[datetime] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfTranslationScriptId]:
@@ -1809,12 +1809,12 @@ class ScriptedTranslationApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: TranslateEntitiesResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the translate_entities_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.translate_entities_with_http_info_async(translate_entities_request, **kwargs)  # noqa: E501
+            response = await self.translate_entities_with_http_info_async(translate_entities_request, **kwargs)
+            return response.data
 
     @validate_call
     async def translate_entities_with_http_info_async(self, translate_entities_request: TranslateEntitiesRequest, **kwargs) -> ApiResponse[TranslateEntitiesResponse]:
@@ -1937,12 +1937,12 @@ class ScriptedTranslationApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: TranslateEntitiesResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the translate_entities_inlined_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.translate_entities_inlined_with_http_info_async(translate_entities_inlined_request, **kwargs)  # noqa: E501
+            response = await self.translate_entities_inlined_with_http_info_async(translate_entities_inlined_request, **kwargs)
+            return response.data
 
     @validate_call
     async def translate_entities_inlined_with_http_info_async(self, translate_entities_inlined_request: TranslateEntitiesInlinedRequest, **kwargs) -> ApiResponse[TranslateEntitiesResponse]:
@@ -2065,12 +2065,12 @@ class ScriptedTranslationApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Dialect
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_translation_dialect_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_translation_dialect_with_http_info_async(upsert_dialect_request, **kwargs)  # noqa: E501
+            response = await self.upsert_translation_dialect_with_http_info_async(upsert_dialect_request, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_translation_dialect_with_http_info_async(self, upsert_dialect_request: UpsertDialectRequest, **kwargs) -> ApiResponse[Dialect]:
@@ -2193,12 +2193,12 @@ class ScriptedTranslationApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: TranslationScript
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_translation_script_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_translation_script_with_http_info_async(upsert_translation_script_request, **kwargs)  # noqa: E501
+            response = await self.upsert_translation_script_with_http_info_async(upsert_translation_script_request, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_translation_script_with_http_info_async(self, upsert_translation_script_request: UpsertTranslationScriptRequest, **kwargs) -> ApiResponse[TranslationScript]:

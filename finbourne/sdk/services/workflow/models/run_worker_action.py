@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -37,7 +37,7 @@ class RunWorkerAction(BaseModel):
     worker_status_triggers: Optional[WorkerStatusTriggers] = Field(default=None, alias="workerStatusTriggers")
     child_task_configurations: Optional[List[ResultantChildTaskConfiguration]] = Field(default=None, description="Tasks can be generated from run worker results; this is the configuration", alias="childTaskConfigurations")
     worker_timeout: Optional[StrictInt] = Field(default=None, description="Worker WorkerTimeout in seconds", alias="workerTimeout")
-    __properties = ["type", "workerId", "workerAsAt", "workerParameters", "workerStatusTriggers", "childTaskConfigurations", "workerTimeout"]
+    __properties: ClassVar[List[str]] = ["type", "workerId", "workerAsAt", "workerParameters", "workerStatusTriggers", "childTaskConfigurations", "workerTimeout"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -195,16 +195,16 @@ class RunWorkerAction(BaseModel):
 
         _obj = RunWorkerAction.model_validate({
             "type": obj.get("type"),
-            "worker_id": ResourceId.from_dict(obj.get("workerId")) if obj.get("workerId") is not None else None,
+            "worker_id": ResourceId.from_dict(_v) if (_v := obj.get("workerId")) is not None else None,
             "worker_as_at": obj.get("workerAsAt"),
             "worker_parameters": dict(
                 (_k, FieldMapping.from_dict(_v))
-                for _k, _v in obj.get("workerParameters").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("workerParameters") is not None
+            if (_val := obj.get("workerParameters")) is not None
             else None,
-            "worker_status_triggers": WorkerStatusTriggers.from_dict(obj.get("workerStatusTriggers")) if obj.get("workerStatusTriggers") is not None else None,
-            "child_task_configurations": [ResultantChildTaskConfiguration.from_dict(_item) for _item in obj.get("childTaskConfigurations")] if obj.get("childTaskConfigurations") is not None else None,
+            "worker_status_triggers": WorkerStatusTriggers.from_dict(_v) if (_v := obj.get("workerStatusTriggers")) is not None else None,
+            "child_task_configurations": [ResultantChildTaskConfiguration.from_dict(_item) for _item in _v] if (_v := obj.get("childTaskConfigurations")) is not None else None,
             "worker_timeout": obj.get("workerTimeout")
         })
         return _obj

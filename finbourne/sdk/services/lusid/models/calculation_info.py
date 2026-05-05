@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -26,10 +26,10 @@ class CalculationInfo(BaseModel):
     """
     CalculationInfo
     """
-    calculation_method:  StrictStr = Field(...,alias="calculationMethod", description="Method of calculating the fees or commission among: BasisPoints, Percentage, Rate, Flat etc.") 
-    multiplier:  StrictStr = Field(...,alias="multiplier", description="Field by which to multiply the numerical amount. Eg: Quantity, Value") 
+    calculation_method:  StrictStr = Field(...,alias="calculationMethod", description="Method of calculating the fees or commission among: BasisPoints, Percentage, Rate, Flat etc. Available values: Rate, BasisPoints, Percentage, Flat.") 
+    multiplier:  StrictStr = Field(...,alias="multiplier", description="Field by which to multiply the numerical amount. Available values: None, Quantity, Value.") 
     calculation_amount: Union[StrictFloat, StrictInt] = Field(description="Numerical fee amount", alias="calculationAmount")
-    __properties = ["calculationMethod", "multiplier", "calculationAmount"]
+    __properties: ClassVar[List[str]] = ["calculationMethod", "multiplier", "calculationAmount"]
 
     model_config = ConfigDict(
         populate_by_name=True,

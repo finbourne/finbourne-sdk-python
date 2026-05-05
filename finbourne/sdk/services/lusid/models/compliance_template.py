@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class ComplianceTemplate(BaseModel):
     tags: Optional[List[StrictStr]] = Field(default=None, description="Tags for a Compliance Template")
     variations: List[ComplianceTemplateVariation] = Field(description="Variation details of a Compliance Template")
     links: Optional[List[Link]] = None
-    __properties = ["id", "description", "tags", "variations", "links"]
+    __properties: ClassVar[List[str]] = ["id", "description", "tags", "variations", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -109,11 +109,11 @@ class ComplianceTemplate(BaseModel):
             return ComplianceTemplate.model_validate(obj)
 
         _obj = ComplianceTemplate.model_validate({
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
             "description": obj.get("description"),
             "tags": obj.get("tags"),
-            "variations": [ComplianceTemplateVariation.from_dict(_item) for _item in obj.get("variations")] if obj.get("variations") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "variations": [ComplianceTemplateVariation.from_dict(_item) for _item in _v] if (_v := obj.get("variations")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

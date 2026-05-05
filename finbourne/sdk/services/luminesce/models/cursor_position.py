@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class CursorPosition(BaseModel):
     """
     row: StrictInt = Field(description="Row (0 based) of the user's cursor position")
     column: StrictInt = Field(description="Column (0 based) of the user's cursor position")
-    __properties = ["row", "column"]
+    __properties: ClassVar[List[str]] = ["row", "column"]
 
     model_config = ConfigDict(
         populate_by_name=True,

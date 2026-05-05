@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class OrderGraphBlockAllocationDetail(BaseModel):
     id: ResourceId
     allocated_order_id: Optional[ResourceId] = Field(default=None, alias="allocatedOrderId")
     quantity: Union[StrictFloat, StrictInt] = Field(description="The quantity of this allocation, with direction relative to the containing block.")
-    __properties = ["id", "allocatedOrderId", "quantity"]
+    __properties: ClassVar[List[str]] = ["id", "allocatedOrderId", "quantity"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -84,8 +84,8 @@ class OrderGraphBlockAllocationDetail(BaseModel):
             return OrderGraphBlockAllocationDetail.model_validate(obj)
 
         _obj = OrderGraphBlockAllocationDetail.model_validate({
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
-            "allocated_order_id": ResourceId.from_dict(obj.get("allocatedOrderId")) if obj.get("allocatedOrderId") is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
+            "allocated_order_id": ResourceId.from_dict(_v) if (_v := obj.get("allocatedOrderId")) is not None else None,
             "quantity": obj.get("quantity")
         })
         return _obj

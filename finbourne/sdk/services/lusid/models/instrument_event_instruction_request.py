@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -36,7 +36,7 @@ class InstrumentEventInstructionRequest(BaseModel):
     quantity_instructed: Optional[QuantityInstructed] = Field(default=None, alias="quantityInstructed")
     tax_lot_id:  Optional[StrictStr] = Field(default=None,alias="taxLotId", description="For loan facility holding instructions, the tax lot id of the holding for which the instruction will apply") 
     ignore_cost_impact: Optional[StrictBool] = Field(default=None, description="For loan facility holding instructions, set this flag to 'true' if you want the event to not impact cost. If you want to use this option, do not add multiple instructions to the same tax lot or you will get undefined behaviour.", alias="ignoreCostImpact")
-    __properties = ["instrumentEventInstructionId", "instrumentEventId", "instructionType", "electionKey", "holdingId", "entitlementDateInstructed", "quantityInstructed", "taxLotId", "ignoreCostImpact"]
+    __properties: ClassVar[List[str]] = ["instrumentEventInstructionId", "instrumentEventId", "instructionType", "electionKey", "holdingId", "entitlementDateInstructed", "quantityInstructed", "taxLotId", "ignoreCostImpact"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -113,7 +113,7 @@ class InstrumentEventInstructionRequest(BaseModel):
             "election_key": obj.get("electionKey"),
             "holding_id": obj.get("holdingId"),
             "entitlement_date_instructed": obj.get("entitlementDateInstructed"),
-            "quantity_instructed": QuantityInstructed.from_dict(obj.get("quantityInstructed")) if obj.get("quantityInstructed") is not None else None,
+            "quantity_instructed": QuantityInstructed.from_dict(_v) if (_v := obj.get("quantityInstructed")) is not None else None,
             "tax_lot_id": obj.get("taxLotId"),
             "ignore_cost_impact": obj.get("ignoreCostImpact")
         })

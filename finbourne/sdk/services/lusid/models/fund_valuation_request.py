@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -44,7 +44,7 @@ class FundValuationRequest(BaseModel):
     fund_valuation_schedule: FundValuationSchedule = Field(alias="fundValuationSchedule")
     market_data_overrides: Optional[MarketDataOverrides] = Field(default=None, alias="marketDataOverrides")
     corporate_action_source_id: Optional[ResourceId] = Field(default=None, alias="corporateActionSourceId")
-    __properties = ["asAt", "metrics", "groupBy", "filters", "sort", "equipWithSubtotals", "returnResultAsExpandedTypes", "includeOrderFlow", "fundValuationSchedule", "marketDataOverrides", "corporateActionSourceId"]
+    __properties: ClassVar[List[str]] = ["asAt", "metrics", "groupBy", "filters", "sort", "equipWithSubtotals", "returnResultAsExpandedTypes", "includeOrderFlow", "fundValuationSchedule", "marketDataOverrides", "corporateActionSourceId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -146,16 +146,16 @@ class FundValuationRequest(BaseModel):
 
         _obj = FundValuationRequest.model_validate({
             "as_at": obj.get("asAt"),
-            "metrics": [AggregateSpec.from_dict(_item) for _item in obj.get("metrics")] if obj.get("metrics") is not None else None,
+            "metrics": [AggregateSpec.from_dict(_item) for _item in _v] if (_v := obj.get("metrics")) is not None else None,
             "group_by": obj.get("groupBy"),
-            "filters": [PropertyFilter.from_dict(_item) for _item in obj.get("filters")] if obj.get("filters") is not None else None,
-            "sort": [OrderBySpec.from_dict(_item) for _item in obj.get("sort")] if obj.get("sort") is not None else None,
+            "filters": [PropertyFilter.from_dict(_item) for _item in _v] if (_v := obj.get("filters")) is not None else None,
+            "sort": [OrderBySpec.from_dict(_item) for _item in _v] if (_v := obj.get("sort")) is not None else None,
             "equip_with_subtotals": obj.get("equipWithSubtotals"),
             "return_result_as_expanded_types": obj.get("returnResultAsExpandedTypes"),
-            "include_order_flow": OrderFlowConfiguration.from_dict(obj.get("includeOrderFlow")) if obj.get("includeOrderFlow") is not None else None,
-            "fund_valuation_schedule": FundValuationSchedule.from_dict(obj.get("fundValuationSchedule")) if obj.get("fundValuationSchedule") is not None else None,
-            "market_data_overrides": MarketDataOverrides.from_dict(obj.get("marketDataOverrides")) if obj.get("marketDataOverrides") is not None else None,
-            "corporate_action_source_id": ResourceId.from_dict(obj.get("corporateActionSourceId")) if obj.get("corporateActionSourceId") is not None else None
+            "include_order_flow": OrderFlowConfiguration.from_dict(_v) if (_v := obj.get("includeOrderFlow")) is not None else None,
+            "fund_valuation_schedule": FundValuationSchedule.from_dict(_v) if (_v := obj.get("fundValuationSchedule")) is not None else None,
+            "market_data_overrides": MarketDataOverrides.from_dict(_v) if (_v := obj.get("marketDataOverrides")) is not None else None,
+            "corporate_action_source_id": ResourceId.from_dict(_v) if (_v := obj.get("corporateActionSourceId")) is not None else None
         })
         return _obj
 

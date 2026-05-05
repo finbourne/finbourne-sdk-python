@@ -62,12 +62,12 @@ class SimplePositionPortfoliosApi:
         :return: Returns the result object.
         :rtype: Portfolio
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_simple_position_portfolio_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_simple_position_portfolio_with_http_info(scope, create_simple_position_portfolio_request, **kwargs)  # noqa: E501
+        response = self.create_simple_position_portfolio_with_http_info(scope, create_simple_position_portfolio_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_simple_position_portfolio_with_http_info(self, scope: StrictStr, create_simple_position_portfolio_request: CreateSimplePositionPortfolioRequest, **kwargs) -> ApiResponse[Portfolio]:
@@ -201,12 +201,12 @@ class SimplePositionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Portfolio
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_simple_position_portfolio_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_simple_position_portfolio_with_http_info_async(scope, create_simple_position_portfolio_request, **kwargs)  # noqa: E501
+            response = await self.create_simple_position_portfolio_with_http_info_async(scope, create_simple_position_portfolio_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_simple_position_portfolio_with_http_info_async(self, scope: StrictStr, create_simple_position_portfolio_request: CreateSimplePositionPortfolioRequest, **kwargs) -> ApiResponse[Portfolio]:

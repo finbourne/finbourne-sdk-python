@@ -61,12 +61,12 @@ class ApplicationsApi:
         :return: Returns the result object.
         :rtype: OAuthApplication
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_application_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_application_with_http_info(create_application_request, **kwargs)  # noqa: E501
+        response = self.create_application_with_http_info(create_application_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_application_with_http_info(self, create_application_request: Optional[CreateApplicationRequest] = None, **kwargs) -> ApiResponse[OAuthApplication]:
@@ -188,15 +188,15 @@ class ApplicationsApi:
         :return: Returns the result object.
         :rtype: None
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_application_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_application_with_http_info(id, **kwargs)  # noqa: E501
+        response = self.delete_application_with_http_info(id, **kwargs)
+        return response.data
 
     @validate_call
-    def delete_application_with_http_info(self, id: StrictStr, **kwargs) -> None:
+    def delete_application_with_http_info(self, id: StrictStr, **kwargs) -> ApiResponse[None]:
         """[EARLY ACCESS] DeleteApplication: Delete Application  # noqa: E501
 
         Delete the specified application  # noqa: E501
@@ -307,12 +307,12 @@ class ApplicationsApi:
         :return: Returns the result object.
         :rtype: OAuthApplication
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_application_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_application_with_http_info(id, include_secret, **kwargs)  # noqa: E501
+        response = self.get_application_with_http_info(id, include_secret, **kwargs)
+        return response.data
 
     @validate_call
     def get_application_with_http_info(self, id: StrictStr, include_secret: Optional[bool] = None, **kwargs) -> ApiResponse[OAuthApplication]:
@@ -432,12 +432,12 @@ class ApplicationsApi:
         :return: Returns the result object.
         :rtype: List[OAuthApplication]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_applications_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_applications_with_http_info(**kwargs)  # noqa: E501
+        response = self.list_applications_with_http_info(**kwargs)
+        return response.data
 
     @validate_call
     def list_applications_with_http_info(self, **kwargs) -> ApiResponse[List[OAuthApplication]]:
@@ -545,12 +545,12 @@ class ApplicationsApi:
         :return: Returns the result object.
         :rtype: OAuthApplication
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the rotate_application_secrets_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.rotate_application_secrets_with_http_info(id, **kwargs)  # noqa: E501
+        response = self.rotate_application_secrets_with_http_info(id, **kwargs)
+        return response.data
 
     @validate_call
     def rotate_application_secrets_with_http_info(self, id: StrictStr, **kwargs) -> ApiResponse[OAuthApplication]:
@@ -669,12 +669,12 @@ class ApplicationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: OAuthApplication
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_application_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_application_with_http_info_async(create_application_request, **kwargs)  # noqa: E501
+            response = await self.create_application_with_http_info_async(create_application_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_application_with_http_info_async(self, create_application_request: Optional[CreateApplicationRequest] = None, **kwargs) -> ApiResponse[OAuthApplication]:
@@ -797,15 +797,15 @@ class ApplicationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: None
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_application_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_application_with_http_info_async(id, **kwargs)  # noqa: E501
+            response = await self.delete_application_with_http_info_async(id, **kwargs)
+            return response.data
 
     @validate_call
-    async def delete_application_with_http_info_async(self, id: StrictStr, **kwargs) -> None:
+    async def delete_application_with_http_info_async(self, id: StrictStr, **kwargs) -> ApiResponse[None]:
             """[EARLY ACCESS] DeleteApplication: Delete Application  # noqa: E501
 
             Delete the specified application  # noqa: E501
@@ -917,12 +917,12 @@ class ApplicationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: OAuthApplication
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_application_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_application_with_http_info_async(id, include_secret, **kwargs)  # noqa: E501
+            response = await self.get_application_with_http_info_async(id, include_secret, **kwargs)
+            return response.data
 
     @validate_call
     async def get_application_with_http_info_async(self, id: StrictStr, include_secret: Optional[bool] = None, **kwargs) -> ApiResponse[OAuthApplication]:
@@ -1043,12 +1043,12 @@ class ApplicationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: List[OAuthApplication]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_applications_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_applications_with_http_info_async(**kwargs)  # noqa: E501
+            response = await self.list_applications_with_http_info_async(**kwargs)
+            return response.data
 
     @validate_call
     async def list_applications_with_http_info_async(self, **kwargs) -> ApiResponse[List[OAuthApplication]]:
@@ -1157,12 +1157,12 @@ class ApplicationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: OAuthApplication
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the rotate_application_secrets_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.rotate_application_secrets_with_http_info_async(id, **kwargs)  # noqa: E501
+            response = await self.rotate_application_secrets_with_http_info_async(id, **kwargs)
+            return response.data
 
     @validate_call
     async def rotate_application_secrets_with_http_info_async(self, id: StrictStr, **kwargs) -> ApiResponse[OAuthApplication]:

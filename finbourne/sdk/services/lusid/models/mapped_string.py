@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class MappedString(BaseModel):
     right_value:  Optional[StrictStr] = Field(default=None,alias="rightValue") 
     mapping_direction:  Optional[StrictStr] = Field(default=None,alias="mappingDirection") 
     is_case_sensitive: Optional[StrictBool] = Field(default=None, alias="isCaseSensitive")
-    __properties = ["leftValue", "rightValue", "mappingDirection", "isCaseSensitive"]
+    __properties: ClassVar[List[str]] = ["leftValue", "rightValue", "mappingDirection", "isCaseSensitive"]
 
     model_config = ConfigDict(
         populate_by_name=True,

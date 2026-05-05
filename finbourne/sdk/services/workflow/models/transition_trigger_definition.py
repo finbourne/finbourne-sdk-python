@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class TransitionTriggerDefinition(BaseModel):
     trigger: TriggerSchema
     display_name:  Optional[StrictStr] = Field(default=None,alias="displayName", description="Display name for trigger") 
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="Description of trigger") 
-    __properties = ["name", "trigger", "displayName", "description"]
+    __properties: ClassVar[List[str]] = ["name", "trigger", "displayName", "description"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -93,7 +93,7 @@ class TransitionTriggerDefinition(BaseModel):
 
         _obj = TransitionTriggerDefinition.model_validate({
             "name": obj.get("name"),
-            "trigger": TriggerSchema.from_dict(obj.get("trigger")) if obj.get("trigger") is not None else None,
+            "trigger": TriggerSchema.from_dict(_v) if (_v := obj.get("trigger")) is not None else None,
             "display_name": obj.get("displayName"),
             "description": obj.get("description")
         })

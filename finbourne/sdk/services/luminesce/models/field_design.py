@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -37,7 +37,7 @@ class FieldDesign(BaseModel):
     filters: Optional[List[FilterTermDesign]] = Field(default=None, description="Filter clauses to apply to this field (And'ed together)")
     aggregations: Optional[List[Aggregation]] = Field(default=None, description="Aggregations to apply (as opposed to simply selecting)")
     is_expression: Optional[StrictBool] = Field(default=None, description="Is this field an expression", alias="isExpression")
-    __properties = ["name", "tableAlias", "alias", "dataType", "shouldSelect", "filters", "aggregations", "isExpression"]
+    __properties: ClassVar[List[str]] = ["name", "tableAlias", "alias", "dataType", "shouldSelect", "filters", "aggregations", "isExpression"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -124,8 +124,8 @@ class FieldDesign(BaseModel):
             "alias": obj.get("alias"),
             "data_type": obj.get("dataType"),
             "should_select": obj.get("shouldSelect"),
-            "filters": [FilterTermDesign.from_dict(_item) for _item in obj.get("filters")] if obj.get("filters") is not None else None,
-            "aggregations": [Aggregation.from_dict(_item) for _item in obj.get("aggregations")] if obj.get("aggregations") is not None else None,
+            "filters": [FilterTermDesign.from_dict(_item) for _item in _v] if (_v := obj.get("filters")) is not None else None,
+            "aggregations": [Aggregation.from_dict(_item) for _item in _v] if (_v := obj.get("aggregations")) is not None else None,
             "is_expression": obj.get("isExpression")
         })
         return _obj

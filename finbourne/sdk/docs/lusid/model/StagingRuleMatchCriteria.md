@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **action_in** | **List[str]** | Optional | *No description available.* |
+| **action_in** | **List[str]** | Optional | Available values: Create, Update, Delete. |
 | **requesting_user** | **str** | Optional | *No description available.* |
 | **entity_attributes** | **str** | Optional | *No description available.* |
 | **changed_attribute_name_in** | **List[str]** | Optional | *No description available.* |
@@ -18,7 +18,7 @@
 from finbourne.sdk.services.lusid.models.StagingRuleMatchCriteria import StagingRuleMatchCriteria
 
 instance = StagingRuleMatchCriteria(
-    action_in=,  # optional
+    action_in=,  # optional — Available values: Create, Update, Delete.
     requesting_user="...",  # optional
     entity_attributes="...",  # optional
     changed_attribute_name_in=  # optional

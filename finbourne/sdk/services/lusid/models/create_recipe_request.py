@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class CreateRecipeRequest(BaseModel):
     inline_recipe: Optional[ConfigurationRecipe] = Field(default=None, alias="inlineRecipe")
     as_at: Optional[datetime] = Field(default=None, description="The asAt date to use", alias="asAt")
     effective_at:  StrictStr = Field(...,alias="effectiveAt", description="The market data time, i.e. the recipe generated will look for rules with this effectiveAt.") 
-    __properties = ["recipeCreationMarketDataScopes", "recipeId", "inlineRecipe", "asAt", "effectiveAt"]
+    __properties: ClassVar[List[str]] = ["recipeCreationMarketDataScopes", "recipeId", "inlineRecipe", "asAt", "effectiveAt"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -93,8 +93,8 @@ class CreateRecipeRequest(BaseModel):
 
         _obj = CreateRecipeRequest.model_validate({
             "recipe_creation_market_data_scopes": obj.get("recipeCreationMarketDataScopes"),
-            "recipe_id": ResourceId.from_dict(obj.get("recipeId")) if obj.get("recipeId") is not None else None,
-            "inline_recipe": ConfigurationRecipe.from_dict(obj.get("inlineRecipe")) if obj.get("inlineRecipe") is not None else None,
+            "recipe_id": ResourceId.from_dict(_v) if (_v := obj.get("recipeId")) is not None else None,
+            "inline_recipe": ConfigurationRecipe.from_dict(_v) if (_v := obj.get("inlineRecipe")) is not None else None,
             "as_at": obj.get("asAt"),
             "effective_at": obj.get("effectiveAt")
         })

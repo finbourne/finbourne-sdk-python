@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class CreateDataMapRequest(BaseModel):
     """
     id: DataMapKey
     data: Optional[DataMapping] = None
-    __properties = ["id", "data"]
+    __properties: ClassVar[List[str]] = ["id", "data"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -84,8 +84,8 @@ class CreateDataMapRequest(BaseModel):
             return CreateDataMapRequest.model_validate(obj)
 
         _obj = CreateDataMapRequest.model_validate({
-            "id": DataMapKey.from_dict(obj.get("id")) if obj.get("id") is not None else None,
-            "data": DataMapping.from_dict(obj.get("data")) if obj.get("data") is not None else None
+            "id": DataMapKey.from_dict(_v) if (_v := obj.get("id")) is not None else None,
+            "data": DataMapping.from_dict(_v) if (_v := obj.get("data")) is not None else None
         })
         return _obj
 

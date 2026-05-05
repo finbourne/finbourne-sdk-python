@@ -86,12 +86,12 @@ class OrderManagementApi:
         :return: Returns the result object.
         :rtype: BookTransactionsResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the book_transactions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.book_transactions_with_http_info(book_transactions_request, apply_fees_and_commission, mark_orders_and_allocations_as_booked, **kwargs)  # noqa: E501
+        response = self.book_transactions_with_http_info(book_transactions_request, apply_fees_and_commission, mark_orders_and_allocations_as_booked, **kwargs)
+        return response.data
 
     @validate_call
     def book_transactions_with_http_info(self, book_transactions_request: BookTransactionsRequest, apply_fees_and_commission: Optional[bool] = None, mark_orders_and_allocations_as_booked: Optional[bool] = None, **kwargs) -> ApiResponse[BookTransactionsResponse]:
@@ -225,12 +225,12 @@ class OrderManagementApi:
         :return: Returns the result object.
         :rtype: CancelOrdersResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the cancel_orders_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.cancel_orders_with_http_info(request_body, **kwargs)  # noqa: E501
+        response = self.cancel_orders_with_http_info(request_body, **kwargs)
+        return response.data
 
     @validate_call
     def cancel_orders_with_http_info(self, request_body: Dict[str, ResourceId], **kwargs) -> ApiResponse[CancelOrdersResponse]:
@@ -352,12 +352,12 @@ class OrderManagementApi:
         :return: Returns the result object.
         :rtype: CancelOrdersAndMoveRemainingResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the cancel_orders_and_move_remaining_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.cancel_orders_and_move_remaining_with_http_info(request_body, **kwargs)  # noqa: E501
+        response = self.cancel_orders_and_move_remaining_with_http_info(request_body, **kwargs)
+        return response.data
 
     @validate_call
     def cancel_orders_and_move_remaining_with_http_info(self, request_body: Dict[str, CancelOrdersAndMoveRemainingRequest], **kwargs) -> ApiResponse[CancelOrdersAndMoveRemainingResponse]:
@@ -479,12 +479,12 @@ class OrderManagementApi:
         :return: Returns the result object.
         :rtype: CancelPlacementsResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the cancel_placements_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.cancel_placements_with_http_info(request_body, **kwargs)  # noqa: E501
+        response = self.cancel_placements_with_http_info(request_body, **kwargs)
+        return response.data
 
     @validate_call
     def cancel_placements_with_http_info(self, request_body: Dict[str, ResourceId], **kwargs) -> ApiResponse[CancelPlacementsResponse]:
@@ -606,12 +606,12 @@ class OrderManagementApi:
         :return: Returns the result object.
         :rtype: ResourceListOfBlockAndOrders
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_orders_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_orders_with_http_info(block_and_orders_create_request, **kwargs)  # noqa: E501
+        response = self.create_orders_with_http_info(block_and_orders_create_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_orders_with_http_info(self, block_and_orders_create_request: BlockAndOrdersCreateRequest, **kwargs) -> ApiResponse[ResourceListOfBlockAndOrders]:
@@ -737,12 +737,12 @@ class OrderManagementApi:
         :return: Returns the result object.
         :rtype: ResourceListOfChangeIntervalWithOrderManagementDetail
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_order_history_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_order_history_with_http_info(scope, code, as_at, **kwargs)  # noqa: E501
+        response = self.get_order_history_with_http_info(scope, code, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_order_history_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfChangeIntervalWithOrderManagementDetail]:
@@ -873,12 +873,12 @@ class OrderManagementApi:
         :return: Returns the result object.
         :rtype: ResourceListOfMovedOrderToDifferentBlockResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the move_orders_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.move_orders_with_http_info(move_orders_to_different_blocks_request, **kwargs)  # noqa: E501
+        response = self.move_orders_with_http_info(move_orders_to_different_blocks_request, **kwargs)
+        return response.data
 
     @validate_call
     def move_orders_with_http_info(self, move_orders_to_different_blocks_request: MoveOrdersToDifferentBlocksRequest, **kwargs) -> ApiResponse[ResourceListOfMovedOrderToDifferentBlockResponse]:
@@ -1000,12 +1000,12 @@ class OrderManagementApi:
         :return: Returns the result object.
         :rtype: ResourceListOfPlacement
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the place_blocks_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.place_blocks_with_http_info(place_blocks_request, **kwargs)  # noqa: E501
+        response = self.place_blocks_with_http_info(place_blocks_request, **kwargs)
+        return response.data
 
     @validate_call
     def place_blocks_with_http_info(self, place_blocks_request: Optional[PlaceBlocksRequest] = None, **kwargs) -> ApiResponse[ResourceListOfPlacement]:
@@ -1129,12 +1129,12 @@ class OrderManagementApi:
         :return: Returns the result object.
         :rtype: AllocationServiceRunResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the run_allocation_service_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.run_allocation_service_with_http_info(resource_id, allocation_algorithm, **kwargs)  # noqa: E501
+        response = self.run_allocation_service_with_http_info(resource_id, allocation_algorithm, **kwargs)
+        return response.data
 
     @validate_call
     def run_allocation_service_with_http_info(self, resource_id: List[ResourceId], allocation_algorithm: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AllocationServiceRunResponse]:
@@ -1264,12 +1264,12 @@ class OrderManagementApi:
         :return: Returns the result object.
         :rtype: AllocationServiceRunResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the run_allocation_service_with_weights_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.run_allocation_service_with_weights_with_http_info(weighted_allocation_service_run_request, allocation_algorithm, **kwargs)  # noqa: E501
+        response = self.run_allocation_service_with_weights_with_http_info(weighted_allocation_service_run_request, allocation_algorithm, **kwargs)
+        return response.data
 
     @validate_call
     def run_allocation_service_with_weights_with_http_info(self, weighted_allocation_service_run_request: WeightedAllocationServiceRunRequest, allocation_algorithm: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AllocationServiceRunResponse]:
@@ -1397,12 +1397,12 @@ class OrderManagementApi:
         :return: Returns the result object.
         :rtype: SweepBlocksResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the sweep_blocks_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.sweep_blocks_with_http_info(sweep_blocks_request, **kwargs)  # noqa: E501
+        response = self.sweep_blocks_with_http_info(sweep_blocks_request, **kwargs)
+        return response.data
 
     @validate_call
     def sweep_blocks_with_http_info(self, sweep_blocks_request: SweepBlocksRequest, **kwargs) -> ApiResponse[SweepBlocksResponse]:
@@ -1524,12 +1524,12 @@ class OrderManagementApi:
         :return: Returns the result object.
         :rtype: UpdateOrdersResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_orders_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_orders_with_http_info(request_body, **kwargs)  # noqa: E501
+        response = self.update_orders_with_http_info(request_body, **kwargs)
+        return response.data
 
     @validate_call
     def update_orders_with_http_info(self, request_body: Dict[str, OrderUpdateRequest], **kwargs) -> ApiResponse[UpdateOrdersResponse]:
@@ -1651,12 +1651,12 @@ class OrderManagementApi:
         :return: Returns the result object.
         :rtype: UpdatePlacementsResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_placements_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_placements_with_http_info(request_body, **kwargs)  # noqa: E501
+        response = self.update_placements_with_http_info(request_body, **kwargs)
+        return response.data
 
     @validate_call
     def update_placements_with_http_info(self, request_body: Dict[str, PlacementUpdateRequest], **kwargs) -> ApiResponse[UpdatePlacementsResponse]:
@@ -1786,12 +1786,12 @@ class OrderManagementApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: BookTransactionsResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the book_transactions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.book_transactions_with_http_info_async(book_transactions_request, apply_fees_and_commission, mark_orders_and_allocations_as_booked, **kwargs)  # noqa: E501
+            response = await self.book_transactions_with_http_info_async(book_transactions_request, apply_fees_and_commission, mark_orders_and_allocations_as_booked, **kwargs)
+            return response.data
 
     @validate_call
     async def book_transactions_with_http_info_async(self, book_transactions_request: BookTransactionsRequest, apply_fees_and_commission: Optional[bool] = None, mark_orders_and_allocations_as_booked: Optional[bool] = None, **kwargs) -> ApiResponse[BookTransactionsResponse]:
@@ -1926,12 +1926,12 @@ class OrderManagementApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: CancelOrdersResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the cancel_orders_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.cancel_orders_with_http_info_async(request_body, **kwargs)  # noqa: E501
+            response = await self.cancel_orders_with_http_info_async(request_body, **kwargs)
+            return response.data
 
     @validate_call
     async def cancel_orders_with_http_info_async(self, request_body: Dict[str, ResourceId], **kwargs) -> ApiResponse[CancelOrdersResponse]:
@@ -2054,12 +2054,12 @@ class OrderManagementApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: CancelOrdersAndMoveRemainingResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the cancel_orders_and_move_remaining_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.cancel_orders_and_move_remaining_with_http_info_async(request_body, **kwargs)  # noqa: E501
+            response = await self.cancel_orders_and_move_remaining_with_http_info_async(request_body, **kwargs)
+            return response.data
 
     @validate_call
     async def cancel_orders_and_move_remaining_with_http_info_async(self, request_body: Dict[str, CancelOrdersAndMoveRemainingRequest], **kwargs) -> ApiResponse[CancelOrdersAndMoveRemainingResponse]:
@@ -2182,12 +2182,12 @@ class OrderManagementApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: CancelPlacementsResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the cancel_placements_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.cancel_placements_with_http_info_async(request_body, **kwargs)  # noqa: E501
+            response = await self.cancel_placements_with_http_info_async(request_body, **kwargs)
+            return response.data
 
     @validate_call
     async def cancel_placements_with_http_info_async(self, request_body: Dict[str, ResourceId], **kwargs) -> ApiResponse[CancelPlacementsResponse]:
@@ -2310,12 +2310,12 @@ class OrderManagementApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfBlockAndOrders
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_orders_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_orders_with_http_info_async(block_and_orders_create_request, **kwargs)  # noqa: E501
+            response = await self.create_orders_with_http_info_async(block_and_orders_create_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_orders_with_http_info_async(self, block_and_orders_create_request: BlockAndOrdersCreateRequest, **kwargs) -> ApiResponse[ResourceListOfBlockAndOrders]:
@@ -2442,12 +2442,12 @@ class OrderManagementApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfChangeIntervalWithOrderManagementDetail
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_order_history_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_order_history_with_http_info_async(scope, code, as_at, **kwargs)  # noqa: E501
+            response = await self.get_order_history_with_http_info_async(scope, code, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_order_history_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfChangeIntervalWithOrderManagementDetail]:
@@ -2579,12 +2579,12 @@ class OrderManagementApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfMovedOrderToDifferentBlockResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the move_orders_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.move_orders_with_http_info_async(move_orders_to_different_blocks_request, **kwargs)  # noqa: E501
+            response = await self.move_orders_with_http_info_async(move_orders_to_different_blocks_request, **kwargs)
+            return response.data
 
     @validate_call
     async def move_orders_with_http_info_async(self, move_orders_to_different_blocks_request: MoveOrdersToDifferentBlocksRequest, **kwargs) -> ApiResponse[ResourceListOfMovedOrderToDifferentBlockResponse]:
@@ -2707,12 +2707,12 @@ class OrderManagementApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfPlacement
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the place_blocks_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.place_blocks_with_http_info_async(place_blocks_request, **kwargs)  # noqa: E501
+            response = await self.place_blocks_with_http_info_async(place_blocks_request, **kwargs)
+            return response.data
 
     @validate_call
     async def place_blocks_with_http_info_async(self, place_blocks_request: Optional[PlaceBlocksRequest] = None, **kwargs) -> ApiResponse[ResourceListOfPlacement]:
@@ -2837,12 +2837,12 @@ class OrderManagementApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: AllocationServiceRunResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the run_allocation_service_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.run_allocation_service_with_http_info_async(resource_id, allocation_algorithm, **kwargs)  # noqa: E501
+            response = await self.run_allocation_service_with_http_info_async(resource_id, allocation_algorithm, **kwargs)
+            return response.data
 
     @validate_call
     async def run_allocation_service_with_http_info_async(self, resource_id: List[ResourceId], allocation_algorithm: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AllocationServiceRunResponse]:
@@ -2973,12 +2973,12 @@ class OrderManagementApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: AllocationServiceRunResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the run_allocation_service_with_weights_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.run_allocation_service_with_weights_with_http_info_async(weighted_allocation_service_run_request, allocation_algorithm, **kwargs)  # noqa: E501
+            response = await self.run_allocation_service_with_weights_with_http_info_async(weighted_allocation_service_run_request, allocation_algorithm, **kwargs)
+            return response.data
 
     @validate_call
     async def run_allocation_service_with_weights_with_http_info_async(self, weighted_allocation_service_run_request: WeightedAllocationServiceRunRequest, allocation_algorithm: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AllocationServiceRunResponse]:
@@ -3107,12 +3107,12 @@ class OrderManagementApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: SweepBlocksResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the sweep_blocks_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.sweep_blocks_with_http_info_async(sweep_blocks_request, **kwargs)  # noqa: E501
+            response = await self.sweep_blocks_with_http_info_async(sweep_blocks_request, **kwargs)
+            return response.data
 
     @validate_call
     async def sweep_blocks_with_http_info_async(self, sweep_blocks_request: SweepBlocksRequest, **kwargs) -> ApiResponse[SweepBlocksResponse]:
@@ -3235,12 +3235,12 @@ class OrderManagementApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: UpdateOrdersResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_orders_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_orders_with_http_info_async(request_body, **kwargs)  # noqa: E501
+            response = await self.update_orders_with_http_info_async(request_body, **kwargs)
+            return response.data
 
     @validate_call
     async def update_orders_with_http_info_async(self, request_body: Dict[str, OrderUpdateRequest], **kwargs) -> ApiResponse[UpdateOrdersResponse]:
@@ -3363,12 +3363,12 @@ class OrderManagementApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: UpdatePlacementsResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_placements_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_placements_with_http_info_async(request_body, **kwargs)  # noqa: E501
+            response = await self.update_placements_with_http_info_async(request_body, **kwargs)
+            return response.data
 
     @validate_call
     async def update_placements_with_http_info_async(self, request_body: Dict[str, PlacementUpdateRequest], **kwargs) -> ApiResponse[UpdatePlacementsResponse]:

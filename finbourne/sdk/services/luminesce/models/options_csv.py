@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -38,7 +38,7 @@ class OptionsCsv(BaseModel):
     skip_pre_header: Optional[StrictInt] = Field(default=None, description="Number of rows to ignore before the header row", alias="skipPreHeader")
     skip_post_header: Optional[StrictInt] = Field(default=None, description="Number of rows to ignore after the header row", alias="skipPostHeader")
     skip_invalid_rows: Optional[StrictBool] = Field(default=None, description="Skip invalid data rows (totally invalid ones),  This also allows for potentially wrong data if it can be handled somewhat e.g. embedded quotes misused (and still returns such rows). In either case a warning will show in the progress feedback.", alias="skipInvalidRows")
-    __properties = ["columnNames", "columnNamesWanted", "columnTypes", "inferTypeRowCount", "noHeader", "delimiter", "escape", "quote", "valuesToMakeNull", "skipPreHeader", "skipPostHeader", "skipInvalidRows"]
+    __properties: ClassVar[List[str]] = ["columnNames", "columnNamesWanted", "columnTypes", "inferTypeRowCount", "noHeader", "delimiter", "escape", "quote", "valuesToMakeNull", "skipPreHeader", "skipPostHeader", "skipInvalidRows"]
 
     model_config = ConfigDict(
         populate_by_name=True,

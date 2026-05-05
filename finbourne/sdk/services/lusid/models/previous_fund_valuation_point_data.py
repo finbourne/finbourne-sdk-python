@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class PreviousFundValuationPointData(BaseModel):
     The data for a Fund at the previous valuation point.  # noqa: E501
     """
     nav: FundPreviousNAV
-    __properties = ["nav"]
+    __properties: ClassVar[List[str]] = ["nav"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,7 +79,7 @@ class PreviousFundValuationPointData(BaseModel):
             return PreviousFundValuationPointData.model_validate(obj)
 
         _obj = PreviousFundValuationPointData.model_validate({
-            "nav": FundPreviousNAV.from_dict(obj.get("nav")) if obj.get("nav") is not None else None
+            "nav": FundPreviousNAV.from_dict(_v) if (_v := obj.get("nav")) is not None else None
         })
         return _obj
 

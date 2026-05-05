@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class ExpressionWithAlias(BaseModel):
     expression:  StrictStr = Field(...,alias="expression", description="Expression (column name, constant, complex expression, etc.)") 
     alias:  Optional[StrictStr] = Field(default=None,alias="alias", description="Column Alias for the expression") 
     flags: Optional[MappingFlags] = None
-    __properties = ["expression", "alias", "flags"]
+    __properties: ClassVar[List[str]] = ["expression", "alias", "flags"]
 
     model_config = ConfigDict(
         populate_by_name=True,

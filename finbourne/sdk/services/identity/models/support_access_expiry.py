@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -27,7 +27,7 @@ class SupportAccessExpiry(BaseModel):
     Time at which the support access expires  # noqa: E501
     """
     expiry: datetime = Field(description="DateTimeOffset at which the access will be revoked")
-    __properties = ["expiry"]
+    __properties: ClassVar[List[str]] = ["expiry"]
 
     model_config = ConfigDict(
         populate_by_name=True,

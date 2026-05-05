@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class TransactionSetConfigurationData(BaseModel):
     transaction_configs: List[TransactionConfigurationData] = Field(description="Collection of transaction type models", alias="transactionConfigs")
     side_definitions: Optional[List[SideConfigurationData]] = Field(default=None, description="Collection of side definitions", alias="sideDefinitions")
     links: Optional[List[Link]] = None
-    __properties = ["transactionConfigs", "sideDefinitions", "links"]
+    __properties: ClassVar[List[str]] = ["transactionConfigs", "sideDefinitions", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -111,9 +111,9 @@ class TransactionSetConfigurationData(BaseModel):
             return TransactionSetConfigurationData.model_validate(obj)
 
         _obj = TransactionSetConfigurationData.model_validate({
-            "transaction_configs": [TransactionConfigurationData.from_dict(_item) for _item in obj.get("transactionConfigs")] if obj.get("transactionConfigs") is not None else None,
-            "side_definitions": [SideConfigurationData.from_dict(_item) for _item in obj.get("sideDefinitions")] if obj.get("sideDefinitions") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "transaction_configs": [TransactionConfigurationData.from_dict(_item) for _item in _v] if (_v := obj.get("transactionConfigs")) is not None else None,
+            "side_definitions": [SideConfigurationData.from_dict(_item) for _item in _v] if (_v := obj.get("sideDefinitions")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

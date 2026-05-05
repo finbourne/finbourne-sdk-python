@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class FxConventions(BaseModel):
     fgn_ccy:  StrictStr = Field(...,alias="fgnCcy", description="The foreign currency") 
     dom_ccy:  StrictStr = Field(...,alias="domCcy", description="The domestic currency") 
     fixing_reference:  StrictStr = Field(...,alias="fixingReference", description="The reference name used to find the desired quote") 
-    __properties = ["fgnCcy", "domCcy", "fixingReference"]
+    __properties: ClassVar[List[str]] = ["fgnCcy", "domCcy", "fixingReference"]
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class SideConfigurationDataRequest(BaseModel):
     rate:  StrictStr = Field(...,alias="rate", description="The rate.") 
     units:  StrictStr = Field(...,alias="units", description="The units.") 
     amount:  StrictStr = Field(...,alias="amount", description="The amount.") 
-    __properties = ["side", "security", "currency", "rate", "units", "amount"]
+    __properties: ClassVar[List[str]] = ["side", "security", "currency", "rate", "units", "amount"]
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class UpdateFeeTypeRequest(BaseModel):
     display_name:  StrictStr = Field(...,alias="displayName", description="The name of the fee type.") 
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="The description of the fee type.") 
     component_transactions: List[ComponentTransaction] = Field(description="A set of component transactions that relate to the fee type to be created.", alias="componentTransactions")
-    __properties = ["displayName", "description", "componentTransactions"]
+    __properties: ClassVar[List[str]] = ["displayName", "description", "componentTransactions"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -92,7 +92,7 @@ class UpdateFeeTypeRequest(BaseModel):
         _obj = UpdateFeeTypeRequest.model_validate({
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
-            "component_transactions": [ComponentTransaction.from_dict(_item) for _item in obj.get("componentTransactions")] if obj.get("componentTransactions") is not None else None
+            "component_transactions": [ComponentTransaction.from_dict(_item) for _item in _v] if (_v := obj.get("componentTransactions")) is not None else None
         })
         return _obj
 

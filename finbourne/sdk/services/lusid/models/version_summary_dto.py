@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class VersionSummaryDto(BaseModel):
     build_version:  Optional[StrictStr] = Field(default=None,alias="buildVersion") 
     excel_version:  Optional[StrictStr] = Field(default=None,alias="excelVersion") 
     links: Optional[List[Link]] = None
-    __properties = ["apiVersion", "buildVersion", "excelVersion", "links"]
+    __properties: ClassVar[List[str]] = ["apiVersion", "buildVersion", "excelVersion", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -109,7 +109,7 @@ class VersionSummaryDto(BaseModel):
             "api_version": obj.get("apiVersion"),
             "build_version": obj.get("buildVersion"),
             "excel_version": obj.get("excelVersion"),
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

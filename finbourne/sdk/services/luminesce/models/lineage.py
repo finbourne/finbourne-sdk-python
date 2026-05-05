@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -40,7 +40,7 @@ class Lineage(BaseModel):
     documentation_as_html:  Optional[StrictStr] = Field(default=None,alias="documentationAsHtml") 
     documentation_as_mark_down:  Optional[StrictStr] = Field(default=None,alias="documentationAsMarkDown") 
     children: Optional[List[Lineage]] = None
-    __properties = ["type", "subtype", "legendText", "alias", "columnTitleTooltip", "columnTitleIcon", "explainTitle", "explainTooltip", "arrowToParentTooltip", "fullFormula", "documentationAsHtml", "documentationAsMarkDown", "children"]
+    __properties: ClassVar[List[str]] = ["type", "subtype", "legendText", "alias", "columnTitleTooltip", "columnTitleIcon", "explainTitle", "explainTooltip", "arrowToParentTooltip", "fullFormula", "documentationAsHtml", "documentationAsMarkDown", "children"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -167,7 +167,7 @@ class Lineage(BaseModel):
             "full_formula": obj.get("fullFormula"),
             "documentation_as_html": obj.get("documentationAsHtml"),
             "documentation_as_mark_down": obj.get("documentationAsMarkDown"),
-            "children": [Lineage.from_dict(_item) for _item in obj.get("children")] if obj.get("children") is not None else None
+            "children": [Lineage.from_dict(_item) for _item in _v] if (_v := obj.get("children")) is not None else None
         })
         return _obj
 

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class TransferAgencyDates(BaseModel):
     transaction_date: Optional[datetime] = Field(default=None, description="The date at which the transaction into or out of the fund is made.", alias="transactionDate")
     expected_payment_date: Optional[datetime] = Field(default=None, description="The date by which the cash is expected to be paid to or from the fund.", alias="expectedPaymentDate")
     links: Optional[List[Link]] = None
-    __properties = ["priceDate", "transactionDate", "expectedPaymentDate", "links"]
+    __properties: ClassVar[List[str]] = ["priceDate", "transactionDate", "expectedPaymentDate", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -94,7 +94,7 @@ class TransferAgencyDates(BaseModel):
             "price_date": obj.get("priceDate"),
             "transaction_date": obj.get("transactionDate"),
             "expected_payment_date": obj.get("expectedPaymentDate"),
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

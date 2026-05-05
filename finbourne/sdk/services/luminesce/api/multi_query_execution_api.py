@@ -64,12 +64,12 @@ class MultiQueryExecutionApi:
         :return: Returns the result object.
         :rtype: BackgroundQueryCancelResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the cancel_multi_query_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.cancel_multi_query_with_http_info(execution_id, **kwargs)  # noqa: E501
+        response = self.cancel_multi_query_with_http_info(execution_id, **kwargs)
+        return response.data
 
     @validate_call
     def cancel_multi_query_with_http_info(self, execution_id: StrictStr, **kwargs) -> ApiResponse[BackgroundQueryCancelResponse]:
@@ -183,12 +183,12 @@ class MultiQueryExecutionApi:
         :return: Returns the result object.
         :rtype: BackgroundMultiQueryProgressResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_progress_of_multi_query_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_progress_of_multi_query_with_http_info(execution_id, **kwargs)  # noqa: E501
+        response = self.get_progress_of_multi_query_with_http_info(execution_id, **kwargs)
+        return response.data
 
     @validate_call
     def get_progress_of_multi_query_with_http_info(self, execution_id: StrictStr, **kwargs) -> ApiResponse[BackgroundMultiQueryProgressResponse]:
@@ -322,12 +322,12 @@ class MultiQueryExecutionApi:
         :return: Returns the result object.
         :rtype: BackgroundMultiQueryResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the start_queries_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.start_queries_with_http_info(type, body, as_at, effective_at, limit1, limit2, input1, input2, input3, timeout_seconds, keep_for_seconds, **kwargs)  # noqa: E501
+        response = self.start_queries_with_http_info(type, body, as_at, effective_at, limit1, limit2, input1, input2, input3, timeout_seconds, keep_for_seconds, **kwargs)
+        return response.data
 
     @validate_call
     def start_queries_with_http_info(self, type: str, body: StrictStr, as_at: Optional[datetime] = None, effective_at: Optional[datetime] = None, limit1: Optional[int] = None, limit2: Optional[int] = None, input1: Optional[StrictStr] = None, input2: Optional[StrictStr] = None, input3: Optional[StrictStr] = None, timeout_seconds: Optional[int] = None, keep_for_seconds: Optional[int] = None, **kwargs) -> ApiResponse[BackgroundMultiQueryResponse]:
@@ -520,12 +520,12 @@ class MultiQueryExecutionApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: BackgroundQueryCancelResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the cancel_multi_query_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.cancel_multi_query_with_http_info_async(execution_id, **kwargs)  # noqa: E501
+            response = await self.cancel_multi_query_with_http_info_async(execution_id, **kwargs)
+            return response.data
 
     @validate_call
     async def cancel_multi_query_with_http_info_async(self, execution_id: StrictStr, **kwargs) -> ApiResponse[BackgroundQueryCancelResponse]:
@@ -640,12 +640,12 @@ class MultiQueryExecutionApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: BackgroundMultiQueryProgressResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_progress_of_multi_query_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_progress_of_multi_query_with_http_info_async(execution_id, **kwargs)  # noqa: E501
+            response = await self.get_progress_of_multi_query_with_http_info_async(execution_id, **kwargs)
+            return response.data
 
     @validate_call
     async def get_progress_of_multi_query_with_http_info_async(self, execution_id: StrictStr, **kwargs) -> ApiResponse[BackgroundMultiQueryProgressResponse]:
@@ -780,12 +780,12 @@ class MultiQueryExecutionApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: BackgroundMultiQueryResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the start_queries_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.start_queries_with_http_info_async(type, body, as_at, effective_at, limit1, limit2, input1, input2, input3, timeout_seconds, keep_for_seconds, **kwargs)  # noqa: E501
+            response = await self.start_queries_with_http_info_async(type, body, as_at, effective_at, limit1, limit2, input1, input2, input3, timeout_seconds, keep_for_seconds, **kwargs)
+            return response.data
 
     @validate_call
     async def start_queries_with_http_info_async(self, type: str, body: StrictStr, as_at: Optional[datetime] = None, effective_at: Optional[datetime] = None, limit1: Optional[int] = None, limit2: Optional[int] = None, input1: Optional[StrictStr] = None, input2: Optional[StrictStr] = None, input3: Optional[StrictStr] = None, timeout_seconds: Optional[int] = None, keep_for_seconds: Optional[int] = None, **kwargs) -> ApiResponse[BackgroundMultiQueryResponse]:

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class UpdateTransactionFeeRequest(BaseModel):
     txn_property_key:  Optional[StrictStr] = Field(default=None,alias="txnPropertyKey", description="The property key to which the fee value will be applied and decorated onto the transaction. Must be in the 'Transaction' property domain.") 
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="A set of properties for the transaction fee.")
     is_active: Optional[StrictBool] = Field(default=None, description="Indicates whether the transaction fee is currently active and should be applied to transactions. Optional when creating a transaction fee, defaults to true, if a value is not provided.", alias="isActive")
-    __properties = ["description", "calculation", "condition", "txnPropertyKey", "properties", "isActive"]
+    __properties: ClassVar[List[str]] = ["description", "calculation", "condition", "txnPropertyKey", "properties", "isActive"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -118,14 +118,14 @@ class UpdateTransactionFeeRequest(BaseModel):
 
         _obj = UpdateTransactionFeeRequest.model_validate({
             "description": obj.get("description"),
-            "calculation": FeeCalculationRequest.from_dict(obj.get("calculation")) if obj.get("calculation") is not None else None,
+            "calculation": FeeCalculationRequest.from_dict(_v) if (_v := obj.get("calculation")) is not None else None,
             "condition": obj.get("condition"),
             "txn_property_key": obj.get("txnPropertyKey"),
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
             "is_active": obj.get("isActive")
         })

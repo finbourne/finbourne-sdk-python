@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -37,12 +37,12 @@ class FlowConventions(BaseModel):
     reset_days: Optional[StrictInt] = Field(default=None, description="The number of Good Business Days between determination and payment of reset. Defaulted to 0 if not set.", alias="resetDays")
     leap_days_included: Optional[StrictBool] = Field(default=None, description="If this flag is set to true, the 29th of February is included in the date schedule when the business roll convention is applied.  If this flag is set to false, the business roll convention ignores February 29 for date schedules, cash flow payments etc.  This flag defaults to true if not specified, i.e., leap days are included in a date schedule generation.", alias="leapDaysIncluded")
     accrual_date_adjustment:  Optional[StrictStr] = Field(default=None,alias="accrualDateAdjustment", description="Indicates if the accrual dates are adjusted using the business day convention. The default value is 'Adjusted'.    Supported string (enumeration) values are: [Adjusted, Unadjusted].") 
-    business_day_convention:  Optional[StrictStr] = Field(default=None,alias="businessDayConvention", description="When generating a set of dates, what convention should be used for adjusting dates that coincide with a non-business day.    Supported string (enumeration) values are: [NoAdjustment, None, Previous, P, Following, F, ModifiedPrevious, MP, ModifiedFollowing, MF, HalfMonthModifiedFollowing, Nearest].  If not set, defaults to the value of RollConvention.") 
+    business_day_convention:  Optional[StrictStr] = Field(default=None,alias="businessDayConvention", description="When generating a set of dates, what convention should be used for adjusting dates that coincide with a non-business day.                If not set, defaults to the value of RollConvention. Available values: NoAdjustment, None, Previous, P, Following, F, ModifiedPrevious, MP, ModifiedFollowing, MF, HalfMonthModifiedFollowing, Nearest, Invalid.") 
     accrual_day_count_convention:  Optional[StrictStr] = Field(default=None,alias="accrualDayCountConvention", description="Optional, if not set the main DayCountConvention is used for all accrual calculations.  This only needs to be set when accrual uses a different day count to the coupon calculation.") 
     coupon_payment_lag: Optional[RelativeDateOffset] = Field(default=None, alias="couponPaymentLag")
     scope:  Optional[StrictStr] = Field(default=None,alias="scope", description="The scope used when updating or inserting the convention.") 
     code:  Optional[StrictStr] = Field(default=None,alias="code", description="The code of the convention.") 
-    __properties = ["currency", "paymentFrequency", "dayCountConvention", "rollConvention", "paymentCalendars", "resetCalendars", "settleDays", "resetDays", "leapDaysIncluded", "accrualDateAdjustment", "businessDayConvention", "accrualDayCountConvention", "couponPaymentLag", "scope", "code"]
+    __properties: ClassVar[List[str]] = ["currency", "paymentFrequency", "dayCountConvention", "rollConvention", "paymentCalendars", "resetCalendars", "settleDays", "resetDays", "leapDaysIncluded", "accrualDateAdjustment", "businessDayConvention", "accrualDayCountConvention", "couponPaymentLag", "scope", "code"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -135,7 +135,7 @@ class FlowConventions(BaseModel):
             "accrual_date_adjustment": obj.get("accrualDateAdjustment"),
             "business_day_convention": obj.get("businessDayConvention"),
             "accrual_day_count_convention": obj.get("accrualDayCountConvention"),
-            "coupon_payment_lag": RelativeDateOffset.from_dict(obj.get("couponPaymentLag")) if obj.get("couponPaymentLag") is not None else None,
+            "coupon_payment_lag": RelativeDateOffset.from_dict(_v) if (_v := obj.get("couponPaymentLag")) is not None else None,
             "scope": obj.get("scope"),
             "code": obj.get("code")
         })

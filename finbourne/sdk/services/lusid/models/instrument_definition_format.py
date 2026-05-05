@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class InstrumentDefinitionFormat(BaseModel):
     source_system:  StrictStr = Field(...,alias="sourceSystem", description="which source system does the format originate from") 
     vendor:  StrictStr = Field(...,alias="vendor", description="An instrument will potentially have been created by any number of different organisations. Some will be understood completely (e.g. LUSID's), some won't.              The provenance of an instrument indicates who \"owns\" the associated format.") 
     version:  StrictStr = Field(...,alias="version", description="Version of the document. Would be preferable to avoid the need, but LUSID will not control other organisations' trade formats.") 
-    __properties = ["sourceSystem", "vendor", "version"]
+    __properties: ClassVar[List[str]] = ["sourceSystem", "vendor", "version"]
 
     model_config = ConfigDict(
         populate_by_name=True,

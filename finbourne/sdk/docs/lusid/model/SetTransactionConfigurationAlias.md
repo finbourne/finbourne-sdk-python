@@ -7,7 +7,7 @@
 | **type** | **str** | Required | *No description available.* |
 | **description** | **str** | Required | *No description available.* |
 | **transaction_class** | **str** | Required | *No description available.* |
-| **transaction_role** | **str** | Required | *No description available.* |
+| **transaction_role** | **str** | Required | Available values: None, LongLonger, LongShorter, ShortShorter, Shorter, ShortLonger, Longer, AllRoles. |
 | **is_default** | **bool** | Optional | *No description available.* |
 
 
@@ -22,7 +22,7 @@ instance = SetTransactionConfigurationAlias(
     type="...",  # required
     description="...",  # required
     transaction_class="...",  # required
-    transaction_role="...",  # required
+    transaction_role="...",  # required — Available values: None, LongLonger, LongShorter, ShortShorter, Shorter, ShortLonger, Longer, AllRoles.
     is_default=True  # optional
 )
 ```

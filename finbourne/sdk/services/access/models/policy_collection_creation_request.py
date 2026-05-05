@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class PolicyCollectionCreationRequest(BaseModel):
     metadata: Optional[Dict[str, Optional[List[EntitlementMetadata]]]] = Field(default=None, description="Any relevant metadata associated with this resource for controlling access to this resource")
     policy_collections: Optional[List[PolicyCollectionId]] = Field(default=None, description="The identifiers of the PolicyCollections in this collection", alias="policyCollections")
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="A description of this policy collection") 
-    __properties = ["code", "policies", "metadata", "policyCollections", "description"]
+    __properties: ClassVar[List[str]] = ["code", "policies", "metadata", "policyCollections", "description"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -81,9 +81,9 @@ class PolicyCollectionCreationRequest(BaseModel):
         _field_dict_of_array = {}
         if self.metadata:
             for _key in self.metadata:
-                if self.metadata[_key]:
+                if (_items_for_key := self.metadata[_key]):
                     _field_dict_of_array[_key] = [
-                        _item.to_dict() for _item in self.metadata[_key]
+                        _item.to_dict() for _item in _items_for_key
                     ]
             _dict['metadata'] = _field_dict_of_array
         # override the default output from pydantic by calling `to_dict()` of each item in policy_collections (list)
@@ -126,18 +126,18 @@ class PolicyCollectionCreationRequest(BaseModel):
 
         _obj = PolicyCollectionCreationRequest.model_validate({
             "code": obj.get("code"),
-            "policies": [PolicyId.from_dict(_item) for _item in obj.get("policies")] if obj.get("policies") is not None else None,
+            "policies": [PolicyId.from_dict(_item) for _item in _v] if (_v := obj.get("policies")) is not None else None,
             "metadata": dict(
                 (_k,
                         [EntitlementMetadata.from_dict(_item) for _item in _v]
                         if _v is not None
                         else None
                 )
-                for _k, _v in obj.get("metadata").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("metadata") is not None
+            if (_val := obj.get("metadata")) is not None
             else None,
-            "policy_collections": [PolicyCollectionId.from_dict(_item) for _item in obj.get("policyCollections")] if obj.get("policyCollections") is not None else None,
+            "policy_collections": [PolicyCollectionId.from_dict(_item) for _item in _v] if (_v := obj.get("policyCollections")) is not None else None,
             "description": obj.get("description")
         })
         return _obj

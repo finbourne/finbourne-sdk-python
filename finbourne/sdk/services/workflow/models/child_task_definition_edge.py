@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class ChildTaskDefinitionEdge(BaseModel):
     """
     parent: Optional[VersionedTaskDefinitionId] = None
     child: Optional[VersionedTaskDefinitionId] = None
-    __properties = ["parent", "child"]
+    __properties: ClassVar[List[str]] = ["parent", "child"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -83,8 +83,8 @@ class ChildTaskDefinitionEdge(BaseModel):
             return ChildTaskDefinitionEdge.model_validate(obj)
 
         _obj = ChildTaskDefinitionEdge.model_validate({
-            "parent": VersionedTaskDefinitionId.from_dict(obj.get("parent")) if obj.get("parent") is not None else None,
-            "child": VersionedTaskDefinitionId.from_dict(obj.get("child")) if obj.get("child") is not None else None
+            "parent": VersionedTaskDefinitionId.from_dict(_v) if (_v := obj.get("parent")) is not None else None,
+            "child": VersionedTaskDefinitionId.from_dict(_v) if (_v := obj.get("child")) is not None else None
         })
         return _obj
 

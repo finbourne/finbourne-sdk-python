@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class InstrumentPaymentDiaryLeg(BaseModel):
     leg_index: Optional[StrictInt] = Field(default=None, description="Index (integer) for the leg of a payment diary.", alias="legIndex")
     leg_id:  Optional[StrictStr] = Field(default=None,alias="legId", description="Identifier string for the leg of a payment diary.") 
     rows: Optional[List[InstrumentPaymentDiaryRow]] = Field(default=None, description="List of individual cashflows within the payment diary.")
-    __properties = ["legIndex", "legId", "rows"]
+    __properties: ClassVar[List[str]] = ["legIndex", "legId", "rows"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -97,7 +97,7 @@ class InstrumentPaymentDiaryLeg(BaseModel):
         _obj = InstrumentPaymentDiaryLeg.model_validate({
             "leg_index": obj.get("legIndex"),
             "leg_id": obj.get("legId"),
-            "rows": [InstrumentPaymentDiaryRow.from_dict(_item) for _item in obj.get("rows")] if obj.get("rows") is not None else None
+            "rows": [InstrumentPaymentDiaryRow.from_dict(_item) for _item in _v] if (_v := obj.get("rows")) is not None else None
         })
         return _obj
 

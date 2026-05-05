@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class TableView(BaseModel):
     column_state: List[ColumnStateType] = Field(description="Array of all columns in the dashboard", alias="columnState")
     filters: Optional[Dict[str, FilterModel]] = Field(default=None, description="Filters applied to columns in the dashboard")
     meta: TableMeta
-    __properties = ["headerNames", "columnState", "filters", "meta"]
+    __properties: ClassVar[List[str]] = ["headerNames", "columnState", "filters", "meta"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -104,14 +104,14 @@ class TableView(BaseModel):
 
         _obj = TableView.model_validate({
             "header_names": obj.get("headerNames"),
-            "column_state": [ColumnStateType.from_dict(_item) for _item in obj.get("columnState")] if obj.get("columnState") is not None else None,
+            "column_state": [ColumnStateType.from_dict(_item) for _item in _v] if (_v := obj.get("columnState")) is not None else None,
             "filters": dict(
                 (_k, FilterModel.from_dict(_v))
-                for _k, _v in obj.get("filters").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("filters") is not None
+            if (_val := obj.get("filters")) is not None
             else None,
-            "meta": TableMeta.from_dict(obj.get("meta")) if obj.get("meta") is not None else None
+            "meta": TableMeta.from_dict(_v) if (_v := obj.get("meta")) is not None else None
         })
         return _obj
 

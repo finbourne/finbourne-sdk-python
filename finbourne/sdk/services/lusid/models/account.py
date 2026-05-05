@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,11 +29,11 @@ class Account(BaseModel):
     """
     code:  StrictStr = Field(...,alias="code", description="The code given for the Account.") 
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="A description for the Account.") 
-    type:  StrictStr = Field(...,alias="type", description="The Account type. Can have the values: Asset/Liabilities/Income/Expense/Capital/Revenue.") 
-    status:  StrictStr = Field(...,alias="status", description="The Account status. Can be Active, Inactive or Deleted. The available values are: Active, Inactive, Deleted") 
-    control:  Optional[StrictStr] = Field(default=None,alias="control", description="This allows users to specify whether this a protected Account that prevents direct manual journal adjustment. Can have the values: System/ManualIt will default to “Manual”.") 
+    type:  StrictStr = Field(...,alias="type", description="The Account type. Available values: Asset, Liabilities, Income, Expense, Capital, Revenue.") 
+    status:  StrictStr = Field(...,alias="status", description="The Account status. Available values: Active, Inactive, Deleted.") 
+    control:  Optional[StrictStr] = Field(default=None,alias="control", description="This allows users to specify whether this a protected Account that prevents direct manual journal adjustment. Default value: Manual. Available values: Manual, System.") 
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="A set of properties for the Account.")
-    __properties = ["code", "description", "type", "status", "control", "properties"]
+    __properties: ClassVar[List[str]] = ["code", "description", "type", "status", "control", "properties"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -179,9 +179,9 @@ class Account(BaseModel):
             "control": obj.get("control"),
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None
         })
         return _obj

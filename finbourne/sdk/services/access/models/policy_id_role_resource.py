@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class PolicyIdRoleResource(BaseModel):
     """
     policies: Optional[List[PolicyId]] = None
     policy_collections: Optional[List[PolicyCollectionId]] = Field(default=None, alias="policyCollections")
-    __properties = ["policies", "policyCollections"]
+    __properties: ClassVar[List[str]] = ["policies", "policyCollections"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -102,8 +102,8 @@ class PolicyIdRoleResource(BaseModel):
             return PolicyIdRoleResource.model_validate(obj)
 
         _obj = PolicyIdRoleResource.model_validate({
-            "policies": [PolicyId.from_dict(_item) for _item in obj.get("policies")] if obj.get("policies") is not None else None,
-            "policy_collections": [PolicyCollectionId.from_dict(_item) for _item in obj.get("policyCollections")] if obj.get("policyCollections") is not None else None
+            "policies": [PolicyId.from_dict(_item) for _item in _v] if (_v := obj.get("policies")) is not None else None,
+            "policy_collections": [PolicyCollectionId.from_dict(_item) for _item in _v] if (_v := obj.get("policyCollections")) is not None else None
         })
         return _obj
 

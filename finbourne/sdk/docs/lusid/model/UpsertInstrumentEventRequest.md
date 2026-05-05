@@ -10,7 +10,7 @@
 | **instrument_event** | [InstrumentEvent](InstrumentEvent.md) | Required | *No description available.* |
 | **properties** | [List[PerpetualProperty]](PerpetualProperty.md) | Optional | The properties attached to this instrument event. |
 | **sequence_number** | **int** | Optional | The order of the instrument event relative others on the same date (0 being processed first). Must be non negative. |
-| **participation_type** | **str** | Optional | Is participation in this event Mandatory, MandatoryWithChoices, or Voluntary. Default: `'Mandatory'` |
+| **participation_type** | **str** | Optional | Indicates the type of participation in this event. Default value: Mandatory. Available values: Mandatory, MandatoryWithChoices, Voluntary. Default: `'Mandatory'` |
 | **event_date_stamps** | [Dict[str, YearMonthDay]](YearMonthDay.md) | Optional | The date stamps corresponding to the relevant date-time fields for the instrument event. The key for each provided date stamp must match the field name of a valid datetime field from the InstrumentEvent DTO. |
 
 
@@ -28,7 +28,7 @@ instance = UpsertInstrumentEventRequest(
     instrument_event=InstrumentEvent(...),  # required
     properties=[],  # optional — The properties attached to this instrument event.
     sequence_number=0,  # optional — The order of the instrument event relative others on the same date (0 being processed first). Must be non negative.
-    participation_type="...",  # optional — Is participation in this event Mandatory, MandatoryWithChoices, or Voluntary.
+    participation_type="...",  # optional — Indicates the type of participation in this event. Default value: Mandatory. Available values: Mandatory, MandatoryWithChoices, Voluntary.
     event_date_stamps=YearMonthDay(...)  # optional — The date stamps corresponding to the relevant date-time fields for the instrument event. The key for each provided date stamp must match the field name of a valid datetime field from the InstrumentEvent DTO.
 )
 ```

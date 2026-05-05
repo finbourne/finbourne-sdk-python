@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class GeneratePolicyFromTemplateRequest(BaseModel):
     """
     template_selection: List[TemplateSelection] = Field(description="List of template selection, identifying policy templates to use for generation", alias="templateSelection")
     selectors: Optional[List[SelectorDefinition]] = Field(default=None, description="List of additional selectors to be included in the policy")
-    __properties = ["templateSelection", "selectors"]
+    __properties: ClassVar[List[str]] = ["templateSelection", "selectors"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -97,8 +97,8 @@ class GeneratePolicyFromTemplateRequest(BaseModel):
             return GeneratePolicyFromTemplateRequest.model_validate(obj)
 
         _obj = GeneratePolicyFromTemplateRequest.model_validate({
-            "template_selection": [TemplateSelection.from_dict(_item) for _item in obj.get("templateSelection")] if obj.get("templateSelection") is not None else None,
-            "selectors": [SelectorDefinition.from_dict(_item) for _item in obj.get("selectors")] if obj.get("selectors") is not None else None
+            "template_selection": [TemplateSelection.from_dict(_item) for _item in _v] if (_v := obj.get("templateSelection")) is not None else None,
+            "selectors": [SelectorDefinition.from_dict(_item) for _item in _v] if (_v := obj.get("selectors")) is not None else None
         })
         return _obj
 

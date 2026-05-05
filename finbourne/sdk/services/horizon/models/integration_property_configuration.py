@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class IntegrationPropertyConfiguration(BaseModel):
     type:  StrictStr = Field(...,alias="type", description="The Integration this property configuration applies to") 
     properties: List[PropertyMapping] = Field(description="The mandatory and optional properties available in this integration")
     fields: List[FieldMapping] = Field(description="The fields available in this integration")
-    __properties = ["type", "properties", "fields"]
+    __properties: ClassVar[List[str]] = ["type", "properties", "fields"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -94,8 +94,8 @@ class IntegrationPropertyConfiguration(BaseModel):
 
         _obj = IntegrationPropertyConfiguration.model_validate({
             "type": obj.get("type"),
-            "properties": [PropertyMapping.from_dict(_item) for _item in obj.get("properties")] if obj.get("properties") is not None else None,
-            "fields": [FieldMapping.from_dict(_item) for _item in obj.get("fields")] if obj.get("fields") is not None else None
+            "properties": [PropertyMapping.from_dict(_item) for _item in _v] if (_v := obj.get("properties")) is not None else None,
+            "fields": [FieldMapping.from_dict(_item) for _item in _v] if (_v := obj.get("fields")) is not None else None
         })
         return _obj
 

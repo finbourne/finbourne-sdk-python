@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -42,7 +42,7 @@ class RealisedGainLoss(BaseModel):
     tax_lot_id:  Optional[StrictStr] = Field(default=None,alias="taxLotId", description="The identifier of the tax lot with which this gain or loss is associated.") 
     realised_amortisation: Optional[CurrencyAndAmount] = Field(default=None, alias="realisedAmortisation")
     trade_date_to_settlement_date_realised_currency: Optional[CurrencyAndAmount] = Field(default=None, alias="tradeDateToSettlementDateRealisedCurrency")
-    __properties = ["instrumentScope", "instrumentUid", "units", "purchaseTradeDate", "purchaseSettlementDate", "purchasePrice", "costTradeCcy", "costPortfolioCcy", "realisedTradeCcy", "realisedTotal", "realisedMarket", "realisedCurrency", "taxLotId", "realisedAmortisation", "tradeDateToSettlementDateRealisedCurrency"]
+    __properties: ClassVar[List[str]] = ["instrumentScope", "instrumentUid", "units", "purchaseTradeDate", "purchaseSettlementDate", "purchasePrice", "costTradeCcy", "costPortfolioCcy", "realisedTradeCcy", "realisedTotal", "realisedMarket", "realisedCurrency", "taxLotId", "realisedAmortisation", "tradeDateToSettlementDateRealisedCurrency"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -147,15 +147,15 @@ class RealisedGainLoss(BaseModel):
             "purchase_trade_date": obj.get("purchaseTradeDate"),
             "purchase_settlement_date": obj.get("purchaseSettlementDate"),
             "purchase_price": obj.get("purchasePrice"),
-            "cost_trade_ccy": CurrencyAndAmount.from_dict(obj.get("costTradeCcy")) if obj.get("costTradeCcy") is not None else None,
-            "cost_portfolio_ccy": CurrencyAndAmount.from_dict(obj.get("costPortfolioCcy")) if obj.get("costPortfolioCcy") is not None else None,
-            "realised_trade_ccy": CurrencyAndAmount.from_dict(obj.get("realisedTradeCcy")) if obj.get("realisedTradeCcy") is not None else None,
-            "realised_total": CurrencyAndAmount.from_dict(obj.get("realisedTotal")) if obj.get("realisedTotal") is not None else None,
-            "realised_market": CurrencyAndAmount.from_dict(obj.get("realisedMarket")) if obj.get("realisedMarket") is not None else None,
-            "realised_currency": CurrencyAndAmount.from_dict(obj.get("realisedCurrency")) if obj.get("realisedCurrency") is not None else None,
+            "cost_trade_ccy": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("costTradeCcy")) is not None else None,
+            "cost_portfolio_ccy": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("costPortfolioCcy")) is not None else None,
+            "realised_trade_ccy": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("realisedTradeCcy")) is not None else None,
+            "realised_total": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("realisedTotal")) is not None else None,
+            "realised_market": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("realisedMarket")) is not None else None,
+            "realised_currency": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("realisedCurrency")) is not None else None,
             "tax_lot_id": obj.get("taxLotId"),
-            "realised_amortisation": CurrencyAndAmount.from_dict(obj.get("realisedAmortisation")) if obj.get("realisedAmortisation") is not None else None,
-            "trade_date_to_settlement_date_realised_currency": CurrencyAndAmount.from_dict(obj.get("tradeDateToSettlementDateRealisedCurrency")) if obj.get("tradeDateToSettlementDateRealisedCurrency") is not None else None
+            "realised_amortisation": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("realisedAmortisation")) is not None else None,
+            "trade_date_to_settlement_date_realised_currency": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("tradeDateToSettlementDateRealisedCurrency")) is not None else None
         })
         return _obj
 

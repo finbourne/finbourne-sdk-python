@@ -61,12 +61,12 @@ class CurrentTableFieldCatalogApi:
         :return: Returns the result object.
         :rtype: str
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_catalog_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_catalog_with_http_info(free_text_search, json_proper, **kwargs)  # noqa: E501
+        response = self.get_catalog_with_http_info(free_text_search, json_proper, **kwargs)
+        return response.data
 
     @validate_call
     def get_catalog_with_http_info(self, free_text_search: Optional[StrictStr] = None, json_proper: Optional[bool] = None, **kwargs) -> ApiResponse[str]:
@@ -190,12 +190,12 @@ class CurrentTableFieldCatalogApi:
         :return: Returns the result object.
         :rtype: str
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_catalog_v1_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_catalog_v1_with_http_info(free_text_search, json_proper, use_cache, **kwargs)  # noqa: E501
+        response = self.get_catalog_v1_with_http_info(free_text_search, json_proper, use_cache, **kwargs)
+        return response.data
 
     @validate_call
     def get_catalog_v1_with_http_info(self, free_text_search: Optional[StrictStr] = None, json_proper: Optional[bool] = None, use_cache: Optional[bool] = None, **kwargs) -> ApiResponse[str]:
@@ -323,12 +323,12 @@ class CurrentTableFieldCatalogApi:
         :return: Returns the result object.
         :rtype: str
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_fields_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_fields_with_http_info(table_like, add_lineage, **kwargs)  # noqa: E501
+        response = self.get_fields_with_http_info(table_like, add_lineage, **kwargs)
+        return response.data
 
     @validate_call
     def get_fields_with_http_info(self, table_like: Optional[StrictStr] = None, add_lineage: Optional[bool] = None, **kwargs) -> ApiResponse[str]:
@@ -448,12 +448,12 @@ class CurrentTableFieldCatalogApi:
         :return: Returns the result object.
         :rtype: str
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_fields_v1_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_fields_v1_with_http_info(table_like, **kwargs)  # noqa: E501
+        response = self.get_fields_v1_with_http_info(table_like, **kwargs)
+        return response.data
 
     @validate_call
     def get_fields_v1_with_http_info(self, table_like: Optional[StrictStr] = None, **kwargs) -> ApiResponse[str]:
@@ -569,12 +569,12 @@ class CurrentTableFieldCatalogApi:
         :return: Returns the result object.
         :rtype: str
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_providers_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_providers_with_http_info(free_text_search, add_lineage, **kwargs)  # noqa: E501
+        response = self.get_providers_with_http_info(free_text_search, add_lineage, **kwargs)
+        return response.data
 
     @validate_call
     def get_providers_with_http_info(self, free_text_search: Optional[StrictStr] = None, add_lineage: Optional[bool] = None, **kwargs) -> ApiResponse[str]:
@@ -696,12 +696,12 @@ class CurrentTableFieldCatalogApi:
         :return: Returns the result object.
         :rtype: str
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_providers_v1_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_providers_v1_with_http_info(free_text_search, use_cache, **kwargs)  # noqa: E501
+        response = self.get_providers_v1_with_http_info(free_text_search, use_cache, **kwargs)
+        return response.data
 
     @validate_call
     def get_providers_v1_with_http_info(self, free_text_search: Optional[StrictStr] = None, use_cache: Optional[bool] = None, **kwargs) -> ApiResponse[str]:
@@ -827,12 +827,12 @@ class CurrentTableFieldCatalogApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: str
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_catalog_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_catalog_with_http_info_async(free_text_search, json_proper, **kwargs)  # noqa: E501
+            response = await self.get_catalog_with_http_info_async(free_text_search, json_proper, **kwargs)
+            return response.data
 
     @validate_call
     async def get_catalog_with_http_info_async(self, free_text_search: Optional[StrictStr] = None, json_proper: Optional[bool] = None, **kwargs) -> ApiResponse[str]:
@@ -957,12 +957,12 @@ class CurrentTableFieldCatalogApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: str
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_catalog_v1_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_catalog_v1_with_http_info_async(free_text_search, json_proper, use_cache, **kwargs)  # noqa: E501
+            response = await self.get_catalog_v1_with_http_info_async(free_text_search, json_proper, use_cache, **kwargs)
+            return response.data
 
     @validate_call
     async def get_catalog_v1_with_http_info_async(self, free_text_search: Optional[StrictStr] = None, json_proper: Optional[bool] = None, use_cache: Optional[bool] = None, **kwargs) -> ApiResponse[str]:
@@ -1091,12 +1091,12 @@ class CurrentTableFieldCatalogApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: str
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_fields_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_fields_with_http_info_async(table_like, add_lineage, **kwargs)  # noqa: E501
+            response = await self.get_fields_with_http_info_async(table_like, add_lineage, **kwargs)
+            return response.data
 
     @validate_call
     async def get_fields_with_http_info_async(self, table_like: Optional[StrictStr] = None, add_lineage: Optional[bool] = None, **kwargs) -> ApiResponse[str]:
@@ -1217,12 +1217,12 @@ class CurrentTableFieldCatalogApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: str
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_fields_v1_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_fields_v1_with_http_info_async(table_like, **kwargs)  # noqa: E501
+            response = await self.get_fields_v1_with_http_info_async(table_like, **kwargs)
+            return response.data
 
     @validate_call
     async def get_fields_v1_with_http_info_async(self, table_like: Optional[StrictStr] = None, **kwargs) -> ApiResponse[str]:
@@ -1339,12 +1339,12 @@ class CurrentTableFieldCatalogApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: str
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_providers_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_providers_with_http_info_async(free_text_search, add_lineage, **kwargs)  # noqa: E501
+            response = await self.get_providers_with_http_info_async(free_text_search, add_lineage, **kwargs)
+            return response.data
 
     @validate_call
     async def get_providers_with_http_info_async(self, free_text_search: Optional[StrictStr] = None, add_lineage: Optional[bool] = None, **kwargs) -> ApiResponse[str]:
@@ -1467,12 +1467,12 @@ class CurrentTableFieldCatalogApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: str
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_providers_v1_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_providers_v1_with_http_info_async(free_text_search, use_cache, **kwargs)  # noqa: E501
+            response = await self.get_providers_v1_with_http_info_async(free_text_search, use_cache, **kwargs)
+            return response.data
 
     @validate_call
     async def get_providers_v1_with_http_info_async(self, free_text_search: Optional[StrictStr] = None, use_cache: Optional[bool] = None, **kwargs) -> ApiResponse[str]:

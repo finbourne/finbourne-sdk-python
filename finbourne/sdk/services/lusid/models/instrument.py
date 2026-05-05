@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -45,14 +45,14 @@ class Instrument(BaseModel):
     properties: Optional[List[ModelProperty]] = Field(default=None, description="The requested instrument properties. These will be from the 'Instrument' domain.")
     lookthrough_portfolio: Optional[ResourceId] = Field(default=None, alias="lookthroughPortfolio")
     instrument_definition: Optional[LusidInstrument] = Field(default=None, alias="instrumentDefinition")
-    state:  StrictStr = Field(...,alias="state", description="The state of of the instrument at the asAt datetime of this version of the instrument definition. The available values are: Active, Inactive, Deleted") 
-    asset_class:  Optional[StrictStr] = Field(default=None,alias="assetClass", description="The nominal asset class of the instrument, e.g. InterestRates, FX, Inflation, Equities, Credit, Commodities, etc. The available values are: InterestRates, FX, Inflation, Equities, Credit, Commodities, Money, Unknown") 
+    state:  StrictStr = Field(...,alias="state", description="The state of of the instrument at the asAt datetime of this version of the instrument definition. Available values: Active, Inactive, Deleted.") 
+    asset_class:  Optional[StrictStr] = Field(default=None,alias="assetClass", description="The nominal asset class of the instrument. Available values: InterestRates, FX, Inflation, Equities, Credit, Commodities, Money, Unknown.") 
     dom_ccy:  Optional[StrictStr] = Field(default=None,alias="domCcy", description="The domestic currency, meaning the currency in which the instrument would typically be expected to pay cashflows, e.g. a share in AAPL being USD.") 
     relationships: Optional[List[Relationship]] = Field(default=None, description="A set of relationships associated to the instrument.")
     settlement_cycle: Optional[SettlementCycle] = Field(default=None, alias="settlementCycle")
     data_model_membership: Optional[DataModelMembership] = Field(default=None, alias="dataModelMembership")
     links: Optional[List[Link]] = None
-    __properties = ["href", "scope", "lusidInstrumentId", "version", "stagedModifications", "name", "identifiers", "properties", "lookthroughPortfolio", "instrumentDefinition", "state", "assetClass", "domCcy", "relationships", "settlementCycle", "dataModelMembership", "links"]
+    __properties: ClassVar[List[str]] = ["href", "scope", "lusidInstrumentId", "version", "stagedModifications", "name", "identifiers", "properties", "lookthroughPortfolio", "instrumentDefinition", "state", "assetClass", "domCcy", "relationships", "settlementCycle", "dataModelMembership", "links"]
 
     @field_validator('state')
     def state_validate_enum(cls, value):
@@ -313,20 +313,20 @@ class Instrument(BaseModel):
             "href": obj.get("href"),
             "scope": obj.get("scope"),
             "lusid_instrument_id": obj.get("lusidInstrumentId"),
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
-            "staged_modifications": StagedModificationsInfo.from_dict(obj.get("stagedModifications")) if obj.get("stagedModifications") is not None else None,
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "staged_modifications": StagedModificationsInfo.from_dict(_v) if (_v := obj.get("stagedModifications")) is not None else None,
             "name": obj.get("name"),
             "identifiers": obj.get("identifiers"),
-            "properties": [ModelProperty.from_dict(_item) for _item in obj.get("properties")] if obj.get("properties") is not None else None,
-            "lookthrough_portfolio": ResourceId.from_dict(obj.get("lookthroughPortfolio")) if obj.get("lookthroughPortfolio") is not None else None,
-            "instrument_definition": LusidInstrument.from_dict(obj.get("instrumentDefinition")) if obj.get("instrumentDefinition") is not None else None,
+            "properties": [ModelProperty.from_dict(_item) for _item in _v] if (_v := obj.get("properties")) is not None else None,
+            "lookthrough_portfolio": ResourceId.from_dict(_v) if (_v := obj.get("lookthroughPortfolio")) is not None else None,
+            "instrument_definition": LusidInstrument.from_dict(_v) if (_v := obj.get("instrumentDefinition")) is not None else None,
             "state": obj.get("state"),
             "asset_class": obj.get("assetClass"),
             "dom_ccy": obj.get("domCcy"),
-            "relationships": [Relationship.from_dict(_item) for _item in obj.get("relationships")] if obj.get("relationships") is not None else None,
-            "settlement_cycle": SettlementCycle.from_dict(obj.get("settlementCycle")) if obj.get("settlementCycle") is not None else None,
-            "data_model_membership": DataModelMembership.from_dict(obj.get("dataModelMembership")) if obj.get("dataModelMembership") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "relationships": [Relationship.from_dict(_item) for _item in _v] if (_v := obj.get("relationships")) is not None else None,
+            "settlement_cycle": SettlementCycle.from_dict(_v) if (_v := obj.get("settlementCycle")) is not None else None,
+            "data_model_membership": DataModelMembership.from_dict(_v) if (_v := obj.get("dataModelMembership")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

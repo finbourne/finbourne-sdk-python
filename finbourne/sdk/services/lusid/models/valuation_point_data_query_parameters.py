@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class ValuationPointDataQueryParameters(BaseModel):
     start: Optional[DateOrDiaryEntry] = None
     end: DateOrDiaryEntry
     variant:  Optional[StrictStr] = Field(default=None,alias="variant", description="Optional variant code. Only required when it is necessary to choose between scenarios with multiple estimates.") 
-    __properties = ["start", "end", "variant"]
+    __properties: ClassVar[List[str]] = ["start", "end", "variant"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -89,8 +89,8 @@ class ValuationPointDataQueryParameters(BaseModel):
             return ValuationPointDataQueryParameters.model_validate(obj)
 
         _obj = ValuationPointDataQueryParameters.model_validate({
-            "start": DateOrDiaryEntry.from_dict(obj.get("start")) if obj.get("start") is not None else None,
-            "end": DateOrDiaryEntry.from_dict(obj.get("end")) if obj.get("end") is not None else None,
+            "start": DateOrDiaryEntry.from_dict(_v) if (_v := obj.get("start")) is not None else None,
+            "end": DateOrDiaryEntry.from_dict(_v) if (_v := obj.get("end")) is not None else None,
             "variant": obj.get("variant")
         })
         return _obj

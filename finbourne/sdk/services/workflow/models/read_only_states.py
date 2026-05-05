@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class ReadOnlyStates(BaseModel):
     """
     state_type:  StrictStr = Field(...,alias="stateType", description="The State Type (e.g. InitialState, AllStates, TerminalState, SelectedStates)") 
     selected_states: Optional[List[StrictStr]] = Field(default=None, description="Named states for which the field will be readonly - This field can only be populated if StateType = SelectedStates", alias="selectedStates")
-    __properties = ["stateType", "selectedStates"]
+    __properties: ClassVar[List[str]] = ["stateType", "selectedStates"]
 
     model_config = ConfigDict(
         populate_by_name=True,

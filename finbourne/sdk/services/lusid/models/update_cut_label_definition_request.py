@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class UpdateCutLabelDefinitionRequest(BaseModel):
     description:  Optional[StrictStr] = Field(default=None,alias="description") 
     cut_local_time: CutLocalTime = Field(alias="cutLocalTime")
     time_zone:  StrictStr = Field(...,alias="timeZone") 
-    __properties = ["displayName", "description", "cutLocalTime", "timeZone"]
+    __properties: ClassVar[List[str]] = ["displayName", "description", "cutLocalTime", "timeZone"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -89,7 +89,7 @@ class UpdateCutLabelDefinitionRequest(BaseModel):
         _obj = UpdateCutLabelDefinitionRequest.model_validate({
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
-            "cut_local_time": CutLocalTime.from_dict(obj.get("cutLocalTime")) if obj.get("cutLocalTime") is not None else None,
+            "cut_local_time": CutLocalTime.from_dict(_v) if (_v := obj.get("cutLocalTime")) is not None else None,
             "time_zone": obj.get("timeZone")
         })
         return _obj

@@ -8,7 +8,7 @@ A group of changes made by the same person at the same time.
 | **user_id** | **str** | Required | The unique identifier of the user that made the change. |
 | **modified_as_at** | **datetime** | Required | The date/time of the change. |
 | **request_id** | **str** | Required | The unique identifier of the request that the changes were part of. |
-| **action** | **str** | Required | The action performed on the transaction, either created, updated, or deleted. The available values are: Create, Update, Delete |
+| **action** | **str** | Required | The action performed on the transaction. Available values: Create, Update, Delete. |
 | **changes** | [List[ChangeItem]](ChangeItem.md) | Required | The collection of changes that were made. |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
@@ -24,7 +24,7 @@ instance = ChangeHistory(
     user_id="...",  # required — The unique identifier of the user that made the change.
     modified_as_at=datetime.now(),  # required — The date/time of the change.
     request_id="...",  # required — The unique identifier of the request that the changes were part of.
-    action="...",  # required — The action performed on the transaction, either created, updated, or deleted. The available values are: Create, Update, Delete
+    action="...",  # required — The action performed on the transaction. Available values: Create, Update, Delete.
     changes=[],  # required — The collection of changes that were made.
     links=[]  # optional
 )

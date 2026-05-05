@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class UpdateTaskRequest(BaseModel):
     correlation_ids: Optional[List[StrictStr]] = Field(default=None, description="A set of guid identifiers that allow correlation across the application tier", alias="correlationIds")
     fields: Optional[List[TaskInstanceField]] = Field(default=None, description="Defines the fields associated with the update")
     stacking_key:  Optional[StrictStr] = Field(default=None,alias="stackingKey", description="The key for the Stack that this Task should be added to") 
-    __properties = ["correlationIds", "fields", "stackingKey"]
+    __properties: ClassVar[List[str]] = ["correlationIds", "fields", "stackingKey"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -101,7 +101,7 @@ class UpdateTaskRequest(BaseModel):
 
         _obj = UpdateTaskRequest.model_validate({
             "correlation_ids": obj.get("correlationIds"),
-            "fields": [TaskInstanceField.from_dict(_item) for _item in obj.get("fields")] if obj.get("fields") is not None else None,
+            "fields": [TaskInstanceField.from_dict(_item) for _item in _v] if (_v := obj.get("fields")) is not None else None,
             "stacking_key": obj.get("stackingKey")
         })
         return _obj

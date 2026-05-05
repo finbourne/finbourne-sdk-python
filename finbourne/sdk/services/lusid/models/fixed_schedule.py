@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -40,9 +40,9 @@ class FixedSchedule(Schedule):
     payment_currency:  StrictStr = Field(...,alias="paymentCurrency", description="Payment currency. This does not have to be the same as the nominal bond or observation/reset currency.") 
     stub_type:  Optional[StrictStr] = Field(default=None,alias="stubType", description="When a payment schedule doesn't have regular payment intervals just because of the  first and/or last coupons of the schedule, we call those irregular coupons stubs.  This configuration specifies what type of stub is used when building the schedule  Supported values are:  None = this is a regular payment schedule with no stubs. DO NOT use it with irregular schedules or you will get incorrect and unexpected behaviour.  ShortFront = this is an irregular payment schedule where only the first coupon is irregular, and covers a payment period that is shorter than the regular payment period.  ShortBack = this is an irregular payment schedule where only the last coupon is irregular, and covers a payment period that is shorter than the regular payment period.  LongFront = this is an irregular payment schedule where only the first coupon is irregular, and covers a payment period that is longer than the regular payment period.  LongBack = this is an irregular payment schedule where only the last coupon is irregular, and covers a payment period that is longer than the regular payment period.  Both = this is an irregular payment schedule where both the first and the last coupons are irregular, and the length of these periods is calculated based on the first coupon payment date that should have been explicitly set.") 
     ex_dividend_configuration: Optional[ExDividendConfiguration] = Field(default=None, alias="exDividendConfiguration")
-    schedule_type:  StrictStr = Field(...,alias="scheduleType", description="The available values are: FixedSchedule, FloatSchedule, OptionalitySchedule, StepSchedule, Exercise, FxRateSchedule, FxLinkedNotionalSchedule, BondConversionSchedule, Invalid") 
+    schedule_type:  StrictStr = Field(...,alias="scheduleType", description="Available values: FixedSchedule, FloatSchedule, OptionalitySchedule, StepSchedule, Exercise, FxRateSchedule, FxLinkedNotionalSchedule, BondConversionSchedule, Invalid.") 
     additional_properties: Dict[str, Any] = {}
-    __properties = ["scheduleType", "startDate", "maturityDate", "flowConventions", "couponRate", "conventionName", "exDividendDays", "notional", "paymentCurrency", "stubType", "exDividendConfiguration"]
+    __properties: ClassVar[List[str]] = ["scheduleType", "startDate", "maturityDate", "flowConventions", "couponRate", "conventionName", "exDividendDays", "notional", "paymentCurrency", "stubType", "exDividendConfiguration"]
 
     @field_validator('schedule_type')
     def schedule_type_validate_enum(cls, value):
@@ -187,23 +187,18 @@ class FixedSchedule(Schedule):
             "schedule_type": obj.get("scheduleType"),
             "start_date": obj.get("startDate"),
             "maturity_date": obj.get("maturityDate"),
-            "flow_conventions": FlowConventions.from_dict(obj.get("flowConventions")) if obj.get("flowConventions") is not None else None,
+            "flow_conventions": FlowConventions.from_dict(_v) if (_v := obj.get("flowConventions")) is not None else None,
             "coupon_rate": obj.get("couponRate"),
-            "convention_name": FlowConventionName.from_dict(obj.get("conventionName")) if obj.get("conventionName") is not None else None,
+            "convention_name": FlowConventionName.from_dict(_v) if (_v := obj.get("conventionName")) is not None else None,
             "ex_dividend_days": obj.get("exDividendDays"),
             "notional": obj.get("notional"),
             "payment_currency": obj.get("paymentCurrency"),
             "stub_type": obj.get("stubType"),
-            "ex_dividend_configuration": ExDividendConfiguration.from_dict(obj.get("exDividendConfiguration")) if obj.get("exDividendConfiguration") is not None else None
+            "ex_dividend_configuration": ExDividendConfiguration.from_dict(_v) if (_v := obj.get("exDividendConfiguration")) is not None else None
         })
         # store additional fields in additional_properties
-        
-        properties = cls.__properties
-        if not isinstance(cls.__properties, dict) and getattr(cls.__properties, 'default', None):
-            properties = cls.__properties.default
-    
         for _key in obj.keys():
-            if _key not in properties:
+            if _key not in cls.__properties:
                 _obj.additional_properties[_key] = obj.get(_key)
 
         return _obj

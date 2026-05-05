@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class TransactionPropertyMappingRequest(BaseModel):
     property_key:  StrictStr = Field(...,alias="propertyKey", description="Uniquely identifies the property definition and consists of a Domain, Scope and Code.") 
     map_from:  Optional[StrictStr] = Field(default=None,alias="mapFrom", description="The Property Key of the Property to map from.") 
     set_to: Optional[Any] = Field(default=None, description="A pointer to the Property being mapped from.", alias="setTo")
-    __properties = ["propertyKey", "mapFrom", "setTo"]
+    __properties: ClassVar[List[str]] = ["propertyKey", "mapFrom", "setTo"]
 
     model_config = ConfigDict(
         populate_by_name=True,

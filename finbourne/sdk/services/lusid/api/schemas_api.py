@@ -64,12 +64,12 @@ class SchemasApi:
         :return: Returns the result object.
         :rtype: ModelSchema
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_entity_schema_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_entity_schema_with_http_info(entity, **kwargs)  # noqa: E501
+        response = self.get_entity_schema_with_http_info(entity, **kwargs)
+        return response.data
 
     @validate_call
     def get_entity_schema_with_http_info(self, entity: StrictStr, **kwargs) -> ApiResponse[ModelSchema]:
@@ -186,12 +186,12 @@ class SchemasApi:
         :return: Returns the result object.
         :rtype: PropertySchema
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_property_schema_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_property_schema_with_http_info(property_keys, as_at, **kwargs)  # noqa: E501
+        response = self.get_property_schema_with_http_info(property_keys, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_property_schema_with_http_info(self, property_keys: Optional[List[str]] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[PropertySchema]:
@@ -318,12 +318,12 @@ class SchemasApi:
         :return: Returns the result object.
         :rtype: ResourceListOfValueType
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_value_types_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_value_types_with_http_info(sort_by, limit, **kwargs)  # noqa: E501
+        response = self.get_value_types_with_http_info(sort_by, limit, **kwargs)
+        return response.data
 
     @validate_call
     def get_value_types_with_http_info(self, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, **kwargs) -> ApiResponse[ResourceListOfValueType]:
@@ -443,12 +443,12 @@ class SchemasApi:
         :return: Returns the result object.
         :rtype: ResourceListOfString
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_entities_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_entities_with_http_info(**kwargs)  # noqa: E501
+        response = self.list_entities_with_http_info(**kwargs)
+        return response.data
 
     @validate_call
     def list_entities_with_http_info(self, **kwargs) -> ApiResponse[ResourceListOfString]:
@@ -560,12 +560,12 @@ class SchemasApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ModelSchema
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_entity_schema_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_entity_schema_with_http_info_async(entity, **kwargs)  # noqa: E501
+            response = await self.get_entity_schema_with_http_info_async(entity, **kwargs)
+            return response.data
 
     @validate_call
     async def get_entity_schema_with_http_info_async(self, entity: StrictStr, **kwargs) -> ApiResponse[ModelSchema]:
@@ -683,12 +683,12 @@ class SchemasApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PropertySchema
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_property_schema_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_property_schema_with_http_info_async(property_keys, as_at, **kwargs)  # noqa: E501
+            response = await self.get_property_schema_with_http_info_async(property_keys, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_property_schema_with_http_info_async(self, property_keys: Optional[List[str]] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[PropertySchema]:
@@ -816,12 +816,12 @@ class SchemasApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfValueType
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_value_types_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_value_types_with_http_info_async(sort_by, limit, **kwargs)  # noqa: E501
+            response = await self.get_value_types_with_http_info_async(sort_by, limit, **kwargs)
+            return response.data
 
     @validate_call
     async def get_value_types_with_http_info_async(self, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, **kwargs) -> ApiResponse[ResourceListOfValueType]:
@@ -942,12 +942,12 @@ class SchemasApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfString
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_entities_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_entities_with_http_info_async(**kwargs)  # noqa: E501
+            response = await self.list_entities_with_http_info_async(**kwargs)
+            return response.data
 
     @validate_call
     async def list_entities_with_http_info_async(self, **kwargs) -> ApiResponse[ResourceListOfString]:

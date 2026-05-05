@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class ChangeItem(BaseModel):
     attribute_name:  StrictStr = Field(...,alias="attributeName", description="The name of the attribute that has been change") 
     previous_value: Optional[Any] = Field(default=None, description="The value of the attribute prior to the change", alias="previousValue")
     new_value: Optional[Any] = Field(description="The value of the attribute following the change", alias="newValue")
-    __properties = ["asAtModified", "userIdModified", "requestIdModified", "asAtVersionNumber", "action", "attributeName", "previousValue", "newValue"]
+    __properties: ClassVar[List[str]] = ["asAtModified", "userIdModified", "requestIdModified", "asAtVersionNumber", "action", "attributeName", "previousValue", "newValue"]
 
     model_config = ConfigDict(
         populate_by_name=True,

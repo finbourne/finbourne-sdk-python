@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,12 +31,12 @@ class ComplianceSummaryRuleResultRequest(BaseModel):
     rule_id: ResourceId = Field(alias="ruleId")
     template_id: ResourceId = Field(alias="templateId")
     variation:  StrictStr = Field(...,alias="variation") 
-    rule_status:  StrictStr = Field(...,alias="ruleStatus") 
+    rule_status:  StrictStr = Field(...,alias="ruleStatus", description="Available values: Passed, Failed, MissingData, Warning.") 
     affected_portfolios: List[ResourceId] = Field(alias="affectedPortfolios")
     affected_orders: List[ResourceId] = Field(alias="affectedOrders")
     parameters_used: Dict[str, Optional[StrictStr]] = Field(alias="parametersUsed")
     rule_breakdown: List[ComplianceRuleBreakdownRequest] = Field(alias="ruleBreakdown")
-    __properties = ["ruleId", "templateId", "variation", "ruleStatus", "affectedPortfolios", "affectedOrders", "parametersUsed", "ruleBreakdown"]
+    __properties: ClassVar[List[str]] = ["ruleId", "templateId", "variation", "ruleStatus", "affectedPortfolios", "affectedOrders", "parametersUsed", "ruleBreakdown"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -111,14 +111,14 @@ class ComplianceSummaryRuleResultRequest(BaseModel):
             return ComplianceSummaryRuleResultRequest.model_validate(obj)
 
         _obj = ComplianceSummaryRuleResultRequest.model_validate({
-            "rule_id": ResourceId.from_dict(obj.get("ruleId")) if obj.get("ruleId") is not None else None,
-            "template_id": ResourceId.from_dict(obj.get("templateId")) if obj.get("templateId") is not None else None,
+            "rule_id": ResourceId.from_dict(_v) if (_v := obj.get("ruleId")) is not None else None,
+            "template_id": ResourceId.from_dict(_v) if (_v := obj.get("templateId")) is not None else None,
             "variation": obj.get("variation"),
             "rule_status": obj.get("ruleStatus"),
-            "affected_portfolios": [ResourceId.from_dict(_item) for _item in obj.get("affectedPortfolios")] if obj.get("affectedPortfolios") is not None else None,
-            "affected_orders": [ResourceId.from_dict(_item) for _item in obj.get("affectedOrders")] if obj.get("affectedOrders") is not None else None,
+            "affected_portfolios": [ResourceId.from_dict(_item) for _item in _v] if (_v := obj.get("affectedPortfolios")) is not None else None,
+            "affected_orders": [ResourceId.from_dict(_item) for _item in _v] if (_v := obj.get("affectedOrders")) is not None else None,
             "parameters_used": obj.get("parametersUsed"),
-            "rule_breakdown": [ComplianceRuleBreakdownRequest.from_dict(_item) for _item in obj.get("ruleBreakdown")] if obj.get("ruleBreakdown") is not None else None
+            "rule_breakdown": [ComplianceRuleBreakdownRequest.from_dict(_item) for _item in _v] if (_v := obj.get("ruleBreakdown")) is not None else None
         })
         return _obj
 

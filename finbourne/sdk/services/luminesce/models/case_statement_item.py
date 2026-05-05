@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class CaseStatementItem(BaseModel):
     source:  StrictStr = Field(...,alias="source", description="The expression that is on the LHS of the operator A typical case statement would look like: CASE Field {Filter} Source THEN Target") 
     target:  StrictStr = Field(...,alias="target", description="The expression that is on the RHS of the operator A typical case statement would look like: CASE Field {Filter} Source THEN Target") 
     is_target_non_literal: Optional[StrictBool] = Field(default=None, description="The Target can be a literal value or a non literal (field) and hence will be interpreted differently. This can be determined from the UI and passed down as a true / false", alias="isTargetNonLiteral")
-    __properties = ["filter", "source", "target", "isTargetNonLiteral"]
+    __properties: ClassVar[List[str]] = ["filter", "source", "target", "isTargetNonLiteral"]
 
     model_config = ConfigDict(
         populate_by_name=True,

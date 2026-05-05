@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class UpsertStructuredResultDataRequest(BaseModel):
     """
     id: StructuredResultDataId
     data: Optional[StructuredResultData] = None
-    __properties = ["id", "data"]
+    __properties: ClassVar[List[str]] = ["id", "data"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -84,8 +84,8 @@ class UpsertStructuredResultDataRequest(BaseModel):
             return UpsertStructuredResultDataRequest.model_validate(obj)
 
         _obj = UpsertStructuredResultDataRequest.model_validate({
-            "id": StructuredResultDataId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
-            "data": StructuredResultData.from_dict(obj.get("data")) if obj.get("data") is not None else None
+            "id": StructuredResultDataId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
+            "data": StructuredResultData.from_dict(_v) if (_v := obj.get("data")) is not None else None
         })
         return _obj
 

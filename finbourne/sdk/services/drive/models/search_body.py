@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class SearchBody(BaseModel):
     """
     with_path:  Optional[StrictStr] = Field(default=None,alias="withPath", description="Optional path field to limit the search to result with a matching (case insensitive) path") 
     name:  StrictStr = Field(...,alias="name", description="Name of the file or folder to be searched") 
-    __properties = ["withPath", "name"]
+    __properties: ClassVar[List[str]] = ["withPath", "name"]
 
     model_config = ConfigDict(
         populate_by_name=True,

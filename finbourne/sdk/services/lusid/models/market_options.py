@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class MarketOptions(BaseModel):
     attempt_to_infer_missing_fx: Optional[StrictBool] = Field(default=None, description="if true will calculate a missing Fx pair (e.g. THBJPY) from the inverse JPYTHB or from standardised pairs against USD, e.g. THBUSD and JPYUSD", alias="attemptToInferMissingFx")
     calendar_scope:  Optional[StrictStr] = Field(default=None,alias="calendarScope", description="The scope in which holiday calendars stored") 
     convention_scope:  Optional[StrictStr] = Field(default=None,alias="conventionScope", description="The scope in which conventions stored") 
-    __properties = ["defaultSupplier", "defaultInstrumentCodeType", "defaultScope", "attemptToInferMissingFx", "calendarScope", "conventionScope"]
+    __properties: ClassVar[List[str]] = ["defaultSupplier", "defaultInstrumentCodeType", "defaultScope", "attemptToInferMissingFx", "calendarScope", "conventionScope"]
 
     model_config = ConfigDict(
         populate_by_name=True,

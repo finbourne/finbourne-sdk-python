@@ -65,12 +65,12 @@ class MCPToolsApi:
         :return: Returns the result object.
         :rtype: McpToolResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_mcp_tool_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_mcp_tool_with_http_info(scope, code, upsert_mcp_tool_request, **kwargs)  # noqa: E501
+        response = self.create_mcp_tool_with_http_info(scope, code, upsert_mcp_tool_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_mcp_tool_with_http_info(self, scope: StrictStr, code: StrictStr, upsert_mcp_tool_request: UpsertMcpToolRequest, **kwargs) -> ApiResponse[McpToolResponse]:
@@ -207,15 +207,15 @@ class MCPToolsApi:
         :return: Returns the result object.
         :rtype: None
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_mcp_tool_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_mcp_tool_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_mcp_tool_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
-    def delete_mcp_tool_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> None:
+    def delete_mcp_tool_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[None]:
         """[EARLY ACCESS] DeleteMcpTool: Delete an MCP Tool  # noqa: E501
 
         Deletes an MCP tool (soft delete - closes the current version)  # noqa: E501
@@ -334,12 +334,12 @@ class MCPToolsApi:
         :return: Returns the result object.
         :rtype: McpToolResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_mcp_tool_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_mcp_tool_with_http_info(scope, code, version, **kwargs)  # noqa: E501
+        response = self.get_mcp_tool_with_http_info(scope, code, version, **kwargs)
+        return response.data
 
     @validate_call
     def get_mcp_tool_with_http_info(self, scope: StrictStr, code: StrictStr, version: Optional[int] = None, **kwargs) -> ApiResponse[McpToolResponse]:
@@ -464,12 +464,12 @@ class MCPToolsApi:
         :return: Returns the result object.
         :rtype: List[McpToolResponse]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_mcp_tools_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_mcp_tools_with_http_info(**kwargs)  # noqa: E501
+        response = self.list_mcp_tools_with_http_info(**kwargs)
+        return response.data
 
     @validate_call
     def list_mcp_tools_with_http_info(self, **kwargs) -> ApiResponse[List[McpToolResponse]]:
@@ -581,12 +581,12 @@ class MCPToolsApi:
         :return: Returns the result object.
         :rtype: McpToolResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_mcp_tool_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_mcp_tool_with_http_info(scope, code, upsert_mcp_tool_request, **kwargs)  # noqa: E501
+        response = self.update_mcp_tool_with_http_info(scope, code, upsert_mcp_tool_request, **kwargs)
+        return response.data
 
     @validate_call
     def update_mcp_tool_with_http_info(self, scope: StrictStr, code: StrictStr, upsert_mcp_tool_request: UpsertMcpToolRequest, **kwargs) -> ApiResponse[McpToolResponse]:
@@ -729,12 +729,12 @@ class MCPToolsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: McpToolResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_mcp_tool_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_mcp_tool_with_http_info_async(scope, code, upsert_mcp_tool_request, **kwargs)  # noqa: E501
+            response = await self.create_mcp_tool_with_http_info_async(scope, code, upsert_mcp_tool_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_mcp_tool_with_http_info_async(self, scope: StrictStr, code: StrictStr, upsert_mcp_tool_request: UpsertMcpToolRequest, **kwargs) -> ApiResponse[McpToolResponse]:
@@ -872,15 +872,15 @@ class MCPToolsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: None
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_mcp_tool_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_mcp_tool_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_mcp_tool_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
-    async def delete_mcp_tool_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> None:
+    async def delete_mcp_tool_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[None]:
             """[EARLY ACCESS] DeleteMcpTool: Delete an MCP Tool  # noqa: E501
 
             Deletes an MCP tool (soft delete - closes the current version)  # noqa: E501
@@ -1000,12 +1000,12 @@ class MCPToolsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: McpToolResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_mcp_tool_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_mcp_tool_with_http_info_async(scope, code, version, **kwargs)  # noqa: E501
+            response = await self.get_mcp_tool_with_http_info_async(scope, code, version, **kwargs)
+            return response.data
 
     @validate_call
     async def get_mcp_tool_with_http_info_async(self, scope: StrictStr, code: StrictStr, version: Optional[int] = None, **kwargs) -> ApiResponse[McpToolResponse]:
@@ -1131,12 +1131,12 @@ class MCPToolsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: List[McpToolResponse]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_mcp_tools_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_mcp_tools_with_http_info_async(**kwargs)  # noqa: E501
+            response = await self.list_mcp_tools_with_http_info_async(**kwargs)
+            return response.data
 
     @validate_call
     async def list_mcp_tools_with_http_info_async(self, **kwargs) -> ApiResponse[List[McpToolResponse]]:
@@ -1249,12 +1249,12 @@ class MCPToolsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: McpToolResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_mcp_tool_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_mcp_tool_with_http_info_async(scope, code, upsert_mcp_tool_request, **kwargs)  # noqa: E501
+            response = await self.update_mcp_tool_with_http_info_async(scope, code, upsert_mcp_tool_request, **kwargs)
+            return response.data
 
     @validate_call
     async def update_mcp_tool_with_http_info_async(self, scope: StrictStr, code: StrictStr, upsert_mcp_tool_request: UpsertMcpToolRequest, **kwargs) -> ApiResponse[McpToolResponse]:

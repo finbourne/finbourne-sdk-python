@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class EmailNotificationType(BaseModel):
     email_address_to: List[StrictStr] = Field(description="'To' recipients of the email", alias="emailAddressTo")
     email_address_cc: Optional[List[StrictStr]] = Field(default=None, description="'Cc' recipients of the email", alias="emailAddressCc")
     email_address_bcc: Optional[List[StrictStr]] = Field(default=None, description="'Bcc' recipients of the email", alias="emailAddressBcc")
-    __properties = ["type", "subject", "plainTextBody", "htmlBody", "emailAddressTo", "emailAddressCc", "emailAddressBcc"]
+    __properties: ClassVar[List[str]] = ["type", "subject", "plainTextBody", "htmlBody", "emailAddressTo", "emailAddressCc", "emailAddressBcc"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):

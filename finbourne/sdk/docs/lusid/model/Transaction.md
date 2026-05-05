@@ -22,7 +22,7 @@ A list of transactions.
 | **source** | **str** | Optional | The source of the transaction. This is used to look up the appropriate transaction group set in the transaction type configuration. |
 | **entry_date_time** | **datetime** | Optional | The asAt datetime that the transaction was added to LUSID. |
 | **otc_confirmation** | [OtcConfirmation](OtcConfirmation.md) | Optional | *No description available.* |
-| **transaction_status** | **str** | Optional | The status of the transaction. The available values are: Active, Amended, Cancelled, ActiveReversal, ActiveTrueUp, CancelledTrueUp |
+| **transaction_status** | **str** | Optional | The status of the transaction. Available values: Active, Amended, Cancelled, ActiveReversal, ActiveTrueUp, CancelledTrueUp. |
 | **cancel_date_time** | **datetime** | Optional | If the transaction has been cancelled, the asAt datetime that the transaction was cancelled. |
 | **order_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **allocation_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
@@ -59,7 +59,7 @@ instance = Transaction(
     source="...",  # optional — The source of the transaction. This is used to look up the appropriate transaction group set in the transaction type configuration.
     entry_date_time=datetime.now(),  # optional — The asAt datetime that the transaction was added to LUSID.
     otc_confirmation=OtcConfirmation(...),  # optional
-    transaction_status="...",  # optional — The status of the transaction. The available values are: Active, Amended, Cancelled, ActiveReversal, ActiveTrueUp, CancelledTrueUp
+    transaction_status="...",  # optional — The status of the transaction. Available values: Active, Amended, Cancelled, ActiveReversal, ActiveTrueUp, CancelledTrueUp.
     cancel_date_time=datetime.now(),  # optional — If the transaction has been cancelled, the asAt datetime that the transaction was cancelled.
     order_id=ResourceId(...),  # optional
     allocation_id=ResourceId(...),  # optional

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class LoanPeriod(BaseModel):
     payment_date: datetime = Field(alias="paymentDate")
     notional: Union[StrictFloat, StrictInt]
     interest_amount: Union[StrictFloat, StrictInt] = Field(alias="interestAmount")
-    __properties = ["paymentDate", "notional", "interestAmount"]
+    __properties: ClassVar[List[str]] = ["paymentDate", "notional", "interestAmount"]
 
     model_config = ConfigDict(
         populate_by_name=True,

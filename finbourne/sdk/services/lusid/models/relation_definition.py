@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -39,7 +39,7 @@ class RelationDefinition(BaseModel):
     life_time:  Optional[StrictStr] = Field(default=None,alias="lifeTime", description="Describes how the relations can change over time, allowed values are \"Perpetual\" and \"TimeVariant\"") 
     constraint_style:  Optional[StrictStr] = Field(default=None,alias="constraintStyle", description="Describes the uniqueness and cardinality for relations with a specific source entity object and relations under this definition. Allowed values are \"Property\" and \"Collection\", defaults to \"Collection\" if not specified.") 
     links: Optional[List[Link]] = None
-    __properties = ["version", "relationDefinitionId", "sourceEntityDomain", "targetEntityDomain", "displayName", "outwardDescription", "inwardDescription", "lifeTime", "constraintStyle", "links"]
+    __properties: ClassVar[List[str]] = ["version", "relationDefinitionId", "sourceEntityDomain", "targetEntityDomain", "displayName", "outwardDescription", "inwardDescription", "lifeTime", "constraintStyle", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -140,8 +140,8 @@ class RelationDefinition(BaseModel):
             return RelationDefinition.model_validate(obj)
 
         _obj = RelationDefinition.model_validate({
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
-            "relation_definition_id": ResourceId.from_dict(obj.get("relationDefinitionId")) if obj.get("relationDefinitionId") is not None else None,
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "relation_definition_id": ResourceId.from_dict(_v) if (_v := obj.get("relationDefinitionId")) is not None else None,
             "source_entity_domain": obj.get("sourceEntityDomain"),
             "target_entity_domain": obj.get("targetEntityDomain"),
             "display_name": obj.get("displayName"),
@@ -149,7 +149,7 @@ class RelationDefinition(BaseModel):
             "inward_description": obj.get("inwardDescription"),
             "life_time": obj.get("lifeTime"),
             "constraint_style": obj.get("constraintStyle"),
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

@@ -62,12 +62,12 @@ class RequestsApi:
         :return: Returns the result object.
         :rtype: Request
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_request_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_request_with_http_info(id, **kwargs)  # noqa: E501
+        response = self.get_request_with_http_info(id, **kwargs)
+        return response.data
 
     @validate_call
     def get_request_with_http_info(self, id: StrictStr, **kwargs) -> ApiResponse[Request]:
@@ -180,12 +180,12 @@ class RequestsApi:
         :return: Returns the result object.
         :rtype: RequestLog
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_request_log_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_request_log_with_http_info(id, **kwargs)  # noqa: E501
+        response = self.get_request_log_with_http_info(id, **kwargs)
+        return response.data
 
     @validate_call
     def get_request_log_with_http_info(self, id: StrictStr, **kwargs) -> ApiResponse[RequestLog]:
@@ -298,12 +298,12 @@ class RequestsApi:
         :return: Returns the result object.
         :rtype: Response
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_response_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_response_with_http_info(id, **kwargs)  # noqa: E501
+        response = self.get_response_with_http_info(id, **kwargs)
+        return response.data
 
     @validate_call
     def get_response_with_http_info(self, id: StrictStr, **kwargs) -> ApiResponse[Response]:
@@ -424,12 +424,12 @@ class RequestsApi:
         :return: Returns the result object.
         :rtype: ResourceListWithHistogramOfRequestLog
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_request_logs_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_request_logs_with_http_info(filter, sort_by, limit, page, histogram_interval, **kwargs)  # noqa: E501
+        response = self.list_request_logs_with_http_info(filter, sort_by, limit, page, histogram_interval, **kwargs)
+        return response.data
 
     @validate_call
     def list_request_logs_with_http_info(self, filter: Optional[StrictStr] = None, sort_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, histogram_interval: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListWithHistogramOfRequestLog]:
@@ -570,12 +570,12 @@ class RequestsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Request
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_request_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_request_with_http_info_async(id, **kwargs)  # noqa: E501
+            response = await self.get_request_with_http_info_async(id, **kwargs)
+            return response.data
 
     @validate_call
     async def get_request_with_http_info_async(self, id: StrictStr, **kwargs) -> ApiResponse[Request]:
@@ -689,12 +689,12 @@ class RequestsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: RequestLog
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_request_log_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_request_log_with_http_info_async(id, **kwargs)  # noqa: E501
+            response = await self.get_request_log_with_http_info_async(id, **kwargs)
+            return response.data
 
     @validate_call
     async def get_request_log_with_http_info_async(self, id: StrictStr, **kwargs) -> ApiResponse[RequestLog]:
@@ -808,12 +808,12 @@ class RequestsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Response
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_response_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_response_with_http_info_async(id, **kwargs)  # noqa: E501
+            response = await self.get_response_with_http_info_async(id, **kwargs)
+            return response.data
 
     @validate_call
     async def get_response_with_http_info_async(self, id: StrictStr, **kwargs) -> ApiResponse[Response]:
@@ -935,12 +935,12 @@ class RequestsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListWithHistogramOfRequestLog
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_request_logs_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_request_logs_with_http_info_async(filter, sort_by, limit, page, histogram_interval, **kwargs)  # noqa: E501
+            response = await self.list_request_logs_with_http_info_async(filter, sort_by, limit, page, histogram_interval, **kwargs)
+            return response.data
 
     @validate_call
     async def list_request_logs_with_http_info_async(self, filter: Optional[StrictStr] = None, sort_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, histogram_interval: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListWithHistogramOfRequestLog]:

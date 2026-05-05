@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class DataDefinition(BaseModel):
     key_type:  Optional[StrictStr] = Field(default=None,alias="keyType", description="Is the item either a unique key for the dictionary, i.e. does it identify a unique index or conceptual 'row' within the list of dictionaries,  or a partial key or is it simply a data item within that dictionary. Must be one of [Unique,PartOfUnique,Leaf, CompositeLeaf]") 
     allow_null: Optional[StrictBool] = Field(default=None, description="The path to the field must exist (unless AllowMissing is true) but the actual value is allowed to be null.", alias="allowNull")
     allow_missing: Optional[StrictBool] = Field(default=None, description="The path (or column) is allowed to be missing but if it is present it is not allowed to be null unless AllowNull is true.", alias="allowMissing")
-    __properties = ["address", "name", "dataType", "keyType", "allowNull", "allowMissing"]
+    __properties: ClassVar[List[str]] = ["address", "name", "dataType", "keyType", "allowNull", "allowMissing"]
 
     model_config = ConfigDict(
         populate_by_name=True,

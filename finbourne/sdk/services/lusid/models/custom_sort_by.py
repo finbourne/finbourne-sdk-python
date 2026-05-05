@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,8 +28,8 @@ class CustomSortBy(BaseModel):
     """
     field_name:  StrictStr = Field(...,alias="fieldName", description="The name of the field to sort by.") 
     priority_values: Optional[List[StrictStr]] = Field(default=None, description="An optional list of priority field values to sort by, in the order they should be prioritized.", alias="priorityValues")
-    remainder_order:  StrictStr = Field(...,alias="remainderOrder", description="The sorting direction for the remaining field values. Either ascending (ASC) or descending (DESC).") 
-    __properties = ["fieldName", "priorityValues", "remainderOrder"]
+    remainder_order:  StrictStr = Field(...,alias="remainderOrder", description="The sorting direction for the remaining field values. Either ascending (ASC) or descending (DESC). Available values: ASC, DESC.") 
+    __properties: ClassVar[List[str]] = ["fieldName", "priorityValues", "remainderOrder"]
 
     model_config = ConfigDict(
         populate_by_name=True,

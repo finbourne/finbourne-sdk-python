@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class CompositeBreakdown(BaseModel):
     effective_at: datetime = Field(description="The effectiveAt for the calculation.", alias="effectiveAt")
     composite: Optional[PortfolioReturnBreakdown] = None
     constituents: Optional[List[PortfolioReturnBreakdown]] = Field(default=None, description="The constituents with their information which are part of the composite.")
-    __properties = ["effectiveAt", "composite", "constituents"]
+    __properties: ClassVar[List[str]] = ["effectiveAt", "composite", "constituents"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -94,8 +94,8 @@ class CompositeBreakdown(BaseModel):
 
         _obj = CompositeBreakdown.model_validate({
             "effective_at": obj.get("effectiveAt"),
-            "composite": PortfolioReturnBreakdown.from_dict(obj.get("composite")) if obj.get("composite") is not None else None,
-            "constituents": [PortfolioReturnBreakdown.from_dict(_item) for _item in obj.get("constituents")] if obj.get("constituents") is not None else None
+            "composite": PortfolioReturnBreakdown.from_dict(_v) if (_v := obj.get("composite")) is not None else None,
+            "constituents": [PortfolioReturnBreakdown.from_dict(_item) for _item in _v] if (_v := obj.get("constituents")) is not None else None
         })
         return _obj
 

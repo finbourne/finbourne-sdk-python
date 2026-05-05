@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class StagedModificationStagingRule(BaseModel):
     rule_id:  Optional[StrictStr] = Field(default=None,alias="ruleId", description="The ID of the staging rule.") 
     required_approvals: Optional[StrictInt] = Field(default=None, description="The number of approvals required. If left blank, one approval is needed.", alias="requiredApprovals")
     current_user_can_decide: Optional[StrictBool] = Field(default=None, description="True or False indicating whether the current user can make a decision on the staged modification.", alias="currentUserCanDecide")
-    __properties = ["stagingRuleSetId", "ruleId", "requiredApprovals", "currentUserCanDecide"]
+    __properties: ClassVar[List[str]] = ["stagingRuleSetId", "ruleId", "requiredApprovals", "currentUserCanDecide"]
 
     model_config = ConfigDict(
         populate_by_name=True,

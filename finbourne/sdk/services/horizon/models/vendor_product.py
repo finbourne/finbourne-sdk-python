@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class VendorProduct(BaseModel):
     product_name:  StrictStr = Field(...,alias="productName") 
     vendor_product_key:  StrictStr = Field(...,alias="vendorProductKey") 
     lusid_entity: LusidEntity = Field(alias="lusidEntity")
-    __properties = ["vendorName", "productName", "vendorProductKey", "lusidEntity"]
+    __properties: ClassVar[List[str]] = ["vendorName", "productName", "vendorProductKey", "lusidEntity"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,7 +85,7 @@ class VendorProduct(BaseModel):
             "vendor_name": obj.get("vendorName"),
             "product_name": obj.get("productName"),
             "vendor_product_key": obj.get("vendorProductKey"),
-            "lusid_entity": LusidEntity.from_dict(obj.get("lusidEntity")) if obj.get("lusidEntity") is not None else None
+            "lusid_entity": LusidEntity.from_dict(_v) if (_v := obj.get("lusidEntity")) is not None else None
         })
         return _obj
 

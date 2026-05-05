@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -37,7 +37,7 @@ class PricingContext(BaseModel):
     result_data_rules: Optional[List[ResultKeyRule]] = Field(default=None, description="Set of rules that control querying of unit results either for direct queries into aggregation or for  overriding intermediate calculations. For example, a dirty price is made up from a clean price and the accrued interest.  One might consider overriding the accrued interest calculated by a model (perhaps one wants to match an external value or simply disagrees with the  calculated result) and use that in calculation of the dirty price.", alias="resultDataRules")
     holding_pricing_info: Optional[HoldingPricingInfo] = Field(default=None, alias="holdingPricingInfo")
     accrual_definition:  Optional[StrictStr] = Field(default=None,alias="accrualDefinition", description="Determines which method to use for the calculation of accrued interest. Defaults to SOD.") 
-    __properties = ["modelRules", "modelChoice", "options", "resultDataRules", "holdingPricingInfo", "accrualDefinition"]
+    __properties: ClassVar[List[str]] = ["modelRules", "modelChoice", "options", "resultDataRules", "holdingPricingInfo", "accrualDefinition"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -132,16 +132,16 @@ class PricingContext(BaseModel):
             return PricingContext.model_validate(obj)
 
         _obj = PricingContext.model_validate({
-            "model_rules": [VendorModelRule.from_dict(_item) for _item in obj.get("modelRules")] if obj.get("modelRules") is not None else None,
+            "model_rules": [VendorModelRule.from_dict(_item) for _item in _v] if (_v := obj.get("modelRules")) is not None else None,
             "model_choice": dict(
                 (_k, ModelSelection.from_dict(_v))
-                for _k, _v in obj.get("modelChoice").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("modelChoice") is not None
+            if (_val := obj.get("modelChoice")) is not None
             else None,
-            "options": PricingOptions.from_dict(obj.get("options")) if obj.get("options") is not None else None,
-            "result_data_rules": [ResultKeyRule.from_dict(_item) for _item in obj.get("resultDataRules")] if obj.get("resultDataRules") is not None else None,
-            "holding_pricing_info": HoldingPricingInfo.from_dict(obj.get("holdingPricingInfo")) if obj.get("holdingPricingInfo") is not None else None,
+            "options": PricingOptions.from_dict(_v) if (_v := obj.get("options")) is not None else None,
+            "result_data_rules": [ResultKeyRule.from_dict(_item) for _item in _v] if (_v := obj.get("resultDataRules")) is not None else None,
+            "holding_pricing_info": HoldingPricingInfo.from_dict(_v) if (_v := obj.get("holdingPricingInfo")) is not None else None,
             "accrual_definition": obj.get("accrualDefinition")
         })
         return _obj

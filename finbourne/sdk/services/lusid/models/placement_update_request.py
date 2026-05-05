@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -36,8 +36,8 @@ class PlacementUpdateRequest(BaseModel):
     stop_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The optional price, as currency and amount, associated with this placement.", alias="stopPrice")
     counterparty:  Optional[StrictStr] = Field(default=None,alias="counterparty", description="Optionally specifies the market entity this placement is placed with.") 
     execution_system:  Optional[StrictStr] = Field(default=None,alias="executionSystem", description="Optionally specifies the execution system in use.") 
-    entry_type:  Optional[StrictStr] = Field(default=None,alias="entryType", description="Optionally specifies the entry type of this placement.") 
-    __properties = ["id", "quantity", "properties", "type", "limitPrice", "stopPrice", "counterparty", "executionSystem", "entryType"]
+    entry_type:  Optional[StrictStr] = Field(default=None,alias="entryType", description="Optionally specifies the entry type of this placement. Available values: Undecided, Manual, Direct, Ems, External.") 
+    __properties: ClassVar[List[str]] = ["id", "quantity", "properties", "type", "limitPrice", "stopPrice", "counterparty", "executionSystem", "entryType"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -135,13 +135,13 @@ class PlacementUpdateRequest(BaseModel):
             return PlacementUpdateRequest.model_validate(obj)
 
         _obj = PlacementUpdateRequest.model_validate({
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
             "quantity": obj.get("quantity"),
             "properties": dict(
                 (_k, PerpetualProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
             "type": obj.get("type"),
             "limit_price": obj.get("limitPrice"),

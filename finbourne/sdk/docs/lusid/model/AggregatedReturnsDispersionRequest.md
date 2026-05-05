@@ -9,7 +9,7 @@ The request used in the AggregatedReturnsDispersionMetric.
 | **years_count** | **int** | Optional | For how many years to calculate the dispersion. Default to 10. |
 | **return_ids** | [List[ResourceId]](ResourceId.md) | Optional | The Scope and code of the returns. |
 | **recipe_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
-| **composite_method** | **str** | Optional | The method used to calculate the Portfolio performance: Equal/Asset. |
+| **composite_method** | **str** | Optional | The method used to calculate the Portfolio performance. Available values: Equal, Asset. |
 | **alternative_inception_date** | **str** | Optional | Optional - either a date, or the key for a portfolio property containing a date. If provided, the given date will override the inception date for this request. |
 
 
@@ -25,7 +25,7 @@ instance = AggregatedReturnsDispersionRequest(
     years_count=0,  # optional — For how many years to calculate the dispersion. Default to 10.
     return_ids=[],  # optional — The Scope and code of the returns.
     recipe_id=ResourceId(...),  # optional
-    composite_method="...",  # optional — The method used to calculate the Portfolio performance: Equal/Asset.
+    composite_method="...",  # optional — The method used to calculate the Portfolio performance. Available values: Equal, Asset.
     alternative_inception_date="..."  # optional — Optional - either a date, or the key for a portfolio property containing a date. If provided, the given date will override the inception date for this request.
 )
 ```

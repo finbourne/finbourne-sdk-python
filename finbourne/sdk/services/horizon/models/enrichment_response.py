@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class EnrichmentResponse(BaseModel):
     enriched_instruments: List[StrictStr] = Field(alias="enrichedInstruments")
     ignored_instruments: List[StrictStr] = Field(alias="ignoredInstruments")
     error_file_id:  Optional[StrictStr] = Field(default=None,alias="errorFileId", description="Error File ID, if one was created") 
-    __properties = ["enrichedInstruments", "ignoredInstruments", "errorFileId"]
+    __properties: ClassVar[List[str]] = ["enrichedInstruments", "ignoredInstruments", "errorFileId"]
 
     model_config = ConfigDict(
         populate_by_name=True,

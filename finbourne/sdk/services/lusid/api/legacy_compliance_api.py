@@ -71,12 +71,12 @@ class LegacyComplianceApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_legacy_compliance_rule_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_legacy_compliance_rule_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_legacy_compliance_rule_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_legacy_compliance_rule_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -203,12 +203,12 @@ class LegacyComplianceApi:
         :return: Returns the result object.
         :rtype: ResourceListOfComplianceBreachedOrderInfo
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_legacy_breached_orders_info_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_legacy_breached_orders_info_with_http_info(run_id, order_scope, order_code, limit, **kwargs)  # noqa: E501
+        response = self.get_legacy_breached_orders_info_with_http_info(run_id, order_scope, order_code, limit, **kwargs)
+        return response.data
 
     @validate_call
     def get_legacy_breached_orders_info_with_http_info(self, run_id: StrictStr, order_scope: Optional[StrictStr] = None, order_code: Optional[StrictStr] = None, limit: Optional[int] = None, **kwargs) -> ApiResponse[ResourceListOfComplianceBreachedOrderInfo]:
@@ -347,12 +347,12 @@ class LegacyComplianceApi:
         :return: Returns the result object.
         :rtype: ComplianceRule
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_legacy_compliance_rule_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_legacy_compliance_rule_with_http_info(scope, code, effective_at, as_at, **kwargs)  # noqa: E501
+        response = self.get_legacy_compliance_rule_with_http_info(scope, code, effective_at, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_legacy_compliance_rule_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ComplianceRule]:
@@ -494,12 +494,12 @@ class LegacyComplianceApi:
         :return: Returns the result object.
         :rtype: ResourceListOfComplianceRuleResult
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_legacy_compliance_run_results_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_legacy_compliance_run_results_with_http_info(run_id, page, limit, filter, **kwargs)  # noqa: E501
+        response = self.get_legacy_compliance_run_results_with_http_info(run_id, page, limit, filter, **kwargs)
+        return response.data
 
     @validate_call
     def get_legacy_compliance_run_results_with_http_info(self, run_id: StrictStr, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfComplianceRuleResult]:
@@ -640,12 +640,12 @@ class LegacyComplianceApi:
         :return: Returns the result object.
         :rtype: ResourceListOfComplianceRule
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_legacy_compliance_rules_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_legacy_compliance_rules_with_http_info(effective_at, as_at, page, limit, filter, **kwargs)  # noqa: E501
+        response = self.list_legacy_compliance_rules_with_http_info(effective_at, as_at, page, limit, filter, **kwargs)
+        return response.data
 
     @validate_call
     def list_legacy_compliance_rules_with_http_info(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfComplianceRule]:
@@ -793,12 +793,12 @@ class LegacyComplianceApi:
         :return: Returns the result object.
         :rtype: ResourceListOfComplianceRunInfo
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_legacy_compliance_run_info_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_legacy_compliance_run_info_with_http_info(as_at, page, limit, filter, **kwargs)  # noqa: E501
+        response = self.list_legacy_compliance_run_info_with_http_info(as_at, page, limit, filter, **kwargs)
+        return response.data
 
     @validate_call
     def list_legacy_compliance_run_info_with_http_info(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfComplianceRunInfo]:
@@ -940,12 +940,12 @@ class LegacyComplianceApi:
         :return: Returns the result object.
         :rtype: ComplianceRunInfo
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the run_legacy_compliance_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.run_legacy_compliance_with_http_info(is_pre_trade, recipe_id_scope, recipe_id_code, by_taxlots, **kwargs)  # noqa: E501
+        response = self.run_legacy_compliance_with_http_info(is_pre_trade, recipe_id_scope, recipe_id_code, by_taxlots, **kwargs)
+        return response.data
 
     @validate_call
     def run_legacy_compliance_with_http_info(self, is_pre_trade: bool, recipe_id_scope: StrictStr, recipe_id_code: Optional[StrictStr] = None, by_taxlots: Optional[bool] = None, **kwargs) -> ApiResponse[ComplianceRunInfo]:
@@ -1080,12 +1080,12 @@ class LegacyComplianceApi:
         :return: Returns the result object.
         :rtype: ComplianceRuleUpsertResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_legacy_compliance_rules_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_legacy_compliance_rules_with_http_info(request_body, effective_at, **kwargs)  # noqa: E501
+        response = self.upsert_legacy_compliance_rules_with_http_info(request_body, effective_at, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_legacy_compliance_rules_with_http_info(self, request_body: Dict[str, ComplianceRuleUpsertRequest], effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ComplianceRuleUpsertResponse]:
@@ -1219,12 +1219,12 @@ class LegacyComplianceApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_legacy_compliance_rule_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_legacy_compliance_rule_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_legacy_compliance_rule_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_legacy_compliance_rule_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -1352,12 +1352,12 @@ class LegacyComplianceApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfComplianceBreachedOrderInfo
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_legacy_breached_orders_info_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_legacy_breached_orders_info_with_http_info_async(run_id, order_scope, order_code, limit, **kwargs)  # noqa: E501
+            response = await self.get_legacy_breached_orders_info_with_http_info_async(run_id, order_scope, order_code, limit, **kwargs)
+            return response.data
 
     @validate_call
     async def get_legacy_breached_orders_info_with_http_info_async(self, run_id: StrictStr, order_scope: Optional[StrictStr] = None, order_code: Optional[StrictStr] = None, limit: Optional[int] = None, **kwargs) -> ApiResponse[ResourceListOfComplianceBreachedOrderInfo]:
@@ -1497,12 +1497,12 @@ class LegacyComplianceApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ComplianceRule
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_legacy_compliance_rule_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_legacy_compliance_rule_with_http_info_async(scope, code, effective_at, as_at, **kwargs)  # noqa: E501
+            response = await self.get_legacy_compliance_rule_with_http_info_async(scope, code, effective_at, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_legacy_compliance_rule_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ComplianceRule]:
@@ -1645,12 +1645,12 @@ class LegacyComplianceApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfComplianceRuleResult
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_legacy_compliance_run_results_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_legacy_compliance_run_results_with_http_info_async(run_id, page, limit, filter, **kwargs)  # noqa: E501
+            response = await self.get_legacy_compliance_run_results_with_http_info_async(run_id, page, limit, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def get_legacy_compliance_run_results_with_http_info_async(self, run_id: StrictStr, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfComplianceRuleResult]:
@@ -1792,12 +1792,12 @@ class LegacyComplianceApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfComplianceRule
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_legacy_compliance_rules_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_legacy_compliance_rules_with_http_info_async(effective_at, as_at, page, limit, filter, **kwargs)  # noqa: E501
+            response = await self.list_legacy_compliance_rules_with_http_info_async(effective_at, as_at, page, limit, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def list_legacy_compliance_rules_with_http_info_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfComplianceRule]:
@@ -1946,12 +1946,12 @@ class LegacyComplianceApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfComplianceRunInfo
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_legacy_compliance_run_info_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_legacy_compliance_run_info_with_http_info_async(as_at, page, limit, filter, **kwargs)  # noqa: E501
+            response = await self.list_legacy_compliance_run_info_with_http_info_async(as_at, page, limit, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def list_legacy_compliance_run_info_with_http_info_async(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfComplianceRunInfo]:
@@ -2094,12 +2094,12 @@ class LegacyComplianceApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ComplianceRunInfo
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the run_legacy_compliance_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.run_legacy_compliance_with_http_info_async(is_pre_trade, recipe_id_scope, recipe_id_code, by_taxlots, **kwargs)  # noqa: E501
+            response = await self.run_legacy_compliance_with_http_info_async(is_pre_trade, recipe_id_scope, recipe_id_code, by_taxlots, **kwargs)
+            return response.data
 
     @validate_call
     async def run_legacy_compliance_with_http_info_async(self, is_pre_trade: bool, recipe_id_scope: StrictStr, recipe_id_code: Optional[StrictStr] = None, by_taxlots: Optional[bool] = None, **kwargs) -> ApiResponse[ComplianceRunInfo]:
@@ -2235,12 +2235,12 @@ class LegacyComplianceApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ComplianceRuleUpsertResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_legacy_compliance_rules_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_legacy_compliance_rules_with_http_info_async(request_body, effective_at, **kwargs)  # noqa: E501
+            response = await self.upsert_legacy_compliance_rules_with_http_info_async(request_body, effective_at, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_legacy_compliance_rules_with_http_info_async(self, request_body: Dict[str, ComplianceRuleUpsertRequest], effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ComplianceRuleUpsertResponse]:

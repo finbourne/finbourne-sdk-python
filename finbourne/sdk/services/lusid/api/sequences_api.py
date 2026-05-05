@@ -66,12 +66,12 @@ class SequencesApi:
         :return: Returns the result object.
         :rtype: SequenceDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_sequence_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_sequence_with_http_info(scope, create_sequence_request, **kwargs)  # noqa: E501
+        response = self.create_sequence_with_http_info(scope, create_sequence_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_sequence_with_http_info(self, scope: StrictStr, create_sequence_request: CreateSequenceRequest, **kwargs) -> ApiResponse[SequenceDefinition]:
@@ -201,12 +201,12 @@ class SequencesApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_sequence_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_sequence_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_sequence_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_sequence_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -329,12 +329,12 @@ class SequencesApi:
         :return: Returns the result object.
         :rtype: SequenceDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_sequence_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_sequence_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.get_sequence_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def get_sequence_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[SequenceDefinition]:
@@ -459,12 +459,12 @@ class SequencesApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfSequenceDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_sequences_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_sequences_with_http_info(page, limit, filter, **kwargs)  # noqa: E501
+        response = self.list_sequences_with_http_info(page, limit, filter, **kwargs)
+        return response.data
 
     @validate_call
     def list_sequences_with_http_info(self, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfSequenceDefinition]:
@@ -595,12 +595,12 @@ class SequencesApi:
         :return: Returns the result object.
         :rtype: NextValueInSequenceResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the next_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.next_with_http_info(scope, code, batch, **kwargs)  # noqa: E501
+        response = self.next_with_http_info(scope, code, batch, **kwargs)
+        return response.data
 
     @validate_call
     def next_with_http_info(self, scope: StrictStr, code: StrictStr, batch: Optional[int] = None, **kwargs) -> ApiResponse[NextValueInSequenceResponse]:
@@ -733,12 +733,12 @@ class SequencesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: SequenceDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_sequence_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_sequence_with_http_info_async(scope, create_sequence_request, **kwargs)  # noqa: E501
+            response = await self.create_sequence_with_http_info_async(scope, create_sequence_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_sequence_with_http_info_async(self, scope: StrictStr, create_sequence_request: CreateSequenceRequest, **kwargs) -> ApiResponse[SequenceDefinition]:
@@ -869,12 +869,12 @@ class SequencesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_sequence_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_sequence_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_sequence_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_sequence_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -998,12 +998,12 @@ class SequencesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: SequenceDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_sequence_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_sequence_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.get_sequence_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def get_sequence_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[SequenceDefinition]:
@@ -1129,12 +1129,12 @@ class SequencesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfSequenceDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_sequences_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_sequences_with_http_info_async(page, limit, filter, **kwargs)  # noqa: E501
+            response = await self.list_sequences_with_http_info_async(page, limit, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def list_sequences_with_http_info_async(self, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfSequenceDefinition]:
@@ -1266,12 +1266,12 @@ class SequencesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: NextValueInSequenceResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the next_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.next_with_http_info_async(scope, code, batch, **kwargs)  # noqa: E501
+            response = await self.next_with_http_info_async(scope, code, batch, **kwargs)
+            return response.data
 
     @validate_call
     async def next_with_http_info_async(self, scope: StrictStr, code: StrictStr, batch: Optional[int] = None, **kwargs) -> ApiResponse[NextValueInSequenceResponse]:

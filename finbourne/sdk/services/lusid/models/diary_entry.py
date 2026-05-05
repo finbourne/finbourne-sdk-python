@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,17 +33,17 @@ class DiaryEntry(BaseModel):
     href:  Optional[StrictStr] = Field(default=None,alias="href", description="The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime.") 
     abor_id: Optional[ResourceId] = Field(default=None, alias="aborId")
     diary_entry_code:  Optional[StrictStr] = Field(default=None,alias="diaryEntryCode", description="The code of the diary entry.") 
-    type:  StrictStr = Field(...,alias="type", description="The type of the diary entry.") 
+    type:  StrictStr = Field(...,alias="type", description="The type of the diary entry. Available values: PeriodBoundary, ValuationPoint, Other.") 
     name:  Optional[StrictStr] = Field(default=None,alias="name", description="The name of the diary entry.") 
-    status:  StrictStr = Field(...,alias="status", description="The status of the diary entry. Statuses are constrained and defaulted by 'Type' specified.   Type 'Other' defaults to 'Undefined' and supports 'Undefined', 'Estimate', 'Candidate', and 'Final'.  Type 'PeriodBoundary' defaults to 'Estimate' when closing a period, and supports 'Estimate' and 'Final' for closing periods and 'Final' for locking periods.  Type 'ValuationPoint' defaults to 'Estimate' when upserting a diary entry, moves to 'Candidate' or 'Final' when a ValuationPoint is accepted, and 'Final' when it is finalised.") 
-    apply_clear_down: Optional[StrictBool] = Field(default=None, description="Defaults to false. Set to true if you want that the closed period to have the clear down applied.", alias="applyClearDown")
+    status:  StrictStr = Field(...,alias="status", description="The status of the diary entry. Statuses are constrained and defaulted by 'Type' specified.   Type 'Other' defaults to 'Undefined' and supports 'Undefined', 'Estimate', 'Candidate', and 'Final'.  Type 'PeriodBoundary' defaults to 'Estimate' when closing a period, and supports 'Estimate' and 'Final' for closing periods and 'Final' for locking periods.  Type 'ValuationPoint' defaults to 'Estimate' when upserting a diary entry, moves to 'Candidate' or 'Final' when a ValuationPoint is accepted, and 'Final' when it is finalised. Available values: Undefined, Estimate, Final, Candidate, Unofficial.") 
+    apply_clear_down: Optional[StrictBool] = Field(default=None, description="Defaults to false. Set to true if you want that the closed period to have the clear down applied. Available values: Undefined, Estimate, Final, Candidate, Unofficial.", alias="applyClearDown")
     effective_at: datetime = Field(description="The effective time of the diary entry.", alias="effectiveAt")
     query_as_at: Optional[datetime] = Field(default=None, description="The query time of the diary entry. Defaults to latest.", alias="queryAsAt")
     previous_entry_time: Optional[datetime] = Field(default=None, description="The entry time of the previous diary entry.", alias="previousEntryTime")
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="A set of properties for the diary entry.")
     version: Optional[Version] = None
     links: Optional[List[Link]] = None
-    __properties = ["href", "aborId", "diaryEntryCode", "type", "name", "status", "applyClearDown", "effectiveAt", "queryAsAt", "previousEntryTime", "properties", "version", "links"]
+    __properties: ClassVar[List[str]] = ["href", "aborId", "diaryEntryCode", "type", "name", "status", "applyClearDown", "effectiveAt", "queryAsAt", "previousEntryTime", "properties", "version", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -137,7 +137,7 @@ class DiaryEntry(BaseModel):
 
         _obj = DiaryEntry.model_validate({
             "href": obj.get("href"),
-            "abor_id": ResourceId.from_dict(obj.get("aborId")) if obj.get("aborId") is not None else None,
+            "abor_id": ResourceId.from_dict(_v) if (_v := obj.get("aborId")) is not None else None,
             "diary_entry_code": obj.get("diaryEntryCode"),
             "type": obj.get("type"),
             "name": obj.get("name"),
@@ -148,12 +148,12 @@ class DiaryEntry(BaseModel):
             "previous_entry_time": obj.get("previousEntryTime"),
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

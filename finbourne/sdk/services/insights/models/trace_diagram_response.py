@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class TraceDiagramResponse(BaseModel):
     """
     nodes: Optional[List[TraceDiagramNode]] = Field(default=None, description="The nodes that make up the diagram.")
     edges: Optional[List[TraceDiagramEdge]] = Field(default=None, description="The edges that connect the nodes in the diagram.")
-    __properties = ["nodes", "edges"]
+    __properties: ClassVar[List[str]] = ["nodes", "edges"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -102,8 +102,8 @@ class TraceDiagramResponse(BaseModel):
             return TraceDiagramResponse.model_validate(obj)
 
         _obj = TraceDiagramResponse.model_validate({
-            "nodes": [TraceDiagramNode.from_dict(_item) for _item in obj.get("nodes")] if obj.get("nodes") is not None else None,
-            "edges": [TraceDiagramEdge.from_dict(_item) for _item in obj.get("edges")] if obj.get("edges") is not None else None
+            "nodes": [TraceDiagramNode.from_dict(_item) for _item in _v] if (_v := obj.get("nodes")) is not None else None,
+            "edges": [TraceDiagramEdge.from_dict(_item) for _item in _v] if (_v := obj.get("edges")) is not None else None
         })
         return _obj
 

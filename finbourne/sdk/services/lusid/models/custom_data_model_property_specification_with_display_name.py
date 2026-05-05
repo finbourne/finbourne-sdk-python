@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class CustomDataModelPropertySpecificationWithDisplayName(BaseModel):
     display_name:  Optional[StrictStr] = Field(default=None,alias="displayName", description="The display name of the property definition.") 
     property_key:  StrictStr = Field(...,alias="propertyKey", description="The property key that is required/allowed on the bound entity.") 
     required: Optional[StrictBool] = Field(default=None, description="Whether property is required or allowed.")
-    __properties = ["displayName", "propertyKey", "required"]
+    __properties: ClassVar[List[str]] = ["displayName", "propertyKey", "required"]
 
     model_config = ConfigDict(
         populate_by_name=True,

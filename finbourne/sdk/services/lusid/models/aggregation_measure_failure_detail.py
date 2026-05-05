@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class AggregationMeasureFailureDetail(BaseModel):
     measure:  Optional[StrictStr] = Field(default=None,alias="measure") 
     reason:  Optional[StrictStr] = Field(default=None,alias="reason") 
     detail:  Optional[StrictStr] = Field(default=None,alias="detail") 
-    __properties = ["id", "effectiveAt", "measure", "reason", "detail"]
+    __properties: ClassVar[List[str]] = ["id", "effectiveAt", "measure", "reason", "detail"]
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class CreateSequenceRequest(BaseModel):
     start: Optional[StrictInt] = Field(default=None, description="The start value of the sequence")
     cycle: Optional[StrictBool] = Field(default=None, description="Set to true to start the sequence over again when it reaches the end. Defaults to false if not provided.")
     pattern:  Optional[StrictStr] = Field(default=None,alias="pattern", description="The pattern to be used to generate next values in the sequence. Defaults to null if not provided.") 
-    __properties = ["code", "increment", "minValue", "maxValue", "start", "cycle", "pattern"]
+    __properties: ClassVar[List[str]] = ["code", "increment", "minValue", "maxValue", "start", "cycle", "pattern"]
 
     model_config = ConfigDict(
         populate_by_name=True,

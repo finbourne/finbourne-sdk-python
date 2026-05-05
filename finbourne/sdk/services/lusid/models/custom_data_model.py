@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class CustomDataModel(BaseModel):
     incremental: Optional[CustomDataModelCriteria] = None
     applied: Optional[CustomDataModelCriteria] = None
     version: Optional[Version] = None
-    __properties = ["dataModelSummary", "inherited", "incremental", "applied", "version"]
+    __properties: ClassVar[List[str]] = ["dataModelSummary", "inherited", "incremental", "applied", "version"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -97,11 +97,11 @@ class CustomDataModel(BaseModel):
             return CustomDataModel.model_validate(obj)
 
         _obj = CustomDataModel.model_validate({
-            "data_model_summary": DataModelSummary.from_dict(obj.get("dataModelSummary")) if obj.get("dataModelSummary") is not None else None,
-            "inherited": CustomDataModelCriteria.from_dict(obj.get("inherited")) if obj.get("inherited") is not None else None,
-            "incremental": CustomDataModelCriteria.from_dict(obj.get("incremental")) if obj.get("incremental") is not None else None,
-            "applied": CustomDataModelCriteria.from_dict(obj.get("applied")) if obj.get("applied") is not None else None,
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None
+            "data_model_summary": DataModelSummary.from_dict(_v) if (_v := obj.get("dataModelSummary")) is not None else None,
+            "inherited": CustomDataModelCriteria.from_dict(_v) if (_v := obj.get("inherited")) is not None else None,
+            "incremental": CustomDataModelCriteria.from_dict(_v) if (_v := obj.get("incremental")) is not None else None,
+            "applied": CustomDataModelCriteria.from_dict(_v) if (_v := obj.get("applied")) is not None else None,
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None
         })
         return _obj
 

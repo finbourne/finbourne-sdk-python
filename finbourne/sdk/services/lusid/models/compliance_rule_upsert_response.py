@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class ComplianceRuleUpsertResponse(BaseModel):
     ComplianceRuleUpsertResponse
     """
     values: Dict[str, ComplianceRule]
-    __properties = ["values"]
+    __properties: ClassVar[List[str]] = ["values"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,9 +85,9 @@ class ComplianceRuleUpsertResponse(BaseModel):
         _obj = ComplianceRuleUpsertResponse.model_validate({
             "values": dict(
                 (_k, ComplianceRule.from_dict(_v))
-                for _k, _v in obj.get("values").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("values") is not None
+            if (_val := obj.get("values")) is not None
             else None
         })
         return _obj

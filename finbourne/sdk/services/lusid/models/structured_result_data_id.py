@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class StructuredResultDataId(BaseModel):
     code:  Optional[StrictStr] = Field(default=None,alias="code", description="The identifier for the entity that this id describes. It could be an index, instrument or other form of structured data") 
     effective_at:  Optional[StrictStr] = Field(default=None,alias="effectiveAt", description="The effectiveAt or cut label that this item of structured result data is/was updated/inserted with.") 
     result_type:  Optional[StrictStr] = Field(default=None,alias="resultType", description="An identifier that denotes the class of data that the id points to. This is not the same as the format, but a more generic identifier such as 'risk result', 'cashflow', 'index' or similar.") 
-    __properties = ["source", "code", "effectiveAt", "resultType"]
+    __properties: ClassVar[List[str]] = ["source", "code", "effectiveAt", "resultType"]
 
     model_config = ConfigDict(
         populate_by_name=True,

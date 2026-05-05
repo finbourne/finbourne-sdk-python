@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class CutLabelReference(BaseModel):
     """
     code:  StrictStr = Field(...,alias="code", description="Code of the Cut Label") 
     type:  StrictStr = Field(...,alias="type", description="The type of Time of Day") 
-    __properties = ["code", "type"]
+    __properties: ClassVar[List[str]] = ["code", "type"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class ContributionToNonPassingRuleDetail(BaseModel):
     rule_status:  Optional[StrictStr] = Field(default=None,alias="ruleStatus", description="The status of the non-passing rule.") 
     breach_task_ids: Optional[List[StrictStr]] = Field(default=None, description="The task ids associated with the compliance breach for this order's groups (if failing).", alias="breachTaskIds")
     likely_responsible_for_status: Optional[StrictBool] = Field(default=None, description="Whether this order is deemed as a likely contributor to the non-passing rule for this group.", alias="likelyResponsibleForStatus")
-    __properties = ["ruleId", "ruleStatus", "breachTaskIds", "likelyResponsibleForStatus"]
+    __properties: ClassVar[List[str]] = ["ruleId", "ruleStatus", "breachTaskIds", "likelyResponsibleForStatus"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -92,7 +92,7 @@ class ContributionToNonPassingRuleDetail(BaseModel):
             return ContributionToNonPassingRuleDetail.model_validate(obj)
 
         _obj = ContributionToNonPassingRuleDetail.model_validate({
-            "rule_id": ResourceId.from_dict(obj.get("ruleId")) if obj.get("ruleId") is not None else None,
+            "rule_id": ResourceId.from_dict(_v) if (_v := obj.get("ruleId")) is not None else None,
             "rule_status": obj.get("ruleStatus"),
             "breach_task_ids": obj.get("breachTaskIds"),
             "likely_responsible_for_status": obj.get("likelyResponsibleForStatus")

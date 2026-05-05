@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class OpenFigiSearchResult(BaseModel):
     """
     results: List[OpenFigiData] = Field(description="Enumerable list of OpenFIGI results")
     perm_id_uri:  Optional[StrictStr] = Field(default=None,alias="permIdUri", description="URI of the related PermID response, if requested") 
-    __properties = ["results", "permIdUri"]
+    __properties: ClassVar[List[str]] = ["results", "permIdUri"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -89,7 +89,7 @@ class OpenFigiSearchResult(BaseModel):
             return OpenFigiSearchResult.model_validate(obj)
 
         _obj = OpenFigiSearchResult.model_validate({
-            "results": [OpenFigiData.from_dict(_item) for _item in obj.get("results")] if obj.get("results") is not None else None,
+            "results": [OpenFigiData.from_dict(_item) for _item in _v] if (_v := obj.get("results")) is not None else None,
             "perm_id_uri": obj.get("permIdUri")
         })
         return _obj

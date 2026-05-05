@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -35,7 +35,7 @@ class InstrumentCapabilities(BaseModel):
     supported_addresses: Optional[List[DescribedAddressKey]] = Field(default=None, description="Queryable addresses supported by the model, e.g. 'Valuation/Pv', 'Valuation/Accrued'.", alias="supportedAddresses")
     economic_dependencies: Optional[List[EconomicDependency]] = Field(default=None, description="Economic dependencies for the model, e.g. 'Fx:GBP.USD', 'Cash:GBP', 'Rates:GBP.GBPOIS'.", alias="economicDependencies")
     links: Optional[List[Link]] = None
-    __properties = ["instrumentId", "model", "features", "supportedAddresses", "economicDependencies", "links"]
+    __properties: ClassVar[List[str]] = ["instrumentId", "model", "features", "supportedAddresses", "economicDependencies", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -137,9 +137,9 @@ class InstrumentCapabilities(BaseModel):
             "instrument_id": obj.get("instrumentId"),
             "model": obj.get("model"),
             "features": obj.get("features"),
-            "supported_addresses": [DescribedAddressKey.from_dict(_item) for _item in obj.get("supportedAddresses")] if obj.get("supportedAddresses") is not None else None,
-            "economic_dependencies": [EconomicDependency.from_dict(_item) for _item in obj.get("economicDependencies")] if obj.get("economicDependencies") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "supported_addresses": [DescribedAddressKey.from_dict(_item) for _item in _v] if (_v := obj.get("supportedAddresses")) is not None else None,
+            "economic_dependencies": [EconomicDependency.from_dict(_item) for _item in _v] if (_v := obj.get("economicDependencies")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

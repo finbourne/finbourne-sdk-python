@@ -10,6 +10,7 @@
     Do not edit the class manually.
 """
 
+from __future__ import annotations
 import json
 import pprint
 import re  # noqa: F401
@@ -19,7 +20,7 @@ from aenum import Enum, no_arg
 
 
 
-class QueryDesignerVersion(str, Enum):
+class QueryDesignerVersion(str, Enum):  # type: ignore[misc]
     """
     Versions of the Query Designer as evolving over time. Generally only the two largest values will be supported at any one time.
     """

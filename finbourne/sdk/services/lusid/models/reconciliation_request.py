@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class ReconciliationRequest(BaseModel):
     left_to_right_mapping: Optional[List[ReconciliationLeftRightAddressKeyPair]] = Field(default=None, description="The mapping from property keys requested by left aggregation to property keys on right hand side", alias="leftToRightMapping")
     comparison_rules: Optional[List[ReconciliationRule]] = Field(default=None, description="The set of rules to be used in comparing values. These are the rules that determine what constitutes a match.  The simplest is obviously an exact one-for-one comparison, but tolerances on numerical or date time values and  case-insensitive string comparison are supported amongst other types.", alias="comparisonRules")
     preserve_keys: Optional[List[StrictStr]] = Field(default=None, description="List of keys to preserve (from rhs) in the diff. Used in conjunction with filtering/grouping.  If two values are equal, for a given key then the value is elided from the results. Setting it here  will preserve it (takes the values from the RHS and puts it into the line by line results).", alias="preserveKeys")
-    __properties = ["left", "right", "leftToRightMapping", "comparisonRules", "preserveKeys"]
+    __properties: ClassVar[List[str]] = ["left", "right", "leftToRightMapping", "comparisonRules", "preserveKeys"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -117,10 +117,10 @@ class ReconciliationRequest(BaseModel):
             return ReconciliationRequest.model_validate(obj)
 
         _obj = ReconciliationRequest.model_validate({
-            "left": ValuationRequest.from_dict(obj.get("left")) if obj.get("left") is not None else None,
-            "right": ValuationRequest.from_dict(obj.get("right")) if obj.get("right") is not None else None,
-            "left_to_right_mapping": [ReconciliationLeftRightAddressKeyPair.from_dict(_item) for _item in obj.get("leftToRightMapping")] if obj.get("leftToRightMapping") is not None else None,
-            "comparison_rules": [ReconciliationRule.from_dict(_item) for _item in obj.get("comparisonRules")] if obj.get("comparisonRules") is not None else None,
+            "left": ValuationRequest.from_dict(_v) if (_v := obj.get("left")) is not None else None,
+            "right": ValuationRequest.from_dict(_v) if (_v := obj.get("right")) is not None else None,
+            "left_to_right_mapping": [ReconciliationLeftRightAddressKeyPair.from_dict(_item) for _item in _v] if (_v := obj.get("leftToRightMapping")) is not None else None,
+            "comparison_rules": [ReconciliationRule.from_dict(_item) for _item in _v] if (_v := obj.get("comparisonRules")) is not None else None,
             "preserve_keys": obj.get("preserveKeys")
         })
         return _obj

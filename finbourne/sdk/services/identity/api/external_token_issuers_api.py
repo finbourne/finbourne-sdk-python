@@ -62,12 +62,12 @@ class ExternalTokenIssuersApi:
         :return: Returns the result object.
         :rtype: ExternalTokenIssuerResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_external_token_issuer_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_external_token_issuer_with_http_info(create_external_token_issuer_request, **kwargs)  # noqa: E501
+        response = self.create_external_token_issuer_with_http_info(create_external_token_issuer_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_external_token_issuer_with_http_info(self, create_external_token_issuer_request: CreateExternalTokenIssuerRequest, **kwargs) -> ApiResponse[ExternalTokenIssuerResponse]:
@@ -189,15 +189,15 @@ class ExternalTokenIssuersApi:
         :return: Returns the result object.
         :rtype: None
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_external_token_issuer_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_external_token_issuer_with_http_info(code, **kwargs)  # noqa: E501
+        response = self.delete_external_token_issuer_with_http_info(code, **kwargs)
+        return response.data
 
     @validate_call
-    def delete_external_token_issuer_with_http_info(self, code: StrictStr, **kwargs) -> None:
+    def delete_external_token_issuer_with_http_info(self, code: StrictStr, **kwargs) -> ApiResponse[None]:
         """[EARLY ACCESS] DeleteExternalTokenIssuer: Deletes an External Token Issuer by code  # noqa: E501
 
         Deletes an External Token Issuer  # noqa: E501
@@ -306,12 +306,12 @@ class ExternalTokenIssuersApi:
         :return: Returns the result object.
         :rtype: ExternalTokenIssuerResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_external_token_issuer_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_external_token_issuer_with_http_info(code, **kwargs)  # noqa: E501
+        response = self.get_external_token_issuer_with_http_info(code, **kwargs)
+        return response.data
 
     @validate_call
     def get_external_token_issuer_with_http_info(self, code: StrictStr, **kwargs) -> ApiResponse[ExternalTokenIssuerResponse]:
@@ -424,12 +424,12 @@ class ExternalTokenIssuersApi:
         :return: Returns the result object.
         :rtype: List[ExternalTokenIssuerResponse]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_external_token_issuers_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_external_token_issuers_with_http_info(**kwargs)  # noqa: E501
+        response = self.list_external_token_issuers_with_http_info(**kwargs)
+        return response.data
 
     @validate_call
     def list_external_token_issuers_with_http_info(self, **kwargs) -> ApiResponse[List[ExternalTokenIssuerResponse]]:
@@ -539,12 +539,12 @@ class ExternalTokenIssuersApi:
         :return: Returns the result object.
         :rtype: ExternalTokenIssuerResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_external_token_issuer_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_external_token_issuer_with_http_info(code, update_external_token_issuer_request, **kwargs)  # noqa: E501
+        response = self.update_external_token_issuer_with_http_info(code, update_external_token_issuer_request, **kwargs)
+        return response.data
 
     @validate_call
     def update_external_token_issuer_with_http_info(self, code: StrictStr, update_external_token_issuer_request: UpdateExternalTokenIssuerRequest, **kwargs) -> ApiResponse[ExternalTokenIssuerResponse]:
@@ -676,12 +676,12 @@ class ExternalTokenIssuersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ExternalTokenIssuerResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_external_token_issuer_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_external_token_issuer_with_http_info_async(create_external_token_issuer_request, **kwargs)  # noqa: E501
+            response = await self.create_external_token_issuer_with_http_info_async(create_external_token_issuer_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_external_token_issuer_with_http_info_async(self, create_external_token_issuer_request: CreateExternalTokenIssuerRequest, **kwargs) -> ApiResponse[ExternalTokenIssuerResponse]:
@@ -804,15 +804,15 @@ class ExternalTokenIssuersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: None
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_external_token_issuer_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_external_token_issuer_with_http_info_async(code, **kwargs)  # noqa: E501
+            response = await self.delete_external_token_issuer_with_http_info_async(code, **kwargs)
+            return response.data
 
     @validate_call
-    async def delete_external_token_issuer_with_http_info_async(self, code: StrictStr, **kwargs) -> None:
+    async def delete_external_token_issuer_with_http_info_async(self, code: StrictStr, **kwargs) -> ApiResponse[None]:
             """[EARLY ACCESS] DeleteExternalTokenIssuer: Deletes an External Token Issuer by code  # noqa: E501
 
             Deletes an External Token Issuer  # noqa: E501
@@ -922,12 +922,12 @@ class ExternalTokenIssuersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ExternalTokenIssuerResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_external_token_issuer_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_external_token_issuer_with_http_info_async(code, **kwargs)  # noqa: E501
+            response = await self.get_external_token_issuer_with_http_info_async(code, **kwargs)
+            return response.data
 
     @validate_call
     async def get_external_token_issuer_with_http_info_async(self, code: StrictStr, **kwargs) -> ApiResponse[ExternalTokenIssuerResponse]:
@@ -1041,12 +1041,12 @@ class ExternalTokenIssuersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: List[ExternalTokenIssuerResponse]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_external_token_issuers_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_external_token_issuers_with_http_info_async(**kwargs)  # noqa: E501
+            response = await self.list_external_token_issuers_with_http_info_async(**kwargs)
+            return response.data
 
     @validate_call
     async def list_external_token_issuers_with_http_info_async(self, **kwargs) -> ApiResponse[List[ExternalTokenIssuerResponse]]:
@@ -1157,12 +1157,12 @@ class ExternalTokenIssuersApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ExternalTokenIssuerResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_external_token_issuer_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_external_token_issuer_with_http_info_async(code, update_external_token_issuer_request, **kwargs)  # noqa: E501
+            response = await self.update_external_token_issuer_with_http_info_async(code, update_external_token_issuer_request, **kwargs)
+            return response.data
 
     @validate_call
     async def update_external_token_issuer_with_http_info_async(self, code: StrictStr, update_external_token_issuer_request: UpdateExternalTokenIssuerRequest, **kwargs) -> ApiResponse[ExternalTokenIssuerResponse]:

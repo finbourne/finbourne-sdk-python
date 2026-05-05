@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class ScriptMapReference(BaseModel):
     scope:  StrictStr = Field(...,alias="scope", description="The scope of the configuration store entry where the translation map is located.") 
     code:  StrictStr = Field(...,alias="code", description="The code of the configuration store entry where the translation map is located.") 
     key:  StrictStr = Field(...,alias="key", description="The key of the configuration store entry where the translation map is located.") 
-    __properties = ["scope", "code", "key"]
+    __properties: ClassVar[List[str]] = ["scope", "code", "key"]
 
     model_config = ConfigDict(
         populate_by_name=True,

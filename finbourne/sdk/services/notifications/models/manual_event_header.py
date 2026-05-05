@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class ManualEventHeader(BaseModel):
     timestamp: Optional[datetime] = Field(default=None, description="The timestamp of the manual event")
     user_id:  Optional[StrictStr] = Field(default=None,alias="userId", description="The user ID of the manual event") 
     request_id:  Optional[StrictStr] = Field(default=None,alias="requestId", description="The request ID of the manual event") 
-    __properties = ["eventType", "timestamp", "userId", "requestId"]
+    __properties: ClassVar[List[str]] = ["eventType", "timestamp", "userId", "requestId"]
 
     model_config = ConfigDict(
         populate_by_name=True,

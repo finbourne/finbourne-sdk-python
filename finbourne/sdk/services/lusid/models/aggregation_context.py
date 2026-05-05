@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class AggregationContext(BaseModel):
     Aggregation context node. Whilst the market and pricing nodes concern themselves with which models are used and where the market data comes from, the aggregation  context determines how data is aggregated together. This controls the behaviour of the grouping and sql-like engine at the back of the valuation. For instance,  it controls conversion of currencies and whether the sql-like engine behaves more like ANSI or MySql SQL.  # noqa: E501
     """
     options: Optional[AggregationOptions] = None
-    __properties = ["options"]
+    __properties: ClassVar[List[str]] = ["options"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,7 +79,7 @@ class AggregationContext(BaseModel):
             return AggregationContext.model_validate(obj)
 
         _obj = AggregationContext.model_validate({
-            "options": AggregationOptions.from_dict(obj.get("options")) if obj.get("options") is not None else None
+            "options": AggregationOptions.from_dict(_v) if (_v := obj.get("options")) is not None else None
         })
         return _obj
 

@@ -67,12 +67,12 @@ class InstrumentApi:
         :return: Returns the result object.
         :rtype: OnboardInstrumentResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_instrument_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_instrument_with_http_info(onboard_instrument_request, **kwargs)  # noqa: E501
+        response = self.create_instrument_with_http_info(onboard_instrument_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_instrument_with_http_info(self, onboard_instrument_request: OnboardInstrumentRequest, **kwargs) -> ApiResponse[OnboardInstrumentResponse]:
@@ -194,12 +194,12 @@ class InstrumentApi:
         :return: Returns the result object.
         :rtype: EnrichmentResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the enrich_instrument_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.enrich_instrument_with_http_info(vendor_product_key, identifiers, **kwargs)  # noqa: E501
+        response = self.enrich_instrument_with_http_info(vendor_product_key, identifiers, **kwargs)
+        return response.data
 
     @validate_call
     def enrich_instrument_with_http_info(self, vendor_product_key: StrictStr, identifiers: Identifiers, **kwargs) -> ApiResponse[EnrichmentResponse]:
@@ -325,12 +325,12 @@ class InstrumentApi:
         :return: Returns the result object.
         :rtype: List[AllowedParameterValue]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_open_figi_parameter_option_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_open_figi_parameter_option_with_http_info(parameter_name, **kwargs)  # noqa: E501
+        response = self.get_open_figi_parameter_option_with_http_info(parameter_name, **kwargs)
+        return response.data
 
     @validate_call
     def get_open_figi_parameter_option_with_http_info(self, parameter_name: str, **kwargs) -> ApiResponse[List[AllowedParameterValue]]:
@@ -443,12 +443,12 @@ class InstrumentApi:
         :return: Returns the result object.
         :rtype: List[PermIdData]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the retrieve_perm_id_result_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.retrieve_perm_id_result_with_http_info(id, **kwargs)  # noqa: E501
+        response = self.retrieve_perm_id_result_with_http_info(id, **kwargs)
+        return response.data
 
     @validate_call
     def retrieve_perm_id_result_with_http_info(self, id: StrictStr, **kwargs) -> ApiResponse[List[PermIdData]]:
@@ -567,12 +567,12 @@ class InstrumentApi:
         :return: Returns the result object.
         :rtype: OpenFigiSearchResult
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the search_open_figi_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.search_open_figi_with_http_info(query, use_perm_id, limit, market_sector, **kwargs)  # noqa: E501
+        response = self.search_open_figi_with_http_info(query, use_perm_id, limit, market_sector, **kwargs)
+        return response.data
 
     @validate_call
     def search_open_figi_with_http_info(self, query: StrictStr, use_perm_id: bool, limit: Optional[int] = None, market_sector: Optional[StrictStr] = None, **kwargs) -> ApiResponse[OpenFigiSearchResult]:
@@ -707,12 +707,12 @@ class InstrumentApi:
         :return: Returns the result object.
         :rtype: List[VendorProduct]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the vendors_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.vendors_with_http_info(market_sector, security_type, general_security_type, **kwargs)  # noqa: E501
+        response = self.vendors_with_http_info(market_sector, security_type, general_security_type, **kwargs)
+        return response.data
 
     @validate_call
     def vendors_with_http_info(self, market_sector: StrictStr, security_type: StrictStr, general_security_type: StrictStr, **kwargs) -> ApiResponse[List[VendorProduct]]:
@@ -841,12 +841,12 @@ class InstrumentApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: OnboardInstrumentResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_instrument_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_instrument_with_http_info_async(onboard_instrument_request, **kwargs)  # noqa: E501
+            response = await self.create_instrument_with_http_info_async(onboard_instrument_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_instrument_with_http_info_async(self, onboard_instrument_request: OnboardInstrumentRequest, **kwargs) -> ApiResponse[OnboardInstrumentResponse]:
@@ -969,12 +969,12 @@ class InstrumentApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: EnrichmentResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the enrich_instrument_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.enrich_instrument_with_http_info_async(vendor_product_key, identifiers, **kwargs)  # noqa: E501
+            response = await self.enrich_instrument_with_http_info_async(vendor_product_key, identifiers, **kwargs)
+            return response.data
 
     @validate_call
     async def enrich_instrument_with_http_info_async(self, vendor_product_key: StrictStr, identifiers: Identifiers, **kwargs) -> ApiResponse[EnrichmentResponse]:
@@ -1101,12 +1101,12 @@ class InstrumentApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: List[AllowedParameterValue]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_open_figi_parameter_option_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_open_figi_parameter_option_with_http_info_async(parameter_name, **kwargs)  # noqa: E501
+            response = await self.get_open_figi_parameter_option_with_http_info_async(parameter_name, **kwargs)
+            return response.data
 
     @validate_call
     async def get_open_figi_parameter_option_with_http_info_async(self, parameter_name: str, **kwargs) -> ApiResponse[List[AllowedParameterValue]]:
@@ -1220,12 +1220,12 @@ class InstrumentApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: List[PermIdData]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the retrieve_perm_id_result_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.retrieve_perm_id_result_with_http_info_async(id, **kwargs)  # noqa: E501
+            response = await self.retrieve_perm_id_result_with_http_info_async(id, **kwargs)
+            return response.data
 
     @validate_call
     async def retrieve_perm_id_result_with_http_info_async(self, id: StrictStr, **kwargs) -> ApiResponse[List[PermIdData]]:
@@ -1345,12 +1345,12 @@ class InstrumentApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: OpenFigiSearchResult
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the search_open_figi_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.search_open_figi_with_http_info_async(query, use_perm_id, limit, market_sector, **kwargs)  # noqa: E501
+            response = await self.search_open_figi_with_http_info_async(query, use_perm_id, limit, market_sector, **kwargs)
+            return response.data
 
     @validate_call
     async def search_open_figi_with_http_info_async(self, query: StrictStr, use_perm_id: bool, limit: Optional[int] = None, market_sector: Optional[StrictStr] = None, **kwargs) -> ApiResponse[OpenFigiSearchResult]:
@@ -1486,12 +1486,12 @@ class InstrumentApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: List[VendorProduct]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the vendors_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.vendors_with_http_info_async(market_sector, security_type, general_security_type, **kwargs)  # noqa: E501
+            response = await self.vendors_with_http_info_async(market_sector, security_type, general_security_type, **kwargs)
+            return response.data
 
     @validate_call
     async def vendors_with_http_info_async(self, market_sector: StrictStr, security_type: StrictStr, general_security_type: StrictStr, **kwargs) -> ApiResponse[List[VendorProduct]]:

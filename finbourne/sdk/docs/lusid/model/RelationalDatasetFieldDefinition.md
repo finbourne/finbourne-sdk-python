@@ -9,7 +9,7 @@
 | **description** | **str** | Optional | A detailed description of the field and its purpose. |
 | **data_type_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **required** | **bool** | Optional | Whether this field is mandatory in the dataset. |
-| **category** | **str** | Required | The intended category of the field (SeriesIdentifier, Value, or Metadata). |
+| **category** | **str** | Required | The intended category of the field (SeriesIdentifier, Value, or Metadata). Available values: SeriesIdentifier, Value, Metadata. |
 
 
 ## Usage
@@ -25,7 +25,7 @@ instance = RelationalDatasetFieldDefinition(
     description="...",  # optional — A detailed description of the field and its purpose.
     data_type_id=ResourceId(...),  # required
     required=True,  # optional — Whether this field is mandatory in the dataset.
-    category="..."  # required — The intended category of the field (SeriesIdentifier, Value, or Metadata).
+    category="..."  # required — The intended category of the field (SeriesIdentifier, Value, or Metadata). Available values: SeriesIdentifier, Value, Metadata.
 )
 ```
 

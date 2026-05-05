@@ -20,7 +20,7 @@ import re  # noqa: F401
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist, ValidationError
 from finbourne.sdk.services.workflow.models.create_new_task_activity_response import CreateNewTaskActivityResponse
 from finbourne.sdk.services.workflow.models.update_matching_tasks_activity_response import UpdateMatchingTasksActivityResponse
-from typing import Optional, List, Dict, Union, Annotated, Any, Literal, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Any, ClassVar, Literal, TYPE_CHECKING
 
 TASKACTIVITYRESPONSE_ONE_OF_SCHEMAS = ["CreateNewTaskActivityResponse", "UpdateMatchingTasksActivityResponse"]
 
@@ -36,25 +36,25 @@ class TaskActivityResponse(BaseModel):
         actual_instance: Union[CreateNewTaskActivityResponse, UpdateMatchingTasksActivityResponse]
     else:
         actual_instance: Any
-    one_of_schemas: Literal[TASKACTIVITYRESPONSE_ONE_OF_SCHEMAS] = TASKACTIVITYRESPONSE_ONE_OF_SCHEMAS
+    one_of_schemas: ClassVar[List[str]] = TASKACTIVITYRESPONSE_ONE_OF_SCHEMAS
 
     model_config = ConfigDict(
         validate_assignment=True
     )
 
-    def __init__(self, *args, **kwargs) -> None:
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         if args:
             if len(args) > 1:
                 raise ValueError("If a position argument is used, only 1 is allowed to set `actual_instance`")
             if kwargs:
                 raise ValueError("If a position argument is used, keyword arguments cannot be used.")
-            super().__init__(actual_instance=args[0])
+            super().__init__(actual_instance=args[0])  # type: ignore[index]
         else:
             super().__init__(**kwargs)
 
     @field_validator('actual_instance')
     def actual_instance_must_validate_oneof(cls, v):
-        instance = TaskActivityResponse.model_construct()
+        _instance = TaskActivityResponse.model_construct()
         error_messages = []
         match = 0
         matchclass = ""
@@ -127,7 +127,7 @@ class TaskActivityResponse(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> dict:
+    def to_dict(self) -> Any:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

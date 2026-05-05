@@ -59,12 +59,12 @@ class ManualEventApi:
         :return: Returns the result object.
         :rtype: ManualEvent
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the trigger_manual_event_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.trigger_manual_event_with_http_info(manual_event_request, **kwargs)  # noqa: E501
+        response = self.trigger_manual_event_with_http_info(manual_event_request, **kwargs)
+        return response.data
 
     @validate_call
     def trigger_manual_event_with_http_info(self, manual_event_request: ManualEventRequest, **kwargs) -> ApiResponse[ManualEvent]:
@@ -188,12 +188,12 @@ class ManualEventApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ManualEvent
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the trigger_manual_event_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.trigger_manual_event_with_http_info_async(manual_event_request, **kwargs)  # noqa: E501
+            response = await self.trigger_manual_event_with_http_info_async(manual_event_request, **kwargs)
+            return response.data
 
     @validate_call
     async def trigger_manual_event_with_http_info_async(self, manual_event_request: ManualEventRequest, **kwargs) -> ApiResponse[ManualEvent]:

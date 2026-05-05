@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -27,10 +27,10 @@ class GeneratedEventDiagnostics(BaseModel):
     Represents a set of diagnostics per generatedEvent, where applicable.  # noqa: E501
     """
     instrument_event_id:  StrictStr = Field(...,alias="instrumentEventId") 
-    type:  StrictStr = Field(...,alias="type") 
+    type:  StrictStr = Field(...,alias="type", description="Available values: MarketDataFailure, TransactionFailure, EventCombinationFailure, RepodOutHolding, ScheduleFailure.") 
     detail:  StrictStr = Field(...,alias="detail") 
     error_details: List[StrictStr] = Field(alias="errorDetails")
-    __properties = ["instrumentEventId", "type", "detail", "errorDetails"]
+    __properties: ClassVar[List[str]] = ["instrumentEventId", "type", "detail", "errorDetails"]
 
     model_config = ConfigDict(
         populate_by_name=True,

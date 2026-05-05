@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -35,7 +35,7 @@ class ScanReport(BaseModel):
     scan_duration: Optional[StrictInt] = Field(default=None, description="The duration of the scan in seconds", alias="scanDuration")
     summary: Optional[ScanSummary] = None
     vulnerabilities: Optional[List[Vulnerability]] = Field(default=None, description="List of Finbourne.Scheduler.WebApi.Dtos.Images.Vulnerability")
-    __properties = ["severity", "status", "startTime", "endTime", "scanDuration", "summary", "vulnerabilities"]
+    __properties: ClassVar[List[str]] = ["severity", "status", "startTime", "endTime", "scanDuration", "summary", "vulnerabilities"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -128,8 +128,8 @@ class ScanReport(BaseModel):
             "start_time": obj.get("startTime"),
             "end_time": obj.get("endTime"),
             "scan_duration": obj.get("scanDuration"),
-            "summary": ScanSummary.from_dict(obj.get("summary")) if obj.get("summary") is not None else None,
-            "vulnerabilities": [Vulnerability.from_dict(_item) for _item in obj.get("vulnerabilities")] if obj.get("vulnerabilities") is not None else None
+            "summary": ScanSummary.from_dict(_v) if (_v := obj.get("summary")) is not None else None,
+            "vulnerabilities": [Vulnerability.from_dict(_item) for _item in _v] if (_v := obj.get("vulnerabilities")) is not None else None
         })
         return _obj
 

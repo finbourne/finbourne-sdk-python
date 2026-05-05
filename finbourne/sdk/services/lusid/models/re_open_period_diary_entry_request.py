@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -27,7 +27,7 @@ class ReOpenPeriodDiaryEntryRequest(BaseModel):
     A definition for the period you wish to re open  # noqa: E501
     """
     diary_entry_code:  Optional[StrictStr] = Field(default=None,alias="diaryEntryCode", description="Unique code assigned to a period. When left blank last period will be used.") 
-    __properties = ["diaryEntryCode"]
+    __properties: ClassVar[List[str]] = ["diaryEntryCode"]
 
     model_config = ConfigDict(
         populate_by_name=True,

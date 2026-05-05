@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class TimeTrigger(BaseModel):
     """
     expression:  Optional[StrictStr] = Field(default=None,alias="expression", description="Cron expression") 
     time_zone:  Optional[StrictStr] = Field(default=None,alias="timeZone", description="Time zone of the Cron expression. If not provided, defaults to UTC") 
-    __properties = ["expression", "timeZone"]
+    __properties: ClassVar[List[str]] = ["expression", "timeZone"]
 
     model_config = ConfigDict(
         populate_by_name=True,

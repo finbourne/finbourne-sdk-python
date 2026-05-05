@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,7 +33,7 @@ class CreateTaskRequest(BaseModel):
     fields: Optional[List[TaskInstanceField]] = Field(default=None, description="Fields and their initial values - should correspond with the Task Definition field schema")
     stacking_key:  Optional[StrictStr] = Field(default=None,alias="stackingKey", description="The key for the Stack that this Task should be added to") 
     workflow_id: Optional[ResourceId] = Field(default=None, alias="workflowId")
-    __properties = ["taskDefinitionId", "correlationIds", "fields", "stackingKey", "workflowId"]
+    __properties: ClassVar[List[str]] = ["taskDefinitionId", "correlationIds", "fields", "stackingKey", "workflowId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -109,11 +109,11 @@ class CreateTaskRequest(BaseModel):
             return CreateTaskRequest.model_validate(obj)
 
         _obj = CreateTaskRequest.model_validate({
-            "task_definition_id": ResourceId.from_dict(obj.get("taskDefinitionId")) if obj.get("taskDefinitionId") is not None else None,
+            "task_definition_id": ResourceId.from_dict(_v) if (_v := obj.get("taskDefinitionId")) is not None else None,
             "correlation_ids": obj.get("correlationIds"),
-            "fields": [TaskInstanceField.from_dict(_item) for _item in obj.get("fields")] if obj.get("fields") is not None else None,
+            "fields": [TaskInstanceField.from_dict(_item) for _item in _v] if (_v := obj.get("fields")) is not None else None,
             "stacking_key": obj.get("stackingKey"),
-            "workflow_id": ResourceId.from_dict(obj.get("workflowId")) if obj.get("workflowId") is not None else None
+            "workflow_id": ResourceId.from_dict(_v) if (_v := obj.get("workflowId")) is not None else None
         })
         return _obj
 

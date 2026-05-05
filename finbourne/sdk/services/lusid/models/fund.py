@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -42,12 +42,12 @@ class Fund(BaseModel):
     display_name:  Optional[StrictStr] = Field(default=None,alias="displayName", description="The name of the Fund.") 
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="A description for the Fund.") 
     base_currency:  Optional[StrictStr] = Field(default=None,alias="baseCurrency", description="The base currency of the Fund in ISO 4217 currency code format. All portfolios must be of a matching base currency.") 
-    investor_structure:  StrictStr = Field(...,alias="investorStructure", description="The Investor structure to be used by the Fund. Supported values are 'NonUnitised' and 'Classes'.") 
-    portfolio_ids: Optional[List[PortfolioEntityIdWithDetails]] = Field(default=None, description="A list of the portfolios on the fund, which are part of the Fund. Note: These must all have the same base currency, which must also much the Fund Base Currency.", alias="portfolioIds")
+    investor_structure:  StrictStr = Field(...,alias="investorStructure", description="The Investor structure to be used by the Fund. Available values: NonUnitised, Classes.") 
+    portfolio_ids: Optional[List[PortfolioEntityIdWithDetails]] = Field(default=None, description="A list of the portfolios on the fund, which are part of the Fund. Note: These must all have the same base currency, which must also match the Fund Base Currency.", alias="portfolioIds")
     fund_configuration_id: Optional[ResourceId] = Field(default=None, alias="fundConfigurationId")
     abor_id: Optional[ResourceId] = Field(default=None, alias="aborId")
     share_class_instruments: Optional[List[InstrumentResolutionDetail]] = Field(default=None, description="Details the user-provided instrument identifiers and the instrument resolved from them. These would be decommissioned in favour of the new AllocationGroups and ShareClasses structures.", alias="shareClassInstruments")
-    type:  Optional[StrictStr] = Field(default=None,alias="type", description="The type of fund; 'Standalone', 'Master' or 'Feeder'") 
+    type:  Optional[StrictStr] = Field(default=None,alias="type", description="The type of fund. Available values: Standalone, Master, Feeder.") 
     inception_date: datetime = Field(description="Inception date of the Fund", alias="inceptionDate")
     decimal_places: Optional[StrictInt] = Field(default=None, description="Number of decimal places for reporting", alias="decimalPlaces")
     year_end_date: Optional[DayMonth] = Field(default=None, alias="yearEndDate")
@@ -60,7 +60,7 @@ class Fund(BaseModel):
     share_classes: Optional[List[ShareClass]] = Field(default=None, description="An optional list of Share Class definitions for the Fund.", alias="shareClasses")
     version: Optional[Version] = None
     links: Optional[List[Link]] = None
-    __properties = ["href", "id", "displayName", "description", "baseCurrency", "investorStructure", "portfolioIds", "fundConfigurationId", "aborId", "shareClassInstruments", "type", "inceptionDate", "decimalPlaces", "yearEndDate", "primaryNavType", "additionalNavTypes", "properties", "createInstrument", "apportionmentMethodProperty", "allocationGroups", "shareClasses", "version", "links"]
+    __properties: ClassVar[List[str]] = ["href", "id", "displayName", "description", "baseCurrency", "investorStructure", "portfolioIds", "fundConfigurationId", "aborId", "shareClassInstruments", "type", "inceptionDate", "decimalPlaces", "yearEndDate", "primaryNavType", "additionalNavTypes", "properties", "createInstrument", "apportionmentMethodProperty", "allocationGroups", "shareClasses", "version", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -244,33 +244,33 @@ class Fund(BaseModel):
 
         _obj = Fund.model_validate({
             "href": obj.get("href"),
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
             "base_currency": obj.get("baseCurrency"),
             "investor_structure": obj.get("investorStructure"),
-            "portfolio_ids": [PortfolioEntityIdWithDetails.from_dict(_item) for _item in obj.get("portfolioIds")] if obj.get("portfolioIds") is not None else None,
-            "fund_configuration_id": ResourceId.from_dict(obj.get("fundConfigurationId")) if obj.get("fundConfigurationId") is not None else None,
-            "abor_id": ResourceId.from_dict(obj.get("aborId")) if obj.get("aborId") is not None else None,
-            "share_class_instruments": [InstrumentResolutionDetail.from_dict(_item) for _item in obj.get("shareClassInstruments")] if obj.get("shareClassInstruments") is not None else None,
+            "portfolio_ids": [PortfolioEntityIdWithDetails.from_dict(_item) for _item in _v] if (_v := obj.get("portfolioIds")) is not None else None,
+            "fund_configuration_id": ResourceId.from_dict(_v) if (_v := obj.get("fundConfigurationId")) is not None else None,
+            "abor_id": ResourceId.from_dict(_v) if (_v := obj.get("aborId")) is not None else None,
+            "share_class_instruments": [InstrumentResolutionDetail.from_dict(_item) for _item in _v] if (_v := obj.get("shareClassInstruments")) is not None else None,
             "type": obj.get("type"),
             "inception_date": obj.get("inceptionDate"),
             "decimal_places": obj.get("decimalPlaces"),
-            "year_end_date": DayMonth.from_dict(obj.get("yearEndDate")) if obj.get("yearEndDate") is not None else None,
-            "primary_nav_type": NavType.from_dict(obj.get("primaryNavType")) if obj.get("primaryNavType") is not None else None,
-            "additional_nav_types": [NavType.from_dict(_item) for _item in obj.get("additionalNavTypes")] if obj.get("additionalNavTypes") is not None else None,
+            "year_end_date": DayMonth.from_dict(_v) if (_v := obj.get("yearEndDate")) is not None else None,
+            "primary_nav_type": NavType.from_dict(_v) if (_v := obj.get("primaryNavType")) is not None else None,
+            "additional_nav_types": [NavType.from_dict(_item) for _item in _v] if (_v := obj.get("additionalNavTypes")) is not None else None,
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
             "create_instrument": obj.get("createInstrument"),
-            "apportionment_method_property": ApportionmentMethodProperty.from_dict(obj.get("apportionmentMethodProperty")) if obj.get("apportionmentMethodProperty") is not None else None,
-            "allocation_groups": [AllocationGroup.from_dict(_item) for _item in obj.get("allocationGroups")] if obj.get("allocationGroups") is not None else None,
-            "share_classes": [ShareClass.from_dict(_item) for _item in obj.get("shareClasses")] if obj.get("shareClasses") is not None else None,
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "apportionment_method_property": ApportionmentMethodProperty.from_dict(_v) if (_v := obj.get("apportionmentMethodProperty")) is not None else None,
+            "allocation_groups": [AllocationGroup.from_dict(_item) for _item in _v] if (_v := obj.get("allocationGroups")) is not None else None,
+            "share_classes": [ShareClass.from_dict(_item) for _item in _v] if (_v := obj.get("shareClasses")) is not None else None,
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

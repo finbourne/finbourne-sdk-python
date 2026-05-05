@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class TranslateEntitiesRequest(BaseModel):
     entity_payloads: Dict[str, TranslationInput] = Field(description="Entity payloads to be translated, indexed by (ephemeral) unique correlation ids.", alias="entityPayloads")
     script_id: TranslationScriptId = Field(alias="scriptId")
     dialect_id: Optional[DialectId] = Field(default=None, alias="dialectId")
-    __properties = ["entityPayloads", "scriptId", "dialectId"]
+    __properties: ClassVar[List[str]] = ["entityPayloads", "scriptId", "dialectId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -95,12 +95,12 @@ class TranslateEntitiesRequest(BaseModel):
         _obj = TranslateEntitiesRequest.model_validate({
             "entity_payloads": dict(
                 (_k, TranslationInput.from_dict(_v))
-                for _k, _v in obj.get("entityPayloads").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("entityPayloads") is not None
+            if (_val := obj.get("entityPayloads")) is not None
             else None,
-            "script_id": TranslationScriptId.from_dict(obj.get("scriptId")) if obj.get("scriptId") is not None else None,
-            "dialect_id": DialectId.from_dict(obj.get("dialectId")) if obj.get("dialectId") is not None else None
+            "script_id": TranslationScriptId.from_dict(_v) if (_v := obj.get("scriptId")) is not None else None,
+            "dialect_id": DialectId.from_dict(_v) if (_v := obj.get("dialectId")) is not None else None
         })
         return _obj
 

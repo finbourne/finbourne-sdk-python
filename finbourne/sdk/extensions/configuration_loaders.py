@@ -1,6 +1,6 @@
 import json
 import os
-from typing import Dict, TextIO, Protocol, Union, Iterable, Optional, Tuple, Any
+from typing import Any, Dict, TextIO, Protocol, Union, Iterable, Optional, Sequence, Tuple
 import logging
 from finbourne.sdk.extensions.proxy_config import ProxyConfig
 from finbourne.sdk.configuration import Configuration
@@ -54,8 +54,7 @@ SECRETS_FILE_CONFIG_KEYS = {
 
 
 class ConfigurationLoader(Protocol):
-    def load_config(self) -> Dict[str, object]:
-        pass
+    def load_config(self) -> Dict[str, object]: ...
 
 
 class SecretsFileConfigurationLoader:
@@ -67,16 +66,16 @@ class SecretsFileConfigurationLoader:
         self._api_secrets_file = api_secrets_file or ""
         self._profile_name = profile_name
 
-    def load_config(self) -> Dict[str, object]:
+    def load_config(self) -> Dict[str, Any]:
         logger.debug(f"loading config from secrets file: {self._api_secrets_file}")
         profiles_config_key = "profiles"
         default_profile = self._profile_name
         proxy_config_key = "proxy"
         try:
             try:
-                config = json.load(self._api_secrets_file)
+                config = json.load(self._api_secrets_file)  # type: ignore[arg-type]
             except AttributeError:
-                with open(self._api_secrets_file) as api_secrets_file:
+                with open(self._api_secrets_file) as api_secrets_file:  # type: ignore[arg-type]
                     config = json.load(api_secrets_file)
         except OSError:
             logger.debug(f"Unable to open secrets file {self._api_secrets_file}")
@@ -119,10 +118,10 @@ class EnvironmentVariablesConfigurationLoader:
         """
         self._environment_variables = environment_variables
 
-    def load_config(self) -> Dict[str, object]:
+    def load_config(self) -> Dict[str, Any]:
         logger.debug("loading config from environment variables")
         environment_variables = os.environ if self._environment_variables is None else self._environment_variables
-        populated_api_config_values = {
+        populated_api_config_values: Dict[str, Any] = {
             key: environment_variables.get(value)
             for key, value in ENVIRONMENT_CONFIG_KEYS.items()
             if "proxy" not in key
@@ -132,8 +131,8 @@ class EnvironmentVariablesConfigurationLoader:
         for key in ["total_timeout_ms", "connect_timeout_ms", "read_timeout_ms", "rate_limit_retries"]:
             if populated_api_config_values[key]:
                 try:
-                    populated_api_config_values[key] = int(populated_api_config_values[key])
-                except ValueError as e:
+                    populated_api_config_values[key] = int(str(populated_api_config_values[key]))
+                except ValueError:
                     raise ValueError(f"invalid value for '{key}' - value must be an integer if set")
         populated_proxy_values = {
             key: os.environ.get(value)
@@ -222,8 +221,8 @@ def get_api_configuration(
     profile_name: str = "default",
     environment_variables: Optional[Dict[str, str]] = None,
     base_url: Optional[str] = None,
-    access_token: Optional[str] = None,
-    socket_options: Union[Tuple[Any, Any, Any], Tuple[Any, Any, None, int]] = keep_alive_socket_options(),
+    access_token: Any = None,
+    socket_options: Any = keep_alive_socket_options(),
     tcp_keep_alive: bool = True,
     opts: Optional[ConfigurationOptions] = None,
 ) -> Configuration:

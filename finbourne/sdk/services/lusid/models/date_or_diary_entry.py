@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class DateOrDiaryEntry(BaseModel):
     """
     var_date:  Optional[StrictStr] = Field(default=None,alias="date", description="A date. If specified, DiaryEntry must not be specified.") 
     diary_entry:  Optional[StrictStr] = Field(default=None,alias="diaryEntry", description="The code of a diary entry. If specified, Date must not be specified.") 
-    __properties = ["date", "diaryEntry"]
+    __properties: ClassVar[List[str]] = ["date", "diaryEntry"]
 
     model_config = ConfigDict(
         populate_by_name=True,

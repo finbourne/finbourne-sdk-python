@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class AvailableParameter(BaseModel):
     provider_name:  StrictStr = Field(...,alias="providerName", description="Name of the Provider with a TableParameter") 
     parameter_name:  StrictStr = Field(...,alias="parameterName", description="Name of the TableParameter on the Provider") 
     fields: List[MappableField] = Field(description="Fields that can be mapped to")
-    __properties = ["providerName", "parameterName", "fields"]
+    __properties: ClassVar[List[str]] = ["providerName", "parameterName", "fields"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -87,7 +87,7 @@ class AvailableParameter(BaseModel):
         _obj = AvailableParameter.model_validate({
             "provider_name": obj.get("providerName"),
             "parameter_name": obj.get("parameterName"),
-            "fields": [MappableField.from_dict(_item) for _item in obj.get("fields")] if obj.get("fields") is not None else None
+            "fields": [MappableField.from_dict(_item) for _item in _v] if (_v := obj.get("fields")) is not None else None
         })
         return _obj
 

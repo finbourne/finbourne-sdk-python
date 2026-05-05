@@ -64,12 +64,12 @@ class DerivedTransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: Portfolio
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_derived_portfolio_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_derived_portfolio_with_http_info(scope, create_derived_transaction_portfolio_request, **kwargs)  # noqa: E501
+        response = self.create_derived_portfolio_with_http_info(scope, create_derived_transaction_portfolio_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_derived_portfolio_with_http_info(self, scope: StrictStr, create_derived_transaction_portfolio_request: Optional[CreateDerivedTransactionPortfolioRequest] = None, **kwargs) -> ApiResponse[Portfolio]:
@@ -201,12 +201,12 @@ class DerivedTransactionPortfoliosApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_derived_portfolio_details_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_derived_portfolio_details_with_http_info(scope, code, effective_at, **kwargs)  # noqa: E501
+        response = self.delete_derived_portfolio_details_with_http_info(scope, code, effective_at, **kwargs)
+        return response.data
 
     @validate_call
     def delete_derived_portfolio_details_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -339,12 +339,12 @@ class DerivedTransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Portfolio
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_derived_portfolio_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_derived_portfolio_with_http_info_async(scope, create_derived_transaction_portfolio_request, **kwargs)  # noqa: E501
+            response = await self.create_derived_portfolio_with_http_info_async(scope, create_derived_transaction_portfolio_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_derived_portfolio_with_http_info_async(self, scope: StrictStr, create_derived_transaction_portfolio_request: Optional[CreateDerivedTransactionPortfolioRequest] = None, **kwargs) -> ApiResponse[Portfolio]:
@@ -477,12 +477,12 @@ class DerivedTransactionPortfoliosApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_derived_portfolio_details_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_derived_portfolio_details_with_http_info_async(scope, code, effective_at, **kwargs)  # noqa: E501
+            response = await self.delete_derived_portfolio_details_with_http_info_async(scope, code, effective_at, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_derived_portfolio_details_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:

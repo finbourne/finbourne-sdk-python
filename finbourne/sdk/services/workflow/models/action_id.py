@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class ActionId(BaseModel):
     scope:  StrictStr = Field(...,alias="scope") 
     activity:  StrictStr = Field(...,alias="activity") 
     entity:  StrictStr = Field(...,alias="entity") 
-    __properties = ["scope", "activity", "entity"]
+    __properties: ClassVar[List[str]] = ["scope", "activity", "entity"]
 
     model_config = ConfigDict(
         populate_by_name=True,

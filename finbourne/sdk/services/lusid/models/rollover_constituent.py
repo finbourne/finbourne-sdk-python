@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class RolloverConstituent(BaseModel):
     """
     contract_details: ContractDetails = Field(alias="contractDetails")
     balance_change: Union[StrictFloat, StrictInt] = Field(description="Balance of the new contract holding.", alias="balanceChange")
-    __properties = ["contractDetails", "balanceChange"]
+    __properties: ClassVar[List[str]] = ["contractDetails", "balanceChange"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,7 +80,7 @@ class RolloverConstituent(BaseModel):
             return RolloverConstituent.model_validate(obj)
 
         _obj = RolloverConstituent.model_validate({
-            "contract_details": ContractDetails.from_dict(obj.get("contractDetails")) if obj.get("contractDetails") is not None else None,
+            "contract_details": ContractDetails.from_dict(_v) if (_v := obj.get("contractDetails")) is not None else None,
             "balance_change": obj.get("balanceChange")
         })
         return _obj

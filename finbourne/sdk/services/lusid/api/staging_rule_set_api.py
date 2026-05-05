@@ -67,12 +67,12 @@ class StagingRuleSetApi:
         :return: Returns the result object.
         :rtype: StagingRuleSet
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_staging_rule_set_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_staging_rule_set_with_http_info(entity_type, create_staging_rule_set_request, **kwargs)  # noqa: E501
+        response = self.create_staging_rule_set_with_http_info(entity_type, create_staging_rule_set_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_staging_rule_set_with_http_info(self, entity_type: StrictStr, create_staging_rule_set_request: CreateStagingRuleSetRequest, **kwargs) -> ApiResponse[StagingRuleSet]:
@@ -200,12 +200,12 @@ class StagingRuleSetApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_staging_rule_set_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_staging_rule_set_with_http_info(entity_type, **kwargs)  # noqa: E501
+        response = self.delete_staging_rule_set_with_http_info(entity_type, **kwargs)
+        return response.data
 
     @validate_call
     def delete_staging_rule_set_with_http_info(self, entity_type: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -322,12 +322,12 @@ class StagingRuleSetApi:
         :return: Returns the result object.
         :rtype: StagingRuleSet
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_staging_rule_set_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_staging_rule_set_with_http_info(entity_type, as_at, **kwargs)  # noqa: E501
+        response = self.get_staging_rule_set_with_http_info(entity_type, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_staging_rule_set_with_http_info(self, entity_type: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[StagingRuleSet]:
@@ -459,12 +459,12 @@ class StagingRuleSetApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfStagingRuleSet
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_staging_rule_sets_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_staging_rule_sets_with_http_info(as_at, page, sort_by, limit, filter, **kwargs)  # noqa: E501
+        response = self.list_staging_rule_sets_with_http_info(as_at, page, sort_by, limit, filter, **kwargs)
+        return response.data
 
     @validate_call
     def list_staging_rule_sets_with_http_info(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfStagingRuleSet]:
@@ -609,12 +609,12 @@ class StagingRuleSetApi:
         :return: Returns the result object.
         :rtype: StagingRuleSet
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_staging_rule_set_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_staging_rule_set_with_http_info(entity_type, update_staging_rule_set_request, **kwargs)  # noqa: E501
+        response = self.update_staging_rule_set_with_http_info(entity_type, update_staging_rule_set_request, **kwargs)
+        return response.data
 
     @validate_call
     def update_staging_rule_set_with_http_info(self, entity_type: StrictStr, update_staging_rule_set_request: UpdateStagingRuleSetRequest, **kwargs) -> ApiResponse[StagingRuleSet]:
@@ -748,12 +748,12 @@ class StagingRuleSetApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: StagingRuleSet
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_staging_rule_set_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_staging_rule_set_with_http_info_async(entity_type, create_staging_rule_set_request, **kwargs)  # noqa: E501
+            response = await self.create_staging_rule_set_with_http_info_async(entity_type, create_staging_rule_set_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_staging_rule_set_with_http_info_async(self, entity_type: StrictStr, create_staging_rule_set_request: CreateStagingRuleSetRequest, **kwargs) -> ApiResponse[StagingRuleSet]:
@@ -882,12 +882,12 @@ class StagingRuleSetApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_staging_rule_set_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_staging_rule_set_with_http_info_async(entity_type, **kwargs)  # noqa: E501
+            response = await self.delete_staging_rule_set_with_http_info_async(entity_type, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_staging_rule_set_with_http_info_async(self, entity_type: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -1005,12 +1005,12 @@ class StagingRuleSetApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: StagingRuleSet
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_staging_rule_set_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_staging_rule_set_with_http_info_async(entity_type, as_at, **kwargs)  # noqa: E501
+            response = await self.get_staging_rule_set_with_http_info_async(entity_type, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_staging_rule_set_with_http_info_async(self, entity_type: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[StagingRuleSet]:
@@ -1143,12 +1143,12 @@ class StagingRuleSetApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfStagingRuleSet
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_staging_rule_sets_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_staging_rule_sets_with_http_info_async(as_at, page, sort_by, limit, filter, **kwargs)  # noqa: E501
+            response = await self.list_staging_rule_sets_with_http_info_async(as_at, page, sort_by, limit, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def list_staging_rule_sets_with_http_info_async(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfStagingRuleSet]:
@@ -1294,12 +1294,12 @@ class StagingRuleSetApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: StagingRuleSet
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_staging_rule_set_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_staging_rule_set_with_http_info_async(entity_type, update_staging_rule_set_request, **kwargs)  # noqa: E501
+            response = await self.update_staging_rule_set_with_http_info_async(entity_type, update_staging_rule_set_request, **kwargs)
+            return response.data
 
     @validate_call
     async def update_staging_rule_set_with_http_info_async(self, entity_type: StrictStr, update_staging_rule_set_request: UpdateStagingRuleSetRequest, **kwargs) -> ApiResponse[StagingRuleSet]:

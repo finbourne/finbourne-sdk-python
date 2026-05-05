@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -33,9 +33,9 @@ class FxLinkedNotionalSchedule(Schedule):
     varying_notional_currency:  StrictStr = Field(...,alias="varyingNotionalCurrency", description="The currency of the varying notional amount.") 
     varying_notional_fixing_dates: RelativeDateOffset = Field(alias="varyingNotionalFixingDates")
     varying_notional_interim_exchange_payment_dates: Optional[RelativeDateOffset] = Field(default=None, alias="varyingNotionalInterimExchangePaymentDates")
-    schedule_type:  StrictStr = Field(...,alias="scheduleType", description="The available values are: FixedSchedule, FloatSchedule, OptionalitySchedule, StepSchedule, Exercise, FxRateSchedule, FxLinkedNotionalSchedule, BondConversionSchedule, Invalid") 
+    schedule_type:  StrictStr = Field(...,alias="scheduleType", description="Available values: FixedSchedule, FloatSchedule, OptionalitySchedule, StepSchedule, Exercise, FxRateSchedule, FxLinkedNotionalSchedule, BondConversionSchedule, Invalid.") 
     additional_properties: Dict[str, Any] = {}
-    __properties = ["scheduleType", "fxConventions", "varyingNotionalCurrency", "varyingNotionalFixingDates", "varyingNotionalInterimExchangePaymentDates"]
+    __properties: ClassVar[List[str]] = ["scheduleType", "fxConventions", "varyingNotionalCurrency", "varyingNotionalFixingDates", "varyingNotionalInterimExchangePaymentDates"]
 
     @field_validator('schedule_type')
     def schedule_type_validate_enum(cls, value):
@@ -168,19 +168,14 @@ class FxLinkedNotionalSchedule(Schedule):
 
         _obj = FxLinkedNotionalSchedule.model_validate({
             "schedule_type": obj.get("scheduleType"),
-            "fx_conventions": FxConventions.from_dict(obj.get("fxConventions")) if obj.get("fxConventions") is not None else None,
+            "fx_conventions": FxConventions.from_dict(_v) if (_v := obj.get("fxConventions")) is not None else None,
             "varying_notional_currency": obj.get("varyingNotionalCurrency"),
-            "varying_notional_fixing_dates": RelativeDateOffset.from_dict(obj.get("varyingNotionalFixingDates")) if obj.get("varyingNotionalFixingDates") is not None else None,
-            "varying_notional_interim_exchange_payment_dates": RelativeDateOffset.from_dict(obj.get("varyingNotionalInterimExchangePaymentDates")) if obj.get("varyingNotionalInterimExchangePaymentDates") is not None else None
+            "varying_notional_fixing_dates": RelativeDateOffset.from_dict(_v) if (_v := obj.get("varyingNotionalFixingDates")) is not None else None,
+            "varying_notional_interim_exchange_payment_dates": RelativeDateOffset.from_dict(_v) if (_v := obj.get("varyingNotionalInterimExchangePaymentDates")) is not None else None
         })
         # store additional fields in additional_properties
-        
-        properties = cls.__properties
-        if not isinstance(cls.__properties, dict) and getattr(cls.__properties, 'default', None):
-            properties = cls.__properties.default
-    
         for _key in obj.keys():
-            if _key not in properties:
+            if _key not in cls.__properties:
                 _obj.additional_properties[_key] = obj.get(_key)
 
         return _obj

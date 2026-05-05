@@ -73,12 +73,12 @@ class EntitiesApi:
         :return: Returns the result object.
         :rtype: CustomEntityEntity
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_custom_entity_by_entity_unique_id_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_custom_entity_by_entity_unique_id_with_http_info(entity_unique_id, effective_at, as_at, previews, **kwargs)  # noqa: E501
+        response = self.get_custom_entity_by_entity_unique_id_with_http_info(entity_unique_id, effective_at, as_at, previews, **kwargs)
+        return response.data
 
     @validate_call
     def get_custom_entity_by_entity_unique_id_with_http_info(self, entity_unique_id: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, previews: Optional[List[str]] = None, **kwargs) -> ApiResponse[CustomEntityEntity]:
@@ -219,12 +219,12 @@ class EntitiesApi:
         :return: Returns the result object.
         :rtype: DataTypeEntity
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_data_type_by_entity_unique_id_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_data_type_by_entity_unique_id_with_http_info(entity_unique_id, as_at, previews, **kwargs)  # noqa: E501
+        response = self.get_data_type_by_entity_unique_id_with_http_info(entity_unique_id, as_at, previews, **kwargs)
+        return response.data
 
     @validate_call
     def get_data_type_by_entity_unique_id_with_http_info(self, entity_unique_id: StrictStr, as_at: Optional[datetime] = None, previews: Optional[List[str]] = None, **kwargs) -> ApiResponse[DataTypeEntity]:
@@ -367,12 +367,12 @@ class EntitiesApi:
         :return: Returns the result object.
         :rtype: ResourceListOfChangeInterval
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_entity_history_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_entity_history_with_http_info(entity_type, entity_unique_id, as_at, page, limit, filter, sort_by, **kwargs)  # noqa: E501
+        response = self.get_entity_history_with_http_info(entity_type, entity_unique_id, as_at, page, limit, filter, sort_by, **kwargs)
+        return response.data
 
     @validate_call
     def get_entity_history_with_http_info(self, entity_type: StrictStr, entity_unique_id: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfChangeInterval]:
@@ -537,12 +537,12 @@ class EntitiesApi:
         :return: Returns the result object.
         :rtype: InstrumentEntity
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_instrument_by_entity_unique_id_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_instrument_by_entity_unique_id_with_http_info(entity_unique_id, effective_at, as_at, previews, data_model_scope, data_model_code, **kwargs)  # noqa: E501
+        response = self.get_instrument_by_entity_unique_id_with_http_info(entity_unique_id, effective_at, as_at, previews, data_model_scope, data_model_code, **kwargs)
+        return response.data
 
     @validate_call
     def get_instrument_by_entity_unique_id_with_http_info(self, entity_unique_id: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, previews: Optional[List[str]] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[InstrumentEntity]:
@@ -697,12 +697,12 @@ class EntitiesApi:
         :return: Returns the result object.
         :rtype: PortfolioEntity
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_portfolio_by_entity_unique_id_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_portfolio_by_entity_unique_id_with_http_info(entity_unique_id, effective_at, as_at, previews, **kwargs)  # noqa: E501
+        response = self.get_portfolio_by_entity_unique_id_with_http_info(entity_unique_id, effective_at, as_at, previews, **kwargs)
+        return response.data
 
     @validate_call
     def get_portfolio_by_entity_unique_id_with_http_info(self, entity_unique_id: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, previews: Optional[List[str]] = None, **kwargs) -> ApiResponse[PortfolioEntity]:
@@ -843,12 +843,12 @@ class EntitiesApi:
         :return: Returns the result object.
         :rtype: ResourceListOfChange
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_portfolio_changes_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_portfolio_changes_with_http_info(scope, effective_at, as_at, **kwargs)  # noqa: E501
+        response = self.get_portfolio_changes_with_http_info(scope, effective_at, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_portfolio_changes_with_http_info(self, scope: StrictStr, effective_at: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfChange]:
@@ -984,12 +984,12 @@ class EntitiesApi:
         :return: Returns the result object.
         :rtype: PropertyDefinitionEntity
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_property_definition_by_entity_unique_id_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_property_definition_by_entity_unique_id_with_http_info(entity_unique_id, effective_at, as_at, previews, **kwargs)  # noqa: E501
+        response = self.get_property_definition_by_entity_unique_id_with_http_info(entity_unique_id, effective_at, as_at, previews, **kwargs)
+        return response.data
 
     @validate_call
     def get_property_definition_by_entity_unique_id_with_http_info(self, entity_unique_id: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, previews: Optional[List[str]] = None, **kwargs) -> ApiResponse[PropertyDefinitionEntity]:
@@ -1136,12 +1136,12 @@ class EntitiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: CustomEntityEntity
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_custom_entity_by_entity_unique_id_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_custom_entity_by_entity_unique_id_with_http_info_async(entity_unique_id, effective_at, as_at, previews, **kwargs)  # noqa: E501
+            response = await self.get_custom_entity_by_entity_unique_id_with_http_info_async(entity_unique_id, effective_at, as_at, previews, **kwargs)
+            return response.data
 
     @validate_call
     async def get_custom_entity_by_entity_unique_id_with_http_info_async(self, entity_unique_id: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, previews: Optional[List[str]] = None, **kwargs) -> ApiResponse[CustomEntityEntity]:
@@ -1283,12 +1283,12 @@ class EntitiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DataTypeEntity
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_data_type_by_entity_unique_id_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_data_type_by_entity_unique_id_with_http_info_async(entity_unique_id, as_at, previews, **kwargs)  # noqa: E501
+            response = await self.get_data_type_by_entity_unique_id_with_http_info_async(entity_unique_id, as_at, previews, **kwargs)
+            return response.data
 
     @validate_call
     async def get_data_type_by_entity_unique_id_with_http_info_async(self, entity_unique_id: StrictStr, as_at: Optional[datetime] = None, previews: Optional[List[str]] = None, **kwargs) -> ApiResponse[DataTypeEntity]:
@@ -1432,12 +1432,12 @@ class EntitiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfChangeInterval
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_entity_history_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_entity_history_with_http_info_async(entity_type, entity_unique_id, as_at, page, limit, filter, sort_by, **kwargs)  # noqa: E501
+            response = await self.get_entity_history_with_http_info_async(entity_type, entity_unique_id, as_at, page, limit, filter, sort_by, **kwargs)
+            return response.data
 
     @validate_call
     async def get_entity_history_with_http_info_async(self, entity_type: StrictStr, entity_unique_id: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfChangeInterval]:
@@ -1603,12 +1603,12 @@ class EntitiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: InstrumentEntity
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_instrument_by_entity_unique_id_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_instrument_by_entity_unique_id_with_http_info_async(entity_unique_id, effective_at, as_at, previews, data_model_scope, data_model_code, **kwargs)  # noqa: E501
+            response = await self.get_instrument_by_entity_unique_id_with_http_info_async(entity_unique_id, effective_at, as_at, previews, data_model_scope, data_model_code, **kwargs)
+            return response.data
 
     @validate_call
     async def get_instrument_by_entity_unique_id_with_http_info_async(self, entity_unique_id: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, previews: Optional[List[str]] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[InstrumentEntity]:
@@ -1764,12 +1764,12 @@ class EntitiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PortfolioEntity
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_portfolio_by_entity_unique_id_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_portfolio_by_entity_unique_id_with_http_info_async(entity_unique_id, effective_at, as_at, previews, **kwargs)  # noqa: E501
+            response = await self.get_portfolio_by_entity_unique_id_with_http_info_async(entity_unique_id, effective_at, as_at, previews, **kwargs)
+            return response.data
 
     @validate_call
     async def get_portfolio_by_entity_unique_id_with_http_info_async(self, entity_unique_id: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, previews: Optional[List[str]] = None, **kwargs) -> ApiResponse[PortfolioEntity]:
@@ -1911,12 +1911,12 @@ class EntitiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfChange
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_portfolio_changes_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_portfolio_changes_with_http_info_async(scope, effective_at, as_at, **kwargs)  # noqa: E501
+            response = await self.get_portfolio_changes_with_http_info_async(scope, effective_at, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_portfolio_changes_with_http_info_async(self, scope: StrictStr, effective_at: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfChange]:
@@ -2053,12 +2053,12 @@ class EntitiesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PropertyDefinitionEntity
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_property_definition_by_entity_unique_id_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_property_definition_by_entity_unique_id_with_http_info_async(entity_unique_id, effective_at, as_at, previews, **kwargs)  # noqa: E501
+            response = await self.get_property_definition_by_entity_unique_id_with_http_info_async(entity_unique_id, effective_at, as_at, previews, **kwargs)
+            return response.data
 
     @validate_call
     async def get_property_definition_by_entity_unique_id_with_http_info_async(self, entity_unique_id: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, previews: Optional[List[str]] = None, **kwargs) -> ApiResponse[PropertyDefinitionEntity]:

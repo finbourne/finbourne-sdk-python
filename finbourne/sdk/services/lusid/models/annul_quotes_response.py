@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class AnnulQuotesResponse(BaseModel):
     values: Optional[Dict[str, datetime]] = Field(default=None, description="The quotes which have been successfully deleted along with the asAt datetime at which the deletion was committed to LUSID.")
     failed: Optional[Dict[str, ErrorDetail]] = Field(default=None, description="The quotes that could not be deleted along with a reason for their failure.")
     links: Optional[List[Link]] = None
-    __properties = ["href", "values", "failed", "links"]
+    __properties: ClassVar[List[str]] = ["href", "values", "failed", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -118,11 +118,11 @@ class AnnulQuotesResponse(BaseModel):
             "values": obj.get("values"),
             "failed": dict(
                 (_k, ErrorDetail.from_dict(_v))
-                for _k, _v in obj.get("failed").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("failed") is not None
+            if (_val := obj.get("failed")) is not None
             else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

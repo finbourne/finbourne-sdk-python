@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class StagedModificationDecision(BaseModel):
     request_id:  Optional[StrictStr] = Field(default=None,alias="requestId", description="ID of user that made the request.") 
     decision:  Optional[StrictStr] = Field(default=None,alias="decision", description="The decision on the requested staged modification, can be 'Approve' or 'Reject'.") 
     comment:  Optional[StrictStr] = Field(default=None,alias="comment", description="Comment on decision.") 
-    __properties = ["asAt", "userId", "requestId", "decision", "comment"]
+    __properties: ClassVar[List[str]] = ["asAt", "userId", "requestId", "decision", "comment"]
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class BatchUpsertDatesForCalendarResponse(BaseModel):
     failed: Optional[Dict[str, ErrorDetail]] = Field(default=None, description="The dates that could not be upserted along with a reason for their failure.")
     metadata: Optional[Dict[str, Optional[List[ResponseMetaData]]]] = Field(default=None, description="Contains warnings related to the upserted dates")
     links: Optional[List[Link]] = None
-    __properties = ["values", "failed", "metadata", "links"]
+    __properties: ClassVar[List[str]] = ["values", "failed", "metadata", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,9 +88,9 @@ class BatchUpsertDatesForCalendarResponse(BaseModel):
         _field_dict_of_array = {}
         if self.metadata:
             for _key in self.metadata:
-                if self.metadata[_key]:
+                if (_items_for_key := self.metadata[_key]):
                     _field_dict_of_array[_key] = [
-                        _item.to_dict() for _item in self.metadata[_key]
+                        _item.to_dict() for _item in _items_for_key
                     ]
             _dict['metadata'] = _field_dict_of_array
         # override the default output from pydantic by calling `to_dict()` of each item in links (list)
@@ -134,15 +134,15 @@ class BatchUpsertDatesForCalendarResponse(BaseModel):
         _obj = BatchUpsertDatesForCalendarResponse.model_validate({
             "values": dict(
                 (_k, CalendarDate.from_dict(_v))
-                for _k, _v in obj.get("values").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("values") is not None
+            if (_val := obj.get("values")) is not None
             else None,
             "failed": dict(
                 (_k, ErrorDetail.from_dict(_v))
-                for _k, _v in obj.get("failed").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("failed") is not None
+            if (_val := obj.get("failed")) is not None
             else None,
             "metadata": dict(
                 (_k,
@@ -150,11 +150,11 @@ class BatchUpsertDatesForCalendarResponse(BaseModel):
                         if _v is not None
                         else None
                 )
-                for _k, _v in obj.get("metadata").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("metadata") is not None
+            if (_val := obj.get("metadata")) is not None
             else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class CreateCalendarRequest(BaseModel):
     weekend_mask: WeekendMask = Field(alias="weekendMask")
     source_provider:  StrictStr = Field(...,alias="sourceProvider") 
     properties: Optional[List[ModelProperty]] = None
-    __properties = ["calendarId", "calendarType", "weekendMask", "sourceProvider", "properties"]
+    __properties: ClassVar[List[str]] = ["calendarId", "calendarType", "weekendMask", "sourceProvider", "properties"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -100,11 +100,11 @@ class CreateCalendarRequest(BaseModel):
             return CreateCalendarRequest.model_validate(obj)
 
         _obj = CreateCalendarRequest.model_validate({
-            "calendar_id": ResourceId.from_dict(obj.get("calendarId")) if obj.get("calendarId") is not None else None,
+            "calendar_id": ResourceId.from_dict(_v) if (_v := obj.get("calendarId")) is not None else None,
             "calendar_type": obj.get("calendarType"),
-            "weekend_mask": WeekendMask.from_dict(obj.get("weekendMask")) if obj.get("weekendMask") is not None else None,
+            "weekend_mask": WeekendMask.from_dict(_v) if (_v := obj.get("weekendMask")) is not None else None,
             "source_provider": obj.get("sourceProvider"),
-            "properties": [ModelProperty.from_dict(_item) for _item in obj.get("properties")] if obj.get("properties") is not None else None
+            "properties": [ModelProperty.from_dict(_item) for _item in _v] if (_v := obj.get("properties")) is not None else None
         })
         return _obj
 

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,8 +32,8 @@ class RelationalDatasetFieldDefinition(BaseModel):
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="A detailed description of the field and its purpose.") 
     data_type_id: ResourceId = Field(alias="dataTypeId")
     required: Optional[StrictBool] = Field(default=None, description="Whether this field is mandatory in the dataset.")
-    category:  StrictStr = Field(...,alias="category", description="The intended category of the field (SeriesIdentifier, Value, or Metadata).") 
-    __properties = ["fieldName", "displayName", "description", "dataTypeId", "required", "category"]
+    category:  StrictStr = Field(...,alias="category", description="The intended category of the field (SeriesIdentifier, Value, or Metadata). Available values: SeriesIdentifier, Value, Metadata.") 
+    __properties: ClassVar[List[str]] = ["fieldName", "displayName", "description", "dataTypeId", "required", "category"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -97,7 +97,7 @@ class RelationalDatasetFieldDefinition(BaseModel):
             "field_name": obj.get("fieldName"),
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
-            "data_type_id": ResourceId.from_dict(obj.get("dataTypeId")) if obj.get("dataTypeId") is not None else None,
+            "data_type_id": ResourceId.from_dict(_v) if (_v := obj.get("dataTypeId")) is not None else None,
             "required": obj.get("required"),
             "category": obj.get("category")
         })

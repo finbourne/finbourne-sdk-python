@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class CheckDefinitionDatasetSchema(BaseModel):
     """
     type:  Optional[StrictStr] = Field(default=None,alias="type", description="The type of dataset schema that the Check Definition applies to") 
     entity_type:  Optional[StrictStr] = Field(default=None,alias="entityType", description="The type of entity that the dataset schema applies to, e.g. Instrument, Transaction, etc.") 
-    __properties = ["type", "entityType"]
+    __properties: ClassVar[List[str]] = ["type", "entityType"]
 
     model_config = ConfigDict(
         populate_by_name=True,

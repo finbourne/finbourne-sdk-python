@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class LogRequest(BaseModel):
     Represents a LogRequest resource in the Okta API  # noqa: E501
     """
     ip_chain: Optional[List[LogIpChainEntry]] = Field(default=None, alias="ipChain")
-    __properties = ["ipChain"]
+    __properties: ClassVar[List[str]] = ["ipChain"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,7 +88,7 @@ class LogRequest(BaseModel):
             return LogRequest.model_validate(obj)
 
         _obj = LogRequest.model_validate({
-            "ip_chain": [LogIpChainEntry.from_dict(_item) for _item in obj.get("ipChain")] if obj.get("ipChain") is not None else None
+            "ip_chain": [LogIpChainEntry.from_dict(_item) for _item in _v] if (_v := obj.get("ipChain")) is not None else None
         })
         return _obj
 

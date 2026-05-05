@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class PreviousShareClassBreakdown(BaseModel):
     nav: PreviousNAV
     unitisation: Optional[UnitisationData] = None
     share_class_to_fund_fx_rate: Union[StrictFloat, StrictInt] = Field(description="The fx rate from the Share Class currency to the fund currency at this valuation point.", alias="shareClassToFundFxRate")
-    __properties = ["nav", "unitisation", "shareClassToFundFxRate"]
+    __properties: ClassVar[List[str]] = ["nav", "unitisation", "shareClassToFundFxRate"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,8 +85,8 @@ class PreviousShareClassBreakdown(BaseModel):
             return PreviousShareClassBreakdown.model_validate(obj)
 
         _obj = PreviousShareClassBreakdown.model_validate({
-            "nav": PreviousNAV.from_dict(obj.get("nav")) if obj.get("nav") is not None else None,
-            "unitisation": UnitisationData.from_dict(obj.get("unitisation")) if obj.get("unitisation") is not None else None,
+            "nav": PreviousNAV.from_dict(_v) if (_v := obj.get("nav")) is not None else None,
+            "unitisation": UnitisationData.from_dict(_v) if (_v := obj.get("unitisation")) is not None else None,
             "share_class_to_fund_fx_rate": obj.get("shareClassToFundFxRate")
         })
         return _obj

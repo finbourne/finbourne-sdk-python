@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class CancelOrdersAndMoveRemainingRequest(BaseModel):
     cancel_order_id: ResourceId = Field(alias="cancelOrderId")
     move_remaining_to_order_id: ResourceId = Field(alias="moveRemainingToOrderId")
     move_remaining_to_block_id: ResourceId = Field(alias="moveRemainingToBlockId")
-    __properties = ["cancelOrderId", "moveRemainingToOrderId", "moveRemainingToBlockId"]
+    __properties: ClassVar[List[str]] = ["cancelOrderId", "moveRemainingToOrderId", "moveRemainingToBlockId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -87,9 +87,9 @@ class CancelOrdersAndMoveRemainingRequest(BaseModel):
             return CancelOrdersAndMoveRemainingRequest.model_validate(obj)
 
         _obj = CancelOrdersAndMoveRemainingRequest.model_validate({
-            "cancel_order_id": ResourceId.from_dict(obj.get("cancelOrderId")) if obj.get("cancelOrderId") is not None else None,
-            "move_remaining_to_order_id": ResourceId.from_dict(obj.get("moveRemainingToOrderId")) if obj.get("moveRemainingToOrderId") is not None else None,
-            "move_remaining_to_block_id": ResourceId.from_dict(obj.get("moveRemainingToBlockId")) if obj.get("moveRemainingToBlockId") is not None else None
+            "cancel_order_id": ResourceId.from_dict(_v) if (_v := obj.get("cancelOrderId")) is not None else None,
+            "move_remaining_to_order_id": ResourceId.from_dict(_v) if (_v := obj.get("moveRemainingToOrderId")) is not None else None,
+            "move_remaining_to_block_id": ResourceId.from_dict(_v) if (_v := obj.get("moveRemainingToBlockId")) is not None else None
         })
         return _obj
 

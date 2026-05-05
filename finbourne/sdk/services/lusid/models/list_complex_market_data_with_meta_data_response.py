@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class ListComplexMarketDataWithMetaDataResponse(BaseModel):
     scope:  Optional[StrictStr] = Field(default=None,alias="scope", description="The scope that the listed ComplexMarketData entity is stored in.") 
     market_data_id: Optional[ComplexMarketDataId] = Field(default=None, alias="marketDataId")
     market_data: Optional[ComplexMarketData] = Field(default=None, alias="marketData")
-    __properties = ["scope", "marketDataId", "marketData"]
+    __properties: ClassVar[List[str]] = ["scope", "marketDataId", "marketData"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,8 +91,8 @@ class ListComplexMarketDataWithMetaDataResponse(BaseModel):
 
         _obj = ListComplexMarketDataWithMetaDataResponse.model_validate({
             "scope": obj.get("scope"),
-            "market_data_id": ComplexMarketDataId.from_dict(obj.get("marketDataId")) if obj.get("marketDataId") is not None else None,
-            "market_data": ComplexMarketData.from_dict(obj.get("marketData")) if obj.get("marketData") is not None else None
+            "market_data_id": ComplexMarketDataId.from_dict(_v) if (_v := obj.get("marketDataId")) is not None else None,
+            "market_data": ComplexMarketData.from_dict(_v) if (_v := obj.get("marketData")) is not None else None
         })
         return _obj
 

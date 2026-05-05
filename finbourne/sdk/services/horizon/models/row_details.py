@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class RowDetails(BaseModel):
     rows_succeeded: Optional[StrictInt] = Field(default=None, description="The number of rows that were successfully processed.", alias="rowsSucceeded")
     rows_ignored: Optional[StrictInt] = Field(default=None, description="The number of rows that were not processed.", alias="rowsIgnored")
     rows_failed: Optional[StrictInt] = Field(default=None, description="The number of rows that failed when being processed.", alias="rowsFailed")
-    __properties = ["rowsTotal", "rowsSucceeded", "rowsIgnored", "rowsFailed"]
+    __properties: ClassVar[List[str]] = ["rowsTotal", "rowsSucceeded", "rowsIgnored", "rowsFailed"]
 
     model_config = ConfigDict(
         populate_by_name=True,

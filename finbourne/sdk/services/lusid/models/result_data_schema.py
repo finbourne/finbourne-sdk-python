@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class ResultDataSchema(BaseModel):
     node_value_schema: Optional[Dict[str, FieldSchema]] = Field(default=None, description="This has been deprecated. Please use AddressSchema instead.", alias="nodeValueSchema")
     property_schema: Optional[Dict[str, FieldSchema]] = Field(default=None, description="This has been deprecated. Please use AddressSchema instead.", alias="propertySchema")
     address_schema: Optional[Dict[str, AddressDefinition]] = Field(default=None, alias="addressSchema")
-    __properties = ["nodeValueSchema", "propertySchema", "addressSchema"]
+    __properties: ClassVar[List[str]] = ["nodeValueSchema", "propertySchema", "addressSchema"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -117,21 +117,21 @@ class ResultDataSchema(BaseModel):
         _obj = ResultDataSchema.model_validate({
             "node_value_schema": dict(
                 (_k, FieldSchema.from_dict(_v))
-                for _k, _v in obj.get("nodeValueSchema").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("nodeValueSchema") is not None
+            if (_val := obj.get("nodeValueSchema")) is not None
             else None,
             "property_schema": dict(
                 (_k, FieldSchema.from_dict(_v))
-                for _k, _v in obj.get("propertySchema").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("propertySchema") is not None
+            if (_val := obj.get("propertySchema")) is not None
             else None,
             "address_schema": dict(
                 (_k, AddressDefinition.from_dict(_v))
-                for _k, _v in obj.get("addressSchema").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("addressSchema") is not None
+            if (_val := obj.get("addressSchema")) is not None
             else None
         })
         return _obj

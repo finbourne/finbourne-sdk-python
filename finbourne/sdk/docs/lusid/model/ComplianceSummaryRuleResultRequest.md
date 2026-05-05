@@ -7,7 +7,7 @@
 | **rule_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **template_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **variation** | **str** | Required | *No description available.* |
-| **rule_status** | **str** | Required | *No description available.* |
+| **rule_status** | **str** | Required | Available values: Passed, Failed, MissingData, Warning. |
 | **affected_portfolios** | [List[ResourceId]](ResourceId.md) | Required | *No description available.* |
 | **affected_orders** | [List[ResourceId]](ResourceId.md) | Required | *No description available.* |
 | **parameters_used** | **Dict[str, Optional[str]]** | Required | *No description available.* |
@@ -25,7 +25,7 @@ instance = ComplianceSummaryRuleResultRequest(
     rule_id=ResourceId(...),  # required
     template_id=ResourceId(...),  # required
     variation="...",  # required
-    rule_status="...",  # required
+    rule_status="...",  # required — Available values: Passed, Failed, MissingData, Warning.
     affected_portfolios=[],  # required
     affected_orders=[],  # required
     parameters_used=,  # required

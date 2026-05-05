@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class ComparisonAttributeValuePair(BaseModel):
     """
     attribute_name:  StrictStr = Field(...,alias="attributeName", description="Comparison rule attribute name.") 
     value:  Optional[StrictStr] = Field(default=None,alias="value", description="Computed value for the comparison rule attribute.") 
-    __properties = ["attributeName", "value"]
+    __properties: ClassVar[List[str]] = ["attributeName", "value"]
 
     model_config = ConfigDict(
         populate_by_name=True,

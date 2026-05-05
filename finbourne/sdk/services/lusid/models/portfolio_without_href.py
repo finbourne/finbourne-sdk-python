@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -35,7 +35,7 @@ class PortfolioWithoutHref(BaseModel):
     A list of portfolios.  # noqa: E501
     """
     id: ResourceId
-    type:  StrictStr = Field(...,alias="type", description="The type of the portfolio. The available values are: Transaction, Reference, DerivedTransaction, SimplePosition") 
+    type:  StrictStr = Field(...,alias="type", description="The type of the portfolio. Available values: Transaction, Reference, DerivedTransaction, SimplePosition.") 
     display_name:  StrictStr = Field(...,alias="displayName", description="The name of the portfolio.") 
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="The long form description of the portfolio.") 
     created: datetime = Field(description="The effective datetime at which the portfolio was created. No transactions or constituents can be added to the portfolio before this date.")
@@ -47,8 +47,8 @@ class PortfolioWithoutHref(BaseModel):
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="The requested portfolio properties. These will be from the 'Portfolio' domain.")
     relationships: Optional[List[Relationship]] = Field(default=None, description="A set of relationships associated to the portfolio.")
     instrument_scopes: Optional[List[StrictStr]] = Field(default=None, description="The instrument scope resolution strategy of this portfolio.", alias="instrumentScopes")
-    accounting_method:  Optional[StrictStr] = Field(default=None,alias="accountingMethod", description=". The available values are: Default, AverageCost, FirstInFirstOut, LastInFirstOut, HighestCostFirst, LowestCostFirst, ProRateByUnits, ProRateByCost, ProRateByCostPortfolioCurrency, IntraDayThenFirstInFirstOut, LongTermHighestCostFirst, LongTermHighestCostFirstPortfolioCurrency, HighestCostFirstPortfolioCurrency, LowestCostFirstPortfolioCurrency, MaximumLossMinimumGain, MaximumLossMinimumGainPortfolioCurrency") 
-    amortisation_method:  Optional[StrictStr] = Field(default=None,alias="amortisationMethod", description="The amortisation method used by the portfolio for the calculation. The available values are: NoAmortisation, StraightLine, EffectiveYield, StraightLineSettlementDate, EffectiveYieldSettlementDate") 
+    accounting_method:  Optional[StrictStr] = Field(default=None,alias="accountingMethod", description="The AccountingMethod used for the portfolio. Available values: Default, AverageCost, FirstInFirstOut, LastInFirstOut, HighestCostFirst, LowestCostFirst, ProRateByUnits, ProRateByCost, ProRateByCostPortfolioCurrency, IntraDayThenFirstInFirstOut, LongTermHighestCostFirst, LongTermHighestCostFirstPortfolioCurrency, HighestCostFirstPortfolioCurrency, LowestCostFirstPortfolioCurrency, MaximumLossMinimumGain, MaximumLossMinimumGainPortfolioCurrency.") 
+    amortisation_method:  Optional[StrictStr] = Field(default=None,alias="amortisationMethod", description="The amortisation method used by the portfolio for the calculation. Available values: NoAmortisation, StraightLine, EffectiveYield, StraightLineSettlementDate, EffectiveYieldSettlementDate.") 
     transaction_type_scope:  Optional[StrictStr] = Field(default=None,alias="transactionTypeScope", description="The scope of the transaction types.") 
     cash_gain_loss_calculation_date:  Optional[StrictStr] = Field(default=None,alias="cashGainLossCalculationDate", description="The scope of the transaction types.") 
     instrument_event_configuration: Optional[InstrumentEventConfiguration] = Field(default=None, alias="instrumentEventConfiguration")
@@ -56,7 +56,7 @@ class PortfolioWithoutHref(BaseModel):
     tax_rule_set_scope:  Optional[StrictStr] = Field(default=None,alias="taxRuleSetScope", description="The scope of the tax rule sets for this portfolio.") 
     settlement_configuration: Optional[PortfolioSettlementConfiguration] = Field(default=None, alias="settlementConfiguration")
     links: Optional[List[Link]] = None
-    __properties = ["id", "type", "displayName", "description", "created", "parentPortfolioId", "version", "stagedModifications", "isDerived", "baseCurrency", "properties", "relationships", "instrumentScopes", "accountingMethod", "amortisationMethod", "transactionTypeScope", "cashGainLossCalculationDate", "instrumentEventConfiguration", "amortisationRuleSetId", "taxRuleSetScope", "settlementConfiguration", "links"]
+    __properties: ClassVar[List[str]] = ["id", "type", "displayName", "description", "created", "parentPortfolioId", "version", "stagedModifications", "isDerived", "baseCurrency", "properties", "relationships", "instrumentScopes", "accountingMethod", "amortisationMethod", "transactionTypeScope", "cashGainLossCalculationDate", "instrumentEventConfiguration", "amortisationRuleSetId", "taxRuleSetScope", "settlementConfiguration", "links"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -337,33 +337,33 @@ class PortfolioWithoutHref(BaseModel):
             return PortfolioWithoutHref.model_validate(obj)
 
         _obj = PortfolioWithoutHref.model_validate({
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
             "type": obj.get("type"),
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
             "created": obj.get("created"),
-            "parent_portfolio_id": ResourceId.from_dict(obj.get("parentPortfolioId")) if obj.get("parentPortfolioId") is not None else None,
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
-            "staged_modifications": StagedModificationsInfo.from_dict(obj.get("stagedModifications")) if obj.get("stagedModifications") is not None else None,
+            "parent_portfolio_id": ResourceId.from_dict(_v) if (_v := obj.get("parentPortfolioId")) is not None else None,
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "staged_modifications": StagedModificationsInfo.from_dict(_v) if (_v := obj.get("stagedModifications")) is not None else None,
             "is_derived": obj.get("isDerived"),
             "base_currency": obj.get("baseCurrency"),
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
-            "relationships": [Relationship.from_dict(_item) for _item in obj.get("relationships")] if obj.get("relationships") is not None else None,
+            "relationships": [Relationship.from_dict(_item) for _item in _v] if (_v := obj.get("relationships")) is not None else None,
             "instrument_scopes": obj.get("instrumentScopes"),
             "accounting_method": obj.get("accountingMethod"),
             "amortisation_method": obj.get("amortisationMethod"),
             "transaction_type_scope": obj.get("transactionTypeScope"),
             "cash_gain_loss_calculation_date": obj.get("cashGainLossCalculationDate"),
-            "instrument_event_configuration": InstrumentEventConfiguration.from_dict(obj.get("instrumentEventConfiguration")) if obj.get("instrumentEventConfiguration") is not None else None,
-            "amortisation_rule_set_id": ResourceId.from_dict(obj.get("amortisationRuleSetId")) if obj.get("amortisationRuleSetId") is not None else None,
+            "instrument_event_configuration": InstrumentEventConfiguration.from_dict(_v) if (_v := obj.get("instrumentEventConfiguration")) is not None else None,
+            "amortisation_rule_set_id": ResourceId.from_dict(_v) if (_v := obj.get("amortisationRuleSetId")) is not None else None,
             "tax_rule_set_scope": obj.get("taxRuleSetScope"),
-            "settlement_configuration": PortfolioSettlementConfiguration.from_dict(obj.get("settlementConfiguration")) if obj.get("settlementConfiguration") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "settlement_configuration": PortfolioSettlementConfiguration.from_dict(_v) if (_v := obj.get("settlementConfiguration")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

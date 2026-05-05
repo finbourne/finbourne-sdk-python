@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class OAuthApplication(BaseModel):
     secret:  Optional[StrictStr] = Field(default=None,alias="secret") 
     client_id:  StrictStr = Field(...,alias="clientId") 
     issuer:  StrictStr = Field(...,alias="issuer") 
-    __properties = ["id", "type", "displayName", "secret", "clientId", "issuer"]
+    __properties: ClassVar[List[str]] = ["id", "type", "displayName", "secret", "clientId", "issuer"]
 
     model_config = ConfigDict(
         populate_by_name=True,

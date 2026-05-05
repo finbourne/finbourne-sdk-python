@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class FileReaderBuilderResponse(BaseModel):
     error:  Optional[StrictStr] = Field(default=None,alias="error", description="The error from running generated SQL Query, if any") 
     columns: Optional[List[ColumnInfo]] = Field(default=None, description="Column information for the results")
     data: Optional[Any] = Field(default=None, description="The resulting data from running the Query")
-    __properties = ["query", "error", "columns", "data"]
+    __properties: ClassVar[List[str]] = ["query", "error", "columns", "data"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -108,7 +108,7 @@ class FileReaderBuilderResponse(BaseModel):
         _obj = FileReaderBuilderResponse.model_validate({
             "query": obj.get("query"),
             "error": obj.get("error"),
-            "columns": [ColumnInfo.from_dict(_item) for _item in obj.get("columns")] if obj.get("columns") is not None else None,
+            "columns": [ColumnInfo.from_dict(_item) for _item in _v] if (_v := obj.get("columns")) is not None else None,
             "data": obj.get("data")
         })
         return _obj

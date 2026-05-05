@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -36,7 +36,7 @@ class ValuationSchedule(BaseModel):
     business_day_convention:  Optional[StrictStr] = Field(default=None,alias="businessDayConvention", description="When Tenor is given and is not equal to \"1D\", there may be cases where \"date + tenor\" land on non-business days around month end.  In that case, the BusinessDayConvention, e.g. modified following \"MF\" would be applied to determine the next GBD.") 
     timeline_id: Optional[ResourceId] = Field(default=None, alias="timelineId")
     closed_period_id:  Optional[StrictStr] = Field(default=None,alias="closedPeriodId", description="Unique identifier for a closed period within a given timeline. If this field is specified, the TimelineId  field must also be specified. If given, this field defines the effective date of the request as the  EffectiveEnd of the given closed period.") 
-    __properties = ["effectiveFrom", "effectiveAt", "tenor", "rollConvention", "holidayCalendars", "valuationDateTimes", "businessDayConvention", "timelineId", "closedPeriodId"]
+    __properties: ClassVar[List[str]] = ["effectiveFrom", "effectiveAt", "tenor", "rollConvention", "holidayCalendars", "valuationDateTimes", "businessDayConvention", "timelineId", "closedPeriodId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -134,7 +134,7 @@ class ValuationSchedule(BaseModel):
             "holiday_calendars": obj.get("holidayCalendars"),
             "valuation_date_times": obj.get("valuationDateTimes"),
             "business_day_convention": obj.get("businessDayConvention"),
-            "timeline_id": ResourceId.from_dict(obj.get("timelineId")) if obj.get("timelineId") is not None else None,
+            "timeline_id": ResourceId.from_dict(_v) if (_v := obj.get("timelineId")) is not None else None,
             "closed_period_id": obj.get("closedPeriodId")
         })
         return _obj

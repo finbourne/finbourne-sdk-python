@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **rounding_type** | **str** | Required | The type of rounding that should be used, eg: Up, Down, NearestRoundHalfAwayFromZero |
+| **rounding_type** | **str** | Required | The type of rounding that should be used. Available values: Up, Down, NearestRoundHalfAwayFromZero. |
 
 
 ## Usage
@@ -15,7 +15,7 @@
 from finbourne.sdk.services.lusid.models.RoundingConfigurationComponent import RoundingConfigurationComponent
 
 instance = RoundingConfigurationComponent(
-    rounding_type="..."  # required — The type of rounding that should be used, eg: Up, Down, NearestRoundHalfAwayFromZero
+    rounding_type="..."  # required — The type of rounding that should be used. Available values: Up, Down, NearestRoundHalfAwayFromZero.
 )
 ```
 

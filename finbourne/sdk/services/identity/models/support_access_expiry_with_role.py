@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class SupportAccessExpiryWithRole(BaseModel):
     """
     expiry: datetime = Field(description="DateTimeOffset at which the access will be revoked")
     permitted_role:  StrictStr = Field(...,alias="permittedRole", description="Unique identifier for permitted role.  Use GET /identity/api/authentication/support-roles to lookup role label/code from identifier.") 
-    __properties = ["expiry", "permittedRole"]
+    __properties: ClassVar[List[str]] = ["expiry", "permittedRole"]
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -7,7 +7,7 @@
 | **key** | **str** | Required | *No description available.* |
 | **is_required** | **bool** | Required | *No description available.* |
 | **is_unique** | **bool** | Required | *No description available.* |
-| **value_type** | **str** | Optional | *No description available.* |
+| **value_type** | **str** | Optional | Available values: String, Decimal. |
 
 
 ## Usage
@@ -21,7 +21,7 @@ instance = FieldDefinition(
     key="...",  # required
     is_required=True,  # required
     is_unique=True,  # required
-    value_type="..."  # optional
+    value_type="..."  # optional — Available values: String, Decimal.
 )
 ```
 

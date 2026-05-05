@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -39,7 +39,7 @@ class IIntegrationLogResponse(BaseModel):
     source_record: Optional[IntegrationLogRecord] = Field(default=None, alias="sourceRecord")
     target_record: Optional[IntegrationLogTargetRecord] = Field(default=None, alias="targetRecord")
     activities: List[IntegrationLogActivity]
-    __properties = ["logId", "runId", "parentLogId", "logType", "firstActivity", "lastActivity", "status", "sourceRecord", "targetRecord", "activities"]
+    __properties: ClassVar[List[str]] = ["logId", "runId", "parentLogId", "logType", "firstActivity", "lastActivity", "status", "sourceRecord", "targetRecord", "activities"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -140,9 +140,9 @@ class IIntegrationLogResponse(BaseModel):
             "first_activity": obj.get("firstActivity"),
             "last_activity": obj.get("lastActivity"),
             "status": obj.get("status"),
-            "source_record": IntegrationLogRecord.from_dict(obj.get("sourceRecord")) if obj.get("sourceRecord") is not None else None,
-            "target_record": IntegrationLogTargetRecord.from_dict(obj.get("targetRecord")) if obj.get("targetRecord") is not None else None,
-            "activities": [IntegrationLogActivity.from_dict(_item) for _item in obj.get("activities")] if obj.get("activities") is not None else None
+            "source_record": IntegrationLogRecord.from_dict(_v) if (_v := obj.get("sourceRecord")) is not None else None,
+            "target_record": IntegrationLogTargetRecord.from_dict(_v) if (_v := obj.get("targetRecord")) is not None else None,
+            "activities": [IntegrationLogActivity.from_dict(_item) for _item in _v] if (_v := obj.get("activities")) is not None else None
         })
         return _obj
 

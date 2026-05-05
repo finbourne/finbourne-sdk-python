@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class UserSchemaResponse(BaseModel):
     UserSchemaResponse
     """
     alternative_user_ids: Optional[List[UserSchemaProperty]] = Field(default=None, alias="alternativeUserIds")
-    __properties = ["alternativeUserIds"]
+    __properties: ClassVar[List[str]] = ["alternativeUserIds"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,7 +88,7 @@ class UserSchemaResponse(BaseModel):
             return UserSchemaResponse.model_validate(obj)
 
         _obj = UserSchemaResponse.model_validate({
-            "alternative_user_ids": [UserSchemaProperty.from_dict(_item) for _item in obj.get("alternativeUserIds")] if obj.get("alternativeUserIds") is not None else None
+            "alternative_user_ids": [UserSchemaProperty.from_dict(_item) for _item in _v] if (_v := obj.get("alternativeUserIds")) is not None else None
         })
         return _obj
 

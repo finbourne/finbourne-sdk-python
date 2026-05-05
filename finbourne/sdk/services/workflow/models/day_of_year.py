@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class DayOfYear(BaseModel):
     """
     month: StrictInt = Field(description="Month in the year")
     day: StrictInt = Field(description="Day in the month")
-    __properties = ["month", "day"]
+    __properties: ClassVar[List[str]] = ["month", "day"]
 
     model_config = ConfigDict(
         populate_by_name=True,

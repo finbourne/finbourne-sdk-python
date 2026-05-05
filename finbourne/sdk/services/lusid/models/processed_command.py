@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class ProcessedCommand(BaseModel):
     path:  Optional[StrictStr] = Field(default=None,alias="path", description="The unique identifier for the command including the request id.") 
     user_id: User = Field(alias="userId")
     processed_time: datetime = Field(description="The asAt datetime that the events published by the processing of this command were committed to LUSID.", alias="processedTime")
-    __properties = ["description", "path", "userId", "processedTime"]
+    __properties: ClassVar[List[str]] = ["description", "path", "userId", "processedTime"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -89,7 +89,7 @@ class ProcessedCommand(BaseModel):
         _obj = ProcessedCommand.model_validate({
             "description": obj.get("description"),
             "path": obj.get("path"),
-            "user_id": User.from_dict(obj.get("userId")) if obj.get("userId") is not None else None,
+            "user_id": User.from_dict(_v) if (_v := obj.get("userId")) is not None else None,
             "processed_time": obj.get("processedTime")
         })
         return _obj

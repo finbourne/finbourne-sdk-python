@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -35,7 +35,7 @@ class Delivery(BaseModel):
     delivery_channel:  StrictStr = Field(...,alias="deliveryChannel", description="The delivery channel of the message.") 
     message_details:  StrictStr = Field(...,alias="messageDetails", description="The Details of the delivery message as JSON string.") 
     attempts: List[Attempt] = Field(description="A list of all the delivery attempts made for this message.")
-    __properties = ["id", "eventId", "subscriptionId", "notificationId", "deliveryChannel", "messageDetails", "attempts"]
+    __properties: ClassVar[List[str]] = ["id", "eventId", "subscriptionId", "notificationId", "deliveryChannel", "messageDetails", "attempts"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -95,11 +95,11 @@ class Delivery(BaseModel):
         _obj = Delivery.model_validate({
             "id": obj.get("id"),
             "event_id": obj.get("eventId"),
-            "subscription_id": ResourceId.from_dict(obj.get("subscriptionId")) if obj.get("subscriptionId") is not None else None,
+            "subscription_id": ResourceId.from_dict(_v) if (_v := obj.get("subscriptionId")) is not None else None,
             "notification_id": obj.get("notificationId"),
             "delivery_channel": obj.get("deliveryChannel"),
             "message_details": obj.get("messageDetails"),
-            "attempts": [Attempt.from_dict(_item) for _item in obj.get("attempts")] if obj.get("attempts") is not None else None
+            "attempts": [Attempt.from_dict(_item) for _item in _v] if (_v := obj.get("attempts")) is not None else None
         })
         return _obj
 

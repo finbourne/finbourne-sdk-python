@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class InlineValuationsReconciliationRequest(BaseModel):
     right: InlineValuationRequest
     left_to_right_mapping: Optional[List[ReconciliationLeftRightAddressKeyPair]] = Field(default=None, description="The mapping from property keys requested by left aggregation to property keys on right hand side", alias="leftToRightMapping")
     preserve_keys: Optional[List[StrictStr]] = Field(default=None, description="List of keys to preserve (from rhs) in the diff. Used in conjunction with filtering/grouping", alias="preserveKeys")
-    __properties = ["left", "right", "leftToRightMapping", "preserveKeys"]
+    __properties: ClassVar[List[str]] = ["left", "right", "leftToRightMapping", "preserveKeys"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -103,9 +103,9 @@ class InlineValuationsReconciliationRequest(BaseModel):
             return InlineValuationsReconciliationRequest.model_validate(obj)
 
         _obj = InlineValuationsReconciliationRequest.model_validate({
-            "left": InlineValuationRequest.from_dict(obj.get("left")) if obj.get("left") is not None else None,
-            "right": InlineValuationRequest.from_dict(obj.get("right")) if obj.get("right") is not None else None,
-            "left_to_right_mapping": [ReconciliationLeftRightAddressKeyPair.from_dict(_item) for _item in obj.get("leftToRightMapping")] if obj.get("leftToRightMapping") is not None else None,
+            "left": InlineValuationRequest.from_dict(_v) if (_v := obj.get("left")) is not None else None,
+            "right": InlineValuationRequest.from_dict(_v) if (_v := obj.get("right")) is not None else None,
+            "left_to_right_mapping": [ReconciliationLeftRightAddressKeyPair.from_dict(_item) for _item in _v] if (_v := obj.get("leftToRightMapping")) is not None else None,
             "preserve_keys": obj.get("preserveKeys")
         })
         return _obj

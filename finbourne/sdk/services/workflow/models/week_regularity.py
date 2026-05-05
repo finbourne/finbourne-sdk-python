@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class WeekRegularity(BaseModel):
     frequency: StrictInt = Field(description="The frequency of the Week Regularity. For example, a value of 2 indicates every 2 weeks")
     days_of_week: List[StrictStr] = Field(description="Days of the week. One or more of - Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday", alias="daysOfWeek")
     type:  StrictStr = Field(...,alias="type", description="The type of Date Regularity") 
-    __properties = ["frequency", "daysOfWeek", "type"]
+    __properties: ClassVar[List[str]] = ["frequency", "daysOfWeek", "type"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):

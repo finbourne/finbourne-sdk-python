@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -27,7 +27,7 @@ class AuditCompleteResponse(BaseModel):
     Response type for Horizon Audit Event  # noqa: E501
     """
     process_name:  StrictStr = Field(...,alias="processName", description="The name of the Process the events will be visible under") 
-    __properties = ["processName"]
+    __properties: ClassVar[List[str]] = ["processName"]
 
     model_config = ConfigDict(
         populate_by_name=True,

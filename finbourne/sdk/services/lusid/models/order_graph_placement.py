@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -40,7 +40,7 @@ class OrderGraphPlacement(BaseModel):
     allocated: OrderGraphPlacementAllocationSynopsis
     derived_state:  StrictStr = Field(...,alias="derivedState", description="A simple description of the overall state of a placement.") 
     calculated_average_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Average price realised on executions for a given placement", alias="calculatedAveragePrice")
-    __properties = ["placement", "blockId", "ordered", "placed", "executed", "allocated", "derivedState", "calculatedAveragePrice"]
+    __properties: ClassVar[List[str]] = ["placement", "blockId", "ordered", "placed", "executed", "allocated", "derivedState", "calculatedAveragePrice"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -111,12 +111,12 @@ class OrderGraphPlacement(BaseModel):
             return OrderGraphPlacement.model_validate(obj)
 
         _obj = OrderGraphPlacement.model_validate({
-            "placement": Placement.from_dict(obj.get("placement")) if obj.get("placement") is not None else None,
-            "block_id": ResourceId.from_dict(obj.get("blockId")) if obj.get("blockId") is not None else None,
-            "ordered": OrderGraphPlacementOrderSynopsis.from_dict(obj.get("ordered")) if obj.get("ordered") is not None else None,
-            "placed": OrderGraphPlacementPlacementSynopsis.from_dict(obj.get("placed")) if obj.get("placed") is not None else None,
-            "executed": OrderGraphPlacementExecutionSynopsis.from_dict(obj.get("executed")) if obj.get("executed") is not None else None,
-            "allocated": OrderGraphPlacementAllocationSynopsis.from_dict(obj.get("allocated")) if obj.get("allocated") is not None else None,
+            "placement": Placement.from_dict(_v) if (_v := obj.get("placement")) is not None else None,
+            "block_id": ResourceId.from_dict(_v) if (_v := obj.get("blockId")) is not None else None,
+            "ordered": OrderGraphPlacementOrderSynopsis.from_dict(_v) if (_v := obj.get("ordered")) is not None else None,
+            "placed": OrderGraphPlacementPlacementSynopsis.from_dict(_v) if (_v := obj.get("placed")) is not None else None,
+            "executed": OrderGraphPlacementExecutionSynopsis.from_dict(_v) if (_v := obj.get("executed")) is not None else None,
+            "allocated": OrderGraphPlacementAllocationSynopsis.from_dict(_v) if (_v := obj.get("allocated")) is not None else None,
             "derived_state": obj.get("derivedState"),
             "calculated_average_price": obj.get("calculatedAveragePrice")
         })

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class RollInterestUpdates(BaseModel):
     withdraw_interest_percentage: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The percentage of interest that should be withdrawn from a FlexibleDeposit instrument as the result of a roll event.", alias="withdrawInterestPercentage")
     reinvest_interest_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The amount of interest that should be reinvested in a FlexibleDeposit instrument as the result of a roll event.", alias="reinvestInterestAmount")
     reinvest_interest_percentage: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The percentage of interest that should be reinvested in a FlexibleDeposit instrument as the result of a roll event.", alias="reinvestInterestPercentage")
-    __properties = ["withdrawInterestAmount", "withdrawInterestPercentage", "reinvestInterestAmount", "reinvestInterestPercentage"]
+    __properties: ClassVar[List[str]] = ["withdrawInterestAmount", "withdrawInterestPercentage", "reinvestInterestAmount", "reinvestInterestPercentage"]
 
     model_config = ConfigDict(
         populate_by_name=True,

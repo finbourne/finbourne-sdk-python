@@ -62,7 +62,7 @@ class WorkspaceApi:
         """[EXPERIMENTAL] CreateItem: Create a new item in a workspace.  # noqa: E501
 
         Create a new item in a workspace.  # noqa: E501
-        :param visibility: The visibility for the containing workspace. Must be `shared` or `personal`; case is important. (required)
+        :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
         :type visibility: str
         :param workspace_name: The item's workspace name. (required)
         :type workspace_name: str
@@ -74,19 +74,19 @@ class WorkspaceApi:
         :return: Returns the result object.
         :rtype: WorkspaceItem
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_item_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_item_with_http_info(visibility, workspace_name, workspace_item_creation_request, **kwargs)  # noqa: E501
+        response = self.create_item_with_http_info(visibility, workspace_name, workspace_item_creation_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_item_with_http_info(self, visibility: StrictStr, workspace_name: StrictStr, workspace_item_creation_request: Optional[WorkspaceItemCreationRequest] = None, **kwargs) -> ApiResponse[WorkspaceItem]:
         """[EXPERIMENTAL] CreateItem: Create a new item in a workspace.  # noqa: E501
 
         Create a new item in a workspace.  # noqa: E501
-        :param visibility: The visibility for the containing workspace. Must be `shared` or `personal`; case is important. (required)
+        :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
         :type visibility: str
         :param workspace_name: The item's workspace name. (required)
         :type workspace_name: str
@@ -205,7 +205,7 @@ class WorkspaceApi:
         """[EXPERIMENTAL] CreateWorkspace: Create a new workspace.  # noqa: E501
 
         Create a new workspace.  # noqa: E501
-        :param visibility: The visibility for the workspace being created. Must be `shared` or `personal`; case is important. (required)
+        :param visibility: The visibility for the workspace being created; case is important. Available values: shared, personal. (required)
         :type visibility: str
         :param workspace_creation_request: The workspace to be created. (required)
         :type workspace_creation_request: WorkspaceCreationRequest
@@ -217,19 +217,19 @@ class WorkspaceApi:
         :return: Returns the result object.
         :rtype: Workspace
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_workspace_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_workspace_with_http_info(visibility, workspace_creation_request, include_item_access, **kwargs)  # noqa: E501
+        response = self.create_workspace_with_http_info(visibility, workspace_creation_request, include_item_access, **kwargs)
+        return response.data
 
     @validate_call
     def create_workspace_with_http_info(self, visibility: StrictStr, workspace_creation_request: WorkspaceCreationRequest, include_item_access: Optional[bool] = None, **kwargs) -> ApiResponse[Workspace]:
         """[EXPERIMENTAL] CreateWorkspace: Create a new workspace.  # noqa: E501
 
         Create a new workspace.  # noqa: E501
-        :param visibility: The visibility for the workspace being created. Must be `shared` or `personal`; case is important. (required)
+        :param visibility: The visibility for the workspace being created; case is important. Available values: shared, personal. (required)
         :type visibility: str
         :param workspace_creation_request: The workspace to be created. (required)
         :type workspace_creation_request: WorkspaceCreationRequest
@@ -348,7 +348,7 @@ class WorkspaceApi:
         """[EXPERIMENTAL] DeleteItem: Delete an item from a workspace.  # noqa: E501
 
         Delete an item from a workspace.  # noqa: E501
-        :param visibility: The visibility for the containing workspace. Must be `shared` or `personal`; case is important. (required)
+        :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
         :type visibility: str
         :param workspace_name: The name of the workspace. (required)
         :type workspace_name: str
@@ -362,19 +362,19 @@ class WorkspaceApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_item_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_item_with_http_info(visibility, workspace_name, group_name, item_name, **kwargs)  # noqa: E501
+        response = self.delete_item_with_http_info(visibility, workspace_name, group_name, item_name, **kwargs)
+        return response.data
 
     @validate_call
     def delete_item_with_http_info(self, visibility: StrictStr, workspace_name: StrictStr, group_name: StrictStr, item_name: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
         """[EXPERIMENTAL] DeleteItem: Delete an item from a workspace.  # noqa: E501
 
         Delete an item from a workspace.  # noqa: E501
-        :param visibility: The visibility for the containing workspace. Must be `shared` or `personal`; case is important. (required)
+        :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
         :type visibility: str
         :param workspace_name: The name of the workspace. (required)
         :type workspace_name: str
@@ -492,7 +492,7 @@ class WorkspaceApi:
         """[EXPERIMENTAL] DeleteWorkspace: Delete a workspace.  # noqa: E501
 
         Delete a workspace.  # noqa: E501
-        :param visibility: The visibility for the workspace. Must be `shared` or `personal`; case is important. (required)
+        :param visibility: The visibility for the workspace; case is important. Available values: shared, personal. (required)
         :type visibility: str
         :param workspace_name: The name of the workspace. (required)
         :type workspace_name: str
@@ -504,19 +504,19 @@ class WorkspaceApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_workspace_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_workspace_with_http_info(visibility, workspace_name, recurse, **kwargs)  # noqa: E501
+        response = self.delete_workspace_with_http_info(visibility, workspace_name, recurse, **kwargs)
+        return response.data
 
     @validate_call
     def delete_workspace_with_http_info(self, visibility: StrictStr, workspace_name: StrictStr, recurse: Optional[bool] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
         """[EXPERIMENTAL] DeleteWorkspace: Delete a workspace.  # noqa: E501
 
         Delete a workspace.  # noqa: E501
-        :param visibility: The visibility for the workspace. Must be `shared` or `personal`; case is important. (required)
+        :param visibility: The visibility for the workspace; case is important. Available values: shared, personal. (required)
         :type visibility: str
         :param workspace_name: The name of the workspace. (required)
         :type workspace_name: str
@@ -628,7 +628,7 @@ class WorkspaceApi:
         """[EXPERIMENTAL] GetItem: Get a single workspace item.  # noqa: E501
 
         Get a single workspace item.  # noqa: E501
-        :param visibility: The visibility for the containing workspace. Must be `shared` or `personal`; case is important. (required)
+        :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
         :type visibility: str
         :param workspace_name: The name of the workspace. (required)
         :type workspace_name: str
@@ -644,19 +644,19 @@ class WorkspaceApi:
         :return: Returns the result object.
         :rtype: WorkspaceItem
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_item_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_item_with_http_info(visibility, workspace_name, group_name, item_name, as_at, **kwargs)  # noqa: E501
+        response = self.get_item_with_http_info(visibility, workspace_name, group_name, item_name, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_item_with_http_info(self, visibility: StrictStr, workspace_name: StrictStr, group_name: StrictStr, item_name: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[WorkspaceItem]:
         """[EXPERIMENTAL] GetItem: Get a single workspace item.  # noqa: E501
 
         Get a single workspace item.  # noqa: E501
-        :param visibility: The visibility for the containing workspace. Must be `shared` or `personal`; case is important. (required)
+        :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
         :type visibility: str
         :param workspace_name: The name of the workspace. (required)
         :type workspace_name: str
@@ -783,7 +783,7 @@ class WorkspaceApi:
         """[EXPERIMENTAL] GetWorkspace: Get a workspace.  # noqa: E501
 
         Get a workspace.  # noqa: E501
-        :param visibility: The visibility for the workspace. Must be `shared` or `personal`; case is important. (required)
+        :param visibility: The visibility for the workspace; case is important. Available values: shared, personal. (required)
         :type visibility: str
         :param workspace_name: The workspace name. (required)
         :type workspace_name: str
@@ -797,19 +797,19 @@ class WorkspaceApi:
         :return: Returns the result object.
         :rtype: Workspace
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_workspace_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_workspace_with_http_info(visibility, workspace_name, as_at, include_item_access, **kwargs)  # noqa: E501
+        response = self.get_workspace_with_http_info(visibility, workspace_name, as_at, include_item_access, **kwargs)
+        return response.data
 
     @validate_call
     def get_workspace_with_http_info(self, visibility: StrictStr, workspace_name: StrictStr, as_at: Optional[datetime] = None, include_item_access: Optional[bool] = None, **kwargs) -> ApiResponse[Workspace]:
         """[EXPERIMENTAL] GetWorkspace: Get a workspace.  # noqa: E501
 
         Get a workspace.  # noqa: E501
-        :param visibility: The visibility for the workspace. Must be `shared` or `personal`; case is important. (required)
+        :param visibility: The visibility for the workspace; case is important. Available values: shared, personal. (required)
         :type visibility: str
         :param workspace_name: The workspace name. (required)
         :type workspace_name: str
@@ -930,7 +930,7 @@ class WorkspaceApi:
         """[EXPERIMENTAL] ListItems: List the items in a workspace.  # noqa: E501
 
         List the items in a workspace.  # noqa: E501
-        :param visibility: The visibility for the containing workspace. Must be `shared` or `personal`; case is important. (required)
+        :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
         :type visibility: str
         :param workspace_name: The item's workspace name. (required)
         :type workspace_name: str
@@ -950,19 +950,19 @@ class WorkspaceApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfWorkspaceItem
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_items_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_items_with_http_info(visibility, workspace_name, as_at, page, sort_by, limit, filter, **kwargs)  # noqa: E501
+        response = self.list_items_with_http_info(visibility, workspace_name, as_at, page, sort_by, limit, filter, **kwargs)
+        return response.data
 
     @validate_call
     def list_items_with_http_info(self, visibility: StrictStr, workspace_name: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfWorkspaceItem]:
         """[EXPERIMENTAL] ListItems: List the items in a workspace.  # noqa: E501
 
         List the items in a workspace.  # noqa: E501
-        :param visibility: The visibility for the containing workspace. Must be `shared` or `personal`; case is important. (required)
+        :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
         :type visibility: str
         :param workspace_name: The item's workspace name. (required)
         :type workspace_name: str
@@ -1102,7 +1102,7 @@ class WorkspaceApi:
         """[EXPERIMENTAL] ListWorkspaces: List workspaces.  # noqa: E501
 
         List workspaces.  # noqa: E501
-        :param visibility: The visibility for the workspaces. Must be `shared` or `personal`; case is important. (required)
+        :param visibility: The visibility for the workspaces; case is important. Available values: shared, personal. (required)
         :type visibility: str
         :param as_at: The asAt datetime at which to retrieve workspaces. Defaults to 'latest' if not specified.
         :type as_at: datetime
@@ -1122,19 +1122,19 @@ class WorkspaceApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfWorkspace
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_workspaces_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_workspaces_with_http_info(visibility, as_at, page, sort_by, limit, filter, include_item_access, **kwargs)  # noqa: E501
+        response = self.list_workspaces_with_http_info(visibility, as_at, page, sort_by, limit, filter, include_item_access, **kwargs)
+        return response.data
 
     @validate_call
     def list_workspaces_with_http_info(self, visibility: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, include_item_access: Optional[bool] = None, **kwargs) -> ApiResponse[PagedResourceListOfWorkspace]:
         """[EXPERIMENTAL] ListWorkspaces: List workspaces.  # noqa: E501
 
         List workspaces.  # noqa: E501
-        :param visibility: The visibility for the workspaces. Must be `shared` or `personal`; case is important. (required)
+        :param visibility: The visibility for the workspaces; case is important. Available values: shared, personal. (required)
         :type visibility: str
         :param as_at: The asAt datetime at which to retrieve workspaces. Defaults to 'latest' if not specified.
         :type as_at: datetime
@@ -1274,7 +1274,7 @@ class WorkspaceApi:
         """[EXPERIMENTAL] SearchItems: List items across all workspaces.  # noqa: E501
 
         List items across all workspaces.  # noqa: E501
-        :param visibility: The visibility for the containing workspace. Must be `shared` or `personal`; case is important. (required)
+        :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
         :type visibility: str
         :param as_at: The asAt datetime at which to retrieve workspace items. Defaults to 'latest' if not specified.
         :type as_at: datetime
@@ -1292,19 +1292,19 @@ class WorkspaceApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfItemAndWorkspace
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the search_items_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.search_items_with_http_info(visibility, as_at, page, sort_by, limit, filter, **kwargs)  # noqa: E501
+        response = self.search_items_with_http_info(visibility, as_at, page, sort_by, limit, filter, **kwargs)
+        return response.data
 
     @validate_call
     def search_items_with_http_info(self, visibility: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfItemAndWorkspace]:
         """[EXPERIMENTAL] SearchItems: List items across all workspaces.  # noqa: E501
 
         List items across all workspaces.  # noqa: E501
-        :param visibility: The visibility for the containing workspace. Must be `shared` or `personal`; case is important. (required)
+        :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
         :type visibility: str
         :param as_at: The asAt datetime at which to retrieve workspace items. Defaults to 'latest' if not specified.
         :type as_at: datetime
@@ -1438,7 +1438,7 @@ class WorkspaceApi:
         """[EXPERIMENTAL] UpdateItem: Update an item in a workspace.  # noqa: E501
 
         Update an item in a workspace.  # noqa: E501
-        :param visibility: The visibility for the containing workspace. Must be `shared` or `personal`; case is important. (required)
+        :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
         :type visibility: str
         :param workspace_name: The workspace name. (required)
         :type workspace_name: str
@@ -1454,19 +1454,19 @@ class WorkspaceApi:
         :return: Returns the result object.
         :rtype: WorkspaceItem
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_item_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_item_with_http_info(visibility, workspace_name, group_name, item_name, workspace_item_update_request, **kwargs)  # noqa: E501
+        response = self.update_item_with_http_info(visibility, workspace_name, group_name, item_name, workspace_item_update_request, **kwargs)
+        return response.data
 
     @validate_call
     def update_item_with_http_info(self, visibility: StrictStr, workspace_name: StrictStr, group_name: StrictStr, item_name: StrictStr, workspace_item_update_request: Optional[WorkspaceItemUpdateRequest] = None, **kwargs) -> ApiResponse[WorkspaceItem]:
         """[EXPERIMENTAL] UpdateItem: Update an item in a workspace.  # noqa: E501
 
         Update an item in a workspace.  # noqa: E501
-        :param visibility: The visibility for the containing workspace. Must be `shared` or `personal`; case is important. (required)
+        :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
         :type visibility: str
         :param workspace_name: The workspace name. (required)
         :type workspace_name: str
@@ -1597,7 +1597,7 @@ class WorkspaceApi:
         """[EXPERIMENTAL] UpdateWorkspace: Update a workspace.  # noqa: E501
 
         Update a workspace.  # noqa: E501
-        :param visibility: The visibility for the workspace. Must be `shared` or `personal`; case is important. (required)
+        :param visibility: The visibility for the workspace; case is important. Available values: shared, personal. (required)
         :type visibility: str
         :param workspace_name: The workspace name. (required)
         :type workspace_name: str
@@ -1611,19 +1611,19 @@ class WorkspaceApi:
         :return: Returns the result object.
         :rtype: Workspace
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_workspace_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_workspace_with_http_info(visibility, workspace_name, workspace_update_request, include_item_access, **kwargs)  # noqa: E501
+        response = self.update_workspace_with_http_info(visibility, workspace_name, workspace_update_request, include_item_access, **kwargs)
+        return response.data
 
     @validate_call
     def update_workspace_with_http_info(self, visibility: StrictStr, workspace_name: StrictStr, workspace_update_request: WorkspaceUpdateRequest, include_item_access: Optional[bool] = None, **kwargs) -> ApiResponse[Workspace]:
         """[EXPERIMENTAL] UpdateWorkspace: Update a workspace.  # noqa: E501
 
         Update a workspace.  # noqa: E501
-        :param visibility: The visibility for the workspace. Must be `shared` or `personal`; case is important. (required)
+        :param visibility: The visibility for the workspace; case is important. Available values: shared, personal. (required)
         :type visibility: str
         :param workspace_name: The workspace name. (required)
         :type workspace_name: str
@@ -1752,7 +1752,7 @@ class WorkspaceApi:
             """[EXPERIMENTAL] CreateItem: Create a new item in a workspace.  # noqa: E501
             Create a new item in a workspace.  # noqa: E501
             
-            :param visibility: The visibility for the containing workspace. Must be `shared` or `personal`; case is important. (required)
+            :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
             :type visibility: str
             :param workspace_name: The item's workspace name. (required)
             :type workspace_name: str
@@ -1764,12 +1764,12 @@ class WorkspaceApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: WorkspaceItem
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_item_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_item_with_http_info_async(visibility, workspace_name, workspace_item_creation_request, **kwargs)  # noqa: E501
+            response = await self.create_item_with_http_info_async(visibility, workspace_name, workspace_item_creation_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_item_with_http_info_async(self, visibility: StrictStr, workspace_name: StrictStr, workspace_item_creation_request: Optional[WorkspaceItemCreationRequest] = None, **kwargs) -> ApiResponse[WorkspaceItem]:
@@ -1777,7 +1777,7 @@ class WorkspaceApi:
 
             Create a new item in a workspace.  # noqa: E501
 
-            :param visibility: The visibility for the containing workspace. Must be `shared` or `personal`; case is important. (required)
+            :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
             :type visibility: str
             :param workspace_name: The item's workspace name. (required)
             :type workspace_name: str
@@ -1896,7 +1896,7 @@ class WorkspaceApi:
             """[EXPERIMENTAL] CreateWorkspace: Create a new workspace.  # noqa: E501
             Create a new workspace.  # noqa: E501
             
-            :param visibility: The visibility for the workspace being created. Must be `shared` or `personal`; case is important. (required)
+            :param visibility: The visibility for the workspace being created; case is important. Available values: shared, personal. (required)
             :type visibility: str
             :param workspace_creation_request: The workspace to be created. (required)
             :type workspace_creation_request: WorkspaceCreationRequest
@@ -1908,12 +1908,12 @@ class WorkspaceApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Workspace
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_workspace_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_workspace_with_http_info_async(visibility, workspace_creation_request, include_item_access, **kwargs)  # noqa: E501
+            response = await self.create_workspace_with_http_info_async(visibility, workspace_creation_request, include_item_access, **kwargs)
+            return response.data
 
     @validate_call
     async def create_workspace_with_http_info_async(self, visibility: StrictStr, workspace_creation_request: WorkspaceCreationRequest, include_item_access: Optional[bool] = None, **kwargs) -> ApiResponse[Workspace]:
@@ -1921,7 +1921,7 @@ class WorkspaceApi:
 
             Create a new workspace.  # noqa: E501
 
-            :param visibility: The visibility for the workspace being created. Must be `shared` or `personal`; case is important. (required)
+            :param visibility: The visibility for the workspace being created; case is important. Available values: shared, personal. (required)
             :type visibility: str
             :param workspace_creation_request: The workspace to be created. (required)
             :type workspace_creation_request: WorkspaceCreationRequest
@@ -2040,7 +2040,7 @@ class WorkspaceApi:
             """[EXPERIMENTAL] DeleteItem: Delete an item from a workspace.  # noqa: E501
             Delete an item from a workspace.  # noqa: E501
             
-            :param visibility: The visibility for the containing workspace. Must be `shared` or `personal`; case is important. (required)
+            :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
             :type visibility: str
             :param workspace_name: The name of the workspace. (required)
             :type workspace_name: str
@@ -2054,12 +2054,12 @@ class WorkspaceApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_item_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_item_with_http_info_async(visibility, workspace_name, group_name, item_name, **kwargs)  # noqa: E501
+            response = await self.delete_item_with_http_info_async(visibility, workspace_name, group_name, item_name, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_item_with_http_info_async(self, visibility: StrictStr, workspace_name: StrictStr, group_name: StrictStr, item_name: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -2067,7 +2067,7 @@ class WorkspaceApi:
 
             Delete an item from a workspace.  # noqa: E501
 
-            :param visibility: The visibility for the containing workspace. Must be `shared` or `personal`; case is important. (required)
+            :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
             :type visibility: str
             :param workspace_name: The name of the workspace. (required)
             :type workspace_name: str
@@ -2185,7 +2185,7 @@ class WorkspaceApi:
             """[EXPERIMENTAL] DeleteWorkspace: Delete a workspace.  # noqa: E501
             Delete a workspace.  # noqa: E501
             
-            :param visibility: The visibility for the workspace. Must be `shared` or `personal`; case is important. (required)
+            :param visibility: The visibility for the workspace; case is important. Available values: shared, personal. (required)
             :type visibility: str
             :param workspace_name: The name of the workspace. (required)
             :type workspace_name: str
@@ -2197,12 +2197,12 @@ class WorkspaceApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_workspace_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_workspace_with_http_info_async(visibility, workspace_name, recurse, **kwargs)  # noqa: E501
+            response = await self.delete_workspace_with_http_info_async(visibility, workspace_name, recurse, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_workspace_with_http_info_async(self, visibility: StrictStr, workspace_name: StrictStr, recurse: Optional[bool] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -2210,7 +2210,7 @@ class WorkspaceApi:
 
             Delete a workspace.  # noqa: E501
 
-            :param visibility: The visibility for the workspace. Must be `shared` or `personal`; case is important. (required)
+            :param visibility: The visibility for the workspace; case is important. Available values: shared, personal. (required)
             :type visibility: str
             :param workspace_name: The name of the workspace. (required)
             :type workspace_name: str
@@ -2322,7 +2322,7 @@ class WorkspaceApi:
             """[EXPERIMENTAL] GetItem: Get a single workspace item.  # noqa: E501
             Get a single workspace item.  # noqa: E501
             
-            :param visibility: The visibility for the containing workspace. Must be `shared` or `personal`; case is important. (required)
+            :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
             :type visibility: str
             :param workspace_name: The name of the workspace. (required)
             :type workspace_name: str
@@ -2338,12 +2338,12 @@ class WorkspaceApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: WorkspaceItem
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_item_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_item_with_http_info_async(visibility, workspace_name, group_name, item_name, as_at, **kwargs)  # noqa: E501
+            response = await self.get_item_with_http_info_async(visibility, workspace_name, group_name, item_name, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_item_with_http_info_async(self, visibility: StrictStr, workspace_name: StrictStr, group_name: StrictStr, item_name: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[WorkspaceItem]:
@@ -2351,7 +2351,7 @@ class WorkspaceApi:
 
             Get a single workspace item.  # noqa: E501
 
-            :param visibility: The visibility for the containing workspace. Must be `shared` or `personal`; case is important. (required)
+            :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
             :type visibility: str
             :param workspace_name: The name of the workspace. (required)
             :type workspace_name: str
@@ -2478,7 +2478,7 @@ class WorkspaceApi:
             """[EXPERIMENTAL] GetWorkspace: Get a workspace.  # noqa: E501
             Get a workspace.  # noqa: E501
             
-            :param visibility: The visibility for the workspace. Must be `shared` or `personal`; case is important. (required)
+            :param visibility: The visibility for the workspace; case is important. Available values: shared, personal. (required)
             :type visibility: str
             :param workspace_name: The workspace name. (required)
             :type workspace_name: str
@@ -2492,12 +2492,12 @@ class WorkspaceApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Workspace
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_workspace_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_workspace_with_http_info_async(visibility, workspace_name, as_at, include_item_access, **kwargs)  # noqa: E501
+            response = await self.get_workspace_with_http_info_async(visibility, workspace_name, as_at, include_item_access, **kwargs)
+            return response.data
 
     @validate_call
     async def get_workspace_with_http_info_async(self, visibility: StrictStr, workspace_name: StrictStr, as_at: Optional[datetime] = None, include_item_access: Optional[bool] = None, **kwargs) -> ApiResponse[Workspace]:
@@ -2505,7 +2505,7 @@ class WorkspaceApi:
 
             Get a workspace.  # noqa: E501
 
-            :param visibility: The visibility for the workspace. Must be `shared` or `personal`; case is important. (required)
+            :param visibility: The visibility for the workspace; case is important. Available values: shared, personal. (required)
             :type visibility: str
             :param workspace_name: The workspace name. (required)
             :type workspace_name: str
@@ -2626,7 +2626,7 @@ class WorkspaceApi:
             """[EXPERIMENTAL] ListItems: List the items in a workspace.  # noqa: E501
             List the items in a workspace.  # noqa: E501
             
-            :param visibility: The visibility for the containing workspace. Must be `shared` or `personal`; case is important. (required)
+            :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
             :type visibility: str
             :param workspace_name: The item's workspace name. (required)
             :type workspace_name: str
@@ -2646,12 +2646,12 @@ class WorkspaceApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfWorkspaceItem
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_items_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_items_with_http_info_async(visibility, workspace_name, as_at, page, sort_by, limit, filter, **kwargs)  # noqa: E501
+            response = await self.list_items_with_http_info_async(visibility, workspace_name, as_at, page, sort_by, limit, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def list_items_with_http_info_async(self, visibility: StrictStr, workspace_name: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfWorkspaceItem]:
@@ -2659,7 +2659,7 @@ class WorkspaceApi:
 
             List the items in a workspace.  # noqa: E501
 
-            :param visibility: The visibility for the containing workspace. Must be `shared` or `personal`; case is important. (required)
+            :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
             :type visibility: str
             :param workspace_name: The item's workspace name. (required)
             :type workspace_name: str
@@ -2799,7 +2799,7 @@ class WorkspaceApi:
             """[EXPERIMENTAL] ListWorkspaces: List workspaces.  # noqa: E501
             List workspaces.  # noqa: E501
             
-            :param visibility: The visibility for the workspaces. Must be `shared` or `personal`; case is important. (required)
+            :param visibility: The visibility for the workspaces; case is important. Available values: shared, personal. (required)
             :type visibility: str
             :param as_at: The asAt datetime at which to retrieve workspaces. Defaults to 'latest' if not specified.
             :type as_at: datetime
@@ -2819,12 +2819,12 @@ class WorkspaceApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfWorkspace
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_workspaces_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_workspaces_with_http_info_async(visibility, as_at, page, sort_by, limit, filter, include_item_access, **kwargs)  # noqa: E501
+            response = await self.list_workspaces_with_http_info_async(visibility, as_at, page, sort_by, limit, filter, include_item_access, **kwargs)
+            return response.data
 
     @validate_call
     async def list_workspaces_with_http_info_async(self, visibility: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, include_item_access: Optional[bool] = None, **kwargs) -> ApiResponse[PagedResourceListOfWorkspace]:
@@ -2832,7 +2832,7 @@ class WorkspaceApi:
 
             List workspaces.  # noqa: E501
 
-            :param visibility: The visibility for the workspaces. Must be `shared` or `personal`; case is important. (required)
+            :param visibility: The visibility for the workspaces; case is important. Available values: shared, personal. (required)
             :type visibility: str
             :param as_at: The asAt datetime at which to retrieve workspaces. Defaults to 'latest' if not specified.
             :type as_at: datetime
@@ -2972,7 +2972,7 @@ class WorkspaceApi:
             """[EXPERIMENTAL] SearchItems: List items across all workspaces.  # noqa: E501
             List items across all workspaces.  # noqa: E501
             
-            :param visibility: The visibility for the containing workspace. Must be `shared` or `personal`; case is important. (required)
+            :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
             :type visibility: str
             :param as_at: The asAt datetime at which to retrieve workspace items. Defaults to 'latest' if not specified.
             :type as_at: datetime
@@ -2990,12 +2990,12 @@ class WorkspaceApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfItemAndWorkspace
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the search_items_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.search_items_with_http_info_async(visibility, as_at, page, sort_by, limit, filter, **kwargs)  # noqa: E501
+            response = await self.search_items_with_http_info_async(visibility, as_at, page, sort_by, limit, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def search_items_with_http_info_async(self, visibility: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfItemAndWorkspace]:
@@ -3003,7 +3003,7 @@ class WorkspaceApi:
 
             List items across all workspaces.  # noqa: E501
 
-            :param visibility: The visibility for the containing workspace. Must be `shared` or `personal`; case is important. (required)
+            :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
             :type visibility: str
             :param as_at: The asAt datetime at which to retrieve workspace items. Defaults to 'latest' if not specified.
             :type as_at: datetime
@@ -3137,7 +3137,7 @@ class WorkspaceApi:
             """[EXPERIMENTAL] UpdateItem: Update an item in a workspace.  # noqa: E501
             Update an item in a workspace.  # noqa: E501
             
-            :param visibility: The visibility for the containing workspace. Must be `shared` or `personal`; case is important. (required)
+            :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
             :type visibility: str
             :param workspace_name: The workspace name. (required)
             :type workspace_name: str
@@ -3153,12 +3153,12 @@ class WorkspaceApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: WorkspaceItem
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_item_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_item_with_http_info_async(visibility, workspace_name, group_name, item_name, workspace_item_update_request, **kwargs)  # noqa: E501
+            response = await self.update_item_with_http_info_async(visibility, workspace_name, group_name, item_name, workspace_item_update_request, **kwargs)
+            return response.data
 
     @validate_call
     async def update_item_with_http_info_async(self, visibility: StrictStr, workspace_name: StrictStr, group_name: StrictStr, item_name: StrictStr, workspace_item_update_request: Optional[WorkspaceItemUpdateRequest] = None, **kwargs) -> ApiResponse[WorkspaceItem]:
@@ -3166,7 +3166,7 @@ class WorkspaceApi:
 
             Update an item in a workspace.  # noqa: E501
 
-            :param visibility: The visibility for the containing workspace. Must be `shared` or `personal`; case is important. (required)
+            :param visibility: The visibility for the containing workspace; case is important. Available values: shared, personal. (required)
             :type visibility: str
             :param workspace_name: The workspace name. (required)
             :type workspace_name: str
@@ -3297,7 +3297,7 @@ class WorkspaceApi:
             """[EXPERIMENTAL] UpdateWorkspace: Update a workspace.  # noqa: E501
             Update a workspace.  # noqa: E501
             
-            :param visibility: The visibility for the workspace. Must be `shared` or `personal`; case is important. (required)
+            :param visibility: The visibility for the workspace; case is important. Available values: shared, personal. (required)
             :type visibility: str
             :param workspace_name: The workspace name. (required)
             :type workspace_name: str
@@ -3311,12 +3311,12 @@ class WorkspaceApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Workspace
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_workspace_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_workspace_with_http_info_async(visibility, workspace_name, workspace_update_request, include_item_access, **kwargs)  # noqa: E501
+            response = await self.update_workspace_with_http_info_async(visibility, workspace_name, workspace_update_request, include_item_access, **kwargs)
+            return response.data
 
     @validate_call
     async def update_workspace_with_http_info_async(self, visibility: StrictStr, workspace_name: StrictStr, workspace_update_request: WorkspaceUpdateRequest, include_item_access: Optional[bool] = None, **kwargs) -> ApiResponse[Workspace]:
@@ -3324,7 +3324,7 @@ class WorkspaceApi:
 
             Update a workspace.  # noqa: E501
 
-            :param visibility: The visibility for the workspace. Must be `shared` or `personal`; case is important. (required)
+            :param visibility: The visibility for the workspace; case is important. Available values: shared, personal. (required)
             :type visibility: str
             :param workspace_name: The workspace name. (required)
             :type workspace_name: str

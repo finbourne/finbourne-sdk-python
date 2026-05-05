@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class SettlementInstructionWithTransaction(BaseModel):
     """
     settlement_instruction: Optional[TransactionSettlementInstruction] = Field(default=None, alias="settlementInstruction")
     matched_transaction: Optional[OutputTransaction] = Field(default=None, alias="matchedTransaction")
-    __properties = ["settlementInstruction", "matchedTransaction"]
+    __properties: ClassVar[List[str]] = ["settlementInstruction", "matchedTransaction"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -84,8 +84,8 @@ class SettlementInstructionWithTransaction(BaseModel):
             return SettlementInstructionWithTransaction.model_validate(obj)
 
         _obj = SettlementInstructionWithTransaction.model_validate({
-            "settlement_instruction": TransactionSettlementInstruction.from_dict(obj.get("settlementInstruction")) if obj.get("settlementInstruction") is not None else None,
-            "matched_transaction": OutputTransaction.from_dict(obj.get("matchedTransaction")) if obj.get("matchedTransaction") is not None else None
+            "settlement_instruction": TransactionSettlementInstruction.from_dict(_v) if (_v := obj.get("settlementInstruction")) is not None else None,
+            "matched_transaction": OutputTransaction.from_dict(_v) if (_v := obj.get("matchedTransaction")) is not None else None
         })
         return _obj
 

@@ -6,7 +6,7 @@ A definition for the period you wish to lock
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **diary_entry_code** | **str** | Optional | Unique code assigned to a period. When left blank last closed period will be located. |
-| **closing_options** | **List[str]** | Optional | The options which will be executed once a period is closed or locked. |
+| **closing_options** | **List[str]** | Optional | The options which will be executed once a period is closed or locked. Available values: ApplyClearDown. |
 
 
 ## Usage
@@ -18,7 +18,7 @@ from finbourne.sdk.services.lusid.models.LockPeriodDiaryEntryRequest import Lock
 
 instance = LockPeriodDiaryEntryRequest(
     diary_entry_code="...",  # optional — Unique code assigned to a period. When left blank last closed period will be located.
-    closing_options=  # optional — The options which will be executed once a period is closed or locked.
+    closing_options=  # optional — The options which will be executed once a period is closed or locked. Available values: ApplyClearDown.
 )
 ```
 

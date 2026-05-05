@@ -68,12 +68,12 @@ class CertificateManagementApi:
         :return: Returns the result object.
         :rtype: bytes
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the download_certificate_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.download_certificate_with_http_info(type, file_type, may_auto_create, **kwargs)  # noqa: E501
+        response = self.download_certificate_with_http_info(type, file_type, may_auto_create, **kwargs)
+        return response.data
 
     @validate_call
     def download_certificate_with_http_info(self, type: Optional[str] = None, file_type: Optional[str] = None, may_auto_create: Optional[bool] = None, **kwargs) -> ApiResponse[bytes]:
@@ -199,12 +199,12 @@ class CertificateManagementApi:
         :return: Returns the result object.
         :rtype: List[CertificateState]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_certificates_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_certificates_with_http_info(**kwargs)  # noqa: E501
+        response = self.list_certificates_with_http_info(**kwargs)
+        return response.data
 
     @validate_call
     def list_certificates_with_http_info(self, **kwargs) -> ApiResponse[List[CertificateState]]:
@@ -324,12 +324,12 @@ class CertificateManagementApi:
         :return: Returns the result object.
         :rtype: CertificateState
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the manage_certificate_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.manage_certificate_with_http_info(action, type, version, validity_start, validity_end, dry_run, **kwargs)  # noqa: E501
+        response = self.manage_certificate_with_http_info(action, type, version, validity_start, validity_end, dry_run, **kwargs)
+        return response.data
 
     @validate_call
     def manage_certificate_with_http_info(self, action: Optional[str] = None, type: Optional[str] = None, version: Optional[int] = None, validity_start: Optional[datetime] = None, validity_end: Optional[datetime] = None, dry_run: Optional[bool] = None, **kwargs) -> ApiResponse[CertificateState]:
@@ -489,12 +489,12 @@ class CertificateManagementApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: bytes
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the download_certificate_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.download_certificate_with_http_info_async(type, file_type, may_auto_create, **kwargs)  # noqa: E501
+            response = await self.download_certificate_with_http_info_async(type, file_type, may_auto_create, **kwargs)
+            return response.data
 
     @validate_call
     async def download_certificate_with_http_info_async(self, type: Optional[str] = None, file_type: Optional[str] = None, may_auto_create: Optional[bool] = None, **kwargs) -> ApiResponse[bytes]:
@@ -621,12 +621,12 @@ class CertificateManagementApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: List[CertificateState]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_certificates_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_certificates_with_http_info_async(**kwargs)  # noqa: E501
+            response = await self.list_certificates_with_http_info_async(**kwargs)
+            return response.data
 
     @validate_call
     async def list_certificates_with_http_info_async(self, **kwargs) -> ApiResponse[List[CertificateState]]:
@@ -747,12 +747,12 @@ class CertificateManagementApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: CertificateState
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the manage_certificate_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.manage_certificate_with_http_info_async(action, type, version, validity_start, validity_end, dry_run, **kwargs)  # noqa: E501
+            response = await self.manage_certificate_with_http_info_async(action, type, version, validity_start, validity_end, dry_run, **kwargs)
+            return response.data
 
     @validate_call
     async def manage_certificate_with_http_info_async(self, action: Optional[str] = None, type: Optional[str] = None, version: Optional[int] = None, validity_start: Optional[datetime] = None, validity_end: Optional[datetime] = None, dry_run: Optional[bool] = None, **kwargs) -> ApiResponse[CertificateState]:

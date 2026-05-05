@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -45,7 +45,7 @@ class InvestmentAccount(BaseModel):
     href:  Optional[StrictStr] = Field(default=None,alias="href", description="The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime.") 
     version: Optional[Version] = None
     links: Optional[List[Link]] = None
-    __properties = ["scope", "identifiers", "displayName", "description", "accountType", "accountHolders", "investmentPortfolios", "lusidInvestmentAccountId", "properties", "relationships", "href", "version", "links"]
+    __properties: ClassVar[List[str]] = ["scope", "identifiers", "displayName", "description", "accountType", "accountHolders", "investmentPortfolios", "lusidInvestmentAccountId", "properties", "relationships", "href", "version", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -201,26 +201,26 @@ class InvestmentAccount(BaseModel):
             "scope": obj.get("scope"),
             "identifiers": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("identifiers").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("identifiers") is not None
+            if (_val := obj.get("identifiers")) is not None
             else None,
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
             "account_type": obj.get("accountType"),
-            "account_holders": [AccountHolder.from_dict(_item) for _item in obj.get("accountHolders")] if obj.get("accountHolders") is not None else None,
-            "investment_portfolios": [InvestmentPortfolio.from_dict(_item) for _item in obj.get("investmentPortfolios")] if obj.get("investmentPortfolios") is not None else None,
+            "account_holders": [AccountHolder.from_dict(_item) for _item in _v] if (_v := obj.get("accountHolders")) is not None else None,
+            "investment_portfolios": [InvestmentPortfolio.from_dict(_item) for _item in _v] if (_v := obj.get("investmentPortfolios")) is not None else None,
             "lusid_investment_account_id": obj.get("lusidInvestmentAccountId"),
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None,
-            "relationships": [Relationship.from_dict(_item) for _item in obj.get("relationships")] if obj.get("relationships") is not None else None,
+            "relationships": [Relationship.from_dict(_item) for _item in _v] if (_v := obj.get("relationships")) is not None else None,
             "href": obj.get("href"),
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

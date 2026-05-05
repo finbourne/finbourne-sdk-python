@@ -5,14 +5,14 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
-| **reconciliation_type** | **str** | Required | The type of reconciliation to perform. \&quot;Holding\&quot; | \&quot;Transaction\&quot; | \&quot;Valuation\&quot; |
+| **reconciliation_type** | **str** | Required | The type of reconciliation to perform. Available values: Holding, Transaction, Valuation, CashHolding. |
 | **group_reconciliation_definition_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **instance_id** | [GroupReconciliationInstanceId](GroupReconciliationInstanceId.md) | Required | *No description available.* |
 | **comparison_result_id** | **str** | Required | Comparison result identifier, encoded value for core attribute results, aggregate attribute results, reconciliation type and run instanceId. |
 | **reconciliation_run_as_at** | **datetime** | Required | The timestamp when the run occurred. |
-| **result_type** | **str** | Required | Reconciliation run general result. \&quot;Break\&quot; | \&quot;Match\&quot; | \&quot;PartialMatch\&quot; | \&quot;NotFound |
-| **result_status** | **str** | Required | Indicates how a particular result evolves from one run to the next. \&quot;New\&quot; | \&quot;Confirmed\&quot; | \&quot;Changed\&quot; |
-| **review_status** | **str** | Required | Status of whether user has provided any input (comments, manual matches, break codes). \&quot;Pending\&quot; | \&quot;Reviewed\&quot; | \&quot;Matched\&quot; | \&quot;Invalid\&quot; |
+| **result_type** | **str** | Required | Reconciliation run general result. Available values: Match, PartialMatch, Break, NotFound, Resolved. |
+| **result_status** | **str** | Required | Indicates how a particular result evolves from one run to the next. Available values: New, Confirmed, Changed. |
+| **review_status** | **str** | Required | Status of whether user has provided any input (comments, manual matches, break codes). Available values: Pending, Reviewed, Matched, Invalid. |
 | **dates_reconciled** | [GroupReconciliationDates](GroupReconciliationDates.md) | Required | *No description available.* |
 | **core_attributes** | [GroupReconciliationCoreAttributeValues](GroupReconciliationCoreAttributeValues.md) | Required | *No description available.* |
 | **aggregate_attributes** | [GroupReconciliationAggregateAttributeValues](GroupReconciliationAggregateAttributeValues.md) | Required | *No description available.* |
@@ -31,14 +31,14 @@ from finbourne.sdk.services.lusid.models.GroupReconciliationComparisonResult imp
 
 instance = GroupReconciliationComparisonResult(
     id=ResourceId(...),  # required
-    reconciliation_type="...",  # required — The type of reconciliation to perform. \&quot;Holding\&quot; | \&quot;Transaction\&quot; | \&quot;Valuation\&quot;
+    reconciliation_type="...",  # required — The type of reconciliation to perform. Available values: Holding, Transaction, Valuation, CashHolding.
     group_reconciliation_definition_id=ResourceId(...),  # required
     instance_id=GroupReconciliationInstanceId(...),  # required
     comparison_result_id="...",  # required — Comparison result identifier, encoded value for core attribute results, aggregate attribute results, reconciliation type and run instanceId.
     reconciliation_run_as_at=datetime.now(),  # required — The timestamp when the run occurred.
-    result_type="...",  # required — Reconciliation run general result. \&quot;Break\&quot; | \&quot;Match\&quot; | \&quot;PartialMatch\&quot; | \&quot;NotFound
-    result_status="...",  # required — Indicates how a particular result evolves from one run to the next. \&quot;New\&quot; | \&quot;Confirmed\&quot; | \&quot;Changed\&quot;
-    review_status="...",  # required — Status of whether user has provided any input (comments, manual matches, break codes). \&quot;Pending\&quot; | \&quot;Reviewed\&quot; | \&quot;Matched\&quot; | \&quot;Invalid\&quot;
+    result_type="...",  # required — Reconciliation run general result. Available values: Match, PartialMatch, Break, NotFound, Resolved.
+    result_status="...",  # required — Indicates how a particular result evolves from one run to the next. Available values: New, Confirmed, Changed.
+    review_status="...",  # required — Status of whether user has provided any input (comments, manual matches, break codes). Available values: Pending, Reviewed, Matched, Invalid.
     dates_reconciled=GroupReconciliationDates(...),  # required
     core_attributes=GroupReconciliationCoreAttributeValues(...),  # required
     aggregate_attributes=GroupReconciliationAggregateAttributeValues(...),  # required

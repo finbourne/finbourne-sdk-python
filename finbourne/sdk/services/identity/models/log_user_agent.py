@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class LogUserAgent(BaseModel):
     raw_user_agent:  Optional[StrictStr] = Field(default=None,alias="rawUserAgent") 
     operating_system:  Optional[StrictStr] = Field(default=None,alias="operatingSystem") 
     browser:  Optional[StrictStr] = Field(default=None,alias="browser") 
-    __properties = ["rawUserAgent", "operatingSystem", "browser"]
+    __properties: ClassVar[List[str]] = ["rawUserAgent", "operatingSystem", "browser"]
 
     model_config = ConfigDict(
         populate_by_name=True,

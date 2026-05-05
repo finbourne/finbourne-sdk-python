@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class CheckDefinitionRuleSet(BaseModel):
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="A description for the Rule Set.") 
     rule_set_filter:  Optional[StrictStr] = Field(default=None,alias="ruleSetFilter", description="A filter for the Rule Set to filter entity instances the rule set applies to.") 
     rules: Optional[List[CheckDefinitionRule]] = Field(default=None, description="A collection of rules for the Rule Set.")
-    __properties = ["ruleSetKey", "displayName", "description", "ruleSetFilter", "rules"]
+    __properties: ClassVar[List[str]] = ["ruleSetKey", "displayName", "description", "ruleSetFilter", "rules"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -116,7 +116,7 @@ class CheckDefinitionRuleSet(BaseModel):
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
             "rule_set_filter": obj.get("ruleSetFilter"),
-            "rules": [CheckDefinitionRule.from_dict(_item) for _item in obj.get("rules")] if obj.get("rules") is not None else None
+            "rules": [CheckDefinitionRule.from_dict(_item) for _item in _v] if (_v := obj.get("rules")) is not None else None
         })
         return _obj
 

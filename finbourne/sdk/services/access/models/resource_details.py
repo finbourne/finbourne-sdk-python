@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class ResourceDetails(BaseModel):
     """
     id: Dict[str, StrictStr] = Field(description="The identifier of the resource being evaluated")
     metadata: Optional[Dict[str, Optional[List[EntitlementMetadata]]]] = Field(default=None, description="Any metadata associated with the resource being requested")
-    __properties = ["id", "metadata"]
+    __properties: ClassVar[List[str]] = ["id", "metadata"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -69,9 +69,9 @@ class ResourceDetails(BaseModel):
         _field_dict_of_array = {}
         if self.metadata:
             for _key in self.metadata:
-                if self.metadata[_key]:
+                if (_items_for_key := self.metadata[_key]):
                     _field_dict_of_array[_key] = [
-                        _item.to_dict() for _item in self.metadata[_key]
+                        _item.to_dict() for _item in _items_for_key
                     ]
             _dict['metadata'] = _field_dict_of_array
         # set to None if metadata (nullable) is None
@@ -98,9 +98,9 @@ class ResourceDetails(BaseModel):
                         if _v is not None
                         else None
                 )
-                for _k, _v in obj.get("metadata").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("metadata") is not None
+            if (_val := obj.get("metadata")) is not None
             else None
         })
         return _obj

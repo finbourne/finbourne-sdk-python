@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class CustomDataModelIdentifierTypeSpecification(BaseModel):
     """
     identifier_key:  StrictStr = Field(...,alias="identifierKey", description="The identifier type that is required/allowed on the bound entity.") 
     required: Optional[StrictBool] = Field(default=None, description="Whether identifier type is required or allowed.")
-    __properties = ["identifierKey", "required"]
+    __properties: ClassVar[List[str]] = ["identifierKey", "required"]
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,8 +30,8 @@ class MembershipAmendmentRequest(BaseModel):
     custom_data_model_id: ResourceId = Field(alias="customDataModelId")
     entity_type:  StrictStr = Field(...,alias="entityType", description="The type of the entity that is being added or removed from the Custom Data Model.") 
     entity_unique_id:  StrictStr = Field(...,alias="entityUniqueId", description="The entity unique identifier of the entity that is being added or removed from the Custom Data Model.") 
-    operation:  StrictStr = Field(...,alias="operation", description="The operation to be performed on the entity's membership in the Custom Data Model. Either 'Add' or 'Remove'.") 
-    __properties = ["customDataModelId", "entityType", "entityUniqueId", "operation"]
+    operation:  StrictStr = Field(...,alias="operation", description="The operation to be performed on the entity's membership in the Custom Data Model. Available values: Add, Remove.") 
+    __properties: ClassVar[List[str]] = ["customDataModelId", "entityType", "entityUniqueId", "operation"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -82,7 +82,7 @@ class MembershipAmendmentRequest(BaseModel):
             return MembershipAmendmentRequest.model_validate(obj)
 
         _obj = MembershipAmendmentRequest.model_validate({
-            "custom_data_model_id": ResourceId.from_dict(obj.get("customDataModelId")) if obj.get("customDataModelId") is not None else None,
+            "custom_data_model_id": ResourceId.from_dict(_v) if (_v := obj.get("customDataModelId")) is not None else None,
             "entity_type": obj.get("entityType"),
             "entity_unique_id": obj.get("entityUniqueId"),
             "operation": obj.get("operation")

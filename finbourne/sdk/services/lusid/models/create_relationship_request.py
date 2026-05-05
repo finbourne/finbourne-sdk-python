@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class CreateRelationshipRequest(BaseModel):
     target_entity_id: Dict[str, Optional[StrictStr]] = Field(description="The identifier of the target entity.", alias="targetEntityId")
     effective_from:  Optional[StrictStr] = Field(default=None,alias="effectiveFrom", description="The effective date of the relationship to be created") 
     effective_until:  Optional[StrictStr] = Field(default=None,alias="effectiveUntil", description="The effective datetime until which the relationship is valid. If not supplied this will be valid indefinitely.") 
-    __properties = ["sourceEntityId", "targetEntityId", "effectiveFrom", "effectiveUntil"]
+    __properties: ClassVar[List[str]] = ["sourceEntityId", "targetEntityId", "effectiveFrom", "effectiveUntil"]
 
     model_config = ConfigDict(
         populate_by_name=True,

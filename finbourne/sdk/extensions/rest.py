@@ -17,6 +17,7 @@ import json
 import logging
 import re
 import ssl
+from typing import Any
 
 from urllib.parse import urlencode, quote_plus
 import urllib3
@@ -140,49 +141,46 @@ class RESTClientObject(object):
 
         post_params = post_params or {}
         headers = headers or {}
-        # url already contains the URL query string
-        # so reset query_params to empty dict
-        query_params = {}
 
         # _request_timeout param cannot be removed for backwards compatability
         # values from opts override values from _request_timeout
         # try to get values from opts first, then _request_timeout, then self.timeout, else set to None
         # timeout = _request_timeout or self.timeout
         timeout = None
-        opts_total_timeout = opts.total_timeout_ms / 1000.0 if opts and opts.total_timeout_ms != None else None
-        opts_connect_timeout = opts.connect_timeout_ms / 1000.0 if opts and opts.connect_timeout_ms != None else None
-        opts_read_timeout = opts.read_timeout_ms / 1000.0 if opts and opts.read_timeout_ms != None else None
+        opts_total_timeout = opts.total_timeout_ms / 1000.0 if opts and opts.total_timeout_ms is not None else None
+        opts_connect_timeout = opts.connect_timeout_ms / 1000.0 if opts and opts.connect_timeout_ms is not None else None
+        opts_read_timeout = opts.read_timeout_ms / 1000.0 if opts and opts.read_timeout_ms is not None else None
         if not _request_timeout:
             timeout = self.get_timeout(
-                total=opts_total_timeout if opts_total_timeout != None
+                total=opts_total_timeout if opts_total_timeout is not None
                     else self.timeout.total, 
-                connect=opts_connect_timeout if opts_connect_timeout != None
+                connect=opts_connect_timeout if opts_connect_timeout is not None
                     else self.timeout._connect,
-                read=opts_read_timeout if opts_read_timeout != None
+                read=opts_read_timeout if opts_read_timeout is not None
                     else self.timeout._read)
         elif isinstance(_request_timeout, urllib3.Timeout):
             timeout = self.get_timeout(
-                total=opts_total_timeout if opts_total_timeout != None
-                    else _request_timeout.total if _request_timeout.total != None
+                total=opts_total_timeout if opts_total_timeout is not None
+                    else _request_timeout.total if _request_timeout.total is not None
                         else self.timeout.total, 
-                connect=opts_connect_timeout if opts_connect_timeout != None
-                    else _request_timeout._connect if _request_timeout._connect != None
+                connect=opts_connect_timeout if opts_connect_timeout is not None
+                    else _request_timeout._connect if _request_timeout._connect is not None
                         else self.timeout._connect,
-                read=opts_read_timeout if opts_read_timeout != None
-                    else _request_timeout._read if _request_timeout._read != None
+                read=opts_read_timeout if opts_read_timeout is not None
+                    else _request_timeout._read if _request_timeout._read is not None
                         else self.timeout._read)
         elif isinstance(_request_timeout, (int, float)):
             timeout = self.get_timeout(
-                total=opts_total_timeout if opts_total_timeout != None else _request_timeout, 
-                connect=opts_connect_timeout if opts_connect_timeout != None else self.timeout._connect, 
-                read=opts_read_timeout if opts_read_timeout != None else self.timeout._read)
+                total=opts_total_timeout if opts_total_timeout is not None else _request_timeout, 
+                connect=opts_connect_timeout if opts_connect_timeout is not None else self.timeout._connect, 
+                read=opts_read_timeout if opts_read_timeout is not None else self.timeout._read)
         elif (isinstance(_request_timeout, tuple) and len(_request_timeout) == 2):
             timeout = self.get_timeout(
-                total=opts_total_timeout if opts_total_timeout != None else self.timeout.total,
-                connect=opts_connect_timeout if opts_connect_timeout != None else _request_timeout[0],
-                read=opts_read_timeout if opts_read_timeout != None else _request_timeout[1])
+                total=opts_total_timeout if opts_total_timeout is not None else self.timeout.total,
+                connect=opts_connect_timeout if opts_connect_timeout is not None else _request_timeout[0],
+                read=opts_read_timeout if opts_read_timeout is not None else _request_timeout[1])
         else:
-            raise f"unexpected type '{type(_request_timeout)}' for _request_timeout"
+            raise ValueError(f"unexpected type '{type(_request_timeout)}' for _request_timeout")
 
         try:
             # For `POST`, `PUT`, `PATCH`, `OPTIONS`, `DELETE`
@@ -342,7 +340,7 @@ class RESTClientObject(object):
                             body=body,
                             opts=opts)
 
-    def get_timeout(self, total: int, connect: int, read: int):
+    def get_timeout(self, total: Any, connect: Any, read: Any):
         # zero is used in the sdk config to explicitly set to infinity (and None is used to indicate the value has not been set)
         # but zero is not an allowed value for urllib3.Timeout so change any zeros to Nones
         return urllib3.Timeout(

@@ -66,12 +66,12 @@ class StagedModificationsApi:
         :return: Returns the result object.
         :rtype: StagedModification
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the add_decision_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.add_decision_with_http_info(id, staged_modification_decision_request, **kwargs)  # noqa: E501
+        response = self.add_decision_with_http_info(id, staged_modification_decision_request, **kwargs)
+        return response.data
 
     @validate_call
     def add_decision_with_http_info(self, id: StrictStr, staged_modification_decision_request: StagedModificationDecisionRequest, **kwargs) -> ApiResponse[StagedModification]:
@@ -201,12 +201,12 @@ class StagedModificationsApi:
         :return: Returns the result object.
         :rtype: StagedModification
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_staged_modification_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_staged_modification_with_http_info(id, as_at, **kwargs)  # noqa: E501
+        response = self.get_staged_modification_with_http_info(id, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_staged_modification_with_http_info(self, id: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[StagedModification]:
@@ -340,12 +340,12 @@ class StagedModificationsApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfStagedModificationsRequestedChangeInterval
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_requested_changes_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_requested_changes_with_http_info(id, as_at, page, limit, filter, sort_by, **kwargs)  # noqa: E501
+        response = self.list_requested_changes_with_http_info(id, as_at, page, limit, filter, sort_by, **kwargs)
+        return response.data
 
     @validate_call
     def list_requested_changes_with_http_info(self, id: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfStagedModificationsRequestedChangeInterval]:
@@ -502,12 +502,12 @@ class StagedModificationsApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfStagedModification
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_staged_modifications_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_staged_modifications_with_http_info(as_at, page, limit, filter, sort_by, **kwargs)  # noqa: E501
+        response = self.list_staged_modifications_with_http_info(as_at, page, limit, filter, sort_by, **kwargs)
+        return response.data
 
     @validate_call
     def list_staged_modifications_with_http_info(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfStagedModification]:
@@ -656,12 +656,12 @@ class StagedModificationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: StagedModification
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the add_decision_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.add_decision_with_http_info_async(id, staged_modification_decision_request, **kwargs)  # noqa: E501
+            response = await self.add_decision_with_http_info_async(id, staged_modification_decision_request, **kwargs)
+            return response.data
 
     @validate_call
     async def add_decision_with_http_info_async(self, id: StrictStr, staged_modification_decision_request: StagedModificationDecisionRequest, **kwargs) -> ApiResponse[StagedModification]:
@@ -792,12 +792,12 @@ class StagedModificationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: StagedModification
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_staged_modification_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_staged_modification_with_http_info_async(id, as_at, **kwargs)  # noqa: E501
+            response = await self.get_staged_modification_with_http_info_async(id, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_staged_modification_with_http_info_async(self, id: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[StagedModification]:
@@ -932,12 +932,12 @@ class StagedModificationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfStagedModificationsRequestedChangeInterval
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_requested_changes_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_requested_changes_with_http_info_async(id, as_at, page, limit, filter, sort_by, **kwargs)  # noqa: E501
+            response = await self.list_requested_changes_with_http_info_async(id, as_at, page, limit, filter, sort_by, **kwargs)
+            return response.data
 
     @validate_call
     async def list_requested_changes_with_http_info_async(self, id: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfStagedModificationsRequestedChangeInterval]:
@@ -1095,12 +1095,12 @@ class StagedModificationsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfStagedModification
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_staged_modifications_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_staged_modifications_with_http_info_async(as_at, page, limit, filter, sort_by, **kwargs)  # noqa: E501
+            response = await self.list_staged_modifications_with_http_info_async(as_at, page, limit, filter, sort_by, **kwargs)
+            return response.data
 
     @validate_call
     async def list_staged_modifications_with_http_info_async(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfStagedModification]:

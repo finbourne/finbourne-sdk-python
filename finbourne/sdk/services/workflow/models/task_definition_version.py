@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -27,7 +27,7 @@ class TaskDefinitionVersion(BaseModel):
     The version of the Task Definition used by this Task  # noqa: E501
     """
     as_at_modified: Optional[datetime] = Field(default=None, description="The asAt datetime of the Task Definition used by this Task", alias="asAtModified")
-    __properties = ["asAtModified"]
+    __properties: ClassVar[List[str]] = ["asAtModified"]
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -37,9 +37,9 @@ class BondConversionSchedule(Schedule):
     mandatory_conversion: Optional[StrictBool] = Field(default=None, description="Set this to true if a conversion is mandatory if the trigger occurs. Defaults to false.", alias="mandatoryConversion")
     notification_period_end: Optional[datetime] = Field(default=None, description="The last day in the notification period for the conversion of the bond", alias="notificationPeriodEnd")
     notification_period_start: Optional[datetime] = Field(default=None, description="The first day in the notification period for the conversion of the bond", alias="notificationPeriodStart")
-    schedule_type:  StrictStr = Field(...,alias="scheduleType", description="The available values are: FixedSchedule, FloatSchedule, OptionalitySchedule, StepSchedule, Exercise, FxRateSchedule, FxLinkedNotionalSchedule, BondConversionSchedule, Invalid") 
+    schedule_type:  StrictStr = Field(...,alias="scheduleType", description="Available values: FixedSchedule, FloatSchedule, OptionalitySchedule, StepSchedule, Exercise, FxRateSchedule, FxLinkedNotionalSchedule, BondConversionSchedule, Invalid.") 
     additional_properties: Dict[str, Any] = {}
-    __properties = ["scheduleType", "identifiers", "bondConversionEntries", "conversionTrigger", "deliveryType", "exerciseType", "includesAccrued", "mandatoryConversion", "notificationPeriodEnd", "notificationPeriodStart"]
+    __properties: ClassVar[List[str]] = ["scheduleType", "identifiers", "bondConversionEntries", "conversionTrigger", "deliveryType", "exerciseType", "includesAccrued", "mandatoryConversion", "notificationPeriodEnd", "notificationPeriodStart"]
 
     @field_validator('schedule_type')
     def schedule_type_validate_enum(cls, value):
@@ -186,7 +186,7 @@ class BondConversionSchedule(Schedule):
         _obj = BondConversionSchedule.model_validate({
             "schedule_type": obj.get("scheduleType"),
             "identifiers": obj.get("identifiers"),
-            "bond_conversion_entries": [BondConversionEntry.from_dict(_item) for _item in obj.get("bondConversionEntries")] if obj.get("bondConversionEntries") is not None else None,
+            "bond_conversion_entries": [BondConversionEntry.from_dict(_item) for _item in _v] if (_v := obj.get("bondConversionEntries")) is not None else None,
             "conversion_trigger": obj.get("conversionTrigger"),
             "delivery_type": obj.get("deliveryType"),
             "exercise_type": obj.get("exerciseType"),
@@ -196,13 +196,8 @@ class BondConversionSchedule(Schedule):
             "notification_period_start": obj.get("notificationPeriodStart")
         })
         # store additional fields in additional_properties
-        
-        properties = cls.__properties
-        if not isinstance(cls.__properties, dict) and getattr(cls.__properties, 'default', None):
-            properties = cls.__properties.default
-    
         for _key in obj.keys():
-            if _key not in properties:
+            if _key not in cls.__properties:
                 _obj.additional_properties[_key] = obj.get(_key)
 
         return _obj

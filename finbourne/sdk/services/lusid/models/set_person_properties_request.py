@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class SetPersonPropertiesRequest(BaseModel):
     SetPersonPropertiesRequest
     """
     properties: Dict[str, ModelProperty] = Field(description="Properties to set for a Person. All time-variant properties must have same EffectiveFrom date. Properties not included in the request will not be amended.")
-    __properties = ["properties"]
+    __properties: ClassVar[List[str]] = ["properties"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,9 +85,9 @@ class SetPersonPropertiesRequest(BaseModel):
         _obj = SetPersonPropertiesRequest.model_validate({
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
-                for _k, _v in obj.get("properties").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("properties") is not None
+            if (_val := obj.get("properties")) is not None
             else None
         })
         return _obj

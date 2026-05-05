@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class PortfolioSearchResult(BaseModel):
     A list of portfolios.  # noqa: E501
     """
     id: ResourceId
-    type:  StrictStr = Field(...,alias="type", description="The type of the portfolio. The available values are: Transaction, Reference, DerivedTransaction, SimplePosition") 
+    type:  StrictStr = Field(...,alias="type", description="The type of the portfolio. Available values: Transaction, Reference, DerivedTransaction, SimplePosition.") 
     href:  Optional[StrictStr] = Field(default=None,alias="href", description="The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime.") 
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="The long form description of the portfolio.") 
     display_name:  StrictStr = Field(...,alias="displayName", description="The name of the portfolio.") 
@@ -40,7 +40,7 @@ class PortfolioSearchResult(BaseModel):
     base_currency:  Optional[StrictStr] = Field(default=None,alias="baseCurrency", description="The base currency of the portfolio.") 
     properties: Optional[List[ModelProperty]] = Field(default=None, description="The requested portfolio properties. These will be from the 'Portfolio' domain.")
     links: Optional[List[Link]] = None
-    __properties = ["id", "type", "href", "description", "displayName", "isDerived", "created", "parentPortfolioId", "baseCurrency", "properties", "links"]
+    __properties: ClassVar[List[str]] = ["id", "type", "href", "description", "displayName", "isDerived", "created", "parentPortfolioId", "baseCurrency", "properties", "links"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -203,17 +203,17 @@ class PortfolioSearchResult(BaseModel):
             return PortfolioSearchResult.model_validate(obj)
 
         _obj = PortfolioSearchResult.model_validate({
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
             "type": obj.get("type"),
             "href": obj.get("href"),
             "description": obj.get("description"),
             "display_name": obj.get("displayName"),
             "is_derived": obj.get("isDerived"),
             "created": obj.get("created"),
-            "parent_portfolio_id": ResourceId.from_dict(obj.get("parentPortfolioId")) if obj.get("parentPortfolioId") is not None else None,
+            "parent_portfolio_id": ResourceId.from_dict(_v) if (_v := obj.get("parentPortfolioId")) is not None else None,
             "base_currency": obj.get("baseCurrency"),
-            "properties": [ModelProperty.from_dict(_item) for _item in obj.get("properties")] if obj.get("properties") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "properties": [ModelProperty.from_dict(_item) for _item in _v] if (_v := obj.get("properties")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -35,9 +35,9 @@ class EquityVolSurfaceData(ComplexMarketData):
     quotes: List[MarketQuote] = Field(description="The set of market quotes that define the surface, in NormalVol or LogNormalVol terms.")
     lineage:  Optional[StrictStr] = Field(default=None,alias="lineage", description="Description of the complex market data's lineage e.g. 'FundAccountant_GreenQuality'.") 
     version: Optional[Version] = None
-    market_data_type:  StrictStr = Field(...,alias="marketDataType", description="The available values are: DiscountFactorCurveData, EquityVolSurfaceData, FxVolSurfaceData, IrVolCubeData, OpaqueMarketData, YieldCurveData, FxForwardCurveData, FxForwardPipsCurveData, FxForwardTenorCurveData, FxForwardTenorPipsCurveData, FxForwardCurveByQuoteReference, CreditSpreadCurveData, EquityCurveByPricesData, ConstantVolatilitySurface") 
+    market_data_type:  StrictStr = Field(...,alias="marketDataType", description="Available values: DiscountFactorCurveData, EquityVolSurfaceData, FxVolSurfaceData, IrVolCubeData, OpaqueMarketData, YieldCurveData, FxForwardCurveData, FxForwardPipsCurveData, FxForwardTenorCurveData, FxForwardTenorPipsCurveData, FxForwardCurveByQuoteReference, CreditSpreadCurveData, EquityCurveByPricesData, ConstantVolatilitySurface.") 
     additional_properties: Dict[str, Any] = {}
-    __properties = ["marketDataType", "baseDate", "instruments", "quotes", "lineage", "version"]
+    __properties: ClassVar[List[str]] = ["marketDataType", "baseDate", "instruments", "quotes", "lineage", "version"]
 
     @field_validator('market_data_type')
     def market_data_type_validate_enum(cls, value):
@@ -184,19 +184,14 @@ class EquityVolSurfaceData(ComplexMarketData):
         _obj = EquityVolSurfaceData.model_validate({
             "market_data_type": obj.get("marketDataType"),
             "base_date": obj.get("baseDate"),
-            "instruments": [LusidInstrument.from_dict(_item) for _item in obj.get("instruments")] if obj.get("instruments") is not None else None,
-            "quotes": [MarketQuote.from_dict(_item) for _item in obj.get("quotes")] if obj.get("quotes") is not None else None,
+            "instruments": [LusidInstrument.from_dict(_item) for _item in _v] if (_v := obj.get("instruments")) is not None else None,
+            "quotes": [MarketQuote.from_dict(_item) for _item in _v] if (_v := obj.get("quotes")) is not None else None,
             "lineage": obj.get("lineage"),
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None
         })
         # store additional fields in additional_properties
-        
-        properties = cls.__properties
-        if not isinstance(cls.__properties, dict) and getattr(cls.__properties, 'default', None):
-            properties = cls.__properties.default
-    
         for _key in obj.keys():
-            if _key not in properties:
+            if _key not in cls.__properties:
                 _obj.additional_properties[_key] = obj.get(_key)
 
         return _obj

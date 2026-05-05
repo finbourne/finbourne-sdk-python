@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -27,7 +27,7 @@ class TableMeta(BaseModel):
     Representation of the table metadata  # noqa: E501
     """
     table_id:  StrictStr = Field(...,alias="tableId", description="A unique identifier for the table") 
-    __properties = ["tableId"]
+    __properties: ClassVar[List[str]] = ["tableId"]
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,9 +29,9 @@ class CashFlowValueSet(ResultValue):
     Result value for a collection of cash flow values  # noqa: E501
     """
     cashflows: Optional[List[CashFlowValue]] = Field(default=None, description="The set of cash flows in the result")
-    result_value_type:  StrictStr = Field(...,alias="resultValueType", description="The available values are: ResultValue, ResultValueDictionary, ResultValue0D, ResultValueDecimal, ResultValueInt, ResultValueString, ResultValueBool, ResultValueCurrency, CashFlowValue, CashFlowValueSet, ResultValueLifeCycleEventValue, ResultValueDateTimeOffset") 
+    result_value_type:  StrictStr = Field(...,alias="resultValueType", description="Available values: ResultValue, ResultValueDictionary, ResultValue0D, ResultValueDecimal, ResultValueInt, ResultValueString, ResultValueBool, ResultValueCurrency, CashFlowValue, CashFlowValueSet, ResultValueLifeCycleEventValue, ResultValueDateTimeOffset.") 
     additional_properties: Dict[str, Any] = {}
-    __properties = ["resultValueType", "cashflows"]
+    __properties: ClassVar[List[str]] = ["resultValueType", "cashflows"]
 
     @field_validator('result_value_type')
     def result_value_type_validate_enum(cls, value):
@@ -167,16 +167,11 @@ class CashFlowValueSet(ResultValue):
 
         _obj = CashFlowValueSet.model_validate({
             "result_value_type": obj.get("resultValueType"),
-            "cashflows": [CashFlowValue.from_dict(_item) for _item in obj.get("cashflows")] if obj.get("cashflows") is not None else None
+            "cashflows": [CashFlowValue.from_dict(_item) for _item in _v] if (_v := obj.get("cashflows")) is not None else None
         })
         # store additional fields in additional_properties
-        
-        properties = cls.__properties
-        if not isinstance(cls.__properties, dict) and getattr(cls.__properties, 'default', None):
-            properties = cls.__properties.default
-    
         for _key in obj.keys():
-            if _key not in properties:
+            if _key not in cls.__properties:
                 _obj.additional_properties[_key] = obj.get(_key)
 
         return _obj

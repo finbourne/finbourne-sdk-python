@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class Collateral(BaseModel):
     collateral_instruments: Optional[List[CollateralInstrument]] = Field(default=None, description="List of any collateral instruments.", alias="collateralInstruments")
     collateral_value: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total value of the collateral before any margin or haircut applied.  Can be provided instead of PurchasePrice, so that PurchasePrice can be inferred from the CollateralValue and one of  Haircut or Margin.", alias="collateralValue")
     defer_manufactured_payments: Optional[StrictBool] = Field(default=None, description="Indicates whether manufactured collateral payments are capitalised (i.e. deferred). Capitalised payments will  be deferred to the maturity date of the repo and if applicable interest will be accrued at the repo rate.  Defaults to false.", alias="deferManufacturedPayments")
-    __properties = ["buyerReceivesCashflows", "buyerReceivesCorporateActionPayments", "collateralInstruments", "collateralValue", "deferManufacturedPayments"]
+    __properties: ClassVar[List[str]] = ["buyerReceivesCashflows", "buyerReceivesCorporateActionPayments", "collateralInstruments", "collateralValue", "deferManufacturedPayments"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -99,7 +99,7 @@ class Collateral(BaseModel):
         _obj = Collateral.model_validate({
             "buyer_receives_cashflows": obj.get("buyerReceivesCashflows"),
             "buyer_receives_corporate_action_payments": obj.get("buyerReceivesCorporateActionPayments"),
-            "collateral_instruments": [CollateralInstrument.from_dict(_item) for _item in obj.get("collateralInstruments")] if obj.get("collateralInstruments") is not None else None,
+            "collateral_instruments": [CollateralInstrument.from_dict(_item) for _item in _v] if (_v := obj.get("collateralInstruments")) is not None else None,
             "collateral_value": obj.get("collateralValue"),
             "defer_manufactured_payments": obj.get("deferManufacturedPayments")
         })

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -35,7 +35,7 @@ class GroupReconciliationReviewStatuses(BaseModel):
     link_matched: Link = Field(alias="linkMatched")
     count_invalid: StrictInt = Field(description="The number of comparison results of reviewStatus \"Invalid\" with this instanceId and reconciliationType", alias="countInvalid")
     link_invalid: Link = Field(alias="linkInvalid")
-    __properties = ["countPending", "linkPending", "countReviewed", "linkReviewed", "countMatched", "linkMatched", "countInvalid", "linkInvalid"]
+    __properties: ClassVar[List[str]] = ["countPending", "linkPending", "countReviewed", "linkReviewed", "countMatched", "linkMatched", "countInvalid", "linkInvalid"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -96,13 +96,13 @@ class GroupReconciliationReviewStatuses(BaseModel):
 
         _obj = GroupReconciliationReviewStatuses.model_validate({
             "count_pending": obj.get("countPending"),
-            "link_pending": Link.from_dict(obj.get("linkPending")) if obj.get("linkPending") is not None else None,
+            "link_pending": Link.from_dict(_v) if (_v := obj.get("linkPending")) is not None else None,
             "count_reviewed": obj.get("countReviewed"),
-            "link_reviewed": Link.from_dict(obj.get("linkReviewed")) if obj.get("linkReviewed") is not None else None,
+            "link_reviewed": Link.from_dict(_v) if (_v := obj.get("linkReviewed")) is not None else None,
             "count_matched": obj.get("countMatched"),
-            "link_matched": Link.from_dict(obj.get("linkMatched")) if obj.get("linkMatched") is not None else None,
+            "link_matched": Link.from_dict(_v) if (_v := obj.get("linkMatched")) is not None else None,
             "count_invalid": obj.get("countInvalid"),
-            "link_invalid": Link.from_dict(obj.get("linkInvalid")) if obj.get("linkInvalid") is not None else None
+            "link_invalid": Link.from_dict(_v) if (_v := obj.get("linkInvalid")) is not None else None
         })
         return _obj
 

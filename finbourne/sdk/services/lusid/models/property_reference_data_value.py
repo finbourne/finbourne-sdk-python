@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class PropertyReferenceDataValue(BaseModel):
     """
     string_value:  Optional[StrictStr] = Field(default=None,alias="stringValue") 
     numeric_value: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="numericValue")
-    __properties = ["stringValue", "numericValue"]
+    __properties: ClassVar[List[str]] = ["stringValue", "numericValue"]
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -13,7 +13,7 @@ A request to create or update a Placement.
 | **stop_price** | **float** | Optional | The optional price, as currency and amount, associated with this placement. |
 | **counterparty** | **str** | Optional | Optionally specifies the market entity this placement is placed with. |
 | **execution_system** | **str** | Optional | Optionally specifies the execution system in use. |
-| **entry_type** | **str** | Optional | Optionally specifies the entry type of this placement. |
+| **entry_type** | **str** | Optional | Optionally specifies the entry type of this placement. Available values: Undecided, Manual, Direct, Ems, External. |
 
 
 ## Usage
@@ -32,7 +32,7 @@ instance = PlacementUpdateRequest(
     stop_price=0.0,  # optional — The optional price, as currency and amount, associated with this placement.
     counterparty="...",  # optional — Optionally specifies the market entity this placement is placed with.
     execution_system="...",  # optional — Optionally specifies the execution system in use.
-    entry_type="..."  # optional — Optionally specifies the entry type of this placement.
+    entry_type="..."  # optional — Optionally specifies the entry type of this placement. Available values: Undecided, Manual, Direct, Ems, External.
 )
 ```
 

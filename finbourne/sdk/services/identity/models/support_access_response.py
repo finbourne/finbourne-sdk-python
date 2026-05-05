@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -36,7 +36,7 @@ class SupportAccessResponse(BaseModel):
     terminated_at: Optional[datetime] = Field(default=None, description="DateTimeOffset at which the access was invalidated", alias="terminatedAt")
     terminated_by:  Optional[StrictStr] = Field(default=None,alias="terminatedBy", description="Obfuscated UserId of the user who revoked the access") 
     permitted_roles: Optional[List[StrictStr]] = Field(default=None, description="A list of permitted roles, valid for support staff to assume, for the duration of the access request", alias="permittedRoles")
-    __properties = ["id", "duration", "description", "createdAt", "expiry", "createdBy", "terminated", "terminatedAt", "terminatedBy", "permittedRoles"]
+    __properties: ClassVar[List[str]] = ["id", "duration", "description", "createdAt", "expiry", "createdBy", "terminated", "terminatedAt", "terminatedBy", "permittedRoles"]
 
     model_config = ConfigDict(
         populate_by_name=True,

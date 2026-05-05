@@ -6,7 +6,7 @@ A list of portfolios.
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
-| **type** | **str** | Required | The type of the portfolio. The available values are: Transaction, Reference, DerivedTransaction, SimplePosition |
+| **type** | **str** | Required | The type of the portfolio. Available values: Transaction, Reference, DerivedTransaction, SimplePosition. |
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
 | **description** | **str** | Optional | The long form description of the portfolio. |
 | **display_name** | **str** | Required | The name of the portfolio. |
@@ -27,7 +27,7 @@ from finbourne.sdk.services.lusid.models.PortfolioSearchResult import PortfolioS
 
 instance = PortfolioSearchResult(
     id=ResourceId(...),  # required
-    type="...",  # required — The type of the portfolio. The available values are: Transaction, Reference, DerivedTransaction, SimplePosition
+    type="...",  # required — The type of the portfolio. Available values: Transaction, Reference, DerivedTransaction, SimplePosition.
     href="...",  # optional — The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime.
     description="...",  # optional — The long form description of the portfolio.
     display_name="...",  # required — The name of the portfolio.

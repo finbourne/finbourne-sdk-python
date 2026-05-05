@@ -64,12 +64,12 @@ class CutLabelDefinitionsApi:
         :return: Returns the result object.
         :rtype: CutLabelDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_cut_label_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_cut_label_definition_with_http_info(create_cut_label_definition_request, **kwargs)  # noqa: E501
+        response = self.create_cut_label_definition_with_http_info(create_cut_label_definition_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_cut_label_definition_with_http_info(self, create_cut_label_definition_request: Optional[CreateCutLabelDefinitionRequest] = None, **kwargs) -> ApiResponse[CutLabelDefinition]:
@@ -191,12 +191,12 @@ class CutLabelDefinitionsApi:
         :return: Returns the result object.
         :rtype: datetime
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_cut_label_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_cut_label_definition_with_http_info(code, **kwargs)  # noqa: E501
+        response = self.delete_cut_label_definition_with_http_info(code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_cut_label_definition_with_http_info(self, code: StrictStr, **kwargs) -> ApiResponse[datetime]:
@@ -313,12 +313,12 @@ class CutLabelDefinitionsApi:
         :return: Returns the result object.
         :rtype: CutLabelDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_cut_label_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_cut_label_definition_with_http_info(code, as_at, **kwargs)  # noqa: E501
+        response = self.get_cut_label_definition_with_http_info(code, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_cut_label_definition_with_http_info(self, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[CutLabelDefinition]:
@@ -450,12 +450,12 @@ class CutLabelDefinitionsApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfCutLabelDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_cut_label_definitions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_cut_label_definitions_with_http_info(as_at, sort_by, limit, filter, page, **kwargs)  # noqa: E501
+        response = self.list_cut_label_definitions_with_http_info(as_at, sort_by, limit, filter, page, **kwargs)
+        return response.data
 
     @validate_call
     def list_cut_label_definitions_with_http_info(self, as_at: Optional[datetime] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfCutLabelDefinition]:
@@ -600,12 +600,12 @@ class CutLabelDefinitionsApi:
         :return: Returns the result object.
         :rtype: CutLabelDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_cut_label_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_cut_label_definition_with_http_info(code, update_cut_label_definition_request, **kwargs)  # noqa: E501
+        response = self.update_cut_label_definition_with_http_info(code, update_cut_label_definition_request, **kwargs)
+        return response.data
 
     @validate_call
     def update_cut_label_definition_with_http_info(self, code: StrictStr, update_cut_label_definition_request: Optional[UpdateCutLabelDefinitionRequest] = None, **kwargs) -> ApiResponse[CutLabelDefinition]:
@@ -737,12 +737,12 @@ class CutLabelDefinitionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: CutLabelDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_cut_label_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_cut_label_definition_with_http_info_async(create_cut_label_definition_request, **kwargs)  # noqa: E501
+            response = await self.create_cut_label_definition_with_http_info_async(create_cut_label_definition_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_cut_label_definition_with_http_info_async(self, create_cut_label_definition_request: Optional[CreateCutLabelDefinitionRequest] = None, **kwargs) -> ApiResponse[CutLabelDefinition]:
@@ -865,12 +865,12 @@ class CutLabelDefinitionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: datetime
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_cut_label_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_cut_label_definition_with_http_info_async(code, **kwargs)  # noqa: E501
+            response = await self.delete_cut_label_definition_with_http_info_async(code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_cut_label_definition_with_http_info_async(self, code: StrictStr, **kwargs) -> ApiResponse[datetime]:
@@ -988,12 +988,12 @@ class CutLabelDefinitionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: CutLabelDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_cut_label_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_cut_label_definition_with_http_info_async(code, as_at, **kwargs)  # noqa: E501
+            response = await self.get_cut_label_definition_with_http_info_async(code, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_cut_label_definition_with_http_info_async(self, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[CutLabelDefinition]:
@@ -1126,12 +1126,12 @@ class CutLabelDefinitionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfCutLabelDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_cut_label_definitions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_cut_label_definitions_with_http_info_async(as_at, sort_by, limit, filter, page, **kwargs)  # noqa: E501
+            response = await self.list_cut_label_definitions_with_http_info_async(as_at, sort_by, limit, filter, page, **kwargs)
+            return response.data
 
     @validate_call
     async def list_cut_label_definitions_with_http_info_async(self, as_at: Optional[datetime] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfCutLabelDefinition]:
@@ -1277,12 +1277,12 @@ class CutLabelDefinitionsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: CutLabelDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_cut_label_definition_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_cut_label_definition_with_http_info_async(code, update_cut_label_definition_request, **kwargs)  # noqa: E501
+            response = await self.update_cut_label_definition_with_http_info_async(code, update_cut_label_definition_request, **kwargs)
+            return response.data
 
     @validate_call
     async def update_cut_label_definition_with_http_info_async(self, code: StrictStr, update_cut_label_definition_request: Optional[UpdateCutLabelDefinitionRequest] = None, **kwargs) -> ApiResponse[CutLabelDefinition]:

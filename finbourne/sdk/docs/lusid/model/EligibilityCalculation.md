@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **entitlement_date** | **str** | Required | *No description available.* |
-| **eligible_units** | **str** | Required | *No description available.* |
+| **eligible_units** | **str** | Required | Available values: TotalUnits, SettledUnits, NotApplicable. |
 | **date_modifiable_by_instruction** | **bool** | Optional | *No description available.* |
 
 
@@ -18,7 +18,7 @@ from finbourne.sdk.services.lusid.models.EligibilityCalculation import Eligibili
 
 instance = EligibilityCalculation(
     entitlement_date="...",  # required
-    eligible_units="...",  # required
+    eligible_units="...",  # required — Available values: TotalUnits, SettledUnits, NotApplicable.
     date_modifiable_by_instruction=True  # optional
 )
 ```

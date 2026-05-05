@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -35,7 +35,7 @@ class ResourceListWithHistogramOfVendorLog(BaseModel):
     next_page:  Optional[StrictStr] = Field(default=None,alias="nextPage") 
     previous_page:  Optional[StrictStr] = Field(default=None,alias="previousPage") 
     links: Optional[List[Link]] = None
-    __properties = ["histogram", "values", "href", "nextPage", "previousPage", "links"]
+    __properties: ClassVar[List[str]] = ["histogram", "values", "href", "nextPage", "previousPage", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -120,12 +120,12 @@ class ResourceListWithHistogramOfVendorLog(BaseModel):
             return ResourceListWithHistogramOfVendorLog.model_validate(obj)
 
         _obj = ResourceListWithHistogramOfVendorLog.model_validate({
-            "histogram": Histogram.from_dict(obj.get("histogram")) if obj.get("histogram") is not None else None,
-            "values": [VendorLog.from_dict(_item) for _item in obj.get("values")] if obj.get("values") is not None else None,
+            "histogram": Histogram.from_dict(_v) if (_v := obj.get("histogram")) is not None else None,
+            "values": [VendorLog.from_dict(_item) for _item in _v] if (_v := obj.get("values")) is not None else None,
             "href": obj.get("href"),
             "next_page": obj.get("nextPage"),
             "previous_page": obj.get("previousPage"),
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

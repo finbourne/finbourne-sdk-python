@@ -7,7 +7,7 @@ A criterion that checks whether a Property Value is equal to one of the given st
 |------|------|----------|-------------|
 | **property_key** | **str** | Required | The property key whose value will form the left-hand side of the operation |
 | **value** | **List[str]** | Required | The value to be compared against |
-| **criterion_type** | **str** | Required | The available values are: PropertyValueEquals, PropertyValueIn, SubHoldingKeyValueEquals |
+| **criterion_type** | **str** | Required | Available values: PropertyValueEquals, PropertyValueIn, SubHoldingKeyValueEquals. |
 
 
 ## Usage
@@ -20,7 +20,7 @@ from finbourne.sdk.services.lusid.models.PropertyValueIn import PropertyValueIn
 instance = PropertyValueIn(
     property_key="...",  # required — The property key whose value will form the left-hand side of the operation
     value=,  # required — The value to be compared against
-    criterion_type="..."  # required — The available values are: PropertyValueEquals, PropertyValueIn, SubHoldingKeyValueEquals
+    criterion_type="..."  # required — Available values: PropertyValueEquals, PropertyValueIn, SubHoldingKeyValueEquals.
 )
 ```
 

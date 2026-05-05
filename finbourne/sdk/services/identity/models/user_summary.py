@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -36,7 +36,7 @@ class UserSummary(BaseModel):
     type:  Optional[StrictStr] = Field(default=None,alias="type", description="User's type (Personal, Service...)") 
     alternative_user_ids: Optional[Dict[str, Optional[StrictStr]]] = Field(default=None, description="User's alternative user IDs. Only returned for the current user", alias="alternativeUserIds")
     links: Optional[List[Link]] = None
-    __properties = ["id", "login", "email", "secondEmail", "firstName", "lastName", "type", "alternativeUserIds", "links"]
+    __properties: ClassVar[List[str]] = ["id", "login", "email", "secondEmail", "firstName", "lastName", "type", "alternativeUserIds", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -144,7 +144,7 @@ class UserSummary(BaseModel):
             "last_name": obj.get("lastName"),
             "type": obj.get("type"),
             "alternative_user_ids": obj.get("alternativeUserIds"),
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class BlockSetRequest(BaseModel):
     A request to create or update multiple Blocks.  # noqa: E501
     """
     requests: Optional[List[BlockRequest]] = Field(default=None, description="A collection of BlockRequests.")
-    __properties = ["requests"]
+    __properties: ClassVar[List[str]] = ["requests"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,7 +88,7 @@ class BlockSetRequest(BaseModel):
             return BlockSetRequest.model_validate(obj)
 
         _obj = BlockSetRequest.model_validate({
-            "requests": [BlockRequest.from_dict(_item) for _item in obj.get("requests")] if obj.get("requests") is not None else None
+            "requests": [BlockRequest.from_dict(_item) for _item in _v] if (_v := obj.get("requests")) is not None else None
         })
         return _obj
 

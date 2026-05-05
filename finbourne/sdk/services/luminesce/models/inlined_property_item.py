@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class InlinedPropertyItem(BaseModel):
     is_main: Optional[StrictBool] = Field(default=None, description="Is Main indicator for the property", alias="isMain")
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="Description of the property") 
     data_type:  Optional[StrictStr] = Field(default=None,alias="dataType", description="Data type of the property") 
-    __properties = ["key", "name", "isMain", "description", "dataType"]
+    __properties: ClassVar[List[str]] = ["key", "name", "isMain", "description", "dataType"]
 
     model_config = ConfigDict(
         populate_by_name=True,

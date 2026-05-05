@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class RecipeValue(BaseModel):
     as_json:  Optional[StrictStr] = Field(default=None,alias="asJson", description="Field to allow providing a potentially complex json value.") 
     as_string:  Optional[StrictStr] = Field(default=None,alias="asString", description="For simple value, a single input value, note complex nested objects are not allowed here.") 
     from_recipe: Optional[FromRecipe] = Field(default=None, alias="fromRecipe")
-    __properties = ["asJson", "asString", "fromRecipe"]
+    __properties: ClassVar[List[str]] = ["asJson", "asString", "fromRecipe"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -93,7 +93,7 @@ class RecipeValue(BaseModel):
         _obj = RecipeValue.model_validate({
             "as_json": obj.get("asJson"),
             "as_string": obj.get("asString"),
-            "from_recipe": FromRecipe.from_dict(obj.get("fromRecipe")) if obj.get("fromRecipe") is not None else None
+            "from_recipe": FromRecipe.from_dict(_v) if (_v := obj.get("fromRecipe")) is not None else None
         })
         return _obj
 

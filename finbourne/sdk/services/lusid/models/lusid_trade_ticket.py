@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -45,8 +45,8 @@ class LusidTradeTicket(BaseModel):
     counterparty:  Optional[StrictStr] = Field(default=None,alias="counterparty", description="Counterparty") 
     instrument_properties: Optional[List[ModelProperty]] = Field(default=None, description="Set of instrument properties (as defined by client/user).", alias="instrumentProperties")
     transaction_properties: Optional[List[ModelProperty]] = Field(default=None, description="Set of transaction properties (as defined by client/user).", alias="transactionProperties")
-    trade_ticket_type:  StrictStr = Field(...,alias="tradeTicketType", description="The available values are: LusidTradeTicket, ExternalTradeTicket") 
-    __properties = ["transactionId", "transactionType", "source", "transactionDate", "settlementDate", "totalConsideration", "units", "instrumentIdentifiers", "instrumentScope", "instrumentName", "instrumentDefinition", "counterpartyAgreementId", "counterparty", "instrumentProperties", "transactionProperties", "tradeTicketType"]
+    trade_ticket_type:  StrictStr = Field(...,alias="tradeTicketType", description="Available values: LusidTradeTicket, ExternalTradeTicket.") 
+    __properties: ClassVar[List[str]] = ["transactionId", "transactionType", "source", "transactionDate", "settlementDate", "totalConsideration", "units", "instrumentIdentifiers", "instrumentScope", "instrumentName", "instrumentDefinition", "counterpartyAgreementId", "counterparty", "instrumentProperties", "transactionProperties", "tradeTicketType"]
 
     @field_validator('trade_ticket_type')
     def trade_ticket_type_validate_enum(cls, value):
@@ -221,16 +221,16 @@ class LusidTradeTicket(BaseModel):
             "source": obj.get("source"),
             "transaction_date": obj.get("transactionDate"),
             "settlement_date": obj.get("settlementDate"),
-            "total_consideration": CurrencyAndAmount.from_dict(obj.get("totalConsideration")) if obj.get("totalConsideration") is not None else None,
+            "total_consideration": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("totalConsideration")) is not None else None,
             "units": obj.get("units"),
             "instrument_identifiers": obj.get("instrumentIdentifiers"),
             "instrument_scope": obj.get("instrumentScope"),
             "instrument_name": obj.get("instrumentName"),
-            "instrument_definition": LusidInstrument.from_dict(obj.get("instrumentDefinition")) if obj.get("instrumentDefinition") is not None else None,
-            "counterparty_agreement_id": ResourceId.from_dict(obj.get("counterpartyAgreementId")) if obj.get("counterpartyAgreementId") is not None else None,
+            "instrument_definition": LusidInstrument.from_dict(_v) if (_v := obj.get("instrumentDefinition")) is not None else None,
+            "counterparty_agreement_id": ResourceId.from_dict(_v) if (_v := obj.get("counterpartyAgreementId")) is not None else None,
             "counterparty": obj.get("counterparty"),
-            "instrument_properties": [ModelProperty.from_dict(_item) for _item in obj.get("instrumentProperties")] if obj.get("instrumentProperties") is not None else None,
-            "transaction_properties": [ModelProperty.from_dict(_item) for _item in obj.get("transactionProperties")] if obj.get("transactionProperties") is not None else None,
+            "instrument_properties": [ModelProperty.from_dict(_item) for _item in _v] if (_v := obj.get("instrumentProperties")) is not None else None,
+            "transaction_properties": [ModelProperty.from_dict(_item) for _item in _v] if (_v := obj.get("transactionProperties")) is not None else None,
             "trade_ticket_type": obj.get("tradeTicketType")
         })
         return _obj

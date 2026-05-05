@@ -88,12 +88,12 @@ class PortfolioGroupsApi:
         :return: Returns the result object.
         :rtype: PortfolioGroup
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the add_portfolio_to_group_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.add_portfolio_to_group_with_http_info(scope, code, effective_at, resource_id, **kwargs)  # noqa: E501
+        response = self.add_portfolio_to_group_with_http_info(scope, code, effective_at, resource_id, **kwargs)
+        return response.data
 
     @validate_call
     def add_portfolio_to_group_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, resource_id: Optional[ResourceId] = None, **kwargs) -> ApiResponse[PortfolioGroup]:
@@ -239,12 +239,12 @@ class PortfolioGroupsApi:
         :return: Returns the result object.
         :rtype: PortfolioGroup
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the add_sub_group_to_group_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.add_sub_group_to_group_with_http_info(scope, code, effective_at, resource_id, **kwargs)  # noqa: E501
+        response = self.add_sub_group_to_group_with_http_info(scope, code, effective_at, resource_id, **kwargs)
+        return response.data
 
     @validate_call
     def add_sub_group_to_group_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, resource_id: Optional[ResourceId] = None, **kwargs) -> ApiResponse[PortfolioGroup]:
@@ -396,7 +396,7 @@ class PortfolioGroupsApi:
         :type data_model_scope: str
         :param data_model_code: The optional code of a Custom Data Model to use
         :type data_model_code: str
-        :param membership_type: The membership types of the specified Custom Data Model to return. Allowable values are Member, Candidate and All. Defaults to Member.
+        :param membership_type: The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate.
         :type membership_type: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -404,12 +404,12 @@ class PortfolioGroupsApi:
         :return: Returns the result object.
         :rtype: VersionedResourceListOfOutputTransaction
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the build_transactions_for_portfolio_group_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.build_transactions_for_portfolio_group_with_http_info(scope, code, transaction_query_parameters, as_at, filter, property_keys, limit, page, data_model_scope, data_model_code, membership_type, **kwargs)  # noqa: E501
+        response = self.build_transactions_for_portfolio_group_with_http_info(scope, code, transaction_query_parameters, as_at, filter, property_keys, limit, page, data_model_scope, data_model_code, membership_type, **kwargs)
+        return response.data
 
     @validate_call
     def build_transactions_for_portfolio_group_with_http_info(self, scope: StrictStr, code: StrictStr, transaction_query_parameters: TransactionQueryParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, membership_type: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfOutputTransaction]:
@@ -436,7 +436,7 @@ class PortfolioGroupsApi:
         :type data_model_scope: str
         :param data_model_code: The optional code of a Custom Data Model to use
         :type data_model_code: str
-        :param membership_type: The membership types of the specified Custom Data Model to return. Allowable values are Member, Candidate and All. Defaults to Member.
+        :param membership_type: The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate.
         :type membership_type: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -597,12 +597,12 @@ class PortfolioGroupsApi:
         :return: Returns the result object.
         :rtype: PortfolioGroup
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_portfolio_group_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_portfolio_group_with_http_info(scope, create_portfolio_group_request, **kwargs)  # noqa: E501
+        response = self.create_portfolio_group_with_http_info(scope, create_portfolio_group_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_portfolio_group_with_http_info(self, scope: StrictStr, create_portfolio_group_request: Optional[CreatePortfolioGroupRequest] = None, **kwargs) -> ApiResponse[PortfolioGroup]:
@@ -736,12 +736,12 @@ class PortfolioGroupsApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_group_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_group_properties_with_http_info(scope, code, request_body, effective_at, **kwargs)  # noqa: E501
+        response = self.delete_group_properties_with_http_info(scope, code, request_body, effective_at, **kwargs)
+        return response.data
 
     @validate_call
     def delete_group_properties_with_http_info(self, scope: StrictStr, code: StrictStr, request_body: List[str], effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -889,12 +889,12 @@ class PortfolioGroupsApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_key_from_portfolio_group_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_key_from_portfolio_group_access_metadata_with_http_info(scope, code, metadata_key, effective_at, effective_until, **kwargs)  # noqa: E501
+        response = self.delete_key_from_portfolio_group_access_metadata_with_http_info(scope, code, metadata_key, effective_at, effective_until, **kwargs)
+        return response.data
 
     @validate_call
     def delete_key_from_portfolio_group_access_metadata_with_http_info(self, scope: StrictStr, code: StrictStr, metadata_key: StrictStr, effective_at: Optional[StrictStr] = None, effective_until: Optional[datetime] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -1044,12 +1044,12 @@ class PortfolioGroupsApi:
         :return: Returns the result object.
         :rtype: PortfolioGroup
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_portfolio_from_group_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_portfolio_from_group_with_http_info(scope, code, portfolio_scope, portfolio_code, effective_at, **kwargs)  # noqa: E501
+        response = self.delete_portfolio_from_group_with_http_info(scope, code, portfolio_scope, portfolio_code, effective_at, **kwargs)
+        return response.data
 
     @validate_call
     def delete_portfolio_from_group_with_http_info(self, scope: StrictStr, code: StrictStr, portfolio_scope: StrictStr, portfolio_code: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PortfolioGroup]:
@@ -1190,12 +1190,12 @@ class PortfolioGroupsApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_portfolio_group_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_portfolio_group_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_portfolio_group_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_portfolio_group_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -1324,12 +1324,12 @@ class PortfolioGroupsApi:
         :return: Returns the result object.
         :rtype: PortfolioGroup
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_sub_group_from_group_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_sub_group_from_group_with_http_info(scope, code, subgroup_scope, subgroup_code, effective_at, **kwargs)  # noqa: E501
+        response = self.delete_sub_group_from_group_with_http_info(scope, code, subgroup_scope, subgroup_code, effective_at, **kwargs)
+        return response.data
 
     @validate_call
     def delete_sub_group_from_group_with_http_info(self, scope: StrictStr, code: StrictStr, subgroup_scope: StrictStr, subgroup_code: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PortfolioGroup]:
@@ -1484,12 +1484,12 @@ class PortfolioGroupsApi:
         :return: Returns the result object.
         :rtype: VersionedResourceListOfA2BDataRecord
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_a2_b_data_for_portfolio_group_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_a2_b_data_for_portfolio_group_with_http_info(scope, code, from_effective_at, to_effective_at, as_at, recipe_id_scope, recipe_id_code, property_keys, filter, **kwargs)  # noqa: E501
+        response = self.get_a2_b_data_for_portfolio_group_with_http_info(scope, code, from_effective_at, to_effective_at, as_at, recipe_id_scope, recipe_id_code, property_keys, filter, **kwargs)
+        return response.data
 
     @validate_call
     def get_a2_b_data_for_portfolio_group_with_http_info(self, scope: StrictStr, code: StrictStr, from_effective_at: StrictStr, to_effective_at: StrictStr, as_at: Optional[datetime] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfA2BDataRecord]:
@@ -1662,12 +1662,12 @@ class PortfolioGroupsApi:
         :return: Returns the result object.
         :rtype: PortfolioGroupProperties
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_group_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_group_properties_with_http_info(scope, code, effective_at, as_at, **kwargs)  # noqa: E501
+        response = self.get_group_properties_with_http_info(scope, code, effective_at, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_group_properties_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[PortfolioGroupProperties]:
@@ -1817,12 +1817,12 @@ class PortfolioGroupsApi:
         :return: Returns the result object.
         :rtype: VersionedResourceListOfPortfolioHolding
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_holdings_for_portfolio_group_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_holdings_for_portfolio_group_with_http_info(scope, code, effective_at, as_at, filter, property_keys, by_taxlots, include_settlement_events_after_days, **kwargs)  # noqa: E501
+        response = self.get_holdings_for_portfolio_group_with_http_info(scope, code, effective_at, as_at, filter, property_keys, by_taxlots, include_settlement_events_after_days, **kwargs)
+        return response.data
 
     @validate_call
     def get_holdings_for_portfolio_group_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, by_taxlots: Optional[bool] = None, include_settlement_events_after_days: Optional[int] = None, **kwargs) -> ApiResponse[VersionedResourceListOfPortfolioHolding]:
@@ -1993,12 +1993,12 @@ class PortfolioGroupsApi:
         :return: Returns the result object.
         :rtype: PortfolioGroup
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_portfolio_group_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_portfolio_group_with_http_info(scope, code, effective_at, as_at, related_entity_property_keys, relationship_definition_ids, **kwargs)  # noqa: E501
+        response = self.get_portfolio_group_with_http_info(scope, code, effective_at, as_at, related_entity_property_keys, relationship_definition_ids, **kwargs)
+        return response.data
 
     @validate_call
     def get_portfolio_group_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, related_entity_property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> ApiResponse[PortfolioGroup]:
@@ -2156,12 +2156,12 @@ class PortfolioGroupsApi:
         :return: Returns the result object.
         :rtype: List[AccessMetadataValue]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_portfolio_group_access_metadata_by_key_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_portfolio_group_access_metadata_by_key_with_http_info(scope, code, metadata_key, effective_at, as_at, **kwargs)  # noqa: E501
+        response = self.get_portfolio_group_access_metadata_by_key_with_http_info(scope, code, metadata_key, effective_at, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_portfolio_group_access_metadata_by_key_with_http_info(self, scope: StrictStr, code: StrictStr, metadata_key: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[List[AccessMetadataValue]]:
@@ -2311,12 +2311,12 @@ class PortfolioGroupsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfProcessedCommand
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_portfolio_group_commands_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_portfolio_group_commands_with_http_info(scope, code, from_as_at, to_as_at, filter, **kwargs)  # noqa: E501
+        response = self.get_portfolio_group_commands_with_http_info(scope, code, from_as_at, to_as_at, filter, **kwargs)
+        return response.data
 
     @validate_call
     def get_portfolio_group_commands_with_http_info(self, scope: StrictStr, code: StrictStr, from_as_at: Optional[datetime] = None, to_as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfProcessedCommand]:
@@ -2469,12 +2469,12 @@ class PortfolioGroupsApi:
         :return: Returns the result object.
         :rtype: ExpandedGroup
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_portfolio_group_expansion_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_portfolio_group_expansion_with_http_info(scope, code, effective_at, as_at, property_filter, **kwargs)  # noqa: E501
+        response = self.get_portfolio_group_expansion_with_http_info(scope, code, effective_at, as_at, property_filter, **kwargs)
+        return response.data
 
     @validate_call
     def get_portfolio_group_expansion_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_filter: Optional[List[str]] = None, **kwargs) -> ApiResponse[ExpandedGroup]:
@@ -2623,12 +2623,12 @@ class PortfolioGroupsApi:
         :return: Returns the result object.
         :rtype: Dict[str, List[AccessMetadataValue]]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_portfolio_group_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_portfolio_group_metadata_with_http_info(scope, code, effective_at, as_at, **kwargs)  # noqa: E501
+        response = self.get_portfolio_group_metadata_with_http_info(scope, code, effective_at, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_portfolio_group_metadata_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[Dict[str, List[AccessMetadataValue]]]:
@@ -2778,12 +2778,12 @@ class PortfolioGroupsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfPropertyInterval
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_portfolio_group_property_time_series_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_portfolio_group_property_time_series_with_http_info(scope, code, property_key, portfolio_group_effective_at, as_at, filter, page, limit, **kwargs)  # noqa: E501
+        response = self.get_portfolio_group_property_time_series_with_http_info(scope, code, property_key, portfolio_group_effective_at, as_at, filter, page, limit, **kwargs)
+        return response.data
 
     @validate_call
     def get_portfolio_group_property_time_series_with_http_info(self, scope: StrictStr, code: StrictStr, property_key: StrictStr, portfolio_group_effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, **kwargs) -> ApiResponse[ResourceListOfPropertyInterval]:
@@ -2953,12 +2953,12 @@ class PortfolioGroupsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfRelation
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_portfolio_group_relations_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_portfolio_group_relations_with_http_info(scope, code, effective_at, as_at, filter, identifier_types, **kwargs)  # noqa: E501
+        response = self.get_portfolio_group_relations_with_http_info(scope, code, effective_at, as_at, filter, identifier_types, **kwargs)
+        return response.data
 
     @validate_call
     def get_portfolio_group_relations_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, identifier_types: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfRelation]:
@@ -3117,12 +3117,12 @@ class PortfolioGroupsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfRelationship
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_portfolio_group_relationships_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_portfolio_group_relationships_with_http_info(scope, code, effective_at, as_at, filter, identifier_types, **kwargs)  # noqa: E501
+        response = self.get_portfolio_group_relationships_with_http_info(scope, code, effective_at, as_at, filter, identifier_types, **kwargs)
+        return response.data
 
     @validate_call
     def get_portfolio_group_relationships_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, identifier_types: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfRelationship]:
@@ -3289,7 +3289,7 @@ class PortfolioGroupsApi:
         :type data_model_scope: str
         :param data_model_code: The optional code of a Custom Data Model to use
         :type data_model_code: str
-        :param membership_type: The membership types of the specified Custom Data Model to return. Allowable values are Member, Candidate and All. Defaults to Member.
+        :param membership_type: The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate.
         :type membership_type: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -3297,12 +3297,12 @@ class PortfolioGroupsApi:
         :return: Returns the result object.
         :rtype: VersionedResourceListOfTransaction
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_transactions_for_portfolio_group_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_transactions_for_portfolio_group_with_http_info(scope, code, from_transaction_date, to_transaction_date, as_at, filter, property_keys, limit, page, show_cancelled_transactions, sort_by, data_model_scope, data_model_code, membership_type, **kwargs)  # noqa: E501
+        response = self.get_transactions_for_portfolio_group_with_http_info(scope, code, from_transaction_date, to_transaction_date, as_at, filter, property_keys, limit, page, show_cancelled_transactions, sort_by, data_model_scope, data_model_code, membership_type, **kwargs)
+        return response.data
 
     @validate_call
     def get_transactions_for_portfolio_group_with_http_info(self, scope: StrictStr, code: StrictStr, from_transaction_date: Optional[StrictStr] = None, to_transaction_date: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, show_cancelled_transactions: Optional[bool] = None, sort_by: Optional[List[str]] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, membership_type: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfTransaction]:
@@ -3335,7 +3335,7 @@ class PortfolioGroupsApi:
         :type data_model_scope: str
         :param data_model_code: The optional code of a Custom Data Model to use
         :type data_model_code: str
-        :param membership_type: The membership types of the specified Custom Data Model to return. Allowable values are Member, Candidate and All. Defaults to Member.
+        :param membership_type: The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate.
         :type membership_type: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -3516,12 +3516,12 @@ class PortfolioGroupsApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfPortfolioGroup
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_portfolio_groups_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_portfolio_groups_with_http_info(scope, effective_at, as_at, page, limit, filter, sort_by, related_entity_property_keys, relationship_definition_ids, **kwargs)  # noqa: E501
+        response = self.list_portfolio_groups_with_http_info(scope, effective_at, as_at, page, limit, filter, sort_by, related_entity_property_keys, relationship_definition_ids, **kwargs)
+        return response.data
 
     @validate_call
     def list_portfolio_groups_with_http_info(self, scope: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, related_entity_property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfPortfolioGroup]:
@@ -3698,12 +3698,12 @@ class PortfolioGroupsApi:
         :return: Returns the result object.
         :rtype: Dict[str, List[AccessMetadataValue]]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the patch_portfolio_group_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.patch_portfolio_group_access_metadata_with_http_info(scope, code, access_metadata_operation, effective_at, effective_until, **kwargs)  # noqa: E501
+        response = self.patch_portfolio_group_access_metadata_with_http_info(scope, code, access_metadata_operation, effective_at, effective_until, **kwargs)
+        return response.data
 
     @validate_call
     def patch_portfolio_group_access_metadata_with_http_info(self, scope: StrictStr, code: StrictStr, access_metadata_operation: List[AccessMetadataOperation], effective_at: Optional[StrictStr] = None, effective_until: Optional[datetime] = None, **kwargs) -> ApiResponse[Dict[str, List[AccessMetadataValue]]]:
@@ -3858,12 +3858,12 @@ class PortfolioGroupsApi:
         :return: Returns the result object.
         :rtype: PortfolioGroup
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_portfolio_group_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_portfolio_group_with_http_info(scope, code, effective_at, update_portfolio_group_request, **kwargs)  # noqa: E501
+        response = self.update_portfolio_group_with_http_info(scope, code, effective_at, update_portfolio_group_request, **kwargs)
+        return response.data
 
     @validate_call
     def update_portfolio_group_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, update_portfolio_group_request: Optional[UpdatePortfolioGroupRequest] = None, **kwargs) -> ApiResponse[PortfolioGroup]:
@@ -4007,12 +4007,12 @@ class PortfolioGroupsApi:
         :return: Returns the result object.
         :rtype: PortfolioGroupProperties
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_group_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_group_properties_with_http_info(scope, code, request_body, **kwargs)  # noqa: E501
+        response = self.upsert_group_properties_with_http_info(scope, code, request_body, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_group_properties_with_http_info(self, scope: StrictStr, code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> ApiResponse[PortfolioGroupProperties]:
@@ -4156,12 +4156,12 @@ class PortfolioGroupsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfAccessMetadataValueOf
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_portfolio_group_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_portfolio_group_access_metadata_with_http_info(scope, code, metadata_key, upsert_portfolio_group_access_metadata_request, effective_at, effective_until, **kwargs)  # noqa: E501
+        response = self.upsert_portfolio_group_access_metadata_with_http_info(scope, code, metadata_key, upsert_portfolio_group_access_metadata_request, effective_at, effective_until, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_portfolio_group_access_metadata_with_http_info(self, scope: StrictStr, code: StrictStr, metadata_key: StrictStr, upsert_portfolio_group_access_metadata_request: UpsertPortfolioGroupAccessMetadataRequest, effective_at: Optional[StrictStr] = None, effective_until: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfAccessMetadataValueOf]:
@@ -4326,12 +4326,12 @@ class PortfolioGroupsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PortfolioGroup
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the add_portfolio_to_group_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.add_portfolio_to_group_with_http_info_async(scope, code, effective_at, resource_id, **kwargs)  # noqa: E501
+            response = await self.add_portfolio_to_group_with_http_info_async(scope, code, effective_at, resource_id, **kwargs)
+            return response.data
 
     @validate_call
     async def add_portfolio_to_group_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, resource_id: Optional[ResourceId] = None, **kwargs) -> ApiResponse[PortfolioGroup]:
@@ -4478,12 +4478,12 @@ class PortfolioGroupsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PortfolioGroup
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the add_sub_group_to_group_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.add_sub_group_to_group_with_http_info_async(scope, code, effective_at, resource_id, **kwargs)  # noqa: E501
+            response = await self.add_sub_group_to_group_with_http_info_async(scope, code, effective_at, resource_id, **kwargs)
+            return response.data
 
     @validate_call
     async def add_sub_group_to_group_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, resource_id: Optional[ResourceId] = None, **kwargs) -> ApiResponse[PortfolioGroup]:
@@ -4636,7 +4636,7 @@ class PortfolioGroupsApi:
             :type data_model_scope: str
             :param data_model_code: The optional code of a Custom Data Model to use
             :type data_model_code: str
-            :param membership_type: The membership types of the specified Custom Data Model to return. Allowable values are Member, Candidate and All. Defaults to Member.
+            :param membership_type: The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate.
             :type membership_type: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -4644,12 +4644,12 @@ class PortfolioGroupsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: VersionedResourceListOfOutputTransaction
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the build_transactions_for_portfolio_group_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.build_transactions_for_portfolio_group_with_http_info_async(scope, code, transaction_query_parameters, as_at, filter, property_keys, limit, page, data_model_scope, data_model_code, membership_type, **kwargs)  # noqa: E501
+            response = await self.build_transactions_for_portfolio_group_with_http_info_async(scope, code, transaction_query_parameters, as_at, filter, property_keys, limit, page, data_model_scope, data_model_code, membership_type, **kwargs)
+            return response.data
 
     @validate_call
     async def build_transactions_for_portfolio_group_with_http_info_async(self, scope: StrictStr, code: StrictStr, transaction_query_parameters: TransactionQueryParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, membership_type: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfOutputTransaction]:
@@ -4677,7 +4677,7 @@ class PortfolioGroupsApi:
             :type data_model_scope: str
             :param data_model_code: The optional code of a Custom Data Model to use
             :type data_model_code: str
-            :param membership_type: The membership types of the specified Custom Data Model to return. Allowable values are Member, Candidate and All. Defaults to Member.
+            :param membership_type: The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate.
             :type membership_type: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
@@ -4838,12 +4838,12 @@ class PortfolioGroupsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PortfolioGroup
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_portfolio_group_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_portfolio_group_with_http_info_async(scope, create_portfolio_group_request, **kwargs)  # noqa: E501
+            response = await self.create_portfolio_group_with_http_info_async(scope, create_portfolio_group_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_portfolio_group_with_http_info_async(self, scope: StrictStr, create_portfolio_group_request: Optional[CreatePortfolioGroupRequest] = None, **kwargs) -> ApiResponse[PortfolioGroup]:
@@ -4978,12 +4978,12 @@ class PortfolioGroupsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_group_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_group_properties_with_http_info_async(scope, code, request_body, effective_at, **kwargs)  # noqa: E501
+            response = await self.delete_group_properties_with_http_info_async(scope, code, request_body, effective_at, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_group_properties_with_http_info_async(self, scope: StrictStr, code: StrictStr, request_body: List[str], effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -5132,12 +5132,12 @@ class PortfolioGroupsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_key_from_portfolio_group_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_key_from_portfolio_group_access_metadata_with_http_info_async(scope, code, metadata_key, effective_at, effective_until, **kwargs)  # noqa: E501
+            response = await self.delete_key_from_portfolio_group_access_metadata_with_http_info_async(scope, code, metadata_key, effective_at, effective_until, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_key_from_portfolio_group_access_metadata_with_http_info_async(self, scope: StrictStr, code: StrictStr, metadata_key: StrictStr, effective_at: Optional[StrictStr] = None, effective_until: Optional[datetime] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -5288,12 +5288,12 @@ class PortfolioGroupsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PortfolioGroup
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_portfolio_from_group_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_portfolio_from_group_with_http_info_async(scope, code, portfolio_scope, portfolio_code, effective_at, **kwargs)  # noqa: E501
+            response = await self.delete_portfolio_from_group_with_http_info_async(scope, code, portfolio_scope, portfolio_code, effective_at, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_portfolio_from_group_with_http_info_async(self, scope: StrictStr, code: StrictStr, portfolio_scope: StrictStr, portfolio_code: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PortfolioGroup]:
@@ -5435,12 +5435,12 @@ class PortfolioGroupsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_portfolio_group_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_portfolio_group_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_portfolio_group_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_portfolio_group_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -5570,12 +5570,12 @@ class PortfolioGroupsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PortfolioGroup
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_sub_group_from_group_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_sub_group_from_group_with_http_info_async(scope, code, subgroup_scope, subgroup_code, effective_at, **kwargs)  # noqa: E501
+            response = await self.delete_sub_group_from_group_with_http_info_async(scope, code, subgroup_scope, subgroup_code, effective_at, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_sub_group_from_group_with_http_info_async(self, scope: StrictStr, code: StrictStr, subgroup_scope: StrictStr, subgroup_code: StrictStr, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PortfolioGroup]:
@@ -5731,12 +5731,12 @@ class PortfolioGroupsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: VersionedResourceListOfA2BDataRecord
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_a2_b_data_for_portfolio_group_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_a2_b_data_for_portfolio_group_with_http_info_async(scope, code, from_effective_at, to_effective_at, as_at, recipe_id_scope, recipe_id_code, property_keys, filter, **kwargs)  # noqa: E501
+            response = await self.get_a2_b_data_for_portfolio_group_with_http_info_async(scope, code, from_effective_at, to_effective_at, as_at, recipe_id_scope, recipe_id_code, property_keys, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def get_a2_b_data_for_portfolio_group_with_http_info_async(self, scope: StrictStr, code: StrictStr, from_effective_at: StrictStr, to_effective_at: StrictStr, as_at: Optional[datetime] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfA2BDataRecord]:
@@ -5910,12 +5910,12 @@ class PortfolioGroupsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PortfolioGroupProperties
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_group_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_group_properties_with_http_info_async(scope, code, effective_at, as_at, **kwargs)  # noqa: E501
+            response = await self.get_group_properties_with_http_info_async(scope, code, effective_at, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_group_properties_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[PortfolioGroupProperties]:
@@ -6066,12 +6066,12 @@ class PortfolioGroupsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: VersionedResourceListOfPortfolioHolding
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_holdings_for_portfolio_group_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_holdings_for_portfolio_group_with_http_info_async(scope, code, effective_at, as_at, filter, property_keys, by_taxlots, include_settlement_events_after_days, **kwargs)  # noqa: E501
+            response = await self.get_holdings_for_portfolio_group_with_http_info_async(scope, code, effective_at, as_at, filter, property_keys, by_taxlots, include_settlement_events_after_days, **kwargs)
+            return response.data
 
     @validate_call
     async def get_holdings_for_portfolio_group_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, by_taxlots: Optional[bool] = None, include_settlement_events_after_days: Optional[int] = None, **kwargs) -> ApiResponse[VersionedResourceListOfPortfolioHolding]:
@@ -6243,12 +6243,12 @@ class PortfolioGroupsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PortfolioGroup
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_portfolio_group_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_portfolio_group_with_http_info_async(scope, code, effective_at, as_at, related_entity_property_keys, relationship_definition_ids, **kwargs)  # noqa: E501
+            response = await self.get_portfolio_group_with_http_info_async(scope, code, effective_at, as_at, related_entity_property_keys, relationship_definition_ids, **kwargs)
+            return response.data
 
     @validate_call
     async def get_portfolio_group_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, related_entity_property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> ApiResponse[PortfolioGroup]:
@@ -6407,12 +6407,12 @@ class PortfolioGroupsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: List[AccessMetadataValue]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_portfolio_group_access_metadata_by_key_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_portfolio_group_access_metadata_by_key_with_http_info_async(scope, code, metadata_key, effective_at, as_at, **kwargs)  # noqa: E501
+            response = await self.get_portfolio_group_access_metadata_by_key_with_http_info_async(scope, code, metadata_key, effective_at, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_portfolio_group_access_metadata_by_key_with_http_info_async(self, scope: StrictStr, code: StrictStr, metadata_key: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[List[AccessMetadataValue]]:
@@ -6563,12 +6563,12 @@ class PortfolioGroupsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfProcessedCommand
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_portfolio_group_commands_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_portfolio_group_commands_with_http_info_async(scope, code, from_as_at, to_as_at, filter, **kwargs)  # noqa: E501
+            response = await self.get_portfolio_group_commands_with_http_info_async(scope, code, from_as_at, to_as_at, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def get_portfolio_group_commands_with_http_info_async(self, scope: StrictStr, code: StrictStr, from_as_at: Optional[datetime] = None, to_as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfProcessedCommand]:
@@ -6722,12 +6722,12 @@ class PortfolioGroupsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ExpandedGroup
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_portfolio_group_expansion_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_portfolio_group_expansion_with_http_info_async(scope, code, effective_at, as_at, property_filter, **kwargs)  # noqa: E501
+            response = await self.get_portfolio_group_expansion_with_http_info_async(scope, code, effective_at, as_at, property_filter, **kwargs)
+            return response.data
 
     @validate_call
     async def get_portfolio_group_expansion_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_filter: Optional[List[str]] = None, **kwargs) -> ApiResponse[ExpandedGroup]:
@@ -6877,12 +6877,12 @@ class PortfolioGroupsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Dict[str, List[AccessMetadataValue]]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_portfolio_group_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_portfolio_group_metadata_with_http_info_async(scope, code, effective_at, as_at, **kwargs)  # noqa: E501
+            response = await self.get_portfolio_group_metadata_with_http_info_async(scope, code, effective_at, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_portfolio_group_metadata_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[Dict[str, List[AccessMetadataValue]]]:
@@ -7033,12 +7033,12 @@ class PortfolioGroupsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfPropertyInterval
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_portfolio_group_property_time_series_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_portfolio_group_property_time_series_with_http_info_async(scope, code, property_key, portfolio_group_effective_at, as_at, filter, page, limit, **kwargs)  # noqa: E501
+            response = await self.get_portfolio_group_property_time_series_with_http_info_async(scope, code, property_key, portfolio_group_effective_at, as_at, filter, page, limit, **kwargs)
+            return response.data
 
     @validate_call
     async def get_portfolio_group_property_time_series_with_http_info_async(self, scope: StrictStr, code: StrictStr, property_key: StrictStr, portfolio_group_effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, **kwargs) -> ApiResponse[ResourceListOfPropertyInterval]:
@@ -7209,12 +7209,12 @@ class PortfolioGroupsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfRelation
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_portfolio_group_relations_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_portfolio_group_relations_with_http_info_async(scope, code, effective_at, as_at, filter, identifier_types, **kwargs)  # noqa: E501
+            response = await self.get_portfolio_group_relations_with_http_info_async(scope, code, effective_at, as_at, filter, identifier_types, **kwargs)
+            return response.data
 
     @validate_call
     async def get_portfolio_group_relations_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, identifier_types: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfRelation]:
@@ -7374,12 +7374,12 @@ class PortfolioGroupsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfRelationship
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_portfolio_group_relationships_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_portfolio_group_relationships_with_http_info_async(scope, code, effective_at, as_at, filter, identifier_types, **kwargs)  # noqa: E501
+            response = await self.get_portfolio_group_relationships_with_http_info_async(scope, code, effective_at, as_at, filter, identifier_types, **kwargs)
+            return response.data
 
     @validate_call
     async def get_portfolio_group_relationships_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, identifier_types: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfRelationship]:
@@ -7547,7 +7547,7 @@ class PortfolioGroupsApi:
             :type data_model_scope: str
             :param data_model_code: The optional code of a Custom Data Model to use
             :type data_model_code: str
-            :param membership_type: The membership types of the specified Custom Data Model to return. Allowable values are Member, Candidate and All. Defaults to Member.
+            :param membership_type: The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate.
             :type membership_type: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -7555,12 +7555,12 @@ class PortfolioGroupsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: VersionedResourceListOfTransaction
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_transactions_for_portfolio_group_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_transactions_for_portfolio_group_with_http_info_async(scope, code, from_transaction_date, to_transaction_date, as_at, filter, property_keys, limit, page, show_cancelled_transactions, sort_by, data_model_scope, data_model_code, membership_type, **kwargs)  # noqa: E501
+            response = await self.get_transactions_for_portfolio_group_with_http_info_async(scope, code, from_transaction_date, to_transaction_date, as_at, filter, property_keys, limit, page, show_cancelled_transactions, sort_by, data_model_scope, data_model_code, membership_type, **kwargs)
+            return response.data
 
     @validate_call
     async def get_transactions_for_portfolio_group_with_http_info_async(self, scope: StrictStr, code: StrictStr, from_transaction_date: Optional[StrictStr] = None, to_transaction_date: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, show_cancelled_transactions: Optional[bool] = None, sort_by: Optional[List[str]] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, membership_type: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfTransaction]:
@@ -7594,7 +7594,7 @@ class PortfolioGroupsApi:
             :type data_model_scope: str
             :param data_model_code: The optional code of a Custom Data Model to use
             :type data_model_code: str
-            :param membership_type: The membership types of the specified Custom Data Model to return. Allowable values are Member, Candidate and All. Defaults to Member.
+            :param membership_type: The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate.
             :type membership_type: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
@@ -7775,12 +7775,12 @@ class PortfolioGroupsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfPortfolioGroup
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_portfolio_groups_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_portfolio_groups_with_http_info_async(scope, effective_at, as_at, page, limit, filter, sort_by, related_entity_property_keys, relationship_definition_ids, **kwargs)  # noqa: E501
+            response = await self.list_portfolio_groups_with_http_info_async(scope, effective_at, as_at, page, limit, filter, sort_by, related_entity_property_keys, relationship_definition_ids, **kwargs)
+            return response.data
 
     @validate_call
     async def list_portfolio_groups_with_http_info_async(self, scope: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, related_entity_property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfPortfolioGroup]:
@@ -7958,12 +7958,12 @@ class PortfolioGroupsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Dict[str, List[AccessMetadataValue]]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the patch_portfolio_group_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.patch_portfolio_group_access_metadata_with_http_info_async(scope, code, access_metadata_operation, effective_at, effective_until, **kwargs)  # noqa: E501
+            response = await self.patch_portfolio_group_access_metadata_with_http_info_async(scope, code, access_metadata_operation, effective_at, effective_until, **kwargs)
+            return response.data
 
     @validate_call
     async def patch_portfolio_group_access_metadata_with_http_info_async(self, scope: StrictStr, code: StrictStr, access_metadata_operation: List[AccessMetadataOperation], effective_at: Optional[StrictStr] = None, effective_until: Optional[datetime] = None, **kwargs) -> ApiResponse[Dict[str, List[AccessMetadataValue]]]:
@@ -8119,12 +8119,12 @@ class PortfolioGroupsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PortfolioGroup
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_portfolio_group_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_portfolio_group_with_http_info_async(scope, code, effective_at, update_portfolio_group_request, **kwargs)  # noqa: E501
+            response = await self.update_portfolio_group_with_http_info_async(scope, code, effective_at, update_portfolio_group_request, **kwargs)
+            return response.data
 
     @validate_call
     async def update_portfolio_group_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, update_portfolio_group_request: Optional[UpdatePortfolioGroupRequest] = None, **kwargs) -> ApiResponse[PortfolioGroup]:
@@ -8269,12 +8269,12 @@ class PortfolioGroupsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PortfolioGroupProperties
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_group_properties_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_group_properties_with_http_info_async(scope, code, request_body, **kwargs)  # noqa: E501
+            response = await self.upsert_group_properties_with_http_info_async(scope, code, request_body, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_group_properties_with_http_info_async(self, scope: StrictStr, code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> ApiResponse[PortfolioGroupProperties]:
@@ -8419,12 +8419,12 @@ class PortfolioGroupsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfAccessMetadataValueOf
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_portfolio_group_access_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_portfolio_group_access_metadata_with_http_info_async(scope, code, metadata_key, upsert_portfolio_group_access_metadata_request, effective_at, effective_until, **kwargs)  # noqa: E501
+            response = await self.upsert_portfolio_group_access_metadata_with_http_info_async(scope, code, metadata_key, upsert_portfolio_group_access_metadata_request, effective_at, effective_until, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_portfolio_group_access_metadata_with_http_info_async(self, scope: StrictStr, code: StrictStr, metadata_key: StrictStr, upsert_portfolio_group_access_metadata_request: UpsertPortfolioGroupAccessMetadataRequest, effective_at: Optional[StrictStr] = None, effective_until: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfAccessMetadataValueOf]:

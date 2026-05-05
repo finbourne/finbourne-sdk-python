@@ -66,12 +66,12 @@ class PolicyTemplatesApi:
         :return: Returns the result object.
         :rtype: PolicyTemplateResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_policy_template_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_policy_template_with_http_info(policy_template_creation_request, **kwargs)  # noqa: E501
+        response = self.create_policy_template_with_http_info(policy_template_creation_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_policy_template_with_http_info(self, policy_template_creation_request: PolicyTemplateCreationRequest, **kwargs) -> ApiResponse[PolicyTemplateResponse]:
@@ -195,15 +195,15 @@ class PolicyTemplatesApi:
         :return: Returns the result object.
         :rtype: None
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_policy_template_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_policy_template_with_http_info(code, scope, **kwargs)  # noqa: E501
+        response = self.delete_policy_template_with_http_info(code, scope, **kwargs)
+        return response.data
 
     @validate_call
-    def delete_policy_template_with_http_info(self, code: StrictStr, scope: Optional[StrictStr] = None, **kwargs) -> None:
+    def delete_policy_template_with_http_info(self, code: StrictStr, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[None]:
         """[EXPERIMENTAL] DeletePolicyTemplate: Deleting a policy template  # noqa: E501
 
         Deletes an identified Policy Template  # noqa: E501
@@ -320,12 +320,12 @@ class PolicyTemplatesApi:
         :return: Returns the result object.
         :rtype: GeneratedPolicyComponents
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the generate_policy_from_template_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.generate_policy_from_template_with_http_info(generate_policy_from_template_request, as_at, **kwargs)  # noqa: E501
+        response = self.generate_policy_from_template_with_http_info(generate_policy_from_template_request, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def generate_policy_from_template_with_http_info(self, generate_policy_from_template_request: GeneratePolicyFromTemplateRequest, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[GeneratedPolicyComponents]:
@@ -460,12 +460,12 @@ class PolicyTemplatesApi:
         :return: Returns the result object.
         :rtype: PolicyTemplateResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_policy_template_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_policy_template_with_http_info(code, as_at, scope, **kwargs)  # noqa: E501
+        response = self.get_policy_template_with_http_info(code, as_at, scope, **kwargs)
+        return response.data
 
     @validate_call
     def get_policy_template_with_http_info(self, code: StrictStr, as_at: Optional[datetime] = None, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PolicyTemplateResponse]:
@@ -603,12 +603,12 @@ class PolicyTemplatesApi:
         :return: Returns the result object.
         :rtype: ResourceListOfPolicyTemplateResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_policy_templates_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_policy_templates_with_http_info(as_at, sort_by, limit, filter, page, **kwargs)  # noqa: E501
+        response = self.list_policy_templates_with_http_info(as_at, sort_by, limit, filter, page, **kwargs)
+        return response.data
 
     @validate_call
     def list_policy_templates_with_http_info(self, as_at: Optional[datetime] = None, sort_by: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfPolicyTemplateResponse]:
@@ -752,12 +752,12 @@ class PolicyTemplatesApi:
         :return: Returns the result object.
         :rtype: PolicyTemplateResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_policy_template_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_policy_template_with_http_info(code, policy_template_update_request, **kwargs)  # noqa: E501
+        response = self.update_policy_template_with_http_info(code, policy_template_update_request, **kwargs)
+        return response.data
 
     @validate_call
     def update_policy_template_with_http_info(self, code: StrictStr, policy_template_update_request: Optional[PolicyTemplateUpdateRequest] = None, **kwargs) -> ApiResponse[PolicyTemplateResponse]:
@@ -889,12 +889,12 @@ class PolicyTemplatesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PolicyTemplateResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_policy_template_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_policy_template_with_http_info_async(policy_template_creation_request, **kwargs)  # noqa: E501
+            response = await self.create_policy_template_with_http_info_async(policy_template_creation_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_policy_template_with_http_info_async(self, policy_template_creation_request: PolicyTemplateCreationRequest, **kwargs) -> ApiResponse[PolicyTemplateResponse]:
@@ -1019,15 +1019,15 @@ class PolicyTemplatesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: None
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_policy_template_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_policy_template_with_http_info_async(code, scope, **kwargs)  # noqa: E501
+            response = await self.delete_policy_template_with_http_info_async(code, scope, **kwargs)
+            return response.data
 
     @validate_call
-    async def delete_policy_template_with_http_info_async(self, code: StrictStr, scope: Optional[StrictStr] = None, **kwargs) -> None:
+    async def delete_policy_template_with_http_info_async(self, code: StrictStr, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[None]:
             """[EXPERIMENTAL] DeletePolicyTemplate: Deleting a policy template  # noqa: E501
 
             Deletes an identified Policy Template  # noqa: E501
@@ -1145,12 +1145,12 @@ class PolicyTemplatesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: GeneratedPolicyComponents
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the generate_policy_from_template_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.generate_policy_from_template_with_http_info_async(generate_policy_from_template_request, as_at, **kwargs)  # noqa: E501
+            response = await self.generate_policy_from_template_with_http_info_async(generate_policy_from_template_request, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def generate_policy_from_template_with_http_info_async(self, generate_policy_from_template_request: GeneratePolicyFromTemplateRequest, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[GeneratedPolicyComponents]:
@@ -1286,12 +1286,12 @@ class PolicyTemplatesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PolicyTemplateResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_policy_template_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_policy_template_with_http_info_async(code, as_at, scope, **kwargs)  # noqa: E501
+            response = await self.get_policy_template_with_http_info_async(code, as_at, scope, **kwargs)
+            return response.data
 
     @validate_call
     async def get_policy_template_with_http_info_async(self, code: StrictStr, as_at: Optional[datetime] = None, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PolicyTemplateResponse]:
@@ -1430,12 +1430,12 @@ class PolicyTemplatesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfPolicyTemplateResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_policy_templates_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_policy_templates_with_http_info_async(as_at, sort_by, limit, filter, page, **kwargs)  # noqa: E501
+            response = await self.list_policy_templates_with_http_info_async(as_at, sort_by, limit, filter, page, **kwargs)
+            return response.data
 
     @validate_call
     async def list_policy_templates_with_http_info_async(self, as_at: Optional[datetime] = None, sort_by: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfPolicyTemplateResponse]:
@@ -1580,12 +1580,12 @@ class PolicyTemplatesApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PolicyTemplateResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_policy_template_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_policy_template_with_http_info_async(code, policy_template_update_request, **kwargs)  # noqa: E501
+            response = await self.update_policy_template_with_http_info_async(code, policy_template_update_request, **kwargs)
+            return response.data
 
     @validate_call
     async def update_policy_template_with_http_info_async(self, code: StrictStr, policy_template_update_request: Optional[PolicyTemplateUpdateRequest] = None, **kwargs) -> ApiResponse[PolicyTemplateResponse]:

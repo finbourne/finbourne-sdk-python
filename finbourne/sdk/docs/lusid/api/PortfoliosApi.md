@@ -330,7 +330,7 @@ Name | Type | Description  | Notes
  **return_code** | **str**| The code of the Returns. | [required] 
  **from_effective_at** | **str**| The start date from which to delete the Returns. | [required] 
  **to_effective_at** | **str**| The end date from which to delete the Returns. | [required] 
- **period** | **str**| The Period (Daily or Monthly) of the Returns to be deleted. Defaults to Daily. | [optional] 
+ **period** | **str**| The period of the Returns to be deleted. Default value: Daily. Available values: Daily, Monthly. | [optional] 
 
 ### Return type
 
@@ -601,9 +601,9 @@ Name | Type | Description  | Notes
  **recipe_id_code** | **str**| The Recipe Code for getting the fx rates | [optional] 
  **from_effective_at** | **str**| The start date from which to calculate the Returns. | [optional] 
  **to_effective_at** | **str**| The end date for which to calculate the Returns. | [optional] 
- **composite_method** | **str**| The method used to calculate the Portfolio performance:              Equal/Asset. | [optional] 
- **period** | **str**| The type of the returns used to calculate the aggregation result: Daily/Monthly. | [optional] 
- **output_frequency** | **str**| The type of calculated output: Daily/Weekly/Monthly/Quarterly/Half-Yearly/Yearly. | [optional] 
+ **composite_method** | **str**| The method used to calculate the Portfolio performance. Available values: Equal, Asset. | [optional] 
+ **period** | **str**| The type of the returns used to calculate the aggregation result. Available values: Daily, Monthly. | [optional] 
+ **output_frequency** | **str**| The type of calculated output. Available values: Daily, Weekly, Monthly, Quarterly, HalfYearly, Yearly. | [optional] 
  **metrics** | [**List[str]**](str.md)| Determines what type of returns should be calculated, see https://support.lusid.com/knowledgebase/article/KA-01675/en-us for a list of available metrics. | [optional] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the Returns. Defaults to the latest. | [optional] 
  **alternative_inc_date** | **str**| The date from which to consider the Returns on the Portfolio, if this is different from the date when Returns begin. Can be a date string or Portfolio property. | [optional] 
@@ -1023,7 +1023,7 @@ Name | Type | Description  | Notes
  **return_code** | **str**| The code of the Returns. | [required] 
  **from_effective_at** | **str**| The start date from which to get the Returns. | [optional] 
  **to_effective_at** | **str**| The end date from which to get the Returns. | [optional] 
- **period** | **str**| Show the Returns on a Daily or Monthly period. Defaults to Daily. | [optional] 
+ **period** | **str**| The period for which to show the Returns. Default value: Daily. Available values: Daily, Monthly. | [optional] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the Returns. Defaults to the latest. | [optional] 
 
 ### Return type

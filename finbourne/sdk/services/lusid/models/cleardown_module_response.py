@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -36,10 +36,10 @@ class CleardownModuleResponse(BaseModel):
     display_name:  StrictStr = Field(...,alias="displayName", description="The name of the Cleardown Module.") 
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="A description for the Cleardown Module.") 
     rules: Optional[List[CleardownModuleRule]] = Field(default=None, description="The Cleardown Rules that apply for the Cleardown Module. Rules are evaluated in the order they occur in this collection.")
-    status:  StrictStr = Field(...,alias="status", description="The Cleardown Module status. Can be Active, Inactive or Deleted. Defaults to Active.") 
+    status:  StrictStr = Field(...,alias="status", description="The Cleardown Module status. Default value: Active. Available values: Active, Inactive, Deleted.") 
     version: Optional[Version] = None
     links: Optional[List[Link]] = None
-    __properties = ["href", "cleardownModuleCode", "chartOfAccountsId", "displayName", "description", "rules", "status", "version", "links"]
+    __properties: ClassVar[List[str]] = ["href", "cleardownModuleCode", "chartOfAccountsId", "displayName", "description", "rules", "status", "version", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -129,13 +129,13 @@ class CleardownModuleResponse(BaseModel):
         _obj = CleardownModuleResponse.model_validate({
             "href": obj.get("href"),
             "cleardown_module_code": obj.get("cleardownModuleCode"),
-            "chart_of_accounts_id": ResourceId.from_dict(obj.get("chartOfAccountsId")) if obj.get("chartOfAccountsId") is not None else None,
+            "chart_of_accounts_id": ResourceId.from_dict(_v) if (_v := obj.get("chartOfAccountsId")) is not None else None,
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
-            "rules": [CleardownModuleRule.from_dict(_item) for _item in obj.get("rules")] if obj.get("rules") is not None else None,
+            "rules": [CleardownModuleRule.from_dict(_item) for _item in _v] if (_v := obj.get("rules")) is not None else None,
             "status": obj.get("status"),
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

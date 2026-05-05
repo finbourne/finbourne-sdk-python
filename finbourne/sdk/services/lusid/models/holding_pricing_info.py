@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -27,11 +27,11 @@ class HoldingPricingInfo(BaseModel):
     """
     Enables price quotes to be created from Holding fields as either overrides or fallbacks to the Market Data  resolution process. For example, we may wish to price an instrument at Cost if Market Data resolution fails.  We may also wish to always price Bonds using the LastTradedPrice on the corresponding Holding.  # noqa: E501
     """
-    fallback_field:  Optional[StrictStr] = Field(default=None,alias="fallbackField", description="The default Holding field to fall back on if the Market Data resolution process fails to find a price quote.") 
-    override_field:  Optional[StrictStr] = Field(default=None,alias="overrideField", description="The default Holding field to be used as an override for instrument price quotes. This cannot be specified  along with a FallbackField or any SpecificFallbacks, since we'll never attempt Market Data resolution  for price quotes if this field is populated.") 
+    fallback_field:  Optional[StrictStr] = Field(default=None,alias="fallbackField", description="The default Holding field to fall back on if the Market Data resolution process fails to find a price quote. Available values: None, UnitCost, LastTradedPrice, UnitAmortisedCost, UnitCostClean, UnitCostDirty, UnitAmortisedCostClean, UnitAmortisedCostDirty.") 
+    override_field:  Optional[StrictStr] = Field(default=None,alias="overrideField", description="The default Holding field to be used as an override for instrument price quotes. This cannot be specified  along with a FallbackField or any SpecificFallbacks, since we'll never attempt Market Data resolution  for price quotes if this field is populated. Available values: None, UnitCost, LastTradedPrice, UnitAmortisedCost, UnitCostClean, UnitCostDirty, UnitAmortisedCostClean, UnitAmortisedCostDirty.") 
     specific_fallbacks: Optional[List[SpecificHoldingPricingInfo]] = Field(default=None, description="Allows a user to specify fallbacks using Holding fields for sources that match a particular DependencySourceFilter.", alias="specificFallbacks")
     specific_overrides: Optional[List[SpecificHoldingPricingInfo]] = Field(default=None, description="Allows a user to specify overrides using Holding fields for sources that match a particular DependencySourceFilter.", alias="specificOverrides")
-    __properties = ["fallbackField", "overrideField", "specificFallbacks", "specificOverrides"]
+    __properties: ClassVar[List[str]] = ["fallbackField", "overrideField", "specificFallbacks", "specificOverrides"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -115,8 +115,8 @@ class HoldingPricingInfo(BaseModel):
         _obj = HoldingPricingInfo.model_validate({
             "fallback_field": obj.get("fallbackField"),
             "override_field": obj.get("overrideField"),
-            "specific_fallbacks": [SpecificHoldingPricingInfo.from_dict(_item) for _item in obj.get("specificFallbacks")] if obj.get("specificFallbacks") is not None else None,
-            "specific_overrides": [SpecificHoldingPricingInfo.from_dict(_item) for _item in obj.get("specificOverrides")] if obj.get("specificOverrides") is not None else None
+            "specific_fallbacks": [SpecificHoldingPricingInfo.from_dict(_item) for _item in _v] if (_v := obj.get("specificFallbacks")) is not None else None,
+            "specific_overrides": [SpecificHoldingPricingInfo.from_dict(_item) for _item in _v] if (_v := obj.get("specificOverrides")) is not None else None
         })
         return _obj
 

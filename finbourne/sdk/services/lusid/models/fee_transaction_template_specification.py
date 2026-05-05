@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class FeeTransactionTemplateSpecification(BaseModel):
     """
     specification_type_name:  StrictStr = Field(...,alias="specificationTypeName") 
     supported_template_fields: List[TemplateField] = Field(alias="supportedTemplateFields")
-    __properties = ["specificationTypeName", "supportedTemplateFields"]
+    __properties: ClassVar[List[str]] = ["specificationTypeName", "supportedTemplateFields"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,7 +85,7 @@ class FeeTransactionTemplateSpecification(BaseModel):
 
         _obj = FeeTransactionTemplateSpecification.model_validate({
             "specification_type_name": obj.get("specificationTypeName"),
-            "supported_template_fields": [TemplateField.from_dict(_item) for _item in obj.get("supportedTemplateFields")] if obj.get("supportedTemplateFields") is not None else None
+            "supported_template_fields": [TemplateField.from_dict(_item) for _item in _v] if (_v := obj.get("supportedTemplateFields")) is not None else None
         })
         return _obj
 

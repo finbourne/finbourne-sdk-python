@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class VirtualDocument(BaseModel):
     """
     document_id: Optional[StructuredResultDataId] = Field(default=None, alias="documentId")
     data: Optional[List[VirtualDocumentRow]] = Field(default=None, description="The data inside the document")
-    __properties = ["documentId", "data"]
+    __properties: ClassVar[List[str]] = ["documentId", "data"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -93,8 +93,8 @@ class VirtualDocument(BaseModel):
             return VirtualDocument.model_validate(obj)
 
         _obj = VirtualDocument.model_validate({
-            "document_id": StructuredResultDataId.from_dict(obj.get("documentId")) if obj.get("documentId") is not None else None,
-            "data": [VirtualDocumentRow.from_dict(_item) for _item in obj.get("data")] if obj.get("data") is not None else None
+            "document_id": StructuredResultDataId.from_dict(_v) if (_v := obj.get("documentId")) is not None else None,
+            "data": [VirtualDocumentRow.from_dict(_item) for _item in _v] if (_v := obj.get("data")) is not None else None
         })
         return _obj
 

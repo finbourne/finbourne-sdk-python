@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -36,7 +36,7 @@ class CompleteRelation(BaseModel):
     outward_description:  StrictStr = Field(...,alias="outwardDescription") 
     inward_description:  StrictStr = Field(...,alias="inwardDescription") 
     effective_from: Optional[datetime] = Field(default=None, alias="effectiveFrom")
-    __properties = ["href", "version", "relationDefinitionId", "sourceEntityId", "targetEntityId", "outwardDescription", "inwardDescription", "effectiveFrom"]
+    __properties: ClassVar[List[str]] = ["href", "version", "relationDefinitionId", "sourceEntityId", "targetEntityId", "outwardDescription", "inwardDescription", "effectiveFrom"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -96,8 +96,8 @@ class CompleteRelation(BaseModel):
 
         _obj = CompleteRelation.model_validate({
             "href": obj.get("href"),
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
-            "relation_definition_id": ResourceId.from_dict(obj.get("relationDefinitionId")) if obj.get("relationDefinitionId") is not None else None,
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "relation_definition_id": ResourceId.from_dict(_v) if (_v := obj.get("relationDefinitionId")) is not None else None,
             "source_entity_id": obj.get("sourceEntityId"),
             "target_entity_id": obj.get("targetEntityId"),
             "outward_description": obj.get("outwardDescription"),

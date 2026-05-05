@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,7 +32,7 @@ class GroupReconciliationUserReview(BaseModel):
     break_codes: Optional[List[GroupReconciliationUserReviewBreakCode]] = Field(default=None, description="A list of break codes shared between the reconciliation runs of the same run instance and result hash.", alias="breakCodes")
     match_keys: Optional[List[GroupReconciliationUserReviewMatchKey]] = Field(default=None, description="A list of match keys shared between the reconciliation runs of the same run instance and result hash.", alias="matchKeys")
     comments: Optional[List[GroupReconciliationUserReviewComment]] = Field(default=None, description="A list of comments shared between the reconciliation runs of the same run instance and result hash.")
-    __properties = ["breakCodes", "matchKeys", "comments"]
+    __properties: ClassVar[List[str]] = ["breakCodes", "matchKeys", "comments"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -116,9 +116,9 @@ class GroupReconciliationUserReview(BaseModel):
             return GroupReconciliationUserReview.model_validate(obj)
 
         _obj = GroupReconciliationUserReview.model_validate({
-            "break_codes": [GroupReconciliationUserReviewBreakCode.from_dict(_item) for _item in obj.get("breakCodes")] if obj.get("breakCodes") is not None else None,
-            "match_keys": [GroupReconciliationUserReviewMatchKey.from_dict(_item) for _item in obj.get("matchKeys")] if obj.get("matchKeys") is not None else None,
-            "comments": [GroupReconciliationUserReviewComment.from_dict(_item) for _item in obj.get("comments")] if obj.get("comments") is not None else None
+            "break_codes": [GroupReconciliationUserReviewBreakCode.from_dict(_item) for _item in _v] if (_v := obj.get("breakCodes")) is not None else None,
+            "match_keys": [GroupReconciliationUserReviewMatchKey.from_dict(_item) for _item in _v] if (_v := obj.get("matchKeys")) is not None else None,
+            "comments": [GroupReconciliationUserReviewComment.from_dict(_item) for _item in _v] if (_v := obj.get("comments")) is not None else None
         })
         return _obj
 

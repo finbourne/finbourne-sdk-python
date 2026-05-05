@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class ScheduleMatchingPattern(BaseModel):
     """
     context: ScheduleMatchingPatternContext
     recurrence_pattern: RecurrencePattern = Field(alias="recurrencePattern")
-    __properties = ["context", "recurrencePattern"]
+    __properties: ClassVar[List[str]] = ["context", "recurrencePattern"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -84,8 +84,8 @@ class ScheduleMatchingPattern(BaseModel):
             return ScheduleMatchingPattern.model_validate(obj)
 
         _obj = ScheduleMatchingPattern.model_validate({
-            "context": ScheduleMatchingPatternContext.from_dict(obj.get("context")) if obj.get("context") is not None else None,
-            "recurrence_pattern": RecurrencePattern.from_dict(obj.get("recurrencePattern")) if obj.get("recurrencePattern") is not None else None
+            "context": ScheduleMatchingPatternContext.from_dict(_v) if (_v := obj.get("context")) is not None else None,
+            "recurrence_pattern": RecurrencePattern.from_dict(_v) if (_v := obj.get("recurrencePattern")) is not None else None
         })
         return _obj
 

@@ -10,6 +10,7 @@
     Do not edit the class manually.
 """
 
+from __future__ import annotations
 import json
 import pprint
 import re  # noqa: F401
@@ -19,7 +20,7 @@ from aenum import Enum, no_arg
 
 
 
-class AggregationType(str, Enum):
+class AggregationType(str, Enum):  # type: ignore[misc]
     """
     A list of types, that define the expected output types found from an aggregation request in its result.
     """

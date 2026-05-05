@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class TranslationContext(BaseModel):
     """
     disable_scripted_translation: Optional[StrictBool] = Field(default=None, alias="disableScriptedTranslation")
     script_map: Optional[ScriptMapReference] = Field(default=None, alias="scriptMap")
-    __properties = ["disableScriptedTranslation", "scriptMap"]
+    __properties: ClassVar[List[str]] = ["disableScriptedTranslation", "scriptMap"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -81,7 +81,7 @@ class TranslationContext(BaseModel):
 
         _obj = TranslationContext.model_validate({
             "disable_scripted_translation": obj.get("disableScriptedTranslation"),
-            "script_map": ScriptMapReference.from_dict(obj.get("scriptMap")) if obj.get("scriptMap") is not None else None
+            "script_map": ScriptMapReference.from_dict(_v) if (_v := obj.get("scriptMap")) is not None else None
         })
         return _obj
 

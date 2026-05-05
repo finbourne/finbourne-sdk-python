@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -48,7 +48,7 @@ class ValuationRequest(BaseModel):
     valuation_schedule: ValuationSchedule = Field(alias="valuationSchedule")
     market_data_overrides: Optional[MarketDataOverrides] = Field(default=None, alias="marketDataOverrides")
     corporate_action_source_id: Optional[ResourceId] = Field(default=None, alias="corporateActionSourceId")
-    __properties = ["recipeId", "asAt", "metrics", "groupBy", "filters", "sort", "reportCurrency", "equipWithSubtotals", "returnResultAsExpandedTypes", "includeOrderFlow", "portfolioEntityIds", "valuationSchedule", "marketDataOverrides", "corporateActionSourceId"]
+    __properties: ClassVar[List[str]] = ["recipeId", "asAt", "metrics", "groupBy", "filters", "sort", "reportCurrency", "equipWithSubtotals", "returnResultAsExpandedTypes", "includeOrderFlow", "portfolioEntityIds", "valuationSchedule", "marketDataOverrides", "corporateActionSourceId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -164,20 +164,20 @@ class ValuationRequest(BaseModel):
             return ValuationRequest.model_validate(obj)
 
         _obj = ValuationRequest.model_validate({
-            "recipe_id": ResourceId.from_dict(obj.get("recipeId")) if obj.get("recipeId") is not None else None,
+            "recipe_id": ResourceId.from_dict(_v) if (_v := obj.get("recipeId")) is not None else None,
             "as_at": obj.get("asAt"),
-            "metrics": [AggregateSpec.from_dict(_item) for _item in obj.get("metrics")] if obj.get("metrics") is not None else None,
+            "metrics": [AggregateSpec.from_dict(_item) for _item in _v] if (_v := obj.get("metrics")) is not None else None,
             "group_by": obj.get("groupBy"),
-            "filters": [PropertyFilter.from_dict(_item) for _item in obj.get("filters")] if obj.get("filters") is not None else None,
-            "sort": [OrderBySpec.from_dict(_item) for _item in obj.get("sort")] if obj.get("sort") is not None else None,
+            "filters": [PropertyFilter.from_dict(_item) for _item in _v] if (_v := obj.get("filters")) is not None else None,
+            "sort": [OrderBySpec.from_dict(_item) for _item in _v] if (_v := obj.get("sort")) is not None else None,
             "report_currency": obj.get("reportCurrency"),
             "equip_with_subtotals": obj.get("equipWithSubtotals"),
             "return_result_as_expanded_types": obj.get("returnResultAsExpandedTypes"),
-            "include_order_flow": OrderFlowConfiguration.from_dict(obj.get("includeOrderFlow")) if obj.get("includeOrderFlow") is not None else None,
-            "portfolio_entity_ids": [PortfolioEntityId.from_dict(_item) for _item in obj.get("portfolioEntityIds")] if obj.get("portfolioEntityIds") is not None else None,
-            "valuation_schedule": ValuationSchedule.from_dict(obj.get("valuationSchedule")) if obj.get("valuationSchedule") is not None else None,
-            "market_data_overrides": MarketDataOverrides.from_dict(obj.get("marketDataOverrides")) if obj.get("marketDataOverrides") is not None else None,
-            "corporate_action_source_id": ResourceId.from_dict(obj.get("corporateActionSourceId")) if obj.get("corporateActionSourceId") is not None else None
+            "include_order_flow": OrderFlowConfiguration.from_dict(_v) if (_v := obj.get("includeOrderFlow")) is not None else None,
+            "portfolio_entity_ids": [PortfolioEntityId.from_dict(_item) for _item in _v] if (_v := obj.get("portfolioEntityIds")) is not None else None,
+            "valuation_schedule": ValuationSchedule.from_dict(_v) if (_v := obj.get("valuationSchedule")) is not None else None,
+            "market_data_overrides": MarketDataOverrides.from_dict(_v) if (_v := obj.get("marketDataOverrides")) is not None else None,
+            "corporate_action_source_id": ResourceId.from_dict(_v) if (_v := obj.get("corporateActionSourceId")) is not None else None
         })
         return _obj
 

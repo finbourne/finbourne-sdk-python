@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,20 +32,20 @@ class DataType(BaseModel):
     """
     DataType
     """
-    type_value_range:  StrictStr = Field(...,alias="typeValueRange", description="The available values are: Open, Closed") 
+    type_value_range:  StrictStr = Field(...,alias="typeValueRange", description="Available values: Open, Closed.") 
     id: ResourceId
     display_name:  StrictStr = Field(...,alias="displayName") 
     description:  StrictStr = Field(...,alias="description") 
-    value_type:  StrictStr = Field(...,alias="valueType", description="The available values are: String, Int, Decimal, DateTime, Boolean, Map, List, PropertyArray, Percentage, Code, Id, Uri, CurrencyAndAmount, TradePrice, Currency, MetricValue, ResourceId, ResultValue, CutLocalTime, DateOrCutLabel, UnindexedText") 
+    value_type:  StrictStr = Field(...,alias="valueType", description="Available values: String, Int, Decimal, DateTime, Boolean, Map, List, PropertyArray, Percentage, Code, Id, Uri, CurrencyAndAmount, TradePrice, Currency, MetricValue, ResourceId, ResultValue, CutLocalTime, DateOrCutLabel, UnindexedText.") 
     acceptable_values: Optional[List[StrictStr]] = Field(default=None, alias="acceptableValues")
-    unit_schema:  Optional[StrictStr] = Field(default=None,alias="unitSchema", description="The available values are: NoUnits, Basic, Iso4217Currency") 
+    unit_schema:  Optional[StrictStr] = Field(default=None,alias="unitSchema", description="Available values: NoUnits, Basic, Iso4217Currency.") 
     acceptable_units: Optional[List[IUnitDefinitionDto]] = Field(default=None, alias="acceptableUnits")
     reference_data: Optional[ReferenceData] = Field(default=None, alias="referenceData")
     version: Optional[Version] = None
     href:  Optional[StrictStr] = Field(default=None,alias="href", description="The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime.") 
     staged_modifications: Optional[StagedModificationsInfo] = Field(default=None, alias="stagedModifications")
     links: Optional[List[Link]] = None
-    __properties = ["typeValueRange", "id", "displayName", "description", "valueType", "acceptableValues", "unitSchema", "acceptableUnits", "referenceData", "version", "href", "stagedModifications", "links"]
+    __properties: ClassVar[List[str]] = ["typeValueRange", "id", "displayName", "description", "valueType", "acceptableValues", "unitSchema", "acceptableUnits", "referenceData", "version", "href", "stagedModifications", "links"]
 
     @field_validator('type_value_range')
     def type_value_range_validate_enum(cls, value):
@@ -350,18 +350,18 @@ class DataType(BaseModel):
 
         _obj = DataType.model_validate({
             "type_value_range": obj.get("typeValueRange"),
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
             "value_type": obj.get("valueType"),
             "acceptable_values": obj.get("acceptableValues"),
             "unit_schema": obj.get("unitSchema"),
-            "acceptable_units": [IUnitDefinitionDto.from_dict(_item) for _item in obj.get("acceptableUnits")] if obj.get("acceptableUnits") is not None else None,
-            "reference_data": ReferenceData.from_dict(obj.get("referenceData")) if obj.get("referenceData") is not None else None,
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
+            "acceptable_units": [IUnitDefinitionDto.from_dict(_item) for _item in _v] if (_v := obj.get("acceptableUnits")) is not None else None,
+            "reference_data": ReferenceData.from_dict(_v) if (_v := obj.get("referenceData")) is not None else None,
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
             "href": obj.get("href"),
-            "staged_modifications": StagedModificationsInfo.from_dict(obj.get("stagedModifications")) if obj.get("stagedModifications") is not None else None,
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "staged_modifications": StagedModificationsInfo.from_dict(_v) if (_v := obj.get("stagedModifications")) is not None else None,
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

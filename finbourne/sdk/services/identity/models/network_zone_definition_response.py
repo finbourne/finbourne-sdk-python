@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -38,7 +38,7 @@ class NetworkZoneDefinitionResponse(BaseModel):
     apply_rules: Optional[NetworkZonesApplyRules] = Field(default=None, alias="applyRules")
     created_by:  Optional[StrictStr] = Field(default=None,alias="createdBy", description="User Id that created the Network Zone") 
     updated_by:  Optional[StrictStr] = Field(default=None,alias="updatedBy", description="User Id of the last update on the Network Zone") 
-    __properties = ["code", "hierarchy", "description", "createdAt", "updatedAt", "networkZoneIPs", "action", "applyRules", "createdBy", "updatedBy"]
+    __properties: ClassVar[List[str]] = ["code", "hierarchy", "description", "createdAt", "updatedAt", "networkZoneIPs", "action", "applyRules", "createdBy", "updatedBy"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -131,9 +131,9 @@ class NetworkZoneDefinitionResponse(BaseModel):
             "description": obj.get("description"),
             "created_at": obj.get("createdAt"),
             "updated_at": obj.get("updatedAt"),
-            "network_zone_ips": [IpAddressDefinition.from_dict(_item) for _item in obj.get("networkZoneIPs")] if obj.get("networkZoneIPs") is not None else None,
+            "network_zone_ips": [IpAddressDefinition.from_dict(_item) for _item in _v] if (_v := obj.get("networkZoneIPs")) is not None else None,
             "action": obj.get("action"),
-            "apply_rules": NetworkZonesApplyRules.from_dict(obj.get("applyRules")) if obj.get("applyRules") is not None else None,
+            "apply_rules": NetworkZonesApplyRules.from_dict(_v) if (_v := obj.get("applyRules")) is not None else None,
             "created_by": obj.get("createdBy"),
             "updated_by": obj.get("updatedBy")
         })

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,9 +28,9 @@ class Strategy(BaseModel):
     Strategy
     """
     keys: List[PerpetualProperty]
-    value_type:  StrictStr = Field(...,alias="valueType") 
+    value_type:  StrictStr = Field(...,alias="valueType", description="Available values: Units, Weight.") 
     value: Union[StrictFloat, StrictInt]
-    __properties = ["keys", "valueType", "value"]
+    __properties: ClassVar[List[str]] = ["keys", "valueType", "value"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,7 +85,7 @@ class Strategy(BaseModel):
             return Strategy.model_validate(obj)
 
         _obj = Strategy.model_validate({
-            "keys": [PerpetualProperty.from_dict(_item) for _item in obj.get("keys")] if obj.get("keys") is not None else None,
+            "keys": [PerpetualProperty.from_dict(_item) for _item in _v] if (_v := obj.get("keys")) is not None else None,
             "value_type": obj.get("valueType"),
             "value": obj.get("value")
         })

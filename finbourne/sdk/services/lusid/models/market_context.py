@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -36,7 +36,7 @@ class MarketContext(BaseModel):
     options: Optional[MarketOptions] = None
     specific_rules: Optional[List[MarketDataSpecificRule]] = Field(default=None, description="Extends market data key rules to be able to catch dependencies depending on where the dependency comes from, as opposed to what the dependency is asking for.  Using two specific rules, one could instruct rates curves requested by bonds to be retrieved from a different scope than rates curves requested by swaps.  WARNING: The use of specific rules impacts performance. Where possible, one should use MarketDataKeyRules only.", alias="specificRules")
     grouped_market_rules: Optional[List[GroupOfMarketDataKeyRules]] = Field(default=None, description="The list of groups of rules that will be used in market data resolution.  Rules given within a group will, if the group is being used to resolve data,  all be applied with the results of those individual resolution attempts combined into a single result.  The method for combining results is determined by the operation detailed in the GroupOfMarketDataKeyRules.                Notes:  - When resolving MarketData, MarketRules will be applied first followed by GroupedMarketRules  if data could not be found using only the MarketRules provided.  - GroupedMarketRules can only be used for resolving data from the QuoteStore.                Caution: As every rule in a given group will be applied in resolution if the group is applied,  groups are computationally expensive for market data resolution.  Therefore, heuristically, rule groups should be kept as small as possible.", alias="groupedMarketRules")
-    __properties = ["marketRules", "suppliers", "options", "specificRules", "groupedMarketRules"]
+    __properties: ClassVar[List[str]] = ["marketRules", "suppliers", "options", "specificRules", "groupedMarketRules"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -131,11 +131,11 @@ class MarketContext(BaseModel):
             return MarketContext.model_validate(obj)
 
         _obj = MarketContext.model_validate({
-            "market_rules": [MarketDataKeyRule.from_dict(_item) for _item in obj.get("marketRules")] if obj.get("marketRules") is not None else None,
-            "suppliers": MarketContextSuppliers.from_dict(obj.get("suppliers")) if obj.get("suppliers") is not None else None,
-            "options": MarketOptions.from_dict(obj.get("options")) if obj.get("options") is not None else None,
-            "specific_rules": [MarketDataSpecificRule.from_dict(_item) for _item in obj.get("specificRules")] if obj.get("specificRules") is not None else None,
-            "grouped_market_rules": [GroupOfMarketDataKeyRules.from_dict(_item) for _item in obj.get("groupedMarketRules")] if obj.get("groupedMarketRules") is not None else None
+            "market_rules": [MarketDataKeyRule.from_dict(_item) for _item in _v] if (_v := obj.get("marketRules")) is not None else None,
+            "suppliers": MarketContextSuppliers.from_dict(_v) if (_v := obj.get("suppliers")) is not None else None,
+            "options": MarketOptions.from_dict(_v) if (_v := obj.get("options")) is not None else None,
+            "specific_rules": [MarketDataSpecificRule.from_dict(_item) for _item in _v] if (_v := obj.get("specificRules")) is not None else None,
+            "grouped_market_rules": [GroupOfMarketDataKeyRules.from_dict(_item) for _item in _v] if (_v := obj.get("groupedMarketRules")) is not None else None
         })
         return _obj
 

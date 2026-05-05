@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class ActionLogOrigin(BaseModel):
     """
     task_id:  Optional[StrictStr] = Field(default=None,alias="taskId", description="The Id of the Task that created this Action") 
     request_id:  StrictStr = Field(...,alias="requestId", description="The request Id of the request that caused this Action to be triggered. This could be the original request that caused a sequence of Actions that resulted in this Action") 
-    __properties = ["taskId", "requestId"]
+    __properties: ClassVar[List[str]] = ["taskId", "requestId"]
 
     model_config = ConfigDict(
         populate_by_name=True,

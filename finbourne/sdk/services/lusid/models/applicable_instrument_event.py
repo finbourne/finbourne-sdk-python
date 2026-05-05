@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -44,7 +44,7 @@ class ApplicableInstrumentEvent(BaseModel):
     applied_instrument_event_instruction_id:  Optional[StrictStr] = Field(default=None,alias="appliedInstrumentEventInstructionId") 
     transactions: Optional[List[Transaction]] = None
     transaction_diagnostics: Optional[TransactionDiagnostics] = Field(default=None, alias="transactionDiagnostics")
-    __properties = ["portfolioId", "holdingId", "lusidInstrumentId", "instrumentScope", "instrumentType", "instrumentEventType", "instrumentEventId", "generatedEvent", "generatedEventDiagnostics", "loadedEvent", "appliedInstrumentEventInstructionId", "transactions", "transactionDiagnostics"]
+    __properties: ClassVar[List[str]] = ["portfolioId", "holdingId", "lusidInstrumentId", "instrumentScope", "instrumentType", "instrumentEventType", "instrumentEventId", "generatedEvent", "generatedEventDiagnostics", "loadedEvent", "appliedInstrumentEventInstructionId", "transactions", "transactionDiagnostics"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -124,19 +124,19 @@ class ApplicableInstrumentEvent(BaseModel):
             return ApplicableInstrumentEvent.model_validate(obj)
 
         _obj = ApplicableInstrumentEvent.model_validate({
-            "portfolio_id": ResourceId.from_dict(obj.get("portfolioId")) if obj.get("portfolioId") is not None else None,
+            "portfolio_id": ResourceId.from_dict(_v) if (_v := obj.get("portfolioId")) is not None else None,
             "holding_id": obj.get("holdingId"),
             "lusid_instrument_id": obj.get("lusidInstrumentId"),
             "instrument_scope": obj.get("instrumentScope"),
             "instrument_type": obj.get("instrumentType"),
             "instrument_event_type": obj.get("instrumentEventType"),
             "instrument_event_id": obj.get("instrumentEventId"),
-            "generated_event": InstrumentEventHolder.from_dict(obj.get("generatedEvent")) if obj.get("generatedEvent") is not None else None,
-            "generated_event_diagnostics": GeneratedEventDiagnostics.from_dict(obj.get("generatedEventDiagnostics")) if obj.get("generatedEventDiagnostics") is not None else None,
-            "loaded_event": InstrumentEventHolder.from_dict(obj.get("loadedEvent")) if obj.get("loadedEvent") is not None else None,
+            "generated_event": InstrumentEventHolder.from_dict(_v) if (_v := obj.get("generatedEvent")) is not None else None,
+            "generated_event_diagnostics": GeneratedEventDiagnostics.from_dict(_v) if (_v := obj.get("generatedEventDiagnostics")) is not None else None,
+            "loaded_event": InstrumentEventHolder.from_dict(_v) if (_v := obj.get("loadedEvent")) is not None else None,
             "applied_instrument_event_instruction_id": obj.get("appliedInstrumentEventInstructionId"),
-            "transactions": [Transaction.from_dict(_item) for _item in obj.get("transactions")] if obj.get("transactions") is not None else None,
-            "transaction_diagnostics": TransactionDiagnostics.from_dict(obj.get("transactionDiagnostics")) if obj.get("transactionDiagnostics") is not None else None
+            "transactions": [Transaction.from_dict(_item) for _item in _v] if (_v := obj.get("transactions")) is not None else None,
+            "transaction_diagnostics": TransactionDiagnostics.from_dict(_v) if (_v := obj.get("transactionDiagnostics")) is not None else None
         })
         return _obj
 

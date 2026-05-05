@@ -6,7 +6,7 @@
 |------|------|----------|-------------|
 | **run_details** | [GroupReconciliationRunDetails](GroupReconciliationRunDetails.md) | Optional | *No description available.* |
 | **group_reconciliation_definition_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
-| **reconciliation_type** | **str** | Required | The type of reconciliation to perform. \&quot;Holding\&quot; | \&quot;Transaction\&quot; | \&quot;Valuation\&quot; |
+| **reconciliation_type** | **str** | Required | The type of reconciliation to perform. Available values: Holding, Transaction, Valuation, CashHolding. |
 | **instance_id** | [GroupReconciliationInstanceId](GroupReconciliationInstanceId.md) | Required | *No description available.* |
 | **dates_reconciled** | [GroupReconciliationDates](GroupReconciliationDates.md) | Required | *No description available.* |
 | **reconciliation_run_as_at** | **datetime** | Required | The date and time the reconciliation was run |
@@ -27,7 +27,7 @@ from finbourne.sdk.services.lusid.models.GroupReconciliationSummary import Group
 instance = GroupReconciliationSummary(
     run_details=GroupReconciliationRunDetails(...),  # optional
     group_reconciliation_definition_id=ResourceId(...),  # optional
-    reconciliation_type="...",  # required — The type of reconciliation to perform. \&quot;Holding\&quot; | \&quot;Transaction\&quot; | \&quot;Valuation\&quot;
+    reconciliation_type="...",  # required — The type of reconciliation to perform. Available values: Holding, Transaction, Valuation, CashHolding.
     instance_id=GroupReconciliationInstanceId(...),  # required
     dates_reconciled=GroupReconciliationDates(...),  # required
     reconciliation_run_as_at=datetime.now(),  # required — The date and time the reconciliation was run

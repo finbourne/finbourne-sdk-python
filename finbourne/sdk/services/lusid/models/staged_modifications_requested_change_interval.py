@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -35,7 +35,7 @@ class StagedModificationsRequestedChangeInterval(BaseModel):
     new_value: Optional[PropertyValue] = Field(default=None, alias="newValue")
     as_at_basis:  Optional[StrictStr] = Field(default=None,alias="asAtBasis", description="Whether the change represents the modification when the request was made or the modification as it would be at the latest time.") 
     links: Optional[List[Link]] = None
-    __properties = ["attributeName", "effectiveRange", "previousValue", "newValue", "asAtBasis", "links"]
+    __properties: ClassVar[List[str]] = ["attributeName", "effectiveRange", "previousValue", "newValue", "asAtBasis", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -115,11 +115,11 @@ class StagedModificationsRequestedChangeInterval(BaseModel):
 
         _obj = StagedModificationsRequestedChangeInterval.model_validate({
             "attribute_name": obj.get("attributeName"),
-            "effective_range": StagedModificationEffectiveRange.from_dict(obj.get("effectiveRange")) if obj.get("effectiveRange") is not None else None,
-            "previous_value": PropertyValue.from_dict(obj.get("previousValue")) if obj.get("previousValue") is not None else None,
-            "new_value": PropertyValue.from_dict(obj.get("newValue")) if obj.get("newValue") is not None else None,
+            "effective_range": StagedModificationEffectiveRange.from_dict(_v) if (_v := obj.get("effectiveRange")) is not None else None,
+            "previous_value": PropertyValue.from_dict(_v) if (_v := obj.get("previousValue")) is not None else None,
+            "new_value": PropertyValue.from_dict(_v) if (_v := obj.get("newValue")) is not None else None,
             "as_at_basis": obj.get("asAtBasis"),
-            "links": [Link.from_dict(_item) for _item in obj.get("links")] if obj.get("links") is not None else None
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 

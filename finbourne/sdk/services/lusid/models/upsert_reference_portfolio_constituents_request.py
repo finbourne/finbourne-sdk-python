@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,11 +28,11 @@ class UpsertReferencePortfolioConstituentsRequest(BaseModel):
     UpsertReferencePortfolioConstituentsRequest
     """
     effective_from:  StrictStr = Field(...,alias="effectiveFrom", description="The first date from which the weights will apply") 
-    weight_type:  StrictStr = Field(...,alias="weightType", description="The available values are: Static, Floating, Periodical") 
-    period_type:  Optional[StrictStr] = Field(default=None,alias="periodType", description="The available values are: Daily, Weekly, Monthly, Quarterly, Annually") 
+    weight_type:  StrictStr = Field(...,alias="weightType", description="Available values: Static, Floating, Periodical.") 
+    period_type:  Optional[StrictStr] = Field(default=None,alias="periodType", description="Available values: Daily, Weekly, Monthly, Quarterly, Annually.") 
     period_count: Optional[StrictInt] = Field(default=None, alias="periodCount")
     constituents: List[ReferencePortfolioConstituentRequest] = Field(description="Set of constituents (instrument/weight pairings)")
-    __properties = ["effectiveFrom", "weightType", "periodType", "periodCount", "constituents"]
+    __properties: ClassVar[List[str]] = ["effectiveFrom", "weightType", "periodType", "periodCount", "constituents"]
 
     @field_validator('weight_type')
     def weight_type_validate_enum(cls, value):
@@ -242,7 +242,7 @@ class UpsertReferencePortfolioConstituentsRequest(BaseModel):
             "weight_type": obj.get("weightType"),
             "period_type": obj.get("periodType"),
             "period_count": obj.get("periodCount"),
-            "constituents": [ReferencePortfolioConstituentRequest.from_dict(_item) for _item in obj.get("constituents")] if obj.get("constituents") is not None else None
+            "constituents": [ReferencePortfolioConstituentRequest.from_dict(_item) for _item in _v] if (_v := obj.get("constituents")) is not None else None
         })
         return _obj
 

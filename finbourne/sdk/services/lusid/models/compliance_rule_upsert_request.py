@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,17 +30,17 @@ class ComplianceRuleUpsertRequest(BaseModel):
     scope:  StrictStr = Field(...,alias="scope", description="") 
     code:  Optional[StrictStr] = Field(default=None,alias="code", description="") 
     display_name:  Optional[StrictStr] = Field(default=None,alias="displayName", description="") 
-    type:  StrictStr = Field(...,alias="type", description="") 
+    type:  StrictStr = Field(...,alias="type", description="Available values: RangeNumberSecurities, RangePercentSecurityType, RangePercentCash, RangePercentPropertyKey.") 
     property_key:  Optional[StrictStr] = Field(default=None,alias="propertyKey", description="") 
     value:  Optional[StrictStr] = Field(default=None,alias="value", description="") 
     lower_bound: Union[StrictFloat, StrictInt] = Field(alias="lowerBound")
     upper_bound: Union[StrictFloat, StrictInt] = Field(alias="upperBound")
-    schedule:  StrictStr = Field(...,alias="schedule", description="") 
+    schedule:  StrictStr = Field(...,alias="schedule", description="Available values: PreTrade, PostTrade, PreAndPostTrade.") 
     hard_requirement: StrictBool = Field(alias="hardRequirement")
     target_portfolio_ids: List[ResourceId] = Field(alias="targetPortfolioIds")
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="") 
     address_key:  Optional[StrictStr] = Field(default=None,alias="addressKey", description="") 
-    __properties = ["scope", "code", "displayName", "type", "propertyKey", "value", "lowerBound", "upperBound", "schedule", "hardRequirement", "targetPortfolioIds", "description", "addressKey"]
+    __properties: ClassVar[List[str]] = ["scope", "code", "displayName", "type", "propertyKey", "value", "lowerBound", "upperBound", "schedule", "hardRequirement", "targetPortfolioIds", "description", "addressKey"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -135,7 +135,7 @@ class ComplianceRuleUpsertRequest(BaseModel):
             "upper_bound": obj.get("upperBound"),
             "schedule": obj.get("schedule"),
             "hard_requirement": obj.get("hardRequirement"),
-            "target_portfolio_ids": [ResourceId.from_dict(_item) for _item in obj.get("targetPortfolioIds")] if obj.get("targetPortfolioIds") is not None else None,
+            "target_portfolio_ids": [ResourceId.from_dict(_item) for _item in _v] if (_v := obj.get("targetPortfolioIds")) is not None else None,
             "description": obj.get("description"),
             "address_key": obj.get("addressKey")
         })

@@ -62,12 +62,12 @@ class PersonalAuthenticationTokensApi:
         :return: Returns the result object.
         :rtype: CreatedApiKey
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_api_key_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_api_key_with_http_info(create_api_key, **kwargs)  # noqa: E501
+        response = self.create_api_key_with_http_info(create_api_key, **kwargs)
+        return response.data
 
     @validate_call
     def create_api_key_with_http_info(self, create_api_key: CreateApiKey, **kwargs) -> ApiResponse[CreatedApiKey]:
@@ -189,12 +189,12 @@ class PersonalAuthenticationTokensApi:
         :return: Returns the result object.
         :rtype: ApiKey
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_api_key_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_api_key_with_http_info(id, **kwargs)  # noqa: E501
+        response = self.delete_api_key_with_http_info(id, **kwargs)
+        return response.data
 
     @validate_call
     def delete_api_key_with_http_info(self, id: StrictStr, **kwargs) -> ApiResponse[ApiKey]:
@@ -307,12 +307,12 @@ class PersonalAuthenticationTokensApi:
         :return: Returns the result object.
         :rtype: List[ApiKey]
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_own_api_keys_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_own_api_keys_with_http_info(**kwargs)  # noqa: E501
+        response = self.list_own_api_keys_with_http_info(**kwargs)
+        return response.data
 
     @validate_call
     def list_own_api_keys_with_http_info(self, **kwargs) -> ApiResponse[List[ApiKey]]:
@@ -424,12 +424,12 @@ class PersonalAuthenticationTokensApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: CreatedApiKey
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_api_key_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_api_key_with_http_info_async(create_api_key, **kwargs)  # noqa: E501
+            response = await self.create_api_key_with_http_info_async(create_api_key, **kwargs)
+            return response.data
 
     @validate_call
     async def create_api_key_with_http_info_async(self, create_api_key: CreateApiKey, **kwargs) -> ApiResponse[CreatedApiKey]:
@@ -552,12 +552,12 @@ class PersonalAuthenticationTokensApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ApiKey
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_api_key_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_api_key_with_http_info_async(id, **kwargs)  # noqa: E501
+            response = await self.delete_api_key_with_http_info_async(id, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_api_key_with_http_info_async(self, id: StrictStr, **kwargs) -> ApiResponse[ApiKey]:
@@ -671,12 +671,12 @@ class PersonalAuthenticationTokensApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: List[ApiKey]
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_own_api_keys_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_own_api_keys_with_http_info_async(**kwargs)  # noqa: E501
+            response = await self.list_own_api_keys_with_http_info_async(**kwargs)
+            return response.data
 
     @validate_call
     async def list_own_api_keys_with_http_info_async(self, **kwargs) -> ApiResponse[List[ApiKey]]:

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -38,7 +38,7 @@ class MembershipAmendmentResponse(BaseModel):
     data_model_membership: Optional[DataModelMembership] = Field(default=None, alias="dataModelMembership")
     version: Optional[Version] = None
     staged_modifications: Optional[StagedModificationsInfo] = Field(default=None, alias="stagedModifications")
-    __properties = ["customDataModelId", "entityType", "entityUniqueId", "operation", "entityDisplayName", "dataModelMembership", "version", "stagedModifications"]
+    __properties: ClassVar[List[str]] = ["customDataModelId", "entityType", "entityUniqueId", "operation", "entityDisplayName", "dataModelMembership", "version", "stagedModifications"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -98,14 +98,14 @@ class MembershipAmendmentResponse(BaseModel):
             return MembershipAmendmentResponse.model_validate(obj)
 
         _obj = MembershipAmendmentResponse.model_validate({
-            "custom_data_model_id": ResourceId.from_dict(obj.get("customDataModelId")) if obj.get("customDataModelId") is not None else None,
+            "custom_data_model_id": ResourceId.from_dict(_v) if (_v := obj.get("customDataModelId")) is not None else None,
             "entity_type": obj.get("entityType"),
             "entity_unique_id": obj.get("entityUniqueId"),
             "operation": obj.get("operation"),
             "entity_display_name": obj.get("entityDisplayName"),
-            "data_model_membership": DataModelMembership.from_dict(obj.get("dataModelMembership")) if obj.get("dataModelMembership") is not None else None,
-            "version": Version.from_dict(obj.get("version")) if obj.get("version") is not None else None,
-            "staged_modifications": StagedModificationsInfo.from_dict(obj.get("stagedModifications")) if obj.get("stagedModifications") is not None else None
+            "data_model_membership": DataModelMembership.from_dict(_v) if (_v := obj.get("dataModelMembership")) is not None else None,
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "staged_modifications": StagedModificationsInfo.from_dict(_v) if (_v := obj.get("stagedModifications")) is not None else None
         })
         return _obj
 

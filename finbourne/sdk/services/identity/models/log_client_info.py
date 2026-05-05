@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -34,7 +34,7 @@ class LogClientInfo(BaseModel):
     id:  Optional[StrictStr] = Field(default=None,alias="id") 
     ip_address:  Optional[StrictStr] = Field(default=None,alias="ipAddress") 
     geographical_context: Optional[LogGeographicalContext] = Field(default=None, alias="geographicalContext")
-    __properties = ["userAgent", "zone", "device", "id", "ipAddress", "geographicalContext"]
+    __properties: ClassVar[List[str]] = ["userAgent", "zone", "device", "id", "ipAddress", "geographicalContext"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -108,12 +108,12 @@ class LogClientInfo(BaseModel):
             return LogClientInfo.model_validate(obj)
 
         _obj = LogClientInfo.model_validate({
-            "user_agent": LogUserAgent.from_dict(obj.get("userAgent")) if obj.get("userAgent") is not None else None,
+            "user_agent": LogUserAgent.from_dict(_v) if (_v := obj.get("userAgent")) is not None else None,
             "zone": obj.get("zone"),
             "device": obj.get("device"),
             "id": obj.get("id"),
             "ip_address": obj.get("ipAddress"),
-            "geographical_context": LogGeographicalContext.from_dict(obj.get("geographicalContext")) if obj.get("geographicalContext") is not None else None
+            "geographical_context": LogGeographicalContext.from_dict(_v) if (_v := obj.get("geographicalContext")) is not None else None
         })
         return _obj
 

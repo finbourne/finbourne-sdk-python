@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -32,8 +32,8 @@ class LusidInstrument(BaseModel):
     """
     Base class in the hierarchy for representing the full economic definition of instruments in LUSID.  These definitions are used to provide instrument analytics such as PV, accrual, cash flows, and risk.  This base class should not be directly instantiated; each supported InstrumentType has a corresponding inherited class.  # noqa: E501
     """
-    instrument_type:  StrictStr = Field(...,alias="instrumentType", description="The available values are: QuotedSecurity, InterestRateSwap, FxForward, Future, ExoticInstrument, FxOption, CreditDefaultSwap, InterestRateSwaption, Bond, EquityOption, FixedLeg, FloatingLeg, BespokeCashFlowsLeg, Unknown, TermDeposit, ContractForDifference, EquitySwap, CashPerpetual, CapFloor, CashSettled, CdsIndex, Basket, FundingLeg, FxSwap, ForwardRateAgreement, SimpleInstrument, Repo, Equity, ExchangeTradedOption, ReferenceInstrument, ComplexBond, InflationLinkedBond, InflationSwap, SimpleCashFlowLoan, TotalReturnSwap, InflationLeg, FundShareClass, FlexibleLoan, UnsettledCash, Cash, MasteredInstrument, LoanFacility, FlexibleDeposit, FlexibleRepo") 
-    __properties = ["instrumentType"]
+    instrument_type:  StrictStr = Field(...,alias="instrumentType", description="Available values: QuotedSecurity, InterestRateSwap, FxForward, Future, ExoticInstrument, FxOption, CreditDefaultSwap, InterestRateSwaption, Bond, EquityOption, FixedLeg, FloatingLeg, BespokeCashFlowsLeg, Unknown, TermDeposit, ContractForDifference, EquitySwap, CashPerpetual, CapFloor, CashSettled, CdsIndex, Basket, FundingLeg, FxSwap, ForwardRateAgreement, SimpleInstrument, Repo, Equity, ExchangeTradedOption, ReferenceInstrument, ComplexBond, InflationLinkedBond, InflationSwap, SimpleCashFlowLoan, TotalReturnSwap, InflationLeg, FundShareClass, FlexibleLoan, UnsettledCash, Cash, MasteredInstrument, LoanFacility, FlexibleDeposit, FlexibleRepo.") 
+    __properties: ClassVar[List[str]] = ["instrumentType"]
 
     @field_validator('instrument_type')
     def instrument_type_validate_enum(cls, value):
@@ -111,10 +111,10 @@ class LusidInstrument(BaseModel):
     )
 
     # JSON field name that stores the object type
-    __discriminator_property_name = 'instrumentType'
+    __discriminator_property_name: ClassVar[str] = 'instrumentType'
 
     # discriminator mappings
-    __discriminator_value_class_map = {
+    __discriminator_value_class_map: ClassVar[Dict[str, str]] = {
         'Basket': 'Basket',
         'Bond': 'Bond',
         'CapFloor': 'CapFloor',
@@ -158,20 +158,11 @@ class LusidInstrument(BaseModel):
     }
 
     @classmethod
-    def get_discriminator_value(cls, obj: dict) -> str:
+    def get_discriminator_value(cls, obj: dict) -> str | None:
         """Returns the discriminator value (object type) of the data"""
-        discriminator_value = cls.__discriminator_property_name
-        if not isinstance(cls.__discriminator_property_name, str) and getattr(cls.__discriminator_property_name, 'default', None):
-            discriminator_value = cls.__discriminator_property_name.default
-
-        discriminator_value = obj[discriminator_value]
+        discriminator_value = obj[cls.__discriminator_property_name]
         if discriminator_value:
-            discriminator_dict = cls.__discriminator_value_class_map
-            
-            if not isinstance(cls.__discriminator_value_class_map, dict) and getattr(cls.__discriminator_value_class_map, 'default', None):
-                discriminator_dict = cls.__discriminator_value_class_map.default
-            
-            return discriminator_dict.get(discriminator_value)
+            return cls.__discriminator_value_class_map.get(discriminator_value)
         else:
             return None
 
@@ -192,7 +183,7 @@ class LusidInstrument(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Union[Basket, Bond, CapFloor, Cash, CashPerpetual, CdsIndex, ComplexBond, ContractForDifference, CreditDefaultSwap, Equity, EquityOption, EquitySwap, ExchangeTradedOption, ExoticInstrument, FlexibleDeposit, FlexibleLoan, FlexibleRepo, ForwardRateAgreement, FundShareClass, Future, FxForward, FxOption, FxSwap, InflationLeg, InflationLinkedBond, InflationSwap, InstrumentLeg, InterestRateSwap, InterestRateSwaption, LoanFacility, MasteredInstrument, ReferenceInstrument, Repo, SimpleCashFlowLoan, SimpleInstrument, TermDeposit, TotalReturnSwap]:
+    def from_json(cls, json_str: str) -> Union[Basket, Bond, CapFloor, Cash, CashPerpetual, CdsIndex, ComplexBond, ContractForDifference, CreditDefaultSwap, Equity, EquityOption, EquitySwap, ExchangeTradedOption, ExoticInstrument, FlexibleDeposit, FlexibleLoan, FlexibleRepo, ForwardRateAgreement, FundShareClass, Future, FxForward, FxOption, FxSwap, InflationLeg, InflationLinkedBond, InflationSwap, InstrumentLeg, InterestRateSwap, InterestRateSwaption, LoanFacility, MasteredInstrument, ReferenceInstrument, Repo, SimpleCashFlowLoan, SimpleInstrument, TermDeposit, TotalReturnSwap, LusidInstrument]:
         """Create an instance of LusidInstrument from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -206,29 +197,19 @@ class LusidInstrument(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Union[Basket, Bond, CapFloor, Cash, CashPerpetual, CdsIndex, ComplexBond, ContractForDifference, CreditDefaultSwap, Equity, EquityOption, EquitySwap, ExchangeTradedOption, ExoticInstrument, FlexibleDeposit, FlexibleLoan, FlexibleRepo, ForwardRateAgreement, FundShareClass, Future, FxForward, FxOption, FxSwap, InflationLeg, InflationLinkedBond, InflationSwap, InstrumentLeg, InterestRateSwap, InterestRateSwaption, LoanFacility, MasteredInstrument, ReferenceInstrument, Repo, SimpleCashFlowLoan, SimpleInstrument, TermDeposit, TotalReturnSwap]:
+    def from_dict(cls, obj: dict) -> Union[Basket, Bond, CapFloor, Cash, CashPerpetual, CdsIndex, ComplexBond, ContractForDifference, CreditDefaultSwap, Equity, EquityOption, EquitySwap, ExchangeTradedOption, ExoticInstrument, FlexibleDeposit, FlexibleLoan, FlexibleRepo, ForwardRateAgreement, FundShareClass, Future, FxForward, FxOption, FxSwap, InflationLeg, InflationLinkedBond, InflationSwap, InstrumentLeg, InterestRateSwap, InterestRateSwaption, LoanFacility, MasteredInstrument, ReferenceInstrument, Repo, SimpleCashFlowLoan, SimpleInstrument, TermDeposit, TotalReturnSwap, LusidInstrument]:
         """Create an instance of LusidInstrument from a dict"""
         # look up the object type based on discriminator mapping
         object_type = cls.get_discriminator_value(obj)
         if object_type:
             klass = getattr(finbourne.sdk.services.lusid.models, object_type)
             return klass.from_dict(obj)
+        elif obj.get(cls.__discriminator_property_name):
+            return cls.model_validate(obj)
         else:
-            discriminator_value = cls.__discriminator_property_name
-            if not isinstance(cls.__discriminator_property_name, str) and getattr(cls.__discriminator_property_name, 'default', None):
-                discriminator_value = cls.__discriminator_property_name.default
-
-            discriminator_value = obj[discriminator_value]
-            if discriminator_value:
-                discriminator_dict = cls.__discriminator_value_class_map
-                
-                # Fix: Handle ModelPrivateAttr for error message
-                if not isinstance(cls.__discriminator_value_class_map, dict) and getattr(cls.__discriminator_value_class_map, 'default', None):
-                    discriminator_dict = cls.__discriminator_value_class_map.default
-            else:                
-                raise ValueError("ResultKeyRule failed to lookup discriminator value from " +
-                                json.dumps(obj) + ". Discriminator property name: " + str(discriminator_value) +
-                                ", mapping: " + json.dumps(discriminator_dict if isinstance(discriminator_dict, dict) else {}))
+            raise ValueError("Failed to lookup discriminator value from " +
+                            json.dumps(obj) + ". Discriminator property name: " + cls.__discriminator_property_name +
+                            ", mapping: " + json.dumps(cls.__discriminator_value_class_map))
 
 LusidInstrument.model_rebuild()
 

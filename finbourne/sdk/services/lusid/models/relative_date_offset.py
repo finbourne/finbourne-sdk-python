@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -27,9 +27,9 @@ class RelativeDateOffset(BaseModel):
     Defines a date offset which is relative to some anchor date.  # noqa: E501
     """
     days: StrictInt = Field(description="The number of days to add to the anchor date.")
-    business_day_convention:  StrictStr = Field(...,alias="businessDayConvention", description="The adjustment type to apply to dates that fall upon a non-business day, e.g. modified following or following.    Supported string (enumeration) values are: [NoAdjustment, Previous, P, Following, F, ModifiedPrevious, MP, ModifiedFollowing, MF, HalfMonthModifiedFollowing, Nearest].") 
-    day_type:  Optional[StrictStr] = Field(default=None,alias="dayType", description="Indicates if consideration is given to whether a day is a good business day or not when calculating the offset date.    Supported string (enumeration) values are: [Business, Calendar].  Defaults to \"Business\" if not set.") 
-    __properties = ["days", "businessDayConvention", "dayType"]
+    business_day_convention:  StrictStr = Field(...,alias="businessDayConvention", description="The adjustment type to apply to dates that fall upon a non-business day, e.g. modified following or following. Available values: NoAdjustment, None, Previous, P, Following, F, ModifiedPrevious, MP, ModifiedFollowing, MF, HalfMonthModifiedFollowing, Nearest, Invalid.") 
+    day_type:  Optional[StrictStr] = Field(default=None,alias="dayType", description="Indicates if consideration is given to whether a day is a good business day or not when calculating the offset date.    Default value: Business. Available values: Business, Calendar.") 
+    __properties: ClassVar[List[str]] = ["days", "businessDayConvention", "dayType"]
 
     model_config = ConfigDict(
         populate_by_name=True,

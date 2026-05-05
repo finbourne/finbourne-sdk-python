@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class EvaluationRequest(BaseModel):
     """
     request: RequestDetails
     resource: ResourceDetails
-    __properties = ["request", "resource"]
+    __properties: ClassVar[List[str]] = ["request", "resource"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -84,8 +84,8 @@ class EvaluationRequest(BaseModel):
             return EvaluationRequest.model_validate(obj)
 
         _obj = EvaluationRequest.model_validate({
-            "request": RequestDetails.from_dict(obj.get("request")) if obj.get("request") is not None else None,
-            "resource": ResourceDetails.from_dict(obj.get("resource")) if obj.get("resource") is not None else None
+            "request": RequestDetails.from_dict(_v) if (_v := obj.get("request")) is not None else None,
+            "resource": ResourceDetails.from_dict(_v) if (_v := obj.get("resource")) is not None else None
         })
         return _obj
 

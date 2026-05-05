@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -28,7 +28,7 @@ class Histogram(BaseModel):
     A histogram showing an item's count in buckets of equal timespans.  # noqa: E501
     """
     buckets: Optional[List[Bucket]] = Field(default=None, description="An ordered list of the histogram buckets.")
-    __properties = ["buckets"]
+    __properties: ClassVar[List[str]] = ["buckets"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,7 +88,7 @@ class Histogram(BaseModel):
             return Histogram.model_validate(obj)
 
         _obj = Histogram.model_validate({
-            "buckets": [Bucket.from_dict(_item) for _item in obj.get("buckets")] if obj.get("buckets") is not None else None
+            "buckets": [Bucket.from_dict(_item) for _item in _v] if (_v := obj.get("buckets")) is not None else None
         })
         return _obj
 

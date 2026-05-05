@@ -67,12 +67,12 @@ class JobsApi:
         :return: Returns the result object.
         :rtype: JobDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_job_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_job_with_http_info(create_job_request, **kwargs)  # noqa: E501
+        response = self.create_job_with_http_info(create_job_request, **kwargs)
+        return response.data
 
     @validate_call
     def create_job_with_http_info(self, create_job_request: CreateJobRequest, **kwargs) -> ApiResponse[JobDefinition]:
@@ -194,12 +194,12 @@ class JobsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfScheduleDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_job_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_job_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_job_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_job_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[ResourceListOfScheduleDefinition]:
@@ -326,12 +326,12 @@ class JobsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfJobHistory
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_history_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_history_with_http_info(page, sort_by, start, limit, filter, **kwargs)  # noqa: E501
+        response = self.get_history_with_http_info(page, sort_by, start, limit, filter, **kwargs)
+        return response.data
 
     @validate_call
     def get_history_with_http_info(self, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, start: Optional[int] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfJobHistory]:
@@ -469,12 +469,12 @@ class JobsApi:
         :return: Returns the result object.
         :rtype: str
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_job_console_output_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_job_console_output_with_http_info(run_id, **kwargs)  # noqa: E501
+        response = self.get_job_console_output_with_http_info(run_id, **kwargs)
+        return response.data
 
     @validate_call
     def get_job_console_output_with_http_info(self, run_id: StrictStr, **kwargs) -> ApiResponse[str]:
@@ -587,12 +587,12 @@ class JobsApi:
         :return: Returns the result object.
         :rtype: JobRunResult
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_run_history_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_run_history_with_http_info(run_id, **kwargs)  # noqa: E501
+        response = self.get_run_history_with_http_info(run_id, **kwargs)
+        return response.data
 
     @validate_call
     def get_run_history_with_http_info(self, run_id: StrictStr, **kwargs) -> ApiResponse[JobRunResult]:
@@ -707,12 +707,12 @@ class JobsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfScheduleDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_schedules_for_a_job_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_schedules_for_a_job_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.get_schedules_for_a_job_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def get_schedules_for_a_job_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[ResourceListOfScheduleDefinition]:
@@ -839,12 +839,12 @@ class JobsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfJobDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_jobs_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_jobs_with_http_info(page, sort_by, start, limit, filter, **kwargs)  # noqa: E501
+        response = self.list_jobs_with_http_info(page, sort_by, start, limit, filter, **kwargs)
+        return response.data
 
     @validate_call
     def list_jobs_with_http_info(self, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, start: Optional[int] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfJobDefinition]:
@@ -986,12 +986,12 @@ class JobsApi:
         :return: Returns the result object.
         :rtype: StartJobResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the run_job_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.run_job_with_http_info(scope, code, start_job_request, **kwargs)  # noqa: E501
+        response = self.run_job_with_http_info(scope, code, start_job_request, **kwargs)
+        return response.data
 
     @validate_call
     def run_job_with_http_info(self, scope: StrictStr, code: StrictStr, start_job_request: StartJobRequest, **kwargs) -> ApiResponse[StartJobResponse]:
@@ -1127,12 +1127,12 @@ class JobsApi:
         :return: Returns the result object.
         :rtype: JobDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_job_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.update_job_with_http_info(scope, code, update_job_request, **kwargs)  # noqa: E501
+        response = self.update_job_with_http_info(scope, code, update_job_request, **kwargs)
+        return response.data
 
     @validate_call
     def update_job_with_http_info(self, scope: StrictStr, code: StrictStr, update_job_request: UpdateJobRequest, **kwargs) -> ApiResponse[JobDefinition]:
@@ -1268,12 +1268,12 @@ class JobsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: JobDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_job_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_job_with_http_info_async(create_job_request, **kwargs)  # noqa: E501
+            response = await self.create_job_with_http_info_async(create_job_request, **kwargs)
+            return response.data
 
     @validate_call
     async def create_job_with_http_info_async(self, create_job_request: CreateJobRequest, **kwargs) -> ApiResponse[JobDefinition]:
@@ -1396,12 +1396,12 @@ class JobsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfScheduleDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_job_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_job_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_job_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_job_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[ResourceListOfScheduleDefinition]:
@@ -1529,12 +1529,12 @@ class JobsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfJobHistory
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_history_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_history_with_http_info_async(page, sort_by, start, limit, filter, **kwargs)  # noqa: E501
+            response = await self.get_history_with_http_info_async(page, sort_by, start, limit, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def get_history_with_http_info_async(self, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, start: Optional[int] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfJobHistory]:
@@ -1673,12 +1673,12 @@ class JobsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: str
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_job_console_output_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_job_console_output_with_http_info_async(run_id, **kwargs)  # noqa: E501
+            response = await self.get_job_console_output_with_http_info_async(run_id, **kwargs)
+            return response.data
 
     @validate_call
     async def get_job_console_output_with_http_info_async(self, run_id: StrictStr, **kwargs) -> ApiResponse[str]:
@@ -1792,12 +1792,12 @@ class JobsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: JobRunResult
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_run_history_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_run_history_with_http_info_async(run_id, **kwargs)  # noqa: E501
+            response = await self.get_run_history_with_http_info_async(run_id, **kwargs)
+            return response.data
 
     @validate_call
     async def get_run_history_with_http_info_async(self, run_id: StrictStr, **kwargs) -> ApiResponse[JobRunResult]:
@@ -1913,12 +1913,12 @@ class JobsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfScheduleDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_schedules_for_a_job_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_schedules_for_a_job_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.get_schedules_for_a_job_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def get_schedules_for_a_job_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[ResourceListOfScheduleDefinition]:
@@ -2046,12 +2046,12 @@ class JobsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfJobDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_jobs_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_jobs_with_http_info_async(page, sort_by, start, limit, filter, **kwargs)  # noqa: E501
+            response = await self.list_jobs_with_http_info_async(page, sort_by, start, limit, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def list_jobs_with_http_info_async(self, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, start: Optional[int] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfJobDefinition]:
@@ -2194,12 +2194,12 @@ class JobsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: StartJobResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the run_job_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.run_job_with_http_info_async(scope, code, start_job_request, **kwargs)  # noqa: E501
+            response = await self.run_job_with_http_info_async(scope, code, start_job_request, **kwargs)
+            return response.data
 
     @validate_call
     async def run_job_with_http_info_async(self, scope: StrictStr, code: StrictStr, start_job_request: StartJobRequest, **kwargs) -> ApiResponse[StartJobResponse]:
@@ -2336,12 +2336,12 @@ class JobsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: JobDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the update_job_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.update_job_with_http_info_async(scope, code, update_job_request, **kwargs)  # noqa: E501
+            response = await self.update_job_with_http_info_async(scope, code, update_job_request, **kwargs)
+            return response.data
 
     @validate_call
     async def update_job_with_http_info_async(self, scope: StrictStr, code: StrictStr, update_job_request: UpdateJobRequest, **kwargs) -> ApiResponse[JobDefinition]:

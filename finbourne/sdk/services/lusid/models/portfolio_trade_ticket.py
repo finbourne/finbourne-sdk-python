@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class PortfolioTradeTicket(BaseModel):
     """
     source_portfolio_id: Optional[ResourceId] = Field(default=None, alias="sourcePortfolioId")
     trade_ticket: Optional[LusidTradeTicket] = Field(default=None, alias="tradeTicket")
-    __properties = ["sourcePortfolioId", "tradeTicket"]
+    __properties: ClassVar[List[str]] = ["sourcePortfolioId", "tradeTicket"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -84,8 +84,8 @@ class PortfolioTradeTicket(BaseModel):
             return PortfolioTradeTicket.model_validate(obj)
 
         _obj = PortfolioTradeTicket.model_validate({
-            "source_portfolio_id": ResourceId.from_dict(obj.get("sourcePortfolioId")) if obj.get("sourcePortfolioId") is not None else None,
-            "trade_ticket": LusidTradeTicket.from_dict(obj.get("tradeTicket")) if obj.get("tradeTicket") is not None else None
+            "source_portfolio_id": ResourceId.from_dict(_v) if (_v := obj.get("sourcePortfolioId")) is not None else None,
+            "trade_ticket": LusidTradeTicket.from_dict(_v) if (_v := obj.get("tradeTicket")) is not None else None
         })
         return _obj
 

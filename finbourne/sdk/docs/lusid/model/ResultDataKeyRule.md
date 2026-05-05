@@ -12,7 +12,7 @@
 | **resource_key** | **str** | Required | The result data key that identifies the address pattern that this is a rule for |
 | **document_result_type** | **str** | Required | *No description available.* |
 | **use_document_to_infer_holdings** | **bool** | Optional | Indicates whether the relevant document should be used to infer the set of holdings in the valuation. |
-| **result_key_rule_type** | **str** | Required | The available values are: Invalid, ResultDataKeyRule, PortfolioResultDataKeyRule |
+| **result_key_rule_type** | **str** | Required | Available values: Invalid, ResultDataKeyRule, PortfolioResultDataKeyRule. |
 
 
 ## Usage
@@ -31,7 +31,7 @@ instance = ResultDataKeyRule(
     resource_key="...",  # required — The result data key that identifies the address pattern that this is a rule for
     document_result_type="...",  # required
     use_document_to_infer_holdings=True,  # optional — Indicates whether the relevant document should be used to infer the set of holdings in the valuation.
-    result_key_rule_type="..."  # required — The available values are: Invalid, ResultDataKeyRule, PortfolioResultDataKeyRule
+    result_key_rule_type="..."  # required — Available values: Invalid, ResultDataKeyRule, PortfolioResultDataKeyRule.
 )
 ```
 

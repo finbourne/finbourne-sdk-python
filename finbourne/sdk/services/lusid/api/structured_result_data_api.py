@@ -74,12 +74,12 @@ class StructuredResultDataApi:
         :return: Returns the result object.
         :rtype: UpsertStructuredDataResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_data_map_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.create_data_map_with_http_info(scope, request_body, **kwargs)  # noqa: E501
+        response = self.create_data_map_with_http_info(scope, request_body, **kwargs)
+        return response.data
 
     @validate_call
     def create_data_map_with_http_info(self, scope: StrictStr, request_body: Dict[str, CreateDataMapRequest], **kwargs) -> ApiResponse[UpsertStructuredDataResponse]:
@@ -209,12 +209,12 @@ class StructuredResultDataApi:
         :return: Returns the result object.
         :rtype: AnnulStructuredDataResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_structured_result_data_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_structured_result_data_with_http_info(scope, request_body, **kwargs)  # noqa: E501
+        response = self.delete_structured_result_data_with_http_info(scope, request_body, **kwargs)
+        return response.data
 
     @validate_call
     def delete_structured_result_data_with_http_info(self, scope: StrictStr, request_body: Dict[str, StructuredResultDataId], **kwargs) -> ApiResponse[AnnulStructuredDataResponse]:
@@ -352,12 +352,12 @@ class StructuredResultDataApi:
         :return: Returns the result object.
         :rtype: ResourceListOfAddressKeyDefinition
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_address_key_definitions_for_document_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_address_key_definitions_for_document_with_http_info(scope, code, source, result_type, effective_at, as_at, **kwargs)  # noqa: E501
+        response = self.get_address_key_definitions_for_document_with_http_info(scope, code, source, result_type, effective_at, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_address_key_definitions_for_document_with_http_info(self, scope: StrictStr, code: StrictStr, source: StrictStr, result_type: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfAddressKeyDefinition]:
@@ -507,12 +507,12 @@ class StructuredResultDataApi:
         :return: Returns the result object.
         :rtype: GetDataMapResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_data_map_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_data_map_with_http_info(scope, request_body, **kwargs)  # noqa: E501
+        response = self.get_data_map_with_http_info(scope, request_body, **kwargs)
+        return response.data
 
     @validate_call
     def get_data_map_with_http_info(self, scope: StrictStr, request_body: Dict[str, DataMapKey], **kwargs) -> ApiResponse[GetDataMapResponse]:
@@ -646,12 +646,12 @@ class StructuredResultDataApi:
         :return: Returns the result object.
         :rtype: GetStructuredResultDataResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_structured_result_data_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_structured_result_data_with_http_info(scope, request_body, as_at, max_age, **kwargs)  # noqa: E501
+        response = self.get_structured_result_data_with_http_info(scope, request_body, as_at, max_age, **kwargs)
+        return response.data
 
     @validate_call
     def get_structured_result_data_with_http_info(self, scope: StrictStr, request_body: Dict[str, StructuredResultDataId], as_at: Optional[datetime] = None, max_age: Optional[StrictStr] = None, **kwargs) -> ApiResponse[GetStructuredResultDataResponse]:
@@ -798,12 +798,12 @@ class StructuredResultDataApi:
         :return: Returns the result object.
         :rtype: GetVirtualDocumentResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_virtual_document_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_virtual_document_with_http_info(scope, request_body, as_at, **kwargs)  # noqa: E501
+        response = self.get_virtual_document_with_http_info(scope, request_body, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def get_virtual_document_with_http_info(self, scope: StrictStr, request_body: Dict[str, StructuredResultDataId], as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[GetVirtualDocumentResponse]:
@@ -956,12 +956,12 @@ class StructuredResultDataApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfVirtualRow
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_virtual_document_rows_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_virtual_document_rows_with_http_info(scope, code, source, result_type, effective_at, as_at, page, limit, filter, **kwargs)  # noqa: E501
+        response = self.get_virtual_document_rows_with_http_info(scope, code, source, result_type, effective_at, as_at, page, limit, filter, **kwargs)
+        return response.data
 
     @validate_call
     def get_virtual_document_rows_with_http_info(self, scope: StrictStr, code: StrictStr, source: StrictStr, result_type: StrictStr, effective_at: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfVirtualRow]:
@@ -1129,12 +1129,12 @@ class StructuredResultDataApi:
         :return: Returns the result object.
         :rtype: UpsertStructuredDataResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_result_value_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_result_value_with_http_info(scope, request_body, **kwargs)  # noqa: E501
+        response = self.upsert_result_value_with_http_info(scope, request_body, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_result_value_with_http_info(self, scope: StrictStr, request_body: Dict[str, UpsertResultValuesDataRequest], **kwargs) -> ApiResponse[UpsertStructuredDataResponse]:
@@ -1264,12 +1264,12 @@ class StructuredResultDataApi:
         :return: Returns the result object.
         :rtype: UpsertStructuredDataResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_structured_result_data_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_structured_result_data_with_http_info(scope, request_body, **kwargs)  # noqa: E501
+        response = self.upsert_structured_result_data_with_http_info(scope, request_body, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_structured_result_data_with_http_info(self, scope: StrictStr, request_body: Dict[str, UpsertStructuredResultDataRequest], **kwargs) -> ApiResponse[UpsertStructuredDataResponse]:
@@ -1403,12 +1403,12 @@ class StructuredResultDataApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: UpsertStructuredDataResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the create_data_map_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.create_data_map_with_http_info_async(scope, request_body, **kwargs)  # noqa: E501
+            response = await self.create_data_map_with_http_info_async(scope, request_body, **kwargs)
+            return response.data
 
     @validate_call
     async def create_data_map_with_http_info_async(self, scope: StrictStr, request_body: Dict[str, CreateDataMapRequest], **kwargs) -> ApiResponse[UpsertStructuredDataResponse]:
@@ -1539,12 +1539,12 @@ class StructuredResultDataApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: AnnulStructuredDataResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_structured_result_data_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_structured_result_data_with_http_info_async(scope, request_body, **kwargs)  # noqa: E501
+            response = await self.delete_structured_result_data_with_http_info_async(scope, request_body, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_structured_result_data_with_http_info_async(self, scope: StrictStr, request_body: Dict[str, StructuredResultDataId], **kwargs) -> ApiResponse[AnnulStructuredDataResponse]:
@@ -1683,12 +1683,12 @@ class StructuredResultDataApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfAddressKeyDefinition
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_address_key_definitions_for_document_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_address_key_definitions_for_document_with_http_info_async(scope, code, source, result_type, effective_at, as_at, **kwargs)  # noqa: E501
+            response = await self.get_address_key_definitions_for_document_with_http_info_async(scope, code, source, result_type, effective_at, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_address_key_definitions_for_document_with_http_info_async(self, scope: StrictStr, code: StrictStr, source: StrictStr, result_type: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfAddressKeyDefinition]:
@@ -1839,12 +1839,12 @@ class StructuredResultDataApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: GetDataMapResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_data_map_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_data_map_with_http_info_async(scope, request_body, **kwargs)  # noqa: E501
+            response = await self.get_data_map_with_http_info_async(scope, request_body, **kwargs)
+            return response.data
 
     @validate_call
     async def get_data_map_with_http_info_async(self, scope: StrictStr, request_body: Dict[str, DataMapKey], **kwargs) -> ApiResponse[GetDataMapResponse]:
@@ -1979,12 +1979,12 @@ class StructuredResultDataApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: GetStructuredResultDataResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_structured_result_data_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_structured_result_data_with_http_info_async(scope, request_body, as_at, max_age, **kwargs)  # noqa: E501
+            response = await self.get_structured_result_data_with_http_info_async(scope, request_body, as_at, max_age, **kwargs)
+            return response.data
 
     @validate_call
     async def get_structured_result_data_with_http_info_async(self, scope: StrictStr, request_body: Dict[str, StructuredResultDataId], as_at: Optional[datetime] = None, max_age: Optional[StrictStr] = None, **kwargs) -> ApiResponse[GetStructuredResultDataResponse]:
@@ -2132,12 +2132,12 @@ class StructuredResultDataApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: GetVirtualDocumentResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_virtual_document_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_virtual_document_with_http_info_async(scope, request_body, as_at, **kwargs)  # noqa: E501
+            response = await self.get_virtual_document_with_http_info_async(scope, request_body, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def get_virtual_document_with_http_info_async(self, scope: StrictStr, request_body: Dict[str, StructuredResultDataId], as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[GetVirtualDocumentResponse]:
@@ -2291,12 +2291,12 @@ class StructuredResultDataApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfVirtualRow
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_virtual_document_rows_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_virtual_document_rows_with_http_info_async(scope, code, source, result_type, effective_at, as_at, page, limit, filter, **kwargs)  # noqa: E501
+            response = await self.get_virtual_document_rows_with_http_info_async(scope, code, source, result_type, effective_at, as_at, page, limit, filter, **kwargs)
+            return response.data
 
     @validate_call
     async def get_virtual_document_rows_with_http_info_async(self, scope: StrictStr, code: StrictStr, source: StrictStr, result_type: StrictStr, effective_at: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfVirtualRow]:
@@ -2465,12 +2465,12 @@ class StructuredResultDataApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: UpsertStructuredDataResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_result_value_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_result_value_with_http_info_async(scope, request_body, **kwargs)  # noqa: E501
+            response = await self.upsert_result_value_with_http_info_async(scope, request_body, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_result_value_with_http_info_async(self, scope: StrictStr, request_body: Dict[str, UpsertResultValuesDataRequest], **kwargs) -> ApiResponse[UpsertStructuredDataResponse]:
@@ -2601,12 +2601,12 @@ class StructuredResultDataApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: UpsertStructuredDataResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_structured_result_data_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_structured_result_data_with_http_info_async(scope, request_body, **kwargs)  # noqa: E501
+            response = await self.upsert_structured_result_data_with_http_info_async(scope, request_body, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_structured_result_data_with_http_info_async(self, scope: StrictStr, request_body: Dict[str, UpsertStructuredResultDataRequest], **kwargs) -> ApiResponse[UpsertStructuredDataResponse]:

@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -31,7 +31,7 @@ class IdSelectorDefinition(BaseModel):
     actions: List[ActionId]
     name:  Optional[StrictStr] = Field(default=None,alias="name") 
     description:  Optional[StrictStr] = Field(default=None,alias="description") 
-    __properties = ["identifier", "actions", "name", "description"]
+    __properties: ClassVar[List[str]] = ["identifier", "actions", "name", "description"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -97,7 +97,7 @@ class IdSelectorDefinition(BaseModel):
 
         _obj = IdSelectorDefinition.model_validate({
             "identifier": obj.get("identifier"),
-            "actions": [ActionId.from_dict(_item) for _item in obj.get("actions")] if obj.get("actions") is not None else None,
+            "actions": [ActionId.from_dict(_item) for _item in _v] if (_v := obj.get("actions")) is not None else None,
             "name": obj.get("name"),
             "description": obj.get("description")
         })

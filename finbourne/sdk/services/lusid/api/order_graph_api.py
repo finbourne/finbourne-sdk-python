@@ -74,12 +74,12 @@ class OrderGraphApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfOrderGraphBlock
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_order_graph_blocks_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_order_graph_blocks_with_http_info(as_at, pagination_token, sort_by, limit, filter, property_keys, use_compliance_v2, **kwargs)  # noqa: E501
+        response = self.list_order_graph_blocks_with_http_info(as_at, pagination_token, sort_by, limit, filter, property_keys, use_compliance_v2, **kwargs)
+        return response.data
 
     @validate_call
     def list_order_graph_blocks_with_http_info(self, as_at: Optional[datetime] = None, pagination_token: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, use_compliance_v2: Optional[bool] = None, **kwargs) -> ApiResponse[PagedResourceListOfOrderGraphBlock]:
@@ -247,12 +247,12 @@ class OrderGraphApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfOrderGraphPlacement
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_order_graph_placement_children_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_order_graph_placement_children_with_http_info(scope, code, as_at, pagination_token, sort_by, limit, property_keys, **kwargs)  # noqa: E501
+        response = self.list_order_graph_placement_children_with_http_info(scope, code, as_at, pagination_token, sort_by, limit, property_keys, **kwargs)
+        return response.data
 
     @validate_call
     def list_order_graph_placement_children_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, pagination_token: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfOrderGraphPlacement]:
@@ -418,12 +418,12 @@ class OrderGraphApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfOrderGraphPlacement
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_order_graph_placements_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_order_graph_placements_with_http_info(as_at, pagination_token, sort_by, limit, filter, property_keys, **kwargs)  # noqa: E501
+        response = self.list_order_graph_placements_with_http_info(as_at, pagination_token, sort_by, limit, filter, property_keys, **kwargs)
+        return response.data
 
     @validate_call
     def list_order_graph_placements_with_http_info(self, as_at: Optional[datetime] = None, pagination_token: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfOrderGraphPlacement]:
@@ -589,12 +589,12 @@ class OrderGraphApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfOrderGraphBlock
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_order_graph_blocks_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_order_graph_blocks_with_http_info_async(as_at, pagination_token, sort_by, limit, filter, property_keys, use_compliance_v2, **kwargs)  # noqa: E501
+            response = await self.list_order_graph_blocks_with_http_info_async(as_at, pagination_token, sort_by, limit, filter, property_keys, use_compliance_v2, **kwargs)
+            return response.data
 
     @validate_call
     async def list_order_graph_blocks_with_http_info_async(self, as_at: Optional[datetime] = None, pagination_token: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, use_compliance_v2: Optional[bool] = None, **kwargs) -> ApiResponse[PagedResourceListOfOrderGraphBlock]:
@@ -763,12 +763,12 @@ class OrderGraphApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfOrderGraphPlacement
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_order_graph_placement_children_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_order_graph_placement_children_with_http_info_async(scope, code, as_at, pagination_token, sort_by, limit, property_keys, **kwargs)  # noqa: E501
+            response = await self.list_order_graph_placement_children_with_http_info_async(scope, code, as_at, pagination_token, sort_by, limit, property_keys, **kwargs)
+            return response.data
 
     @validate_call
     async def list_order_graph_placement_children_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, pagination_token: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfOrderGraphPlacement]:
@@ -935,12 +935,12 @@ class OrderGraphApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfOrderGraphPlacement
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_order_graph_placements_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_order_graph_placements_with_http_info_async(as_at, pagination_token, sort_by, limit, filter, property_keys, **kwargs)  # noqa: E501
+            response = await self.list_order_graph_placements_with_http_info_async(as_at, pagination_token, sort_by, limit, filter, property_keys, **kwargs)
+            return response.data
 
     @validate_call
     async def list_order_graph_placements_with_http_info_async(self, as_at: Optional[datetime] = None, pagination_token: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfOrderGraphPlacement]:

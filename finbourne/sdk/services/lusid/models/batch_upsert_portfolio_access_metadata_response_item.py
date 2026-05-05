@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class BatchUpsertPortfolioAccessMetadataResponseItem(BaseModel):
     """
     portfolio_id: ResourceId = Field(alias="portfolioId")
     metadata: Dict[str, Optional[List[AccessMetadataValue]]]
-    __properties = ["portfolioId", "metadata"]
+    __properties: ClassVar[List[str]] = ["portfolioId", "metadata"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -73,9 +73,9 @@ class BatchUpsertPortfolioAccessMetadataResponseItem(BaseModel):
         _field_dict_of_array = {}
         if self.metadata:
             for _key in self.metadata:
-                if self.metadata[_key]:
+                if (_items_for_key := self.metadata[_key]):
                     _field_dict_of_array[_key] = [
-                        _item.to_dict() for _item in self.metadata[_key]
+                        _item.to_dict() for _item in _items_for_key
                     ]
             _dict['metadata'] = _field_dict_of_array
         return _dict
@@ -90,16 +90,16 @@ class BatchUpsertPortfolioAccessMetadataResponseItem(BaseModel):
             return BatchUpsertPortfolioAccessMetadataResponseItem.model_validate(obj)
 
         _obj = BatchUpsertPortfolioAccessMetadataResponseItem.model_validate({
-            "portfolio_id": ResourceId.from_dict(obj.get("portfolioId")) if obj.get("portfolioId") is not None else None,
+            "portfolio_id": ResourceId.from_dict(_v) if (_v := obj.get("portfolioId")) is not None else None,
             "metadata": dict(
                 (_k,
                         [AccessMetadataValue.from_dict(_item) for _item in _v]
                         if _v is not None
                         else None
                 )
-                for _k, _v in obj.get("metadata").items()
+                for _k, _v in _val.items()
             )
-            if obj.get("metadata") is not None
+            if (_val := obj.get("metadata")) is not None
             else None
         })
         return _obj

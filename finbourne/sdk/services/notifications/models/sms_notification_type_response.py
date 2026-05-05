@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class SmsNotificationTypeResponse(BaseModel):
     type:  Optional[StrictStr] = Field(default=None,alias="type", description="The type of delivery mechanism for this notification") 
     body:  Optional[StrictStr] = Field(default=None,alias="body", description="The body of the SMS") 
     recipients: Optional[List[StrictStr]] = Field(default=None, description="The phone numbers to which the SMS will be sent to (E.164 format)")
-    __properties = ["type", "body", "recipients"]
+    __properties: ClassVar[List[str]] = ["type", "body", "recipients"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):

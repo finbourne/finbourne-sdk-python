@@ -1,6 +1,6 @@
-# ClientConfigurationResponse
+# VersionedConfigurationResponse
 
-Represents a versioned client configuration record.
+Represents a versioned configuration record.
 ## Properties
 
 | Name | Type | Required | Description |
@@ -18,9 +18,9 @@ Represents a versioned client configuration record.
 ### Creating from keyword arguments
 
 ```python
-from finbourne.sdk.services.horizon.models.ClientConfigurationResponse import ClientConfigurationResponse
+from finbourne.sdk.services.horizon.models.VersionedConfigurationResponse import VersionedConfigurationResponse
 
-instance = ClientConfigurationResponse(
+instance = VersionedConfigurationResponse(
     name="...",  # required — The logical name of the configuration.
     config_type="...",  # required — The category of configuration.
     major_version=0,  # required — The major version number.

@@ -10,6 +10,7 @@
     Do not edit the class manually.
 """
 
+from __future__ import annotations
 import json
 import pprint
 import re  # noqa: F401
@@ -19,7 +20,7 @@ from aenum import Enum, no_arg
 
 
 
-class ValueType(str, Enum):
+class ValueType(str, Enum):  # type: ignore[misc]
     """
     A list of types, familiar to the Ui, that define the expected input or output types on a piece of data
     """

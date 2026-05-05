@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class IntegrationRunLog(BaseModel):
     """
     count: StrictInt
     link: IntegrationRunLogLink
-    __properties = ["count", "link"]
+    __properties: ClassVar[List[str]] = ["count", "link"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -81,7 +81,7 @@ class IntegrationRunLog(BaseModel):
 
         _obj = IntegrationRunLog.model_validate({
             "count": obj.get("count"),
-            "link": IntegrationRunLogLink.from_dict(obj.get("link")) if obj.get("link") is not None else None
+            "link": IntegrationRunLogLink.from_dict(_v) if (_v := obj.get("link")) is not None else None
         })
         return _obj
 

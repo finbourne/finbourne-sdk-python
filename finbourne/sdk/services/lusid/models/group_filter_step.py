@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -30,9 +30,9 @@ class GroupFilterStep(ComplianceStep):
     """
     label:  StrictStr = Field(...,alias="label", description="The label of the compliance step") 
     limit_check_parameters: List[ComplianceTemplateParameter] = Field(description="Parameters required for an absolute limit check", alias="limitCheckParameters")
-    compliance_step_type:  StrictStr = Field(...,alias="complianceStepType", description=". The available values are: FilterStep, GroupByStep, GroupFilterStep, BranchStep, RecombineStep, CheckStep, PercentCheckStep") 
+    compliance_step_type:  StrictStr = Field(...,alias="complianceStepType", description="The type of the compliance step. Available values: FilterStep, GroupByStep, GroupFilterStep, BranchStep, RecombineStep, CheckStep, PercentCheckStep.") 
     additional_properties: Dict[str, Any] = {}
-    __properties = ["complianceStepType", "label", "limitCheckParameters"]
+    __properties: ClassVar[List[str]] = ["complianceStepType", "label", "limitCheckParameters"]
 
     @field_validator('compliance_step_type')
     def compliance_step_type_validate_enum(cls, value):
@@ -164,16 +164,11 @@ class GroupFilterStep(ComplianceStep):
         _obj = GroupFilterStep.model_validate({
             "compliance_step_type": obj.get("complianceStepType"),
             "label": obj.get("label"),
-            "limit_check_parameters": [ComplianceTemplateParameter.from_dict(_item) for _item in obj.get("limitCheckParameters")] if obj.get("limitCheckParameters") is not None else None
+            "limit_check_parameters": [ComplianceTemplateParameter.from_dict(_item) for _item in _v] if (_v := obj.get("limitCheckParameters")) is not None else None
         })
         # store additional fields in additional_properties
-        
-        properties = cls.__properties
-        if not isinstance(cls.__properties, dict) and getattr(cls.__properties, 'default', None):
-            properties = cls.__properties.default
-    
         for _key in obj.keys():
-            if _key not in properties:
+            if _key not in cls.__properties:
                 _obj.additional_properties[_key] = obj.get(_key)
 
         return _obj

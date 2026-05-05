@@ -67,12 +67,12 @@ class PlacementsApi:
         :return: Returns the result object.
         :rtype: DeletedEntityResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_placement_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_placement_with_http_info(scope, code, **kwargs)  # noqa: E501
+        response = self.delete_placement_with_http_info(scope, code, **kwargs)
+        return response.data
 
     @validate_call
     def delete_placement_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -199,12 +199,12 @@ class PlacementsApi:
         :return: Returns the result object.
         :rtype: Placement
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_placement_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_placement_with_http_info(scope, code, as_at, property_keys, **kwargs)  # noqa: E501
+        response = self.get_placement_with_http_info(scope, code, as_at, property_keys, **kwargs)
+        return response.data
 
     @validate_call
     def get_placement_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[Placement]:
@@ -351,12 +351,12 @@ class PlacementsApi:
         :return: Returns the result object.
         :rtype: PagedResourceListOfPlacement
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_placements_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_placements_with_http_info(as_at, page, sort_by, limit, filter, property_keys, **kwargs)  # noqa: E501
+        response = self.list_placements_with_http_info(as_at, page, sort_by, limit, filter, property_keys, **kwargs)
+        return response.data
 
     @validate_call
     def list_placements_with_http_info(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfPlacement]:
@@ -506,12 +506,12 @@ class PlacementsApi:
         :return: Returns the result object.
         :rtype: ResourceListOfPlacement
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_placements_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_placements_with_http_info(placement_set_request, **kwargs)  # noqa: E501
+        response = self.upsert_placements_with_http_info(placement_set_request, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_placements_with_http_info(self, placement_set_request: Optional[PlacementSetRequest] = None, **kwargs) -> ApiResponse[ResourceListOfPlacement]:
@@ -639,12 +639,12 @@ class PlacementsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: DeletedEntityResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_placement_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_placement_with_http_info_async(scope, code, **kwargs)  # noqa: E501
+            response = await self.delete_placement_with_http_info_async(scope, code, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_placement_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
@@ -772,12 +772,12 @@ class PlacementsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: Placement
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_placement_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_placement_with_http_info_async(scope, code, as_at, property_keys, **kwargs)  # noqa: E501
+            response = await self.get_placement_with_http_info_async(scope, code, as_at, property_keys, **kwargs)
+            return response.data
 
     @validate_call
     async def get_placement_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[Placement]:
@@ -925,12 +925,12 @@ class PlacementsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: PagedResourceListOfPlacement
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_placements_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_placements_with_http_info_async(as_at, page, sort_by, limit, filter, property_keys, **kwargs)  # noqa: E501
+            response = await self.list_placements_with_http_info_async(as_at, page, sort_by, limit, filter, property_keys, **kwargs)
+            return response.data
 
     @validate_call
     async def list_placements_with_http_info_async(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfPlacement]:
@@ -1081,12 +1081,12 @@ class PlacementsApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfPlacement
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_placements_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_placements_with_http_info_async(placement_set_request, **kwargs)  # noqa: E501
+            response = await self.upsert_placements_with_http_info_async(placement_set_request, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_placements_with_http_info_async(self, placement_set_request: Optional[PlacementSetRequest] = None, **kwargs) -> ApiResponse[ResourceListOfPlacement]:

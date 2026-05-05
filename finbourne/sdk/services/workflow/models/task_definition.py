@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -44,7 +44,7 @@ class TaskDefinition(BaseModel):
     triggers: Optional[List[TransitionTriggerDefinition]] = Field(default=None, description="The Triggers for State transition")
     actions: Optional[List[ActionDefinitionResponse]] = Field(default=None, description="The Actions of this Task - executed after a Transition completion")
     transitions: Optional[List[TaskTransitionDefinition]] = Field(default=None, description="The Transitions between States")
-    __properties = ["id", "version", "displayName", "description", "states", "fieldSchema", "initialState", "triggers", "actions", "transitions"]
+    __properties: ClassVar[List[str]] = ["id", "version", "displayName", "description", "states", "fieldSchema", "initialState", "triggers", "actions", "transitions"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -161,16 +161,16 @@ class TaskDefinition(BaseModel):
             return TaskDefinition.model_validate(obj)
 
         _obj = TaskDefinition.model_validate({
-            "id": ResourceId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
-            "version": VersionInfo.from_dict(obj.get("version")) if obj.get("version") is not None else None,
+            "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
+            "version": VersionInfo.from_dict(_v) if (_v := obj.get("version")) is not None else None,
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
-            "states": [TaskStateDefinition.from_dict(_item) for _item in obj.get("states")] if obj.get("states") is not None else None,
-            "field_schema": [TaskFieldDefinition.from_dict(_item) for _item in obj.get("fieldSchema")] if obj.get("fieldSchema") is not None else None,
-            "initial_state": InitialState.from_dict(obj.get("initialState")) if obj.get("initialState") is not None else None,
-            "triggers": [TransitionTriggerDefinition.from_dict(_item) for _item in obj.get("triggers")] if obj.get("triggers") is not None else None,
-            "actions": [ActionDefinitionResponse.from_dict(_item) for _item in obj.get("actions")] if obj.get("actions") is not None else None,
-            "transitions": [TaskTransitionDefinition.from_dict(_item) for _item in obj.get("transitions")] if obj.get("transitions") is not None else None
+            "states": [TaskStateDefinition.from_dict(_item) for _item in _v] if (_v := obj.get("states")) is not None else None,
+            "field_schema": [TaskFieldDefinition.from_dict(_item) for _item in _v] if (_v := obj.get("fieldSchema")) is not None else None,
+            "initial_state": InitialState.from_dict(_v) if (_v := obj.get("initialState")) is not None else None,
+            "triggers": [TransitionTriggerDefinition.from_dict(_item) for _item in _v] if (_v := obj.get("triggers")) is not None else None,
+            "actions": [ActionDefinitionResponse.from_dict(_item) for _item in _v] if (_v := obj.get("actions")) is not None else None,
+            "transitions": [TaskTransitionDefinition.from_dict(_item) for _item in _v] if (_v := obj.get("transitions")) is not None else None
         })
         return _obj
 

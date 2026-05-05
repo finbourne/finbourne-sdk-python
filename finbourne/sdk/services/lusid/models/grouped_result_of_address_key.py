@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -29,7 +29,7 @@ class GroupedResultOfAddressKey(BaseModel):
     """
     columns: Optional[List[StrictStr]] = Field(default=None, description="The columns, or keys, for a particular group of results")
     values: Optional[List[ResultValue]] = Field(default=None, description="The values for the list of results")
-    __properties = ["columns", "values"]
+    __properties: ClassVar[List[str]] = ["columns", "values"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -95,7 +95,7 @@ class GroupedResultOfAddressKey(BaseModel):
 
         _obj = GroupedResultOfAddressKey.model_validate({
             "columns": obj.get("columns"),
-            "values": [ResultValue.from_dict(_item) for _item in obj.get("values")] if obj.get("values") is not None else None
+            "values": [ResultValue.from_dict(_item) for _item in _v] if (_v := obj.get("values")) is not None else None
         })
         return _obj
 

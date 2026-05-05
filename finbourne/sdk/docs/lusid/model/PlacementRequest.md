@@ -20,7 +20,7 @@ A request to create or update a Placement.
 | **stop_price** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
 | **counterparty** | **str** | Optional | Optionally specifies the market entity this placement is placed with. |
 | **execution_system** | **str** | Optional | Optionally specifies the execution system in use. |
-| **entry_type** | **str** | Optional | Optionally specifies the entry type of this placement. |
+| **entry_type** | **str** | Optional | Optionally specifies the entry type of this placement. Available values: Undecided, Manual, Direct, Ems, External. |
 
 
 ## Usage
@@ -46,7 +46,7 @@ instance = PlacementRequest(
     stop_price=CurrencyAndAmount(...),  # optional
     counterparty="...",  # optional — Optionally specifies the market entity this placement is placed with.
     execution_system="...",  # optional — Optionally specifies the execution system in use.
-    entry_type="..."  # optional — Optionally specifies the entry type of this placement.
+    entry_type="..."  # optional — Optionally specifies the entry type of this placement. Available values: Undecided, Manual, Direct, Ems, External.
 )
 ```
 

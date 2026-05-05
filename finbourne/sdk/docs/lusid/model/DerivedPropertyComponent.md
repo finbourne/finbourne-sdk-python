@@ -6,7 +6,7 @@
 |------|------|----------|-------------|
 | **component** | **str** | Optional | The component of the formula which is being evaluated. |
 | **display_name** | **str** | Optional | The display name of the component being evaluated. |
-| **type** | **str** | Optional | The type of the formula component. This can be a Literal, Variable, DerivedProperty, or PartialFormula. |
+| **type** | **str** | Optional | The type of the formula component. Available values: Variable, DerivedProperty, Literal, PartialFormula. |
 | **value** | [PropertyValue](PropertyValue.md) | Optional | *No description available.* |
 | **derivation_formula** | **str** | Optional | The derivation formula of the component. This field will only be populated if the component is a derived property. |
 | **sub_components** | [List[DerivedPropertyComponent]](DerivedPropertyComponent.md) | Optional | Any sub-components of this formula. If this formula cannot be further decomposed, this collection will be null. |
@@ -23,7 +23,7 @@ from finbourne.sdk.services.lusid.models.DerivedPropertyComponent import Derived
 instance = DerivedPropertyComponent(
     component="...",  # optional — The component of the formula which is being evaluated.
     display_name="...",  # optional — The display name of the component being evaluated.
-    type="...",  # optional — The type of the formula component. This can be a Literal, Variable, DerivedProperty, or PartialFormula.
+    type="...",  # optional — The type of the formula component. Available values: Variable, DerivedProperty, Literal, PartialFormula.
     value=PropertyValue(...),  # optional
     derivation_formula="...",  # optional — The derivation formula of the component. This field will only be populated if the component is a derived property.
     sub_components=[],  # optional — Any sub-components of this formula. If this formula cannot be further decomposed, this collection will be null.

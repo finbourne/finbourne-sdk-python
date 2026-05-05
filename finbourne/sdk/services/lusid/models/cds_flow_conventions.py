@@ -14,7 +14,7 @@ from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
-from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
 
 
@@ -35,10 +35,10 @@ class CdsFlowConventions(BaseModel):
     reset_calendars: List[StrictStr] = Field(description="An array of strings denoting holiday calendars that apply to generation of reset schedules.", alias="resetCalendars")
     settle_days: Optional[StrictInt] = Field(default=None, description="Number of Good Business Days between the trade date and the effective or settlement date of the instrument. Defaults to 0 if not set.", alias="settleDays")
     reset_days: Optional[StrictInt] = Field(default=None, description="The number of Good Business Days between determination and payment of reset. Defaults to 0 if not set.", alias="resetDays")
-    business_day_convention:  Optional[StrictStr] = Field(default=None,alias="businessDayConvention", description="When generating a set of dates, what convention should be used for adjusting dates that coincide with a non-business day.    Supported string (enumeration) values are: [NoAdjustment, None, Previous, P, Following, F, ModifiedPrevious, MP, ModifiedFollowing, MF, HalfMonthModifiedFollowing, Nearest].") 
+    business_day_convention:  Optional[StrictStr] = Field(default=None,alias="businessDayConvention", description="When generating a set of dates, what convention should be used for adjusting dates that coincide with a non-business day. Available values: NoAdjustment, None, Previous, P, Following, F, ModifiedPrevious, MP, ModifiedFollowing, MF, HalfMonthModifiedFollowing, Nearest, Invalid.") 
     scope:  Optional[StrictStr] = Field(default=None,alias="scope", description="The scope used when updating or inserting the convention.") 
     code:  Optional[StrictStr] = Field(default=None,alias="code", description="The code of the convention.") 
-    __properties = ["rollFrequency", "currency", "paymentFrequency", "dayCountConvention", "rollConvention", "paymentCalendars", "resetCalendars", "settleDays", "resetDays", "businessDayConvention", "scope", "code"]
+    __properties: ClassVar[List[str]] = ["rollFrequency", "currency", "paymentFrequency", "dayCountConvention", "rollConvention", "paymentCalendars", "resetCalendars", "settleDays", "resetDays", "businessDayConvention", "scope", "code"]
 
     model_config = ConfigDict(
         populate_by_name=True,

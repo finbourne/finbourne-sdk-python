@@ -70,12 +70,12 @@ class ComplexMarketDataApi:
         :return: Returns the result object.
         :rtype: AnnulStructuredDataResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_complex_market_data_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.delete_complex_market_data_with_http_info(scope, request_body, **kwargs)  # noqa: E501
+        response = self.delete_complex_market_data_with_http_info(scope, request_body, **kwargs)
+        return response.data
 
     @validate_call
     def delete_complex_market_data_with_http_info(self, scope: StrictStr, request_body: Dict[str, ComplexMarketDataId], **kwargs) -> ApiResponse[AnnulStructuredDataResponse]:
@@ -191,7 +191,7 @@ class ComplexMarketDataApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def get_complex_market_data(self, scope: StrictStr, request_body: Dict[str, ComplexMarketDataId], effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, max_age: Optional[StrictStr] = None, **kwargs) -> GetComplexMarketDataResponse:
+    def get_complex_market_data(self, scope: StrictStr, request_body: Dict[str, ComplexMarketDataId], effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, max_age: Optional[StrictStr] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> GetComplexMarketDataResponse:
         """GetComplexMarketData: Get complex market data  # noqa: E501
 
         Get one or more items of complex market data from a single scope.                Each item can be identified by its time invariant complex market data identifier.                For each id LUSID will return the most recent matched item with respect to the provided (or default) effective datetime.                An optional maximum age range window can be specified which defines how far back to look back for data from the specified effective datetime.  LUSID will return the most recent item within this window.                In the request each complex market data id must be keyed by a unique correlation id. This id is ephemeral and is not stored by LUSID.  It serves only as a way to easily identify each item in the response.                The response will return three collections. One, the successfully retrieved complex market data. Two, those that had a  valid identifier but could not be found. Three, those that failed because LUSID could not construct a valid identifier from the request.                For the ids that failed to resolve or could not be found a reason will be provided explaining why that is the case.                It is important to always check the failed and not found sets for any unsuccessful results.  # noqa: E501
@@ -205,21 +205,27 @@ class ComplexMarketDataApi:
         :type as_at: datetime
         :param max_age: The duration of the look back window in an ISO8601 time interval format e.g. P1Y2M3DT4H30M (1 year, 2 months, 3 days, 4 hours and 30 minutes).               This is subtracted from the provided effectiveAt datetime to generate a effective datetime window inside which a complex market data item must exist to be retrieved.
         :type max_age: str
+        :param timeline_scope: The scope of the Timeline.
+        :type timeline_scope: str
+        :param timeline_code: The code of the Timeline. This can optionally include a colon followed by the Closed Period ID to use at the head of the timeline, for a timeline with unconfirmed periods.
+        :type timeline_code: str
+        :param closed_period_id: The closed period ID. If this is specified, both timelineScope and timelineCode must be specified.
+        :type closed_period_id: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
         :return: Returns the result object.
         :rtype: GetComplexMarketDataResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_complex_market_data_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.get_complex_market_data_with_http_info(scope, request_body, effective_at, as_at, max_age, **kwargs)  # noqa: E501
+        response = self.get_complex_market_data_with_http_info(scope, request_body, effective_at, as_at, max_age, timeline_scope, timeline_code, closed_period_id, **kwargs)
+        return response.data
 
     @validate_call
-    def get_complex_market_data_with_http_info(self, scope: StrictStr, request_body: Dict[str, ComplexMarketDataId], effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, max_age: Optional[StrictStr] = None, **kwargs) -> ApiResponse[GetComplexMarketDataResponse]:
+    def get_complex_market_data_with_http_info(self, scope: StrictStr, request_body: Dict[str, ComplexMarketDataId], effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, max_age: Optional[StrictStr] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[GetComplexMarketDataResponse]:
         """GetComplexMarketData: Get complex market data  # noqa: E501
 
         Get one or more items of complex market data from a single scope.                Each item can be identified by its time invariant complex market data identifier.                For each id LUSID will return the most recent matched item with respect to the provided (or default) effective datetime.                An optional maximum age range window can be specified which defines how far back to look back for data from the specified effective datetime.  LUSID will return the most recent item within this window.                In the request each complex market data id must be keyed by a unique correlation id. This id is ephemeral and is not stored by LUSID.  It serves only as a way to easily identify each item in the response.                The response will return three collections. One, the successfully retrieved complex market data. Two, those that had a  valid identifier but could not be found. Three, those that failed because LUSID could not construct a valid identifier from the request.                For the ids that failed to resolve or could not be found a reason will be provided explaining why that is the case.                It is important to always check the failed and not found sets for any unsuccessful results.  # noqa: E501
@@ -233,6 +239,12 @@ class ComplexMarketDataApi:
         :type as_at: datetime
         :param max_age: The duration of the look back window in an ISO8601 time interval format e.g. P1Y2M3DT4H30M (1 year, 2 months, 3 days, 4 hours and 30 minutes).               This is subtracted from the provided effectiveAt datetime to generate a effective datetime window inside which a complex market data item must exist to be retrieved.
         :type max_age: str
+        :param timeline_scope: The scope of the Timeline.
+        :type timeline_scope: str
+        :param timeline_code: The code of the Timeline. This can optionally include a colon followed by the Closed Period ID to use at the head of the timeline, for a timeline with unconfirmed periods.
+        :type timeline_code: str
+        :param closed_period_id: The closed period ID. If this is specified, both timelineScope and timelineCode must be specified.
+        :type closed_period_id: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -260,7 +272,10 @@ class ComplexMarketDataApi:
             'request_body',
             'effective_at',
             'as_at',
-            'max_age'
+            'max_age',
+            'timeline_scope',
+            'timeline_code',
+            'closed_period_id'
         ]
         _all_params.extend(
             [
@@ -305,6 +320,15 @@ class ComplexMarketDataApi:
 
         if _params.get('max_age') is not None:  # noqa: E501
             _query_params.append(('maxAge', _params['max_age']))
+
+        if _params.get('timeline_scope') is not None:  # noqa: E501
+            _query_params.append(('timelineScope', _params['timeline_scope']))
+
+        if _params.get('timeline_code') is not None:  # noqa: E501
+            _query_params.append(('timelineCode', _params['timeline_code']))
+
+        if _params.get('closed_period_id') is not None:  # noqa: E501
+            _query_params.append(('closedPeriodId', _params['closed_period_id']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -353,7 +377,7 @@ class ComplexMarketDataApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def list_complex_market_data(self, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, **kwargs) -> ResourceListOfListComplexMarketDataWithMetaDataResponse:
+    def list_complex_market_data(self, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> ResourceListOfListComplexMarketDataWithMetaDataResponse:
         """ListComplexMarketData: List the set of ComplexMarketData  # noqa: E501
 
         List the set of ComplexMarketData at the specified date/time,  along with the scope the data was stored in and its identifier in that scope.  # noqa: E501
@@ -365,21 +389,27 @@ class ComplexMarketDataApi:
         :type page: str
         :param limit: When paginating, limit the results to this number. If not specified, no pagination will be applied. It is  highly recommended to supply a value for this parameter as the default behaviour will change in the future.
         :type limit: int
+        :param timeline_scope: The scope of the Timeline.
+        :type timeline_scope: str
+        :param timeline_code: The code of the Timeline. This can optionally include a colon followed by the Closed Period ID to use at the head of the timeline, for a timeline with unconfirmed periods.
+        :type timeline_code: str
+        :param closed_period_id: The closed period ID. If this is specified, both timelineScope and timelineCode must be specified.
+        :type closed_period_id: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
         :return: Returns the result object.
         :rtype: ResourceListOfListComplexMarketDataWithMetaDataResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_complex_market_data_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.list_complex_market_data_with_http_info(as_at, effective_at, page, limit, **kwargs)  # noqa: E501
+        response = self.list_complex_market_data_with_http_info(as_at, effective_at, page, limit, timeline_scope, timeline_code, closed_period_id, **kwargs)
+        return response.data
 
     @validate_call
-    def list_complex_market_data_with_http_info(self, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, **kwargs) -> ApiResponse[ResourceListOfListComplexMarketDataWithMetaDataResponse]:
+    def list_complex_market_data_with_http_info(self, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfListComplexMarketDataWithMetaDataResponse]:
         """ListComplexMarketData: List the set of ComplexMarketData  # noqa: E501
 
         List the set of ComplexMarketData at the specified date/time,  along with the scope the data was stored in and its identifier in that scope.  # noqa: E501
@@ -391,6 +421,12 @@ class ComplexMarketDataApi:
         :type page: str
         :param limit: When paginating, limit the results to this number. If not specified, no pagination will be applied. It is  highly recommended to supply a value for this parameter as the default behaviour will change in the future.
         :type limit: int
+        :param timeline_scope: The scope of the Timeline.
+        :type timeline_scope: str
+        :param timeline_code: The code of the Timeline. This can optionally include a colon followed by the Closed Period ID to use at the head of the timeline, for a timeline with unconfirmed periods.
+        :type timeline_code: str
+        :param closed_period_id: The closed period ID. If this is specified, both timelineScope and timelineCode must be specified.
+        :type closed_period_id: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -417,7 +453,10 @@ class ComplexMarketDataApi:
             'as_at',
             'effective_at',
             'page',
-            'limit'
+            'limit',
+            'timeline_scope',
+            'timeline_code',
+            'closed_period_id'
         ]
         _all_params.extend(
             [
@@ -462,6 +501,15 @@ class ComplexMarketDataApi:
 
         if _params.get('limit') is not None:  # noqa: E501
             _query_params.append(('limit', _params['limit']))
+
+        if _params.get('timeline_scope') is not None:  # noqa: E501
+            _query_params.append(('timelineScope', _params['timeline_scope']))
+
+        if _params.get('timeline_code') is not None:  # noqa: E501
+            _query_params.append(('timelineCode', _params['timeline_code']))
+
+        if _params.get('closed_period_id') is not None:  # noqa: E501
+            _query_params.append(('closedPeriodId', _params['closed_period_id']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -516,12 +564,12 @@ class ComplexMarketDataApi:
         :return: Returns the result object.
         :rtype: UpsertSingleStructuredDataResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_append_complex_market_data_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_append_complex_market_data_with_http_info(scope, append_complex_market_data_request, as_at, **kwargs)  # noqa: E501
+        response = self.upsert_append_complex_market_data_with_http_info(scope, append_complex_market_data_request, as_at, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_append_complex_market_data_with_http_info(self, scope: StrictStr, append_complex_market_data_request: AppendComplexMarketDataRequest, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[UpsertSingleStructuredDataResponse]:
@@ -660,12 +708,12 @@ class ComplexMarketDataApi:
         :return: Returns the result object.
         :rtype: UpsertStructuredDataResponse
         """
-        kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             message = "Error! Please call the upsert_complex_market_data_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        return self.upsert_complex_market_data_with_http_info(scope, request_body, **kwargs)  # noqa: E501
+        response = self.upsert_complex_market_data_with_http_info(scope, request_body, **kwargs)
+        return response.data
 
     @validate_call
     def upsert_complex_market_data_with_http_info(self, scope: StrictStr, request_body: Dict[str, UpsertComplexMarketDataRequest], **kwargs) -> ApiResponse[UpsertStructuredDataResponse]:
@@ -799,12 +847,12 @@ class ComplexMarketDataApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: AnnulStructuredDataResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the delete_complex_market_data_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.delete_complex_market_data_with_http_info_async(scope, request_body, **kwargs)  # noqa: E501
+            response = await self.delete_complex_market_data_with_http_info_async(scope, request_body, **kwargs)
+            return response.data
 
     @validate_call
     async def delete_complex_market_data_with_http_info_async(self, scope: StrictStr, request_body: Dict[str, ComplexMarketDataId], **kwargs) -> ApiResponse[AnnulStructuredDataResponse]:
@@ -921,7 +969,7 @@ class ComplexMarketDataApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def get_complex_market_data_async(self, scope: StrictStr, request_body: Dict[str, ComplexMarketDataId], effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, max_age: Optional[StrictStr] = None, **kwargs) -> GetComplexMarketDataResponse:
+    async def get_complex_market_data_async(self, scope: StrictStr, request_body: Dict[str, ComplexMarketDataId], effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, max_age: Optional[StrictStr] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> GetComplexMarketDataResponse:
             """GetComplexMarketData: Get complex market data  # noqa: E501
             Get one or more items of complex market data from a single scope.                Each item can be identified by its time invariant complex market data identifier.                For each id LUSID will return the most recent matched item with respect to the provided (or default) effective datetime.                An optional maximum age range window can be specified which defines how far back to look back for data from the specified effective datetime.  LUSID will return the most recent item within this window.                In the request each complex market data id must be keyed by a unique correlation id. This id is ephemeral and is not stored by LUSID.  It serves only as a way to easily identify each item in the response.                The response will return three collections. One, the successfully retrieved complex market data. Two, those that had a  valid identifier but could not be found. Three, those that failed because LUSID could not construct a valid identifier from the request.                For the ids that failed to resolve or could not be found a reason will be provided explaining why that is the case.                It is important to always check the failed and not found sets for any unsuccessful results.  # noqa: E501
             
@@ -935,21 +983,27 @@ class ComplexMarketDataApi:
             :type as_at: datetime
             :param max_age: The duration of the look back window in an ISO8601 time interval format e.g. P1Y2M3DT4H30M (1 year, 2 months, 3 days, 4 hours and 30 minutes).               This is subtracted from the provided effectiveAt datetime to generate a effective datetime window inside which a complex market data item must exist to be retrieved.
             :type max_age: str
+            :param timeline_scope: The scope of the Timeline.
+            :type timeline_scope: str
+            :param timeline_code: The code of the Timeline. This can optionally include a colon followed by the Closed Period ID to use at the head of the timeline, for a timeline with unconfirmed periods.
+            :type timeline_code: str
+            :param closed_period_id: The closed period ID. If this is specified, both timelineScope and timelineCode must be specified.
+            :type closed_period_id: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
             :return: Returns an coroutine ApiResponse object.
             :rtype: GetComplexMarketDataResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_complex_market_data_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.get_complex_market_data_with_http_info_async(scope, request_body, effective_at, as_at, max_age, **kwargs)  # noqa: E501
+            response = await self.get_complex_market_data_with_http_info_async(scope, request_body, effective_at, as_at, max_age, timeline_scope, timeline_code, closed_period_id, **kwargs)
+            return response.data
 
     @validate_call
-    async def get_complex_market_data_with_http_info_async(self, scope: StrictStr, request_body: Dict[str, ComplexMarketDataId], effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, max_age: Optional[StrictStr] = None, **kwargs) -> ApiResponse[GetComplexMarketDataResponse]:
+    async def get_complex_market_data_with_http_info_async(self, scope: StrictStr, request_body: Dict[str, ComplexMarketDataId], effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, max_age: Optional[StrictStr] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[GetComplexMarketDataResponse]:
             """GetComplexMarketData: Get complex market data  # noqa: E501
 
             Get one or more items of complex market data from a single scope.                Each item can be identified by its time invariant complex market data identifier.                For each id LUSID will return the most recent matched item with respect to the provided (or default) effective datetime.                An optional maximum age range window can be specified which defines how far back to look back for data from the specified effective datetime.  LUSID will return the most recent item within this window.                In the request each complex market data id must be keyed by a unique correlation id. This id is ephemeral and is not stored by LUSID.  It serves only as a way to easily identify each item in the response.                The response will return three collections. One, the successfully retrieved complex market data. Two, those that had a  valid identifier but could not be found. Three, those that failed because LUSID could not construct a valid identifier from the request.                For the ids that failed to resolve or could not be found a reason will be provided explaining why that is the case.                It is important to always check the failed and not found sets for any unsuccessful results.  # noqa: E501
@@ -964,6 +1018,12 @@ class ComplexMarketDataApi:
             :type as_at: datetime
             :param max_age: The duration of the look back window in an ISO8601 time interval format e.g. P1Y2M3DT4H30M (1 year, 2 months, 3 days, 4 hours and 30 minutes).               This is subtracted from the provided effectiveAt datetime to generate a effective datetime window inside which a complex market data item must exist to be retrieved.
             :type max_age: str
+            :param timeline_scope: The scope of the Timeline.
+            :type timeline_scope: str
+            :param timeline_code: The code of the Timeline. This can optionally include a colon followed by the Closed Period ID to use at the head of the timeline, for a timeline with unconfirmed periods.
+            :type timeline_code: str
+            :param closed_period_id: The closed period ID. If this is specified, both timelineScope and timelineCode must be specified.
+            :type closed_period_id: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -991,7 +1051,10 @@ class ComplexMarketDataApi:
                 'request_body',
                 'effective_at',
                 'as_at',
-                'max_age'
+                'max_age',
+                'timeline_scope',
+                'timeline_code',
+                'closed_period_id'
             ]
             _all_params.extend(
                 [
@@ -1036,6 +1099,15 @@ class ComplexMarketDataApi:
 
             if _params.get('max_age') is not None:  # noqa: E501
                 _query_params.append(('maxAge', _params['max_age']))
+
+            if _params.get('timeline_scope') is not None:  # noqa: E501
+                _query_params.append(('timelineScope', _params['timeline_scope']))
+
+            if _params.get('timeline_code') is not None:  # noqa: E501
+                _query_params.append(('timelineCode', _params['timeline_code']))
+
+            if _params.get('closed_period_id') is not None:  # noqa: E501
+                _query_params.append(('closedPeriodId', _params['closed_period_id']))
 
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))
@@ -1084,7 +1156,7 @@ class ComplexMarketDataApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def list_complex_market_data_async(self, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, **kwargs) -> ResourceListOfListComplexMarketDataWithMetaDataResponse:
+    async def list_complex_market_data_async(self, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> ResourceListOfListComplexMarketDataWithMetaDataResponse:
             """ListComplexMarketData: List the set of ComplexMarketData  # noqa: E501
             List the set of ComplexMarketData at the specified date/time,  along with the scope the data was stored in and its identifier in that scope.  # noqa: E501
             
@@ -1096,21 +1168,27 @@ class ComplexMarketDataApi:
             :type page: str
             :param limit: When paginating, limit the results to this number. If not specified, no pagination will be applied. It is  highly recommended to supply a value for this parameter as the default behaviour will change in the future.
             :type limit: int
+            :param timeline_scope: The scope of the Timeline.
+            :type timeline_scope: str
+            :param timeline_code: The code of the Timeline. This can optionally include a colon followed by the Closed Period ID to use at the head of the timeline, for a timeline with unconfirmed periods.
+            :type timeline_code: str
+            :param closed_period_id: The closed period ID. If this is specified, both timelineScope and timelineCode must be specified.
+            :type closed_period_id: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
             :return: Returns an coroutine ApiResponse object.
             :rtype: ResourceListOfListComplexMarketDataWithMetaDataResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_complex_market_data_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.list_complex_market_data_with_http_info_async(as_at, effective_at, page, limit, **kwargs)  # noqa: E501
+            response = await self.list_complex_market_data_with_http_info_async(as_at, effective_at, page, limit, timeline_scope, timeline_code, closed_period_id, **kwargs)
+            return response.data
 
     @validate_call
-    async def list_complex_market_data_with_http_info_async(self, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, **kwargs) -> ApiResponse[ResourceListOfListComplexMarketDataWithMetaDataResponse]:
+    async def list_complex_market_data_with_http_info_async(self, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfListComplexMarketDataWithMetaDataResponse]:
             """ListComplexMarketData: List the set of ComplexMarketData  # noqa: E501
 
             List the set of ComplexMarketData at the specified date/time,  along with the scope the data was stored in and its identifier in that scope.  # noqa: E501
@@ -1123,6 +1201,12 @@ class ComplexMarketDataApi:
             :type page: str
             :param limit: When paginating, limit the results to this number. If not specified, no pagination will be applied. It is  highly recommended to supply a value for this parameter as the default behaviour will change in the future.
             :type limit: int
+            :param timeline_scope: The scope of the Timeline.
+            :type timeline_scope: str
+            :param timeline_code: The code of the Timeline. This can optionally include a colon followed by the Closed Period ID to use at the head of the timeline, for a timeline with unconfirmed periods.
+            :type timeline_code: str
+            :param closed_period_id: The closed period ID. If this is specified, both timelineScope and timelineCode must be specified.
+            :type closed_period_id: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -1149,7 +1233,10 @@ class ComplexMarketDataApi:
                 'as_at',
                 'effective_at',
                 'page',
-                'limit'
+                'limit',
+                'timeline_scope',
+                'timeline_code',
+                'closed_period_id'
             ]
             _all_params.extend(
                 [
@@ -1194,6 +1281,15 @@ class ComplexMarketDataApi:
 
             if _params.get('limit') is not None:  # noqa: E501
                 _query_params.append(('limit', _params['limit']))
+
+            if _params.get('timeline_scope') is not None:  # noqa: E501
+                _query_params.append(('timelineScope', _params['timeline_scope']))
+
+            if _params.get('timeline_code') is not None:  # noqa: E501
+                _query_params.append(('timelineCode', _params['timeline_code']))
+
+            if _params.get('closed_period_id') is not None:  # noqa: E501
+                _query_params.append(('closedPeriodId', _params['closed_period_id']))
 
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))
@@ -1248,12 +1344,12 @@ class ComplexMarketDataApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: UpsertSingleStructuredDataResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_append_complex_market_data_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_append_complex_market_data_with_http_info_async(scope, append_complex_market_data_request, as_at, **kwargs)  # noqa: E501
+            response = await self.upsert_append_complex_market_data_with_http_info_async(scope, append_complex_market_data_request, as_at, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_append_complex_market_data_with_http_info_async(self, scope: StrictStr, append_complex_market_data_request: AppendComplexMarketDataRequest, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[UpsertSingleStructuredDataResponse]:
@@ -1393,12 +1489,12 @@ class ComplexMarketDataApi:
             :return: Returns an coroutine ApiResponse object.
             :rtype: UpsertStructuredDataResponse
             """
-            kwargs['_return_http_data_only'] = True
             if '_preload_content' in kwargs:
                 message = "Error! Please call the upsert_complex_market_data_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            return await self.upsert_complex_market_data_with_http_info_async(scope, request_body, **kwargs)  # noqa: E501
+            response = await self.upsert_complex_market_data_with_http_info_async(scope, request_body, **kwargs)
+            return response.data
 
     @validate_call
     async def upsert_complex_market_data_with_http_info_async(self, scope: StrictStr, request_body: Dict[str, UpsertComplexMarketDataRequest], **kwargs) -> ApiResponse[UpsertStructuredDataResponse]:
