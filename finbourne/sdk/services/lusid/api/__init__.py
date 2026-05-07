@@ -76,9 +76,9 @@ from finbourne.sdk.services.lusid.api.system_configuration_api import SystemConf
 from finbourne.sdk.services.lusid.api.tax_rule_sets_api import TaxRuleSetsApi
 from finbourne.sdk.services.lusid.api.timelines_api import TimelinesApi
 from finbourne.sdk.services.lusid.api.transaction_configuration_api import TransactionConfigurationApi
+from finbourne.sdk.services.lusid.api.transaction_fee_types_api import TransactionFeeTypesApi
 from finbourne.sdk.services.lusid.api.transaction_fees_api import TransactionFeesApi
 from finbourne.sdk.services.lusid.api.transaction_portfolios_api import TransactionPortfoliosApi
-from finbourne.sdk.services.lusid.api.transaction_transaction_fees_api import TransactionTransactionFeesApi
 from finbourne.sdk.services.lusid.api.transfer_agency_api import TransferAgencyApi
 from finbourne.sdk.services.lusid.api.translation_api import TranslationApi
 from finbourne.sdk.services.lusid.api.workspace_api import WorkspaceApi
@@ -160,9 +160,9 @@ __all__ = [
     "TaxRuleSetsApi",
     "TimelinesApi",
     "TransactionConfigurationApi",
+    "TransactionFeeTypesApi",
     "TransactionFeesApi",
     "TransactionPortfoliosApi",
-    "TransactionTransactionFeesApi",
     "TransferAgencyApi",
     "TranslationApi",
     "WorkspaceApi"

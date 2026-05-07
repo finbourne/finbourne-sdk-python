@@ -1,10 +1,10 @@
-# ResourceListOfTransactionFee
+# ResourceListOfTransactionFeeType
 
 ## Properties
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **values** | [List[TransactionFee]](TransactionFee.md) | Required | *No description available.* |
+| **values** | [List[TransactionFeeType]](TransactionFeeType.md) | Required | *No description available.* |
 | **href** | **str** | Optional | *No description available.* |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 | **next_page** | **str** | Optional | *No description available.* |
@@ -16,9 +16,9 @@
 ### Creating from keyword arguments
 
 ```python
-from finbourne.sdk.services.lusid.models.ResourceListOfTransactionFee import ResourceListOfTransactionFee
+from finbourne.sdk.services.lusid.models.ResourceListOfTransactionFeeType import ResourceListOfTransactionFeeType
 
-instance = ResourceListOfTransactionFee(
+instance = ResourceListOfTransactionFeeType(
     values=[],  # required
     href="...",  # optional
     links=[],  # optional
@@ -30,7 +30,7 @@ instance = ResourceListOfTransactionFee(
 
 ## Related Models
 
-- [TransactionFee](TransactionFee.md)
+- [TransactionFeeType](TransactionFeeType.md)
 - [Link](Link.md)
 
 

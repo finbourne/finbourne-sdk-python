@@ -1,15 +1,15 @@
-# UpdateTransactionFeeRequest
+# UpdateTransactionFeeTypeRequest
 
 ## Properties
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **description** | **str** | Optional | A description of the transaction fee. |
+| **description** | **str** | Optional | A description of the transaction fee type. |
 | **calculation** | [FeeCalculationRequest](FeeCalculationRequest.md) | Optional | *No description available.* |
 | **condition** | **str** | Optional | The condition that the transaction must meet in order for the fee to be applied. |
 | **txn_property_key** | **str** | Optional | The property key to which the fee value will be applied and decorated onto the transaction. Must be in the &#39;Transaction&#39; property domain. |
-| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the transaction fee. |
-| **is_active** | **bool** | Optional | Indicates whether the transaction fee is currently active and should be applied to transactions. Optional when creating a transaction fee, defaults to true, if a value is not provided. |
+| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the transaction fee type. |
+| **is_active** | **bool** | Optional | Indicates whether the transaction fee type is currently active and should be applied to transactions. Optional when creating a transaction fee type, defaults to true, if a value is not provided. |
 
 
 ## Usage
@@ -17,15 +17,15 @@
 ### Creating from keyword arguments
 
 ```python
-from finbourne.sdk.services.lusid.models.UpdateTransactionFeeRequest import UpdateTransactionFeeRequest
+from finbourne.sdk.services.lusid.models.UpdateTransactionFeeTypeRequest import UpdateTransactionFeeTypeRequest
 
-instance = UpdateTransactionFeeRequest(
-    description="...",  # optional — A description of the transaction fee.
+instance = UpdateTransactionFeeTypeRequest(
+    description="...",  # optional — A description of the transaction fee type.
     calculation=FeeCalculationRequest(...),  # optional
     condition="...",  # optional — The condition that the transaction must meet in order for the fee to be applied.
     txn_property_key="...",  # optional — The property key to which the fee value will be applied and decorated onto the transaction. Must be in the &#39;Transaction&#39; property domain.
-    properties=ModelProperty(...),  # optional — A set of properties for the transaction fee.
-    is_active=True  # optional — Indicates whether the transaction fee is currently active and should be applied to transactions. Optional when creating a transaction fee, defaults to true, if a value is not provided.
+    properties=ModelProperty(...),  # optional — A set of properties for the transaction fee type.
+    is_active=True  # optional — Indicates whether the transaction fee type is currently active and should be applied to transactions. Optional when creating a transaction fee type, defaults to true, if a value is not provided.
 )
 ```
 

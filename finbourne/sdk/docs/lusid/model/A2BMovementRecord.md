@@ -15,6 +15,9 @@ A2B Movement Record - shows A2B category based changes relating to a specific mo
 | **movement_name** | **str** | Optional | The name of the movement. |
 | **effective_date** | **datetime** | Optional | The date of the movement. |
 | **units** | **float** | Optional | The number of units of the instrument that are affected by the movement. |
+| **running_units** | **float** | Optional | The cumulative number of units for this sub-holding, as at this movement. |
+| **running_balance** | [A2BCategory](A2BCategory.md) | Optional | *No description available.* |
+| **running_cost** | **float** | Optional | The running cost in portfolio currency for this sub-holding, as at this movement. |
 | **start** | [A2BCategory](A2BCategory.md) | Optional | *No description available.* |
 | **flows** | [A2BCategory](A2BCategory.md) | Optional | *No description available.* |
 | **gains** | [A2BCategory](A2BCategory.md) | Optional | *No description available.* |
@@ -43,6 +46,9 @@ instance = A2BMovementRecord(
     movement_name="...",  # optional — The name of the movement.
     effective_date=datetime.now(),  # optional — The date of the movement.
     units=0.0,  # optional — The number of units of the instrument that are affected by the movement.
+    running_units=0.0,  # optional — The cumulative number of units for this sub-holding, as at this movement.
+    running_balance=A2BCategory(...),  # optional
+    running_cost=0.0,  # optional — The running cost in portfolio currency for this sub-holding, as at this movement.
     start=A2BCategory(...),  # optional
     flows=A2BCategory(...),  # optional
     gains=A2BCategory(...),  # optional
@@ -59,6 +65,7 @@ instance = A2BMovementRecord(
 
 - [ResourceId](ResourceId.md)
 - [PerpetualProperty](PerpetualProperty.md) — used in `sub_holding_keys`
+- [A2BCategory](A2BCategory.md)
 - [A2BCategory](A2BCategory.md)
 - [A2BCategory](A2BCategory.md)
 - [A2BCategory](A2BCategory.md)

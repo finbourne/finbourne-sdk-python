@@ -21,14 +21,14 @@ from datetime import datetime
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 from finbourne.sdk.services.lusid.models.link import Link
-from finbourne.sdk.services.lusid.models.transaction_fee import TransactionFee
+from finbourne.sdk.services.lusid.models.transaction_fee_type import TransactionFeeType
 
 
-class ResourceListOfTransactionFee(BaseModel):
+class ResourceListOfTransactionFeeType(BaseModel):
     """
-    ResourceListOfTransactionFee
+    ResourceListOfTransactionFeeType
     """
-    values: List[TransactionFee]
+    values: List[TransactionFeeType]
     href:  Optional[StrictStr] = Field(default=None,alias="href") 
     links: Optional[List[Link]] = None
     next_page:  Optional[StrictStr] = Field(default=None,alias="nextPage") 
@@ -58,8 +58,8 @@ class ResourceListOfTransactionFee(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> ResourceListOfTransactionFee:
-        """Create an instance of ResourceListOfTransactionFee from a JSON string"""
+    def from_json(cls, json_str: str) -> ResourceListOfTransactionFeeType:
+        """Create an instance of ResourceListOfTransactionFeeType from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -106,16 +106,16 @@ class ResourceListOfTransactionFee(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> ResourceListOfTransactionFee:
-        """Create an instance of ResourceListOfTransactionFee from a dict"""
+    def from_dict(cls, obj: dict) -> ResourceListOfTransactionFeeType:
+        """Create an instance of ResourceListOfTransactionFeeType from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return ResourceListOfTransactionFee.model_validate(obj)
+            return ResourceListOfTransactionFeeType.model_validate(obj)
 
-        _obj = ResourceListOfTransactionFee.model_validate({
-            "values": [TransactionFee.from_dict(_item) for _item in _v] if (_v := obj.get("values")) is not None else None,
+        _obj = ResourceListOfTransactionFeeType.model_validate({
+            "values": [TransactionFeeType.from_dict(_item) for _item in _v] if (_v := obj.get("values")) is not None else None,
             "href": obj.get("href"),
             "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None,
             "next_page": obj.get("nextPage"),
@@ -123,5 +123,5 @@ class ResourceListOfTransactionFee(BaseModel):
         })
         return _obj
 
-ResourceListOfTransactionFee.model_rebuild()
+ResourceListOfTransactionFeeType.model_rebuild()
 

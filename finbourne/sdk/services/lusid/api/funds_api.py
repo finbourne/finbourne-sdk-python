@@ -2823,7 +2823,7 @@ class FundsApi:
         :type as_at: datetime
         :param filter: Expression to filter the result set. Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid.
         :type filter: str
-        :param property_keys: A list of property keys from the \"Instrument\", \"Holding\" or \"Portfolio\" domain to decorate onto              the holdings. These take the format {domain}/{scope}/{code} e.g. \"Instrument/system/Name\" or \"Holding/system/Cost\".
+        :param property_keys: A list of property keys from the \"Instrument\", \"Holding\" or \"Portfolio\",\"CustodianAccount\" or \"LegalEntity\" domain to decorate onto domain to decorate onto              the holdings. These take the format {domain}/{scope}/{code} e.g. \"Instrument/system/Name\" or \"Holding/system/Cost\".
         :type property_keys: List[str]
         :param by_taxlots: Whether to expand the holdings to return the underlying tax-lots. Defaults to False.
         :type by_taxlots: bool
@@ -2859,7 +2859,7 @@ class FundsApi:
         :type as_at: datetime
         :param filter: Expression to filter the result set. Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid.
         :type filter: str
-        :param property_keys: A list of property keys from the \"Instrument\", \"Holding\" or \"Portfolio\" domain to decorate onto              the holdings. These take the format {domain}/{scope}/{code} e.g. \"Instrument/system/Name\" or \"Holding/system/Cost\".
+        :param property_keys: A list of property keys from the \"Instrument\", \"Holding\" or \"Portfolio\",\"CustodianAccount\" or \"LegalEntity\" domain to decorate onto domain to decorate onto              the holdings. These take the format {domain}/{scope}/{code} e.g. \"Instrument/system/Name\" or \"Holding/system/Cost\".
         :type property_keys: List[str]
         :param by_taxlots: Whether to expand the holdings to return the underlying tax-lots. Defaults to False.
         :type by_taxlots: bool
@@ -9552,7 +9552,7 @@ class FundsApi:
             :type as_at: datetime
             :param filter: Expression to filter the result set. Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid.
             :type filter: str
-            :param property_keys: A list of property keys from the \"Instrument\", \"Holding\" or \"Portfolio\" domain to decorate onto              the holdings. These take the format {domain}/{scope}/{code} e.g. \"Instrument/system/Name\" or \"Holding/system/Cost\".
+            :param property_keys: A list of property keys from the \"Instrument\", \"Holding\" or \"Portfolio\",\"CustodianAccount\" or \"LegalEntity\" domain to decorate onto domain to decorate onto              the holdings. These take the format {domain}/{scope}/{code} e.g. \"Instrument/system/Name\" or \"Holding/system/Cost\".
             :type property_keys: List[str]
             :param by_taxlots: Whether to expand the holdings to return the underlying tax-lots. Defaults to False.
             :type by_taxlots: bool
@@ -9589,7 +9589,7 @@ class FundsApi:
             :type as_at: datetime
             :param filter: Expression to filter the result set. Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid.
             :type filter: str
-            :param property_keys: A list of property keys from the \"Instrument\", \"Holding\" or \"Portfolio\" domain to decorate onto              the holdings. These take the format {domain}/{scope}/{code} e.g. \"Instrument/system/Name\" or \"Holding/system/Cost\".
+            :param property_keys: A list of property keys from the \"Instrument\", \"Holding\" or \"Portfolio\",\"CustodianAccount\" or \"LegalEntity\" domain to decorate onto domain to decorate onto              the holdings. These take the format {domain}/{scope}/{code} e.g. \"Instrument/system/Name\" or \"Holding/system/Cost\".
             :type property_keys: List[str]
             :param by_taxlots: Whether to expand the holdings to return the underlying tax-lots. Defaults to False.
             :type by_taxlots: bool

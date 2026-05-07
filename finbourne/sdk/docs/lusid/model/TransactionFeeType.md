@@ -1,19 +1,19 @@
-# TransactionFee
+# TransactionFeeType
 
 ## Properties
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
-| **name** | **str** | Optional | The display name of the transaction fee. |
-| **description** | **str** | Optional | A description of the transaction fee. |
+| **display_name** | **str** | Optional | The display name of the transaction fee type. |
+| **description** | **str** | Optional | A description of the transaction fee type. |
 | **calculation** | [FeeCalculationRequest](FeeCalculationRequest.md) | Optional | *No description available.* |
 | **condition** | **str** | Optional | The condition that the transaction must meet in order for the fee to be applied. |
 | **txn_property_key** | **str** | Optional | The property key to which the fee value will be applied and decorated onto the transaction. Must be in the &#39;Transaction&#39; property domain. |
-| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the transaction fee. |
+| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the transaction fee type. |
 | **version** | [Version](Version.md) | Optional | *No description available.* |
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
-| **is_active** | **bool** | Optional | Indicates whether the transaction fee is currently active and should be applied to transactions. Optional when creating a transaction fee, defaults to true, if a value is not provided. |
+| **is_active** | **bool** | Optional | Indicates whether the transaction fee type is currently active and should be applied to transactions. Optional when creating a transaction fee type, defaults to true, if a value is not provided. |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
@@ -22,19 +22,19 @@
 ### Creating from keyword arguments
 
 ```python
-from finbourne.sdk.services.lusid.models.TransactionFee import TransactionFee
+from finbourne.sdk.services.lusid.models.TransactionFeeType import TransactionFeeType
 
-instance = TransactionFee(
+instance = TransactionFeeType(
     id=ResourceId(...),  # optional
-    name="...",  # optional — The display name of the transaction fee.
-    description="...",  # optional — A description of the transaction fee.
+    display_name="...",  # optional — The display name of the transaction fee type.
+    description="...",  # optional — A description of the transaction fee type.
     calculation=FeeCalculationRequest(...),  # optional
     condition="...",  # optional — The condition that the transaction must meet in order for the fee to be applied.
     txn_property_key="...",  # optional — The property key to which the fee value will be applied and decorated onto the transaction. Must be in the &#39;Transaction&#39; property domain.
-    properties=ModelProperty(...),  # optional — A set of properties for the transaction fee.
+    properties=ModelProperty(...),  # optional — A set of properties for the transaction fee type.
     version=Version(...),  # optional
     href="...",  # optional — The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime.
-    is_active=True,  # optional — Indicates whether the transaction fee is currently active and should be applied to transactions. Optional when creating a transaction fee, defaults to true, if a value is not provided.
+    is_active=True,  # optional — Indicates whether the transaction fee type is currently active and should be applied to transactions. Optional when creating a transaction fee type, defaults to true, if a value is not provided.
     links=[]  # optional
 )
 ```
