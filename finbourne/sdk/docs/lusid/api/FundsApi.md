@@ -17,6 +17,8 @@ Method | HTTP request | Description
 [**delete_nav_activity_adjustments**](FundsApi.md#delete_nav_activity_adjustments) | **POST** /api/api/funds/{scope}/{code}/navAdjustment/$delete | [EXPERIMENTAL] DeleteNavActivityAdjustments: Delete Nav activity adjustments.
 [**delete_valuation_point**](FundsApi.md#delete_valuation_point) | **DELETE** /api/api/funds/{scope}/{code}/valuationpoints/{diaryEntryCode} | [EXPERIMENTAL] DeleteValuationPoint: Delete a Valuation Point.
 [**finalise_candidate_valuation_point**](FundsApi.md#finalise_candidate_valuation_point) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/$finalisecandidate | [EXPERIMENTAL] FinaliseCandidateValuationPoint: Finalise a Candidate Valuation Point.
+[**get_a2_b_data_for_fund**](FundsApi.md#get_a2_b_data_for_fund) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/a2b/$query | [EXPERIMENTAL] GetA2BDataForFund: Get A2B data for a Fund.
+[**get_a2_b_movements_for_fund**](FundsApi.md#get_a2_b_movements_for_fund) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/a2bmovements/$query | [EXPERIMENTAL] GetA2BMovementsForFund: Get A2B movements for transaction portfolios in a Fund.
 [**get_fee**](FundsApi.md#get_fee) | **GET** /api/api/funds/{scope}/{code}/fees/{feeCode} | [EXPERIMENTAL] GetFee: Get a Fee for a specified Fund.
 [**get_fee_properties**](FundsApi.md#get_fee_properties) | **GET** /api/api/funds/{scope}/{code}/fees/{feeCode}/properties | [EXPERIMENTAL] GetFeeProperties: Get Fee properties.
 [**get_fund**](FundsApi.md#get_fund) | **GET** /api/api/funds/{scope}/{code} | [EXPERIMENTAL] GetFund: Get a Fund.
@@ -535,7 +537,7 @@ Name | Type | Description  | Notes
 ---
 
 # **delete_nav_activity_adjustments**
-> DeletedEntityResponse deleteNavActivityAdjustments = delete_nav_activity_adjustments(scope, code, valuation_point_code, nav_activity_adjustment, nav_type_code=nav_type_code, valuation_point_code_variant=valuation_point_code_variant)
+> DeletedEntityResponse deleteNavActivityAdjustments = delete_nav_activity_adjustments(scope, code, valuation_point_code, nav_activity_adjustment_response, nav_type_code=nav_type_code, valuation_point_code_variant=valuation_point_code_variant)
 
 [EXPERIMENTAL] DeleteNavActivityAdjustments: Delete Nav activity adjustments.
 
@@ -548,10 +550,10 @@ api_instance = api_client_factory.build(FundsApi)
 scope = 'scope_example' # str
 code = 'code_example' # str
 valuation_point_code = 'valuation_point_code_example' # str
-nav_activity_adjustment = [{"asAt":"2024-01-01T00:00:00.0000000+00:00","portfolioScope":"portfolioScope1","portfolioCode":"portfolioCode1","transactionId":"transactionId1","navActivityAdjustmentType":"PortfolioTransaction"}] # List[NavActivityAdjustment]
+nav_activity_adjustment_response = [{"navActivityAdjustmentSource":"Undefined","asAt":"2024-01-01T00:00:00.0000000+00:00","portfolioScope":"portfolioScope1","portfolioCode":"portfolioCode1","transactionId":"transactionId1","navActivityAdjustmentType":"PortfolioTransactionAdjustment"}] # List[NavActivityAdjustmentResponse]
 nav_type_code = 'nav_type_code_example' # str (optional)
 valuation_point_code_variant = 'valuation_point_code_variant_example' # str (optional)
-api_response = api_instance.delete_nav_activity_adjustments(scope, code, valuation_point_code, nav_activity_adjustment, nav_type_code=nav_type_code, valuation_point_code_variant=valuation_point_code_variant)
+api_response = api_instance.delete_nav_activity_adjustments(scope, code, valuation_point_code, nav_activity_adjustment_response, nav_type_code=nav_type_code, valuation_point_code_variant=valuation_point_code_variant)
 pprint(api_response)
 ```
 
@@ -562,7 +564,7 @@ Name | Type | Description  | Notes
  **scope** | **str**| The scope of the Fund. | [required] 
  **code** | **str**| The code of the Fund. Together with the scope is the unique identifier for the given Fund. | [required] 
  **valuation_point_code** | **str**| The valuation point Code to delete the adjustment from | [required] 
- **nav_activity_adjustment** | [**List[NavActivityAdjustment]**](NavActivityAdjustment.md)| The request describing the Nav activity adjustments to delete from a specific valuation point and nav type | [required] 
+ **nav_activity_adjustment_response** | [**List[NavActivityAdjustmentResponse]**](NavActivityAdjustmentResponse.md)| The request describing the Nav activity adjustments to delete from a specific valuation point and nav type | [required] 
  **nav_type_code** | **str**| When provided, runs against the specified NAV Type, otherwise the Primary NAV Type will be used. | [optional] 
  **valuation_point_code_variant** | **str**| The variant of the valuation point used in the request. Together with the valuation point code marks the unique branch for the NavType. | [optional] 
 
@@ -677,6 +679,114 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The updated Valuation Point response as a result of it be marked as Final. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_a2_b_data_for_fund**
+> VersionedResourceListOfFundA2BDataRecord getA2BDataForFund = get_a2_b_data_for_fund(scope, code, valuation_point_data_query_parameters, nav_type_code=nav_type_code, as_at=as_at, filter=filter, property_keys=property_keys)
+
+[EXPERIMENTAL] GetA2BDataForFund: Get A2B data for a Fund.
+
+Get the A2B data for transaction portfolios in a specified Fund.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(FundsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+valuation_point_data_query_parameters = ValuationPointDataQueryParameters()
+nav_type_code = 'nav_type_code_example' # str (optional)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+filter = 'filter_example' # str (optional)
+property_keys = ['property_keys_example'] # List[str] (optional)
+api_response = api_instance.get_a2_b_data_for_fund(scope, code, valuation_point_data_query_parameters, nav_type_code=nav_type_code, as_at=as_at, filter=filter, property_keys=property_keys)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the Fund. | [required] 
+ **code** | **str**| The code of the Fund. Together with the scope this uniquely identifies the Fund. | [required] 
+ **valuation_point_data_query_parameters** | [**ValuationPointDataQueryParameters**](ValuationPointDataQueryParameters.md)| The arguments to use for querying the A2B data. This includes start and end dates. | [required] 
+ **nav_type_code** | **str**| When provided, runs against the specified NAV Type, otherwise the Primary NAV Type will be used. | [optional] 
+ **as_at** | **datetime**| The asAt datetime at which to resolve the fund and the timeline. Defaults              to return the latest version if not specified. | [optional] 
+ **filter** | **str**| Expression to filter the result set. Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid. | [optional] 
+ **property_keys** | [**List[str]**](str.md)| A list of property keys from the \&quot;Instrument\&quot; domain to decorate onto              the A2B data. These take the format {domain}/{scope}/{code} e.g. \&quot;Instrument/system/Name\&quot;. | [optional] 
+
+### Return type
+
+[**VersionedResourceListOfFundA2BDataRecord**](VersionedResourceListOfFundA2BDataRecord.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The A2B data for transaction portfolios in a Fund |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_a2_b_movements_for_fund**
+> VersionedResourceListOfFundA2BMovementRecord getA2BMovementsForFund = get_a2_b_movements_for_fund(scope, code, valuation_point_data_query_parameters, nav_type_code=nav_type_code, as_at=as_at, filter=filter, property_keys=property_keys)
+
+[EXPERIMENTAL] GetA2BMovementsForFund: Get A2B movements for transaction portfolios in a Fund.
+
+Get the A2B movement records of transaction portfolios in a specified Fund.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(FundsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+valuation_point_data_query_parameters = ValuationPointDataQueryParameters()
+nav_type_code = 'nav_type_code_example' # str (optional)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+filter = 'filter_example' # str (optional)
+property_keys = ['property_keys_example'] # List[str] (optional)
+api_response = api_instance.get_a2_b_movements_for_fund(scope, code, valuation_point_data_query_parameters, nav_type_code=nav_type_code, as_at=as_at, filter=filter, property_keys=property_keys)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the Fund. | [required] 
+ **code** | **str**| The code of the Fund. Together with the scope this uniquely identifies the Fund. | [required] 
+ **valuation_point_data_query_parameters** | [**ValuationPointDataQueryParameters**](ValuationPointDataQueryParameters.md)| The arguments to use for querying the A2B movements. This includes start and end dates. | [required] 
+ **nav_type_code** | **str**| When provided, runs against the specified NAV Type, otherwise the Primary NAV Type will be used. | [optional] 
+ **as_at** | **datetime**| The asAt datetime at which to resolve the fund and the timeline. Defaults              to return the latest version if not specified. | [optional] 
+ **filter** | **str**| Expression to filter the result set. Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid. | [optional] 
+ **property_keys** | [**List[str]**](str.md)| A list of property keys from the \&quot;Instrument\&quot; domain to decorate onto              the A2B movements. These take the format {domain}/{scope}/{code} e.g. \&quot;Instrument/system/Name\&quot;. | [optional] 
+
+### Return type
+
+[**VersionedResourceListOfFundA2BMovementRecord**](VersionedResourceListOfFundA2BMovementRecord.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The A2B movement records of transaction portfolios for a Fund |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 
@@ -1573,7 +1683,7 @@ Name | Type | Description  | Notes
 ---
 
 # **list_nav_activity_adjustments**
-> ResourceListOfNavActivityAdjustment listNavActivityAdjustments = list_nav_activity_adjustments(scope, code, valuation_point_code, nav_type_code=nav_type_code, as_at=as_at, page=page, limit=limit, filter=filter, valuation_point_code_variant=valuation_point_code_variant)
+> ResourceListOfNavActivityAdjustmentResponse listNavActivityAdjustments = list_nav_activity_adjustments(scope, code, valuation_point_code, nav_type_code=nav_type_code, as_at=as_at, page=page, limit=limit, filter=filter, valuation_point_code_variant=valuation_point_code_variant)
 
 [EXPERIMENTAL] ListNavActivityAdjustments: List NAV adjustment activities applied to a valuation point
 
@@ -1612,7 +1722,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfNavActivityAdjustment**](ResourceListOfNavActivityAdjustment.md)
+[**ResourceListOfNavActivityAdjustmentResponse**](ResourceListOfNavActivityAdjustmentResponse.md)
 
 ### HTTP request headers
 

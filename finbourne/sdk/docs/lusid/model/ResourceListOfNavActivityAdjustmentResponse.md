@@ -1,10 +1,10 @@
-# ResourceListOfNavActivityAdjustment
+# ResourceListOfNavActivityAdjustmentResponse
 
 ## Properties
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **values** | [List[NavActivityAdjustment]](NavActivityAdjustment.md) | Required | *No description available.* |
+| **values** | [List[NavActivityAdjustmentResponse]](NavActivityAdjustmentResponse.md) | Required | *No description available.* |
 | **href** | **str** | Optional | *No description available.* |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 | **next_page** | **str** | Optional | *No description available.* |
@@ -16,9 +16,9 @@
 ### Creating from keyword arguments
 
 ```python
-from finbourne.sdk.services.lusid.models.ResourceListOfNavActivityAdjustment import ResourceListOfNavActivityAdjustment
+from finbourne.sdk.services.lusid.models.ResourceListOfNavActivityAdjustmentResponse import ResourceListOfNavActivityAdjustmentResponse
 
-instance = ResourceListOfNavActivityAdjustment(
+instance = ResourceListOfNavActivityAdjustmentResponse(
     values=[],  # required
     href="...",  # optional
     links=[],  # optional
@@ -30,7 +30,7 @@ instance = ResourceListOfNavActivityAdjustment(
 
 ## Related Models
 
-- [NavActivityAdjustment](NavActivityAdjustment.md)
+- [NavActivityAdjustmentResponse](NavActivityAdjustmentResponse.md)
 - [Link](Link.md)
 
 

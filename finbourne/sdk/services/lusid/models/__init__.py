@@ -458,6 +458,8 @@ from finbourne.sdk.services.lusid.models.flow_conventions import FlowConventions
 from finbourne.sdk.services.lusid.models.forward_rate_agreement import ForwardRateAgreement
 from finbourne.sdk.services.lusid.models.from_recipe import FromRecipe
 from finbourne.sdk.services.lusid.models.fund import Fund
+from finbourne.sdk.services.lusid.models.fund_a2_b_data_record import FundA2BDataRecord
+from finbourne.sdk.services.lusid.models.fund_a2_b_movement_record import FundA2BMovementRecord
 from finbourne.sdk.services.lusid.models.fund_amount import FundAmount
 from finbourne.sdk.services.lusid.models.fund_bookmark import FundBookmark
 from finbourne.sdk.services.lusid.models.fund_calendar_entries import FundCalendarEntries
@@ -592,6 +594,7 @@ from finbourne.sdk.services.lusid.models.inline_valuations_reconciliation_reques
 from finbourne.sdk.services.lusid.models.input_transition import InputTransition
 from finbourne.sdk.services.lusid.models.instrument import Instrument
 from finbourne.sdk.services.lusid.models.instrument_activity import InstrumentActivity
+from finbourne.sdk.services.lusid.models.instrument_activity_adjustment import InstrumentActivityAdjustment
 from finbourne.sdk.services.lusid.models.instrument_capabilities import InstrumentCapabilities
 from finbourne.sdk.services.lusid.models.instrument_cash_flow import InstrumentCashFlow
 from finbourne.sdk.services.lusid.models.instrument_definition import InstrumentDefinition
@@ -702,6 +705,8 @@ from finbourne.sdk.services.lusid.models.movement_settlement_summary import Move
 from finbourne.sdk.services.lusid.models.movement_type import MovementType
 from finbourne.sdk.services.lusid.models.multi_currency_amounts import MultiCurrencyAmounts
 from finbourne.sdk.services.lusid.models.nav_activity_adjustment import NavActivityAdjustment
+from finbourne.sdk.services.lusid.models.nav_activity_adjustment_response import NavActivityAdjustmentResponse
+from finbourne.sdk.services.lusid.models.nav_activity_adjustment_response_type import NavActivityAdjustmentResponseType
 from finbourne.sdk.services.lusid.models.nav_activity_adjustment_type import NavActivityAdjustmentType
 from finbourne.sdk.services.lusid.models.nav_type import NavType
 from finbourne.sdk.services.lusid.models.nav_type_definition import NavTypeDefinition
@@ -879,8 +884,10 @@ from finbourne.sdk.services.lusid.models.portfolio_return_breakdown import Portf
 from finbourne.sdk.services.lusid.models.portfolio_search_result import PortfolioSearchResult
 from finbourne.sdk.services.lusid.models.portfolio_settlement_configuration import PortfolioSettlementConfiguration
 from finbourne.sdk.services.lusid.models.portfolio_settlement_instruction import PortfolioSettlementInstruction
+from finbourne.sdk.services.lusid.models.portfolio_settlement_instruction_adjustment import PortfolioSettlementInstructionAdjustment
 from finbourne.sdk.services.lusid.models.portfolio_trade_ticket import PortfolioTradeTicket
 from finbourne.sdk.services.lusid.models.portfolio_transaction import PortfolioTransaction
+from finbourne.sdk.services.lusid.models.portfolio_transaction_adjustment import PortfolioTransactionAdjustment
 from finbourne.sdk.services.lusid.models.portfolio_type import PortfolioType
 from finbourne.sdk.services.lusid.models.portfolio_weight import PortfolioWeight
 from finbourne.sdk.services.lusid.models.portfolio_without_href import PortfolioWithoutHref
@@ -935,6 +942,7 @@ from finbourne.sdk.services.lusid.models.quote import Quote
 from finbourne.sdk.services.lusid.models.quote_access_metadata_rule import QuoteAccessMetadataRule
 from finbourne.sdk.services.lusid.models.quote_access_metadata_rule_id import QuoteAccessMetadataRuleId
 from finbourne.sdk.services.lusid.models.quote_activity import QuoteActivity
+from finbourne.sdk.services.lusid.models.quote_activity_adjustment import QuoteActivityAdjustment
 from finbourne.sdk.services.lusid.models.quote_dependency import QuoteDependency
 from finbourne.sdk.services.lusid.models.quote_id import QuoteId
 from finbourne.sdk.services.lusid.models.quote_instrument_id_type import QuoteInstrumentIdType
@@ -1036,7 +1044,7 @@ from finbourne.sdk.services.lusid.models.resource_list_of_legal_entity import Re
 from finbourne.sdk.services.lusid.models.resource_list_of_list_complex_market_data_with_meta_data_response import ResourceListOfListComplexMarketDataWithMetaDataResponse
 from finbourne.sdk.services.lusid.models.resource_list_of_mapping import ResourceListOfMapping
 from finbourne.sdk.services.lusid.models.resource_list_of_moved_order_to_different_block_response import ResourceListOfMovedOrderToDifferentBlockResponse
-from finbourne.sdk.services.lusid.models.resource_list_of_nav_activity_adjustment import ResourceListOfNavActivityAdjustment
+from finbourne.sdk.services.lusid.models.resource_list_of_nav_activity_adjustment_response import ResourceListOfNavActivityAdjustmentResponse
 from finbourne.sdk.services.lusid.models.resource_list_of_order import ResourceListOfOrder
 from finbourne.sdk.services.lusid.models.resource_list_of_order_instruction import ResourceListOfOrderInstruction
 from finbourne.sdk.services.lusid.models.resource_list_of_output_transaction import ResourceListOfOutputTransaction
@@ -1367,6 +1375,8 @@ from finbourne.sdk.services.lusid.models.version import Version
 from finbourne.sdk.services.lusid.models.version_summary_dto import VersionSummaryDto
 from finbourne.sdk.services.lusid.models.versioned_resource_list_of_a2_b_data_record import VersionedResourceListOfA2BDataRecord
 from finbourne.sdk.services.lusid.models.versioned_resource_list_of_a2_b_movement_record import VersionedResourceListOfA2BMovementRecord
+from finbourne.sdk.services.lusid.models.versioned_resource_list_of_fund_a2_b_data_record import VersionedResourceListOfFundA2BDataRecord
+from finbourne.sdk.services.lusid.models.versioned_resource_list_of_fund_a2_b_movement_record import VersionedResourceListOfFundA2BMovementRecord
 from finbourne.sdk.services.lusid.models.versioned_resource_list_of_holding_contributor import VersionedResourceListOfHoldingContributor
 from finbourne.sdk.services.lusid.models.versioned_resource_list_of_journal_entry_line import VersionedResourceListOfJournalEntryLine
 from finbourne.sdk.services.lusid.models.versioned_resource_list_of_output_transaction import VersionedResourceListOfOutputTransaction
@@ -1844,6 +1854,8 @@ __all__ = [
     "ForwardRateAgreement",
     "FromRecipe",
     "Fund",
+    "FundA2BDataRecord",
+    "FundA2BMovementRecord",
     "FundAmount",
     "FundBookmark",
     "FundCalendarEntries",
@@ -1978,6 +1990,7 @@ __all__ = [
     "InputTransition",
     "Instrument",
     "InstrumentActivity",
+    "InstrumentActivityAdjustment",
     "InstrumentCapabilities",
     "InstrumentCashFlow",
     "InstrumentDefinition",
@@ -2088,6 +2101,8 @@ __all__ = [
     "MovementType",
     "MultiCurrencyAmounts",
     "NavActivityAdjustment",
+    "NavActivityAdjustmentResponse",
+    "NavActivityAdjustmentResponseType",
     "NavActivityAdjustmentType",
     "NavType",
     "NavTypeDefinition",
@@ -2265,8 +2280,10 @@ __all__ = [
     "PortfolioSearchResult",
     "PortfolioSettlementConfiguration",
     "PortfolioSettlementInstruction",
+    "PortfolioSettlementInstructionAdjustment",
     "PortfolioTradeTicket",
     "PortfolioTransaction",
+    "PortfolioTransactionAdjustment",
     "PortfolioType",
     "PortfolioWeight",
     "PortfolioWithoutHref",
@@ -2321,6 +2338,7 @@ __all__ = [
     "QuoteAccessMetadataRule",
     "QuoteAccessMetadataRuleId",
     "QuoteActivity",
+    "QuoteActivityAdjustment",
     "QuoteDependency",
     "QuoteId",
     "QuoteInstrumentIdType",
@@ -2422,7 +2440,7 @@ __all__ = [
     "ResourceListOfListComplexMarketDataWithMetaDataResponse",
     "ResourceListOfMapping",
     "ResourceListOfMovedOrderToDifferentBlockResponse",
-    "ResourceListOfNavActivityAdjustment",
+    "ResourceListOfNavActivityAdjustmentResponse",
     "ResourceListOfOrder",
     "ResourceListOfOrderInstruction",
     "ResourceListOfOutputTransaction",
@@ -2753,6 +2771,8 @@ __all__ = [
     "VersionSummaryDto",
     "VersionedResourceListOfA2BDataRecord",
     "VersionedResourceListOfA2BMovementRecord",
+    "VersionedResourceListOfFundA2BDataRecord",
+    "VersionedResourceListOfFundA2BMovementRecord",
     "VersionedResourceListOfHoldingContributor",
     "VersionedResourceListOfJournalEntryLine",
     "VersionedResourceListOfOutputTransaction",

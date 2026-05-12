@@ -20,20 +20,22 @@ from datetime import datetime
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
+from finbourne.sdk.services.lusid.models.fund_a2_b_movement_record import FundA2BMovementRecord
 from finbourne.sdk.services.lusid.models.link import Link
-from finbourne.sdk.services.lusid.models.nav_activity_adjustment import NavActivityAdjustment
+from finbourne.sdk.services.lusid.models.version import Version
 
 
-class ResourceListOfNavActivityAdjustment(BaseModel):
+class VersionedResourceListOfFundA2BMovementRecord(BaseModel):
     """
-    ResourceListOfNavActivityAdjustment
+    VersionedResourceListOfFundA2BMovementRecord
     """
-    values: List[NavActivityAdjustment]
+    version: Version
+    values: List[FundA2BMovementRecord]
     href:  Optional[StrictStr] = Field(default=None,alias="href") 
-    links: Optional[List[Link]] = None
     next_page:  Optional[StrictStr] = Field(default=None,alias="nextPage") 
     previous_page:  Optional[StrictStr] = Field(default=None,alias="previousPage") 
-    __properties: ClassVar[List[str]] = ["values", "href", "links", "nextPage", "previousPage"]
+    links: Optional[List[Link]] = None
+    __properties: ClassVar[List[str]] = ["version", "values", "href", "nextPage", "previousPage", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -58,8 +60,8 @@ class ResourceListOfNavActivityAdjustment(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> ResourceListOfNavActivityAdjustment:
-        """Create an instance of ResourceListOfNavActivityAdjustment from a JSON string"""
+    def from_json(cls, json_str: str) -> VersionedResourceListOfFundA2BMovementRecord:
+        """Create an instance of VersionedResourceListOfFundA2BMovementRecord from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -69,6 +71,9 @@ class ResourceListOfNavActivityAdjustment(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of version
+        if self.version:
+            _dict['version'] = self.version.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in values (list)
         _items = []
         if self.values:
@@ -88,11 +93,6 @@ class ResourceListOfNavActivityAdjustment(BaseModel):
         if self.href is None and "href" in self.model_fields_set:
             _dict['href'] = None
 
-        # set to None if links (nullable) is None
-        # and model_fields_set contains the field
-        if self.links is None and "links" in self.model_fields_set:
-            _dict['links'] = None
-
         # set to None if next_page (nullable) is None
         # and model_fields_set contains the field
         if self.next_page is None and "next_page" in self.model_fields_set:
@@ -103,25 +103,31 @@ class ResourceListOfNavActivityAdjustment(BaseModel):
         if self.previous_page is None and "previous_page" in self.model_fields_set:
             _dict['previousPage'] = None
 
+        # set to None if links (nullable) is None
+        # and model_fields_set contains the field
+        if self.links is None and "links" in self.model_fields_set:
+            _dict['links'] = None
+
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> ResourceListOfNavActivityAdjustment:
-        """Create an instance of ResourceListOfNavActivityAdjustment from a dict"""
+    def from_dict(cls, obj: dict) -> VersionedResourceListOfFundA2BMovementRecord:
+        """Create an instance of VersionedResourceListOfFundA2BMovementRecord from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return ResourceListOfNavActivityAdjustment.model_validate(obj)
+            return VersionedResourceListOfFundA2BMovementRecord.model_validate(obj)
 
-        _obj = ResourceListOfNavActivityAdjustment.model_validate({
-            "values": [NavActivityAdjustment.from_dict(_item) for _item in _v] if (_v := obj.get("values")) is not None else None,
+        _obj = VersionedResourceListOfFundA2BMovementRecord.model_validate({
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "values": [FundA2BMovementRecord.from_dict(_item) for _item in _v] if (_v := obj.get("values")) is not None else None,
             "href": obj.get("href"),
-            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None,
             "next_page": obj.get("nextPage"),
-            "previous_page": obj.get("previousPage")
+            "previous_page": obj.get("previousPage"),
+            "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 
-ResourceListOfNavActivityAdjustment.model_rebuild()
+VersionedResourceListOfFundA2BMovementRecord.model_rebuild()
 

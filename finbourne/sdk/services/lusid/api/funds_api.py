@@ -39,6 +39,7 @@ from finbourne.sdk.services.lusid.models.fund_valuation_request import FundValua
 from finbourne.sdk.services.lusid.models.list_aggregation_response import ListAggregationResponse
 from finbourne.sdk.services.lusid.models.model_property import ModelProperty
 from finbourne.sdk.services.lusid.models.nav_activity_adjustment import NavActivityAdjustment
+from finbourne.sdk.services.lusid.models.nav_activity_adjustment_response import NavActivityAdjustmentResponse
 from finbourne.sdk.services.lusid.models.operation import Operation
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_fee import PagedResourceListOfFee
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_fund import PagedResourceListOfFund
@@ -46,7 +47,7 @@ from finbourne.sdk.services.lusid.models.paged_resource_list_of_fund_calendar_en
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_fund_calendar_entry import PagedResourceListOfFundCalendarEntry
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_valuation_point_overview import PagedResourceListOfValuationPointOverview
 from finbourne.sdk.services.lusid.models.query_fund_cash_statement_parameters import QueryFundCashStatementParameters
-from finbourne.sdk.services.lusid.models.resource_list_of_nav_activity_adjustment import ResourceListOfNavActivityAdjustment
+from finbourne.sdk.services.lusid.models.resource_list_of_nav_activity_adjustment_response import ResourceListOfNavActivityAdjustmentResponse
 from finbourne.sdk.services.lusid.models.revert_valuation_point_data_request import RevertValuationPointDataRequest
 from finbourne.sdk.services.lusid.models.series_definition_request import SeriesDefinitionRequest
 from finbourne.sdk.services.lusid.models.set_share_class_instruments_request import SetShareClassInstrumentsRequest
@@ -61,6 +62,8 @@ from finbourne.sdk.services.lusid.models.valuation_point_resource_list_of_fund_c
 from finbourne.sdk.services.lusid.models.valuation_point_resource_list_of_fund_journal_entry_line import ValuationPointResourceListOfFundJournalEntryLine
 from finbourne.sdk.services.lusid.models.valuation_point_resource_list_of_pnl_journal_entry_line import ValuationPointResourceListOfPnlJournalEntryLine
 from finbourne.sdk.services.lusid.models.valuation_point_resource_list_of_trial_balance import ValuationPointResourceListOfTrialBalance
+from finbourne.sdk.services.lusid.models.versioned_resource_list_of_fund_a2_b_data_record import VersionedResourceListOfFundA2BDataRecord
+from finbourne.sdk.services.lusid.models.versioned_resource_list_of_fund_a2_b_movement_record import VersionedResourceListOfFundA2BMovementRecord
 from finbourne.sdk.services.lusid.models.versioned_resource_list_of_holding_contributor import VersionedResourceListOfHoldingContributor
 from finbourne.sdk.services.lusid.models.versioned_resource_list_of_portfolio_holding import VersionedResourceListOfPortfolioHolding
 from finbourne.sdk.api_client import ApiClient
@@ -1505,7 +1508,7 @@ class FundsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def delete_nav_activity_adjustments(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_activity_adjustment: List[NavActivityAdjustment], nav_type_code: Optional[StrictStr] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> DeletedEntityResponse:
+    def delete_nav_activity_adjustments(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_activity_adjustment_response: List[NavActivityAdjustmentResponse], nav_type_code: Optional[StrictStr] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> DeletedEntityResponse:
         """[EXPERIMENTAL] DeleteNavActivityAdjustments: Delete Nav activity adjustments.  # noqa: E501
 
         Delete Nav activity adjustments on a Valuation Point.  # noqa: E501
@@ -1515,8 +1518,8 @@ class FundsApi:
         :type code: str
         :param valuation_point_code: The valuation point Code to delete the adjustment from (required)
         :type valuation_point_code: str
-        :param nav_activity_adjustment: The request describing the Nav activity adjustments to delete from a specific valuation point and nav type (required)
-        :type nav_activity_adjustment: List[NavActivityAdjustment]
+        :param nav_activity_adjustment_response: The request describing the Nav activity adjustments to delete from a specific valuation point and nav type (required)
+        :type nav_activity_adjustment_response: List[NavActivityAdjustmentResponse]
         :param nav_type_code: When provided, runs against the specified NAV Type, otherwise the Primary NAV Type will be used.
         :type nav_type_code: str
         :param valuation_point_code_variant: The variant of the valuation point used in the request. Together with the valuation point code marks the unique branch for the NavType.
@@ -1531,11 +1534,11 @@ class FundsApi:
             message = "Error! Please call the delete_nav_activity_adjustments_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.delete_nav_activity_adjustments_with_http_info(scope, code, valuation_point_code, nav_activity_adjustment, nav_type_code, valuation_point_code_variant, **kwargs)
+        response = self.delete_nav_activity_adjustments_with_http_info(scope, code, valuation_point_code, nav_activity_adjustment_response, nav_type_code, valuation_point_code_variant, **kwargs)
         return response.data
 
     @validate_call
-    def delete_nav_activity_adjustments_with_http_info(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_activity_adjustment: List[NavActivityAdjustment], nav_type_code: Optional[StrictStr] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
+    def delete_nav_activity_adjustments_with_http_info(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_activity_adjustment_response: List[NavActivityAdjustmentResponse], nav_type_code: Optional[StrictStr] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
         """[EXPERIMENTAL] DeleteNavActivityAdjustments: Delete Nav activity adjustments.  # noqa: E501
 
         Delete Nav activity adjustments on a Valuation Point.  # noqa: E501
@@ -1545,8 +1548,8 @@ class FundsApi:
         :type code: str
         :param valuation_point_code: The valuation point Code to delete the adjustment from (required)
         :type valuation_point_code: str
-        :param nav_activity_adjustment: The request describing the Nav activity adjustments to delete from a specific valuation point and nav type (required)
-        :type nav_activity_adjustment: List[NavActivityAdjustment]
+        :param nav_activity_adjustment_response: The request describing the Nav activity adjustments to delete from a specific valuation point and nav type (required)
+        :type nav_activity_adjustment_response: List[NavActivityAdjustmentResponse]
         :param nav_type_code: When provided, runs against the specified NAV Type, otherwise the Primary NAV Type will be used.
         :type nav_type_code: str
         :param valuation_point_code_variant: The variant of the valuation point used in the request. Together with the valuation point code marks the unique branch for the NavType.
@@ -1577,7 +1580,7 @@ class FundsApi:
             'scope',
             'code',
             'valuation_point_code',
-            'nav_activity_adjustment',
+            'nav_activity_adjustment_response',
             'nav_type_code',
             'valuation_point_code_variant'
         ]
@@ -1632,8 +1635,8 @@ class FundsApi:
         _files = {}
         # process the body parameter
         _body_params = None
-        if _params['nav_activity_adjustment'] is not None:
-            _body_params = _params['nav_activity_adjustment']
+        if _params['nav_activity_adjustment_response'] is not None:
+            _body_params = _params['nav_activity_adjustment_response']
 
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.sync_api_client.select_header_accept(
@@ -1959,6 +1962,364 @@ class FundsApi:
 
         return self.sync_api_client.call_api(
             '/api/api/funds/{scope}/{code}/valuationpoints/$finalisecandidate', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    def get_a2_b_data_for_fund(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> VersionedResourceListOfFundA2BDataRecord:
+        """[EXPERIMENTAL] GetA2BDataForFund: Get A2B data for a Fund.  # noqa: E501
+
+        Get the A2B data for transaction portfolios in a specified Fund.  # noqa: E501
+        :param scope: The scope of the Fund. (required)
+        :type scope: str
+        :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
+        :type code: str
+        :param valuation_point_data_query_parameters: The arguments to use for querying the A2B data. This includes start and end dates. (required)
+        :type valuation_point_data_query_parameters: ValuationPointDataQueryParameters
+        :param nav_type_code: When provided, runs against the specified NAV Type, otherwise the Primary NAV Type will be used.
+        :type nav_type_code: str
+        :param as_at: The asAt datetime at which to resolve the fund and the timeline. Defaults              to return the latest version if not specified.
+        :type as_at: datetime
+        :param filter: Expression to filter the result set. Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid.
+        :type filter: str
+        :param property_keys: A list of property keys from the \"Instrument\" domain to decorate onto              the A2B data. These take the format {domain}/{scope}/{code} e.g. \"Instrument/system/Name\".
+        :type property_keys: List[str]
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: VersionedResourceListOfFundA2BDataRecord
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_a2_b_data_for_fund_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.get_a2_b_data_for_fund_with_http_info(scope, code, valuation_point_data_query_parameters, nav_type_code, as_at, filter, property_keys, **kwargs)
+        return response.data
+
+    @validate_call
+    def get_a2_b_data_for_fund_with_http_info(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[VersionedResourceListOfFundA2BDataRecord]:
+        """[EXPERIMENTAL] GetA2BDataForFund: Get A2B data for a Fund.  # noqa: E501
+
+        Get the A2B data for transaction portfolios in a specified Fund.  # noqa: E501
+        :param scope: The scope of the Fund. (required)
+        :type scope: str
+        :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
+        :type code: str
+        :param valuation_point_data_query_parameters: The arguments to use for querying the A2B data. This includes start and end dates. (required)
+        :type valuation_point_data_query_parameters: ValuationPointDataQueryParameters
+        :param nav_type_code: When provided, runs against the specified NAV Type, otherwise the Primary NAV Type will be used.
+        :type nav_type_code: str
+        :param as_at: The asAt datetime at which to resolve the fund and the timeline. Defaults              to return the latest version if not specified.
+        :type as_at: datetime
+        :param filter: Expression to filter the result set. Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid.
+        :type filter: str
+        :param property_keys: A list of property keys from the \"Instrument\" domain to decorate onto              the A2B data. These take the format {domain}/{scope}/{code} e.g. \"Instrument/system/Name\".
+        :type property_keys: List[str]
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(VersionedResourceListOfFundA2BDataRecord, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'scope',
+            'code',
+            'valuation_point_data_query_parameters',
+            'nav_type_code',
+            'as_at',
+            'filter',
+            'property_keys'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_a2_b_data_for_fund" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['scope']:
+            _path_params['scope'] = _params['scope']
+
+        if _params['code']:
+            _path_params['code'] = _params['code']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('nav_type_code') is not None:  # noqa: E501
+            _query_params.append(('navTypeCode', _params['nav_type_code']))
+
+        if _params.get('as_at') is not None:  # noqa: E501
+            if isinstance(_params['as_at'], datetime):
+                _query_params.append(('asAt', _params['as_at'].strftime(self.sync_api_client.configuration.datetime_format)))
+            else:
+                _query_params.append(('asAt', _params['as_at']))
+
+        if _params.get('filter') is not None:  # noqa: E501
+            _query_params.append(('filter', _params['filter']))
+
+        if _params.get('property_keys') is not None:  # noqa: E501
+            _query_params.append(('propertyKeys', _params['property_keys']))
+            _collection_formats['propertyKeys'] = 'multi'
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['valuation_point_data_query_parameters'] is not None:
+            _body_params = _params['valuation_point_data_query_parameters']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.sync_api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "VersionedResourceListOfFundA2BDataRecord",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/funds/{scope}/{code}/valuationpoints/a2b/$query', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    def get_a2_b_movements_for_fund(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> VersionedResourceListOfFundA2BMovementRecord:
+        """[EXPERIMENTAL] GetA2BMovementsForFund: Get A2B movements for transaction portfolios in a Fund.  # noqa: E501
+
+        Get the A2B movement records of transaction portfolios in a specified Fund.  # noqa: E501
+        :param scope: The scope of the Fund. (required)
+        :type scope: str
+        :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
+        :type code: str
+        :param valuation_point_data_query_parameters: The arguments to use for querying the A2B movements. This includes start and end dates. (required)
+        :type valuation_point_data_query_parameters: ValuationPointDataQueryParameters
+        :param nav_type_code: When provided, runs against the specified NAV Type, otherwise the Primary NAV Type will be used.
+        :type nav_type_code: str
+        :param as_at: The asAt datetime at which to resolve the fund and the timeline. Defaults              to return the latest version if not specified.
+        :type as_at: datetime
+        :param filter: Expression to filter the result set. Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid.
+        :type filter: str
+        :param property_keys: A list of property keys from the \"Instrument\" domain to decorate onto              the A2B movements. These take the format {domain}/{scope}/{code} e.g. \"Instrument/system/Name\".
+        :type property_keys: List[str]
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: VersionedResourceListOfFundA2BMovementRecord
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_a2_b_movements_for_fund_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.get_a2_b_movements_for_fund_with_http_info(scope, code, valuation_point_data_query_parameters, nav_type_code, as_at, filter, property_keys, **kwargs)
+        return response.data
+
+    @validate_call
+    def get_a2_b_movements_for_fund_with_http_info(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[VersionedResourceListOfFundA2BMovementRecord]:
+        """[EXPERIMENTAL] GetA2BMovementsForFund: Get A2B movements for transaction portfolios in a Fund.  # noqa: E501
+
+        Get the A2B movement records of transaction portfolios in a specified Fund.  # noqa: E501
+        :param scope: The scope of the Fund. (required)
+        :type scope: str
+        :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
+        :type code: str
+        :param valuation_point_data_query_parameters: The arguments to use for querying the A2B movements. This includes start and end dates. (required)
+        :type valuation_point_data_query_parameters: ValuationPointDataQueryParameters
+        :param nav_type_code: When provided, runs against the specified NAV Type, otherwise the Primary NAV Type will be used.
+        :type nav_type_code: str
+        :param as_at: The asAt datetime at which to resolve the fund and the timeline. Defaults              to return the latest version if not specified.
+        :type as_at: datetime
+        :param filter: Expression to filter the result set. Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid.
+        :type filter: str
+        :param property_keys: A list of property keys from the \"Instrument\" domain to decorate onto              the A2B movements. These take the format {domain}/{scope}/{code} e.g. \"Instrument/system/Name\".
+        :type property_keys: List[str]
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(VersionedResourceListOfFundA2BMovementRecord, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'scope',
+            'code',
+            'valuation_point_data_query_parameters',
+            'nav_type_code',
+            'as_at',
+            'filter',
+            'property_keys'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_a2_b_movements_for_fund" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['scope']:
+            _path_params['scope'] = _params['scope']
+
+        if _params['code']:
+            _path_params['code'] = _params['code']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('nav_type_code') is not None:  # noqa: E501
+            _query_params.append(('navTypeCode', _params['nav_type_code']))
+
+        if _params.get('as_at') is not None:  # noqa: E501
+            if isinstance(_params['as_at'], datetime):
+                _query_params.append(('asAt', _params['as_at'].strftime(self.sync_api_client.configuration.datetime_format)))
+            else:
+                _query_params.append(('asAt', _params['as_at']))
+
+        if _params.get('filter') is not None:  # noqa: E501
+            _query_params.append(('filter', _params['filter']))
+
+        if _params.get('property_keys') is not None:  # noqa: E501
+            _query_params.append(('propertyKeys', _params['property_keys']))
+            _collection_formats['propertyKeys'] = 'multi'
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['valuation_point_data_query_parameters'] is not None:
+            _body_params = _params['valuation_point_data_query_parameters']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.sync_api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "VersionedResourceListOfFundA2BMovementRecord",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/funds/{scope}/{code}/valuationpoints/a2bmovements/$query', 'POST',
             _path_params,
             _query_params,
             _header_params,
@@ -4874,7 +5235,7 @@ class FundsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def list_nav_activity_adjustments(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> ResourceListOfNavActivityAdjustment:
+    def list_nav_activity_adjustments(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> ResourceListOfNavActivityAdjustmentResponse:
         """[EXPERIMENTAL] ListNavActivityAdjustments: List NAV adjustment activities applied to a valuation point  # noqa: E501
 
         Lists the NAV adjustment activities applied to the specified valuation point for a Fund.  # noqa: E501
@@ -4900,7 +5261,7 @@ class FundsApi:
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
         :return: Returns the result object.
-        :rtype: ResourceListOfNavActivityAdjustment
+        :rtype: ResourceListOfNavActivityAdjustmentResponse
         """
         if '_preload_content' in kwargs:
             message = "Error! Please call the list_nav_activity_adjustments_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
@@ -4910,7 +5271,7 @@ class FundsApi:
         return response.data
 
     @validate_call
-    def list_nav_activity_adjustments_with_http_info(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfNavActivityAdjustment]:
+    def list_nav_activity_adjustments_with_http_info(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfNavActivityAdjustmentResponse]:
         """[EXPERIMENTAL] ListNavActivityAdjustments: List NAV adjustment activities applied to a valuation point  # noqa: E501
 
         Lists the NAV adjustment activities applied to the specified valuation point for a Fund.  # noqa: E501
@@ -4949,7 +5310,7 @@ class FundsApi:
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        :rtype: tuple(ResourceListOfNavActivityAdjustment, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(ResourceListOfNavActivityAdjustmentResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -5039,7 +5400,7 @@ class FundsApi:
         _auth_settings = ['oauth2']  # noqa: E501
 
         _response_types_map = {
-            '200': "ResourceListOfNavActivityAdjustment",
+            '200': "ResourceListOfNavActivityAdjustmentResponse",
             '400': "LusidValidationProblemDetails",
         }
 
@@ -8226,7 +8587,7 @@ class FundsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def delete_nav_activity_adjustments_async(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_activity_adjustment: List[NavActivityAdjustment], nav_type_code: Optional[StrictStr] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> DeletedEntityResponse:
+    async def delete_nav_activity_adjustments_async(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_activity_adjustment_response: List[NavActivityAdjustmentResponse], nav_type_code: Optional[StrictStr] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> DeletedEntityResponse:
             """[EXPERIMENTAL] DeleteNavActivityAdjustments: Delete Nav activity adjustments.  # noqa: E501
             Delete Nav activity adjustments on a Valuation Point.  # noqa: E501
             
@@ -8236,8 +8597,8 @@ class FundsApi:
             :type code: str
             :param valuation_point_code: The valuation point Code to delete the adjustment from (required)
             :type valuation_point_code: str
-            :param nav_activity_adjustment: The request describing the Nav activity adjustments to delete from a specific valuation point and nav type (required)
-            :type nav_activity_adjustment: List[NavActivityAdjustment]
+            :param nav_activity_adjustment_response: The request describing the Nav activity adjustments to delete from a specific valuation point and nav type (required)
+            :type nav_activity_adjustment_response: List[NavActivityAdjustmentResponse]
             :param nav_type_code: When provided, runs against the specified NAV Type, otherwise the Primary NAV Type will be used.
             :type nav_type_code: str
             :param valuation_point_code_variant: The variant of the valuation point used in the request. Together with the valuation point code marks the unique branch for the NavType.
@@ -8252,11 +8613,11 @@ class FundsApi:
                 message = "Error! Please call the delete_nav_activity_adjustments_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.delete_nav_activity_adjustments_with_http_info_async(scope, code, valuation_point_code, nav_activity_adjustment, nav_type_code, valuation_point_code_variant, **kwargs)
+            response = await self.delete_nav_activity_adjustments_with_http_info_async(scope, code, valuation_point_code, nav_activity_adjustment_response, nav_type_code, valuation_point_code_variant, **kwargs)
             return response.data
 
     @validate_call
-    async def delete_nav_activity_adjustments_with_http_info_async(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_activity_adjustment: List[NavActivityAdjustment], nav_type_code: Optional[StrictStr] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
+    async def delete_nav_activity_adjustments_with_http_info_async(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_activity_adjustment_response: List[NavActivityAdjustmentResponse], nav_type_code: Optional[StrictStr] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
             """[EXPERIMENTAL] DeleteNavActivityAdjustments: Delete Nav activity adjustments.  # noqa: E501
 
             Delete Nav activity adjustments on a Valuation Point.  # noqa: E501
@@ -8267,8 +8628,8 @@ class FundsApi:
             :type code: str
             :param valuation_point_code: The valuation point Code to delete the adjustment from (required)
             :type valuation_point_code: str
-            :param nav_activity_adjustment: The request describing the Nav activity adjustments to delete from a specific valuation point and nav type (required)
-            :type nav_activity_adjustment: List[NavActivityAdjustment]
+            :param nav_activity_adjustment_response: The request describing the Nav activity adjustments to delete from a specific valuation point and nav type (required)
+            :type nav_activity_adjustment_response: List[NavActivityAdjustmentResponse]
             :param nav_type_code: When provided, runs against the specified NAV Type, otherwise the Primary NAV Type will be used.
             :type nav_type_code: str
             :param valuation_point_code_variant: The variant of the valuation point used in the request. Together with the valuation point code marks the unique branch for the NavType.
@@ -8299,7 +8660,7 @@ class FundsApi:
                 'scope',
                 'code',
                 'valuation_point_code',
-                'nav_activity_adjustment',
+                'nav_activity_adjustment_response',
                 'nav_type_code',
                 'valuation_point_code_variant'
             ]
@@ -8354,8 +8715,8 @@ class FundsApi:
             _files = {}
             # process the body parameter
             _body_params = None
-            if _params['nav_activity_adjustment'] is not None:
-                _body_params = _params['nav_activity_adjustment']
+            if _params['nav_activity_adjustment_response'] is not None:
+                _body_params = _params['nav_activity_adjustment_response']
 
             # set the HTTP header `Accept`
             _header_params['Accept'] = self.api_client.select_header_accept(
@@ -8683,6 +9044,366 @@ class FundsApi:
 
             return await self.api_client.call_api_async(
                 '/api/api/funds/{scope}/{code}/valuationpoints/$finalisecandidate', 'POST',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def get_a2_b_data_for_fund_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> VersionedResourceListOfFundA2BDataRecord:
+            """[EXPERIMENTAL] GetA2BDataForFund: Get A2B data for a Fund.  # noqa: E501
+            Get the A2B data for transaction portfolios in a specified Fund.  # noqa: E501
+            
+            :param scope: The scope of the Fund. (required)
+            :type scope: str
+            :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
+            :type code: str
+            :param valuation_point_data_query_parameters: The arguments to use for querying the A2B data. This includes start and end dates. (required)
+            :type valuation_point_data_query_parameters: ValuationPointDataQueryParameters
+            :param nav_type_code: When provided, runs against the specified NAV Type, otherwise the Primary NAV Type will be used.
+            :type nav_type_code: str
+            :param as_at: The asAt datetime at which to resolve the fund and the timeline. Defaults              to return the latest version if not specified.
+            :type as_at: datetime
+            :param filter: Expression to filter the result set. Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid.
+            :type filter: str
+            :param property_keys: A list of property keys from the \"Instrument\" domain to decorate onto              the A2B data. These take the format {domain}/{scope}/{code} e.g. \"Instrument/system/Name\".
+            :type property_keys: List[str]
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: VersionedResourceListOfFundA2BDataRecord
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the get_a2_b_data_for_fund_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.get_a2_b_data_for_fund_with_http_info_async(scope, code, valuation_point_data_query_parameters, nav_type_code, as_at, filter, property_keys, **kwargs)
+            return response.data
+
+    @validate_call
+    async def get_a2_b_data_for_fund_with_http_info_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[VersionedResourceListOfFundA2BDataRecord]:
+            """[EXPERIMENTAL] GetA2BDataForFund: Get A2B data for a Fund.  # noqa: E501
+
+            Get the A2B data for transaction portfolios in a specified Fund.  # noqa: E501
+
+            :param scope: The scope of the Fund. (required)
+            :type scope: str
+            :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
+            :type code: str
+            :param valuation_point_data_query_parameters: The arguments to use for querying the A2B data. This includes start and end dates. (required)
+            :type valuation_point_data_query_parameters: ValuationPointDataQueryParameters
+            :param nav_type_code: When provided, runs against the specified NAV Type, otherwise the Primary NAV Type will be used.
+            :type nav_type_code: str
+            :param as_at: The asAt datetime at which to resolve the fund and the timeline. Defaults              to return the latest version if not specified.
+            :type as_at: datetime
+            :param filter: Expression to filter the result set. Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid.
+            :type filter: str
+            :param property_keys: A list of property keys from the \"Instrument\" domain to decorate onto              the A2B data. These take the format {domain}/{scope}/{code} e.g. \"Instrument/system/Name\".
+            :type property_keys: List[str]
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(VersionedResourceListOfFundA2BDataRecord, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'scope',
+                'code',
+                'valuation_point_data_query_parameters',
+                'nav_type_code',
+                'as_at',
+                'filter',
+                'property_keys'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method get_a2_b_data_for_fund" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['scope']:
+                _path_params['scope'] = _params['scope']
+
+            if _params['code']:
+                _path_params['code'] = _params['code']
+
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('nav_type_code') is not None:  # noqa: E501
+                _query_params.append(('navTypeCode', _params['nav_type_code']))
+
+            if _params.get('as_at') is not None:  # noqa: E501
+                if isinstance(_params['as_at'], datetime):
+                    _query_params.append(('asAt', _params['as_at'].strftime(self.api_client.configuration.datetime_format)))
+                else:
+                    _query_params.append(('asAt', _params['as_at']))
+
+            if _params.get('filter') is not None:  # noqa: E501
+                _query_params.append(('filter', _params['filter']))
+
+            if _params.get('property_keys') is not None:  # noqa: E501
+                _query_params.append(('propertyKeys', _params['property_keys']))
+                _collection_formats['propertyKeys'] = 'multi'
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            if _params['valuation_point_data_query_parameters'] is not None:
+                _body_params = _params['valuation_point_data_query_parameters']
+
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # set the HTTP header `Content-Type`
+            _content_types_list = _params.get('_content_type',
+                self.api_client.select_header_content_type(
+                    ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+            if _content_types_list:
+                    _header_params['Content-Type'] = _content_types_list
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "VersionedResourceListOfFundA2BDataRecord",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/funds/{scope}/{code}/valuationpoints/a2b/$query', 'POST',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def get_a2_b_movements_for_fund_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> VersionedResourceListOfFundA2BMovementRecord:
+            """[EXPERIMENTAL] GetA2BMovementsForFund: Get A2B movements for transaction portfolios in a Fund.  # noqa: E501
+            Get the A2B movement records of transaction portfolios in a specified Fund.  # noqa: E501
+            
+            :param scope: The scope of the Fund. (required)
+            :type scope: str
+            :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
+            :type code: str
+            :param valuation_point_data_query_parameters: The arguments to use for querying the A2B movements. This includes start and end dates. (required)
+            :type valuation_point_data_query_parameters: ValuationPointDataQueryParameters
+            :param nav_type_code: When provided, runs against the specified NAV Type, otherwise the Primary NAV Type will be used.
+            :type nav_type_code: str
+            :param as_at: The asAt datetime at which to resolve the fund and the timeline. Defaults              to return the latest version if not specified.
+            :type as_at: datetime
+            :param filter: Expression to filter the result set. Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid.
+            :type filter: str
+            :param property_keys: A list of property keys from the \"Instrument\" domain to decorate onto              the A2B movements. These take the format {domain}/{scope}/{code} e.g. \"Instrument/system/Name\".
+            :type property_keys: List[str]
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: VersionedResourceListOfFundA2BMovementRecord
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the get_a2_b_movements_for_fund_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.get_a2_b_movements_for_fund_with_http_info_async(scope, code, valuation_point_data_query_parameters, nav_type_code, as_at, filter, property_keys, **kwargs)
+            return response.data
+
+    @validate_call
+    async def get_a2_b_movements_for_fund_with_http_info_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[VersionedResourceListOfFundA2BMovementRecord]:
+            """[EXPERIMENTAL] GetA2BMovementsForFund: Get A2B movements for transaction portfolios in a Fund.  # noqa: E501
+
+            Get the A2B movement records of transaction portfolios in a specified Fund.  # noqa: E501
+
+            :param scope: The scope of the Fund. (required)
+            :type scope: str
+            :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
+            :type code: str
+            :param valuation_point_data_query_parameters: The arguments to use for querying the A2B movements. This includes start and end dates. (required)
+            :type valuation_point_data_query_parameters: ValuationPointDataQueryParameters
+            :param nav_type_code: When provided, runs against the specified NAV Type, otherwise the Primary NAV Type will be used.
+            :type nav_type_code: str
+            :param as_at: The asAt datetime at which to resolve the fund and the timeline. Defaults              to return the latest version if not specified.
+            :type as_at: datetime
+            :param filter: Expression to filter the result set. Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid.
+            :type filter: str
+            :param property_keys: A list of property keys from the \"Instrument\" domain to decorate onto              the A2B movements. These take the format {domain}/{scope}/{code} e.g. \"Instrument/system/Name\".
+            :type property_keys: List[str]
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(VersionedResourceListOfFundA2BMovementRecord, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'scope',
+                'code',
+                'valuation_point_data_query_parameters',
+                'nav_type_code',
+                'as_at',
+                'filter',
+                'property_keys'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method get_a2_b_movements_for_fund" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['scope']:
+                _path_params['scope'] = _params['scope']
+
+            if _params['code']:
+                _path_params['code'] = _params['code']
+
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('nav_type_code') is not None:  # noqa: E501
+                _query_params.append(('navTypeCode', _params['nav_type_code']))
+
+            if _params.get('as_at') is not None:  # noqa: E501
+                if isinstance(_params['as_at'], datetime):
+                    _query_params.append(('asAt', _params['as_at'].strftime(self.api_client.configuration.datetime_format)))
+                else:
+                    _query_params.append(('asAt', _params['as_at']))
+
+            if _params.get('filter') is not None:  # noqa: E501
+                _query_params.append(('filter', _params['filter']))
+
+            if _params.get('property_keys') is not None:  # noqa: E501
+                _query_params.append(('propertyKeys', _params['property_keys']))
+                _collection_formats['propertyKeys'] = 'multi'
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            if _params['valuation_point_data_query_parameters'] is not None:
+                _body_params = _params['valuation_point_data_query_parameters']
+
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # set the HTTP header `Content-Type`
+            _content_types_list = _params.get('_content_type',
+                self.api_client.select_header_content_type(
+                    ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+            if _content_types_list:
+                    _header_params['Content-Type'] = _content_types_list
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "VersionedResourceListOfFundA2BMovementRecord",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/funds/{scope}/{code}/valuationpoints/a2bmovements/$query', 'POST',
                 _path_params,
                 _query_params,
                 _header_params,
@@ -11614,7 +12335,7 @@ class FundsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def list_nav_activity_adjustments_async(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> ResourceListOfNavActivityAdjustment:
+    async def list_nav_activity_adjustments_async(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> ResourceListOfNavActivityAdjustmentResponse:
             """[EXPERIMENTAL] ListNavActivityAdjustments: List NAV adjustment activities applied to a valuation point  # noqa: E501
             Lists the NAV adjustment activities applied to the specified valuation point for a Fund.  # noqa: E501
             
@@ -11640,7 +12361,7 @@ class FundsApi:
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
             :return: Returns an coroutine ApiResponse object.
-            :rtype: ResourceListOfNavActivityAdjustment
+            :rtype: ResourceListOfNavActivityAdjustmentResponse
             """
             if '_preload_content' in kwargs:
                 message = "Error! Please call the list_nav_activity_adjustments_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
@@ -11650,7 +12371,7 @@ class FundsApi:
             return response.data
 
     @validate_call
-    async def list_nav_activity_adjustments_with_http_info_async(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfNavActivityAdjustment]:
+    async def list_nav_activity_adjustments_with_http_info_async(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfNavActivityAdjustmentResponse]:
             """[EXPERIMENTAL] ListNavActivityAdjustments: List NAV adjustment activities applied to a valuation point  # noqa: E501
 
             Lists the NAV adjustment activities applied to the specified valuation point for a Fund.  # noqa: E501
@@ -11690,7 +12411,7 @@ class FundsApi:
             :type _request_auth: dict, optional
             :type _content_type: string, optional: force content-type for the request
             :return: Returns an coroutine ApiResponse object.
-            :rtype: tuple(ResourceListOfNavActivityAdjustment, status_code(int), headers(HTTPHeaderDict))
+            :rtype: tuple(ResourceListOfNavActivityAdjustmentResponse, status_code(int), headers(HTTPHeaderDict))
             """
 
             _params = locals()
@@ -11780,7 +12501,7 @@ class FundsApi:
             _auth_settings = ['oauth2']  # noqa: E501
 
             _response_types_map = {
-                '200': "ResourceListOfNavActivityAdjustment",
+                '200': "ResourceListOfNavActivityAdjustmentResponse",
                 '400': "LusidValidationProblemDetails",
             }
 
