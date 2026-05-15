@@ -29,7 +29,7 @@ class CreateTransactionFeeTypeRequest(BaseModel):
     CreateTransactionFeeTypeRequest
     """
     display_name:  StrictStr = Field(...,alias="displayName", description="The display name of the transaction fee type.") 
-    description:  StrictStr = Field(...,alias="description", description="A description of the transaction fee type.") 
+    description:  Optional[StrictStr] = Field(default=None,alias="description", description="A description of the transaction fee type.") 
     calculation: FeeCalculationRequest
     condition:  StrictStr = Field(...,alias="condition", description="The condition that the transaction must meet in order for the fee to be applied.") 
     txn_property_key:  StrictStr = Field(...,alias="txnPropertyKey", description="The property key to which the fee value will be applied and decorated onto the transaction. Must be in the 'Transaction' property domain.") 
@@ -81,6 +81,11 @@ class CreateTransactionFeeTypeRequest(BaseModel):
                 if self.properties[_key]:
                     _field_dict[_key] = self.properties[_key].to_dict()
             _dict['properties'] = _field_dict
+        # set to None if description (nullable) is None
+        # and model_fields_set contains the field
+        if self.description is None and "description" in self.model_fields_set:
+            _dict['description'] = None
+
         # set to None if properties (nullable) is None
         # and model_fields_set contains the field
         if self.properties is None and "properties" in self.model_fields_set:

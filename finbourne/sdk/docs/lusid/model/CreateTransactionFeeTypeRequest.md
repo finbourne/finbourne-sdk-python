@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **display_name** | **str** | Required | The display name of the transaction fee type. |
-| **description** | **str** | Required | A description of the transaction fee type. |
+| **description** | **str** | Optional | A description of the transaction fee type. |
 | **calculation** | [FeeCalculationRequest](FeeCalculationRequest.md) | Required | *No description available.* |
 | **condition** | **str** | Required | The condition that the transaction must meet in order for the fee to be applied. |
 | **txn_property_key** | **str** | Required | The property key to which the fee value will be applied and decorated onto the transaction. Must be in the &#39;Transaction&#39; property domain. |
@@ -22,7 +22,7 @@ from finbourne.sdk.services.lusid.models.CreateTransactionFeeTypeRequest import 
 
 instance = CreateTransactionFeeTypeRequest(
     display_name="...",  # required — The display name of the transaction fee type.
-    description="...",  # required — A description of the transaction fee type.
+    description="...",  # optional — A description of the transaction fee type.
     calculation=FeeCalculationRequest(...),  # required
     condition="...",  # required — The condition that the transaction must meet in order for the fee to be applied.
     txn_property_key="...",  # required — The property key to which the fee value will be applied and decorated onto the transaction. Must be in the &#39;Transaction&#39; property domain.

@@ -25,6 +25,7 @@ from typing_extensions import Annotated
 from finbourne.sdk.services.horizon.models.create_versioned_configuration_draft_request import CreateVersionedConfigurationDraftRequest
 from finbourne.sdk.services.horizon.models.update_versioned_configuration_draft_request import UpdateVersionedConfigurationDraftRequest
 from finbourne.sdk.services.horizon.models.versioned_configuration_response import VersionedConfigurationResponse
+from finbourne.sdk.services.horizon.models.versioned_configuration_type_response import VersionedConfigurationTypeResponse
 from finbourne.sdk.api_client import ApiClient
 from finbourne.sdk.api_response import ApiResponse
 from finbourne.sdk.extensions.api_client import SyncApiClient
@@ -195,6 +196,151 @@ class VersionedConfigurationsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    def delete_versioned_configuration_version(self, config_type: StrictStr, name: StrictStr, major_version: int, minor_version: int, **kwargs) -> VersionedConfigurationResponse:
+        """[EXPERIMENTAL] DeleteVersionedConfigurationVersion: Delete a versioned configuration version.  # noqa: E501
+
+        Permanently deletes the specified configuration version regardless of whether it is locked. Returns the deleted record. The user must be authenticated and entitled to call this method.  # noqa: E501
+        :param config_type: The category of configuration. (required)
+        :type config_type: str
+        :param name: The logical name of the configuration. (required)
+        :type name: str
+        :param major_version: The major version to delete. (required)
+        :type major_version: int
+        :param minor_version: The minor version to delete. (required)
+        :type minor_version: int
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: VersionedConfigurationResponse
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the delete_versioned_configuration_version_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.delete_versioned_configuration_version_with_http_info(config_type, name, major_version, minor_version, **kwargs)
+        return response.data
+
+    @validate_call
+    def delete_versioned_configuration_version_with_http_info(self, config_type: StrictStr, name: StrictStr, major_version: int, minor_version: int, **kwargs) -> ApiResponse[VersionedConfigurationResponse]:
+        """[EXPERIMENTAL] DeleteVersionedConfigurationVersion: Delete a versioned configuration version.  # noqa: E501
+
+        Permanently deletes the specified configuration version regardless of whether it is locked. Returns the deleted record. The user must be authenticated and entitled to call this method.  # noqa: E501
+        :param config_type: The category of configuration. (required)
+        :type config_type: str
+        :param name: The logical name of the configuration. (required)
+        :type name: str
+        :param major_version: The major version to delete. (required)
+        :type major_version: int
+        :param minor_version: The minor version to delete. (required)
+        :type minor_version: int
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(VersionedConfigurationResponse, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'config_type',
+            'name',
+            'major_version',
+            'minor_version'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method delete_versioned_configuration_version" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['config_type']:
+            _path_params['configType'] = _params['config_type']
+
+        if _params['name']:
+            _path_params['name'] = _params['name']
+
+        if _params['major_version']:
+            _path_params['majorVersion'] = _params['major_version']
+
+        if _params['minor_version']:
+            _path_params['minorVersion'] = _params['minor_version']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "VersionedConfigurationResponse",
+            '400': "LusidValidationProblemDetails",
+            '404': None,
+        }
+
+        return self.sync_api_client.call_api(
+            '/horizon/api/versionedconfiguration/{configType}/{name}/{majorVersion}/{minorVersion}', 'DELETE',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     def get_versioned_configuration(self, config_type: StrictStr, name: StrictStr, major_version: Optional[int] = None, minor_version: Optional[int] = None, **kwargs) -> VersionedConfigurationResponse:
         """[EXPERIMENTAL] GetVersionedConfiguration: Get a versioned configuration.  # noqa: E501
 
@@ -340,8 +486,232 @@ class VersionedConfigurationsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    def get_versioned_configuration_types(self, **kwargs) -> List[VersionedConfigurationTypeResponse]:
+        """[EXPERIMENTAL] GetVersionedConfigurationTypes: List available versioned configuration types.  # noqa: E501
+
+        Returns all registered configuration types with their display names. The user must be authenticated and entitled to call this method.  # noqa: E501
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: List[VersionedConfigurationTypeResponse]
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_versioned_configuration_types_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.get_versioned_configuration_types_with_http_info(**kwargs)
+        return response.data
+
+    @validate_call
+    def get_versioned_configuration_types_with_http_info(self, **kwargs) -> ApiResponse[List[VersionedConfigurationTypeResponse]]:
+        """[EXPERIMENTAL] GetVersionedConfigurationTypes: List available versioned configuration types.  # noqa: E501
+
+        Returns all registered configuration types with their display names. The user must be authenticated and entitled to call this method.  # noqa: E501
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(List[VersionedConfigurationTypeResponse], status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_versioned_configuration_types" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "List[VersionedConfigurationTypeResponse]",
+            '404': None,
+        }
+
+        return self.sync_api_client.call_api(
+            '/horizon/api/versionedconfiguration/config-types', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    def list_all_versioned_configurations(self, **kwargs) -> List[VersionedConfigurationResponse]:
+        """[EXPERIMENTAL] ListAllVersionedConfigurations: List all versioned configurations.  # noqa: E501
+
+        Returns all configuration records across all config types, versions and states (both draft and locked), ordered by version descending. The user must be authenticated and entitled to call this method.  # noqa: E501
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: List[VersionedConfigurationResponse]
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the list_all_versioned_configurations_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.list_all_versioned_configurations_with_http_info(**kwargs)
+        return response.data
+
+    @validate_call
+    def list_all_versioned_configurations_with_http_info(self, **kwargs) -> ApiResponse[List[VersionedConfigurationResponse]]:
+        """[EXPERIMENTAL] ListAllVersionedConfigurations: List all versioned configurations.  # noqa: E501
+
+        Returns all configuration records across all config types, versions and states (both draft and locked), ordered by version descending. The user must be authenticated and entitled to call this method.  # noqa: E501
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(List[VersionedConfigurationResponse], status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method list_all_versioned_configurations" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "List[VersionedConfigurationResponse]",
+            '404': None,
+        }
+
+        return self.sync_api_client.call_api(
+            '/horizon/api/versionedconfiguration/all', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     def list_versioned_configurations(self, config_type: StrictStr, **kwargs) -> List[VersionedConfigurationResponse]:
-        """[EXPERIMENTAL] ListVersionedConfigurations: List versioned configurations.  # noqa: E501
+        """[EXPERIMENTAL] ListVersionedConfigurations: List versioned configurations for a config type.  # noqa: E501
 
         Returns all configuration records for the given config type, across all versions and states (both draft and locked), ordered by version descending. The user must be authenticated and entitled to call this method.  # noqa: E501
         :param config_type: The category of configuration to list. (required)
@@ -361,7 +731,7 @@ class VersionedConfigurationsApi:
 
     @validate_call
     def list_versioned_configurations_with_http_info(self, config_type: StrictStr, **kwargs) -> ApiResponse[List[VersionedConfigurationResponse]]:
-        """[EXPERIMENTAL] ListVersionedConfigurations: List versioned configurations.  # noqa: E501
+        """[EXPERIMENTAL] ListVersionedConfigurations: List versioned configurations for a config type.  # noqa: E501
 
         Returns all configuration records for the given config type, across all versions and states (both draft and locked), ordered by version descending. The user must be authenticated and entitled to call this method.  # noqa: E501
         :param config_type: The category of configuration to list. (required)
@@ -916,6 +1286,152 @@ class VersionedConfigurationsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    async def delete_versioned_configuration_version_async(self, config_type: StrictStr, name: StrictStr, major_version: int, minor_version: int, **kwargs) -> VersionedConfigurationResponse:
+            """[EXPERIMENTAL] DeleteVersionedConfigurationVersion: Delete a versioned configuration version.  # noqa: E501
+            Permanently deletes the specified configuration version regardless of whether it is locked. Returns the deleted record. The user must be authenticated and entitled to call this method.  # noqa: E501
+            
+            :param config_type: The category of configuration. (required)
+            :type config_type: str
+            :param name: The logical name of the configuration. (required)
+            :type name: str
+            :param major_version: The major version to delete. (required)
+            :type major_version: int
+            :param minor_version: The minor version to delete. (required)
+            :type minor_version: int
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: VersionedConfigurationResponse
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the delete_versioned_configuration_version_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.delete_versioned_configuration_version_with_http_info_async(config_type, name, major_version, minor_version, **kwargs)
+            return response.data
+
+    @validate_call
+    async def delete_versioned_configuration_version_with_http_info_async(self, config_type: StrictStr, name: StrictStr, major_version: int, minor_version: int, **kwargs) -> ApiResponse[VersionedConfigurationResponse]:
+            """[EXPERIMENTAL] DeleteVersionedConfigurationVersion: Delete a versioned configuration version.  # noqa: E501
+
+            Permanently deletes the specified configuration version regardless of whether it is locked. Returns the deleted record. The user must be authenticated and entitled to call this method.  # noqa: E501
+
+            :param config_type: The category of configuration. (required)
+            :type config_type: str
+            :param name: The logical name of the configuration. (required)
+            :type name: str
+            :param major_version: The major version to delete. (required)
+            :type major_version: int
+            :param minor_version: The minor version to delete. (required)
+            :type minor_version: int
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(VersionedConfigurationResponse, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'config_type',
+                'name',
+                'major_version',
+                'minor_version'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method delete_versioned_configuration_version" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['config_type']:
+                _path_params['configType'] = _params['config_type']
+
+            if _params['name']:
+                _path_params['name'] = _params['name']
+
+            if _params['major_version']:
+                _path_params['majorVersion'] = _params['major_version']
+
+            if _params['minor_version']:
+                _path_params['minorVersion'] = _params['minor_version']
+
+
+            # process the query parameters
+            _query_params = []
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['application/json'])  # noqa: E501
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "VersionedConfigurationResponse",
+                '400': "LusidValidationProblemDetails",
+                '404': None,
+            }
+
+            return await self.api_client.call_api_async(
+                '/horizon/api/versionedconfiguration/{configType}/{name}/{majorVersion}/{minorVersion}', 'DELETE',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     async def get_versioned_configuration_async(self, config_type: StrictStr, name: StrictStr, major_version: Optional[int] = None, minor_version: Optional[int] = None, **kwargs) -> VersionedConfigurationResponse:
             """[EXPERIMENTAL] GetVersionedConfiguration: Get a versioned configuration.  # noqa: E501
             Returns a specific configuration record. When both majorVersion and minorVersion are omitted, the highest available version is returned. Both must be supplied together or both omitted. The user must be authenticated and entitled to call this method.  # noqa: E501
@@ -1062,8 +1578,234 @@ class VersionedConfigurationsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    async def get_versioned_configuration_types_async(self, **kwargs) -> List[VersionedConfigurationTypeResponse]:
+            """[EXPERIMENTAL] GetVersionedConfigurationTypes: List available versioned configuration types.  # noqa: E501
+            Returns all registered configuration types with their display names. The user must be authenticated and entitled to call this method.  # noqa: E501
+            
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: List[VersionedConfigurationTypeResponse]
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the get_versioned_configuration_types_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.get_versioned_configuration_types_with_http_info_async(**kwargs)
+            return response.data
+
+    @validate_call
+    async def get_versioned_configuration_types_with_http_info_async(self, **kwargs) -> ApiResponse[List[VersionedConfigurationTypeResponse]]:
+            """[EXPERIMENTAL] GetVersionedConfigurationTypes: List available versioned configuration types.  # noqa: E501
+
+            Returns all registered configuration types with their display names. The user must be authenticated and entitled to call this method.  # noqa: E501
+
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(List[VersionedConfigurationTypeResponse], status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method get_versioned_configuration_types" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+
+            # process the query parameters
+            _query_params = []
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['application/json'])  # noqa: E501
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "List[VersionedConfigurationTypeResponse]",
+                '404': None,
+            }
+
+            return await self.api_client.call_api_async(
+                '/horizon/api/versionedconfiguration/config-types', 'GET',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def list_all_versioned_configurations_async(self, **kwargs) -> List[VersionedConfigurationResponse]:
+            """[EXPERIMENTAL] ListAllVersionedConfigurations: List all versioned configurations.  # noqa: E501
+            Returns all configuration records across all config types, versions and states (both draft and locked), ordered by version descending. The user must be authenticated and entitled to call this method.  # noqa: E501
+            
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: List[VersionedConfigurationResponse]
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the list_all_versioned_configurations_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.list_all_versioned_configurations_with_http_info_async(**kwargs)
+            return response.data
+
+    @validate_call
+    async def list_all_versioned_configurations_with_http_info_async(self, **kwargs) -> ApiResponse[List[VersionedConfigurationResponse]]:
+            """[EXPERIMENTAL] ListAllVersionedConfigurations: List all versioned configurations.  # noqa: E501
+
+            Returns all configuration records across all config types, versions and states (both draft and locked), ordered by version descending. The user must be authenticated and entitled to call this method.  # noqa: E501
+
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(List[VersionedConfigurationResponse], status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method list_all_versioned_configurations" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+
+            # process the query parameters
+            _query_params = []
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['application/json'])  # noqa: E501
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "List[VersionedConfigurationResponse]",
+                '404': None,
+            }
+
+            return await self.api_client.call_api_async(
+                '/horizon/api/versionedconfiguration/all', 'GET',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     async def list_versioned_configurations_async(self, config_type: StrictStr, **kwargs) -> List[VersionedConfigurationResponse]:
-            """[EXPERIMENTAL] ListVersionedConfigurations: List versioned configurations.  # noqa: E501
+            """[EXPERIMENTAL] ListVersionedConfigurations: List versioned configurations for a config type.  # noqa: E501
             Returns all configuration records for the given config type, across all versions and states (both draft and locked), ordered by version descending. The user must be authenticated and entitled to call this method.  # noqa: E501
             
             :param config_type: The category of configuration to list. (required)
@@ -1083,7 +1825,7 @@ class VersionedConfigurationsApi:
 
     @validate_call
     async def list_versioned_configurations_with_http_info_async(self, config_type: StrictStr, **kwargs) -> ApiResponse[List[VersionedConfigurationResponse]]:
-            """[EXPERIMENTAL] ListVersionedConfigurations: List versioned configurations.  # noqa: E501
+            """[EXPERIMENTAL] ListVersionedConfigurations: List versioned configurations for a config type.  # noqa: E501
 
             Returns all configuration records for the given config type, across all versions and states (both draft and locked), ordered by version descending. The user must be authenticated and entitled to call this method.  # noqa: E501
 

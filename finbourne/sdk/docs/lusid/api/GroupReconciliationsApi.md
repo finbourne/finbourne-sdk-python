@@ -560,7 +560,7 @@ Name | Type | Description  | Notes
 ---
 
 # **run_reconciliation**
-> GroupReconciliationRunResponse runReconciliation = run_reconciliation(scope, code, group_reconciliation_run_request=group_reconciliation_run_request)
+> GroupReconciliationRunResponse runReconciliation = run_reconciliation(scope, code, group_reconciliation_run_request, instance_run_type=instance_run_type)
 
 [EXPERIMENTAL] RunReconciliation: Runs a Group Reconciliation
 
@@ -573,7 +573,8 @@ api_instance = api_client_factory.build(GroupReconciliationsApi)
 scope = 'scope_example' # str
 code = 'code_example' # str
 group_reconciliation_run_request = GroupReconciliationRunRequest()
-api_response = api_instance.run_reconciliation(scope, code, group_reconciliation_run_request=group_reconciliation_run_request)
+instance_run_type = 'instance_run_type_example' # str (optional)
+api_response = api_instance.run_reconciliation(scope, code, group_reconciliation_run_request, instance_run_type=instance_run_type)
 pprint(api_response)
 ```
 
@@ -583,7 +584,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the group reconciliation definition to use for the reconciliation. | [required] 
  **code** | **str**| The code of the group reconciliation definition to use for the reconciliation. | [required] 
- **group_reconciliation_run_request** | [**GroupReconciliationRunRequest**](GroupReconciliationRunRequest.md)|  | [optional] 
+ **group_reconciliation_run_request** | [**GroupReconciliationRunRequest**](GroupReconciliationRunRequest.md)|  | [required] 
+ **instance_run_type** | **str**| The run type of the group reconciliation run instance. Default value: Manual. Available values: Manual, WorkflowServiceTaskId. | [optional] 
 
 ### Return type
 

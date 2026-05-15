@@ -9,6 +9,7 @@ Request to create a new draft versioned configuration.
 | **minor_version** | **int** | Optional | The minor version for the new draft. Must be supplied together with MajorVersion, or both omitted to auto-assign the next version. |
 | **source_major_version** | **int** | Optional | The major version of an existing record to copy the value from. Must be supplied together with SourceMinorVersion. If omitted, the new draft is initialised with an empty JSON object. |
 | **source_minor_version** | **int** | Optional | The minor version of an existing record to copy the value from. Must be supplied together with SourceMajorVersion. If omitted, the new draft is initialised with an empty JSON object. |
+| **value** | **str** | Optional | The initial JSON value for the new draft. If omitted, the draft is initialised with an empty JSON object. Cannot be supplied together with SourceMajorVersion/SourceMinorVersion. |
 
 
 ## Usage
@@ -22,7 +23,8 @@ instance = CreateVersionedConfigurationDraftRequest(
     major_version=0,  # optional — The major version for the new draft. Must be supplied together with minorVersion, or both omitted to auto-assign the next version.
     minor_version=0,  # optional — The minor version for the new draft. Must be supplied together with MajorVersion, or both omitted to auto-assign the next version.
     source_major_version=0,  # optional — The major version of an existing record to copy the value from. Must be supplied together with SourceMinorVersion. If omitted, the new draft is initialised with an empty JSON object.
-    source_minor_version=0  # optional — The minor version of an existing record to copy the value from. Must be supplied together with SourceMajorVersion. If omitted, the new draft is initialised with an empty JSON object.
+    source_minor_version=0,  # optional — The minor version of an existing record to copy the value from. Must be supplied together with SourceMajorVersion. If omitted, the new draft is initialised with an empty JSON object.
+    value="..."  # optional — The initial JSON value for the new draft. If omitted, the draft is initialised with an empty JSON object. Cannot be supplied together with SourceMajorVersion/SourceMinorVersion.
 )
 ```
 

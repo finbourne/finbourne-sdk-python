@@ -70,6 +70,7 @@ from finbourne.sdk.services.identity.models.resource_list_of_access_controlled_r
 from finbourne.sdk.services.identity.models.resource_list_of_system_log import ResourceListOfSystemLog
 from finbourne.sdk.services.identity.models.role_id import RoleId
 from finbourne.sdk.services.identity.models.role_response import RoleResponse
+from finbourne.sdk.services.identity.models.session_policy_response import SessionPolicyResponse
 from finbourne.sdk.services.identity.models.set_attaching_key_request import SetAttachingKeyRequest
 from finbourne.sdk.services.identity.models.set_parent_cell_request import SetParentCellRequest
 from finbourne.sdk.services.identity.models.set_password import SetPassword
@@ -90,6 +91,7 @@ from finbourne.sdk.services.identity.models.update_password_policy_request_compl
 from finbourne.sdk.services.identity.models.update_password_policy_request_conditions import UpdatePasswordPolicyRequestConditions
 from finbourne.sdk.services.identity.models.update_password_policy_request_lockout import UpdatePasswordPolicyRequestLockout
 from finbourne.sdk.services.identity.models.update_role_request import UpdateRoleRequest
+from finbourne.sdk.services.identity.models.update_session_policy_request import UpdateSessionPolicyRequest
 from finbourne.sdk.services.identity.models.update_user_request import UpdateUserRequest
 from finbourne.sdk.services.identity.models.update_user_schema_request import UpdateUserSchemaRequest
 from finbourne.sdk.services.identity.models.upsert_mcp_tool_request import UpsertMcpToolRequest
@@ -158,6 +160,7 @@ __all__ = [
     "ResourceListOfSystemLog",
     "RoleId",
     "RoleResponse",
+    "SessionPolicyResponse",
     "SetAttachingKeyRequest",
     "SetParentCellRequest",
     "SetPassword",
@@ -178,6 +181,7 @@ __all__ = [
     "UpdatePasswordPolicyRequestConditions",
     "UpdatePasswordPolicyRequestLockout",
     "UpdateRoleRequest",
+    "UpdateSessionPolicyRequest",
     "UpdateUserRequest",
     "UpdateUserSchemaRequest",
     "UpsertMcpToolRequest",

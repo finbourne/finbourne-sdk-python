@@ -30,7 +30,8 @@ class CreateVersionedConfigurationDraftRequest(BaseModel):
     minor_version: Optional[StrictInt] = Field(default=None, description="The minor version for the new draft. Must be supplied together with MajorVersion, or both omitted to auto-assign the next version.", alias="minorVersion")
     source_major_version: Optional[StrictInt] = Field(default=None, description="The major version of an existing record to copy the value from. Must be supplied together with SourceMinorVersion. If omitted, the new draft is initialised with an empty JSON object.", alias="sourceMajorVersion")
     source_minor_version: Optional[StrictInt] = Field(default=None, description="The minor version of an existing record to copy the value from. Must be supplied together with SourceMajorVersion. If omitted, the new draft is initialised with an empty JSON object.", alias="sourceMinorVersion")
-    __properties: ClassVar[List[str]] = ["majorVersion", "minorVersion", "sourceMajorVersion", "sourceMinorVersion"]
+    value:  Optional[StrictStr] = Field(default=None,alias="value", description="The initial JSON value for the new draft. If omitted, the draft is initialised with an empty JSON object. Cannot be supplied together with SourceMajorVersion/SourceMinorVersion.") 
+    __properties: ClassVar[List[str]] = ["majorVersion", "minorVersion", "sourceMajorVersion", "sourceMinorVersion", "value"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -86,6 +87,11 @@ class CreateVersionedConfigurationDraftRequest(BaseModel):
         if self.source_minor_version is None and "source_minor_version" in self.model_fields_set:
             _dict['sourceMinorVersion'] = None
 
+        # set to None if value (nullable) is None
+        # and model_fields_set contains the field
+        if self.value is None and "value" in self.model_fields_set:
+            _dict['value'] = None
+
         return _dict
 
     @classmethod
@@ -101,7 +107,8 @@ class CreateVersionedConfigurationDraftRequest(BaseModel):
             "major_version": obj.get("majorVersion"),
             "minor_version": obj.get("minorVersion"),
             "source_major_version": obj.get("sourceMajorVersion"),
-            "source_minor_version": obj.get("sourceMinorVersion")
+            "source_minor_version": obj.get("sourceMinorVersion"),
+            "value": obj.get("value")
         })
         return _obj
 

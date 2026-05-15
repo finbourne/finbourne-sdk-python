@@ -25,10 +25,12 @@ from typing import List, Optional
 from typing_extensions import Annotated
 from finbourne.sdk.services.identity.models.authentication_information import AuthenticationInformation
 from finbourne.sdk.services.identity.models.password_policy_response import PasswordPolicyResponse
+from finbourne.sdk.services.identity.models.session_policy_response import SessionPolicyResponse
 from finbourne.sdk.services.identity.models.support_access_request import SupportAccessRequest
 from finbourne.sdk.services.identity.models.support_access_response import SupportAccessResponse
 from finbourne.sdk.services.identity.models.support_roles_response import SupportRolesResponse
 from finbourne.sdk.services.identity.models.update_password_policy_request import UpdatePasswordPolicyRequest
+from finbourne.sdk.services.identity.models.update_session_policy_request import UpdateSessionPolicyRequest
 from finbourne.sdk.api_client import ApiClient
 from finbourne.sdk.api_response import ApiResponse
 from finbourne.sdk.extensions.api_client import SyncApiClient
@@ -269,6 +271,117 @@ class AuthenticationApi:
 
         return self.sync_api_client.call_api(
             '/identity/api/authentication/password-policy/{userType}', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    def get_session_policy(self, **kwargs) -> SessionPolicyResponse:
+        """[EXPERIMENTAL] GetSessionPolicy: Get session policy  # noqa: E501
+
+        Get the configured session timing settings. These settings dictate the duration of user sessions and the frequency of required re-authentication.  # noqa: E501
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: SessionPolicyResponse
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_session_policy_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.get_session_policy_with_http_info(**kwargs)
+        return response.data
+
+    @validate_call
+    def get_session_policy_with_http_info(self, **kwargs) -> ApiResponse[SessionPolicyResponse]:
+        """[EXPERIMENTAL] GetSessionPolicy: Get session policy  # noqa: E501
+
+        Get the configured session timing settings. These settings dictate the duration of user sessions and the frequency of required re-authentication.  # noqa: E501
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(SessionPolicyResponse, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_session_policy" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "SessionPolicyResponse",
+        }
+
+        return self.sync_api_client.call_api(
+            '/identity/api/authentication/session-policy', 'GET',
             _path_params,
             _query_params,
             _header_params,
@@ -902,6 +1015,133 @@ class AuthenticationApi:
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
+    @validate_call
+    def update_session_policy(self, update_session_policy_request: UpdateSessionPolicyRequest, **kwargs) -> SessionPolicyResponse:
+        """[EXPERIMENTAL] UpdateSessionPolicy: Update session policy  # noqa: E501
+
+        Update the session timing settings. These settings dictate the duration of user sessions and the frequency of required re-authentication.  # noqa: E501
+        :param update_session_policy_request: The desired session timing settings (required)
+        :type update_session_policy_request: UpdateSessionPolicyRequest
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: SessionPolicyResponse
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the update_session_policy_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.update_session_policy_with_http_info(update_session_policy_request, **kwargs)
+        return response.data
+
+    @validate_call
+    def update_session_policy_with_http_info(self, update_session_policy_request: UpdateSessionPolicyRequest, **kwargs) -> ApiResponse[SessionPolicyResponse]:
+        """[EXPERIMENTAL] UpdateSessionPolicy: Update session policy  # noqa: E501
+
+        Update the session timing settings. These settings dictate the duration of user sessions and the frequency of required re-authentication.  # noqa: E501
+        :param update_session_policy_request: The desired session timing settings (required)
+        :type update_session_policy_request: UpdateSessionPolicyRequest
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(SessionPolicyResponse, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'update_session_policy_request'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method update_session_policy" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['update_session_policy_request'] is not None:
+            _body_params = _params['update_session_policy_request']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.sync_api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "SessionPolicyResponse",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/identity/api/authentication/session-policy', 'PUT',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
 
   # --- ASYNC API METHODS ---
 
@@ -1124,6 +1364,118 @@ class AuthenticationApi:
 
             return await self.api_client.call_api_async(
                 '/identity/api/authentication/password-policy/{userType}', 'GET',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def get_session_policy_async(self, **kwargs) -> SessionPolicyResponse:
+            """[EXPERIMENTAL] GetSessionPolicy: Get session policy  # noqa: E501
+            Get the configured session timing settings. These settings dictate the duration of user sessions and the frequency of required re-authentication.  # noqa: E501
+            
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: SessionPolicyResponse
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the get_session_policy_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.get_session_policy_with_http_info_async(**kwargs)
+            return response.data
+
+    @validate_call
+    async def get_session_policy_with_http_info_async(self, **kwargs) -> ApiResponse[SessionPolicyResponse]:
+            """[EXPERIMENTAL] GetSessionPolicy: Get session policy  # noqa: E501
+
+            Get the configured session timing settings. These settings dictate the duration of user sessions and the frequency of required re-authentication.  # noqa: E501
+
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(SessionPolicyResponse, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method get_session_policy" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+
+            # process the query parameters
+            _query_params = []
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['application/json'])  # noqa: E501
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "SessionPolicyResponse",
+            }
+
+            return await self.api_client.call_api_async(
+                '/identity/api/authentication/session-policy', 'GET',
                 _path_params,
                 _query_params,
                 _header_params,
@@ -1747,6 +2099,134 @@ class AuthenticationApi:
 
             return await self.api_client.call_api_async(
                 '/identity/api/authentication/password-policy/{userType}', 'PUT',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def update_session_policy_async(self, update_session_policy_request: UpdateSessionPolicyRequest, **kwargs) -> SessionPolicyResponse:
+            """[EXPERIMENTAL] UpdateSessionPolicy: Update session policy  # noqa: E501
+            Update the session timing settings. These settings dictate the duration of user sessions and the frequency of required re-authentication.  # noqa: E501
+            
+            :param update_session_policy_request: The desired session timing settings (required)
+            :type update_session_policy_request: UpdateSessionPolicyRequest
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: SessionPolicyResponse
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the update_session_policy_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.update_session_policy_with_http_info_async(update_session_policy_request, **kwargs)
+            return response.data
+
+    @validate_call
+    async def update_session_policy_with_http_info_async(self, update_session_policy_request: UpdateSessionPolicyRequest, **kwargs) -> ApiResponse[SessionPolicyResponse]:
+            """[EXPERIMENTAL] UpdateSessionPolicy: Update session policy  # noqa: E501
+
+            Update the session timing settings. These settings dictate the duration of user sessions and the frequency of required re-authentication.  # noqa: E501
+
+            :param update_session_policy_request: The desired session timing settings (required)
+            :type update_session_policy_request: UpdateSessionPolicyRequest
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(SessionPolicyResponse, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'update_session_policy_request'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method update_session_policy" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+
+            # process the query parameters
+            _query_params = []
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            if _params['update_session_policy_request'] is not None:
+                _body_params = _params['update_session_policy_request']
+
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['application/json'])  # noqa: E501
+
+            # set the HTTP header `Content-Type`
+            _content_types_list = _params.get('_content_type',
+                self.api_client.select_header_content_type(
+                    ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+            if _content_types_list:
+                    _header_params['Content-Type'] = _content_types_list
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "SessionPolicyResponse",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/identity/api/authentication/session-policy', 'PUT',
                 _path_params,
                 _query_params,
                 _header_params,

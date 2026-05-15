@@ -92,6 +92,7 @@ from finbourne.sdk.services.horizon.models.update_versioned_configuration_draft_
 from finbourne.sdk.services.horizon.models.vendor_field import VendorField
 from finbourne.sdk.services.horizon.models.vendor_product import VendorProduct
 from finbourne.sdk.services.horizon.models.versioned_configuration_response import VersionedConfigurationResponse
+from finbourne.sdk.services.horizon.models.versioned_configuration_type_response import VersionedConfigurationTypeResponse
 
 
 __all__ = [
@@ -174,5 +175,6 @@ __all__ = [
     "UpdateVersionedConfigurationDraftRequest",
     "VendorField",
     "VendorProduct",
-    "VersionedConfigurationResponse"
+    "VersionedConfigurationResponse",
+    "VersionedConfigurationTypeResponse"
 ]

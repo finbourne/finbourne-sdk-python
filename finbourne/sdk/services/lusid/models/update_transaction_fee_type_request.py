@@ -31,10 +31,9 @@ class UpdateTransactionFeeTypeRequest(BaseModel):
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="A description of the transaction fee type.") 
     calculation: Optional[FeeCalculationRequest] = None
     condition:  Optional[StrictStr] = Field(default=None,alias="condition", description="The condition that the transaction must meet in order for the fee to be applied.") 
-    txn_property_key:  Optional[StrictStr] = Field(default=None,alias="txnPropertyKey", description="The property key to which the fee value will be applied and decorated onto the transaction. Must be in the 'Transaction' property domain.") 
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="A set of properties for the transaction fee type.")
     is_active: Optional[StrictBool] = Field(default=None, description="Indicates whether the transaction fee type is currently active and should be applied to transactions. Optional when creating a transaction fee type, defaults to true, if a value is not provided.", alias="isActive")
-    __properties: ClassVar[List[str]] = ["description", "calculation", "condition", "txnPropertyKey", "properties", "isActive"]
+    __properties: ClassVar[List[str]] = ["description", "calculation", "condition", "properties", "isActive"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -90,11 +89,6 @@ class UpdateTransactionFeeTypeRequest(BaseModel):
         if self.condition is None and "condition" in self.model_fields_set:
             _dict['condition'] = None
 
-        # set to None if txn_property_key (nullable) is None
-        # and model_fields_set contains the field
-        if self.txn_property_key is None and "txn_property_key" in self.model_fields_set:
-            _dict['txnPropertyKey'] = None
-
         # set to None if properties (nullable) is None
         # and model_fields_set contains the field
         if self.properties is None and "properties" in self.model_fields_set:
@@ -120,7 +114,6 @@ class UpdateTransactionFeeTypeRequest(BaseModel):
             "description": obj.get("description"),
             "calculation": FeeCalculationRequest.from_dict(_v) if (_v := obj.get("calculation")) is not None else None,
             "condition": obj.get("condition"),
-            "txn_property_key": obj.get("txnPropertyKey"),
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
                 for _k, _v in _val.items()

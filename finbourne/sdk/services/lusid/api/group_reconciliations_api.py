@@ -1633,7 +1633,7 @@ class GroupReconciliationsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def run_reconciliation(self, scope: StrictStr, code: StrictStr, group_reconciliation_run_request: Optional[GroupReconciliationRunRequest] = None, **kwargs) -> GroupReconciliationRunResponse:
+    def run_reconciliation(self, scope: StrictStr, code: StrictStr, group_reconciliation_run_request: GroupReconciliationRunRequest, instance_run_type: Optional[StrictStr] = None, **kwargs) -> GroupReconciliationRunResponse:
         """[EXPERIMENTAL] RunReconciliation: Runs a Group Reconciliation  # noqa: E501
 
         Runs a Group Reconciliation using the definition specified by the Scope and Code  Supports pagination.  # noqa: E501
@@ -1641,8 +1641,10 @@ class GroupReconciliationsApi:
         :type scope: str
         :param code: The code of the group reconciliation definition to use for the reconciliation. (required)
         :type code: str
-        :param group_reconciliation_run_request: 
+        :param group_reconciliation_run_request:  (required)
         :type group_reconciliation_run_request: GroupReconciliationRunRequest
+        :param instance_run_type: The run type of the group reconciliation run instance. Default value: Manual. Available values: Manual, WorkflowServiceTaskId.
+        :type instance_run_type: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -1653,11 +1655,11 @@ class GroupReconciliationsApi:
             message = "Error! Please call the run_reconciliation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.run_reconciliation_with_http_info(scope, code, group_reconciliation_run_request, **kwargs)
+        response = self.run_reconciliation_with_http_info(scope, code, group_reconciliation_run_request, instance_run_type, **kwargs)
         return response.data
 
     @validate_call
-    def run_reconciliation_with_http_info(self, scope: StrictStr, code: StrictStr, group_reconciliation_run_request: Optional[GroupReconciliationRunRequest] = None, **kwargs) -> ApiResponse[GroupReconciliationRunResponse]:
+    def run_reconciliation_with_http_info(self, scope: StrictStr, code: StrictStr, group_reconciliation_run_request: GroupReconciliationRunRequest, instance_run_type: Optional[StrictStr] = None, **kwargs) -> ApiResponse[GroupReconciliationRunResponse]:
         """[EXPERIMENTAL] RunReconciliation: Runs a Group Reconciliation  # noqa: E501
 
         Runs a Group Reconciliation using the definition specified by the Scope and Code  Supports pagination.  # noqa: E501
@@ -1665,8 +1667,10 @@ class GroupReconciliationsApi:
         :type scope: str
         :param code: The code of the group reconciliation definition to use for the reconciliation. (required)
         :type code: str
-        :param group_reconciliation_run_request: 
+        :param group_reconciliation_run_request:  (required)
         :type group_reconciliation_run_request: GroupReconciliationRunRequest
+        :param instance_run_type: The run type of the group reconciliation run instance. Default value: Manual. Available values: Manual, WorkflowServiceTaskId.
+        :type instance_run_type: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1692,7 +1696,8 @@ class GroupReconciliationsApi:
         _all_params = [
             'scope',
             'code',
-            'group_reconciliation_run_request'
+            'group_reconciliation_run_request',
+            'instance_run_type'
         ]
         _all_params.extend(
             [
@@ -1729,6 +1734,9 @@ class GroupReconciliationsApi:
 
         # process the query parameters
         _query_params = []
+        if _params.get('instance_run_type') is not None:  # noqa: E501
+            _query_params.append(('instanceRunType', _params['instance_run_type']))
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -3647,7 +3655,7 @@ class GroupReconciliationsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def run_reconciliation_async(self, scope: StrictStr, code: StrictStr, group_reconciliation_run_request: Optional[GroupReconciliationRunRequest] = None, **kwargs) -> GroupReconciliationRunResponse:
+    async def run_reconciliation_async(self, scope: StrictStr, code: StrictStr, group_reconciliation_run_request: GroupReconciliationRunRequest, instance_run_type: Optional[StrictStr] = None, **kwargs) -> GroupReconciliationRunResponse:
             """[EXPERIMENTAL] RunReconciliation: Runs a Group Reconciliation  # noqa: E501
             Runs a Group Reconciliation using the definition specified by the Scope and Code  Supports pagination.  # noqa: E501
             
@@ -3655,8 +3663,10 @@ class GroupReconciliationsApi:
             :type scope: str
             :param code: The code of the group reconciliation definition to use for the reconciliation. (required)
             :type code: str
-            :param group_reconciliation_run_request: 
+            :param group_reconciliation_run_request:  (required)
             :type group_reconciliation_run_request: GroupReconciliationRunRequest
+            :param instance_run_type: The run type of the group reconciliation run instance. Default value: Manual. Available values: Manual, WorkflowServiceTaskId.
+            :type instance_run_type: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -3667,11 +3677,11 @@ class GroupReconciliationsApi:
                 message = "Error! Please call the run_reconciliation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.run_reconciliation_with_http_info_async(scope, code, group_reconciliation_run_request, **kwargs)
+            response = await self.run_reconciliation_with_http_info_async(scope, code, group_reconciliation_run_request, instance_run_type, **kwargs)
             return response.data
 
     @validate_call
-    async def run_reconciliation_with_http_info_async(self, scope: StrictStr, code: StrictStr, group_reconciliation_run_request: Optional[GroupReconciliationRunRequest] = None, **kwargs) -> ApiResponse[GroupReconciliationRunResponse]:
+    async def run_reconciliation_with_http_info_async(self, scope: StrictStr, code: StrictStr, group_reconciliation_run_request: GroupReconciliationRunRequest, instance_run_type: Optional[StrictStr] = None, **kwargs) -> ApiResponse[GroupReconciliationRunResponse]:
             """[EXPERIMENTAL] RunReconciliation: Runs a Group Reconciliation  # noqa: E501
 
             Runs a Group Reconciliation using the definition specified by the Scope and Code  Supports pagination.  # noqa: E501
@@ -3680,8 +3690,10 @@ class GroupReconciliationsApi:
             :type scope: str
             :param code: The code of the group reconciliation definition to use for the reconciliation. (required)
             :type code: str
-            :param group_reconciliation_run_request: 
+            :param group_reconciliation_run_request:  (required)
             :type group_reconciliation_run_request: GroupReconciliationRunRequest
+            :param instance_run_type: The run type of the group reconciliation run instance. Default value: Manual. Available values: Manual, WorkflowServiceTaskId.
+            :type instance_run_type: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -3707,7 +3719,8 @@ class GroupReconciliationsApi:
             _all_params = [
                 'scope',
                 'code',
-                'group_reconciliation_run_request'
+                'group_reconciliation_run_request',
+                'instance_run_type'
             ]
             _all_params.extend(
                 [
@@ -3744,6 +3757,9 @@ class GroupReconciliationsApi:
 
             # process the query parameters
             _query_params = []
+            if _params.get('instance_run_type') is not None:  # noqa: E501
+                _query_params.append(('instanceRunType', _params['instance_run_type']))
+
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))
             # process the form parameters

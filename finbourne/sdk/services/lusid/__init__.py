@@ -470,6 +470,7 @@ from finbourne.sdk.services.lusid.models.discounting_method import DiscountingMe
 from finbourne.sdk.services.lusid.models.dividend_option_event import DividendOptionEvent
 from finbourne.sdk.services.lusid.models.dividend_reinvestment_event import DividendReinvestmentEvent
 from finbourne.sdk.services.lusid.models.drawdown_event import DrawdownEvent
+from finbourne.sdk.services.lusid.models.drawing_event import DrawingEvent
 from finbourne.sdk.services.lusid.models.early_close_out_event import EarlyCloseOutEvent
 from finbourne.sdk.services.lusid.models.early_redemption_election import EarlyRedemptionElection
 from finbourne.sdk.services.lusid.models.early_redemption_event import EarlyRedemptionEvent
@@ -1948,6 +1949,7 @@ __all__ = [
     "DividendOptionEvent",
     "DividendReinvestmentEvent",
     "DrawdownEvent",
+    "DrawingEvent",
     "EarlyCloseOutEvent",
     "EarlyRedemptionElection",
     "EarlyRedemptionEvent",

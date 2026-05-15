@@ -5,8 +5,11 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_versioned_configuration_draft**](VersionedConfigurationsApi.md#create_versioned_configuration_draft) | **POST** /horizon/api/versionedconfiguration/{configType}/{name}/draft | [EXPERIMENTAL] CreateVersionedConfigurationDraft: Create a draft versioned configuration.
+[**delete_versioned_configuration_version**](VersionedConfigurationsApi.md#delete_versioned_configuration_version) | **DELETE** /horizon/api/versionedconfiguration/{configType}/{name}/{majorVersion}/{minorVersion} | [EXPERIMENTAL] DeleteVersionedConfigurationVersion: Delete a versioned configuration version.
 [**get_versioned_configuration**](VersionedConfigurationsApi.md#get_versioned_configuration) | **GET** /horizon/api/versionedconfiguration/{configType}/{name} | [EXPERIMENTAL] GetVersionedConfiguration: Get a versioned configuration.
-[**list_versioned_configurations**](VersionedConfigurationsApi.md#list_versioned_configurations) | **GET** /horizon/api/versionedconfiguration/{configType} | [EXPERIMENTAL] ListVersionedConfigurations: List versioned configurations.
+[**get_versioned_configuration_types**](VersionedConfigurationsApi.md#get_versioned_configuration_types) | **GET** /horizon/api/versionedconfiguration/config-types | [EXPERIMENTAL] GetVersionedConfigurationTypes: List available versioned configuration types.
+[**list_all_versioned_configurations**](VersionedConfigurationsApi.md#list_all_versioned_configurations) | **GET** /horizon/api/versionedconfiguration/all | [EXPERIMENTAL] ListAllVersionedConfigurations: List all versioned configurations.
+[**list_versioned_configurations**](VersionedConfigurationsApi.md#list_versioned_configurations) | **GET** /horizon/api/versionedconfiguration/{configType} | [EXPERIMENTAL] ListVersionedConfigurations: List versioned configurations for a config type.
 [**lock_versioned_configuration_version**](VersionedConfigurationsApi.md#lock_versioned_configuration_version) | **POST** /horizon/api/versionedconfiguration/{configType}/{name}/{majorVersion}/{minorVersion}/lock | [EXPERIMENTAL] LockVersionedConfigurationVersion: Lock a versioned configuration version.
 [**update_versioned_configuration_draft**](VersionedConfigurationsApi.md#update_versioned_configuration_draft) | **PUT** /horizon/api/versionedconfiguration/{configType}/{name}/{majorVersion}/{minorVersion}/draft | [EXPERIMENTAL] UpdateVersionedConfigurationDraft: Update a draft versioned configuration.
 
@@ -84,6 +87,55 @@ Name | Type | Description  | Notes
 
 ---
 
+# **delete_versioned_configuration_version**
+> VersionedConfigurationResponse deleteVersionedConfigurationVersion = delete_versioned_configuration_version(config_type, name, major_version, minor_version)
+
+[EXPERIMENTAL] DeleteVersionedConfigurationVersion: Delete a versioned configuration version.
+
+Permanently deletes the specified configuration version regardless of whether it is locked. Returns the deleted record. The user must be authenticated and entitled to call this method.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(VersionedConfigurationsApi)
+config_type = 'config_type_example' # str
+name = 'name_example' # str
+major_version = 56 # int
+minor_version = 56 # int
+api_response = api_instance.delete_versioned_configuration_version(config_type, name, major_version, minor_version)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **config_type** | **str**| The category of configuration. | [required] 
+ **name** | **str**| The logical name of the configuration. | [required] 
+ **major_version** | **int**| The major version to delete. | [required] 
+ **minor_version** | **int**| The minor version to delete. | [required] 
+
+### Return type
+
+[**VersionedConfigurationResponse**](VersionedConfigurationResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | The details of the input related failure |  -  |
+**404** | The client or configuration version does not exist. |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
 # **get_versioned_configuration**
 > VersionedConfigurationResponse getVersionedConfiguration = get_versioned_configuration(config_type, name, major_version=major_version, minor_version=minor_version)
 
@@ -133,10 +185,86 @@ Name | Type | Description  | Notes
 
 ---
 
+# **get_versioned_configuration_types**
+> List[VersionedConfigurationTypeResponse] getVersionedConfigurationTypes = get_versioned_configuration_types()
+
+[EXPERIMENTAL] GetVersionedConfigurationTypes: List available versioned configuration types.
+
+Returns all registered configuration types with their display names. The user must be authenticated and entitled to call this method.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(VersionedConfigurationsApi)
+api_response = api_instance.get_versioned_configuration_types()
+pprint(api_response)
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**List[VersionedConfigurationTypeResponse]**](VersionedConfigurationTypeResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**404** | The client does not exist. |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **list_all_versioned_configurations**
+> List[VersionedConfigurationResponse] listAllVersionedConfigurations = list_all_versioned_configurations()
+
+[EXPERIMENTAL] ListAllVersionedConfigurations: List all versioned configurations.
+
+Returns all configuration records across all config types, versions and states (both draft and locked), ordered by version descending. The user must be authenticated and entitled to call this method.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(VersionedConfigurationsApi)
+api_response = api_instance.list_all_versioned_configurations()
+pprint(api_response)
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**List[VersionedConfigurationResponse]**](VersionedConfigurationResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**404** | The client does not exist. |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
 # **list_versioned_configurations**
 > List[VersionedConfigurationResponse] listVersionedConfigurations = list_versioned_configurations(config_type)
 
-[EXPERIMENTAL] ListVersionedConfigurations: List versioned configurations.
+[EXPERIMENTAL] ListVersionedConfigurations: List versioned configurations for a config type.
 
 Returns all configuration records for the given config type, across all versions and states (both draft and locked), ordered by version descending. The user must be authenticated and entitled to call this method.
 

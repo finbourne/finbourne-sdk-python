@@ -3488,6 +3488,188 @@ class PortfolioGroupsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    def list_all_portfolio_groups(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, related_entity_property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfPortfolioGroup:
+        """ListAllPortfolioGroups: List all portfolio groups  # noqa: E501
+
+        List all portfolio groups across all scopes.  # noqa: E501
+        :param effective_at: The effective datetime or cut label at which to list the portfolio groups. Defaults to the current LUSID system datetime if not specified.
+        :type effective_at: str
+        :param as_at: The asAt datetime at which to list the portfolio groups. Defaults to return the latest version of each portfolio group if not specified.
+        :type as_at: datetime
+        :param page: The pagination token to use to continue listing portfolio groups from a previous call to list portfolio groups. This  value is returned from the previous call. If a pagination token is provided the filter, effectiveAt, sortBy  and asAt fields must not have changed since the original request.
+        :type page: str
+        :param limit: When paginating, limit the number of returned results to this many. Defaults to no limit if not specified.
+        :type limit: int
+        :param filter: Expression to filter the result set.              For example, to filter on the Display Name, use \"displayName eq 'string'\"              Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid.
+        :type filter: str
+        :param sort_by: A list of field names to sort by, each suffixed by \" ASC\" or \" DESC\"
+        :type sort_by: List[str]
+        :param related_entity_property_keys: A list of property keys from any domain that supports relationships              to decorate onto related entities. These must take the format {domain}/{scope}/{code}, for example 'Portfolio/Manager/Id'.
+        :type related_entity_property_keys: List[str]
+        :param relationship_definition_ids: A list of relationship definitions that are used to decorate related entities              onto the portfolio groups in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}.
+        :type relationship_definition_ids: List[str]
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: PagedResourceListOfPortfolioGroup
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the list_all_portfolio_groups_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.list_all_portfolio_groups_with_http_info(effective_at, as_at, page, limit, filter, sort_by, related_entity_property_keys, relationship_definition_ids, **kwargs)
+        return response.data
+
+    @validate_call
+    def list_all_portfolio_groups_with_http_info(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, related_entity_property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfPortfolioGroup]:
+        """ListAllPortfolioGroups: List all portfolio groups  # noqa: E501
+
+        List all portfolio groups across all scopes.  # noqa: E501
+        :param effective_at: The effective datetime or cut label at which to list the portfolio groups. Defaults to the current LUSID system datetime if not specified.
+        :type effective_at: str
+        :param as_at: The asAt datetime at which to list the portfolio groups. Defaults to return the latest version of each portfolio group if not specified.
+        :type as_at: datetime
+        :param page: The pagination token to use to continue listing portfolio groups from a previous call to list portfolio groups. This  value is returned from the previous call. If a pagination token is provided the filter, effectiveAt, sortBy  and asAt fields must not have changed since the original request.
+        :type page: str
+        :param limit: When paginating, limit the number of returned results to this many. Defaults to no limit if not specified.
+        :type limit: int
+        :param filter: Expression to filter the result set.              For example, to filter on the Display Name, use \"displayName eq 'string'\"              Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid.
+        :type filter: str
+        :param sort_by: A list of field names to sort by, each suffixed by \" ASC\" or \" DESC\"
+        :type sort_by: List[str]
+        :param related_entity_property_keys: A list of property keys from any domain that supports relationships              to decorate onto related entities. These must take the format {domain}/{scope}/{code}, for example 'Portfolio/Manager/Id'.
+        :type related_entity_property_keys: List[str]
+        :param relationship_definition_ids: A list of relationship definitions that are used to decorate related entities              onto the portfolio groups in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}.
+        :type relationship_definition_ids: List[str]
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(PagedResourceListOfPortfolioGroup, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'effective_at',
+            'as_at',
+            'page',
+            'limit',
+            'filter',
+            'sort_by',
+            'related_entity_property_keys',
+            'relationship_definition_ids'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method list_all_portfolio_groups" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('effective_at') is not None:  # noqa: E501
+            _query_params.append(('effectiveAt', _params['effective_at']))
+
+        if _params.get('as_at') is not None:  # noqa: E501
+            if isinstance(_params['as_at'], datetime):
+                _query_params.append(('asAt', _params['as_at'].strftime(self.sync_api_client.configuration.datetime_format)))
+            else:
+                _query_params.append(('asAt', _params['as_at']))
+
+        if _params.get('page') is not None:  # noqa: E501
+            _query_params.append(('page', _params['page']))
+
+        if _params.get('limit') is not None:  # noqa: E501
+            _query_params.append(('limit', _params['limit']))
+
+        if _params.get('filter') is not None:  # noqa: E501
+            _query_params.append(('filter', _params['filter']))
+
+        if _params.get('sort_by') is not None:  # noqa: E501
+            _query_params.append(('sortBy', _params['sort_by']))
+            _collection_formats['sortBy'] = 'multi'
+
+        if _params.get('related_entity_property_keys') is not None:  # noqa: E501
+            _query_params.append(('relatedEntityPropertyKeys', _params['related_entity_property_keys']))
+            _collection_formats['relatedEntityPropertyKeys'] = 'multi'
+
+        if _params.get('relationship_definition_ids') is not None:  # noqa: E501
+            _query_params.append(('relationshipDefinitionIds', _params['relationship_definition_ids']))
+            _collection_formats['relationshipDefinitionIds'] = 'multi'
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "PagedResourceListOfPortfolioGroup",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/portfoliogroups', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     def list_portfolio_groups(self, scope: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, related_entity_property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfPortfolioGroup:
         """ListPortfolioGroups: List portfolio groups  # noqa: E501
 
@@ -7731,6 +7913,189 @@ class PortfolioGroupsApi:
 
             return await self.api_client.call_api_async(
                 '/api/api/portfoliogroups/{scope}/{code}/transactions', 'GET',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def list_all_portfolio_groups_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, related_entity_property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfPortfolioGroup:
+            """ListAllPortfolioGroups: List all portfolio groups  # noqa: E501
+            List all portfolio groups across all scopes.  # noqa: E501
+            
+            :param effective_at: The effective datetime or cut label at which to list the portfolio groups. Defaults to the current LUSID system datetime if not specified.
+            :type effective_at: str
+            :param as_at: The asAt datetime at which to list the portfolio groups. Defaults to return the latest version of each portfolio group if not specified.
+            :type as_at: datetime
+            :param page: The pagination token to use to continue listing portfolio groups from a previous call to list portfolio groups. This  value is returned from the previous call. If a pagination token is provided the filter, effectiveAt, sortBy  and asAt fields must not have changed since the original request.
+            :type page: str
+            :param limit: When paginating, limit the number of returned results to this many. Defaults to no limit if not specified.
+            :type limit: int
+            :param filter: Expression to filter the result set.              For example, to filter on the Display Name, use \"displayName eq 'string'\"              Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid.
+            :type filter: str
+            :param sort_by: A list of field names to sort by, each suffixed by \" ASC\" or \" DESC\"
+            :type sort_by: List[str]
+            :param related_entity_property_keys: A list of property keys from any domain that supports relationships              to decorate onto related entities. These must take the format {domain}/{scope}/{code}, for example 'Portfolio/Manager/Id'.
+            :type related_entity_property_keys: List[str]
+            :param relationship_definition_ids: A list of relationship definitions that are used to decorate related entities              onto the portfolio groups in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}.
+            :type relationship_definition_ids: List[str]
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: PagedResourceListOfPortfolioGroup
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the list_all_portfolio_groups_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.list_all_portfolio_groups_with_http_info_async(effective_at, as_at, page, limit, filter, sort_by, related_entity_property_keys, relationship_definition_ids, **kwargs)
+            return response.data
+
+    @validate_call
+    async def list_all_portfolio_groups_with_http_info_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, related_entity_property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfPortfolioGroup]:
+            """ListAllPortfolioGroups: List all portfolio groups  # noqa: E501
+
+            List all portfolio groups across all scopes.  # noqa: E501
+
+            :param effective_at: The effective datetime or cut label at which to list the portfolio groups. Defaults to the current LUSID system datetime if not specified.
+            :type effective_at: str
+            :param as_at: The asAt datetime at which to list the portfolio groups. Defaults to return the latest version of each portfolio group if not specified.
+            :type as_at: datetime
+            :param page: The pagination token to use to continue listing portfolio groups from a previous call to list portfolio groups. This  value is returned from the previous call. If a pagination token is provided the filter, effectiveAt, sortBy  and asAt fields must not have changed since the original request.
+            :type page: str
+            :param limit: When paginating, limit the number of returned results to this many. Defaults to no limit if not specified.
+            :type limit: int
+            :param filter: Expression to filter the result set.              For example, to filter on the Display Name, use \"displayName eq 'string'\"              Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid.
+            :type filter: str
+            :param sort_by: A list of field names to sort by, each suffixed by \" ASC\" or \" DESC\"
+            :type sort_by: List[str]
+            :param related_entity_property_keys: A list of property keys from any domain that supports relationships              to decorate onto related entities. These must take the format {domain}/{scope}/{code}, for example 'Portfolio/Manager/Id'.
+            :type related_entity_property_keys: List[str]
+            :param relationship_definition_ids: A list of relationship definitions that are used to decorate related entities              onto the portfolio groups in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}.
+            :type relationship_definition_ids: List[str]
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(PagedResourceListOfPortfolioGroup, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'effective_at',
+                'as_at',
+                'page',
+                'limit',
+                'filter',
+                'sort_by',
+                'related_entity_property_keys',
+                'relationship_definition_ids'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method list_all_portfolio_groups" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('effective_at') is not None:  # noqa: E501
+                _query_params.append(('effectiveAt', _params['effective_at']))
+
+            if _params.get('as_at') is not None:  # noqa: E501
+                if isinstance(_params['as_at'], datetime):
+                    _query_params.append(('asAt', _params['as_at'].strftime(self.api_client.configuration.datetime_format)))
+                else:
+                    _query_params.append(('asAt', _params['as_at']))
+
+            if _params.get('page') is not None:  # noqa: E501
+                _query_params.append(('page', _params['page']))
+
+            if _params.get('limit') is not None:  # noqa: E501
+                _query_params.append(('limit', _params['limit']))
+
+            if _params.get('filter') is not None:  # noqa: E501
+                _query_params.append(('filter', _params['filter']))
+
+            if _params.get('sort_by') is not None:  # noqa: E501
+                _query_params.append(('sortBy', _params['sort_by']))
+                _collection_formats['sortBy'] = 'multi'
+
+            if _params.get('related_entity_property_keys') is not None:  # noqa: E501
+                _query_params.append(('relatedEntityPropertyKeys', _params['related_entity_property_keys']))
+                _collection_formats['relatedEntityPropertyKeys'] = 'multi'
+
+            if _params.get('relationship_definition_ids') is not None:  # noqa: E501
+                _query_params.append(('relationshipDefinitionIds', _params['relationship_definition_ids']))
+                _collection_formats['relationshipDefinitionIds'] = 'multi'
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "PagedResourceListOfPortfolioGroup",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/portfoliogroups', 'GET',
                 _path_params,
                 _query_params,
                 _header_params,

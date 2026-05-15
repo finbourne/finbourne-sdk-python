@@ -6,11 +6,13 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get_authentication_information**](AuthenticationApi.md#get_authentication_information) | **GET** /identity/api/authentication/information | GetAuthenticationInformation: Gets AuthenticationInformation
 [**get_password_policy**](AuthenticationApi.md#get_password_policy) | **GET** /identity/api/authentication/password-policy/{userType} | GetPasswordPolicy: Gets password policy for a user type
+[**get_session_policy**](AuthenticationApi.md#get_session_policy) | **GET** /identity/api/authentication/session-policy | [EXPERIMENTAL] GetSessionPolicy: Get session policy
 [**get_support_access_history**](AuthenticationApi.md#get_support_access_history) | **GET** /identity/api/authentication/support | GetSupportAccessHistory: Get the history of all support access granted and any information pertaining to their termination
 [**get_support_roles**](AuthenticationApi.md#get_support_roles) | **GET** /identity/api/authentication/support-roles | GetSupportRoles: Get mapping of support roles, the internal representation to a human friendly representation
 [**grant_support_access**](AuthenticationApi.md#grant_support_access) | **POST** /identity/api/authentication/support | GrantSupportAccess: Grants FINBOURNE support access to your account
 [**invalidate_support_access**](AuthenticationApi.md#invalidate_support_access) | **DELETE** /identity/api/authentication/support | InvalidateSupportAccess: Revoke any FINBOURNE support access to your account
 [**update_password_policy**](AuthenticationApi.md#update_password_policy) | **PUT** /identity/api/authentication/password-policy/{userType} | UpdatePasswordPolicy: Updates password policy for a user type
+[**update_session_policy**](AuthenticationApi.md#update_session_policy) | **PUT** /identity/api/authentication/session-policy | [EXPERIMENTAL] UpdateSessionPolicy: Update session policy
 
 
 ### Example
@@ -111,6 +113,43 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Get password policy |  -  |
 **400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_session_policy**
+> SessionPolicyResponse getSessionPolicy = get_session_policy()
+
+[EXPERIMENTAL] GetSessionPolicy: Get session policy
+
+Get the configured session timing settings. These settings dictate the duration of user sessions and the frequency of required re-authentication.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(AuthenticationApi)
+api_response = api_instance.get_session_policy()
+pprint(api_response)
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**SessionPolicyResponse**](SessionPolicyResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The current session policy |  -  |
 **0** | Error response |  -  |
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
@@ -314,6 +353,48 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Update password policy |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **update_session_policy**
+> SessionPolicyResponse updateSessionPolicy = update_session_policy(update_session_policy_request)
+
+[EXPERIMENTAL] UpdateSessionPolicy: Update session policy
+
+Update the session timing settings. These settings dictate the duration of user sessions and the frequency of required re-authentication.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(AuthenticationApi)
+update_session_policy_request = UpdateSessionPolicyRequest()
+api_response = api_instance.update_session_policy(update_session_policy_request)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **update_session_policy_request** | [**UpdateSessionPolicyRequest**](UpdateSessionPolicyRequest.md)| The desired session timing settings | [required] 
+
+### Return type
+
+[**SessionPolicyResponse**](SessionPolicyResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The session policy as persisted |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 

@@ -7,7 +7,6 @@
 | **description** | **str** | Optional | A description of the transaction fee type. |
 | **calculation** | [FeeCalculationRequest](FeeCalculationRequest.md) | Optional | *No description available.* |
 | **condition** | **str** | Optional | The condition that the transaction must meet in order for the fee to be applied. |
-| **txn_property_key** | **str** | Optional | The property key to which the fee value will be applied and decorated onto the transaction. Must be in the &#39;Transaction&#39; property domain. |
 | **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the transaction fee type. |
 | **is_active** | **bool** | Optional | Indicates whether the transaction fee type is currently active and should be applied to transactions. Optional when creating a transaction fee type, defaults to true, if a value is not provided. |
 
@@ -23,7 +22,6 @@ instance = UpdateTransactionFeeTypeRequest(
     description="...",  # optional — A description of the transaction fee type.
     calculation=FeeCalculationRequest(...),  # optional
     condition="...",  # optional — The condition that the transaction must meet in order for the fee to be applied.
-    txn_property_key="...",  # optional — The property key to which the fee value will be applied and decorated onto the transaction. Must be in the &#39;Transaction&#39; property domain.
     properties=ModelProperty(...),  # optional — A set of properties for the transaction fee type.
     is_active=True  # optional — Indicates whether the transaction fee type is currently active and should be applied to transactions. Optional when creating a transaction fee type, defaults to true, if a value is not provided.
 )

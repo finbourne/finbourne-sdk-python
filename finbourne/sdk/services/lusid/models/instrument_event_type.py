@@ -100,6 +100,7 @@ class InstrumentEventType(str, Enum):  # type: ignore[misc]
     EARLYCLOSEOUTEVENT = 'EarlyCloseOutEvent'
     DEPOSITROLLEVENT = 'DepositRollEvent'
     CONSENTEVENT = 'ConsentEvent'
+    DRAWINGEVENT = 'DrawingEvent'
 
     @classmethod
     def from_json(cls, json_str: str) -> InstrumentEventType:
