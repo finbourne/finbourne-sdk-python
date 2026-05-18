@@ -31,11 +31,13 @@ Method | HTTP request | Description
 [**get_valuation_point_pnl_summary**](FundsApi.md#get_valuation_point_pnl_summary) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/pnlsummary/$query | [EXPERIMENTAL] GetValuationPointPnlSummary: Get a PnL summary for the given Valuation Point in the Fund.
 [**get_valuation_point_transactions**](FundsApi.md#get_valuation_point_transactions) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/transactions/$query | [EXPERIMENTAL] GetValuationPointTransactions: Get the Transactions for the given Fund.
 [**get_valuation_point_trial_balance**](FundsApi.md#get_valuation_point_trial_balance) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/trialbalance/$query | [EXPERIMENTAL] GetValuationPointTrialBalance: Get Trial Balance for the given Fund.
+[**get_valuation_point_unsettled_transactions**](FundsApi.md#get_valuation_point_unsettled_transactions) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/unsettledtransactions/$query | [EXPERIMENTAL] GetValuationPointUnsettledTransactions: Get Unsettled Transactions for the given Fund.
 [**list_fees**](FundsApi.md#list_fees) | **GET** /api/api/funds/{scope}/{code}/fees | [EXPERIMENTAL] ListFees: List Fees for a specified Fund.
 [**list_fund_calendar**](FundsApi.md#list_fund_calendar) | **GET** /api/api/funds/{scope}/{code}/calendar | [EXPERIMENTAL] ListFundCalendar: List Fund Calendar.
 [**list_fund_calendar_entries**](FundsApi.md#list_fund_calendar_entries) | **GET** /api/api/funds/{scope}/{code}/calendars | [EXPERIMENTAL] ListFundCalendarEntries: List Fund Calendar Entries.
 [**list_funds**](FundsApi.md#list_funds) | **GET** /api/api/funds | [EXPERIMENTAL] ListFunds: List Funds.
 [**list_nav_activity_adjustments**](FundsApi.md#list_nav_activity_adjustments) | **GET** /api/api/funds/{scope}/{code}/navAdjustment | [EXPERIMENTAL] ListNavActivityAdjustments: List NAV adjustment activities applied to a valuation point
+[**list_valuation_point_instruments**](FundsApi.md#list_valuation_point_instruments) | **GET** /api/api/funds/{scope}/{code}/valuationpoints/instruments/$query | [EXPERIMENTAL] ListValuationPointInstruments: List Instruments inside a valuation point
 [**list_valuation_point_overview**](FundsApi.md#list_valuation_point_overview) | **GET** /api/api/funds/{scope}/{code}/valuationPointOverview | [EXPERIMENTAL] ListValuationPointOverview: List Valuation Points Overview for a given Fund.
 [**patch_fee**](FundsApi.md#patch_fee) | **PATCH** /api/api/funds/{scope}/{code}/fees/{feeCode} | [EXPERIMENTAL] PatchFee: Patch Fee.
 [**patch_fund**](FundsApi.md#patch_fund) | **PATCH** /api/api/funds/{scope}/{code} | [EXPERIMENTAL] PatchFund: Patch a Fund.
@@ -1458,6 +1460,62 @@ Name | Type | Description  | Notes
 
 ---
 
+# **get_valuation_point_unsettled_transactions**
+> ValuationPointResourceListOfUnsettledTransaction getValuationPointUnsettledTransactions = get_valuation_point_unsettled_transactions(scope, code, valuation_point_data_query_parameters, as_at=as_at, limit=limit, page=page, property_keys=property_keys, nav_type_code=nav_type_code)
+
+[EXPERIMENTAL] GetValuationPointUnsettledTransactions: Get Unsettled Transactions for the given Fund.
+
+Gets all transactions that remain unsettled as at the specified Valuation Point for a Fund,  looking back from inception. Settlement status is point-in-time: post-cutoff settlement  activity does not alter the result.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(FundsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+valuation_point_data_query_parameters = ValuationPointDataQueryParameters()
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+limit = 56 # int (optional)
+page = 'page_example' # str (optional)
+property_keys = ['property_keys_example'] # List[str] (optional)
+nav_type_code = 'nav_type_code_example' # str (optional)
+api_response = api_instance.get_valuation_point_unsettled_transactions(scope, code, valuation_point_data_query_parameters, as_at=as_at, limit=limit, page=page, property_keys=property_keys, nav_type_code=nav_type_code)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the Fund. | [required] 
+ **code** | **str**| The code of the Fund. Together with the scope this uniquely identifies the Fund. | [required] 
+ **valuation_point_data_query_parameters** | [**ValuationPointDataQueryParameters**](ValuationPointDataQueryParameters.md)| The arguments to use for querying the unsettled transactions. | [required] 
+ **as_at** | **datetime**| The asAt datetime at which to retrieve the report. Defaults to latest. | [optional] 
+ **limit** | **int**| When paginating, limit the number of returned results to this many. Defaults to 100 if not specified. | [optional] 
+ **page** | **str**| The pagination token to use to continue listing from a previous call. | [optional] 
+ **property_keys** | [**List[str]**](str.md)| A list of property keys from the &#39;Instrument&#39;, &#39;Transaction&#39;, &#39;Portfolio&#39;, or &#39;Account&#39;              domain to decorate onto the transactions. | [optional] 
+ **nav_type_code** | **str**| When provided, runs against the specified NAV Type, otherwise the Primary NAV Type will be used. | [optional] 
+
+### Return type
+
+[**ValuationPointResourceListOfUnsettledTransaction**](ValuationPointResourceListOfUnsettledTransaction.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The unsettled transactions for the specified Valuation Point for a Fund. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
 # **list_fees**
 > PagedResourceListOfFee listFees = list_fees(scope, code, effective_at=effective_at, as_at=as_at, page=page, limit=limit, filter=filter, sort_by=sort_by, property_keys=property_keys)
 
@@ -1733,6 +1791,68 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The requested NAV activity adjustments for the specific valuation point and Nav type for the Fund. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **list_valuation_point_instruments**
+> PagedResourceListOfValuationPointInstrument listValuationPointInstruments = list_valuation_point_instruments(scope, code, valuation_point_code, nav_type_code=nav_type_code, as_at=as_at, page=page, limit=limit, filter=filter, sort_by=sort_by, instrument_property_keys=instrument_property_keys, valuation_point_code_variant=valuation_point_code_variant)
+
+[EXPERIMENTAL] ListValuationPointInstruments: List Instruments inside a valuation point
+
+Lists the Instruments linked to Transactions within a Valuation Point for a Fund.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(FundsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+valuation_point_code = 'valuation_point_code_example' # str
+nav_type_code = 'nav_type_code_example' # str (optional)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+page = 'page_example' # str (optional)
+limit = 56 # int (optional)
+filter = 'filter_example' # str (optional)
+sort_by = ['sort_by_example'] # List[str] (optional)
+instrument_property_keys = ['instrument_property_keys_example'] # List[str] (optional)
+valuation_point_code_variant = 'valuation_point_code_variant_example' # str (optional)
+api_response = api_instance.list_valuation_point_instruments(scope, code, valuation_point_code, nav_type_code=nav_type_code, as_at=as_at, page=page, limit=limit, filter=filter, sort_by=sort_by, instrument_property_keys=instrument_property_keys, valuation_point_code_variant=valuation_point_code_variant)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the Fund. | [required] 
+ **code** | **str**| The code of the Fund. Together with the scope is the unique identifier for the given Fund. | [required] 
+ **valuation_point_code** | **str**| Fetch all instruments for this valuation point. | [required] 
+ **nav_type_code** | **str**| When provided, runs against the specified NAV Type, otherwise the Primary NAV Type will be used. | [optional] 
+ **as_at** | **datetime**| The asAt datetime at which to list the instruments. Defaults to returning the latest version of each instrument if not specified. | [optional] 
+ **page** | **str**| The pagination token to use to continue listing instruments; this              value is returned from the previous call. If a pagination token is provided, the filter,              and asAt fields must not have changed since the original request. | [optional] 
+ **limit** | **int**| When paginating, limit the results to this number. Defaults to 100 if not specified. | [optional] 
+ **filter** | **str**| Expression to filter the result set. Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid. | [optional] 
+ **sort_by** | [**List[str]**](str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
+ **instrument_property_keys** | [**List[str]**](str.md)| A list of property keys from the &#39;Instrument&#39; domain to decorate onto              instruments, or from any domain that supports relationships to decorate onto related entities.              These must have the format {domain}/{scope}/{code}, for example &#39;Instrument/system/Name&#39;. | [optional] 
+ **valuation_point_code_variant** | **str**| The variant of the valuation point used in the request. Together with the valuation point code marks the unique branch for the NavType. | [optional] 
+
+### Return type
+
+[**PagedResourceListOfValuationPointInstrument**](PagedResourceListOfValuationPointInstrument.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The instruments held at the specified valuation point for the Fund. |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 

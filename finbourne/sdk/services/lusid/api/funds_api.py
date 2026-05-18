@@ -45,6 +45,7 @@ from finbourne.sdk.services.lusid.models.paged_resource_list_of_fee import Paged
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_fund import PagedResourceListOfFund
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_fund_calendar_entries import PagedResourceListOfFundCalendarEntries
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_fund_calendar_entry import PagedResourceListOfFundCalendarEntry
+from finbourne.sdk.services.lusid.models.paged_resource_list_of_valuation_point_instrument import PagedResourceListOfValuationPointInstrument
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_valuation_point_overview import PagedResourceListOfValuationPointOverview
 from finbourne.sdk.services.lusid.models.query_fund_cash_statement_parameters import QueryFundCashStatementParameters
 from finbourne.sdk.services.lusid.models.resource_list_of_nav_activity_adjustment_response import ResourceListOfNavActivityAdjustmentResponse
@@ -62,6 +63,7 @@ from finbourne.sdk.services.lusid.models.valuation_point_resource_list_of_fund_c
 from finbourne.sdk.services.lusid.models.valuation_point_resource_list_of_fund_journal_entry_line import ValuationPointResourceListOfFundJournalEntryLine
 from finbourne.sdk.services.lusid.models.valuation_point_resource_list_of_pnl_journal_entry_line import ValuationPointResourceListOfPnlJournalEntryLine
 from finbourne.sdk.services.lusid.models.valuation_point_resource_list_of_trial_balance import ValuationPointResourceListOfTrialBalance
+from finbourne.sdk.services.lusid.models.valuation_point_resource_list_of_unsettled_transaction import ValuationPointResourceListOfUnsettledTransaction
 from finbourne.sdk.services.lusid.models.versioned_resource_list_of_fund_a2_b_data_record import VersionedResourceListOfFundA2BDataRecord
 from finbourne.sdk.services.lusid.models.versioned_resource_list_of_fund_a2_b_movement_record import VersionedResourceListOfFundA2BMovementRecord
 from finbourne.sdk.services.lusid.models.versioned_resource_list_of_holding_contributor import VersionedResourceListOfHoldingContributor
@@ -4511,6 +4513,193 @@ class FundsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    def get_valuation_point_unsettled_transactions(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ValuationPointResourceListOfUnsettledTransaction:
+        """[EXPERIMENTAL] GetValuationPointUnsettledTransactions: Get Unsettled Transactions for the given Fund.  # noqa: E501
+
+        Gets all transactions that remain unsettled as at the specified Valuation Point for a Fund,  looking back from inception. Settlement status is point-in-time: post-cutoff settlement  activity does not alter the result.  # noqa: E501
+        :param scope: The scope of the Fund. (required)
+        :type scope: str
+        :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
+        :type code: str
+        :param valuation_point_data_query_parameters: The arguments to use for querying the unsettled transactions. (required)
+        :type valuation_point_data_query_parameters: ValuationPointDataQueryParameters
+        :param as_at: The asAt datetime at which to retrieve the report. Defaults to latest.
+        :type as_at: datetime
+        :param limit: When paginating, limit the number of returned results to this many. Defaults to 100 if not specified.
+        :type limit: int
+        :param page: The pagination token to use to continue listing from a previous call.
+        :type page: str
+        :param property_keys: A list of property keys from the 'Instrument', 'Transaction', 'Portfolio', or 'Account'              domain to decorate onto the transactions.
+        :type property_keys: List[str]
+        :param nav_type_code: When provided, runs against the specified NAV Type, otherwise the Primary NAV Type will be used.
+        :type nav_type_code: str
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: ValuationPointResourceListOfUnsettledTransaction
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_valuation_point_unsettled_transactions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.get_valuation_point_unsettled_transactions_with_http_info(scope, code, valuation_point_data_query_parameters, as_at, limit, page, property_keys, nav_type_code, **kwargs)
+        return response.data
+
+    @validate_call
+    def get_valuation_point_unsettled_transactions_with_http_info(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfUnsettledTransaction]:
+        """[EXPERIMENTAL] GetValuationPointUnsettledTransactions: Get Unsettled Transactions for the given Fund.  # noqa: E501
+
+        Gets all transactions that remain unsettled as at the specified Valuation Point for a Fund,  looking back from inception. Settlement status is point-in-time: post-cutoff settlement  activity does not alter the result.  # noqa: E501
+        :param scope: The scope of the Fund. (required)
+        :type scope: str
+        :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
+        :type code: str
+        :param valuation_point_data_query_parameters: The arguments to use for querying the unsettled transactions. (required)
+        :type valuation_point_data_query_parameters: ValuationPointDataQueryParameters
+        :param as_at: The asAt datetime at which to retrieve the report. Defaults to latest.
+        :type as_at: datetime
+        :param limit: When paginating, limit the number of returned results to this many. Defaults to 100 if not specified.
+        :type limit: int
+        :param page: The pagination token to use to continue listing from a previous call.
+        :type page: str
+        :param property_keys: A list of property keys from the 'Instrument', 'Transaction', 'Portfolio', or 'Account'              domain to decorate onto the transactions.
+        :type property_keys: List[str]
+        :param nav_type_code: When provided, runs against the specified NAV Type, otherwise the Primary NAV Type will be used.
+        :type nav_type_code: str
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(ValuationPointResourceListOfUnsettledTransaction, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'scope',
+            'code',
+            'valuation_point_data_query_parameters',
+            'as_at',
+            'limit',
+            'page',
+            'property_keys',
+            'nav_type_code'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_valuation_point_unsettled_transactions" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['scope']:
+            _path_params['scope'] = _params['scope']
+
+        if _params['code']:
+            _path_params['code'] = _params['code']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('as_at') is not None:  # noqa: E501
+            if isinstance(_params['as_at'], datetime):
+                _query_params.append(('asAt', _params['as_at'].strftime(self.sync_api_client.configuration.datetime_format)))
+            else:
+                _query_params.append(('asAt', _params['as_at']))
+
+        if _params.get('limit') is not None:  # noqa: E501
+            _query_params.append(('limit', _params['limit']))
+
+        if _params.get('page') is not None:  # noqa: E501
+            _query_params.append(('page', _params['page']))
+
+        if _params.get('property_keys') is not None:  # noqa: E501
+            _query_params.append(('propertyKeys', _params['property_keys']))
+            _collection_formats['propertyKeys'] = 'multi'
+
+        if _params.get('nav_type_code') is not None:  # noqa: E501
+            _query_params.append(('navTypeCode', _params['nav_type_code']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['valuation_point_data_query_parameters'] is not None:
+            _body_params = _params['valuation_point_data_query_parameters']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.sync_api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "ValuationPointResourceListOfUnsettledTransaction",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/funds/{scope}/{code}/valuationpoints/unsettledtransactions/$query', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     def list_fees(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfFee:
         """[EXPERIMENTAL] ListFees: List Fees for a specified Fund.  # noqa: E501
 
@@ -5406,6 +5595,211 @@ class FundsApi:
 
         return self.sync_api_client.call_api(
             '/api/api/funds/{scope}/{code}/navAdjustment', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    def list_valuation_point_instruments(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, instrument_property_keys: Optional[List[str]] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfValuationPointInstrument:
+        """[EXPERIMENTAL] ListValuationPointInstruments: List Instruments inside a valuation point  # noqa: E501
+
+        Lists the Instruments linked to Transactions within a Valuation Point for a Fund.  # noqa: E501
+        :param scope: The scope of the Fund. (required)
+        :type scope: str
+        :param code: The code of the Fund. Together with the scope is the unique identifier for the given Fund. (required)
+        :type code: str
+        :param valuation_point_code: Fetch all instruments for this valuation point. (required)
+        :type valuation_point_code: str
+        :param nav_type_code: When provided, runs against the specified NAV Type, otherwise the Primary NAV Type will be used.
+        :type nav_type_code: str
+        :param as_at: The asAt datetime at which to list the instruments. Defaults to returning the latest version of each instrument if not specified.
+        :type as_at: datetime
+        :param page: The pagination token to use to continue listing instruments; this              value is returned from the previous call. If a pagination token is provided, the filter,              and asAt fields must not have changed since the original request.
+        :type page: str
+        :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
+        :type limit: int
+        :param filter: Expression to filter the result set. Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid.
+        :type filter: str
+        :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
+        :type sort_by: List[str]
+        :param instrument_property_keys: A list of property keys from the 'Instrument' domain to decorate onto              instruments, or from any domain that supports relationships to decorate onto related entities.              These must have the format {domain}/{scope}/{code}, for example 'Instrument/system/Name'.
+        :type instrument_property_keys: List[str]
+        :param valuation_point_code_variant: The variant of the valuation point used in the request. Together with the valuation point code marks the unique branch for the NavType.
+        :type valuation_point_code_variant: str
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: PagedResourceListOfValuationPointInstrument
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the list_valuation_point_instruments_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.list_valuation_point_instruments_with_http_info(scope, code, valuation_point_code, nav_type_code, as_at, page, limit, filter, sort_by, instrument_property_keys, valuation_point_code_variant, **kwargs)
+        return response.data
+
+    @validate_call
+    def list_valuation_point_instruments_with_http_info(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, instrument_property_keys: Optional[List[str]] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfValuationPointInstrument]:
+        """[EXPERIMENTAL] ListValuationPointInstruments: List Instruments inside a valuation point  # noqa: E501
+
+        Lists the Instruments linked to Transactions within a Valuation Point for a Fund.  # noqa: E501
+        :param scope: The scope of the Fund. (required)
+        :type scope: str
+        :param code: The code of the Fund. Together with the scope is the unique identifier for the given Fund. (required)
+        :type code: str
+        :param valuation_point_code: Fetch all instruments for this valuation point. (required)
+        :type valuation_point_code: str
+        :param nav_type_code: When provided, runs against the specified NAV Type, otherwise the Primary NAV Type will be used.
+        :type nav_type_code: str
+        :param as_at: The asAt datetime at which to list the instruments. Defaults to returning the latest version of each instrument if not specified.
+        :type as_at: datetime
+        :param page: The pagination token to use to continue listing instruments; this              value is returned from the previous call. If a pagination token is provided, the filter,              and asAt fields must not have changed since the original request.
+        :type page: str
+        :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
+        :type limit: int
+        :param filter: Expression to filter the result set. Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid.
+        :type filter: str
+        :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
+        :type sort_by: List[str]
+        :param instrument_property_keys: A list of property keys from the 'Instrument' domain to decorate onto              instruments, or from any domain that supports relationships to decorate onto related entities.              These must have the format {domain}/{scope}/{code}, for example 'Instrument/system/Name'.
+        :type instrument_property_keys: List[str]
+        :param valuation_point_code_variant: The variant of the valuation point used in the request. Together with the valuation point code marks the unique branch for the NavType.
+        :type valuation_point_code_variant: str
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(PagedResourceListOfValuationPointInstrument, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'scope',
+            'code',
+            'valuation_point_code',
+            'nav_type_code',
+            'as_at',
+            'page',
+            'limit',
+            'filter',
+            'sort_by',
+            'instrument_property_keys',
+            'valuation_point_code_variant'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method list_valuation_point_instruments" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['scope']:
+            _path_params['scope'] = _params['scope']
+
+        if _params['code']:
+            _path_params['code'] = _params['code']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('valuation_point_code') is not None:  # noqa: E501
+            _query_params.append(('valuationPointCode', _params['valuation_point_code']))
+
+        if _params.get('nav_type_code') is not None:  # noqa: E501
+            _query_params.append(('navTypeCode', _params['nav_type_code']))
+
+        if _params.get('as_at') is not None:  # noqa: E501
+            if isinstance(_params['as_at'], datetime):
+                _query_params.append(('asAt', _params['as_at'].strftime(self.sync_api_client.configuration.datetime_format)))
+            else:
+                _query_params.append(('asAt', _params['as_at']))
+
+        if _params.get('page') is not None:  # noqa: E501
+            _query_params.append(('page', _params['page']))
+
+        if _params.get('limit') is not None:  # noqa: E501
+            _query_params.append(('limit', _params['limit']))
+
+        if _params.get('filter') is not None:  # noqa: E501
+            _query_params.append(('filter', _params['filter']))
+
+        if _params.get('sort_by') is not None:  # noqa: E501
+            _query_params.append(('sortBy', _params['sort_by']))
+            _collection_formats['sortBy'] = 'multi'
+
+        if _params.get('instrument_property_keys') is not None:  # noqa: E501
+            _query_params.append(('instrumentPropertyKeys', _params['instrument_property_keys']))
+            _collection_formats['instrumentPropertyKeys'] = 'multi'
+
+        if _params.get('valuation_point_code_variant') is not None:  # noqa: E501
+            _query_params.append(('valuationPointCodeVariant', _params['valuation_point_code_variant']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "PagedResourceListOfValuationPointInstrument",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/funds/{scope}/{code}/valuationpoints/instruments/$query', 'GET',
             _path_params,
             _query_params,
             _header_params,
@@ -11607,6 +12001,194 @@ class FundsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    async def get_valuation_point_unsettled_transactions_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ValuationPointResourceListOfUnsettledTransaction:
+            """[EXPERIMENTAL] GetValuationPointUnsettledTransactions: Get Unsettled Transactions for the given Fund.  # noqa: E501
+            Gets all transactions that remain unsettled as at the specified Valuation Point for a Fund,  looking back from inception. Settlement status is point-in-time: post-cutoff settlement  activity does not alter the result.  # noqa: E501
+            
+            :param scope: The scope of the Fund. (required)
+            :type scope: str
+            :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
+            :type code: str
+            :param valuation_point_data_query_parameters: The arguments to use for querying the unsettled transactions. (required)
+            :type valuation_point_data_query_parameters: ValuationPointDataQueryParameters
+            :param as_at: The asAt datetime at which to retrieve the report. Defaults to latest.
+            :type as_at: datetime
+            :param limit: When paginating, limit the number of returned results to this many. Defaults to 100 if not specified.
+            :type limit: int
+            :param page: The pagination token to use to continue listing from a previous call.
+            :type page: str
+            :param property_keys: A list of property keys from the 'Instrument', 'Transaction', 'Portfolio', or 'Account'              domain to decorate onto the transactions.
+            :type property_keys: List[str]
+            :param nav_type_code: When provided, runs against the specified NAV Type, otherwise the Primary NAV Type will be used.
+            :type nav_type_code: str
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: ValuationPointResourceListOfUnsettledTransaction
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the get_valuation_point_unsettled_transactions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.get_valuation_point_unsettled_transactions_with_http_info_async(scope, code, valuation_point_data_query_parameters, as_at, limit, page, property_keys, nav_type_code, **kwargs)
+            return response.data
+
+    @validate_call
+    async def get_valuation_point_unsettled_transactions_with_http_info_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfUnsettledTransaction]:
+            """[EXPERIMENTAL] GetValuationPointUnsettledTransactions: Get Unsettled Transactions for the given Fund.  # noqa: E501
+
+            Gets all transactions that remain unsettled as at the specified Valuation Point for a Fund,  looking back from inception. Settlement status is point-in-time: post-cutoff settlement  activity does not alter the result.  # noqa: E501
+
+            :param scope: The scope of the Fund. (required)
+            :type scope: str
+            :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
+            :type code: str
+            :param valuation_point_data_query_parameters: The arguments to use for querying the unsettled transactions. (required)
+            :type valuation_point_data_query_parameters: ValuationPointDataQueryParameters
+            :param as_at: The asAt datetime at which to retrieve the report. Defaults to latest.
+            :type as_at: datetime
+            :param limit: When paginating, limit the number of returned results to this many. Defaults to 100 if not specified.
+            :type limit: int
+            :param page: The pagination token to use to continue listing from a previous call.
+            :type page: str
+            :param property_keys: A list of property keys from the 'Instrument', 'Transaction', 'Portfolio', or 'Account'              domain to decorate onto the transactions.
+            :type property_keys: List[str]
+            :param nav_type_code: When provided, runs against the specified NAV Type, otherwise the Primary NAV Type will be used.
+            :type nav_type_code: str
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(ValuationPointResourceListOfUnsettledTransaction, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'scope',
+                'code',
+                'valuation_point_data_query_parameters',
+                'as_at',
+                'limit',
+                'page',
+                'property_keys',
+                'nav_type_code'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method get_valuation_point_unsettled_transactions" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['scope']:
+                _path_params['scope'] = _params['scope']
+
+            if _params['code']:
+                _path_params['code'] = _params['code']
+
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('as_at') is not None:  # noqa: E501
+                if isinstance(_params['as_at'], datetime):
+                    _query_params.append(('asAt', _params['as_at'].strftime(self.api_client.configuration.datetime_format)))
+                else:
+                    _query_params.append(('asAt', _params['as_at']))
+
+            if _params.get('limit') is not None:  # noqa: E501
+                _query_params.append(('limit', _params['limit']))
+
+            if _params.get('page') is not None:  # noqa: E501
+                _query_params.append(('page', _params['page']))
+
+            if _params.get('property_keys') is not None:  # noqa: E501
+                _query_params.append(('propertyKeys', _params['property_keys']))
+                _collection_formats['propertyKeys'] = 'multi'
+
+            if _params.get('nav_type_code') is not None:  # noqa: E501
+                _query_params.append(('navTypeCode', _params['nav_type_code']))
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            if _params['valuation_point_data_query_parameters'] is not None:
+                _body_params = _params['valuation_point_data_query_parameters']
+
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # set the HTTP header `Content-Type`
+            _content_types_list = _params.get('_content_type',
+                self.api_client.select_header_content_type(
+                    ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+            if _content_types_list:
+                    _header_params['Content-Type'] = _content_types_list
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "ValuationPointResourceListOfUnsettledTransaction",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/funds/{scope}/{code}/valuationpoints/unsettledtransactions/$query', 'POST',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     async def list_fees_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfFee:
             """[EXPERIMENTAL] ListFees: List Fees for a specified Fund.  # noqa: E501
             List all the Fees matching a particular criteria.  # noqa: E501
@@ -12507,6 +13089,212 @@ class FundsApi:
 
             return await self.api_client.call_api_async(
                 '/api/api/funds/{scope}/{code}/navAdjustment', 'GET',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def list_valuation_point_instruments_async(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, instrument_property_keys: Optional[List[str]] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfValuationPointInstrument:
+            """[EXPERIMENTAL] ListValuationPointInstruments: List Instruments inside a valuation point  # noqa: E501
+            Lists the Instruments linked to Transactions within a Valuation Point for a Fund.  # noqa: E501
+            
+            :param scope: The scope of the Fund. (required)
+            :type scope: str
+            :param code: The code of the Fund. Together with the scope is the unique identifier for the given Fund. (required)
+            :type code: str
+            :param valuation_point_code: Fetch all instruments for this valuation point. (required)
+            :type valuation_point_code: str
+            :param nav_type_code: When provided, runs against the specified NAV Type, otherwise the Primary NAV Type will be used.
+            :type nav_type_code: str
+            :param as_at: The asAt datetime at which to list the instruments. Defaults to returning the latest version of each instrument if not specified.
+            :type as_at: datetime
+            :param page: The pagination token to use to continue listing instruments; this              value is returned from the previous call. If a pagination token is provided, the filter,              and asAt fields must not have changed since the original request.
+            :type page: str
+            :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
+            :type limit: int
+            :param filter: Expression to filter the result set. Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid.
+            :type filter: str
+            :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
+            :type sort_by: List[str]
+            :param instrument_property_keys: A list of property keys from the 'Instrument' domain to decorate onto              instruments, or from any domain that supports relationships to decorate onto related entities.              These must have the format {domain}/{scope}/{code}, for example 'Instrument/system/Name'.
+            :type instrument_property_keys: List[str]
+            :param valuation_point_code_variant: The variant of the valuation point used in the request. Together with the valuation point code marks the unique branch for the NavType.
+            :type valuation_point_code_variant: str
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: PagedResourceListOfValuationPointInstrument
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the list_valuation_point_instruments_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.list_valuation_point_instruments_with_http_info_async(scope, code, valuation_point_code, nav_type_code, as_at, page, limit, filter, sort_by, instrument_property_keys, valuation_point_code_variant, **kwargs)
+            return response.data
+
+    @validate_call
+    async def list_valuation_point_instruments_with_http_info_async(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, instrument_property_keys: Optional[List[str]] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfValuationPointInstrument]:
+            """[EXPERIMENTAL] ListValuationPointInstruments: List Instruments inside a valuation point  # noqa: E501
+
+            Lists the Instruments linked to Transactions within a Valuation Point for a Fund.  # noqa: E501
+
+            :param scope: The scope of the Fund. (required)
+            :type scope: str
+            :param code: The code of the Fund. Together with the scope is the unique identifier for the given Fund. (required)
+            :type code: str
+            :param valuation_point_code: Fetch all instruments for this valuation point. (required)
+            :type valuation_point_code: str
+            :param nav_type_code: When provided, runs against the specified NAV Type, otherwise the Primary NAV Type will be used.
+            :type nav_type_code: str
+            :param as_at: The asAt datetime at which to list the instruments. Defaults to returning the latest version of each instrument if not specified.
+            :type as_at: datetime
+            :param page: The pagination token to use to continue listing instruments; this              value is returned from the previous call. If a pagination token is provided, the filter,              and asAt fields must not have changed since the original request.
+            :type page: str
+            :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
+            :type limit: int
+            :param filter: Expression to filter the result set. Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid.
+            :type filter: str
+            :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
+            :type sort_by: List[str]
+            :param instrument_property_keys: A list of property keys from the 'Instrument' domain to decorate onto              instruments, or from any domain that supports relationships to decorate onto related entities.              These must have the format {domain}/{scope}/{code}, for example 'Instrument/system/Name'.
+            :type instrument_property_keys: List[str]
+            :param valuation_point_code_variant: The variant of the valuation point used in the request. Together with the valuation point code marks the unique branch for the NavType.
+            :type valuation_point_code_variant: str
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(PagedResourceListOfValuationPointInstrument, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'scope',
+                'code',
+                'valuation_point_code',
+                'nav_type_code',
+                'as_at',
+                'page',
+                'limit',
+                'filter',
+                'sort_by',
+                'instrument_property_keys',
+                'valuation_point_code_variant'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method list_valuation_point_instruments" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['scope']:
+                _path_params['scope'] = _params['scope']
+
+            if _params['code']:
+                _path_params['code'] = _params['code']
+
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('valuation_point_code') is not None:  # noqa: E501
+                _query_params.append(('valuationPointCode', _params['valuation_point_code']))
+
+            if _params.get('nav_type_code') is not None:  # noqa: E501
+                _query_params.append(('navTypeCode', _params['nav_type_code']))
+
+            if _params.get('as_at') is not None:  # noqa: E501
+                if isinstance(_params['as_at'], datetime):
+                    _query_params.append(('asAt', _params['as_at'].strftime(self.api_client.configuration.datetime_format)))
+                else:
+                    _query_params.append(('asAt', _params['as_at']))
+
+            if _params.get('page') is not None:  # noqa: E501
+                _query_params.append(('page', _params['page']))
+
+            if _params.get('limit') is not None:  # noqa: E501
+                _query_params.append(('limit', _params['limit']))
+
+            if _params.get('filter') is not None:  # noqa: E501
+                _query_params.append(('filter', _params['filter']))
+
+            if _params.get('sort_by') is not None:  # noqa: E501
+                _query_params.append(('sortBy', _params['sort_by']))
+                _collection_formats['sortBy'] = 'multi'
+
+            if _params.get('instrument_property_keys') is not None:  # noqa: E501
+                _query_params.append(('instrumentPropertyKeys', _params['instrument_property_keys']))
+                _collection_formats['instrumentPropertyKeys'] = 'multi'
+
+            if _params.get('valuation_point_code_variant') is not None:  # noqa: E501
+                _query_params.append(('valuationPointCodeVariant', _params['valuation_point_code_variant']))
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "PagedResourceListOfValuationPointInstrument",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/funds/{scope}/{code}/valuationpoints/instruments/$query', 'GET',
                 _path_params,
                 _query_params,
                 _header_params,

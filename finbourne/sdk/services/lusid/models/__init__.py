@@ -837,6 +837,7 @@ from finbourne.sdk.services.lusid.models.paged_resource_list_of_timeline import 
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_transaction_template import PagedResourceListOfTransactionTemplate
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_transaction_template_specification import PagedResourceListOfTransactionTemplateSpecification
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_translation_script_id import PagedResourceListOfTranslationScriptId
+from finbourne.sdk.services.lusid.models.paged_resource_list_of_valuation_point_instrument import PagedResourceListOfValuationPointInstrument
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_valuation_point_overview import PagedResourceListOfValuationPointOverview
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_virtual_row import PagedResourceListOfVirtualRow
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_workspace import PagedResourceListOfWorkspace
@@ -1268,6 +1269,7 @@ from finbourne.sdk.services.lusid.models.unit_schema import UnitSchema
 from finbourne.sdk.services.lusid.models.unitisation_data import UnitisationData
 from finbourne.sdk.services.lusid.models.units_ratio import UnitsRatio
 from finbourne.sdk.services.lusid.models.unmatched_holding_method import UnmatchedHoldingMethod
+from finbourne.sdk.services.lusid.models.unsettled_transaction import UnsettledTransaction
 from finbourne.sdk.services.lusid.models.update_amortisation_rule_set_details_request import UpdateAmortisationRuleSetDetailsRequest
 from finbourne.sdk.services.lusid.models.update_calendar_request import UpdateCalendarRequest
 from finbourne.sdk.services.lusid.models.update_check_definition_request import UpdateCheckDefinitionRequest
@@ -1359,12 +1361,14 @@ from finbourne.sdk.services.lusid.models.user import User
 from finbourne.sdk.services.lusid.models.valuation_point_data_query_parameters import ValuationPointDataQueryParameters
 from finbourne.sdk.services.lusid.models.valuation_point_data_request import ValuationPointDataRequest
 from finbourne.sdk.services.lusid.models.valuation_point_data_response import ValuationPointDataResponse
+from finbourne.sdk.services.lusid.models.valuation_point_instrument import ValuationPointInstrument
 from finbourne.sdk.services.lusid.models.valuation_point_overview import ValuationPointOverview
 from finbourne.sdk.services.lusid.models.valuation_point_resource_list_of_accounted_transaction import ValuationPointResourceListOfAccountedTransaction
 from finbourne.sdk.services.lusid.models.valuation_point_resource_list_of_fund_cash_statement_row import ValuationPointResourceListOfFundCashStatementRow
 from finbourne.sdk.services.lusid.models.valuation_point_resource_list_of_fund_journal_entry_line import ValuationPointResourceListOfFundJournalEntryLine
 from finbourne.sdk.services.lusid.models.valuation_point_resource_list_of_pnl_journal_entry_line import ValuationPointResourceListOfPnlJournalEntryLine
 from finbourne.sdk.services.lusid.models.valuation_point_resource_list_of_trial_balance import ValuationPointResourceListOfTrialBalance
+from finbourne.sdk.services.lusid.models.valuation_point_resource_list_of_unsettled_transaction import ValuationPointResourceListOfUnsettledTransaction
 from finbourne.sdk.services.lusid.models.valuation_request import ValuationRequest
 from finbourne.sdk.services.lusid.models.valuation_schedule import ValuationSchedule
 from finbourne.sdk.services.lusid.models.valuations_reconciliation_request import ValuationsReconciliationRequest
@@ -2234,6 +2238,7 @@ __all__ = [
     "PagedResourceListOfTransactionTemplate",
     "PagedResourceListOfTransactionTemplateSpecification",
     "PagedResourceListOfTranslationScriptId",
+    "PagedResourceListOfValuationPointInstrument",
     "PagedResourceListOfValuationPointOverview",
     "PagedResourceListOfVirtualRow",
     "PagedResourceListOfWorkspace",
@@ -2665,6 +2670,7 @@ __all__ = [
     "UnitisationData",
     "UnitsRatio",
     "UnmatchedHoldingMethod",
+    "UnsettledTransaction",
     "UpdateAmortisationRuleSetDetailsRequest",
     "UpdateCalendarRequest",
     "UpdateCheckDefinitionRequest",
@@ -2756,12 +2762,14 @@ __all__ = [
     "ValuationPointDataQueryParameters",
     "ValuationPointDataRequest",
     "ValuationPointDataResponse",
+    "ValuationPointInstrument",
     "ValuationPointOverview",
     "ValuationPointResourceListOfAccountedTransaction",
     "ValuationPointResourceListOfFundCashStatementRow",
     "ValuationPointResourceListOfFundJournalEntryLine",
     "ValuationPointResourceListOfPnlJournalEntryLine",
     "ValuationPointResourceListOfTrialBalance",
+    "ValuationPointResourceListOfUnsettledTransaction",
     "ValuationRequest",
     "ValuationSchedule",
     "ValuationsReconciliationRequest",
