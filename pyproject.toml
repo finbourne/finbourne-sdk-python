@@ -1,6 +1,6 @@
 [project]
 name = "finbourne-sdk"
-version = "0.1.19"
+version = "0.1.20"
 description = "This is the Python SDK for all of FINBOURNE's APIs"
 authors = [
     {name = "Finbourne Technology LTD", email = "info@finbourne.com"}
@@ -11,7 +11,7 @@ readme = "README.md"
 requires-python = ">=3.11"
 keywords = ["OpenAPI", "OpenAPI-Generator", "Merged OpenAPI Specification", "finbourne-sdk"]
 dependencies = [
-    "urllib3>=2.6.3,<3.0.0",
+    "urllib3>=2.7.0,<3.0.0",
     "python-dateutil>=2.8.2,<3.0.0",
     "requests>=2.32.4,<3.0.0",
     "aiohttp>=3.13.4,<4.0.0",

@@ -5,6 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **api_feature_codes** | **List[str]** | Required | *No description available.* |
+| **operator** | **str** | Required | *No description available.* |
 
 
 ## Usage
@@ -15,7 +16,8 @@
 from finbourne.sdk.services.access.models.IfViaApiExpression import IfViaApiExpression
 
 instance = IfViaApiExpression(
-    api_feature_codes=  # required
+    api_feature_codes=,  # required
+    operator="..."  # required
 )
 ```
 

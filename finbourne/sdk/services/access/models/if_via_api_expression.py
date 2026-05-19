@@ -27,7 +27,8 @@ class IfViaApiExpression(BaseModel):
     IfViaApiExpression
     """
     api_feature_codes: List[StrictStr] = Field(alias="apiFeatureCodes")
-    __properties: ClassVar[List[str]] = ["apiFeatureCodes"]
+    operator:  StrictStr = Field(...,alias="operator") 
+    __properties: ClassVar[List[str]] = ["apiFeatureCodes", "operator"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -75,7 +76,8 @@ class IfViaApiExpression(BaseModel):
             return IfViaApiExpression.model_validate(obj)
 
         _obj = IfViaApiExpression.model_validate({
-            "api_feature_codes": obj.get("apiFeatureCodes")
+            "api_feature_codes": obj.get("apiFeatureCodes"),
+            "operator": obj.get("operator")
         })
         return _obj
 
