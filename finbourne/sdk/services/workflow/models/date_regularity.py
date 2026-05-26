@@ -15,6 +15,8 @@ from inspect import getfullargspec
 import json
 import pprint
 import re  # noqa: F401
+from uuid import UUID
+
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist, ValidationError

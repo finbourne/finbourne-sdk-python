@@ -44,6 +44,7 @@ Method | HTTP request | Description
 [**query_cash_statement**](FundsApi.md#query_cash_statement) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/cashstatement/$query | [EXPERIMENTAL] QueryCashStatement: [EXPERIMENTAL] QueryCashStatement: Query cash statement for a Fund valuation point.
 [**revert_valuation_point_to_estimate**](FundsApi.md#revert_valuation_point_to_estimate) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/$reverttoestimate | [EXPERIMENTAL] RevertValuationPointToEstimate: Reverts a Final Valuation Point to Estimate.
 [**set_share_class_instruments**](FundsApi.md#set_share_class_instruments) | **PUT** /api/api/funds/{scope}/{code}/shareclasses | [EXPERIMENTAL] SetShareClassInstruments: Set the ShareClass Instruments on a Fund.
+[**update_valuation_point**](FundsApi.md#update_valuation_point) | **PUT** /api/api/funds/{scope}/{code}/valuationpoints | [EXPERIMENTAL] UpdateValuationPoint: Update a Valuation Point.
 [**upsert_bookmark**](FundsApi.md#upsert_bookmark) | **POST** /api/api/funds/{scope}/{code}/bookmarks | [EXPERIMENTAL] UpsertBookmark: Upsert a bookmark.
 [**upsert_diary_entry_type_valuation_point**](FundsApi.md#upsert_diary_entry_type_valuation_point) | **POST** /api/api/funds/{scope}/{code}/valuationpoints | [EXPERIMENTAL] UpsertDiaryEntryTypeValuationPoint: Upsert a Valuation Point.
 [**upsert_fee_properties**](FundsApi.md#upsert_fee_properties) | **POST** /api/api/funds/{scope}/{code}/fees/{feeCode}/properties/$upsert | [EXPERIMENTAL] UpsertFeeProperties: Upsert Fee properties.
@@ -2164,6 +2165,55 @@ Name | Type | Description  | Notes
 
 ---
 
+# **update_valuation_point**
+> DiaryEntry updateValuationPoint = update_valuation_point(scope, code, update_valuation_point_request, nav_type_code=nav_type_code)
+
+[EXPERIMENTAL] UpdateValuationPoint: Update a Valuation Point.
+
+Updates an existing Valuation Point.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(FundsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+update_valuation_point_request = UpdateValuationPointRequest()
+nav_type_code = 'nav_type_code_example' # str (optional)
+api_response = api_instance.update_valuation_point(scope, code, update_valuation_point_request, nav_type_code=nav_type_code)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the Fund. | [required] 
+ **code** | **str**| The code of the Fund. Together with the scope this uniquely identifies the Fund. | [required] 
+ **update_valuation_point_request** | [**UpdateValuationPointRequest**](UpdateValuationPointRequest.md)| The Valuation Point Estimate definition to upsert. | [required] 
+ **nav_type_code** | **str**| When provided, upserts the Valuation Point against the specified NAV Type, otherwise the Primary NAV Type will be used. | [optional] 
+
+### Return type
+
+[**DiaryEntry**](DiaryEntry.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The updated estimated Valuation Point |  -  |
+**400** | The details of the input related failure |  -  |
+**404** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
 # **upsert_bookmark**
 > FundCalendarEntry upsertBookmark = upsert_bookmark(scope, code, upsert_fund_bookmark_request, nav_type_code=nav_type_code)
 
@@ -2217,7 +2267,7 @@ Name | Type | Description  | Notes
 
 [EXPERIMENTAL] UpsertDiaryEntryTypeValuationPoint: Upsert a Valuation Point.
 
-Insert the estimate Valuation Point.                If the Valuation Point does not exist, this method will create it in estimate state.                It is not possible to update an existing Valuation Point. As an alternative, the Valuation Point could be deleted and recreated.
+Insert the estimate Valuation Point.                If the Valuation Point does not exist, this method will create it in estimate state.
 
 ### Example
 

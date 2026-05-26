@@ -124,7 +124,7 @@ Name | Type | Description  | Notes
 ---
 
 # **get_fields**
-> str getFields = get_fields(table_like=table_like, add_lineage=add_lineage)
+> str getFields = get_fields(table_like=table_like, add_lineage=add_lineage, add_lineage_marker=add_lineage_marker)
 
 GetFields: List field and parameters for providers
 
@@ -136,7 +136,8 @@ GetFields: List field and parameters for providers
 api_instance = api_client_factory.build(CurrentTableFieldCatalogApi)
 table_like = '%' # str (optional)
 add_lineage = False # bool (optional)
-api_response = api_instance.get_fields(table_like=table_like, add_lineage=add_lineage)
+add_lineage_marker = False # bool (optional)
+api_response = api_instance.get_fields(table_like=table_like, add_lineage=add_lineage, add_lineage_marker=add_lineage_marker)
 pprint(api_response)
 ```
 
@@ -146,6 +147,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **table_like** | **str**| Allows for SQL-LIKE style filtering of which Providers you want the fields for. | [optional] [default to &#39;%&#39;]
  **add_lineage** | **bool**| Adds in any column lineage which is registered in the catalog to the results. | [optional] [default to False]
+ **add_lineage_marker** | **bool**| Adds in a marker for column lineage which is registered in the catalog to the results: hasLineage true/false | [optional] [default to False]
 
 ### Return type
 
@@ -206,7 +208,7 @@ Name | Type | Description  | Notes
 ---
 
 # **get_providers**
-> str getProviders = get_providers(free_text_search=free_text_search, add_lineage=add_lineage)
+> str getProviders = get_providers(free_text_search=free_text_search, table_like=table_like, add_lineage=add_lineage, add_lineage_marker=add_lineage_marker)
 
 GetProviders: List available providers
 
@@ -217,8 +219,10 @@ GetProviders: List available providers
 ```python
 api_instance = api_client_factory.build(CurrentTableFieldCatalogApi)
 free_text_search = 'free_text_search_example' # str (optional)
+table_like = 'table_like_example' # str (optional)
 add_lineage = False # bool (optional)
-api_response = api_instance.get_providers(free_text_search=free_text_search, add_lineage=add_lineage)
+add_lineage_marker = False # bool (optional)
+api_response = api_instance.get_providers(free_text_search=free_text_search, table_like=table_like, add_lineage=add_lineage, add_lineage_marker=add_lineage_marker)
 pprint(api_response)
 ```
 
@@ -227,7 +231,9 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **free_text_search** | **str**| Limit the catalog to only things in some way dealing with the passed in text string | [optional] 
- **add_lineage** | **bool**| Adds in any column lineage which is registered in the catalog to the results. | [optional] [default to False]
+ **table_like** | **str**| Allows for SQL-LIKE style filtering of which Providers you want the data for. | [optional] 
+ **add_lineage** | **bool**| Adds in any provider lineage which is registered in the catalog to the results (can produce very large responses). | [optional] [default to False]
+ **add_lineage_marker** | **bool**| Adds in a marker for provider lineage which is registered in the catalog to the results: hasLineage true/false | [optional] [default to False]
 
 ### Return type
 

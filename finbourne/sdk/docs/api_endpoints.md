@@ -19,6 +19,7 @@
 * [LogsApi](horizon/api/LogsApi.md)
 * [ProcessHistoryApi](horizon/api/ProcessHistoryApi.md)
 * [RunsApi](horizon/api/RunsApi.md)
+* [TradePublicationFrameworkApi](horizon/api/TradePublicationFrameworkApi.md)
 * [VendorApi](horizon/api/VendorApi.md)
 * [VersionedConfigurationsApi](horizon/api/VersionedConfigurationsApi.md)
 ## Identity

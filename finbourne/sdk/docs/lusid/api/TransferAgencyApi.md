@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**calculate_order_dates**](TransferAgencyApi.md#calculate_order_dates) | **POST** /api/api/transferagency/orderdates | [EXPERIMENTAL] CalculateOrderDates: Calculate the key dates associated with transfer agency orders
+[**upsert_transfer_agency_orders**](TransferAgencyApi.md#upsert_transfer_agency_orders) | **POST** /api/api/transferagency/orders | [EXPERIMENTAL] UpsertTransferAgencyOrders: Upsert transfer agency orders
 
 
 ### Example
@@ -67,6 +68,48 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successfully calculated dates and any failed calculations. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **upsert_transfer_agency_orders**
+> TransferAgencyOrdersResponse upsertTransferAgencyOrders = upsert_transfer_agency_orders(request_body)
+
+[EXPERIMENTAL] UpsertTransferAgencyOrders: Upsert transfer agency orders
+
+Creates a transaction and updates the relevant order for each order supplied.  The response contains both successfully processed orders and any failures, each in the form of a  dictionary keyed by the request's keys. For each failure, a reason is provided. It is important to  check the failed set for unsuccessful results.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(TransferAgencyApi)
+request_body = {"Order1":{"orderId":{"scope":"example-scope","code":"order-1"}}} # Dict[str, UpsertTransferAgencyOrderRequest]
+api_response = api_instance.upsert_transfer_agency_orders(request_body)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request_body** | [**Dict[str, UpsertTransferAgencyOrderRequest]**](UpsertTransferAgencyOrderRequest.md)| The transfer agency orders to upsert, keyed by a unique request identifier. | [required] 
+
+### Return type
+
+[**TransferAgencyOrdersResponse**](TransferAgencyOrdersResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully processed orders and any failures. |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 

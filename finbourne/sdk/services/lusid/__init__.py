@@ -1334,6 +1334,8 @@ from finbourne.sdk.services.lusid.models.transaction_type_property_mapping impor
 from finbourne.sdk.services.lusid.models.transaction_type_request import TransactionTypeRequest
 from finbourne.sdk.services.lusid.models.transactions_reconciliations_response import TransactionsReconciliationsResponse
 from finbourne.sdk.services.lusid.models.transfer_agency_dates import TransferAgencyDates
+from finbourne.sdk.services.lusid.models.transfer_agency_order_result import TransferAgencyOrderResult
+from finbourne.sdk.services.lusid.models.transfer_agency_orders_response import TransferAgencyOrdersResponse
 from finbourne.sdk.services.lusid.models.transition_event import TransitionEvent
 from finbourne.sdk.services.lusid.models.translate_entities_inlined_request import TranslateEntitiesInlinedRequest
 from finbourne.sdk.services.lusid.models.translate_entities_request import TranslateEntitiesRequest
@@ -1390,6 +1392,7 @@ from finbourne.sdk.services.lusid.models.update_tax_rule_set_request import Upda
 from finbourne.sdk.services.lusid.models.update_timeline_request import UpdateTimelineRequest
 from finbourne.sdk.services.lusid.models.update_transaction_fee_type_request import UpdateTransactionFeeTypeRequest
 from finbourne.sdk.services.lusid.models.update_unit_request import UpdateUnitRequest
+from finbourne.sdk.services.lusid.models.update_valuation_point_request import UpdateValuationPointRequest
 from finbourne.sdk.services.lusid.models.upsert_cds_flow_conventions_request import UpsertCdsFlowConventionsRequest
 from finbourne.sdk.services.lusid.models.upsert_complex_market_data_request import UpsertComplexMarketDataRequest
 from finbourne.sdk.services.lusid.models.upsert_compliance_rule_request import UpsertComplianceRuleRequest
@@ -1441,6 +1444,7 @@ from finbourne.sdk.services.lusid.models.upsert_single_structured_data_response 
 from finbourne.sdk.services.lusid.models.upsert_structured_data_response import UpsertStructuredDataResponse
 from finbourne.sdk.services.lusid.models.upsert_structured_result_data_request import UpsertStructuredResultDataRequest
 from finbourne.sdk.services.lusid.models.upsert_transaction_properties_response import UpsertTransactionPropertiesResponse
+from finbourne.sdk.services.lusid.models.upsert_transfer_agency_order_request import UpsertTransferAgencyOrderRequest
 from finbourne.sdk.services.lusid.models.upsert_translation_script_request import UpsertTranslationScriptRequest
 from finbourne.sdk.services.lusid.models.upsert_valuation_point_request import UpsertValuationPointRequest
 from finbourne.sdk.services.lusid.models.user import User
@@ -2817,6 +2821,8 @@ __all__ = [
     "TransactionTypeRequest",
     "TransactionsReconciliationsResponse",
     "TransferAgencyDates",
+    "TransferAgencyOrderResult",
+    "TransferAgencyOrdersResponse",
     "TransitionEvent",
     "TranslateEntitiesInlinedRequest",
     "TranslateEntitiesRequest",
@@ -2873,6 +2879,7 @@ __all__ = [
     "UpdateTimelineRequest",
     "UpdateTransactionFeeTypeRequest",
     "UpdateUnitRequest",
+    "UpdateValuationPointRequest",
     "UpsertCdsFlowConventionsRequest",
     "UpsertComplexMarketDataRequest",
     "UpsertComplianceRuleRequest",
@@ -2924,6 +2931,7 @@ __all__ = [
     "UpsertStructuredDataResponse",
     "UpsertStructuredResultDataRequest",
     "UpsertTransactionPropertiesResponse",
+    "UpsertTransferAgencyOrderRequest",
     "UpsertTranslationScriptRequest",
     "UpsertValuationPointRequest",
     "User",

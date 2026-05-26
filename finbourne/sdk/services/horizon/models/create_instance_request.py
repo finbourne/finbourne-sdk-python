@@ -16,6 +16,7 @@ import re  # noqa: F401
 import json
 from typing import Optional, List, Dict, Union, Annotated, Tuple, Any, ClassVar, TYPE_CHECKING
 from datetime import datetime
+from uuid import UUID
 
 
 

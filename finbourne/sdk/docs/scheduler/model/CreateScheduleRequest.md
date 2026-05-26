@@ -15,7 +15,7 @@ Create a schedule definition
 | **trigger** | [Trigger](Trigger.md) | Optional | *No description available.* |
 | **notifications** | [List[Notification]](Notification.md) | Optional | Notifications for this Schedule |
 | **enabled** | **bool** | Optional | Specify whether schedule is enabled or not Defaults to true |
-| **use_as_auth** | **str** | Optional | Id of user associated with schedule. All calls to FINBOURNE services as part of execution of this schedule will be authenticated as this  user. Can be null, in which case we&#39;ll default to that of the user  making this request |
+| **use_as_auth** | **str** | Optional | ID of user associated with schedule. All calls to FINBOURNE services as part of processing this schedule (such as calls to Config Service) will be authenticated as this  user. Can be null, in which case we&#39;ll default to that of the user  making this request. Given the image is a trusted image, we will also supply an FBN_PAT to the environment variables of the image which will hold the System PAT of this UseAsAuth user |
 
 
 ## Usage
@@ -36,7 +36,7 @@ instance = CreateScheduleRequest(
     trigger=Trigger(...),  # optional
     notifications=[],  # optional — Notifications for this Schedule
     enabled=True,  # optional — Specify whether schedule is enabled or not Defaults to true
-    use_as_auth="..."  # optional — Id of user associated with schedule. All calls to FINBOURNE services as part of execution of this schedule will be authenticated as this  user. Can be null, in which case we&#39;ll default to that of the user  making this request
+    use_as_auth="..."  # optional — ID of user associated with schedule. All calls to FINBOURNE services as part of processing this schedule (such as calls to Config Service) will be authenticated as this  user. Can be null, in which case we&#39;ll default to that of the user  making this request. Given the image is a trusted image, we will also supply an FBN_PAT to the environment variables of the image which will hold the System PAT of this UseAsAuth user
 )
 ```
 

@@ -24,6 +24,8 @@ from typing import Dict
 from typing_extensions import Annotated
 from finbourne.sdk.services.lusid.models.calculate_order_dates_request import CalculateOrderDatesRequest
 from finbourne.sdk.services.lusid.models.calculate_order_dates_response import CalculateOrderDatesResponse
+from finbourne.sdk.services.lusid.models.transfer_agency_orders_response import TransferAgencyOrdersResponse
+from finbourne.sdk.services.lusid.models.upsert_transfer_agency_order_request import UpsertTransferAgencyOrderRequest
 from finbourne.sdk.api_client import ApiClient
 from finbourne.sdk.api_response import ApiResponse
 from finbourne.sdk.extensions.api_client import SyncApiClient
@@ -175,6 +177,133 @@ class TransferAgencyApi:
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
+    @validate_call
+    def upsert_transfer_agency_orders(self, request_body: Dict[str, UpsertTransferAgencyOrderRequest], **kwargs) -> TransferAgencyOrdersResponse:
+        """[EXPERIMENTAL] UpsertTransferAgencyOrders: Upsert transfer agency orders  # noqa: E501
+
+        Creates a transaction and updates the relevant order for each order supplied.  The response contains both successfully processed orders and any failures, each in the form of a  dictionary keyed by the request's keys. For each failure, a reason is provided. It is important to  check the failed set for unsuccessful results.  # noqa: E501
+        :param request_body: The transfer agency orders to upsert, keyed by a unique request identifier. (required)
+        :type request_body: Dict[str, UpsertTransferAgencyOrderRequest]
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: TransferAgencyOrdersResponse
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the upsert_transfer_agency_orders_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.upsert_transfer_agency_orders_with_http_info(request_body, **kwargs)
+        return response.data
+
+    @validate_call
+    def upsert_transfer_agency_orders_with_http_info(self, request_body: Dict[str, UpsertTransferAgencyOrderRequest], **kwargs) -> ApiResponse[TransferAgencyOrdersResponse]:
+        """[EXPERIMENTAL] UpsertTransferAgencyOrders: Upsert transfer agency orders  # noqa: E501
+
+        Creates a transaction and updates the relevant order for each order supplied.  The response contains both successfully processed orders and any failures, each in the form of a  dictionary keyed by the request's keys. For each failure, a reason is provided. It is important to  check the failed set for unsuccessful results.  # noqa: E501
+        :param request_body: The transfer agency orders to upsert, keyed by a unique request identifier. (required)
+        :type request_body: Dict[str, UpsertTransferAgencyOrderRequest]
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(TransferAgencyOrdersResponse, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'request_body'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method upsert_transfer_agency_orders" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['request_body'] is not None:
+            _body_params = _params['request_body']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.sync_api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "TransferAgencyOrdersResponse",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/transferagency/orders', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
 
   # --- ASYNC API METHODS ---
 
@@ -292,6 +421,134 @@ class TransferAgencyApi:
 
             return await self.api_client.call_api_async(
                 '/api/api/transferagency/orderdates', 'POST',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def upsert_transfer_agency_orders_async(self, request_body: Dict[str, UpsertTransferAgencyOrderRequest], **kwargs) -> TransferAgencyOrdersResponse:
+            """[EXPERIMENTAL] UpsertTransferAgencyOrders: Upsert transfer agency orders  # noqa: E501
+            Creates a transaction and updates the relevant order for each order supplied.  The response contains both successfully processed orders and any failures, each in the form of a  dictionary keyed by the request's keys. For each failure, a reason is provided. It is important to  check the failed set for unsuccessful results.  # noqa: E501
+            
+            :param request_body: The transfer agency orders to upsert, keyed by a unique request identifier. (required)
+            :type request_body: Dict[str, UpsertTransferAgencyOrderRequest]
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: TransferAgencyOrdersResponse
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the upsert_transfer_agency_orders_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.upsert_transfer_agency_orders_with_http_info_async(request_body, **kwargs)
+            return response.data
+
+    @validate_call
+    async def upsert_transfer_agency_orders_with_http_info_async(self, request_body: Dict[str, UpsertTransferAgencyOrderRequest], **kwargs) -> ApiResponse[TransferAgencyOrdersResponse]:
+            """[EXPERIMENTAL] UpsertTransferAgencyOrders: Upsert transfer agency orders  # noqa: E501
+
+            Creates a transaction and updates the relevant order for each order supplied.  The response contains both successfully processed orders and any failures, each in the form of a  dictionary keyed by the request's keys. For each failure, a reason is provided. It is important to  check the failed set for unsuccessful results.  # noqa: E501
+
+            :param request_body: The transfer agency orders to upsert, keyed by a unique request identifier. (required)
+            :type request_body: Dict[str, UpsertTransferAgencyOrderRequest]
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(TransferAgencyOrdersResponse, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'request_body'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method upsert_transfer_agency_orders" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+
+            # process the query parameters
+            _query_params = []
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            if _params['request_body'] is not None:
+                _body_params = _params['request_body']
+
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # set the HTTP header `Content-Type`
+            _content_types_list = _params.get('_content_type',
+                self.api_client.select_header_content_type(
+                    ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+            if _content_types_list:
+                    _header_params['Content-Type'] = _content_types_list
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "TransferAgencyOrdersResponse",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/transferagency/orders', 'POST',
                 _path_params,
                 _query_params,
                 _header_params,
