@@ -11,6 +11,7 @@
 | **chart_of_accounts_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **posting_module_codes** | **List[str]** | Optional | The Posting Module Codes from which the rules to be applied are retrieved. |
 | **cleardown_module_codes** | **List[str]** | Optional | The Cleardown Module Codes from which the rules to be applied are retrieved. |
+| **settlement_configuration** | [NavSettlementConfiguration](NavSettlementConfiguration.md) | Optional | *No description available.* |
 | **valuation_recipe_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **holding_recipe_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **accounting_method** | **str** | Required | Determines the accounting treatment given to the simple position portfolio&#39;s tax lots. A non-default value is required. Available values: AverageCost, FirstInFirstOut, LastInFirstOut, HighestCostFirst, LowestCostFirst, ProRateByUnits, ProRateByCost, ProRateByCostPortfolioCurrency, IntraDayThenFirstInFirstOut, LongTermHighestCostFirst, LongTermHighestCostFirstPortfolioCurrency, HighestCostFirstPortfolioCurrency, LowestCostFirstPortfolioCurrency, MaximumLossMinimumGain, MaximumLossMinimumGainPortfolioCurrency. |
@@ -38,6 +39,7 @@ instance = NavType(
     chart_of_accounts_id=ResourceId(...),  # required
     posting_module_codes=,  # optional — The Posting Module Codes from which the rules to be applied are retrieved.
     cleardown_module_codes=,  # optional — The Cleardown Module Codes from which the rules to be applied are retrieved.
+    settlement_configuration=NavSettlementConfiguration(...),  # optional
     valuation_recipe_id=ResourceId(...),  # required
     holding_recipe_id=ResourceId(...),  # required
     accounting_method="...",  # required — Determines the accounting treatment given to the simple position portfolio&#39;s tax lots. A non-default value is required. Available values: AverageCost, FirstInFirstOut, LastInFirstOut, HighestCostFirst, LowestCostFirst, ProRateByUnits, ProRateByCost, ProRateByCostPortfolioCurrency, IntraDayThenFirstInFirstOut, LongTermHighestCostFirst, LongTermHighestCostFirstPortfolioCurrency, HighestCostFirstPortfolioCurrency, LowestCostFirstPortfolioCurrency, MaximumLossMinimumGain, MaximumLossMinimumGainPortfolioCurrency.
@@ -52,6 +54,7 @@ instance = NavType(
 ```
 
 - [ResourceId](ResourceId.md)
+- [NavSettlementConfiguration](NavSettlementConfiguration.md)
 - [ResourceId](ResourceId.md)
 - [ResourceId](ResourceId.md)
 - [ResourceId](ResourceId.md)

@@ -12,8 +12,8 @@ A block of orders for the same instrument, intended to record for example a trad
 | **lusid_instrument_id** | **str** | Required | The LUSID instrument id for the instrument ordered. |
 | **quantity** | **float** | Required | The total quantity of given instrument ordered. |
 | **side** | **str** | Required | The client&#39;s representation of the block&#39;s side (buy, sell, short, etc) |
-| **type** | **str** | Required | The block order&#39;s type (examples: Limit, Market, ...) |
-| **time_in_force** | **str** | Required | The block orders&#39; time in force (examples: Day, GoodTilCancel, ...) |
+| **type** | **str** | Optional | The block order&#39;s type (examples: Limit, Market, ...) |
+| **time_in_force** | **str** | Optional | The block orders&#39; time in force (examples: Day, GoodTilCancel, ...) |
 | **created_date** | **datetime** | Required | The date on which the block was made |
 | **limit_price** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
 | **stop_price** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
@@ -38,8 +38,8 @@ instance = Block(
     lusid_instrument_id="...",  # required — The LUSID instrument id for the instrument ordered.
     quantity=0.0,  # required — The total quantity of given instrument ordered.
     side="...",  # required — The client&#39;s representation of the block&#39;s side (buy, sell, short, etc)
-    type="...",  # required — The block order&#39;s type (examples: Limit, Market, ...)
-    time_in_force="...",  # required — The block orders&#39; time in force (examples: Day, GoodTilCancel, ...)
+    type="...",  # optional — The block order&#39;s type (examples: Limit, Market, ...)
+    time_in_force="...",  # optional — The block orders&#39; time in force (examples: Day, GoodTilCancel, ...)
     created_date=datetime.now(),  # required — The date on which the block was made
     limit_price=CurrencyAndAmount(...),  # optional
     stop_price=CurrencyAndAmount(...),  # optional

@@ -36,8 +36,8 @@ class BlockRequest(BaseModel):
     instrument_identifiers: Dict[str, Optional[StrictStr]] = Field(description="The instrument ordered.", alias="instrumentIdentifiers")
     quantity: Union[StrictFloat, StrictInt] = Field(description="The total quantity of given instrument ordered.")
     side:  StrictStr = Field(...,alias="side", description="The client's representation of the block's side (buy, sell, short, etc)") 
-    type:  StrictStr = Field(...,alias="type", description="The block order's type (examples: Limit, Market, ...)") 
-    time_in_force:  StrictStr = Field(...,alias="timeInForce", description="The block orders' time in force (examples: Day, GoodTilCancel, ...)") 
+    type:  Optional[StrictStr] = Field(default=None,alias="type", description="The block order's type (examples: Limit, Market, ...)") 
+    time_in_force:  Optional[StrictStr] = Field(default=None,alias="timeInForce", description="The block orders' time in force (examples: Day, GoodTilCancel, ...)") 
     created_date: datetime = Field(description="The date on which the block was made", alias="createdDate")
     limit_price: Optional[CurrencyAndAmount] = Field(default=None, alias="limitPrice")
     stop_price: Optional[CurrencyAndAmount] = Field(default=None, alias="stopPrice")
@@ -110,6 +110,16 @@ class BlockRequest(BaseModel):
         # and model_fields_set contains the field
         if self.properties is None and "properties" in self.model_fields_set:
             _dict['properties'] = None
+
+        # set to None if type (nullable) is None
+        # and model_fields_set contains the field
+        if self.type is None and "type" in self.model_fields_set:
+            _dict['type'] = None
+
+        # set to None if time_in_force (nullable) is None
+        # and model_fields_set contains the field
+        if self.time_in_force is None and "time_in_force" in self.model_fields_set:
+            _dict['timeInForce'] = None
 
         return _dict
 

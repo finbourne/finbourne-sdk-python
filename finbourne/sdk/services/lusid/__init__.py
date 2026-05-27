@@ -795,6 +795,8 @@ from finbourne.sdk.services.lusid.models.nav_activity_adjustment import NavActiv
 from finbourne.sdk.services.lusid.models.nav_activity_adjustment_response import NavActivityAdjustmentResponse
 from finbourne.sdk.services.lusid.models.nav_activity_adjustment_response_type import NavActivityAdjustmentResponseType
 from finbourne.sdk.services.lusid.models.nav_activity_adjustment_type import NavActivityAdjustmentType
+from finbourne.sdk.services.lusid.models.nav_settlement_configuration import NavSettlementConfiguration
+from finbourne.sdk.services.lusid.models.nav_settlement_configuration_category import NavSettlementConfigurationCategory
 from finbourne.sdk.services.lusid.models.nav_type import NavType
 from finbourne.sdk.services.lusid.models.nav_type_definition import NavTypeDefinition
 from finbourne.sdk.services.lusid.models.new_instrument import NewInstrument
@@ -2282,6 +2284,8 @@ __all__ = [
     "NavActivityAdjustmentResponse",
     "NavActivityAdjustmentResponseType",
     "NavActivityAdjustmentType",
+    "NavSettlementConfiguration",
+    "NavSettlementConfigurationCategory",
     "NavType",
     "NavTypeDefinition",
     "NewInstrument",

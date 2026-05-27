@@ -31,11 +31,12 @@ class LusidEntityResult(BaseModel):
     effective_at: Optional[datetime] = Field(default=None, description="The effective-at timestamp for the entity", alias="effectiveAt")
     entity_type:  Optional[StrictStr] = Field(default=None,alias="entityType", description="The type of the LUSID entity") 
     scope:  Optional[StrictStr] = Field(default=None,alias="scope", description="The scope of the entity") 
+    code:  Optional[StrictStr] = Field(default=None,alias="code", description="The code of the entity. Populated for scope+code entities (e.g. Portfolio). Null for identifier-based entities (e.g. Instrument).") 
     identifier_key:  Optional[StrictStr] = Field(default=None,alias="identifierKey", description="The identifier key for the entity") 
     identifier_value:  Optional[StrictStr] = Field(default=None,alias="identifierValue", description="The identifier value for the entity") 
     entity_unique_id:  Optional[StrictStr] = Field(default=None,alias="entityUniqueId", description="The unique identifier for the entity") 
     display_name:  Optional[StrictStr] = Field(default=None,alias="displayName", description="The display name of the entity") 
-    __properties: ClassVar[List[str]] = ["asAt", "effectiveAt", "entityType", "scope", "identifierKey", "identifierValue", "entityUniqueId", "displayName"]
+    __properties: ClassVar[List[str]] = ["asAt", "effectiveAt", "entityType", "scope", "code", "identifierKey", "identifierValue", "entityUniqueId", "displayName"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -81,6 +82,11 @@ class LusidEntityResult(BaseModel):
         if self.scope is None and "scope" in self.model_fields_set:
             _dict['scope'] = None
 
+        # set to None if code (nullable) is None
+        # and model_fields_set contains the field
+        if self.code is None and "code" in self.model_fields_set:
+            _dict['code'] = None
+
         # set to None if identifier_key (nullable) is None
         # and model_fields_set contains the field
         if self.identifier_key is None and "identifier_key" in self.model_fields_set:
@@ -117,6 +123,7 @@ class LusidEntityResult(BaseModel):
             "effective_at": obj.get("effectiveAt"),
             "entity_type": obj.get("entityType"),
             "scope": obj.get("scope"),
+            "code": obj.get("code"),
             "identifier_key": obj.get("identifierKey"),
             "identifier_value": obj.get("identifierValue"),
             "entity_unique_id": obj.get("entityUniqueId"),

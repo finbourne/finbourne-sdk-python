@@ -21,6 +21,7 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
+from finbourne.sdk.services.lusid.models.nav_settlement_configuration import NavSettlementConfiguration
 from finbourne.sdk.services.lusid.models.resource_id import ResourceId
 
 
@@ -35,6 +36,7 @@ class NavType(BaseModel):
     chart_of_accounts_id: ResourceId = Field(alias="chartOfAccountsId")
     posting_module_codes: Optional[List[StrictStr]] = Field(default=None, description="The Posting Module Codes from which the rules to be applied are retrieved.", alias="postingModuleCodes")
     cleardown_module_codes: Optional[List[StrictStr]] = Field(default=None, description="The Cleardown Module Codes from which the rules to be applied are retrieved.", alias="cleardownModuleCodes")
+    settlement_configuration: Optional[NavSettlementConfiguration] = Field(default=None, alias="settlementConfiguration")
     valuation_recipe_id: ResourceId = Field(alias="valuationRecipeId")
     holding_recipe_id: ResourceId = Field(alias="holdingRecipeId")
     accounting_method:  StrictStr = Field(...,alias="accountingMethod", description="Determines the accounting treatment given to the simple position portfolio's tax lots. A non-default value is required. Available values: AverageCost, FirstInFirstOut, LastInFirstOut, HighestCostFirst, LowestCostFirst, ProRateByUnits, ProRateByCost, ProRateByCostPortfolioCurrency, IntraDayThenFirstInFirstOut, LongTermHighestCostFirst, LongTermHighestCostFirstPortfolioCurrency, HighestCostFirstPortfolioCurrency, LowestCostFirstPortfolioCurrency, MaximumLossMinimumGain, MaximumLossMinimumGainPortfolioCurrency.") 
@@ -45,7 +47,7 @@ class NavType(BaseModel):
     amortisation_rule_set_id: Optional[ResourceId] = Field(default=None, alias="amortisationRuleSetId")
     leader_nav_type_code:  Optional[StrictStr] = Field(default=None,alias="leaderNavTypeCode", description="The code of the Nav Type that this Nav Type will follow when set.") 
     transaction_template_scope:  Optional[StrictStr] = Field(default=None,alias="transactionTemplateScope", description="The Transaction Template Scope used by the NavType. Will default to the scope set on the parent portfolio. If the fund has multiple parent portfolios, then the Transaction Template Scope must be provided.") 
-    __properties: ClassVar[List[str]] = ["status", "code", "displayName", "description", "chartOfAccountsId", "postingModuleCodes", "cleardownModuleCodes", "valuationRecipeId", "holdingRecipeId", "accountingMethod", "subHoldingKeys", "amortisationMethod", "transactionTypeScope", "cashGainLossCalculationDate", "amortisationRuleSetId", "leaderNavTypeCode", "transactionTemplateScope"]
+    __properties: ClassVar[List[str]] = ["status", "code", "displayName", "description", "chartOfAccountsId", "postingModuleCodes", "cleardownModuleCodes", "settlementConfiguration", "valuationRecipeId", "holdingRecipeId", "accountingMethod", "subHoldingKeys", "amortisationMethod", "transactionTypeScope", "cashGainLossCalculationDate", "amortisationRuleSetId", "leaderNavTypeCode", "transactionTemplateScope"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -84,6 +86,9 @@ class NavType(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of chart_of_accounts_id
         if self.chart_of_accounts_id:
             _dict['chartOfAccountsId'] = self.chart_of_accounts_id.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of settlement_configuration
+        if self.settlement_configuration:
+            _dict['settlementConfiguration'] = self.settlement_configuration.to_dict()
         # override the default output from pydantic by calling `to_dict()` of valuation_recipe_id
         if self.valuation_recipe_id:
             _dict['valuationRecipeId'] = self.valuation_recipe_id.to_dict()
@@ -152,6 +157,7 @@ class NavType(BaseModel):
             "chart_of_accounts_id": ResourceId.from_dict(_v) if (_v := obj.get("chartOfAccountsId")) is not None else None,
             "posting_module_codes": obj.get("postingModuleCodes"),
             "cleardown_module_codes": obj.get("cleardownModuleCodes"),
+            "settlement_configuration": NavSettlementConfiguration.from_dict(_v) if (_v := obj.get("settlementConfiguration")) is not None else None,
             "valuation_recipe_id": ResourceId.from_dict(_v) if (_v := obj.get("valuationRecipeId")) is not None else None,
             "holding_recipe_id": ResourceId.from_dict(_v) if (_v := obj.get("holdingRecipeId")) is not None else None,
             "accounting_method": obj.get("accountingMethod"),

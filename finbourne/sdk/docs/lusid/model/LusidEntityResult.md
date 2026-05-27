@@ -9,6 +9,7 @@ Represents LUSID entity details for a data quality check result
 | **effective_at** | **datetime** | Optional | The effective-at timestamp for the entity |
 | **entity_type** | **str** | Optional | The type of the LUSID entity |
 | **scope** | **str** | Optional | The scope of the entity |
+| **code** | **str** | Optional | The code of the entity. Populated for scope+code entities (e.g. Portfolio). Null for identifier-based entities (e.g. Instrument). |
 | **identifier_key** | **str** | Optional | The identifier key for the entity |
 | **identifier_value** | **str** | Optional | The identifier value for the entity |
 | **entity_unique_id** | **str** | Optional | The unique identifier for the entity |
@@ -27,6 +28,7 @@ instance = LusidEntityResult(
     effective_at=datetime.now(),  # optional — The effective-at timestamp for the entity
     entity_type="...",  # optional — The type of the LUSID entity
     scope="...",  # optional — The scope of the entity
+    code="...",  # optional — The code of the entity. Populated for scope+code entities (e.g. Portfolio). Null for identifier-based entities (e.g. Instrument).
     identifier_key="...",  # optional — The identifier key for the entity
     identifier_value="...",  # optional — The identifier value for the entity
     entity_unique_id="...",  # optional — The unique identifier for the entity

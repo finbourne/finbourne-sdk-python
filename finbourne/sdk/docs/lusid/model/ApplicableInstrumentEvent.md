@@ -18,6 +18,8 @@ Represents applicable instrument event.
 | **applied_instrument_event_instruction_id** | **str** | Optional | *No description available.* |
 | **transactions** | [List[Transaction]](Transaction.md) | Optional | *No description available.* |
 | **transaction_diagnostics** | [TransactionDiagnostics](TransactionDiagnostics.md) | Optional | *No description available.* |
+| **applied_instrument_event_instruction** | [InstrumentEventInstruction](InstrumentEventInstruction.md) | Optional | *No description available.* |
+| **eligible_balance** | **float** | Optional | *No description available.* |
 
 
 ## Usage
@@ -40,7 +42,9 @@ instance = ApplicableInstrumentEvent(
     loaded_event=InstrumentEventHolder(...),  # optional
     applied_instrument_event_instruction_id="...",  # optional
     transactions=[],  # optional
-    transaction_diagnostics=TransactionDiagnostics(...)  # optional
+    transaction_diagnostics=TransactionDiagnostics(...),  # optional
+    applied_instrument_event_instruction=InstrumentEventInstruction(...),  # optional
+    eligible_balance=0.0  # optional
 )
 ```
 
@@ -53,6 +57,7 @@ instance = ApplicableInstrumentEvent(
 - [InstrumentEventHolder](InstrumentEventHolder.md)
 - [Transaction](Transaction.md)
 - [TransactionDiagnostics](TransactionDiagnostics.md)
+- [InstrumentEventInstruction](InstrumentEventInstruction.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

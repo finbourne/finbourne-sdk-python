@@ -1127,6 +1127,8 @@
 * [NavActivityAdjustmentResponse](lusid/model/NavActivityAdjustmentResponse.md)
 * [NavActivityAdjustmentResponseType](lusid/model/NavActivityAdjustmentResponseType.md)
 * [NavActivityAdjustmentType](lusid/model/NavActivityAdjustmentType.md)
+* [NavSettlementConfiguration](lusid/model/NavSettlementConfiguration.md)
+* [NavSettlementConfigurationCategory](lusid/model/NavSettlementConfigurationCategory.md)
 * [NavType](lusid/model/NavType.md)
 * [NavTypeDefinition](lusid/model/NavTypeDefinition.md)
 * [NewInstrument](lusid/model/NewInstrument.md)
