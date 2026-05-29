@@ -11,6 +11,7 @@
 | **created** | **datetime** | Optional | The effective datetime at which the portfolio group was created. No portfolios or sub groups can be added to the group before this date. |
 | **portfolios** | [List[ResourceId]](ResourceId.md) | Optional | The collection of resource identifiers for the portfolios contained in the portfolio group. |
 | **sub_groups** | [List[ResourceId]](ResourceId.md) | Optional | The collection of resource identifiers for the portfolio groups contained in the portfolio group as sub groups. |
+| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A collection of properties from the &#39;PortfolioGroup&#39; domain decorating the portfolio group. Returned only when the request specifies propertyKeys. |
 | **relationships** | [List[Relationship]](Relationship.md) | Optional | A set of relationships associated to the portfolio group. |
 | **version** | [Version](Version.md) | Optional | *No description available.* |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
@@ -31,6 +32,7 @@ instance = PortfolioGroup(
     created=datetime.now(),  # optional — The effective datetime at which the portfolio group was created. No portfolios or sub groups can be added to the group before this date.
     portfolios=[],  # optional — The collection of resource identifiers for the portfolios contained in the portfolio group.
     sub_groups=[],  # optional — The collection of resource identifiers for the portfolio groups contained in the portfolio group as sub groups.
+    properties=ModelProperty(...),  # optional — A collection of properties from the &#39;PortfolioGroup&#39; domain decorating the portfolio group. Returned only when the request specifies propertyKeys.
     relationships=[],  # optional — A set of relationships associated to the portfolio group.
     version=Version(...),  # optional
     links=[]  # optional
@@ -40,6 +42,7 @@ instance = PortfolioGroup(
 - [ResourceId](ResourceId.md)
 - [ResourceId](ResourceId.md) — used in `portfolios`
 - [ResourceId](ResourceId.md) — used in `sub_groups`
+- [ModelProperty](ModelProperty.md) — used in `properties`
 - [Relationship](Relationship.md) — used in `relationships`
 - [Version](Version.md)
 - [Link](Link.md)

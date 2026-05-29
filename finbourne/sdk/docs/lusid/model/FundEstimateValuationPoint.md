@@ -14,6 +14,7 @@
 | **apply_clear_down** | **bool** | Optional | Set to true if that closed period should have the clear down applied. |
 | **leader_nav_type_code** | **str** | Optional | The code of the Nav Type that this Nav Type will follow when set. |
 | **variants** | [List[EstimateVariant]](EstimateVariant.md) | Optional | The variants of the Estimate Valuation Point.  |
+| **date_of_last_pca_scan** | **datetime** | Optional | The last date a PCA scan was conducted for a Valuation Point |
 | **fund_calendar_entries_type** | **str** | Required | The type of the Calendar Entry. Available values: FinalisedValuationPoint, FundEstimateValuationPoint, FundBookmark. |
 
 
@@ -35,6 +36,7 @@ instance = FundEstimateValuationPoint(
     apply_clear_down=True,  # optional — Set to true if that closed period should have the clear down applied.
     leader_nav_type_code="...",  # optional — The code of the Nav Type that this Nav Type will follow when set.
     variants=[],  # optional — The variants of the Estimate Valuation Point. 
+    date_of_last_pca_scan=datetime.now(),  # optional — The last date a PCA scan was conducted for a Valuation Point
     fund_calendar_entries_type="..."  # required — The type of the Calendar Entry. Available values: FinalisedValuationPoint, FundEstimateValuationPoint, FundBookmark.
 )
 ```

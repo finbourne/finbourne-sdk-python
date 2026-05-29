@@ -7,6 +7,7 @@ Defines a Trigger Child Tasks Action
 |------|------|----------|-------------|
 | **type** | **str** | Required | Type name for this Action |
 | **trigger** | **str** | Required | Trigger on child tasks to be invoked |
+| **filter** | **str** | Optional | Optional LUSID filter expression to limit the action to a subset of the child tasks |
 
 
 ## Usage
@@ -18,7 +19,8 @@ from finbourne.sdk.services.workflow.models.TriggerChildTasksAction import Trigg
 
 instance = TriggerChildTasksAction(
     type="...",  # required — Type name for this Action
-    trigger="..."  # required — Trigger on child tasks to be invoked
+    trigger="...",  # required — Trigger on child tasks to be invoked
+    filter="..."  # optional — Optional LUSID filter expression to limit the action to a subset of the child tasks
 )
 ```
 

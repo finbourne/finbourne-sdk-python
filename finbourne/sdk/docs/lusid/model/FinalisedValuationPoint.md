@@ -22,6 +22,7 @@
 | **version** | [Version](Version.md) | Required | *No description available.* |
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested asAt datetime. |
 | **leader_nav_type_code** | **str** | Optional | The code of the Nav Type that this Nav Type will follow when set. |
+| **date_of_last_pca_scan** | **datetime** | Optional | The last date a PCA scan was conducted for a Valuation Point |
 | **fund_calendar_entries_type** | **str** | Required | The type of the Calendar Entry. Available values: FinalisedValuationPoint, FundEstimateValuationPoint, FundBookmark. |
 
 
@@ -51,6 +52,7 @@ instance = FinalisedValuationPoint(
     version=Version(...),  # required
     href="...",  # optional — The specific Uniform Resource Identifier (URI) for this resource at the requested asAt datetime.
     leader_nav_type_code="...",  # optional — The code of the Nav Type that this Nav Type will follow when set.
+    date_of_last_pca_scan=datetime.now(),  # optional — The last date a PCA scan was conducted for a Valuation Point
     fund_calendar_entries_type="..."  # required — The type of the Calendar Entry. Available values: FinalisedValuationPoint, FundEstimateValuationPoint, FundBookmark.
 )
 ```

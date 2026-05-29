@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**list_instances_with_status**](TradePublicationFrameworkApi.md#list_instances_with_status) | **GET** /horizon/api/trade-publication-framework/instances | [EXPERIMENTAL] ListInstancesWithStatus: Lists all instances of the Trade Publication Framework (TPF).
 [**list_run_files**](TradePublicationFrameworkApi.md#list_run_files) | **GET** /horizon/api/trade-publication-framework/instances/{instanceId}/runs/{runId}/files | [EXPERIMENTAL] ListRunFiles: List Files in a run
 [**list_run_transactions**](TradePublicationFrameworkApi.md#list_run_transactions) | **GET** /horizon/api/trade-publication-framework/instances/{instanceId}/runs/{runId}/transactions | [EXPERIMENTAL] ListRunTransactions: List Transactions in a run.
+[**replay_transactions**](TradePublicationFrameworkApi.md#replay_transactions) | **POST** /horizon/api/trade-publication-framework/instances/{instanceId}/replay | [EXPERIMENTAL] ReplayTransactions: Replay one or more transactions through a TPF instance
 
 
 ### Example
@@ -305,6 +306,49 @@ Name | Type | Description  | Notes
 **200** | OK |  -  |
 **400** | The details of the input related failure |  -  |
 **404** | The requested TPF instance or run does not exist. |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **replay_transactions**
+> ReplayTransactionsResponse replayTransactions = replay_transactions(instance_id, replay_transactions_request)
+
+[EXPERIMENTAL] ReplayTransactions: Replay one or more transactions through a TPF instance
+
+### Example
+
+```python
+api_instance = api_client_factory.build(TradePublicationFrameworkApi)
+instance_id = 'instance_id_example' # str
+replay_transactions_request = ReplayTransactionsRequest()
+api_response = api_instance.replay_transactions(instance_id, replay_transactions_request)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **instance_id** | **str**|  | [required] 
+ **replay_transactions_request** | [**ReplayTransactionsRequest**](ReplayTransactionsRequest.md)|  | [required] 
+
+### Return type
+
+[**ReplayTransactionsResponse**](ReplayTransactionsResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | The details of the input related failure |  -  |
+**404** | The requested TPF instance does not exist. |  -  |
 **0** | Error response |  -  |
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)

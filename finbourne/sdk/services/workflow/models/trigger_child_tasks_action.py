@@ -29,7 +29,8 @@ class TriggerChildTasksAction(BaseModel):
     """
     type:  StrictStr = Field(...,alias="type", description="Type name for this Action") 
     trigger:  StrictStr = Field(...,alias="trigger", description="Trigger on child tasks to be invoked") 
-    __properties: ClassVar[List[str]] = ["type", "trigger"]
+    filter:  Optional[StrictStr] = Field(default=None,alias="filter", description="Optional LUSID filter expression to limit the action to a subset of the child tasks") 
+    __properties: ClassVar[List[str]] = ["type", "trigger", "filter"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -134,6 +135,11 @@ class TriggerChildTasksAction(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # set to None if filter (nullable) is None
+        # and model_fields_set contains the field
+        if self.filter is None and "filter" in self.model_fields_set:
+            _dict['filter'] = None
+
         return _dict
 
     @classmethod
@@ -147,7 +153,8 @@ class TriggerChildTasksAction(BaseModel):
 
         _obj = TriggerChildTasksAction.model_validate({
             "type": obj.get("type"),
-            "trigger": obj.get("trigger")
+            "trigger": obj.get("trigger"),
+            "filter": obj.get("filter")
         })
         return _obj
 

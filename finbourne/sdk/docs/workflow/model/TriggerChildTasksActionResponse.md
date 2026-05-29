@@ -7,6 +7,7 @@ Defines a read-only Trigger Child Tasks Action
 |------|------|----------|-------------|
 | **type** | **str** | Optional | Type name for this Action |
 | **trigger** | **str** | Optional | Trigger on child tasks to be invoked |
+| **filter** | **str** | Optional | Optional LUSID filter expression to limit the action to a subset of the child tasks |
 
 
 ## Usage
@@ -18,7 +19,8 @@ from finbourne.sdk.services.workflow.models.TriggerChildTasksActionResponse impo
 
 instance = TriggerChildTasksActionResponse(
     type="...",  # optional — Type name for this Action
-    trigger="..."  # optional — Trigger on child tasks to be invoked
+    trigger="...",  # optional — Trigger on child tasks to be invoked
+    filter="..."  # optional — Optional LUSID filter expression to limit the action to a subset of the child tasks
 )
 ```
 

@@ -1971,7 +1971,7 @@ class PortfolioGroupsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def get_portfolio_group(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, related_entity_property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> PortfolioGroup:
+    def get_portfolio_group(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, related_entity_property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PortfolioGroup:
         """GetPortfolioGroup: Get portfolio group  # noqa: E501
 
         Retrieve the definition of a single portfolio group.  # noqa: E501
@@ -1987,6 +1987,8 @@ class PortfolioGroupsApi:
         :type related_entity_property_keys: List[str]
         :param relationship_definition_ids: A list of relationship definitions that are used to decorate related entities              onto the portfolio group in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}.
         :type relationship_definition_ids: List[str]
+        :param property_keys: A list of property keys from the 'PortfolioGroup' domain to decorate onto the portfolio group. These must take the format {domain}/{scope}/{code}, e.g. 'PortfolioGroup/Manager/Id'.
+        :type property_keys: List[str]
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -1997,11 +1999,11 @@ class PortfolioGroupsApi:
             message = "Error! Please call the get_portfolio_group_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.get_portfolio_group_with_http_info(scope, code, effective_at, as_at, related_entity_property_keys, relationship_definition_ids, **kwargs)
+        response = self.get_portfolio_group_with_http_info(scope, code, effective_at, as_at, related_entity_property_keys, relationship_definition_ids, property_keys, **kwargs)
         return response.data
 
     @validate_call
-    def get_portfolio_group_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, related_entity_property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> ApiResponse[PortfolioGroup]:
+    def get_portfolio_group_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, related_entity_property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PortfolioGroup]:
         """GetPortfolioGroup: Get portfolio group  # noqa: E501
 
         Retrieve the definition of a single portfolio group.  # noqa: E501
@@ -2017,6 +2019,8 @@ class PortfolioGroupsApi:
         :type related_entity_property_keys: List[str]
         :param relationship_definition_ids: A list of relationship definitions that are used to decorate related entities              onto the portfolio group in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}.
         :type relationship_definition_ids: List[str]
+        :param property_keys: A list of property keys from the 'PortfolioGroup' domain to decorate onto the portfolio group. These must take the format {domain}/{scope}/{code}, e.g. 'PortfolioGroup/Manager/Id'.
+        :type property_keys: List[str]
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -2045,7 +2049,8 @@ class PortfolioGroupsApi:
             'effective_at',
             'as_at',
             'related_entity_property_keys',
-            'relationship_definition_ids'
+            'relationship_definition_ids',
+            'property_keys'
         ]
         _all_params.extend(
             [
@@ -2098,6 +2103,10 @@ class PortfolioGroupsApi:
         if _params.get('relationship_definition_ids') is not None:  # noqa: E501
             _query_params.append(('relationshipDefinitionIds', _params['relationship_definition_ids']))
             _collection_formats['relationshipDefinitionIds'] = 'multi'
+
+        if _params.get('property_keys') is not None:  # noqa: E501
+            _query_params.append(('propertyKeys', _params['property_keys']))
+            _collection_formats['propertyKeys'] = 'multi'
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -3488,7 +3497,7 @@ class PortfolioGroupsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def list_all_portfolio_groups(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, related_entity_property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfPortfolioGroup:
+    def list_all_portfolio_groups(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, related_entity_property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfPortfolioGroup:
         """ListAllPortfolioGroups: List all portfolio groups  # noqa: E501
 
         List all portfolio groups across all scopes.  # noqa: E501
@@ -3508,6 +3517,8 @@ class PortfolioGroupsApi:
         :type related_entity_property_keys: List[str]
         :param relationship_definition_ids: A list of relationship definitions that are used to decorate related entities              onto the portfolio groups in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}.
         :type relationship_definition_ids: List[str]
+        :param property_keys: A list of property keys from the 'PortfolioGroup' domain to decorate onto the portfolio groups. These must take the format {domain}/{scope}/{code}, e.g. 'PortfolioGroup/Manager/Id'.
+        :type property_keys: List[str]
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -3518,11 +3529,11 @@ class PortfolioGroupsApi:
             message = "Error! Please call the list_all_portfolio_groups_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.list_all_portfolio_groups_with_http_info(effective_at, as_at, page, limit, filter, sort_by, related_entity_property_keys, relationship_definition_ids, **kwargs)
+        response = self.list_all_portfolio_groups_with_http_info(effective_at, as_at, page, limit, filter, sort_by, related_entity_property_keys, relationship_definition_ids, property_keys, **kwargs)
         return response.data
 
     @validate_call
-    def list_all_portfolio_groups_with_http_info(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, related_entity_property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfPortfolioGroup]:
+    def list_all_portfolio_groups_with_http_info(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, related_entity_property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfPortfolioGroup]:
         """ListAllPortfolioGroups: List all portfolio groups  # noqa: E501
 
         List all portfolio groups across all scopes.  # noqa: E501
@@ -3542,6 +3553,8 @@ class PortfolioGroupsApi:
         :type related_entity_property_keys: List[str]
         :param relationship_definition_ids: A list of relationship definitions that are used to decorate related entities              onto the portfolio groups in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}.
         :type relationship_definition_ids: List[str]
+        :param property_keys: A list of property keys from the 'PortfolioGroup' domain to decorate onto the portfolio groups. These must take the format {domain}/{scope}/{code}, e.g. 'PortfolioGroup/Manager/Id'.
+        :type property_keys: List[str]
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -3572,7 +3585,8 @@ class PortfolioGroupsApi:
             'filter',
             'sort_by',
             'related_entity_property_keys',
-            'relationship_definition_ids'
+            'relationship_definition_ids',
+            'property_keys'
         ]
         _all_params.extend(
             [
@@ -3633,6 +3647,10 @@ class PortfolioGroupsApi:
             _query_params.append(('relationshipDefinitionIds', _params['relationship_definition_ids']))
             _collection_formats['relationshipDefinitionIds'] = 'multi'
 
+        if _params.get('property_keys') is not None:  # noqa: E501
+            _query_params.append(('propertyKeys', _params['property_keys']))
+            _collection_formats['propertyKeys'] = 'multi'
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -3670,7 +3688,7 @@ class PortfolioGroupsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def list_portfolio_groups(self, scope: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, related_entity_property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfPortfolioGroup:
+    def list_portfolio_groups(self, scope: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, related_entity_property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfPortfolioGroup:
         """ListPortfolioGroups: List portfolio groups  # noqa: E501
 
         List all the portfolio groups in a single scope.  # noqa: E501
@@ -3692,6 +3710,8 @@ class PortfolioGroupsApi:
         :type related_entity_property_keys: List[str]
         :param relationship_definition_ids: A list of relationship definitions that are used to decorate related entities              onto the portfolio groups in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}.
         :type relationship_definition_ids: List[str]
+        :param property_keys: A list of property keys from the 'PortfolioGroup' domain to decorate onto the portfolio groups. These must take the format {domain}/{scope}/{code}, e.g. 'PortfolioGroup/Manager/Id'.
+        :type property_keys: List[str]
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -3702,11 +3722,11 @@ class PortfolioGroupsApi:
             message = "Error! Please call the list_portfolio_groups_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.list_portfolio_groups_with_http_info(scope, effective_at, as_at, page, limit, filter, sort_by, related_entity_property_keys, relationship_definition_ids, **kwargs)
+        response = self.list_portfolio_groups_with_http_info(scope, effective_at, as_at, page, limit, filter, sort_by, related_entity_property_keys, relationship_definition_ids, property_keys, **kwargs)
         return response.data
 
     @validate_call
-    def list_portfolio_groups_with_http_info(self, scope: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, related_entity_property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfPortfolioGroup]:
+    def list_portfolio_groups_with_http_info(self, scope: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, related_entity_property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfPortfolioGroup]:
         """ListPortfolioGroups: List portfolio groups  # noqa: E501
 
         List all the portfolio groups in a single scope.  # noqa: E501
@@ -3728,6 +3748,8 @@ class PortfolioGroupsApi:
         :type related_entity_property_keys: List[str]
         :param relationship_definition_ids: A list of relationship definitions that are used to decorate related entities              onto the portfolio groups in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}.
         :type relationship_definition_ids: List[str]
+        :param property_keys: A list of property keys from the 'PortfolioGroup' domain to decorate onto the portfolio groups. These must take the format {domain}/{scope}/{code}, e.g. 'PortfolioGroup/Manager/Id'.
+        :type property_keys: List[str]
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -3759,7 +3781,8 @@ class PortfolioGroupsApi:
             'filter',
             'sort_by',
             'related_entity_property_keys',
-            'relationship_definition_ids'
+            'relationship_definition_ids',
+            'property_keys'
         ]
         _all_params.extend(
             [
@@ -3822,6 +3845,10 @@ class PortfolioGroupsApi:
         if _params.get('relationship_definition_ids') is not None:  # noqa: E501
             _query_params.append(('relationshipDefinitionIds', _params['relationship_definition_ids']))
             _collection_formats['relationshipDefinitionIds'] = 'multi'
+
+        if _params.get('property_keys') is not None:  # noqa: E501
+            _query_params.append(('propertyKeys', _params['property_keys']))
+            _collection_formats['propertyKeys'] = 'multi'
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -6403,7 +6430,7 @@ class PortfolioGroupsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def get_portfolio_group_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, related_entity_property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> PortfolioGroup:
+    async def get_portfolio_group_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, related_entity_property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PortfolioGroup:
             """GetPortfolioGroup: Get portfolio group  # noqa: E501
             Retrieve the definition of a single portfolio group.  # noqa: E501
             
@@ -6419,6 +6446,8 @@ class PortfolioGroupsApi:
             :type related_entity_property_keys: List[str]
             :param relationship_definition_ids: A list of relationship definitions that are used to decorate related entities              onto the portfolio group in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}.
             :type relationship_definition_ids: List[str]
+            :param property_keys: A list of property keys from the 'PortfolioGroup' domain to decorate onto the portfolio group. These must take the format {domain}/{scope}/{code}, e.g. 'PortfolioGroup/Manager/Id'.
+            :type property_keys: List[str]
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -6429,11 +6458,11 @@ class PortfolioGroupsApi:
                 message = "Error! Please call the get_portfolio_group_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.get_portfolio_group_with_http_info_async(scope, code, effective_at, as_at, related_entity_property_keys, relationship_definition_ids, **kwargs)
+            response = await self.get_portfolio_group_with_http_info_async(scope, code, effective_at, as_at, related_entity_property_keys, relationship_definition_ids, property_keys, **kwargs)
             return response.data
 
     @validate_call
-    async def get_portfolio_group_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, related_entity_property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> ApiResponse[PortfolioGroup]:
+    async def get_portfolio_group_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, related_entity_property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PortfolioGroup]:
             """GetPortfolioGroup: Get portfolio group  # noqa: E501
 
             Retrieve the definition of a single portfolio group.  # noqa: E501
@@ -6450,6 +6479,8 @@ class PortfolioGroupsApi:
             :type related_entity_property_keys: List[str]
             :param relationship_definition_ids: A list of relationship definitions that are used to decorate related entities              onto the portfolio group in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}.
             :type relationship_definition_ids: List[str]
+            :param property_keys: A list of property keys from the 'PortfolioGroup' domain to decorate onto the portfolio group. These must take the format {domain}/{scope}/{code}, e.g. 'PortfolioGroup/Manager/Id'.
+            :type property_keys: List[str]
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -6478,7 +6509,8 @@ class PortfolioGroupsApi:
                 'effective_at',
                 'as_at',
                 'related_entity_property_keys',
-                'relationship_definition_ids'
+                'relationship_definition_ids',
+                'property_keys'
             ]
             _all_params.extend(
                 [
@@ -6531,6 +6563,10 @@ class PortfolioGroupsApi:
             if _params.get('relationship_definition_ids') is not None:  # noqa: E501
                 _query_params.append(('relationshipDefinitionIds', _params['relationship_definition_ids']))
                 _collection_formats['relationshipDefinitionIds'] = 'multi'
+
+            if _params.get('property_keys') is not None:  # noqa: E501
+                _query_params.append(('propertyKeys', _params['property_keys']))
+                _collection_formats['propertyKeys'] = 'multi'
 
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))
@@ -7929,7 +7965,7 @@ class PortfolioGroupsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def list_all_portfolio_groups_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, related_entity_property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfPortfolioGroup:
+    async def list_all_portfolio_groups_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, related_entity_property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfPortfolioGroup:
             """ListAllPortfolioGroups: List all portfolio groups  # noqa: E501
             List all portfolio groups across all scopes.  # noqa: E501
             
@@ -7949,6 +7985,8 @@ class PortfolioGroupsApi:
             :type related_entity_property_keys: List[str]
             :param relationship_definition_ids: A list of relationship definitions that are used to decorate related entities              onto the portfolio groups in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}.
             :type relationship_definition_ids: List[str]
+            :param property_keys: A list of property keys from the 'PortfolioGroup' domain to decorate onto the portfolio groups. These must take the format {domain}/{scope}/{code}, e.g. 'PortfolioGroup/Manager/Id'.
+            :type property_keys: List[str]
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -7959,11 +7997,11 @@ class PortfolioGroupsApi:
                 message = "Error! Please call the list_all_portfolio_groups_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.list_all_portfolio_groups_with_http_info_async(effective_at, as_at, page, limit, filter, sort_by, related_entity_property_keys, relationship_definition_ids, **kwargs)
+            response = await self.list_all_portfolio_groups_with_http_info_async(effective_at, as_at, page, limit, filter, sort_by, related_entity_property_keys, relationship_definition_ids, property_keys, **kwargs)
             return response.data
 
     @validate_call
-    async def list_all_portfolio_groups_with_http_info_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, related_entity_property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfPortfolioGroup]:
+    async def list_all_portfolio_groups_with_http_info_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, related_entity_property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfPortfolioGroup]:
             """ListAllPortfolioGroups: List all portfolio groups  # noqa: E501
 
             List all portfolio groups across all scopes.  # noqa: E501
@@ -7984,6 +8022,8 @@ class PortfolioGroupsApi:
             :type related_entity_property_keys: List[str]
             :param relationship_definition_ids: A list of relationship definitions that are used to decorate related entities              onto the portfolio groups in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}.
             :type relationship_definition_ids: List[str]
+            :param property_keys: A list of property keys from the 'PortfolioGroup' domain to decorate onto the portfolio groups. These must take the format {domain}/{scope}/{code}, e.g. 'PortfolioGroup/Manager/Id'.
+            :type property_keys: List[str]
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -8014,7 +8054,8 @@ class PortfolioGroupsApi:
                 'filter',
                 'sort_by',
                 'related_entity_property_keys',
-                'relationship_definition_ids'
+                'relationship_definition_ids',
+                'property_keys'
             ]
             _all_params.extend(
                 [
@@ -8075,6 +8116,10 @@ class PortfolioGroupsApi:
                 _query_params.append(('relationshipDefinitionIds', _params['relationship_definition_ids']))
                 _collection_formats['relationshipDefinitionIds'] = 'multi'
 
+            if _params.get('property_keys') is not None:  # noqa: E501
+                _query_params.append(('propertyKeys', _params['property_keys']))
+                _collection_formats['propertyKeys'] = 'multi'
+
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))
             # process the form parameters
@@ -8112,7 +8157,7 @@ class PortfolioGroupsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def list_portfolio_groups_async(self, scope: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, related_entity_property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfPortfolioGroup:
+    async def list_portfolio_groups_async(self, scope: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, related_entity_property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfPortfolioGroup:
             """ListPortfolioGroups: List portfolio groups  # noqa: E501
             List all the portfolio groups in a single scope.  # noqa: E501
             
@@ -8134,6 +8179,8 @@ class PortfolioGroupsApi:
             :type related_entity_property_keys: List[str]
             :param relationship_definition_ids: A list of relationship definitions that are used to decorate related entities              onto the portfolio groups in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}.
             :type relationship_definition_ids: List[str]
+            :param property_keys: A list of property keys from the 'PortfolioGroup' domain to decorate onto the portfolio groups. These must take the format {domain}/{scope}/{code}, e.g. 'PortfolioGroup/Manager/Id'.
+            :type property_keys: List[str]
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -8144,11 +8191,11 @@ class PortfolioGroupsApi:
                 message = "Error! Please call the list_portfolio_groups_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.list_portfolio_groups_with_http_info_async(scope, effective_at, as_at, page, limit, filter, sort_by, related_entity_property_keys, relationship_definition_ids, **kwargs)
+            response = await self.list_portfolio_groups_with_http_info_async(scope, effective_at, as_at, page, limit, filter, sort_by, related_entity_property_keys, relationship_definition_ids, property_keys, **kwargs)
             return response.data
 
     @validate_call
-    async def list_portfolio_groups_with_http_info_async(self, scope: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, related_entity_property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfPortfolioGroup]:
+    async def list_portfolio_groups_with_http_info_async(self, scope: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, related_entity_property_keys: Optional[List[str]] = None, relationship_definition_ids: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfPortfolioGroup]:
             """ListPortfolioGroups: List portfolio groups  # noqa: E501
 
             List all the portfolio groups in a single scope.  # noqa: E501
@@ -8171,6 +8218,8 @@ class PortfolioGroupsApi:
             :type related_entity_property_keys: List[str]
             :param relationship_definition_ids: A list of relationship definitions that are used to decorate related entities              onto the portfolio groups in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}.
             :type relationship_definition_ids: List[str]
+            :param property_keys: A list of property keys from the 'PortfolioGroup' domain to decorate onto the portfolio groups. These must take the format {domain}/{scope}/{code}, e.g. 'PortfolioGroup/Manager/Id'.
+            :type property_keys: List[str]
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -8202,7 +8251,8 @@ class PortfolioGroupsApi:
                 'filter',
                 'sort_by',
                 'related_entity_property_keys',
-                'relationship_definition_ids'
+                'relationship_definition_ids',
+                'property_keys'
             ]
             _all_params.extend(
                 [
@@ -8265,6 +8315,10 @@ class PortfolioGroupsApi:
             if _params.get('relationship_definition_ids') is not None:  # noqa: E501
                 _query_params.append(('relationshipDefinitionIds', _params['relationship_definition_ids']))
                 _collection_formats['relationshipDefinitionIds'] = 'multi'
+
+            if _params.get('property_keys') is not None:  # noqa: E501
+                _query_params.append(('propertyKeys', _params['property_keys']))
+                _collection_formats['propertyKeys'] = 'multi'
 
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))

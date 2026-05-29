@@ -665,7 +665,7 @@ Name | Type | Description  | Notes
 ---
 
 # **get_portfolio_group**
-> PortfolioGroup getPortfolioGroup = get_portfolio_group(scope, code, effective_at=effective_at, as_at=as_at, related_entity_property_keys=related_entity_property_keys, relationship_definition_ids=relationship_definition_ids)
+> PortfolioGroup getPortfolioGroup = get_portfolio_group(scope, code, effective_at=effective_at, as_at=as_at, related_entity_property_keys=related_entity_property_keys, relationship_definition_ids=relationship_definition_ids, property_keys=property_keys)
 
 GetPortfolioGroup: Get portfolio group
 
@@ -681,7 +681,8 @@ effective_at = 'effective_at_example' # str (optional)
 as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
 related_entity_property_keys = ['related_entity_property_keys_example'] # List[str] (optional)
 relationship_definition_ids = ['relationship_definition_ids_example'] # List[str] (optional)
-api_response = api_instance.get_portfolio_group(scope, code, effective_at=effective_at, as_at=as_at, related_entity_property_keys=related_entity_property_keys, relationship_definition_ids=relationship_definition_ids)
+property_keys = ['property_keys_example'] # List[str] (optional)
+api_response = api_instance.get_portfolio_group(scope, code, effective_at=effective_at, as_at=as_at, related_entity_property_keys=related_entity_property_keys, relationship_definition_ids=relationship_definition_ids, property_keys=property_keys)
 pprint(api_response)
 ```
 
@@ -695,6 +696,7 @@ Name | Type | Description  | Notes
  **as_at** | **datetime**| The asAt datetime at which to retrieve the portfolio group definition. Defaults to return              the latest version of the portfolio group definition if not specified. | [optional] 
  **related_entity_property_keys** | [**List[str]**](str.md)| A list of property keys from any domain that supports relationships              to decorate onto related entities. These must take the format {domain}/{scope}/{code}, for example &#39;Portfolio/Manager/Id&#39;. | [optional] 
  **relationship_definition_ids** | [**List[str]**](str.md)| A list of relationship definitions that are used to decorate related entities              onto the portfolio group in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}. | [optional] 
+ **property_keys** | [**List[str]**](str.md)| A list of property keys from the &#39;PortfolioGroup&#39; domain to decorate onto the portfolio group. These must take the format {domain}/{scope}/{code}, e.g. &#39;PortfolioGroup/Manager/Id&#39;. | [optional] 
 
 ### Return type
 
@@ -1143,7 +1145,7 @@ Name | Type | Description  | Notes
 ---
 
 # **list_all_portfolio_groups**
-> PagedResourceListOfPortfolioGroup listAllPortfolioGroups = list_all_portfolio_groups(effective_at=effective_at, as_at=as_at, page=page, limit=limit, filter=filter, sort_by=sort_by, related_entity_property_keys=related_entity_property_keys, relationship_definition_ids=relationship_definition_ids)
+> PagedResourceListOfPortfolioGroup listAllPortfolioGroups = list_all_portfolio_groups(effective_at=effective_at, as_at=as_at, page=page, limit=limit, filter=filter, sort_by=sort_by, related_entity_property_keys=related_entity_property_keys, relationship_definition_ids=relationship_definition_ids, property_keys=property_keys)
 
 ListAllPortfolioGroups: List all portfolio groups
 
@@ -1161,7 +1163,8 @@ filter = 'filter_example' # str (optional)
 sort_by = ['sort_by_example'] # List[str] (optional)
 related_entity_property_keys = ['related_entity_property_keys_example'] # List[str] (optional)
 relationship_definition_ids = ['relationship_definition_ids_example'] # List[str] (optional)
-api_response = api_instance.list_all_portfolio_groups(effective_at=effective_at, as_at=as_at, page=page, limit=limit, filter=filter, sort_by=sort_by, related_entity_property_keys=related_entity_property_keys, relationship_definition_ids=relationship_definition_ids)
+property_keys = ['property_keys_example'] # List[str] (optional)
+api_response = api_instance.list_all_portfolio_groups(effective_at=effective_at, as_at=as_at, page=page, limit=limit, filter=filter, sort_by=sort_by, related_entity_property_keys=related_entity_property_keys, relationship_definition_ids=relationship_definition_ids, property_keys=property_keys)
 pprint(api_response)
 ```
 
@@ -1177,6 +1180,7 @@ Name | Type | Description  | Notes
  **sort_by** | [**List[str]**](str.md)| A list of field names to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot; | [optional] 
  **related_entity_property_keys** | [**List[str]**](str.md)| A list of property keys from any domain that supports relationships              to decorate onto related entities. These must take the format {domain}/{scope}/{code}, for example &#39;Portfolio/Manager/Id&#39;. | [optional] 
  **relationship_definition_ids** | [**List[str]**](str.md)| A list of relationship definitions that are used to decorate related entities              onto the portfolio groups in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}. | [optional] 
+ **property_keys** | [**List[str]**](str.md)| A list of property keys from the &#39;PortfolioGroup&#39; domain to decorate onto the portfolio groups. These must take the format {domain}/{scope}/{code}, e.g. &#39;PortfolioGroup/Manager/Id&#39;. | [optional] 
 
 ### Return type
 
@@ -1199,7 +1203,7 @@ Name | Type | Description  | Notes
 ---
 
 # **list_portfolio_groups**
-> PagedResourceListOfPortfolioGroup listPortfolioGroups = list_portfolio_groups(scope, effective_at=effective_at, as_at=as_at, page=page, limit=limit, filter=filter, sort_by=sort_by, related_entity_property_keys=related_entity_property_keys, relationship_definition_ids=relationship_definition_ids)
+> PagedResourceListOfPortfolioGroup listPortfolioGroups = list_portfolio_groups(scope, effective_at=effective_at, as_at=as_at, page=page, limit=limit, filter=filter, sort_by=sort_by, related_entity_property_keys=related_entity_property_keys, relationship_definition_ids=relationship_definition_ids, property_keys=property_keys)
 
 ListPortfolioGroups: List portfolio groups
 
@@ -1218,7 +1222,8 @@ filter = 'filter_example' # str (optional)
 sort_by = ['sort_by_example'] # List[str] (optional)
 related_entity_property_keys = ['related_entity_property_keys_example'] # List[str] (optional)
 relationship_definition_ids = ['relationship_definition_ids_example'] # List[str] (optional)
-api_response = api_instance.list_portfolio_groups(scope, effective_at=effective_at, as_at=as_at, page=page, limit=limit, filter=filter, sort_by=sort_by, related_entity_property_keys=related_entity_property_keys, relationship_definition_ids=relationship_definition_ids)
+property_keys = ['property_keys_example'] # List[str] (optional)
+api_response = api_instance.list_portfolio_groups(scope, effective_at=effective_at, as_at=as_at, page=page, limit=limit, filter=filter, sort_by=sort_by, related_entity_property_keys=related_entity_property_keys, relationship_definition_ids=relationship_definition_ids, property_keys=property_keys)
 pprint(api_response)
 ```
 
@@ -1235,6 +1240,7 @@ Name | Type | Description  | Notes
  **sort_by** | [**List[str]**](str.md)| A list of field names to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot; | [optional] 
  **related_entity_property_keys** | [**List[str]**](str.md)| A list of property keys from any domain that supports relationships              to decorate onto related entities. These must take the format {domain}/{scope}/{code}, for example &#39;Portfolio/Manager/Id&#39;. | [optional] 
  **relationship_definition_ids** | [**List[str]**](str.md)| A list of relationship definitions that are used to decorate related entities              onto the portfolio groups in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}. | [optional] 
+ **property_keys** | [**List[str]**](str.md)| A list of property keys from the &#39;PortfolioGroup&#39; domain to decorate onto the portfolio groups. These must take the format {domain}/{scope}/{code}, e.g. &#39;PortfolioGroup/Manager/Id&#39;. | [optional] 
 
 ### Return type
 

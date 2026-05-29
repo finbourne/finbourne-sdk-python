@@ -112,6 +112,7 @@ class PropertyDomain(str, Enum):  # type: ignore[misc]
     IDENTIFIERDEFINITION = 'IdentifierDefinition'
     SETTLEMENTINSTRUCTION = 'SettlementInstruction'
     TRANSACTIONFEETYPE = 'TransactionFeeType'
+    ALLOCATIONMETHOD = 'AllocationMethod'
     TRANSACTIONFEE = 'TransactionFee'
 
     @classmethod
