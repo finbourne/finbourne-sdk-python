@@ -78,56 +78,56 @@ class ValuationRequest(BaseModel):
         """Create an instance of ValuationRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of recipe_id
         if self.recipe_id:
-            _dict['recipeId'] = self.recipe_id.to_dict()
+            _dict['recipeId'] = self.recipe_id.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each item in metrics (list)
         _items = []
         if self.metrics:
             for _item in self.metrics:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['metrics'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in filters (list)
         _items = []
         if self.filters:
             for _item in self.filters:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['filters'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in sort (list)
         _items = []
         if self.sort:
             for _item in self.sort:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['sort'] = _items
         # override the default output from pydantic by calling `to_dict()` of include_order_flow
         if self.include_order_flow:
-            _dict['includeOrderFlow'] = self.include_order_flow.to_dict()
+            _dict['includeOrderFlow'] = self.include_order_flow.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each item in portfolio_entity_ids (list)
         _items = []
         if self.portfolio_entity_ids:
             for _item in self.portfolio_entity_ids:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['portfolioEntityIds'] = _items
         # override the default output from pydantic by calling `to_dict()` of valuation_schedule
         if self.valuation_schedule:
-            _dict['valuationSchedule'] = self.valuation_schedule.to_dict()
+            _dict['valuationSchedule'] = self.valuation_schedule.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of market_data_overrides
         if self.market_data_overrides:
-            _dict['marketDataOverrides'] = self.market_data_overrides.to_dict()
+            _dict['marketDataOverrides'] = self.market_data_overrides.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of corporate_action_source_id
         if self.corporate_action_source_id:
-            _dict['corporateActionSourceId'] = self.corporate_action_source_id.to_dict()
+            _dict['corporateActionSourceId'] = self.corporate_action_source_id.to_dict(by_alias=by_alias)
         # set to None if as_at (nullable) is None
         # and model_fields_set contains the field
         if self.as_at is None and "as_at" in self.model_fields_set:

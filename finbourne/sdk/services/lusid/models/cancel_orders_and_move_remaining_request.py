@@ -60,22 +60,22 @@ class CancelOrdersAndMoveRemainingRequest(BaseModel):
         """Create an instance of CancelOrdersAndMoveRemainingRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of cancel_order_id
         if self.cancel_order_id:
-            _dict['cancelOrderId'] = self.cancel_order_id.to_dict()
+            _dict['cancelOrderId'] = self.cancel_order_id.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of move_remaining_to_order_id
         if self.move_remaining_to_order_id:
-            _dict['moveRemainingToOrderId'] = self.move_remaining_to_order_id.to_dict()
+            _dict['moveRemainingToOrderId'] = self.move_remaining_to_order_id.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of move_remaining_to_block_id
         if self.move_remaining_to_block_id:
-            _dict['moveRemainingToBlockId'] = self.move_remaining_to_block_id.to_dict()
+            _dict['moveRemainingToBlockId'] = self.move_remaining_to_block_id.to_dict(by_alias=by_alias)
         return _dict
 
     @classmethod

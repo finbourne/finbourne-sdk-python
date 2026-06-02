@@ -85,9 +85,9 @@ class PortfolioHolding(BaseModel):
         """Create an instance of PortfolioHolding from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
@@ -97,49 +97,49 @@ class PortfolioHolding(BaseModel):
         if self.sub_holding_keys:
             for _key in self.sub_holding_keys:
                 if self.sub_holding_keys[_key]:
-                    _field_dict[_key] = self.sub_holding_keys[_key].to_dict()
+                    _field_dict[_key] = self.sub_holding_keys[_key].to_dict(by_alias=by_alias)
             _dict['subHoldingKeys'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of each value in properties (dict)
         _field_dict = {}
         if self.properties:
             for _key in self.properties:
                 if self.properties[_key]:
-                    _field_dict[_key] = self.properties[_key].to_dict()
+                    _field_dict[_key] = self.properties[_key].to_dict(by_alias=by_alias)
             _dict['properties'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of cost
         if self.cost:
-            _dict['cost'] = self.cost.to_dict()
+            _dict['cost'] = self.cost.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of cost_portfolio_ccy
         if self.cost_portfolio_ccy:
-            _dict['costPortfolioCcy'] = self.cost_portfolio_ccy.to_dict()
+            _dict['costPortfolioCcy'] = self.cost_portfolio_ccy.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of transaction
         if self.transaction:
-            _dict['transaction'] = self.transaction.to_dict()
+            _dict['transaction'] = self.transaction.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of notional_cost
         if self.notional_cost:
-            _dict['notionalCost'] = self.notional_cost.to_dict()
+            _dict['notionalCost'] = self.notional_cost.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of amortised_cost
         if self.amortised_cost:
-            _dict['amortisedCost'] = self.amortised_cost.to_dict()
+            _dict['amortisedCost'] = self.amortised_cost.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of amortised_cost_portfolio_ccy
         if self.amortised_cost_portfolio_ccy:
-            _dict['amortisedCostPortfolioCcy'] = self.amortised_cost_portfolio_ccy.to_dict()
+            _dict['amortisedCostPortfolioCcy'] = self.amortised_cost_portfolio_ccy.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of variation_margin
         if self.variation_margin:
-            _dict['variationMargin'] = self.variation_margin.to_dict()
+            _dict['variationMargin'] = self.variation_margin.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of variation_margin_portfolio_ccy
         if self.variation_margin_portfolio_ccy:
-            _dict['variationMarginPortfolioCcy'] = self.variation_margin_portfolio_ccy.to_dict()
+            _dict['variationMarginPortfolioCcy'] = self.variation_margin_portfolio_ccy.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each item in settlement_schedule (list)
         _items = []
         if self.settlement_schedule:
             for _item in self.settlement_schedule:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['settlementSchedule'] = _items
         # override the default output from pydantic by calling `to_dict()` of custodian_account_id
         if self.custodian_account_id:
-            _dict['custodianAccountId'] = self.custodian_account_id.to_dict()
+            _dict['custodianAccountId'] = self.custodian_account_id.to_dict(by_alias=by_alias)
         # set to None if instrument_scope (nullable) is None
         # and model_fields_set contains the field
         if self.instrument_scope is None and "instrument_scope" in self.model_fields_set:

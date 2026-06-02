@@ -45,7 +45,7 @@ class SimplePositionPortfoliosApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def create_simple_position_portfolio(self, scope: StrictStr, create_simple_position_portfolio_request: CreateSimplePositionPortfolioRequest, **kwargs) -> Portfolio:
@@ -130,7 +130,7 @@ class SimplePositionPortfoliosApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
 
@@ -270,7 +270,7 @@ class SimplePositionPortfoliosApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
 

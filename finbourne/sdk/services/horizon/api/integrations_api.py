@@ -58,7 +58,7 @@ class IntegrationsApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def create_instance(self, create_instance_request: CreateInstanceRequest, **kwargs) -> InstanceIdentifier:
@@ -266,7 +266,7 @@ class IntegrationsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['instance_id']:
+        if _params['instance_id'] is not None:
             _path_params['instanceId'] = _params['instance_id']
 
 
@@ -383,7 +383,7 @@ class IntegrationsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['instance_id']:
+        if _params['instance_id'] is not None:
             _path_params['instanceId'] = _params['instance_id']
 
 
@@ -509,7 +509,7 @@ class IntegrationsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['instance_id']:
+        if _params['instance_id'] is not None:
             _path_params['instanceId'] = _params['instance_id']
 
 
@@ -638,7 +638,7 @@ class IntegrationsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['processor_type']:
+        if _params['processor_type'] is not None:
             _path_params['processorType'] = _params['processor_type']
 
 
@@ -764,7 +764,7 @@ class IntegrationsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['instance_id']:
+        if _params['instance_id'] is not None:
             _path_params['instanceId'] = _params['instance_id']
 
 
@@ -888,7 +888,7 @@ class IntegrationsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['instance_id']:
+        if _params['instance_id'] is not None:
             _path_params['instanceId'] = _params['instance_id']
 
 
@@ -1014,10 +1014,10 @@ class IntegrationsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['integration']:
+        if _params['integration'] is not None:
             _path_params['integration'] = _params['integration']
 
-        if _params['instance_id']:
+        if _params['instance_id'] is not None:
             _path_params['instanceId'] = _params['instance_id']
 
 
@@ -1138,7 +1138,7 @@ class IntegrationsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['integration']:
+        if _params['integration'] is not None:
             _path_params['integration'] = _params['integration']
 
 
@@ -1279,7 +1279,7 @@ class IntegrationsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['integration']:
+        if _params['integration'] is not None:
             _path_params['integration'] = _params['integration']
 
 
@@ -1433,7 +1433,7 @@ class IntegrationsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['integration']:
+        if _params['integration'] is not None:
             _path_params['integration'] = _params['integration']
 
 
@@ -1567,7 +1567,7 @@ class IntegrationsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['integration']:
+        if _params['integration'] is not None:
             _path_params['integration'] = _params['integration']
 
 
@@ -2033,10 +2033,10 @@ class IntegrationsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['instance_id']:
+        if _params['instance_id'] is not None:
             _path_params['instanceId'] = _params['instance_id']
 
-        if _params['integration']:
+        if _params['integration'] is not None:
             _path_params['integration'] = _params['integration']
 
 
@@ -2172,7 +2172,7 @@ class IntegrationsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['instance_id']:
+        if _params['instance_id'] is not None:
             _path_params['instanceId'] = _params['instance_id']
 
 
@@ -2433,7 +2433,7 @@ class IntegrationsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['instance_id']:
+            if _params['instance_id'] is not None:
                 _path_params['instanceId'] = _params['instance_id']
 
 
@@ -2551,7 +2551,7 @@ class IntegrationsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['instance_id']:
+            if _params['instance_id'] is not None:
                 _path_params['instanceId'] = _params['instance_id']
 
 
@@ -2678,7 +2678,7 @@ class IntegrationsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['instance_id']:
+            if _params['instance_id'] is not None:
                 _path_params['instanceId'] = _params['instance_id']
 
 
@@ -2808,7 +2808,7 @@ class IntegrationsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['processor_type']:
+            if _params['processor_type'] is not None:
                 _path_params['processorType'] = _params['processor_type']
 
 
@@ -2935,7 +2935,7 @@ class IntegrationsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['instance_id']:
+            if _params['instance_id'] is not None:
                 _path_params['instanceId'] = _params['instance_id']
 
 
@@ -3060,7 +3060,7 @@ class IntegrationsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['instance_id']:
+            if _params['instance_id'] is not None:
                 _path_params['instanceId'] = _params['instance_id']
 
 
@@ -3187,10 +3187,10 @@ class IntegrationsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['integration']:
+            if _params['integration'] is not None:
                 _path_params['integration'] = _params['integration']
 
-            if _params['instance_id']:
+            if _params['instance_id'] is not None:
                 _path_params['instanceId'] = _params['instance_id']
 
 
@@ -3312,7 +3312,7 @@ class IntegrationsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['integration']:
+            if _params['integration'] is not None:
                 _path_params['integration'] = _params['integration']
 
 
@@ -3454,7 +3454,7 @@ class IntegrationsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['integration']:
+            if _params['integration'] is not None:
                 _path_params['integration'] = _params['integration']
 
 
@@ -3609,7 +3609,7 @@ class IntegrationsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['integration']:
+            if _params['integration'] is not None:
                 _path_params['integration'] = _params['integration']
 
 
@@ -3744,7 +3744,7 @@ class IntegrationsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['integration']:
+            if _params['integration'] is not None:
                 _path_params['integration'] = _params['integration']
 
 
@@ -4214,10 +4214,10 @@ class IntegrationsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['instance_id']:
+            if _params['instance_id'] is not None:
                 _path_params['instanceId'] = _params['instance_id']
 
-            if _params['integration']:
+            if _params['integration'] is not None:
                 _path_params['integration'] = _params['integration']
 
 
@@ -4354,7 +4354,7 @@ class IntegrationsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['instance_id']:
+            if _params['instance_id'] is not None:
                 _path_params['instanceId'] = _params['instance_id']
 
 

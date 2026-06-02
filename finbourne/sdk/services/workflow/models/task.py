@@ -87,48 +87,48 @@ class Task(BaseModel):
         """Create an instance of Task from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of task_definition_id
         if self.task_definition_id:
-            _dict['taskDefinitionId'] = self.task_definition_id.to_dict()
+            _dict['taskDefinitionId'] = self.task_definition_id.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of task_definition_version
         if self.task_definition_version:
-            _dict['taskDefinitionVersion'] = self.task_definition_version.to_dict()
+            _dict['taskDefinitionVersion'] = self.task_definition_version.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of workflow_id
         if self.workflow_id:
-            _dict['workflowId'] = self.workflow_id.to_dict()
+            _dict['workflowId'] = self.workflow_id.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of ultimate_parent_task
         if self.ultimate_parent_task:
-            _dict['ultimateParentTask'] = self.ultimate_parent_task.to_dict()
+            _dict['ultimateParentTask'] = self.ultimate_parent_task.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of parent_task
         if self.parent_task:
-            _dict['parentTask'] = self.parent_task.to_dict()
+            _dict['parentTask'] = self.parent_task.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each item in child_tasks (list)
         _items = []
         if self.child_tasks:
             for _item in self.child_tasks:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['childTasks'] = _items
         # override the default output from pydantic by calling `to_dict()` of version
         if self.version:
-            _dict['version'] = self.version.to_dict()
+            _dict['version'] = self.version.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each item in fields (list)
         _items = []
         if self.fields:
             for _item in self.fields:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['fields'] = _items
         # override the default output from pydantic by calling `to_dict()` of stack
         if self.stack:
-            _dict['stack'] = self.stack.to_dict()
+            _dict['stack'] = self.stack.to_dict(by_alias=by_alias)
         # set to None if workflow_display_name (nullable) is None
         # and model_fields_set contains the field
         if self.workflow_display_name is None and "workflow_display_name" in self.model_fields_set:

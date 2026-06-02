@@ -51,7 +51,7 @@ class RelationalDatasetsApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def batch_delete_relational_data(self, relational_dataset_definition_scope: StrictStr, relational_dataset_definition_code: StrictStr, request_body: Dict[str, DeleteRelationalDataPointRequest], success_mode: Optional[StrictStr] = None, **kwargs) -> BatchDeleteRelationalDataResponse:
@@ -146,10 +146,10 @@ class RelationalDatasetsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['relational_dataset_definition_scope']:
+        if _params['relational_dataset_definition_scope'] is not None:
             _path_params['relationalDatasetDefinitionScope'] = _params['relational_dataset_definition_scope']
 
-        if _params['relational_dataset_definition_code']:
+        if _params['relational_dataset_definition_code'] is not None:
             _path_params['relationalDatasetDefinitionCode'] = _params['relational_dataset_definition_code']
 
 
@@ -297,10 +297,10 @@ class RelationalDatasetsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['relational_dataset_definition_scope']:
+        if _params['relational_dataset_definition_scope'] is not None:
             _path_params['relationalDatasetDefinitionScope'] = _params['relational_dataset_definition_scope']
 
-        if _params['relational_dataset_definition_code']:
+        if _params['relational_dataset_definition_code'] is not None:
             _path_params['relationalDatasetDefinitionCode'] = _params['relational_dataset_definition_code']
 
 
@@ -463,10 +463,10 @@ class RelationalDatasetsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['relational_dataset_definition_scope']:
+        if _params['relational_dataset_definition_scope'] is not None:
             _path_params['relationalDatasetDefinitionScope'] = _params['relational_dataset_definition_scope']
 
-        if _params['relational_dataset_definition_code']:
+        if _params['relational_dataset_definition_code'] is not None:
             _path_params['relationalDatasetDefinitionCode'] = _params['relational_dataset_definition_code']
 
 
@@ -631,10 +631,10 @@ class RelationalDatasetsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['relational_dataset_definition_scope']:
+            if _params['relational_dataset_definition_scope'] is not None:
                 _path_params['relationalDatasetDefinitionScope'] = _params['relational_dataset_definition_scope']
 
-            if _params['relational_dataset_definition_code']:
+            if _params['relational_dataset_definition_code'] is not None:
                 _path_params['relationalDatasetDefinitionCode'] = _params['relational_dataset_definition_code']
 
 
@@ -783,10 +783,10 @@ class RelationalDatasetsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['relational_dataset_definition_scope']:
+            if _params['relational_dataset_definition_scope'] is not None:
                 _path_params['relationalDatasetDefinitionScope'] = _params['relational_dataset_definition_scope']
 
-            if _params['relational_dataset_definition_code']:
+            if _params['relational_dataset_definition_code'] is not None:
                 _path_params['relationalDatasetDefinitionCode'] = _params['relational_dataset_definition_code']
 
 
@@ -950,10 +950,10 @@ class RelationalDatasetsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['relational_dataset_definition_scope']:
+            if _params['relational_dataset_definition_scope'] is not None:
                 _path_params['relationalDatasetDefinitionScope'] = _params['relational_dataset_definition_scope']
 
-            if _params['relational_dataset_definition_code']:
+            if _params['relational_dataset_definition_code'] is not None:
                 _path_params['relationalDatasetDefinitionCode'] = _params['relational_dataset_definition_code']
 
 

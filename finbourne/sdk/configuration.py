@@ -317,7 +317,7 @@ class Configuration:
         """
         if cls._default is None:
             cls._default = Configuration()
-        return cls._default
+        return copy.deepcopy(cls._default)
 
     @property
     def logger_file(self):
@@ -452,12 +452,14 @@ class Configuration:
                     'value': 'Bearer ' + self.access_token
                 }
             else:
-                auth['oauth2'] = {
-                    'type': 'bearer',
-                    'in': 'header',
-                    'key': 'Authorization',
-                    'value': 'Bearer ' + self.access_token.data
-                }
+                _token_data = self.access_token.data
+                if _token_data:
+                    auth['oauth2'] = {
+                        'type': 'bearer',
+                        'in': 'header',
+                        'key': 'Authorization',
+                        'value': 'Bearer ' + _token_data
+                    }
         return auth
 
     def to_debug_report(self):

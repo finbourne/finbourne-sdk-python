@@ -49,7 +49,7 @@ class VendorApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def get_core_field_mappings_for_product_entity(self, vendor_name: StrictStr, product_name: StrictStr, lusid_entity_type: StrictStr, lusid_entity_sub_type: Optional[StrictStr] = None, **kwargs) -> List[LusidField]:

@@ -67,7 +67,7 @@ class PortfolioGroupsApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def add_portfolio_to_group(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, resource_id: Optional[ResourceId] = None, **kwargs) -> PortfolioGroup:
@@ -162,10 +162,10 @@ class PortfolioGroupsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -313,10 +313,10 @@ class PortfolioGroupsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -499,10 +499,10 @@ class PortfolioGroupsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -665,7 +665,7 @@ class PortfolioGroupsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
 
@@ -810,10 +810,10 @@ class PortfolioGroupsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -966,13 +966,13 @@ class PortfolioGroupsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
-        if _params['metadata_key']:
+        if _params['metadata_key'] is not None:
             _path_params['metadataKey'] = _params['metadata_key']
 
 
@@ -1121,16 +1121,16 @@ class PortfolioGroupsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
-        if _params['portfolio_scope']:
+        if _params['portfolio_scope'] is not None:
             _path_params['portfolioScope'] = _params['portfolio_scope']
 
-        if _params['portfolio_code']:
+        if _params['portfolio_code'] is not None:
             _path_params['portfolioCode'] = _params['portfolio_code']
 
 
@@ -1258,10 +1258,10 @@ class PortfolioGroupsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -1401,16 +1401,16 @@ class PortfolioGroupsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
-        if _params['subgroup_scope']:
+        if _params['subgroup_scope'] is not None:
             _path_params['subgroupScope'] = _params['subgroup_scope']
 
-        if _params['subgroup_code']:
+        if _params['subgroup_code'] is not None:
             _path_params['subgroupCode'] = _params['subgroup_code']
 
 
@@ -1573,10 +1573,10 @@ class PortfolioGroupsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -1736,10 +1736,10 @@ class PortfolioGroupsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -1903,10 +1903,10 @@ class PortfolioGroupsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -2078,10 +2078,10 @@ class PortfolioGroupsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -2242,13 +2242,13 @@ class PortfolioGroupsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
-        if _params['metadata_key']:
+        if _params['metadata_key'] is not None:
             _path_params['metadataKey'] = _params['metadata_key']
 
 
@@ -2397,10 +2397,10 @@ class PortfolioGroupsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -2555,10 +2555,10 @@ class PortfolioGroupsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -2706,10 +2706,10 @@ class PortfolioGroupsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -2873,10 +2873,10 @@ class PortfolioGroupsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -3042,10 +3042,10 @@ class PortfolioGroupsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -3206,10 +3206,10 @@ class PortfolioGroupsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -3410,10 +3410,10 @@ class PortfolioGroupsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -3810,7 +3810,7 @@ class PortfolioGroupsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
 
@@ -3984,10 +3984,10 @@ class PortfolioGroupsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -4141,10 +4141,10 @@ class PortfolioGroupsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -4287,10 +4287,10 @@ class PortfolioGroupsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -4445,13 +4445,13 @@ class PortfolioGroupsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
-        if _params['metadata_key']:
+        if _params['metadata_key'] is not None:
             _path_params['metadataKey'] = _params['metadata_key']
 
 
@@ -4610,10 +4610,10 @@ class PortfolioGroupsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -4762,10 +4762,10 @@ class PortfolioGroupsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -4949,10 +4949,10 @@ class PortfolioGroupsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -5116,7 +5116,7 @@ class PortfolioGroupsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
 
@@ -5262,10 +5262,10 @@ class PortfolioGroupsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -5419,13 +5419,13 @@ class PortfolioGroupsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
-            if _params['metadata_key']:
+            if _params['metadata_key'] is not None:
                 _path_params['metadataKey'] = _params['metadata_key']
 
 
@@ -5575,16 +5575,16 @@ class PortfolioGroupsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
-            if _params['portfolio_scope']:
+            if _params['portfolio_scope'] is not None:
                 _path_params['portfolioScope'] = _params['portfolio_scope']
 
-            if _params['portfolio_code']:
+            if _params['portfolio_code'] is not None:
                 _path_params['portfolioCode'] = _params['portfolio_code']
 
 
@@ -5713,10 +5713,10 @@ class PortfolioGroupsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -5857,16 +5857,16 @@ class PortfolioGroupsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
-            if _params['subgroup_scope']:
+            if _params['subgroup_scope'] is not None:
                 _path_params['subgroupScope'] = _params['subgroup_scope']
 
-            if _params['subgroup_code']:
+            if _params['subgroup_code'] is not None:
                 _path_params['subgroupCode'] = _params['subgroup_code']
 
 
@@ -6030,10 +6030,10 @@ class PortfolioGroupsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -6194,10 +6194,10 @@ class PortfolioGroupsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -6362,10 +6362,10 @@ class PortfolioGroupsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -6538,10 +6538,10 @@ class PortfolioGroupsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -6703,13 +6703,13 @@ class PortfolioGroupsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
-            if _params['metadata_key']:
+            if _params['metadata_key'] is not None:
                 _path_params['metadataKey'] = _params['metadata_key']
 
 
@@ -6859,10 +6859,10 @@ class PortfolioGroupsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -7018,10 +7018,10 @@ class PortfolioGroupsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -7170,10 +7170,10 @@ class PortfolioGroupsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -7338,10 +7338,10 @@ class PortfolioGroupsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -7508,10 +7508,10 @@ class PortfolioGroupsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -7673,10 +7673,10 @@ class PortfolioGroupsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -7878,10 +7878,10 @@ class PortfolioGroupsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -8280,7 +8280,7 @@ class PortfolioGroupsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
 
@@ -8455,10 +8455,10 @@ class PortfolioGroupsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -8613,10 +8613,10 @@ class PortfolioGroupsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -8760,10 +8760,10 @@ class PortfolioGroupsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -8919,13 +8919,13 @@ class PortfolioGroupsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
-            if _params['metadata_key']:
+            if _params['metadata_key'] is not None:
                 _path_params['metadataKey'] = _params['metadata_key']
 
 

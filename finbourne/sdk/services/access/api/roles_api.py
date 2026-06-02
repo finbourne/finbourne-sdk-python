@@ -48,7 +48,7 @@ class RolesApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def add_policy_collection_to_role(self, scope: StrictStr, code: StrictStr, add_policy_collection_to_role_request: AddPolicyCollectionToRoleRequest, **kwargs) -> RoleResponse:
@@ -138,10 +138,10 @@ class RolesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -403,7 +403,7 @@ class RolesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -528,7 +528,7 @@ class RolesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -786,16 +786,16 @@ class RolesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
-        if _params['policycollectionscope']:
+        if _params['policycollectionscope'] is not None:
             _path_params['policycollectionscope'] = _params['policycollectionscope']
 
-        if _params['policycollectioncode']:
+        if _params['policycollectioncode'] is not None:
             _path_params['policycollectioncode'] = _params['policycollectioncode']
 
 
@@ -945,7 +945,7 @@ class RolesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -1105,10 +1105,10 @@ class RolesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -1372,7 +1372,7 @@ class RolesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -1498,7 +1498,7 @@ class RolesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -1758,16 +1758,16 @@ class RolesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
-            if _params['policycollectionscope']:
+            if _params['policycollectionscope'] is not None:
                 _path_params['policycollectionscope'] = _params['policycollectionscope']
 
-            if _params['policycollectioncode']:
+            if _params['policycollectioncode'] is not None:
                 _path_params['policycollectioncode'] = _params['policycollectioncode']
 
 
@@ -1918,7 +1918,7 @@ class RolesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 

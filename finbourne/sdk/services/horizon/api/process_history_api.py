@@ -52,7 +52,7 @@ class ProcessHistoryApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def create_complete_event(self, audit_complete_request: AuditCompleteRequest, **kwargs) -> AuditCompleteResponse:

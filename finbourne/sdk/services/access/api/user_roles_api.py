@@ -50,7 +50,7 @@ class UserRolesApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def add_policy_collection_to_user_role(self, userid: StrictStr, add_policy_collection_to_role_request: AddPolicyCollectionToRoleRequest, **kwargs) -> UserRoleResponse:
@@ -135,7 +135,7 @@ class UserRolesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['userid']:
+        if _params['userid'] is not None:
             _path_params['userid'] = _params['userid']
 
 
@@ -270,7 +270,7 @@ class UserRolesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['userid']:
+        if _params['userid'] is not None:
             _path_params['userid'] = _params['userid']
 
 
@@ -527,7 +527,7 @@ class UserRolesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['userid']:
+        if _params['userid'] is not None:
             _path_params['userid'] = _params['userid']
 
 
@@ -644,7 +644,7 @@ class UserRolesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['userid']:
+        if _params['userid'] is not None:
             _path_params['userid'] = _params['userid']
 
 
@@ -918,13 +918,13 @@ class UserRolesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['userid']:
+        if _params['userid'] is not None:
             _path_params['userid'] = _params['userid']
 
-        if _params['policy_collection_scope']:
+        if _params['policy_collection_scope'] is not None:
             _path_params['policyCollectionScope'] = _params['policy_collection_scope']
 
-        if _params['policy_collection_code']:
+        if _params['policy_collection_code'] is not None:
             _path_params['policyCollectionCode'] = _params['policy_collection_code']
 
 
@@ -1051,13 +1051,13 @@ class UserRolesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['userid']:
+        if _params['userid'] is not None:
             _path_params['userid'] = _params['userid']
 
-        if _params['policy_scope']:
+        if _params['policy_scope'] is not None:
             _path_params['policyScope'] = _params['policy_scope']
 
-        if _params['policy_code']:
+        if _params['policy_code'] is not None:
             _path_params['policyCode'] = _params['policy_code']
 
 
@@ -1179,7 +1179,7 @@ class UserRolesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['userid']:
+        if _params['userid'] is not None:
             _path_params['userid'] = _params['userid']
 
 
@@ -1319,7 +1319,7 @@ class UserRolesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['userid']:
+            if _params['userid'] is not None:
                 _path_params['userid'] = _params['userid']
 
 
@@ -1455,7 +1455,7 @@ class UserRolesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['userid']:
+            if _params['userid'] is not None:
                 _path_params['userid'] = _params['userid']
 
 
@@ -1714,7 +1714,7 @@ class UserRolesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['userid']:
+            if _params['userid'] is not None:
                 _path_params['userid'] = _params['userid']
 
 
@@ -1832,7 +1832,7 @@ class UserRolesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['userid']:
+            if _params['userid'] is not None:
                 _path_params['userid'] = _params['userid']
 
 
@@ -2108,13 +2108,13 @@ class UserRolesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['userid']:
+            if _params['userid'] is not None:
                 _path_params['userid'] = _params['userid']
 
-            if _params['policy_collection_scope']:
+            if _params['policy_collection_scope'] is not None:
                 _path_params['policyCollectionScope'] = _params['policy_collection_scope']
 
-            if _params['policy_collection_code']:
+            if _params['policy_collection_code'] is not None:
                 _path_params['policyCollectionCode'] = _params['policy_collection_code']
 
 
@@ -2242,13 +2242,13 @@ class UserRolesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['userid']:
+            if _params['userid'] is not None:
                 _path_params['userid'] = _params['userid']
 
-            if _params['policy_scope']:
+            if _params['policy_scope'] is not None:
                 _path_params['policyScope'] = _params['policy_scope']
 
-            if _params['policy_code']:
+            if _params['policy_code'] is not None:
                 _path_params['policyCode'] = _params['policy_code']
 
 
@@ -2371,7 +2371,7 @@ class UserRolesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['userid']:
+            if _params['userid'] is not None:
                 _path_params['userid'] = _params['userid']
 
 

@@ -66,39 +66,39 @@ class ComplianceSummaryRuleResult(BaseModel):
         """Create an instance of ComplianceSummaryRuleResult from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of rule_id
         if self.rule_id:
-            _dict['ruleId'] = self.rule_id.to_dict()
+            _dict['ruleId'] = self.rule_id.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of template_id
         if self.template_id:
-            _dict['templateId'] = self.template_id.to_dict()
+            _dict['templateId'] = self.template_id.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each item in affected_portfolios (list)
         _items = []
         if self.affected_portfolios:
             for _item in self.affected_portfolios:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['affectedPortfolios'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in affected_orders (list)
         _items = []
         if self.affected_orders:
             for _item in self.affected_orders:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['affectedOrders'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in rule_breakdown (list)
         _items = []
         if self.rule_breakdown:
             for _item in self.rule_breakdown:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['ruleBreakdown'] = _items
         return _dict
 

@@ -50,7 +50,7 @@ class CustomEntityDefinitionsApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def create_custom_entity_definition(self, custom_entity_definition_request: CustomEntityDefinitionRequest, **kwargs) -> CustomEntityDefinition:
@@ -257,7 +257,7 @@ class CustomEntityDefinitionsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['entity_type']:
+        if _params['entity_type'] is not None:
             _path_params['entityType'] = _params['entity_type']
 
 
@@ -382,7 +382,7 @@ class CustomEntityDefinitionsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['entity_type']:
+        if _params['entity_type'] is not None:
             _path_params['entityType'] = _params['entity_type']
 
 
@@ -660,7 +660,7 @@ class CustomEntityDefinitionsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['entity_type']:
+        if _params['entity_type'] is not None:
             _path_params['entityType'] = _params['entity_type']
 
 
@@ -923,7 +923,7 @@ class CustomEntityDefinitionsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['entity_type']:
+            if _params['entity_type'] is not None:
                 _path_params['entityType'] = _params['entity_type']
 
 
@@ -1049,7 +1049,7 @@ class CustomEntityDefinitionsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['entity_type']:
+            if _params['entity_type'] is not None:
                 _path_params['entityType'] = _params['entity_type']
 
 
@@ -1329,7 +1329,7 @@ class CustomEntityDefinitionsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['entity_type']:
+            if _params['entity_type'] is not None:
                 _path_params['entityType'] = _params['entity_type']
 
 

@@ -59,9 +59,9 @@ class GroupReconciliationDefinitionPortfolioEntityIds(BaseModel):
         """Create an instance of GroupReconciliationDefinitionPortfolioEntityIds from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
@@ -71,14 +71,14 @@ class GroupReconciliationDefinitionPortfolioEntityIds(BaseModel):
         if self.left:
             for _item in self.left:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['left'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in right (list)
         _items = []
         if self.right:
             for _item in self.right:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['right'] = _items
         return _dict
 

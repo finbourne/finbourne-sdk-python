@@ -74,37 +74,37 @@ class CreateGroupReconciliationDefinitionRequest(BaseModel):
         """Create an instance of CreateGroupReconciliationDefinitionRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of id
         if self.id:
-            _dict['id'] = self.id.to_dict()
+            _dict['id'] = self.id.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of portfolio_entity_ids
         if self.portfolio_entity_ids:
-            _dict['portfolioEntityIds'] = self.portfolio_entity_ids.to_dict()
+            _dict['portfolioEntityIds'] = self.portfolio_entity_ids.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of recipe_ids
         if self.recipe_ids:
-            _dict['recipeIds'] = self.recipe_ids.to_dict()
+            _dict['recipeIds'] = self.recipe_ids.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of currencies
         if self.currencies:
-            _dict['currencies'] = self.currencies.to_dict()
+            _dict['currencies'] = self.currencies.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of transaction_date_windows
         if self.transaction_date_windows:
-            _dict['transactionDateWindows'] = self.transaction_date_windows.to_dict()
+            _dict['transactionDateWindows'] = self.transaction_date_windows.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of comparison_ruleset_ids
         if self.comparison_ruleset_ids:
-            _dict['comparisonRulesetIds'] = self.comparison_ruleset_ids.to_dict()
+            _dict['comparisonRulesetIds'] = self.comparison_ruleset_ids.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of break_code_source
         if self.break_code_source:
-            _dict['breakCodeSource'] = self.break_code_source.to_dict()
+            _dict['breakCodeSource'] = self.break_code_source.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of primary_schedule
         if self.primary_schedule:
-            _dict['primarySchedule'] = self.primary_schedule.to_dict()
+            _dict['primarySchedule'] = self.primary_schedule.to_dict(by_alias=by_alias)
         # set to None if description (nullable) is None
         # and model_fields_set contains the field
         if self.description is None and "description" in self.model_fields_set:

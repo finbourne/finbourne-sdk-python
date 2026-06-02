@@ -61,22 +61,22 @@ class RelationalDataSeriesResponse(BaseModel):
         """Create an instance of RelationalDataSeriesResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of applicable_entity
         if self.applicable_entity:
-            _dict['applicableEntity'] = self.applicable_entity.to_dict()
+            _dict['applicableEntity'] = self.applicable_entity.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each value in series_identifiers (dict)
         _field_dict = {}
         if self.series_identifiers:
             for _key in self.series_identifiers:
                 if self.series_identifiers[_key]:
-                    _field_dict[_key] = self.series_identifiers[_key].to_dict()
+                    _field_dict[_key] = self.series_identifiers[_key].to_dict(by_alias=by_alias)
             _dict['seriesIdentifiers'] = _field_dict
         return _dict
 

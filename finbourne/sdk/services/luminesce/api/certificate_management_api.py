@@ -49,7 +49,7 @@ class CertificateManagementApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def download_certificate(self, type: Optional[str] = None, file_type: Optional[str] = None, may_auto_create: Optional[bool] = None, **kwargs) -> bytes:

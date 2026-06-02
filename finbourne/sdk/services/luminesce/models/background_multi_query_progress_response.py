@@ -63,9 +63,9 @@ class BackgroundMultiQueryProgressResponse(BaseModel):
         """Create an instance of BackgroundMultiQueryProgressResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
@@ -75,14 +75,14 @@ class BackgroundMultiQueryProgressResponse(BaseModel):
         if self.feedback:
             for _item in self.feedback:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['feedback'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in queries (list)
         _items = []
         if self.queries:
             for _item in self.queries:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['queries'] = _items
         # set to None if progress (nullable) is None
         # and model_fields_set contains the field

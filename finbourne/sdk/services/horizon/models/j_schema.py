@@ -118,9 +118,9 @@ class JSchema(BaseModel):
         """Create an instance of JSchema from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                             "properties",
@@ -140,67 +140,67 @@ class JSchema(BaseModel):
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of ref
         if self.ref:
-            _dict['ref'] = self.ref.to_dict()
+            _dict['ref'] = self.ref.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each value in properties (dict)
         _field_dict = {}
         if self.properties:
             for _key in self.properties:
                 if self.properties[_key]:
-                    _field_dict[_key] = self.properties[_key].to_dict()
+                    _field_dict[_key] = self.properties[_key].to_dict(by_alias=by_alias)
             _dict['properties'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of each item in items (list)
         _items = []
         if self.items:
             for _item in self.items:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['items'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in all_of (list)
         _items = []
         if self.all_of:
             for _item in self.all_of:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['allOf'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in any_of (list)
         _items = []
         if self.any_of:
             for _item in self.any_of:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['anyOf'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in one_of (list)
         _items = []
         if self.one_of:
             for _item in self.one_of:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['oneOf'] = _items
         # override the default output from pydantic by calling `to_dict()` of var_if
         if self.var_if:
-            _dict['if'] = self.var_if.to_dict()
+            _dict['if'] = self.var_if.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of then
         if self.then:
-            _dict['then'] = self.then.to_dict()
+            _dict['then'] = self.then.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of var_else
         if self.var_else:
-            _dict['else'] = self.var_else.to_dict()
+            _dict['else'] = self.var_else.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of var_not
         if self.var_not:
-            _dict['not'] = self.var_not.to_dict()
+            _dict['not'] = self.var_not.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of contains
         if self.contains:
-            _dict['contains'] = self.contains.to_dict()
+            _dict['contains'] = self.contains.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of property_names
         if self.property_names:
-            _dict['propertyNames'] = self.property_names.to_dict()
+            _dict['propertyNames'] = self.property_names.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each value in dependent_required (dict of array)
         _field_dict_of_array = {}
         if self.dependent_required:
             for _key in self.dependent_required:
                 if (_items_for_key := self.dependent_required[_key]):
                     _field_dict_of_array[_key] = [
-                        _item.to_dict() for _item in _items_for_key
+                        _item.to_dict(by_alias=by_alias) for _item in _items_for_key
                     ]
             _dict['dependentRequired'] = _field_dict_of_array
         # override the default output from pydantic by calling `to_dict()` of each value in dependent_schemas (dict)
@@ -208,27 +208,27 @@ class JSchema(BaseModel):
         if self.dependent_schemas:
             for _key in self.dependent_schemas:
                 if self.dependent_schemas[_key]:
-                    _field_dict[_key] = self.dependent_schemas[_key].to_dict()
+                    _field_dict[_key] = self.dependent_schemas[_key].to_dict(by_alias=by_alias)
             _dict['dependentSchemas'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of each value in pattern_properties (dict)
         _field_dict = {}
         if self.pattern_properties:
             for _key in self.pattern_properties:
                 if self.pattern_properties[_key]:
-                    _field_dict[_key] = self.pattern_properties[_key].to_dict()
+                    _field_dict[_key] = self.pattern_properties[_key].to_dict(by_alias=by_alias)
             _dict['patternProperties'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of additional_properties
         if self.additional_properties:
-            _dict['additionalProperties'] = self.additional_properties.to_dict()
+            _dict['additionalProperties'] = self.additional_properties.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of unevaluated_properties
         if self.unevaluated_properties:
-            _dict['unevaluatedProperties'] = self.unevaluated_properties.to_dict()
+            _dict['unevaluatedProperties'] = self.unevaluated_properties.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of additional_items
         if self.additional_items:
-            _dict['additionalItems'] = self.additional_items.to_dict()
+            _dict['additionalItems'] = self.additional_items.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of unevaluated_items
         if self.unevaluated_items:
-            _dict['unevaluatedItems'] = self.unevaluated_items.to_dict()
+            _dict['unevaluatedItems'] = self.unevaluated_items.to_dict(by_alias=by_alias)
         # set to None if schema_version (nullable) is None
         # and model_fields_set contains the field
         if self.schema_version is None and "schema_version" in self.model_fields_set:

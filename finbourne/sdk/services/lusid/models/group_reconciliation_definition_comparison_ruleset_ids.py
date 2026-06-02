@@ -61,25 +61,25 @@ class GroupReconciliationDefinitionComparisonRulesetIds(BaseModel):
         """Create an instance of GroupReconciliationDefinitionComparisonRulesetIds from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of transaction_reconciliation
         if self.transaction_reconciliation:
-            _dict['transactionReconciliation'] = self.transaction_reconciliation.to_dict()
+            _dict['transactionReconciliation'] = self.transaction_reconciliation.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of holding_reconciliation
         if self.holding_reconciliation:
-            _dict['holdingReconciliation'] = self.holding_reconciliation.to_dict()
+            _dict['holdingReconciliation'] = self.holding_reconciliation.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of valuation_reconciliation
         if self.valuation_reconciliation:
-            _dict['valuationReconciliation'] = self.valuation_reconciliation.to_dict()
+            _dict['valuationReconciliation'] = self.valuation_reconciliation.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of cash_holding_reconciliation
         if self.cash_holding_reconciliation:
-            _dict['cashHoldingReconciliation'] = self.cash_holding_reconciliation.to_dict()
+            _dict['cashHoldingReconciliation'] = self.cash_holding_reconciliation.to_dict(by_alias=by_alias)
         return _dict
 
     @classmethod

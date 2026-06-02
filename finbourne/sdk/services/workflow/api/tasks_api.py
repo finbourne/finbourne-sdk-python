@@ -54,7 +54,7 @@ class TasksApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def batch_update_tasks(self, batch_update_tasks_request: Optional[BatchUpdateTasksRequest] = None, **kwargs) -> BatchUpdateTasksResponse:
@@ -390,7 +390,7 @@ class TasksApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['id']:
+        if _params['id'] is not None:
             _path_params['id'] = _params['id']
 
 
@@ -640,7 +640,7 @@ class TasksApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['id']:
+        if _params['id'] is not None:
             _path_params['id'] = _params['id']
 
 
@@ -770,7 +770,7 @@ class TasksApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['id']:
+        if _params['id'] is not None:
             _path_params['id'] = _params['id']
 
 
@@ -1060,7 +1060,7 @@ class TasksApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['id']:
+        if _params['id'] is not None:
             _path_params['id'] = _params['id']
 
 
@@ -1457,7 +1457,7 @@ class TasksApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['id']:
+            if _params['id'] is not None:
                 _path_params['id'] = _params['id']
 
 
@@ -1709,7 +1709,7 @@ class TasksApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['id']:
+            if _params['id'] is not None:
                 _path_params['id'] = _params['id']
 
 
@@ -1840,7 +1840,7 @@ class TasksApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['id']:
+            if _params['id'] is not None:
                 _path_params['id'] = _params['id']
 
 
@@ -2132,7 +2132,7 @@ class TasksApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['id']:
+            if _params['id'] is not None:
                 _path_params['id'] = _params['id']
 
 

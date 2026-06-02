@@ -64,19 +64,19 @@ class CreateSubscription(BaseModel):
         """Create an instance of CreateSubscription from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of id
         if self.id:
-            _dict['id'] = self.id.to_dict()
+            _dict['id'] = self.id.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of matching_pattern
         if self.matching_pattern:
-            _dict['matchingPattern'] = self.matching_pattern.to_dict()
+            _dict['matchingPattern'] = self.matching_pattern.to_dict(by_alias=by_alias)
         # set to None if description (nullable) is None
         # and model_fields_set contains the field
         if self.description is None and "description" in self.model_fields_set:

@@ -77,9 +77,9 @@ class TransactionSettlementInstruction(BaseModel):
         """Create an instance of TransactionSettlementInstruction from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
@@ -89,24 +89,24 @@ class TransactionSettlementInstruction(BaseModel):
         if self.sub_holding_key_overrides:
             for _key in self.sub_holding_key_overrides:
                 if self.sub_holding_key_overrides[_key]:
-                    _field_dict[_key] = self.sub_holding_key_overrides[_key].to_dict()
+                    _field_dict[_key] = self.sub_holding_key_overrides[_key].to_dict(by_alias=by_alias)
             _dict['subHoldingKeyOverrides'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of custodian_account_override
         if self.custodian_account_override:
-            _dict['custodianAccountOverride'] = self.custodian_account_override.to_dict()
+            _dict['custodianAccountOverride'] = self.custodian_account_override.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of settlement_in_lieu
         if self.settlement_in_lieu:
-            _dict['settlementInLieu'] = self.settlement_in_lieu.to_dict()
+            _dict['settlementInLieu'] = self.settlement_in_lieu.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each value in properties (dict)
         _field_dict = {}
         if self.properties:
             for _key in self.properties:
                 if self.properties[_key]:
-                    _field_dict[_key] = self.properties[_key].to_dict()
+                    _field_dict[_key] = self.properties[_key].to_dict(by_alias=by_alias)
             _dict['properties'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of version
         if self.version:
-            _dict['version'] = self.version.to_dict()
+            _dict['version'] = self.version.to_dict(by_alias=by_alias)
         # set to None if contractual_settlement_date (nullable) is None
         # and model_fields_set contains the field
         if self.contractual_settlement_date is None and "contractual_settlement_date" in self.model_fields_set:

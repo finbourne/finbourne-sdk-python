@@ -51,7 +51,7 @@ class SystemConfigurationApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def create_configuration_transaction_type(self, transaction_configuration_data_request: Optional[TransactionConfigurationDataRequest] = None, **kwargs) -> TransactionSetConfigurationData:
@@ -385,7 +385,7 @@ class SystemConfigurationApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['source']:
+        if _params['source'] is not None:
             _path_params['source'] = _params['source']
 
 
@@ -510,7 +510,7 @@ class SystemConfigurationApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['source']:
+        if _params['source'] is not None:
             _path_params['source'] = _params['source']
 
 
@@ -891,7 +891,7 @@ class SystemConfigurationApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['source']:
+        if _params['source'] is not None:
             _path_params['source'] = _params['source']
 
 
@@ -1282,7 +1282,7 @@ class SystemConfigurationApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['source']:
+            if _params['source'] is not None:
                 _path_params['source'] = _params['source']
 
 
@@ -1408,7 +1408,7 @@ class SystemConfigurationApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['source']:
+            if _params['source'] is not None:
                 _path_params['source'] = _params['source']
 
 
@@ -1792,7 +1792,7 @@ class SystemConfigurationApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['source']:
+            if _params['source'] is not None:
                 _path_params['source'] = _params['source']
 
 

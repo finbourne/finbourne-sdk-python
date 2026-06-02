@@ -46,7 +46,7 @@ class ApplicationsApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def create_application(self, create_application_request: Optional[CreateApplicationRequest] = None, **kwargs) -> OAuthApplication:
@@ -253,7 +253,7 @@ class ApplicationsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['id']:
+        if _params['id'] is not None:
             _path_params['id'] = _params['id']
 
 
@@ -375,7 +375,7 @@ class ApplicationsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['id']:
+        if _params['id'] is not None:
             _path_params['id'] = _params['id']
 
 
@@ -610,7 +610,7 @@ class ApplicationsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['id']:
+        if _params['id'] is not None:
             _path_params['id'] = _params['id']
 
 
@@ -863,7 +863,7 @@ class ApplicationsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['id']:
+            if _params['id'] is not None:
                 _path_params['id'] = _params['id']
 
 
@@ -986,7 +986,7 @@ class ApplicationsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['id']:
+            if _params['id'] is not None:
                 _path_params['id'] = _params['id']
 
 
@@ -1223,7 +1223,7 @@ class ApplicationsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['id']:
+            if _params['id'] is not None:
                 _path_params['id'] = _params['id']
 
 

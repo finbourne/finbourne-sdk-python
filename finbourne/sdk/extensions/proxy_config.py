@@ -1,4 +1,5 @@
 from urllib3 import make_headers
+from urllib.parse import urlsplit, urlunsplit
 from typing import Dict
 
 
@@ -37,6 +38,17 @@ class ProxyConfig:
     @property
     def password(self):
         return self.__password
+
+    def _masked_address(self):
+        parts = urlsplit(self.__address)
+        netloc = parts.netloc
+        if "@" in netloc:
+            host = netloc.rsplit("@", 1)[1]
+            netloc = f"****@{host}"
+        return urlunsplit(parts._replace(netloc=netloc))
+
+    def __repr__(self):
+        return f"ProxyConfig(address={self._masked_address()!r}, username={self.__username!r}, password='****')"
 
     def format_proxy_schema(self):
         """

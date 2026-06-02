@@ -81,44 +81,44 @@ class TransactionRequest(BaseModel):
         """Create an instance of TransactionRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of transaction_price
         if self.transaction_price:
-            _dict['transactionPrice'] = self.transaction_price.to_dict()
+            _dict['transactionPrice'] = self.transaction_price.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of total_consideration
         if self.total_consideration:
-            _dict['totalConsideration'] = self.total_consideration.to_dict()
+            _dict['totalConsideration'] = self.total_consideration.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each value in properties (dict)
         _field_dict = {}
         if self.properties:
             for _key in self.properties:
                 if self.properties[_key]:
-                    _field_dict[_key] = self.properties[_key].to_dict()
+                    _field_dict[_key] = self.properties[_key].to_dict(by_alias=by_alias)
             _dict['properties'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of otc_confirmation
         if self.otc_confirmation:
-            _dict['otcConfirmation'] = self.otc_confirmation.to_dict()
+            _dict['otcConfirmation'] = self.otc_confirmation.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of order_id
         if self.order_id:
-            _dict['orderId'] = self.order_id.to_dict()
+            _dict['orderId'] = self.order_id.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of allocation_id
         if self.allocation_id:
-            _dict['allocationId'] = self.allocation_id.to_dict()
+            _dict['allocationId'] = self.allocation_id.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of custodian_account_id
         if self.custodian_account_id:
-            _dict['custodianAccountId'] = self.custodian_account_id.to_dict()
+            _dict['custodianAccountId'] = self.custodian_account_id.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each item in strategy_tag (list)
         _items = []
         if self.strategy_tag:
             for _item in self.strategy_tag:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['strategyTag'] = _items
         # set to None if exchange_rate (nullable) is None
         # and model_fields_set contains the field

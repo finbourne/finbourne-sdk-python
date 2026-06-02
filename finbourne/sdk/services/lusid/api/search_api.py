@@ -49,7 +49,7 @@ class SearchApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def instruments_search(self, instrument_search_property: List[InstrumentSearchProperty], mastered_effective_at: Optional[StrictStr] = None, mastered_only: Optional[bool] = None, scope: Optional[StrictStr] = None, **kwargs) -> List[InstrumentMatch]:

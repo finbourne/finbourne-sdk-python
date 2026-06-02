@@ -50,7 +50,7 @@ class RelationshipDefinitionsApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def create_relationship_definition(self, create_relationship_definition_request: CreateRelationshipDefinitionRequest, **kwargs) -> RelationshipDefinition:
@@ -262,10 +262,10 @@ class RelationshipDefinitionsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -395,10 +395,10 @@ class RelationshipDefinitionsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -690,10 +690,10 @@ class RelationshipDefinitionsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -961,10 +961,10 @@ class RelationshipDefinitionsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -1095,10 +1095,10 @@ class RelationshipDefinitionsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -1392,10 +1392,10 @@ class RelationshipDefinitionsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 

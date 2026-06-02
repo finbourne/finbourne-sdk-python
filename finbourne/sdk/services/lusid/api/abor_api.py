@@ -63,7 +63,7 @@ class AborApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def add_diary_entry(self, scope: StrictStr, code: StrictStr, diary_entry_request: DiaryEntryRequest, **kwargs) -> DiaryEntry:
@@ -153,10 +153,10 @@ class AborApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -296,10 +296,10 @@ class AborApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -434,7 +434,7 @@ class AborApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
 
@@ -569,10 +569,10 @@ class AborApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -702,13 +702,13 @@ class AborApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
-        if _params['diary_entry_code']:
+        if _params['diary_entry_code'] is not None:
             _path_params['diaryEntryCode'] = _params['diary_entry_code']
 
 
@@ -848,10 +848,10 @@ class AborApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -999,10 +999,10 @@ class AborApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -1161,10 +1161,10 @@ class AborApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -1339,10 +1339,10 @@ class AborApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -1700,10 +1700,10 @@ class AborApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -1859,10 +1859,10 @@ class AborApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -2002,10 +2002,10 @@ class AborApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -2145,10 +2145,10 @@ class AborApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -2288,10 +2288,10 @@ class AborApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -2436,10 +2436,10 @@ class AborApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -2580,10 +2580,10 @@ class AborApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -2719,7 +2719,7 @@ class AborApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
 
@@ -2855,10 +2855,10 @@ class AborApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -2989,13 +2989,13 @@ class AborApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
-            if _params['diary_entry_code']:
+            if _params['diary_entry_code'] is not None:
                 _path_params['diaryEntryCode'] = _params['diary_entry_code']
 
 
@@ -3136,10 +3136,10 @@ class AborApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -3288,10 +3288,10 @@ class AborApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -3451,10 +3451,10 @@ class AborApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -3630,10 +3630,10 @@ class AborApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -3993,10 +3993,10 @@ class AborApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -4153,10 +4153,10 @@ class AborApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -4297,10 +4297,10 @@ class AborApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -4441,10 +4441,10 @@ class AborApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -4585,10 +4585,10 @@ class AborApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 

@@ -79,9 +79,9 @@ class FileReaderBuilderDef(BaseModel):
         """Create an instance of FileReaderBuilderDef from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
@@ -91,33 +91,33 @@ class FileReaderBuilderDef(BaseModel):
         if self.columns:
             for _item in self.columns:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['columns'] = _items
         # override the default output from pydantic by calling `to_dict()` of source
         if self.source:
-            _dict['source'] = self.source.to_dict()
+            _dict['source'] = self.source.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each item in available_sources (list)
         _items = []
         if self.available_sources:
             for _item in self.available_sources:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['availableSources'] = _items
         # override the default output from pydantic by calling `to_dict()` of csv
         if self.csv:
-            _dict['csv'] = self.csv.to_dict()
+            _dict['csv'] = self.csv.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of excel
         if self.excel:
-            _dict['excel'] = self.excel.to_dict()
+            _dict['excel'] = self.excel.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of sq_lite
         if self.sq_lite:
-            _dict['sqLite'] = self.sq_lite.to_dict()
+            _dict['sqLite'] = self.sq_lite.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of xml
         if self.xml:
-            _dict['xml'] = self.xml.to_dict()
+            _dict['xml'] = self.xml.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of parquet
         if self.parquet:
-            _dict['parquet'] = self.parquet.to_dict()
+            _dict['parquet'] = self.parquet.to_dict(by_alias=by_alias)
         # set to None if columns (nullable) is None
         # and model_fields_set contains the field
         if self.columns is None and "columns" in self.model_fields_set:

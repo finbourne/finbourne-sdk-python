@@ -46,7 +46,7 @@ class IdentityLogsApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def list_logs(self, okta_since: Optional[datetime] = None, okta_until: Optional[datetime] = None, okta_filter: Optional[StrictStr] = None, okta_query: Optional[StrictStr] = None, okta_limit: Optional[int] = None, okta_sort_order: Optional[StrictStr] = None, okta_after: Optional[StrictStr] = None, **kwargs) -> ResourceListOfSystemLog:

@@ -45,7 +45,7 @@ class EventTypesApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def get_event_type(self, event_type: StrictStr, **kwargs) -> EventTypeSchema:
@@ -123,7 +123,7 @@ class EventTypesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['event_type']:
+        if _params['event_type'] is not None:
             _path_params['eventType'] = _params['event_type']
 
 
@@ -357,7 +357,7 @@ class EventTypesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['event_type']:
+            if _params['event_type'] is not None:
                 _path_params['eventType'] = _params['event_type']
 
 

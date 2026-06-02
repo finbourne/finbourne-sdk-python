@@ -61,9 +61,9 @@ class ResultDataSchema(BaseModel):
         """Create an instance of ResultDataSchema from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
@@ -73,21 +73,21 @@ class ResultDataSchema(BaseModel):
         if self.node_value_schema:
             for _key in self.node_value_schema:
                 if self.node_value_schema[_key]:
-                    _field_dict[_key] = self.node_value_schema[_key].to_dict()
+                    _field_dict[_key] = self.node_value_schema[_key].to_dict(by_alias=by_alias)
             _dict['nodeValueSchema'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of each value in property_schema (dict)
         _field_dict = {}
         if self.property_schema:
             for _key in self.property_schema:
                 if self.property_schema[_key]:
-                    _field_dict[_key] = self.property_schema[_key].to_dict()
+                    _field_dict[_key] = self.property_schema[_key].to_dict(by_alias=by_alias)
             _dict['propertySchema'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of each value in address_schema (dict)
         _field_dict = {}
         if self.address_schema:
             for _key in self.address_schema:
                 if self.address_schema[_key]:
-                    _field_dict[_key] = self.address_schema[_key].to_dict()
+                    _field_dict[_key] = self.address_schema[_key].to_dict(by_alias=by_alias)
             _dict['addressSchema'] = _field_dict
         # set to None if node_value_schema (nullable) is None
         # and model_fields_set contains the field

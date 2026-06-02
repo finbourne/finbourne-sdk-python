@@ -526,10 +526,10 @@ class SyncApiClient:
         if collection_formats is None:
             collection_formats = {}
         for k, v in params.items() if isinstance(params, dict) else params:  # noqa: E501
-            if isinstance(v, (int, float)):
-                v = str(v)
             if isinstance(v, bool):
                 v = str(v).lower()
+            elif isinstance(v, (int, float)):
+                v = str(v)
             if isinstance(v, dict):
                 v = json.dumps(v)
 

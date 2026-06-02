@@ -60,19 +60,19 @@ class ManualEvent(BaseModel):
         """Create an instance of ManualEvent from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of header
         if self.header:
-            _dict['header'] = self.header.to_dict()
+            _dict['header'] = self.header.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of body
         if self.body:
-            _dict['body'] = self.body.to_dict()
+            _dict['body'] = self.body.to_dict(by_alias=by_alias)
         return _dict
 
     @classmethod

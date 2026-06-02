@@ -70,36 +70,36 @@ class BlockAndOrdersRequest(BaseModel):
         """Create an instance of BlockAndOrdersRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of block_id
         if self.block_id:
-            _dict['blockId'] = self.block_id.to_dict()
+            _dict['blockId'] = self.block_id.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each item in orders (list)
         _items = []
         if self.orders:
             for _item in self.orders:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['orders'] = _items
         # override the default output from pydantic by calling `to_dict()` of each value in block_properties (dict)
         _field_dict = {}
         if self.block_properties:
             for _key in self.block_properties:
                 if self.block_properties[_key]:
-                    _field_dict[_key] = self.block_properties[_key].to_dict()
+                    _field_dict[_key] = self.block_properties[_key].to_dict(by_alias=by_alias)
             _dict['blockProperties'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of limit_price
         if self.limit_price:
-            _dict['limitPrice'] = self.limit_price.to_dict()
+            _dict['limitPrice'] = self.limit_price.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of stop_price
         if self.stop_price:
-            _dict['stopPrice'] = self.stop_price.to_dict()
+            _dict['stopPrice'] = self.stop_price.to_dict(by_alias=by_alias)
         # set to None if block_properties (nullable) is None
         # and model_fields_set contains the field
         if self.block_properties is None and "block_properties" in self.model_fields_set:

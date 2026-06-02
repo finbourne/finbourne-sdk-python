@@ -138,9 +138,9 @@ class CapFloor(LusidInstrument):
         """Create an instance of CapFloor from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                             "additional_properties"
@@ -148,17 +148,17 @@ class CapFloor(LusidInstrument):
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of underlying_floating_leg
         if self.underlying_floating_leg:
-            _dict['underlyingFloatingLeg'] = self.underlying_floating_leg.to_dict()
+            _dict['underlyingFloatingLeg'] = self.underlying_floating_leg.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each item in additional_payments (list)
         _items = []
         if self.additional_payments:
             for _item in self.additional_payments:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['additionalPayments'] = _items
         # override the default output from pydantic by calling `to_dict()` of time_zone_conventions
         if self.time_zone_conventions:
-            _dict['timeZoneConventions'] = self.time_zone_conventions.to_dict()
+            _dict['timeZoneConventions'] = self.time_zone_conventions.to_dict(by_alias=by_alias)
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():

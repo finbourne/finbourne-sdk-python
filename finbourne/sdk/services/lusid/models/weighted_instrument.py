@@ -63,19 +63,19 @@ class WeightedInstrument(BaseModel):
         """Create an instance of WeightedInstrument from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of instrument
         if self.instrument:
-            _dict['instrument'] = self.instrument.to_dict()
+            _dict['instrument'] = self.instrument.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of in_line_lookup_identifiers
         if self.in_line_lookup_identifiers:
-            _dict['inLineLookupIdentifiers'] = self.in_line_lookup_identifiers.to_dict()
+            _dict['inLineLookupIdentifiers'] = self.in_line_lookup_identifiers.to_dict(by_alias=by_alias)
         # set to None if holding_identifier (nullable) is None
         # and model_fields_set contains the field
         if self.holding_identifier is None and "holding_identifier" in self.model_fields_set:

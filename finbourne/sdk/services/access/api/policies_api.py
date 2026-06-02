@@ -58,7 +58,7 @@ class PoliciesApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def add_to_policy_collection(self, code: StrictStr, add_to_policy_collection_request: AddToPolicyCollectionRequest, scope: Optional[StrictStr] = None, **kwargs) -> PolicyCollectionResponse:
@@ -148,7 +148,7 @@ class PoliciesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -540,7 +540,7 @@ class PoliciesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -665,7 +665,7 @@ class PoliciesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -1052,7 +1052,7 @@ class PoliciesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -1186,7 +1186,7 @@ class PoliciesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -1847,7 +1847,7 @@ class PoliciesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -1990,7 +1990,7 @@ class PoliciesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -2133,7 +2133,7 @@ class PoliciesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -2281,7 +2281,7 @@ class PoliciesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -2676,7 +2676,7 @@ class PoliciesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -2802,7 +2802,7 @@ class PoliciesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -3192,7 +3192,7 @@ class PoliciesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -3327,7 +3327,7 @@ class PoliciesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -3993,7 +3993,7 @@ class PoliciesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -4137,7 +4137,7 @@ class PoliciesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -4281,7 +4281,7 @@ class PoliciesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 

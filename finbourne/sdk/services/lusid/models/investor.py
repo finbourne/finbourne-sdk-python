@@ -63,19 +63,19 @@ class Investor(BaseModel):
         """Create an instance of Investor from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of person
         if self.person:
-            _dict['person'] = self.person.to_dict()
+            _dict['person'] = self.person.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of legal_entity
         if self.legal_entity:
-            _dict['legalEntity'] = self.legal_entity.to_dict()
+            _dict['legalEntity'] = self.legal_entity.to_dict(by_alias=by_alias)
         # set to None if investor_type (nullable) is None
         # and model_fields_set contains the field
         if self.investor_type is None and "investor_type" in self.model_fields_set:

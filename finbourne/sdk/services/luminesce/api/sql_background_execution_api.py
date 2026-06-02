@@ -49,7 +49,7 @@ class SqlBackgroundExecutionApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def cancel_query(self, execution_id: StrictStr, **kwargs) -> BackgroundQueryCancelResponse:
@@ -129,7 +129,7 @@ class SqlBackgroundExecutionApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['execution_id']:
+        if _params['execution_id'] is not None:
             _path_params['executionId'] = _params['execution_id']
 
 
@@ -303,7 +303,7 @@ class SqlBackgroundExecutionApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['execution_id']:
+        if _params['execution_id'] is not None:
             _path_params['executionId'] = _params['execution_id']
 
 
@@ -487,7 +487,7 @@ class SqlBackgroundExecutionApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['execution_id']:
+        if _params['execution_id'] is not None:
             _path_params['executionId'] = _params['execution_id']
 
 
@@ -656,7 +656,7 @@ class SqlBackgroundExecutionApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['execution_id']:
+        if _params['execution_id'] is not None:
             _path_params['executionId'] = _params['execution_id']
 
 
@@ -836,7 +836,7 @@ class SqlBackgroundExecutionApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['execution_id']:
+        if _params['execution_id'] is not None:
             _path_params['executionId'] = _params['execution_id']
 
 
@@ -1018,7 +1018,7 @@ class SqlBackgroundExecutionApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['execution_id']:
+        if _params['execution_id'] is not None:
             _path_params['executionId'] = _params['execution_id']
 
 
@@ -1203,7 +1203,7 @@ class SqlBackgroundExecutionApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['execution_id']:
+        if _params['execution_id'] is not None:
             _path_params['executionId'] = _params['execution_id']
 
 
@@ -1373,7 +1373,7 @@ class SqlBackgroundExecutionApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['execution_id']:
+        if _params['execution_id'] is not None:
             _path_params['executionId'] = _params['execution_id']
 
 
@@ -1554,7 +1554,7 @@ class SqlBackgroundExecutionApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['execution_id']:
+        if _params['execution_id'] is not None:
             _path_params['executionId'] = _params['execution_id']
 
 
@@ -1727,7 +1727,7 @@ class SqlBackgroundExecutionApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['execution_id']:
+        if _params['execution_id'] is not None:
             _path_params['executionId'] = _params['execution_id']
 
 
@@ -1903,7 +1903,7 @@ class SqlBackgroundExecutionApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['execution_id']:
+        if _params['execution_id'] is not None:
             _path_params['executionId'] = _params['execution_id']
 
 
@@ -2058,7 +2058,7 @@ class SqlBackgroundExecutionApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['execution_id']:
+        if _params['execution_id'] is not None:
             _path_params['executionId'] = _params['execution_id']
 
 
@@ -2196,7 +2196,7 @@ class SqlBackgroundExecutionApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['execution_id']:
+        if _params['execution_id'] is not None:
             _path_params['executionId'] = _params['execution_id']
 
 
@@ -2502,7 +2502,7 @@ class SqlBackgroundExecutionApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['execution_id']:
+            if _params['execution_id'] is not None:
                 _path_params['executionId'] = _params['execution_id']
 
 
@@ -2677,7 +2677,7 @@ class SqlBackgroundExecutionApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['execution_id']:
+            if _params['execution_id'] is not None:
                 _path_params['executionId'] = _params['execution_id']
 
 
@@ -2862,7 +2862,7 @@ class SqlBackgroundExecutionApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['execution_id']:
+            if _params['execution_id'] is not None:
                 _path_params['executionId'] = _params['execution_id']
 
 
@@ -3032,7 +3032,7 @@ class SqlBackgroundExecutionApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['execution_id']:
+            if _params['execution_id'] is not None:
                 _path_params['executionId'] = _params['execution_id']
 
 
@@ -3213,7 +3213,7 @@ class SqlBackgroundExecutionApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['execution_id']:
+            if _params['execution_id'] is not None:
                 _path_params['executionId'] = _params['execution_id']
 
 
@@ -3396,7 +3396,7 @@ class SqlBackgroundExecutionApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['execution_id']:
+            if _params['execution_id'] is not None:
                 _path_params['executionId'] = _params['execution_id']
 
 
@@ -3582,7 +3582,7 @@ class SqlBackgroundExecutionApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['execution_id']:
+            if _params['execution_id'] is not None:
                 _path_params['executionId'] = _params['execution_id']
 
 
@@ -3753,7 +3753,7 @@ class SqlBackgroundExecutionApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['execution_id']:
+            if _params['execution_id'] is not None:
                 _path_params['executionId'] = _params['execution_id']
 
 
@@ -3935,7 +3935,7 @@ class SqlBackgroundExecutionApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['execution_id']:
+            if _params['execution_id'] is not None:
                 _path_params['executionId'] = _params['execution_id']
 
 
@@ -4109,7 +4109,7 @@ class SqlBackgroundExecutionApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['execution_id']:
+            if _params['execution_id'] is not None:
                 _path_params['executionId'] = _params['execution_id']
 
 
@@ -4286,7 +4286,7 @@ class SqlBackgroundExecutionApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['execution_id']:
+            if _params['execution_id'] is not None:
                 _path_params['executionId'] = _params['execution_id']
 
 
@@ -4442,7 +4442,7 @@ class SqlBackgroundExecutionApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['execution_id']:
+            if _params['execution_id'] is not None:
                 _path_params['executionId'] = _params['execution_id']
 
 
@@ -4581,7 +4581,7 @@ class SqlBackgroundExecutionApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['execution_id']:
+            if _params['execution_id'] is not None:
                 _path_params['executionId'] = _params['execution_id']
 
 

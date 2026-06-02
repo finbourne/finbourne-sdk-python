@@ -53,7 +53,7 @@ class InvestorRecordsApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def delete_investor_record(self, identifier_type: StrictStr, identifier_value: StrictStr, scope: StrictStr, identifier_scope: StrictStr, **kwargs) -> DeletedEntityResponse:
@@ -148,10 +148,10 @@ class InvestorRecordsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['identifier_type']:
+        if _params['identifier_type'] is not None:
             _path_params['identifierType'] = _params['identifier_type']
 
-        if _params['identifier_value']:
+        if _params['identifier_value'] is not None:
             _path_params['identifierValue'] = _params['identifier_value']
 
 
@@ -307,13 +307,13 @@ class InvestorRecordsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['identifier_type']:
+        if _params['identifier_type'] is not None:
             _path_params['identifierType'] = _params['identifier_type']
 
-        if _params['identifier_value']:
+        if _params['identifier_value'] is not None:
             _path_params['identifierValue'] = _params['identifier_value']
 
-        if _params['metadata_key']:
+        if _params['metadata_key'] is not None:
             _path_params['metadataKey'] = _params['metadata_key']
 
 
@@ -473,10 +473,10 @@ class InvestorRecordsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['identifier_type']:
+        if _params['identifier_type'] is not None:
             _path_params['identifierType'] = _params['identifier_type']
 
-        if _params['identifier_value']:
+        if _params['identifier_value'] is not None:
             _path_params['identifierValue'] = _params['identifier_value']
 
 
@@ -646,10 +646,10 @@ class InvestorRecordsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['identifier_type']:
+        if _params['identifier_type'] is not None:
             _path_params['identifierType'] = _params['identifier_type']
 
-        if _params['identifier_value']:
+        if _params['identifier_value'] is not None:
             _path_params['identifierValue'] = _params['identifier_value']
 
 
@@ -827,10 +827,10 @@ class InvestorRecordsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['identifier_type']:
+        if _params['identifier_type'] is not None:
             _path_params['identifierType'] = _params['identifier_type']
 
-        if _params['identifier_value']:
+        if _params['identifier_value'] is not None:
             _path_params['identifierValue'] = _params['identifier_value']
 
 
@@ -1184,10 +1184,10 @@ class InvestorRecordsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['identifier_type']:
+        if _params['identifier_type'] is not None:
             _path_params['identifierType'] = _params['identifier_type']
 
-        if _params['identifier_value']:
+        if _params['identifier_value'] is not None:
             _path_params['identifierValue'] = _params['identifier_value']
 
 
@@ -1487,10 +1487,10 @@ class InvestorRecordsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['identifier_type']:
+            if _params['identifier_type'] is not None:
                 _path_params['identifierType'] = _params['identifier_type']
 
-            if _params['identifier_value']:
+            if _params['identifier_value'] is not None:
                 _path_params['identifierValue'] = _params['identifier_value']
 
 
@@ -1647,13 +1647,13 @@ class InvestorRecordsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['identifier_type']:
+            if _params['identifier_type'] is not None:
                 _path_params['identifierType'] = _params['identifier_type']
 
-            if _params['identifier_value']:
+            if _params['identifier_value'] is not None:
                 _path_params['identifierValue'] = _params['identifier_value']
 
-            if _params['metadata_key']:
+            if _params['metadata_key'] is not None:
                 _path_params['metadataKey'] = _params['metadata_key']
 
 
@@ -1814,10 +1814,10 @@ class InvestorRecordsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['identifier_type']:
+            if _params['identifier_type'] is not None:
                 _path_params['identifierType'] = _params['identifier_type']
 
-            if _params['identifier_value']:
+            if _params['identifier_value'] is not None:
                 _path_params['identifierValue'] = _params['identifier_value']
 
 
@@ -1988,10 +1988,10 @@ class InvestorRecordsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['identifier_type']:
+            if _params['identifier_type'] is not None:
                 _path_params['identifierType'] = _params['identifier_type']
 
-            if _params['identifier_value']:
+            if _params['identifier_value'] is not None:
                 _path_params['identifierValue'] = _params['identifier_value']
 
 
@@ -2170,10 +2170,10 @@ class InvestorRecordsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['identifier_type']:
+            if _params['identifier_type'] is not None:
                 _path_params['identifierType'] = _params['identifier_type']
 
-            if _params['identifier_value']:
+            if _params['identifier_value'] is not None:
                 _path_params['identifierValue'] = _params['identifier_value']
 
 
@@ -2529,10 +2529,10 @@ class InvestorRecordsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['identifier_type']:
+            if _params['identifier_type'] is not None:
                 _path_params['identifierType'] = _params['identifier_type']
 
-            if _params['identifier_value']:
+            if _params['identifier_value'] is not None:
                 _path_params['identifierValue'] = _params['identifier_value']
 
 

@@ -69,9 +69,9 @@ class QueryDesign(BaseModel):
         """Create an instance of QueryDesign from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
@@ -81,28 +81,28 @@ class QueryDesign(BaseModel):
         if self.fields:
             for _item in self.fields:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['fields'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in joined_tables (list)
         _items = []
         if self.joined_tables:
             for _item in self.joined_tables:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['joinedTables'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in order_by (list)
         _items = []
         if self.order_by:
             for _item in self.order_by:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['orderBy'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in available_fields (list)
         _items = []
         if self.available_fields:
             for _item in self.available_fields:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['availableFields'] = _items
         # set to None if alias (nullable) is None
         # and model_fields_set contains the field

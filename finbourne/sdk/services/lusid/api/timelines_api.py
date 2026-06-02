@@ -54,7 +54,7 @@ class TimelinesApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def confirm_closed_period(self, scope: StrictStr, code: StrictStr, closed_period_id: StrictStr, body: Optional[object] = None, **kwargs) -> ClosedPeriod:
@@ -149,13 +149,13 @@ class TimelinesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
-        if _params['closed_period_id']:
+        if _params['closed_period_id'] is not None:
             _path_params['closedPeriodId'] = _params['closed_period_id']
 
 
@@ -295,10 +295,10 @@ class TimelinesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -438,10 +438,10 @@ class TimelinesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -703,10 +703,10 @@ class TimelinesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -846,13 +846,13 @@ class TimelinesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
-        if _params['closed_period_id']:
+        if _params['closed_period_id'] is not None:
             _path_params['closedPeriodId'] = _params['closed_period_id']
 
 
@@ -1002,10 +1002,10 @@ class TimelinesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -1173,10 +1173,10 @@ class TimelinesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -1507,13 +1507,13 @@ class TimelinesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
-        if _params['closed_period_id']:
+        if _params['closed_period_id'] is not None:
             _path_params['closedPeriodId'] = _params['closed_period_id']
 
 
@@ -1658,13 +1658,13 @@ class TimelinesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
-        if _params['closed_period_id']:
+        if _params['closed_period_id'] is not None:
             _path_params['closedPeriodId'] = _params['closed_period_id']
 
 
@@ -1804,10 +1804,10 @@ class TimelinesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -1957,13 +1957,13 @@ class TimelinesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
-            if _params['closed_period_id']:
+            if _params['closed_period_id'] is not None:
                 _path_params['closedPeriodId'] = _params['closed_period_id']
 
 
@@ -2104,10 +2104,10 @@ class TimelinesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -2248,10 +2248,10 @@ class TimelinesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -2515,10 +2515,10 @@ class TimelinesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -2659,13 +2659,13 @@ class TimelinesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
-            if _params['closed_period_id']:
+            if _params['closed_period_id'] is not None:
                 _path_params['closedPeriodId'] = _params['closed_period_id']
 
 
@@ -2816,10 +2816,10 @@ class TimelinesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -2988,10 +2988,10 @@ class TimelinesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -3324,13 +3324,13 @@ class TimelinesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
-            if _params['closed_period_id']:
+            if _params['closed_period_id'] is not None:
                 _path_params['closedPeriodId'] = _params['closed_period_id']
 
 
@@ -3476,13 +3476,13 @@ class TimelinesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
-            if _params['closed_period_id']:
+            if _params['closed_period_id'] is not None:
                 _path_params['closedPeriodId'] = _params['closed_period_id']
 
 
@@ -3623,10 +3623,10 @@ class TimelinesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 

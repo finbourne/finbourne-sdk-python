@@ -66,9 +66,9 @@ class IntegrationInstanceResponse(BaseModel):
         """Create an instance of IntegrationInstanceResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
@@ -78,14 +78,14 @@ class IntegrationInstanceResponse(BaseModel):
         if self.triggers:
             for _item in self.triggers:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['triggers'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in post_process_tasks (list)
         _items = []
         if self.post_process_tasks:
             for _item in self.post_process_tasks:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['postProcessTasks'] = _items
         return _dict
 

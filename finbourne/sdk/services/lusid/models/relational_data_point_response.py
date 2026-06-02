@@ -67,36 +67,36 @@ class RelationalDataPointResponse(BaseModel):
         """Create an instance of RelationalDataPointResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of relational_dataset_definition_id
         if self.relational_dataset_definition_id:
-            _dict['relationalDatasetDefinitionId'] = self.relational_dataset_definition_id.to_dict()
+            _dict['relationalDatasetDefinitionId'] = self.relational_dataset_definition_id.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of data_series
         if self.data_series:
-            _dict['dataSeries'] = self.data_series.to_dict()
+            _dict['dataSeries'] = self.data_series.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each value in value_fields (dict)
         _field_dict = {}
         if self.value_fields:
             for _key in self.value_fields:
                 if self.value_fields[_key]:
-                    _field_dict[_key] = self.value_fields[_key].to_dict()
+                    _field_dict[_key] = self.value_fields[_key].to_dict(by_alias=by_alias)
             _dict['valueFields'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of each value in meta_data_fields (dict)
         _field_dict = {}
         if self.meta_data_fields:
             for _key in self.meta_data_fields:
                 if self.meta_data_fields[_key]:
-                    _field_dict[_key] = self.meta_data_fields[_key].to_dict()
+                    _field_dict[_key] = self.meta_data_fields[_key].to_dict(by_alias=by_alias)
             _dict['metaDataFields'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of data_point_version
         if self.data_point_version:
-            _dict['dataPointVersion'] = self.data_point_version.to_dict()
+            _dict['dataPointVersion'] = self.data_point_version.to_dict(by_alias=by_alias)
         return _dict
 
     @classmethod

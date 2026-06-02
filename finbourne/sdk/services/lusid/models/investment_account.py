@@ -75,9 +75,9 @@ class InvestmentAccount(BaseModel):
         """Create an instance of InvestmentAccount from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
@@ -87,45 +87,45 @@ class InvestmentAccount(BaseModel):
         if self.identifiers:
             for _key in self.identifiers:
                 if self.identifiers[_key]:
-                    _field_dict[_key] = self.identifiers[_key].to_dict()
+                    _field_dict[_key] = self.identifiers[_key].to_dict(by_alias=by_alias)
             _dict['identifiers'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of each item in account_holders (list)
         _items = []
         if self.account_holders:
             for _item in self.account_holders:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['accountHolders'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in investment_portfolios (list)
         _items = []
         if self.investment_portfolios:
             for _item in self.investment_portfolios:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['investmentPortfolios'] = _items
         # override the default output from pydantic by calling `to_dict()` of each value in properties (dict)
         _field_dict = {}
         if self.properties:
             for _key in self.properties:
                 if self.properties[_key]:
-                    _field_dict[_key] = self.properties[_key].to_dict()
+                    _field_dict[_key] = self.properties[_key].to_dict(by_alias=by_alias)
             _dict['properties'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of each item in relationships (list)
         _items = []
         if self.relationships:
             for _item in self.relationships:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['relationships'] = _items
         # override the default output from pydantic by calling `to_dict()` of version
         if self.version:
-            _dict['version'] = self.version.to_dict()
+            _dict['version'] = self.version.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each item in links (list)
         _items = []
         if self.links:
             for _item in self.links:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['links'] = _items
         # set to None if scope (nullable) is None
         # and model_fields_set contains the field

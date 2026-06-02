@@ -50,7 +50,7 @@ class IdentifierDefinitionsApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def create_identifier_definition(self, create_identifier_definition_request: Optional[CreateIdentifierDefinitionRequest] = None, **kwargs) -> IdentifierDefinition:
@@ -267,13 +267,13 @@ class IdentifierDefinitionsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['domain']:
+        if _params['domain'] is not None:
             _path_params['domain'] = _params['domain']
 
-        if _params['identifier_scope']:
+        if _params['identifier_scope'] is not None:
             _path_params['identifierScope'] = _params['identifier_scope']
 
-        if _params['identifier_type']:
+        if _params['identifier_type'] is not None:
             _path_params['identifierType'] = _params['identifier_type']
 
 
@@ -418,13 +418,13 @@ class IdentifierDefinitionsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['domain']:
+        if _params['domain'] is not None:
             _path_params['domain'] = _params['domain']
 
-        if _params['identifier_scope']:
+        if _params['identifier_scope'] is not None:
             _path_params['identifierScope'] = _params['identifier_scope']
 
-        if _params['identifier_type']:
+        if _params['identifier_type'] is not None:
             _path_params['identifierType'] = _params['identifier_type']
 
 
@@ -745,13 +745,13 @@ class IdentifierDefinitionsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['domain']:
+        if _params['domain'] is not None:
             _path_params['domain'] = _params['domain']
 
-        if _params['identifier_scope']:
+        if _params['identifier_scope'] is not None:
             _path_params['identifierScope'] = _params['identifier_scope']
 
-        if _params['identifier_type']:
+        if _params['identifier_type'] is not None:
             _path_params['identifierType'] = _params['identifier_type']
 
 
@@ -1024,13 +1024,13 @@ class IdentifierDefinitionsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['domain']:
+            if _params['domain'] is not None:
                 _path_params['domain'] = _params['domain']
 
-            if _params['identifier_scope']:
+            if _params['identifier_scope'] is not None:
                 _path_params['identifierScope'] = _params['identifier_scope']
 
-            if _params['identifier_type']:
+            if _params['identifier_type'] is not None:
                 _path_params['identifierType'] = _params['identifier_type']
 
 
@@ -1176,13 +1176,13 @@ class IdentifierDefinitionsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['domain']:
+            if _params['domain'] is not None:
                 _path_params['domain'] = _params['domain']
 
-            if _params['identifier_scope']:
+            if _params['identifier_scope'] is not None:
                 _path_params['identifierScope'] = _params['identifier_scope']
 
-            if _params['identifier_type']:
+            if _params['identifier_type'] is not None:
                 _path_params['identifierType'] = _params['identifier_type']
 
 
@@ -1505,13 +1505,13 @@ class IdentifierDefinitionsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['domain']:
+            if _params['domain'] is not None:
                 _path_params['domain'] = _params['domain']
 
-            if _params['identifier_scope']:
+            if _params['identifier_scope'] is not None:
                 _path_params['identifierScope'] = _params['identifier_scope']
 
-            if _params['identifier_type']:
+            if _params['identifier_type'] is not None:
                 _path_params['identifierType'] = _params['identifier_type']
 
 

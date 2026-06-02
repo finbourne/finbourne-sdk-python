@@ -61,9 +61,9 @@ class HoldingPricingInfo(BaseModel):
         """Create an instance of HoldingPricingInfo from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
@@ -73,14 +73,14 @@ class HoldingPricingInfo(BaseModel):
         if self.specific_fallbacks:
             for _item in self.specific_fallbacks:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['specificFallbacks'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in specific_overrides (list)
         _items = []
         if self.specific_overrides:
             for _item in self.specific_overrides:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['specificOverrides'] = _items
         # set to None if fallback_field (nullable) is None
         # and model_fields_set contains the field

@@ -72,9 +72,9 @@ class RealisedGainLoss(BaseModel):
         """Create an instance of RealisedGainLoss from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                             "purchase_trade_date",
@@ -83,28 +83,28 @@ class RealisedGainLoss(BaseModel):
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of cost_trade_ccy
         if self.cost_trade_ccy:
-            _dict['costTradeCcy'] = self.cost_trade_ccy.to_dict()
+            _dict['costTradeCcy'] = self.cost_trade_ccy.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of cost_portfolio_ccy
         if self.cost_portfolio_ccy:
-            _dict['costPortfolioCcy'] = self.cost_portfolio_ccy.to_dict()
+            _dict['costPortfolioCcy'] = self.cost_portfolio_ccy.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of realised_trade_ccy
         if self.realised_trade_ccy:
-            _dict['realisedTradeCcy'] = self.realised_trade_ccy.to_dict()
+            _dict['realisedTradeCcy'] = self.realised_trade_ccy.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of realised_total
         if self.realised_total:
-            _dict['realisedTotal'] = self.realised_total.to_dict()
+            _dict['realisedTotal'] = self.realised_total.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of realised_market
         if self.realised_market:
-            _dict['realisedMarket'] = self.realised_market.to_dict()
+            _dict['realisedMarket'] = self.realised_market.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of realised_currency
         if self.realised_currency:
-            _dict['realisedCurrency'] = self.realised_currency.to_dict()
+            _dict['realisedCurrency'] = self.realised_currency.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of realised_amortisation
         if self.realised_amortisation:
-            _dict['realisedAmortisation'] = self.realised_amortisation.to_dict()
+            _dict['realisedAmortisation'] = self.realised_amortisation.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of trade_date_to_settlement_date_realised_currency
         if self.trade_date_to_settlement_date_realised_currency:
-            _dict['tradeDateToSettlementDateRealisedCurrency'] = self.trade_date_to_settlement_date_realised_currency.to_dict()
+            _dict['tradeDateToSettlementDateRealisedCurrency'] = self.trade_date_to_settlement_date_realised_currency.to_dict(by_alias=by_alias)
         # set to None if instrument_scope (nullable) is None
         # and model_fields_set contains the field
         if self.instrument_scope is None and "instrument_scope" in self.model_fields_set:

@@ -220,9 +220,9 @@ class FinalisedValuationPoint(FundCalendarEntries):
         """Create an instance of FinalisedValuationPoint from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                             "additional_properties"
@@ -230,20 +230,20 @@ class FinalisedValuationPoint(FundCalendarEntries):
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of timeline_id
         if self.timeline_id:
-            _dict['timelineId'] = self.timeline_id.to_dict()
+            _dict['timelineId'] = self.timeline_id.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of previous_entry
         if self.previous_entry:
-            _dict['previousEntry'] = self.previous_entry.to_dict()
+            _dict['previousEntry'] = self.previous_entry.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each value in properties (dict)
         _field_dict = {}
         if self.properties:
             for _key in self.properties:
                 if self.properties[_key]:
-                    _field_dict[_key] = self.properties[_key].to_dict()
+                    _field_dict[_key] = self.properties[_key].to_dict(by_alias=by_alias)
             _dict['properties'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of version
         if self.version:
-            _dict['version'] = self.version.to_dict()
+            _dict['version'] = self.version.to_dict(by_alias=by_alias)
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():

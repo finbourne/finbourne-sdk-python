@@ -60,19 +60,19 @@ class OpenFigiPermIdResult(BaseModel):
         """Create an instance of OpenFigiPermIdResult from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of open_figi_result
         if self.open_figi_result:
-            _dict['openFigiResult'] = self.open_figi_result.to_dict()
+            _dict['openFigiResult'] = self.open_figi_result.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of perm_id_result
         if self.perm_id_result:
-            _dict['permIdResult'] = self.perm_id_result.to_dict()
+            _dict['permIdResult'] = self.perm_id_result.to_dict(by_alias=by_alias)
         return _dict
 
     @classmethod

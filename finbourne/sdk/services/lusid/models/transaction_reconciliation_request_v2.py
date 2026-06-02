@@ -64,32 +64,32 @@ class TransactionReconciliationRequestV2(BaseModel):
         """Create an instance of TransactionReconciliationRequestV2 from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of left
         if self.left:
-            _dict['left'] = self.left.to_dict()
+            _dict['left'] = self.left.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of right
         if self.right:
-            _dict['right'] = self.right.to_dict()
+            _dict['right'] = self.right.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each item in left_to_right_mapping (list)
         _items = []
         if self.left_to_right_mapping:
             for _item in self.left_to_right_mapping:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['leftToRightMapping'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in comparison_rules (list)
         _items = []
         if self.comparison_rules:
             for _item in self.comparison_rules:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['comparisonRules'] = _items
         # set to None if left_to_right_mapping (nullable) is None
         # and model_fields_set contains the field

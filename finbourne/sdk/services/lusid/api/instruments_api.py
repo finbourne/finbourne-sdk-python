@@ -67,7 +67,7 @@ class InstrumentsApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def batch_upsert_instrument_properties(self, request_body: Dict[str, UpsertInstrumentPropertyRequest], scope: Optional[StrictStr] = None, identifier_effective_at: Optional[StrictStr] = None, success_mode: Optional[StrictStr] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, **kwargs) -> BatchUpsertInstrumentPropertiesResponse:
@@ -334,10 +334,10 @@ class InstrumentsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['identifier_type']:
+        if _params['identifier_type'] is not None:
             _path_params['identifierType'] = _params['identifier_type']
 
-        if _params['identifier']:
+        if _params['identifier'] is not None:
             _path_params['identifier'] = _params['identifier']
 
 
@@ -479,10 +479,10 @@ class InstrumentsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['identifier_type']:
+        if _params['identifier_type'] is not None:
             _path_params['identifierType'] = _params['identifier_type']
 
-        if _params['identifier']:
+        if _params['identifier'] is not None:
             _path_params['identifier'] = _params['identifier']
 
 
@@ -635,10 +635,10 @@ class InstrumentsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['identifier_type']:
+        if _params['identifier_type'] is not None:
             _path_params['identifierType'] = _params['identifier_type']
 
-        if _params['identifier']:
+        if _params['identifier'] is not None:
             _path_params['identifier'] = _params['identifier']
 
 
@@ -923,7 +923,7 @@ class InstrumentsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['instrument_type']:
+        if _params['instrument_type'] is not None:
             _path_params['instrumentType'] = _params['instrument_type']
 
 
@@ -1073,7 +1073,7 @@ class InstrumentsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['identifier']:
+        if _params['identifier'] is not None:
             _path_params['identifier'] = _params['identifier']
 
 
@@ -1239,7 +1239,7 @@ class InstrumentsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['identifier']:
+        if _params['identifier'] is not None:
             _path_params['identifier'] = _params['identifier']
 
 
@@ -1432,10 +1432,10 @@ class InstrumentsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['identifier_type']:
+        if _params['identifier_type'] is not None:
             _path_params['identifierType'] = _params['identifier_type']
 
-        if _params['identifier']:
+        if _params['identifier'] is not None:
             _path_params['identifier'] = _params['identifier']
 
 
@@ -1731,10 +1731,10 @@ class InstrumentsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['identifier_type']:
+        if _params['identifier_type'] is not None:
             _path_params['identifierType'] = _params['identifier_type']
 
-        if _params['identifier']:
+        if _params['identifier'] is not None:
             _path_params['identifier'] = _params['identifier']
 
 
@@ -1892,10 +1892,10 @@ class InstrumentsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['identifier_type']:
+        if _params['identifier_type'] is not None:
             _path_params['identifierType'] = _params['identifier_type']
 
-        if _params['identifier']:
+        if _params['identifier'] is not None:
             _path_params['identifier'] = _params['identifier']
 
 
@@ -2067,10 +2067,10 @@ class InstrumentsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['identifier_type']:
+        if _params['identifier_type'] is not None:
             _path_params['identifierType'] = _params['identifier_type']
 
-        if _params['identifier']:
+        if _params['identifier'] is not None:
             _path_params['identifier'] = _params['identifier']
 
 
@@ -2244,10 +2244,10 @@ class InstrumentsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['identifier_type']:
+        if _params['identifier_type'] is not None:
             _path_params['identifierType'] = _params['identifier_type']
 
-        if _params['identifier']:
+        if _params['identifier'] is not None:
             _path_params['identifier'] = _params['identifier']
 
 
@@ -2612,10 +2612,10 @@ class InstrumentsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['identifier_type']:
+        if _params['identifier_type'] is not None:
             _path_params['identifierType'] = _params['identifier_type']
 
-        if _params['identifier']:
+        if _params['identifier'] is not None:
             _path_params['identifier'] = _params['identifier']
 
 
@@ -3151,10 +3151,10 @@ class InstrumentsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['identifier_type']:
+        if _params['identifier_type'] is not None:
             _path_params['identifierType'] = _params['identifier_type']
 
-        if _params['identifier']:
+        if _params['identifier'] is not None:
             _path_params['identifier'] = _params['identifier']
 
 
@@ -3788,10 +3788,10 @@ class InstrumentsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['identifier_type']:
+            if _params['identifier_type'] is not None:
                 _path_params['identifierType'] = _params['identifier_type']
 
-            if _params['identifier']:
+            if _params['identifier'] is not None:
                 _path_params['identifier'] = _params['identifier']
 
 
@@ -3934,10 +3934,10 @@ class InstrumentsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['identifier_type']:
+            if _params['identifier_type'] is not None:
                 _path_params['identifierType'] = _params['identifier_type']
 
-            if _params['identifier']:
+            if _params['identifier'] is not None:
                 _path_params['identifier'] = _params['identifier']
 
 
@@ -4091,10 +4091,10 @@ class InstrumentsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['identifier_type']:
+            if _params['identifier_type'] is not None:
                 _path_params['identifierType'] = _params['identifier_type']
 
-            if _params['identifier']:
+            if _params['identifier'] is not None:
                 _path_params['identifier'] = _params['identifier']
 
 
@@ -4381,7 +4381,7 @@ class InstrumentsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['instrument_type']:
+            if _params['instrument_type'] is not None:
                 _path_params['instrumentType'] = _params['instrument_type']
 
 
@@ -4532,7 +4532,7 @@ class InstrumentsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['identifier']:
+            if _params['identifier'] is not None:
                 _path_params['identifier'] = _params['identifier']
 
 
@@ -4699,7 +4699,7 @@ class InstrumentsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['identifier']:
+            if _params['identifier'] is not None:
                 _path_params['identifier'] = _params['identifier']
 
 
@@ -4893,10 +4893,10 @@ class InstrumentsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['identifier_type']:
+            if _params['identifier_type'] is not None:
                 _path_params['identifierType'] = _params['identifier_type']
 
-            if _params['identifier']:
+            if _params['identifier'] is not None:
                 _path_params['identifier'] = _params['identifier']
 
 
@@ -5194,10 +5194,10 @@ class InstrumentsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['identifier_type']:
+            if _params['identifier_type'] is not None:
                 _path_params['identifierType'] = _params['identifier_type']
 
-            if _params['identifier']:
+            if _params['identifier'] is not None:
                 _path_params['identifier'] = _params['identifier']
 
 
@@ -5356,10 +5356,10 @@ class InstrumentsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['identifier_type']:
+            if _params['identifier_type'] is not None:
                 _path_params['identifierType'] = _params['identifier_type']
 
-            if _params['identifier']:
+            if _params['identifier'] is not None:
                 _path_params['identifier'] = _params['identifier']
 
 
@@ -5532,10 +5532,10 @@ class InstrumentsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['identifier_type']:
+            if _params['identifier_type'] is not None:
                 _path_params['identifierType'] = _params['identifier_type']
 
-            if _params['identifier']:
+            if _params['identifier'] is not None:
                 _path_params['identifier'] = _params['identifier']
 
 
@@ -5710,10 +5710,10 @@ class InstrumentsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['identifier_type']:
+            if _params['identifier_type'] is not None:
                 _path_params['identifierType'] = _params['identifier_type']
 
-            if _params['identifier']:
+            if _params['identifier'] is not None:
                 _path_params['identifier'] = _params['identifier']
 
 
@@ -6080,10 +6080,10 @@ class InstrumentsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['identifier_type']:
+            if _params['identifier_type'] is not None:
                 _path_params['identifierType'] = _params['identifier_type']
 
-            if _params['identifier']:
+            if _params['identifier'] is not None:
                 _path_params['identifier'] = _params['identifier']
 
 
@@ -6622,10 +6622,10 @@ class InstrumentsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['identifier_type']:
+            if _params['identifier_type'] is not None:
                 _path_params['identifierType'] = _params['identifier_type']
 
-            if _params['identifier']:
+            if _params['identifier'] is not None:
                 _path_params['identifier'] = _params['identifier']
 
 

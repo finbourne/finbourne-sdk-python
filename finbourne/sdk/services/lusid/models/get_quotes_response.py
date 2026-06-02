@@ -64,9 +64,9 @@ class GetQuotesResponse(BaseModel):
         """Create an instance of GetQuotesResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
@@ -76,28 +76,28 @@ class GetQuotesResponse(BaseModel):
         if self.values:
             for _key in self.values:
                 if self.values[_key]:
-                    _field_dict[_key] = self.values[_key].to_dict()
+                    _field_dict[_key] = self.values[_key].to_dict(by_alias=by_alias)
             _dict['values'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of each value in not_found (dict)
         _field_dict = {}
         if self.not_found:
             for _key in self.not_found:
                 if self.not_found[_key]:
-                    _field_dict[_key] = self.not_found[_key].to_dict()
+                    _field_dict[_key] = self.not_found[_key].to_dict(by_alias=by_alias)
             _dict['notFound'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of each value in failed (dict)
         _field_dict = {}
         if self.failed:
             for _key in self.failed:
                 if self.failed[_key]:
-                    _field_dict[_key] = self.failed[_key].to_dict()
+                    _field_dict[_key] = self.failed[_key].to_dict(by_alias=by_alias)
             _dict['failed'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of each item in links (list)
         _items = []
         if self.links:
             for _item in self.links:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['links'] = _items
         # set to None if href (nullable) is None
         # and model_fields_set contains the field

@@ -53,7 +53,7 @@ class TransactionConfigurationApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def delete_side_definition(self, side: StrictStr, scope: Optional[StrictStr] = None, **kwargs) -> DeletedEntityResponse:
@@ -138,7 +138,7 @@ class TransactionConfigurationApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['side']:
+        if _params['side'] is not None:
             _path_params['side'] = _params['side']
 
 
@@ -271,10 +271,10 @@ class TransactionConfigurationApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['source']:
+        if _params['source'] is not None:
             _path_params['source'] = _params['source']
 
-        if _params['type']:
+        if _params['type'] is not None:
             _path_params['type'] = _params['type']
 
 
@@ -402,7 +402,7 @@ class TransactionConfigurationApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['source']:
+        if _params['source'] is not None:
             _path_params['source'] = _params['source']
 
 
@@ -535,7 +535,7 @@ class TransactionConfigurationApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['side']:
+        if _params['side'] is not None:
             _path_params['side'] = _params['side']
 
 
@@ -679,10 +679,10 @@ class TransactionConfigurationApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['source']:
+        if _params['source'] is not None:
             _path_params['source'] = _params['source']
 
-        if _params['type']:
+        if _params['type'] is not None:
             _path_params['type'] = _params['type']
 
 
@@ -1083,7 +1083,7 @@ class TransactionConfigurationApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['side']:
+        if _params['side'] is not None:
             _path_params['side'] = _params['side']
 
 
@@ -1366,10 +1366,10 @@ class TransactionConfigurationApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['source']:
+        if _params['source'] is not None:
             _path_params['source'] = _params['source']
 
-        if _params['type']:
+        if _params['type'] is not None:
             _path_params['type'] = _params['type']
 
 
@@ -1512,7 +1512,7 @@ class TransactionConfigurationApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['source']:
+        if _params['source'] is not None:
             _path_params['source'] = _params['source']
 
 
@@ -1655,7 +1655,7 @@ class TransactionConfigurationApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['side']:
+            if _params['side'] is not None:
                 _path_params['side'] = _params['side']
 
 
@@ -1789,10 +1789,10 @@ class TransactionConfigurationApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['source']:
+            if _params['source'] is not None:
                 _path_params['source'] = _params['source']
 
-            if _params['type']:
+            if _params['type'] is not None:
                 _path_params['type'] = _params['type']
 
 
@@ -1921,7 +1921,7 @@ class TransactionConfigurationApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['source']:
+            if _params['source'] is not None:
                 _path_params['source'] = _params['source']
 
 
@@ -2055,7 +2055,7 @@ class TransactionConfigurationApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['side']:
+            if _params['side'] is not None:
                 _path_params['side'] = _params['side']
 
 
@@ -2200,10 +2200,10 @@ class TransactionConfigurationApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['source']:
+            if _params['source'] is not None:
                 _path_params['source'] = _params['source']
 
-            if _params['type']:
+            if _params['type'] is not None:
                 _path_params['type'] = _params['type']
 
 
@@ -2607,7 +2607,7 @@ class TransactionConfigurationApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['side']:
+            if _params['side'] is not None:
                 _path_params['side'] = _params['side']
 
 
@@ -2892,10 +2892,10 @@ class TransactionConfigurationApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['source']:
+            if _params['source'] is not None:
                 _path_params['source'] = _params['source']
 
-            if _params['type']:
+            if _params['type'] is not None:
                 _path_params['type'] = _params['type']
 
 
@@ -3039,7 +3039,7 @@ class TransactionConfigurationApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['source']:
+            if _params['source'] is not None:
                 _path_params['source'] = _params['source']
 
 

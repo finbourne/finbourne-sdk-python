@@ -89,6 +89,7 @@ from finbourne.sdk.services.identity.models.resource_list_of_access_controlled_r
 from finbourne.sdk.services.identity.models.resource_list_of_system_log import ResourceListOfSystemLog
 from finbourne.sdk.services.identity.models.role_id import RoleId
 from finbourne.sdk.services.identity.models.role_response import RoleResponse
+from finbourne.sdk.services.identity.models.rotate_attaching_key_request import RotateAttachingKeyRequest
 from finbourne.sdk.services.identity.models.session_policy_response import SessionPolicyResponse
 from finbourne.sdk.services.identity.models.set_attaching_key_request import SetAttachingKeyRequest
 from finbourne.sdk.services.identity.models.set_parent_cell_request import SetParentCellRequest
@@ -194,6 +195,7 @@ __all__ = [
     "ResourceListOfSystemLog",
     "RoleId",
     "RoleResponse",
+    "RotateAttachingKeyRequest",
     "SessionPolicyResponse",
     "SetAttachingKeyRequest",
     "SetParentCellRequest",

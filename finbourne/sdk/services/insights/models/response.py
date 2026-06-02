@@ -64,9 +64,9 @@ class Response(BaseModel):
         """Create an instance of Response from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
@@ -77,7 +77,7 @@ class Response(BaseModel):
             for _key in self.headers:
                 if (_items_for_key := self.headers[_key]):
                     _field_dict_of_array[_key] = [
-                        _item.to_dict() for _item in _items_for_key
+                        _item.to_dict(by_alias=by_alias) for _item in _items_for_key
                     ]
             _dict['headers'] = _field_dict_of_array
         # override the default output from pydantic by calling `to_dict()` of each item in links (list)
@@ -85,7 +85,7 @@ class Response(BaseModel):
         if self.links:
             for _item in self.links:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['links'] = _items
         # set to None if headers (nullable) is None
         # and model_fields_set contains the field

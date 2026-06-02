@@ -55,7 +55,7 @@ class InstrumentEventsApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def query_applicable_instrument_events(self, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, query_applicable_instrument_events_request: Optional[QueryApplicableInstrumentEventsRequest] = None, **kwargs) -> ResourceListOfApplicableInstrumentEvent:

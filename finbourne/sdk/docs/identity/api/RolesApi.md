@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**create_role**](RolesApi.md#create_role) | **POST** /identity/api/roles | CreateRole: Create Role
 [**delete_role**](RolesApi.md#delete_role) | **DELETE** /identity/api/roles/{id} | DeleteRole: Delete Role
 [**get_role**](RolesApi.md#get_role) | **GET** /identity/api/roles/{id} | GetRole: Get Role
+[**get_role_by_code**](RolesApi.md#get_role_by_code) | **GET** /identity/api/roles/byCode/{code} | GetRoleByCode: Get Role By Code
 [**list_roles**](RolesApi.md#list_roles) | **GET** /identity/api/roles | ListRoles: List Roles
 [**list_users_in_role**](RolesApi.md#list_users_in_role) | **GET** /identity/api/roles/{id}/users | ListUsersInRole: Get the users in the specified role.
 [**remove_user_from_role**](RolesApi.md#remove_user_from_role) | **DELETE** /identity/api/roles/{id}/users/{userId} | RemoveUserFromRole: Remove User from Role
@@ -188,6 +189,51 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| The unique identifier for the role | [required] 
+
+### Return type
+
+[**RoleResponse**](RoleResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Get the specified role |  -  |
+**404** | Not Found |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_role_by_code**
+> RoleResponse getRoleByCode = get_role_by_code(code, scope=scope)
+
+GetRoleByCode: Get Role By Code
+
+Get the specified role by its code, optionally scoped. Scope defaults to \"default\". The \"code\" is the same value supplied as \"name\" when the role was created via CreateRole.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(RolesApi)
+code = 'code_example' # str
+scope = 'default' # str (optional)
+api_response = api_instance.get_role_by_code(code, scope=scope)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **code** | **str**| The role code (the value supplied as \&quot;name\&quot; when the role was created). | [required] 
+ **scope** | **str**| The scope the role lives in. Defaults to \&quot;default\&quot;. | [optional] [default to &#39;default&#39;]
 
 ### Return type
 

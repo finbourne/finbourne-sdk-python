@@ -134,9 +134,9 @@ class UpdateMatchingTasksActivity(BaseModel):
         """Create an instance of UpdateMatchingTasksActivity from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
@@ -146,21 +146,21 @@ class UpdateMatchingTasksActivity(BaseModel):
         if self.correlation_ids:
             for _item in self.correlation_ids:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['correlationIds'] = _items
         # override the default output from pydantic by calling `to_dict()` of each value in task_fields (dict)
         _field_dict = {}
         if self.task_fields:
             for _key in self.task_fields:
                 if self.task_fields[_key]:
-                    _field_dict[_key] = self.task_fields[_key].to_dict()
+                    _field_dict[_key] = self.task_fields[_key].to_dict(by_alias=by_alias)
             _dict['taskFields'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of each value in schedule_dependent_task_fields (dict)
         _field_dict = {}
         if self.schedule_dependent_task_fields:
             for _key in self.schedule_dependent_task_fields:
                 if self.schedule_dependent_task_fields[_key]:
-                    _field_dict[_key] = self.schedule_dependent_task_fields[_key].to_dict()
+                    _field_dict[_key] = self.schedule_dependent_task_fields[_key].to_dict(by_alias=by_alias)
             _dict['scheduleDependentTaskFields'] = _field_dict
         # set to None if filter (nullable) is None
         # and model_fields_set contains the field

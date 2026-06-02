@@ -62,7 +62,7 @@ class ComplianceApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def create_compliance_template(self, scope: StrictStr, create_compliance_template_request: CreateComplianceTemplateRequest, **kwargs) -> ComplianceRuleTemplate:
@@ -147,7 +147,7 @@ class ComplianceApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
 
@@ -282,10 +282,10 @@ class ComplianceApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -410,10 +410,10 @@ class ComplianceApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -548,10 +548,10 @@ class ComplianceApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -696,16 +696,16 @@ class ComplianceApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['run_scope']:
+        if _params['run_scope'] is not None:
             _path_params['runScope'] = _params['run_scope']
 
-        if _params['run_code']:
+        if _params['run_code'] is not None:
             _path_params['runCode'] = _params['run_code']
 
-        if _params['rule_scope']:
+        if _params['rule_scope'] is not None:
             _path_params['ruleScope'] = _params['rule_scope']
 
-        if _params['rule_code']:
+        if _params['rule_code'] is not None:
             _path_params['ruleCode'] = _params['rule_code']
 
 
@@ -835,10 +835,10 @@ class ComplianceApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -969,10 +969,10 @@ class ComplianceApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -2028,10 +2028,10 @@ class ComplianceApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -2425,7 +2425,7 @@ class ComplianceApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
 
@@ -2561,10 +2561,10 @@ class ComplianceApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -2690,10 +2690,10 @@ class ComplianceApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -2829,10 +2829,10 @@ class ComplianceApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -2978,16 +2978,16 @@ class ComplianceApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['run_scope']:
+            if _params['run_scope'] is not None:
                 _path_params['runScope'] = _params['run_scope']
 
-            if _params['run_code']:
+            if _params['run_code'] is not None:
                 _path_params['runCode'] = _params['run_code']
 
-            if _params['rule_scope']:
+            if _params['rule_scope'] is not None:
                 _path_params['ruleScope'] = _params['rule_scope']
 
-            if _params['rule_code']:
+            if _params['rule_code'] is not None:
                 _path_params['ruleCode'] = _params['rule_code']
 
 
@@ -3118,10 +3118,10 @@ class ComplianceApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -3253,10 +3253,10 @@ class ComplianceApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -4319,10 +4319,10 @@ class ComplianceApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 

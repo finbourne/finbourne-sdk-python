@@ -54,7 +54,7 @@ class LegacyComplianceApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def delete_legacy_compliance_rule(self, scope: StrictStr, code: StrictStr, **kwargs) -> DeletedEntityResponse:
@@ -139,10 +139,10 @@ class LegacyComplianceApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -277,7 +277,7 @@ class LegacyComplianceApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['run_id']:
+        if _params['run_id'] is not None:
             _path_params['runId'] = _params['run_id']
 
 
@@ -421,10 +421,10 @@ class LegacyComplianceApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -568,7 +568,7 @@ class LegacyComplianceApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['run_id']:
+        if _params['run_id'] is not None:
             _path_params['runId'] = _params['run_id']
 
 
@@ -1288,10 +1288,10 @@ class LegacyComplianceApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -1427,7 +1427,7 @@ class LegacyComplianceApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['run_id']:
+            if _params['run_id'] is not None:
                 _path_params['runId'] = _params['run_id']
 
 
@@ -1572,10 +1572,10 @@ class LegacyComplianceApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -1720,7 +1720,7 @@ class LegacyComplianceApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['run_id']:
+            if _params['run_id'] is not None:
                 _path_params['runId'] = _params['run_id']
 
 

@@ -45,7 +45,7 @@ class BinaryDownloadingApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def download_binary(self, type: Optional[str] = None, version: Optional[StrictStr] = None, **kwargs) -> bytes:

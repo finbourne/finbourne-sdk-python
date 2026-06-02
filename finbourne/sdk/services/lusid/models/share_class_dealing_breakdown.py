@@ -60,9 +60,9 @@ class ShareClassDealingBreakdown(BaseModel):
         """Create an instance of ShareClassDealingBreakdown from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
@@ -72,14 +72,14 @@ class ShareClassDealingBreakdown(BaseModel):
         if self.class_dealing:
             for _key in self.class_dealing:
                 if self.class_dealing[_key]:
-                    _field_dict[_key] = self.class_dealing[_key].to_dict()
+                    _field_dict[_key] = self.class_dealing[_key].to_dict(by_alias=by_alias)
             _dict['classDealing'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of each value in class_dealing_units (dict)
         _field_dict = {}
         if self.class_dealing_units:
             for _key in self.class_dealing_units:
                 if self.class_dealing_units[_key]:
-                    _field_dict[_key] = self.class_dealing_units[_key].to_dict()
+                    _field_dict[_key] = self.class_dealing_units[_key].to_dict(by_alias=by_alias)
             _dict['classDealingUnits'] = _field_dict
         return _dict
 

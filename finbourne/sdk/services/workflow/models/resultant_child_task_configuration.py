@@ -65,25 +65,25 @@ class ResultantChildTaskConfiguration(BaseModel):
         """Create an instance of ResultantChildTaskConfiguration from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of result_matching_pattern
         if self.result_matching_pattern:
-            _dict['resultMatchingPattern'] = self.result_matching_pattern.to_dict()
+            _dict['resultMatchingPattern'] = self.result_matching_pattern.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of task_definition_id
         if self.task_definition_id:
-            _dict['taskDefinitionId'] = self.task_definition_id.to_dict()
+            _dict['taskDefinitionId'] = self.task_definition_id.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each value in child_task_fields (dict)
         _field_dict = {}
         if self.child_task_fields:
             for _key in self.child_task_fields:
                 if self.child_task_fields[_key]:
-                    _field_dict[_key] = self.child_task_fields[_key].to_dict()
+                    _field_dict[_key] = self.child_task_fields[_key].to_dict(by_alias=by_alias)
             _dict['childTaskFields'] = _field_dict
         # set to None if task_definition_as_at (nullable) is None
         # and model_fields_set contains the field

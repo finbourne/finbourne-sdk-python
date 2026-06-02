@@ -60,9 +60,9 @@ class FundPnlBreakdown(BaseModel):
         """Create an instance of FundPnlBreakdown from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
@@ -72,21 +72,21 @@ class FundPnlBreakdown(BaseModel):
         if self.non_class_specific_pnl:
             for _key in self.non_class_specific_pnl:
                 if self.non_class_specific_pnl[_key]:
-                    _field_dict[_key] = self.non_class_specific_pnl[_key].to_dict()
+                    _field_dict[_key] = self.non_class_specific_pnl[_key].to_dict(by_alias=by_alias)
             _dict['nonClassSpecificPnl'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of each value in aggregated_class_pnl (dict)
         _field_dict = {}
         if self.aggregated_class_pnl:
             for _key in self.aggregated_class_pnl:
                 if self.aggregated_class_pnl[_key]:
-                    _field_dict[_key] = self.aggregated_class_pnl[_key].to_dict()
+                    _field_dict[_key] = self.aggregated_class_pnl[_key].to_dict(by_alias=by_alias)
             _dict['aggregatedClassPnl'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of each value in total_pnl (dict)
         _field_dict = {}
         if self.total_pnl:
             for _key in self.total_pnl:
                 if self.total_pnl[_key]:
-                    _field_dict[_key] = self.total_pnl[_key].to_dict()
+                    _field_dict[_key] = self.total_pnl[_key].to_dict(by_alias=by_alias)
             _dict['totalPnl'] = _field_dict
         return _dict
 

@@ -54,7 +54,7 @@ class ScriptedTranslationApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def get_translation_dialect(self, scope: StrictStr, vendor: StrictStr, source_system: StrictStr, entity_type: StrictStr, serialisation_format: StrictStr, version: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> Dialect:
@@ -164,22 +164,22 @@ class ScriptedTranslationApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['vendor']:
+        if _params['vendor'] is not None:
             _path_params['vendor'] = _params['vendor']
 
-        if _params['source_system']:
+        if _params['source_system'] is not None:
             _path_params['sourceSystem'] = _params['source_system']
 
-        if _params['entity_type']:
+        if _params['entity_type'] is not None:
             _path_params['entityType'] = _params['entity_type']
 
-        if _params['serialisation_format']:
+        if _params['serialisation_format'] is not None:
             _path_params['serialisationFormat'] = _params['serialisation_format']
 
-        if _params['version']:
+        if _params['version'] is not None:
             _path_params['version'] = _params['version']
 
 
@@ -320,13 +320,13 @@ class ScriptedTranslationApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
-        if _params['version']:
+        if _params['version'] is not None:
             _path_params['version'] = _params['version']
 
 
@@ -1289,22 +1289,22 @@ class ScriptedTranslationApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['vendor']:
+            if _params['vendor'] is not None:
                 _path_params['vendor'] = _params['vendor']
 
-            if _params['source_system']:
+            if _params['source_system'] is not None:
                 _path_params['sourceSystem'] = _params['source_system']
 
-            if _params['entity_type']:
+            if _params['entity_type'] is not None:
                 _path_params['entityType'] = _params['entity_type']
 
-            if _params['serialisation_format']:
+            if _params['serialisation_format'] is not None:
                 _path_params['serialisationFormat'] = _params['serialisation_format']
 
-            if _params['version']:
+            if _params['version'] is not None:
                 _path_params['version'] = _params['version']
 
 
@@ -1446,13 +1446,13 @@ class ScriptedTranslationApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
-            if _params['version']:
+            if _params['version'] is not None:
                 _path_params['version'] = _params['version']
 
 

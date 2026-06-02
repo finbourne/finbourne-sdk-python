@@ -62,9 +62,9 @@ class TranslateEntitiesRequest(BaseModel):
         """Create an instance of TranslateEntitiesRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
@@ -74,14 +74,14 @@ class TranslateEntitiesRequest(BaseModel):
         if self.entity_payloads:
             for _key in self.entity_payloads:
                 if self.entity_payloads[_key]:
-                    _field_dict[_key] = self.entity_payloads[_key].to_dict()
+                    _field_dict[_key] = self.entity_payloads[_key].to_dict(by_alias=by_alias)
             _dict['entityPayloads'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of script_id
         if self.script_id:
-            _dict['scriptId'] = self.script_id.to_dict()
+            _dict['scriptId'] = self.script_id.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of dialect_id
         if self.dialect_id:
-            _dict['dialectId'] = self.dialect_id.to_dict()
+            _dict['dialectId'] = self.dialect_id.to_dict(by_alias=by_alias)
         return _dict
 
     @classmethod

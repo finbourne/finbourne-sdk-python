@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**create_fee**](FundsApi.md#create_fee) | **POST** /api/api/funds/{scope}/{code}/fees | [EXPERIMENTAL] CreateFee: Create a Fee.
 [**create_fund**](FundsApi.md#create_fund) | **POST** /api/api/funds/{scope} | [EXPERIMENTAL] CreateFund: Create a Fund.
 [**create_fund_v2**](FundsApi.md#create_fund_v2) | **POST** /api/api/funds/v2/{scope} | [EXPERIMENTAL] CreateFundV2: Create a Fund V2 (Preview).
+[**create_valuation_point**](FundsApi.md#create_valuation_point) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/$create | [EXPERIMENTAL] CreateValuationPoint: Create a Valuation Point.
 [**deactivate_nav_types**](FundsApi.md#deactivate_nav_types) | **POST** /api/api/funds/{scope}/{code}/deactivateNavTypes | [EXPERIMENTAL] DeactivateNavTypes: Deactivate NAV types on a Fund.
 [**delete_bookmark**](FundsApi.md#delete_bookmark) | **DELETE** /api/api/funds/{scope}/{code}/bookmarks/{bookmarkCode} | [EXPERIMENTAL] DeleteBookmark: Delete a Bookmark.
 [**delete_fee**](FundsApi.md#delete_fee) | **DELETE** /api/api/funds/{scope}/{code}/fees/{feeCode} | [EXPERIMENTAL] DeleteFee: Delete a Fee.
@@ -346,6 +347,54 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | The newly created Fund. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **create_valuation_point**
+> ValuationPoint createValuationPoint = create_valuation_point(scope, code, create_valuation_point_request, nav_type_code=nav_type_code)
+
+[EXPERIMENTAL] CreateValuationPoint: Create a Valuation Point.
+
+Insert the estimate Valuation Point.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(FundsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+create_valuation_point_request = CreateValuationPointRequest()
+nav_type_code = 'nav_type_code_example' # str (optional)
+api_response = api_instance.create_valuation_point(scope, code, create_valuation_point_request, nav_type_code=nav_type_code)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the Fund. | [required] 
+ **code** | **str**| The code of the Fund. Together with the scope this uniquely identifies the Fund. | [required] 
+ **create_valuation_point_request** | [**CreateValuationPointRequest**](CreateValuationPointRequest.md)| The Valuation Point Estimate definition to create. | [required] 
+ **nav_type_code** | **str**| When provided, creates the Valuation Point against the specified NAV Type, otherwise the Primary NAV Type will be used. | [optional] 
+
+### Return type
+
+[**ValuationPoint**](ValuationPoint.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The created estimated Valuation Point |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 
@@ -2166,7 +2215,7 @@ Name | Type | Description  | Notes
 ---
 
 # **update_valuation_point**
-> DiaryEntry updateValuationPoint = update_valuation_point(scope, code, update_valuation_point_request, nav_type_code=nav_type_code)
+> ValuationPoint updateValuationPoint = update_valuation_point(scope, code, update_valuation_point_request, nav_type_code=nav_type_code)
 
 [EXPERIMENTAL] UpdateValuationPoint: Update a Valuation Point.
 
@@ -2195,7 +2244,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DiaryEntry**](DiaryEntry.md)
+[**ValuationPoint**](ValuationPoint.md)
 
 ### HTTP request headers
 

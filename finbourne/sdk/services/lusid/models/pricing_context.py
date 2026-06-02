@@ -67,9 +67,9 @@ class PricingContext(BaseModel):
         """Create an instance of PricingContext from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
@@ -79,28 +79,28 @@ class PricingContext(BaseModel):
         if self.model_rules:
             for _item in self.model_rules:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['modelRules'] = _items
         # override the default output from pydantic by calling `to_dict()` of each value in model_choice (dict)
         _field_dict = {}
         if self.model_choice:
             for _key in self.model_choice:
                 if self.model_choice[_key]:
-                    _field_dict[_key] = self.model_choice[_key].to_dict()
+                    _field_dict[_key] = self.model_choice[_key].to_dict(by_alias=by_alias)
             _dict['modelChoice'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of options
         if self.options:
-            _dict['options'] = self.options.to_dict()
+            _dict['options'] = self.options.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each item in result_data_rules (list)
         _items = []
         if self.result_data_rules:
             for _item in self.result_data_rules:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['resultDataRules'] = _items
         # override the default output from pydantic by calling `to_dict()` of holding_pricing_info
         if self.holding_pricing_info:
-            _dict['holdingPricingInfo'] = self.holding_pricing_info.to_dict()
+            _dict['holdingPricingInfo'] = self.holding_pricing_info.to_dict(by_alias=by_alias)
         # set to None if model_rules (nullable) is None
         # and model_fields_set contains the field
         if self.model_rules is None and "model_rules" in self.model_fields_set:

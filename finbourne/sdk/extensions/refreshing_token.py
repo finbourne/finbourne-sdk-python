@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 class RefreshingToken(UserString):
     def __init__(
-        self, api_configuration=None, expiry_offset=60, id_provider_response_handler=None, access_token_location=os.getenv("FBN_ACCESS_TOKEN_FILE", None)
+        self, api_configuration=None, expiry_offset=60, id_provider_response_handler=None, access_token_location=None
     ):
         """
         Implementation of UserString that will automatically refresh the token value upon expiry
@@ -25,6 +25,8 @@ class RefreshingToken(UserString):
         :param callable id_provider_response_handler: A handler taking the Requests.Response from the identity provider
         before it is consumed by the RefreshingToken, mutation of the Response is possible with this handler
         """
+        if access_token_location is None:
+            access_token_location = os.getenv("FBN_ACCESS_TOKEN_FILE", None)
 
         self.access_token_location = access_token_location
         self.file_token_data: dict[str, Any] = {"expires": datetime.now(tz=timezone.utc), "current_access_token": None}
@@ -109,10 +111,10 @@ class RefreshingToken(UserString):
         self.token_data["access_token"] = id_provider_json["access_token"]
         # Set the expiry just before the actual expiry to ensure no failed requests
         delta = timedelta(
-            seconds=id_provider_json.get("expires_in", 3600) - self.expiry_offset
+            seconds=max(0, id_provider_json.get("expires_in", 3600) - self.expiry_offset)
         )
         self.token_data["expires"] = datetime.now(tz=timezone.utc) + delta
-        self.token_data["refresh_token"] = id_provider_json["refresh_token"]
+        self.token_data["refresh_token"] = id_provider_json.get("refresh_token", self.token_data.get("refresh_token"))
 
     def get_access_token(self):
         """
@@ -267,7 +269,7 @@ class RefreshingToken(UserString):
                 wait_time = int(
                     datetime.strptime(
                         retry_value, "%a, %d %b %Y %H:%M:%S GMT"
-                    ).timestamp()
+                    ).replace(tzinfo=timezone.utc).timestamp()
                     - datetime.now(tz=timezone.utc).timestamp()
                 )
                 if wait_time <= 0:  # Won't wait for a negative period
@@ -291,13 +293,15 @@ class RefreshingToken(UserString):
         """
         return backoff_base**retries
 
+    def __deepcopy__(self, memo):
+        return self
+
     def __getattribute__(self, item):
         # return the value of the string
         if item == "data":
-            self.lock.acquire()
-            # check if the token has expired and go through the refresh token logic if it has
-            token = object.__getattribute__(self, "refresh_func")()
-            self.lock.release()
+            with self.lock:
+                # check if the token has expired and go through the refresh token logic if it has
+                token = object.__getattribute__(self, "refresh_func")()
             return token
 
         # get the class attribute to be string class instead of the RefreshingToken class itself, used for UserString

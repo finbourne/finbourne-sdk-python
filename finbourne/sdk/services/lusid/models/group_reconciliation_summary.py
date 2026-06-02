@@ -75,37 +75,37 @@ class GroupReconciliationSummary(BaseModel):
         """Create an instance of GroupReconciliationSummary from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of run_details
         if self.run_details:
-            _dict['runDetails'] = self.run_details.to_dict()
+            _dict['runDetails'] = self.run_details.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of group_reconciliation_definition_id
         if self.group_reconciliation_definition_id:
-            _dict['groupReconciliationDefinitionId'] = self.group_reconciliation_definition_id.to_dict()
+            _dict['groupReconciliationDefinitionId'] = self.group_reconciliation_definition_id.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of instance_id
         if self.instance_id:
-            _dict['instanceId'] = self.instance_id.to_dict()
+            _dict['instanceId'] = self.instance_id.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of dates_reconciled
         if self.dates_reconciled:
-            _dict['datesReconciled'] = self.dates_reconciled.to_dict()
+            _dict['datesReconciled'] = self.dates_reconciled.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of link_comparison_results
         if self.link_comparison_results:
-            _dict['linkComparisonResults'] = self.link_comparison_results.to_dict()
+            _dict['linkComparisonResults'] = self.link_comparison_results.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of result_types
         if self.result_types:
-            _dict['resultTypes'] = self.result_types.to_dict()
+            _dict['resultTypes'] = self.result_types.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of result_statuses
         if self.result_statuses:
-            _dict['resultStatuses'] = self.result_statuses.to_dict()
+            _dict['resultStatuses'] = self.result_statuses.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of review_statuses
         if self.review_statuses:
-            _dict['reviewStatuses'] = self.review_statuses.to_dict()
+            _dict['reviewStatuses'] = self.review_statuses.to_dict(by_alias=by_alias)
         return _dict
 
     @classmethod

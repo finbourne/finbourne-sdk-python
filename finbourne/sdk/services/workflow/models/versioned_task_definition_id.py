@@ -59,16 +59,16 @@ class VersionedTaskDefinitionId(BaseModel):
         """Create an instance of VersionedTaskDefinitionId from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of task_definition_id
         if self.task_definition_id:
-            _dict['taskDefinitionId'] = self.task_definition_id.to_dict()
+            _dict['taskDefinitionId'] = self.task_definition_id.to_dict(by_alias=by_alias)
         # set to None if task_definition_as_at (nullable) is None
         # and model_fields_set contains the field
         if self.task_definition_as_at is None and "task_definition_as_at" in self.model_fields_set:

@@ -46,7 +46,7 @@ class LogsApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def get_integration_log_results(self, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, page_token: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfIIntegrationLogResponse:
@@ -280,10 +280,10 @@ class LogsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['instanceid']:
+        if _params['instanceid'] is not None:
             _path_params['instanceid'] = _params['instanceid']
 
-        if _params['runid']:
+        if _params['runid'] is not None:
             _path_params['runid'] = _params['runid']
 
 
@@ -573,10 +573,10 @@ class LogsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['instanceid']:
+            if _params['instanceid'] is not None:
                 _path_params['instanceid'] = _params['instanceid']
 
-            if _params['runid']:
+            if _params['runid'] is not None:
                 _path_params['runid'] = _params['runid']
 
 

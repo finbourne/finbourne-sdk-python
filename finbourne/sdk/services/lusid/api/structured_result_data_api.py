@@ -57,7 +57,7 @@ class StructuredResultDataApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def create_data_map(self, scope: StrictStr, request_body: Dict[str, CreateDataMapRequest], **kwargs) -> UpsertStructuredDataResponse:
@@ -142,7 +142,7 @@ class StructuredResultDataApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
 
@@ -277,7 +277,7 @@ class StructuredResultDataApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
 
@@ -432,16 +432,16 @@ class StructuredResultDataApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
-        if _params['source']:
+        if _params['source'] is not None:
             _path_params['source'] = _params['source']
 
-        if _params['result_type']:
+        if _params['result_type'] is not None:
             _path_params['resultType'] = _params['result_type']
 
 
@@ -575,7 +575,7 @@ class StructuredResultDataApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
 
@@ -720,7 +720,7 @@ class StructuredResultDataApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
 
@@ -869,7 +869,7 @@ class StructuredResultDataApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
 
@@ -1045,16 +1045,16 @@ class StructuredResultDataApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
-        if _params['source']:
+        if _params['source'] is not None:
             _path_params['source'] = _params['source']
 
-        if _params['result_type']:
+        if _params['result_type'] is not None:
             _path_params['resultType'] = _params['result_type']
 
 
@@ -1197,7 +1197,7 @@ class StructuredResultDataApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
 
@@ -1332,7 +1332,7 @@ class StructuredResultDataApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
 
@@ -1472,7 +1472,7 @@ class StructuredResultDataApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
 
@@ -1608,7 +1608,7 @@ class StructuredResultDataApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
 
@@ -1764,16 +1764,16 @@ class StructuredResultDataApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
-            if _params['source']:
+            if _params['source'] is not None:
                 _path_params['source'] = _params['source']
 
-            if _params['result_type']:
+            if _params['result_type'] is not None:
                 _path_params['resultType'] = _params['result_type']
 
 
@@ -1908,7 +1908,7 @@ class StructuredResultDataApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
 
@@ -2054,7 +2054,7 @@ class StructuredResultDataApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
 
@@ -2204,7 +2204,7 @@ class StructuredResultDataApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
 
@@ -2381,16 +2381,16 @@ class StructuredResultDataApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
-            if _params['source']:
+            if _params['source'] is not None:
                 _path_params['source'] = _params['source']
 
-            if _params['result_type']:
+            if _params['result_type'] is not None:
                 _path_params['resultType'] = _params['result_type']
 
 
@@ -2534,7 +2534,7 @@ class StructuredResultDataApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
 
@@ -2670,7 +2670,7 @@ class StructuredResultDataApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
 

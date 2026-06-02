@@ -73,34 +73,34 @@ class EventHandler(BaseModel):
         """Create an instance of EventHandler from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of id
         if self.id:
-            _dict['id'] = self.id.to_dict()
+            _dict['id'] = self.id.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of version
         if self.version:
-            _dict['version'] = self.version.to_dict()
+            _dict['version'] = self.version.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of event_matching_pattern
         if self.event_matching_pattern:
-            _dict['eventMatchingPattern'] = self.event_matching_pattern.to_dict()
+            _dict['eventMatchingPattern'] = self.event_matching_pattern.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of schedule_matching_pattern
         if self.schedule_matching_pattern:
-            _dict['scheduleMatchingPattern'] = self.schedule_matching_pattern.to_dict()
+            _dict['scheduleMatchingPattern'] = self.schedule_matching_pattern.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of run_as_user_id
         if self.run_as_user_id:
-            _dict['runAsUserId'] = self.run_as_user_id.to_dict()
+            _dict['runAsUserId'] = self.run_as_user_id.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of task_definition_id
         if self.task_definition_id:
-            _dict['taskDefinitionId'] = self.task_definition_id.to_dict()
+            _dict['taskDefinitionId'] = self.task_definition_id.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of task_activity
         if self.task_activity:
-            _dict['taskActivity'] = self.task_activity.to_dict()
+            _dict['taskActivity'] = self.task_activity.to_dict(by_alias=by_alias)
         # set to None if description (nullable) is None
         # and model_fields_set contains the field
         if self.description is None and "description" in self.model_fields_set:

@@ -48,7 +48,7 @@ class RunsApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def cancel_instance(self, cancel_run_request: CancelRunRequest, **kwargs) -> IntegrationCancellationResponse:
@@ -402,7 +402,7 @@ class RunsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['run_id']:
+        if _params['run_id'] is not None:
             _path_params['runId'] = _params['run_id']
 
 
@@ -528,10 +528,10 @@ class RunsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['instance_id']:
+        if _params['instance_id'] is not None:
             _path_params['instanceId'] = _params['instance_id']
 
-        if _params['run_id']:
+        if _params['run_id'] is not None:
             _path_params['runId'] = _params['run_id']
 
 
@@ -933,7 +933,7 @@ class RunsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['run_id']:
+            if _params['run_id'] is not None:
                 _path_params['runId'] = _params['run_id']
 
 
@@ -1060,10 +1060,10 @@ class RunsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['instance_id']:
+            if _params['instance_id'] is not None:
                 _path_params['instanceId'] = _params['instance_id']
 
-            if _params['run_id']:
+            if _params['run_id'] is not None:
                 _path_params['runId'] = _params['run_id']
 
 

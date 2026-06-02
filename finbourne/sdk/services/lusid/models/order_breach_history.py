@@ -63,29 +63,29 @@ class OrderBreachHistory(BaseModel):
         """Create an instance of OrderBreachHistory from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of id
         if self.id:
-            _dict['id'] = self.id.to_dict()
+            _dict['id'] = self.id.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of order_id
         if self.order_id:
-            _dict['orderId'] = self.order_id.to_dict()
+            _dict['orderId'] = self.order_id.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of run_id
         if self.run_id:
-            _dict['runId'] = self.run_id.to_dict()
+            _dict['runId'] = self.run_id.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each value in breaches_by_rule (dict of array)
         _field_dict_of_array = {}
         if self.breaches_by_rule:
             for _key in self.breaches_by_rule:
                 if (_items_for_key := self.breaches_by_rule[_key]):
                     _field_dict_of_array[_key] = [
-                        _item.to_dict() for _item in _items_for_key
+                        _item.to_dict(by_alias=by_alias) for _item in _items_for_key
                     ]
             _dict['breachesByRule'] = _field_dict_of_array
         # set to None if breaches_by_rule (nullable) is None

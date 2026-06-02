@@ -1,4 +1,5 @@
 import time
+import random
 from typing import Optional
 
 import asyncio
@@ -84,9 +85,9 @@ class RetryingRestWrapper:
                                 f"invalid Retry-After header value: {retry_after}"
                             )
                     time.sleep(retry_after)
-                # no retry header
                 else:
-                    raise
+                    backoff_count = rate_limit_retries_count if ex.status == 429 else retries_count
+                    time.sleep(min(2 ** backoff_count, 60) * random.uniform(0.5, 1.0))
 
     def get_request(
         self,
@@ -294,9 +295,9 @@ class RetryingRestWrapperAsync:
                                 f"invalid Retry-After header value: {retry_after}"
                             )
                     await asyncio.sleep(retry_after)
-                # no retry header
                 else:
-                    raise
+                    backoff_count = rate_limit_retries_count if ex.status == 429 else retries_count
+                    await asyncio.sleep(min(2 ** backoff_count, 60) * random.uniform(0.5, 1.0))
 
     async def get_request(
         self,

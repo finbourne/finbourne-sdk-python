@@ -60,19 +60,19 @@ class RoleResourceRequest(BaseModel):
         """Create an instance of RoleResourceRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of non_transitive_supervisor_role_resource
         if self.non_transitive_supervisor_role_resource:
-            _dict['nonTransitiveSupervisorRoleResource'] = self.non_transitive_supervisor_role_resource.to_dict()
+            _dict['nonTransitiveSupervisorRoleResource'] = self.non_transitive_supervisor_role_resource.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of policy_id_role_resource
         if self.policy_id_role_resource:
-            _dict['policyIdRoleResource'] = self.policy_id_role_resource.to_dict()
+            _dict['policyIdRoleResource'] = self.policy_id_role_resource.to_dict(by_alias=by_alias)
         return _dict
 
     @classmethod

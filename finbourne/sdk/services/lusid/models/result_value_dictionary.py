@@ -129,9 +129,9 @@ class ResultValueDictionary(ResultValue):
         """Create an instance of ResultValueDictionary from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                             "additional_properties"
@@ -142,7 +142,7 @@ class ResultValueDictionary(ResultValue):
         if self.elements:
             for _key in self.elements:
                 if self.elements[_key]:
-                    _field_dict[_key] = self.elements[_key].to_dict()
+                    _field_dict[_key] = self.elements[_key].to_dict(by_alias=by_alias)
             _dict['elements'] = _field_dict
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:

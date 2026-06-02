@@ -69,22 +69,22 @@ class LusidGridData(BaseModel):
         """Create an instance of LusidGridData from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of lusid_grid_design
         if self.lusid_grid_design:
-            _dict['lusidGridDesign'] = self.lusid_grid_design.to_dict()
+            _dict['lusidGridDesign'] = self.lusid_grid_design.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of resource_id
         if self.resource_id:
-            _dict['resourceId'] = self.resource_id.to_dict()
+            _dict['resourceId'] = self.resource_id.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of dates
         if self.dates:
-            _dict['dates'] = self.dates.to_dict()
+            _dict['dates'] = self.dates.to_dict(by_alias=by_alias)
         # set to None if use_settle_date (nullable) is None
         # and model_fields_set contains the field
         if self.use_settle_date is None and "use_settle_date" in self.model_fields_set:

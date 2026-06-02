@@ -55,7 +55,7 @@ class WorkspaceApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def create_item(self, visibility: StrictStr, workspace_name: StrictStr, workspace_item_creation_request: Optional[WorkspaceItemCreationRequest] = None, **kwargs) -> WorkspaceItem:
@@ -145,10 +145,10 @@ class WorkspaceApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['visibility']:
+        if _params['visibility'] is not None:
             _path_params['visibility'] = _params['visibility']
 
-        if _params['workspace_name']:
+        if _params['workspace_name'] is not None:
             _path_params['workspaceName'] = _params['workspace_name']
 
 
@@ -288,7 +288,7 @@ class WorkspaceApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['visibility']:
+        if _params['visibility'] is not None:
             _path_params['visibility'] = _params['visibility']
 
 
@@ -436,16 +436,16 @@ class WorkspaceApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['visibility']:
+        if _params['visibility'] is not None:
             _path_params['visibility'] = _params['visibility']
 
-        if _params['workspace_name']:
+        if _params['workspace_name'] is not None:
             _path_params['workspaceName'] = _params['workspace_name']
 
-        if _params['group_name']:
+        if _params['group_name'] is not None:
             _path_params['groupName'] = _params['group_name']
 
-        if _params['item_name']:
+        if _params['item_name'] is not None:
             _path_params['itemName'] = _params['item_name']
 
 
@@ -575,10 +575,10 @@ class WorkspaceApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['visibility']:
+        if _params['visibility'] is not None:
             _path_params['visibility'] = _params['visibility']
 
-        if _params['workspace_name']:
+        if _params['workspace_name'] is not None:
             _path_params['workspaceName'] = _params['workspace_name']
 
 
@@ -721,16 +721,16 @@ class WorkspaceApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['visibility']:
+        if _params['visibility'] is not None:
             _path_params['visibility'] = _params['visibility']
 
-        if _params['workspace_name']:
+        if _params['workspace_name'] is not None:
             _path_params['workspaceName'] = _params['workspace_name']
 
-        if _params['group_name']:
+        if _params['group_name'] is not None:
             _path_params['groupName'] = _params['group_name']
 
-        if _params['item_name']:
+        if _params['item_name'] is not None:
             _path_params['itemName'] = _params['item_name']
 
 
@@ -871,10 +871,10 @@ class WorkspaceApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['visibility']:
+        if _params['visibility'] is not None:
             _path_params['visibility'] = _params['visibility']
 
-        if _params['workspace_name']:
+        if _params['workspace_name'] is not None:
             _path_params['workspaceName'] = _params['workspace_name']
 
 
@@ -1033,10 +1033,10 @@ class WorkspaceApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['visibility']:
+        if _params['visibility'] is not None:
             _path_params['visibility'] = _params['visibility']
 
-        if _params['workspace_name']:
+        if _params['workspace_name'] is not None:
             _path_params['workspaceName'] = _params['workspace_name']
 
 
@@ -1205,7 +1205,7 @@ class WorkspaceApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['visibility']:
+        if _params['visibility'] is not None:
             _path_params['visibility'] = _params['visibility']
 
 
@@ -1372,7 +1372,7 @@ class WorkspaceApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['visibility']:
+        if _params['visibility'] is not None:
             _path_params['visibility'] = _params['visibility']
 
 
@@ -1531,16 +1531,16 @@ class WorkspaceApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['visibility']:
+        if _params['visibility'] is not None:
             _path_params['visibility'] = _params['visibility']
 
-        if _params['workspace_name']:
+        if _params['workspace_name'] is not None:
             _path_params['workspaceName'] = _params['workspace_name']
 
-        if _params['group_name']:
+        if _params['group_name'] is not None:
             _path_params['groupName'] = _params['group_name']
 
-        if _params['item_name']:
+        if _params['item_name'] is not None:
             _path_params['itemName'] = _params['item_name']
 
 
@@ -1685,10 +1685,10 @@ class WorkspaceApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['visibility']:
+        if _params['visibility'] is not None:
             _path_params['visibility'] = _params['visibility']
 
-        if _params['workspace_name']:
+        if _params['workspace_name'] is not None:
             _path_params['workspaceName'] = _params['workspace_name']
 
 
@@ -1836,10 +1836,10 @@ class WorkspaceApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['visibility']:
+            if _params['visibility'] is not None:
                 _path_params['visibility'] = _params['visibility']
 
-            if _params['workspace_name']:
+            if _params['workspace_name'] is not None:
                 _path_params['workspaceName'] = _params['workspace_name']
 
 
@@ -1980,7 +1980,7 @@ class WorkspaceApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['visibility']:
+            if _params['visibility'] is not None:
                 _path_params['visibility'] = _params['visibility']
 
 
@@ -2129,16 +2129,16 @@ class WorkspaceApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['visibility']:
+            if _params['visibility'] is not None:
                 _path_params['visibility'] = _params['visibility']
 
-            if _params['workspace_name']:
+            if _params['workspace_name'] is not None:
                 _path_params['workspaceName'] = _params['workspace_name']
 
-            if _params['group_name']:
+            if _params['group_name'] is not None:
                 _path_params['groupName'] = _params['group_name']
 
-            if _params['item_name']:
+            if _params['item_name'] is not None:
                 _path_params['itemName'] = _params['item_name']
 
 
@@ -2269,10 +2269,10 @@ class WorkspaceApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['visibility']:
+            if _params['visibility'] is not None:
                 _path_params['visibility'] = _params['visibility']
 
-            if _params['workspace_name']:
+            if _params['workspace_name'] is not None:
                 _path_params['workspaceName'] = _params['workspace_name']
 
 
@@ -2416,16 +2416,16 @@ class WorkspaceApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['visibility']:
+            if _params['visibility'] is not None:
                 _path_params['visibility'] = _params['visibility']
 
-            if _params['workspace_name']:
+            if _params['workspace_name'] is not None:
                 _path_params['workspaceName'] = _params['workspace_name']
 
-            if _params['group_name']:
+            if _params['group_name'] is not None:
                 _path_params['groupName'] = _params['group_name']
 
-            if _params['item_name']:
+            if _params['item_name'] is not None:
                 _path_params['itemName'] = _params['item_name']
 
 
@@ -2567,10 +2567,10 @@ class WorkspaceApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['visibility']:
+            if _params['visibility'] is not None:
                 _path_params['visibility'] = _params['visibility']
 
-            if _params['workspace_name']:
+            if _params['workspace_name'] is not None:
                 _path_params['workspaceName'] = _params['workspace_name']
 
 
@@ -2730,10 +2730,10 @@ class WorkspaceApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['visibility']:
+            if _params['visibility'] is not None:
                 _path_params['visibility'] = _params['visibility']
 
-            if _params['workspace_name']:
+            if _params['workspace_name'] is not None:
                 _path_params['workspaceName'] = _params['workspace_name']
 
 
@@ -2903,7 +2903,7 @@ class WorkspaceApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['visibility']:
+            if _params['visibility'] is not None:
                 _path_params['visibility'] = _params['visibility']
 
 
@@ -3071,7 +3071,7 @@ class WorkspaceApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['visibility']:
+            if _params['visibility'] is not None:
                 _path_params['visibility'] = _params['visibility']
 
 
@@ -3231,16 +3231,16 @@ class WorkspaceApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['visibility']:
+            if _params['visibility'] is not None:
                 _path_params['visibility'] = _params['visibility']
 
-            if _params['workspace_name']:
+            if _params['workspace_name'] is not None:
                 _path_params['workspaceName'] = _params['workspace_name']
 
-            if _params['group_name']:
+            if _params['group_name'] is not None:
                 _path_params['groupName'] = _params['group_name']
 
-            if _params['item_name']:
+            if _params['item_name'] is not None:
                 _path_params['itemName'] = _params['item_name']
 
 
@@ -3386,10 +3386,10 @@ class WorkspaceApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['visibility']:
+            if _params['visibility'] is not None:
                 _path_params['visibility'] = _params['visibility']
 
-            if _params['workspace_name']:
+            if _params['workspace_name'] is not None:
                 _path_params['workspaceName'] = _params['workspace_name']
 
 

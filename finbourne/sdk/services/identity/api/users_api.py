@@ -51,7 +51,7 @@ class UsersApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def create_user(self, create_user_request: CreateUserRequest, wait_for_reindex: Optional[bool] = None, **kwargs) -> UserResponse:
@@ -271,7 +271,7 @@ class UsersApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['id']:
+        if _params['id'] is not None:
             _path_params['id'] = _params['id']
 
 
@@ -391,7 +391,7 @@ class UsersApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['id']:
+        if _params['id'] is not None:
             _path_params['id'] = _params['id']
 
 
@@ -637,7 +637,7 @@ class UsersApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['id']:
+        if _params['id'] is not None:
             _path_params['id'] = _params['id']
 
 
@@ -1102,7 +1102,7 @@ class UsersApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['id']:
+        if _params['id'] is not None:
             _path_params['id'] = _params['id']
 
 
@@ -1219,7 +1219,7 @@ class UsersApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['id']:
+        if _params['id'] is not None:
             _path_params['id'] = _params['id']
 
 
@@ -1336,7 +1336,7 @@ class UsersApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['id']:
+        if _params['id'] is not None:
             _path_params['id'] = _params['id']
 
 
@@ -1453,7 +1453,7 @@ class UsersApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['id']:
+        if _params['id'] is not None:
             _path_params['id'] = _params['id']
 
 
@@ -1570,7 +1570,7 @@ class UsersApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['id']:
+        if _params['id'] is not None:
             _path_params['id'] = _params['id']
 
 
@@ -1692,7 +1692,7 @@ class UsersApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['id']:
+        if _params['id'] is not None:
             _path_params['id'] = _params['id']
 
 
@@ -2095,7 +2095,7 @@ class UsersApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['id']:
+            if _params['id'] is not None:
                 _path_params['id'] = _params['id']
 
 
@@ -2216,7 +2216,7 @@ class UsersApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['id']:
+            if _params['id'] is not None:
                 _path_params['id'] = _params['id']
 
 
@@ -2464,7 +2464,7 @@ class UsersApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['id']:
+            if _params['id'] is not None:
                 _path_params['id'] = _params['id']
 
 
@@ -2933,7 +2933,7 @@ class UsersApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['id']:
+            if _params['id'] is not None:
                 _path_params['id'] = _params['id']
 
 
@@ -3051,7 +3051,7 @@ class UsersApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['id']:
+            if _params['id'] is not None:
                 _path_params['id'] = _params['id']
 
 
@@ -3169,7 +3169,7 @@ class UsersApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['id']:
+            if _params['id'] is not None:
                 _path_params['id'] = _params['id']
 
 
@@ -3287,7 +3287,7 @@ class UsersApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['id']:
+            if _params['id'] is not None:
                 _path_params['id'] = _params['id']
 
 
@@ -3405,7 +3405,7 @@ class UsersApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['id']:
+            if _params['id'] is not None:
                 _path_params['id'] = _params['id']
 
 
@@ -3528,7 +3528,7 @@ class UsersApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['id']:
+            if _params['id'] is not None:
                 _path_params['id'] = _params['id']
 
 

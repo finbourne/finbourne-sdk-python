@@ -48,7 +48,7 @@ class RequestsApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def get_request(self, id: StrictStr, **kwargs) -> Request:
@@ -126,7 +126,7 @@ class RequestsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['id']:
+        if _params['id'] is not None:
             _path_params['id'] = _params['id']
 
 
@@ -244,7 +244,7 @@ class RequestsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['id']:
+        if _params['id'] is not None:
             _path_params['id'] = _params['id']
 
 
@@ -362,7 +362,7 @@ class RequestsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['id']:
+        if _params['id'] is not None:
             _path_params['id'] = _params['id']
 
 
@@ -635,7 +635,7 @@ class RequestsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['id']:
+            if _params['id'] is not None:
                 _path_params['id'] = _params['id']
 
 
@@ -754,7 +754,7 @@ class RequestsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['id']:
+            if _params['id'] is not None:
                 _path_params['id'] = _params['id']
 
 
@@ -873,7 +873,7 @@ class RequestsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['id']:
+            if _params['id'] is not None:
                 _path_params['id'] = _params['id']
 
 

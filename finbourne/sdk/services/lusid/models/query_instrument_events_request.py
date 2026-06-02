@@ -65,9 +65,9 @@ class QueryInstrumentEventsRequest(BaseModel):
         """Create an instance of QueryInstrumentEventsRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
@@ -77,11 +77,11 @@ class QueryInstrumentEventsRequest(BaseModel):
         if self.portfolio_entity_ids:
             for _item in self.portfolio_entity_ids:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['portfolioEntityIds'] = _items
         # override the default output from pydantic by calling `to_dict()` of recipe_id
         if self.recipe_id:
-            _dict['recipeId'] = self.recipe_id.to_dict()
+            _dict['recipeId'] = self.recipe_id.to_dict(by_alias=by_alias)
         # set to None if as_at (nullable) is None
         # and model_fields_set contains the field
         if self.as_at is None and "as_at" in self.model_fields_set:

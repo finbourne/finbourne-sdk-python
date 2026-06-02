@@ -48,7 +48,7 @@ class AddressKeyDefinitionApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def create_address_key_definition(self, create_address_key_definition_request: CreateAddressKeyDefinitionRequest, **kwargs) -> AddressKeyDefinition:
@@ -260,7 +260,7 @@ class AddressKeyDefinitionApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['key']:
+        if _params['key'] is not None:
             _path_params['key'] = _params['key']
 
 
@@ -671,7 +671,7 @@ class AddressKeyDefinitionApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['key']:
+            if _params['key'] is not None:
                 _path_params['key'] = _params['key']
 
 

@@ -270,23 +270,20 @@ def get_api_configuration(
         FileTokenConfigurationLoader()
     ]
     
-    loaded_config = None
+    config = None
     for loader in loaders:
         try:
             loaded_config = loader.load_config()
             if loaded_config and len(loaded_config) > 0:
+                config = loaded_config
                 break
         except Exception:
-            # Continue to next loader if this one fails
             continue
-    
-    if not loaded_config:
+
+    if not config:
         raise ValueError(
             "No configuration found. Please provide a secrets file, environment variables, or a file token."
         )
-    
-    # Start with loaded config
-    config = loaded_config.copy()
     
     # Override with explicit parameters (highest priority)
     if base_url is not None:
@@ -310,11 +307,17 @@ def get_api_configuration(
     else:
         config["proxy_config"] = None
     
+    # Remove keys that are not ApiConfiguration constructor parameters
+    config.pop("fbn_profile", None)
+    config.pop("profile_name", None)
+    config.pop("proxy_username", None)
+    config.pop("proxy_password", None)
+
     # Validate required configuration
     api_url = config.get("api_url")
     if not api_url:
         raise ValueError("api_url must be set in configuration")
-    
+
     api_config = ApiConfiguration(**config)
     return api_config.build_api_client_config(
         tcp_keep_alive=tcp_keep_alive,

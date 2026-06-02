@@ -50,7 +50,7 @@ class CustomEntityTypesApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def create_custom_entity_type(self, create_custom_entity_type_request: CreateCustomEntityTypeRequest, **kwargs) -> CustomEntityType:
@@ -257,7 +257,7 @@ class CustomEntityTypesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['entity_type']:
+        if _params['entity_type'] is not None:
             _path_params['entityType'] = _params['entity_type']
 
 
@@ -382,7 +382,7 @@ class CustomEntityTypesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['entity_type']:
+        if _params['entity_type'] is not None:
             _path_params['entityType'] = _params['entity_type']
 
 
@@ -669,7 +669,7 @@ class CustomEntityTypesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['entity_type']:
+        if _params['entity_type'] is not None:
             _path_params['entityType'] = _params['entity_type']
 
 
@@ -932,7 +932,7 @@ class CustomEntityTypesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['entity_type']:
+            if _params['entity_type'] is not None:
                 _path_params['entityType'] = _params['entity_type']
 
 
@@ -1058,7 +1058,7 @@ class CustomEntityTypesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['entity_type']:
+            if _params['entity_type'] is not None:
                 _path_params['entityType'] = _params['entity_type']
 
 
@@ -1347,7 +1347,7 @@ class CustomEntityTypesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['entity_type']:
+            if _params['entity_type'] is not None:
                 _path_params['entityType'] = _params['entity_type']
 
 

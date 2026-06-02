@@ -71,16 +71,16 @@ class Column(BaseModel):
         """Create an instance of Column from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of lineage
         if self.lineage:
-            _dict['lineage'] = self.lineage.to_dict()
+            _dict['lineage'] = self.lineage.to_dict(by_alias=by_alias)
         # set to None if mandatory_for_actions (nullable) is None
         # and model_fields_set contains the field
         if self.mandatory_for_actions is None and "mandatory_for_actions" in self.model_fields_set:

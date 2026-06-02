@@ -130,9 +130,9 @@ class CashFlowValueSet(ResultValue):
         """Create an instance of CashFlowValueSet from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                             "additional_properties"
@@ -143,7 +143,7 @@ class CashFlowValueSet(ResultValue):
         if self.cashflows:
             for _item in self.cashflows:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['cashflows'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:

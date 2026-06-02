@@ -71,31 +71,31 @@ class OrderGraphBlock(BaseModel):
         """Create an instance of OrderGraphBlock from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of block
         if self.block:
-            _dict['block'] = self.block.to_dict()
+            _dict['block'] = self.block.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of ordered
         if self.ordered:
-            _dict['ordered'] = self.ordered.to_dict()
+            _dict['ordered'] = self.ordered.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of placed
         if self.placed:
-            _dict['placed'] = self.placed.to_dict()
+            _dict['placed'] = self.placed.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of executed
         if self.executed:
-            _dict['executed'] = self.executed.to_dict()
+            _dict['executed'] = self.executed.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of allocated
         if self.allocated:
-            _dict['allocated'] = self.allocated.to_dict()
+            _dict['allocated'] = self.allocated.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of booked
         if self.booked:
-            _dict['booked'] = self.booked.to_dict()
+            _dict['booked'] = self.booked.to_dict(by_alias=by_alias)
         return _dict
 
     @classmethod

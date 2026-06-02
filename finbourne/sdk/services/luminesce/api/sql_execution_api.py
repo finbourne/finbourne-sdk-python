@@ -44,7 +44,7 @@ class SqlExecutionApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def get_by_query_csv(self, query: StrictStr, scalar_parameters: Optional[Dict[str, str]] = None, query_name: Optional[StrictStr] = None, download: Optional[bool] = None, timeout: Optional[int] = None, delimiter: Optional[StrictStr] = None, escape: Optional[StrictStr] = None, date_time_format: Optional[StrictStr] = None, **kwargs) -> str:
@@ -159,7 +159,7 @@ class SqlExecutionApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['query']:
+        if _params['query'] is not None:
             _path_params['query'] = _params['query']
 
 
@@ -321,7 +321,7 @@ class SqlExecutionApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['query']:
+        if _params['query'] is not None:
             _path_params['query'] = _params['query']
 
 
@@ -479,7 +479,7 @@ class SqlExecutionApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['query']:
+        if _params['query'] is not None:
             _path_params['query'] = _params['query']
 
 
@@ -630,7 +630,7 @@ class SqlExecutionApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['query']:
+        if _params['query'] is not None:
             _path_params['query'] = _params['query']
 
 
@@ -785,7 +785,7 @@ class SqlExecutionApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['query']:
+        if _params['query'] is not None:
             _path_params['query'] = _params['query']
 
 
@@ -936,7 +936,7 @@ class SqlExecutionApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['query']:
+        if _params['query'] is not None:
             _path_params['query'] = _params['query']
 
 
@@ -1086,7 +1086,7 @@ class SqlExecutionApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['query']:
+        if _params['query'] is not None:
             _path_params['query'] = _params['query']
 
 
@@ -2403,7 +2403,7 @@ class SqlExecutionApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['query']:
+            if _params['query'] is not None:
                 _path_params['query'] = _params['query']
 
 
@@ -2566,7 +2566,7 @@ class SqlExecutionApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['query']:
+            if _params['query'] is not None:
                 _path_params['query'] = _params['query']
 
 
@@ -2725,7 +2725,7 @@ class SqlExecutionApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['query']:
+            if _params['query'] is not None:
                 _path_params['query'] = _params['query']
 
 
@@ -2877,7 +2877,7 @@ class SqlExecutionApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['query']:
+            if _params['query'] is not None:
                 _path_params['query'] = _params['query']
 
 
@@ -3033,7 +3033,7 @@ class SqlExecutionApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['query']:
+            if _params['query'] is not None:
                 _path_params['query'] = _params['query']
 
 
@@ -3185,7 +3185,7 @@ class SqlExecutionApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['query']:
+            if _params['query'] is not None:
                 _path_params['query'] = _params['query']
 
 
@@ -3336,7 +3336,7 @@ class SqlExecutionApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['query']:
+            if _params['query'] is not None:
                 _path_params['query'] = _params['query']
 
 

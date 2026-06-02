@@ -63,22 +63,22 @@ class GroupReconciliationResultStatuses(BaseModel):
         """Create an instance of GroupReconciliationResultStatuses from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of link_new
         if self.link_new:
-            _dict['linkNew'] = self.link_new.to_dict()
+            _dict['linkNew'] = self.link_new.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of link_confirmed
         if self.link_confirmed:
-            _dict['linkConfirmed'] = self.link_confirmed.to_dict()
+            _dict['linkConfirmed'] = self.link_confirmed.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of link_changed
         if self.link_changed:
-            _dict['linkChanged'] = self.link_changed.to_dict()
+            _dict['linkChanged'] = self.link_changed.to_dict(by_alias=by_alias)
         return _dict
 
     @classmethod

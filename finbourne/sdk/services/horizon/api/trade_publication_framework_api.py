@@ -52,7 +52,7 @@ class TradePublicationFrameworkApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def get_tpf_transaction_history_search(self, transaction_id: Optional[StrictStr] = None, instrument_id: Optional[StrictStr] = None, date_from: Optional[StrictStr] = None, date_to: Optional[StrictStr] = None, status: Optional[StrictStr] = None, instance_id: Optional[StrictStr] = None, page_size: Optional[int] = None, page_token: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfTpfTransactionSearchResponse:
@@ -314,13 +314,13 @@ class TradePublicationFrameworkApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['instance_id']:
+        if _params['instance_id'] is not None:
             _path_params['instanceId'] = _params['instance_id']
 
-        if _params['run_id']:
+        if _params['run_id'] is not None:
             _path_params['runId'] = _params['run_id']
 
-        if _params['transaction_id']:
+        if _params['transaction_id'] is not None:
             _path_params['transactionId'] = _params['transaction_id']
 
 
@@ -449,7 +449,7 @@ class TradePublicationFrameworkApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['instance_id']:
+        if _params['instance_id'] is not None:
             _path_params['instanceId'] = _params['instance_id']
 
 
@@ -697,10 +697,10 @@ class TradePublicationFrameworkApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['instance_id']:
+        if _params['instance_id'] is not None:
             _path_params['instanceId'] = _params['instance_id']
 
-        if _params['run_id']:
+        if _params['run_id'] is not None:
             _path_params['runId'] = _params['run_id']
 
 
@@ -845,10 +845,10 @@ class TradePublicationFrameworkApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['instance_id']:
+        if _params['instance_id'] is not None:
             _path_params['instanceId'] = _params['instance_id']
 
-        if _params['run_id']:
+        if _params['run_id'] is not None:
             _path_params['runId'] = _params['run_id']
 
 
@@ -981,7 +981,7 @@ class TradePublicationFrameworkApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['instance_id']:
+        if _params['instance_id'] is not None:
             _path_params['instanceId'] = _params['instance_id']
 
 
@@ -1300,13 +1300,13 @@ class TradePublicationFrameworkApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['instance_id']:
+            if _params['instance_id'] is not None:
                 _path_params['instanceId'] = _params['instance_id']
 
-            if _params['run_id']:
+            if _params['run_id'] is not None:
                 _path_params['runId'] = _params['run_id']
 
-            if _params['transaction_id']:
+            if _params['transaction_id'] is not None:
                 _path_params['transactionId'] = _params['transaction_id']
 
 
@@ -1436,7 +1436,7 @@ class TradePublicationFrameworkApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['instance_id']:
+            if _params['instance_id'] is not None:
                 _path_params['instanceId'] = _params['instance_id']
 
 
@@ -1686,10 +1686,10 @@ class TradePublicationFrameworkApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['instance_id']:
+            if _params['instance_id'] is not None:
                 _path_params['instanceId'] = _params['instance_id']
 
-            if _params['run_id']:
+            if _params['run_id'] is not None:
                 _path_params['runId'] = _params['run_id']
 
 
@@ -1835,10 +1835,10 @@ class TradePublicationFrameworkApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['instance_id']:
+            if _params['instance_id'] is not None:
                 _path_params['instanceId'] = _params['instance_id']
 
-            if _params['run_id']:
+            if _params['run_id'] is not None:
                 _path_params['runId'] = _params['run_id']
 
 
@@ -1972,7 +1972,7 @@ class TradePublicationFrameworkApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['instance_id']:
+            if _params['instance_id'] is not None:
                 _path_params['instanceId'] = _params['instance_id']
 
 

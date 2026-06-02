@@ -72,16 +72,16 @@ class FlowConventions(BaseModel):
         """Create an instance of FlowConventions from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of coupon_payment_lag
         if self.coupon_payment_lag:
-            _dict['couponPaymentLag'] = self.coupon_payment_lag.to_dict()
+            _dict['couponPaymentLag'] = self.coupon_payment_lag.to_dict(by_alias=by_alias)
         # set to None if leap_days_included (nullable) is None
         # and model_fields_set contains the field
         if self.leap_days_included is None and "leap_days_included" in self.model_fields_set:

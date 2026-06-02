@@ -46,7 +46,7 @@ class QueryableKeysApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def get_all_queryable_keys(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, **kwargs) -> ResourceListOfQueryableKey:

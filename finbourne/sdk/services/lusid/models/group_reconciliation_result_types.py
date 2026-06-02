@@ -65,25 +65,25 @@ class GroupReconciliationResultTypes(BaseModel):
         """Create an instance of GroupReconciliationResultTypes from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of link_matches
         if self.link_matches:
-            _dict['linkMatches'] = self.link_matches.to_dict()
+            _dict['linkMatches'] = self.link_matches.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of link_partial_matches
         if self.link_partial_matches:
-            _dict['linkPartialMatches'] = self.link_partial_matches.to_dict()
+            _dict['linkPartialMatches'] = self.link_partial_matches.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of link_breaks
         if self.link_breaks:
-            _dict['linkBreaks'] = self.link_breaks.to_dict()
+            _dict['linkBreaks'] = self.link_breaks.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of link_resolved
         if self.link_resolved:
-            _dict['linkResolved'] = self.link_resolved.to_dict()
+            _dict['linkResolved'] = self.link_resolved.to_dict(by_alias=by_alias)
         return _dict
 
     @classmethod

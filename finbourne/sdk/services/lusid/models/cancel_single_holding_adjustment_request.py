@@ -62,9 +62,9 @@ class CancelSingleHoldingAdjustmentRequest(BaseModel):
         """Create an instance of CancelSingleHoldingAdjustmentRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
@@ -74,11 +74,11 @@ class CancelSingleHoldingAdjustmentRequest(BaseModel):
         if self.sub_holding_keys:
             for _key in self.sub_holding_keys:
                 if self.sub_holding_keys[_key]:
-                    _field_dict[_key] = self.sub_holding_keys[_key].to_dict()
+                    _field_dict[_key] = self.sub_holding_keys[_key].to_dict(by_alias=by_alias)
             _dict['subHoldingKeys'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of custodian_account_id
         if self.custodian_account_id:
-            _dict['custodianAccountId'] = self.custodian_account_id.to_dict()
+            _dict['custodianAccountId'] = self.custodian_account_id.to_dict(by_alias=by_alias)
         # set to None if sub_holding_keys (nullable) is None
         # and model_fields_set contains the field
         if self.sub_holding_keys is None and "sub_holding_keys" in self.model_fields_set:

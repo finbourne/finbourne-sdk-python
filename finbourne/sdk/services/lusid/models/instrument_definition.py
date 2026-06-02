@@ -67,9 +67,9 @@ class InstrumentDefinition(BaseModel):
         """Create an instance of InstrumentDefinition from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
@@ -79,24 +79,24 @@ class InstrumentDefinition(BaseModel):
         if self.identifiers:
             for _key in self.identifiers:
                 if self.identifiers[_key]:
-                    _field_dict[_key] = self.identifiers[_key].to_dict()
+                    _field_dict[_key] = self.identifiers[_key].to_dict(by_alias=by_alias)
             _dict['identifiers'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of each item in properties (list)
         _items = []
         if self.properties:
             for _item in self.properties:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['properties'] = _items
         # override the default output from pydantic by calling `to_dict()` of look_through_portfolio_id
         if self.look_through_portfolio_id:
-            _dict['lookThroughPortfolioId'] = self.look_through_portfolio_id.to_dict()
+            _dict['lookThroughPortfolioId'] = self.look_through_portfolio_id.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of definition
         if self.definition:
-            _dict['definition'] = self.definition.to_dict()
+            _dict['definition'] = self.definition.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of settlement_cycle
         if self.settlement_cycle:
-            _dict['settlementCycle'] = self.settlement_cycle.to_dict()
+            _dict['settlementCycle'] = self.settlement_cycle.to_dict(by_alias=by_alias)
         # set to None if properties (nullable) is None
         # and model_fields_set contains the field
         if self.properties is None and "properties" in self.model_fields_set:

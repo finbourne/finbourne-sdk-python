@@ -46,7 +46,7 @@ class FilesApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def create_file(self, x_lusid_drive_filename: StrictStr, x_lusid_drive_path: StrictStr, content_length: int, body: bytes, **kwargs) -> StorageObject:
@@ -144,13 +144,13 @@ class FilesApi:
         _query_params = []
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
-        if _params['x_lusid_drive_filename']:
+        if _params['x_lusid_drive_filename'] is not None:
             _header_params['x-lusid-drive-filename'] = _params['x_lusid_drive_filename']
 
-        if _params['x_lusid_drive_path']:
+        if _params['x_lusid_drive_path'] is not None:
             _header_params['x-lusid-drive-path'] = _params['x_lusid_drive_path']
 
-        if _params['content_length']:
+        if _params['content_length'] is not None:
             _header_params['Content-Length'] = _params['content_length']
 
         # process the form parameters
@@ -278,7 +278,7 @@ class FilesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['id']:
+        if _params['id'] is not None:
             _path_params['id'] = _params['id']
 
 
@@ -393,7 +393,7 @@ class FilesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['id']:
+        if _params['id'] is not None:
             _path_params['id'] = _params['id']
 
 
@@ -513,7 +513,7 @@ class FilesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['id']:
+        if _params['id'] is not None:
             _path_params['id'] = _params['id']
 
 
@@ -641,7 +641,7 @@ class FilesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['id']:
+        if _params['id'] is not None:
             _path_params['id'] = _params['id']
 
 
@@ -649,7 +649,7 @@ class FilesApi:
         _query_params = []
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
-        if _params['content_length']:
+        if _params['content_length'] is not None:
             _header_params['Content-Length'] = _params['content_length']
 
         # process the form parameters
@@ -782,7 +782,7 @@ class FilesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['id']:
+        if _params['id'] is not None:
             _path_params['id'] = _params['id']
 
 
@@ -935,13 +935,13 @@ class FilesApi:
             _query_params = []
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))
-            if _params['x_lusid_drive_filename']:
+            if _params['x_lusid_drive_filename'] is not None:
                 _header_params['x-lusid-drive-filename'] = _params['x_lusid_drive_filename']
 
-            if _params['x_lusid_drive_path']:
+            if _params['x_lusid_drive_path'] is not None:
                 _header_params['x-lusid-drive-path'] = _params['x_lusid_drive_path']
 
-            if _params['content_length']:
+            if _params['content_length'] is not None:
                 _header_params['Content-Length'] = _params['content_length']
 
             # process the form parameters
@@ -1070,7 +1070,7 @@ class FilesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['id']:
+            if _params['id'] is not None:
                 _path_params['id'] = _params['id']
 
 
@@ -1186,7 +1186,7 @@ class FilesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['id']:
+            if _params['id'] is not None:
                 _path_params['id'] = _params['id']
 
 
@@ -1307,7 +1307,7 @@ class FilesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['id']:
+            if _params['id'] is not None:
                 _path_params['id'] = _params['id']
 
 
@@ -1436,7 +1436,7 @@ class FilesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['id']:
+            if _params['id'] is not None:
                 _path_params['id'] = _params['id']
 
 
@@ -1444,7 +1444,7 @@ class FilesApi:
             _query_params = []
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))
-            if _params['content_length']:
+            if _params['content_length'] is not None:
                 _header_params['Content-Length'] = _params['content_length']
 
             # process the form parameters
@@ -1578,7 +1578,7 @@ class FilesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['id']:
+            if _params['id'] is not None:
                 _path_params['id'] = _params['id']
 
 

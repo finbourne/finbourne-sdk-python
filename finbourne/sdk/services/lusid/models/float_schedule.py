@@ -150,9 +150,9 @@ class FloatSchedule(Schedule):
         """Create an instance of FloatSchedule from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                             "additional_properties"
@@ -160,22 +160,22 @@ class FloatSchedule(Schedule):
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of flow_conventions
         if self.flow_conventions:
-            _dict['flowConventions'] = self.flow_conventions.to_dict()
+            _dict['flowConventions'] = self.flow_conventions.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of convention_name
         if self.convention_name:
-            _dict['conventionName'] = self.convention_name.to_dict()
+            _dict['conventionName'] = self.convention_name.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of index_convention_name
         if self.index_convention_name:
-            _dict['indexConventionName'] = self.index_convention_name.to_dict()
+            _dict['indexConventionName'] = self.index_convention_name.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of index_conventions
         if self.index_conventions:
-            _dict['indexConventions'] = self.index_conventions.to_dict()
+            _dict['indexConventions'] = self.index_conventions.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of ex_dividend_configuration
         if self.ex_dividend_configuration:
-            _dict['exDividendConfiguration'] = self.ex_dividend_configuration.to_dict()
+            _dict['exDividendConfiguration'] = self.ex_dividend_configuration.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of compounding
         if self.compounding:
-            _dict['compounding'] = self.compounding.to_dict()
+            _dict['compounding'] = self.compounding.to_dict(by_alias=by_alias)
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():

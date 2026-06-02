@@ -48,7 +48,7 @@ class CandelaTracesApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def get_trace_diagram(self, trace_id: StrictStr, **kwargs) -> TraceDiagramResponse:
@@ -126,7 +126,7 @@ class CandelaTracesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['trace_id']:
+        if _params['trace_id'] is not None:
             _path_params['traceId'] = _params['trace_id']
 
 
@@ -244,7 +244,7 @@ class CandelaTracesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['trace_id']:
+        if _params['trace_id'] is not None:
             _path_params['traceId'] = _params['trace_id']
 
 
@@ -367,7 +367,7 @@ class CandelaTracesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['trace_id']:
+        if _params['trace_id'] is not None:
             _path_params['traceId'] = _params['trace_id']
 
 
@@ -635,7 +635,7 @@ class CandelaTracesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['trace_id']:
+            if _params['trace_id'] is not None:
                 _path_params['traceId'] = _params['trace_id']
 
 
@@ -754,7 +754,7 @@ class CandelaTracesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['trace_id']:
+            if _params['trace_id'] is not None:
                 _path_params['traceId'] = _params['trace_id']
 
 
@@ -878,7 +878,7 @@ class CandelaTracesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['trace_id']:
+            if _params['trace_id'] is not None:
                 _path_params['traceId'] = _params['trace_id']
 
 

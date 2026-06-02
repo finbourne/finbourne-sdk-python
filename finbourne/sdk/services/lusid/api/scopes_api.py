@@ -46,7 +46,7 @@ class ScopesApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def list_entity_scopes(self, entity_type: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, **kwargs) -> ResourceListOfScopeDefinition:
@@ -141,7 +141,7 @@ class ScopesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['entity_type']:
+        if _params['entity_type'] is not None:
             _path_params['entityType'] = _params['entity_type']
 
 
@@ -413,7 +413,7 @@ class ScopesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['entity_type']:
+            if _params['entity_type'] is not None:
                 _path_params['entityType'] = _params['entity_type']
 
 

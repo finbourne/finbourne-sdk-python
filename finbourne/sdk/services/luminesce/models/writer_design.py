@@ -62,9 +62,9 @@ class WriterDesign(BaseModel):
         """Create an instance of WriterDesign from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
@@ -74,17 +74,17 @@ class WriterDesign(BaseModel):
         if self.available_to_map_from:
             for _item in self.available_to_map_from:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['availableToMapFrom'] = _items
         # override the default output from pydantic by calling `to_dict()` of parameter
         if self.parameter:
-            _dict['parameter'] = self.parameter.to_dict()
+            _dict['parameter'] = self.parameter.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each item in available_parameters (list)
         _items = []
         if self.available_parameters:
             for _item in self.available_parameters:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['availableParameters'] = _items
         # set to None if available_to_map_from (nullable) is None
         # and model_fields_set contains the field

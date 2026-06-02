@@ -72,35 +72,35 @@ class FundRequest(BaseModel):
         """Create an instance of FundRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of fund_configuration_id
         if self.fund_configuration_id:
-            _dict['fundConfigurationId'] = self.fund_configuration_id.to_dict()
+            _dict['fundConfigurationId'] = self.fund_configuration_id.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of abor_id
         if self.abor_id:
-            _dict['aborId'] = self.abor_id.to_dict()
+            _dict['aborId'] = self.abor_id.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each item in share_class_instruments (list)
         _items = []
         if self.share_class_instruments:
             for _item in self.share_class_instruments:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['shareClassInstruments'] = _items
         # override the default output from pydantic by calling `to_dict()` of year_end_date
         if self.year_end_date:
-            _dict['yearEndDate'] = self.year_end_date.to_dict()
+            _dict['yearEndDate'] = self.year_end_date.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each value in properties (dict)
         _field_dict = {}
         if self.properties:
             for _key in self.properties:
                 if self.properties[_key]:
-                    _field_dict[_key] = self.properties[_key].to_dict()
+                    _field_dict[_key] = self.properties[_key].to_dict(by_alias=by_alias)
             _dict['properties'] = _field_dict
         # set to None if display_name (nullable) is None
         # and model_fields_set contains the field

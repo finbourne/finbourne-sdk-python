@@ -131,9 +131,9 @@ class IntermediateComplianceStep(ComplianceStep):
         """Create an instance of IntermediateComplianceStep from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                             "additional_properties"
@@ -145,7 +145,7 @@ class IntermediateComplianceStep(ComplianceStep):
             for _key in self.grouped_parameters:
                 if (_items_for_key := self.grouped_parameters[_key]):
                     _field_dict_of_array[_key] = [
-                        _item.to_dict() for _item in _items_for_key
+                        _item.to_dict(by_alias=by_alias) for _item in _items_for_key
                     ]
             _dict['groupedParameters'] = _field_dict_of_array
         # puts key-value pairs in additional_properties in the top level

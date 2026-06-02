@@ -70,9 +70,9 @@ class UpdateTaskDefinitionRequest(BaseModel):
         """Create an instance of UpdateTaskDefinitionRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
@@ -82,38 +82,38 @@ class UpdateTaskDefinitionRequest(BaseModel):
         if self.states:
             for _item in self.states:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['states'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in field_schema (list)
         _items = []
         if self.field_schema:
             for _item in self.field_schema:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['fieldSchema'] = _items
         # override the default output from pydantic by calling `to_dict()` of initial_state
         if self.initial_state:
-            _dict['initialState'] = self.initial_state.to_dict()
+            _dict['initialState'] = self.initial_state.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each item in triggers (list)
         _items = []
         if self.triggers:
             for _item in self.triggers:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['triggers'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in transitions (list)
         _items = []
         if self.transitions:
             for _item in self.transitions:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['transitions'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in actions (list)
         _items = []
         if self.actions:
             for _item in self.actions:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['actions'] = _items
         # set to None if description (nullable) is None
         # and model_fields_set contains the field

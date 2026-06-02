@@ -134,9 +134,9 @@ class FxLinkedNotionalSchedule(Schedule):
         """Create an instance of FxLinkedNotionalSchedule from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                             "additional_properties"
@@ -144,13 +144,13 @@ class FxLinkedNotionalSchedule(Schedule):
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of fx_conventions
         if self.fx_conventions:
-            _dict['fxConventions'] = self.fx_conventions.to_dict()
+            _dict['fxConventions'] = self.fx_conventions.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of varying_notional_fixing_dates
         if self.varying_notional_fixing_dates:
-            _dict['varyingNotionalFixingDates'] = self.varying_notional_fixing_dates.to_dict()
+            _dict['varyingNotionalFixingDates'] = self.varying_notional_fixing_dates.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of varying_notional_interim_exchange_payment_dates
         if self.varying_notional_interim_exchange_payment_dates:
-            _dict['varyingNotionalInterimExchangePaymentDates'] = self.varying_notional_interim_exchange_payment_dates.to_dict()
+            _dict['varyingNotionalInterimExchangePaymentDates'] = self.varying_notional_interim_exchange_payment_dates.to_dict(by_alias=by_alias)
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():

@@ -53,7 +53,7 @@ class CustomDataModelsApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def batch_amend(self, success_mode: StrictStr, request_body: Dict[str, MembershipAmendmentRequest], **kwargs) -> BatchAmendCustomDataModelMembershipResponse:
@@ -273,7 +273,7 @@ class CustomDataModelsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['entity_type']:
+        if _params['entity_type'] is not None:
             _path_params['entityType'] = _params['entity_type']
 
 
@@ -413,13 +413,13 @@ class CustomDataModelsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['entity_type']:
+        if _params['entity_type'] is not None:
             _path_params['entityType'] = _params['entity_type']
 
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -554,13 +554,13 @@ class CustomDataModelsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['entity_type']:
+        if _params['entity_type'] is not None:
             _path_params['entityType'] = _params['entity_type']
 
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -952,13 +952,13 @@ class CustomDataModelsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['entity_type']:
+        if _params['entity_type'] is not None:
             _path_params['entityType'] = _params['entity_type']
 
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -1234,7 +1234,7 @@ class CustomDataModelsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['entity_type']:
+            if _params['entity_type'] is not None:
                 _path_params['entityType'] = _params['entity_type']
 
 
@@ -1375,13 +1375,13 @@ class CustomDataModelsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['entity_type']:
+            if _params['entity_type'] is not None:
                 _path_params['entityType'] = _params['entity_type']
 
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -1517,13 +1517,13 @@ class CustomDataModelsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['entity_type']:
+            if _params['entity_type'] is not None:
                 _path_params['entityType'] = _params['entity_type']
 
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -1918,13 +1918,13 @@ class CustomDataModelsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['entity_type']:
+            if _params['entity_type'] is not None:
                 _path_params['entityType'] = _params['entity_type']
 
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 

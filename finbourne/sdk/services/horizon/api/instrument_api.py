@@ -53,7 +53,7 @@ class InstrumentApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def create_instrument(self, onboard_instrument_request: OnboardInstrumentRequest, **kwargs) -> OnboardInstrumentResponse:
@@ -507,7 +507,7 @@ class InstrumentApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['id']:
+        if _params['id'] is not None:
             _path_params['id'] = _params['id']
 
 
@@ -1285,7 +1285,7 @@ class InstrumentApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['id']:
+            if _params['id'] is not None:
                 _path_params['id'] = _params['id']
 
 

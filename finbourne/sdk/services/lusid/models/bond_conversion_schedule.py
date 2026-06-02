@@ -138,9 +138,9 @@ class BondConversionSchedule(Schedule):
         """Create an instance of BondConversionSchedule from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                             "additional_properties"
@@ -151,7 +151,7 @@ class BondConversionSchedule(Schedule):
         if self.bond_conversion_entries:
             for _item in self.bond_conversion_entries:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['bondConversionEntries'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:

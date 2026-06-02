@@ -60,9 +60,9 @@ class TraceDiagramResponse(BaseModel):
         """Create an instance of TraceDiagramResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
@@ -72,14 +72,14 @@ class TraceDiagramResponse(BaseModel):
         if self.nodes:
             for _item in self.nodes:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['nodes'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in edges (list)
         _items = []
         if self.edges:
             for _item in self.edges:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['edges'] = _items
         # set to None if nodes (nullable) is None
         # and model_fields_set contains the field

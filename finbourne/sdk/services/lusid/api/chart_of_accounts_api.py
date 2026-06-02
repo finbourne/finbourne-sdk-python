@@ -75,7 +75,7 @@ class ChartOfAccountsApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def create_chart_of_accounts(self, scope: StrictStr, chart_of_accounts_request: ChartOfAccountsRequest, **kwargs) -> ChartOfAccounts:
@@ -160,7 +160,7 @@ class ChartOfAccountsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
 
@@ -300,10 +300,10 @@ class ChartOfAccountsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -443,10 +443,10 @@ class ChartOfAccountsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -586,10 +586,10 @@ class ChartOfAccountsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -734,10 +734,10 @@ class ChartOfAccountsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -875,10 +875,10 @@ class ChartOfAccountsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -1008,13 +1008,13 @@ class ChartOfAccountsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
-        if _params['cleardown_module_code']:
+        if _params['cleardown_module_code'] is not None:
             _path_params['cleardownModuleCode'] = _params['cleardown_module_code']
 
 
@@ -1144,13 +1144,13 @@ class ChartOfAccountsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
-        if _params['general_ledger_profile_code']:
+        if _params['general_ledger_profile_code'] is not None:
             _path_params['generalLedgerProfileCode'] = _params['general_ledger_profile_code']
 
 
@@ -1280,13 +1280,13 @@ class ChartOfAccountsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
-        if _params['posting_module_code']:
+        if _params['posting_module_code'] is not None:
             _path_params['postingModuleCode'] = _params['posting_module_code']
 
 
@@ -1431,13 +1431,13 @@ class ChartOfAccountsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
-        if _params['account_code']:
+        if _params['account_code'] is not None:
             _path_params['accountCode'] = _params['account_code']
 
 
@@ -1590,13 +1590,13 @@ class ChartOfAccountsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
-        if _params['account_code']:
+        if _params['account_code'] is not None:
             _path_params['accountCode'] = _params['account_code']
 
 
@@ -1745,10 +1745,10 @@ class ChartOfAccountsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -1896,10 +1896,10 @@ class ChartOfAccountsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -2043,13 +2043,13 @@ class ChartOfAccountsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
-        if _params['cleardown_module_code']:
+        if _params['cleardown_module_code'] is not None:
             _path_params['cleardownModuleCode'] = _params['cleardown_module_code']
 
 
@@ -2190,13 +2190,13 @@ class ChartOfAccountsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
-        if _params['general_ledger_profile_code']:
+        if _params['general_ledger_profile_code'] is not None:
             _path_params['generalLedgerProfileCode'] = _params['general_ledger_profile_code']
 
 
@@ -2337,13 +2337,13 @@ class ChartOfAccountsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
-        if _params['posting_module_code']:
+        if _params['posting_module_code'] is not None:
             _path_params['postingModuleCode'] = _params['posting_module_code']
 
 
@@ -2504,10 +2504,10 @@ class ChartOfAccountsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -2852,13 +2852,13 @@ class ChartOfAccountsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
-        if _params['cleardown_module_code']:
+        if _params['cleardown_module_code'] is not None:
             _path_params['cleardownModuleCode'] = _params['cleardown_module_code']
 
 
@@ -3023,10 +3023,10 @@ class ChartOfAccountsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -3195,10 +3195,10 @@ class ChartOfAccountsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -3367,13 +3367,13 @@ class ChartOfAccountsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
-        if _params['posting_module_code']:
+        if _params['posting_module_code'] is not None:
             _path_params['postingModuleCode'] = _params['posting_module_code']
 
 
@@ -3538,10 +3538,10 @@ class ChartOfAccountsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -3690,10 +3690,10 @@ class ChartOfAccountsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -3838,13 +3838,13 @@ class ChartOfAccountsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
-        if _params['cleardown_module_code']:
+        if _params['cleardown_module_code'] is not None:
             _path_params['cleardownModuleCode'] = _params['cleardown_module_code']
 
 
@@ -3989,13 +3989,13 @@ class ChartOfAccountsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
-        if _params['posting_module_code']:
+        if _params['posting_module_code'] is not None:
             _path_params['postingModuleCode'] = _params['posting_module_code']
 
 
@@ -4140,13 +4140,13 @@ class ChartOfAccountsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
-        if _params['cleardown_module_code']:
+        if _params['cleardown_module_code'] is not None:
             _path_params['cleardownModuleCode'] = _params['cleardown_module_code']
 
 
@@ -4291,13 +4291,13 @@ class ChartOfAccountsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
-        if _params['cleardown_module_code']:
+        if _params['cleardown_module_code'] is not None:
             _path_params['cleardownModuleCode'] = _params['cleardown_module_code']
 
 
@@ -4442,13 +4442,13 @@ class ChartOfAccountsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
-        if _params['general_ledger_profile_code']:
+        if _params['general_ledger_profile_code'] is not None:
             _path_params['generalLedgerProfileCode'] = _params['general_ledger_profile_code']
 
 
@@ -4593,13 +4593,13 @@ class ChartOfAccountsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
-        if _params['posting_module_code']:
+        if _params['posting_module_code'] is not None:
             _path_params['postingModuleCode'] = _params['posting_module_code']
 
 
@@ -4744,13 +4744,13 @@ class ChartOfAccountsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
-        if _params['posting_module_code']:
+        if _params['posting_module_code'] is not None:
             _path_params['postingModuleCode'] = _params['posting_module_code']
 
 
@@ -4895,13 +4895,13 @@ class ChartOfAccountsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
-        if _params['account_code']:
+        if _params['account_code'] is not None:
             _path_params['accountCode'] = _params['account_code']
 
 
@@ -5041,10 +5041,10 @@ class ChartOfAccountsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -5184,10 +5184,10 @@ class ChartOfAccountsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -5327,7 +5327,7 @@ class ChartOfAccountsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
 
@@ -5468,10 +5468,10 @@ class ChartOfAccountsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -5612,10 +5612,10 @@ class ChartOfAccountsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -5756,10 +5756,10 @@ class ChartOfAccountsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -5905,10 +5905,10 @@ class ChartOfAccountsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -6047,10 +6047,10 @@ class ChartOfAccountsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -6181,13 +6181,13 @@ class ChartOfAccountsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
-            if _params['cleardown_module_code']:
+            if _params['cleardown_module_code'] is not None:
                 _path_params['cleardownModuleCode'] = _params['cleardown_module_code']
 
 
@@ -6318,13 +6318,13 @@ class ChartOfAccountsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
-            if _params['general_ledger_profile_code']:
+            if _params['general_ledger_profile_code'] is not None:
                 _path_params['generalLedgerProfileCode'] = _params['general_ledger_profile_code']
 
 
@@ -6455,13 +6455,13 @@ class ChartOfAccountsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
-            if _params['posting_module_code']:
+            if _params['posting_module_code'] is not None:
                 _path_params['postingModuleCode'] = _params['posting_module_code']
 
 
@@ -6607,13 +6607,13 @@ class ChartOfAccountsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
-            if _params['account_code']:
+            if _params['account_code'] is not None:
                 _path_params['accountCode'] = _params['account_code']
 
 
@@ -6767,13 +6767,13 @@ class ChartOfAccountsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
-            if _params['account_code']:
+            if _params['account_code'] is not None:
                 _path_params['accountCode'] = _params['account_code']
 
 
@@ -6923,10 +6923,10 @@ class ChartOfAccountsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -7075,10 +7075,10 @@ class ChartOfAccountsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -7223,13 +7223,13 @@ class ChartOfAccountsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
-            if _params['cleardown_module_code']:
+            if _params['cleardown_module_code'] is not None:
                 _path_params['cleardownModuleCode'] = _params['cleardown_module_code']
 
 
@@ -7371,13 +7371,13 @@ class ChartOfAccountsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
-            if _params['general_ledger_profile_code']:
+            if _params['general_ledger_profile_code'] is not None:
                 _path_params['generalLedgerProfileCode'] = _params['general_ledger_profile_code']
 
 
@@ -7519,13 +7519,13 @@ class ChartOfAccountsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
-            if _params['posting_module_code']:
+            if _params['posting_module_code'] is not None:
                 _path_params['postingModuleCode'] = _params['posting_module_code']
 
 
@@ -7687,10 +7687,10 @@ class ChartOfAccountsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -8037,13 +8037,13 @@ class ChartOfAccountsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
-            if _params['cleardown_module_code']:
+            if _params['cleardown_module_code'] is not None:
                 _path_params['cleardownModuleCode'] = _params['cleardown_module_code']
 
 
@@ -8209,10 +8209,10 @@ class ChartOfAccountsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -8382,10 +8382,10 @@ class ChartOfAccountsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -8555,13 +8555,13 @@ class ChartOfAccountsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
-            if _params['posting_module_code']:
+            if _params['posting_module_code'] is not None:
                 _path_params['postingModuleCode'] = _params['posting_module_code']
 
 
@@ -8727,10 +8727,10 @@ class ChartOfAccountsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -8880,10 +8880,10 @@ class ChartOfAccountsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -9029,13 +9029,13 @@ class ChartOfAccountsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
-            if _params['cleardown_module_code']:
+            if _params['cleardown_module_code'] is not None:
                 _path_params['cleardownModuleCode'] = _params['cleardown_module_code']
 
 
@@ -9181,13 +9181,13 @@ class ChartOfAccountsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
-            if _params['posting_module_code']:
+            if _params['posting_module_code'] is not None:
                 _path_params['postingModuleCode'] = _params['posting_module_code']
 
 
@@ -9333,13 +9333,13 @@ class ChartOfAccountsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
-            if _params['cleardown_module_code']:
+            if _params['cleardown_module_code'] is not None:
                 _path_params['cleardownModuleCode'] = _params['cleardown_module_code']
 
 
@@ -9485,13 +9485,13 @@ class ChartOfAccountsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
-            if _params['cleardown_module_code']:
+            if _params['cleardown_module_code'] is not None:
                 _path_params['cleardownModuleCode'] = _params['cleardown_module_code']
 
 
@@ -9637,13 +9637,13 @@ class ChartOfAccountsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
-            if _params['general_ledger_profile_code']:
+            if _params['general_ledger_profile_code'] is not None:
                 _path_params['generalLedgerProfileCode'] = _params['general_ledger_profile_code']
 
 
@@ -9789,13 +9789,13 @@ class ChartOfAccountsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
-            if _params['posting_module_code']:
+            if _params['posting_module_code'] is not None:
                 _path_params['postingModuleCode'] = _params['posting_module_code']
 
 
@@ -9941,13 +9941,13 @@ class ChartOfAccountsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
-            if _params['posting_module_code']:
+            if _params['posting_module_code'] is not None:
                 _path_params['postingModuleCode'] = _params['posting_module_code']
 
 
@@ -10093,13 +10093,13 @@ class ChartOfAccountsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
-            if _params['account_code']:
+            if _params['account_code'] is not None:
                 _path_params['accountCode'] = _params['account_code']
 
 
@@ -10240,10 +10240,10 @@ class ChartOfAccountsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -10384,10 +10384,10 @@ class ChartOfAccountsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 

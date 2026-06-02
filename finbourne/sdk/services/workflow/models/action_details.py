@@ -161,21 +161,21 @@ class ActionDetails(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Any:
+    def to_dict(self, by_alias=True) -> Any:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None
 
         to_dict = getattr(self.actual_instance, "to_dict", None)
         if callable(to_dict):
-            return self.actual_instance.to_dict()
+            return self.actual_instance.to_dict(by_alias=by_alias)
         else:
             # primitive type
             return self.actual_instance
 
     def __str__(self):
         """For `print` and `pprint`"""
-        return pprint.pformat(self.dict(by_alias=False))
+        return pprint.pformat(self.model_dump(by_alias=False))
 
     def __repr__(self):
         """For `print` and `pprint`"""
@@ -183,6 +183,6 @@ class ActionDetails(BaseModel):
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
 

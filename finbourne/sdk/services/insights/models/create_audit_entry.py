@@ -60,19 +60,19 @@ class CreateAuditEntry(BaseModel):
         """Create an instance of CreateAuditEntry from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of process
         if self.process:
-            _dict['process'] = self.process.to_dict()
+            _dict['process'] = self.process.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of data
         if self.data:
-            _dict['data'] = self.data.to_dict()
+            _dict['data'] = self.data.to_dict(by_alias=by_alias)
         return _dict
 
     @classmethod

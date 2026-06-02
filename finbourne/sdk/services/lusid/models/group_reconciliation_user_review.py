@@ -62,9 +62,9 @@ class GroupReconciliationUserReview(BaseModel):
         """Create an instance of GroupReconciliationUserReview from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
@@ -74,21 +74,21 @@ class GroupReconciliationUserReview(BaseModel):
         if self.break_codes:
             for _item in self.break_codes:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['breakCodes'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in match_keys (list)
         _items = []
         if self.match_keys:
             for _item in self.match_keys:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['matchKeys'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in comments (list)
         _items = []
         if self.comments:
             for _item in self.comments:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['comments'] = _items
         # set to None if break_codes (nullable) is None
         # and model_fields_set contains the field

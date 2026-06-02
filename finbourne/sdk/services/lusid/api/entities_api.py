@@ -52,7 +52,7 @@ class EntitiesApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def get_custom_entity_by_entity_unique_id(self, entity_unique_id: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, previews: Optional[List[str]] = None, **kwargs) -> CustomEntityEntity:
@@ -147,7 +147,7 @@ class EntitiesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['entity_unique_id']:
+        if _params['entity_unique_id'] is not None:
             _path_params['entityUniqueId'] = _params['entity_unique_id']
 
 
@@ -290,7 +290,7 @@ class EntitiesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['entity_unique_id']:
+        if _params['entity_unique_id'] is not None:
             _path_params['entityUniqueId'] = _params['entity_unique_id']
 
 
@@ -450,10 +450,10 @@ class EntitiesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['entity_type']:
+        if _params['entity_type'] is not None:
             _path_params['entityType'] = _params['entity_type']
 
-        if _params['entity_unique_id']:
+        if _params['entity_unique_id'] is not None:
             _path_params['entityUniqueId'] = _params['entity_unique_id']
 
 
@@ -617,7 +617,7 @@ class EntitiesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['entity_unique_id']:
+        if _params['entity_unique_id'] is not None:
             _path_params['entityUniqueId'] = _params['entity_unique_id']
 
 
@@ -771,7 +771,7 @@ class EntitiesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['entity_unique_id']:
+        if _params['entity_unique_id'] is not None:
             _path_params['entityUniqueId'] = _params['entity_unique_id']
 
 
@@ -1058,7 +1058,7 @@ class EntitiesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['entity_unique_id']:
+        if _params['entity_unique_id'] is not None:
             _path_params['entityUniqueId'] = _params['entity_unique_id']
 
 
@@ -1211,7 +1211,7 @@ class EntitiesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['entity_unique_id']:
+            if _params['entity_unique_id'] is not None:
                 _path_params['entityUniqueId'] = _params['entity_unique_id']
 
 
@@ -1355,7 +1355,7 @@ class EntitiesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['entity_unique_id']:
+            if _params['entity_unique_id'] is not None:
                 _path_params['entityUniqueId'] = _params['entity_unique_id']
 
 
@@ -1516,10 +1516,10 @@ class EntitiesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['entity_type']:
+            if _params['entity_type'] is not None:
                 _path_params['entityType'] = _params['entity_type']
 
-            if _params['entity_unique_id']:
+            if _params['entity_unique_id'] is not None:
                 _path_params['entityUniqueId'] = _params['entity_unique_id']
 
 
@@ -1684,7 +1684,7 @@ class EntitiesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['entity_unique_id']:
+            if _params['entity_unique_id'] is not None:
                 _path_params['entityUniqueId'] = _params['entity_unique_id']
 
 
@@ -1839,7 +1839,7 @@ class EntitiesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['entity_unique_id']:
+            if _params['entity_unique_id'] is not None:
                 _path_params['entityUniqueId'] = _params['entity_unique_id']
 
 
@@ -2128,7 +2128,7 @@ class EntitiesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['entity_unique_id']:
+            if _params['entity_unique_id'] is not None:
                 _path_params['entityUniqueId'] = _params['entity_unique_id']
 
 

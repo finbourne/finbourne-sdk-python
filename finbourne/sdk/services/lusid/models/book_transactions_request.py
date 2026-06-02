@@ -60,9 +60,9 @@ class BookTransactionsRequest(BaseModel):
         """Create an instance of BookTransactionsRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
@@ -72,14 +72,14 @@ class BookTransactionsRequest(BaseModel):
         if self.allocation_ids:
             for _item in self.allocation_ids:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['allocationIds'] = _items
         # override the default output from pydantic by calling `to_dict()` of each value in transaction_properties (dict)
         _field_dict = {}
         if self.transaction_properties:
             for _key in self.transaction_properties:
                 if self.transaction_properties[_key]:
-                    _field_dict[_key] = self.transaction_properties[_key].to_dict()
+                    _field_dict[_key] = self.transaction_properties[_key].to_dict(by_alias=by_alias)
             _dict['transactionProperties'] = _field_dict
         # set to None if transaction_properties (nullable) is None
         # and model_fields_set contains the field

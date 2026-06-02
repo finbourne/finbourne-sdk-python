@@ -61,19 +61,19 @@ class PropertyValue(BaseModel):
         """Create an instance of PropertyValue from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of metric_value
         if self.metric_value:
-            _dict['metricValue'] = self.metric_value.to_dict()
+            _dict['metricValue'] = self.metric_value.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of label_value_set
         if self.label_value_set:
-            _dict['labelValueSet'] = self.label_value_set.to_dict()
+            _dict['labelValueSet'] = self.label_value_set.to_dict(by_alias=by_alias)
         # set to None if label_value (nullable) is None
         # and model_fields_set contains the field
         if self.label_value is None and "label_value" in self.model_fields_set:

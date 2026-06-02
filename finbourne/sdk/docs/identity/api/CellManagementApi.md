@@ -9,6 +9,8 @@ Method | HTTP request | Description
 [**get_cell_parent_status**](CellManagementApi.md#get_cell_parent_status) | **GET** /identity/api/cellmanagement/parentcell | [EARLY ACCESS] GetCellParentStatus: Get cell parent status
 [**refuse_cell_attachment**](CellManagementApi.md#refuse_cell_attachment) | **POST** /identity/api/cellmanagement/refuseattachment | [EARLY ACCESS] RefuseCellAttachment: Refuse a Proposed cell attachment
 [**remove_primary_domain**](CellManagementApi.md#remove_primary_domain) | **DELETE** /identity/api/cellmanagement/primarydomain | [EARLY ACCESS] RemovePrimaryDomain: Remove primary domain
+[**rotate_attaching_key**](CellManagementApi.md#rotate_attaching_key) | **PUT** /identity/api/cellmanagement/attachingkey/rotate | [EARLY ACCESS] RotateAttachingKey: Rotate the stored Attaching Key on an Attached cell
+[**rotate_domain_keys**](CellManagementApi.md#rotate_domain_keys) | **POST** /identity/api/cellmanagement/rotatedomainkeys | [EARLY ACCESS] RotateDomainKeys: Force a sweep-rotation of every parent-cell service-user PAT on this cell
 [**set_attaching_key**](CellManagementApi.md#set_attaching_key) | **PUT** /identity/api/cellmanagement/attachingkey | [EARLY ACCESS] SetAttachingKey: Store the Attaching Key pasted from the parent admin portal
 [**set_parent_cell**](CellManagementApi.md#set_parent_cell) | **PUT** /identity/api/cellmanagement/parentcell | [EARLY ACCESS] SetParentCell: Set parent cell
 [**set_primary_domain**](CellManagementApi.md#set_primary_domain) | **PUT** /identity/api/cellmanagement/primarydomain | [EARLY ACCESS] SetPrimaryDomain: Set primary domain
@@ -223,6 +225,85 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The updated cell parent status |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **rotate_attaching_key**
+> CellParentStatusResponse rotateAttachingKey = rotate_attaching_key(rotate_attaching_key_request)
+
+[EARLY ACCESS] RotateAttachingKey: Rotate the stored Attaching Key on an Attached cell
+
+Upserts a new Attaching Key PAT into the cell's ParameterStore / Azure Key Vault at the canonical per-cell path (`Lydia/CellManagement/{primaryDomain}/AttachingKey`) and re-stamps the path on the `cell_status` row. Does not require a prior key to exist in the secret store, and does not change the cell's attachment status or the recorded parent identity. Intended for two callers: the parent admin portal pushing a freshly-rotated PAT, and manual operator use (e.g. to migrate an existing cell onto the per-primary-domain path layout). Requires the cell to be currently `Attached` to a parent admin domain. Only the designated primary domain may call this. Requires JWT authentication (PAT tokens are rejected).
+
+### Example
+
+```python
+api_instance = api_client_factory.build(CellManagementApi)
+rotate_attaching_key_request = RotateAttachingKeyRequest()
+api_response = api_instance.rotate_attaching_key(rotate_attaching_key_request)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **rotate_attaching_key_request** | [**RotateAttachingKeyRequest**](RotateAttachingKeyRequest.md)|  | [required] 
+
+### Return type
+
+[**CellParentStatusResponse**](CellParentStatusResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The updated cell parent status |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **rotate_domain_keys**
+> CellParentStatusResponse rotateDomainKeys = rotate_domain_keys()
+
+[EARLY ACCESS] RotateDomainKeys: Force a sweep-rotation of every parent-cell service-user PAT on this cell
+
+Stamps the per-cell rotation cutoff to \"now\". On its next tick (and any subsequent tick until every provisioned PAT has been refreshed past the cutoff), the steady-state AdminCellSync job force-rotates any provisioned parent-cell PAT whose `CreatedDate` is strictly before the cutoff, regardless of the normal expiry-based window. Used to rapidly invalidate suspected-compromised PATs and to recover a cell whose recent rotations failed to be pushed to the parent admin portal. The cutoff is sticky: re-calling moves it forward, and new PATs naturally have `CreatedDate > cutoff` so subsequent ticks pass the check without further intervention. Only the designated primary domain may call this. Requires JWT authentication (PAT tokens are rejected). Cell must currently be `Attached`.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(CellManagementApi)
+api_response = api_instance.rotate_domain_keys()
+pprint(api_response)
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**CellParentStatusResponse**](CellParentStatusResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The cell parent status after stamping the cutoff |  -  |
 **0** | Error response |  -  |
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)

@@ -51,7 +51,7 @@ class PolicyTemplatesApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def create_policy_template(self, policy_template_creation_request: PolicyTemplateCreationRequest, **kwargs) -> PolicyTemplateResponse:
@@ -263,7 +263,7 @@ class PolicyTemplatesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -531,7 +531,7 @@ class PolicyTemplatesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -820,7 +820,7 @@ class PolicyTemplatesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -1088,7 +1088,7 @@ class PolicyTemplatesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -1358,7 +1358,7 @@ class PolicyTemplatesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -1649,7 +1649,7 @@ class PolicyTemplatesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 

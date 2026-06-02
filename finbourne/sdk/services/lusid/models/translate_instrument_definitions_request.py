@@ -59,9 +59,9 @@ class TranslateInstrumentDefinitionsRequest(BaseModel):
         """Create an instance of TranslateInstrumentDefinitionsRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
@@ -71,7 +71,7 @@ class TranslateInstrumentDefinitionsRequest(BaseModel):
         if self.instruments:
             for _key in self.instruments:
                 if self.instruments[_key]:
-                    _field_dict[_key] = self.instruments[_key].to_dict()
+                    _field_dict[_key] = self.instruments[_key].to_dict(by_alias=by_alias)
             _dict['instruments'] = _field_dict
         return _dict
 

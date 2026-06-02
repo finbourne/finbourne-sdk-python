@@ -49,7 +49,7 @@ class ImagesApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def get_image(self, name: StrictStr, **kwargs) -> Image:
@@ -127,7 +127,7 @@ class ImagesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['name']:
+        if _params['name'] is not None:
             _path_params['name'] = _params['name']
 
 
@@ -270,7 +270,7 @@ class ImagesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['name']:
+        if _params['name'] is not None:
             _path_params['name'] = _params['name']
 
 
@@ -687,7 +687,7 @@ class ImagesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['name']:
+            if _params['name'] is not None:
                 _path_params['name'] = _params['name']
 
 
@@ -831,7 +831,7 @@ class ImagesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['name']:
+            if _params['name'] is not None:
                 _path_params['name'] = _params['name']
 
 

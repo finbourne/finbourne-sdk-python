@@ -63,16 +63,16 @@ class ExternalTokenIssuerResponse(BaseModel):
         """Create an instance of ExternalTokenIssuerResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of claim_mappings
         if self.claim_mappings:
-            _dict['claimMappings'] = self.claim_mappings.to_dict()
+            _dict['claimMappings'] = self.claim_mappings.to_dict(by_alias=by_alias)
         # set to None if code (nullable) is None
         # and model_fields_set contains the field
         if self.code is None and "code" in self.model_fields_set:

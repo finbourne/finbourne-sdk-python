@@ -63,16 +63,16 @@ class ActionDefinitionResponse(BaseModel):
         """Create an instance of ActionDefinitionResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of action_details
         if self.action_details:
-            _dict['actionDetails'] = self.action_details.to_dict()
+            _dict['actionDetails'] = self.action_details.to_dict(by_alias=by_alias)
         # set to None if name (nullable) is None
         # and model_fields_set contains the field
         if self.name is None and "name" in self.model_fields_set:

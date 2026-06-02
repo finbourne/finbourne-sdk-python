@@ -67,29 +67,29 @@ class UpsertInstrumentEventRequest(BaseModel):
         """Create an instance of UpsertInstrumentEventRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of instrument_event
         if self.instrument_event:
-            _dict['instrumentEvent'] = self.instrument_event.to_dict()
+            _dict['instrumentEvent'] = self.instrument_event.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each item in properties (list)
         _items = []
         if self.properties:
             for _item in self.properties:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['properties'] = _items
         # override the default output from pydantic by calling `to_dict()` of each value in event_date_stamps (dict)
         _field_dict = {}
         if self.event_date_stamps:
             for _key in self.event_date_stamps:
                 if self.event_date_stamps[_key]:
-                    _field_dict[_key] = self.event_date_stamps[_key].to_dict()
+                    _field_dict[_key] = self.event_date_stamps[_key].to_dict(by_alias=by_alias)
             _dict['eventDateStamps'] = _field_dict
         # set to None if description (nullable) is None
         # and model_fields_set contains the field

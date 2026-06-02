@@ -60,9 +60,9 @@ class TableLineage(BaseModel):
         """Create an instance of TableLineage from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
@@ -72,11 +72,11 @@ class TableLineage(BaseModel):
         if self.column_lineage:
             for _item in self.column_lineage:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['columnLineage'] = _items
         # override the default output from pydantic by calling `to_dict()` of whole_table_lineage
         if self.whole_table_lineage:
-            _dict['wholeTableLineage'] = self.whole_table_lineage.to_dict()
+            _dict['wholeTableLineage'] = self.whole_table_lineage.to_dict(by_alias=by_alias)
         # set to None if column_lineage (nullable) is None
         # and model_fields_set contains the field
         if self.column_lineage is None and "column_lineage" in self.model_fields_set:

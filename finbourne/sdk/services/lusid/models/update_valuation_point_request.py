@@ -28,13 +28,13 @@ class UpdateValuationPointRequest(BaseModel):
     """
     A definition for the period you wish to close  # noqa: E501
     """
-    diary_entry_code:  StrictStr = Field(...,alias="diaryEntryCode", description="Unique code for the Valuation Point.") 
-    diary_entry_variant:  StrictStr = Field(...,alias="diaryEntryVariant", description="Optional variant code. Only required when it is necessary to choose between scenarios with multiple estimates.") 
+    valuation_point_code:  StrictStr = Field(...,alias="valuationPointCode", description="Unique code for the Valuation Point.") 
+    variant:  Optional[StrictStr] = Field(default=None,alias="variant", description="Optional variant code. Only required when it is necessary to choose between scenarios with multiple estimates.") 
     name:  Optional[StrictStr] = Field(default=None,alias="name", description="Identifiable Name assigned to the Valuation Point.") 
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="A set of properties for the diary entry.")
-    apply_clear_down: Optional[StrictBool] = Field(default=None, description="Defaults to false. Set to true if you want that the closed period to have the clear down applied.", alias="applyClearDown")
-    update_inclusion_date_nav_adjustments: Optional[StrictBool] = Field(default=None, description="Defaults to false. Set to true if you have the required licence and want the InclusionDate property values to be used to determine whether items should be automatically included in the post close activities.", alias="updateInclusionDateNavAdjustments")
-    __properties: ClassVar[List[str]] = ["diaryEntryCode", "diaryEntryVariant", "name", "properties", "applyClearDown", "updateInclusionDateNavAdjustments"]
+    apply_clear_down: Optional[StrictBool] = Field(default=None, description="Defaults to null. Set to true if you want the closed period to have the clear down applied.", alias="applyClearDown")
+    update_inclusion_date_nav_adjustments: Optional[StrictBool] = Field(default=None, description="Defaults to null. Set to true if you have the required licence and want the InclusionDate property values to be used to determine whether items should be automatically included in the post close activities.", alias="updateInclusionDateNavAdjustments")
+    __properties: ClassVar[List[str]] = ["valuationPointCode", "variant", "name", "properties", "applyClearDown", "updateInclusionDateNavAdjustments"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -63,9 +63,9 @@ class UpdateValuationPointRequest(BaseModel):
         """Create an instance of UpdateValuationPointRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
@@ -75,8 +75,13 @@ class UpdateValuationPointRequest(BaseModel):
         if self.properties:
             for _key in self.properties:
                 if self.properties[_key]:
-                    _field_dict[_key] = self.properties[_key].to_dict()
+                    _field_dict[_key] = self.properties[_key].to_dict(by_alias=by_alias)
             _dict['properties'] = _field_dict
+        # set to None if variant (nullable) is None
+        # and model_fields_set contains the field
+        if self.variant is None and "variant" in self.model_fields_set:
+            _dict['variant'] = None
+
         # set to None if name (nullable) is None
         # and model_fields_set contains the field
         if self.name is None and "name" in self.model_fields_set:
@@ -109,8 +114,8 @@ class UpdateValuationPointRequest(BaseModel):
             return UpdateValuationPointRequest.model_validate(obj)
 
         _obj = UpdateValuationPointRequest.model_validate({
-            "diary_entry_code": obj.get("diaryEntryCode"),
-            "diary_entry_variant": obj.get("diaryEntryVariant"),
+            "valuation_point_code": obj.get("valuationPointCode"),
+            "variant": obj.get("variant"),
             "name": obj.get("name"),
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))

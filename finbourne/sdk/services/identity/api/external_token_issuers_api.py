@@ -47,7 +47,7 @@ class ExternalTokenIssuersApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def create_external_token_issuer(self, create_external_token_issuer_request: CreateExternalTokenIssuerRequest, **kwargs) -> ExternalTokenIssuerResponse:
@@ -254,7 +254,7 @@ class ExternalTokenIssuersApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -371,7 +371,7 @@ class ExternalTokenIssuersApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -607,7 +607,7 @@ class ExternalTokenIssuersApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -870,7 +870,7 @@ class ExternalTokenIssuersApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -988,7 +988,7 @@ class ExternalTokenIssuersApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -1226,7 +1226,7 @@ class ExternalTokenIssuersApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 

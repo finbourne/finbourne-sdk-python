@@ -50,7 +50,7 @@ class TransactionFeesApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def delete_transaction_fee_rule(self, code: StrictStr, **kwargs) -> DeletedEntityResponse:
@@ -130,7 +130,7 @@ class TransactionFeesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -438,7 +438,7 @@ class TransactionFeesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -862,7 +862,7 @@ class TransactionFeesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -1172,7 +1172,7 @@ class TransactionFeesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 

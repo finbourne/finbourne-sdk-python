@@ -29,7 +29,7 @@ class LusidEntityDataset(BaseModel):
     """
     as_at: Optional[datetime] = Field(default=None, description="The asAt date to fetch the data. Nullable. Defaults to latest.", alias="asAt")
     effective_at: Optional[datetime] = Field(default=None, description="The effectiveAt date to fetch the data. Nullable. Defaults to latest.", alias="effectiveAt")
-    scope:  Optional[StrictStr] = Field(default=None,alias="scope", description="The scope of the entities to check. Required.") 
+    scope:  Optional[StrictStr] = Field(default=None,alias="scope", description="The scope of the entities to check. Required for scoped entity types (Instrument, Portfolio).  Must not be provided for unscoped entity types (LegalEntity).") 
     as_at_modified_since: Optional[datetime] = Field(default=None, description="Nullable. Filters the dataset for version.asAtModified greater than or equal to this value.", alias="asAtModifiedSince")
     selector_attribute:  Optional[StrictStr] = Field(default=None,alias="selectorAttribute", description="An attribute (field name, propertyKey or identifierKey) to use to sub-divide the dataset.") 
     selector_value:  Optional[StrictStr] = Field(default=None,alias="selectorValue", description="The value of the above attribute used to sub-divide the dataset.") 
@@ -63,9 +63,9 @@ class LusidEntityDataset(BaseModel):
         """Create an instance of LusidEntityDataset from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },

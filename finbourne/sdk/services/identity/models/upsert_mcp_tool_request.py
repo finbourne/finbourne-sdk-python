@@ -70,9 +70,9 @@ class UpsertMcpToolRequest(BaseModel):
         """Create an instance of UpsertMcpToolRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
@@ -82,14 +82,14 @@ class UpsertMcpToolRequest(BaseModel):
         if self.parameters:
             for _item in self.parameters:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['parameters'] = _items
         # override the default output from pydantic by calling `to_dict()` of luminesce_payload
         if self.luminesce_payload:
-            _dict['luminescePayload'] = self.luminesce_payload.to_dict()
+            _dict['luminescePayload'] = self.luminesce_payload.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of scheduler_payload
         if self.scheduler_payload:
-            _dict['schedulerPayload'] = self.scheduler_payload.to_dict()
+            _dict['schedulerPayload'] = self.scheduler_payload.to_dict(by_alias=by_alias)
         # set to None if parameters (nullable) is None
         # and model_fields_set contains the field
         if self.parameters is None and "parameters" in self.model_fields_set:

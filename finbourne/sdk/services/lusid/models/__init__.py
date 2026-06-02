@@ -153,6 +153,7 @@ from finbourne.sdk.services.lusid.models.cancelled_order_result import Cancelled
 from finbourne.sdk.services.lusid.models.cancelled_placement_result import CancelledPlacementResult
 from finbourne.sdk.services.lusid.models.cap_floor import CapFloor
 from finbourne.sdk.services.lusid.models.capital_distribution_event import CapitalDistributionEvent
+from finbourne.sdk.services.lusid.models.capital_gains_distribution_event import CapitalGainsDistributionEvent
 from finbourne.sdk.services.lusid.models.caplet_floorlet_cash_flow_event import CapletFloorletCashFlowEvent
 from finbourne.sdk.services.lusid.models.cash import Cash
 from finbourne.sdk.services.lusid.models.cash_and_security_offer_election import CashAndSecurityOfferElection
@@ -164,6 +165,7 @@ from finbourne.sdk.services.lusid.models.cash_flow_lineage import CashFlowLineag
 from finbourne.sdk.services.lusid.models.cash_flow_value import CashFlowValue
 from finbourne.sdk.services.lusid.models.cash_flow_value_set import CashFlowValueSet
 from finbourne.sdk.services.lusid.models.cash_ladder_record import CashLadderRecord
+from finbourne.sdk.services.lusid.models.cash_offer_constituent import CashOfferConstituent
 from finbourne.sdk.services.lusid.models.cash_offer_election import CashOfferElection
 from finbourne.sdk.services.lusid.models.cash_perpetual import CashPerpetual
 from finbourne.sdk.services.lusid.models.category_settlement_status import CategorySettlementStatus
@@ -299,6 +301,7 @@ from finbourne.sdk.services.lusid.models.create_trade_tickets_response import Cr
 from finbourne.sdk.services.lusid.models.create_transaction_fee_type_request import CreateTransactionFeeTypeRequest
 from finbourne.sdk.services.lusid.models.create_transaction_portfolio_request import CreateTransactionPortfolioRequest
 from finbourne.sdk.services.lusid.models.create_unit_definition import CreateUnitDefinition
+from finbourne.sdk.services.lusid.models.create_valuation_point_request import CreateValuationPointRequest
 from finbourne.sdk.services.lusid.models.credit_default_swap import CreditDefaultSwap
 from finbourne.sdk.services.lusid.models.credit_premium_cash_flow_event import CreditPremiumCashFlowEvent
 from finbourne.sdk.services.lusid.models.credit_rating import CreditRating
@@ -411,6 +414,7 @@ from finbourne.sdk.services.lusid.models.error_detail import ErrorDetail
 from finbourne.sdk.services.lusid.models.estimate_variant import EstimateVariant
 from finbourne.sdk.services.lusid.models.event_date_range import EventDateRange
 from finbourne.sdk.services.lusid.models.ex_dividend_configuration import ExDividendConfiguration
+from finbourne.sdk.services.lusid.models.exchange_offer_event import ExchangeOfferEvent
 from finbourne.sdk.services.lusid.models.exchange_traded_option import ExchangeTradedOption
 from finbourne.sdk.services.lusid.models.exchange_traded_option_contract_details import ExchangeTradedOptionContractDetails
 from finbourne.sdk.services.lusid.models.execution import Execution
@@ -695,6 +699,7 @@ from finbourne.sdk.services.lusid.models.membership_amendment_response import Me
 from finbourne.sdk.services.lusid.models.membership_and_status import MembershipAndStatus
 from finbourne.sdk.services.lusid.models.merger_event import MergerEvent
 from finbourne.sdk.services.lusid.models.metric_value import MetricValue
+from finbourne.sdk.services.lusid.models.mixed_lot_constituents_election import MixedLotConstituentsElection
 from finbourne.sdk.services.lusid.models.model_options import ModelOptions
 from finbourne.sdk.services.lusid.models.model_options_type import ModelOptionsType
 from finbourne.sdk.services.lusid.models.model_property import ModelProperty
@@ -909,6 +914,7 @@ from finbourne.sdk.services.lusid.models.previous_fund_calendar_entry import Pre
 from finbourne.sdk.services.lusid.models.previous_fund_valuation_point_data import PreviousFundValuationPointData
 from finbourne.sdk.services.lusid.models.previous_nav import PreviousNAV
 from finbourne.sdk.services.lusid.models.previous_share_class_breakdown import PreviousShareClassBreakdown
+from finbourne.sdk.services.lusid.models.previous_valuation_point import PreviousValuationPoint
 from finbourne.sdk.services.lusid.models.pricing_context import PricingContext
 from finbourne.sdk.services.lusid.models.pricing_model import PricingModel
 from finbourne.sdk.services.lusid.models.pricing_options import PricingOptions
@@ -1117,6 +1123,7 @@ from finbourne.sdk.services.lusid.models.scope_definition import ScopeDefinition
 from finbourne.sdk.services.lusid.models.scrip_dividend_event import ScripDividendEvent
 from finbourne.sdk.services.lusid.models.script_map_reference import ScriptMapReference
 from finbourne.sdk.services.lusid.models.security_election import SecurityElection
+from finbourne.sdk.services.lusid.models.security_offer_constituent import SecurityOfferConstituent
 from finbourne.sdk.services.lusid.models.security_offer_election import SecurityOfferElection
 from finbourne.sdk.services.lusid.models.sequence_definition import SequenceDefinition
 from finbourne.sdk.services.lusid.models.series import Series
@@ -1364,6 +1371,7 @@ from finbourne.sdk.services.lusid.models.upsert_transfer_agency_order_request im
 from finbourne.sdk.services.lusid.models.upsert_translation_script_request import UpsertTranslationScriptRequest
 from finbourne.sdk.services.lusid.models.upsert_valuation_point_request import UpsertValuationPointRequest
 from finbourne.sdk.services.lusid.models.user import User
+from finbourne.sdk.services.lusid.models.valuation_point import ValuationPoint
 from finbourne.sdk.services.lusid.models.valuation_point_data_query_parameters import ValuationPointDataQueryParameters
 from finbourne.sdk.services.lusid.models.valuation_point_data_request import ValuationPointDataRequest
 from finbourne.sdk.services.lusid.models.valuation_point_data_response import ValuationPointDataResponse
@@ -1560,6 +1568,7 @@ __all__ = [
     "CancelledPlacementResult",
     "CapFloor",
     "CapitalDistributionEvent",
+    "CapitalGainsDistributionEvent",
     "CapletFloorletCashFlowEvent",
     "Cash",
     "CashAndSecurityOfferElection",
@@ -1571,6 +1580,7 @@ __all__ = [
     "CashFlowValue",
     "CashFlowValueSet",
     "CashLadderRecord",
+    "CashOfferConstituent",
     "CashOfferElection",
     "CashPerpetual",
     "CategorySettlementStatus",
@@ -1706,6 +1716,7 @@ __all__ = [
     "CreateTransactionFeeTypeRequest",
     "CreateTransactionPortfolioRequest",
     "CreateUnitDefinition",
+    "CreateValuationPointRequest",
     "CreditDefaultSwap",
     "CreditPremiumCashFlowEvent",
     "CreditRating",
@@ -1818,6 +1829,7 @@ __all__ = [
     "EstimateVariant",
     "EventDateRange",
     "ExDividendConfiguration",
+    "ExchangeOfferEvent",
     "ExchangeTradedOption",
     "ExchangeTradedOptionContractDetails",
     "Execution",
@@ -2102,6 +2114,7 @@ __all__ = [
     "MembershipAndStatus",
     "MergerEvent",
     "MetricValue",
+    "MixedLotConstituentsElection",
     "ModelOptions",
     "ModelOptionsType",
     "ModelProperty",
@@ -2316,6 +2329,7 @@ __all__ = [
     "PreviousFundValuationPointData",
     "PreviousNAV",
     "PreviousShareClassBreakdown",
+    "PreviousValuationPoint",
     "PricingContext",
     "PricingModel",
     "PricingOptions",
@@ -2524,6 +2538,7 @@ __all__ = [
     "ScripDividendEvent",
     "ScriptMapReference",
     "SecurityElection",
+    "SecurityOfferConstituent",
     "SecurityOfferElection",
     "SequenceDefinition",
     "Series",
@@ -2771,6 +2786,7 @@ __all__ = [
     "UpsertTranslationScriptRequest",
     "UpsertValuationPointRequest",
     "User",
+    "ValuationPoint",
     "ValuationPointDataQueryParameters",
     "ValuationPointDataRequest",
     "ValuationPointDataResponse",

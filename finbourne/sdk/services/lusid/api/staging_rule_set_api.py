@@ -50,7 +50,7 @@ class StagingRuleSetApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def create_staging_rule_set(self, entity_type: StrictStr, create_staging_rule_set_request: CreateStagingRuleSetRequest, **kwargs) -> StagingRuleSet:
@@ -135,7 +135,7 @@ class StagingRuleSetApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['entity_type']:
+        if _params['entity_type'] is not None:
             _path_params['entityType'] = _params['entity_type']
 
 
@@ -265,7 +265,7 @@ class StagingRuleSetApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['entity_type']:
+        if _params['entity_type'] is not None:
             _path_params['entityType'] = _params['entity_type']
 
 
@@ -390,7 +390,7 @@ class StagingRuleSetApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['entity_type']:
+        if _params['entity_type'] is not None:
             _path_params['entityType'] = _params['entity_type']
 
 
@@ -677,7 +677,7 @@ class StagingRuleSetApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['entity_type']:
+        if _params['entity_type'] is not None:
             _path_params['entityType'] = _params['entity_type']
 
 
@@ -817,7 +817,7 @@ class StagingRuleSetApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['entity_type']:
+            if _params['entity_type'] is not None:
                 _path_params['entityType'] = _params['entity_type']
 
 
@@ -948,7 +948,7 @@ class StagingRuleSetApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['entity_type']:
+            if _params['entity_type'] is not None:
                 _path_params['entityType'] = _params['entity_type']
 
 
@@ -1074,7 +1074,7 @@ class StagingRuleSetApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['entity_type']:
+            if _params['entity_type'] is not None:
                 _path_params['entityType'] = _params['entity_type']
 
 
@@ -1363,7 +1363,7 @@ class StagingRuleSetApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['entity_type']:
+            if _params['entity_type'] is not None:
                 _path_params['entityType'] = _params['entity_type']
 
 

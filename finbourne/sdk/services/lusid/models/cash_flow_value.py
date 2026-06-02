@@ -135,9 +135,9 @@ class CashFlowValue(ResultValue):
         """Create an instance of CashFlowValue from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                             "additional_properties"
@@ -145,10 +145,10 @@ class CashFlowValue(ResultValue):
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of diagnostics
         if self.diagnostics:
-            _dict['diagnostics'] = self.diagnostics.to_dict()
+            _dict['diagnostics'] = self.diagnostics.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of cash_flow_lineage
         if self.cash_flow_lineage:
-            _dict['cashFlowLineage'] = self.cash_flow_lineage.to_dict()
+            _dict['cashFlowLineage'] = self.cash_flow_lineage.to_dict(by_alias=by_alias)
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():

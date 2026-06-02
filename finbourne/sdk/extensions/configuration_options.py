@@ -20,7 +20,7 @@ class ConfigurationOptions:
 
     @total_timeout_ms.setter
     def total_timeout_ms(self, value):
-        if value:
+        if value is not None:
             if not isinstance(value, int):
                 raise TypeError(f"total_timeout_ms must be type int but type '{type(value)}' used")
             if value < 0:
@@ -33,7 +33,7 @@ class ConfigurationOptions:
 
     @connect_timeout_ms.setter
     def connect_timeout_ms(self, value):
-        if value:
+        if value is not None:
             if not isinstance(value, int):
                 raise TypeError(f"connect_timeout_ms must be type int but type '{type(value)}' used")
             if value < 0:
@@ -46,7 +46,7 @@ class ConfigurationOptions:
 
     @read_timeout_ms.setter
     def read_timeout_ms(self, value):
-        if value:
+        if value is not None:
             if not isinstance(value, int):
                 raise TypeError(f"read_timeout_ms must be type int but type '{type(value)}' used")
             if value < 0:
@@ -59,7 +59,7 @@ class ConfigurationOptions:
 
     @rate_limit_retries.setter
     def rate_limit_retries(self, value):
-        if value:
+        if value is not None:
             if not isinstance(value, int):
                 raise TypeError(f"rate_limit_retries must be type int but type '{type(value)}' used")
             if value < 0:

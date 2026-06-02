@@ -53,7 +53,7 @@ class AuthenticationApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def get_authentication_information(self, **kwargs) -> AuthenticationInformation:
@@ -244,7 +244,7 @@ class AuthenticationApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['user_type']:
+        if _params['user_type'] is not None:
             _path_params['userType'] = _params['user_type']
 
 
@@ -963,7 +963,7 @@ class AuthenticationApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['user_type']:
+        if _params['user_type'] is not None:
             _path_params['userType'] = _params['user_type']
 
 
@@ -1337,7 +1337,7 @@ class AuthenticationApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['user_type']:
+            if _params['user_type'] is not None:
                 _path_params['userType'] = _params['user_type']
 
 
@@ -2062,7 +2062,7 @@ class AuthenticationApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['user_type']:
+            if _params['user_type'] is not None:
                 _path_params['userType'] = _params['user_type']
 
 

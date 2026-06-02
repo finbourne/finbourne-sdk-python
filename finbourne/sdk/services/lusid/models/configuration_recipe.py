@@ -69,28 +69,28 @@ class ConfigurationRecipe(BaseModel):
         """Create an instance of ConfigurationRecipe from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of market
         if self.market:
-            _dict['market'] = self.market.to_dict()
+            _dict['market'] = self.market.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of pricing
         if self.pricing:
-            _dict['pricing'] = self.pricing.to_dict()
+            _dict['pricing'] = self.pricing.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of aggregation
         if self.aggregation:
-            _dict['aggregation'] = self.aggregation.to_dict()
+            _dict['aggregation'] = self.aggregation.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of holding
         if self.holding:
-            _dict['holding'] = self.holding.to_dict()
+            _dict['holding'] = self.holding.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of translation
         if self.translation:
-            _dict['translation'] = self.translation.to_dict()
+            _dict['translation'] = self.translation.to_dict(by_alias=by_alias)
         # set to None if description (nullable) is None
         # and model_fields_set contains the field
         if self.description is None and "description" in self.model_fields_set:

@@ -66,19 +66,19 @@ class TaskFieldDefinition(BaseModel):
         """Create an instance of TaskFieldDefinition from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of read_only_states
         if self.read_only_states:
-            _dict['readOnlyStates'] = self.read_only_states.to_dict()
+            _dict['readOnlyStates'] = self.read_only_states.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of value_constraints
         if self.value_constraints:
-            _dict['valueConstraints'] = self.value_constraints.to_dict()
+            _dict['valueConstraints'] = self.value_constraints.to_dict(by_alias=by_alias)
         # set to None if display_name (nullable) is None
         # and model_fields_set contains the field
         if self.display_name is None and "display_name" in self.model_fields_set:

@@ -58,7 +58,7 @@ class PropertyDefinitionsApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def create_derived_property_definition(self, create_derived_property_definition_request: CreateDerivedPropertyDefinitionRequest, **kwargs) -> PropertyDefinition:
@@ -402,13 +402,13 @@ class PropertyDefinitionsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['domain']:
+        if _params['domain'] is not None:
             _path_params['domain'] = _params['domain']
 
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -548,13 +548,13 @@ class PropertyDefinitionsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['domain']:
+        if _params['domain'] is not None:
             _path_params['domain'] = _params['domain']
 
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -1001,13 +1001,13 @@ class PropertyDefinitionsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['domain']:
+        if _params['domain'] is not None:
             _path_params['domain'] = _params['domain']
 
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -1171,13 +1171,13 @@ class PropertyDefinitionsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['domain']:
+        if _params['domain'] is not None:
             _path_params['domain'] = _params['domain']
 
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -1503,13 +1503,13 @@ class PropertyDefinitionsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['domain']:
+        if _params['domain'] is not None:
             _path_params['domain'] = _params['domain']
 
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -1654,13 +1654,13 @@ class PropertyDefinitionsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['domain']:
+        if _params['domain'] is not None:
             _path_params['domain'] = _params['domain']
 
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -1810,13 +1810,13 @@ class PropertyDefinitionsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['domain']:
+        if _params['domain'] is not None:
             _path_params['domain'] = _params['domain']
 
-        if _params['scope']:
+        if _params['scope'] is not None:
             _path_params['scope'] = _params['scope']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -2220,13 +2220,13 @@ class PropertyDefinitionsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['domain']:
+            if _params['domain'] is not None:
                 _path_params['domain'] = _params['domain']
 
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -2367,13 +2367,13 @@ class PropertyDefinitionsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['domain']:
+            if _params['domain'] is not None:
                 _path_params['domain'] = _params['domain']
 
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -2823,13 +2823,13 @@ class PropertyDefinitionsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['domain']:
+            if _params['domain'] is not None:
                 _path_params['domain'] = _params['domain']
 
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -2994,13 +2994,13 @@ class PropertyDefinitionsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['domain']:
+            if _params['domain'] is not None:
                 _path_params['domain'] = _params['domain']
 
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -3328,13 +3328,13 @@ class PropertyDefinitionsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['domain']:
+            if _params['domain'] is not None:
                 _path_params['domain'] = _params['domain']
 
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -3480,13 +3480,13 @@ class PropertyDefinitionsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['domain']:
+            if _params['domain'] is not None:
                 _path_params['domain'] = _params['domain']
 
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -3637,13 +3637,13 @@ class PropertyDefinitionsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['domain']:
+            if _params['domain'] is not None:
                 _path_params['domain'] = _params['domain']
 
-            if _params['scope']:
+            if _params['scope'] is not None:
                 _path_params['scope'] = _params['scope']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 

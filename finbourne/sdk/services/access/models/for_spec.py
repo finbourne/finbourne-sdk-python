@@ -66,28 +66,28 @@ class ForSpec(BaseModel):
         """Create an instance of ForSpec from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of as_at_range_for_spec
         if self.as_at_range_for_spec:
-            _dict['asAtRangeForSpec'] = self.as_at_range_for_spec.to_dict()
+            _dict['asAtRangeForSpec'] = self.as_at_range_for_spec.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of as_at_relative
         if self.as_at_relative:
-            _dict['asAtRelative'] = self.as_at_relative.to_dict()
+            _dict['asAtRelative'] = self.as_at_relative.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of effective_date_has_quality
         if self.effective_date_has_quality:
-            _dict['effectiveDateHasQuality'] = self.effective_date_has_quality.to_dict()
+            _dict['effectiveDateHasQuality'] = self.effective_date_has_quality.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of effective_date_relative
         if self.effective_date_relative:
-            _dict['effectiveDateRelative'] = self.effective_date_relative.to_dict()
+            _dict['effectiveDateRelative'] = self.effective_date_relative.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of effective_range
         if self.effective_range:
-            _dict['effectiveRange'] = self.effective_range.to_dict()
+            _dict['effectiveRange'] = self.effective_range.to_dict(by_alias=by_alias)
         return _dict
 
     @classmethod

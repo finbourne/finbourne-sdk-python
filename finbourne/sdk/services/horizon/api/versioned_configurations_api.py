@@ -48,7 +48,7 @@ class VersionedConfigurationsApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def create_versioned_configuration_draft(self, config_type: StrictStr, name: StrictStr, create_versioned_configuration_draft_request: Optional[CreateVersionedConfigurationDraftRequest] = None, **kwargs) -> VersionedConfigurationResponse:
@@ -138,10 +138,10 @@ class VersionedConfigurationsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['config_type']:
+        if _params['config_type'] is not None:
             _path_params['configType'] = _params['config_type']
 
-        if _params['name']:
+        if _params['name'] is not None:
             _path_params['name'] = _params['name']
 
 
@@ -288,16 +288,16 @@ class VersionedConfigurationsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['config_type']:
+        if _params['config_type'] is not None:
             _path_params['configType'] = _params['config_type']
 
-        if _params['name']:
+        if _params['name'] is not None:
             _path_params['name'] = _params['name']
 
-        if _params['major_version']:
+        if _params['major_version'] is not None:
             _path_params['majorVersion'] = _params['major_version']
 
-        if _params['minor_version']:
+        if _params['minor_version'] is not None:
             _path_params['minorVersion'] = _params['minor_version']
 
 
@@ -433,10 +433,10 @@ class VersionedConfigurationsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['config_type']:
+        if _params['config_type'] is not None:
             _path_params['configType'] = _params['config_type']
 
-        if _params['name']:
+        if _params['name'] is not None:
             _path_params['name'] = _params['name']
 
 
@@ -787,7 +787,7 @@ class VersionedConfigurationsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['config_type']:
+        if _params['config_type'] is not None:
             _path_params['configType'] = _params['config_type']
 
 
@@ -923,16 +923,16 @@ class VersionedConfigurationsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['config_type']:
+        if _params['config_type'] is not None:
             _path_params['configType'] = _params['config_type']
 
-        if _params['name']:
+        if _params['name'] is not None:
             _path_params['name'] = _params['name']
 
-        if _params['major_version']:
+        if _params['major_version'] is not None:
             _path_params['majorVersion'] = _params['major_version']
 
-        if _params['minor_version']:
+        if _params['minor_version'] is not None:
             _path_params['minorVersion'] = _params['minor_version']
 
 
@@ -1073,16 +1073,16 @@ class VersionedConfigurationsApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['config_type']:
+        if _params['config_type'] is not None:
             _path_params['configType'] = _params['config_type']
 
-        if _params['name']:
+        if _params['name'] is not None:
             _path_params['name'] = _params['name']
 
-        if _params['major_version']:
+        if _params['major_version'] is not None:
             _path_params['majorVersion'] = _params['major_version']
 
-        if _params['minor_version']:
+        if _params['minor_version'] is not None:
             _path_params['minorVersion'] = _params['minor_version']
 
 
@@ -1228,10 +1228,10 @@ class VersionedConfigurationsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['config_type']:
+            if _params['config_type'] is not None:
                 _path_params['configType'] = _params['config_type']
 
-            if _params['name']:
+            if _params['name'] is not None:
                 _path_params['name'] = _params['name']
 
 
@@ -1379,16 +1379,16 @@ class VersionedConfigurationsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['config_type']:
+            if _params['config_type'] is not None:
                 _path_params['configType'] = _params['config_type']
 
-            if _params['name']:
+            if _params['name'] is not None:
                 _path_params['name'] = _params['name']
 
-            if _params['major_version']:
+            if _params['major_version'] is not None:
                 _path_params['majorVersion'] = _params['major_version']
 
-            if _params['minor_version']:
+            if _params['minor_version'] is not None:
                 _path_params['minorVersion'] = _params['minor_version']
 
 
@@ -1525,10 +1525,10 @@ class VersionedConfigurationsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['config_type']:
+            if _params['config_type'] is not None:
                 _path_params['configType'] = _params['config_type']
 
-            if _params['name']:
+            if _params['name'] is not None:
                 _path_params['name'] = _params['name']
 
 
@@ -1882,7 +1882,7 @@ class VersionedConfigurationsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['config_type']:
+            if _params['config_type'] is not None:
                 _path_params['configType'] = _params['config_type']
 
 
@@ -2019,16 +2019,16 @@ class VersionedConfigurationsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['config_type']:
+            if _params['config_type'] is not None:
                 _path_params['configType'] = _params['config_type']
 
-            if _params['name']:
+            if _params['name'] is not None:
                 _path_params['name'] = _params['name']
 
-            if _params['major_version']:
+            if _params['major_version'] is not None:
                 _path_params['majorVersion'] = _params['major_version']
 
-            if _params['minor_version']:
+            if _params['minor_version'] is not None:
                 _path_params['minorVersion'] = _params['minor_version']
 
 
@@ -2170,16 +2170,16 @@ class VersionedConfigurationsApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['config_type']:
+            if _params['config_type'] is not None:
                 _path_params['configType'] = _params['config_type']
 
-            if _params['name']:
+            if _params['name'] is not None:
                 _path_params['name'] = _params['name']
 
-            if _params['major_version']:
+            if _params['major_version'] is not None:
                 _path_params['majorVersion'] = _params['major_version']
 
-            if _params['minor_version']:
+            if _params['minor_version'] is not None:
                 _path_params['minorVersion'] = _params['minor_version']
 
 

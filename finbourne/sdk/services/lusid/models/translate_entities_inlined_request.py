@@ -61,9 +61,9 @@ class TranslateEntitiesInlinedRequest(BaseModel):
         """Create an instance of TranslateEntitiesInlinedRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
@@ -73,11 +73,11 @@ class TranslateEntitiesInlinedRequest(BaseModel):
         if self.entity_payloads:
             for _key in self.entity_payloads:
                 if self.entity_payloads[_key]:
-                    _field_dict[_key] = self.entity_payloads[_key].to_dict()
+                    _field_dict[_key] = self.entity_payloads[_key].to_dict(by_alias=by_alias)
             _dict['entityPayloads'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
+            _dict['schema'] = self.var_schema.to_dict(by_alias=by_alias)
         return _dict
 
     @classmethod

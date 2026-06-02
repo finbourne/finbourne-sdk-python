@@ -79,7 +79,7 @@ class SyncApiClientFactory:
         profile_name: str = "default",
         id_provider_response_handler: Optional[Callable[[Response], None]] = None,
         tcp_keep_alive: bool = True,
-        socket_options: Any = keep_alive_socket_options(),
+        socket_options: Any = None,
         correlation_id: Optional[str] = None,
         app_name: Optional[str] = None,
         additional_headers: Optional[Dict[str, str]] = None,
@@ -105,6 +105,8 @@ class SyncApiClientFactory:
         additional_headers : Optional[Dict[str, str]], optional
         Additional headers to set on the api client, by default None
         """
+        if socket_options is None:
+            socket_options = keep_alive_socket_options()
         self.configuration = get_api_configuration(
             secrets_path,
             profile_name=profile_name,
@@ -167,7 +169,7 @@ class ApiClientFactory:
         profile_name: str = "default",
         id_provider_response_handler: Optional[Callable[[Response], None]] = None,
         tcp_keep_alive: bool = True,
-        socket_options: Any = keep_alive_socket_options(),
+        socket_options: Any = None,
         correlation_id: Optional[str] = None,
         app_name: Optional[str] = None,
         additional_headers: Optional[Dict[str, str]] = None,
@@ -175,6 +177,8 @@ class ApiClientFactory:
         trace_configs: Optional[list[TraceConfig]] = None,
         opts: Optional[ConfigurationOptions] = None,
     ):
+        if socket_options is None:
+            socket_options = keep_alive_socket_options()
         is_owner = True
         self.configuration = get_api_configuration(
             secrets_path,
@@ -187,7 +191,7 @@ class ApiClientFactory:
             opts=opts,
         )
         # Only use Configuration everywhere
-        
+
         self.__api_client = ApiClient(
             configuration=self.configuration,
         )

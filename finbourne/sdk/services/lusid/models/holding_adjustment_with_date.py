@@ -68,9 +68,9 @@ class HoldingAdjustmentWithDate(BaseModel):
         """Create an instance of HoldingAdjustmentWithDate from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
@@ -80,25 +80,25 @@ class HoldingAdjustmentWithDate(BaseModel):
         if self.sub_holding_keys:
             for _key in self.sub_holding_keys:
                 if self.sub_holding_keys[_key]:
-                    _field_dict[_key] = self.sub_holding_keys[_key].to_dict()
+                    _field_dict[_key] = self.sub_holding_keys[_key].to_dict(by_alias=by_alias)
             _dict['subHoldingKeys'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of each value in properties (dict)
         _field_dict = {}
         if self.properties:
             for _key in self.properties:
                 if self.properties[_key]:
-                    _field_dict[_key] = self.properties[_key].to_dict()
+                    _field_dict[_key] = self.properties[_key].to_dict(by_alias=by_alias)
             _dict['properties'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of each item in tax_lots (list)
         _items = []
         if self.tax_lots:
             for _item in self.tax_lots:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['taxLots'] = _items
         # override the default output from pydantic by calling `to_dict()` of custodian_account_id
         if self.custodian_account_id:
-            _dict['custodianAccountId'] = self.custodian_account_id.to_dict()
+            _dict['custodianAccountId'] = self.custodian_account_id.to_dict(by_alias=by_alias)
         # set to None if instrument_identifiers (nullable) is None
         # and model_fields_set contains the field
         if self.instrument_identifiers is None and "instrument_identifiers" in self.model_fields_set:

@@ -63,9 +63,9 @@ class IntellisenseResponse(BaseModel):
         """Create an instance of IntellisenseResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
@@ -75,14 +75,14 @@ class IntellisenseResponse(BaseModel):
         if self.auto_complete_list:
             for _item in self.auto_complete_list:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['autoCompleteList'] = _items
         # override the default output from pydantic by calling `to_dict()` of start_replacement_position
         if self.start_replacement_position:
-            _dict['startReplacementPosition'] = self.start_replacement_position.to_dict()
+            _dict['startReplacementPosition'] = self.start_replacement_position.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of end_replacement_position
         if self.end_replacement_position:
-            _dict['endReplacementPosition'] = self.end_replacement_position.to_dict()
+            _dict['endReplacementPosition'] = self.end_replacement_position.to_dict(by_alias=by_alias)
         return _dict
 
     @classmethod

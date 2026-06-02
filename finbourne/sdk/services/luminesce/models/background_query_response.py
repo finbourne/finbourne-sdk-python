@@ -70,49 +70,49 @@ class BackgroundQueryResponse(BaseModel):
         """Create an instance of BackgroundQueryResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of progress
         if self.progress:
-            _dict['progress'] = self.progress.to_dict()
+            _dict['progress'] = self.progress.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of cancel
         if self.cancel:
-            _dict['cancel'] = self.cancel.to_dict()
+            _dict['cancel'] = self.cancel.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of fetch_json
         if self.fetch_json:
-            _dict['fetchJson'] = self.fetch_json.to_dict()
+            _dict['fetchJson'] = self.fetch_json.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of fetch_json_proper
         if self.fetch_json_proper:
-            _dict['fetchJsonProper'] = self.fetch_json_proper.to_dict()
+            _dict['fetchJsonProper'] = self.fetch_json_proper.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of fetch_json_proper_with_lineage
         if self.fetch_json_proper_with_lineage:
-            _dict['fetchJsonProperWithLineage'] = self.fetch_json_proper_with_lineage.to_dict()
+            _dict['fetchJsonProperWithLineage'] = self.fetch_json_proper_with_lineage.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of fetch_xml
         if self.fetch_xml:
-            _dict['fetchXml'] = self.fetch_xml.to_dict()
+            _dict['fetchXml'] = self.fetch_xml.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of fetch_parquet
         if self.fetch_parquet:
-            _dict['fetchParquet'] = self.fetch_parquet.to_dict()
+            _dict['fetchParquet'] = self.fetch_parquet.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of fetch_csv
         if self.fetch_csv:
-            _dict['fetchCsv'] = self.fetch_csv.to_dict()
+            _dict['fetchCsv'] = self.fetch_csv.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of fetch_pipe
         if self.fetch_pipe:
-            _dict['fetchPipe'] = self.fetch_pipe.to_dict()
+            _dict['fetchPipe'] = self.fetch_pipe.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of fetch_excel
         if self.fetch_excel:
-            _dict['fetchExcel'] = self.fetch_excel.to_dict()
+            _dict['fetchExcel'] = self.fetch_excel.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of fetch_sqlite
         if self.fetch_sqlite:
-            _dict['fetchSqlite'] = self.fetch_sqlite.to_dict()
+            _dict['fetchSqlite'] = self.fetch_sqlite.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of histogram
         if self.histogram:
-            _dict['histogram'] = self.histogram.to_dict()
+            _dict['histogram'] = self.histogram.to_dict(by_alias=by_alias)
         # set to None if execution_id (nullable) is None
         # and model_fields_set contains the field
         if self.execution_id is None and "execution_id" in self.model_fields_set:

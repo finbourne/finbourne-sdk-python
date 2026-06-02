@@ -73,9 +73,9 @@ class ShareClassBreakdown(BaseModel):
         """Create an instance of ShareClassBreakdown from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
@@ -85,40 +85,40 @@ class ShareClassBreakdown(BaseModel):
         if self.back_out:
             for _key in self.back_out:
                 if self.back_out[_key]:
-                    _field_dict[_key] = self.back_out[_key].to_dict()
+                    _field_dict[_key] = self.back_out[_key].to_dict(by_alias=by_alias)
             _dict['backOut'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of dealing
         if self.dealing:
-            _dict['dealing'] = self.dealing.to_dict()
+            _dict['dealing'] = self.dealing.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of pn_l
         if self.pn_l:
-            _dict['pnL'] = self.pn_l.to_dict()
+            _dict['pnL'] = self.pn_l.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of gav
         if self.gav:
-            _dict['gav'] = self.gav.to_dict()
+            _dict['gav'] = self.gav.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each value in fees (dict)
         _field_dict = {}
         if self.fees:
             for _key in self.fees:
                 if self.fees[_key]:
-                    _field_dict[_key] = self.fees[_key].to_dict()
+                    _field_dict[_key] = self.fees[_key].to_dict(by_alias=by_alias)
             _dict['fees'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of nav
         if self.nav:
-            _dict['nav'] = self.nav.to_dict()
+            _dict['nav'] = self.nav.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of unitisation
         if self.unitisation:
-            _dict['unitisation'] = self.unitisation.to_dict()
+            _dict['unitisation'] = self.unitisation.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each value in miscellaneous (dict)
         _field_dict = {}
         if self.miscellaneous:
             for _key in self.miscellaneous:
                 if self.miscellaneous[_key]:
-                    _field_dict[_key] = self.miscellaneous[_key].to_dict()
+                    _field_dict[_key] = self.miscellaneous[_key].to_dict(by_alias=by_alias)
             _dict['miscellaneous'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of previous_share_class_breakdown
         if self.previous_share_class_breakdown:
-            _dict['previousShareClassBreakdown'] = self.previous_share_class_breakdown.to_dict()
+            _dict['previousShareClassBreakdown'] = self.previous_share_class_breakdown.to_dict(by_alias=by_alias)
         # set to None if miscellaneous (nullable) is None
         # and model_fields_set contains the field
         if self.miscellaneous is None and "miscellaneous" in self.model_fields_set:

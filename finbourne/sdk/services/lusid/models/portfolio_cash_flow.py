@@ -76,9 +76,9 @@ class PortfolioCashFlow(BaseModel):
         """Create an instance of PortfolioCashFlow from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
@@ -88,38 +88,38 @@ class PortfolioCashFlow(BaseModel):
         if self.sub_holding_keys:
             for _key in self.sub_holding_keys:
                 if self.sub_holding_keys[_key]:
-                    _field_dict[_key] = self.sub_holding_keys[_key].to_dict()
+                    _field_dict[_key] = self.sub_holding_keys[_key].to_dict(by_alias=by_alias)
             _dict['subHoldingKeys'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of cashflow
         if self.cashflow:
-            _dict['cashflow'] = self.cashflow.to_dict()
+            _dict['cashflow'] = self.cashflow.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of balance
         if self.balance:
-            _dict['balance'] = self.balance.to_dict()
+            _dict['balance'] = self.balance.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of cashflow_reporting_currency
         if self.cashflow_reporting_currency:
-            _dict['cashflowReportingCurrency'] = self.cashflow_reporting_currency.to_dict()
+            _dict['cashflowReportingCurrency'] = self.cashflow_reporting_currency.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of balance_reporting_currency
         if self.balance_reporting_currency:
-            _dict['balanceReportingCurrency'] = self.balance_reporting_currency.to_dict()
+            _dict['balanceReportingCurrency'] = self.balance_reporting_currency.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of translation_gain_loss
         if self.translation_gain_loss:
-            _dict['translationGainLoss'] = self.translation_gain_loss.to_dict()
+            _dict['translationGainLoss'] = self.translation_gain_loss.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of cost_basis_reporting_currency
         if self.cost_basis_reporting_currency:
-            _dict['costBasisReportingCurrency'] = self.cost_basis_reporting_currency.to_dict()
+            _dict['costBasisReportingCurrency'] = self.cost_basis_reporting_currency.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of transaction
         if self.transaction:
-            _dict['transaction'] = self.transaction.to_dict()
+            _dict['transaction'] = self.transaction.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of unrealised_gain_loss_reporting_currency
         if self.unrealised_gain_loss_reporting_currency:
-            _dict['unrealisedGainLossReportingCurrency'] = self.unrealised_gain_loss_reporting_currency.to_dict()
+            _dict['unrealisedGainLossReportingCurrency'] = self.unrealised_gain_loss_reporting_currency.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each item in links (list)
         _items = []
         if self.links:
             for _item in self.links:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['links'] = _items
         # set to None if sub_holding_keys (nullable) is None
         # and model_fields_set contains the field

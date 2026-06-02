@@ -60,7 +60,7 @@ class LegalEntitiesApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def delete_legal_entity(self, id_type_scope: StrictStr, id_type_code: StrictStr, code: StrictStr, **kwargs) -> DeletedEntityResponse:
@@ -150,13 +150,13 @@ class LegalEntitiesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['id_type_scope']:
+        if _params['id_type_scope'] is not None:
             _path_params['idTypeScope'] = _params['id_type_scope']
 
-        if _params['id_type_code']:
+        if _params['id_type_code'] is not None:
             _path_params['idTypeCode'] = _params['id_type_code']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -301,16 +301,16 @@ class LegalEntitiesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['id_type_scope']:
+        if _params['id_type_scope'] is not None:
             _path_params['idTypeScope'] = _params['id_type_scope']
 
-        if _params['id_type_code']:
+        if _params['id_type_code'] is not None:
             _path_params['idTypeCode'] = _params['id_type_code']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
-        if _params['metadata_key']:
+        if _params['metadata_key'] is not None:
             _path_params['metadataKey'] = _params['metadata_key']
 
 
@@ -459,13 +459,13 @@ class LegalEntitiesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['id_type_scope']:
+        if _params['id_type_scope'] is not None:
             _path_params['idTypeScope'] = _params['id_type_scope']
 
-        if _params['id_type_code']:
+        if _params['id_type_code'] is not None:
             _path_params['idTypeCode'] = _params['id_type_code']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -612,13 +612,13 @@ class LegalEntitiesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['id_type_scope']:
+        if _params['id_type_scope'] is not None:
             _path_params['idTypeScope'] = _params['id_type_scope']
 
-        if _params['id_type_code']:
+        if _params['id_type_code'] is not None:
             _path_params['idTypeCode'] = _params['id_type_code']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -765,13 +765,13 @@ class LegalEntitiesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['id_type_scope']:
+        if _params['id_type_scope'] is not None:
             _path_params['idTypeScope'] = _params['id_type_scope']
 
-        if _params['id_type_code']:
+        if _params['id_type_code'] is not None:
             _path_params['idTypeCode'] = _params['id_type_code']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -930,13 +930,13 @@ class LegalEntitiesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['id_type_scope']:
+        if _params['id_type_scope'] is not None:
             _path_params['idTypeScope'] = _params['id_type_scope']
 
-        if _params['id_type_code']:
+        if _params['id_type_code'] is not None:
             _path_params['idTypeCode'] = _params['id_type_code']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -1098,16 +1098,16 @@ class LegalEntitiesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['id_type_scope']:
+        if _params['id_type_scope'] is not None:
             _path_params['idTypeScope'] = _params['id_type_scope']
 
-        if _params['id_type_code']:
+        if _params['id_type_code'] is not None:
             _path_params['idTypeCode'] = _params['id_type_code']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
-        if _params['metadata_key']:
+        if _params['metadata_key'] is not None:
             _path_params['metadataKey'] = _params['metadata_key']
 
 
@@ -1271,13 +1271,13 @@ class LegalEntitiesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['id_type_scope']:
+        if _params['id_type_scope'] is not None:
             _path_params['idTypeScope'] = _params['id_type_scope']
 
-        if _params['id_type_code']:
+        if _params['id_type_code'] is not None:
             _path_params['idTypeCode'] = _params['id_type_code']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -1445,13 +1445,13 @@ class LegalEntitiesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['id_type_scope']:
+        if _params['id_type_scope'] is not None:
             _path_params['idTypeScope'] = _params['id_type_scope']
 
-        if _params['id_type_code']:
+        if _params['id_type_code'] is not None:
             _path_params['idTypeCode'] = _params['id_type_code']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -1617,13 +1617,13 @@ class LegalEntitiesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['id_type_scope']:
+        if _params['id_type_scope'] is not None:
             _path_params['idTypeScope'] = _params['id_type_scope']
 
-        if _params['id_type_code']:
+        if _params['id_type_code'] is not None:
             _path_params['idTypeCode'] = _params['id_type_code']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -1986,10 +1986,10 @@ class LegalEntitiesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['id_type_scope']:
+        if _params['id_type_scope'] is not None:
             _path_params['idTypeScope'] = _params['id_type_scope']
 
-        if _params['id_type_code']:
+        if _params['id_type_code'] is not None:
             _path_params['idTypeCode'] = _params['id_type_code']
 
 
@@ -2164,13 +2164,13 @@ class LegalEntitiesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['id_type_scope']:
+        if _params['id_type_scope'] is not None:
             _path_params['idTypeScope'] = _params['id_type_scope']
 
-        if _params['id_type_code']:
+        if _params['id_type_code'] is not None:
             _path_params['idTypeCode'] = _params['id_type_code']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -2324,13 +2324,13 @@ class LegalEntitiesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['id_type_scope']:
+        if _params['id_type_scope'] is not None:
             _path_params['idTypeScope'] = _params['id_type_scope']
 
-        if _params['id_type_code']:
+        if _params['id_type_code'] is not None:
             _path_params['idTypeCode'] = _params['id_type_code']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -2475,13 +2475,13 @@ class LegalEntitiesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['id_type_scope']:
+        if _params['id_type_scope'] is not None:
             _path_params['idTypeScope'] = _params['id_type_scope']
 
-        if _params['id_type_code']:
+        if _params['id_type_code'] is not None:
             _path_params['idTypeCode'] = _params['id_type_code']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
 
@@ -2903,16 +2903,16 @@ class LegalEntitiesApi:
 
         # process the path parameters
         _path_params = {}
-        if _params['id_type_scope']:
+        if _params['id_type_scope'] is not None:
             _path_params['idTypeScope'] = _params['id_type_scope']
 
-        if _params['id_type_code']:
+        if _params['id_type_code'] is not None:
             _path_params['idTypeCode'] = _params['id_type_code']
 
-        if _params['code']:
+        if _params['code'] is not None:
             _path_params['code'] = _params['code']
 
-        if _params['metadata_key']:
+        if _params['metadata_key'] is not None:
             _path_params['metadataKey'] = _params['metadata_key']
 
 
@@ -3066,13 +3066,13 @@ class LegalEntitiesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['id_type_scope']:
+            if _params['id_type_scope'] is not None:
                 _path_params['idTypeScope'] = _params['id_type_scope']
 
-            if _params['id_type_code']:
+            if _params['id_type_code'] is not None:
                 _path_params['idTypeCode'] = _params['id_type_code']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -3218,16 +3218,16 @@ class LegalEntitiesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['id_type_scope']:
+            if _params['id_type_scope'] is not None:
                 _path_params['idTypeScope'] = _params['id_type_scope']
 
-            if _params['id_type_code']:
+            if _params['id_type_code'] is not None:
                 _path_params['idTypeCode'] = _params['id_type_code']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
-            if _params['metadata_key']:
+            if _params['metadata_key'] is not None:
                 _path_params['metadataKey'] = _params['metadata_key']
 
 
@@ -3377,13 +3377,13 @@ class LegalEntitiesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['id_type_scope']:
+            if _params['id_type_scope'] is not None:
                 _path_params['idTypeScope'] = _params['id_type_scope']
 
-            if _params['id_type_code']:
+            if _params['id_type_code'] is not None:
                 _path_params['idTypeCode'] = _params['id_type_code']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -3531,13 +3531,13 @@ class LegalEntitiesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['id_type_scope']:
+            if _params['id_type_scope'] is not None:
                 _path_params['idTypeScope'] = _params['id_type_scope']
 
-            if _params['id_type_code']:
+            if _params['id_type_code'] is not None:
                 _path_params['idTypeCode'] = _params['id_type_code']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -3685,13 +3685,13 @@ class LegalEntitiesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['id_type_scope']:
+            if _params['id_type_scope'] is not None:
                 _path_params['idTypeScope'] = _params['id_type_scope']
 
-            if _params['id_type_code']:
+            if _params['id_type_code'] is not None:
                 _path_params['idTypeCode'] = _params['id_type_code']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -3851,13 +3851,13 @@ class LegalEntitiesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['id_type_scope']:
+            if _params['id_type_scope'] is not None:
                 _path_params['idTypeScope'] = _params['id_type_scope']
 
-            if _params['id_type_code']:
+            if _params['id_type_code'] is not None:
                 _path_params['idTypeCode'] = _params['id_type_code']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -4020,16 +4020,16 @@ class LegalEntitiesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['id_type_scope']:
+            if _params['id_type_scope'] is not None:
                 _path_params['idTypeScope'] = _params['id_type_scope']
 
-            if _params['id_type_code']:
+            if _params['id_type_code'] is not None:
                 _path_params['idTypeCode'] = _params['id_type_code']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
-            if _params['metadata_key']:
+            if _params['metadata_key'] is not None:
                 _path_params['metadataKey'] = _params['metadata_key']
 
 
@@ -4194,13 +4194,13 @@ class LegalEntitiesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['id_type_scope']:
+            if _params['id_type_scope'] is not None:
                 _path_params['idTypeScope'] = _params['id_type_scope']
 
-            if _params['id_type_code']:
+            if _params['id_type_code'] is not None:
                 _path_params['idTypeCode'] = _params['id_type_code']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -4369,13 +4369,13 @@ class LegalEntitiesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['id_type_scope']:
+            if _params['id_type_scope'] is not None:
                 _path_params['idTypeScope'] = _params['id_type_scope']
 
-            if _params['id_type_code']:
+            if _params['id_type_code'] is not None:
                 _path_params['idTypeCode'] = _params['id_type_code']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -4542,13 +4542,13 @@ class LegalEntitiesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['id_type_scope']:
+            if _params['id_type_scope'] is not None:
                 _path_params['idTypeScope'] = _params['id_type_scope']
 
-            if _params['id_type_code']:
+            if _params['id_type_code'] is not None:
                 _path_params['idTypeCode'] = _params['id_type_code']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -4913,10 +4913,10 @@ class LegalEntitiesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['id_type_scope']:
+            if _params['id_type_scope'] is not None:
                 _path_params['idTypeScope'] = _params['id_type_scope']
 
-            if _params['id_type_code']:
+            if _params['id_type_code'] is not None:
                 _path_params['idTypeCode'] = _params['id_type_code']
 
 
@@ -5092,13 +5092,13 @@ class LegalEntitiesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['id_type_scope']:
+            if _params['id_type_scope'] is not None:
                 _path_params['idTypeScope'] = _params['id_type_scope']
 
-            if _params['id_type_code']:
+            if _params['id_type_code'] is not None:
                 _path_params['idTypeCode'] = _params['id_type_code']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -5253,13 +5253,13 @@ class LegalEntitiesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['id_type_scope']:
+            if _params['id_type_scope'] is not None:
                 _path_params['idTypeScope'] = _params['id_type_scope']
 
-            if _params['id_type_code']:
+            if _params['id_type_code'] is not None:
                 _path_params['idTypeCode'] = _params['id_type_code']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -5405,13 +5405,13 @@ class LegalEntitiesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['id_type_scope']:
+            if _params['id_type_scope'] is not None:
                 _path_params['idTypeScope'] = _params['id_type_scope']
 
-            if _params['id_type_code']:
+            if _params['id_type_code'] is not None:
                 _path_params['idTypeCode'] = _params['id_type_code']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
 
@@ -5836,16 +5836,16 @@ class LegalEntitiesApi:
 
             # process the path parameters
             _path_params = {}
-            if _params['id_type_scope']:
+            if _params['id_type_scope'] is not None:
                 _path_params['idTypeScope'] = _params['id_type_scope']
 
-            if _params['id_type_code']:
+            if _params['id_type_code'] is not None:
                 _path_params['idTypeCode'] = _params['id_type_code']
 
-            if _params['code']:
+            if _params['code'] is not None:
                 _path_params['code'] = _params['code']
 
-            if _params['metadata_key']:
+            if _params['metadata_key'] is not None:
                 _path_params['metadataKey'] = _params['metadata_key']
 
 

@@ -48,7 +48,7 @@ class AuditingApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def create_entry(self, create_audit_entry: Optional[CreateAuditEntry] = None, **kwargs) -> AuditEntry:

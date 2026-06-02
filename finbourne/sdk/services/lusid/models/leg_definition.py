@@ -79,34 +79,34 @@ class LegDefinition(BaseModel):
         """Create an instance of LegDefinition from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of convention_name
         if self.convention_name:
-            _dict['conventionName'] = self.convention_name.to_dict()
+            _dict['conventionName'] = self.convention_name.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of conventions
         if self.conventions:
-            _dict['conventions'] = self.conventions.to_dict()
+            _dict['conventions'] = self.conventions.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of index_convention
         if self.index_convention:
-            _dict['indexConvention'] = self.index_convention.to_dict()
+            _dict['indexConvention'] = self.index_convention.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of index_convention_name
         if self.index_convention_name:
-            _dict['indexConventionName'] = self.index_convention_name.to_dict()
+            _dict['indexConventionName'] = self.index_convention_name.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of compounding
         if self.compounding:
-            _dict['compounding'] = self.compounding.to_dict()
+            _dict['compounding'] = self.compounding.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of amortisation
         if self.amortisation:
-            _dict['amortisation'] = self.amortisation.to_dict()
+            _dict['amortisation'] = self.amortisation.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of fx_linked_notional_schedule
         if self.fx_linked_notional_schedule:
-            _dict['fxLinkedNotionalSchedule'] = self.fx_linked_notional_schedule.to_dict()
+            _dict['fxLinkedNotionalSchedule'] = self.fx_linked_notional_schedule.to_dict(by_alias=by_alias)
         # set to None if reset_convention (nullable) is None
         # and model_fields_set contains the field
         if self.reset_convention is None and "reset_convention" in self.model_fields_set:

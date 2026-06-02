@@ -11,6 +11,7 @@
 """
 
 import atexit
+import asyncio
 import datetime
 from dateutil.parser import parse
 import json
@@ -100,13 +101,31 @@ class ApiClient:
             if hasattr(atexit, 'unregister'):
                 atexit.unregister(self.close)
 
+    def _atexit_close(self):
+        try:
+            running_loop = asyncio.get_running_loop()
+        except RuntimeError:
+            running_loop = None
+
+        if running_loop is not None:
+            # Inside a running loop (rare at exit) - schedule the async close.
+            running_loop.create_task(self.close())
+            return
+
+        if self._pool:
+            self._pool.close()
+            self._pool.join()
+            self._pool = None
+            if hasattr(atexit, 'unregister'):
+                atexit.unregister(self._atexit_close)
+
     @property
     def pool(self):
         """Create thread pool on first request
          avoids instantiating unused threadpool for blocking clients.
         """
         if self._pool is None:
-            atexit.register(self.close)
+            atexit.register(self._atexit_close)
             self._pool = ThreadPool(self.pool_threads)
         return self._pool
 
@@ -533,10 +552,10 @@ class ApiClient:
         if collection_formats is None:
             collection_formats = {}
         for k, v in params.items() if isinstance(params, dict) else params:  # noqa: E501
-            if isinstance(v, (int, float)):
-                v = str(v)
             if isinstance(v, bool):
                 v = str(v).lower()
+            elif isinstance(v, (int, float)):
+                v = str(v)
             if isinstance(v, dict):
                 v = json.dumps(v)
 

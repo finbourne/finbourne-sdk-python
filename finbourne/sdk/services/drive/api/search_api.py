@@ -46,7 +46,7 @@ class SearchApi:
         elif api_client is not None:
             self.api_client = api_client
         else:
-            self.api_client = ApiClient.get_default()
+            self.sync_api_client = SyncApiClient.get_default()
 
     @validate_call
     def search(self, search_body: SearchBody, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfStorageObject:

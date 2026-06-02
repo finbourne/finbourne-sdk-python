@@ -64,22 +64,22 @@ class ComponentTransaction(BaseModel):
         """Create an instance of ComponentTransaction from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of transaction_field_map
         if self.transaction_field_map:
-            _dict['transactionFieldMap'] = self.transaction_field_map.to_dict()
+            _dict['transactionFieldMap'] = self.transaction_field_map.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each item in transaction_property_map (list)
         _items = []
         if self.transaction_property_map:
             for _item in self.transaction_property_map:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['transactionPropertyMap'] = _items
         # set to None if condition (nullable) is None
         # and model_fields_set contains the field

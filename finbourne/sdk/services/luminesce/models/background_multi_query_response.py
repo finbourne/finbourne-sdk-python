@@ -70,9 +70,9 @@ class BackgroundMultiQueryResponse(BaseModel):
         """Create an instance of BackgroundMultiQueryResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                             "execution_id",
@@ -90,79 +90,79 @@ class BackgroundMultiQueryResponse(BaseModel):
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of progress
         if self.progress:
-            _dict['progress'] = self.progress.to_dict()
+            _dict['progress'] = self.progress.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of cancel
         if self.cancel:
-            _dict['cancel'] = self.cancel.to_dict()
+            _dict['cancel'] = self.cancel.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each item in fetch_json (list)
         _items = []
         if self.fetch_json:
             for _item in self.fetch_json:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['fetchJson'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in fetch_json_proper (list)
         _items = []
         if self.fetch_json_proper:
             for _item in self.fetch_json_proper:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['fetchJsonProper'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in fetch_json_proper_with_lineage (list)
         _items = []
         if self.fetch_json_proper_with_lineage:
             for _item in self.fetch_json_proper_with_lineage:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['fetchJsonProperWithLineage'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in fetch_xml (list)
         _items = []
         if self.fetch_xml:
             for _item in self.fetch_xml:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['fetchXml'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in fetch_parquet (list)
         _items = []
         if self.fetch_parquet:
             for _item in self.fetch_parquet:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['fetchParquet'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in fetch_csv (list)
         _items = []
         if self.fetch_csv:
             for _item in self.fetch_csv:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['fetchCsv'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in fetch_pipe (list)
         _items = []
         if self.fetch_pipe:
             for _item in self.fetch_pipe:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['fetchPipe'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in fetch_excel (list)
         _items = []
         if self.fetch_excel:
             for _item in self.fetch_excel:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['fetchExcel'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in fetch_sqlite (list)
         _items = []
         if self.fetch_sqlite:
             for _item in self.fetch_sqlite:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['fetchSqlite'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in histogram (list)
         _items = []
         if self.histogram:
             for _item in self.histogram:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['histogram'] = _items
         # set to None if fetch_json (nullable) is None
         # and model_fields_set contains the field

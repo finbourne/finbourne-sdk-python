@@ -67,9 +67,9 @@ class CreateInstanceRequest(BaseModel):
         """Create an instance of CreateInstanceRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
@@ -79,21 +79,21 @@ class CreateInstanceRequest(BaseModel):
         if self.instance_optional_props:
             for _key in self.instance_optional_props:
                 if self.instance_optional_props[_key]:
-                    _field_dict[_key] = self.instance_optional_props[_key].to_dict()
+                    _field_dict[_key] = self.instance_optional_props[_key].to_dict(by_alias=by_alias)
             _dict['instanceOptionalProps'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of each item in triggers (list)
         _items = []
         if self.triggers:
             for _item in self.triggers:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['triggers'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in post_process_tasks (list)
         _items = []
         if self.post_process_tasks:
             for _item in self.post_process_tasks:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['postProcessTasks'] = _items
         # set to None if instance_optional_props (nullable) is None
         # and model_fields_set contains the field

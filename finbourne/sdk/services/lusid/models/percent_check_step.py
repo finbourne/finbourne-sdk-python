@@ -132,9 +132,9 @@ class PercentCheckStep(ComplianceStep):
         """Create an instance of PercentCheckStep from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                             "additional_properties"
@@ -145,14 +145,14 @@ class PercentCheckStep(ComplianceStep):
         if self.limit_check_parameters:
             for _item in self.limit_check_parameters:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['limitCheckParameters'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in warning_check_parameters (list)
         _items = []
         if self.warning_check_parameters:
             for _item in self.warning_check_parameters:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['warningCheckParameters'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:

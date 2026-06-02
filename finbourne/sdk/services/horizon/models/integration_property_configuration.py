@@ -61,9 +61,9 @@ class IntegrationPropertyConfiguration(BaseModel):
         """Create an instance of IntegrationPropertyConfiguration from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
@@ -73,14 +73,14 @@ class IntegrationPropertyConfiguration(BaseModel):
         if self.properties:
             for _item in self.properties:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['properties'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in fields (list)
         _items = []
         if self.fields:
             for _item in self.fields:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['fields'] = _items
         return _dict
 

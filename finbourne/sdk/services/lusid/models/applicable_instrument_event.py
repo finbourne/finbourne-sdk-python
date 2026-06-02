@@ -77,38 +77,38 @@ class ApplicableInstrumentEvent(BaseModel):
         """Create an instance of ApplicableInstrumentEvent from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of portfolio_id
         if self.portfolio_id:
-            _dict['portfolioId'] = self.portfolio_id.to_dict()
+            _dict['portfolioId'] = self.portfolio_id.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of generated_event
         if self.generated_event:
-            _dict['generatedEvent'] = self.generated_event.to_dict()
+            _dict['generatedEvent'] = self.generated_event.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of generated_event_diagnostics
         if self.generated_event_diagnostics:
-            _dict['generatedEventDiagnostics'] = self.generated_event_diagnostics.to_dict()
+            _dict['generatedEventDiagnostics'] = self.generated_event_diagnostics.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of loaded_event
         if self.loaded_event:
-            _dict['loadedEvent'] = self.loaded_event.to_dict()
+            _dict['loadedEvent'] = self.loaded_event.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each item in transactions (list)
         _items = []
         if self.transactions:
             for _item in self.transactions:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['transactions'] = _items
         # override the default output from pydantic by calling `to_dict()` of transaction_diagnostics
         if self.transaction_diagnostics:
-            _dict['transactionDiagnostics'] = self.transaction_diagnostics.to_dict()
+            _dict['transactionDiagnostics'] = self.transaction_diagnostics.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of applied_instrument_event_instruction
         if self.applied_instrument_event_instruction:
-            _dict['appliedInstrumentEventInstruction'] = self.applied_instrument_event_instruction.to_dict()
+            _dict['appliedInstrumentEventInstruction'] = self.applied_instrument_event_instruction.to_dict(by_alias=by_alias)
         # set to None if applied_instrument_event_instruction_id (nullable) is None
         # and model_fields_set contains the field
         if self.applied_instrument_event_instruction_id is None and "applied_instrument_event_instruction_id" in self.model_fields_set:

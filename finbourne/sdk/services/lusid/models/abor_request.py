@@ -65,9 +65,9 @@ class AborRequest(BaseModel):
         """Create an instance of AborRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self. model_dump(by_alias=True,
+    def to_dict(self, by_alias=True):
+        """Returns the dictionary representation of the model"""
+        _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
                           },
@@ -77,17 +77,17 @@ class AborRequest(BaseModel):
         if self.portfolio_ids:
             for _item in self.portfolio_ids:
                 if _item:
-                    _items.append(_item.to_dict())
+                    _items.append(_item.to_dict(by_alias=by_alias))
             _dict['portfolioIds'] = _items
         # override the default output from pydantic by calling `to_dict()` of abor_configuration_id
         if self.abor_configuration_id:
-            _dict['aborConfigurationId'] = self.abor_configuration_id.to_dict()
+            _dict['aborConfigurationId'] = self.abor_configuration_id.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each value in properties (dict)
         _field_dict = {}
         if self.properties:
             for _key in self.properties:
                 if self.properties[_key]:
-                    _field_dict[_key] = self.properties[_key].to_dict()
+                    _field_dict[_key] = self.properties[_key].to_dict(by_alias=by_alias)
             _dict['properties'] = _field_dict
         # set to None if description (nullable) is None
         # and model_fields_set contains the field
