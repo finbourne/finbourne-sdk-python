@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**expire_password**](UsersApi.md#expire_password) | **POST** /identity/api/users/{id}/lifecycle/$expirepassword | ExpirePassword: Reset the user&#39;s password to a temporary one
 [**find_users_by_id**](UsersApi.md#find_users_by_id) | **GET** /identity/api/directory | FindUsersById: Find users by id endpoint
 [**get_user**](UsersApi.md#get_user) | **GET** /identity/api/users/{id} | GetUser: Get User
+[**get_user_from_login**](UsersApi.md#get_user_from_login) | **GET** /identity/api/users/fromlogin/{login} | GetUserFromLogin: Get User From Login
 [**get_user_schema**](UsersApi.md#get_user_schema) | **GET** /identity/api/users/schema | [EARLY ACCESS] GetUserSchema: Get User Schema
 [**list_runnable_users**](UsersApi.md#list_runnable_users) | **GET** /identity/api/users/$runnable | [EARLY ACCESS] ListRunnableUsers: List Runable Users
 [**list_users**](UsersApi.md#list_users) | **GET** /identity/api/users | ListUsers: List Users
@@ -254,6 +255,48 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Get the specified user |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_user_from_login**
+> UserResponse getUserFromLogin = get_user_from_login(login)
+
+GetUserFromLogin: Get User From Login
+
+Get the userId of a specified User
+
+### Example
+
+```python
+api_instance = api_client_factory.build(UsersApi)
+login = 'login_example' # str
+api_response = api_instance.get_user_from_login(login)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **login** | **str**| The unique login for the User | [required] 
+
+### Return type
+
+[**UserResponse**](UserResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Get the specified user from login |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 

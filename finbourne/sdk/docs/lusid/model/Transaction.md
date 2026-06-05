@@ -32,6 +32,7 @@ A list of transactions.
 | **resolved_transaction_type_details** | [TransactionTypeDetails](TransactionTypeDetails.md) | Optional | *No description available.* |
 | **data_model_membership** | [DataModelMembership](DataModelMembership.md) | Optional | *No description available.* |
 | **version** | [Version](Version.md) | Optional | *No description available.* |
+| **staged_modifications** | [StagedModificationsInfo](StagedModificationsInfo.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -68,7 +69,8 @@ instance = Transaction(
     strategy_tag=[],  # optional — A list of strategies representing the allocation of units across multiple sub-holding keys
     resolved_transaction_type_details=TransactionTypeDetails(...),  # optional
     data_model_membership=DataModelMembership(...),  # optional
-    version=Version(...)  # optional
+    version=Version(...),  # optional
+    staged_modifications=StagedModificationsInfo(...)  # optional
 )
 ```
 
@@ -83,6 +85,7 @@ instance = Transaction(
 - [TransactionTypeDetails](TransactionTypeDetails.md)
 - [DataModelMembership](DataModelMembership.md)
 - [Version](Version.md)
+- [StagedModificationsInfo](StagedModificationsInfo.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

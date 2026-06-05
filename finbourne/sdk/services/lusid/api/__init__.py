@@ -40,6 +40,7 @@ from finbourne.sdk.services.lusid.api.investment_accounts_api import InvestmentA
 from finbourne.sdk.services.lusid.api.investor_records_api import InvestorRecordsApi
 from finbourne.sdk.services.lusid.api.legacy_compliance_api import LegacyComplianceApi
 from finbourne.sdk.services.lusid.api.legal_entities_api import LegalEntitiesApi
+from finbourne.sdk.services.lusid.api.market_data_field_configuration_api import MarketDataFieldConfigurationApi
 from finbourne.sdk.services.lusid.api.order_graph_api import OrderGraphApi
 from finbourne.sdk.services.lusid.api.order_instructions_api import OrderInstructionsApi
 from finbourne.sdk.services.lusid.api.order_management_api import OrderManagementApi
@@ -124,6 +125,7 @@ __all__ = [
     "InvestorRecordsApi",
     "LegacyComplianceApi",
     "LegalEntitiesApi",
+    "MarketDataFieldConfigurationApi",
     "OrderGraphApi",
     "OrderInstructionsApi",
     "OrderManagementApi",

@@ -27,6 +27,7 @@ from finbourne.sdk.services.lusid.models.data_model_membership import DataModelM
 from finbourne.sdk.services.lusid.models.otc_confirmation import OtcConfirmation
 from finbourne.sdk.services.lusid.models.perpetual_property import PerpetualProperty
 from finbourne.sdk.services.lusid.models.resource_id import ResourceId
+from finbourne.sdk.services.lusid.models.staged_modifications_info import StagedModificationsInfo
 from finbourne.sdk.services.lusid.models.strategy import Strategy
 from finbourne.sdk.services.lusid.models.transaction_price import TransactionPrice
 from finbourne.sdk.services.lusid.models.transaction_type_details import TransactionTypeDetails
@@ -64,7 +65,8 @@ class Transaction(BaseModel):
     resolved_transaction_type_details: Optional[TransactionTypeDetails] = Field(default=None, alias="resolvedTransactionTypeDetails")
     data_model_membership: Optional[DataModelMembership] = Field(default=None, alias="dataModelMembership")
     version: Optional[Version] = None
-    __properties: ClassVar[List[str]] = ["transactionId", "type", "instrumentIdentifiers", "instrumentScope", "instrumentUid", "transactionDate", "settlementDate", "units", "transactionPrice", "totalConsideration", "exchangeRate", "transactionCurrency", "properties", "counterpartyId", "source", "entryDateTime", "otcConfirmation", "transactionStatus", "cancelDateTime", "orderId", "allocationId", "custodianAccount", "transactionGroupId", "strategyTag", "resolvedTransactionTypeDetails", "dataModelMembership", "version"]
+    staged_modifications: Optional[StagedModificationsInfo] = Field(default=None, alias="stagedModifications")
+    __properties: ClassVar[List[str]] = ["transactionId", "type", "instrumentIdentifiers", "instrumentScope", "instrumentUid", "transactionDate", "settlementDate", "units", "transactionPrice", "totalConsideration", "exchangeRate", "transactionCurrency", "properties", "counterpartyId", "source", "entryDateTime", "otcConfirmation", "transactionStatus", "cancelDateTime", "orderId", "allocationId", "custodianAccount", "transactionGroupId", "strategyTag", "resolvedTransactionTypeDetails", "dataModelMembership", "version", "stagedModifications"]
 
     @field_validator('transaction_status')
     def transaction_status_validate_enum(cls, value):
@@ -213,6 +215,9 @@ class Transaction(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of version
         if self.version:
             _dict['version'] = self.version.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of staged_modifications
+        if self.staged_modifications:
+            _dict['stagedModifications'] = self.staged_modifications.to_dict(by_alias=by_alias)
         # set to None if instrument_identifiers (nullable) is None
         # and model_fields_set contains the field
         if self.instrument_identifiers is None and "instrument_identifiers" in self.model_fields_set:
@@ -306,7 +311,8 @@ class Transaction(BaseModel):
             "strategy_tag": [Strategy.from_dict(_item) for _item in _v] if (_v := obj.get("strategyTag")) is not None else None,
             "resolved_transaction_type_details": TransactionTypeDetails.from_dict(_v) if (_v := obj.get("resolvedTransactionTypeDetails")) is not None else None,
             "data_model_membership": DataModelMembership.from_dict(_v) if (_v := obj.get("dataModelMembership")) is not None else None,
-            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None
+            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "staged_modifications": StagedModificationsInfo.from_dict(_v) if (_v := obj.get("stagedModifications")) is not None else None
         })
         return _obj
 

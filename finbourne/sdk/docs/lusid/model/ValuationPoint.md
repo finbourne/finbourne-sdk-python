@@ -8,7 +8,7 @@
 | **valuation_point_code** | **str** | Optional | The code of the Valuation Point. |
 | **variant** | **str** | Optional | The Variant name for the Valuation Point. |
 | **name** | **str** | Optional | Identifiable Name assigned to the Valuation Point. |
-| **status** | **str** | Required | The status of the Valuation Point. Available values: Undefined, Estimate, Final, Candidate, Unofficial. |
+| **status** | **str** | Required | The status of the Valuation Point. Available values: Undefined, Estimate, Final, Candidate, Unofficial, Rejected. |
 | **apply_clear_down** | **bool** | Optional | Indicates whether a clear down was applied when the Valuation Point was created. |
 | **effective_at** | **datetime** | Required | The effective time of the Valuation Point. |
 | **query_as_at** | **datetime** | Optional | The AsAt time of the Valuation Point. This is the AsAt time that will be used when requests are made using the entry. |
@@ -32,7 +32,7 @@ instance = ValuationPoint(
     valuation_point_code="...",  # optional — The code of the Valuation Point.
     variant="...",  # optional — The Variant name for the Valuation Point.
     name="...",  # optional — Identifiable Name assigned to the Valuation Point.
-    status="...",  # required — The status of the Valuation Point. Available values: Undefined, Estimate, Final, Candidate, Unofficial.
+    status="...",  # required — The status of the Valuation Point. Available values: Undefined, Estimate, Final, Candidate, Unofficial, Rejected.
     apply_clear_down=True,  # optional — Indicates whether a clear down was applied when the Valuation Point was created.
     effective_at=datetime.now(),  # required — The effective time of the Valuation Point.
     query_as_at=datetime.now(),  # optional — The AsAt time of the Valuation Point. This is the AsAt time that will be used when requests are made using the entry.

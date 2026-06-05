@@ -44,6 +44,7 @@ A list of output transactions.
 | **sequence_priority** | **int** | Optional | The calculated priority level for this transaction. |
 | **settlement_summary** | [TransactionSettlementSummary](TransactionSettlementSummary.md) | Optional | *No description available.* |
 | **version** | [Version](Version.md) | Optional | *No description available.* |
+| **staged_modifications** | [StagedModificationsInfo](StagedModificationsInfo.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -92,7 +93,8 @@ instance = OutputTransaction(
     sequence=0,  # optional — The sequential position in which this transaction was processed.
     sequence_priority=0,  # optional — The calculated priority level for this transaction.
     settlement_summary=TransactionSettlementSummary(...),  # optional
-    version=Version(...)  # optional
+    version=Version(...),  # optional
+    staged_modifications=StagedModificationsInfo(...)  # optional
 )
 ```
 
@@ -109,6 +111,7 @@ instance = OutputTransaction(
 - [DataModelMembership](DataModelMembership.md)
 - [TransactionSettlementSummary](TransactionSettlementSummary.md)
 - [Version](Version.md)
+- [StagedModificationsInfo](StagedModificationsInfo.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

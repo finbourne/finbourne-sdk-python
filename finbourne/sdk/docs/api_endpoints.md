@@ -96,6 +96,7 @@
 * [InvestorRecordsApi](lusid/api/InvestorRecordsApi.md)
 * [LegacyComplianceApi](lusid/api/LegacyComplianceApi.md)
 * [LegalEntitiesApi](lusid/api/LegalEntitiesApi.md)
+* [MarketDataFieldConfigurationApi](lusid/api/MarketDataFieldConfigurationApi.md)
 * [OrderGraphApi](lusid/api/OrderGraphApi.md)
 * [OrderInstructionsApi](lusid/api/OrderInstructionsApi.md)
 * [OrderManagementApi](lusid/api/OrderManagementApi.md)

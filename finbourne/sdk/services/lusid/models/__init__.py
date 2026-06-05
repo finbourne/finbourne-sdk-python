@@ -388,6 +388,7 @@ from finbourne.sdk.services.lusid.models.dividend_option_event import DividendOp
 from finbourne.sdk.services.lusid.models.dividend_reinvestment_event import DividendReinvestmentEvent
 from finbourne.sdk.services.lusid.models.drawdown_event import DrawdownEvent
 from finbourne.sdk.services.lusid.models.drawing_event import DrawingEvent
+from finbourne.sdk.services.lusid.models.dutch_auction_event import DutchAuctionEvent
 from finbourne.sdk.services.lusid.models.early_close_out_event import EarlyCloseOutEvent
 from finbourne.sdk.services.lusid.models.early_redemption_election import EarlyRedemptionElection
 from finbourne.sdk.services.lusid.models.early_redemption_event import EarlyRedemptionEvent
@@ -676,6 +677,7 @@ from finbourne.sdk.services.lusid.models.mapping_rule import MappingRule
 from finbourne.sdk.services.lusid.models.mark_to_market_conventions import MarkToMarketConventions
 from finbourne.sdk.services.lusid.models.market_context import MarketContext
 from finbourne.sdk.services.lusid.models.market_context_suppliers import MarketContextSuppliers
+from finbourne.sdk.services.lusid.models.market_data_field_configuration import MarketDataFieldConfiguration
 from finbourne.sdk.services.lusid.models.market_data_key_rule import MarketDataKeyRule
 from finbourne.sdk.services.lusid.models.market_data_options import MarketDataOptions
 from finbourne.sdk.services.lusid.models.market_data_options_type import MarketDataOptionsType
@@ -698,6 +700,10 @@ from finbourne.sdk.services.lusid.models.membership_amendment_request import Mem
 from finbourne.sdk.services.lusid.models.membership_amendment_response import MembershipAmendmentResponse
 from finbourne.sdk.services.lusid.models.membership_and_status import MembershipAndStatus
 from finbourne.sdk.services.lusid.models.merger_event import MergerEvent
+from finbourne.sdk.services.lusid.models.metadata_field_definition import MetadataFieldDefinition
+from finbourne.sdk.services.lusid.models.metadata_fields_to_add import MetadataFieldsToAdd
+from finbourne.sdk.services.lusid.models.metadata_fields_to_remove import MetadataFieldsToRemove
+from finbourne.sdk.services.lusid.models.metadata_fields_to_update import MetadataFieldsToUpdate
 from finbourne.sdk.services.lusid.models.metric_value import MetricValue
 from finbourne.sdk.services.lusid.models.mixed_lot_constituents_election import MixedLotConstituentsElection
 from finbourne.sdk.services.lusid.models.model_options import ModelOptions
@@ -1298,6 +1304,7 @@ from finbourne.sdk.services.lusid.models.update_group_reconciliation_comparison_
 from finbourne.sdk.services.lusid.models.update_group_reconciliation_definition_request import UpdateGroupReconciliationDefinitionRequest
 from finbourne.sdk.services.lusid.models.update_identifier_definition_request import UpdateIdentifierDefinitionRequest
 from finbourne.sdk.services.lusid.models.update_instrument_identifier_request import UpdateInstrumentIdentifierRequest
+from finbourne.sdk.services.lusid.models.update_market_data_field_configuration_request import UpdateMarketDataFieldConfigurationRequest
 from finbourne.sdk.services.lusid.models.update_orders_response import UpdateOrdersResponse
 from finbourne.sdk.services.lusid.models.update_placements_response import UpdatePlacementsResponse
 from finbourne.sdk.services.lusid.models.update_portfolio_group_request import UpdatePortfolioGroupRequest
@@ -1803,6 +1810,7 @@ __all__ = [
     "DividendReinvestmentEvent",
     "DrawdownEvent",
     "DrawingEvent",
+    "DutchAuctionEvent",
     "EarlyCloseOutEvent",
     "EarlyRedemptionElection",
     "EarlyRedemptionEvent",
@@ -2091,6 +2099,7 @@ __all__ = [
     "MarkToMarketConventions",
     "MarketContext",
     "MarketContextSuppliers",
+    "MarketDataFieldConfiguration",
     "MarketDataKeyRule",
     "MarketDataOptions",
     "MarketDataOptionsType",
@@ -2113,6 +2122,10 @@ __all__ = [
     "MembershipAmendmentResponse",
     "MembershipAndStatus",
     "MergerEvent",
+    "MetadataFieldDefinition",
+    "MetadataFieldsToAdd",
+    "MetadataFieldsToRemove",
+    "MetadataFieldsToUpdate",
     "MetricValue",
     "MixedLotConstituentsElection",
     "ModelOptions",
@@ -2713,6 +2726,7 @@ __all__ = [
     "UpdateGroupReconciliationDefinitionRequest",
     "UpdateIdentifierDefinitionRequest",
     "UpdateInstrumentIdentifierRequest",
+    "UpdateMarketDataFieldConfigurationRequest",
     "UpdateOrdersResponse",
     "UpdatePlacementsResponse",
     "UpdatePortfolioGroupRequest",
