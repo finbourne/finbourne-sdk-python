@@ -111,7 +111,9 @@ from finbourne.sdk.services.horizon.models.replay_transactions_response import R
 from finbourne.sdk.services.horizon.models.resource_id import ResourceId
 from finbourne.sdk.services.horizon.models.row_details import RowDetails
 from finbourne.sdk.services.horizon.models.run_file_response import RunFileResponse
+from finbourne.sdk.services.horizon.models.tpf_file_delivery_info import TpfFileDeliveryInfo
 from finbourne.sdk.services.horizon.models.tpf_portfolio import TpfPortfolio
+from finbourne.sdk.services.horizon.models.tpf_retry_sftp_response import TpfRetrySftpResponse
 from finbourne.sdk.services.horizon.models.tpf_transaction_search_response import TpfTransactionSearchResponse
 from finbourne.sdk.services.horizon.models.transaction_payload_response import TransactionPayloadResponse
 from finbourne.sdk.services.horizon.models.transaction_response import TransactionResponse
@@ -220,7 +222,9 @@ __all__ = [
     "ResourceId",
     "RowDetails",
     "RunFileResponse",
+    "TpfFileDeliveryInfo",
     "TpfPortfolio",
+    "TpfRetrySftpResponse",
     "TpfTransactionSearchResponse",
     "TransactionPayloadResponse",
     "TransactionResponse",

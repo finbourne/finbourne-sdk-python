@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**list_run_files**](TradePublicationFrameworkApi.md#list_run_files) | **GET** /horizon/api/trade-publication-framework/instances/{instanceId}/runs/{runId}/files | [EXPERIMENTAL] ListRunFiles: List Files in a run
 [**list_run_transactions**](TradePublicationFrameworkApi.md#list_run_transactions) | **GET** /horizon/api/trade-publication-framework/instances/{instanceId}/runs/{runId}/transactions | [EXPERIMENTAL] ListRunTransactions: List Transactions in a run.
 [**replay_transactions**](TradePublicationFrameworkApi.md#replay_transactions) | **POST** /horizon/api/trade-publication-framework/instances/{instanceId}/replay | [EXPERIMENTAL] ReplayTransactions: Replay one or more transactions through a TPF instance
+[**retry_tpf_sftp_delivery**](TradePublicationFrameworkApi.md#retry_tpf_sftp_delivery) | **POST** /horizon/api/trade-publication-framework/instances/{instanceId}/files/{fileId}/retry-sftp | [EXPERIMENTAL] RetryTpfSftpDelivery: Retry SFTP delivery for a previously sent TPF file
 
 
 ### Example
@@ -349,6 +350,50 @@ Name | Type | Description  | Notes
 **200** | OK |  -  |
 **400** | The details of the input related failure |  -  |
 **404** | The requested TPF instance does not exist. |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **retry_tpf_sftp_delivery**
+> TpfRetrySftpResponse retryTpfSftpDelivery = retry_tpf_sftp_delivery(instance_id, file_id)
+
+[EXPERIMENTAL] RetryTpfSftpDelivery: Retry SFTP delivery for a previously sent TPF file
+
+### Example
+
+```python
+api_instance = api_client_factory.build(TradePublicationFrameworkApi)
+instance_id = 'instance_id_example' # str
+file_id = 56 # int
+api_response = api_instance.retry_tpf_sftp_delivery(instance_id, file_id)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **instance_id** | **str**| Integration instance ID | [required] 
+ **file_id** | **int**| File delivery ID to retry | [required] 
+
+### Return type
+
+[**TpfRetrySftpResponse**](TpfRetrySftpResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Retry succeeded - file re-sent to SFTP |  -  |
+**400** | The details of the input related failure |  -  |
+**404** | File delivery record not found |  -  |
+**409** | Duplicate file detected - same hash already delivered to destination |  -  |
 **0** | Error response |  -  |
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)

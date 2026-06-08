@@ -2358,7 +2358,8 @@ class SqlBackgroundExecutionApi:
             _query_params.append(('executionId', _params['execution_id']))
 
         if _params.get('scalar_parameters') is not None:  # noqa: E501
-            _query_params.append(('scalarParameters', _params['scalar_parameters']))
+            for _scalar_key, _scalar_value in _params['scalar_parameters'].items():
+                _query_params.append(('scalarParameters[' + _scalar_key + ']', _scalar_value))
 
         if _params.get('query_name') is not None:  # noqa: E501
             _query_params.append(('queryName', _params['query_name']))
