@@ -35,9 +35,10 @@ class EstimateVariant(BaseModel):
     as_at: datetime = Field(description="The asAt datetime for the Calendar Entry.", alias="asAt")
     holdings_as_at_override: Optional[datetime] = Field(default=None, description="The optional AsAt Override to use for building holdings in the Valuation Point. Defaults to QueryAsAt.", alias="holdingsAsAtOverride")
     valuations_as_at_override: Optional[datetime] = Field(default=None, description="The optional AsAt Override to use for performing valuations in the Valuation Point. Defaults to QueryAsAt.", alias="valuationsAsAtOverride")
+    date_of_last_pca_scan: Optional[datetime] = Field(default=None, description="The last date a PCA scan was conducted for a Valuation Point", alias="dateOfLastPcaScan")
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="The properties for the Calendar Entry. These will be from the 'ClosedPeriod' domain.")
     version: Version
-    __properties: ClassVar[List[str]] = ["variant", "displayName", "description", "asAt", "holdingsAsAtOverride", "valuationsAsAtOverride", "properties", "version"]
+    __properties: ClassVar[List[str]] = ["variant", "displayName", "description", "asAt", "holdingsAsAtOverride", "valuationsAsAtOverride", "dateOfLastPcaScan", "properties", "version"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -103,6 +104,11 @@ class EstimateVariant(BaseModel):
         if self.valuations_as_at_override is None and "valuations_as_at_override" in self.model_fields_set:
             _dict['valuationsAsAtOverride'] = None
 
+        # set to None if date_of_last_pca_scan (nullable) is None
+        # and model_fields_set contains the field
+        if self.date_of_last_pca_scan is None and "date_of_last_pca_scan" in self.model_fields_set:
+            _dict['dateOfLastPcaScan'] = None
+
         # set to None if properties (nullable) is None
         # and model_fields_set contains the field
         if self.properties is None and "properties" in self.model_fields_set:
@@ -126,6 +132,7 @@ class EstimateVariant(BaseModel):
             "as_at": obj.get("asAt"),
             "holdings_as_at_override": obj.get("holdingsAsAtOverride"),
             "valuations_as_at_override": obj.get("valuationsAsAtOverride"),
+            "date_of_last_pca_scan": obj.get("dateOfLastPcaScan"),
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
                 for _k, _v in _val.items()

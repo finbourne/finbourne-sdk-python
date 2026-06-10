@@ -1516,6 +1516,7 @@ from finbourne.sdk.services.lusid.models.workspace_item_update_request import Wo
 from finbourne.sdk.services.lusid.models.workspace_permitted_item_actions import WorkspacePermittedItemActions
 from finbourne.sdk.services.lusid.models.workspace_update_request import WorkspaceUpdateRequest
 from finbourne.sdk.services.lusid.models.workspace_visibility import WorkspaceVisibility
+from finbourne.sdk.services.lusid.models.worthless_event import WorthlessEvent
 from finbourne.sdk.services.lusid.models.year_month_day import YearMonthDay
 from finbourne.sdk.services.lusid.models.yield_curve_data import YieldCurveData
 
@@ -3021,6 +3022,7 @@ __all__ = [
     "WorkspacePermittedItemActions",
     "WorkspaceUpdateRequest",
     "WorkspaceVisibility",
+    "WorthlessEvent",
     "YearMonthDay",
     "YieldCurveData",
     

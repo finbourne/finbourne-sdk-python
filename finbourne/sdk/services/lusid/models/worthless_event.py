@@ -24,15 +24,16 @@ from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictF
 from finbourne.sdk.services.lusid.models.instrument_event import InstrumentEvent
 
 
-class FlexibleRepoFullClosureEvent(InstrumentEvent):
+class WorthlessEvent(InstrumentEvent):
     """
-    Event to trigger the full closure of a repurchase agreement booked as a FlexibleRepo.  Specific to a FlexibleRepo instrument.  # noqa: E501
+    Mandatory corporate action that removes a security holding from the portfolio at zero proceeds (zero-recovery write-off, WRTH).  The full eligible holding is debited on the PaymentDate; no cash is received and no new security is credited.  # noqa: E501
     """
-    entitlement_date: Optional[datetime] = Field(default=None, description="Date on which the closure begins  This is a required field, unless otherwise supplied via \"EventDateStamps\" in  the instrument event upsert request.", alias="entitlementDate")
-    settlement_date: Optional[datetime] = Field(default=None, description="Date on which closure takes place, i.e., when all repurchase trades settle.", alias="settlementDate")
+    record_date: Optional[datetime] = Field(default=None, description="Positions are struck at close of business on this date to determine eligible holdings.", alias="recordDate")
+    payment_date: Optional[datetime] = Field(default=None, description="The date the security debit is processed in LUSID; no cash payment is associated. Must be >= RecordDate.", alias="paymentDate")
+    announcement_date: Optional[datetime] = Field(default=None, description="The date the issuer or agent announces the write-off. Optional — null when no separate announcement date is provided.  When populated, must be <= RecordDate.", alias="announcementDate")
     instrument_event_type:  StrictStr = Field(...,alias="instrumentEventType", description="The Type of Event. Available values: TransitionEvent, InformationalEvent, OpenEvent, CloseEvent, StockSplitEvent, BondDefaultEvent, CashDividendEvent, AmortisationEvent, CashFlowEvent, ExerciseEvent, ResetEvent, TriggerEvent, RawVendorEvent, InformationalErrorEvent, BondCouponEvent, DividendReinvestmentEvent, AccumulationEvent, BondPrincipalEvent, DividendOptionEvent, MaturityEvent, FxForwardSettlementEvent, ExpiryEvent, ScripDividendEvent, StockDividendEvent, ReverseStockSplitEvent, CapitalDistributionEvent, SpinOffEvent, MergerEvent, FutureExpiryEvent, SwapCashFlowEvent, SwapPrincipalEvent, CreditPremiumCashFlowEvent, CdsCreditEvent, CdxCreditEvent, MbsCouponEvent, MbsPrincipalEvent, BonusIssueEvent, MbsPrincipalWriteOffEvent, MbsInterestDeferralEvent, MbsInterestShortfallEvent, TenderEvent, CallOnIntermediateSecuritiesEvent, IntermediateSecuritiesDistributionEvent, OptionExercisePhysicalEvent, OptionExerciseCashEvent, ProtectionPayoutCashFlowEvent, TermDepositInterestEvent, TermDepositPrincipalEvent, EarlyRedemptionEvent, FutureMarkToMarketEvent, AdjustGlobalCommitmentEvent, ContractInitialisationEvent, DrawdownEvent, LoanInterestRepaymentEvent, UpdateDepositAmountEvent, LoanPrincipalRepaymentEvent, DepositInterestPaymentEvent, DepositCloseEvent, LoanFacilityContractRolloverEvent, RepurchaseOfferEvent, RepoPartialClosureEvent, RepoCashFlowEvent, FlexibleRepoInterestPaymentEvent, FlexibleRepoCashFlowEvent, FlexibleRepoCollateralEvent, ConversionEvent, FlexibleRepoPartialClosureEvent, FlexibleRepoFullClosureEvent, CapletFloorletCashFlowEvent, EarlyCloseOutEvent, DepositRollEvent, ConsentEvent, DrawingEvent, CapitalGainsDistributionEvent, ExchangeOfferEvent, DutchAuctionEvent, WorthlessEvent.") 
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["instrumentEventType", "entitlementDate", "settlementDate"]
+    __properties: ClassVar[List[str]] = ["instrumentEventType", "recordDate", "paymentDate", "announcementDate"]
 
     @field_validator('instrument_event_type')
     def instrument_event_type_validate_enum(cls, value):
@@ -45,7 +46,7 @@ class FlexibleRepoFullClosureEvent(InstrumentEvent):
 
         # check it's a class that uses the 'type' property as a discriminator
         # list of classes can be found by searching for 'actual_instance: Union[' in the generated code
-        if 'FlexibleRepoFullClosureEvent' not in [ 
+        if 'WorthlessEvent' not in [ 
                                     # For notification application classes
                                     'AmazonSqsNotificationType',
                                     'AmazonSqsNotificationTypeResponse',
@@ -126,8 +127,8 @@ class FlexibleRepoFullClosureEvent(InstrumentEvent):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> FlexibleRepoFullClosureEvent:
-        """Create an instance of FlexibleRepoFullClosureEvent from a JSON string"""
+    def from_json(cls, json_str: str) -> WorthlessEvent:
+        """Create an instance of WorthlessEvent from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self, by_alias=True):
@@ -143,21 +144,27 @@ class FlexibleRepoFullClosureEvent(InstrumentEvent):
             for _key, _value in self.additional_properties.items():
                 _dict[_key] = _value
 
+        # set to None if announcement_date (nullable) is None
+        # and model_fields_set contains the field
+        if self.announcement_date is None and "announcement_date" in self.model_fields_set:
+            _dict['announcementDate'] = None
+
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> FlexibleRepoFullClosureEvent:
-        """Create an instance of FlexibleRepoFullClosureEvent from a dict"""
+    def from_dict(cls, obj: dict) -> WorthlessEvent:
+        """Create an instance of WorthlessEvent from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return FlexibleRepoFullClosureEvent.model_validate(obj)
+            return WorthlessEvent.model_validate(obj)
 
-        _obj = FlexibleRepoFullClosureEvent.model_validate({
+        _obj = WorthlessEvent.model_validate({
             "instrument_event_type": obj.get("instrumentEventType"),
-            "entitlement_date": obj.get("entitlementDate"),
-            "settlement_date": obj.get("settlementDate")
+            "record_date": obj.get("recordDate"),
+            "payment_date": obj.get("paymentDate"),
+            "announcement_date": obj.get("announcementDate")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
@@ -166,5 +173,5 @@ class FlexibleRepoFullClosureEvent(InstrumentEvent):
 
         return _obj
 
-FlexibleRepoFullClosureEvent.model_rebuild()
+WorthlessEvent.model_rebuild()
 

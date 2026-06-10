@@ -1853,6 +1853,7 @@
 * [WorkspacePermittedItemActions](lusid/model/WorkspacePermittedItemActions.md)
 * [WorkspaceUpdateRequest](lusid/model/WorkspaceUpdateRequest.md)
 * [WorkspaceVisibility](lusid/model/WorkspaceVisibility.md)
+* [WorthlessEvent](lusid/model/WorthlessEvent.md)
 * [YearMonthDay](lusid/model/YearMonthDay.md)
 * [YieldCurveData](lusid/model/YieldCurveData.md)
 ## Notifications

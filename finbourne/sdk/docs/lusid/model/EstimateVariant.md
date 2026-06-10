@@ -10,6 +10,7 @@
 | **as_at** | **datetime** | Required | The asAt datetime for the Calendar Entry. |
 | **holdings_as_at_override** | **datetime** | Optional | The optional AsAt Override to use for building holdings in the Valuation Point. Defaults to QueryAsAt. |
 | **valuations_as_at_override** | **datetime** | Optional | The optional AsAt Override to use for performing valuations in the Valuation Point. Defaults to QueryAsAt. |
+| **date_of_last_pca_scan** | **datetime** | Optional | The last date a PCA scan was conducted for a Valuation Point |
 | **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | The properties for the Calendar Entry. These will be from the &#39;ClosedPeriod&#39; domain. |
 | **version** | [Version](Version.md) | Required | *No description available.* |
 
@@ -28,6 +29,7 @@ instance = EstimateVariant(
     as_at=datetime.now(),  # required — The asAt datetime for the Calendar Entry.
     holdings_as_at_override=datetime.now(),  # optional — The optional AsAt Override to use for building holdings in the Valuation Point. Defaults to QueryAsAt.
     valuations_as_at_override=datetime.now(),  # optional — The optional AsAt Override to use for performing valuations in the Valuation Point. Defaults to QueryAsAt.
+    date_of_last_pca_scan=datetime.now(),  # optional — The last date a PCA scan was conducted for a Valuation Point
     properties=ModelProperty(...),  # optional — The properties for the Calendar Entry. These will be from the &#39;ClosedPeriod&#39; domain.
     version=Version(...)  # required
 )
