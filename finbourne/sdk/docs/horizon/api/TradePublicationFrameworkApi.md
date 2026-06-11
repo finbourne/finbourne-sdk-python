@@ -265,7 +265,7 @@ Name | Type | Description  | Notes
 ---
 
 # **list_run_transactions**
-> PagedResourceListOfTransactionResponse listRunTransactions = list_run_transactions(instance_id, run_id, status, page=page, page_size=page_size)
+> PagedResourceListOfTransactionResponse listRunTransactions = list_run_transactions(instance_id, run_id, status=status, page=page, page_size=page_size)
 
 [EXPERIMENTAL] ListRunTransactions: List Transactions in a run.
 
@@ -275,10 +275,10 @@ Name | Type | Description  | Notes
 api_instance = api_client_factory.build(TradePublicationFrameworkApi)
 instance_id = 'instance_id_example' # str
 run_id = 'run_id_example' # str
-status = 'status_example' # str
+status = 'status_example' # str (optional)
 page = '' # str (optional)
 page_size = 100 # int (optional)
-api_response = api_instance.list_run_transactions(instance_id, run_id, status, page=page, page_size=page_size)
+api_response = api_instance.list_run_transactions(instance_id, run_id, status=status, page=page, page_size=page_size)
 pprint(api_response)
 ```
 
@@ -288,7 +288,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **instance_id** | **str**|  | [required] 
  **run_id** | **str**|  | [required] 
- **status** | **str**|  | [required] 
+ **status** | **str**|  | [optional] 
  **page** | **str**|  | [optional] [default to &#39;&#39;]
  **page_size** | **int**|  | [optional] [default to 100]
 

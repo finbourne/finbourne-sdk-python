@@ -945,6 +945,7 @@ from finbourne.sdk.services.lusid.models.property_value import PropertyValue
 from finbourne.sdk.services.lusid.models.property_value_equals import PropertyValueEquals
 from finbourne.sdk.services.lusid.models.property_value_in import PropertyValueIn
 from finbourne.sdk.services.lusid.models.protection_payout_cash_flow_event import ProtectionPayoutCashFlowEvent
+from finbourne.sdk.services.lusid.models.put_redemption_event import PutRedemptionEvent
 from finbourne.sdk.services.lusid.models.quantity_instructed import QuantityInstructed
 from finbourne.sdk.services.lusid.models.query_applicable_instrument_events_request import QueryApplicableInstrumentEventsRequest
 from finbourne.sdk.services.lusid.models.query_bucketed_cash_flows_request import QueryBucketedCashFlowsRequest
@@ -2368,6 +2369,7 @@ __all__ = [
     "PropertyValueEquals",
     "PropertyValueIn",
     "ProtectionPayoutCashFlowEvent",
+    "PutRedemptionEvent",
     "QuantityInstructed",
     "QueryApplicableInstrumentEventsRequest",
     "QueryBucketedCashFlowsRequest",

@@ -21,21 +21,30 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
+from finbourne.sdk.services.lusid.models.cash_offer_election import CashOfferElection
 from finbourne.sdk.services.lusid.models.instrument_event import InstrumentEvent
+from finbourne.sdk.services.lusid.models.lapse_election import LapseElection
 
 
-class AccumulationEvent(InstrumentEvent):
+class PutRedemptionEvent(InstrumentEvent):
     """
-    Accumulation dividend  # noqa: E501
+    Put Redemption (BPUT) — early redemption of a bond at the holder's election under an  indenture-defined put option. Supports both Voluntary (the AMI-SeCo canonical shape) and  Mandatory (a deliberate market extension beyond SCoRE) participation on Bond, ComplexBond,  and InflationLinkedBond instruments. Cloned from RepurchaseOfferEvent (BIDS) and narrowed  to debt with a fixed event-level OfferPrice instead of a per-election holder-bid price.  # noqa: E501
     """
-    announcement_date: Optional[datetime] = Field(default=None, description="Date on which the dividend was announced / declared.", alias="announcementDate")
-    dividend_currency:  StrictStr = Field(...,alias="dividendCurrency", description="Payment currency") 
-    dividend_rate: Union[StrictFloat, StrictInt] = Field(description="Dividend rate or payment rate as a percentage.  i.e. 5% is written as 0.05", alias="dividendRate")
-    ex_date: Optional[datetime] = Field(default=None, description="The first business day on which the dividend is not owed to the buying party.  Typically this is T-1 from the RecordDate.", alias="exDate")
-    payment_date: Optional[datetime] = Field(default=None, description="The date the company pays out dividends to shareholders.", alias="paymentDate")
+    payment_date: Optional[datetime] = Field(default=None, description="Settlement date for the cash + security legs of the put redemption.", alias="paymentDate")
+    offer_price: Union[StrictFloat, StrictInt] = Field(description="Put price per unit of face value (AMI-SeCo OFFR). Per-100 PRCT semantics —  `OfferPrice = 100.00` means par; `97.50` means 97.5% of par. Must be strictly positive.", alias="offerPrice")
+    currency:  StrictStr = Field(...,alias="currency", description="Settlement currency of the cash leg (ISO 4217 3-letter code).") 
+    cash_offer_elections: List[CashOfferElection] = Field(description="List of possible CashOfferElections. Exactly one entry per event in both Mandatory and Voluntary paths.", alias="cashOfferElections")
+    lapse_elections: List[LapseElection] = Field(description="List of possible LapseElections. Exactly one entry for Voluntary (NOAC default). Empty for Mandatory.", alias="lapseElections")
+    market_deadline_date: Optional[datetime] = Field(default=None, description="Issuer / agent deadline for holder instructions. Required for Voluntary participation;  optional for Mandatory (no holder-deadline concept).", alias="marketDeadlineDate")
+    response_deadline_date: Optional[datetime] = Field(default=None, description="Account-servicer deadline. Defaults to MarketDeadlineDate when omitted.  If set, must be on or before MarketDeadlineDate.", alias="responseDeadlineDate")
+    early_response_deadline: Optional[datetime] = Field(default=None, description="Early-participation deadline. Rare on BPUT; carried for cross-event consistency.  If set, must be on or before ResponseDeadlineDate.", alias="earlyResponseDeadline")
+    ex_date: Optional[datetime] = Field(default=None, description="AMI-SeCo §4.6 does not list this for BPUT; carried for cross-event consistency.  If set, must be on or before MarketDeadlineDate.", alias="exDate")
+    announcement_date: Optional[datetime] = Field(default=None, description="Public announcement date. If set, must be on or before ExDate.", alias="announcementDate")
+    accrued_interest_per_unit: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Per-unit accrued interest. Optional — loader / post-processor derives from the bond's coupon  schedule and day-count when not supplied. EconomicallyComplete enforces non-null for  accrual-bearing instruments via InstrumentTypeAccruesInterest.", alias="accruedInterestPerUnit")
+    proration_rate: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Issuer-side aggregate proration cap (AMI-SeCo PROR). Default 1.0; range (0, 1].", alias="prorationRate")
     instrument_event_type:  StrictStr = Field(...,alias="instrumentEventType", description="The Type of Event. Available values: TransitionEvent, InformationalEvent, OpenEvent, CloseEvent, StockSplitEvent, BondDefaultEvent, CashDividendEvent, AmortisationEvent, CashFlowEvent, ExerciseEvent, ResetEvent, TriggerEvent, RawVendorEvent, InformationalErrorEvent, BondCouponEvent, DividendReinvestmentEvent, AccumulationEvent, BondPrincipalEvent, DividendOptionEvent, MaturityEvent, FxForwardSettlementEvent, ExpiryEvent, ScripDividendEvent, StockDividendEvent, ReverseStockSplitEvent, CapitalDistributionEvent, SpinOffEvent, MergerEvent, FutureExpiryEvent, SwapCashFlowEvent, SwapPrincipalEvent, CreditPremiumCashFlowEvent, CdsCreditEvent, CdxCreditEvent, MbsCouponEvent, MbsPrincipalEvent, BonusIssueEvent, MbsPrincipalWriteOffEvent, MbsInterestDeferralEvent, MbsInterestShortfallEvent, TenderEvent, CallOnIntermediateSecuritiesEvent, IntermediateSecuritiesDistributionEvent, OptionExercisePhysicalEvent, OptionExerciseCashEvent, ProtectionPayoutCashFlowEvent, TermDepositInterestEvent, TermDepositPrincipalEvent, EarlyRedemptionEvent, FutureMarkToMarketEvent, AdjustGlobalCommitmentEvent, ContractInitialisationEvent, DrawdownEvent, LoanInterestRepaymentEvent, UpdateDepositAmountEvent, LoanPrincipalRepaymentEvent, DepositInterestPaymentEvent, DepositCloseEvent, LoanFacilityContractRolloverEvent, RepurchaseOfferEvent, RepoPartialClosureEvent, RepoCashFlowEvent, FlexibleRepoInterestPaymentEvent, FlexibleRepoCashFlowEvent, FlexibleRepoCollateralEvent, ConversionEvent, FlexibleRepoPartialClosureEvent, FlexibleRepoFullClosureEvent, CapletFloorletCashFlowEvent, EarlyCloseOutEvent, DepositRollEvent, ConsentEvent, DrawingEvent, CapitalGainsDistributionEvent, ExchangeOfferEvent, DutchAuctionEvent, WorthlessEvent, PutRedemptionEvent.") 
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["instrumentEventType", "announcementDate", "dividendCurrency", "dividendRate", "exDate", "paymentDate"]
+    __properties: ClassVar[List[str]] = ["instrumentEventType", "paymentDate", "offerPrice", "currency", "cashOfferElections", "lapseElections", "marketDeadlineDate", "responseDeadlineDate", "earlyResponseDeadline", "exDate", "announcementDate", "accruedInterestPerUnit", "prorationRate"]
 
     @field_validator('instrument_event_type')
     def instrument_event_type_validate_enum(cls, value):
@@ -48,7 +57,7 @@ class AccumulationEvent(InstrumentEvent):
 
         # check it's a class that uses the 'type' property as a discriminator
         # list of classes can be found by searching for 'actual_instance: Union[' in the generated code
-        if 'AccumulationEvent' not in [ 
+        if 'PutRedemptionEvent' not in [ 
                                     # For notification application classes
                                     'AmazonSqsNotificationType',
                                     'AmazonSqsNotificationTypeResponse',
@@ -129,8 +138,8 @@ class AccumulationEvent(InstrumentEvent):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> AccumulationEvent:
-        """Create an instance of AccumulationEvent from a JSON string"""
+    def from_json(cls, json_str: str) -> PutRedemptionEvent:
+        """Create an instance of PutRedemptionEvent from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self, by_alias=True):
@@ -141,34 +150,80 @@ class AccumulationEvent(InstrumentEvent):
                             "additional_properties"
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of each item in cash_offer_elections (list)
+        _items = []
+        if self.cash_offer_elections:
+            for _item in self.cash_offer_elections:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['cashOfferElections'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in lapse_elections (list)
+        _items = []
+        if self.lapse_elections:
+            for _item in self.lapse_elections:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['lapseElections'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
                 _dict[_key] = _value
+
+        # set to None if market_deadline_date (nullable) is None
+        # and model_fields_set contains the field
+        if self.market_deadline_date is None and "market_deadline_date" in self.model_fields_set:
+            _dict['marketDeadlineDate'] = None
+
+        # set to None if response_deadline_date (nullable) is None
+        # and model_fields_set contains the field
+        if self.response_deadline_date is None and "response_deadline_date" in self.model_fields_set:
+            _dict['responseDeadlineDate'] = None
+
+        # set to None if early_response_deadline (nullable) is None
+        # and model_fields_set contains the field
+        if self.early_response_deadline is None and "early_response_deadline" in self.model_fields_set:
+            _dict['earlyResponseDeadline'] = None
+
+        # set to None if ex_date (nullable) is None
+        # and model_fields_set contains the field
+        if self.ex_date is None and "ex_date" in self.model_fields_set:
+            _dict['exDate'] = None
 
         # set to None if announcement_date (nullable) is None
         # and model_fields_set contains the field
         if self.announcement_date is None and "announcement_date" in self.model_fields_set:
             _dict['announcementDate'] = None
 
+        # set to None if accrued_interest_per_unit (nullable) is None
+        # and model_fields_set contains the field
+        if self.accrued_interest_per_unit is None and "accrued_interest_per_unit" in self.model_fields_set:
+            _dict['accruedInterestPerUnit'] = None
+
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> AccumulationEvent:
-        """Create an instance of AccumulationEvent from a dict"""
+    def from_dict(cls, obj: dict) -> PutRedemptionEvent:
+        """Create an instance of PutRedemptionEvent from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return AccumulationEvent.model_validate(obj)
+            return PutRedemptionEvent.model_validate(obj)
 
-        _obj = AccumulationEvent.model_validate({
+        _obj = PutRedemptionEvent.model_validate({
             "instrument_event_type": obj.get("instrumentEventType"),
-            "announcement_date": obj.get("announcementDate"),
-            "dividend_currency": obj.get("dividendCurrency"),
-            "dividend_rate": obj.get("dividendRate"),
+            "payment_date": obj.get("paymentDate"),
+            "offer_price": obj.get("offerPrice"),
+            "currency": obj.get("currency"),
+            "cash_offer_elections": [CashOfferElection.from_dict(_item) for _item in _v] if (_v := obj.get("cashOfferElections")) is not None else None,
+            "lapse_elections": [LapseElection.from_dict(_item) for _item in _v] if (_v := obj.get("lapseElections")) is not None else None,
+            "market_deadline_date": obj.get("marketDeadlineDate"),
+            "response_deadline_date": obj.get("responseDeadlineDate"),
+            "early_response_deadline": obj.get("earlyResponseDeadline"),
             "ex_date": obj.get("exDate"),
-            "payment_date": obj.get("paymentDate")
+            "announcement_date": obj.get("announcementDate"),
+            "accrued_interest_per_unit": obj.get("accruedInterestPerUnit"),
+            "proration_rate": obj.get("prorationRate")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
@@ -177,5 +232,5 @@ class AccumulationEvent(InstrumentEvent):
 
         return _obj
 
-AccumulationEvent.model_rebuild()
+PutRedemptionEvent.model_rebuild()
 

@@ -6,6 +6,7 @@
 |------|------|----------|-------------|
 | **allocation_ids** | [List[ResourceId]](ResourceId.md) | Required | A collection of Allocation IDs |
 | **transaction_properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | A collection of properties |
+| **fx_instrument_type** | **str** | Optional | The type of FX instrument to create when settlement currency differs from portfolio base currency. Use None to suppress FX instrument and order creation. Defaults to None. Available values: None, FxForward, FxSpot. |
 
 
 ## Usage
@@ -17,7 +18,8 @@ from finbourne.sdk.services.lusid.models.BookTransactionsRequest import BookTran
 
 instance = BookTransactionsRequest(
     allocation_ids=[],  # required — A collection of Allocation IDs
-    transaction_properties=PerpetualProperty(...)  # optional — A collection of properties
+    transaction_properties=PerpetualProperty(...),  # optional — A collection of properties
+    fx_instrument_type="..."  # optional — The type of FX instrument to create when settlement currency differs from portfolio base currency. Use None to suppress FX instrument and order creation. Defaults to None. Available values: None, FxForward, FxSpot.
 )
 ```
 

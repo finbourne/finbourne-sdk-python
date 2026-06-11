@@ -751,14 +751,14 @@ class TradePublicationFrameworkApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def list_run_transactions(self, instance_id: StrictStr, run_id: StrictStr, status: StrictStr, page: Optional[StrictStr] = None, page_size: Optional[int] = None, **kwargs) -> PagedResourceListOfTransactionResponse:
+    def list_run_transactions(self, instance_id: StrictStr, run_id: StrictStr, status: Optional[StrictStr] = None, page: Optional[StrictStr] = None, page_size: Optional[int] = None, **kwargs) -> PagedResourceListOfTransactionResponse:
         """[EXPERIMENTAL] ListRunTransactions: List Transactions in a run.  # noqa: E501
 
         :param instance_id: (required)
         :type instance_id: str
         :param run_id: (required)
         :type run_id: str
-        :param status: (required)
+        :param status:
         :type status: str
         :param page:
         :type page: str
@@ -778,14 +778,14 @@ class TradePublicationFrameworkApi:
         return response.data
 
     @validate_call
-    def list_run_transactions_with_http_info(self, instance_id: StrictStr, run_id: StrictStr, status: StrictStr, page: Optional[StrictStr] = None, page_size: Optional[int] = None, **kwargs) -> ApiResponse[PagedResourceListOfTransactionResponse]:
+    def list_run_transactions_with_http_info(self, instance_id: StrictStr, run_id: StrictStr, status: Optional[StrictStr] = None, page: Optional[StrictStr] = None, page_size: Optional[int] = None, **kwargs) -> ApiResponse[PagedResourceListOfTransactionResponse]:
         """[EXPERIMENTAL] ListRunTransactions: List Transactions in a run.  # noqa: E501
 
         :param instance_id: (required)
         :type instance_id: str
         :param run_id: (required)
         :type run_id: str
-        :param status: (required)
+        :param status:
         :type status: str
         :param page:
         :type page: str
@@ -1868,14 +1868,14 @@ class TradePublicationFrameworkApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def list_run_transactions_async(self, instance_id: StrictStr, run_id: StrictStr, status: StrictStr, page: Optional[StrictStr] = None, page_size: Optional[int] = None, **kwargs) -> PagedResourceListOfTransactionResponse:
+    async def list_run_transactions_async(self, instance_id: StrictStr, run_id: StrictStr, status: Optional[StrictStr] = None, page: Optional[StrictStr] = None, page_size: Optional[int] = None, **kwargs) -> PagedResourceListOfTransactionResponse:
             """[EXPERIMENTAL] ListRunTransactions: List Transactions in a run.  # noqa: E501
             
             :param instance_id: (required)
             :type instance_id: str
             :param run_id: (required)
             :type run_id: str
-            :param status: (required)
+            :param status:
             :type status: str
             :param page:
             :type page: str
@@ -1895,7 +1895,7 @@ class TradePublicationFrameworkApi:
             return response.data
 
     @validate_call
-    async def list_run_transactions_with_http_info_async(self, instance_id: StrictStr, run_id: StrictStr, status: StrictStr, page: Optional[StrictStr] = None, page_size: Optional[int] = None, **kwargs) -> ApiResponse[PagedResourceListOfTransactionResponse]:
+    async def list_run_transactions_with_http_info_async(self, instance_id: StrictStr, run_id: StrictStr, status: Optional[StrictStr] = None, page: Optional[StrictStr] = None, page_size: Optional[int] = None, **kwargs) -> ApiResponse[PagedResourceListOfTransactionResponse]:
             """[EXPERIMENTAL] ListRunTransactions: List Transactions in a run.  # noqa: E501
 
 
@@ -1903,7 +1903,7 @@ class TradePublicationFrameworkApi:
             :type instance_id: str
             :param run_id: (required)
             :type run_id: str
-            :param status: (required)
+            :param status:
             :type status: str
             :param page:
             :type page: str

@@ -24,6 +24,7 @@ A single row in a Fund Cash Statement report.  Each row represents a settled cas
 | **cost_basis_base** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
 | **avg_rate** | **float** | Optional | Weighted average FX rate (costBasisBase / balanceLocal). Null when balance is zero. |
 | **fx_rate_movement** | **float** | Optional | FX rate for this specific movement (CashflowBase / CashFlowLocal). Null when localAmount is zero. |
+| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | The requested properties decorated onto the cash statement row. |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
@@ -54,6 +55,7 @@ instance = FundCashStatementRow(
     cost_basis_base=CurrencyAndAmount(...),  # optional
     avg_rate=0.0,  # optional — Weighted average FX rate (costBasisBase / balanceLocal). Null when balance is zero.
     fx_rate_movement=0.0,  # optional — FX rate for this specific movement (CashflowBase / CashFlowLocal). Null when localAmount is zero.
+    properties=ModelProperty(...),  # optional — The requested properties decorated onto the cash statement row.
     links=[]  # optional
 )
 ```
@@ -65,6 +67,7 @@ instance = FundCashStatementRow(
 - [CurrencyAndAmount](CurrencyAndAmount.md)
 - [CurrencyAndAmount](CurrencyAndAmount.md)
 - [CurrencyAndAmount](CurrencyAndAmount.md)
+- [ModelProperty](ModelProperty.md) — used in `properties`
 - [Link](Link.md)
 
 

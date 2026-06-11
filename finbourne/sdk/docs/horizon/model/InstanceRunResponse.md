@@ -6,7 +6,7 @@ Response containing details of a single run for an instance.
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **run_id** | **UUID** | Required | *No description available.* |
-| **batch_reference_id** | **str** | Optional | *No description available.* |
+| **batch_reference_id** | **UUID** | Required | *No description available.* |
 | **attempt** | **int** | Optional | *No description available.* |
 | **start_time** | **datetime** | Required | *No description available.* |
 | **end_time** | **datetime** | Optional | *No description available.* |
@@ -29,7 +29,7 @@ from finbourne.sdk.services.horizon.models.InstanceRunResponse import InstanceRu
 
 instance = InstanceRunResponse(
     run_id="...",  # required
-    batch_reference_id="...",  # optional
+    batch_reference_id="...",  # required
     attempt=0,  # optional
     start_time=datetime.now(),  # required
     end_time=datetime.now(),  # optional

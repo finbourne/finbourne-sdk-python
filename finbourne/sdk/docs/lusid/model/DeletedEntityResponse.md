@@ -10,6 +10,7 @@
 | **entity_type** | **str** | Optional | The type of the entity that the deleted response applies to. |
 | **entity_unique_id** | **str** | Optional | The unique Id of the entity that the deleted response applies to. |
 | **staged_modifications** | [StagedModificationsInfo](StagedModificationsInfo.md) | Optional | *No description available.* |
+| **metadata** | **Dict[str, Optional[List[ResponseMetaData]]]** | Optional | Contains warnings or additional information related to the delete operation. |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
@@ -27,6 +28,7 @@ instance = DeletedEntityResponse(
     entity_type="...",  # optional — The type of the entity that the deleted response applies to.
     entity_unique_id="...",  # optional — The unique Id of the entity that the deleted response applies to.
     staged_modifications=StagedModificationsInfo(...),  # optional
+    metadata=,  # optional — Contains warnings or additional information related to the delete operation.
     links=[]  # optional
 )
 ```

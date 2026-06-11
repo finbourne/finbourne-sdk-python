@@ -23,6 +23,7 @@ from uuid import UUID
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 from finbourne.sdk.services.lusid.models.currency_and_amount import CurrencyAndAmount
 from finbourne.sdk.services.lusid.models.link import Link
+from finbourne.sdk.services.lusid.models.model_property import ModelProperty
 from finbourne.sdk.services.lusid.models.perpetual_property import PerpetualProperty
 from finbourne.sdk.services.lusid.models.resource_id import ResourceId
 
@@ -50,8 +51,9 @@ class FundCashStatementRow(BaseModel):
     cost_basis_base: Optional[CurrencyAndAmount] = Field(default=None, alias="costBasisBase")
     avg_rate: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Weighted average FX rate (costBasisBase / balanceLocal). Null when balance is zero.", alias="avgRate")
     fx_rate_movement: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="FX rate for this specific movement (CashflowBase / CashFlowLocal). Null when localAmount is zero.", alias="fxRateMovement")
+    properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="The requested properties decorated onto the cash statement row.")
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["groupById", "sequenceNumber", "subHoldingKeys", "sourceId", "cashStatementActionType", "accountingDate", "activityDate", "movementName", "portfolioId", "instructionType", "diaryEntryCode", "originDiaryEntryCode", "cashflowLocal", "balanceLocal", "cashflowBase", "realisedFxPnl", "costBasisBase", "avgRate", "fxRateMovement", "links"]
+    __properties: ClassVar[List[str]] = ["groupById", "sequenceNumber", "subHoldingKeys", "sourceId", "cashStatementActionType", "accountingDate", "activityDate", "movementName", "portfolioId", "instructionType", "diaryEntryCode", "originDiaryEntryCode", "cashflowLocal", "balanceLocal", "cashflowBase", "realisedFxPnl", "costBasisBase", "avgRate", "fxRateMovement", "properties", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -112,6 +114,13 @@ class FundCashStatementRow(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of cost_basis_base
         if self.cost_basis_base:
             _dict['costBasisBase'] = self.cost_basis_base.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of each value in properties (dict)
+        _field_dict = {}
+        if self.properties:
+            for _key in self.properties:
+                if self.properties[_key]:
+                    _field_dict[_key] = self.properties[_key].to_dict(by_alias=by_alias)
+            _dict['properties'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of each item in links (list)
         _items = []
         if self.links:
@@ -164,6 +173,11 @@ class FundCashStatementRow(BaseModel):
         if self.fx_rate_movement is None and "fx_rate_movement" in self.model_fields_set:
             _dict['fxRateMovement'] = None
 
+        # set to None if properties (nullable) is None
+        # and model_fields_set contains the field
+        if self.properties is None and "properties" in self.model_fields_set:
+            _dict['properties'] = None
+
         # set to None if links (nullable) is None
         # and model_fields_set contains the field
         if self.links is None and "links" in self.model_fields_set:
@@ -205,6 +219,12 @@ class FundCashStatementRow(BaseModel):
             "cost_basis_base": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("costBasisBase")) is not None else None,
             "avg_rate": obj.get("avgRate"),
             "fx_rate_movement": obj.get("fxRateMovement"),
+            "properties": dict(
+                (_k, ModelProperty.from_dict(_v))
+                for _k, _v in _val.items()
+            )
+            if (_val := obj.get("properties")) is not None
+            else None,
             "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj

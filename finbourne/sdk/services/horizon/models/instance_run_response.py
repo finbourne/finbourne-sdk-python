@@ -28,7 +28,7 @@ class InstanceRunResponse(BaseModel):
     Response containing details of a single run for an instance.  # noqa: E501
     """
     run_id:  StrictStr = Field(...,alias="runId") 
-    batch_reference_id:  Optional[StrictStr] = Field(default=None,alias="batchReferenceId") 
+    batch_reference_id:  StrictStr = Field(...,alias="batchReferenceId") 
     attempt: Optional[StrictInt] = None
     start_time: datetime = Field(alias="startTime")
     end_time: Optional[datetime] = Field(default=None, alias="endTime")
@@ -76,11 +76,6 @@ class InstanceRunResponse(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # set to None if batch_reference_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.batch_reference_id is None and "batch_reference_id" in self.model_fields_set:
-            _dict['batchReferenceId'] = None
-
         # set to None if attempt (nullable) is None
         # and model_fields_set contains the field
         if self.attempt is None and "attempt" in self.model_fields_set:

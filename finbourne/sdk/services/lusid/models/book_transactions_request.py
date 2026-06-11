@@ -31,7 +31,8 @@ class BookTransactionsRequest(BaseModel):
     """
     allocation_ids: List[ResourceId] = Field(description="A collection of Allocation IDs", alias="allocationIds")
     transaction_properties: Optional[Dict[str, PerpetualProperty]] = Field(default=None, description="A collection of properties", alias="transactionProperties")
-    __properties: ClassVar[List[str]] = ["allocationIds", "transactionProperties"]
+    fx_instrument_type:  Optional[StrictStr] = Field(default=None,alias="fxInstrumentType", description="The type of FX instrument to create when settlement currency differs from portfolio base currency. Use None to suppress FX instrument and order creation. Defaults to None. Available values: None, FxForward, FxSpot.") 
+    __properties: ClassVar[List[str]] = ["allocationIds", "transactionProperties", "fxInstrumentType"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -86,6 +87,11 @@ class BookTransactionsRequest(BaseModel):
         if self.transaction_properties is None and "transaction_properties" in self.model_fields_set:
             _dict['transactionProperties'] = None
 
+        # set to None if fx_instrument_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.fx_instrument_type is None and "fx_instrument_type" in self.model_fields_set:
+            _dict['fxInstrumentType'] = None
+
         return _dict
 
     @classmethod
@@ -104,7 +110,8 @@ class BookTransactionsRequest(BaseModel):
                 for _k, _v in _val.items()
             )
             if (_val := obj.get("transactionProperties")) is not None
-            else None
+            else None,
+            "fx_instrument_type": obj.get("fxInstrumentType")
         })
         return _obj
 
