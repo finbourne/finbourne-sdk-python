@@ -660,6 +660,7 @@ from finbourne.sdk.services.lusid.models.list_aggregation_response import ListAg
 from finbourne.sdk.services.lusid.models.list_complex_market_data_with_meta_data_response import ListComplexMarketDataWithMetaDataResponse
 from finbourne.sdk.services.lusid.models.loan_facility import LoanFacility
 from finbourne.sdk.services.lusid.models.loan_facility_contract_rollover_event import LoanFacilityContractRolloverEvent
+from finbourne.sdk.services.lusid.models.loan_facility_delayed_compensation_payment_event import LoanFacilityDelayedCompensationPaymentEvent
 from finbourne.sdk.services.lusid.models.loan_interest_repayment_event import LoanInterestRepaymentEvent
 from finbourne.sdk.services.lusid.models.loan_period import LoanPeriod
 from finbourne.sdk.services.lusid.models.loan_principal_repayment_event import LoanPrincipalRepaymentEvent
@@ -1094,6 +1095,7 @@ from finbourne.sdk.services.lusid.models.resource_list_of_transaction_fee_type i
 from finbourne.sdk.services.lusid.models.resource_list_of_transaction_settlement_instruction import ResourceListOfTransactionSettlementInstruction
 from finbourne.sdk.services.lusid.models.resource_list_of_transaction_type import ResourceListOfTransactionType
 from finbourne.sdk.services.lusid.models.resource_list_of_value_type import ResourceListOfValueType
+from finbourne.sdk.services.lusid.models.resource_list_with_post_bodies_of_settlement_activity_to_settlement_activity_query import ResourceListWithPostBodiesOfSettlementActivityToSettlementActivityQuery
 from finbourne.sdk.services.lusid.models.resource_record import ResourceRecord
 from finbourne.sdk.services.lusid.models.response_meta_data import ResponseMetaData
 from finbourne.sdk.services.lusid.models.result_data_key_rule import ResultDataKeyRule
@@ -1144,6 +1146,8 @@ from finbourne.sdk.services.lusid.models.set_person_properties_request import Se
 from finbourne.sdk.services.lusid.models.set_share_class_instruments_request import SetShareClassInstrumentsRequest
 from finbourne.sdk.services.lusid.models.set_transaction_configuration_alias import SetTransactionConfigurationAlias
 from finbourne.sdk.services.lusid.models.set_transaction_configuration_source_request import SetTransactionConfigurationSourceRequest
+from finbourne.sdk.services.lusid.models.settlement_activity import SettlementActivity
+from finbourne.sdk.services.lusid.models.settlement_activity_query import SettlementActivityQuery
 from finbourne.sdk.services.lusid.models.settlement_configuration_category import SettlementConfigurationCategory
 from finbourne.sdk.services.lusid.models.settlement_configuration_method_override import SettlementConfigurationMethodOverride
 from finbourne.sdk.services.lusid.models.settlement_cycle import SettlementCycle
@@ -2084,6 +2088,7 @@ __all__ = [
     "ListComplexMarketDataWithMetaDataResponse",
     "LoanFacility",
     "LoanFacilityContractRolloverEvent",
+    "LoanFacilityDelayedCompensationPaymentEvent",
     "LoanInterestRepaymentEvent",
     "LoanPeriod",
     "LoanPrincipalRepaymentEvent",
@@ -2518,6 +2523,7 @@ __all__ = [
     "ResourceListOfTransactionSettlementInstruction",
     "ResourceListOfTransactionType",
     "ResourceListOfValueType",
+    "ResourceListWithPostBodiesOfSettlementActivityToSettlementActivityQuery",
     "ResourceRecord",
     "ResponseMetaData",
     "ResultDataKeyRule",
@@ -2568,6 +2574,8 @@ __all__ = [
     "SetShareClassInstrumentsRequest",
     "SetTransactionConfigurationAlias",
     "SetTransactionConfigurationSourceRequest",
+    "SettlementActivity",
+    "SettlementActivityQuery",
     "SettlementConfigurationCategory",
     "SettlementConfigurationMethodOverride",
     "SettlementCycle",

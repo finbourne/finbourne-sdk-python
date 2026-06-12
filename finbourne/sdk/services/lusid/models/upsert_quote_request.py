@@ -33,7 +33,8 @@ class UpsertQuoteRequest(BaseModel):
     metric_value: Optional[MetricValue] = Field(default=None, alias="metricValue")
     lineage:  Optional[StrictStr] = Field(default=None,alias="lineage", description="Description of the quote's lineage e.g. 'FundAccountant_GreenQuality'.") 
     scale_factor: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="An optional scale factor for non-standard scaling of quotes against the instrument. For example, if you wish the quote's Value to be scaled down by a factor of 100, enter 100. If not supplied, the default ScaleFactor is 1.", alias="scaleFactor")
-    __properties: ClassVar[List[str]] = ["quoteId", "metricValue", "lineage", "scaleFactor"]
+    metadata_fields: Optional[Dict[str, Any]] = Field(default=None, description="The metadata field values for this quote, keyed by field name.", alias="metadataFields")
+    __properties: ClassVar[List[str]] = ["quoteId", "metricValue", "lineage", "scaleFactor", "metadataFields"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,6 +86,11 @@ class UpsertQuoteRequest(BaseModel):
         if self.scale_factor is None and "scale_factor" in self.model_fields_set:
             _dict['scaleFactor'] = None
 
+        # set to None if metadata_fields (nullable) is None
+        # and model_fields_set contains the field
+        if self.metadata_fields is None and "metadata_fields" in self.model_fields_set:
+            _dict['metadataFields'] = None
+
         return _dict
 
     @classmethod
@@ -100,7 +106,8 @@ class UpsertQuoteRequest(BaseModel):
             "quote_id": QuoteId.from_dict(_v) if (_v := obj.get("quoteId")) is not None else None,
             "metric_value": MetricValue.from_dict(_v) if (_v := obj.get("metricValue")) is not None else None,
             "lineage": obj.get("lineage"),
-            "scale_factor": obj.get("scaleFactor")
+            "scale_factor": obj.get("scaleFactor"),
+            "metadata_fields": obj.get("metadataFields")
         })
         return _obj
 

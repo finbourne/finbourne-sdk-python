@@ -125,6 +125,7 @@
 * [ScriptedTranslationApi](lusid/api/ScriptedTranslationApi.md)
 * [SearchApi](lusid/api/SearchApi.md)
 * [SequencesApi](lusid/api/SequencesApi.md)
+* [SettlementActivityApi](lusid/api/SettlementActivityApi.md)
 * [SimplePositionPortfoliosApi](lusid/api/SimplePositionPortfoliosApi.md)
 * [StagedModificationsApi](lusid/api/StagedModificationsApi.md)
 * [StagingRuleSetApi](lusid/api/StagingRuleSetApi.md)

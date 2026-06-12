@@ -36,7 +36,8 @@ class Quote(BaseModel):
     uploaded_by:  StrictStr = Field(...,alias="uploadedBy", description="The unique id of the user that updated or inserted the quote.") 
     as_at: datetime = Field(description="The asAt datetime at which the quote was committed to LUSID.", alias="asAt")
     scale_factor: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="An optional scale factor for non-standard scaling of quotes against the instrument. For example, if you wish the quote's Value to be scaled down by a factor of 100, enter 100. If not supplied, the default ScaleFactor is 1.", alias="scaleFactor")
-    __properties: ClassVar[List[str]] = ["quoteId", "metricValue", "lineage", "cutLabel", "uploadedBy", "asAt", "scaleFactor"]
+    metadata_fields: Optional[Dict[str, Any]] = Field(default=None, description="The metadata field values for this quote, keyed by field name.", alias="metadataFields")
+    __properties: ClassVar[List[str]] = ["quoteId", "metricValue", "lineage", "cutLabel", "uploadedBy", "asAt", "scaleFactor", "metadataFields"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -93,6 +94,11 @@ class Quote(BaseModel):
         if self.scale_factor is None and "scale_factor" in self.model_fields_set:
             _dict['scaleFactor'] = None
 
+        # set to None if metadata_fields (nullable) is None
+        # and model_fields_set contains the field
+        if self.metadata_fields is None and "metadata_fields" in self.model_fields_set:
+            _dict['metadataFields'] = None
+
         return _dict
 
     @classmethod
@@ -111,7 +117,8 @@ class Quote(BaseModel):
             "cut_label": obj.get("cutLabel"),
             "uploaded_by": obj.get("uploadedBy"),
             "as_at": obj.get("asAt"),
-            "scale_factor": obj.get("scaleFactor")
+            "scale_factor": obj.get("scaleFactor"),
+            "metadata_fields": obj.get("metadataFields")
         })
         return _obj
 

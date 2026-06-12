@@ -69,6 +69,7 @@ from finbourne.sdk.services.lusid.api.scopes_api import ScopesApi
 from finbourne.sdk.services.lusid.api.scripted_translation_api import ScriptedTranslationApi
 from finbourne.sdk.services.lusid.api.search_api import SearchApi
 from finbourne.sdk.services.lusid.api.sequences_api import SequencesApi
+from finbourne.sdk.services.lusid.api.settlement_activity_api import SettlementActivityApi
 from finbourne.sdk.services.lusid.api.simple_position_portfolios_api import SimplePositionPortfoliosApi
 from finbourne.sdk.services.lusid.api.staged_modifications_api import StagedModificationsApi
 from finbourne.sdk.services.lusid.api.staging_rule_set_api import StagingRuleSetApi
@@ -154,6 +155,7 @@ __all__ = [
     "ScriptedTranslationApi",
     "SearchApi",
     "SequencesApi",
+    "SettlementActivityApi",
     "SimplePositionPortfoliosApi",
     "StagedModificationsApi",
     "StagingRuleSetApi",
