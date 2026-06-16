@@ -21,30 +21,23 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
-from finbourne.sdk.services.lusid.models.cash_and_security_offer_election import CashAndSecurityOfferElection
-from finbourne.sdk.services.lusid.models.cash_offer_election import CashOfferElection
+from finbourne.sdk.services.lusid.models.cash_election import CashElection
 from finbourne.sdk.services.lusid.models.instrument_event import InstrumentEvent
-from finbourne.sdk.services.lusid.models.new_instrument import NewInstrument
-from finbourne.sdk.services.lusid.models.security_offer_election import SecurityOfferElection
 
 
-class MergerEvent(InstrumentEvent):
+class InterestPaymentEvent(InstrumentEvent):
     """
-    Merger Event (MRGR).  # noqa: E501
+    Interest Payment event (INTR). A cash distribution of interest from a debt issuer to its noteholders,  carrying a per-unit absolute interest rate on each CashElection. Supports Mandatory  (single declared election) and MandatoryWithChoices (one election per offered currency) participation.  # noqa: E501
     """
-    announcement_date: Optional[datetime] = Field(default=None, description="The date the merger is announced.", alias="announcementDate")
-    cash_and_security_offer_elections: Optional[List[CashAndSecurityOfferElection]] = Field(default=None, description="List of possible CashAndSecurityOfferElections for this merger event", alias="cashAndSecurityOfferElections")
-    cash_offer_elections: Optional[List[CashOfferElection]] = Field(default=None, description="List of possible CashOfferElections for this merger event", alias="cashOfferElections")
-    ex_date: Optional[datetime] = Field(default=None, description="The first date on which the holder of record of the original shares has entitled ownership of the new shares.", alias="exDate")
-    fractional_units_cash_currency:  Optional[StrictStr] = Field(default=None,alias="fractionalUnitsCashCurrency", description="Optional. Used in calculating cash-in-lieu of fractional shares.") 
-    fractional_units_cash_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Optional. Used in calculating cash-in-lieu of fractional shares.", alias="fractionalUnitsCashPrice")
-    new_instrument: NewInstrument = Field(alias="newInstrument")
-    payment_date: Optional[datetime] = Field(default=None, description="Date on which the merger takes place.", alias="paymentDate")
-    record_date: Optional[datetime] = Field(default=None, description="Optional. Date you have to be the holder of record of the original shares in order to receive the new shares.", alias="recordDate")
-    security_offer_elections: Optional[List[SecurityOfferElection]] = Field(default=None, description="List of possible SecurityOfferElections for this merger event", alias="securityOfferElections")
+    record_date: Optional[datetime] = Field(default=None, description="The record-date cut-off determining entitlement. Required. Map from the vendor RecordDate (NOT the  ExDate sentinel).", alias="recordDate")
+    payment_date: Optional[datetime] = Field(default=None, description="The date the interest is paid to noteholders. Required. Also the effective date of the event.", alias="paymentDate")
+    response_deadline: Optional[datetime] = Field(default=None, description="The holder-instruction deadline. Required for MandatoryWithChoices; must be null for Mandatory.", alias="responseDeadline")
+    market_deadline: Optional[datetime] = Field(default=None, description="The market-organisation deadline. Required for MandatoryWithChoices; must be null for Mandatory.", alias="marketDeadline")
+    announcement_date: Optional[datetime] = Field(default=None, description="The date the event was announced by the issuer. Optional.", alias="announcementDate")
+    cash_elections: List[CashElection] = Field(description="The cash elections for this event. For Mandatory participation a single declared election is supplied  with IsDeclared, IsDefault and IsChosen all true; for MandatoryWithChoices one entry per offered  currency is supplied, with exactly one declared, one default and one chosen. Every election carries a  per-unit absolute (signed) DividendRate and an ExchangeRate of 1.", alias="cashElections")
     instrument_event_type:  StrictStr = Field(...,alias="instrumentEventType", description="The Type of Event. Available values: TransitionEvent, InformationalEvent, OpenEvent, CloseEvent, StockSplitEvent, BondDefaultEvent, CashDividendEvent, AmortisationEvent, CashFlowEvent, ExerciseEvent, ResetEvent, TriggerEvent, RawVendorEvent, InformationalErrorEvent, BondCouponEvent, DividendReinvestmentEvent, AccumulationEvent, BondPrincipalEvent, DividendOptionEvent, MaturityEvent, FxForwardSettlementEvent, ExpiryEvent, ScripDividendEvent, StockDividendEvent, ReverseStockSplitEvent, CapitalDistributionEvent, SpinOffEvent, MergerEvent, FutureExpiryEvent, SwapCashFlowEvent, SwapPrincipalEvent, CreditPremiumCashFlowEvent, CdsCreditEvent, CdxCreditEvent, MbsCouponEvent, MbsPrincipalEvent, BonusIssueEvent, MbsPrincipalWriteOffEvent, MbsInterestDeferralEvent, MbsInterestShortfallEvent, TenderEvent, CallOnIntermediateSecuritiesEvent, IntermediateSecuritiesDistributionEvent, OptionExercisePhysicalEvent, OptionExerciseCashEvent, ProtectionPayoutCashFlowEvent, TermDepositInterestEvent, TermDepositPrincipalEvent, EarlyRedemptionEvent, FutureMarkToMarketEvent, AdjustGlobalCommitmentEvent, ContractInitialisationEvent, DrawdownEvent, LoanInterestRepaymentEvent, UpdateDepositAmountEvent, LoanPrincipalRepaymentEvent, DepositInterestPaymentEvent, DepositCloseEvent, LoanFacilityContractRolloverEvent, RepurchaseOfferEvent, RepoPartialClosureEvent, RepoCashFlowEvent, FlexibleRepoInterestPaymentEvent, FlexibleRepoCashFlowEvent, FlexibleRepoCollateralEvent, ConversionEvent, FlexibleRepoPartialClosureEvent, FlexibleRepoFullClosureEvent, CapletFloorletCashFlowEvent, EarlyCloseOutEvent, DepositRollEvent, ConsentEvent, DrawingEvent, CapitalGainsDistributionEvent, ExchangeOfferEvent, DutchAuctionEvent, WorthlessEvent, PutRedemptionEvent, LoanFacilityDelayedCompensationPaymentEvent, InterestPaymentEvent.") 
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["instrumentEventType", "announcementDate", "cashAndSecurityOfferElections", "cashOfferElections", "exDate", "fractionalUnitsCashCurrency", "fractionalUnitsCashPrice", "newInstrument", "paymentDate", "recordDate", "securityOfferElections"]
+    __properties: ClassVar[List[str]] = ["instrumentEventType", "recordDate", "paymentDate", "responseDeadline", "marketDeadline", "announcementDate", "cashElections"]
 
     @field_validator('instrument_event_type')
     def instrument_event_type_validate_enum(cls, value):
@@ -57,7 +50,7 @@ class MergerEvent(InstrumentEvent):
 
         # check it's a class that uses the 'type' property as a discriminator
         # list of classes can be found by searching for 'actual_instance: Union[' in the generated code
-        if 'MergerEvent' not in [ 
+        if 'InterestPaymentEvent' not in [ 
                                     # For notification application classes
                                     'AmazonSqsNotificationType',
                                     'AmazonSqsNotificationTypeResponse',
@@ -138,8 +131,8 @@ class MergerEvent(InstrumentEvent):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> MergerEvent:
-        """Create an instance of MergerEvent from a JSON string"""
+    def from_json(cls, json_str: str) -> InterestPaymentEvent:
+        """Create an instance of InterestPaymentEvent from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self, by_alias=True):
@@ -150,93 +143,52 @@ class MergerEvent(InstrumentEvent):
                             "additional_properties"
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each item in cash_and_security_offer_elections (list)
+        # override the default output from pydantic by calling `to_dict()` of each item in cash_elections (list)
         _items = []
-        if self.cash_and_security_offer_elections:
-            for _item in self.cash_and_security_offer_elections:
+        if self.cash_elections:
+            for _item in self.cash_elections:
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
-            _dict['cashAndSecurityOfferElections'] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in cash_offer_elections (list)
-        _items = []
-        if self.cash_offer_elections:
-            for _item in self.cash_offer_elections:
-                if _item:
-                    _items.append(_item.to_dict(by_alias=by_alias))
-            _dict['cashOfferElections'] = _items
-        # override the default output from pydantic by calling `to_dict()` of new_instrument
-        if self.new_instrument:
-            _dict['newInstrument'] = self.new_instrument.to_dict(by_alias=by_alias)
-        # override the default output from pydantic by calling `to_dict()` of each item in security_offer_elections (list)
-        _items = []
-        if self.security_offer_elections:
-            for _item in self.security_offer_elections:
-                if _item:
-                    _items.append(_item.to_dict(by_alias=by_alias))
-            _dict['securityOfferElections'] = _items
+            _dict['cashElections'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
                 _dict[_key] = _value
+
+        # set to None if response_deadline (nullable) is None
+        # and model_fields_set contains the field
+        if self.response_deadline is None and "response_deadline" in self.model_fields_set:
+            _dict['responseDeadline'] = None
+
+        # set to None if market_deadline (nullable) is None
+        # and model_fields_set contains the field
+        if self.market_deadline is None and "market_deadline" in self.model_fields_set:
+            _dict['marketDeadline'] = None
 
         # set to None if announcement_date (nullable) is None
         # and model_fields_set contains the field
         if self.announcement_date is None and "announcement_date" in self.model_fields_set:
             _dict['announcementDate'] = None
 
-        # set to None if cash_and_security_offer_elections (nullable) is None
-        # and model_fields_set contains the field
-        if self.cash_and_security_offer_elections is None and "cash_and_security_offer_elections" in self.model_fields_set:
-            _dict['cashAndSecurityOfferElections'] = None
-
-        # set to None if cash_offer_elections (nullable) is None
-        # and model_fields_set contains the field
-        if self.cash_offer_elections is None and "cash_offer_elections" in self.model_fields_set:
-            _dict['cashOfferElections'] = None
-
-        # set to None if fractional_units_cash_currency (nullable) is None
-        # and model_fields_set contains the field
-        if self.fractional_units_cash_currency is None and "fractional_units_cash_currency" in self.model_fields_set:
-            _dict['fractionalUnitsCashCurrency'] = None
-
-        # set to None if fractional_units_cash_price (nullable) is None
-        # and model_fields_set contains the field
-        if self.fractional_units_cash_price is None and "fractional_units_cash_price" in self.model_fields_set:
-            _dict['fractionalUnitsCashPrice'] = None
-
-        # set to None if record_date (nullable) is None
-        # and model_fields_set contains the field
-        if self.record_date is None and "record_date" in self.model_fields_set:
-            _dict['recordDate'] = None
-
-        # set to None if security_offer_elections (nullable) is None
-        # and model_fields_set contains the field
-        if self.security_offer_elections is None and "security_offer_elections" in self.model_fields_set:
-            _dict['securityOfferElections'] = None
-
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> MergerEvent:
-        """Create an instance of MergerEvent from a dict"""
+    def from_dict(cls, obj: dict) -> InterestPaymentEvent:
+        """Create an instance of InterestPaymentEvent from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return MergerEvent.model_validate(obj)
+            return InterestPaymentEvent.model_validate(obj)
 
-        _obj = MergerEvent.model_validate({
+        _obj = InterestPaymentEvent.model_validate({
             "instrument_event_type": obj.get("instrumentEventType"),
-            "announcement_date": obj.get("announcementDate"),
-            "cash_and_security_offer_elections": [CashAndSecurityOfferElection.from_dict(_item) for _item in _v] if (_v := obj.get("cashAndSecurityOfferElections")) is not None else None,
-            "cash_offer_elections": [CashOfferElection.from_dict(_item) for _item in _v] if (_v := obj.get("cashOfferElections")) is not None else None,
-            "ex_date": obj.get("exDate"),
-            "fractional_units_cash_currency": obj.get("fractionalUnitsCashCurrency"),
-            "fractional_units_cash_price": obj.get("fractionalUnitsCashPrice"),
-            "new_instrument": NewInstrument.from_dict(_v) if (_v := obj.get("newInstrument")) is not None else None,
-            "payment_date": obj.get("paymentDate"),
             "record_date": obj.get("recordDate"),
-            "security_offer_elections": [SecurityOfferElection.from_dict(_item) for _item in _v] if (_v := obj.get("securityOfferElections")) is not None else None
+            "payment_date": obj.get("paymentDate"),
+            "response_deadline": obj.get("responseDeadline"),
+            "market_deadline": obj.get("marketDeadline"),
+            "announcement_date": obj.get("announcementDate"),
+            "cash_elections": [CashElection.from_dict(_item) for _item in _v] if (_v := obj.get("cashElections")) is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
@@ -245,5 +197,5 @@ class MergerEvent(InstrumentEvent):
 
         return _obj
 
-MergerEvent.model_rebuild()
+InterestPaymentEvent.model_rebuild()
 

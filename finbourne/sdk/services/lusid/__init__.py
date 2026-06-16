@@ -719,6 +719,7 @@ from finbourne.sdk.services.lusid.models.instrument_properties import Instrument
 from finbourne.sdk.services.lusid.models.instrument_resolution_detail import InstrumentResolutionDetail
 from finbourne.sdk.services.lusid.models.instrument_search_property import InstrumentSearchProperty
 from finbourne.sdk.services.lusid.models.instrument_type import InstrumentType
+from finbourne.sdk.services.lusid.models.interest_payment_event import InterestPaymentEvent
 from finbourne.sdk.services.lusid.models.interest_rate_swap import InterestRateSwap
 from finbourne.sdk.services.lusid.models.interest_rate_swaption import InterestRateSwaption
 from finbourne.sdk.services.lusid.models.intermediate_compliance_step import IntermediateComplianceStep
@@ -2236,6 +2237,7 @@ __all__ = [
     "InstrumentResolutionDetail",
     "InstrumentSearchProperty",
     "InstrumentType",
+    "InterestPaymentEvent",
     "InterestRateSwap",
     "InterestRateSwaption",
     "IntermediateComplianceStep",

@@ -6,7 +6,7 @@ An Instrument held at a Valuation Point, including its origin
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **instrument** | [Instrument](Instrument.md) | Optional | *No description available.* |
-| **valuation_point_origin** | **str** | Optional | Designates if the instrument was originally part of the Valuation Point or if it was added as part of a Complex Close action. Available values: None, Original, Added. |
+| **valuation_point_origin** | **str** | Optional | Designates if the instrument was originally part of the Valuation Point or if it was added as part of a Complex Close action. Available values: None, Original, Added, OriginalAndAdded. |
 | **added_origin_valuation_point_code** | **str** | Optional | The Valuation Point, only for an Instrument added as part of a Complex Close action. |
 | **added_origin_valuation_point_variant_code** | **str** | Optional | The Valuation Point variant, only for Instruments added as part of a Complex Close action. |
 | **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | The requested instrument properties. These will be from the &#39;Instrument&#39; domain. |
@@ -21,7 +21,7 @@ from finbourne.sdk.services.lusid.models.ValuationPointInstrument import Valuati
 
 instance = ValuationPointInstrument(
     instrument=Instrument(...),  # optional
-    valuation_point_origin="...",  # optional — Designates if the instrument was originally part of the Valuation Point or if it was added as part of a Complex Close action. Available values: None, Original, Added.
+    valuation_point_origin="...",  # optional — Designates if the instrument was originally part of the Valuation Point or if it was added as part of a Complex Close action. Available values: None, Original, Added, OriginalAndAdded.
     added_origin_valuation_point_code="...",  # optional — The Valuation Point, only for an Instrument added as part of a Complex Close action.
     added_origin_valuation_point_variant_code="...",  # optional — The Valuation Point variant, only for Instruments added as part of a Complex Close action.
     properties=ModelProperty(...)  # optional — The requested instrument properties. These will be from the &#39;Instrument&#39; domain.

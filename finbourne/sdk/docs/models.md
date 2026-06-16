@@ -1061,6 +1061,7 @@
 * [InstrumentResolutionDetail](lusid/model/InstrumentResolutionDetail.md)
 * [InstrumentSearchProperty](lusid/model/InstrumentSearchProperty.md)
 * [InstrumentType](lusid/model/InstrumentType.md)
+* [InterestPaymentEvent](lusid/model/InterestPaymentEvent.md)
 * [InterestRateSwap](lusid/model/InterestRateSwap.md)
 * [InterestRateSwaption](lusid/model/InterestRateSwaption.md)
 * [IntermediateComplianceStep](lusid/model/IntermediateComplianceStep.md)

@@ -1,17 +1,16 @@
-# StockSplitEvent
+# InterestPaymentEvent
 
-A split in the company's shares. Shareholders are given additional company shares based on the terms of the stock split.
+Interest Payment event (INTR). A cash distribution of interest from a debt issuer to its noteholders,  carrying a per-unit absolute interest rate on each CashElection. Supports Mandatory  (single declared election) and MandatoryWithChoices (one election per offered currency) participation.
 ## Properties
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **payment_date** | **datetime** | Optional | Date on which the stock split takes effect. |
-| **ex_date** | **datetime** | Optional | The first date on which the shares will trade at the post-split price. |
-| **units_ratio** | [UnitsRatio](UnitsRatio.md) | Required | *No description available.* |
-| **record_date** | **datetime** | Optional | Date you have to be the holder of record in order to receive the additional shares. |
-| **announcement_date** | **datetime** | Optional | Date the stock split was announced. |
-| **fractional_units_cash_price** | **float** | Optional | The cash price per unit paid in lieu when fractional units can not be distributed. |
-| **fractional_units_cash_currency** | **str** | Optional | The currency of the cash paid in lieu of fractional units. |
+| **record_date** | **datetime** | Optional | The record-date cut-off determining entitlement. Required. Map from the vendor RecordDate (NOT the  ExDate sentinel). |
+| **payment_date** | **datetime** | Optional | The date the interest is paid to noteholders. Required. Also the effective date of the event. |
+| **response_deadline** | **datetime** | Optional | The holder-instruction deadline. Required for MandatoryWithChoices; must be null for Mandatory. |
+| **market_deadline** | **datetime** | Optional | The market-organisation deadline. Required for MandatoryWithChoices; must be null for Mandatory. |
+| **announcement_date** | **datetime** | Optional | The date the event was announced by the issuer. Optional. |
+| **cash_elections** | [List[CashElection]](CashElection.md) | Required | The cash elections for this event. For Mandatory participation a single declared election is supplied  with IsDeclared, IsDefault and IsChosen all true; for MandatoryWithChoices one entry per offered  currency is supplied, with exactly one declared, one default and one chosen. Every election carries a  per-unit absolute (signed) DividendRate and an ExchangeRate of 1. |
 | **instrument_event_type** | **str** | Required | The Type of Event. Available values: TransitionEvent, InformationalEvent, OpenEvent, CloseEvent, StockSplitEvent, BondDefaultEvent, CashDividendEvent, AmortisationEvent, CashFlowEvent, ExerciseEvent, ResetEvent, TriggerEvent, RawVendorEvent, InformationalErrorEvent, BondCouponEvent, DividendReinvestmentEvent, AccumulationEvent, BondPrincipalEvent, DividendOptionEvent, MaturityEvent, FxForwardSettlementEvent, ExpiryEvent, ScripDividendEvent, StockDividendEvent, ReverseStockSplitEvent, CapitalDistributionEvent, SpinOffEvent, MergerEvent, FutureExpiryEvent, SwapCashFlowEvent, SwapPrincipalEvent, CreditPremiumCashFlowEvent, CdsCreditEvent, CdxCreditEvent, MbsCouponEvent, MbsPrincipalEvent, BonusIssueEvent, MbsPrincipalWriteOffEvent, MbsInterestDeferralEvent, MbsInterestShortfallEvent, TenderEvent, CallOnIntermediateSecuritiesEvent, IntermediateSecuritiesDistributionEvent, OptionExercisePhysicalEvent, OptionExerciseCashEvent, ProtectionPayoutCashFlowEvent, TermDepositInterestEvent, TermDepositPrincipalEvent, EarlyRedemptionEvent, FutureMarkToMarketEvent, AdjustGlobalCommitmentEvent, ContractInitialisationEvent, DrawdownEvent, LoanInterestRepaymentEvent, UpdateDepositAmountEvent, LoanPrincipalRepaymentEvent, DepositInterestPaymentEvent, DepositCloseEvent, LoanFacilityContractRolloverEvent, RepurchaseOfferEvent, RepoPartialClosureEvent, RepoCashFlowEvent, FlexibleRepoInterestPaymentEvent, FlexibleRepoCashFlowEvent, FlexibleRepoCollateralEvent, ConversionEvent, FlexibleRepoPartialClosureEvent, FlexibleRepoFullClosureEvent, CapletFloorletCashFlowEvent, EarlyCloseOutEvent, DepositRollEvent, ConsentEvent, DrawingEvent, CapitalGainsDistributionEvent, ExchangeOfferEvent, DutchAuctionEvent, WorthlessEvent, PutRedemptionEvent, LoanFacilityDelayedCompensationPaymentEvent, InterestPaymentEvent. |
 
 
@@ -20,21 +19,20 @@ A split in the company's shares. Shareholders are given additional company share
 ### Creating from keyword arguments
 
 ```python
-from finbourne.sdk.services.lusid.models.StockSplitEvent import StockSplitEvent
+from finbourne.sdk.services.lusid.models.InterestPaymentEvent import InterestPaymentEvent
 
-instance = StockSplitEvent(
-    payment_date=datetime.now(),  # optional — Date on which the stock split takes effect.
-    ex_date=datetime.now(),  # optional — The first date on which the shares will trade at the post-split price.
-    units_ratio=UnitsRatio(...),  # required
-    record_date=datetime.now(),  # optional — Date you have to be the holder of record in order to receive the additional shares.
-    announcement_date=datetime.now(),  # optional — Date the stock split was announced.
-    fractional_units_cash_price=0.0,  # optional — The cash price per unit paid in lieu when fractional units can not be distributed.
-    fractional_units_cash_currency="...",  # optional — The currency of the cash paid in lieu of fractional units.
+instance = InterestPaymentEvent(
+    record_date=datetime.now(),  # optional — The record-date cut-off determining entitlement. Required. Map from the vendor RecordDate (NOT the  ExDate sentinel).
+    payment_date=datetime.now(),  # optional — The date the interest is paid to noteholders. Required. Also the effective date of the event.
+    response_deadline=datetime.now(),  # optional — The holder-instruction deadline. Required for MandatoryWithChoices; must be null for Mandatory.
+    market_deadline=datetime.now(),  # optional — The market-organisation deadline. Required for MandatoryWithChoices; must be null for Mandatory.
+    announcement_date=datetime.now(),  # optional — The date the event was announced by the issuer. Optional.
+    cash_elections=[],  # required — The cash elections for this event. For Mandatory participation a single declared election is supplied  with IsDeclared, IsDefault and IsChosen all true; for MandatoryWithChoices one entry per offered  currency is supplied, with exactly one declared, one default and one chosen. Every election carries a  per-unit absolute (signed) DividendRate and an ExchangeRate of 1.
     instrument_event_type="..."  # required — The Type of Event. Available values: TransitionEvent, InformationalEvent, OpenEvent, CloseEvent, StockSplitEvent, BondDefaultEvent, CashDividendEvent, AmortisationEvent, CashFlowEvent, ExerciseEvent, ResetEvent, TriggerEvent, RawVendorEvent, InformationalErrorEvent, BondCouponEvent, DividendReinvestmentEvent, AccumulationEvent, BondPrincipalEvent, DividendOptionEvent, MaturityEvent, FxForwardSettlementEvent, ExpiryEvent, ScripDividendEvent, StockDividendEvent, ReverseStockSplitEvent, CapitalDistributionEvent, SpinOffEvent, MergerEvent, FutureExpiryEvent, SwapCashFlowEvent, SwapPrincipalEvent, CreditPremiumCashFlowEvent, CdsCreditEvent, CdxCreditEvent, MbsCouponEvent, MbsPrincipalEvent, BonusIssueEvent, MbsPrincipalWriteOffEvent, MbsInterestDeferralEvent, MbsInterestShortfallEvent, TenderEvent, CallOnIntermediateSecuritiesEvent, IntermediateSecuritiesDistributionEvent, OptionExercisePhysicalEvent, OptionExerciseCashEvent, ProtectionPayoutCashFlowEvent, TermDepositInterestEvent, TermDepositPrincipalEvent, EarlyRedemptionEvent, FutureMarkToMarketEvent, AdjustGlobalCommitmentEvent, ContractInitialisationEvent, DrawdownEvent, LoanInterestRepaymentEvent, UpdateDepositAmountEvent, LoanPrincipalRepaymentEvent, DepositInterestPaymentEvent, DepositCloseEvent, LoanFacilityContractRolloverEvent, RepurchaseOfferEvent, RepoPartialClosureEvent, RepoCashFlowEvent, FlexibleRepoInterestPaymentEvent, FlexibleRepoCashFlowEvent, FlexibleRepoCollateralEvent, ConversionEvent, FlexibleRepoPartialClosureEvent, FlexibleRepoFullClosureEvent, CapletFloorletCashFlowEvent, EarlyCloseOutEvent, DepositRollEvent, ConsentEvent, DrawingEvent, CapitalGainsDistributionEvent, ExchangeOfferEvent, DutchAuctionEvent, WorthlessEvent, PutRedemptionEvent, LoanFacilityDelayedCompensationPaymentEvent, InterestPaymentEvent.
 )
 ```
 
-- [UnitsRatio](UnitsRatio.md)
+- [CashElection](CashElection.md) — used in `cash_elections`
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)
