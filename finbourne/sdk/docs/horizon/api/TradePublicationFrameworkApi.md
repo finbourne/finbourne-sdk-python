@@ -4,13 +4,16 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**get_tpf_file_deliveries**](TradePublicationFrameworkApi.md#get_tpf_file_deliveries) | **GET** /horizon/api/trade-publication-framework/instances/{instanceId}/deliveries | [EXPERIMENTAL] GetTpfFileDeliveries: Search TPF file deliveries for a specific instance
 [**get_tpf_transaction_history_search**](TradePublicationFrameworkApi.md#get_tpf_transaction_history_search) | **GET** /horizon/api/trade-publication-framework/transactions/search | [EXPERIMENTAL] GetTpfTransactionHistorySearch: Endpoint to search TPF transaction by transaction ID and/or instrument identifier, with filtering by instance and date range
 [**get_transaction_payload**](TradePublicationFrameworkApi.md#get_transaction_payload) | **GET** /horizon/api/trade-publication-framework/instances/{instanceId}/runs/{runId}/transactions/{transactionId}/payload | [EXPERIMENTAL] GetTransactionPayload: Transaction payload detail
+[**list_failed_deliveries**](TradePublicationFrameworkApi.md#list_failed_deliveries) | **GET** /horizon/api/trade-publication-framework/instances/{instanceId}/failed | [EXPERIMENTAL] ListFailedDeliveries: List failed deliveries for a given TPF instance, filtered by resolved state, with pagination support.
 [**list_instance_run_history**](TradePublicationFrameworkApi.md#list_instance_run_history) | **GET** /horizon/api/trade-publication-framework/instances/{instanceId}/runs | [EXPERIMENTAL] ListInstanceRunHistory: List run history for a given TPF instance, with pagination support.
 [**list_instances_with_status**](TradePublicationFrameworkApi.md#list_instances_with_status) | **GET** /horizon/api/trade-publication-framework/instances | [EXPERIMENTAL] ListInstancesWithStatus: Lists all instances of the Trade Publication Framework (TPF).
 [**list_run_files**](TradePublicationFrameworkApi.md#list_run_files) | **GET** /horizon/api/trade-publication-framework/instances/{instanceId}/runs/{runId}/files | [EXPERIMENTAL] ListRunFiles: List Files in a run
 [**list_run_transactions**](TradePublicationFrameworkApi.md#list_run_transactions) | **GET** /horizon/api/trade-publication-framework/instances/{instanceId}/runs/{runId}/transactions | [EXPERIMENTAL] ListRunTransactions: List Transactions in a run.
 [**replay_transactions**](TradePublicationFrameworkApi.md#replay_transactions) | **POST** /horizon/api/trade-publication-framework/instances/{instanceId}/replay | [EXPERIMENTAL] ReplayTransactions: Replay one or more transactions through a TPF instance
+[**resolve_failed_delivery**](TradePublicationFrameworkApi.md#resolve_failed_delivery) | **PUT** /horizon/api/trade-publication-framework/instances/{instanceId}/failed/{batchReferenceId}/resolve | [EXPERIMENTAL] ResolveFailedDelivery: Resolve a failed delivery without retry
 [**retry_tpf_sftp_delivery**](TradePublicationFrameworkApi.md#retry_tpf_sftp_delivery) | **POST** /horizon/api/trade-publication-framework/instances/{instanceId}/files/{fileId}/retry-sftp | [EXPERIMENTAL] RetryTpfSftpDelivery: Retry SFTP delivery for a previously sent TPF file
 
 
@@ -36,6 +39,58 @@ from finbourne.sdk.services.horizon.api.trade_publication_framework_api import T
 api_client_factory = SyncApiClientFactory()
 api_instance = api_client_factory.build(TradePublicationFrameworkApi)
 ```
+
+---
+
+# **get_tpf_file_deliveries**
+> PagedResourceListOfTpfFileDeliveryResponse getTpfFileDeliveries = get_tpf_file_deliveries(instance_id, status=status, date_from=date_from, date_to=date_to, limit=limit, page=page)
+
+[EXPERIMENTAL] GetTpfFileDeliveries: Search TPF file deliveries for a specific instance
+
+Retrieve file delivery records for a Trade Publication Framework instance. Returns an aggregated view of file delivery outcomes across all runs. Filterable by delivery status and date range. Supports pagination for large result sets.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(TradePublicationFrameworkApi)
+instance_id = 'instance_id_example' # str
+status = horizon.FileDeliveryStatus() # FileDeliveryStatus (optional)
+date_from = '2013-10-20T19:20:30+01:00' # datetime (optional)
+date_to = '2013-10-20T19:20:30+01:00' # datetime (optional)
+limit = 50 # int (optional)
+page = '' # str (optional)
+api_response = api_instance.get_tpf_file_deliveries(instance_id, status=status, date_from=date_from, date_to=date_to, limit=limit, page=page)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **instance_id** | **str**| Integration instance ID | [required] 
+ **status** | [**FileDeliveryStatus**](.md)| Filter by delivery status (Completed, Error, Pending) | [optional] 
+ **date_from** | **datetime**| Filter deliveries from this time (inclusive) | [optional] 
+ **date_to** | **datetime**| Filter deliveries to this time (inclusive) | [optional] 
+ **limit** | **int**| Page size for pagination (default 50, max 500) | [optional] [default to 50]
+ **page** | **str**| Pagination token from previous response | [optional] [default to &#39;&#39;]
+
+### Return type
+
+[**PagedResourceListOfTpfFileDeliveryResponse**](PagedResourceListOfTpfFileDeliveryResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
 
 ---
 
@@ -132,6 +187,53 @@ Name | Type | Description  | Notes
 **200** | OK |  -  |
 **400** | The details of the input related failure |  -  |
 **404** | The requested TPF instance, run, or transaction payload does not exist. |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **list_failed_deliveries**
+> PagedResourceListOfFailedDeliveryResponse listFailedDeliveries = list_failed_deliveries(instance_id, resolved=resolved, page=page, page_size=page_size)
+
+[EXPERIMENTAL] ListFailedDeliveries: List failed deliveries for a given TPF instance, filtered by resolved state, with pagination support.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(TradePublicationFrameworkApi)
+instance_id = 'instance_id_example' # str
+resolved = False # bool (optional)
+page = '' # str (optional)
+page_size = 100 # int (optional)
+api_response = api_instance.list_failed_deliveries(instance_id, resolved=resolved, page=page, page_size=page_size)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **instance_id** | **str**|  | [required] 
+ **resolved** | **bool**|  | [optional] [default to False]
+ **page** | **str**|  | [optional] [default to &#39;&#39;]
+ **page_size** | **int**|  | [optional] [default to 100]
+
+### Return type
+
+[**PagedResourceListOfFailedDeliveryResponse**](PagedResourceListOfFailedDeliveryResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | The details of the input related failure |  -  |
+**404** | The requested TPF instance does not exist. |  -  |
 **0** | Error response |  -  |
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
@@ -350,6 +452,52 @@ Name | Type | Description  | Notes
 **200** | OK |  -  |
 **400** | The details of the input related failure |  -  |
 **404** | The requested TPF instance does not exist. |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **resolve_failed_delivery**
+> ResolveFailedDeliveryResponse resolveFailedDelivery = resolve_failed_delivery(instance_id, batch_reference_id, resolve_failed_delivery_request)
+
+[EXPERIMENTAL] ResolveFailedDelivery: Resolve a failed delivery without retry
+
+### Example
+
+```python
+api_instance = api_client_factory.build(TradePublicationFrameworkApi)
+instance_id = 'instance_id_example' # str
+batch_reference_id = 'batch_reference_id_example' # str
+resolve_failed_delivery_request = ResolveFailedDeliveryRequest()
+api_response = api_instance.resolve_failed_delivery(instance_id, batch_reference_id, resolve_failed_delivery_request)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **instance_id** | **str**|  | [required] 
+ **batch_reference_id** | **str**|  | [required] 
+ **resolve_failed_delivery_request** | [**ResolveFailedDeliveryRequest**](ResolveFailedDeliveryRequest.md)|  | [required] 
+
+### Return type
+
+[**ResolveFailedDeliveryResponse**](ResolveFailedDeliveryResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | The details of the input related failure |  -  |
+**404** | No failed delivery was found for the batch. |  -  |
+**409** | The failed deliveries for the batch have already been resolved. |  -  |
 **0** | Error response |  -  |
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)

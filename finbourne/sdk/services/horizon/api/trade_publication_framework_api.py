@@ -19,16 +19,22 @@ from typing import overload, Optional, Union, Awaitable
 from typing_extensions import Annotated
 
 import finbourne.sdk.services.horizon.models as packageModels
-from pydantic import Field, StrictInt, StrictStr, field_validator
+from datetime import datetime
+from pydantic import Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Optional
 from typing_extensions import Annotated
+from finbourne.sdk.services.horizon.models.file_delivery_status import FileDeliveryStatus
 from finbourne.sdk.services.horizon.models.instances_response import InstancesResponse
+from finbourne.sdk.services.horizon.models.paged_resource_list_of_failed_delivery_response import PagedResourceListOfFailedDeliveryResponse
 from finbourne.sdk.services.horizon.models.paged_resource_list_of_instance_run_response import PagedResourceListOfInstanceRunResponse
 from finbourne.sdk.services.horizon.models.paged_resource_list_of_run_file_response import PagedResourceListOfRunFileResponse
+from finbourne.sdk.services.horizon.models.paged_resource_list_of_tpf_file_delivery_response import PagedResourceListOfTpfFileDeliveryResponse
 from finbourne.sdk.services.horizon.models.paged_resource_list_of_tpf_transaction_search_response import PagedResourceListOfTpfTransactionSearchResponse
 from finbourne.sdk.services.horizon.models.paged_resource_list_of_transaction_response import PagedResourceListOfTransactionResponse
 from finbourne.sdk.services.horizon.models.replay_transactions_request import ReplayTransactionsRequest
 from finbourne.sdk.services.horizon.models.replay_transactions_response import ReplayTransactionsResponse
+from finbourne.sdk.services.horizon.models.resolve_failed_delivery_request import ResolveFailedDeliveryRequest
+from finbourne.sdk.services.horizon.models.resolve_failed_delivery_response import ResolveFailedDeliveryResponse
 from finbourne.sdk.services.horizon.models.tpf_retry_sftp_response import TpfRetrySftpResponse
 from finbourne.sdk.services.horizon.models.transaction_payload_response import TransactionPayloadResponse
 from finbourne.sdk.api_client import ApiClient
@@ -54,6 +60,172 @@ class TradePublicationFrameworkApi:
             self.api_client = api_client
         else:
             self.sync_api_client = SyncApiClient.get_default()
+
+    @validate_call
+    def get_tpf_file_deliveries(self, instance_id: StrictStr, status: Optional[str] = None, date_from: Optional[datetime] = None, date_to: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfTpfFileDeliveryResponse:
+        """[EXPERIMENTAL] GetTpfFileDeliveries: Search TPF file deliveries for a specific instance  # noqa: E501
+
+        Retrieve file delivery records for a Trade Publication Framework instance. Returns an aggregated view of file delivery outcomes across all runs. Filterable by delivery status and date range. Supports pagination for large result sets.  # noqa: E501
+        :param instance_id: Integration instance ID (required)
+        :type instance_id: str
+        :param status: Filter by delivery status (Completed, Error, Pending)
+        :type status: FileDeliveryStatus
+        :param date_from: Filter deliveries from this time (inclusive)
+        :type date_from: datetime
+        :param date_to: Filter deliveries to this time (inclusive)
+        :type date_to: datetime
+        :param limit: Page size for pagination (default 50, max 500)
+        :type limit: int
+        :param page: Pagination token from previous response
+        :type page: str
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: PagedResourceListOfTpfFileDeliveryResponse
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_tpf_file_deliveries_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.get_tpf_file_deliveries_with_http_info(instance_id, status, date_from, date_to, limit, page, **kwargs)
+        return response.data
+
+    @validate_call
+    def get_tpf_file_deliveries_with_http_info(self, instance_id: StrictStr, status: Optional[str] = None, date_from: Optional[datetime] = None, date_to: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfTpfFileDeliveryResponse]:
+        """[EXPERIMENTAL] GetTpfFileDeliveries: Search TPF file deliveries for a specific instance  # noqa: E501
+
+        Retrieve file delivery records for a Trade Publication Framework instance. Returns an aggregated view of file delivery outcomes across all runs. Filterable by delivery status and date range. Supports pagination for large result sets.  # noqa: E501
+        :param instance_id: Integration instance ID (required)
+        :type instance_id: str
+        :param status: Filter by delivery status (Completed, Error, Pending)
+        :type status: FileDeliveryStatus
+        :param date_from: Filter deliveries from this time (inclusive)
+        :type date_from: datetime
+        :param date_to: Filter deliveries to this time (inclusive)
+        :type date_to: datetime
+        :param limit: Page size for pagination (default 50, max 500)
+        :type limit: int
+        :param page: Pagination token from previous response
+        :type page: str
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(PagedResourceListOfTpfFileDeliveryResponse, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'instance_id',
+            'status',
+            'date_from',
+            'date_to',
+            'limit',
+            'page'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_tpf_file_deliveries" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['instance_id'] is not None:
+            _path_params['instanceId'] = _params['instance_id']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('status') is not None:  # noqa: E501
+            _query_params.append(('status', _params['status']))
+
+        if _params.get('date_from') is not None:  # noqa: E501
+            if isinstance(_params['date_from'], datetime):
+                _query_params.append(('dateFrom', _params['date_from'].strftime(self.sync_api_client.configuration.datetime_format)))
+            else:
+                _query_params.append(('dateFrom', _params['date_from']))
+
+        if _params.get('date_to') is not None:  # noqa: E501
+            if isinstance(_params['date_to'], datetime):
+                _query_params.append(('dateTo', _params['date_to'].strftime(self.sync_api_client.configuration.datetime_format)))
+            else:
+                _query_params.append(('dateTo', _params['date_to']))
+
+        if _params.get('limit') is not None:  # noqa: E501
+            _query_params.append(('limit', _params['limit']))
+
+        if _params.get('page') is not None:  # noqa: E501
+            _query_params.append(('page', _params['page']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "PagedResourceListOfTpfFileDeliveryResponse",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/horizon/api/trade-publication-framework/instances/{instanceId}/deliveries', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
     def get_tpf_transaction_history_search(self, transaction_id: Optional[StrictStr] = None, instrument_id: Optional[StrictStr] = None, date_from: Optional[StrictStr] = None, date_to: Optional[StrictStr] = None, status: Optional[StrictStr] = None, instance_id: Optional[StrictStr] = None, page_size: Optional[int] = None, page_token: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfTpfTransactionSearchResponse:
@@ -349,6 +521,149 @@ class TradePublicationFrameworkApi:
 
         return self.sync_api_client.call_api(
             '/horizon/api/trade-publication-framework/instances/{instanceId}/runs/{runId}/transactions/{transactionId}/payload', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    def list_failed_deliveries(self, instance_id: StrictStr, resolved: Optional[bool] = None, page: Optional[StrictStr] = None, page_size: Optional[int] = None, **kwargs) -> PagedResourceListOfFailedDeliveryResponse:
+        """[EXPERIMENTAL] ListFailedDeliveries: List failed deliveries for a given TPF instance, filtered by resolved state, with pagination support.  # noqa: E501
+
+        :param instance_id: (required)
+        :type instance_id: str
+        :param resolved:
+        :type resolved: bool
+        :param page:
+        :type page: str
+        :param page_size:
+        :type page_size: int
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: PagedResourceListOfFailedDeliveryResponse
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the list_failed_deliveries_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.list_failed_deliveries_with_http_info(instance_id, resolved, page, page_size, **kwargs)
+        return response.data
+
+    @validate_call
+    def list_failed_deliveries_with_http_info(self, instance_id: StrictStr, resolved: Optional[bool] = None, page: Optional[StrictStr] = None, page_size: Optional[int] = None, **kwargs) -> ApiResponse[PagedResourceListOfFailedDeliveryResponse]:
+        """[EXPERIMENTAL] ListFailedDeliveries: List failed deliveries for a given TPF instance, filtered by resolved state, with pagination support.  # noqa: E501
+
+        :param instance_id: (required)
+        :type instance_id: str
+        :param resolved:
+        :type resolved: bool
+        :param page:
+        :type page: str
+        :param page_size:
+        :type page_size: int
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(PagedResourceListOfFailedDeliveryResponse, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'instance_id',
+            'resolved',
+            'page',
+            'page_size'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method list_failed_deliveries" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['instance_id'] is not None:
+            _path_params['instanceId'] = _params['instance_id']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('resolved') is not None:  # noqa: E501
+            _query_params.append(('resolved', _params['resolved']))
+
+        if _params.get('page') is not None:  # noqa: E501
+            _query_params.append(('page', _params['page']))
+
+        if _params.get('page_size') is not None:  # noqa: E501
+            _query_params.append(('pageSize', _params['page_size']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "PagedResourceListOfFailedDeliveryResponse",
+            '400': "LusidValidationProblemDetails",
+            '404': None,
+        }
+
+        return self.sync_api_client.call_api(
+            '/horizon/api/trade-publication-framework/instances/{instanceId}/failed', 'GET',
             _path_params,
             _query_params,
             _header_params,
@@ -1036,6 +1351,149 @@ class TradePublicationFrameworkApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    def resolve_failed_delivery(self, instance_id: StrictStr, batch_reference_id: StrictStr, resolve_failed_delivery_request: ResolveFailedDeliveryRequest, **kwargs) -> ResolveFailedDeliveryResponse:
+        """[EXPERIMENTAL] ResolveFailedDelivery: Resolve a failed delivery without retry  # noqa: E501
+
+        :param instance_id: (required)
+        :type instance_id: str
+        :param batch_reference_id: (required)
+        :type batch_reference_id: str
+        :param resolve_failed_delivery_request: (required)
+        :type resolve_failed_delivery_request: ResolveFailedDeliveryRequest
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: ResolveFailedDeliveryResponse
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the resolve_failed_delivery_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.resolve_failed_delivery_with_http_info(instance_id, batch_reference_id, resolve_failed_delivery_request, **kwargs)
+        return response.data
+
+    @validate_call
+    def resolve_failed_delivery_with_http_info(self, instance_id: StrictStr, batch_reference_id: StrictStr, resolve_failed_delivery_request: ResolveFailedDeliveryRequest, **kwargs) -> ApiResponse[ResolveFailedDeliveryResponse]:
+        """[EXPERIMENTAL] ResolveFailedDelivery: Resolve a failed delivery without retry  # noqa: E501
+
+        :param instance_id: (required)
+        :type instance_id: str
+        :param batch_reference_id: (required)
+        :type batch_reference_id: str
+        :param resolve_failed_delivery_request: (required)
+        :type resolve_failed_delivery_request: ResolveFailedDeliveryRequest
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(ResolveFailedDeliveryResponse, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'instance_id',
+            'batch_reference_id',
+            'resolve_failed_delivery_request'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method resolve_failed_delivery" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['instance_id'] is not None:
+            _path_params['instanceId'] = _params['instance_id']
+
+        if _params['batch_reference_id'] is not None:
+            _path_params['batchReferenceId'] = _params['batch_reference_id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['resolve_failed_delivery_request'] is not None:
+            _body_params = _params['resolve_failed_delivery_request']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.sync_api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "ResolveFailedDeliveryResponse",
+            '400': "LusidValidationProblemDetails",
+            '404': None,
+            '409': None,
+        }
+
+        return self.sync_api_client.call_api(
+            '/horizon/api/trade-publication-framework/instances/{instanceId}/failed/{batchReferenceId}/resolve', 'PUT',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     def retry_tpf_sftp_delivery(self, instance_id: StrictStr, file_id: int, **kwargs) -> TpfRetrySftpResponse:
         """[EXPERIMENTAL] RetryTpfSftpDelivery: Retry SFTP delivery for a previously sent TPF file  # noqa: E501
 
@@ -1166,6 +1624,173 @@ class TradePublicationFrameworkApi:
 
   # --- ASYNC API METHODS ---
 
+
+    @validate_call
+    async def get_tpf_file_deliveries_async(self, instance_id: StrictStr, status: Optional[str] = None, date_from: Optional[datetime] = None, date_to: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfTpfFileDeliveryResponse:
+            """[EXPERIMENTAL] GetTpfFileDeliveries: Search TPF file deliveries for a specific instance  # noqa: E501
+            Retrieve file delivery records for a Trade Publication Framework instance. Returns an aggregated view of file delivery outcomes across all runs. Filterable by delivery status and date range. Supports pagination for large result sets.  # noqa: E501
+            
+            :param instance_id: Integration instance ID (required)
+            :type instance_id: str
+            :param status: Filter by delivery status (Completed, Error, Pending)
+            :type status: FileDeliveryStatus
+            :param date_from: Filter deliveries from this time (inclusive)
+            :type date_from: datetime
+            :param date_to: Filter deliveries to this time (inclusive)
+            :type date_to: datetime
+            :param limit: Page size for pagination (default 50, max 500)
+            :type limit: int
+            :param page: Pagination token from previous response
+            :type page: str
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: PagedResourceListOfTpfFileDeliveryResponse
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the get_tpf_file_deliveries_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.get_tpf_file_deliveries_with_http_info_async(instance_id, status, date_from, date_to, limit, page, **kwargs)
+            return response.data
+
+    @validate_call
+    async def get_tpf_file_deliveries_with_http_info_async(self, instance_id: StrictStr, status: Optional[str] = None, date_from: Optional[datetime] = None, date_to: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfTpfFileDeliveryResponse]:
+            """[EXPERIMENTAL] GetTpfFileDeliveries: Search TPF file deliveries for a specific instance  # noqa: E501
+
+            Retrieve file delivery records for a Trade Publication Framework instance. Returns an aggregated view of file delivery outcomes across all runs. Filterable by delivery status and date range. Supports pagination for large result sets.  # noqa: E501
+
+            :param instance_id: Integration instance ID (required)
+            :type instance_id: str
+            :param status: Filter by delivery status (Completed, Error, Pending)
+            :type status: FileDeliveryStatus
+            :param date_from: Filter deliveries from this time (inclusive)
+            :type date_from: datetime
+            :param date_to: Filter deliveries to this time (inclusive)
+            :type date_to: datetime
+            :param limit: Page size for pagination (default 50, max 500)
+            :type limit: int
+            :param page: Pagination token from previous response
+            :type page: str
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(PagedResourceListOfTpfFileDeliveryResponse, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'instance_id',
+                'status',
+                'date_from',
+                'date_to',
+                'limit',
+                'page'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method get_tpf_file_deliveries" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['instance_id'] is not None:
+                _path_params['instanceId'] = _params['instance_id']
+
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('status') is not None:  # noqa: E501
+                _query_params.append(('status', _params['status']))
+
+            if _params.get('date_from') is not None:  # noqa: E501
+                if isinstance(_params['date_from'], datetime):
+                    _query_params.append(('dateFrom', _params['date_from'].strftime(self.api_client.configuration.datetime_format)))
+                else:
+                    _query_params.append(('dateFrom', _params['date_from']))
+
+            if _params.get('date_to') is not None:  # noqa: E501
+                if isinstance(_params['date_to'], datetime):
+                    _query_params.append(('dateTo', _params['date_to'].strftime(self.api_client.configuration.datetime_format)))
+                else:
+                    _query_params.append(('dateTo', _params['date_to']))
+
+            if _params.get('limit') is not None:  # noqa: E501
+                _query_params.append(('limit', _params['limit']))
+
+            if _params.get('page') is not None:  # noqa: E501
+                _query_params.append(('page', _params['page']))
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['application/json'])  # noqa: E501
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "PagedResourceListOfTpfFileDeliveryResponse",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/horizon/api/trade-publication-framework/instances/{instanceId}/deliveries', 'GET',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
     async def get_tpf_transaction_history_search_async(self, transaction_id: Optional[StrictStr] = None, instrument_id: Optional[StrictStr] = None, date_from: Optional[StrictStr] = None, date_to: Optional[StrictStr] = None, status: Optional[StrictStr] = None, instance_id: Optional[StrictStr] = None, page_size: Optional[int] = None, page_token: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfTpfTransactionSearchResponse:
@@ -1463,6 +2088,150 @@ class TradePublicationFrameworkApi:
 
             return await self.api_client.call_api_async(
                 '/horizon/api/trade-publication-framework/instances/{instanceId}/runs/{runId}/transactions/{transactionId}/payload', 'GET',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def list_failed_deliveries_async(self, instance_id: StrictStr, resolved: Optional[bool] = None, page: Optional[StrictStr] = None, page_size: Optional[int] = None, **kwargs) -> PagedResourceListOfFailedDeliveryResponse:
+            """[EXPERIMENTAL] ListFailedDeliveries: List failed deliveries for a given TPF instance, filtered by resolved state, with pagination support.  # noqa: E501
+            
+            :param instance_id: (required)
+            :type instance_id: str
+            :param resolved:
+            :type resolved: bool
+            :param page:
+            :type page: str
+            :param page_size:
+            :type page_size: int
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: PagedResourceListOfFailedDeliveryResponse
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the list_failed_deliveries_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.list_failed_deliveries_with_http_info_async(instance_id, resolved, page, page_size, **kwargs)
+            return response.data
+
+    @validate_call
+    async def list_failed_deliveries_with_http_info_async(self, instance_id: StrictStr, resolved: Optional[bool] = None, page: Optional[StrictStr] = None, page_size: Optional[int] = None, **kwargs) -> ApiResponse[PagedResourceListOfFailedDeliveryResponse]:
+            """[EXPERIMENTAL] ListFailedDeliveries: List failed deliveries for a given TPF instance, filtered by resolved state, with pagination support.  # noqa: E501
+
+
+            :param instance_id: (required)
+            :type instance_id: str
+            :param resolved:
+            :type resolved: bool
+            :param page:
+            :type page: str
+            :param page_size:
+            :type page_size: int
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(PagedResourceListOfFailedDeliveryResponse, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'instance_id',
+                'resolved',
+                'page',
+                'page_size'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method list_failed_deliveries" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['instance_id'] is not None:
+                _path_params['instanceId'] = _params['instance_id']
+
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('resolved') is not None:  # noqa: E501
+                _query_params.append(('resolved', _params['resolved']))
+
+            if _params.get('page') is not None:  # noqa: E501
+                _query_params.append(('page', _params['page']))
+
+            if _params.get('page_size') is not None:  # noqa: E501
+                _query_params.append(('pageSize', _params['page_size']))
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['application/json'])  # noqa: E501
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "PagedResourceListOfFailedDeliveryResponse",
+                '400': "LusidValidationProblemDetails",
+                '404': None,
+            }
+
+            return await self.api_client.call_api_async(
+                '/horizon/api/trade-publication-framework/instances/{instanceId}/failed', 'GET',
                 _path_params,
                 _query_params,
                 _header_params,
@@ -2139,6 +2908,150 @@ class TradePublicationFrameworkApi:
 
             return await self.api_client.call_api_async(
                 '/horizon/api/trade-publication-framework/instances/{instanceId}/replay', 'POST',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def resolve_failed_delivery_async(self, instance_id: StrictStr, batch_reference_id: StrictStr, resolve_failed_delivery_request: ResolveFailedDeliveryRequest, **kwargs) -> ResolveFailedDeliveryResponse:
+            """[EXPERIMENTAL] ResolveFailedDelivery: Resolve a failed delivery without retry  # noqa: E501
+            
+            :param instance_id: (required)
+            :type instance_id: str
+            :param batch_reference_id: (required)
+            :type batch_reference_id: str
+            :param resolve_failed_delivery_request: (required)
+            :type resolve_failed_delivery_request: ResolveFailedDeliveryRequest
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: ResolveFailedDeliveryResponse
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the resolve_failed_delivery_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.resolve_failed_delivery_with_http_info_async(instance_id, batch_reference_id, resolve_failed_delivery_request, **kwargs)
+            return response.data
+
+    @validate_call
+    async def resolve_failed_delivery_with_http_info_async(self, instance_id: StrictStr, batch_reference_id: StrictStr, resolve_failed_delivery_request: ResolveFailedDeliveryRequest, **kwargs) -> ApiResponse[ResolveFailedDeliveryResponse]:
+            """[EXPERIMENTAL] ResolveFailedDelivery: Resolve a failed delivery without retry  # noqa: E501
+
+
+            :param instance_id: (required)
+            :type instance_id: str
+            :param batch_reference_id: (required)
+            :type batch_reference_id: str
+            :param resolve_failed_delivery_request: (required)
+            :type resolve_failed_delivery_request: ResolveFailedDeliveryRequest
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(ResolveFailedDeliveryResponse, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'instance_id',
+                'batch_reference_id',
+                'resolve_failed_delivery_request'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method resolve_failed_delivery" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['instance_id'] is not None:
+                _path_params['instanceId'] = _params['instance_id']
+
+            if _params['batch_reference_id'] is not None:
+                _path_params['batchReferenceId'] = _params['batch_reference_id']
+
+
+            # process the query parameters
+            _query_params = []
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            if _params['resolve_failed_delivery_request'] is not None:
+                _body_params = _params['resolve_failed_delivery_request']
+
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['application/json'])  # noqa: E501
+
+            # set the HTTP header `Content-Type`
+            _content_types_list = _params.get('_content_type',
+                self.api_client.select_header_content_type(
+                    ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+            if _content_types_list:
+                    _header_params['Content-Type'] = _content_types_list
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "ResolveFailedDeliveryResponse",
+                '400': "LusidValidationProblemDetails",
+                '404': None,
+                '409': None,
+            }
+
+            return await self.api_client.call_api_async(
+                '/horizon/api/trade-publication-framework/instances/{instanceId}/failed/{batchReferenceId}/resolve', 'PUT',
                 _path_params,
                 _query_params,
                 _header_params,

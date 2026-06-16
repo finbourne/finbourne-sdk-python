@@ -18,6 +18,7 @@ from __future__ import absolute_import
 from finbourne.sdk.services.lusid.api.abor_api import AborApi
 from finbourne.sdk.services.lusid.api.abor_configuration_api import AborConfigurationApi
 from finbourne.sdk.services.lusid.api.address_key_definition_api import AddressKeyDefinitionApi
+from finbourne.sdk.services.lusid.api.address_key_alias_api import AddressKeyAliasApi
 from finbourne.sdk.services.lusid.api.aggregated_returns_api import AggregatedReturnsApi
 from finbourne.sdk.services.lusid.api.aggregation_api import AggregationApi
 from finbourne.sdk.services.lusid.api.allocations_api import AllocationsApi
@@ -128,6 +129,7 @@ from finbourne.sdk.services.lusid.models.add_business_days_to_date_request impor
 from finbourne.sdk.services.lusid.models.add_business_days_to_date_response import AddBusinessDaysToDateResponse
 from finbourne.sdk.services.lusid.models.additional_payment import AdditionalPayment
 from finbourne.sdk.services.lusid.models.address_definition import AddressDefinition
+from finbourne.sdk.services.lusid.models.address_key_alias import AddressKeyAlias
 from finbourne.sdk.services.lusid.models.address_key_compliance_parameter import AddressKeyComplianceParameter
 from finbourne.sdk.services.lusid.models.address_key_definition import AddressKeyDefinition
 from finbourne.sdk.services.lusid.models.address_key_filter import AddressKeyFilter
@@ -605,6 +607,7 @@ from finbourne.sdk.services.lusid.models.general_ledger_profile_mapping import G
 from finbourne.sdk.services.lusid.models.general_ledger_profile_request import GeneralLedgerProfileRequest
 from finbourne.sdk.services.lusid.models.general_ledger_profile_response import GeneralLedgerProfileResponse
 from finbourne.sdk.services.lusid.models.generated_event_diagnostics import GeneratedEventDiagnostics
+from finbourne.sdk.services.lusid.models.get_address_key_alias_response import GetAddressKeyAliasResponse
 from finbourne.sdk.services.lusid.models.get_cds_flow_conventions_response import GetCdsFlowConventionsResponse
 from finbourne.sdk.services.lusid.models.get_complex_market_data_response import GetComplexMarketDataResponse
 from finbourne.sdk.services.lusid.models.get_counterparty_agreement_response import GetCounterpartyAgreementResponse
@@ -900,6 +903,7 @@ from finbourne.sdk.services.lusid.models.paged_resource_list_of_fund_calendar_en
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_fund_calendar_entry import PagedResourceListOfFundCalendarEntry
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_fund_configuration import PagedResourceListOfFundConfiguration
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_general_ledger_profile_response import PagedResourceListOfGeneralLedgerProfileResponse
+from finbourne.sdk.services.lusid.models.paged_resource_list_of_get_address_key_alias_response import PagedResourceListOfGetAddressKeyAliasResponse
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_group_reconciliation_comparison_result import PagedResourceListOfGroupReconciliationComparisonResult
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_group_reconciliation_comparison_ruleset import PagedResourceListOfGroupReconciliationComparisonRuleset
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_group_reconciliation_definition import PagedResourceListOfGroupReconciliationDefinition
@@ -1416,6 +1420,7 @@ from finbourne.sdk.services.lusid.models.update_timeline_request import UpdateTi
 from finbourne.sdk.services.lusid.models.update_transaction_fee_type_request import UpdateTransactionFeeTypeRequest
 from finbourne.sdk.services.lusid.models.update_unit_request import UpdateUnitRequest
 from finbourne.sdk.services.lusid.models.update_valuation_point_request import UpdateValuationPointRequest
+from finbourne.sdk.services.lusid.models.upsert_address_key_alias_request import UpsertAddressKeyAliasRequest
 from finbourne.sdk.services.lusid.models.upsert_cds_flow_conventions_request import UpsertCdsFlowConventionsRequest
 from finbourne.sdk.services.lusid.models.upsert_complex_market_data_request import UpsertComplexMarketDataRequest
 from finbourne.sdk.services.lusid.models.upsert_compliance_rule_request import UpsertComplianceRuleRequest
@@ -1532,6 +1537,7 @@ __all__ = [
     "AborApi",
     "AborConfigurationApi",
     "AddressKeyDefinitionApi",
+    "AddressKeyAliasApi",
     "AggregatedReturnsApi",
     "AggregationApi",
     "AllocationsApi",
@@ -1640,6 +1646,7 @@ __all__ = [
     "AddBusinessDaysToDateResponse",
     "AdditionalPayment",
     "AddressDefinition",
+    "AddressKeyAlias",
     "AddressKeyComplianceParameter",
     "AddressKeyDefinition",
     "AddressKeyFilter",
@@ -2117,6 +2124,7 @@ __all__ = [
     "GeneralLedgerProfileRequest",
     "GeneralLedgerProfileResponse",
     "GeneratedEventDiagnostics",
+    "GetAddressKeyAliasResponse",
     "GetCdsFlowConventionsResponse",
     "GetComplexMarketDataResponse",
     "GetCounterpartyAgreementResponse",
@@ -2412,6 +2420,7 @@ __all__ = [
     "PagedResourceListOfFundCalendarEntry",
     "PagedResourceListOfFundConfiguration",
     "PagedResourceListOfGeneralLedgerProfileResponse",
+    "PagedResourceListOfGetAddressKeyAliasResponse",
     "PagedResourceListOfGroupReconciliationComparisonResult",
     "PagedResourceListOfGroupReconciliationComparisonRuleset",
     "PagedResourceListOfGroupReconciliationDefinition",
@@ -2928,6 +2937,7 @@ __all__ = [
     "UpdateTransactionFeeTypeRequest",
     "UpdateUnitRequest",
     "UpdateValuationPointRequest",
+    "UpsertAddressKeyAliasRequest",
     "UpsertCdsFlowConventionsRequest",
     "UpsertComplexMarketDataRequest",
     "UpsertComplianceRuleRequest",

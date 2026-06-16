@@ -4,6 +4,7 @@
 from finbourne.sdk.services.lusid.api.abor_api import AborApi
 from finbourne.sdk.services.lusid.api.abor_configuration_api import AborConfigurationApi
 from finbourne.sdk.services.lusid.api.address_key_definition_api import AddressKeyDefinitionApi
+from finbourne.sdk.services.lusid.api.address_key_alias_api import AddressKeyAliasApi
 from finbourne.sdk.services.lusid.api.aggregated_returns_api import AggregatedReturnsApi
 from finbourne.sdk.services.lusid.api.aggregation_api import AggregationApi
 from finbourne.sdk.services.lusid.api.allocations_api import AllocationsApi
@@ -90,6 +91,7 @@ __all__ = [
     "AborApi",
     "AborConfigurationApi",
     "AddressKeyDefinitionApi",
+    "AddressKeyAliasApi",
     "AggregatedReturnsApi",
     "AggregationApi",
     "AllocationsApi",

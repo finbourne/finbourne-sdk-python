@@ -26,7 +26,9 @@ from finbourne.sdk.services.horizon.models.enrichment_response import Enrichment
 from finbourne.sdk.services.horizon.models.execute_instance_response import ExecuteInstanceResponse
 from finbourne.sdk.services.horizon.models.external_log_insertion_request import ExternalLogInsertionRequest
 from finbourne.sdk.services.horizon.models.external_log_record import ExternalLogRecord
+from finbourne.sdk.services.horizon.models.failed_delivery_response import FailedDeliveryResponse
 from finbourne.sdk.services.horizon.models.field_mapping import FieldMapping
+from finbourne.sdk.services.horizon.models.file_delivery_status import FileDeliveryStatus
 from finbourne.sdk.services.horizon.models.file_destination_response import FileDestinationResponse
 from finbourne.sdk.services.horizon.models.file_details import FileDetails
 from finbourne.sdk.services.horizon.models.i_field_mapping import IFieldMapping
@@ -71,6 +73,7 @@ from finbourne.sdk.services.horizon.models.open_figi_data import OpenFigiData
 from finbourne.sdk.services.horizon.models.open_figi_parameter_option_name import OpenFigiParameterOptionName
 from finbourne.sdk.services.horizon.models.open_figi_perm_id_result import OpenFigiPermIdResult
 from finbourne.sdk.services.horizon.models.open_figi_search_result import OpenFigiSearchResult
+from finbourne.sdk.services.horizon.models.paged_resource_list_of_failed_delivery_response import PagedResourceListOfFailedDeliveryResponse
 from finbourne.sdk.services.horizon.models.paged_resource_list_of_i_field_mapping import PagedResourceListOfIFieldMapping
 from finbourne.sdk.services.horizon.models.paged_resource_list_of_i_integration_log_response import PagedResourceListOfIIntegrationLogResponse
 from finbourne.sdk.services.horizon.models.paged_resource_list_of_i_property_mapping import PagedResourceListOfIPropertyMapping
@@ -79,6 +82,7 @@ from finbourne.sdk.services.horizon.models.paged_resource_list_of_integration_ru
 from finbourne.sdk.services.horizon.models.paged_resource_list_of_process_information import PagedResourceListOfProcessInformation
 from finbourne.sdk.services.horizon.models.paged_resource_list_of_process_update_result import PagedResourceListOfProcessUpdateResult
 from finbourne.sdk.services.horizon.models.paged_resource_list_of_run_file_response import PagedResourceListOfRunFileResponse
+from finbourne.sdk.services.horizon.models.paged_resource_list_of_tpf_file_delivery_response import PagedResourceListOfTpfFileDeliveryResponse
 from finbourne.sdk.services.horizon.models.paged_resource_list_of_tpf_transaction_search_response import PagedResourceListOfTpfTransactionSearchResponse
 from finbourne.sdk.services.horizon.models.paged_resource_list_of_transaction_response import PagedResourceListOfTransactionResponse
 from finbourne.sdk.services.horizon.models.paged_resource_list_of_vendor_product import PagedResourceListOfVendorProduct
@@ -95,10 +99,13 @@ from finbourne.sdk.services.horizon.models.query_specification import QuerySpeci
 from finbourne.sdk.services.horizon.models.replay_options import ReplayOptions
 from finbourne.sdk.services.horizon.models.replay_transactions_request import ReplayTransactionsRequest
 from finbourne.sdk.services.horizon.models.replay_transactions_response import ReplayTransactionsResponse
+from finbourne.sdk.services.horizon.models.resolve_failed_delivery_request import ResolveFailedDeliveryRequest
+from finbourne.sdk.services.horizon.models.resolve_failed_delivery_response import ResolveFailedDeliveryResponse
 from finbourne.sdk.services.horizon.models.resource_id import ResourceId
 from finbourne.sdk.services.horizon.models.row_details import RowDetails
 from finbourne.sdk.services.horizon.models.run_file_response import RunFileResponse
 from finbourne.sdk.services.horizon.models.tpf_file_delivery_info import TpfFileDeliveryInfo
+from finbourne.sdk.services.horizon.models.tpf_file_delivery_response import TpfFileDeliveryResponse
 from finbourne.sdk.services.horizon.models.tpf_portfolio import TpfPortfolio
 from finbourne.sdk.services.horizon.models.tpf_retry_sftp_response import TpfRetrySftpResponse
 from finbourne.sdk.services.horizon.models.tpf_transaction_search_response import TpfTransactionSearchResponse
@@ -128,7 +135,9 @@ __all__ = [
     "ExecuteInstanceResponse",
     "ExternalLogInsertionRequest",
     "ExternalLogRecord",
+    "FailedDeliveryResponse",
     "FieldMapping",
+    "FileDeliveryStatus",
     "FileDestinationResponse",
     "FileDetails",
     "IFieldMapping",
@@ -173,6 +182,7 @@ __all__ = [
     "OpenFigiParameterOptionName",
     "OpenFigiPermIdResult",
     "OpenFigiSearchResult",
+    "PagedResourceListOfFailedDeliveryResponse",
     "PagedResourceListOfIFieldMapping",
     "PagedResourceListOfIIntegrationLogResponse",
     "PagedResourceListOfIPropertyMapping",
@@ -181,6 +191,7 @@ __all__ = [
     "PagedResourceListOfProcessInformation",
     "PagedResourceListOfProcessUpdateResult",
     "PagedResourceListOfRunFileResponse",
+    "PagedResourceListOfTpfFileDeliveryResponse",
     "PagedResourceListOfTpfTransactionSearchResponse",
     "PagedResourceListOfTransactionResponse",
     "PagedResourceListOfVendorProduct",
@@ -197,10 +208,13 @@ __all__ = [
     "ReplayOptions",
     "ReplayTransactionsRequest",
     "ReplayTransactionsResponse",
+    "ResolveFailedDeliveryRequest",
+    "ResolveFailedDeliveryResponse",
     "ResourceId",
     "RowDetails",
     "RunFileResponse",
     "TpfFileDeliveryInfo",
+    "TpfFileDeliveryResponse",
     "TpfPortfolio",
     "TpfRetrySftpResponse",
     "TpfTransactionSearchResponse",
