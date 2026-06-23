@@ -21,22 +21,34 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
-from finbourne.sdk.services.lusid.models.cash_election import CashElection
 from finbourne.sdk.services.lusid.models.instrument_event import InstrumentEvent
+from finbourne.sdk.services.lusid.models.lapse_election import LapseElection
+from finbourne.sdk.services.lusid.models.new_instrument import NewInstrument
+from finbourne.sdk.services.lusid.models.security_offer_election import SecurityOfferElection
 
 
-class CapitalGainsDistributionEvent(InstrumentEvent):
+class PriorityIssueEvent(InstrumentEvent):
     """
-    Capital Gains Distribution event (CAPG). Distributes realised capital gains from a fund's asset sales  as a gross cash rate per eligible unit. Supports a currency-choice variant (CHOS) under  MandatoryWithChoices participation.  # noqa: E501
+    Priority Issue Event (PRIO) — a voluntary corporate action in which an issuer offers existing  security holders preferential rights to subscribe for new securities at a defined subscription  price before the offer is opened to the wider market. Holders may subscribe up to a basic  entitlement (SECU) and, where offered, apply for additional securities beyond the basic  entitlement (OVER, subject to proration). No instruction (NOAC) results in no transaction.  # noqa: E501
     """
-    payment_date: Optional[datetime] = Field(default=None, description="The date the cash distribution is paid to shareholders. Required.", alias="paymentDate")
-    ex_date: Optional[datetime] = Field(default=None, description="The first business day on which the distribution is not owed to the buying party. Required.", alias="exDate")
-    record_date: Optional[datetime] = Field(default=None, description="The date positions are struck for entitlement. Optional.", alias="recordDate")
-    announcement_date: Optional[datetime] = Field(default=None, description="The date the event was announced. Optional.", alias="announcementDate")
-    cash_elections: Optional[List[CashElection]] = Field(default=None, description="The cash elections for this event. For Mandatory participation supply a single declared election;  for MandatoryWithChoices supply one per available currency, with IsDeclared set on the declared  option and IsChosen on the elected option.", alias="cashElections")
+    announcement_date: Optional[datetime] = Field(default=None, description="Date on which the priority issue was announced. Optional, informational.", alias="announcementDate")
+    ex_date: Optional[datetime] = Field(default=None, description="First business day on which the security trades without the entitlement. Optional.  When not supplied, transaction-template generation falls back to RecordDate", alias="exDate")
+    record_date: Optional[datetime] = Field(default=None, description="The entitlement determination date — holders of record on this date are eligible to subscribe.", alias="recordDate")
+    response_deadline: Optional[datetime] = Field(default=None, description="The account-servicer instruction deadline. Must be less than or equal to MarketDeadline.", alias="responseDeadline")
+    market_deadline: Optional[datetime] = Field(default=None, description="The issuer-agent deadline.", alias="marketDeadline")
+    payment_date: Optional[datetime] = Field(default=None, description="Date on which cash is debited and the new securities are credited.", alias="paymentDate")
+    security_settlement_date: Optional[datetime] = Field(default=None, description="Date the security leg settles when it differs from the cash leg. Optional.  When not supplied, transaction-template generation falls back to PaymentDate", alias="securitySettlementDate")
+    subscription_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The subscription price per new unit. Applies to both SECU and OVER subscriptions.  Must be greater than zero.", alias="subscriptionPrice")
+    subscription_currency:  Optional[StrictStr] = Field(default=None,alias="subscriptionCurrency", description="Currency of the SubscriptionPrice.") 
+    new_instrument: Optional[NewInstrument] = Field(default=None, alias="newInstrument")
+    proration_rate: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The proration rate applied to OVER subscriptions when the offer is oversubscribed.  Treated as 1 (full allocation) when not supplied. Must be greater than 0 and less than  or equal to 1. SECU basic entitlement is never prorated.", alias="prorationRate")
+    fractional_units_cash_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Price per fractional unit used to compute cash-in-lieu for fractional entitlement remainders.  When not supplied, fractional residuals are discarded with no cash-in-lieu.  Forms an optional pair with FractionalUnitsCashCurrency — both must be supplied together.", alias="fractionalUnitsCashPrice")
+    fractional_units_cash_currency:  Optional[StrictStr] = Field(default=None,alias="fractionalUnitsCashCurrency", description="Currency of FractionalUnitsCashPrice. Required if and only if FractionalUnitsCashPrice is supplied.") 
+    security_offer_elections: Optional[List[SecurityOfferElection]] = Field(default=None, description="Security offer elections — exactly one entry keyed 'SECU' (basic entitlement) and an optional  entry keyed 'OVER' (over-subscription) when the issuer offers the over-subscription facility.", alias="securityOfferElections")
+    lapse_elections: Optional[List[LapseElection]] = Field(default=None, description="Lapse elections — exactly one entry keyed 'NOAC', recording the holder's explicit no-action election.", alias="lapseElections")
     instrument_event_type:  StrictStr = Field(...,alias="instrumentEventType", description="The Type of Event. Available values: TransitionEvent, InformationalEvent, OpenEvent, CloseEvent, StockSplitEvent, BondDefaultEvent, CashDividendEvent, AmortisationEvent, CashFlowEvent, ExerciseEvent, ResetEvent, TriggerEvent, RawVendorEvent, InformationalErrorEvent, BondCouponEvent, DividendReinvestmentEvent, AccumulationEvent, BondPrincipalEvent, DividendOptionEvent, MaturityEvent, FxForwardSettlementEvent, ExpiryEvent, ScripDividendEvent, StockDividendEvent, ReverseStockSplitEvent, CapitalDistributionEvent, SpinOffEvent, MergerEvent, FutureExpiryEvent, SwapCashFlowEvent, SwapPrincipalEvent, CreditPremiumCashFlowEvent, CdsCreditEvent, CdxCreditEvent, MbsCouponEvent, MbsPrincipalEvent, BonusIssueEvent, MbsPrincipalWriteOffEvent, MbsInterestDeferralEvent, MbsInterestShortfallEvent, TenderEvent, CallOnIntermediateSecuritiesEvent, IntermediateSecuritiesDistributionEvent, OptionExercisePhysicalEvent, OptionExerciseCashEvent, ProtectionPayoutCashFlowEvent, TermDepositInterestEvent, TermDepositPrincipalEvent, EarlyRedemptionEvent, FutureMarkToMarketEvent, AdjustGlobalCommitmentEvent, ContractInitialisationEvent, DrawdownEvent, LoanInterestRepaymentEvent, UpdateDepositAmountEvent, LoanPrincipalRepaymentEvent, DepositInterestPaymentEvent, DepositCloseEvent, LoanFacilityContractRolloverEvent, RepurchaseOfferEvent, RepoPartialClosureEvent, RepoCashFlowEvent, FlexibleRepoInterestPaymentEvent, FlexibleRepoCashFlowEvent, FlexibleRepoCollateralEvent, ConversionEvent, FlexibleRepoPartialClosureEvent, FlexibleRepoFullClosureEvent, CapletFloorletCashFlowEvent, EarlyCloseOutEvent, DepositRollEvent, ConsentEvent, DrawingEvent, CapitalGainsDistributionEvent, ExchangeOfferEvent, DutchAuctionEvent, WorthlessEvent, PutRedemptionEvent, LoanFacilityDelayedCompensationPaymentEvent, InterestPaymentEvent, PriorityIssueEvent.") 
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["instrumentEventType", "paymentDate", "exDate", "recordDate", "announcementDate", "cashElections"]
+    __properties: ClassVar[List[str]] = ["instrumentEventType", "announcementDate", "exDate", "recordDate", "responseDeadline", "marketDeadline", "paymentDate", "securitySettlementDate", "subscriptionPrice", "subscriptionCurrency", "newInstrument", "prorationRate", "fractionalUnitsCashPrice", "fractionalUnitsCashCurrency", "securityOfferElections", "lapseElections"]
 
     @field_validator('instrument_event_type')
     def instrument_event_type_validate_enum(cls, value):
@@ -49,7 +61,7 @@ class CapitalGainsDistributionEvent(InstrumentEvent):
 
         # check it's a class that uses the 'type' property as a discriminator
         # list of classes can be found by searching for 'actual_instance: Union[' in the generated code
-        if 'CapitalGainsDistributionEvent' not in [ 
+        if 'PriorityIssueEvent' not in [ 
                                     # For notification application classes
                                     'AmazonSqsNotificationType',
                                     'AmazonSqsNotificationTypeResponse',
@@ -130,8 +142,8 @@ class CapitalGainsDistributionEvent(InstrumentEvent):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> CapitalGainsDistributionEvent:
-        """Create an instance of CapitalGainsDistributionEvent from a JSON string"""
+    def from_json(cls, json_str: str) -> PriorityIssueEvent:
+        """Create an instance of PriorityIssueEvent from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self, by_alias=True):
@@ -142,51 +154,101 @@ class CapitalGainsDistributionEvent(InstrumentEvent):
                             "additional_properties"
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each item in cash_elections (list)
+        # override the default output from pydantic by calling `to_dict()` of new_instrument
+        if self.new_instrument:
+            _dict['newInstrument'] = self.new_instrument.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of each item in security_offer_elections (list)
         _items = []
-        if self.cash_elections:
-            for _item in self.cash_elections:
+        if self.security_offer_elections:
+            for _item in self.security_offer_elections:
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
-            _dict['cashElections'] = _items
+            _dict['securityOfferElections'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in lapse_elections (list)
+        _items = []
+        if self.lapse_elections:
+            for _item in self.lapse_elections:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['lapseElections'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
                 _dict[_key] = _value
-
-        # set to None if record_date (nullable) is None
-        # and model_fields_set contains the field
-        if self.record_date is None and "record_date" in self.model_fields_set:
-            _dict['recordDate'] = None
 
         # set to None if announcement_date (nullable) is None
         # and model_fields_set contains the field
         if self.announcement_date is None and "announcement_date" in self.model_fields_set:
             _dict['announcementDate'] = None
 
-        # set to None if cash_elections (nullable) is None
+        # set to None if ex_date (nullable) is None
         # and model_fields_set contains the field
-        if self.cash_elections is None and "cash_elections" in self.model_fields_set:
-            _dict['cashElections'] = None
+        if self.ex_date is None and "ex_date" in self.model_fields_set:
+            _dict['exDate'] = None
+
+        # set to None if security_settlement_date (nullable) is None
+        # and model_fields_set contains the field
+        if self.security_settlement_date is None and "security_settlement_date" in self.model_fields_set:
+            _dict['securitySettlementDate'] = None
+
+        # set to None if subscription_currency (nullable) is None
+        # and model_fields_set contains the field
+        if self.subscription_currency is None and "subscription_currency" in self.model_fields_set:
+            _dict['subscriptionCurrency'] = None
+
+        # set to None if proration_rate (nullable) is None
+        # and model_fields_set contains the field
+        if self.proration_rate is None and "proration_rate" in self.model_fields_set:
+            _dict['prorationRate'] = None
+
+        # set to None if fractional_units_cash_price (nullable) is None
+        # and model_fields_set contains the field
+        if self.fractional_units_cash_price is None and "fractional_units_cash_price" in self.model_fields_set:
+            _dict['fractionalUnitsCashPrice'] = None
+
+        # set to None if fractional_units_cash_currency (nullable) is None
+        # and model_fields_set contains the field
+        if self.fractional_units_cash_currency is None and "fractional_units_cash_currency" in self.model_fields_set:
+            _dict['fractionalUnitsCashCurrency'] = None
+
+        # set to None if security_offer_elections (nullable) is None
+        # and model_fields_set contains the field
+        if self.security_offer_elections is None and "security_offer_elections" in self.model_fields_set:
+            _dict['securityOfferElections'] = None
+
+        # set to None if lapse_elections (nullable) is None
+        # and model_fields_set contains the field
+        if self.lapse_elections is None and "lapse_elections" in self.model_fields_set:
+            _dict['lapseElections'] = None
 
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> CapitalGainsDistributionEvent:
-        """Create an instance of CapitalGainsDistributionEvent from a dict"""
+    def from_dict(cls, obj: dict) -> PriorityIssueEvent:
+        """Create an instance of PriorityIssueEvent from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return CapitalGainsDistributionEvent.model_validate(obj)
+            return PriorityIssueEvent.model_validate(obj)
 
-        _obj = CapitalGainsDistributionEvent.model_validate({
+        _obj = PriorityIssueEvent.model_validate({
             "instrument_event_type": obj.get("instrumentEventType"),
-            "payment_date": obj.get("paymentDate"),
+            "announcement_date": obj.get("announcementDate"),
             "ex_date": obj.get("exDate"),
             "record_date": obj.get("recordDate"),
-            "announcement_date": obj.get("announcementDate"),
-            "cash_elections": [CashElection.from_dict(_item) for _item in _v] if (_v := obj.get("cashElections")) is not None else None
+            "response_deadline": obj.get("responseDeadline"),
+            "market_deadline": obj.get("marketDeadline"),
+            "payment_date": obj.get("paymentDate"),
+            "security_settlement_date": obj.get("securitySettlementDate"),
+            "subscription_price": obj.get("subscriptionPrice"),
+            "subscription_currency": obj.get("subscriptionCurrency"),
+            "new_instrument": NewInstrument.from_dict(_v) if (_v := obj.get("newInstrument")) is not None else None,
+            "proration_rate": obj.get("prorationRate"),
+            "fractional_units_cash_price": obj.get("fractionalUnitsCashPrice"),
+            "fractional_units_cash_currency": obj.get("fractionalUnitsCashCurrency"),
+            "security_offer_elections": [SecurityOfferElection.from_dict(_item) for _item in _v] if (_v := obj.get("securityOfferElections")) is not None else None,
+            "lapse_elections": [LapseElection.from_dict(_item) for _item in _v] if (_v := obj.get("lapseElections")) is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
@@ -195,5 +257,5 @@ class CapitalGainsDistributionEvent(InstrumentEvent):
 
         return _obj
 
-CapitalGainsDistributionEvent.model_rebuild()
+PriorityIssueEvent.model_rebuild()
 

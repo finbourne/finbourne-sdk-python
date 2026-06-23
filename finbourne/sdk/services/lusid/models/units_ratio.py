@@ -29,7 +29,8 @@ class UnitsRatio(BaseModel):
     """
     input: Union[StrictFloat, StrictInt] = Field(description="Input amount.  Denominator of the Ratio")
     output: Union[StrictFloat, StrictInt] = Field(description="Output amount. Numerator of the Ratio")
-    __properties: ClassVar[List[str]] = ["input", "output"]
+    unit_scale_type:  Optional[StrictStr] = Field(default=None,alias="unitScaleType", description="Determines how units are scaled when processing the event.  Supported values: [NEWO, ADEX]. Available values: NEWO, ADEX.") 
+    __properties: ClassVar[List[str]] = ["input", "output", "unitScaleType"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -65,6 +66,11 @@ class UnitsRatio(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # set to None if unit_scale_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.unit_scale_type is None and "unit_scale_type" in self.model_fields_set:
+            _dict['unitScaleType'] = None
+
         return _dict
 
     @classmethod
@@ -78,7 +84,8 @@ class UnitsRatio(BaseModel):
 
         _obj = UnitsRatio.model_validate({
             "input": obj.get("input"),
-            "output": obj.get("output")
+            "output": obj.get("output"),
+            "unit_scale_type": obj.get("unitScaleType")
         })
         return _obj
 

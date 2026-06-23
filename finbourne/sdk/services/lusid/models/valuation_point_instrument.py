@@ -33,8 +33,10 @@ class ValuationPointInstrument(BaseModel):
     valuation_point_origin:  Optional[StrictStr] = Field(default=None,alias="valuationPointOrigin", description="Designates if the instrument was originally part of the Valuation Point or if it was added as part of a Complex Close action. Available values: None, Original, Added, OriginalAndAdded.") 
     added_origin_valuation_point_code:  Optional[StrictStr] = Field(default=None,alias="addedOriginValuationPointCode", description="The Valuation Point, only for an Instrument added as part of a Complex Close action.") 
     added_origin_valuation_point_variant_code:  Optional[StrictStr] = Field(default=None,alias="addedOriginValuationPointVariantCode", description="The Valuation Point variant, only for Instruments added as part of a Complex Close action.") 
+    valuation_point_origin_source: Optional[List[StrictStr]] = Field(default=None, description="Collection of sources of Post Close Activities which added this instrument. Available values: Undefined, Manual, Auto.", alias="valuationPointOriginSource")
+    valuation_point_origin_type: Optional[List[StrictStr]] = Field(default=None, description="Collection of types of Post Close Activities which added this instrument. Available values: PortfolioTransaction, PortfolioSettlementInstruction, InstrumentActivity, QuoteActivity.", alias="valuationPointOriginType")
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="The requested instrument properties. These will be from the 'Instrument' domain.")
-    __properties: ClassVar[List[str]] = ["instrument", "valuationPointOrigin", "addedOriginValuationPointCode", "addedOriginValuationPointVariantCode", "properties"]
+    __properties: ClassVar[List[str]] = ["instrument", "valuationPointOrigin", "addedOriginValuationPointCode", "addedOriginValuationPointVariantCode", "valuationPointOriginSource", "valuationPointOriginType", "properties"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -95,6 +97,16 @@ class ValuationPointInstrument(BaseModel):
         if self.added_origin_valuation_point_variant_code is None and "added_origin_valuation_point_variant_code" in self.model_fields_set:
             _dict['addedOriginValuationPointVariantCode'] = None
 
+        # set to None if valuation_point_origin_source (nullable) is None
+        # and model_fields_set contains the field
+        if self.valuation_point_origin_source is None and "valuation_point_origin_source" in self.model_fields_set:
+            _dict['valuationPointOriginSource'] = None
+
+        # set to None if valuation_point_origin_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.valuation_point_origin_type is None and "valuation_point_origin_type" in self.model_fields_set:
+            _dict['valuationPointOriginType'] = None
+
         # set to None if properties (nullable) is None
         # and model_fields_set contains the field
         if self.properties is None and "properties" in self.model_fields_set:
@@ -116,6 +128,8 @@ class ValuationPointInstrument(BaseModel):
             "valuation_point_origin": obj.get("valuationPointOrigin"),
             "added_origin_valuation_point_code": obj.get("addedOriginValuationPointCode"),
             "added_origin_valuation_point_variant_code": obj.get("addedOriginValuationPointVariantCode"),
+            "valuation_point_origin_source": obj.get("valuationPointOriginSource"),
+            "valuation_point_origin_type": obj.get("valuationPointOriginType"),
             "properties": dict(
                 (_k, ModelProperty.from_dict(_v))
                 for _k, _v in _val.items()

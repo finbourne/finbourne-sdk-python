@@ -3969,7 +3969,7 @@ class TransactionPortfoliosApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def get_holdings(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, by_taxlots: Optional[bool] = None, include_settlement_events_after_days: Optional[int] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> VersionedResourceListOfPortfolioHolding:
+    def get_holdings(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, by_taxlots: Optional[bool] = None, include_settlement_events_after_days: Optional[int] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, aggregate_cash_commitments: Optional[bool] = None, **kwargs) -> VersionedResourceListOfPortfolioHolding:
         """GetHoldings: Get holdings  # noqa: E501
 
         Calculate holdings for a transaction portfolio.  # noqa: E501
@@ -3995,6 +3995,8 @@ class TransactionPortfoliosApi:
         :type timeline_code: str
         :param closed_period_id: The closed period ID. If this is specified, both timelineScope and timelineCode must be specified. Either closedPeriodId or effectiveAt can be used with a Timeline.
         :type closed_period_id: str
+        :param aggregate_cash_commitments: When true, collapses cash-commitment rows that share a sub-holding key              into a single aggregated row per portfolio with summed units/cost and the per-leg breakdown retained on the              settlement schedule. Ignored when byTaxlots is true. Defaults to False.
+        :type aggregate_cash_commitments: bool
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -4005,11 +4007,11 @@ class TransactionPortfoliosApi:
             message = "Error! Please call the get_holdings_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.get_holdings_with_http_info(scope, code, effective_at, as_at, filter, property_keys, by_taxlots, include_settlement_events_after_days, timeline_scope, timeline_code, closed_period_id, **kwargs)
+        response = self.get_holdings_with_http_info(scope, code, effective_at, as_at, filter, property_keys, by_taxlots, include_settlement_events_after_days, timeline_scope, timeline_code, closed_period_id, aggregate_cash_commitments, **kwargs)
         return response.data
 
     @validate_call
-    def get_holdings_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, by_taxlots: Optional[bool] = None, include_settlement_events_after_days: Optional[int] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfPortfolioHolding]:
+    def get_holdings_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, by_taxlots: Optional[bool] = None, include_settlement_events_after_days: Optional[int] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, aggregate_cash_commitments: Optional[bool] = None, **kwargs) -> ApiResponse[VersionedResourceListOfPortfolioHolding]:
         """GetHoldings: Get holdings  # noqa: E501
 
         Calculate holdings for a transaction portfolio.  # noqa: E501
@@ -4035,6 +4037,8 @@ class TransactionPortfoliosApi:
         :type timeline_code: str
         :param closed_period_id: The closed period ID. If this is specified, both timelineScope and timelineCode must be specified. Either closedPeriodId or effectiveAt can be used with a Timeline.
         :type closed_period_id: str
+        :param aggregate_cash_commitments: When true, collapses cash-commitment rows that share a sub-holding key              into a single aggregated row per portfolio with summed units/cost and the per-leg breakdown retained on the              settlement schedule. Ignored when byTaxlots is true. Defaults to False.
+        :type aggregate_cash_commitments: bool
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -4068,7 +4072,8 @@ class TransactionPortfoliosApi:
             'include_settlement_events_after_days',
             'timeline_scope',
             'timeline_code',
-            'closed_period_id'
+            'closed_period_id',
+            'aggregate_cash_commitments'
         ]
         _all_params.extend(
             [
@@ -4135,6 +4140,9 @@ class TransactionPortfoliosApi:
 
         if _params.get('closed_period_id') is not None:  # noqa: E501
             _query_params.append(('closedPeriodId', _params['closed_period_id']))
+
+        if _params.get('aggregate_cash_commitments') is not None:  # noqa: E501
+            _query_params.append(('aggregateCashCommitments', _params['aggregate_cash_commitments']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -4337,7 +4345,7 @@ class TransactionPortfoliosApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def get_holdings_with_orders(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, by_taxlots: Optional[bool] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, include_settlement_events_after_days: Optional[int] = None, **kwargs) -> VersionedResourceListWithWarningsOfPortfolioHolding:
+    def get_holdings_with_orders(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, by_taxlots: Optional[bool] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, include_settlement_events_after_days: Optional[int] = None, aggregate_cash_commitments: Optional[bool] = None, **kwargs) -> VersionedResourceListWithWarningsOfPortfolioHolding:
         """GetHoldingsWithOrders: Get holdings with orders  # noqa: E501
 
         Get the holdings of a transaction portfolio. Create virtual holdings for any outstanding orders,  and account for order state/fulfillment; that is, treat outstanding orders (and related records) as  if they had been realised at moment of query.  # noqa: E501
@@ -4361,6 +4369,8 @@ class TransactionPortfoliosApi:
         :type recipe_id_code: str
         :param include_settlement_events_after_days: Number of days ahead to bring back settlements from, in relation to the specified effectiveAt
         :type include_settlement_events_after_days: int
+        :param aggregate_cash_commitments: When true, collapses cash-commitment rows that share a sub-holding key              into a single aggregated row per portfolio with summed units/cost and the per-leg breakdown retained on the              settlement schedule. Ignored when byTaxlots is true. Defaults to False.
+        :type aggregate_cash_commitments: bool
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -4371,11 +4381,11 @@ class TransactionPortfoliosApi:
             message = "Error! Please call the get_holdings_with_orders_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.get_holdings_with_orders_with_http_info(scope, code, effective_at, as_at, filter, property_keys, by_taxlots, recipe_id_scope, recipe_id_code, include_settlement_events_after_days, **kwargs)
+        response = self.get_holdings_with_orders_with_http_info(scope, code, effective_at, as_at, filter, property_keys, by_taxlots, recipe_id_scope, recipe_id_code, include_settlement_events_after_days, aggregate_cash_commitments, **kwargs)
         return response.data
 
     @validate_call
-    def get_holdings_with_orders_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, by_taxlots: Optional[bool] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, include_settlement_events_after_days: Optional[int] = None, **kwargs) -> ApiResponse[VersionedResourceListWithWarningsOfPortfolioHolding]:
+    def get_holdings_with_orders_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, by_taxlots: Optional[bool] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, include_settlement_events_after_days: Optional[int] = None, aggregate_cash_commitments: Optional[bool] = None, **kwargs) -> ApiResponse[VersionedResourceListWithWarningsOfPortfolioHolding]:
         """GetHoldingsWithOrders: Get holdings with orders  # noqa: E501
 
         Get the holdings of a transaction portfolio. Create virtual holdings for any outstanding orders,  and account for order state/fulfillment; that is, treat outstanding orders (and related records) as  if they had been realised at moment of query.  # noqa: E501
@@ -4399,6 +4409,8 @@ class TransactionPortfoliosApi:
         :type recipe_id_code: str
         :param include_settlement_events_after_days: Number of days ahead to bring back settlements from, in relation to the specified effectiveAt
         :type include_settlement_events_after_days: int
+        :param aggregate_cash_commitments: When true, collapses cash-commitment rows that share a sub-holding key              into a single aggregated row per portfolio with summed units/cost and the per-leg breakdown retained on the              settlement schedule. Ignored when byTaxlots is true. Defaults to False.
+        :type aggregate_cash_commitments: bool
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -4431,7 +4443,8 @@ class TransactionPortfoliosApi:
             'by_taxlots',
             'recipe_id_scope',
             'recipe_id_code',
-            'include_settlement_events_after_days'
+            'include_settlement_events_after_days',
+            'aggregate_cash_commitments'
         ]
         _all_params.extend(
             [
@@ -4495,6 +4508,9 @@ class TransactionPortfoliosApi:
 
         if _params.get('include_settlement_events_after_days') is not None:  # noqa: E501
             _query_params.append(('includeSettlementEventsAfterDays', _params['include_settlement_events_after_days']))
+
+        if _params.get('aggregate_cash_commitments') is not None:  # noqa: E501
+            _query_params.append(('aggregateCashCommitments', _params['aggregate_cash_commitments']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -12312,7 +12328,7 @@ class TransactionPortfoliosApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def get_holdings_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, by_taxlots: Optional[bool] = None, include_settlement_events_after_days: Optional[int] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> VersionedResourceListOfPortfolioHolding:
+    async def get_holdings_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, by_taxlots: Optional[bool] = None, include_settlement_events_after_days: Optional[int] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, aggregate_cash_commitments: Optional[bool] = None, **kwargs) -> VersionedResourceListOfPortfolioHolding:
             """GetHoldings: Get holdings  # noqa: E501
             Calculate holdings for a transaction portfolio.  # noqa: E501
             
@@ -12338,6 +12354,8 @@ class TransactionPortfoliosApi:
             :type timeline_code: str
             :param closed_period_id: The closed period ID. If this is specified, both timelineScope and timelineCode must be specified. Either closedPeriodId or effectiveAt can be used with a Timeline.
             :type closed_period_id: str
+            :param aggregate_cash_commitments: When true, collapses cash-commitment rows that share a sub-holding key              into a single aggregated row per portfolio with summed units/cost and the per-leg breakdown retained on the              settlement schedule. Ignored when byTaxlots is true. Defaults to False.
+            :type aggregate_cash_commitments: bool
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -12348,11 +12366,11 @@ class TransactionPortfoliosApi:
                 message = "Error! Please call the get_holdings_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.get_holdings_with_http_info_async(scope, code, effective_at, as_at, filter, property_keys, by_taxlots, include_settlement_events_after_days, timeline_scope, timeline_code, closed_period_id, **kwargs)
+            response = await self.get_holdings_with_http_info_async(scope, code, effective_at, as_at, filter, property_keys, by_taxlots, include_settlement_events_after_days, timeline_scope, timeline_code, closed_period_id, aggregate_cash_commitments, **kwargs)
             return response.data
 
     @validate_call
-    async def get_holdings_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, by_taxlots: Optional[bool] = None, include_settlement_events_after_days: Optional[int] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfPortfolioHolding]:
+    async def get_holdings_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, by_taxlots: Optional[bool] = None, include_settlement_events_after_days: Optional[int] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, aggregate_cash_commitments: Optional[bool] = None, **kwargs) -> ApiResponse[VersionedResourceListOfPortfolioHolding]:
             """GetHoldings: Get holdings  # noqa: E501
 
             Calculate holdings for a transaction portfolio.  # noqa: E501
@@ -12379,6 +12397,8 @@ class TransactionPortfoliosApi:
             :type timeline_code: str
             :param closed_period_id: The closed period ID. If this is specified, both timelineScope and timelineCode must be specified. Either closedPeriodId or effectiveAt can be used with a Timeline.
             :type closed_period_id: str
+            :param aggregate_cash_commitments: When true, collapses cash-commitment rows that share a sub-holding key              into a single aggregated row per portfolio with summed units/cost and the per-leg breakdown retained on the              settlement schedule. Ignored when byTaxlots is true. Defaults to False.
+            :type aggregate_cash_commitments: bool
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -12412,7 +12432,8 @@ class TransactionPortfoliosApi:
                 'include_settlement_events_after_days',
                 'timeline_scope',
                 'timeline_code',
-                'closed_period_id'
+                'closed_period_id',
+                'aggregate_cash_commitments'
             ]
             _all_params.extend(
                 [
@@ -12479,6 +12500,9 @@ class TransactionPortfoliosApi:
 
             if _params.get('closed_period_id') is not None:  # noqa: E501
                 _query_params.append(('closedPeriodId', _params['closed_period_id']))
+
+            if _params.get('aggregate_cash_commitments') is not None:  # noqa: E501
+                _query_params.append(('aggregateCashCommitments', _params['aggregate_cash_commitments']))
 
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))
@@ -12682,7 +12706,7 @@ class TransactionPortfoliosApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def get_holdings_with_orders_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, by_taxlots: Optional[bool] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, include_settlement_events_after_days: Optional[int] = None, **kwargs) -> VersionedResourceListWithWarningsOfPortfolioHolding:
+    async def get_holdings_with_orders_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, by_taxlots: Optional[bool] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, include_settlement_events_after_days: Optional[int] = None, aggregate_cash_commitments: Optional[bool] = None, **kwargs) -> VersionedResourceListWithWarningsOfPortfolioHolding:
             """GetHoldingsWithOrders: Get holdings with orders  # noqa: E501
             Get the holdings of a transaction portfolio. Create virtual holdings for any outstanding orders,  and account for order state/fulfillment; that is, treat outstanding orders (and related records) as  if they had been realised at moment of query.  # noqa: E501
             
@@ -12706,6 +12730,8 @@ class TransactionPortfoliosApi:
             :type recipe_id_code: str
             :param include_settlement_events_after_days: Number of days ahead to bring back settlements from, in relation to the specified effectiveAt
             :type include_settlement_events_after_days: int
+            :param aggregate_cash_commitments: When true, collapses cash-commitment rows that share a sub-holding key              into a single aggregated row per portfolio with summed units/cost and the per-leg breakdown retained on the              settlement schedule. Ignored when byTaxlots is true. Defaults to False.
+            :type aggregate_cash_commitments: bool
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -12716,11 +12742,11 @@ class TransactionPortfoliosApi:
                 message = "Error! Please call the get_holdings_with_orders_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.get_holdings_with_orders_with_http_info_async(scope, code, effective_at, as_at, filter, property_keys, by_taxlots, recipe_id_scope, recipe_id_code, include_settlement_events_after_days, **kwargs)
+            response = await self.get_holdings_with_orders_with_http_info_async(scope, code, effective_at, as_at, filter, property_keys, by_taxlots, recipe_id_scope, recipe_id_code, include_settlement_events_after_days, aggregate_cash_commitments, **kwargs)
             return response.data
 
     @validate_call
-    async def get_holdings_with_orders_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, by_taxlots: Optional[bool] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, include_settlement_events_after_days: Optional[int] = None, **kwargs) -> ApiResponse[VersionedResourceListWithWarningsOfPortfolioHolding]:
+    async def get_holdings_with_orders_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, by_taxlots: Optional[bool] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, include_settlement_events_after_days: Optional[int] = None, aggregate_cash_commitments: Optional[bool] = None, **kwargs) -> ApiResponse[VersionedResourceListWithWarningsOfPortfolioHolding]:
             """GetHoldingsWithOrders: Get holdings with orders  # noqa: E501
 
             Get the holdings of a transaction portfolio. Create virtual holdings for any outstanding orders,  and account for order state/fulfillment; that is, treat outstanding orders (and related records) as  if they had been realised at moment of query.  # noqa: E501
@@ -12745,6 +12771,8 @@ class TransactionPortfoliosApi:
             :type recipe_id_code: str
             :param include_settlement_events_after_days: Number of days ahead to bring back settlements from, in relation to the specified effectiveAt
             :type include_settlement_events_after_days: int
+            :param aggregate_cash_commitments: When true, collapses cash-commitment rows that share a sub-holding key              into a single aggregated row per portfolio with summed units/cost and the per-leg breakdown retained on the              settlement schedule. Ignored when byTaxlots is true. Defaults to False.
+            :type aggregate_cash_commitments: bool
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -12777,7 +12805,8 @@ class TransactionPortfoliosApi:
                 'by_taxlots',
                 'recipe_id_scope',
                 'recipe_id_code',
-                'include_settlement_events_after_days'
+                'include_settlement_events_after_days',
+                'aggregate_cash_commitments'
             ]
             _all_params.extend(
                 [
@@ -12841,6 +12870,9 @@ class TransactionPortfoliosApi:
 
             if _params.get('include_settlement_events_after_days') is not None:  # noqa: E501
                 _query_params.append(('includeSettlementEventsAfterDays', _params['include_settlement_events_after_days']))
+
+            if _params.get('aggregate_cash_commitments') is not None:  # noqa: E501
+                _query_params.append(('aggregateCashCommitments', _params['aggregate_cash_commitments']))
 
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))

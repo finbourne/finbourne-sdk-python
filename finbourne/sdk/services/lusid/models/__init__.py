@@ -930,6 +930,7 @@ from finbourne.sdk.services.lusid.models.pricing_context import PricingContext
 from finbourne.sdk.services.lusid.models.pricing_model import PricingModel
 from finbourne.sdk.services.lusid.models.pricing_options import PricingOptions
 from finbourne.sdk.services.lusid.models.primary_schedule import PrimarySchedule
+from finbourne.sdk.services.lusid.models.priority_issue_event import PriorityIssueEvent
 from finbourne.sdk.services.lusid.models.processed_command import ProcessedCommand
 from finbourne.sdk.services.lusid.models.property_definition import PropertyDefinition
 from finbourne.sdk.services.lusid.models.property_definition_entity import PropertyDefinitionEntity
@@ -2363,6 +2364,7 @@ __all__ = [
     "PricingModel",
     "PricingOptions",
     "PrimarySchedule",
+    "PriorityIssueEvent",
     "ProcessedCommand",
     "PropertyDefinition",
     "PropertyDefinitionEntity",

@@ -7,6 +7,7 @@ The number of units you have after the event (output) for a given number of unit
 |------|------|----------|-------------|
 | **input** | **float** | Required | Input amount.  Denominator of the Ratio |
 | **output** | **float** | Required | Output amount. Numerator of the Ratio |
+| **unit_scale_type** | **str** | Optional | Determines how units are scaled when processing the event.  Supported values: [NEWO, ADEX]. Available values: NEWO, ADEX. |
 
 
 ## Usage
@@ -18,7 +19,8 @@ from finbourne.sdk.services.lusid.models.UnitsRatio import UnitsRatio
 
 instance = UnitsRatio(
     input=0.0,  # required — Input amount.  Denominator of the Ratio
-    output=0.0  # required — Output amount. Numerator of the Ratio
+    output=0.0,  # required — Output amount. Numerator of the Ratio
+    unit_scale_type="..."  # optional — Determines how units are scaled when processing the event.  Supported values: [NEWO, ADEX]. Available values: NEWO, ADEX.
 )
 ```
 
