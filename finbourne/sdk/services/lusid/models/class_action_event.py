@@ -21,20 +21,28 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
+from finbourne.sdk.services.lusid.models.cash_offer_election import CashOfferElection
 from finbourne.sdk.services.lusid.models.instrument_event import InstrumentEvent
+from finbourne.sdk.services.lusid.models.lapse_election import LapseElection
 
 
-class MbsCouponEvent(InstrumentEvent):
+class ClassActionEvent(InstrumentEvent):
     """
-    Definition of an MBS Coupon Event  This is an event that describes the occurence of a cashflow due to a mortgage-backed security coupon payment.  # noqa: E501
+    Class Action Event (CLSA) — a voluntary corporate action under which security holders  receive cash compensation from a court-approved settlement fund following litigation  against an issuer.  # noqa: E501
     """
-    ex_date: Optional[datetime] = Field(default=None, description="The ex date (entitlement date) of the coupon", alias="exDate")
-    payment_date: Optional[datetime] = Field(default=None, description="The payment date of the coupon", alias="paymentDate")
-    currency:  StrictStr = Field(...,alias="currency", description="The currency in which the coupon is paid") 
-    coupon_per_unit: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The coupon amount received for each unit of the instrument held on the ex date", alias="couponPerUnit")
+    payment_date: Optional[datetime] = Field(default=None, description="Date on which the settlement distribution is paid to the holder.", alias="paymentDate")
+    filing_deadline: Optional[datetime] = Field(default=None, description="Court-set deadline for submitting a proof of claim.", alias="filingDeadline")
+    class_period_start: Optional[datetime] = Field(default=None, description="Lower bound of the eligibility window (inclusive).", alias="classPeriodStart")
+    class_period_end: Optional[datetime] = Field(default=None, description="Upper bound of the eligibility window (inclusive).", alias="classPeriodEnd")
+    ex_date: Optional[datetime] = Field(default=None, description="Date from which the security trades without the settlement right.  Null for most class actions where no ex date is defined.", alias="exDate")
+    record_date: Optional[datetime] = Field(default=None, description="Date at which positions are struck for notification scope. Informational only.", alias="recordDate")
+    announcement_date: Optional[datetime] = Field(default=None, description="Settlement public-announcement or court-approval date.", alias="announcementDate")
+    case_reference:  Optional[StrictStr] = Field(default=None,alias="caseReference", description="Lawsuit or settlement-fund identifier (court case number, fund name). Audit-only.") 
+    cash_offer_elections: Optional[List[CashOfferElection]] = Field(default=None, description="Cash offer elections for this event. Exactly one entry carrying the per-share  settlement amount as CashOfferPrice and settlement currency as CashOfferCurrency.", alias="cashOfferElections")
+    lapse_elections: Optional[List[LapseElection]] = Field(default=None, description="Lapse elections for this event. Exactly one entry (NOAC) with IsDefault = true.", alias="lapseElections")
     instrument_event_type:  StrictStr = Field(...,alias="instrumentEventType", description="The Type of Event. Available values: TransitionEvent, InformationalEvent, OpenEvent, CloseEvent, StockSplitEvent, BondDefaultEvent, CashDividendEvent, AmortisationEvent, CashFlowEvent, ExerciseEvent, ResetEvent, TriggerEvent, RawVendorEvent, InformationalErrorEvent, BondCouponEvent, DividendReinvestmentEvent, AccumulationEvent, BondPrincipalEvent, DividendOptionEvent, MaturityEvent, FxForwardSettlementEvent, ExpiryEvent, ScripDividendEvent, StockDividendEvent, ReverseStockSplitEvent, CapitalDistributionEvent, SpinOffEvent, MergerEvent, FutureExpiryEvent, SwapCashFlowEvent, SwapPrincipalEvent, CreditPremiumCashFlowEvent, CdsCreditEvent, CdxCreditEvent, MbsCouponEvent, MbsPrincipalEvent, BonusIssueEvent, MbsPrincipalWriteOffEvent, MbsInterestDeferralEvent, MbsInterestShortfallEvent, TenderEvent, CallOnIntermediateSecuritiesEvent, IntermediateSecuritiesDistributionEvent, OptionExercisePhysicalEvent, OptionExerciseCashEvent, ProtectionPayoutCashFlowEvent, TermDepositInterestEvent, TermDepositPrincipalEvent, EarlyRedemptionEvent, FutureMarkToMarketEvent, AdjustGlobalCommitmentEvent, ContractInitialisationEvent, DrawdownEvent, LoanInterestRepaymentEvent, UpdateDepositAmountEvent, LoanPrincipalRepaymentEvent, DepositInterestPaymentEvent, DepositCloseEvent, LoanFacilityContractRolloverEvent, RepurchaseOfferEvent, RepoPartialClosureEvent, RepoCashFlowEvent, FlexibleRepoInterestPaymentEvent, FlexibleRepoCashFlowEvent, FlexibleRepoCollateralEvent, ConversionEvent, FlexibleRepoPartialClosureEvent, FlexibleRepoFullClosureEvent, CapletFloorletCashFlowEvent, EarlyCloseOutEvent, DepositRollEvent, ConsentEvent, DrawingEvent, CapitalGainsDistributionEvent, ExchangeOfferEvent, DutchAuctionEvent, WorthlessEvent, PutRedemptionEvent, LoanFacilityDelayedCompensationPaymentEvent, InterestPaymentEvent, PriorityIssueEvent, ClassActionEvent.") 
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["instrumentEventType", "exDate", "paymentDate", "currency", "couponPerUnit"]
+    __properties: ClassVar[List[str]] = ["instrumentEventType", "paymentDate", "filingDeadline", "classPeriodStart", "classPeriodEnd", "exDate", "recordDate", "announcementDate", "caseReference", "cashOfferElections", "lapseElections"]
 
     @field_validator('instrument_event_type')
     def instrument_event_type_validate_enum(cls, value):
@@ -47,7 +55,7 @@ class MbsCouponEvent(InstrumentEvent):
 
         # check it's a class that uses the 'type' property as a discriminator
         # list of classes can be found by searching for 'actual_instance: Union[' in the generated code
-        if 'MbsCouponEvent' not in [ 
+        if 'ClassActionEvent' not in [ 
                                     # For notification application classes
                                     'AmazonSqsNotificationType',
                                     'AmazonSqsNotificationTypeResponse',
@@ -128,8 +136,8 @@ class MbsCouponEvent(InstrumentEvent):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> MbsCouponEvent:
-        """Create an instance of MbsCouponEvent from a JSON string"""
+    def from_json(cls, json_str: str) -> ClassActionEvent:
+        """Create an instance of ClassActionEvent from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self, by_alias=True):
@@ -140,33 +148,78 @@ class MbsCouponEvent(InstrumentEvent):
                             "additional_properties"
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of each item in cash_offer_elections (list)
+        _items = []
+        if self.cash_offer_elections:
+            for _item in self.cash_offer_elections:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['cashOfferElections'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in lapse_elections (list)
+        _items = []
+        if self.lapse_elections:
+            for _item in self.lapse_elections:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['lapseElections'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
                 _dict[_key] = _value
 
-        # set to None if coupon_per_unit (nullable) is None
+        # set to None if ex_date (nullable) is None
         # and model_fields_set contains the field
-        if self.coupon_per_unit is None and "coupon_per_unit" in self.model_fields_set:
-            _dict['couponPerUnit'] = None
+        if self.ex_date is None and "ex_date" in self.model_fields_set:
+            _dict['exDate'] = None
+
+        # set to None if record_date (nullable) is None
+        # and model_fields_set contains the field
+        if self.record_date is None and "record_date" in self.model_fields_set:
+            _dict['recordDate'] = None
+
+        # set to None if announcement_date (nullable) is None
+        # and model_fields_set contains the field
+        if self.announcement_date is None and "announcement_date" in self.model_fields_set:
+            _dict['announcementDate'] = None
+
+        # set to None if case_reference (nullable) is None
+        # and model_fields_set contains the field
+        if self.case_reference is None and "case_reference" in self.model_fields_set:
+            _dict['caseReference'] = None
+
+        # set to None if cash_offer_elections (nullable) is None
+        # and model_fields_set contains the field
+        if self.cash_offer_elections is None and "cash_offer_elections" in self.model_fields_set:
+            _dict['cashOfferElections'] = None
+
+        # set to None if lapse_elections (nullable) is None
+        # and model_fields_set contains the field
+        if self.lapse_elections is None and "lapse_elections" in self.model_fields_set:
+            _dict['lapseElections'] = None
 
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> MbsCouponEvent:
-        """Create an instance of MbsCouponEvent from a dict"""
+    def from_dict(cls, obj: dict) -> ClassActionEvent:
+        """Create an instance of ClassActionEvent from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return MbsCouponEvent.model_validate(obj)
+            return ClassActionEvent.model_validate(obj)
 
-        _obj = MbsCouponEvent.model_validate({
+        _obj = ClassActionEvent.model_validate({
             "instrument_event_type": obj.get("instrumentEventType"),
-            "ex_date": obj.get("exDate"),
             "payment_date": obj.get("paymentDate"),
-            "currency": obj.get("currency"),
-            "coupon_per_unit": obj.get("couponPerUnit")
+            "filing_deadline": obj.get("filingDeadline"),
+            "class_period_start": obj.get("classPeriodStart"),
+            "class_period_end": obj.get("classPeriodEnd"),
+            "ex_date": obj.get("exDate"),
+            "record_date": obj.get("recordDate"),
+            "announcement_date": obj.get("announcementDate"),
+            "case_reference": obj.get("caseReference"),
+            "cash_offer_elections": [CashOfferElection.from_dict(_item) for _item in _v] if (_v := obj.get("cashOfferElections")) is not None else None,
+            "lapse_elections": [LapseElection.from_dict(_item) for _item in _v] if (_v := obj.get("lapseElections")) is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
@@ -175,5 +228,5 @@ class MbsCouponEvent(InstrumentEvent):
 
         return _obj
 
-MbsCouponEvent.model_rebuild()
+ClassActionEvent.model_rebuild()
 

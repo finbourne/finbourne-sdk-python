@@ -622,6 +622,7 @@
 * [CheckDefinitionRuleSet](lusid/model/CheckDefinitionRuleSet.md)
 * [CheckStep](lusid/model/CheckStep.md)
 * [CheckStepRequest](lusid/model/CheckStepRequest.md)
+* [ClassActionEvent](lusid/model/ClassActionEvent.md)
 * [CleardownModuleDetails](lusid/model/CleardownModuleDetails.md)
 * [CleardownModuleRequest](lusid/model/CleardownModuleRequest.md)
 * [CleardownModuleResponse](lusid/model/CleardownModuleResponse.md)

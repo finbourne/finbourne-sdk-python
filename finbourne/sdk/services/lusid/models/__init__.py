@@ -191,6 +191,7 @@ from finbourne.sdk.services.lusid.models.check_definition_rule import CheckDefin
 from finbourne.sdk.services.lusid.models.check_definition_rule_set import CheckDefinitionRuleSet
 from finbourne.sdk.services.lusid.models.check_step import CheckStep
 from finbourne.sdk.services.lusid.models.check_step_request import CheckStepRequest
+from finbourne.sdk.services.lusid.models.class_action_event import ClassActionEvent
 from finbourne.sdk.services.lusid.models.cleardown_module_details import CleardownModuleDetails
 from finbourne.sdk.services.lusid.models.cleardown_module_request import CleardownModuleRequest
 from finbourne.sdk.services.lusid.models.cleardown_module_response import CleardownModuleResponse
@@ -1625,6 +1626,7 @@ __all__ = [
     "CheckDefinitionRuleSet",
     "CheckStep",
     "CheckStepRequest",
+    "ClassActionEvent",
     "CleardownModuleDetails",
     "CleardownModuleRequest",
     "CleardownModuleResponse",
