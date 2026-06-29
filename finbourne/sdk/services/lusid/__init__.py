@@ -120,6 +120,7 @@ from finbourne.sdk.services.lusid.models.account import Account
 from finbourne.sdk.services.lusid.models.account_holder import AccountHolder
 from finbourne.sdk.services.lusid.models.account_holder_identifier import AccountHolderIdentifier
 from finbourne.sdk.services.lusid.models.account_properties import AccountProperties
+from finbourne.sdk.services.lusid.models.accounted_quote import AccountedQuote
 from finbourne.sdk.services.lusid.models.accounted_transaction import AccountedTransaction
 from finbourne.sdk.services.lusid.models.accounting_method import AccountingMethod
 from finbourne.sdk.services.lusid.models.accounts_upsert_response import AccountsUpsertResponse
@@ -182,6 +183,7 @@ from finbourne.sdk.services.lusid.models.applicable_instrument_event import Appl
 from finbourne.sdk.services.lusid.models.apportionment_method_property import ApportionmentMethodProperty
 from finbourne.sdk.services.lusid.models.asset_class import AssetClass
 from finbourne.sdk.services.lusid.models.asset_leg import AssetLeg
+from finbourne.sdk.services.lusid.models.bankruptcy_event import BankruptcyEvent
 from finbourne.sdk.services.lusid.models.barrier import Barrier
 from finbourne.sdk.services.lusid.models.basket import Basket
 from finbourne.sdk.services.lusid.models.basket_identifier import BasketIdentifier
@@ -748,6 +750,7 @@ from finbourne.sdk.services.lusid.models.life_cycle_event_lineage import LifeCyc
 from finbourne.sdk.services.lusid.models.life_cycle_event_value import LifeCycleEventValue
 from finbourne.sdk.services.lusid.models.lineage_member import LineageMember
 from finbourne.sdk.services.lusid.models.link import Link
+from finbourne.sdk.services.lusid.models.liquidation_payment_event import LiquidationPaymentEvent
 from finbourne.sdk.services.lusid.models.list_aggregation_reconciliation import ListAggregationReconciliation
 from finbourne.sdk.services.lusid.models.list_aggregation_response import ListAggregationResponse
 from finbourne.sdk.services.lusid.models.list_complex_market_data_with_meta_data_response import ListComplexMarketDataWithMetaDataResponse
@@ -1327,6 +1330,7 @@ from finbourne.sdk.services.lusid.models.transaction_configuration_type_alias im
 from finbourne.sdk.services.lusid.models.transaction_currency_and_amount import TransactionCurrencyAndAmount
 from finbourne.sdk.services.lusid.models.transaction_date_windows import TransactionDateWindows
 from finbourne.sdk.services.lusid.models.transaction_diagnostics import TransactionDiagnostics
+from finbourne.sdk.services.lusid.models.transaction_entity import TransactionEntity
 from finbourne.sdk.services.lusid.models.transaction_fee_capitalisation import TransactionFeeCapitalisation
 from finbourne.sdk.services.lusid.models.transaction_fee_type import TransactionFeeType
 from finbourne.sdk.services.lusid.models.transaction_field_map import TransactionFieldMap
@@ -1485,6 +1489,7 @@ from finbourne.sdk.services.lusid.models.valuation_point_data_request import Val
 from finbourne.sdk.services.lusid.models.valuation_point_data_response import ValuationPointDataResponse
 from finbourne.sdk.services.lusid.models.valuation_point_instrument import ValuationPointInstrument
 from finbourne.sdk.services.lusid.models.valuation_point_overview import ValuationPointOverview
+from finbourne.sdk.services.lusid.models.valuation_point_resource_list_of_accounted_quote import ValuationPointResourceListOfAccountedQuote
 from finbourne.sdk.services.lusid.models.valuation_point_resource_list_of_accounted_transaction import ValuationPointResourceListOfAccountedTransaction
 from finbourne.sdk.services.lusid.models.valuation_point_resource_list_of_fund_cash_statement_row import ValuationPointResourceListOfFundCashStatementRow
 from finbourne.sdk.services.lusid.models.valuation_point_resource_list_of_fund_journal_entry_line import ValuationPointResourceListOfFundJournalEntryLine
@@ -1640,6 +1645,7 @@ __all__ = [
     "AccountHolder",
     "AccountHolderIdentifier",
     "AccountProperties",
+    "AccountedQuote",
     "AccountedTransaction",
     "AccountingMethod",
     "AccountsUpsertResponse",
@@ -1702,6 +1708,7 @@ __all__ = [
     "ApportionmentMethodProperty",
     "AssetClass",
     "AssetLeg",
+    "BankruptcyEvent",
     "Barrier",
     "Basket",
     "BasketIdentifier",
@@ -2268,6 +2275,7 @@ __all__ = [
     "LifeCycleEventValue",
     "LineageMember",
     "Link",
+    "LiquidationPaymentEvent",
     "ListAggregationReconciliation",
     "ListAggregationResponse",
     "ListComplexMarketDataWithMetaDataResponse",
@@ -2847,6 +2855,7 @@ __all__ = [
     "TransactionCurrencyAndAmount",
     "TransactionDateWindows",
     "TransactionDiagnostics",
+    "TransactionEntity",
     "TransactionFeeCapitalisation",
     "TransactionFeeType",
     "TransactionFieldMap",
@@ -3005,6 +3014,7 @@ __all__ = [
     "ValuationPointDataResponse",
     "ValuationPointInstrument",
     "ValuationPointOverview",
+    "ValuationPointResourceListOfAccountedQuote",
     "ValuationPointResourceListOfAccountedTransaction",
     "ValuationPointResourceListOfFundCashStatementRow",
     "ValuationPointResourceListOfFundJournalEntryLine",

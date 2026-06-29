@@ -6586,7 +6586,7 @@ class TransactionPortfoliosApi:
     def list_settlement_instructions(self, scope: StrictStr, code: StrictStr, from_date: Optional[StrictStr] = None, to_date: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> VersionedResourceListOfTransactionSettlementInstruction:
         """[EARLY ACCESS] ListSettlementInstructions: List Settlement Instructions.  # noqa: E501
 
-        Display all the Settlement Instructions for a given Portfolio. The transaction Id filter can be ued to return instructions for an individual transaction.  # noqa: E501
+        Display all the Settlement Instructions for a given Portfolio. The transaction Id filter can be used to return instructions for an individual transaction.  # noqa: E501
         :param scope: The scope of the portfolio to retrieve settlement instructions for. (required)
         :type scope: str
         :param code: The code of the portfolio to retrieve settlement instructions for. (required)
@@ -6628,7 +6628,7 @@ class TransactionPortfoliosApi:
     def list_settlement_instructions_with_http_info(self, scope: StrictStr, code: StrictStr, from_date: Optional[StrictStr] = None, to_date: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfTransactionSettlementInstruction]:
         """[EARLY ACCESS] ListSettlementInstructions: List Settlement Instructions.  # noqa: E501
 
-        Display all the Settlement Instructions for a given Portfolio. The transaction Id filter can be ued to return instructions for an individual transaction.  # noqa: E501
+        Display all the Settlement Instructions for a given Portfolio. The transaction Id filter can be used to return instructions for an individual transaction.  # noqa: E501
         :param scope: The scope of the portfolio to retrieve settlement instructions for. (required)
         :type scope: str
         :param code: The code of the portfolio to retrieve settlement instructions for. (required)
@@ -15102,7 +15102,7 @@ class TransactionPortfoliosApi:
     @validate_call
     async def list_settlement_instructions_async(self, scope: StrictStr, code: StrictStr, from_date: Optional[StrictStr] = None, to_date: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> VersionedResourceListOfTransactionSettlementInstruction:
             """[EARLY ACCESS] ListSettlementInstructions: List Settlement Instructions.  # noqa: E501
-            Display all the Settlement Instructions for a given Portfolio. The transaction Id filter can be ued to return instructions for an individual transaction.  # noqa: E501
+            Display all the Settlement Instructions for a given Portfolio. The transaction Id filter can be used to return instructions for an individual transaction.  # noqa: E501
             
             :param scope: The scope of the portfolio to retrieve settlement instructions for. (required)
             :type scope: str
@@ -15145,7 +15145,7 @@ class TransactionPortfoliosApi:
     async def list_settlement_instructions_with_http_info_async(self, scope: StrictStr, code: StrictStr, from_date: Optional[StrictStr] = None, to_date: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfTransactionSettlementInstruction]:
             """[EARLY ACCESS] ListSettlementInstructions: List Settlement Instructions.  # noqa: E501
 
-            Display all the Settlement Instructions for a given Portfolio. The transaction Id filter can be ued to return instructions for an individual transaction.  # noqa: E501
+            Display all the Settlement Instructions for a given Portfolio. The transaction Id filter can be used to return instructions for an individual transaction.  # noqa: E501
 
             :param scope: The scope of the portfolio to retrieve settlement instructions for. (required)
             :type scope: str

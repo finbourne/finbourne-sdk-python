@@ -36,8 +36,9 @@ class SideDefinition(BaseModel):
     amount:  StrictStr = Field(...,alias="amount", description="The value, field or property key defining the side's amount") 
     notional_amount:  Optional[StrictStr] = Field(default=None,alias="notionalAmount", description="The value, field or property key defining the side's notional amount") 
     current_face:  Optional[StrictStr] = Field(default=None,alias="currentFace", description="The value, field or property key defining the side's current face / outstanding notional.") 
+    scope:  Optional[StrictStr] = Field(default=None,alias="scope", description="The scope in which the side definition exists.") 
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["side", "security", "currency", "rate", "units", "amount", "notionalAmount", "currentFace", "links"]
+    __properties: ClassVar[List[str]] = ["side", "security", "currency", "rate", "units", "amount", "notionalAmount", "currentFace", "scope", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -90,6 +91,11 @@ class SideDefinition(BaseModel):
         if self.current_face is None and "current_face" in self.model_fields_set:
             _dict['currentFace'] = None
 
+        # set to None if scope (nullable) is None
+        # and model_fields_set contains the field
+        if self.scope is None and "scope" in self.model_fields_set:
+            _dict['scope'] = None
+
         # set to None if links (nullable) is None
         # and model_fields_set contains the field
         if self.links is None and "links" in self.model_fields_set:
@@ -115,6 +121,7 @@ class SideDefinition(BaseModel):
             "amount": obj.get("amount"),
             "notional_amount": obj.get("notionalAmount"),
             "current_face": obj.get("currentFace"),
+            "scope": obj.get("scope"),
             "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj

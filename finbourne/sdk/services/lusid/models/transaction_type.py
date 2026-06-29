@@ -36,8 +36,9 @@ class TransactionType(BaseModel):
     movements: List[TransactionTypeMovement] = Field(description="Movement data for the transaction type")
     properties: Optional[Dict[str, PerpetualProperty]] = Field(default=None, description="Properties attached to the transaction type")
     calculations: Optional[List[TransactionTypeCalculation]] = Field(default=None, description="Calculations to be performed for the transaction type")
+    scope:  Optional[StrictStr] = Field(default=None,alias="scope", description="The scope in which the transaction type exists.") 
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["aliases", "movements", "properties", "calculations", "links"]
+    __properties: ClassVar[List[str]] = ["aliases", "movements", "properties", "calculations", "scope", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -118,6 +119,11 @@ class TransactionType(BaseModel):
         if self.calculations is None and "calculations" in self.model_fields_set:
             _dict['calculations'] = None
 
+        # set to None if scope (nullable) is None
+        # and model_fields_set contains the field
+        if self.scope is None and "scope" in self.model_fields_set:
+            _dict['scope'] = None
+
         # set to None if links (nullable) is None
         # and model_fields_set contains the field
         if self.links is None and "links" in self.model_fields_set:
@@ -144,6 +150,7 @@ class TransactionType(BaseModel):
             if (_val := obj.get("properties")) is not None
             else None,
             "calculations": [TransactionTypeCalculation.from_dict(_item) for _item in _v] if (_v := obj.get("calculations")) is not None else None,
+            "scope": obj.get("scope"),
             "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj

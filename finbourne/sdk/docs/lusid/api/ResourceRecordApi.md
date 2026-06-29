@@ -4,12 +4,12 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**delete_resource_record**](ResourceRecordApi.md#delete_resource_record) | **DELETE** /api/api/resourcerecords/{scope}/{code}/{resourceId} | [EARLY ACCESS] DeleteResourceRecord: Delete a Resource Record
-[**get_resource_record**](ResourceRecordApi.md#get_resource_record) | **GET** /api/api/resourcerecords/{scope}/{code}/{resourceId} | [EARLY ACCESS] GetResourceRecord: Get a Resource Record
-[**list_resource_record_codes**](ResourceRecordApi.md#list_resource_record_codes) | **GET** /api/api/resourcerecords/{scope} | [EARLY ACCESS] ListResourceRecordCodes: List Resource Records Codes for Scope
-[**list_resource_record_scopes**](ResourceRecordApi.md#list_resource_record_scopes) | **GET** /api/api/resourcerecords | [EARLY ACCESS] ListResourceRecordScopes: List Resource Record Scopes
-[**list_resource_records**](ResourceRecordApi.md#list_resource_records) | **GET** /api/api/resourcerecords/{scope}/{code} | [EARLY ACCESS] ListResourceRecords: List Resource Records
-[**upsert_resource_record**](ResourceRecordApi.md#upsert_resource_record) | **POST** /api/api/resourcerecords | [EARLY ACCESS] UpsertResourceRecord: Upsert a Resource Record
+[**delete_resource_record**](ResourceRecordApi.md#delete_resource_record) | **DELETE** /api/api/resourcerecords/{scope}/{code}/{resourceId} | DeleteResourceRecord: Delete a Resource Record
+[**get_resource_record**](ResourceRecordApi.md#get_resource_record) | **GET** /api/api/resourcerecords/{scope}/{code}/{resourceId} | GetResourceRecord: Get a Resource Record
+[**list_resource_record_codes**](ResourceRecordApi.md#list_resource_record_codes) | **GET** /api/api/resourcerecords/{scope} | ListResourceRecordCodes: List Resource Records Codes for Scope
+[**list_resource_record_scopes**](ResourceRecordApi.md#list_resource_record_scopes) | **GET** /api/api/resourcerecords | ListResourceRecordScopes: List Resource Record Scopes
+[**list_resource_records**](ResourceRecordApi.md#list_resource_records) | **GET** /api/api/resourcerecords/{scope}/{code} | ListResourceRecords: List Resource Records
+[**upsert_resource_record**](ResourceRecordApi.md#upsert_resource_record) | **POST** /api/api/resourcerecords | UpsertResourceRecord: Upsert a Resource Record
 
 
 ### Example
@@ -40,7 +40,7 @@ api_instance = api_client_factory.build(ResourceRecordApi)
 # **delete_resource_record**
 > DeletedEntityResponse deleteResourceRecord = delete_resource_record(scope, code, resource_id)
 
-[EARLY ACCESS] DeleteResourceRecord: Delete a Resource Record
+DeleteResourceRecord: Delete a Resource Record
 
 Delete a resource record.
 
@@ -86,7 +86,7 @@ Name | Type | Description  | Notes
 # **get_resource_record**
 > ResourceRecord getResourceRecord = get_resource_record(scope, code, resource_id, as_at=as_at)
 
-[EARLY ACCESS] GetResourceRecord: Get a Resource Record
+GetResourceRecord: Get a Resource Record
 
 Retrieve a resource record by its identifier.
 
@@ -134,7 +134,7 @@ Name | Type | Description  | Notes
 # **list_resource_record_codes**
 > ResourceListOfString listResourceRecordCodes = list_resource_record_codes(scope, as_at=as_at, sort_order=sort_order)
 
-[EARLY ACCESS] ListResourceRecordCodes: List Resource Records Codes for Scope
+ListResourceRecordCodes: List Resource Records Codes for Scope
 
 List all resource records matching particular criteria.
 
@@ -180,7 +180,7 @@ Name | Type | Description  | Notes
 # **list_resource_record_scopes**
 > ResourceListOfScopeDefinition listResourceRecordScopes = list_resource_record_scopes(as_at=as_at, page=page, limit=limit)
 
-[EARLY ACCESS] ListResourceRecordScopes: List Resource Record Scopes
+ListResourceRecordScopes: List Resource Record Scopes
 
 List all resource records matching particular criteria.
 
@@ -226,7 +226,7 @@ Name | Type | Description  | Notes
 # **list_resource_records**
 > PagedResourceListOfResourceRecord listResourceRecords = list_resource_records(scope, code, as_at=as_at, page=page, sort_by=sort_by, limit=limit, filter=filter)
 
-[EARLY ACCESS] ListResourceRecords: List Resource Records
+ListResourceRecords: List Resource Records
 
 List all resource records matching particular criteria.
 
@@ -280,7 +280,7 @@ Name | Type | Description  | Notes
 # **upsert_resource_record**
 > ResourceRecord upsertResourceRecord = upsert_resource_record(upsert_resource_record_request)
 
-[EARLY ACCESS] UpsertResourceRecord: Upsert a Resource Record
+UpsertResourceRecord: Upsert a Resource Record
 
 Create or update a resource record.
 

@@ -128,7 +128,7 @@ Name | Type | Description  | Notes
 ---
 
 # **list_orders**
-> PagedResourceListOfOrder listOrders = list_orders(as_at=as_at, page=page, sort_by=sort_by, limit=limit, filter=filter, property_keys=property_keys, data_model_scope=data_model_scope, data_model_code=data_model_code, membership_type=membership_type)
+> PagedResourceListOfOrder listOrders = list_orders(as_at=as_at, page=page, sort_by=sort_by, limit=limit, filter=filter, property_keys=property_keys, data_model_scope=data_model_scope, data_model_code=data_model_code, membership_type=membership_type, get_derived_compliance_statuses=get_derived_compliance_statuses)
 
 ListOrders: List Orders
 
@@ -147,7 +147,8 @@ property_keys = ['property_keys_example'] # List[str] (optional)
 data_model_scope = 'data_model_scope_example' # str (optional)
 data_model_code = 'data_model_code_example' # str (optional)
 membership_type = 'membership_type_example' # str (optional)
-api_response = api_instance.list_orders(as_at=as_at, page=page, sort_by=sort_by, limit=limit, filter=filter, property_keys=property_keys, data_model_scope=data_model_scope, data_model_code=data_model_code, membership_type=membership_type)
+get_derived_compliance_statuses = False # bool (optional)
+api_response = api_instance.list_orders(as_at=as_at, page=page, sort_by=sort_by, limit=limit, filter=filter, property_keys=property_keys, data_model_scope=data_model_scope, data_model_code=data_model_code, membership_type=membership_type, get_derived_compliance_statuses=get_derived_compliance_statuses)
 pprint(api_response)
 ```
 
@@ -164,6 +165,7 @@ Name | Type | Description  | Notes
  **data_model_scope** | **str**| The optional scope of a Custom Data Model to use | [optional] 
  **data_model_code** | **str**| The optional code of a Custom Data Model to use | [optional] 
  **membership_type** | **str**| The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate. | [optional] 
+ **get_derived_compliance_statuses** | **bool**| If true, derives and decorates ComplianceState and ApprovalState onto each order using the V2 compliance engine. Defaults to false. | [optional] [default to False]
 
 ### Return type
 

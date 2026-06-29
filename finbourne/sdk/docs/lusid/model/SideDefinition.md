@@ -12,6 +12,7 @@
 | **amount** | **str** | Required | The value, field or property key defining the side&#39;s amount |
 | **notional_amount** | **str** | Optional | The value, field or property key defining the side&#39;s notional amount |
 | **current_face** | **str** | Optional | The value, field or property key defining the side&#39;s current face / outstanding notional. |
+| **scope** | **str** | Optional | The scope in which the side definition exists. |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
@@ -31,6 +32,7 @@ instance = SideDefinition(
     amount="...",  # required — The value, field or property key defining the side&#39;s amount
     notional_amount="...",  # optional — The value, field or property key defining the side&#39;s notional amount
     current_face="...",  # optional — The value, field or property key defining the side&#39;s current face / outstanding notional.
+    scope="...",  # optional — The scope in which the side definition exists.
     links=[]  # optional
 )
 ```

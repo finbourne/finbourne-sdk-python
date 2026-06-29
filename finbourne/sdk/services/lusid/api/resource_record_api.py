@@ -55,7 +55,7 @@ class ResourceRecordApi:
 
     @validate_call
     def delete_resource_record(self, scope: StrictStr, code: StrictStr, resource_id: StrictStr, **kwargs) -> DeletedEntityResponse:
-        """[EARLY ACCESS] DeleteResourceRecord: Delete a Resource Record  # noqa: E501
+        """DeleteResourceRecord: Delete a Resource Record  # noqa: E501
 
         Delete a resource record.  # noqa: E501
         :param scope: The scope of the resource record. (required)
@@ -79,7 +79,7 @@ class ResourceRecordApi:
 
     @validate_call
     def delete_resource_record_with_http_info(self, scope: StrictStr, code: StrictStr, resource_id: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-        """[EARLY ACCESS] DeleteResourceRecord: Delete a Resource Record  # noqa: E501
+        """DeleteResourceRecord: Delete a Resource Record  # noqa: E501
 
         Delete a resource record.  # noqa: E501
         :param scope: The scope of the resource record. (required)
@@ -191,7 +191,7 @@ class ResourceRecordApi:
 
     @validate_call
     def get_resource_record(self, scope: StrictStr, code: StrictStr, resource_id: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ResourceRecord:
-        """[EARLY ACCESS] GetResourceRecord: Get a Resource Record  # noqa: E501
+        """GetResourceRecord: Get a Resource Record  # noqa: E501
 
         Retrieve a resource record by its identifier.  # noqa: E501
         :param scope: The scope of the resource record. (required)
@@ -217,7 +217,7 @@ class ResourceRecordApi:
 
     @validate_call
     def get_resource_record_with_http_info(self, scope: StrictStr, code: StrictStr, resource_id: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceRecord]:
-        """[EARLY ACCESS] GetResourceRecord: Get a Resource Record  # noqa: E501
+        """GetResourceRecord: Get a Resource Record  # noqa: E501
 
         Retrieve a resource record by its identifier.  # noqa: E501
         :param scope: The scope of the resource record. (required)
@@ -338,7 +338,7 @@ class ResourceRecordApi:
 
     @validate_call
     def list_resource_record_codes(self, scope: StrictStr, as_at: Optional[datetime] = None, sort_order: Optional[StrictStr] = None, **kwargs) -> ResourceListOfString:
-        """[EARLY ACCESS] ListResourceRecordCodes: List Resource Records Codes for Scope  # noqa: E501
+        """ListResourceRecordCodes: List Resource Records Codes for Scope  # noqa: E501
 
         List all resource records matching particular criteria.  # noqa: E501
         :param scope: The scope of the resource record. (required)
@@ -362,7 +362,7 @@ class ResourceRecordApi:
 
     @validate_call
     def list_resource_record_codes_with_http_info(self, scope: StrictStr, as_at: Optional[datetime] = None, sort_order: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfString]:
-        """[EARLY ACCESS] ListResourceRecordCodes: List Resource Records Codes for Scope  # noqa: E501
+        """ListResourceRecordCodes: List Resource Records Codes for Scope  # noqa: E501
 
         List all resource records matching particular criteria.  # noqa: E501
         :param scope: The scope of the resource record. (required)
@@ -477,7 +477,7 @@ class ResourceRecordApi:
 
     @validate_call
     def list_resource_record_scopes(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, **kwargs) -> ResourceListOfScopeDefinition:
-        """[EARLY ACCESS] ListResourceRecordScopes: List Resource Record Scopes  # noqa: E501
+        """ListResourceRecordScopes: List Resource Record Scopes  # noqa: E501
 
         List all resource records matching particular criteria.  # noqa: E501
         :param as_at: The asAt datetime at which to list the resource record. Defaults to return the latest version if not specified.
@@ -501,7 +501,7 @@ class ResourceRecordApi:
 
     @validate_call
     def list_resource_record_scopes_with_http_info(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, **kwargs) -> ApiResponse[ResourceListOfScopeDefinition]:
-        """[EARLY ACCESS] ListResourceRecordScopes: List Resource Record Scopes  # noqa: E501
+        """ListResourceRecordScopes: List Resource Record Scopes  # noqa: E501
 
         List all resource records matching particular criteria.  # noqa: E501
         :param as_at: The asAt datetime at which to list the resource record. Defaults to return the latest version if not specified.
@@ -616,7 +616,7 @@ class ResourceRecordApi:
 
     @validate_call
     def list_resource_records(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfResourceRecord:
-        """[EARLY ACCESS] ListResourceRecords: List Resource Records  # noqa: E501
+        """ListResourceRecords: List Resource Records  # noqa: E501
 
         List all resource records matching particular criteria.  # noqa: E501
         :param scope: The scope of the resource record. (required)
@@ -648,7 +648,7 @@ class ResourceRecordApi:
 
     @validate_call
     def list_resource_records_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfResourceRecord]:
-        """[EARLY ACCESS] ListResourceRecords: List Resource Records  # noqa: E501
+        """ListResourceRecords: List Resource Records  # noqa: E501
 
         List all resource records matching particular criteria.  # noqa: E501
         :param scope: The scope of the resource record. (required)
@@ -788,7 +788,7 @@ class ResourceRecordApi:
 
     @validate_call
     def upsert_resource_record(self, upsert_resource_record_request: UpsertResourceRecordRequest, **kwargs) -> ResourceRecord:
-        """[EARLY ACCESS] UpsertResourceRecord: Upsert a Resource Record  # noqa: E501
+        """UpsertResourceRecord: Upsert a Resource Record  # noqa: E501
 
         Create or update a resource record.  # noqa: E501
         :param upsert_resource_record_request: The resource record to upsert. (required)
@@ -808,7 +808,7 @@ class ResourceRecordApi:
 
     @validate_call
     def upsert_resource_record_with_http_info(self, upsert_resource_record_request: UpsertResourceRecordRequest, **kwargs) -> ApiResponse[ResourceRecord]:
-        """[EARLY ACCESS] UpsertResourceRecord: Upsert a Resource Record  # noqa: E501
+        """UpsertResourceRecord: Upsert a Resource Record  # noqa: E501
 
         Create or update a resource record.  # noqa: E501
         :param upsert_resource_record_request: The resource record to upsert. (required)
@@ -919,7 +919,7 @@ class ResourceRecordApi:
 
     @validate_call
     async def delete_resource_record_async(self, scope: StrictStr, code: StrictStr, resource_id: StrictStr, **kwargs) -> DeletedEntityResponse:
-            """[EARLY ACCESS] DeleteResourceRecord: Delete a Resource Record  # noqa: E501
+            """DeleteResourceRecord: Delete a Resource Record  # noqa: E501
             Delete a resource record.  # noqa: E501
             
             :param scope: The scope of the resource record. (required)
@@ -943,7 +943,7 @@ class ResourceRecordApi:
 
     @validate_call
     async def delete_resource_record_with_http_info_async(self, scope: StrictStr, code: StrictStr, resource_id: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-            """[EARLY ACCESS] DeleteResourceRecord: Delete a Resource Record  # noqa: E501
+            """DeleteResourceRecord: Delete a Resource Record  # noqa: E501
 
             Delete a resource record.  # noqa: E501
 
@@ -1056,7 +1056,7 @@ class ResourceRecordApi:
 
     @validate_call
     async def get_resource_record_async(self, scope: StrictStr, code: StrictStr, resource_id: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ResourceRecord:
-            """[EARLY ACCESS] GetResourceRecord: Get a Resource Record  # noqa: E501
+            """GetResourceRecord: Get a Resource Record  # noqa: E501
             Retrieve a resource record by its identifier.  # noqa: E501
             
             :param scope: The scope of the resource record. (required)
@@ -1082,7 +1082,7 @@ class ResourceRecordApi:
 
     @validate_call
     async def get_resource_record_with_http_info_async(self, scope: StrictStr, code: StrictStr, resource_id: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceRecord]:
-            """[EARLY ACCESS] GetResourceRecord: Get a Resource Record  # noqa: E501
+            """GetResourceRecord: Get a Resource Record  # noqa: E501
 
             Retrieve a resource record by its identifier.  # noqa: E501
 
@@ -1204,7 +1204,7 @@ class ResourceRecordApi:
 
     @validate_call
     async def list_resource_record_codes_async(self, scope: StrictStr, as_at: Optional[datetime] = None, sort_order: Optional[StrictStr] = None, **kwargs) -> ResourceListOfString:
-            """[EARLY ACCESS] ListResourceRecordCodes: List Resource Records Codes for Scope  # noqa: E501
+            """ListResourceRecordCodes: List Resource Records Codes for Scope  # noqa: E501
             List all resource records matching particular criteria.  # noqa: E501
             
             :param scope: The scope of the resource record. (required)
@@ -1228,7 +1228,7 @@ class ResourceRecordApi:
 
     @validate_call
     async def list_resource_record_codes_with_http_info_async(self, scope: StrictStr, as_at: Optional[datetime] = None, sort_order: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfString]:
-            """[EARLY ACCESS] ListResourceRecordCodes: List Resource Records Codes for Scope  # noqa: E501
+            """ListResourceRecordCodes: List Resource Records Codes for Scope  # noqa: E501
 
             List all resource records matching particular criteria.  # noqa: E501
 
@@ -1344,7 +1344,7 @@ class ResourceRecordApi:
 
     @validate_call
     async def list_resource_record_scopes_async(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, **kwargs) -> ResourceListOfScopeDefinition:
-            """[EARLY ACCESS] ListResourceRecordScopes: List Resource Record Scopes  # noqa: E501
+            """ListResourceRecordScopes: List Resource Record Scopes  # noqa: E501
             List all resource records matching particular criteria.  # noqa: E501
             
             :param as_at: The asAt datetime at which to list the resource record. Defaults to return the latest version if not specified.
@@ -1368,7 +1368,7 @@ class ResourceRecordApi:
 
     @validate_call
     async def list_resource_record_scopes_with_http_info_async(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, **kwargs) -> ApiResponse[ResourceListOfScopeDefinition]:
-            """[EARLY ACCESS] ListResourceRecordScopes: List Resource Record Scopes  # noqa: E501
+            """ListResourceRecordScopes: List Resource Record Scopes  # noqa: E501
 
             List all resource records matching particular criteria.  # noqa: E501
 
@@ -1484,7 +1484,7 @@ class ResourceRecordApi:
 
     @validate_call
     async def list_resource_records_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfResourceRecord:
-            """[EARLY ACCESS] ListResourceRecords: List Resource Records  # noqa: E501
+            """ListResourceRecords: List Resource Records  # noqa: E501
             List all resource records matching particular criteria.  # noqa: E501
             
             :param scope: The scope of the resource record. (required)
@@ -1516,7 +1516,7 @@ class ResourceRecordApi:
 
     @validate_call
     async def list_resource_records_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfResourceRecord]:
-            """[EARLY ACCESS] ListResourceRecords: List Resource Records  # noqa: E501
+            """ListResourceRecords: List Resource Records  # noqa: E501
 
             List all resource records matching particular criteria.  # noqa: E501
 
@@ -1657,7 +1657,7 @@ class ResourceRecordApi:
 
     @validate_call
     async def upsert_resource_record_async(self, upsert_resource_record_request: UpsertResourceRecordRequest, **kwargs) -> ResourceRecord:
-            """[EARLY ACCESS] UpsertResourceRecord: Upsert a Resource Record  # noqa: E501
+            """UpsertResourceRecord: Upsert a Resource Record  # noqa: E501
             Create or update a resource record.  # noqa: E501
             
             :param upsert_resource_record_request: The resource record to upsert. (required)
@@ -1677,7 +1677,7 @@ class ResourceRecordApi:
 
     @validate_call
     async def upsert_resource_record_with_http_info_async(self, upsert_resource_record_request: UpsertResourceRecordRequest, **kwargs) -> ApiResponse[ResourceRecord]:
-            """[EARLY ACCESS] UpsertResourceRecord: Upsert a Resource Record  # noqa: E501
+            """UpsertResourceRecord: Upsert a Resource Record  # noqa: E501
 
             Create or update a resource record.  # noqa: E501
 

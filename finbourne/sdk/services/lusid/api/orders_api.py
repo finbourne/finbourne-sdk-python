@@ -20,7 +20,7 @@ from typing_extensions import Annotated
 
 import finbourne.sdk.services.lusid.models as packageModels
 from datetime import datetime
-from pydantic import Field, StrictInt, StrictStr, field_validator
+from pydantic import Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import List, Optional
 from typing_extensions import Annotated
 from finbourne.sdk.services.lusid.models.deleted_entity_response import DeletedEntityResponse
@@ -329,7 +329,7 @@ class OrdersApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def list_orders(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, membership_type: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfOrder:
+    def list_orders(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, membership_type: Optional[StrictStr] = None, get_derived_compliance_statuses: Optional[bool] = None, **kwargs) -> PagedResourceListOfOrder:
         """ListOrders: List Orders  # noqa: E501
 
         Fetch the last pre-AsAt date version of each order with optional filtering (does not fetch the entire history).  # noqa: E501
@@ -351,6 +351,8 @@ class OrdersApi:
         :type data_model_code: str
         :param membership_type: The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate.
         :type membership_type: str
+        :param get_derived_compliance_statuses: If true, derives and decorates ComplianceState and ApprovalState onto each order using the V2 compliance engine. Defaults to false.
+        :type get_derived_compliance_statuses: bool
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -361,11 +363,11 @@ class OrdersApi:
             message = "Error! Please call the list_orders_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.list_orders_with_http_info(as_at, page, sort_by, limit, filter, property_keys, data_model_scope, data_model_code, membership_type, **kwargs)
+        response = self.list_orders_with_http_info(as_at, page, sort_by, limit, filter, property_keys, data_model_scope, data_model_code, membership_type, get_derived_compliance_statuses, **kwargs)
         return response.data
 
     @validate_call
-    def list_orders_with_http_info(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, membership_type: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfOrder]:
+    def list_orders_with_http_info(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, membership_type: Optional[StrictStr] = None, get_derived_compliance_statuses: Optional[bool] = None, **kwargs) -> ApiResponse[PagedResourceListOfOrder]:
         """ListOrders: List Orders  # noqa: E501
 
         Fetch the last pre-AsAt date version of each order with optional filtering (does not fetch the entire history).  # noqa: E501
@@ -387,6 +389,8 @@ class OrdersApi:
         :type data_model_code: str
         :param membership_type: The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate.
         :type membership_type: str
+        :param get_derived_compliance_statuses: If true, derives and decorates ComplianceState and ApprovalState onto each order using the V2 compliance engine. Defaults to false.
+        :type get_derived_compliance_statuses: bool
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -418,7 +422,8 @@ class OrdersApi:
             'property_keys',
             'data_model_scope',
             'data_model_code',
-            'membership_type'
+            'membership_type',
+            'get_derived_compliance_statuses'
         ]
         _all_params.extend(
             [
@@ -480,6 +485,9 @@ class OrdersApi:
 
         if _params.get('membership_type') is not None:  # noqa: E501
             _query_params.append(('membershipType', _params['membership_type']))
+
+        if _params.get('get_derived_compliance_statuses') is not None:  # noqa: E501
+            _query_params.append(('getDerivedComplianceStatuses', _params['get_derived_compliance_statuses']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -943,7 +951,7 @@ class OrdersApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def list_orders_async(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, membership_type: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfOrder:
+    async def list_orders_async(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, membership_type: Optional[StrictStr] = None, get_derived_compliance_statuses: Optional[bool] = None, **kwargs) -> PagedResourceListOfOrder:
             """ListOrders: List Orders  # noqa: E501
             Fetch the last pre-AsAt date version of each order with optional filtering (does not fetch the entire history).  # noqa: E501
             
@@ -965,6 +973,8 @@ class OrdersApi:
             :type data_model_code: str
             :param membership_type: The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate.
             :type membership_type: str
+            :param get_derived_compliance_statuses: If true, derives and decorates ComplianceState and ApprovalState onto each order using the V2 compliance engine. Defaults to false.
+            :type get_derived_compliance_statuses: bool
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -975,11 +985,11 @@ class OrdersApi:
                 message = "Error! Please call the list_orders_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.list_orders_with_http_info_async(as_at, page, sort_by, limit, filter, property_keys, data_model_scope, data_model_code, membership_type, **kwargs)
+            response = await self.list_orders_with_http_info_async(as_at, page, sort_by, limit, filter, property_keys, data_model_scope, data_model_code, membership_type, get_derived_compliance_statuses, **kwargs)
             return response.data
 
     @validate_call
-    async def list_orders_with_http_info_async(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, membership_type: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfOrder]:
+    async def list_orders_with_http_info_async(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, membership_type: Optional[StrictStr] = None, get_derived_compliance_statuses: Optional[bool] = None, **kwargs) -> ApiResponse[PagedResourceListOfOrder]:
             """ListOrders: List Orders  # noqa: E501
 
             Fetch the last pre-AsAt date version of each order with optional filtering (does not fetch the entire history).  # noqa: E501
@@ -1002,6 +1012,8 @@ class OrdersApi:
             :type data_model_code: str
             :param membership_type: The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate.
             :type membership_type: str
+            :param get_derived_compliance_statuses: If true, derives and decorates ComplianceState and ApprovalState onto each order using the V2 compliance engine. Defaults to false.
+            :type get_derived_compliance_statuses: bool
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -1033,7 +1045,8 @@ class OrdersApi:
                 'property_keys',
                 'data_model_scope',
                 'data_model_code',
-                'membership_type'
+                'membership_type',
+                'get_derived_compliance_statuses'
             ]
             _all_params.extend(
                 [
@@ -1095,6 +1108,9 @@ class OrdersApi:
 
             if _params.get('membership_type') is not None:  # noqa: E501
                 _query_params.append(('membershipType', _params['membership_type']))
+
+            if _params.get('get_derived_compliance_statuses') is not None:  # noqa: E501
+                _query_params.append(('getDerivedComplianceStatuses', _params['get_derived_compliance_statuses']))
 
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))

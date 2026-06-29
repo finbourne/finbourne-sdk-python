@@ -737,10 +737,10 @@ class TransactionConfigurationApi:
     def list_side_definitions(self, as_at: Optional[datetime] = None, scope: Optional[StrictStr] = None, **kwargs) -> ResourceListOfSideDefinition:
         """ListSideDefinitions: List the side definitions  # noqa: E501
 
-        List all the side definitions in the given scope  # noqa: E501
+        List all the side definitions in the given scope, or across all scopes when scope is '*'.  # noqa: E501
         :param as_at: The asAt datetime at which to retrieve the transaction types. Defaults to returning the latest versions if not specified.
         :type as_at: datetime
-        :param scope: The scope in which the side exists. When not supplied the scope is 'default'.
+        :param scope: The scope in which the side exists. When not supplied the scope is 'default'. Use '*' to list across all scopes.
         :type scope: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -759,10 +759,10 @@ class TransactionConfigurationApi:
     def list_side_definitions_with_http_info(self, as_at: Optional[datetime] = None, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfSideDefinition]:
         """ListSideDefinitions: List the side definitions  # noqa: E501
 
-        List all the side definitions in the given scope  # noqa: E501
+        List all the side definitions in the given scope, or across all scopes when scope is '*'.  # noqa: E501
         :param as_at: The asAt datetime at which to retrieve the transaction types. Defaults to returning the latest versions if not specified.
         :type as_at: datetime
-        :param scope: The scope in which the side exists. When not supplied the scope is 'default'.
+        :param scope: The scope in which the side exists. When not supplied the scope is 'default'. Use '*' to list across all scopes.
         :type scope: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -871,7 +871,7 @@ class TransactionConfigurationApi:
         Get the list of current transaction types. For information on the default transaction types provided with  LUSID, see https://support.lusid.com/knowledgebase/article/KA-01873/.  # noqa: E501
         :param as_at: The asAt datetime at which to retrieve the transaction types. Defaults              to returning the latest versions if not specified.
         :type as_at: datetime
-        :param scope: The scope in which the side exists. When not supplied the scope is 'default'.
+        :param scope: The scope in which the transaction types exist. When not supplied the scope is 'default'. Use '*' to list across all scopes.
         :type scope: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -893,7 +893,7 @@ class TransactionConfigurationApi:
         Get the list of current transaction types. For information on the default transaction types provided with  LUSID, see https://support.lusid.com/knowledgebase/article/KA-01873/.  # noqa: E501
         :param as_at: The asAt datetime at which to retrieve the transaction types. Defaults              to returning the latest versions if not specified.
         :type as_at: datetime
-        :param scope: The scope in which the side exists. When not supplied the scope is 'default'.
+        :param scope: The scope in which the transaction types exist. When not supplied the scope is 'default'. Use '*' to list across all scopes.
         :type scope: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -2257,11 +2257,11 @@ class TransactionConfigurationApi:
     @validate_call
     async def list_side_definitions_async(self, as_at: Optional[datetime] = None, scope: Optional[StrictStr] = None, **kwargs) -> ResourceListOfSideDefinition:
             """ListSideDefinitions: List the side definitions  # noqa: E501
-            List all the side definitions in the given scope  # noqa: E501
+            List all the side definitions in the given scope, or across all scopes when scope is '*'.  # noqa: E501
             
             :param as_at: The asAt datetime at which to retrieve the transaction types. Defaults to returning the latest versions if not specified.
             :type as_at: datetime
-            :param scope: The scope in which the side exists. When not supplied the scope is 'default'.
+            :param scope: The scope in which the side exists. When not supplied the scope is 'default'. Use '*' to list across all scopes.
             :type scope: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -2280,11 +2280,11 @@ class TransactionConfigurationApi:
     async def list_side_definitions_with_http_info_async(self, as_at: Optional[datetime] = None, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfSideDefinition]:
             """ListSideDefinitions: List the side definitions  # noqa: E501
 
-            List all the side definitions in the given scope  # noqa: E501
+            List all the side definitions in the given scope, or across all scopes when scope is '*'.  # noqa: E501
 
             :param as_at: The asAt datetime at which to retrieve the transaction types. Defaults to returning the latest versions if not specified.
             :type as_at: datetime
-            :param scope: The scope in which the side exists. When not supplied the scope is 'default'.
+            :param scope: The scope in which the side exists. When not supplied the scope is 'default'. Use '*' to list across all scopes.
             :type scope: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
@@ -2393,7 +2393,7 @@ class TransactionConfigurationApi:
             
             :param as_at: The asAt datetime at which to retrieve the transaction types. Defaults              to returning the latest versions if not specified.
             :type as_at: datetime
-            :param scope: The scope in which the side exists. When not supplied the scope is 'default'.
+            :param scope: The scope in which the transaction types exist. When not supplied the scope is 'default'. Use '*' to list across all scopes.
             :type scope: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -2416,7 +2416,7 @@ class TransactionConfigurationApi:
 
             :param as_at: The asAt datetime at which to retrieve the transaction types. Defaults              to returning the latest versions if not specified.
             :type as_at: datetime
-            :param scope: The scope in which the side exists. When not supplied the scope is 'default'.
+            :param scope: The scope in which the transaction types exist. When not supplied the scope is 'default'. Use '*' to list across all scopes.
             :type scope: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the

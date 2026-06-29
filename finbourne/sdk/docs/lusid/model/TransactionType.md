@@ -8,6 +8,7 @@
 | **movements** | [List[TransactionTypeMovement]](TransactionTypeMovement.md) | Required | Movement data for the transaction type |
 | **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Properties attached to the transaction type |
 | **calculations** | [List[TransactionTypeCalculation]](TransactionTypeCalculation.md) | Optional | Calculations to be performed for the transaction type |
+| **scope** | **str** | Optional | The scope in which the transaction type exists. |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
@@ -23,6 +24,7 @@ instance = TransactionType(
     movements=[],  # required — Movement data for the transaction type
     properties=PerpetualProperty(...),  # optional — Properties attached to the transaction type
     calculations=[],  # optional — Calculations to be performed for the transaction type
+    scope="...",  # optional — The scope in which the transaction type exists.
     links=[]  # optional
 )
 ```

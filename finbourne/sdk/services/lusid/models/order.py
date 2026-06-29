@@ -55,8 +55,10 @@ class Order(BaseModel):
     weight: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The proportion of the total portfolio value ordered for the given instrument ordered.")
     amount: Optional[CurrencyAndAmount] = None
     data_model_membership: Optional[DataModelMembership] = Field(default=None, alias="dataModelMembership")
+    derived_compliance_state:  Optional[StrictStr] = Field(default=None,alias="derivedComplianceState", description="The compliance state of the order, derived from pre-trade compliance runs.") 
+    derived_approval_state:  Optional[StrictStr] = Field(default=None,alias="derivedApprovalState", description="The approval state of the order.") 
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["properties", "version", "instrumentIdentifiers", "quantity", "side", "orderBookId", "portfolioId", "id", "instrumentScope", "lusidInstrumentId", "state", "type", "timeInForce", "date", "price", "limitPrice", "stopPrice", "orderInstructionId", "packageId", "weight", "amount", "dataModelMembership", "links"]
+    __properties: ClassVar[List[str]] = ["properties", "version", "instrumentIdentifiers", "quantity", "side", "orderBookId", "portfolioId", "id", "instrumentScope", "lusidInstrumentId", "state", "type", "timeInForce", "date", "price", "limitPrice", "stopPrice", "orderInstructionId", "packageId", "weight", "amount", "dataModelMembership", "derivedComplianceState", "derivedApprovalState", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -174,6 +176,16 @@ class Order(BaseModel):
         if self.weight is None and "weight" in self.model_fields_set:
             _dict['weight'] = None
 
+        # set to None if derived_compliance_state (nullable) is None
+        # and model_fields_set contains the field
+        if self.derived_compliance_state is None and "derived_compliance_state" in self.model_fields_set:
+            _dict['derivedComplianceState'] = None
+
+        # set to None if derived_approval_state (nullable) is None
+        # and model_fields_set contains the field
+        if self.derived_approval_state is None and "derived_approval_state" in self.model_fields_set:
+            _dict['derivedApprovalState'] = None
+
         # set to None if links (nullable) is None
         # and model_fields_set contains the field
         if self.links is None and "links" in self.model_fields_set:
@@ -218,6 +230,8 @@ class Order(BaseModel):
             "weight": obj.get("weight"),
             "amount": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("amount")) is not None else None,
             "data_model_membership": DataModelMembership.from_dict(_v) if (_v := obj.get("dataModelMembership")) is not None else None,
+            "derived_compliance_state": obj.get("derivedComplianceState"),
+            "derived_approval_state": obj.get("derivedApprovalState"),
             "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
