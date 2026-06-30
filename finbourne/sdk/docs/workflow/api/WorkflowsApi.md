@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**get_workflow**](WorkflowsApi.md#get_workflow) | **GET** /workflow/api/workflows/{scope}/{code} | GetWorkflow: Get a Workflow
 [**list_workflows**](WorkflowsApi.md#list_workflows) | **GET** /workflow/api/workflows | ListWorkflows: List Workflows
 [**update_workflow**](WorkflowsApi.md#update_workflow) | **PUT** /workflow/api/workflows/{scope}/{code} | [EXPERIMENTAL] UpdateWorkflow: Update an existing Workflow
+[**upsert_workflow_properties**](WorkflowsApi.md#upsert_workflow_properties) | **POST** /workflow/api/workflows/{scope}/{code}/properties | [EXPERIMENTAL] UpsertWorkflowProperties: Add, update and remove properties on an existing Workflow in bulk.
 
 
 ### Example
@@ -241,6 +242,53 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**WorkflowResponse**](WorkflowResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | The details of the input related failure |  -  |
+**404** | Workflow not found. |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **upsert_workflow_properties**
+> BatchUpsertWorkflowPropertiesResponse upsertWorkflowProperties = upsert_workflow_properties(scope, code, request_body, success_mode=success_mode)
+
+[EXPERIMENTAL] UpsertWorkflowProperties: Add, update and remove properties on an existing Workflow in bulk.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(WorkflowsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+request_body = {"Workflow/myScope/reviewer":{"key":"Workflow/myScope/reviewer","value":{"labelValue":"Jane Doe"}},"Workflow/myScope/priority":{"key":"Workflow/myScope/priority","value":{"metricValue":{"value":1.0}}},"Workflow/myScope/obsoleteProperty":{"key":"Workflow/myScope/obsoleteProperty"}} # Dict[str, PerpetualProperty]
+success_mode = 'Partial' # str (optional)
+api_response = api_instance.upsert_workflow_properties(scope, code, request_body, success_mode=success_mode)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope that identifies a Workflow | [required] 
+ **code** | **str**| The code that identifies a Workflow | [required] 
+ **request_body** | [**Dict[str, PerpetualProperty]**](PerpetualProperty.md)| The properties to upsert, keyed by property key. A null value deletes the property. | [required] 
+ **success_mode** | **str**| Whether the batch should fail Atomically or Partially. Defaults to Partial. | [optional] [default to &#39;Partial&#39;]
+
+### Return type
+
+[**BatchUpsertWorkflowPropertiesResponse**](BatchUpsertWorkflowPropertiesResponse.md)
 
 ### HTTP request headers
 

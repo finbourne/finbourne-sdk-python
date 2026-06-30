@@ -24,6 +24,7 @@ from finbourne.sdk.services.workflow.models.action_log_item import ActionLogItem
 from finbourne.sdk.services.workflow.models.action_log_origin import ActionLogOrigin
 from finbourne.sdk.services.workflow.models.batch_update_tasks_request import BatchUpdateTasksRequest
 from finbourne.sdk.services.workflow.models.batch_update_tasks_response import BatchUpdateTasksResponse
+from finbourne.sdk.services.workflow.models.batch_upsert_workflow_properties_response import BatchUpsertWorkflowPropertiesResponse
 from finbourne.sdk.services.workflow.models.calendar_reference import CalendarReference
 from finbourne.sdk.services.workflow.models.change_item import ChangeItem
 from finbourne.sdk.services.workflow.models.child_task_definition_edge import ChildTaskDefinitionEdge
@@ -59,6 +60,7 @@ from finbourne.sdk.services.workflow.models.health_check_response import HealthC
 from finbourne.sdk.services.workflow.models.id_selector_definition import IdSelectorDefinition
 from finbourne.sdk.services.workflow.models.identifier_part_schema import IdentifierPartSchema
 from finbourne.sdk.services.workflow.models.initial_state import InitialState
+from finbourne.sdk.services.workflow.models.label_value_set import LabelValueSet
 from finbourne.sdk.services.workflow.models.library_response import LibraryResponse
 from finbourne.sdk.services.workflow.models.link import Link
 from finbourne.sdk.services.workflow.models.luminesce_view import LuminesceView
@@ -67,6 +69,7 @@ from finbourne.sdk.services.workflow.models.lusid_entity_data_quality_check impo
 from finbourne.sdk.services.workflow.models.lusid_entity_data_quality_check_response import LusidEntityDataQualityCheckResponse
 from finbourne.sdk.services.workflow.models.lusid_problem_details import LusidProblemDetails
 from finbourne.sdk.services.workflow.models.lusid_validation_problem_details import LusidValidationProblemDetails
+from finbourne.sdk.services.workflow.models.metric_value import MetricValue
 from finbourne.sdk.services.workflow.models.paged_resource_list_of_event_handler import PagedResourceListOfEventHandler
 from finbourne.sdk.services.workflow.models.paged_resource_list_of_task import PagedResourceListOfTask
 from finbourne.sdk.services.workflow.models.paged_resource_list_of_task_definition import PagedResourceListOfTaskDefinition
@@ -74,6 +77,8 @@ from finbourne.sdk.services.workflow.models.paged_resource_list_of_worker import
 from finbourne.sdk.services.workflow.models.paged_resource_list_of_workflow_response import PagedResourceListOfWorkflowResponse
 from finbourne.sdk.services.workflow.models.parameter import Parameter
 from finbourne.sdk.services.workflow.models.parameter_value import ParameterValue
+from finbourne.sdk.services.workflow.models.perpetual_property import PerpetualProperty
+from finbourne.sdk.services.workflow.models.property_value import PropertyValue
 from finbourne.sdk.services.workflow.models.read_only_states import ReadOnlyStates
 from finbourne.sdk.services.workflow.models.recurrence_pattern import RecurrencePattern
 from finbourne.sdk.services.workflow.models.relative_month_regularity import RelativeMonthRegularity
@@ -153,6 +158,7 @@ __all__ = [
     "ActionLogOrigin",
     "BatchUpdateTasksRequest",
     "BatchUpdateTasksResponse",
+    "BatchUpsertWorkflowPropertiesResponse",
     "CalendarReference",
     "ChangeItem",
     "ChildTaskDefinitionEdge",
@@ -188,6 +194,7 @@ __all__ = [
     "IdSelectorDefinition",
     "IdentifierPartSchema",
     "InitialState",
+    "LabelValueSet",
     "LibraryResponse",
     "Link",
     "LuminesceView",
@@ -196,6 +203,7 @@ __all__ = [
     "LusidEntityDataQualityCheckResponse",
     "LusidProblemDetails",
     "LusidValidationProblemDetails",
+    "MetricValue",
     "PagedResourceListOfEventHandler",
     "PagedResourceListOfTask",
     "PagedResourceListOfTaskDefinition",
@@ -203,6 +211,8 @@ __all__ = [
     "PagedResourceListOfWorkflowResponse",
     "Parameter",
     "ParameterValue",
+    "PerpetualProperty",
+    "PropertyValue",
     "ReadOnlyStates",
     "RecurrencePattern",
     "RelativeMonthRegularity",

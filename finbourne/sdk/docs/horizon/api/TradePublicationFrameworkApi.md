@@ -14,6 +14,7 @@ Method | HTTP request | Description
 [**list_run_transactions**](TradePublicationFrameworkApi.md#list_run_transactions) | **GET** /horizon/api/trade-publication-framework/instances/{instanceId}/runs/{runId}/transactions | [EXPERIMENTAL] ListRunTransactions: List Transactions in a run.
 [**replay_transactions**](TradePublicationFrameworkApi.md#replay_transactions) | **POST** /horizon/api/trade-publication-framework/instances/{instanceId}/replay | [EXPERIMENTAL] ReplayTransactions: Replay one or more transactions through a TPF instance
 [**resolve_failed_delivery**](TradePublicationFrameworkApi.md#resolve_failed_delivery) | **PUT** /horizon/api/trade-publication-framework/instances/{instanceId}/failed/{batchReferenceId}/resolve | [EXPERIMENTAL] ResolveFailedDelivery: Resolve a failed delivery without retry
+[**retry_failed_delivery**](TradePublicationFrameworkApi.md#retry_failed_delivery) | **POST** /horizon/api/trade-publication-framework/instances/{instanceId}/failed/retry | [EXPERIMENTAL] RetryFailedDelivery: Retry failed deliveries for Trade Publication Framework
 [**retry_tpf_sftp_delivery**](TradePublicationFrameworkApi.md#retry_tpf_sftp_delivery) | **POST** /horizon/api/trade-publication-framework/instances/{instanceId}/files/{fileId}/retry-sftp | [EXPERIMENTAL] RetryTpfSftpDelivery: Retry SFTP delivery for a previously sent TPF file
 
 
@@ -498,6 +499,51 @@ Name | Type | Description  | Notes
 **400** | The details of the input related failure |  -  |
 **404** | No failed delivery was found for the batch. |  -  |
 **409** | The failed deliveries for the batch have already been resolved. |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **retry_failed_delivery**
+> TpfFailedDeliveryResponse retryFailedDelivery = retry_failed_delivery(instance_id, tpf_retry_failed_delivery_request)
+
+[EXPERIMENTAL] RetryFailedDelivery: Retry failed deliveries for Trade Publication Framework
+
+Re-runs the delivery task only (payload already built - skips build task). Always committed - no preview mode. Increments attempt count on failure, sets resolved to true on success. Uses existing ReplayBatchElement on ITradeTrackingRepository. Requires entitlement to execute integrations.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(TradePublicationFrameworkApi)
+instance_id = 'instance_id_example' # str
+tpf_retry_failed_delivery_request = TpfRetryFailedDeliveryRequest()
+api_response = api_instance.retry_failed_delivery(instance_id, tpf_retry_failed_delivery_request)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **instance_id** | **str**| Integration instance identifier | [required] 
+ **tpf_retry_failed_delivery_request** | [**TpfRetryFailedDeliveryRequest**](TpfRetryFailedDeliveryRequest.md)| Request containing batch element reference identifiers to retry | [required] 
+
+### Return type
+
+[**TpfFailedDeliveryResponse**](TpfFailedDeliveryResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | The details of the input related failure |  -  |
+**404** | The requested instance does not exist. |  -  |
 **0** | Error response |  -  |
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)

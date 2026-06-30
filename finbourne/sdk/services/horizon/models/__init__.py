@@ -104,9 +104,12 @@ from finbourne.sdk.services.horizon.models.resolve_failed_delivery_response impo
 from finbourne.sdk.services.horizon.models.resource_id import ResourceId
 from finbourne.sdk.services.horizon.models.row_details import RowDetails
 from finbourne.sdk.services.horizon.models.run_file_response import RunFileResponse
+from finbourne.sdk.services.horizon.models.tpf_failed_delivery_response import TpfFailedDeliveryResponse
 from finbourne.sdk.services.horizon.models.tpf_file_delivery_info import TpfFileDeliveryInfo
 from finbourne.sdk.services.horizon.models.tpf_file_delivery_response import TpfFileDeliveryResponse
 from finbourne.sdk.services.horizon.models.tpf_portfolio import TpfPortfolio
+from finbourne.sdk.services.horizon.models.tpf_retry_element_result import TpfRetryElementResult
+from finbourne.sdk.services.horizon.models.tpf_retry_failed_delivery_request import TpfRetryFailedDeliveryRequest
 from finbourne.sdk.services.horizon.models.tpf_retry_sftp_response import TpfRetrySftpResponse
 from finbourne.sdk.services.horizon.models.tpf_transaction_search_response import TpfTransactionSearchResponse
 from finbourne.sdk.services.horizon.models.transaction_payload_response import TransactionPayloadResponse
@@ -213,9 +216,12 @@ __all__ = [
     "ResourceId",
     "RowDetails",
     "RunFileResponse",
+    "TpfFailedDeliveryResponse",
     "TpfFileDeliveryInfo",
     "TpfFileDeliveryResponse",
     "TpfPortfolio",
+    "TpfRetryElementResult",
+    "TpfRetryFailedDeliveryRequest",
     "TpfRetrySftpResponse",
     "TpfTransactionSearchResponse",
     "TransactionPayloadResponse",
