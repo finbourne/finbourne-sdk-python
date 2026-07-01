@@ -11,6 +11,7 @@ A Workflow
 | **description** | **str** | Optional | Human readable description |
 | **root_task_definition_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **workflow_structure** | [WorkflowStructure](WorkflowStructure.md) | Optional | *No description available.* |
+| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | The properties of the Workflow, keyed by property key. |
 
 
 ## Usage
@@ -26,7 +27,8 @@ instance = WorkflowResponse(
     display_name="...",  # required — Human readable name
     description="...",  # optional — Human readable description
     root_task_definition_id=ResourceId(...),  # required
-    workflow_structure=WorkflowStructure(...)  # optional
+    workflow_structure=WorkflowStructure(...),  # optional
+    properties=PerpetualProperty(...)  # optional — The properties of the Workflow, keyed by property key.
 )
 ```
 
@@ -37,6 +39,7 @@ instance = WorkflowResponse(
 - [VersionInfo](VersionInfo.md)
 - [ResourceId](ResourceId.md)
 - [WorkflowStructure](WorkflowStructure.md)
+- [PerpetualProperty](PerpetualProperty.md) — used in `properties`
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

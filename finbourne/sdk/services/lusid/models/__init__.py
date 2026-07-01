@@ -476,6 +476,7 @@ from finbourne.sdk.services.lusid.models.fund_calendar_entries import FundCalend
 from finbourne.sdk.services.lusid.models.fund_calendar_entries_type import FundCalendarEntriesType
 from finbourne.sdk.services.lusid.models.fund_calendar_entry import FundCalendarEntry
 from finbourne.sdk.services.lusid.models.fund_calendar_entry_type import FundCalendarEntryType
+from finbourne.sdk.services.lusid.models.fund_cash_statement_local_currency import FundCashStatementLocalCurrency
 from finbourne.sdk.services.lusid.models.fund_cash_statement_row import FundCashStatementRow
 from finbourne.sdk.services.lusid.models.fund_configuration import FundConfiguration
 from finbourne.sdk.services.lusid.models.fund_configuration_properties import FundConfigurationProperties
@@ -865,6 +866,7 @@ from finbourne.sdk.services.lusid.models.paged_resource_list_of_virtual_row impo
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_workspace import PagedResourceListOfWorkspace
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_workspace_item import PagedResourceListOfWorkspaceItem
 from finbourne.sdk.services.lusid.models.partial_closure_constituent import PartialClosureConstituent
+from finbourne.sdk.services.lusid.models.partial_defeasance_event import PartialDefeasanceEvent
 from finbourne.sdk.services.lusid.models.participation import Participation
 from finbourne.sdk.services.lusid.models.participation_request import ParticipationRequest
 from finbourne.sdk.services.lusid.models.participation_set_request import ParticipationSetRequest
@@ -1028,6 +1030,8 @@ from finbourne.sdk.services.lusid.models.repo_partial_closure_event import RepoP
 from finbourne.sdk.services.lusid.models.repurchase_offer_event import RepurchaseOfferEvent
 from finbourne.sdk.services.lusid.models.requested_changes import RequestedChanges
 from finbourne.sdk.services.lusid.models.reset_event import ResetEvent
+from finbourne.sdk.services.lusid.models.resolve_tenors_request import ResolveTenorsRequest
+from finbourne.sdk.services.lusid.models.resolve_tenors_response import ResolveTenorsResponse
 from finbourne.sdk.services.lusid.models.resource_id import ResourceId
 from finbourne.sdk.services.lusid.models.resource_list_of_access_controlled_resource import ResourceListOfAccessControlledResource
 from finbourne.sdk.services.lusid.models.resource_list_of_access_metadata_value_of import ResourceListOfAccessMetadataValueOf
@@ -1402,6 +1406,7 @@ from finbourne.sdk.services.lusid.models.valuation_point_instrument import Valua
 from finbourne.sdk.services.lusid.models.valuation_point_overview import ValuationPointOverview
 from finbourne.sdk.services.lusid.models.valuation_point_resource_list_of_accounted_quote import ValuationPointResourceListOfAccountedQuote
 from finbourne.sdk.services.lusid.models.valuation_point_resource_list_of_accounted_transaction import ValuationPointResourceListOfAccountedTransaction
+from finbourne.sdk.services.lusid.models.valuation_point_resource_list_of_fund_cash_statement_local_currency import ValuationPointResourceListOfFundCashStatementLocalCurrency
 from finbourne.sdk.services.lusid.models.valuation_point_resource_list_of_fund_cash_statement_row import ValuationPointResourceListOfFundCashStatementRow
 from finbourne.sdk.services.lusid.models.valuation_point_resource_list_of_fund_journal_entry_line import ValuationPointResourceListOfFundJournalEntryLine
 from finbourne.sdk.services.lusid.models.valuation_point_resource_list_of_pnl_journal_entry_line import ValuationPointResourceListOfPnlJournalEntryLine
@@ -1916,6 +1921,7 @@ __all__ = [
     "FundCalendarEntriesType",
     "FundCalendarEntry",
     "FundCalendarEntryType",
+    "FundCashStatementLocalCurrency",
     "FundCashStatementRow",
     "FundConfiguration",
     "FundConfigurationProperties",
@@ -2305,6 +2311,7 @@ __all__ = [
     "PagedResourceListOfWorkspace",
     "PagedResourceListOfWorkspaceItem",
     "PartialClosureConstituent",
+    "PartialDefeasanceEvent",
     "Participation",
     "ParticipationRequest",
     "ParticipationSetRequest",
@@ -2468,6 +2475,8 @@ __all__ = [
     "RepurchaseOfferEvent",
     "RequestedChanges",
     "ResetEvent",
+    "ResolveTenorsRequest",
+    "ResolveTenorsResponse",
     "ResourceId",
     "ResourceListOfAccessControlledResource",
     "ResourceListOfAccessMetadataValueOf",
@@ -2842,6 +2851,7 @@ __all__ = [
     "ValuationPointOverview",
     "ValuationPointResourceListOfAccountedQuote",
     "ValuationPointResourceListOfAccountedTransaction",
+    "ValuationPointResourceListOfFundCashStatementLocalCurrency",
     "ValuationPointResourceListOfFundCashStatementRow",
     "ValuationPointResourceListOfFundJournalEntryLine",
     "ValuationPointResourceListOfPnlJournalEntryLine",

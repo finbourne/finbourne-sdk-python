@@ -308,7 +308,7 @@ class WorkflowsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def get_workflow(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> WorkflowResponse:
+    def get_workflow(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> WorkflowResponse:
         """GetWorkflow: Get a Workflow  # noqa: E501
 
         :param scope: The scope that identifies a Workflow (required)
@@ -317,6 +317,8 @@ class WorkflowsApi:
         :type code: str
         :param as_at: The asAt datetime at which to retrieve the Workflow. Defaults to returning the latest version if not specified.
         :type as_at: datetime
+        :param property_keys: The property keys (in the Workflow or TaskDefinition domain) whose values to return on the Workflow.
+        :type property_keys: List[str]
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -327,11 +329,11 @@ class WorkflowsApi:
             message = "Error! Please call the get_workflow_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.get_workflow_with_http_info(scope, code, as_at, **kwargs)
+        response = self.get_workflow_with_http_info(scope, code, as_at, property_keys, **kwargs)
         return response.data
 
     @validate_call
-    def get_workflow_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[WorkflowResponse]:
+    def get_workflow_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[WorkflowResponse]:
         """GetWorkflow: Get a Workflow  # noqa: E501
 
         :param scope: The scope that identifies a Workflow (required)
@@ -340,6 +342,8 @@ class WorkflowsApi:
         :type code: str
         :param as_at: The asAt datetime at which to retrieve the Workflow. Defaults to returning the latest version if not specified.
         :type as_at: datetime
+        :param property_keys: The property keys (in the Workflow or TaskDefinition domain) whose values to return on the Workflow.
+        :type property_keys: List[str]
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -365,7 +369,8 @@ class WorkflowsApi:
         _all_params = [
             'scope',
             'code',
-            'as_at'
+            'as_at',
+            'property_keys'
         ]
         _all_params.extend(
             [
@@ -407,6 +412,10 @@ class WorkflowsApi:
                 _query_params.append(('asAt', _params['as_at'].strftime(self.sync_api_client.configuration.datetime_format)))
             else:
                 _query_params.append(('asAt', _params['as_at']))
+
+        if _params.get('property_keys') is not None:  # noqa: E501
+            _query_params.append(('propertyKeys', _params['property_keys']))
+            _collection_formats['propertyKeys'] = 'multi'
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -1152,7 +1161,7 @@ class WorkflowsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def get_workflow_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> WorkflowResponse:
+    async def get_workflow_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> WorkflowResponse:
             """GetWorkflow: Get a Workflow  # noqa: E501
             
             :param scope: The scope that identifies a Workflow (required)
@@ -1161,6 +1170,8 @@ class WorkflowsApi:
             :type code: str
             :param as_at: The asAt datetime at which to retrieve the Workflow. Defaults to returning the latest version if not specified.
             :type as_at: datetime
+            :param property_keys: The property keys (in the Workflow or TaskDefinition domain) whose values to return on the Workflow.
+            :type property_keys: List[str]
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -1171,11 +1182,11 @@ class WorkflowsApi:
                 message = "Error! Please call the get_workflow_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.get_workflow_with_http_info_async(scope, code, as_at, **kwargs)
+            response = await self.get_workflow_with_http_info_async(scope, code, as_at, property_keys, **kwargs)
             return response.data
 
     @validate_call
-    async def get_workflow_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[WorkflowResponse]:
+    async def get_workflow_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[WorkflowResponse]:
             """GetWorkflow: Get a Workflow  # noqa: E501
 
 
@@ -1185,6 +1196,8 @@ class WorkflowsApi:
             :type code: str
             :param as_at: The asAt datetime at which to retrieve the Workflow. Defaults to returning the latest version if not specified.
             :type as_at: datetime
+            :param property_keys: The property keys (in the Workflow or TaskDefinition domain) whose values to return on the Workflow.
+            :type property_keys: List[str]
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -1210,7 +1223,8 @@ class WorkflowsApi:
             _all_params = [
                 'scope',
                 'code',
-                'as_at'
+                'as_at',
+                'property_keys'
             ]
             _all_params.extend(
                 [
@@ -1252,6 +1266,10 @@ class WorkflowsApi:
                     _query_params.append(('asAt', _params['as_at'].strftime(self.api_client.configuration.datetime_format)))
                 else:
                     _query_params.append(('asAt', _params['as_at']))
+
+            if _params.get('property_keys') is not None:  # noqa: E501
+                _query_params.append(('propertyKeys', _params['property_keys']))
+                _collection_formats['propertyKeys'] = 'multi'
 
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))

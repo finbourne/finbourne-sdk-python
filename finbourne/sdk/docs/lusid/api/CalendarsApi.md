@@ -17,6 +17,7 @@ Method | HTTP request | Description
 [**is_business_date_time**](CalendarsApi.md#is_business_date_time) | **GET** /api/api/calendars/businessday/{scope}/{code} | [EARLY ACCESS] IsBusinessDateTime: Check whether a DateTime is a \&quot;Business DateTime\&quot;
 [**list_calendars**](CalendarsApi.md#list_calendars) | **GET** /api/api/calendars/generic | [EARLY ACCESS] ListCalendars: List Calendars
 [**list_calendars_in_scope**](CalendarsApi.md#list_calendars_in_scope) | **GET** /api/api/calendars/generic/{scope} | ListCalendarsInScope: List all calenders in a specified scope
+[**resolve_tenors**](CalendarsApi.md#resolve_tenors) | **POST** /api/api/calendars/tenors/resolve | [EARLY ACCESS] ResolveTenors: Resolve tenor strings to settlement dates.
 [**update_calendar**](CalendarsApi.md#update_calendar) | **POST** /api/api/calendars/generic/{scope}/{code} | [EARLY ACCESS] UpdateCalendar: Update a calendar
 
 
@@ -650,6 +651,48 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Calendars in the requested scope |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **resolve_tenors**
+> ResolveTenorsResponse resolveTenors = resolve_tenors(resolve_tenors_request)
+
+[EARLY ACCESS] ResolveTenors: Resolve tenor strings to settlement dates.
+
+Resolves a list of tenor strings (e.g. ON, TN, SP, SN, 1W, 1M, 3M, 6M, 1Y) to settlement dates  using the specified holiday calendars, spot days, business day convention, and end-of-month rule.                The spot date is calculated by adding the specified number of business days (SpotDays) to the start date.  Day and week tenors ({N}D, {N}W) are resolved relative to the start or spot date respectively.  Month and year tenors ({N}M, {N}Y) are resolved relative to the spot date and adjusted  according to the business day convention and end-of-month rule.                Unrecognised tenor strings cause a validation error.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(CalendarsApi)
+resolve_tenors_request = ResolveTenorsRequest()
+api_response = api_instance.resolve_tenors(resolve_tenors_request)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **resolve_tenors_request** | [**ResolveTenorsRequest**](ResolveTenorsRequest.md)| Request containing start date, calendars, spot days, tenors, and optional conventions | [required] 
+
+### Return type
+
+[**ResolveTenorsResponse**](ResolveTenorsResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The resolved settlement dates for each tenor |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 

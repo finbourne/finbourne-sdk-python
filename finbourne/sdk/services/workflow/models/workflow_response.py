@@ -21,6 +21,7 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
+from finbourne.sdk.services.workflow.models.perpetual_property import PerpetualProperty
 from finbourne.sdk.services.workflow.models.resource_id import ResourceId
 from finbourne.sdk.services.workflow.models.version_info import VersionInfo
 from finbourne.sdk.services.workflow.models.workflow_structure import WorkflowStructure
@@ -36,7 +37,8 @@ class WorkflowResponse(BaseModel):
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="Human readable description") 
     root_task_definition_id: ResourceId = Field(alias="rootTaskDefinitionId")
     workflow_structure: Optional[WorkflowStructure] = Field(default=None, alias="workflowStructure")
-    __properties: ClassVar[List[str]] = ["id", "version", "displayName", "description", "rootTaskDefinitionId", "workflowStructure"]
+    properties: Optional[Dict[str, PerpetualProperty]] = Field(default=None, description="The properties of the Workflow, keyed by property key.")
+    __properties: ClassVar[List[str]] = ["id", "version", "displayName", "description", "rootTaskDefinitionId", "workflowStructure", "properties"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -84,10 +86,22 @@ class WorkflowResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of workflow_structure
         if self.workflow_structure:
             _dict['workflowStructure'] = self.workflow_structure.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of each value in properties (dict)
+        _field_dict = {}
+        if self.properties:
+            for _key in self.properties:
+                if self.properties[_key]:
+                    _field_dict[_key] = self.properties[_key].to_dict(by_alias=by_alias)
+            _dict['properties'] = _field_dict
         # set to None if description (nullable) is None
         # and model_fields_set contains the field
         if self.description is None and "description" in self.model_fields_set:
             _dict['description'] = None
+
+        # set to None if properties (nullable) is None
+        # and model_fields_set contains the field
+        if self.properties is None and "properties" in self.model_fields_set:
+            _dict['properties'] = None
 
         return _dict
 
@@ -106,7 +120,13 @@ class WorkflowResponse(BaseModel):
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
             "root_task_definition_id": ResourceId.from_dict(_v) if (_v := obj.get("rootTaskDefinitionId")) is not None else None,
-            "workflow_structure": WorkflowStructure.from_dict(_v) if (_v := obj.get("workflowStructure")) is not None else None
+            "workflow_structure": WorkflowStructure.from_dict(_v) if (_v := obj.get("workflowStructure")) is not None else None,
+            "properties": dict(
+                (_k, PerpetualProperty.from_dict(_v))
+                for _k, _v in _val.items()
+            )
+            if (_val := obj.get("properties")) is not None
+            else None
         })
         return _obj
 

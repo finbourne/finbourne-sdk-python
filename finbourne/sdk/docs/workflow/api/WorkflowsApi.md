@@ -122,7 +122,7 @@ Name | Type | Description  | Notes
 ---
 
 # **get_workflow**
-> WorkflowResponse getWorkflow = get_workflow(scope, code, as_at=as_at)
+> WorkflowResponse getWorkflow = get_workflow(scope, code, as_at=as_at, property_keys=property_keys)
 
 GetWorkflow: Get a Workflow
 
@@ -133,7 +133,8 @@ api_instance = api_client_factory.build(WorkflowsApi)
 scope = 'scope_example' # str
 code = 'code_example' # str
 as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
-api_response = api_instance.get_workflow(scope, code, as_at=as_at)
+property_keys = ['property_keys_example'] # List[str] (optional)
+api_response = api_instance.get_workflow(scope, code, as_at=as_at, property_keys=property_keys)
 pprint(api_response)
 ```
 
@@ -144,6 +145,7 @@ Name | Type | Description  | Notes
  **scope** | **str**| The scope that identifies a Workflow | [required] 
  **code** | **str**| The code that identifies a Workflow | [required] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the Workflow. Defaults to returning the latest version if not specified. | [optional] 
+ **property_keys** | [**List[str]**](str.md)| The property keys (in the Workflow or TaskDefinition domain) whose values to return on the Workflow. | [optional] 
 
 ### Return type
 

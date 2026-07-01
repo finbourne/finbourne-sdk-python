@@ -32,6 +32,8 @@ from finbourne.sdk.services.lusid.models.create_calendar_request import CreateCa
 from finbourne.sdk.services.lusid.models.create_date_request import CreateDateRequest
 from finbourne.sdk.services.lusid.models.is_business_day_response import IsBusinessDayResponse
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_calendar import PagedResourceListOfCalendar
+from finbourne.sdk.services.lusid.models.resolve_tenors_request import ResolveTenorsRequest
+from finbourne.sdk.services.lusid.models.resolve_tenors_response import ResolveTenorsResponse
 from finbourne.sdk.services.lusid.models.resource_list_of_calendar_date import ResourceListOfCalendarDate
 from finbourne.sdk.services.lusid.models.update_calendar_request import UpdateCalendarRequest
 from finbourne.sdk.services.lusid.models.valuation_schedule import ValuationSchedule
@@ -1935,6 +1937,133 @@ class CalendarsApi:
 
         return self.sync_api_client.call_api(
             '/api/api/calendars/generic/{scope}', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    def resolve_tenors(self, resolve_tenors_request: ResolveTenorsRequest, **kwargs) -> ResolveTenorsResponse:
+        """[EARLY ACCESS] ResolveTenors: Resolve tenor strings to settlement dates.  # noqa: E501
+
+        Resolves a list of tenor strings (e.g. ON, TN, SP, SN, 1W, 1M, 3M, 6M, 1Y) to settlement dates  using the specified holiday calendars, spot days, business day convention, and end-of-month rule.                The spot date is calculated by adding the specified number of business days (SpotDays) to the start date.  Day and week tenors ({N}D, {N}W) are resolved relative to the start or spot date respectively.  Month and year tenors ({N}M, {N}Y) are resolved relative to the spot date and adjusted  according to the business day convention and end-of-month rule.                Unrecognised tenor strings cause a validation error.  # noqa: E501
+        :param resolve_tenors_request: Request containing start date, calendars, spot days, tenors, and optional conventions (required)
+        :type resolve_tenors_request: ResolveTenorsRequest
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: ResolveTenorsResponse
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the resolve_tenors_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.resolve_tenors_with_http_info(resolve_tenors_request, **kwargs)
+        return response.data
+
+    @validate_call
+    def resolve_tenors_with_http_info(self, resolve_tenors_request: ResolveTenorsRequest, **kwargs) -> ApiResponse[ResolveTenorsResponse]:
+        """[EARLY ACCESS] ResolveTenors: Resolve tenor strings to settlement dates.  # noqa: E501
+
+        Resolves a list of tenor strings (e.g. ON, TN, SP, SN, 1W, 1M, 3M, 6M, 1Y) to settlement dates  using the specified holiday calendars, spot days, business day convention, and end-of-month rule.                The spot date is calculated by adding the specified number of business days (SpotDays) to the start date.  Day and week tenors ({N}D, {N}W) are resolved relative to the start or spot date respectively.  Month and year tenors ({N}M, {N}Y) are resolved relative to the spot date and adjusted  according to the business day convention and end-of-month rule.                Unrecognised tenor strings cause a validation error.  # noqa: E501
+        :param resolve_tenors_request: Request containing start date, calendars, spot days, tenors, and optional conventions (required)
+        :type resolve_tenors_request: ResolveTenorsRequest
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(ResolveTenorsResponse, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'resolve_tenors_request'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method resolve_tenors" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['resolve_tenors_request'] is not None:
+            _body_params = _params['resolve_tenors_request']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.sync_api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "ResolveTenorsResponse",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/calendars/tenors/resolve', 'POST',
             _path_params,
             _query_params,
             _header_params,
@@ -3986,6 +4115,134 @@ class CalendarsApi:
 
             return await self.api_client.call_api_async(
                 '/api/api/calendars/generic/{scope}', 'GET',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def resolve_tenors_async(self, resolve_tenors_request: ResolveTenorsRequest, **kwargs) -> ResolveTenorsResponse:
+            """[EARLY ACCESS] ResolveTenors: Resolve tenor strings to settlement dates.  # noqa: E501
+            Resolves a list of tenor strings (e.g. ON, TN, SP, SN, 1W, 1M, 3M, 6M, 1Y) to settlement dates  using the specified holiday calendars, spot days, business day convention, and end-of-month rule.                The spot date is calculated by adding the specified number of business days (SpotDays) to the start date.  Day and week tenors ({N}D, {N}W) are resolved relative to the start or spot date respectively.  Month and year tenors ({N}M, {N}Y) are resolved relative to the spot date and adjusted  according to the business day convention and end-of-month rule.                Unrecognised tenor strings cause a validation error.  # noqa: E501
+            
+            :param resolve_tenors_request: Request containing start date, calendars, spot days, tenors, and optional conventions (required)
+            :type resolve_tenors_request: ResolveTenorsRequest
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: ResolveTenorsResponse
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the resolve_tenors_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.resolve_tenors_with_http_info_async(resolve_tenors_request, **kwargs)
+            return response.data
+
+    @validate_call
+    async def resolve_tenors_with_http_info_async(self, resolve_tenors_request: ResolveTenorsRequest, **kwargs) -> ApiResponse[ResolveTenorsResponse]:
+            """[EARLY ACCESS] ResolveTenors: Resolve tenor strings to settlement dates.  # noqa: E501
+
+            Resolves a list of tenor strings (e.g. ON, TN, SP, SN, 1W, 1M, 3M, 6M, 1Y) to settlement dates  using the specified holiday calendars, spot days, business day convention, and end-of-month rule.                The spot date is calculated by adding the specified number of business days (SpotDays) to the start date.  Day and week tenors ({N}D, {N}W) are resolved relative to the start or spot date respectively.  Month and year tenors ({N}M, {N}Y) are resolved relative to the spot date and adjusted  according to the business day convention and end-of-month rule.                Unrecognised tenor strings cause a validation error.  # noqa: E501
+
+            :param resolve_tenors_request: Request containing start date, calendars, spot days, tenors, and optional conventions (required)
+            :type resolve_tenors_request: ResolveTenorsRequest
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(ResolveTenorsResponse, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'resolve_tenors_request'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method resolve_tenors" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+
+            # process the query parameters
+            _query_params = []
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            if _params['resolve_tenors_request'] is not None:
+                _body_params = _params['resolve_tenors_request']
+
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # set the HTTP header `Content-Type`
+            _content_types_list = _params.get('_content_type',
+                self.api_client.select_header_content_type(
+                    ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+            if _content_types_list:
+                    _header_params['Content-Type'] = _content_types_list
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "ResolveTenorsResponse",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/calendars/tenors/resolve', 'POST',
                 _path_params,
                 _query_params,
                 _header_params,
