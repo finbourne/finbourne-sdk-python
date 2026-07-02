@@ -8,7 +8,7 @@ Request to create or update an MCP tool
 | **name** | **str** | Required | The name of the MCP tool (alphanumeric, underscore, and hyphen) |
 | **title** | **str** | Required | The title of the MCP tool |
 | **description** | **str** | Required | The description of the MCP tool |
-| **destructive** | **bool** | Optional | Whether the tool is destructive |
+| **destructive** | **bool** | Optional | Whether the tool is destructive. When true, DestructiveActionSummaryTemplate is required and is shown to the user at the destructive-action consent gate before the tool runs. |
 | **idempotent** | **bool** | Optional | Whether the tool is idempotent |
 | **open_world** | **bool** | Optional | Whether the tool operates in open world |
 | **read_only** | **bool** | Optional | Whether the tool is read-only |
@@ -29,7 +29,7 @@ instance = UpsertMcpToolRequest(
     name="...",  # required — The name of the MCP tool (alphanumeric, underscore, and hyphen)
     title="...",  # required — The title of the MCP tool
     description="...",  # required — The description of the MCP tool
-    destructive=True,  # optional — Whether the tool is destructive
+    destructive=True,  # optional — Whether the tool is destructive. When true, DestructiveActionSummaryTemplate is required and is shown to the user at the destructive-action consent gate before the tool runs.
     idempotent=True,  # optional — Whether the tool is idempotent
     open_world=True,  # optional — Whether the tool operates in open world
     read_only=True,  # optional — Whether the tool is read-only
