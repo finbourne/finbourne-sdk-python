@@ -54,7 +54,7 @@ class TransactionFeeTypesApi:
 
     @validate_call
     def create_transaction_fee_type(self, scope: StrictStr, code: StrictStr, create_transaction_fee_type_request: CreateTransactionFeeTypeRequest, **kwargs) -> TransactionFeeType:
-        """[EXPERIMENTAL] CreateTransactionFeeType: Create a transaction fee type  # noqa: E501
+        """[EARLY ACCESS] CreateTransactionFeeType: Create a transaction fee type  # noqa: E501
 
         Create a transaction fee type for the specified scope and code.  # noqa: E501
         :param scope: The scope of the transaction fee type. (required)
@@ -78,7 +78,7 @@ class TransactionFeeTypesApi:
 
     @validate_call
     def create_transaction_fee_type_with_http_info(self, scope: StrictStr, code: StrictStr, create_transaction_fee_type_request: CreateTransactionFeeTypeRequest, **kwargs) -> ApiResponse[TransactionFeeType]:
-        """[EXPERIMENTAL] CreateTransactionFeeType: Create a transaction fee type  # noqa: E501
+        """[EARLY ACCESS] CreateTransactionFeeType: Create a transaction fee type  # noqa: E501
 
         Create a transaction fee type for the specified scope and code.  # noqa: E501
         :param scope: The scope of the transaction fee type. (required)
@@ -197,7 +197,7 @@ class TransactionFeeTypesApi:
 
     @validate_call
     def delete_transaction_fee_type(self, scope: StrictStr, code: StrictStr, **kwargs) -> DeletedEntityResponse:
-        """[EXPERIMENTAL] DeleteTransactionFeeType: Delete a transaction fee type  # noqa: E501
+        """[EARLY ACCESS] DeleteTransactionFeeType: Delete a transaction fee type  # noqa: E501
 
         Delete a transaction fee type for the specified scope and code. To note, this will be a monotemporal delete, meaning that  the transaction fee type will be deleted for all effective time (including past and future versions of the transaction fee type).  # noqa: E501
         :param scope: The scope of the transaction fee type. (required)
@@ -219,7 +219,7 @@ class TransactionFeeTypesApi:
 
     @validate_call
     def delete_transaction_fee_type_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-        """[EXPERIMENTAL] DeleteTransactionFeeType: Delete a transaction fee type  # noqa: E501
+        """[EARLY ACCESS] DeleteTransactionFeeType: Delete a transaction fee type  # noqa: E501
 
         Delete a transaction fee type for the specified scope and code. To note, this will be a monotemporal delete, meaning that  the transaction fee type will be deleted for all effective time (including past and future versions of the transaction fee type).  # noqa: E501
         :param scope: The scope of the transaction fee type. (required)
@@ -325,7 +325,7 @@ class TransactionFeeTypesApi:
 
     @validate_call
     def get_transaction_fee_type(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> TransactionFeeType:
-        """[EXPERIMENTAL] GetTransactionFeeType: Get a transaction fee type  # noqa: E501
+        """[EARLY ACCESS] GetTransactionFeeType: Get a transaction fee type  # noqa: E501
 
         Get the transaction fee type for the specified scope and code.  # noqa: E501
         :param scope: The scope of the transaction fee type. (required)
@@ -353,7 +353,7 @@ class TransactionFeeTypesApi:
 
     @validate_call
     def get_transaction_fee_type_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[TransactionFeeType]:
-        """[EXPERIMENTAL] GetTransactionFeeType: Get a transaction fee type  # noqa: E501
+        """[EARLY ACCESS] GetTransactionFeeType: Get a transaction fee type  # noqa: E501
 
         Get the transaction fee type for the specified scope and code.  # noqa: E501
         :param scope: The scope of the transaction fee type. (required)
@@ -481,7 +481,7 @@ class TransactionFeeTypesApi:
 
     @validate_call
     def list_transaction_fee_types(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ResourceListOfTransactionFeeType:
-        """[EXPERIMENTAL] ListTransactionFeeTypes: List transaction fee types  # noqa: E501
+        """[EARLY ACCESS] ListTransactionFeeTypes: List transaction fee types  # noqa: E501
 
         List transaction fee types that match the specified criteria.  # noqa: E501
         :param effective_at: The effective datetime at which to retrieve transaction fee type properties.              Defaults to the current LUSID system datetime if not specified.
@@ -513,7 +513,7 @@ class TransactionFeeTypesApi:
 
     @validate_call
     def list_transaction_fee_types_with_http_info(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfTransactionFeeType]:
-        """[EXPERIMENTAL] ListTransactionFeeTypes: List transaction fee types  # noqa: E501
+        """[EARLY ACCESS] ListTransactionFeeTypes: List transaction fee types  # noqa: E501
 
         List transaction fee types that match the specified criteria.  # noqa: E501
         :param effective_at: The effective datetime at which to retrieve transaction fee type properties.              Defaults to the current LUSID system datetime if not specified.
@@ -654,7 +654,7 @@ class TransactionFeeTypesApi:
 
     @validate_call
     def update_transaction_fee_type(self, scope: StrictStr, code: StrictStr, update_transaction_fee_type_request: UpdateTransactionFeeTypeRequest, **kwargs) -> TransactionFeeType:
-        """[EXPERIMENTAL] UpdateTransactionFeeType: Update a transaction fee type  # noqa: E501
+        """[EARLY ACCESS] UpdateTransactionFeeType: Update a transaction fee type  # noqa: E501
 
         Update a transaction fee type by providing the new contents of the transaction fee type.  The displayName field cannot be updated.  # noqa: E501
         :param scope: The scope of the transaction fee type. (required)
@@ -678,7 +678,7 @@ class TransactionFeeTypesApi:
 
     @validate_call
     def update_transaction_fee_type_with_http_info(self, scope: StrictStr, code: StrictStr, update_transaction_fee_type_request: UpdateTransactionFeeTypeRequest, **kwargs) -> ApiResponse[TransactionFeeType]:
-        """[EXPERIMENTAL] UpdateTransactionFeeType: Update a transaction fee type  # noqa: E501
+        """[EARLY ACCESS] UpdateTransactionFeeType: Update a transaction fee type  # noqa: E501
 
         Update a transaction fee type by providing the new contents of the transaction fee type.  The displayName field cannot be updated.  # noqa: E501
         :param scope: The scope of the transaction fee type. (required)
@@ -801,7 +801,7 @@ class TransactionFeeTypesApi:
 
     @validate_call
     async def create_transaction_fee_type_async(self, scope: StrictStr, code: StrictStr, create_transaction_fee_type_request: CreateTransactionFeeTypeRequest, **kwargs) -> TransactionFeeType:
-            """[EXPERIMENTAL] CreateTransactionFeeType: Create a transaction fee type  # noqa: E501
+            """[EARLY ACCESS] CreateTransactionFeeType: Create a transaction fee type  # noqa: E501
             Create a transaction fee type for the specified scope and code.  # noqa: E501
             
             :param scope: The scope of the transaction fee type. (required)
@@ -825,7 +825,7 @@ class TransactionFeeTypesApi:
 
     @validate_call
     async def create_transaction_fee_type_with_http_info_async(self, scope: StrictStr, code: StrictStr, create_transaction_fee_type_request: CreateTransactionFeeTypeRequest, **kwargs) -> ApiResponse[TransactionFeeType]:
-            """[EXPERIMENTAL] CreateTransactionFeeType: Create a transaction fee type  # noqa: E501
+            """[EARLY ACCESS] CreateTransactionFeeType: Create a transaction fee type  # noqa: E501
 
             Create a transaction fee type for the specified scope and code.  # noqa: E501
 
@@ -945,7 +945,7 @@ class TransactionFeeTypesApi:
 
     @validate_call
     async def delete_transaction_fee_type_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> DeletedEntityResponse:
-            """[EXPERIMENTAL] DeleteTransactionFeeType: Delete a transaction fee type  # noqa: E501
+            """[EARLY ACCESS] DeleteTransactionFeeType: Delete a transaction fee type  # noqa: E501
             Delete a transaction fee type for the specified scope and code. To note, this will be a monotemporal delete, meaning that  the transaction fee type will be deleted for all effective time (including past and future versions of the transaction fee type).  # noqa: E501
             
             :param scope: The scope of the transaction fee type. (required)
@@ -967,7 +967,7 @@ class TransactionFeeTypesApi:
 
     @validate_call
     async def delete_transaction_fee_type_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-            """[EXPERIMENTAL] DeleteTransactionFeeType: Delete a transaction fee type  # noqa: E501
+            """[EARLY ACCESS] DeleteTransactionFeeType: Delete a transaction fee type  # noqa: E501
 
             Delete a transaction fee type for the specified scope and code. To note, this will be a monotemporal delete, meaning that  the transaction fee type will be deleted for all effective time (including past and future versions of the transaction fee type).  # noqa: E501
 
@@ -1074,7 +1074,7 @@ class TransactionFeeTypesApi:
 
     @validate_call
     async def get_transaction_fee_type_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> TransactionFeeType:
-            """[EXPERIMENTAL] GetTransactionFeeType: Get a transaction fee type  # noqa: E501
+            """[EARLY ACCESS] GetTransactionFeeType: Get a transaction fee type  # noqa: E501
             Get the transaction fee type for the specified scope and code.  # noqa: E501
             
             :param scope: The scope of the transaction fee type. (required)
@@ -1102,7 +1102,7 @@ class TransactionFeeTypesApi:
 
     @validate_call
     async def get_transaction_fee_type_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[TransactionFeeType]:
-            """[EXPERIMENTAL] GetTransactionFeeType: Get a transaction fee type  # noqa: E501
+            """[EARLY ACCESS] GetTransactionFeeType: Get a transaction fee type  # noqa: E501
 
             Get the transaction fee type for the specified scope and code.  # noqa: E501
 
@@ -1231,7 +1231,7 @@ class TransactionFeeTypesApi:
 
     @validate_call
     async def list_transaction_fee_types_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ResourceListOfTransactionFeeType:
-            """[EXPERIMENTAL] ListTransactionFeeTypes: List transaction fee types  # noqa: E501
+            """[EARLY ACCESS] ListTransactionFeeTypes: List transaction fee types  # noqa: E501
             List transaction fee types that match the specified criteria.  # noqa: E501
             
             :param effective_at: The effective datetime at which to retrieve transaction fee type properties.              Defaults to the current LUSID system datetime if not specified.
@@ -1263,7 +1263,7 @@ class TransactionFeeTypesApi:
 
     @validate_call
     async def list_transaction_fee_types_with_http_info_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[ResourceListOfTransactionFeeType]:
-            """[EXPERIMENTAL] ListTransactionFeeTypes: List transaction fee types  # noqa: E501
+            """[EARLY ACCESS] ListTransactionFeeTypes: List transaction fee types  # noqa: E501
 
             List transaction fee types that match the specified criteria.  # noqa: E501
 
@@ -1405,7 +1405,7 @@ class TransactionFeeTypesApi:
 
     @validate_call
     async def update_transaction_fee_type_async(self, scope: StrictStr, code: StrictStr, update_transaction_fee_type_request: UpdateTransactionFeeTypeRequest, **kwargs) -> TransactionFeeType:
-            """[EXPERIMENTAL] UpdateTransactionFeeType: Update a transaction fee type  # noqa: E501
+            """[EARLY ACCESS] UpdateTransactionFeeType: Update a transaction fee type  # noqa: E501
             Update a transaction fee type by providing the new contents of the transaction fee type.  The displayName field cannot be updated.  # noqa: E501
             
             :param scope: The scope of the transaction fee type. (required)
@@ -1429,7 +1429,7 @@ class TransactionFeeTypesApi:
 
     @validate_call
     async def update_transaction_fee_type_with_http_info_async(self, scope: StrictStr, code: StrictStr, update_transaction_fee_type_request: UpdateTransactionFeeTypeRequest, **kwargs) -> ApiResponse[TransactionFeeType]:
-            """[EXPERIMENTAL] UpdateTransactionFeeType: Update a transaction fee type  # noqa: E501
+            """[EARLY ACCESS] UpdateTransactionFeeType: Update a transaction fee type  # noqa: E501
 
             Update a transaction fee type by providing the new contents of the transaction fee type.  The displayName field cannot be updated.  # noqa: E501
 

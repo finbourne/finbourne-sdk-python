@@ -1147,6 +1147,7 @@ from finbourne.sdk.services.lusid.models.script_map_reference import ScriptMapRe
 from finbourne.sdk.services.lusid.models.security_election import SecurityElection
 from finbourne.sdk.services.lusid.models.security_offer_constituent import SecurityOfferConstituent
 from finbourne.sdk.services.lusid.models.security_offer_election import SecurityOfferElection
+from finbourne.sdk.services.lusid.models.security_write_off_event import SecurityWriteOffEvent
 from finbourne.sdk.services.lusid.models.sequence_definition import SequenceDefinition
 from finbourne.sdk.services.lusid.models.series import Series
 from finbourne.sdk.services.lusid.models.series_definition import SeriesDefinition
@@ -1215,6 +1216,7 @@ from finbourne.sdk.services.lusid.models.string_list_compliance_parameter import
 from finbourne.sdk.services.lusid.models.structured_result_data import StructuredResultData
 from finbourne.sdk.services.lusid.models.structured_result_data_id import StructuredResultDataId
 from finbourne.sdk.services.lusid.models.sub_holding_key_value_equals import SubHoldingKeyValueEquals
+from finbourne.sdk.services.lusid.models.subscribe_election import SubscribeElection
 from finbourne.sdk.services.lusid.models.swap_cash_flow_event import SwapCashFlowEvent
 from finbourne.sdk.services.lusid.models.swap_principal_event import SwapPrincipalEvent
 from finbourne.sdk.services.lusid.models.sweep_blocks_request import SweepBlocksRequest
@@ -2592,6 +2594,7 @@ __all__ = [
     "SecurityElection",
     "SecurityOfferConstituent",
     "SecurityOfferElection",
+    "SecurityWriteOffEvent",
     "SequenceDefinition",
     "Series",
     "SeriesDefinition",
@@ -2660,6 +2663,7 @@ __all__ = [
     "StructuredResultData",
     "StructuredResultDataId",
     "SubHoldingKeyValueEquals",
+    "SubscribeElection",
     "SwapCashFlowEvent",
     "SwapPrincipalEvent",
     "SweepBlocksRequest",

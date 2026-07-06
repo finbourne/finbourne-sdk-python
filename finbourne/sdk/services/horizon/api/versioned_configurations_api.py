@@ -19,7 +19,7 @@ from typing import overload, Optional, Union, Awaitable
 from typing_extensions import Annotated
 
 import finbourne.sdk.services.horizon.models as packageModels
-from pydantic import Field, StrictInt, field_validator
+from pydantic import Field, StrictBool, StrictInt, field_validator
 from typing import List, Optional
 from typing_extensions import Annotated
 from finbourne.sdk.services.horizon.models.create_versioned_configuration_draft_request import CreateVersionedConfigurationDraftRequest
@@ -341,10 +341,10 @@ class VersionedConfigurationsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def get_versioned_configuration(self, config_type: StrictStr, name: StrictStr, major_version: Optional[int] = None, minor_version: Optional[int] = None, **kwargs) -> VersionedConfigurationResponse:
+    def get_versioned_configuration(self, config_type: StrictStr, name: StrictStr, major_version: Optional[int] = None, minor_version: Optional[int] = None, include_drafts: Optional[bool] = None, **kwargs) -> VersionedConfigurationResponse:
         """[EXPERIMENTAL] GetVersionedConfiguration: Get a versioned configuration.  # noqa: E501
 
-        Returns a specific configuration record. When both majorVersion and minorVersion are omitted, the highest available version is returned. Both must be supplied together or both omitted. The user must be authenticated and entitled to call this method.  # noqa: E501
+        Returns a specific configuration record. When both majorVersion and minorVersion are omitted, the highest available locked version is returned. Both must be supplied together or both omitted. When includeDrafts is true and no version is specified, the highest available version regardless of draft state is returned. When an explicit version is supplied via majorVersion and minorVersion, includeDrafts is ignored and the exact version is returned regardless of its draft state. The user must be authenticated and entitled to call this method.  # noqa: E501
         :param config_type: The category of configuration. (required)
         :type config_type: str
         :param name: The logical name of the configuration. (required)
@@ -353,6 +353,8 @@ class VersionedConfigurationsApi:
         :type major_version: int
         :param minor_version: The minor version to retrieve. Must be supplied together with majorVersion, or both omitted.
         :type minor_version: int
+        :param include_drafts: When true and no explicit version is supplied, includes draft versions when determining the highest available version. Defaults to false.
+        :type include_drafts: bool
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -363,14 +365,14 @@ class VersionedConfigurationsApi:
             message = "Error! Please call the get_versioned_configuration_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.get_versioned_configuration_with_http_info(config_type, name, major_version, minor_version, **kwargs)
+        response = self.get_versioned_configuration_with_http_info(config_type, name, major_version, minor_version, include_drafts, **kwargs)
         return response.data
 
     @validate_call
-    def get_versioned_configuration_with_http_info(self, config_type: StrictStr, name: StrictStr, major_version: Optional[int] = None, minor_version: Optional[int] = None, **kwargs) -> ApiResponse[VersionedConfigurationResponse]:
+    def get_versioned_configuration_with_http_info(self, config_type: StrictStr, name: StrictStr, major_version: Optional[int] = None, minor_version: Optional[int] = None, include_drafts: Optional[bool] = None, **kwargs) -> ApiResponse[VersionedConfigurationResponse]:
         """[EXPERIMENTAL] GetVersionedConfiguration: Get a versioned configuration.  # noqa: E501
 
-        Returns a specific configuration record. When both majorVersion and minorVersion are omitted, the highest available version is returned. Both must be supplied together or both omitted. The user must be authenticated and entitled to call this method.  # noqa: E501
+        Returns a specific configuration record. When both majorVersion and minorVersion are omitted, the highest available locked version is returned. Both must be supplied together or both omitted. When includeDrafts is true and no version is specified, the highest available version regardless of draft state is returned. When an explicit version is supplied via majorVersion and minorVersion, includeDrafts is ignored and the exact version is returned regardless of its draft state. The user must be authenticated and entitled to call this method.  # noqa: E501
         :param config_type: The category of configuration. (required)
         :type config_type: str
         :param name: The logical name of the configuration. (required)
@@ -379,6 +381,8 @@ class VersionedConfigurationsApi:
         :type major_version: int
         :param minor_version: The minor version to retrieve. Must be supplied together with majorVersion, or both omitted.
         :type minor_version: int
+        :param include_drafts: When true and no explicit version is supplied, includes draft versions when determining the highest available version. Defaults to false.
+        :type include_drafts: bool
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -405,7 +409,8 @@ class VersionedConfigurationsApi:
             'config_type',
             'name',
             'major_version',
-            'minor_version'
+            'minor_version',
+            'include_drafts'
         ]
         _all_params.extend(
             [
@@ -447,6 +452,9 @@ class VersionedConfigurationsApi:
 
         if _params.get('minor_version') is not None:  # noqa: E501
             _query_params.append(('minorVersion', _params['minor_version']))
+
+        if _params.get('include_drafts') is not None:  # noqa: E501
+            _query_params.append(('includeDrafts', _params['include_drafts']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -1432,9 +1440,9 @@ class VersionedConfigurationsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def get_versioned_configuration_async(self, config_type: StrictStr, name: StrictStr, major_version: Optional[int] = None, minor_version: Optional[int] = None, **kwargs) -> VersionedConfigurationResponse:
+    async def get_versioned_configuration_async(self, config_type: StrictStr, name: StrictStr, major_version: Optional[int] = None, minor_version: Optional[int] = None, include_drafts: Optional[bool] = None, **kwargs) -> VersionedConfigurationResponse:
             """[EXPERIMENTAL] GetVersionedConfiguration: Get a versioned configuration.  # noqa: E501
-            Returns a specific configuration record. When both majorVersion and minorVersion are omitted, the highest available version is returned. Both must be supplied together or both omitted. The user must be authenticated and entitled to call this method.  # noqa: E501
+            Returns a specific configuration record. When both majorVersion and minorVersion are omitted, the highest available locked version is returned. Both must be supplied together or both omitted. When includeDrafts is true and no version is specified, the highest available version regardless of draft state is returned. When an explicit version is supplied via majorVersion and minorVersion, includeDrafts is ignored and the exact version is returned regardless of its draft state. The user must be authenticated and entitled to call this method.  # noqa: E501
             
             :param config_type: The category of configuration. (required)
             :type config_type: str
@@ -1444,6 +1452,8 @@ class VersionedConfigurationsApi:
             :type major_version: int
             :param minor_version: The minor version to retrieve. Must be supplied together with majorVersion, or both omitted.
             :type minor_version: int
+            :param include_drafts: When true and no explicit version is supplied, includes draft versions when determining the highest available version. Defaults to false.
+            :type include_drafts: bool
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -1454,14 +1464,14 @@ class VersionedConfigurationsApi:
                 message = "Error! Please call the get_versioned_configuration_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.get_versioned_configuration_with_http_info_async(config_type, name, major_version, minor_version, **kwargs)
+            response = await self.get_versioned_configuration_with_http_info_async(config_type, name, major_version, minor_version, include_drafts, **kwargs)
             return response.data
 
     @validate_call
-    async def get_versioned_configuration_with_http_info_async(self, config_type: StrictStr, name: StrictStr, major_version: Optional[int] = None, minor_version: Optional[int] = None, **kwargs) -> ApiResponse[VersionedConfigurationResponse]:
+    async def get_versioned_configuration_with_http_info_async(self, config_type: StrictStr, name: StrictStr, major_version: Optional[int] = None, minor_version: Optional[int] = None, include_drafts: Optional[bool] = None, **kwargs) -> ApiResponse[VersionedConfigurationResponse]:
             """[EXPERIMENTAL] GetVersionedConfiguration: Get a versioned configuration.  # noqa: E501
 
-            Returns a specific configuration record. When both majorVersion and minorVersion are omitted, the highest available version is returned. Both must be supplied together or both omitted. The user must be authenticated and entitled to call this method.  # noqa: E501
+            Returns a specific configuration record. When both majorVersion and minorVersion are omitted, the highest available locked version is returned. Both must be supplied together or both omitted. When includeDrafts is true and no version is specified, the highest available version regardless of draft state is returned. When an explicit version is supplied via majorVersion and minorVersion, includeDrafts is ignored and the exact version is returned regardless of its draft state. The user must be authenticated and entitled to call this method.  # noqa: E501
 
             :param config_type: The category of configuration. (required)
             :type config_type: str
@@ -1471,6 +1481,8 @@ class VersionedConfigurationsApi:
             :type major_version: int
             :param minor_version: The minor version to retrieve. Must be supplied together with majorVersion, or both omitted.
             :type minor_version: int
+            :param include_drafts: When true and no explicit version is supplied, includes draft versions when determining the highest available version. Defaults to false.
+            :type include_drafts: bool
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -1497,7 +1509,8 @@ class VersionedConfigurationsApi:
                 'config_type',
                 'name',
                 'major_version',
-                'minor_version'
+                'minor_version',
+                'include_drafts'
             ]
             _all_params.extend(
                 [
@@ -1539,6 +1552,9 @@ class VersionedConfigurationsApi:
 
             if _params.get('minor_version') is not None:  # noqa: E501
                 _query_params.append(('minorVersion', _params['minor_version']))
+
+            if _params.get('include_drafts') is not None:  # noqa: E501
+                _query_params.append(('includeDrafts', _params['include_drafts']))
 
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))

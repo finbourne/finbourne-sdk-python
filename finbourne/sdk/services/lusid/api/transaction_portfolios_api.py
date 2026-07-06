@@ -1044,7 +1044,7 @@ class TransactionPortfoliosApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def batch_upsert_transactions(self, scope: StrictStr, code: StrictStr, success_mode: StrictStr, request_body: Dict[str, TransactionRequest], preserve_properties: Optional[bool] = None, **kwargs) -> BatchUpsertPortfolioTransactionsResponse:
+    def batch_upsert_transactions(self, scope: StrictStr, code: StrictStr, success_mode: StrictStr, request_body: Dict[str, TransactionRequest], preserve_properties: Optional[bool] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, **kwargs) -> BatchUpsertPortfolioTransactionsResponse:
         """BatchUpsertTransactions: Batch upsert transactions  # noqa: E501
 
         Create or update transactions in the transaction portfolio. A transaction will be updated  if it already exists and created if it does not.    Each request must be keyed by a unique correlation id. This id is ephemeral and is not stored by LUSID.  It serves only as a way to easily identify each transaction in the response.    Note: If using partial failure modes, then it is important to check the response body for failures as any failures will still return a 200 status code  # noqa: E501
@@ -1058,6 +1058,10 @@ class TransactionPortfoliosApi:
         :type request_body: Dict[str, TransactionRequest]
         :param preserve_properties: If set to false, the entire property set will be overwritten by the provided properties. If not specified or set to true, only the properties provided will be updated.
         :type preserve_properties: bool
+        :param data_model_scope: The optional scope of a Custom Data Model to use
+        :type data_model_scope: str
+        :param data_model_code: The optional code of a Custom Data Model to use
+        :type data_model_code: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -1068,11 +1072,11 @@ class TransactionPortfoliosApi:
             message = "Error! Please call the batch_upsert_transactions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.batch_upsert_transactions_with_http_info(scope, code, success_mode, request_body, preserve_properties, **kwargs)
+        response = self.batch_upsert_transactions_with_http_info(scope, code, success_mode, request_body, preserve_properties, data_model_scope, data_model_code, **kwargs)
         return response.data
 
     @validate_call
-    def batch_upsert_transactions_with_http_info(self, scope: StrictStr, code: StrictStr, success_mode: StrictStr, request_body: Dict[str, TransactionRequest], preserve_properties: Optional[bool] = None, **kwargs) -> ApiResponse[BatchUpsertPortfolioTransactionsResponse]:
+    def batch_upsert_transactions_with_http_info(self, scope: StrictStr, code: StrictStr, success_mode: StrictStr, request_body: Dict[str, TransactionRequest], preserve_properties: Optional[bool] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[BatchUpsertPortfolioTransactionsResponse]:
         """BatchUpsertTransactions: Batch upsert transactions  # noqa: E501
 
         Create or update transactions in the transaction portfolio. A transaction will be updated  if it already exists and created if it does not.    Each request must be keyed by a unique correlation id. This id is ephemeral and is not stored by LUSID.  It serves only as a way to easily identify each transaction in the response.    Note: If using partial failure modes, then it is important to check the response body for failures as any failures will still return a 200 status code  # noqa: E501
@@ -1086,6 +1090,10 @@ class TransactionPortfoliosApi:
         :type request_body: Dict[str, TransactionRequest]
         :param preserve_properties: If set to false, the entire property set will be overwritten by the provided properties. If not specified or set to true, only the properties provided will be updated.
         :type preserve_properties: bool
+        :param data_model_scope: The optional scope of a Custom Data Model to use
+        :type data_model_scope: str
+        :param data_model_code: The optional code of a Custom Data Model to use
+        :type data_model_code: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1113,7 +1121,9 @@ class TransactionPortfoliosApi:
             'code',
             'success_mode',
             'request_body',
-            'preserve_properties'
+            'preserve_properties',
+            'data_model_scope',
+            'data_model_code'
         ]
         _all_params.extend(
             [
@@ -1155,6 +1165,12 @@ class TransactionPortfoliosApi:
 
         if _params.get('preserve_properties') is not None:  # noqa: E501
             _query_params.append(('preserveProperties', _params['preserve_properties']))
+
+        if _params.get('data_model_scope') is not None:  # noqa: E501
+            _query_params.append(('dataModelScope', _params['data_model_scope']))
+
+        if _params.get('data_model_code') is not None:  # noqa: E501
+            _query_params.append(('dataModelCode', _params['data_model_code']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -9529,7 +9545,7 @@ class TransactionPortfoliosApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def batch_upsert_transactions_async(self, scope: StrictStr, code: StrictStr, success_mode: StrictStr, request_body: Dict[str, TransactionRequest], preserve_properties: Optional[bool] = None, **kwargs) -> BatchUpsertPortfolioTransactionsResponse:
+    async def batch_upsert_transactions_async(self, scope: StrictStr, code: StrictStr, success_mode: StrictStr, request_body: Dict[str, TransactionRequest], preserve_properties: Optional[bool] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, **kwargs) -> BatchUpsertPortfolioTransactionsResponse:
             """BatchUpsertTransactions: Batch upsert transactions  # noqa: E501
             Create or update transactions in the transaction portfolio. A transaction will be updated  if it already exists and created if it does not.    Each request must be keyed by a unique correlation id. This id is ephemeral and is not stored by LUSID.  It serves only as a way to easily identify each transaction in the response.    Note: If using partial failure modes, then it is important to check the response body for failures as any failures will still return a 200 status code  # noqa: E501
             
@@ -9543,6 +9559,10 @@ class TransactionPortfoliosApi:
             :type request_body: Dict[str, TransactionRequest]
             :param preserve_properties: If set to false, the entire property set will be overwritten by the provided properties. If not specified or set to true, only the properties provided will be updated.
             :type preserve_properties: bool
+            :param data_model_scope: The optional scope of a Custom Data Model to use
+            :type data_model_scope: str
+            :param data_model_code: The optional code of a Custom Data Model to use
+            :type data_model_code: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -9553,11 +9573,11 @@ class TransactionPortfoliosApi:
                 message = "Error! Please call the batch_upsert_transactions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.batch_upsert_transactions_with_http_info_async(scope, code, success_mode, request_body, preserve_properties, **kwargs)
+            response = await self.batch_upsert_transactions_with_http_info_async(scope, code, success_mode, request_body, preserve_properties, data_model_scope, data_model_code, **kwargs)
             return response.data
 
     @validate_call
-    async def batch_upsert_transactions_with_http_info_async(self, scope: StrictStr, code: StrictStr, success_mode: StrictStr, request_body: Dict[str, TransactionRequest], preserve_properties: Optional[bool] = None, **kwargs) -> ApiResponse[BatchUpsertPortfolioTransactionsResponse]:
+    async def batch_upsert_transactions_with_http_info_async(self, scope: StrictStr, code: StrictStr, success_mode: StrictStr, request_body: Dict[str, TransactionRequest], preserve_properties: Optional[bool] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[BatchUpsertPortfolioTransactionsResponse]:
             """BatchUpsertTransactions: Batch upsert transactions  # noqa: E501
 
             Create or update transactions in the transaction portfolio. A transaction will be updated  if it already exists and created if it does not.    Each request must be keyed by a unique correlation id. This id is ephemeral and is not stored by LUSID.  It serves only as a way to easily identify each transaction in the response.    Note: If using partial failure modes, then it is important to check the response body for failures as any failures will still return a 200 status code  # noqa: E501
@@ -9572,6 +9592,10 @@ class TransactionPortfoliosApi:
             :type request_body: Dict[str, TransactionRequest]
             :param preserve_properties: If set to false, the entire property set will be overwritten by the provided properties. If not specified or set to true, only the properties provided will be updated.
             :type preserve_properties: bool
+            :param data_model_scope: The optional scope of a Custom Data Model to use
+            :type data_model_scope: str
+            :param data_model_code: The optional code of a Custom Data Model to use
+            :type data_model_code: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -9599,7 +9623,9 @@ class TransactionPortfoliosApi:
                 'code',
                 'success_mode',
                 'request_body',
-                'preserve_properties'
+                'preserve_properties',
+                'data_model_scope',
+                'data_model_code'
             ]
             _all_params.extend(
                 [
@@ -9641,6 +9667,12 @@ class TransactionPortfoliosApi:
 
             if _params.get('preserve_properties') is not None:  # noqa: E501
                 _query_params.append(('preserveProperties', _params['preserve_properties']))
+
+            if _params.get('data_model_scope') is not None:  # noqa: E501
+                _query_params.append(('dataModelScope', _params['data_model_scope']))
+
+            if _params.get('data_model_code') is not None:  # noqa: E501
+                _query_params.append(('dataModelCode', _params['data_model_code']))
 
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))

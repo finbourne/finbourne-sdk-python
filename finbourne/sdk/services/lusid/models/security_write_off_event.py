@@ -22,19 +22,20 @@ from uuid import UUID
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 from finbourne.sdk.services.lusid.models.instrument_event import InstrumentEvent
+from finbourne.sdk.services.lusid.models.subscribe_election import SubscribeElection
 
 
-class ProtectionPayoutCashFlowEvent(InstrumentEvent):
+class SecurityWriteOffEvent(InstrumentEvent):
     """
-    Protection payout cashflow for credit default instruments (CDS or CDX).  # noqa: E501
+    Security write-off (WOFF) — removes a security holding from the portfolio at zero proceeds following an  issuer-, lender-, or regulator-declared write-off. The full eligible holding is debited on the PaymentDate;  no cash is received and no new security is credited. Supports Mandatory and Voluntary participation; on the  Voluntary path the holder submits a SubscribeElection to recognise (apply) the write-off.  # noqa: E501
     """
-    ex_date: Optional[datetime] = Field(default=None, description="The ex-dividend date of the cashflow.", alias="exDate")
-    payment_date: Optional[datetime] = Field(default=None, description="The payment date of the cashflow.", alias="paymentDate")
-    currency:  StrictStr = Field(...,alias="currency", description="The currency in which the cashflow is paid.") 
-    cash_flow_per_unit: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The cashflow amount received for each unit of the instrument held on the ex date.", alias="cashFlowPerUnit")
+    record_date: Optional[datetime] = Field(default=None, description="Positions are struck at close of business on this date to determine eligible holdings.", alias="recordDate")
+    payment_date: Optional[datetime] = Field(default=None, description="The date the security debit is processed in LUSID; no cash payment is associated. Must be >= RecordDate.", alias="paymentDate")
+    announcement_date: Optional[datetime] = Field(default=None, description="The date the issuer, agent or regulator announces the write-off. Optional — null when no separate  announcement date is provided. When populated, must be <= RecordDate.", alias="announcementDate")
+    subscribe_elections: Optional[List[SubscribeElection]] = Field(default=None, description="List of possible subscribe elections for this event. Populated on the Voluntary path only, where the  holder elects to recognise (apply) the write-off. Ignored on the Mandatory path.", alias="subscribeElections")
     instrument_event_type:  StrictStr = Field(...,alias="instrumentEventType", description="The Type of Event. Available values: TransitionEvent, InformationalEvent, OpenEvent, CloseEvent, StockSplitEvent, BondDefaultEvent, CashDividendEvent, AmortisationEvent, CashFlowEvent, ExerciseEvent, ResetEvent, TriggerEvent, RawVendorEvent, InformationalErrorEvent, BondCouponEvent, DividendReinvestmentEvent, AccumulationEvent, BondPrincipalEvent, DividendOptionEvent, MaturityEvent, FxForwardSettlementEvent, ExpiryEvent, ScripDividendEvent, StockDividendEvent, ReverseStockSplitEvent, CapitalDistributionEvent, SpinOffEvent, MergerEvent, FutureExpiryEvent, SwapCashFlowEvent, SwapPrincipalEvent, CreditPremiumCashFlowEvent, CdsCreditEvent, CdxCreditEvent, MbsCouponEvent, MbsPrincipalEvent, BonusIssueEvent, MbsPrincipalWriteOffEvent, MbsInterestDeferralEvent, MbsInterestShortfallEvent, TenderEvent, CallOnIntermediateSecuritiesEvent, IntermediateSecuritiesDistributionEvent, OptionExercisePhysicalEvent, OptionExerciseCashEvent, ProtectionPayoutCashFlowEvent, TermDepositInterestEvent, TermDepositPrincipalEvent, EarlyRedemptionEvent, FutureMarkToMarketEvent, AdjustGlobalCommitmentEvent, ContractInitialisationEvent, DrawdownEvent, LoanInterestRepaymentEvent, UpdateDepositAmountEvent, LoanPrincipalRepaymentEvent, DepositInterestPaymentEvent, DepositCloseEvent, LoanFacilityContractRolloverEvent, RepurchaseOfferEvent, RepoPartialClosureEvent, RepoCashFlowEvent, FlexibleRepoInterestPaymentEvent, FlexibleRepoCashFlowEvent, FlexibleRepoCollateralEvent, ConversionEvent, FlexibleRepoPartialClosureEvent, FlexibleRepoFullClosureEvent, CapletFloorletCashFlowEvent, EarlyCloseOutEvent, DepositRollEvent, ConsentEvent, DrawingEvent, CapitalGainsDistributionEvent, ExchangeOfferEvent, DutchAuctionEvent, WorthlessEvent, PutRedemptionEvent, LoanFacilityDelayedCompensationPaymentEvent, InterestPaymentEvent, PriorityIssueEvent, ClassActionEvent, BankruptcyEvent, LiquidationPaymentEvent, PartialDefeasanceEvent, SecurityWriteOffEvent.") 
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["instrumentEventType", "exDate", "paymentDate", "currency", "cashFlowPerUnit"]
+    __properties: ClassVar[List[str]] = ["instrumentEventType", "recordDate", "paymentDate", "announcementDate", "subscribeElections"]
 
     @field_validator('instrument_event_type')
     def instrument_event_type_validate_enum(cls, value):
@@ -47,7 +48,7 @@ class ProtectionPayoutCashFlowEvent(InstrumentEvent):
 
         # check it's a class that uses the 'type' property as a discriminator
         # list of classes can be found by searching for 'actual_instance: Union[' in the generated code
-        if 'ProtectionPayoutCashFlowEvent' not in [ 
+        if 'SecurityWriteOffEvent' not in [ 
                                     # For notification application classes
                                     'AmazonSqsNotificationType',
                                     'AmazonSqsNotificationTypeResponse',
@@ -128,8 +129,8 @@ class ProtectionPayoutCashFlowEvent(InstrumentEvent):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> ProtectionPayoutCashFlowEvent:
-        """Create an instance of ProtectionPayoutCashFlowEvent from a JSON string"""
+    def from_json(cls, json_str: str) -> SecurityWriteOffEvent:
+        """Create an instance of SecurityWriteOffEvent from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self, by_alias=True):
@@ -140,33 +141,45 @@ class ProtectionPayoutCashFlowEvent(InstrumentEvent):
                             "additional_properties"
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of each item in subscribe_elections (list)
+        _items = []
+        if self.subscribe_elections:
+            for _item in self.subscribe_elections:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['subscribeElections'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
                 _dict[_key] = _value
 
-        # set to None if cash_flow_per_unit (nullable) is None
+        # set to None if announcement_date (nullable) is None
         # and model_fields_set contains the field
-        if self.cash_flow_per_unit is None and "cash_flow_per_unit" in self.model_fields_set:
-            _dict['cashFlowPerUnit'] = None
+        if self.announcement_date is None and "announcement_date" in self.model_fields_set:
+            _dict['announcementDate'] = None
+
+        # set to None if subscribe_elections (nullable) is None
+        # and model_fields_set contains the field
+        if self.subscribe_elections is None and "subscribe_elections" in self.model_fields_set:
+            _dict['subscribeElections'] = None
 
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> ProtectionPayoutCashFlowEvent:
-        """Create an instance of ProtectionPayoutCashFlowEvent from a dict"""
+    def from_dict(cls, obj: dict) -> SecurityWriteOffEvent:
+        """Create an instance of SecurityWriteOffEvent from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return ProtectionPayoutCashFlowEvent.model_validate(obj)
+            return SecurityWriteOffEvent.model_validate(obj)
 
-        _obj = ProtectionPayoutCashFlowEvent.model_validate({
+        _obj = SecurityWriteOffEvent.model_validate({
             "instrument_event_type": obj.get("instrumentEventType"),
-            "ex_date": obj.get("exDate"),
+            "record_date": obj.get("recordDate"),
             "payment_date": obj.get("paymentDate"),
-            "currency": obj.get("currency"),
-            "cash_flow_per_unit": obj.get("cashFlowPerUnit")
+            "announcement_date": obj.get("announcementDate"),
+            "subscribe_elections": [SubscribeElection.from_dict(_item) for _item in _v] if (_v := obj.get("subscribeElections")) is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
@@ -175,5 +188,5 @@ class ProtectionPayoutCashFlowEvent(InstrumentEvent):
 
         return _obj
 
-ProtectionPayoutCashFlowEvent.model_rebuild()
+SecurityWriteOffEvent.model_rebuild()
 
