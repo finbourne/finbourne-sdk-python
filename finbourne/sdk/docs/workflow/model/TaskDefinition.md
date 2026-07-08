@@ -15,6 +15,7 @@ Task Definition
 | **triggers** | [List[TransitionTriggerDefinition]](TransitionTriggerDefinition.md) | Optional | The Triggers for State transition |
 | **actions** | [List[ActionDefinitionResponse]](ActionDefinitionResponse.md) | Optional | The Actions of this Task - executed after a Transition completion |
 | **transitions** | [List[TaskTransitionDefinition]](TaskTransitionDefinition.md) | Optional | The Transitions between States |
+| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | The properties of the Task Definition, keyed by property key. Only populated when set on the request (Create/Update) or when property keys are requested (Get/List). |
 
 
 ## Usage
@@ -34,7 +35,8 @@ instance = TaskDefinition(
     initial_state=InitialState(...),  # required
     triggers=[],  # optional — The Triggers for State transition
     actions=[],  # optional — The Actions of this Task - executed after a Transition completion
-    transitions=[]  # optional — The Transitions between States
+    transitions=[],  # optional — The Transitions between States
+    properties=PerpetualProperty(...)  # optional — The properties of the Task Definition, keyed by property key. Only populated when set on the request (Create/Update) or when property keys are requested (Get/List).
 )
 ```
 
@@ -49,6 +51,7 @@ instance = TaskDefinition(
 - [TransitionTriggerDefinition](TransitionTriggerDefinition.md) — used in `triggers`
 - [ActionDefinitionResponse](ActionDefinitionResponse.md) — used in `actions`
 - [TaskTransitionDefinition](TaskTransitionDefinition.md) — used in `transitions`
+- [PerpetualProperty](PerpetualProperty.md) — used in `properties`
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)
