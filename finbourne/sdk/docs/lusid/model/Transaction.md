@@ -33,6 +33,7 @@ A list of transactions.
 | **data_model_membership** | [DataModelMembership](DataModelMembership.md) | Optional | *No description available.* |
 | **version** | [Version](Version.md) | Optional | *No description available.* |
 | **staged_modifications** | [StagedModificationsInfo](StagedModificationsInfo.md) | Optional | *No description available.* |
+| **custodian_entries** | [List[CustodianEntry]](CustodianEntry.md) | Optional | A list of Custodian Entries associated with the transaction. |
 
 
 ## Usage
@@ -70,7 +71,8 @@ instance = Transaction(
     resolved_transaction_type_details=TransactionTypeDetails(...),  # optional
     data_model_membership=DataModelMembership(...),  # optional
     version=Version(...),  # optional
-    staged_modifications=StagedModificationsInfo(...)  # optional
+    staged_modifications=StagedModificationsInfo(...),  # optional
+    custodian_entries=[]  # optional — A list of Custodian Entries associated with the transaction.
 )
 ```
 
@@ -86,6 +88,7 @@ instance = Transaction(
 - [DataModelMembership](DataModelMembership.md)
 - [Version](Version.md)
 - [StagedModificationsInfo](StagedModificationsInfo.md)
+- [CustodianEntry](CustodianEntry.md) — used in `custodian_entries`
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

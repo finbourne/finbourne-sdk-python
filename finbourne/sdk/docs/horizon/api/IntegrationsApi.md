@@ -10,8 +10,8 @@ Method | HTTP request | Description
 [**execute_instance_with_params**](IntegrationsApi.md#execute_instance_with_params) | **POST** /horizon/api/integrations/instances/{instanceId}/executewithparams | [EXPERIMENTAL] ExecuteInstanceWithParams: Execute an integration instance with runtime parameters
 [**get_dataflow_processor_schema**](IntegrationsApi.md#get_dataflow_processor_schema) | **GET** /horizon/api/integrations/dataflow/processors/{processorType}/schema | [EXPERIMENTAL] GetDataflowProcessorSchema: Returns processor configuration schema for a given processor type. This is used by the UI to render the configuration form for a processortype.
 [**get_execution_ids_for_instance**](IntegrationsApi.md#get_execution_ids_for_instance) | **GET** /horizon/api/integrations/instances/{instanceId}/executions | [EXPERIMENTAL] GetExecutionIdsForInstance: Get integration instance execution ids.
-[**get_instance**](IntegrationsApi.md#get_instance) | **GET** /horizon/api/integrations/instances/{instanceId} | [EXPERIMENTAL] GetInstance: Get a specified Instance for a given integration.
-[**get_instance_optional_property_mapping**](IntegrationsApi.md#get_instance_optional_property_mapping) | **GET** /horizon/api/integrations/instances/configuration/{integration}/{instanceId} | [EXPERIMENTAL] GetInstanceOptionalPropertyMapping: Get the Optional Property Mapping for an Integration Instance
+[**get_instance**](IntegrationsApi.md#get_instance) | **GET** /horizon/api/integrations/instances/{instanceId} | [EXPERIMENTAL] GetInstance: Get a specified instance for a given integration.
+[**get_instance_optional_property_mapping**](IntegrationsApi.md#get_instance_optional_property_mapping) | **GET** /horizon/api/integrations/instances/configuration/{integration}/{instanceId} | [EXPERIMENTAL] GetInstanceOptionalPropertyMapping: Get the Optional Property Mapping for an integration instance
 [**get_integration_configuration**](IntegrationsApi.md#get_integration_configuration) | **GET** /horizon/api/integrations/configuration/{integration} | [EXPERIMENTAL] GetIntegrationConfiguration: Get the Field and Property Mapping configuration for a given integration
 [**get_integration_configuration_fields**](IntegrationsApi.md#get_integration_configuration_fields) | **GET** /horizon/api/integrations/configuration/{integration}/fields | [EXPERIMENTAL] GetIntegrationConfigurationFields: Get the Field Mapping configuration for a given integration
 [**get_integration_configuration_properties**](IntegrationsApi.md#get_integration_configuration_properties) | **GET** /horizon/api/integrations/configuration/{integration}/properties | [EXPERIMENTAL] GetIntegrationConfigurationProperties: Get the Property Mapping configuration for a given integration
@@ -19,7 +19,7 @@ Method | HTTP request | Description
 [**list_dataflow_processors**](IntegrationsApi.md#list_dataflow_processors) | **GET** /horizon/api/integrations/dataflow/processors | [EXPERIMENTAL] ListDataflowProcessors: List processor types.
 [**list_instances**](IntegrationsApi.md#list_instances) | **GET** /horizon/api/integrations/instances | [EXPERIMENTAL] ListInstances: List instances across all integrations.
 [**list_integrations**](IntegrationsApi.md#list_integrations) | **GET** /horizon/api/integrations | [EXPERIMENTAL] ListIntegrations: List available integrations.
-[**set_instance_optional_property_mapping**](IntegrationsApi.md#set_instance_optional_property_mapping) | **PUT** /horizon/api/integrations/instances/configuration/{integration}/{instanceId} | [EXPERIMENTAL] SetInstanceOptionalPropertyMapping: Set the Optional Property Mapping for an Integration Instance
+[**set_instance_optional_property_mapping**](IntegrationsApi.md#set_instance_optional_property_mapping) | **PUT** /horizon/api/integrations/instances/configuration/{integration}/{instanceId} | [EXPERIMENTAL] SetInstanceOptionalPropertyMapping: Set the Optional Property Mapping for an integration instance
 [**update_instance**](IntegrationsApi.md#update_instance) | **PUT** /horizon/api/integrations/instances/{instanceId} | [EXPERIMENTAL] UpdateInstance: Update a single integration instance.
 
 
@@ -310,7 +310,7 @@ Name | Type | Description  | Notes
 # **get_instance**
 > IntegrationInstanceResponse getInstance = get_instance(instance_id)
 
-[EXPERIMENTAL] GetInstance: Get a specified Instance for a given integration.
+[EXPERIMENTAL] GetInstance: Get a specified instance for a given integration.
 
 The user must be authenticated to call this method.
 
@@ -353,7 +353,7 @@ Name | Type | Description  | Notes
 # **get_instance_optional_property_mapping**
 > Dict[str, LusidPropertyDefinitionOverridesByType] getInstanceOptionalPropertyMapping = get_instance_optional_property_mapping(integration, instance_id)
 
-[EXPERIMENTAL] GetInstanceOptionalPropertyMapping: Get the Optional Property Mapping for an Integration Instance
+[EXPERIMENTAL] GetInstanceOptionalPropertyMapping: Get the Optional Property Mapping for an integration instance
 
 Will return the full list of optional properties configured for this integration instance and any naming overrides
 
@@ -699,7 +699,7 @@ This endpoint does not need any parameter.
 # **set_instance_optional_property_mapping**
 > Dict[str, LusidPropertyDefinitionOverridesByType] setInstanceOptionalPropertyMapping = set_instance_optional_property_mapping(instance_id, integration, request_body=request_body)
 
-[EXPERIMENTAL] SetInstanceOptionalPropertyMapping: Set the Optional Property Mapping for an Integration Instance
+[EXPERIMENTAL] SetInstanceOptionalPropertyMapping: Set the Optional Property Mapping for an integration instance
 
 The full list of properties must be supplied, the removal of a property from this list will remove it from the integration instance
 

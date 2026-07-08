@@ -16,7 +16,7 @@
 | **settlement_mode** | **str** | Optional | Configures how movements should settle. Allowed values: &#39;Internal&#39; and &#39;External&#39;. A movement with &#39;Internal&#39; settlement mode will settle automatically on the contractual settlement date regardlesss of portfolio configuration or settlement instruction. An &#39;External&#39; movement can be settled automatically or by a settlement instruction. Available values: Internal, External. |
 | **calculate_trade_date_to_settlement_fx_pn_l** | **bool** | Optional | Configures whether Trade To Settlement Date Realised Gain Loss should be calculated. This overrides the value set at the Portfolio level.If null, then the Portfolio Settlement Configuration TradeToSettlementDateRealisedFxPnl setting will be used.If false, then no TradeToSettlementDateRealisedFxPnl will apply for this movement and if true, then TradeToSettlementDateRealisedFxPnlwill be calculated for this movement. |
 | **custodian_account_type** | **str** | Optional | The type of custodian account this movement targets, e.g. Cash or Margin. Free text, optional. |
-| **account_selector** | **str** | Optional | An optional selector expression used to identify the specific account this movement targets. E.g. From/To. |
+| **account_selector** | **str** | Optional | An optional selector expression used to identify the specific account this movement targets. E.g. From/To. Available values: From, To. |
 
 
 ## Usage
@@ -39,7 +39,7 @@ instance = TransactionTypeMovement(
     settlement_mode="...",  # optional — Configures how movements should settle. Allowed values: &#39;Internal&#39; and &#39;External&#39;. A movement with &#39;Internal&#39; settlement mode will settle automatically on the contractual settlement date regardlesss of portfolio configuration or settlement instruction. An &#39;External&#39; movement can be settled automatically or by a settlement instruction. Available values: Internal, External.
     calculate_trade_date_to_settlement_fx_pn_l=True,  # optional — Configures whether Trade To Settlement Date Realised Gain Loss should be calculated. This overrides the value set at the Portfolio level.If null, then the Portfolio Settlement Configuration TradeToSettlementDateRealisedFxPnl setting will be used.If false, then no TradeToSettlementDateRealisedFxPnl will apply for this movement and if true, then TradeToSettlementDateRealisedFxPnlwill be calculated for this movement.
     custodian_account_type="...",  # optional — The type of custodian account this movement targets, e.g. Cash or Margin. Free text, optional.
-    account_selector="..."  # optional — An optional selector expression used to identify the specific account this movement targets. E.g. From/To.
+    account_selector="..."  # optional — An optional selector expression used to identify the specific account this movement targets. E.g. From/To. Available values: From, To.
 )
 ```
 

@@ -6492,7 +6492,7 @@ class FundsApi:
     def patch_fund(self, scope: StrictStr, code: StrictStr, operation: List[Operation], **kwargs) -> Fund:
         """[EXPERIMENTAL] PatchFund: Patch a Fund.  # noqa: E501
 
-        Update fields on a Fund.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, PortfolioIds, FundConfigurationId, ShareClassInstruments, Type, InceptionDate, DecimalPlaces, PrimaryNavType, AdditionalNavTypes, AborId, YearEndDate.  # noqa: E501
+        Update fields on a Fund.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, BaseCurrency, PortfolioIds, FundConfigurationId, ShareClassInstruments, Type, InceptionDate, DecimalPlaces, PrimaryNavType, AdditionalNavTypes, AborId, YearEndDate.  # noqa: E501
         :param scope: The scope of the Fund. (required)
         :type scope: str
         :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
@@ -6516,7 +6516,7 @@ class FundsApi:
     def patch_fund_with_http_info(self, scope: StrictStr, code: StrictStr, operation: List[Operation], **kwargs) -> ApiResponse[Fund]:
         """[EXPERIMENTAL] PatchFund: Patch a Fund.  # noqa: E501
 
-        Update fields on a Fund.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, PortfolioIds, FundConfigurationId, ShareClassInstruments, Type, InceptionDate, DecimalPlaces, PrimaryNavType, AdditionalNavTypes, AborId, YearEndDate.  # noqa: E501
+        Update fields on a Fund.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, BaseCurrency, PortfolioIds, FundConfigurationId, ShareClassInstruments, Type, InceptionDate, DecimalPlaces, PrimaryNavType, AdditionalNavTypes, AborId, YearEndDate.  # noqa: E501
         :param scope: The scope of the Fund. (required)
         :type scope: str
         :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
@@ -14666,7 +14666,7 @@ class FundsApi:
     @validate_call
     async def patch_fund_async(self, scope: StrictStr, code: StrictStr, operation: List[Operation], **kwargs) -> Fund:
             """[EXPERIMENTAL] PatchFund: Patch a Fund.  # noqa: E501
-            Update fields on a Fund.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, PortfolioIds, FundConfigurationId, ShareClassInstruments, Type, InceptionDate, DecimalPlaces, PrimaryNavType, AdditionalNavTypes, AborId, YearEndDate.  # noqa: E501
+            Update fields on a Fund.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, BaseCurrency, PortfolioIds, FundConfigurationId, ShareClassInstruments, Type, InceptionDate, DecimalPlaces, PrimaryNavType, AdditionalNavTypes, AborId, YearEndDate.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
             :type scope: str
@@ -14691,7 +14691,7 @@ class FundsApi:
     async def patch_fund_with_http_info_async(self, scope: StrictStr, code: StrictStr, operation: List[Operation], **kwargs) -> ApiResponse[Fund]:
             """[EXPERIMENTAL] PatchFund: Patch a Fund.  # noqa: E501
 
-            Update fields on a Fund.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, PortfolioIds, FundConfigurationId, ShareClassInstruments, Type, InceptionDate, DecimalPlaces, PrimaryNavType, AdditionalNavTypes, AborId, YearEndDate.  # noqa: E501
+            Update fields on a Fund.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, BaseCurrency, PortfolioIds, FundConfigurationId, ShareClassInstruments, Type, InceptionDate, DecimalPlaces, PrimaryNavType, AdditionalNavTypes, AborId, YearEndDate.  # noqa: E501
 
             :param scope: The scope of the Fund. (required)
             :type scope: str

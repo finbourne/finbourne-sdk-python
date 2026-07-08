@@ -22,6 +22,7 @@ from uuid import UUID
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 from finbourne.sdk.services.lusid.models.currency_and_amount import CurrencyAndAmount
+from finbourne.sdk.services.lusid.models.custodian_entry import CustodianEntry
 from finbourne.sdk.services.lusid.models.otc_confirmation import OtcConfirmation
 from finbourne.sdk.services.lusid.models.perpetual_property import PerpetualProperty
 from finbourne.sdk.services.lusid.models.resource_id import ResourceId
@@ -52,7 +53,8 @@ class TransactionRequest(BaseModel):
     custodian_account_id: Optional[ResourceId] = Field(default=None, alias="custodianAccountId")
     transaction_group_id:  Optional[StrictStr] = Field(default=None,alias="transactionGroupId", description="The identifier for grouping economic events across multiple transactions") 
     strategy_tag: Optional[List[Strategy]] = Field(default=None, description="A list of strategies representing the allocation of units across multiple sub-holding keys", alias="strategyTag")
-    __properties: ClassVar[List[str]] = ["transactionId", "type", "instrumentIdentifiers", "transactionDate", "settlementDate", "units", "transactionPrice", "totalConsideration", "exchangeRate", "transactionCurrency", "properties", "counterpartyId", "source", "otcConfirmation", "orderId", "allocationId", "custodianAccountId", "transactionGroupId", "strategyTag"]
+    custodian_entries: Optional[List[CustodianEntry]] = Field(default=None, description="A list of Custodian Entries associated with the transaction.", alias="custodianEntries")
+    __properties: ClassVar[List[str]] = ["transactionId", "type", "instrumentIdentifiers", "transactionDate", "settlementDate", "units", "transactionPrice", "totalConsideration", "exchangeRate", "transactionCurrency", "properties", "counterpartyId", "source", "otcConfirmation", "orderId", "allocationId", "custodianAccountId", "transactionGroupId", "strategyTag", "custodianEntries"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -120,6 +122,13 @@ class TransactionRequest(BaseModel):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['strategyTag'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in custodian_entries (list)
+        _items = []
+        if self.custodian_entries:
+            for _item in self.custodian_entries:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['custodianEntries'] = _items
         # set to None if exchange_rate (nullable) is None
         # and model_fields_set contains the field
         if self.exchange_rate is None and "exchange_rate" in self.model_fields_set:
@@ -154,6 +163,11 @@ class TransactionRequest(BaseModel):
         # and model_fields_set contains the field
         if self.strategy_tag is None and "strategy_tag" in self.model_fields_set:
             _dict['strategyTag'] = None
+
+        # set to None if custodian_entries (nullable) is None
+        # and model_fields_set contains the field
+        if self.custodian_entries is None and "custodian_entries" in self.model_fields_set:
+            _dict['custodianEntries'] = None
 
         return _dict
 
@@ -190,7 +204,8 @@ class TransactionRequest(BaseModel):
             "allocation_id": ResourceId.from_dict(_v) if (_v := obj.get("allocationId")) is not None else None,
             "custodian_account_id": ResourceId.from_dict(_v) if (_v := obj.get("custodianAccountId")) is not None else None,
             "transaction_group_id": obj.get("transactionGroupId"),
-            "strategy_tag": [Strategy.from_dict(_item) for _item in _v] if (_v := obj.get("strategyTag")) is not None else None
+            "strategy_tag": [Strategy.from_dict(_item) for _item in _v] if (_v := obj.get("strategyTag")) is not None else None,
+            "custodian_entries": [CustodianEntry.from_dict(_item) for _item in _v] if (_v := obj.get("custodianEntries")) is not None else None
         })
         return _obj
 

@@ -23,6 +23,7 @@
 | **custodian_account_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **transaction_group_id** | **str** | Optional | The identifier for grouping economic events across multiple transactions |
 | **strategy_tag** | [List[Strategy]](Strategy.md) | Optional | A list of strategies representing the allocation of units across multiple sub-holding keys |
+| **custodian_entries** | [List[CustodianEntry]](CustodianEntry.md) | Optional | A list of Custodian Entries associated with the transaction. |
 
 
 ## Usage
@@ -51,7 +52,8 @@ instance = TransactionRequest(
     allocation_id=ResourceId(...),  # optional
     custodian_account_id=ResourceId(...),  # optional
     transaction_group_id="...",  # optional — The identifier for grouping economic events across multiple transactions
-    strategy_tag=[]  # optional — A list of strategies representing the allocation of units across multiple sub-holding keys
+    strategy_tag=[],  # optional — A list of strategies representing the allocation of units across multiple sub-holding keys
+    custodian_entries=[]  # optional — A list of Custodian Entries associated with the transaction.
 )
 ```
 
@@ -63,6 +65,7 @@ instance = TransactionRequest(
 - [ResourceId](ResourceId.md)
 - [ResourceId](ResourceId.md)
 - [Strategy](Strategy.md) — used in `strategy_tag`
+- [CustodianEntry](CustodianEntry.md) — used in `custodian_entries`
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

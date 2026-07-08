@@ -318,6 +318,7 @@ from finbourne.sdk.services.lusid.models.custodian_account import CustodianAccou
 from finbourne.sdk.services.lusid.models.custodian_account_properties import CustodianAccountProperties
 from finbourne.sdk.services.lusid.models.custodian_account_request import CustodianAccountRequest
 from finbourne.sdk.services.lusid.models.custodian_accounts_upsert_response import CustodianAccountsUpsertResponse
+from finbourne.sdk.services.lusid.models.custodian_entry import CustodianEntry
 from finbourne.sdk.services.lusid.models.custom_data_model import CustomDataModel
 from finbourne.sdk.services.lusid.models.custom_data_model_criteria import CustomDataModelCriteria
 from finbourne.sdk.services.lusid.models.custom_data_model_identifier_type_specification import CustomDataModelIdentifierTypeSpecification
@@ -418,6 +419,7 @@ from finbourne.sdk.services.lusid.models.equity_vol_surface_data import EquityVo
 from finbourne.sdk.services.lusid.models.error_detail import ErrorDetail
 from finbourne.sdk.services.lusid.models.estimate_variant import EstimateVariant
 from finbourne.sdk.services.lusid.models.event_date_range import EventDateRange
+from finbourne.sdk.services.lusid.models.event_inheritance import EventInheritance
 from finbourne.sdk.services.lusid.models.ex_dividend_configuration import ExDividendConfiguration
 from finbourne.sdk.services.lusid.models.exchange_offer_event import ExchangeOfferEvent
 from finbourne.sdk.services.lusid.models.exchange_traded_option import ExchangeTradedOption
@@ -945,6 +947,7 @@ from finbourne.sdk.services.lusid.models.property_definition_type import Propert
 from finbourne.sdk.services.lusid.models.property_domain import PropertyDomain
 from finbourne.sdk.services.lusid.models.property_filter import PropertyFilter
 from finbourne.sdk.services.lusid.models.property_interval import PropertyInterval
+from finbourne.sdk.services.lusid.models.property_interval_time_series import PropertyIntervalTimeSeries
 from finbourne.sdk.services.lusid.models.property_key_compliance_parameter import PropertyKeyComplianceParameter
 from finbourne.sdk.services.lusid.models.property_key_list_compliance_parameter import PropertyKeyListComplianceParameter
 from finbourne.sdk.services.lusid.models.property_life_time import PropertyLifeTime
@@ -1092,6 +1095,7 @@ from finbourne.sdk.services.lusid.models.resource_list_of_processed_command impo
 from finbourne.sdk.services.lusid.models.resource_list_of_property import ResourceListOfProperty
 from finbourne.sdk.services.lusid.models.resource_list_of_property_definition import ResourceListOfPropertyDefinition
 from finbourne.sdk.services.lusid.models.resource_list_of_property_interval import ResourceListOfPropertyInterval
+from finbourne.sdk.services.lusid.models.resource_list_of_property_interval_time_series import ResourceListOfPropertyIntervalTimeSeries
 from finbourne.sdk.services.lusid.models.resource_list_of_queryable_key import ResourceListOfQueryableKey
 from finbourne.sdk.services.lusid.models.resource_list_of_quote import ResourceListOfQuote
 from finbourne.sdk.services.lusid.models.resource_list_of_quote_access_metadata_rule import ResourceListOfQuoteAccessMetadataRule
@@ -1440,6 +1444,7 @@ from finbourne.sdk.services.lusid.models.virtual_document import VirtualDocument
 from finbourne.sdk.services.lusid.models.virtual_document_row import VirtualDocumentRow
 from finbourne.sdk.services.lusid.models.virtual_row import VirtualRow
 from finbourne.sdk.services.lusid.models.warning import Warning
+from finbourne.sdk.services.lusid.models.warrants_exercise_event import WarrantsExerciseEvent
 from finbourne.sdk.services.lusid.models.weekend_mask import WeekendMask
 from finbourne.sdk.services.lusid.models.weighted_allocation_service_run_request import WeightedAllocationServiceRunRequest
 from finbourne.sdk.services.lusid.models.weighted_instrument import WeightedInstrument
@@ -1765,6 +1770,7 @@ __all__ = [
     "CustodianAccountProperties",
     "CustodianAccountRequest",
     "CustodianAccountsUpsertResponse",
+    "CustodianEntry",
     "CustomDataModel",
     "CustomDataModelCriteria",
     "CustomDataModelIdentifierTypeSpecification",
@@ -1865,6 +1871,7 @@ __all__ = [
     "ErrorDetail",
     "EstimateVariant",
     "EventDateRange",
+    "EventInheritance",
     "ExDividendConfiguration",
     "ExchangeOfferEvent",
     "ExchangeTradedOption",
@@ -2392,6 +2399,7 @@ __all__ = [
     "PropertyDomain",
     "PropertyFilter",
     "PropertyInterval",
+    "PropertyIntervalTimeSeries",
     "PropertyKeyComplianceParameter",
     "PropertyKeyListComplianceParameter",
     "PropertyLifeTime",
@@ -2539,6 +2547,7 @@ __all__ = [
     "ResourceListOfProperty",
     "ResourceListOfPropertyDefinition",
     "ResourceListOfPropertyInterval",
+    "ResourceListOfPropertyIntervalTimeSeries",
     "ResourceListOfQueryableKey",
     "ResourceListOfQuote",
     "ResourceListOfQuoteAccessMetadataRule",
@@ -2887,6 +2896,7 @@ __all__ = [
     "VirtualDocumentRow",
     "VirtualRow",
     "Warning",
+    "WarrantsExerciseEvent",
     "WeekendMask",
     "WeightedAllocationServiceRunRequest",
     "WeightedInstrument",

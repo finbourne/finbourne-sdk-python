@@ -812,7 +812,7 @@ class IntegrationsApi:
 
     @validate_call
     def get_instance(self, instance_id: StrictStr, **kwargs) -> IntegrationInstanceResponse:
-        """[EXPERIMENTAL] GetInstance: Get a specified Instance for a given integration.  # noqa: E501
+        """[EXPERIMENTAL] GetInstance: Get a specified instance for a given integration.  # noqa: E501
 
         The user must be authenticated to call this method.  # noqa: E501
         :param instance_id: (required)
@@ -832,7 +832,7 @@ class IntegrationsApi:
 
     @validate_call
     def get_instance_with_http_info(self, instance_id: StrictStr, **kwargs) -> ApiResponse[IntegrationInstanceResponse]:
-        """[EXPERIMENTAL] GetInstance: Get a specified Instance for a given integration.  # noqa: E501
+        """[EXPERIMENTAL] GetInstance: Get a specified instance for a given integration.  # noqa: E501
 
         The user must be authenticated to call this method.  # noqa: E501
         :param instance_id: (required)
@@ -933,7 +933,7 @@ class IntegrationsApi:
 
     @validate_call
     def get_instance_optional_property_mapping(self, integration: StrictStr, instance_id: StrictStr, **kwargs) -> Dict[str, LusidPropertyDefinitionOverridesByType]:
-        """[EXPERIMENTAL] GetInstanceOptionalPropertyMapping: Get the Optional Property Mapping for an Integration Instance  # noqa: E501
+        """[EXPERIMENTAL] GetInstanceOptionalPropertyMapping: Get the Optional Property Mapping for an integration instance  # noqa: E501
 
         Will return the full list of optional properties configured for this integration instance and any naming overrides  # noqa: E501
         :param integration: The type of the integration e.g. \"copp-clark\". (required)
@@ -955,7 +955,7 @@ class IntegrationsApi:
 
     @validate_call
     def get_instance_optional_property_mapping_with_http_info(self, integration: StrictStr, instance_id: StrictStr, **kwargs) -> ApiResponse[Dict[str, LusidPropertyDefinitionOverridesByType]]:
-        """[EXPERIMENTAL] GetInstanceOptionalPropertyMapping: Get the Optional Property Mapping for an Integration Instance  # noqa: E501
+        """[EXPERIMENTAL] GetInstanceOptionalPropertyMapping: Get the Optional Property Mapping for an integration instance  # noqa: E501
 
         Will return the full list of optional properties configured for this integration instance and any naming overrides  # noqa: E501
         :param integration: The type of the integration e.g. \"copp-clark\". (required)
@@ -1947,7 +1947,7 @@ class IntegrationsApi:
 
     @validate_call
     def set_instance_optional_property_mapping(self, instance_id: StrictStr, integration: StrictStr, request_body: Optional[Dict[str, LusidPropertyDefinitionOverridesByType]] = None, **kwargs) -> Dict[str, LusidPropertyDefinitionOverridesByType]:
-        """[EXPERIMENTAL] SetInstanceOptionalPropertyMapping: Set the Optional Property Mapping for an Integration Instance  # noqa: E501
+        """[EXPERIMENTAL] SetInstanceOptionalPropertyMapping: Set the Optional Property Mapping for an integration instance  # noqa: E501
 
         The full list of properties must be supplied, the removal of a property from this list will remove it from the integration instance  # noqa: E501
         :param instance_id: Identifier of the instance (required)
@@ -1971,7 +1971,7 @@ class IntegrationsApi:
 
     @validate_call
     def set_instance_optional_property_mapping_with_http_info(self, instance_id: StrictStr, integration: StrictStr, request_body: Optional[Dict[str, LusidPropertyDefinitionOverridesByType]] = None, **kwargs) -> ApiResponse[Dict[str, LusidPropertyDefinitionOverridesByType]]:
-        """[EXPERIMENTAL] SetInstanceOptionalPropertyMapping: Set the Optional Property Mapping for an Integration Instance  # noqa: E501
+        """[EXPERIMENTAL] SetInstanceOptionalPropertyMapping: Set the Optional Property Mapping for an integration instance  # noqa: E501
 
         The full list of properties must be supplied, the removal of a property from this list will remove it from the integration instance  # noqa: E501
         :param instance_id: Identifier of the instance (required)
@@ -2983,7 +2983,7 @@ class IntegrationsApi:
 
     @validate_call
     async def get_instance_async(self, instance_id: StrictStr, **kwargs) -> IntegrationInstanceResponse:
-            """[EXPERIMENTAL] GetInstance: Get a specified Instance for a given integration.  # noqa: E501
+            """[EXPERIMENTAL] GetInstance: Get a specified instance for a given integration.  # noqa: E501
             The user must be authenticated to call this method.  # noqa: E501
             
             :param instance_id: (required)
@@ -3003,7 +3003,7 @@ class IntegrationsApi:
 
     @validate_call
     async def get_instance_with_http_info_async(self, instance_id: StrictStr, **kwargs) -> ApiResponse[IntegrationInstanceResponse]:
-            """[EXPERIMENTAL] GetInstance: Get a specified Instance for a given integration.  # noqa: E501
+            """[EXPERIMENTAL] GetInstance: Get a specified instance for a given integration.  # noqa: E501
 
             The user must be authenticated to call this method.  # noqa: E501
 
@@ -3105,7 +3105,7 @@ class IntegrationsApi:
 
     @validate_call
     async def get_instance_optional_property_mapping_async(self, integration: StrictStr, instance_id: StrictStr, **kwargs) -> Dict[str, LusidPropertyDefinitionOverridesByType]:
-            """[EXPERIMENTAL] GetInstanceOptionalPropertyMapping: Get the Optional Property Mapping for an Integration Instance  # noqa: E501
+            """[EXPERIMENTAL] GetInstanceOptionalPropertyMapping: Get the Optional Property Mapping for an integration instance  # noqa: E501
             Will return the full list of optional properties configured for this integration instance and any naming overrides  # noqa: E501
             
             :param integration: The type of the integration e.g. \"copp-clark\". (required)
@@ -3127,7 +3127,7 @@ class IntegrationsApi:
 
     @validate_call
     async def get_instance_optional_property_mapping_with_http_info_async(self, integration: StrictStr, instance_id: StrictStr, **kwargs) -> ApiResponse[Dict[str, LusidPropertyDefinitionOverridesByType]]:
-            """[EXPERIMENTAL] GetInstanceOptionalPropertyMapping: Get the Optional Property Mapping for an Integration Instance  # noqa: E501
+            """[EXPERIMENTAL] GetInstanceOptionalPropertyMapping: Get the Optional Property Mapping for an integration instance  # noqa: E501
 
             Will return the full list of optional properties configured for this integration instance and any naming overrides  # noqa: E501
 
@@ -4127,7 +4127,7 @@ class IntegrationsApi:
 
     @validate_call
     async def set_instance_optional_property_mapping_async(self, instance_id: StrictStr, integration: StrictStr, request_body: Optional[Dict[str, LusidPropertyDefinitionOverridesByType]] = None, **kwargs) -> Dict[str, LusidPropertyDefinitionOverridesByType]:
-            """[EXPERIMENTAL] SetInstanceOptionalPropertyMapping: Set the Optional Property Mapping for an Integration Instance  # noqa: E501
+            """[EXPERIMENTAL] SetInstanceOptionalPropertyMapping: Set the Optional Property Mapping for an integration instance  # noqa: E501
             The full list of properties must be supplied, the removal of a property from this list will remove it from the integration instance  # noqa: E501
             
             :param instance_id: Identifier of the instance (required)
@@ -4151,7 +4151,7 @@ class IntegrationsApi:
 
     @validate_call
     async def set_instance_optional_property_mapping_with_http_info_async(self, instance_id: StrictStr, integration: StrictStr, request_body: Optional[Dict[str, LusidPropertyDefinitionOverridesByType]] = None, **kwargs) -> ApiResponse[Dict[str, LusidPropertyDefinitionOverridesByType]]:
-            """[EXPERIMENTAL] SetInstanceOptionalPropertyMapping: Set the Optional Property Mapping for an Integration Instance  # noqa: E501
+            """[EXPERIMENTAL] SetInstanceOptionalPropertyMapping: Set the Optional Property Mapping for an integration instance  # noqa: E501
 
             The full list of properties must be supplied, the removal of a property from this list will remove it from the integration instance  # noqa: E501
 
