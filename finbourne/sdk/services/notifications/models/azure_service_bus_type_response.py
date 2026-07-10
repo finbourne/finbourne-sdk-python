@@ -34,7 +34,8 @@ class AzureServiceBusTypeResponse(BaseModel):
     tenant_id_ref:  Optional[StrictStr] = Field(default=None,alias="tenantIdRef", description="Reference to tenant id  from Configuration Store") 
     client_id_ref:  Optional[StrictStr] = Field(default=None,alias="clientIdRef", description="Reference to client id from Configuration Store") 
     client_secret_ref:  Optional[StrictStr] = Field(default=None,alias="clientSecretRef", description="Reference to client secret from Configuration Store") 
-    __properties: ClassVar[List[str]] = ["type", "namespaceRef", "queueNameRef", "body", "tenantIdRef", "clientIdRef", "clientSecretRef"]
+    application_properties: Optional[Dict[str, Optional[StrictStr]]] = Field(default=None, description="Optional key-value pairs attached to the Azure Service Bus message envelope.", alias="applicationProperties")
+    __properties: ClassVar[List[str]] = ["type", "namespaceRef", "queueNameRef", "body", "tenantIdRef", "clientIdRef", "clientSecretRef", "applicationProperties"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -177,6 +178,11 @@ class AzureServiceBusTypeResponse(BaseModel):
         if self.client_secret_ref is None and "client_secret_ref" in self.model_fields_set:
             _dict['clientSecretRef'] = None
 
+        # set to None if application_properties (nullable) is None
+        # and model_fields_set contains the field
+        if self.application_properties is None and "application_properties" in self.model_fields_set:
+            _dict['applicationProperties'] = None
+
         return _dict
 
     @classmethod
@@ -195,7 +201,8 @@ class AzureServiceBusTypeResponse(BaseModel):
             "body": obj.get("body"),
             "tenant_id_ref": obj.get("tenantIdRef"),
             "client_id_ref": obj.get("clientIdRef"),
-            "client_secret_ref": obj.get("clientSecretRef")
+            "client_secret_ref": obj.get("clientSecretRef"),
+            "application_properties": obj.get("applicationProperties")
         })
         return _obj
 

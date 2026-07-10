@@ -12,6 +12,7 @@ The information required to create or update an Azure Service Bus notification
 | **tenant_id** | **str** | Required | Reference to tenant id from Configuration Store |
 | **client_id** | **str** | Required | Reference to client id from Configuration Store |
 | **client_secret** | **str** | Required | Reference to client secret from Configuration Store |
+| **application_properties** | **Dict[str, Optional[str]]** | Optional | Optional key-value pairs to attach to the Azure Service Bus message envelope. |
 
 
 ## Usage
@@ -28,7 +29,8 @@ instance = AzureServiceBusNotificationType(
     body="...",  # required — The body of the Azure Service Bus Message
     tenant_id="...",  # required — Reference to tenant id from Configuration Store
     client_id="...",  # required — Reference to client id from Configuration Store
-    client_secret="..."  # required — Reference to client secret from Configuration Store
+    client_secret="...",  # required — Reference to client secret from Configuration Store
+    application_properties=  # optional — Optional key-value pairs to attach to the Azure Service Bus message envelope.
 )
 ```
 

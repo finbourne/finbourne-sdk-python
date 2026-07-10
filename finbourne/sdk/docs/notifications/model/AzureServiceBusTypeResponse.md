@@ -12,6 +12,7 @@ Holds readonly information about an Azure Service Bus notification
 | **tenant_id_ref** | **str** | Optional | Reference to tenant id  from Configuration Store |
 | **client_id_ref** | **str** | Optional | Reference to client id from Configuration Store |
 | **client_secret_ref** | **str** | Optional | Reference to client secret from Configuration Store |
+| **application_properties** | **Dict[str, Optional[str]]** | Optional | Optional key-value pairs attached to the Azure Service Bus message envelope. |
 
 
 ## Usage
@@ -28,7 +29,8 @@ instance = AzureServiceBusTypeResponse(
     body="...",  # optional — The body of the Azure service bus Message
     tenant_id_ref="...",  # optional — Reference to tenant id  from Configuration Store
     client_id_ref="...",  # optional — Reference to client id from Configuration Store
-    client_secret_ref="..."  # optional — Reference to client secret from Configuration Store
+    client_secret_ref="...",  # optional — Reference to client secret from Configuration Store
+    application_properties=  # optional — Optional key-value pairs attached to the Azure Service Bus message envelope.
 )
 ```
 
