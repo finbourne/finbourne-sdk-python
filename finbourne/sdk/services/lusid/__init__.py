@@ -79,6 +79,7 @@ from finbourne.sdk.services.lusid.api.relations_api import RelationsApi
 from finbourne.sdk.services.lusid.api.relationship_definitions_api import RelationshipDefinitionsApi
 from finbourne.sdk.services.lusid.api.relationships_api import RelationshipsApi
 from finbourne.sdk.services.lusid.api.resource_record_api import ResourceRecordApi
+from finbourne.sdk.services.lusid.api.scenarios_api import ScenariosApi
 from finbourne.sdk.services.lusid.api.schemas_api import SchemasApi
 from finbourne.sdk.services.lusid.api.scopes_api import ScopesApi
 from finbourne.sdk.services.lusid.api.scripted_translation_api import ScriptedTranslationApi
@@ -89,6 +90,7 @@ from finbourne.sdk.services.lusid.api.simple_position_portfolios_api import Simp
 from finbourne.sdk.services.lusid.api.staged_modifications_api import StagedModificationsApi
 from finbourne.sdk.services.lusid.api.staging_rule_set_api import StagingRuleSetApi
 from finbourne.sdk.services.lusid.api.structured_result_data_api import StructuredResultDataApi
+from finbourne.sdk.services.lusid.api.subscriptions_api import SubscriptionsApi
 from finbourne.sdk.services.lusid.api.system_configuration_api import SystemConfigurationApi
 from finbourne.sdk.services.lusid.api.tax_rule_sets_api import TaxRuleSetsApi
 from finbourne.sdk.services.lusid.api.timelines_api import TimelinesApi
@@ -120,6 +122,7 @@ from finbourne.sdk.services.lusid.models.account import Account
 from finbourne.sdk.services.lusid.models.account_holder import AccountHolder
 from finbourne.sdk.services.lusid.models.account_holder_identifier import AccountHolderIdentifier
 from finbourne.sdk.services.lusid.models.account_properties import AccountProperties
+from finbourne.sdk.services.lusid.models.accounted_complex_market_data import AccountedComplexMarketData
 from finbourne.sdk.services.lusid.models.accounted_quote import AccountedQuote
 from finbourne.sdk.services.lusid.models.accounted_transaction import AccountedTransaction
 from finbourne.sdk.services.lusid.models.accounting_method import AccountingMethod
@@ -144,6 +147,8 @@ from finbourne.sdk.services.lusid.models.adjust_holding_request import AdjustHol
 from finbourne.sdk.services.lusid.models.aggregate_spec import AggregateSpec
 from finbourne.sdk.services.lusid.models.aggregated_return import AggregatedReturn
 from finbourne.sdk.services.lusid.models.aggregated_returns_dispersion_request import AggregatedReturnsDispersionRequest
+from finbourne.sdk.services.lusid.models.aggregated_returns_entity_id import AggregatedReturnsEntityId
+from finbourne.sdk.services.lusid.models.aggregated_returns_entity_request import AggregatedReturnsEntityRequest
 from finbourne.sdk.services.lusid.models.aggregated_returns_request import AggregatedReturnsRequest
 from finbourne.sdk.services.lusid.models.aggregated_returns_response import AggregatedReturnsResponse
 from finbourne.sdk.services.lusid.models.aggregated_transactions_request import AggregatedTransactionsRequest
@@ -300,6 +305,8 @@ from finbourne.sdk.services.lusid.models.complete_relation import CompleteRelati
 from finbourne.sdk.services.lusid.models.complete_relationship import CompleteRelationship
 from finbourne.sdk.services.lusid.models.complex_bond import ComplexBond
 from finbourne.sdk.services.lusid.models.complex_market_data import ComplexMarketData
+from finbourne.sdk.services.lusid.models.complex_market_data_activity import ComplexMarketDataActivity
+from finbourne.sdk.services.lusid.models.complex_market_data_activity_adjustment import ComplexMarketDataActivityAdjustment
 from finbourne.sdk.services.lusid.models.complex_market_data_id import ComplexMarketDataId
 from finbourne.sdk.services.lusid.models.compliance_breached_order_info import ComplianceBreachedOrderInfo
 from finbourne.sdk.services.lusid.models.compliance_parameter import ComplianceParameter
@@ -626,7 +633,9 @@ from finbourne.sdk.services.lusid.models.get_quotes_response import GetQuotesRes
 from finbourne.sdk.services.lusid.models.get_recipe_composer_response import GetRecipeComposerResponse
 from finbourne.sdk.services.lusid.models.get_recipe_response import GetRecipeResponse
 from finbourne.sdk.services.lusid.models.get_reference_portfolio_constituents_response import GetReferencePortfolioConstituentsResponse
+from finbourne.sdk.services.lusid.models.get_scenario_response import GetScenarioResponse
 from finbourne.sdk.services.lusid.models.get_structured_result_data_response import GetStructuredResultDataResponse
+from finbourne.sdk.services.lusid.models.get_subscription_response import GetSubscriptionResponse
 from finbourne.sdk.services.lusid.models.get_virtual_document_response import GetVirtualDocumentResponse
 from finbourne.sdk.services.lusid.models.group_by_selector_compliance_parameter import GroupBySelectorComplianceParameter
 from finbourne.sdk.services.lusid.models.group_by_step import GroupByStep
@@ -912,6 +921,8 @@ from finbourne.sdk.services.lusid.models.paged_resource_list_of_fund_calendar_en
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_fund_configuration import PagedResourceListOfFundConfiguration
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_general_ledger_profile_response import PagedResourceListOfGeneralLedgerProfileResponse
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_get_address_key_alias_response import PagedResourceListOfGetAddressKeyAliasResponse
+from finbourne.sdk.services.lusid.models.paged_resource_list_of_get_scenario_response import PagedResourceListOfGetScenarioResponse
+from finbourne.sdk.services.lusid.models.paged_resource_list_of_get_subscription_response import PagedResourceListOfGetSubscriptionResponse
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_group_reconciliation_comparison_result import PagedResourceListOfGroupReconciliationComparisonResult
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_group_reconciliation_comparison_ruleset import PagedResourceListOfGroupReconciliationComparisonRuleset
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_group_reconciliation_definition import PagedResourceListOfGroupReconciliationDefinition
@@ -956,6 +967,7 @@ from finbourne.sdk.services.lusid.models.paged_resource_list_of_valuation_point_
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_virtual_row import PagedResourceListOfVirtualRow
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_workspace import PagedResourceListOfWorkspace
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_workspace_item import PagedResourceListOfWorkspaceItem
+from finbourne.sdk.services.lusid.models.pari_passu_event import PariPassuEvent
 from finbourne.sdk.services.lusid.models.partial_closure_constituent import PartialClosureConstituent
 from finbourne.sdk.services.lusid.models.partial_defeasance_event import PartialDefeasanceEvent
 from finbourne.sdk.services.lusid.models.participation import Participation
@@ -1220,6 +1232,7 @@ from finbourne.sdk.services.lusid.models.result_value_string import ResultValueS
 from finbourne.sdk.services.lusid.models.result_value_type import ResultValueType
 from finbourne.sdk.services.lusid.models.return_zero_pv_options import ReturnZeroPvOptions
 from finbourne.sdk.services.lusid.models.returns_entity import ReturnsEntity
+from finbourne.sdk.services.lusid.models.returns_metric import ReturnsMetric
 from finbourne.sdk.services.lusid.models.reverse_stock_split_event import ReverseStockSplitEvent
 from finbourne.sdk.services.lusid.models.revert_valuation_point_data_request import RevertValuationPointDataRequest
 from finbourne.sdk.services.lusid.models.roll_interest_updates import RollInterestUpdates
@@ -1232,6 +1245,8 @@ from finbourne.sdk.services.lusid.models.rules_interval import RulesInterval
 from finbourne.sdk.services.lusid.models.run_check_request import RunCheckRequest
 from finbourne.sdk.services.lusid.models.run_check_response import RunCheckResponse
 from finbourne.sdk.services.lusid.models.scaling_methodology import ScalingMethodology
+from finbourne.sdk.services.lusid.models.scenario_definition import ScenarioDefinition
+from finbourne.sdk.services.lusid.models.scenario_shift_definition import ScenarioShiftDefinition
 from finbourne.sdk.services.lusid.models.schedule import Schedule
 from finbourne.sdk.services.lusid.models.schedule_type import ScheduleType
 from finbourne.sdk.services.lusid.models.scope_definition import ScopeDefinition
@@ -1242,7 +1257,6 @@ from finbourne.sdk.services.lusid.models.security_offer_constituent import Secur
 from finbourne.sdk.services.lusid.models.security_offer_election import SecurityOfferElection
 from finbourne.sdk.services.lusid.models.security_write_off_event import SecurityWriteOffEvent
 from finbourne.sdk.services.lusid.models.sequence_definition import SequenceDefinition
-from finbourne.sdk.services.lusid.models.series import Series
 from finbourne.sdk.services.lusid.models.series_definition import SeriesDefinition
 from finbourne.sdk.services.lusid.models.series_definition_request import SeriesDefinitionRequest
 from finbourne.sdk.services.lusid.models.set_amortisation_rules_request import SetAmortisationRulesRequest
@@ -1310,6 +1324,7 @@ from finbourne.sdk.services.lusid.models.structured_result_data import Structure
 from finbourne.sdk.services.lusid.models.structured_result_data_id import StructuredResultDataId
 from finbourne.sdk.services.lusid.models.sub_holding_key_value_equals import SubHoldingKeyValueEquals
 from finbourne.sdk.services.lusid.models.subscribe_election import SubscribeElection
+from finbourne.sdk.services.lusid.models.subscription_definition import SubscriptionDefinition
 from finbourne.sdk.services.lusid.models.swap_cash_flow_event import SwapCashFlowEvent
 from finbourne.sdk.services.lusid.models.swap_principal_event import SwapPrincipalEvent
 from finbourne.sdk.services.lusid.models.sweep_blocks_request import SweepBlocksRequest
@@ -1485,9 +1500,11 @@ from finbourne.sdk.services.lusid.models.upsert_relational_data_point_request im
 from finbourne.sdk.services.lusid.models.upsert_resource_record_request import UpsertResourceRecordRequest
 from finbourne.sdk.services.lusid.models.upsert_result_values_data_request import UpsertResultValuesDataRequest
 from finbourne.sdk.services.lusid.models.upsert_returns_response import UpsertReturnsResponse
+from finbourne.sdk.services.lusid.models.upsert_scenario_request import UpsertScenarioRequest
 from finbourne.sdk.services.lusid.models.upsert_single_structured_data_response import UpsertSingleStructuredDataResponse
 from finbourne.sdk.services.lusid.models.upsert_structured_data_response import UpsertStructuredDataResponse
 from finbourne.sdk.services.lusid.models.upsert_structured_result_data_request import UpsertStructuredResultDataRequest
+from finbourne.sdk.services.lusid.models.upsert_subscription_request import UpsertSubscriptionRequest
 from finbourne.sdk.services.lusid.models.upsert_transaction_properties_response import UpsertTransactionPropertiesResponse
 from finbourne.sdk.services.lusid.models.upsert_transfer_agency_order_request import UpsertTransferAgencyOrderRequest
 from finbourne.sdk.services.lusid.models.upsert_translation_script_request import UpsertTranslationScriptRequest
@@ -1499,6 +1516,7 @@ from finbourne.sdk.services.lusid.models.valuation_point_data_request import Val
 from finbourne.sdk.services.lusid.models.valuation_point_data_response import ValuationPointDataResponse
 from finbourne.sdk.services.lusid.models.valuation_point_instrument import ValuationPointInstrument
 from finbourne.sdk.services.lusid.models.valuation_point_overview import ValuationPointOverview
+from finbourne.sdk.services.lusid.models.valuation_point_resource_list_of_accounted_complex_market_data import ValuationPointResourceListOfAccountedComplexMarketData
 from finbourne.sdk.services.lusid.models.valuation_point_resource_list_of_accounted_quote import ValuationPointResourceListOfAccountedQuote
 from finbourne.sdk.services.lusid.models.valuation_point_resource_list_of_accounted_transaction import ValuationPointResourceListOfAccountedTransaction
 from finbourne.sdk.services.lusid.models.valuation_point_resource_list_of_fund_cash_statement_local_currency import ValuationPointResourceListOfFundCashStatementLocalCurrency
@@ -1618,6 +1636,7 @@ __all__ = [
     "RelationshipDefinitionsApi",
     "RelationshipsApi",
     "ResourceRecordApi",
+    "ScenariosApi",
     "SchemasApi",
     "ScopesApi",
     "ScriptedTranslationApi",
@@ -1628,6 +1647,7 @@ __all__ = [
     "StagedModificationsApi",
     "StagingRuleSetApi",
     "StructuredResultDataApi",
+    "SubscriptionsApi",
     "SystemConfigurationApi",
     "TaxRuleSetsApi",
     "TimelinesApi",
@@ -1657,6 +1677,7 @@ __all__ = [
     "AccountHolder",
     "AccountHolderIdentifier",
     "AccountProperties",
+    "AccountedComplexMarketData",
     "AccountedQuote",
     "AccountedTransaction",
     "AccountingMethod",
@@ -1681,6 +1702,8 @@ __all__ = [
     "AggregateSpec",
     "AggregatedReturn",
     "AggregatedReturnsDispersionRequest",
+    "AggregatedReturnsEntityId",
+    "AggregatedReturnsEntityRequest",
     "AggregatedReturnsRequest",
     "AggregatedReturnsResponse",
     "AggregatedTransactionsRequest",
@@ -1837,6 +1860,8 @@ __all__ = [
     "CompleteRelationship",
     "ComplexBond",
     "ComplexMarketData",
+    "ComplexMarketDataActivity",
+    "ComplexMarketDataActivityAdjustment",
     "ComplexMarketDataId",
     "ComplianceBreachedOrderInfo",
     "ComplianceParameter",
@@ -2163,7 +2188,9 @@ __all__ = [
     "GetRecipeComposerResponse",
     "GetRecipeResponse",
     "GetReferencePortfolioConstituentsResponse",
+    "GetScenarioResponse",
     "GetStructuredResultDataResponse",
+    "GetSubscriptionResponse",
     "GetVirtualDocumentResponse",
     "GroupBySelectorComplianceParameter",
     "GroupByStep",
@@ -2449,6 +2476,8 @@ __all__ = [
     "PagedResourceListOfFundConfiguration",
     "PagedResourceListOfGeneralLedgerProfileResponse",
     "PagedResourceListOfGetAddressKeyAliasResponse",
+    "PagedResourceListOfGetScenarioResponse",
+    "PagedResourceListOfGetSubscriptionResponse",
     "PagedResourceListOfGroupReconciliationComparisonResult",
     "PagedResourceListOfGroupReconciliationComparisonRuleset",
     "PagedResourceListOfGroupReconciliationDefinition",
@@ -2493,6 +2522,7 @@ __all__ = [
     "PagedResourceListOfVirtualRow",
     "PagedResourceListOfWorkspace",
     "PagedResourceListOfWorkspaceItem",
+    "PariPassuEvent",
     "PartialClosureConstituent",
     "PartialDefeasanceEvent",
     "Participation",
@@ -2757,6 +2787,7 @@ __all__ = [
     "ResultValueType",
     "ReturnZeroPvOptions",
     "ReturnsEntity",
+    "ReturnsMetric",
     "ReverseStockSplitEvent",
     "RevertValuationPointDataRequest",
     "RollInterestUpdates",
@@ -2769,6 +2800,8 @@ __all__ = [
     "RunCheckRequest",
     "RunCheckResponse",
     "ScalingMethodology",
+    "ScenarioDefinition",
+    "ScenarioShiftDefinition",
     "Schedule",
     "ScheduleType",
     "ScopeDefinition",
@@ -2779,7 +2812,6 @@ __all__ = [
     "SecurityOfferElection",
     "SecurityWriteOffEvent",
     "SequenceDefinition",
-    "Series",
     "SeriesDefinition",
     "SeriesDefinitionRequest",
     "SetAmortisationRulesRequest",
@@ -2847,6 +2879,7 @@ __all__ = [
     "StructuredResultDataId",
     "SubHoldingKeyValueEquals",
     "SubscribeElection",
+    "SubscriptionDefinition",
     "SwapCashFlowEvent",
     "SwapPrincipalEvent",
     "SweepBlocksRequest",
@@ -3022,9 +3055,11 @@ __all__ = [
     "UpsertResourceRecordRequest",
     "UpsertResultValuesDataRequest",
     "UpsertReturnsResponse",
+    "UpsertScenarioRequest",
     "UpsertSingleStructuredDataResponse",
     "UpsertStructuredDataResponse",
     "UpsertStructuredResultDataRequest",
+    "UpsertSubscriptionRequest",
     "UpsertTransactionPropertiesResponse",
     "UpsertTransferAgencyOrderRequest",
     "UpsertTranslationScriptRequest",
@@ -3036,6 +3071,7 @@ __all__ = [
     "ValuationPointDataResponse",
     "ValuationPointInstrument",
     "ValuationPointOverview",
+    "ValuationPointResourceListOfAccountedComplexMarketData",
     "ValuationPointResourceListOfAccountedQuote",
     "ValuationPointResourceListOfAccountedTransaction",
     "ValuationPointResourceListOfFundCashStatementLocalCurrency",

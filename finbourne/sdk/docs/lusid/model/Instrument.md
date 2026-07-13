@@ -16,7 +16,7 @@ A list of instruments.
 | **lookthrough_portfolio** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **instrument_definition** | [LusidInstrument](LusidInstrument.md) | Optional | *No description available.* |
 | **state** | **str** | Required | The state of of the instrument at the asAt datetime of this version of the instrument definition. Available values: Active, Inactive, Deleted. |
-| **asset_class** | **str** | Optional | The nominal asset class of the instrument. Available values: InterestRates, FX, Inflation, Equities, Credit, Commodities, Money, Unknown. |
+| **asset_class** | **str** | Optional | The nominal asset class of the instrument. Available values: InterestRates, FX, Inflation, Equities, Credit, Commodities, Money, Unknown, RealEstate. |
 | **dom_ccy** | **str** | Optional | The domestic currency, meaning the currency in which the instrument would typically be expected to pay cashflows, e.g. a share in AAPL being USD. |
 | **relationships** | [List[Relationship]](Relationship.md) | Optional | A set of relationships associated to the instrument. |
 | **settlement_cycle** | [SettlementCycle](SettlementCycle.md) | Optional | *No description available.* |
@@ -43,7 +43,7 @@ instance = Instrument(
     lookthrough_portfolio=ResourceId(...),  # optional
     instrument_definition=LusidInstrument(...),  # optional
     state="...",  # required — The state of of the instrument at the asAt datetime of this version of the instrument definition. Available values: Active, Inactive, Deleted.
-    asset_class="...",  # optional — The nominal asset class of the instrument. Available values: InterestRates, FX, Inflation, Equities, Credit, Commodities, Money, Unknown.
+    asset_class="...",  # optional — The nominal asset class of the instrument. Available values: InterestRates, FX, Inflation, Equities, Credit, Commodities, Money, Unknown, RealEstate.
     dom_ccy="...",  # optional — The domestic currency, meaning the currency in which the instrument would typically be expected to pay cashflows, e.g. a share in AAPL being USD.
     relationships=[],  # optional — A set of relationships associated to the instrument.
     settlement_cycle=SettlementCycle(...),  # optional

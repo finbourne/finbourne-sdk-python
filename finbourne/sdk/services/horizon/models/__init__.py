@@ -84,6 +84,7 @@ from finbourne.sdk.services.horizon.models.paged_resource_list_of_process_update
 from finbourne.sdk.services.horizon.models.paged_resource_list_of_run_file_response import PagedResourceListOfRunFileResponse
 from finbourne.sdk.services.horizon.models.paged_resource_list_of_tpf_file_delivery_response import PagedResourceListOfTpfFileDeliveryResponse
 from finbourne.sdk.services.horizon.models.paged_resource_list_of_tpf_transaction_search_response import PagedResourceListOfTpfTransactionSearchResponse
+from finbourne.sdk.services.horizon.models.paged_resource_list_of_transaction_payload import PagedResourceListOfTransactionPayload
 from finbourne.sdk.services.horizon.models.paged_resource_list_of_transaction_response import PagedResourceListOfTransactionResponse
 from finbourne.sdk.services.horizon.models.paged_resource_list_of_vendor_product import PagedResourceListOfVendorProduct
 from finbourne.sdk.services.horizon.models.perm_id_data import PermIdData
@@ -112,7 +113,7 @@ from finbourne.sdk.services.horizon.models.tpf_retry_element_result import TpfRe
 from finbourne.sdk.services.horizon.models.tpf_retry_failed_delivery_request import TpfRetryFailedDeliveryRequest
 from finbourne.sdk.services.horizon.models.tpf_retry_sftp_response import TpfRetrySftpResponse
 from finbourne.sdk.services.horizon.models.tpf_transaction_search_response import TpfTransactionSearchResponse
-from finbourne.sdk.services.horizon.models.transaction_payload_response import TransactionPayloadResponse
+from finbourne.sdk.services.horizon.models.transaction_payload import TransactionPayload
 from finbourne.sdk.services.horizon.models.transaction_response import TransactionResponse
 from finbourne.sdk.services.horizon.models.trigger import Trigger
 from finbourne.sdk.services.horizon.models.update_instance_request import UpdateInstanceRequest
@@ -196,6 +197,7 @@ __all__ = [
     "PagedResourceListOfRunFileResponse",
     "PagedResourceListOfTpfFileDeliveryResponse",
     "PagedResourceListOfTpfTransactionSearchResponse",
+    "PagedResourceListOfTransactionPayload",
     "PagedResourceListOfTransactionResponse",
     "PagedResourceListOfVendorProduct",
     "PermIdData",
@@ -224,7 +226,7 @@ __all__ = [
     "TpfRetryFailedDeliveryRequest",
     "TpfRetrySftpResponse",
     "TpfTransactionSearchResponse",
-    "TransactionPayloadResponse",
+    "TransactionPayload",
     "TransactionResponse",
     "Trigger",
     "UpdateInstanceRequest",

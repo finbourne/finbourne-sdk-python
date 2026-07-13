@@ -7,7 +7,7 @@ LUSID representation of a Simple Instrument, used as a basic definition of a gen
 |------|------|----------|-------------|
 | **maturity_date** | **datetime** | Optional | The final maturity date of the instrument. This means the last date on which the instruments makes a payment of any amount.  For the avoidance of doubt, that is not necessarily prior to its last sensitivity date for the purposes of risk; e.g. instruments such as  Constant Maturity Swaps (CMS) often have sensitivities to rates that may well be observed or set prior to the maturity date, but refer to a termination date beyond it. |
 | **dom_ccy** | **str** | Required | The domestic currency. |
-| **asset_class** | **str** | Required | Available values: InterestRates, FX, Inflation, Equities, Credit, Commodities, Money, Unknown. |
+| **asset_class** | **str** | Required | Available values: InterestRates, FX, Inflation, Equities, Credit, Commodities, Money, Unknown, RealEstate. |
 | **fgn_ccys** | **List[str]** | Optional | The set of foreign currencies, if any (optional). |
 | **simple_instrument_type** | **str** | Required | The Instrument type of the simple instrument. |
 | **time_zone_conventions** | [TimeZoneConventions](TimeZoneConventions.md) | Optional | *No description available.* |
@@ -25,7 +25,7 @@ from finbourne.sdk.services.lusid.models.SimpleInstrument import SimpleInstrumen
 instance = SimpleInstrument(
     maturity_date=datetime.now(),  # optional — The final maturity date of the instrument. This means the last date on which the instruments makes a payment of any amount.  For the avoidance of doubt, that is not necessarily prior to its last sensitivity date for the purposes of risk; e.g. instruments such as  Constant Maturity Swaps (CMS) often have sensitivities to rates that may well be observed or set prior to the maturity date, but refer to a termination date beyond it.
     dom_ccy="...",  # required — The domestic currency.
-    asset_class="...",  # required — Available values: InterestRates, FX, Inflation, Equities, Credit, Commodities, Money, Unknown.
+    asset_class="...",  # required — Available values: InterestRates, FX, Inflation, Equities, Credit, Commodities, Money, Unknown, RealEstate.
     fgn_ccys=,  # optional — The set of foreign currencies, if any (optional).
     simple_instrument_type="...",  # required — The Instrument type of the simple instrument.
     time_zone_conventions=TimeZoneConventions(...),  # optional

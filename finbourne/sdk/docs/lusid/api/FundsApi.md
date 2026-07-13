@@ -39,6 +39,7 @@ Method | HTTP request | Description
 [**list_fund_calendar_entries**](FundsApi.md#list_fund_calendar_entries) | **GET** /api/api/funds/{scope}/{code}/calendars | [EXPERIMENTAL] ListFundCalendarEntries: List Fund Calendar Entries.
 [**list_funds**](FundsApi.md#list_funds) | **GET** /api/api/funds | [EXPERIMENTAL] ListFunds: List Funds.
 [**list_nav_activity_adjustments**](FundsApi.md#list_nav_activity_adjustments) | **GET** /api/api/funds/{scope}/{code}/navAdjustment | [EXPERIMENTAL] ListNavActivityAdjustments: List NAV adjustment activities applied to a valuation point
+[**list_valuation_point_complex_market_data**](FundsApi.md#list_valuation_point_complex_market_data) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/complexmarketdata/$query | [EXPERIMENTAL] ListValuationPointComplexMarketData: List the Complex Market Data for the given Fund and Valuation Point.
 [**list_valuation_point_instruments**](FundsApi.md#list_valuation_point_instruments) | **GET** /api/api/funds/{scope}/{code}/valuationpoints/instruments/$query | [EXPERIMENTAL] ListValuationPointInstruments: List Instruments inside a valuation point
 [**list_valuation_point_overview**](FundsApi.md#list_valuation_point_overview) | **GET** /api/api/funds/{scope}/{code}/valuationPointOverview | [EXPERIMENTAL] ListValuationPointOverview: List Valuation Points Overview for a given Fund.
 [**patch_fee**](FundsApi.md#patch_fee) | **PATCH** /api/api/funds/{scope}/{code}/fees/{feeCode} | [EXPERIMENTAL] PatchFee: Patch Fee.
@@ -141,7 +142,7 @@ Add the given Allocation Group definitions to the Fund.
 api_instance = api_client_factory.build(FundsApi)
 scope = 'scope_example' # str
 code = 'code_example' # str
-allocation_group_definition = [{"classes":[{"shareClassShortCode":"ScA","apportionmentFactor":0.6},{"shareClassShortCode":"ScB","shareClassFundId":{"scope":"FundScope","code":"FundCode"},"apportionmentFactor":0.4}],"code":"AG1","name":"Allocation Group 1","shareClassShortCode":"ScA"}] # List[AllocationGroupDefinition]
+allocation_group_definition = [{"classes":[{"shareClassShortCode":"ScA","apportionmentFactor":0.6},{"shareClassShortCode":"ScB","apportionmentFactor":0.4}],"name":"Allocation Group 1","shareClassShortCode":"ScA"}] # List[AllocationGroupDefinition]
 api_response = api_instance.add_allocation_groups(scope, code, allocation_group_definition)
 pprint(api_response)
 ```
@@ -1897,6 +1898,60 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The requested NAV activity adjustments for the specific valuation point and Nav type for the Fund. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **list_valuation_point_complex_market_data**
+> ValuationPointResourceListOfAccountedComplexMarketData listValuationPointComplexMarketData = list_valuation_point_complex_market_data(scope, code, valuation_point_data_query_parameters, as_at=as_at, limit=limit, page=page, nav_type_code=nav_type_code)
+
+[EXPERIMENTAL] ListValuationPointComplexMarketData: List the Complex Market Data for the given Fund and Valuation Point.
+
+Lists all complex market data within the effective date range of the specified Valuation Point for a Fund,  including any items added via a Complex Close (Post-Close Activity).
+
+### Example
+
+```python
+api_instance = api_client_factory.build(FundsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+valuation_point_data_query_parameters = ValuationPointDataQueryParameters()
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+limit = 56 # int (optional)
+page = 'page_example' # str (optional)
+nav_type_code = 'nav_type_code_example' # str (optional)
+api_response = api_instance.list_valuation_point_complex_market_data(scope, code, valuation_point_data_query_parameters, as_at=as_at, limit=limit, page=page, nav_type_code=nav_type_code)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the Fund. | [required] 
+ **code** | **str**| The code of the Fund. Together with the scope this uniquely identifies the Fund. | [required] 
+ **valuation_point_data_query_parameters** | [**ValuationPointDataQueryParameters**](ValuationPointDataQueryParameters.md)| The arguments to use for querying the complex market data. | [required] 
+ **as_at** | **datetime**| The asAt datetime at which to retrieve complex market data. Defaults to returning the latest version              of each item if not specified. | [optional] 
+ **limit** | **int**| When paginating, limit the number of returned results to this many. Defaults to 100 if not specified. | [optional] 
+ **page** | **str**| The pagination token to use to continue listing complex market data from a previous call to ListValuationPointComplexMarketData. | [optional] 
+ **nav_type_code** | **str**| When provided, runs against the specified NAV Type, otherwise the Primary NAV Type will be used. | [optional] 
+
+### Return type
+
+[**ValuationPointResourceListOfAccountedComplexMarketData**](ValuationPointResourceListOfAccountedComplexMarketData.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The requested complex market data for the specified Valuation Point for a Fund. |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 

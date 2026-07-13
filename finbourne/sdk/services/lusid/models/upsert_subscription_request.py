@@ -21,16 +21,15 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
+from finbourne.sdk.services.lusid.models.subscription_definition import SubscriptionDefinition
 
 
-class TransactionPayloadResponse(BaseModel):
+class UpsertSubscriptionRequest(BaseModel):
     """
-    record containing details of a transaction payload.  # noqa: E501
+    UpsertSubscriptionRequest
     """
-    columns: List[StrictStr]
-    values: Dict[str, StrictStr]
-    raw_csv_row:  StrictStr = Field(...,alias="rawCsvRow") 
-    __properties: ClassVar[List[str]] = ["columns", "values", "rawCsvRow"]
+    subscription: SubscriptionDefinition
+    __properties: ClassVar[List[str]] = ["subscription"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -55,8 +54,8 @@ class TransactionPayloadResponse(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> TransactionPayloadResponse:
-        """Create an instance of TransactionPayloadResponse from a JSON string"""
+    def from_json(cls, json_str: str) -> UpsertSubscriptionRequest:
+        """Create an instance of UpsertSubscriptionRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self, by_alias=True):
@@ -66,23 +65,24 @@ class TransactionPayloadResponse(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of subscription
+        if self.subscription:
+            _dict['subscription'] = self.subscription.to_dict(by_alias=by_alias)
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> TransactionPayloadResponse:
-        """Create an instance of TransactionPayloadResponse from a dict"""
+    def from_dict(cls, obj: dict) -> UpsertSubscriptionRequest:
+        """Create an instance of UpsertSubscriptionRequest from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return TransactionPayloadResponse.model_validate(obj)
+            return UpsertSubscriptionRequest.model_validate(obj)
 
-        _obj = TransactionPayloadResponse.model_validate({
-            "columns": obj.get("columns"),
-            "values": obj.get("values"),
-            "raw_csv_row": obj.get("rawCsvRow")
+        _obj = UpsertSubscriptionRequest.model_validate({
+            "subscription": SubscriptionDefinition.from_dict(_v) if (_v := obj.get("subscription")) is not None else None
         })
         return _obj
 
-TransactionPayloadResponse.model_rebuild()
+UpsertSubscriptionRequest.model_rebuild()
 

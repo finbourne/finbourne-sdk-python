@@ -9,7 +9,7 @@
 | **portfolio_scope** | **str** | Required | The portfolio scope of the given entity |
 | **portfolio_code** | **str** | Required | The portfolio code of the given entity |
 | **transaction_id** | **str** | Required | The transaction Id of the PortfolioTransaction being adjusted |
-| **nav_activity_adjustment_type** | **str** | Required | The type of the entity being applied, for example a PortfolioTransaction. Available values: PortfolioTransactionAdjustment, PortfolioSettlementInstructionAdjustment, InstrumentActivityAdjustment, QuoteActivityAdjustment. |
+| **nav_activity_adjustment_type** | **str** | Required | The type of the entity being applied, for example a PortfolioTransaction. Available values: PortfolioTransactionAdjustment, PortfolioSettlementInstructionAdjustment, InstrumentActivityAdjustment, QuoteActivityAdjustment, ComplexMarketDataActivityAdjustment. |
 
 
 ## Usage
@@ -25,7 +25,7 @@ instance = PortfolioTransactionAdjustment(
     portfolio_scope="...",  # required — The portfolio scope of the given entity
     portfolio_code="...",  # required — The portfolio code of the given entity
     transaction_id="...",  # required — The transaction Id of the PortfolioTransaction being adjusted
-    nav_activity_adjustment_type="..."  # required — The type of the entity being applied, for example a PortfolioTransaction. Available values: PortfolioTransactionAdjustment, PortfolioSettlementInstructionAdjustment, InstrumentActivityAdjustment, QuoteActivityAdjustment.
+    nav_activity_adjustment_type="..."  # required — The type of the entity being applied, for example a PortfolioTransaction. Available values: PortfolioTransactionAdjustment, PortfolioSettlementInstructionAdjustment, InstrumentActivityAdjustment, QuoteActivityAdjustment, ComplexMarketDataActivityAdjustment.
 )
 ```
 

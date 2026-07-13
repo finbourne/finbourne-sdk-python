@@ -65,6 +65,7 @@ from finbourne.sdk.services.lusid.api.relations_api import RelationsApi
 from finbourne.sdk.services.lusid.api.relationship_definitions_api import RelationshipDefinitionsApi
 from finbourne.sdk.services.lusid.api.relationships_api import RelationshipsApi
 from finbourne.sdk.services.lusid.api.resource_record_api import ResourceRecordApi
+from finbourne.sdk.services.lusid.api.scenarios_api import ScenariosApi
 from finbourne.sdk.services.lusid.api.schemas_api import SchemasApi
 from finbourne.sdk.services.lusid.api.scopes_api import ScopesApi
 from finbourne.sdk.services.lusid.api.scripted_translation_api import ScriptedTranslationApi
@@ -75,6 +76,7 @@ from finbourne.sdk.services.lusid.api.simple_position_portfolios_api import Simp
 from finbourne.sdk.services.lusid.api.staged_modifications_api import StagedModificationsApi
 from finbourne.sdk.services.lusid.api.staging_rule_set_api import StagingRuleSetApi
 from finbourne.sdk.services.lusid.api.structured_result_data_api import StructuredResultDataApi
+from finbourne.sdk.services.lusid.api.subscriptions_api import SubscriptionsApi
 from finbourne.sdk.services.lusid.api.system_configuration_api import SystemConfigurationApi
 from finbourne.sdk.services.lusid.api.tax_rule_sets_api import TaxRuleSetsApi
 from finbourne.sdk.services.lusid.api.timelines_api import TimelinesApi
@@ -152,6 +154,7 @@ __all__ = [
     "RelationshipDefinitionsApi",
     "RelationshipsApi",
     "ResourceRecordApi",
+    "ScenariosApi",
     "SchemasApi",
     "ScopesApi",
     "ScriptedTranslationApi",
@@ -162,6 +165,7 @@ __all__ = [
     "StagedModificationsApi",
     "StagingRuleSetApi",
     "StructuredResultDataApi",
+    "SubscriptionsApi",
     "SystemConfigurationApi",
     "TaxRuleSetsApi",
     "TimelinesApi",

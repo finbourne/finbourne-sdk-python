@@ -21,7 +21,6 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
-from finbourne.sdk.services.lusid.models.resource_id import ResourceId
 
 
 class AllocationGroupClass(BaseModel):
@@ -29,10 +28,8 @@ class AllocationGroupClass(BaseModel):
     AllocationGroupClass
     """
     share_class_short_code:  StrictStr = Field(...,alias="shareClassShortCode", description="A short code that uniquely identifies the share class within the Fund and is attached to the transaction.") 
-    share_class_fund_id: Optional[ResourceId] = Field(default=None, alias="shareClassFundId")
     apportionment_factor: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The weighting factor used for apportionment across this share class.", alias="apportionmentFactor")
-    share_class_series_code:  Optional[StrictStr] = Field(default=None,alias="shareClassSeriesCode", description="An optional series identifier for the share class. If not provided, the share class will include all series.") 
-    __properties: ClassVar[List[str]] = ["shareClassShortCode", "shareClassFundId", "apportionmentFactor", "shareClassSeriesCode"]
+    __properties: ClassVar[List[str]] = ["shareClassShortCode", "apportionmentFactor"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -68,18 +65,10 @@ class AllocationGroupClass(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of share_class_fund_id
-        if self.share_class_fund_id:
-            _dict['shareClassFundId'] = self.share_class_fund_id.to_dict(by_alias=by_alias)
         # set to None if apportionment_factor (nullable) is None
         # and model_fields_set contains the field
         if self.apportionment_factor is None and "apportionment_factor" in self.model_fields_set:
             _dict['apportionmentFactor'] = None
-
-        # set to None if share_class_series_code (nullable) is None
-        # and model_fields_set contains the field
-        if self.share_class_series_code is None and "share_class_series_code" in self.model_fields_set:
-            _dict['shareClassSeriesCode'] = None
 
         return _dict
 
@@ -94,9 +83,7 @@ class AllocationGroupClass(BaseModel):
 
         _obj = AllocationGroupClass.model_validate({
             "share_class_short_code": obj.get("shareClassShortCode"),
-            "share_class_fund_id": ResourceId.from_dict(_v) if (_v := obj.get("shareClassFundId")) is not None else None,
-            "apportionment_factor": obj.get("apportionmentFactor"),
-            "share_class_series_code": obj.get("shareClassSeriesCode")
+            "apportionment_factor": obj.get("apportionmentFactor")
         })
         return _obj
 

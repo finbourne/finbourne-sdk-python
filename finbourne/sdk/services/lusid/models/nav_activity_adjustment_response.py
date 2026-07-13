@@ -26,14 +26,14 @@ import finbourne.sdk.services.lusid.models
 if TYPE_CHECKING:
 
     from finbourne.sdk.services.lusid.models import (
-        InstrumentActivityAdjustment, PortfolioSettlementInstructionAdjustment, PortfolioTransactionAdjustment, QuoteActivityAdjustment)
+        ComplexMarketDataActivityAdjustment, InstrumentActivityAdjustment, PortfolioSettlementInstructionAdjustment, PortfolioTransactionAdjustment, QuoteActivityAdjustment)
 
 
 class NavActivityAdjustmentResponse(BaseModel):
     """
     NavActivityAdjustmentResponse
     """
-    nav_activity_adjustment_type:  StrictStr = Field(...,alias="navActivityAdjustmentType", description="The type of the entity being applied, for example a PortfolioTransaction. Available values: PortfolioTransactionAdjustment, PortfolioSettlementInstructionAdjustment, InstrumentActivityAdjustment, QuoteActivityAdjustment.") 
+    nav_activity_adjustment_type:  StrictStr = Field(...,alias="navActivityAdjustmentType", description="The type of the entity being applied, for example a PortfolioTransaction. Available values: PortfolioTransactionAdjustment, PortfolioSettlementInstructionAdjustment, InstrumentActivityAdjustment, QuoteActivityAdjustment, ComplexMarketDataActivityAdjustment.") 
     __properties: ClassVar[List[str]] = ["navActivityAdjustmentType"]
 
     @field_validator('nav_activity_adjustment_type')
@@ -101,8 +101,8 @@ class NavActivityAdjustmentResponse(BaseModel):
         if "nav_activity_adjustment_type" != "type":
             return value
 
-        if value not in ['PortfolioTransactionAdjustment', 'PortfolioSettlementInstructionAdjustment', 'InstrumentActivityAdjustment', 'QuoteActivityAdjustment']:
-            raise ValueError("must be one of enum values ('PortfolioTransactionAdjustment', 'PortfolioSettlementInstructionAdjustment', 'InstrumentActivityAdjustment', 'QuoteActivityAdjustment')")
+        if value not in ['PortfolioTransactionAdjustment', 'PortfolioSettlementInstructionAdjustment', 'InstrumentActivityAdjustment', 'QuoteActivityAdjustment', 'ComplexMarketDataActivityAdjustment']:
+            raise ValueError("must be one of enum values ('PortfolioTransactionAdjustment', 'PortfolioSettlementInstructionAdjustment', 'InstrumentActivityAdjustment', 'QuoteActivityAdjustment', 'ComplexMarketDataActivityAdjustment')")
         return value
 
     model_config = ConfigDict(
@@ -116,6 +116,7 @@ class NavActivityAdjustmentResponse(BaseModel):
 
     # discriminator mappings
     __discriminator_value_class_map: ClassVar[Dict[str, str]] = {
+        'ComplexMarketDataActivityAdjustment': 'ComplexMarketDataActivityAdjustment',
         'InstrumentActivityAdjustment': 'InstrumentActivityAdjustment',
         'PortfolioSettlementInstructionAdjustment': 'PortfolioSettlementInstructionAdjustment',
         'PortfolioTransactionAdjustment': 'PortfolioTransactionAdjustment',
@@ -148,7 +149,7 @@ class NavActivityAdjustmentResponse(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Union[InstrumentActivityAdjustment, PortfolioSettlementInstructionAdjustment, PortfolioTransactionAdjustment, QuoteActivityAdjustment, NavActivityAdjustmentResponse]:
+    def from_json(cls, json_str: str) -> Union[ComplexMarketDataActivityAdjustment, InstrumentActivityAdjustment, PortfolioSettlementInstructionAdjustment, PortfolioTransactionAdjustment, QuoteActivityAdjustment, NavActivityAdjustmentResponse]:
         """Create an instance of NavActivityAdjustmentResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -162,7 +163,7 @@ class NavActivityAdjustmentResponse(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Union[InstrumentActivityAdjustment, PortfolioSettlementInstructionAdjustment, PortfolioTransactionAdjustment, QuoteActivityAdjustment, NavActivityAdjustmentResponse]:
+    def from_dict(cls, obj: dict) -> Union[ComplexMarketDataActivityAdjustment, InstrumentActivityAdjustment, PortfolioSettlementInstructionAdjustment, PortfolioTransactionAdjustment, QuoteActivityAdjustment, NavActivityAdjustmentResponse]:
         """Create an instance of NavActivityAdjustmentResponse from a dict"""
         # look up the object type based on discriminator mapping
         object_type = cls.get_discriminator_value(obj)

@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**delete_returns_entity**](AggregatedReturnsApi.md#delete_returns_entity) | **DELETE** /api/api/returns/{scope}/{code} | [EXPERIMENTAL] DeleteReturnsEntity: Delete returns entity.
+[**get_aggregated_returns**](AggregatedReturnsApi.md#get_aggregated_returns) | **POST** /api/api/returns/$aggregated | [EXPERIMENTAL] GetAggregatedReturns: Calculate aggregated returns for an entity.
 [**get_returns_entity**](AggregatedReturnsApi.md#get_returns_entity) | **GET** /api/api/returns/{scope}/{code} | [EXPERIMENTAL] GetReturnsEntity: Get returns entity.
 [**list_returns_entities**](AggregatedReturnsApi.md#list_returns_entities) | **GET** /api/api/returns | [EXPERIMENTAL] ListReturnsEntities: List returns entities.
 [**upsert_returns_entity**](AggregatedReturnsApi.md#upsert_returns_entity) | **POST** /api/api/returns | [EXPERIMENTAL] UpsertReturnsEntity: Upsert returns entity.
@@ -72,6 +73,48 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The time that the returns entity was deleted |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_aggregated_returns**
+> AggregatedReturnsResponse getAggregatedReturns = get_aggregated_returns(aggregated_returns_entity_request)
+
+[EXPERIMENTAL] GetAggregatedReturns: Calculate aggregated returns for an entity.
+
+Calculate time-weighted returns for the entity specified in the request body over the              effective window. Currently, supports a single entity of type Portfolio and calculates a daily              return grid. The recipe, fee handling, and flow-discrepancy handling are taken from the persisted              Returns entity identified by the supplied scope/code; the request fails if no such entity exists.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(AggregatedReturnsApi)
+aggregated_returns_entity_request = AggregatedReturnsEntityRequest()
+api_response = api_instance.get_aggregated_returns(aggregated_returns_entity_request)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **aggregated_returns_entity_request** | [**AggregatedReturnsEntityRequest**](AggregatedReturnsEntityRequest.md)| The entity to calculate returns for, the Returns entity that configures the              calculation, the effective window and the metrics to calculate. | [required] 
+
+### Return type
+
+[**AggregatedReturnsResponse**](AggregatedReturnsResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The aggregated returns grouped by entity. |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 

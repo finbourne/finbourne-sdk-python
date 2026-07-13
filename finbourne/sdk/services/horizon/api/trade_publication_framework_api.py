@@ -30,6 +30,7 @@ from finbourne.sdk.services.horizon.models.paged_resource_list_of_instance_run_r
 from finbourne.sdk.services.horizon.models.paged_resource_list_of_run_file_response import PagedResourceListOfRunFileResponse
 from finbourne.sdk.services.horizon.models.paged_resource_list_of_tpf_file_delivery_response import PagedResourceListOfTpfFileDeliveryResponse
 from finbourne.sdk.services.horizon.models.paged_resource_list_of_tpf_transaction_search_response import PagedResourceListOfTpfTransactionSearchResponse
+from finbourne.sdk.services.horizon.models.paged_resource_list_of_transaction_payload import PagedResourceListOfTransactionPayload
 from finbourne.sdk.services.horizon.models.paged_resource_list_of_transaction_response import PagedResourceListOfTransactionResponse
 from finbourne.sdk.services.horizon.models.replay_transactions_request import ReplayTransactionsRequest
 from finbourne.sdk.services.horizon.models.replay_transactions_response import ReplayTransactionsResponse
@@ -38,7 +39,6 @@ from finbourne.sdk.services.horizon.models.resolve_failed_delivery_response impo
 from finbourne.sdk.services.horizon.models.tpf_failed_delivery_response import TpfFailedDeliveryResponse
 from finbourne.sdk.services.horizon.models.tpf_retry_failed_delivery_request import TpfRetryFailedDeliveryRequest
 from finbourne.sdk.services.horizon.models.tpf_retry_sftp_response import TpfRetrySftpResponse
-from finbourne.sdk.services.horizon.models.transaction_payload_response import TransactionPayloadResponse
 from finbourne.sdk.api_client import ApiClient
 from finbourne.sdk.api_response import ApiResponse
 from finbourne.sdk.extensions.api_client import SyncApiClient
@@ -404,38 +404,46 @@ class TradePublicationFrameworkApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def get_transaction_payload(self, instance_id: StrictStr, run_id: StrictStr, transaction_id: StrictStr, **kwargs) -> TransactionPayloadResponse:
-        """[EXPERIMENTAL] GetTransactionPayload: Transaction payload detail  # noqa: E501
+    def get_transaction_payload(self, instance_id: StrictStr, run_id: StrictStr, transaction_id: Optional[StrictStr] = None, page: Optional[StrictStr] = None, page_size: Optional[int] = None, **kwargs) -> PagedResourceListOfTransactionPayload:
+        """[EXPERIMENTAL] GetTransactionPayload: Transaction payloads for a run, with pagination support. When transactionId is supplied the single matching payload is returned; otherwise all payloads for the instance/run are returned.  # noqa: E501
 
         :param instance_id: (required)
         :type instance_id: str
         :param run_id: (required)
         :type run_id: str
-        :param transaction_id: (required)
+        :param transaction_id:
         :type transaction_id: str
+        :param page:
+        :type page: str
+        :param page_size:
+        :type page_size: int
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
         :return: Returns the result object.
-        :rtype: TransactionPayloadResponse
+        :rtype: PagedResourceListOfTransactionPayload
         """
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_transaction_payload_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.get_transaction_payload_with_http_info(instance_id, run_id, transaction_id, **kwargs)
+        response = self.get_transaction_payload_with_http_info(instance_id, run_id, transaction_id, page, page_size, **kwargs)
         return response.data
 
     @validate_call
-    def get_transaction_payload_with_http_info(self, instance_id: StrictStr, run_id: StrictStr, transaction_id: StrictStr, **kwargs) -> ApiResponse[TransactionPayloadResponse]:
-        """[EXPERIMENTAL] GetTransactionPayload: Transaction payload detail  # noqa: E501
+    def get_transaction_payload_with_http_info(self, instance_id: StrictStr, run_id: StrictStr, transaction_id: Optional[StrictStr] = None, page: Optional[StrictStr] = None, page_size: Optional[int] = None, **kwargs) -> ApiResponse[PagedResourceListOfTransactionPayload]:
+        """[EXPERIMENTAL] GetTransactionPayload: Transaction payloads for a run, with pagination support. When transactionId is supplied the single matching payload is returned; otherwise all payloads for the instance/run are returned.  # noqa: E501
 
         :param instance_id: (required)
         :type instance_id: str
         :param run_id: (required)
         :type run_id: str
-        :param transaction_id: (required)
+        :param transaction_id:
         :type transaction_id: str
+        :param page:
+        :type page: str
+        :param page_size:
+        :type page_size: int
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -453,7 +461,7 @@ class TradePublicationFrameworkApi:
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        :rtype: tuple(TransactionPayloadResponse, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(PagedResourceListOfTransactionPayload, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -461,7 +469,9 @@ class TradePublicationFrameworkApi:
         _all_params = [
             'instance_id',
             'run_id',
-            'transaction_id'
+            'transaction_id',
+            'page',
+            'page_size'
         ]
         _all_params.extend(
             [
@@ -495,12 +505,18 @@ class TradePublicationFrameworkApi:
         if _params['run_id'] is not None:
             _path_params['runId'] = _params['run_id']
 
-        if _params['transaction_id'] is not None:
-            _path_params['transactionId'] = _params['transaction_id']
-
 
         # process the query parameters
         _query_params = []
+        if _params.get('transaction_id') is not None:  # noqa: E501
+            _query_params.append(('transactionId', _params['transaction_id']))
+
+        if _params.get('page') is not None:  # noqa: E501
+            _query_params.append(('page', _params['page']))
+
+        if _params.get('page_size') is not None:  # noqa: E501
+            _query_params.append(('pageSize', _params['page_size']))
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -516,13 +532,13 @@ class TradePublicationFrameworkApi:
         _auth_settings = ['oauth2']  # noqa: E501
 
         _response_types_map = {
-            '200': "TransactionPayloadResponse",
+            '200': "PagedResourceListOfTransactionPayload",
             '400': "LusidValidationProblemDetails",
             '404': None,
         }
 
         return self.sync_api_client.call_api(
-            '/horizon/api/trade-publication-framework/instances/{instanceId}/runs/{runId}/transactions/{transactionId}/payload', 'GET',
+            '/horizon/api/trade-publication-framework/instances/{instanceId}/runs/{runId}/transactions/payload', 'GET',
             _path_params,
             _query_params,
             _header_params,
@@ -2106,39 +2122,47 @@ class TradePublicationFrameworkApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def get_transaction_payload_async(self, instance_id: StrictStr, run_id: StrictStr, transaction_id: StrictStr, **kwargs) -> TransactionPayloadResponse:
-            """[EXPERIMENTAL] GetTransactionPayload: Transaction payload detail  # noqa: E501
+    async def get_transaction_payload_async(self, instance_id: StrictStr, run_id: StrictStr, transaction_id: Optional[StrictStr] = None, page: Optional[StrictStr] = None, page_size: Optional[int] = None, **kwargs) -> PagedResourceListOfTransactionPayload:
+            """[EXPERIMENTAL] GetTransactionPayload: Transaction payloads for a run, with pagination support. When transactionId is supplied the single matching payload is returned; otherwise all payloads for the instance/run are returned.  # noqa: E501
             
             :param instance_id: (required)
             :type instance_id: str
             :param run_id: (required)
             :type run_id: str
-            :param transaction_id: (required)
+            :param transaction_id:
             :type transaction_id: str
+            :param page:
+            :type page: str
+            :param page_size:
+            :type page_size: int
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
             :return: Returns an coroutine ApiResponse object.
-            :rtype: TransactionPayloadResponse
+            :rtype: PagedResourceListOfTransactionPayload
             """
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_transaction_payload_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.get_transaction_payload_with_http_info_async(instance_id, run_id, transaction_id, **kwargs)
+            response = await self.get_transaction_payload_with_http_info_async(instance_id, run_id, transaction_id, page, page_size, **kwargs)
             return response.data
 
     @validate_call
-    async def get_transaction_payload_with_http_info_async(self, instance_id: StrictStr, run_id: StrictStr, transaction_id: StrictStr, **kwargs) -> ApiResponse[TransactionPayloadResponse]:
-            """[EXPERIMENTAL] GetTransactionPayload: Transaction payload detail  # noqa: E501
+    async def get_transaction_payload_with_http_info_async(self, instance_id: StrictStr, run_id: StrictStr, transaction_id: Optional[StrictStr] = None, page: Optional[StrictStr] = None, page_size: Optional[int] = None, **kwargs) -> ApiResponse[PagedResourceListOfTransactionPayload]:
+            """[EXPERIMENTAL] GetTransactionPayload: Transaction payloads for a run, with pagination support. When transactionId is supplied the single matching payload is returned; otherwise all payloads for the instance/run are returned.  # noqa: E501
 
 
             :param instance_id: (required)
             :type instance_id: str
             :param run_id: (required)
             :type run_id: str
-            :param transaction_id: (required)
+            :param transaction_id:
             :type transaction_id: str
+            :param page:
+            :type page: str
+            :param page_size:
+            :type page_size: int
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -2156,7 +2180,7 @@ class TradePublicationFrameworkApi:
             :type _request_auth: dict, optional
             :type _content_type: string, optional: force content-type for the request
             :return: Returns an coroutine ApiResponse object.
-            :rtype: tuple(TransactionPayloadResponse, status_code(int), headers(HTTPHeaderDict))
+            :rtype: tuple(PagedResourceListOfTransactionPayload, status_code(int), headers(HTTPHeaderDict))
             """
 
             _params = locals()
@@ -2164,7 +2188,9 @@ class TradePublicationFrameworkApi:
             _all_params = [
                 'instance_id',
                 'run_id',
-                'transaction_id'
+                'transaction_id',
+                'page',
+                'page_size'
             ]
             _all_params.extend(
                 [
@@ -2198,12 +2224,18 @@ class TradePublicationFrameworkApi:
             if _params['run_id'] is not None:
                 _path_params['runId'] = _params['run_id']
 
-            if _params['transaction_id'] is not None:
-                _path_params['transactionId'] = _params['transaction_id']
-
 
             # process the query parameters
             _query_params = []
+            if _params.get('transaction_id') is not None:  # noqa: E501
+                _query_params.append(('transactionId', _params['transaction_id']))
+
+            if _params.get('page') is not None:  # noqa: E501
+                _query_params.append(('page', _params['page']))
+
+            if _params.get('page_size') is not None:  # noqa: E501
+                _query_params.append(('pageSize', _params['page_size']))
+
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))
             # process the form parameters
@@ -2219,13 +2251,13 @@ class TradePublicationFrameworkApi:
             _auth_settings = ['oauth2']  # noqa: E501
 
             _response_types_map = {
-                '200': "TransactionPayloadResponse",
+                '200': "PagedResourceListOfTransactionPayload",
                 '400': "LusidValidationProblemDetails",
                 '404': None,
             }
 
             return await self.api_client.call_api_async(
-                '/horizon/api/trade-publication-framework/instances/{instanceId}/runs/{runId}/transactions/{transactionId}/payload', 'GET',
+                '/horizon/api/trade-publication-framework/instances/{instanceId}/runs/{runId}/transactions/payload', 'GET',
                 _path_params,
                 _query_params,
                 _header_params,

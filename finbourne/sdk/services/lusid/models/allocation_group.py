@@ -30,13 +30,12 @@ class AllocationGroup(BaseModel):
     AllocationGroup
     """
     classes: Optional[List[AllocationGroupClass]] = Field(default=None, description="An optional list of share classes that belong to this group. Each entry must reference a ShareClass already present on the Fund. You can provide this or the Formula, but not both.")
-    code:  StrictStr = Field(...,alias="code", description="The unique code for the Allocation Group. Must be unique within the Fund.") 
     name:  StrictStr = Field(...,alias="name", description="The display name of the Allocation Group.") 
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="An optional description for the Allocation Group.") 
     share_class_short_code:  StrictStr = Field(...,alias="shareClassShortCode", description="The short code that identifies the Allocation Group.") 
     apportionment_method_property: Optional[ApportionmentMethodProperty] = Field(default=None, alias="apportionmentMethodProperty")
     formula:  Optional[StrictStr] = Field(default=None,alias="formula", description="An optional filter expression used to define which classes belong to this group, based on fund grouping criteria. You can provide this or the Classes, but not both.") 
-    __properties: ClassVar[List[str]] = ["classes", "code", "name", "description", "shareClassShortCode", "apportionmentMethodProperty", "formula"]
+    __properties: ClassVar[List[str]] = ["classes", "name", "description", "shareClassShortCode", "apportionmentMethodProperty", "formula"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -110,7 +109,6 @@ class AllocationGroup(BaseModel):
 
         _obj = AllocationGroup.model_validate({
             "classes": [AllocationGroupClass.from_dict(_item) for _item in _v] if (_v := obj.get("classes")) is not None else None,
-            "code": obj.get("code"),
             "name": obj.get("name"),
             "description": obj.get("description"),
             "share_class_short_code": obj.get("shareClassShortCode"),

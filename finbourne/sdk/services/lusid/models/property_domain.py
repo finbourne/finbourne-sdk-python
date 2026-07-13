@@ -115,6 +115,8 @@ class PropertyDomain(str, Enum):  # type: ignore[misc]
     TRANSACTIONFEETYPE = 'TransactionFeeType'
     ALLOCATIONMETHOD = 'AllocationMethod'
     TRANSACTIONFEE = 'TransactionFee'
+    SUBSCRIPTION = 'Subscription'
+    SCENARIODEFINITION = 'ScenarioDefinition'
 
     @classmethod
     def from_json(cls, json_str: str) -> PropertyDomain:

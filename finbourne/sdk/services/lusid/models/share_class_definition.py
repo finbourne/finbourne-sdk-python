@@ -31,7 +31,7 @@ class ShareClassDefinition(BaseModel):
     """
     ShareClassDefinition
     """
-    code:  StrictStr = Field(...,alias="code", description="The unique code for the Share Class. Must be unique within the Fund.") 
+    instrument_identifiers: Dict[str, Optional[StrictStr]] = Field(description="Unique instrument identifiers", alias="instrumentIdentifiers")
     name:  StrictStr = Field(...,alias="name", description="The display name of the Share Class.") 
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="An optional description for the Share Class.") 
     share_class_short_code:  StrictStr = Field(...,alias="shareClassShortCode", description="A short code that uniquely identifies the share class within the Fund.") 
@@ -50,7 +50,7 @@ class ShareClassDefinition(BaseModel):
     time_zone_conventions: Optional[TimeZoneConventions] = Field(default=None, alias="timeZoneConventions")
     distribution_payment_type:  Optional[StrictStr] = Field(default=None,alias="distributionPaymentType", description="The tax treatment applied to distributions. Available values: Invalid, Gross, Net.") 
     hedging:  StrictStr = Field(...,alias="hedging", description="Indicates whether the ShareClass applies currency hedging. Available values: Invalid, None, ApplyHedging.") 
-    __properties: ClassVar[List[str]] = ["code", "name", "description", "shareClassShortCode", "launchPrice", "launchDate", "apportionmentFactor", "properties", "fundShareClassType", "distributionType", "domCcy", "tradingConventions", "unitsPrecision", "pricePrecision", "roundingConventions", "roundingConventionsUnits", "timeZoneConventions", "distributionPaymentType", "hedging"]
+    __properties: ClassVar[List[str]] = ["instrumentIdentifiers", "name", "description", "shareClassShortCode", "launchPrice", "launchDate", "apportionmentFactor", "properties", "fundShareClassType", "distributionType", "domCcy", "tradingConventions", "unitsPrecision", "pricePrecision", "roundingConventions", "roundingConventionsUnits", "timeZoneConventions", "distributionPaymentType", "hedging"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -175,7 +175,7 @@ class ShareClassDefinition(BaseModel):
             return ShareClassDefinition.model_validate(obj)
 
         _obj = ShareClassDefinition.model_validate({
-            "code": obj.get("code"),
+            "instrument_identifiers": obj.get("instrumentIdentifiers"),
             "name": obj.get("name"),
             "description": obj.get("description"),
             "share_class_short_code": obj.get("shareClassShortCode"),

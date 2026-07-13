@@ -5,7 +5,6 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **classes** | [List[AllocationGroupClass]](AllocationGroupClass.md) | Optional | An optional list of share classes that belong to this group. Each entry must reference a ShareClass already present on the Fund. You can provide this or the Formula, but not both. |
-| **code** | **str** | Required | The unique code for the Allocation Group. Must be unique within the Fund. |
 | **name** | **str** | Required | The display name of the Allocation Group. |
 | **description** | **str** | Optional | An optional description for the Allocation Group. |
 | **share_class_short_code** | **str** | Required | The short code that identifies the Allocation Group. |
@@ -22,7 +21,6 @@ from finbourne.sdk.services.lusid.models.AllocationGroup import AllocationGroup
 
 instance = AllocationGroup(
     classes=[],  # optional — An optional list of share classes that belong to this group. Each entry must reference a ShareClass already present on the Fund. You can provide this or the Formula, but not both.
-    code="...",  # required — The unique code for the Allocation Group. Must be unique within the Fund.
     name="...",  # required — The display name of the Allocation Group.
     description="...",  # optional — An optional description for the Allocation Group.
     share_class_short_code="...",  # required — The short code that identifies the Allocation Group.

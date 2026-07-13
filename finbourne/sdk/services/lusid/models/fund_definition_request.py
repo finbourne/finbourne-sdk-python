@@ -21,7 +21,6 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
-from finbourne.sdk.services.lusid.models.apportionment_method_property import ApportionmentMethodProperty
 from finbourne.sdk.services.lusid.models.instrument_resolution_detail import InstrumentResolutionDetail
 from finbourne.sdk.services.lusid.models.model_property import ModelProperty
 from finbourne.sdk.services.lusid.models.nav_type_definition import NavTypeDefinition
@@ -50,9 +49,8 @@ class FundDefinitionRequest(BaseModel):
     additional_nav_types: Optional[List[NavTypeDefinition]] = Field(default=None, description="The definitions for any additional NAVs on the Fund.", alias="additionalNavTypes")
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="A set of properties for the Fund.")
     create_instrument: Optional[StrictBool] = Field(default=None, description="Whether to create instruments for the Fund's share classes, series, or partner classes upon creation. Defaults to false.", alias="createInstrument")
-    apportionment_method_property: Optional[ApportionmentMethodProperty] = Field(default=None, alias="apportionmentMethodProperty")
     share_classes: Optional[List[ShareClassDefinition]] = Field(default=None, description="An optional list of Share Class definitions for the Fund.", alias="shareClasses")
-    __properties: ClassVar[List[str]] = ["code", "displayName", "description", "baseCurrency", "investorStructure", "portfolioIds", "fundConfigurationId", "shareClassInstrumentScopes", "shareClassInstruments", "type", "inceptionDate", "decimalPlaces", "primaryNavType", "additionalNavTypes", "properties", "createInstrument", "apportionmentMethodProperty", "shareClasses"]
+    __properties: ClassVar[List[str]] = ["code", "displayName", "description", "baseCurrency", "investorStructure", "portfolioIds", "fundConfigurationId", "shareClassInstrumentScopes", "shareClassInstruments", "type", "inceptionDate", "decimalPlaces", "primaryNavType", "additionalNavTypes", "properties", "createInstrument", "shareClasses"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -122,9 +120,6 @@ class FundDefinitionRequest(BaseModel):
                 if self.properties[_key]:
                     _field_dict[_key] = self.properties[_key].to_dict(by_alias=by_alias)
             _dict['properties'] = _field_dict
-        # override the default output from pydantic by calling `to_dict()` of apportionment_method_property
-        if self.apportionment_method_property:
-            _dict['apportionmentMethodProperty'] = self.apportionment_method_property.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each item in share_classes (list)
         _items = []
         if self.share_classes:
@@ -210,7 +205,6 @@ class FundDefinitionRequest(BaseModel):
             if (_val := obj.get("properties")) is not None
             else None,
             "create_instrument": obj.get("createInstrument"),
-            "apportionment_method_property": ApportionmentMethodProperty.from_dict(_v) if (_v := obj.get("apportionmentMethodProperty")) is not None else None,
             "share_classes": [ShareClassDefinition.from_dict(_item) for _item in _v] if (_v := obj.get("shareClasses")) is not None else None
         })
         return _obj
