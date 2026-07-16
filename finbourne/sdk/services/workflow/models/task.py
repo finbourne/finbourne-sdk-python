@@ -21,6 +21,7 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
+from finbourne.sdk.services.workflow.models.perpetual_property import PerpetualProperty
 from finbourne.sdk.services.workflow.models.resource_id import ResourceId
 from finbourne.sdk.services.workflow.models.stack import Stack
 from finbourne.sdk.services.workflow.models.task_definition_version import TaskDefinitionVersion
@@ -40,6 +41,7 @@ class Task(BaseModel):
     workflow_id: Optional[ResourceId] = Field(default=None, alias="workflowId")
     workflow_display_name:  Optional[StrictStr] = Field(default=None,alias="workflowDisplayName", description="The display name of the Workflow that this Task is a member of, if any") 
     state:  StrictStr = Field(...,alias="state", description="Current State") 
+    state_display_name:  Optional[StrictStr] = Field(default=None,alias="stateDisplayName", description="The display name of the current State, from the Task Definition, if one is provided") 
     ultimate_parent_task: TaskSummary = Field(alias="ultimateParentTask")
     parent_task: Optional[TaskSummary] = Field(default=None, alias="parentTask")
     child_tasks: Optional[List[TaskSummary]] = Field(default=None, description="This Task's child tasks", alias="childTasks")
@@ -58,7 +60,8 @@ class Task(BaseModel):
     open_duration: Optional[StrictInt] = Field(default=None, description="Duration in seconds since the Task was created. If the Task is Completed, this is the duration from creation to the last transition.", alias="openDuration")
     open_duration_since_last_update: Optional[StrictInt] = Field(default=None, description="Duration in seconds since the Task was last updated. 0 if the Task is Completed.", alias="openDurationSinceLastUpdate")
     open_duration_since_last_transition: Optional[StrictInt] = Field(default=None, description="Duration in seconds since the Task last transitioned. 0 if the Task is Completed.", alias="openDurationSinceLastTransition")
-    __properties: ClassVar[List[str]] = ["id", "taskDefinitionId", "taskDefinitionVersion", "taskDefinitionDisplayName", "workflowId", "workflowDisplayName", "state", "ultimateParentTask", "parentTask", "childTasks", "correlationIds", "version", "terminalState", "asAtLastTransition", "fields", "stackingKey", "stack", "actionLogIdCreated", "actionLogIdModified", "actionLogIdSubmitted", "hierarchicalPosition", "completionStatus", "openDuration", "openDurationSinceLastUpdate", "openDurationSinceLastTransition"]
+    properties: Optional[Dict[str, PerpetualProperty]] = Field(default=None, description="The requested TaskDefinition and Workflow properties decorated onto this Task, keyed by property key. Only populated when property keys were requested.")
+    __properties: ClassVar[List[str]] = ["id", "taskDefinitionId", "taskDefinitionVersion", "taskDefinitionDisplayName", "workflowId", "workflowDisplayName", "state", "stateDisplayName", "ultimateParentTask", "parentTask", "childTasks", "correlationIds", "version", "terminalState", "asAtLastTransition", "fields", "stackingKey", "stack", "actionLogIdCreated", "actionLogIdModified", "actionLogIdSubmitted", "hierarchicalPosition", "completionStatus", "openDuration", "openDurationSinceLastUpdate", "openDurationSinceLastTransition", "properties"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -129,10 +132,22 @@ class Task(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of stack
         if self.stack:
             _dict['stack'] = self.stack.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of each value in properties (dict)
+        _field_dict = {}
+        if self.properties:
+            for _key in self.properties:
+                if self.properties[_key]:
+                    _field_dict[_key] = self.properties[_key].to_dict(by_alias=by_alias)
+            _dict['properties'] = _field_dict
         # set to None if workflow_display_name (nullable) is None
         # and model_fields_set contains the field
         if self.workflow_display_name is None and "workflow_display_name" in self.model_fields_set:
             _dict['workflowDisplayName'] = None
+
+        # set to None if state_display_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.state_display_name is None and "state_display_name" in self.model_fields_set:
+            _dict['stateDisplayName'] = None
 
         # set to None if child_tasks (nullable) is None
         # and model_fields_set contains the field
@@ -199,6 +214,11 @@ class Task(BaseModel):
         if self.open_duration_since_last_transition is None and "open_duration_since_last_transition" in self.model_fields_set:
             _dict['openDurationSinceLastTransition'] = None
 
+        # set to None if properties (nullable) is None
+        # and model_fields_set contains the field
+        if self.properties is None and "properties" in self.model_fields_set:
+            _dict['properties'] = None
+
         return _dict
 
     @classmethod
@@ -218,6 +238,7 @@ class Task(BaseModel):
             "workflow_id": ResourceId.from_dict(_v) if (_v := obj.get("workflowId")) is not None else None,
             "workflow_display_name": obj.get("workflowDisplayName"),
             "state": obj.get("state"),
+            "state_display_name": obj.get("stateDisplayName"),
             "ultimate_parent_task": TaskSummary.from_dict(_v) if (_v := obj.get("ultimateParentTask")) is not None else None,
             "parent_task": TaskSummary.from_dict(_v) if (_v := obj.get("parentTask")) is not None else None,
             "child_tasks": [TaskSummary.from_dict(_item) for _item in _v] if (_v := obj.get("childTasks")) is not None else None,
@@ -235,7 +256,13 @@ class Task(BaseModel):
             "completion_status": obj.get("completionStatus"),
             "open_duration": obj.get("openDuration"),
             "open_duration_since_last_update": obj.get("openDurationSinceLastUpdate"),
-            "open_duration_since_last_transition": obj.get("openDurationSinceLastTransition")
+            "open_duration_since_last_transition": obj.get("openDurationSinceLastTransition"),
+            "properties": dict(
+                (_k, PerpetualProperty.from_dict(_v))
+                for _k, _v in _val.items()
+            )
+            if (_val := obj.get("properties")) is not None
+            else None
         })
         return _obj
 

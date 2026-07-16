@@ -204,7 +204,7 @@ Name | Type | Description  | Notes
 ---
 
 # **get_task**
-> Task getTask = get_task(id, as_at=as_at)
+> Task getTask = get_task(id, as_at=as_at, property_keys=property_keys)
 
 GetTask: Get a Task
 
@@ -214,7 +214,8 @@ GetTask: Get a Task
 api_instance = api_client_factory.build(TasksApi)
 id = 'id_example' # str
 as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
-api_response = api_instance.get_task(id, as_at=as_at)
+property_keys = ['property_keys_example'] # List[str] (optional)
+api_response = api_instance.get_task(id, as_at=as_at, property_keys=property_keys)
 pprint(api_response)
 ```
 
@@ -224,6 +225,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Id of the Task to retrieve | [required] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the Task. Defaults to returning the latest version of the Task if not specified. | [optional] 
+ **property_keys** | [**List[str]**](str.md)| The property keys (in the TaskDefinition or Workflow domain) whose values to return on the Task. | [optional] 
 
 ### Return type
 
@@ -290,7 +292,7 @@ Name | Type | Description  | Notes
 ---
 
 # **list_tasks**
-> PagedResourceListOfTask listTasks = list_tasks(as_at=as_at, filter=filter, sort_by=sort_by, limit=limit, page=page)
+> PagedResourceListOfTask listTasks = list_tasks(as_at=as_at, filter=filter, sort_by=sort_by, property_keys=property_keys, limit=limit, page=page)
 
 ListTasks: List Tasks
 
@@ -301,9 +303,10 @@ api_instance = api_client_factory.build(TasksApi)
 as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
 filter = 'filter_example' # str (optional)
 sort_by = ['sort_by_example'] # List[str] (optional)
+property_keys = ['property_keys_example'] # List[str] (optional)
 limit = 10 # int (optional)
 page = 'page_example' # str (optional)
-api_response = api_instance.list_tasks(as_at=as_at, filter=filter, sort_by=sort_by, limit=limit, page=page)
+api_response = api_instance.list_tasks(as_at=as_at, filter=filter, sort_by=sort_by, property_keys=property_keys, limit=limit, page=page)
 pprint(api_response)
 ```
 
@@ -314,6 +317,7 @@ Name | Type | Description  | Notes
  **as_at** | **datetime**| The asAt datetime at which to list the Tasks. Defaults to return the latest version of each Task if not specified. | [optional] 
  **filter** | **str**| Expression to filter the result set. Read more about filtering results from LUSID here: https://support.lusid.com/filtering-results-from-lusid. | [optional] 
  **sort_by** | [**List[str]**](str.md)| A list of field names or properties to sort by, each optionally suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot; | [optional] 
+ **property_keys** | [**List[str]**](str.md)| The property keys (in the TaskDefinition or Workflow domain) whose values to return on each Task. | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many. | [optional] [default to 10]
  **page** | **str**| The pagination token to use to continue listing tasks from a previous call to list tasks. This value is returned from the previous call. If a pagination token is provided the sortBy, filter, effectiveAt, and asAt fields must not have changed since the original request. | [optional] 
 

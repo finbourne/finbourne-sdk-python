@@ -560,13 +560,15 @@ class TasksApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def get_task(self, id: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> Task:
+    def get_task(self, id: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> Task:
         """GetTask: Get a Task  # noqa: E501
 
         :param id: Id of the Task to retrieve (required)
         :type id: str
         :param as_at: The asAt datetime at which to retrieve the Task. Defaults to returning the latest version of the Task if not specified.
         :type as_at: datetime
+        :param property_keys: The property keys (in the TaskDefinition or Workflow domain) whose values to return on the Task.
+        :type property_keys: List[str]
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -577,17 +579,19 @@ class TasksApi:
             message = "Error! Please call the get_task_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.get_task_with_http_info(id, as_at, **kwargs)
+        response = self.get_task_with_http_info(id, as_at, property_keys, **kwargs)
         return response.data
 
     @validate_call
-    def get_task_with_http_info(self, id: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[Task]:
+    def get_task_with_http_info(self, id: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[Task]:
         """GetTask: Get a Task  # noqa: E501
 
         :param id: Id of the Task to retrieve (required)
         :type id: str
         :param as_at: The asAt datetime at which to retrieve the Task. Defaults to returning the latest version of the Task if not specified.
         :type as_at: datetime
+        :param property_keys: The property keys (in the TaskDefinition or Workflow domain) whose values to return on the Task.
+        :type property_keys: List[str]
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -612,7 +616,8 @@ class TasksApi:
 
         _all_params = [
             'id',
-            'as_at'
+            'as_at',
+            'property_keys'
         ]
         _all_params.extend(
             [
@@ -651,6 +656,10 @@ class TasksApi:
                 _query_params.append(('asAt', _params['as_at'].strftime(self.sync_api_client.configuration.datetime_format)))
             else:
                 _query_params.append(('asAt', _params['as_at']))
+
+        if _params.get('property_keys') is not None:  # noqa: E501
+            _query_params.append(('propertyKeys', _params['property_keys']))
+            _collection_formats['propertyKeys'] = 'multi'
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -820,7 +829,7 @@ class TasksApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def list_tasks(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfTask:
+    def list_tasks(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfTask:
         """ListTasks: List Tasks  # noqa: E501
 
         :param as_at: The asAt datetime at which to list the Tasks. Defaults to return the latest version of each Task if not specified.
@@ -829,6 +838,8 @@ class TasksApi:
         :type filter: str
         :param sort_by: A list of field names or properties to sort by, each optionally suffixed by \" ASC\" or \" DESC\"
         :type sort_by: List[str]
+        :param property_keys: The property keys (in the TaskDefinition or Workflow domain) whose values to return on each Task.
+        :type property_keys: List[str]
         :param limit: When paginating, limit the number of returned results to this many.
         :type limit: int
         :param page: The pagination token to use to continue listing tasks from a previous call to list tasks. This value is returned from the previous call. If a pagination token is provided the sortBy, filter, effectiveAt, and asAt fields must not have changed since the original request.
@@ -843,11 +854,11 @@ class TasksApi:
             message = "Error! Please call the list_tasks_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.list_tasks_with_http_info(as_at, filter, sort_by, limit, page, **kwargs)
+        response = self.list_tasks_with_http_info(as_at, filter, sort_by, property_keys, limit, page, **kwargs)
         return response.data
 
     @validate_call
-    def list_tasks_with_http_info(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfTask]:
+    def list_tasks_with_http_info(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfTask]:
         """ListTasks: List Tasks  # noqa: E501
 
         :param as_at: The asAt datetime at which to list the Tasks. Defaults to return the latest version of each Task if not specified.
@@ -856,6 +867,8 @@ class TasksApi:
         :type filter: str
         :param sort_by: A list of field names or properties to sort by, each optionally suffixed by \" ASC\" or \" DESC\"
         :type sort_by: List[str]
+        :param property_keys: The property keys (in the TaskDefinition or Workflow domain) whose values to return on each Task.
+        :type property_keys: List[str]
         :param limit: When paginating, limit the number of returned results to this many.
         :type limit: int
         :param page: The pagination token to use to continue listing tasks from a previous call to list tasks. This value is returned from the previous call. If a pagination token is provided the sortBy, filter, effectiveAt, and asAt fields must not have changed since the original request.
@@ -886,6 +899,7 @@ class TasksApi:
             'as_at',
             'filter',
             'sort_by',
+            'property_keys',
             'limit',
             'page'
         ]
@@ -930,6 +944,10 @@ class TasksApi:
         if _params.get('sort_by') is not None:  # noqa: E501
             _query_params.append(('sortBy', _params['sort_by']))
             _collection_formats['sortBy'] = 'multi'
+
+        if _params.get('property_keys') is not None:  # noqa: E501
+            _query_params.append(('propertyKeys', _params['property_keys']))
+            _collection_formats['propertyKeys'] = 'multi'
 
         if _params.get('limit') is not None:  # noqa: E501
             _query_params.append(('limit', _params['limit']))
@@ -1628,13 +1646,15 @@ class TasksApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def get_task_async(self, id: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> Task:
+    async def get_task_async(self, id: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> Task:
             """GetTask: Get a Task  # noqa: E501
             
             :param id: Id of the Task to retrieve (required)
             :type id: str
             :param as_at: The asAt datetime at which to retrieve the Task. Defaults to returning the latest version of the Task if not specified.
             :type as_at: datetime
+            :param property_keys: The property keys (in the TaskDefinition or Workflow domain) whose values to return on the Task.
+            :type property_keys: List[str]
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -1645,11 +1665,11 @@ class TasksApi:
                 message = "Error! Please call the get_task_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.get_task_with_http_info_async(id, as_at, **kwargs)
+            response = await self.get_task_with_http_info_async(id, as_at, property_keys, **kwargs)
             return response.data
 
     @validate_call
-    async def get_task_with_http_info_async(self, id: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[Task]:
+    async def get_task_with_http_info_async(self, id: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[Task]:
             """GetTask: Get a Task  # noqa: E501
 
 
@@ -1657,6 +1677,8 @@ class TasksApi:
             :type id: str
             :param as_at: The asAt datetime at which to retrieve the Task. Defaults to returning the latest version of the Task if not specified.
             :type as_at: datetime
+            :param property_keys: The property keys (in the TaskDefinition or Workflow domain) whose values to return on the Task.
+            :type property_keys: List[str]
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -1681,7 +1703,8 @@ class TasksApi:
 
             _all_params = [
                 'id',
-                'as_at'
+                'as_at',
+                'property_keys'
             ]
             _all_params.extend(
                 [
@@ -1720,6 +1743,10 @@ class TasksApi:
                     _query_params.append(('asAt', _params['as_at'].strftime(self.api_client.configuration.datetime_format)))
                 else:
                     _query_params.append(('asAt', _params['as_at']))
+
+            if _params.get('property_keys') is not None:  # noqa: E501
+                _query_params.append(('propertyKeys', _params['property_keys']))
+                _collection_formats['propertyKeys'] = 'multi'
 
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))
@@ -1890,7 +1917,7 @@ class TasksApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def list_tasks_async(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfTask:
+    async def list_tasks_async(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfTask:
             """ListTasks: List Tasks  # noqa: E501
             
             :param as_at: The asAt datetime at which to list the Tasks. Defaults to return the latest version of each Task if not specified.
@@ -1899,6 +1926,8 @@ class TasksApi:
             :type filter: str
             :param sort_by: A list of field names or properties to sort by, each optionally suffixed by \" ASC\" or \" DESC\"
             :type sort_by: List[str]
+            :param property_keys: The property keys (in the TaskDefinition or Workflow domain) whose values to return on each Task.
+            :type property_keys: List[str]
             :param limit: When paginating, limit the number of returned results to this many.
             :type limit: int
             :param page: The pagination token to use to continue listing tasks from a previous call to list tasks. This value is returned from the previous call. If a pagination token is provided the sortBy, filter, effectiveAt, and asAt fields must not have changed since the original request.
@@ -1913,11 +1942,11 @@ class TasksApi:
                 message = "Error! Please call the list_tasks_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.list_tasks_with_http_info_async(as_at, filter, sort_by, limit, page, **kwargs)
+            response = await self.list_tasks_with_http_info_async(as_at, filter, sort_by, property_keys, limit, page, **kwargs)
             return response.data
 
     @validate_call
-    async def list_tasks_with_http_info_async(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfTask]:
+    async def list_tasks_with_http_info_async(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfTask]:
             """ListTasks: List Tasks  # noqa: E501
 
 
@@ -1927,6 +1956,8 @@ class TasksApi:
             :type filter: str
             :param sort_by: A list of field names or properties to sort by, each optionally suffixed by \" ASC\" or \" DESC\"
             :type sort_by: List[str]
+            :param property_keys: The property keys (in the TaskDefinition or Workflow domain) whose values to return on each Task.
+            :type property_keys: List[str]
             :param limit: When paginating, limit the number of returned results to this many.
             :type limit: int
             :param page: The pagination token to use to continue listing tasks from a previous call to list tasks. This value is returned from the previous call. If a pagination token is provided the sortBy, filter, effectiveAt, and asAt fields must not have changed since the original request.
@@ -1957,6 +1988,7 @@ class TasksApi:
                 'as_at',
                 'filter',
                 'sort_by',
+                'property_keys',
                 'limit',
                 'page'
             ]
@@ -2001,6 +2033,10 @@ class TasksApi:
             if _params.get('sort_by') is not None:  # noqa: E501
                 _query_params.append(('sortBy', _params['sort_by']))
                 _collection_formats['sortBy'] = 'multi'
+
+            if _params.get('property_keys') is not None:  # noqa: E501
+                _query_params.append(('propertyKeys', _params['property_keys']))
+                _collection_formats['propertyKeys'] = 'multi'
 
             if _params.get('limit') is not None:  # noqa: E501
                 _query_params.append(('limit', _params['limit']))

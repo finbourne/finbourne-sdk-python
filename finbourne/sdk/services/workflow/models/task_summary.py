@@ -34,7 +34,9 @@ class TaskSummary(BaseModel):
     task_definition_version: TaskDefinitionVersion = Field(alias="taskDefinitionVersion")
     task_definition_display_name:  StrictStr = Field(...,alias="taskDefinitionDisplayName", description="The display name of the Task Definition used by this Task") 
     state:  StrictStr = Field(...,alias="state", description="Current State") 
-    __properties: ClassVar[List[str]] = ["id", "taskDefinitionId", "taskDefinitionVersion", "taskDefinitionDisplayName", "state"]
+    state_display_name:  Optional[StrictStr] = Field(default=None,alias="stateDisplayName", description="The display name of the current State, from the Task Definition, if one is provided") 
+    correlation_ids: Optional[List[StrictStr]] = Field(default=None, description="User-provided ID used to link entities and tasks", alias="correlationIds")
+    __properties: ClassVar[List[str]] = ["id", "taskDefinitionId", "taskDefinitionVersion", "taskDefinitionDisplayName", "state", "stateDisplayName", "correlationIds"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -76,6 +78,16 @@ class TaskSummary(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of task_definition_version
         if self.task_definition_version:
             _dict['taskDefinitionVersion'] = self.task_definition_version.to_dict(by_alias=by_alias)
+        # set to None if state_display_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.state_display_name is None and "state_display_name" in self.model_fields_set:
+            _dict['stateDisplayName'] = None
+
+        # set to None if correlation_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.correlation_ids is None and "correlation_ids" in self.model_fields_set:
+            _dict['correlationIds'] = None
+
         return _dict
 
     @classmethod
@@ -92,7 +104,9 @@ class TaskSummary(BaseModel):
             "task_definition_id": ResourceId.from_dict(_v) if (_v := obj.get("taskDefinitionId")) is not None else None,
             "task_definition_version": TaskDefinitionVersion.from_dict(_v) if (_v := obj.get("taskDefinitionVersion")) is not None else None,
             "task_definition_display_name": obj.get("taskDefinitionDisplayName"),
-            "state": obj.get("state")
+            "state": obj.get("state"),
+            "state_display_name": obj.get("stateDisplayName"),
+            "correlation_ids": obj.get("correlationIds")
         })
         return _obj
 

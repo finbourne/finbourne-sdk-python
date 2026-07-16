@@ -2013,6 +2013,7 @@
 * [ActionLogOrigin](workflow/model/ActionLogOrigin.md)
 * [BatchUpdateTasksRequest](workflow/model/BatchUpdateTasksRequest.md)
 * [BatchUpdateTasksResponse](workflow/model/BatchUpdateTasksResponse.md)
+* [BatchUpsertTaskDefinitionPropertiesResponse](workflow/model/BatchUpsertTaskDefinitionPropertiesResponse.md)
 * [BatchUpsertWorkflowPropertiesResponse](workflow/model/BatchUpsertWorkflowPropertiesResponse.md)
 * [CalendarReference](workflow/model/CalendarReference.md)
 * [ChangeItem](workflow/model/ChangeItem.md)

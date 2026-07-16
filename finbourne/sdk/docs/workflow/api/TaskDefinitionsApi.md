@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**list_task_definitions**](TaskDefinitionsApi.md#list_task_definitions) | **GET** /workflow/api/taskdefinitions | ListTaskDefinitions: List Task Definitions
 [**list_tasks_for_task_definition**](TaskDefinitionsApi.md#list_tasks_for_task_definition) | **GET** /workflow/api/taskdefinitions/{scope}/{code}/tasks | ListTasksForTaskDefinition: List Tasks for a Task Definition
 [**update_task_definition**](TaskDefinitionsApi.md#update_task_definition) | **PUT** /workflow/api/taskdefinitions/{scope}/{code} | UpdateTaskDefinition: Update an existing Task Definition
+[**upsert_task_definition_properties**](TaskDefinitionsApi.md#upsert_task_definition_properties) | **POST** /workflow/api/taskdefinitions/{scope}/{code}/properties | [EXPERIMENTAL] UpsertTaskDefinitionProperties: Add, update and remove properties on an existing Task Definition in bulk.
 
 
 ### Example
@@ -121,7 +122,7 @@ Name | Type | Description  | Notes
 ---
 
 # **get_task_definition**
-> TaskDefinition getTaskDefinition = get_task_definition(scope, code, as_at=as_at)
+> TaskDefinition getTaskDefinition = get_task_definition(scope, code, as_at=as_at, property_keys=property_keys)
 
 GetTaskDefinition: Get a Task Definition
 
@@ -132,7 +133,8 @@ api_instance = api_client_factory.build(TaskDefinitionsApi)
 scope = 'scope_example' # str
 code = 'code_example' # str
 as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
-api_response = api_instance.get_task_definition(scope, code, as_at=as_at)
+property_keys = ['property_keys_example'] # List[str] (optional)
+api_response = api_instance.get_task_definition(scope, code, as_at=as_at, property_keys=property_keys)
 pprint(api_response)
 ```
 
@@ -143,6 +145,7 @@ Name | Type | Description  | Notes
  **scope** | **str**| The scope that identifies a Task Definition | [required] 
  **code** | **str**| The code that identifies a Task Definition | [required] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the Task Definition. Defaults to returning the latest version of the Task Definition if not specified. | [optional] 
+ **property_keys** | [**List[str]**](str.md)| The property keys whose values to return on the Task Definition. | [optional] 
 
 ### Return type
 
@@ -215,7 +218,7 @@ Name | Type | Description  | Notes
 ---
 
 # **list_tasks_for_task_definition**
-> ResourceListOfTask listTasksForTaskDefinition = list_tasks_for_task_definition(scope, code, as_at=as_at)
+> ResourceListOfTask listTasksForTaskDefinition = list_tasks_for_task_definition(scope, code, as_at=as_at, property_keys=property_keys)
 
 ListTasksForTaskDefinition: List Tasks for a Task Definition
 
@@ -226,7 +229,8 @@ api_instance = api_client_factory.build(TaskDefinitionsApi)
 scope = 'scope_example' # str
 code = 'code_example' # str
 as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
-api_response = api_instance.list_tasks_for_task_definition(scope, code, as_at=as_at)
+property_keys = ['property_keys_example'] # List[str] (optional)
+api_response = api_instance.list_tasks_for_task_definition(scope, code, as_at=as_at, property_keys=property_keys)
 pprint(api_response)
 ```
 
@@ -237,6 +241,7 @@ Name | Type | Description  | Notes
  **scope** | **str**| The scope that identifies a Task Definition | [required] 
  **code** | **str**| The code that identifies a Task Definition | [required] 
  **as_at** | **datetime**| The asAt datetime at which to list the Tasks. Defaults to return the latest version of each Task if not specified. | [optional] 
+ **property_keys** | [**List[str]**](str.md)| The property keys (in the TaskDefinition or Workflow domain) whose values to return on each Task. | [optional] 
 
 ### Return type
 
@@ -286,6 +291,53 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**TaskDefinition**](TaskDefinition.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | The details of the input related failure |  -  |
+**404** | Task Definition not found. |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **upsert_task_definition_properties**
+> BatchUpsertTaskDefinitionPropertiesResponse upsertTaskDefinitionProperties = upsert_task_definition_properties(scope, code, request_body, success_mode=success_mode)
+
+[EXPERIMENTAL] UpsertTaskDefinitionProperties: Add, update and remove properties on an existing Task Definition in bulk.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(TaskDefinitionsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+request_body = {"TaskDefinition/myScope/category":{"key":"TaskDefinition/myScope/category","value":{"labelValue":"exception-management"}},"TaskDefinition/myScope/priority":{"key":"TaskDefinition/myScope/priority","value":{"metricValue":{"value":1.0}}},"TaskDefinition/myScope/obsoleteProperty":{"key":"TaskDefinition/myScope/obsoleteProperty"}} # Dict[str, PerpetualProperty]
+success_mode = 'Partial' # str (optional)
+api_response = api_instance.upsert_task_definition_properties(scope, code, request_body, success_mode=success_mode)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope that identifies a Task Definition | [required] 
+ **code** | **str**| The code that identifies a Task Definition | [required] 
+ **request_body** | [**Dict[str, PerpetualProperty]**](PerpetualProperty.md)| The properties to upsert, keyed by property key. A null value deletes the property. | [required] 
+ **success_mode** | **str**| Whether the batch should fail Atomically or Partially. Defaults to Partial. | [optional] [default to &#39;Partial&#39;]
+
+### Return type
+
+[**BatchUpsertTaskDefinitionPropertiesResponse**](BatchUpsertTaskDefinitionPropertiesResponse.md)
 
 ### HTTP request headers
 

@@ -12,6 +12,7 @@ Defines a Task created based on a Task Definition
 | **workflow_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **workflow_display_name** | **str** | Optional | The display name of the Workflow that this Task is a member of, if any |
 | **state** | **str** | Required | Current State |
+| **state_display_name** | **str** | Optional | The display name of the current State, from the Task Definition, if one is provided |
 | **ultimate_parent_task** | [TaskSummary](TaskSummary.md) | Required | *No description available.* |
 | **parent_task** | [TaskSummary](TaskSummary.md) | Optional | *No description available.* |
 | **child_tasks** | [List[TaskSummary]](TaskSummary.md) | Optional | This Task&#39;s child tasks |
@@ -30,6 +31,7 @@ Defines a Task created based on a Task Definition
 | **open_duration** | **int** | Optional | Duration in seconds since the Task was created. If the Task is Completed, this is the duration from creation to the last transition. |
 | **open_duration_since_last_update** | **int** | Optional | Duration in seconds since the Task was last updated. 0 if the Task is Completed. |
 | **open_duration_since_last_transition** | **int** | Optional | Duration in seconds since the Task last transitioned. 0 if the Task is Completed. |
+| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | The requested TaskDefinition and Workflow properties decorated onto this Task, keyed by property key. Only populated when property keys were requested. |
 
 
 ## Usage
@@ -47,6 +49,7 @@ instance = Task(
     workflow_id=ResourceId(...),  # optional
     workflow_display_name="...",  # optional — The display name of the Workflow that this Task is a member of, if any
     state="...",  # required — Current State
+    state_display_name="...",  # optional — The display name of the current State, from the Task Definition, if one is provided
     ultimate_parent_task=TaskSummary(...),  # required
     parent_task=TaskSummary(...),  # optional
     child_tasks=[],  # optional — This Task&#39;s child tasks
@@ -64,7 +67,8 @@ instance = Task(
     completion_status="...",  # optional — The completion status of this Task: NotStarted, InProgress, or Completed
     open_duration=0,  # optional — Duration in seconds since the Task was created. If the Task is Completed, this is the duration from creation to the last transition.
     open_duration_since_last_update=0,  # optional — Duration in seconds since the Task was last updated. 0 if the Task is Completed.
-    open_duration_since_last_transition=0  # optional — Duration in seconds since the Task last transitioned. 0 if the Task is Completed.
+    open_duration_since_last_transition=0,  # optional — Duration in seconds since the Task last transitioned. 0 if the Task is Completed.
+    properties=PerpetualProperty(...)  # optional — The requested TaskDefinition and Workflow properties decorated onto this Task, keyed by property key. Only populated when property keys were requested.
 )
 ```
 
@@ -77,6 +81,7 @@ instance = Task(
 - [VersionInfo](VersionInfo.md)
 - [TaskInstanceField](TaskInstanceField.md) — used in `fields`
 - [Stack](Stack.md)
+- [PerpetualProperty](PerpetualProperty.md) — used in `properties`
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

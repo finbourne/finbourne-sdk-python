@@ -10,6 +10,8 @@ Summary of a Task created based on a Task Definition
 | **task_definition_version** | [TaskDefinitionVersion](TaskDefinitionVersion.md) | Required | *No description available.* |
 | **task_definition_display_name** | **str** | Required | The display name of the Task Definition used by this Task |
 | **state** | **str** | Required | Current State |
+| **state_display_name** | **str** | Optional | The display name of the current State, from the Task Definition, if one is provided |
+| **correlation_ids** | **List[str]** | Optional | User-provided ID used to link entities and tasks |
 
 
 ## Usage
@@ -24,7 +26,9 @@ instance = TaskSummary(
     task_definition_id=ResourceId(...),  # required
     task_definition_version=TaskDefinitionVersion(...),  # required
     task_definition_display_name="...",  # required — The display name of the Task Definition used by this Task
-    state="..."  # required — Current State
+    state="...",  # required — Current State
+    state_display_name="...",  # optional — The display name of the current State, from the Task Definition, if one is provided
+    correlation_ids=  # optional — User-provided ID used to link entities and tasks
 )
 ```
 

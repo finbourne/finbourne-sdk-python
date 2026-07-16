@@ -24,6 +24,7 @@ from finbourne.sdk.services.workflow.models.action_log_item import ActionLogItem
 from finbourne.sdk.services.workflow.models.action_log_origin import ActionLogOrigin
 from finbourne.sdk.services.workflow.models.batch_update_tasks_request import BatchUpdateTasksRequest
 from finbourne.sdk.services.workflow.models.batch_update_tasks_response import BatchUpdateTasksResponse
+from finbourne.sdk.services.workflow.models.batch_upsert_task_definition_properties_response import BatchUpsertTaskDefinitionPropertiesResponse
 from finbourne.sdk.services.workflow.models.batch_upsert_workflow_properties_response import BatchUpsertWorkflowPropertiesResponse
 from finbourne.sdk.services.workflow.models.calendar_reference import CalendarReference
 from finbourne.sdk.services.workflow.models.change_item import ChangeItem
@@ -158,6 +159,7 @@ __all__ = [
     "ActionLogOrigin",
     "BatchUpdateTasksRequest",
     "BatchUpdateTasksResponse",
+    "BatchUpsertTaskDefinitionPropertiesResponse",
     "BatchUpsertWorkflowPropertiesResponse",
     "CalendarReference",
     "ChangeItem",
