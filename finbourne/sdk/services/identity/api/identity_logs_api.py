@@ -50,7 +50,7 @@ class IdentityLogsApi:
 
     @validate_call
     def list_logs(self, okta_since: Optional[datetime] = None, okta_until: Optional[datetime] = None, okta_filter: Optional[StrictStr] = None, okta_query: Optional[StrictStr] = None, okta_limit: Optional[int] = None, okta_sort_order: Optional[StrictStr] = None, okta_after: Optional[StrictStr] = None, **kwargs) -> ResourceListOfSystemLog:
-        """[BETA] ListLogs: Lists system logs for a domain  # noqa: E501
+        """ListLogs: Lists system logs for a domain  # noqa: E501
 
         Lists system logs for a domain  # noqa: E501
         :param okta_since: Lower bound of log events published property
@@ -82,7 +82,7 @@ class IdentityLogsApi:
 
     @validate_call
     def list_logs_with_http_info(self, okta_since: Optional[datetime] = None, okta_until: Optional[datetime] = None, okta_filter: Optional[StrictStr] = None, okta_query: Optional[StrictStr] = None, okta_limit: Optional[int] = None, okta_sort_order: Optional[StrictStr] = None, okta_after: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfSystemLog]:
-        """[BETA] ListLogs: Lists system logs for a domain  # noqa: E501
+        """ListLogs: Lists system logs for a domain  # noqa: E501
 
         Lists system logs for a domain  # noqa: E501
         :param okta_since: Lower bound of log events published property
@@ -386,7 +386,7 @@ class IdentityLogsApi:
 
     @validate_call
     async def list_logs_async(self, okta_since: Optional[datetime] = None, okta_until: Optional[datetime] = None, okta_filter: Optional[StrictStr] = None, okta_query: Optional[StrictStr] = None, okta_limit: Optional[int] = None, okta_sort_order: Optional[StrictStr] = None, okta_after: Optional[StrictStr] = None, **kwargs) -> ResourceListOfSystemLog:
-            """[BETA] ListLogs: Lists system logs for a domain  # noqa: E501
+            """ListLogs: Lists system logs for a domain  # noqa: E501
             Lists system logs for a domain  # noqa: E501
             
             :param okta_since: Lower bound of log events published property
@@ -418,7 +418,7 @@ class IdentityLogsApi:
 
     @validate_call
     async def list_logs_with_http_info_async(self, okta_since: Optional[datetime] = None, okta_until: Optional[datetime] = None, okta_filter: Optional[StrictStr] = None, okta_query: Optional[StrictStr] = None, okta_limit: Optional[int] = None, okta_sort_order: Optional[StrictStr] = None, okta_after: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfSystemLog]:
-            """[BETA] ListLogs: Lists system logs for a domain  # noqa: E501
+            """ListLogs: Lists system logs for a domain  # noqa: E501
 
             Lists system logs for a domain  # noqa: E501
 

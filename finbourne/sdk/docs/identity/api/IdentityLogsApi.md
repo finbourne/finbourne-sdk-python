@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**list_logs**](IdentityLogsApi.md#list_logs) | **GET** /identity/api/logs | [BETA] ListLogs: Lists system logs for a domain
+[**list_logs**](IdentityLogsApi.md#list_logs) | **GET** /identity/api/logs | ListLogs: Lists system logs for a domain
 [**list_user_logs**](IdentityLogsApi.md#list_user_logs) | **GET** /identity/api/logs/me | ListUserLogs: Lists user logs
 
 
@@ -36,7 +36,7 @@ api_instance = api_client_factory.build(IdentityLogsApi)
 # **list_logs**
 > ResourceListOfSystemLog listLogs = list_logs(okta_since=okta_since, okta_until=okta_until, okta_filter=okta_filter, okta_query=okta_query, okta_limit=okta_limit, okta_sort_order=okta_sort_order, okta_after=okta_after)
 
-[BETA] ListLogs: Lists system logs for a domain
+ListLogs: Lists system logs for a domain
 
 Lists system logs for a domain
 
