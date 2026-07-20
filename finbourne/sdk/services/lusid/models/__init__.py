@@ -498,6 +498,11 @@ from finbourne.sdk.services.lusid.models.fund_previous_nav import FundPreviousNA
 from finbourne.sdk.services.lusid.models.fund_properties import FundProperties
 from finbourne.sdk.services.lusid.models.fund_request import FundRequest
 from finbourne.sdk.services.lusid.models.fund_share_class import FundShareClass
+from finbourne.sdk.services.lusid.models.fund_structure import FundStructure
+from finbourne.sdk.services.lusid.models.fund_structure_edge import FundStructureEdge
+from finbourne.sdk.services.lusid.models.fund_structure_edge_target import FundStructureEdgeTarget
+from finbourne.sdk.services.lusid.models.fund_structure_node import FundStructureNode
+from finbourne.sdk.services.lusid.models.fund_structure_request import FundStructureRequest
 from finbourne.sdk.services.lusid.models.fund_valuation_point_data import FundValuationPointData
 from finbourne.sdk.services.lusid.models.fund_valuation_request import FundValuationRequest
 from finbourne.sdk.services.lusid.models.fund_valuation_schedule import FundValuationSchedule
@@ -828,6 +833,7 @@ from finbourne.sdk.services.lusid.models.paged_resource_list_of_fund import Page
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_fund_calendar_entries import PagedResourceListOfFundCalendarEntries
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_fund_calendar_entry import PagedResourceListOfFundCalendarEntry
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_fund_configuration import PagedResourceListOfFundConfiguration
+from finbourne.sdk.services.lusid.models.paged_resource_list_of_fund_structure import PagedResourceListOfFundStructure
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_general_ledger_profile_response import PagedResourceListOfGeneralLedgerProfileResponse
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_get_address_key_alias_response import PagedResourceListOfGetAddressKeyAliasResponse
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_get_scenario_response import PagedResourceListOfGetScenarioResponse
@@ -1045,6 +1051,7 @@ from finbourne.sdk.services.lusid.models.requested_changes import RequestedChang
 from finbourne.sdk.services.lusid.models.reset_event import ResetEvent
 from finbourne.sdk.services.lusid.models.resolve_tenors_request import ResolveTenorsRequest
 from finbourne.sdk.services.lusid.models.resolve_tenors_response import ResolveTenorsResponse
+from finbourne.sdk.services.lusid.models.resolved_custodian_account import ResolvedCustodianAccount
 from finbourne.sdk.services.lusid.models.resource_id import ResourceId
 from finbourne.sdk.services.lusid.models.resource_list_of_access_controlled_resource import ResourceListOfAccessControlledResource
 from finbourne.sdk.services.lusid.models.resource_list_of_access_metadata_value_of import ResourceListOfAccessMetadataValueOf
@@ -1966,6 +1973,11 @@ __all__ = [
     "FundProperties",
     "FundRequest",
     "FundShareClass",
+    "FundStructure",
+    "FundStructureEdge",
+    "FundStructureEdgeTarget",
+    "FundStructureNode",
+    "FundStructureRequest",
     "FundValuationPointData",
     "FundValuationRequest",
     "FundValuationSchedule",
@@ -2296,6 +2308,7 @@ __all__ = [
     "PagedResourceListOfFundCalendarEntries",
     "PagedResourceListOfFundCalendarEntry",
     "PagedResourceListOfFundConfiguration",
+    "PagedResourceListOfFundStructure",
     "PagedResourceListOfGeneralLedgerProfileResponse",
     "PagedResourceListOfGetAddressKeyAliasResponse",
     "PagedResourceListOfGetScenarioResponse",
@@ -2513,6 +2526,7 @@ __all__ = [
     "ResetEvent",
     "ResolveTenorsRequest",
     "ResolveTenorsResponse",
+    "ResolvedCustodianAccount",
     "ResourceId",
     "ResourceListOfAccessControlledResource",
     "ResourceListOfAccessMetadataValueOf",

@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **share_class_short_code** | **str** | Required | A short code that uniquely identifies the share class within the Fund and is attached to the transaction. |
-| **apportionment_factor** | **float** | Optional | The weighting factor used for apportionment across this share class. |
+| **apportionment_factor** | **float** | Optional | Only used for fixed percentage method or be zero, must equal 1 or 0 across all classes in the fund. |
 
 
 ## Usage
@@ -17,7 +17,7 @@ from finbourne.sdk.services.lusid.models.AllocationGroupClass import AllocationG
 
 instance = AllocationGroupClass(
     share_class_short_code="...",  # required — A short code that uniquely identifies the share class within the Fund and is attached to the transaction.
-    apportionment_factor=0.0  # optional — The weighting factor used for apportionment across this share class.
+    apportionment_factor=0.0  # optional — Only used for fixed percentage method or be zero, must equal 1 or 0 across all classes in the fund.
 )
 ```
 

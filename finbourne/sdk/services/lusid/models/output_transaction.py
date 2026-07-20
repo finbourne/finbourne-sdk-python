@@ -23,11 +23,13 @@ from uuid import UUID
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 from finbourne.sdk.services.lusid.models.currency_and_amount import CurrencyAndAmount
 from finbourne.sdk.services.lusid.models.custodian_account import CustodianAccount
+from finbourne.sdk.services.lusid.models.custodian_entry import CustodianEntry
 from finbourne.sdk.services.lusid.models.data_model_membership import DataModelMembership
 from finbourne.sdk.services.lusid.models.economics import Economics
 from finbourne.sdk.services.lusid.models.otc_confirmation import OtcConfirmation
 from finbourne.sdk.services.lusid.models.perpetual_property import PerpetualProperty
 from finbourne.sdk.services.lusid.models.realised_gain_loss import RealisedGainLoss
+from finbourne.sdk.services.lusid.models.resolved_custodian_account import ResolvedCustodianAccount
 from finbourne.sdk.services.lusid.models.resource_id import ResourceId
 from finbourne.sdk.services.lusid.models.staged_modifications_info import StagedModificationsInfo
 from finbourne.sdk.services.lusid.models.transaction_price import TransactionPrice
@@ -80,7 +82,9 @@ class OutputTransaction(BaseModel):
     settlement_summary: Optional[TransactionSettlementSummary] = Field(default=None, alias="settlementSummary")
     version: Optional[Version] = None
     staged_modifications: Optional[StagedModificationsInfo] = Field(default=None, alias="stagedModifications")
-    __properties: ClassVar[List[str]] = ["transactionId", "type", "description", "instrumentIdentifiers", "instrumentScope", "instrumentUid", "transactionDate", "settlementDate", "units", "transactionAmount", "transactionPrice", "totalConsideration", "exchangeRate", "transactionToPortfolioRate", "transactionCurrency", "properties", "counterpartyId", "source", "transactionStatus", "entryDateTime", "cancelDateTime", "realisedGainLoss", "holdingIds", "sourceType", "sourceInstrumentEventId", "custodianAccount", "transactionGroupId", "resolvedTransactionTypeDetails", "grossTransactionAmount", "otcConfirmation", "orderId", "allocationId", "accountingDate", "economics", "dataModelMembership", "sequence", "sequencePriority", "settlementSummary", "version", "stagedModifications"]
+    custodian_entries: Optional[List[CustodianEntry]] = Field(default=None, description="Set of of Custodian Entries associated with the transaction.", alias="custodianEntries")
+    resolved_custodian_accounts: Optional[List[ResolvedCustodianAccount]] = Field(default=None, description="Set of Custodian Accounts resolved from each movement on the Transaction.", alias="resolvedCustodianAccounts")
+    __properties: ClassVar[List[str]] = ["transactionId", "type", "description", "instrumentIdentifiers", "instrumentScope", "instrumentUid", "transactionDate", "settlementDate", "units", "transactionAmount", "transactionPrice", "totalConsideration", "exchangeRate", "transactionToPortfolioRate", "transactionCurrency", "properties", "counterpartyId", "source", "transactionStatus", "entryDateTime", "cancelDateTime", "realisedGainLoss", "holdingIds", "sourceType", "sourceInstrumentEventId", "custodianAccount", "transactionGroupId", "resolvedTransactionTypeDetails", "grossTransactionAmount", "otcConfirmation", "orderId", "allocationId", "accountingDate", "economics", "dataModelMembership", "sequence", "sequencePriority", "settlementSummary", "version", "stagedModifications", "custodianEntries", "resolvedCustodianAccounts"]
 
     @field_validator('transaction_status')
     def transaction_status_validate_enum(cls, value):
@@ -242,6 +246,20 @@ class OutputTransaction(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of staged_modifications
         if self.staged_modifications:
             _dict['stagedModifications'] = self.staged_modifications.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of each item in custodian_entries (list)
+        _items = []
+        if self.custodian_entries:
+            for _item in self.custodian_entries:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['custodianEntries'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in resolved_custodian_accounts (list)
+        _items = []
+        if self.resolved_custodian_accounts:
+            for _item in self.resolved_custodian_accounts:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['resolvedCustodianAccounts'] = _items
         # set to None if description (nullable) is None
         # and model_fields_set contains the field
         if self.description is None and "description" in self.model_fields_set:
@@ -332,6 +350,16 @@ class OutputTransaction(BaseModel):
         if self.sequence_priority is None and "sequence_priority" in self.model_fields_set:
             _dict['sequencePriority'] = None
 
+        # set to None if custodian_entries (nullable) is None
+        # and model_fields_set contains the field
+        if self.custodian_entries is None and "custodian_entries" in self.model_fields_set:
+            _dict['custodianEntries'] = None
+
+        # set to None if resolved_custodian_accounts (nullable) is None
+        # and model_fields_set contains the field
+        if self.resolved_custodian_accounts is None and "resolved_custodian_accounts" in self.model_fields_set:
+            _dict['resolvedCustodianAccounts'] = None
+
         return _dict
 
     @classmethod
@@ -388,7 +416,9 @@ class OutputTransaction(BaseModel):
             "sequence_priority": obj.get("sequencePriority"),
             "settlement_summary": TransactionSettlementSummary.from_dict(_v) if (_v := obj.get("settlementSummary")) is not None else None,
             "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
-            "staged_modifications": StagedModificationsInfo.from_dict(_v) if (_v := obj.get("stagedModifications")) is not None else None
+            "staged_modifications": StagedModificationsInfo.from_dict(_v) if (_v := obj.get("stagedModifications")) is not None else None,
+            "custodian_entries": [CustodianEntry.from_dict(_item) for _item in _v] if (_v := obj.get("custodianEntries")) is not None else None,
+            "resolved_custodian_accounts": [ResolvedCustodianAccount.from_dict(_item) for _item in _v] if (_v := obj.get("resolvedCustodianAccounts")) is not None else None
         })
         return _obj
 

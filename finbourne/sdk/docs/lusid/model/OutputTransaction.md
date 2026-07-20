@@ -45,6 +45,8 @@ A list of output transactions.
 | **settlement_summary** | [TransactionSettlementSummary](TransactionSettlementSummary.md) | Optional | *No description available.* |
 | **version** | [Version](Version.md) | Optional | *No description available.* |
 | **staged_modifications** | [StagedModificationsInfo](StagedModificationsInfo.md) | Optional | *No description available.* |
+| **custodian_entries** | [List[CustodianEntry]](CustodianEntry.md) | Optional | Set of of Custodian Entries associated with the transaction. |
+| **resolved_custodian_accounts** | [List[ResolvedCustodianAccount]](ResolvedCustodianAccount.md) | Optional | Set of Custodian Accounts resolved from each movement on the Transaction. |
 
 
 ## Usage
@@ -94,7 +96,9 @@ instance = OutputTransaction(
     sequence_priority=0,  # optional — The calculated priority level for this transaction.
     settlement_summary=TransactionSettlementSummary(...),  # optional
     version=Version(...),  # optional
-    staged_modifications=StagedModificationsInfo(...)  # optional
+    staged_modifications=StagedModificationsInfo(...),  # optional
+    custodian_entries=[],  # optional — Set of of Custodian Entries associated with the transaction.
+    resolved_custodian_accounts=[]  # optional — Set of Custodian Accounts resolved from each movement on the Transaction.
 )
 ```
 
@@ -112,6 +116,8 @@ instance = OutputTransaction(
 - [TransactionSettlementSummary](TransactionSettlementSummary.md)
 - [Version](Version.md)
 - [StagedModificationsInfo](StagedModificationsInfo.md)
+- [CustodianEntry](CustodianEntry.md) — used in `custodian_entries`
+- [ResolvedCustodianAccount](ResolvedCustodianAccount.md) — used in `resolved_custodian_accounts`
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

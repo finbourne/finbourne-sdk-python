@@ -23,13 +23,13 @@ from uuid import UUID
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 
 
-class AllocationGroupClassDefinition(BaseModel):
+class FundStructureEdgeTarget(BaseModel):
     """
-    AllocationGroupClassDefinition
+    The target of a Fund Structure edge, identifying the master node and share class the feeder invests into.  # noqa: E501
     """
-    share_class_short_code:  StrictStr = Field(...,alias="shareClassShortCode", description="A short code that uniquely identifies the share class within the Fund and is attached to the transaction.") 
-    apportionment_factor: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Only used for fixed percentage method or be zero, must equal 1 or 0 across all classes in the fund.", alias="apportionmentFactor")
-    __properties: ClassVar[List[str]] = ["shareClassShortCode", "apportionmentFactor"]
+    node:  StrictStr = Field(...,alias="node", description="The node code of the master node that is the target of this relationship.") 
+    share_class_short_code:  StrictStr = Field(...,alias="shareClassShortCode", description="The short code of the share class on the master fund that the feeder invests into.") 
+    __properties: ClassVar[List[str]] = ["node", "shareClassShortCode"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -54,8 +54,8 @@ class AllocationGroupClassDefinition(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> AllocationGroupClassDefinition:
-        """Create an instance of AllocationGroupClassDefinition from a JSON string"""
+    def from_json(cls, json_str: str) -> FundStructureEdgeTarget:
+        """Create an instance of FundStructureEdgeTarget from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self, by_alias=True):
@@ -65,27 +65,22 @@ class AllocationGroupClassDefinition(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # set to None if apportionment_factor (nullable) is None
-        # and model_fields_set contains the field
-        if self.apportionment_factor is None and "apportionment_factor" in self.model_fields_set:
-            _dict['apportionmentFactor'] = None
-
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> AllocationGroupClassDefinition:
-        """Create an instance of AllocationGroupClassDefinition from a dict"""
+    def from_dict(cls, obj: dict) -> FundStructureEdgeTarget:
+        """Create an instance of FundStructureEdgeTarget from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return AllocationGroupClassDefinition.model_validate(obj)
+            return FundStructureEdgeTarget.model_validate(obj)
 
-        _obj = AllocationGroupClassDefinition.model_validate({
-            "share_class_short_code": obj.get("shareClassShortCode"),
-            "apportionment_factor": obj.get("apportionmentFactor")
+        _obj = FundStructureEdgeTarget.model_validate({
+            "node": obj.get("node"),
+            "share_class_short_code": obj.get("shareClassShortCode")
         })
         return _obj
 
-AllocationGroupClassDefinition.model_rebuild()
+FundStructureEdgeTarget.model_rebuild()
 

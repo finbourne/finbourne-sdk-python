@@ -21,15 +21,17 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
+from finbourne.sdk.services.lusid.models.custodian_account import CustodianAccount
 
 
-class AllocationGroupClassDefinition(BaseModel):
+class ResolvedCustodianAccount(BaseModel):
     """
-    AllocationGroupClassDefinition
+    ResolvedCustodianAccount
     """
-    share_class_short_code:  StrictStr = Field(...,alias="shareClassShortCode", description="A short code that uniquely identifies the share class within the Fund and is attached to the transaction.") 
-    apportionment_factor: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Only used for fixed percentage method or be zero, must equal 1 or 0 across all classes in the fund.", alias="apportionmentFactor")
-    __properties: ClassVar[List[str]] = ["shareClassShortCode", "apportionmentFactor"]
+    account_selector:  Optional[StrictStr] = Field(default=None,alias="accountSelector", description="Available values: From, To.") 
+    custodian_account: CustodianAccount = Field(alias="custodianAccount")
+    resolution_type:  StrictStr = Field(...,alias="resolutionType", description="Available values: BookingEntry, ContextCustodian, RelatedAccount, PortfolioDefault.") 
+    __properties: ClassVar[List[str]] = ["accountSelector", "custodianAccount", "resolutionType"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -54,8 +56,8 @@ class AllocationGroupClassDefinition(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> AllocationGroupClassDefinition:
-        """Create an instance of AllocationGroupClassDefinition from a JSON string"""
+    def from_json(cls, json_str: str) -> ResolvedCustodianAccount:
+        """Create an instance of ResolvedCustodianAccount from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self, by_alias=True):
@@ -65,27 +67,31 @@ class AllocationGroupClassDefinition(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # set to None if apportionment_factor (nullable) is None
+        # override the default output from pydantic by calling `to_dict()` of custodian_account
+        if self.custodian_account:
+            _dict['custodianAccount'] = self.custodian_account.to_dict(by_alias=by_alias)
+        # set to None if account_selector (nullable) is None
         # and model_fields_set contains the field
-        if self.apportionment_factor is None and "apportionment_factor" in self.model_fields_set:
-            _dict['apportionmentFactor'] = None
+        if self.account_selector is None and "account_selector" in self.model_fields_set:
+            _dict['accountSelector'] = None
 
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> AllocationGroupClassDefinition:
-        """Create an instance of AllocationGroupClassDefinition from a dict"""
+    def from_dict(cls, obj: dict) -> ResolvedCustodianAccount:
+        """Create an instance of ResolvedCustodianAccount from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return AllocationGroupClassDefinition.model_validate(obj)
+            return ResolvedCustodianAccount.model_validate(obj)
 
-        _obj = AllocationGroupClassDefinition.model_validate({
-            "share_class_short_code": obj.get("shareClassShortCode"),
-            "apportionment_factor": obj.get("apportionmentFactor")
+        _obj = ResolvedCustodianAccount.model_validate({
+            "account_selector": obj.get("accountSelector"),
+            "custodian_account": CustodianAccount.from_dict(_v) if (_v := obj.get("custodianAccount")) is not None else None,
+            "resolution_type": obj.get("resolutionType")
         })
         return _obj
 
-AllocationGroupClassDefinition.model_rebuild()
+ResolvedCustodianAccount.model_rebuild()
 

@@ -37,7 +37,7 @@ class ShareClassDefinition(BaseModel):
     share_class_short_code:  StrictStr = Field(...,alias="shareClassShortCode", description="A short code that uniquely identifies the share class within the Fund.") 
     launch_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The launch price set when a shareclass is added to the fund. Defaults to 1.", alias="launchPrice")
     launch_date: Optional[datetime] = Field(default=None, description="The launch date set when a shareclass is added to the fund. Defaults to Fund Inception Date.", alias="launchDate")
-    apportionment_factor: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The weighting factor used for apportionment across this share class.", alias="apportionmentFactor")
+    apportionment_factor: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Only used for fixed percentage method or be zero, must equal 1 or 0 across all classes in the fund.", alias="apportionmentFactor")
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="An optional set of properties to attach to the auto-created Instrument. Only applied when createInstrument is true.")
     fund_share_class_type:  StrictStr = Field(...,alias="fundShareClassType", description="The Type of Share Class. Available values: Unitised, Inactive, Series, PrivateEquity, Partnership.") 
     distribution_type:  StrictStr = Field(...,alias="distributionType", description="The type of distribution the ShareClass will calculate. Available values: Income, Accumulation.") 

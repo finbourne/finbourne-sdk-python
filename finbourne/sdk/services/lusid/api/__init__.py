@@ -31,6 +31,7 @@ from finbourne.sdk.services.lusid.api.entities_api import EntitiesApi
 from finbourne.sdk.services.lusid.api.executions_api import ExecutionsApi
 from finbourne.sdk.services.lusid.api.fee_types_api import FeeTypesApi
 from finbourne.sdk.services.lusid.api.fund_configuration_api import FundConfigurationApi
+from finbourne.sdk.services.lusid.api.fund_structures_api import FundStructuresApi
 from finbourne.sdk.services.lusid.api.funds_api import FundsApi
 from finbourne.sdk.services.lusid.api.group_reconciliations_api import GroupReconciliationsApi
 from finbourne.sdk.services.lusid.api.identifier_definitions_api import IdentifierDefinitionsApi
@@ -120,6 +121,7 @@ __all__ = [
     "ExecutionsApi",
     "FeeTypesApi",
     "FundConfigurationApi",
+    "FundStructuresApi",
     "FundsApi",
     "GroupReconciliationsApi",
     "IdentifierDefinitionsApi",

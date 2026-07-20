@@ -23,13 +23,15 @@ from uuid import UUID
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 
 
-class AllocationGroupClassDefinition(BaseModel):
+class FundStructureNode(BaseModel):
     """
-    AllocationGroupClassDefinition
+    A node in a Fund Structure, representing a Fund and its role within the structure.  # noqa: E501
     """
-    share_class_short_code:  StrictStr = Field(...,alias="shareClassShortCode", description="A short code that uniquely identifies the share class within the Fund and is attached to the transaction.") 
-    apportionment_factor: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Only used for fixed percentage method or be zero, must equal 1 or 0 across all classes in the fund.", alias="apportionmentFactor")
-    __properties: ClassVar[List[str]] = ["shareClassShortCode", "apportionmentFactor"]
+    node_code:  StrictStr = Field(...,alias="nodeCode", description="A unique identifier for this node within the Fund Structure.") 
+    fund_scope:  StrictStr = Field(...,alias="fundScope", description="The scope of the Fund referenced by this node.") 
+    fund_code:  StrictStr = Field(...,alias="fundCode", description="The code of the Fund referenced by this node.") 
+    role:  StrictStr = Field(...,alias="role", description="The role of this node within the structure. Available values: Master, Feeder.") 
+    __properties: ClassVar[List[str]] = ["nodeCode", "fundScope", "fundCode", "role"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -54,8 +56,8 @@ class AllocationGroupClassDefinition(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> AllocationGroupClassDefinition:
-        """Create an instance of AllocationGroupClassDefinition from a JSON string"""
+    def from_json(cls, json_str: str) -> FundStructureNode:
+        """Create an instance of FundStructureNode from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self, by_alias=True):
@@ -65,27 +67,24 @@ class AllocationGroupClassDefinition(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # set to None if apportionment_factor (nullable) is None
-        # and model_fields_set contains the field
-        if self.apportionment_factor is None and "apportionment_factor" in self.model_fields_set:
-            _dict['apportionmentFactor'] = None
-
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> AllocationGroupClassDefinition:
-        """Create an instance of AllocationGroupClassDefinition from a dict"""
+    def from_dict(cls, obj: dict) -> FundStructureNode:
+        """Create an instance of FundStructureNode from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return AllocationGroupClassDefinition.model_validate(obj)
+            return FundStructureNode.model_validate(obj)
 
-        _obj = AllocationGroupClassDefinition.model_validate({
-            "share_class_short_code": obj.get("shareClassShortCode"),
-            "apportionment_factor": obj.get("apportionmentFactor")
+        _obj = FundStructureNode.model_validate({
+            "node_code": obj.get("nodeCode"),
+            "fund_scope": obj.get("fundScope"),
+            "fund_code": obj.get("fundCode"),
+            "role": obj.get("role")
         })
         return _obj
 
-AllocationGroupClassDefinition.model_rebuild()
+FundStructureNode.model_rebuild()
 

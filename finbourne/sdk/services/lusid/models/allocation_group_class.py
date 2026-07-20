@@ -28,7 +28,7 @@ class AllocationGroupClass(BaseModel):
     AllocationGroupClass
     """
     share_class_short_code:  StrictStr = Field(...,alias="shareClassShortCode", description="A short code that uniquely identifies the share class within the Fund and is attached to the transaction.") 
-    apportionment_factor: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The weighting factor used for apportionment across this share class.", alias="apportionmentFactor")
+    apportionment_factor: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Only used for fixed percentage method or be zero, must equal 1 or 0 across all classes in the fund.", alias="apportionmentFactor")
     __properties: ClassVar[List[str]] = ["shareClassShortCode", "apportionmentFactor"]
 
     model_config = ConfigDict(
