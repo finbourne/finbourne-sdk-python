@@ -13,6 +13,7 @@ The Valuation Point Data Response for the Fund and specified date.
 | **share_class_data** | [List[ShareClassData]](ShareClassData.md) | Required | The data for all share classes in fund. Share classes are identified by their short codes. |
 | **valuation_point_code** | **str** | Optional | The code of the valuation point. |
 | **previous_valuation_point_code** | **str** | Optional | The code of the previous valuation point. |
+| **apportionment_results** | [List[ApportionmentBreakdown]](ApportionmentBreakdown.md) | Optional | The apportionment results for the valuation point: one fund-level entry plus one entry per allocation group. |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
@@ -32,6 +33,7 @@ instance = ValuationPointDataResponse(
     share_class_data=[],  # required — The data for all share classes in fund. Share classes are identified by their short codes.
     valuation_point_code="...",  # optional — The code of the valuation point.
     previous_valuation_point_code="...",  # optional — The code of the previous valuation point.
+    apportionment_results=[],  # optional — The apportionment results for the valuation point: one fund-level entry plus one entry per allocation group.
     links=[]  # optional
 )
 ```
@@ -39,6 +41,7 @@ instance = ValuationPointDataResponse(
 - [FundDetails](FundDetails.md)
 - [FundValuationPointData](FundValuationPointData.md)
 - [ShareClassData](ShareClassData.md) — used in `share_class_data`
+- [ApportionmentBreakdown](ApportionmentBreakdown.md) — used in `apportionment_results`
 - [Link](Link.md)
 
 

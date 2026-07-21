@@ -21,6 +21,7 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
+from finbourne.sdk.services.lusid.models.apportionment_breakdown import ApportionmentBreakdown
 from finbourne.sdk.services.lusid.models.fund_details import FundDetails
 from finbourne.sdk.services.lusid.models.fund_valuation_point_data import FundValuationPointData
 from finbourne.sdk.services.lusid.models.link import Link
@@ -39,8 +40,9 @@ class ValuationPointDataResponse(BaseModel):
     share_class_data: List[ShareClassData] = Field(description="The data for all share classes in fund. Share classes are identified by their short codes.", alias="shareClassData")
     valuation_point_code:  Optional[StrictStr] = Field(default=None,alias="valuationPointCode", description="The code of the valuation point.") 
     previous_valuation_point_code:  Optional[StrictStr] = Field(default=None,alias="previousValuationPointCode", description="The code of the previous valuation point.") 
+    apportionment_results: Optional[List[ApportionmentBreakdown]] = Field(default=None, description="The apportionment results for the valuation point: one fund-level entry plus one entry per allocation group.", alias="apportionmentResults")
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["href", "type", "status", "fundDetails", "fundValuationPointData", "shareClassData", "valuationPointCode", "previousValuationPointCode", "links"]
+    __properties: ClassVar[List[str]] = ["href", "type", "status", "fundDetails", "fundValuationPointData", "shareClassData", "valuationPointCode", "previousValuationPointCode", "apportionmentResults", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -89,6 +91,13 @@ class ValuationPointDataResponse(BaseModel):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['shareClassData'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in apportionment_results (list)
+        _items = []
+        if self.apportionment_results:
+            for _item in self.apportionment_results:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['apportionmentResults'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in links (list)
         _items = []
         if self.links:
@@ -110,6 +119,11 @@ class ValuationPointDataResponse(BaseModel):
         # and model_fields_set contains the field
         if self.previous_valuation_point_code is None and "previous_valuation_point_code" in self.model_fields_set:
             _dict['previousValuationPointCode'] = None
+
+        # set to None if apportionment_results (nullable) is None
+        # and model_fields_set contains the field
+        if self.apportionment_results is None and "apportionment_results" in self.model_fields_set:
+            _dict['apportionmentResults'] = None
 
         # set to None if links (nullable) is None
         # and model_fields_set contains the field
@@ -136,6 +150,7 @@ class ValuationPointDataResponse(BaseModel):
             "share_class_data": [ShareClassData.from_dict(_item) for _item in _v] if (_v := obj.get("shareClassData")) is not None else None,
             "valuation_point_code": obj.get("valuationPointCode"),
             "previous_valuation_point_code": obj.get("previousValuationPointCode"),
+            "apportionment_results": [ApportionmentBreakdown.from_dict(_item) for _item in _v] if (_v := obj.get("apportionmentResults")) is not None else None,
             "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj

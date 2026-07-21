@@ -455,7 +455,7 @@ class TaskDefinitionsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def list_task_definitions(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfTaskDefinition:
+    def list_task_definitions(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfTaskDefinition:
         """ListTaskDefinitions: List Task Definitions  # noqa: E501
 
         :param as_at: The asAt datetime at which to list the Task Definitions. Defaults to return the latest version of each Task Definition if not specified.
@@ -468,6 +468,8 @@ class TaskDefinitionsApi:
         :type limit: int
         :param page: The pagination token to use to continue listing task definitions from a previous call to list task definitions. This value is returned from the previous call. If a pagination token is provided the sortBy, filter, effectiveAt, and asAt fields must not have changed since the original request.
         :type page: str
+        :param property_keys: The property keys whose values to return on each Task Definition.
+        :type property_keys: List[str]
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -478,11 +480,11 @@ class TaskDefinitionsApi:
             message = "Error! Please call the list_task_definitions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.list_task_definitions_with_http_info(as_at, filter, sort_by, limit, page, **kwargs)
+        response = self.list_task_definitions_with_http_info(as_at, filter, sort_by, limit, page, property_keys, **kwargs)
         return response.data
 
     @validate_call
-    def list_task_definitions_with_http_info(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfTaskDefinition]:
+    def list_task_definitions_with_http_info(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfTaskDefinition]:
         """ListTaskDefinitions: List Task Definitions  # noqa: E501
 
         :param as_at: The asAt datetime at which to list the Task Definitions. Defaults to return the latest version of each Task Definition if not specified.
@@ -495,6 +497,8 @@ class TaskDefinitionsApi:
         :type limit: int
         :param page: The pagination token to use to continue listing task definitions from a previous call to list task definitions. This value is returned from the previous call. If a pagination token is provided the sortBy, filter, effectiveAt, and asAt fields must not have changed since the original request.
         :type page: str
+        :param property_keys: The property keys whose values to return on each Task Definition.
+        :type property_keys: List[str]
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -522,7 +526,8 @@ class TaskDefinitionsApi:
             'filter',
             'sort_by',
             'limit',
-            'page'
+            'page',
+            'property_keys'
         ]
         _all_params.extend(
             [
@@ -571,6 +576,10 @@ class TaskDefinitionsApi:
 
         if _params.get('page') is not None:  # noqa: E501
             _query_params.append(('page', _params['page']))
+
+        if _params.get('property_keys') is not None:  # noqa: E501
+            _query_params.append(('propertyKeys', _params['property_keys']))
+            _collection_formats['propertyKeys'] = 'multi'
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -1455,7 +1464,7 @@ class TaskDefinitionsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def list_task_definitions_async(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfTaskDefinition:
+    async def list_task_definitions_async(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfTaskDefinition:
             """ListTaskDefinitions: List Task Definitions  # noqa: E501
             
             :param as_at: The asAt datetime at which to list the Task Definitions. Defaults to return the latest version of each Task Definition if not specified.
@@ -1468,6 +1477,8 @@ class TaskDefinitionsApi:
             :type limit: int
             :param page: The pagination token to use to continue listing task definitions from a previous call to list task definitions. This value is returned from the previous call. If a pagination token is provided the sortBy, filter, effectiveAt, and asAt fields must not have changed since the original request.
             :type page: str
+            :param property_keys: The property keys whose values to return on each Task Definition.
+            :type property_keys: List[str]
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -1478,11 +1489,11 @@ class TaskDefinitionsApi:
                 message = "Error! Please call the list_task_definitions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.list_task_definitions_with_http_info_async(as_at, filter, sort_by, limit, page, **kwargs)
+            response = await self.list_task_definitions_with_http_info_async(as_at, filter, sort_by, limit, page, property_keys, **kwargs)
             return response.data
 
     @validate_call
-    async def list_task_definitions_with_http_info_async(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfTaskDefinition]:
+    async def list_task_definitions_with_http_info_async(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfTaskDefinition]:
             """ListTaskDefinitions: List Task Definitions  # noqa: E501
 
 
@@ -1496,6 +1507,8 @@ class TaskDefinitionsApi:
             :type limit: int
             :param page: The pagination token to use to continue listing task definitions from a previous call to list task definitions. This value is returned from the previous call. If a pagination token is provided the sortBy, filter, effectiveAt, and asAt fields must not have changed since the original request.
             :type page: str
+            :param property_keys: The property keys whose values to return on each Task Definition.
+            :type property_keys: List[str]
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -1523,7 +1536,8 @@ class TaskDefinitionsApi:
                 'filter',
                 'sort_by',
                 'limit',
-                'page'
+                'page',
+                'property_keys'
             ]
             _all_params.extend(
                 [
@@ -1572,6 +1586,10 @@ class TaskDefinitionsApi:
 
             if _params.get('page') is not None:  # noqa: E501
                 _query_params.append(('page', _params['page']))
+
+            if _params.get('property_keys') is not None:  # noqa: E501
+                _query_params.append(('propertyKeys', _params['property_keys']))
+                _collection_formats['propertyKeys'] = 'multi'
 
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))

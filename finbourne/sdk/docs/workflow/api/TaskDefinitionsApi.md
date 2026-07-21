@@ -169,7 +169,7 @@ Name | Type | Description  | Notes
 ---
 
 # **list_task_definitions**
-> PagedResourceListOfTaskDefinition listTaskDefinitions = list_task_definitions(as_at=as_at, filter=filter, sort_by=sort_by, limit=limit, page=page)
+> PagedResourceListOfTaskDefinition listTaskDefinitions = list_task_definitions(as_at=as_at, filter=filter, sort_by=sort_by, limit=limit, page=page, property_keys=property_keys)
 
 ListTaskDefinitions: List Task Definitions
 
@@ -182,7 +182,8 @@ filter = 'filter_example' # str (optional)
 sort_by = ['sort_by_example'] # List[str] (optional)
 limit = 10 # int (optional)
 page = 'page_example' # str (optional)
-api_response = api_instance.list_task_definitions(as_at=as_at, filter=filter, sort_by=sort_by, limit=limit, page=page)
+property_keys = ['property_keys_example'] # List[str] (optional)
+api_response = api_instance.list_task_definitions(as_at=as_at, filter=filter, sort_by=sort_by, limit=limit, page=page, property_keys=property_keys)
 pprint(api_response)
 ```
 
@@ -195,6 +196,7 @@ Name | Type | Description  | Notes
  **sort_by** | [**List[str]**](str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot; | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many. | [optional] [default to 10]
  **page** | **str**| The pagination token to use to continue listing task definitions from a previous call to list task definitions. This value is returned from the previous call. If a pagination token is provided the sortBy, filter, effectiveAt, and asAt fields must not have changed since the original request. | [optional] 
+ **property_keys** | [**List[str]**](str.md)| The property keys whose values to return on each Task Definition. | [optional] 
 
 ### Return type
 

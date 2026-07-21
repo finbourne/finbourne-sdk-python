@@ -94,6 +94,8 @@ from finbourne.sdk.services.lusid.models.append_market_data_type import AppendMa
 from finbourne.sdk.services.lusid.models.applicable_entity import ApplicableEntity
 from finbourne.sdk.services.lusid.models.applicable_entity_types import ApplicableEntityTypes
 from finbourne.sdk.services.lusid.models.applicable_instrument_event import ApplicableInstrumentEvent
+from finbourne.sdk.services.lusid.models.apportionment_breakdown import ApportionmentBreakdown
+from finbourne.sdk.services.lusid.models.apportionment_member_factor import ApportionmentMemberFactor
 from finbourne.sdk.services.lusid.models.apportionment_method_property import ApportionmentMethodProperty
 from finbourne.sdk.services.lusid.models.asset_class import AssetClass
 from finbourne.sdk.services.lusid.models.asset_leg import AssetLeg
@@ -1569,6 +1571,8 @@ __all__ = [
     "ApplicableEntity",
     "ApplicableEntityTypes",
     "ApplicableInstrumentEvent",
+    "ApportionmentBreakdown",
+    "ApportionmentMemberFactor",
     "ApportionmentMethodProperty",
     "AssetClass",
     "AssetLeg",

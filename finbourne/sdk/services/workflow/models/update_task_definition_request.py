@@ -23,6 +23,7 @@ from uuid import UUID
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 from finbourne.sdk.services.workflow.models.action_definition import ActionDefinition
 from finbourne.sdk.services.workflow.models.initial_state import InitialState
+from finbourne.sdk.services.workflow.models.perpetual_property import PerpetualProperty
 from finbourne.sdk.services.workflow.models.task_field_definition import TaskFieldDefinition
 from finbourne.sdk.services.workflow.models.task_state_definition import TaskStateDefinition
 from finbourne.sdk.services.workflow.models.task_transition_definition import TaskTransitionDefinition
@@ -41,7 +42,8 @@ class UpdateTaskDefinitionRequest(BaseModel):
     triggers: Optional[List[TransitionTriggerDefinition]] = Field(default=None, description="Triggers")
     transitions: Optional[List[TaskTransitionDefinition]] = Field(default=None, description="Transitions")
     actions: Optional[List[ActionDefinition]] = Field(default=None, description="Actions")
-    __properties: ClassVar[List[str]] = ["displayName", "description", "states", "fieldSchema", "initialState", "triggers", "transitions", "actions"]
+    properties: Optional[Dict[str, PerpetualProperty]] = Field(default=None, description="The properties to set on the Task Definition, keyed by property key. Optional. A null property value deletes the property.")
+    __properties: ClassVar[List[str]] = ["displayName", "description", "states", "fieldSchema", "initialState", "triggers", "transitions", "actions", "properties"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -115,6 +117,13 @@ class UpdateTaskDefinitionRequest(BaseModel):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['actions'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each value in properties (dict)
+        _field_dict = {}
+        if self.properties:
+            for _key in self.properties:
+                if self.properties[_key]:
+                    _field_dict[_key] = self.properties[_key].to_dict(by_alias=by_alias)
+            _dict['properties'] = _field_dict
         # set to None if description (nullable) is None
         # and model_fields_set contains the field
         if self.description is None and "description" in self.model_fields_set:
@@ -140,6 +149,11 @@ class UpdateTaskDefinitionRequest(BaseModel):
         if self.actions is None and "actions" in self.model_fields_set:
             _dict['actions'] = None
 
+        # set to None if properties (nullable) is None
+        # and model_fields_set contains the field
+        if self.properties is None and "properties" in self.model_fields_set:
+            _dict['properties'] = None
+
         return _dict
 
     @classmethod
@@ -159,7 +173,13 @@ class UpdateTaskDefinitionRequest(BaseModel):
             "initial_state": InitialState.from_dict(_v) if (_v := obj.get("initialState")) is not None else None,
             "triggers": [TransitionTriggerDefinition.from_dict(_item) for _item in _v] if (_v := obj.get("triggers")) is not None else None,
             "transitions": [TaskTransitionDefinition.from_dict(_item) for _item in _v] if (_v := obj.get("transitions")) is not None else None,
-            "actions": [ActionDefinition.from_dict(_item) for _item in _v] if (_v := obj.get("actions")) is not None else None
+            "actions": [ActionDefinition.from_dict(_item) for _item in _v] if (_v := obj.get("actions")) is not None else None,
+            "properties": dict(
+                (_k, PerpetualProperty.from_dict(_v))
+                for _k, _v in _val.items()
+            )
+            if (_val := obj.get("properties")) is not None
+            else None
         })
         return _obj
 

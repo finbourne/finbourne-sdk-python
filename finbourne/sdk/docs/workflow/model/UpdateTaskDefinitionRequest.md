@@ -13,6 +13,7 @@ Contains required info to update a Task Definition
 | **triggers** | [List[TransitionTriggerDefinition]](TransitionTriggerDefinition.md) | Optional | Triggers |
 | **transitions** | [List[TaskTransitionDefinition]](TaskTransitionDefinition.md) | Optional | Transitions |
 | **actions** | [List[ActionDefinition]](ActionDefinition.md) | Optional | Actions |
+| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | The properties to set on the Task Definition, keyed by property key. Optional. A null property value deletes the property. |
 
 
 ## Usage
@@ -30,7 +31,8 @@ instance = UpdateTaskDefinitionRequest(
     initial_state=InitialState(...),  # required
     triggers=[],  # optional — Triggers
     transitions=[],  # optional — Transitions
-    actions=[]  # optional — Actions
+    actions=[],  # optional — Actions
+    properties=PerpetualProperty(...)  # optional — The properties to set on the Task Definition, keyed by property key. Optional. A null property value deletes the property.
 )
 ```
 
@@ -40,6 +42,7 @@ instance = UpdateTaskDefinitionRequest(
 - [TransitionTriggerDefinition](TransitionTriggerDefinition.md) — used in `triggers`
 - [TaskTransitionDefinition](TaskTransitionDefinition.md) — used in `transitions`
 - [ActionDefinition](ActionDefinition.md) — used in `actions`
+- [PerpetualProperty](PerpetualProperty.md) — used in `properties`
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)
