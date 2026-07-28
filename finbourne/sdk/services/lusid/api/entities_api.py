@@ -23,6 +23,7 @@ from datetime import datetime
 from pydantic import Field, StrictInt, StrictStr, field_validator
 from typing import List, Optional
 from typing_extensions import Annotated
+from finbourne.sdk.services.lusid.models.bookmark_entity import BookmarkEntity
 from finbourne.sdk.services.lusid.models.custom_entity_entity import CustomEntityEntity
 from finbourne.sdk.services.lusid.models.data_type_entity import DataTypeEntity
 from finbourne.sdk.services.lusid.models.instrument_entity import InstrumentEntity
@@ -54,6 +55,146 @@ class EntitiesApi:
             self.api_client = api_client
         else:
             self.sync_api_client = SyncApiClient.get_default()
+
+    @validate_call
+    def get_bookmark_by_entity_unique_id(self, entity_unique_id: StrictStr, as_at: Optional[datetime] = None, previews: Optional[List[str]] = None, **kwargs) -> BookmarkEntity:
+        """GetBookmarkByEntityUniqueId: Get bookmark by EntityUniqueId  # noqa: E501
+
+        Retrieve the definition of a particular bookmark.    If the bookmark is deleted, this will return the state of the bookmark immediately prior to deletion.  # noqa: E501
+        :param entity_unique_id: The universally unique identifier of the bookmark. (required)
+        :type entity_unique_id: str
+        :param as_at: The asAt datetime at which to retrieve the bookmark. Defaults to returning the latest version of the bookmark if not specified.
+        :type as_at: datetime
+        :param previews: The ids of the staged modifications to be previewed in the response.
+        :type previews: List[str]
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: BookmarkEntity
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_bookmark_by_entity_unique_id_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.get_bookmark_by_entity_unique_id_with_http_info(entity_unique_id, as_at, previews, **kwargs)
+        return response.data
+
+    @validate_call
+    def get_bookmark_by_entity_unique_id_with_http_info(self, entity_unique_id: StrictStr, as_at: Optional[datetime] = None, previews: Optional[List[str]] = None, **kwargs) -> ApiResponse[BookmarkEntity]:
+        """GetBookmarkByEntityUniqueId: Get bookmark by EntityUniqueId  # noqa: E501
+
+        Retrieve the definition of a particular bookmark.    If the bookmark is deleted, this will return the state of the bookmark immediately prior to deletion.  # noqa: E501
+        :param entity_unique_id: The universally unique identifier of the bookmark. (required)
+        :type entity_unique_id: str
+        :param as_at: The asAt datetime at which to retrieve the bookmark. Defaults to returning the latest version of the bookmark if not specified.
+        :type as_at: datetime
+        :param previews: The ids of the staged modifications to be previewed in the response.
+        :type previews: List[str]
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(BookmarkEntity, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'entity_unique_id',
+            'as_at',
+            'previews'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_bookmark_by_entity_unique_id" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['entity_unique_id'] is not None:
+            _path_params['entityUniqueId'] = _params['entity_unique_id']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('as_at') is not None:  # noqa: E501
+            if isinstance(_params['as_at'], datetime):
+                _query_params.append(('asAt', _params['as_at'].strftime(self.sync_api_client.configuration.datetime_format)))
+            else:
+                _query_params.append(('asAt', _params['as_at']))
+
+        if _params.get('previews') is not None:  # noqa: E501
+            _query_params.append(('previews', _params['previews']))
+            _collection_formats['previews'] = 'multi'
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "BookmarkEntity",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/entities/bookmarks/{entityUniqueId}', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
     def get_custom_entity_by_entity_unique_id(self, entity_unique_id: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, previews: Optional[List[str]] = None, **kwargs) -> CustomEntityEntity:
@@ -1273,6 +1414,147 @@ class EntitiesApi:
 
   # --- ASYNC API METHODS ---
 
+
+    @validate_call
+    async def get_bookmark_by_entity_unique_id_async(self, entity_unique_id: StrictStr, as_at: Optional[datetime] = None, previews: Optional[List[str]] = None, **kwargs) -> BookmarkEntity:
+            """GetBookmarkByEntityUniqueId: Get bookmark by EntityUniqueId  # noqa: E501
+            Retrieve the definition of a particular bookmark.    If the bookmark is deleted, this will return the state of the bookmark immediately prior to deletion.  # noqa: E501
+            
+            :param entity_unique_id: The universally unique identifier of the bookmark. (required)
+            :type entity_unique_id: str
+            :param as_at: The asAt datetime at which to retrieve the bookmark. Defaults to returning the latest version of the bookmark if not specified.
+            :type as_at: datetime
+            :param previews: The ids of the staged modifications to be previewed in the response.
+            :type previews: List[str]
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: BookmarkEntity
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the get_bookmark_by_entity_unique_id_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.get_bookmark_by_entity_unique_id_with_http_info_async(entity_unique_id, as_at, previews, **kwargs)
+            return response.data
+
+    @validate_call
+    async def get_bookmark_by_entity_unique_id_with_http_info_async(self, entity_unique_id: StrictStr, as_at: Optional[datetime] = None, previews: Optional[List[str]] = None, **kwargs) -> ApiResponse[BookmarkEntity]:
+            """GetBookmarkByEntityUniqueId: Get bookmark by EntityUniqueId  # noqa: E501
+
+            Retrieve the definition of a particular bookmark.    If the bookmark is deleted, this will return the state of the bookmark immediately prior to deletion.  # noqa: E501
+
+            :param entity_unique_id: The universally unique identifier of the bookmark. (required)
+            :type entity_unique_id: str
+            :param as_at: The asAt datetime at which to retrieve the bookmark. Defaults to returning the latest version of the bookmark if not specified.
+            :type as_at: datetime
+            :param previews: The ids of the staged modifications to be previewed in the response.
+            :type previews: List[str]
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(BookmarkEntity, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'entity_unique_id',
+                'as_at',
+                'previews'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method get_bookmark_by_entity_unique_id" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['entity_unique_id'] is not None:
+                _path_params['entityUniqueId'] = _params['entity_unique_id']
+
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('as_at') is not None:  # noqa: E501
+                if isinstance(_params['as_at'], datetime):
+                    _query_params.append(('asAt', _params['as_at'].strftime(self.api_client.configuration.datetime_format)))
+                else:
+                    _query_params.append(('asAt', _params['as_at']))
+
+            if _params.get('previews') is not None:  # noqa: E501
+                _query_params.append(('previews', _params['previews']))
+                _collection_formats['previews'] = 'multi'
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "BookmarkEntity",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/entities/bookmarks/{entityUniqueId}', 'GET',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
     async def get_custom_entity_by_entity_unique_id_async(self, entity_unique_id: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, previews: Optional[List[str]] = None, **kwargs) -> CustomEntityEntity:

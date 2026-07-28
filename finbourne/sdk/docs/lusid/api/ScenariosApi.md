@@ -4,6 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**create_scenario_from_template**](ScenariosApi.md#create_scenario_from_template) | **POST** /api/api/scenarios/{scope}/$fromTemplate | [EARLY ACCESS] CreateScenarioFromTemplate: [EARLY ACCESS] CreateScenarioFromTemplate: Create a Scenario from a pre-built template.
 [**delete_scenario**](ScenariosApi.md#delete_scenario) | **DELETE** /api/api/scenarios/{scope}/{code} | [EARLY ACCESS] DeleteScenario: Delete a Scenario, assuming that it is present.
 [**get_scenario**](ScenariosApi.md#get_scenario) | **GET** /api/api/scenarios/{scope}/{code} | [EARLY ACCESS] GetScenario: Get Scenario
 [**list_scenarios**](ScenariosApi.md#list_scenarios) | **GET** /api/api/scenarios/{scope} | [EARLY ACCESS] ListScenarios: List the set of Scenario definitions
@@ -32,6 +33,50 @@ from finbourne.sdk.services.lusid.api.scenarios_api import ScenariosApi
 api_client_factory = SyncApiClientFactory()
 api_instance = api_client_factory.build(ScenariosApi)
 ```
+
+---
+
+# **create_scenario_from_template**
+> UpsertSingleStructuredDataResponse createScenarioFromTemplate = create_scenario_from_template(scope, create_scenario_from_template_request)
+
+[EARLY ACCESS] CreateScenarioFromTemplate: [EARLY ACCESS] CreateScenarioFromTemplate: Create a Scenario from a pre-built template.
+
+Creates and stores a scenario built from a pre-defined parameterised template, for example a  parallel rates shift or an equity crash. The template determines the scenario's shifts; the  parameters supply the targets (e.g. currency or instrument) and optionally override the default  shift size. The created scenario is stored in the given scope and behaves exactly like a  hand-built scenario.                Available templates: RatesUp, RatesDown, CurveSteepener, CurveFlattener, VolSpike, EquityCrash,  FxShock, RiskOff.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(ScenariosApi)
+scope = 'scope_example' # str
+create_scenario_from_template_request = CreateScenarioFromTemplateRequest()
+api_response = api_instance.create_scenario_from_template(scope, create_scenario_from_template_request)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope in which to create the scenario | [required] 
+ **create_scenario_from_template_request** | [**CreateScenarioFromTemplateRequest**](CreateScenarioFromTemplateRequest.md)| The template, code and parameters to create the scenario from | [required] 
+
+### Return type
+
+[**UpsertSingleStructuredDataResponse**](UpsertSingleStructuredDataResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The successfully created scenario or any failure |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
 
 ---
 

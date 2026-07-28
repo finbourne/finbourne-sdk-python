@@ -11,6 +11,7 @@ A portfolio of a particular type.
 | **display_name** | **str** | Required | The name of the portfolio. |
 | **description** | **str** | Optional | The long form description of the portfolio. |
 | **created** | **datetime** | Required | The effective datetime at which the portfolio was created. No transactions or constituents can be added to the portfolio before this date. |
+| **enablement_date** | **datetime** | Optional | The effective datetime from which transactions or holdings booked to the portfolio begin contributing to holdings, valuations and other computed results. Data with an earlier effective date is still accepted and stored, but does not affect any computed results until this date. Defaults to the portfolio&#39;s creation date when not explicitly set. |
 | **parent_portfolio_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **version** | [Version](Version.md) | Optional | *No description available.* |
 | **staged_modifications** | [StagedModificationsInfo](StagedModificationsInfo.md) | Optional | *No description available.* |
@@ -27,6 +28,7 @@ A portfolio of a particular type.
 | **amortisation_rule_set_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **tax_rule_set_scope** | **str** | Optional | The scope of the tax rule sets for this portfolio. |
 | **settlement_configuration** | [PortfolioSettlementConfiguration](PortfolioSettlementConfiguration.md) | Optional | *No description available.* |
+| **transaction_exclusion_filter** | **str** | Optional | A filter expression that identifies transactions to exclude when building the transaction portfolio&#39;s transactions and holdings. Transactions matching this filter are flagged as excluded. |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
@@ -44,6 +46,7 @@ instance = Portfolio(
     display_name="...",  # required — The name of the portfolio.
     description="...",  # optional — The long form description of the portfolio.
     created=datetime.now(),  # required — The effective datetime at which the portfolio was created. No transactions or constituents can be added to the portfolio before this date.
+    enablement_date=datetime.now(),  # optional — The effective datetime from which transactions or holdings booked to the portfolio begin contributing to holdings, valuations and other computed results. Data with an earlier effective date is still accepted and stored, but does not affect any computed results until this date. Defaults to the portfolio&#39;s creation date when not explicitly set.
     parent_portfolio_id=ResourceId(...),  # optional
     version=Version(...),  # optional
     staged_modifications=StagedModificationsInfo(...),  # optional
@@ -60,6 +63,7 @@ instance = Portfolio(
     amortisation_rule_set_id=ResourceId(...),  # optional
     tax_rule_set_scope="...",  # optional — The scope of the tax rule sets for this portfolio.
     settlement_configuration=PortfolioSettlementConfiguration(...),  # optional
+    transaction_exclusion_filter="...",  # optional — A filter expression that identifies transactions to exclude when building the transaction portfolio&#39;s transactions and holdings. Transactions matching this filter are flagged as excluded.
     links=[]  # optional
 )
 ```

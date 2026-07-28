@@ -7,7 +7,8 @@ The breakdown of PnL for a Share Class on a specified date.
 |------|------|----------|-------------|
 | **apportioned_non_class_specific_pnl** | [Dict[str, ShareClassAmount]](ShareClassAmount.md) | Required | Bucket of detail for PnL within the queried period not explicitly allocated to any share class but has been apportioned to the share class. |
 | **class_pnl** | [Dict[str, ShareClassAmount]](ShareClassAmount.md) | Required | Bucket of detail for PnL specific to the share class within the queried period. |
-| **total_pnl** | [Dict[str, ShareClassAmount]](ShareClassAmount.md) | Required | Bucket of detail for the sum of class PnL and PnL not specific to a class within the queried period. |
+| **group_apportioned_pnl** | [Dict[str, ShareClassAmount]](ShareClassAmount.md) | Required | Bucket of detail for the share class&#39;s apportioned share of PnL allocated to the allocation groups it belongs to, within the queried period. |
+| **total_pnl** | [Dict[str, ShareClassAmount]](ShareClassAmount.md) | Required | Bucket of detail for the total PnL within the queried period: the sum of the class-specific, apportioned non-class-specific and allocation-group-apportioned PnL. |
 
 
 ## Usage
@@ -20,7 +21,8 @@ from finbourne.sdk.services.lusid.models.ShareClassPnlBreakdown import ShareClas
 instance = ShareClassPnlBreakdown(
     apportioned_non_class_specific_pnl=ShareClassAmount(...),  # required — Bucket of detail for PnL within the queried period not explicitly allocated to any share class but has been apportioned to the share class.
     class_pnl=ShareClassAmount(...),  # required — Bucket of detail for PnL specific to the share class within the queried period.
-    total_pnl=ShareClassAmount(...)  # required — Bucket of detail for the sum of class PnL and PnL not specific to a class within the queried period.
+    group_apportioned_pnl=ShareClassAmount(...),  # required — Bucket of detail for the share class&#39;s apportioned share of PnL allocated to the allocation groups it belongs to, within the queried period.
+    total_pnl=ShareClassAmount(...)  # required — Bucket of detail for the total PnL within the queried period: the sum of the class-specific, apportioned non-class-specific and allocation-group-apportioned PnL.
 )
 ```
 
@@ -29,6 +31,7 @@ instance = ShareClassPnlBreakdown(
 
 - [ShareClassAmount](ShareClassAmount.md) — used in `apportioned_non_class_specific_pnl`
 - [ShareClassAmount](ShareClassAmount.md) — used in `class_pnl`
+- [ShareClassAmount](ShareClassAmount.md) — used in `group_apportioned_pnl`
 - [ShareClassAmount](ShareClassAmount.md) — used in `total_pnl`
 
 

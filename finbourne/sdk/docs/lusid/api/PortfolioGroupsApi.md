@@ -155,7 +155,7 @@ Name | Type | Description  | Notes
 ---
 
 # **build_transactions_for_portfolio_group**
-> VersionedResourceListOfOutputTransaction buildTransactionsForPortfolioGroup = build_transactions_for_portfolio_group(scope, code, transaction_query_parameters, as_at=as_at, filter=filter, property_keys=property_keys, limit=limit, page=page, data_model_scope=data_model_scope, data_model_code=data_model_code, membership_type=membership_type)
+> VersionedResourceListOfOutputTransaction buildTransactionsForPortfolioGroup = build_transactions_for_portfolio_group(scope, code, transaction_query_parameters, as_at=as_at, filter=filter, property_keys=property_keys, limit=limit, page=page, data_model_scope=data_model_scope, data_model_code=data_model_code, membership_type=membership_type, return_excluded_transactions=return_excluded_transactions)
 
 BuildTransactionsForPortfolioGroup: Build transactions for transaction portfolios in a portfolio group
 
@@ -176,7 +176,8 @@ page = 'page_example' # str (optional)
 data_model_scope = 'data_model_scope_example' # str (optional)
 data_model_code = 'data_model_code_example' # str (optional)
 membership_type = 'membership_type_example' # str (optional)
-api_response = api_instance.build_transactions_for_portfolio_group(scope, code, transaction_query_parameters, as_at=as_at, filter=filter, property_keys=property_keys, limit=limit, page=page, data_model_scope=data_model_scope, data_model_code=data_model_code, membership_type=membership_type)
+return_excluded_transactions = False # bool (optional)
+api_response = api_instance.build_transactions_for_portfolio_group(scope, code, transaction_query_parameters, as_at=as_at, filter=filter, property_keys=property_keys, limit=limit, page=page, data_model_scope=data_model_scope, data_model_code=data_model_code, membership_type=membership_type, return_excluded_transactions=return_excluded_transactions)
 pprint(api_response)
 ```
 
@@ -195,6 +196,7 @@ Name | Type | Description  | Notes
  **data_model_scope** | **str**| The optional scope of a Custom Data Model to use | [optional] 
  **data_model_code** | **str**| The optional code of a Custom Data Model to use | [optional] 
  **membership_type** | **str**| The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate. | [optional] 
+ **return_excluded_transactions** | **bool**| Whether to include transactions that a portfolio&#39;s transaction exclusion filter marks as excluded. Defaults to false. | [optional] [default to False]
 
 ### Return type
 

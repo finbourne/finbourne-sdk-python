@@ -1,6 +1,6 @@
 [project]
 name = "finbourne-sdk"
-version = "0.1.78"
+version = "0.1.82"
 description = "This is the Python SDK for all of FINBOURNE's APIs"
 authors = [
     {name = "Finbourne Technology LTD", email = "info@finbourne.com"}
@@ -25,10 +25,10 @@ Repository = "https://github.com/finbourne/finbourne-sdk-python.git"
 
 [project.optional-dependencies]
 dev = [
-    "pyright>=1.1.408",
-    "ruff>=0.15.12",
-    "pytest>=9.0.3",
-    "pytest-asyncio>=0.21.0",
+    "pyright==1.1.411",
+    "ruff==0.15.12",
+    "pytest==9.0.3",
+    "pytest-asyncio==0.21.0",
     "flake8>=4.0.0,<5.0.0",
     "xeger>=0.4,<1.0.0",
 ]

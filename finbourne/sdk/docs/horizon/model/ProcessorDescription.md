@@ -10,6 +10,8 @@ Represents a processor in the Horizon integration system.
 | **description** | **str** | Required | *No description available.* |
 | **category** | **str** | Required | *No description available.* |
 | **is_active** | **bool** | Required | *No description available.* |
+| **is_connection_required** | **bool** | Required | *No description available.* |
+| **relationships** | **List[str]** | Required | *No description available.* |
 
 
 ## Usage
@@ -24,7 +26,9 @@ instance = ProcessorDescription(
     display_name="...",  # required
     description="...",  # required
     category="...",  # required
-    is_active=True  # required
+    is_active=True,  # required
+    is_connection_required=True,  # required
+    relationships=  # required
 )
 ```
 

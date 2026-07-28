@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **shift_type** | **str** | Required | *No description available.* |
+| **scenario_shift_type** | **str** | Required | Available values: RateCurveShiftDefinition, FxShiftDefinition, EquityShiftDefinition, VolSurfaceShiftDefinition. |
 
 
 ## Usage
@@ -15,7 +15,7 @@
 from finbourne.sdk.services.lusid.models.ScenarioShiftDefinition import ScenarioShiftDefinition
 
 instance = ScenarioShiftDefinition(
-    shift_type="..."  # required
+    scenario_shift_type="..."  # required — Available values: RateCurveShiftDefinition, FxShiftDefinition, EquityShiftDefinition, VolSurfaceShiftDefinition.
 )
 ```
 

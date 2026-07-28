@@ -63,6 +63,7 @@ from finbourne.sdk.services.lusid.api.order_management_api import OrderManagemen
 from finbourne.sdk.services.lusid.api.orders_api import OrdersApi
 from finbourne.sdk.services.lusid.api.packages_api import PackagesApi
 from finbourne.sdk.services.lusid.api.participations_api import ParticipationsApi
+from finbourne.sdk.services.lusid.api.payment_instructions_api import PaymentInstructionsApi
 from finbourne.sdk.services.lusid.api.persons_api import PersonsApi
 from finbourne.sdk.services.lusid.api.placements_api import PlacementsApi
 from finbourne.sdk.services.lusid.api.portfolio_groups_api import PortfolioGroupsApi
@@ -227,12 +228,16 @@ from finbourne.sdk.services.lusid.models.bond_principal_event import BondPrincip
 from finbourne.sdk.services.lusid.models.bonus_issue_event import BonusIssueEvent
 from finbourne.sdk.services.lusid.models.book_transactions_request import BookTransactionsRequest
 from finbourne.sdk.services.lusid.models.book_transactions_response import BookTransactionsResponse
+from finbourne.sdk.services.lusid.models.bookmark_entity import BookmarkEntity
 from finbourne.sdk.services.lusid.models.bool_compliance_parameter import BoolComplianceParameter
 from finbourne.sdk.services.lusid.models.bool_list_compliance_parameter import BoolListComplianceParameter
 from finbourne.sdk.services.lusid.models.branch_step import BranchStep
 from finbourne.sdk.services.lusid.models.branch_step_request import BranchStepRequest
 from finbourne.sdk.services.lusid.models.break_code_source import BreakCodeSource
 from finbourne.sdk.services.lusid.models.bucket import Bucket
+from finbourne.sdk.services.lusid.models.bucket_set_node import BucketSetNode
+from finbourne.sdk.services.lusid.models.bucket_set_result import BucketSetResult
+from finbourne.sdk.services.lusid.models.bucket_set_result_bucket import BucketSetResultBucket
 from finbourne.sdk.services.lusid.models.bucketed_cash_flow_request import BucketedCashFlowRequest
 from finbourne.sdk.services.lusid.models.bucketed_cash_flow_response import BucketedCashFlowResponse
 from finbourne.sdk.services.lusid.models.bucketing_schedule import BucketingSchedule
@@ -276,6 +281,7 @@ from finbourne.sdk.services.lusid.models.cds_model_options import CdsModelOption
 from finbourne.sdk.services.lusid.models.cds_protection_detail_specification import CdsProtectionDetailSpecification
 from finbourne.sdk.services.lusid.models.cdx_credit_event import CdxCreditEvent
 from finbourne.sdk.services.lusid.models.change import Change
+from finbourne.sdk.services.lusid.models.change_event import ChangeEvent
 from finbourne.sdk.services.lusid.models.change_history import ChangeHistory
 from finbourne.sdk.services.lusid.models.change_history_action import ChangeHistoryAction
 from finbourne.sdk.services.lusid.models.change_interval import ChangeInterval
@@ -394,6 +400,7 @@ from finbourne.sdk.services.lusid.models.create_relation_request import CreateRe
 from finbourne.sdk.services.lusid.models.create_relational_dataset_definition_request import CreateRelationalDatasetDefinitionRequest
 from finbourne.sdk.services.lusid.models.create_relationship_definition_request import CreateRelationshipDefinitionRequest
 from finbourne.sdk.services.lusid.models.create_relationship_request import CreateRelationshipRequest
+from finbourne.sdk.services.lusid.models.create_scenario_from_template_request import CreateScenarioFromTemplateRequest
 from finbourne.sdk.services.lusid.models.create_sequence_request import CreateSequenceRequest
 from finbourne.sdk.services.lusid.models.create_series_identifier_field import CreateSeriesIdentifierField
 from finbourne.sdk.services.lusid.models.create_simple_position_portfolio_request import CreateSimplePositionPortfolioRequest
@@ -512,6 +519,8 @@ from finbourne.sdk.services.lusid.models.equity_curve_by_prices_data import Equi
 from finbourne.sdk.services.lusid.models.equity_curve_dependency import EquityCurveDependency
 from finbourne.sdk.services.lusid.models.equity_model_options import EquityModelOptions
 from finbourne.sdk.services.lusid.models.equity_option import EquityOption
+from finbourne.sdk.services.lusid.models.equity_shift_definition import EquityShiftDefinition
+from finbourne.sdk.services.lusid.models.equity_shift_mode import EquityShiftMode
 from finbourne.sdk.services.lusid.models.equity_swap import EquitySwap
 from finbourne.sdk.services.lusid.models.equity_vol_dependency import EquityVolDependency
 from finbourne.sdk.services.lusid.models.equity_vol_surface_data import EquityVolSurfaceData
@@ -556,6 +565,7 @@ from finbourne.sdk.services.lusid.models.fixed_leg_all_of_overrides import Fixed
 from finbourne.sdk.services.lusid.models.fixed_schedule import FixedSchedule
 from finbourne.sdk.services.lusid.models.flexible_deposit import FlexibleDeposit
 from finbourne.sdk.services.lusid.models.flexible_loan import FlexibleLoan
+from finbourne.sdk.services.lusid.models.flexible_loan_pricer_options import FlexibleLoanPricerOptions
 from finbourne.sdk.services.lusid.models.flexible_repo import FlexibleRepo
 from finbourne.sdk.services.lusid.models.flexible_repo_cash_flow_event import FlexibleRepoCashFlowEvent
 from finbourne.sdk.services.lusid.models.flexible_repo_collateral_event import FlexibleRepoCollateralEvent
@@ -620,6 +630,8 @@ from finbourne.sdk.services.lusid.models.fx_forwards_dependency import FxForward
 from finbourne.sdk.services.lusid.models.fx_linked_notional_schedule import FxLinkedNotionalSchedule
 from finbourne.sdk.services.lusid.models.fx_option import FxOption
 from finbourne.sdk.services.lusid.models.fx_rate_schedule import FxRateSchedule
+from finbourne.sdk.services.lusid.models.fx_shift_definition import FxShiftDefinition
+from finbourne.sdk.services.lusid.models.fx_shift_mode import FxShiftMode
 from finbourne.sdk.services.lusid.models.fx_swap import FxSwap
 from finbourne.sdk.services.lusid.models.fx_tenor_convention import FxTenorConvention
 from finbourne.sdk.services.lusid.models.fx_vol_dependency import FxVolDependency
@@ -982,6 +994,15 @@ from finbourne.sdk.services.lusid.models.partial_defeasance_event import Partial
 from finbourne.sdk.services.lusid.models.participation import Participation
 from finbourne.sdk.services.lusid.models.participation_request import ParticipationRequest
 from finbourne.sdk.services.lusid.models.participation_set_request import ParticipationSetRequest
+from finbourne.sdk.services.lusid.models.payment_details_applicable_entity import PaymentDetailsApplicableEntity
+from finbourne.sdk.services.lusid.models.payment_details_reference import PaymentDetailsReference
+from finbourne.sdk.services.lusid.models.payment_details_reference_response import PaymentDetailsReferenceResponse
+from finbourne.sdk.services.lusid.models.payment_details_series_identifiers import PaymentDetailsSeriesIdentifiers
+from finbourne.sdk.services.lusid.models.payment_instruction import PaymentInstruction
+from finbourne.sdk.services.lusid.models.payment_instruction_request import PaymentInstructionRequest
+from finbourne.sdk.services.lusid.models.payment_instruction_status import PaymentInstructionStatus
+from finbourne.sdk.services.lusid.models.payment_instructions_response import PaymentInstructionsResponse
+from finbourne.sdk.services.lusid.models.payment_record_reference import PaymentRecordReference
 from finbourne.sdk.services.lusid.models.percent_check_step import PercentCheckStep
 from finbourne.sdk.services.lusid.models.percent_check_step_request import PercentCheckStepRequest
 from finbourne.sdk.services.lusid.models.performance_return import PerformanceReturn
@@ -1090,6 +1111,8 @@ from finbourne.sdk.services.lusid.models.quote_id import QuoteId
 from finbourne.sdk.services.lusid.models.quote_instrument_id_type import QuoteInstrumentIdType
 from finbourne.sdk.services.lusid.models.quote_series_id import QuoteSeriesId
 from finbourne.sdk.services.lusid.models.quote_type import QuoteType
+from finbourne.sdk.services.lusid.models.rate_curve_shift_definition import RateCurveShiftDefinition
+from finbourne.sdk.services.lusid.models.rate_curve_shift_mode import RateCurveShiftMode
 from finbourne.sdk.services.lusid.models.raw_vendor_event import RawVendorEvent
 from finbourne.sdk.services.lusid.models.re_open_period_diary_entry_request import ReOpenPeriodDiaryEntryRequest
 from finbourne.sdk.services.lusid.models.realised_gain_loss import RealisedGainLoss
@@ -1257,6 +1280,7 @@ from finbourne.sdk.services.lusid.models.run_check_response import RunCheckRespo
 from finbourne.sdk.services.lusid.models.scaling_methodology import ScalingMethodology
 from finbourne.sdk.services.lusid.models.scenario_definition import ScenarioDefinition
 from finbourne.sdk.services.lusid.models.scenario_shift_definition import ScenarioShiftDefinition
+from finbourne.sdk.services.lusid.models.scenario_shift_type import ScenarioShiftType
 from finbourne.sdk.services.lusid.models.schedule import Schedule
 from finbourne.sdk.services.lusid.models.schedule_type import ScheduleType
 from finbourne.sdk.services.lusid.models.scope_definition import ScopeDefinition
@@ -1351,6 +1375,7 @@ from finbourne.sdk.services.lusid.models.term_deposit_interest_event import Term
 from finbourne.sdk.services.lusid.models.term_deposit_principal_event import TermDepositPrincipalEvent
 from finbourne.sdk.services.lusid.models.time_zone_conventions import TimeZoneConventions
 from finbourne.sdk.services.lusid.models.timeline import Timeline
+from finbourne.sdk.services.lusid.models.to_be_announced import ToBeAnnounced
 from finbourne.sdk.services.lusid.models.total_return_swap import TotalReturnSwap
 from finbourne.sdk.services.lusid.models.touch import Touch
 from finbourne.sdk.services.lusid.models.trade_ticket import TradeTicket
@@ -1560,6 +1585,9 @@ from finbourne.sdk.services.lusid.models.versioned_resource_list_with_warnings_o
 from finbourne.sdk.services.lusid.models.virtual_document import VirtualDocument
 from finbourne.sdk.services.lusid.models.virtual_document_row import VirtualDocumentRow
 from finbourne.sdk.services.lusid.models.virtual_row import VirtualRow
+from finbourne.sdk.services.lusid.models.vol_surface_shift_definition import VolSurfaceShiftDefinition
+from finbourne.sdk.services.lusid.models.vol_surface_shift_mode import VolSurfaceShiftMode
+from finbourne.sdk.services.lusid.models.volatility_swap import VolatilitySwap
 from finbourne.sdk.services.lusid.models.warning import Warning
 from finbourne.sdk.services.lusid.models.warrants_exercise_event import WarrantsExerciseEvent
 from finbourne.sdk.services.lusid.models.weekend_mask import WeekendMask
@@ -1630,6 +1658,7 @@ __all__ = [
     "OrdersApi",
     "PackagesApi",
     "ParticipationsApi",
+    "PaymentInstructionsApi",
     "PersonsApi",
     "PlacementsApi",
     "PortfolioGroupsApi",
@@ -1792,12 +1821,16 @@ __all__ = [
     "BonusIssueEvent",
     "BookTransactionsRequest",
     "BookTransactionsResponse",
+    "BookmarkEntity",
     "BoolComplianceParameter",
     "BoolListComplianceParameter",
     "BranchStep",
     "BranchStepRequest",
     "BreakCodeSource",
     "Bucket",
+    "BucketSetNode",
+    "BucketSetResult",
+    "BucketSetResultBucket",
     "BucketedCashFlowRequest",
     "BucketedCashFlowResponse",
     "BucketingSchedule",
@@ -1841,6 +1874,7 @@ __all__ = [
     "CdsProtectionDetailSpecification",
     "CdxCreditEvent",
     "Change",
+    "ChangeEvent",
     "ChangeHistory",
     "ChangeHistoryAction",
     "ChangeInterval",
@@ -1959,6 +1993,7 @@ __all__ = [
     "CreateRelationalDatasetDefinitionRequest",
     "CreateRelationshipDefinitionRequest",
     "CreateRelationshipRequest",
+    "CreateScenarioFromTemplateRequest",
     "CreateSequenceRequest",
     "CreateSeriesIdentifierField",
     "CreateSimplePositionPortfolioRequest",
@@ -2077,6 +2112,8 @@ __all__ = [
     "EquityCurveDependency",
     "EquityModelOptions",
     "EquityOption",
+    "EquityShiftDefinition",
+    "EquityShiftMode",
     "EquitySwap",
     "EquityVolDependency",
     "EquityVolSurfaceData",
@@ -2121,6 +2158,7 @@ __all__ = [
     "FixedSchedule",
     "FlexibleDeposit",
     "FlexibleLoan",
+    "FlexibleLoanPricerOptions",
     "FlexibleRepo",
     "FlexibleRepoCashFlowEvent",
     "FlexibleRepoCollateralEvent",
@@ -2185,6 +2223,8 @@ __all__ = [
     "FxLinkedNotionalSchedule",
     "FxOption",
     "FxRateSchedule",
+    "FxShiftDefinition",
+    "FxShiftMode",
     "FxSwap",
     "FxTenorConvention",
     "FxVolDependency",
@@ -2547,6 +2587,15 @@ __all__ = [
     "Participation",
     "ParticipationRequest",
     "ParticipationSetRequest",
+    "PaymentDetailsApplicableEntity",
+    "PaymentDetailsReference",
+    "PaymentDetailsReferenceResponse",
+    "PaymentDetailsSeriesIdentifiers",
+    "PaymentInstruction",
+    "PaymentInstructionRequest",
+    "PaymentInstructionStatus",
+    "PaymentInstructionsResponse",
+    "PaymentRecordReference",
     "PercentCheckStep",
     "PercentCheckStepRequest",
     "PerformanceReturn",
@@ -2655,6 +2704,8 @@ __all__ = [
     "QuoteInstrumentIdType",
     "QuoteSeriesId",
     "QuoteType",
+    "RateCurveShiftDefinition",
+    "RateCurveShiftMode",
     "RawVendorEvent",
     "ReOpenPeriodDiaryEntryRequest",
     "RealisedGainLoss",
@@ -2822,6 +2873,7 @@ __all__ = [
     "ScalingMethodology",
     "ScenarioDefinition",
     "ScenarioShiftDefinition",
+    "ScenarioShiftType",
     "Schedule",
     "ScheduleType",
     "ScopeDefinition",
@@ -2916,6 +2968,7 @@ __all__ = [
     "TermDepositPrincipalEvent",
     "TimeZoneConventions",
     "Timeline",
+    "ToBeAnnounced",
     "TotalReturnSwap",
     "Touch",
     "TradeTicket",
@@ -3125,6 +3178,9 @@ __all__ = [
     "VirtualDocument",
     "VirtualDocumentRow",
     "VirtualRow",
+    "VolSurfaceShiftDefinition",
+    "VolSurfaceShiftMode",
+    "VolatilitySwap",
     "Warning",
     "WarrantsExerciseEvent",
     "WeekendMask",

@@ -26,14 +26,14 @@ import finbourne.sdk.services.lusid.models
 if TYPE_CHECKING:
 
     from finbourne.sdk.services.lusid.models import (
-        Basket, Bond, CapFloor, Cash, CashPerpetual, CdsIndex, ComplexBond, ContractForDifference, CreditDefaultSwap, Equity, EquityOption, EquitySwap, ExchangeTradedOption, ExoticInstrument, FlexibleDeposit, FlexibleLoan, FlexibleRepo, ForwardRateAgreement, FundShareClass, Future, FxForward, FxOption, FxSwap, InflationLeg, InflationLinkedBond, InflationSwap, InstrumentLeg, InterestRateSwap, InterestRateSwaption, LoanFacility, MasteredInstrument, ReferenceInstrument, Repo, SimpleCashFlowLoan, SimpleInstrument, TermDeposit, TotalReturnSwap)
+        Basket, Bond, CapFloor, Cash, CashPerpetual, CdsIndex, ComplexBond, ContractForDifference, CreditDefaultSwap, Equity, EquityOption, EquitySwap, ExchangeTradedOption, ExoticInstrument, FlexibleDeposit, FlexibleLoan, FlexibleRepo, ForwardRateAgreement, FundShareClass, Future, FxForward, FxOption, FxSwap, InflationLeg, InflationLinkedBond, InflationSwap, InstrumentLeg, InterestRateSwap, InterestRateSwaption, LoanFacility, MasteredInstrument, ReferenceInstrument, Repo, SimpleCashFlowLoan, SimpleInstrument, TermDeposit, ToBeAnnounced, TotalReturnSwap, VolatilitySwap)
 
 
 class LusidInstrument(BaseModel):
     """
     Base class in the hierarchy for representing the full economic definition of instruments in LUSID.  These definitions are used to provide instrument analytics such as PV, accrual, cash flows, and risk.  This base class should not be directly instantiated; each supported InstrumentType has a corresponding inherited class.  # noqa: E501
     """
-    instrument_type:  StrictStr = Field(...,alias="instrumentType", description="Available values: QuotedSecurity, InterestRateSwap, FxForward, Future, ExoticInstrument, FxOption, CreditDefaultSwap, InterestRateSwaption, Bond, EquityOption, FixedLeg, FloatingLeg, BespokeCashFlowsLeg, Unknown, TermDeposit, ContractForDifference, EquitySwap, CashPerpetual, CapFloor, CashSettled, CdsIndex, Basket, FundingLeg, FxSwap, ForwardRateAgreement, SimpleInstrument, Repo, Equity, ExchangeTradedOption, ReferenceInstrument, ComplexBond, InflationLinkedBond, InflationSwap, SimpleCashFlowLoan, TotalReturnSwap, InflationLeg, FundShareClass, FlexibleLoan, UnsettledCash, Cash, MasteredInstrument, LoanFacility, FlexibleDeposit, FlexibleRepo.") 
+    instrument_type:  StrictStr = Field(...,alias="instrumentType", description="Available values: QuotedSecurity, InterestRateSwap, FxForward, Future, ExoticInstrument, FxOption, CreditDefaultSwap, InterestRateSwaption, Bond, EquityOption, FixedLeg, FloatingLeg, BespokeCashFlowsLeg, Unknown, TermDeposit, ContractForDifference, EquitySwap, CashPerpetual, CapFloor, CashSettled, CdsIndex, Basket, FundingLeg, FxSwap, ForwardRateAgreement, SimpleInstrument, Repo, Equity, ExchangeTradedOption, ReferenceInstrument, ComplexBond, InflationLinkedBond, InflationSwap, SimpleCashFlowLoan, TotalReturnSwap, InflationLeg, FundShareClass, FlexibleLoan, UnsettledCash, Cash, MasteredInstrument, LoanFacility, FlexibleDeposit, FlexibleRepo, ToBeAnnounced, VolatilitySwap.") 
     __properties: ClassVar[List[str]] = ["instrumentType"]
 
     @field_validator('instrument_type')
@@ -101,8 +101,8 @@ class LusidInstrument(BaseModel):
         if "instrument_type" != "type":
             return value
 
-        if value not in ['QuotedSecurity', 'InterestRateSwap', 'FxForward', 'Future', 'ExoticInstrument', 'FxOption', 'CreditDefaultSwap', 'InterestRateSwaption', 'Bond', 'EquityOption', 'FixedLeg', 'FloatingLeg', 'BespokeCashFlowsLeg', 'Unknown', 'TermDeposit', 'ContractForDifference', 'EquitySwap', 'CashPerpetual', 'CapFloor', 'CashSettled', 'CdsIndex', 'Basket', 'FundingLeg', 'FxSwap', 'ForwardRateAgreement', 'SimpleInstrument', 'Repo', 'Equity', 'ExchangeTradedOption', 'ReferenceInstrument', 'ComplexBond', 'InflationLinkedBond', 'InflationSwap', 'SimpleCashFlowLoan', 'TotalReturnSwap', 'InflationLeg', 'FundShareClass', 'FlexibleLoan', 'UnsettledCash', 'Cash', 'MasteredInstrument', 'LoanFacility', 'FlexibleDeposit', 'FlexibleRepo']:
-            raise ValueError("must be one of enum values ('QuotedSecurity', 'InterestRateSwap', 'FxForward', 'Future', 'ExoticInstrument', 'FxOption', 'CreditDefaultSwap', 'InterestRateSwaption', 'Bond', 'EquityOption', 'FixedLeg', 'FloatingLeg', 'BespokeCashFlowsLeg', 'Unknown', 'TermDeposit', 'ContractForDifference', 'EquitySwap', 'CashPerpetual', 'CapFloor', 'CashSettled', 'CdsIndex', 'Basket', 'FundingLeg', 'FxSwap', 'ForwardRateAgreement', 'SimpleInstrument', 'Repo', 'Equity', 'ExchangeTradedOption', 'ReferenceInstrument', 'ComplexBond', 'InflationLinkedBond', 'InflationSwap', 'SimpleCashFlowLoan', 'TotalReturnSwap', 'InflationLeg', 'FundShareClass', 'FlexibleLoan', 'UnsettledCash', 'Cash', 'MasteredInstrument', 'LoanFacility', 'FlexibleDeposit', 'FlexibleRepo')")
+        if value not in ['QuotedSecurity', 'InterestRateSwap', 'FxForward', 'Future', 'ExoticInstrument', 'FxOption', 'CreditDefaultSwap', 'InterestRateSwaption', 'Bond', 'EquityOption', 'FixedLeg', 'FloatingLeg', 'BespokeCashFlowsLeg', 'Unknown', 'TermDeposit', 'ContractForDifference', 'EquitySwap', 'CashPerpetual', 'CapFloor', 'CashSettled', 'CdsIndex', 'Basket', 'FundingLeg', 'FxSwap', 'ForwardRateAgreement', 'SimpleInstrument', 'Repo', 'Equity', 'ExchangeTradedOption', 'ReferenceInstrument', 'ComplexBond', 'InflationLinkedBond', 'InflationSwap', 'SimpleCashFlowLoan', 'TotalReturnSwap', 'InflationLeg', 'FundShareClass', 'FlexibleLoan', 'UnsettledCash', 'Cash', 'MasteredInstrument', 'LoanFacility', 'FlexibleDeposit', 'FlexibleRepo', 'ToBeAnnounced', 'VolatilitySwap']:
+            raise ValueError("must be one of enum values ('QuotedSecurity', 'InterestRateSwap', 'FxForward', 'Future', 'ExoticInstrument', 'FxOption', 'CreditDefaultSwap', 'InterestRateSwaption', 'Bond', 'EquityOption', 'FixedLeg', 'FloatingLeg', 'BespokeCashFlowsLeg', 'Unknown', 'TermDeposit', 'ContractForDifference', 'EquitySwap', 'CashPerpetual', 'CapFloor', 'CashSettled', 'CdsIndex', 'Basket', 'FundingLeg', 'FxSwap', 'ForwardRateAgreement', 'SimpleInstrument', 'Repo', 'Equity', 'ExchangeTradedOption', 'ReferenceInstrument', 'ComplexBond', 'InflationLinkedBond', 'InflationSwap', 'SimpleCashFlowLoan', 'TotalReturnSwap', 'InflationLeg', 'FundShareClass', 'FlexibleLoan', 'UnsettledCash', 'Cash', 'MasteredInstrument', 'LoanFacility', 'FlexibleDeposit', 'FlexibleRepo', 'ToBeAnnounced', 'VolatilitySwap')")
         return value
 
     model_config = ConfigDict(
@@ -155,7 +155,9 @@ class LusidInstrument(BaseModel):
         'SimpleCashFlowLoan': 'SimpleCashFlowLoan',
         'SimpleInstrument': 'SimpleInstrument',
         'TermDeposit': 'TermDeposit',
-        'TotalReturnSwap': 'TotalReturnSwap'
+        'ToBeAnnounced': 'ToBeAnnounced',
+        'TotalReturnSwap': 'TotalReturnSwap',
+        'VolatilitySwap': 'VolatilitySwap'
     }
 
     @classmethod
@@ -184,7 +186,7 @@ class LusidInstrument(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Union[Basket, Bond, CapFloor, Cash, CashPerpetual, CdsIndex, ComplexBond, ContractForDifference, CreditDefaultSwap, Equity, EquityOption, EquitySwap, ExchangeTradedOption, ExoticInstrument, FlexibleDeposit, FlexibleLoan, FlexibleRepo, ForwardRateAgreement, FundShareClass, Future, FxForward, FxOption, FxSwap, InflationLeg, InflationLinkedBond, InflationSwap, InstrumentLeg, InterestRateSwap, InterestRateSwaption, LoanFacility, MasteredInstrument, ReferenceInstrument, Repo, SimpleCashFlowLoan, SimpleInstrument, TermDeposit, TotalReturnSwap, LusidInstrument]:
+    def from_json(cls, json_str: str) -> Union[Basket, Bond, CapFloor, Cash, CashPerpetual, CdsIndex, ComplexBond, ContractForDifference, CreditDefaultSwap, Equity, EquityOption, EquitySwap, ExchangeTradedOption, ExoticInstrument, FlexibleDeposit, FlexibleLoan, FlexibleRepo, ForwardRateAgreement, FundShareClass, Future, FxForward, FxOption, FxSwap, InflationLeg, InflationLinkedBond, InflationSwap, InstrumentLeg, InterestRateSwap, InterestRateSwaption, LoanFacility, MasteredInstrument, ReferenceInstrument, Repo, SimpleCashFlowLoan, SimpleInstrument, TermDeposit, ToBeAnnounced, TotalReturnSwap, VolatilitySwap, LusidInstrument]:
         """Create an instance of LusidInstrument from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -198,7 +200,7 @@ class LusidInstrument(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Union[Basket, Bond, CapFloor, Cash, CashPerpetual, CdsIndex, ComplexBond, ContractForDifference, CreditDefaultSwap, Equity, EquityOption, EquitySwap, ExchangeTradedOption, ExoticInstrument, FlexibleDeposit, FlexibleLoan, FlexibleRepo, ForwardRateAgreement, FundShareClass, Future, FxForward, FxOption, FxSwap, InflationLeg, InflationLinkedBond, InflationSwap, InstrumentLeg, InterestRateSwap, InterestRateSwaption, LoanFacility, MasteredInstrument, ReferenceInstrument, Repo, SimpleCashFlowLoan, SimpleInstrument, TermDeposit, TotalReturnSwap, LusidInstrument]:
+    def from_dict(cls, obj: dict) -> Union[Basket, Bond, CapFloor, Cash, CashPerpetual, CdsIndex, ComplexBond, ContractForDifference, CreditDefaultSwap, Equity, EquityOption, EquitySwap, ExchangeTradedOption, ExoticInstrument, FlexibleDeposit, FlexibleLoan, FlexibleRepo, ForwardRateAgreement, FundShareClass, Future, FxForward, FxOption, FxSwap, InflationLeg, InflationLinkedBond, InflationSwap, InstrumentLeg, InterestRateSwap, InterestRateSwaption, LoanFacility, MasteredInstrument, ReferenceInstrument, Repo, SimpleCashFlowLoan, SimpleInstrument, TermDeposit, ToBeAnnounced, TotalReturnSwap, VolatilitySwap, LusidInstrument]:
         """Create an instance of LusidInstrument from a dict"""
         # look up the object type based on discriminator mapping
         object_type = cls.get_discriminator_value(obj)

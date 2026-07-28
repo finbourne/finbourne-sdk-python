@@ -47,6 +47,7 @@ A list of output transactions.
 | **staged_modifications** | [StagedModificationsInfo](StagedModificationsInfo.md) | Optional | *No description available.* |
 | **custodian_entries** | [List[CustodianEntry]](CustodianEntry.md) | Optional | Set of of Custodian Entries associated with the transaction. |
 | **resolved_custodian_accounts** | [List[ResolvedCustodianAccount]](ResolvedCustodianAccount.md) | Optional | Set of Custodian Accounts resolved from each movement on the Transaction. |
+| **is_excluded** | **bool** | Optional | Whether the transaction was excluded from the portfolio&#39;s holdings by the portfolio&#39;s transaction exclusion filter. |
 
 
 ## Usage
@@ -98,7 +99,8 @@ instance = OutputTransaction(
     version=Version(...),  # optional
     staged_modifications=StagedModificationsInfo(...),  # optional
     custodian_entries=[],  # optional — Set of of Custodian Entries associated with the transaction.
-    resolved_custodian_accounts=[]  # optional — Set of Custodian Accounts resolved from each movement on the Transaction.
+    resolved_custodian_accounts=[],  # optional — Set of Custodian Accounts resolved from each movement on the Transaction.
+    is_excluded=True  # optional — Whether the transaction was excluded from the portfolio&#39;s holdings by the portfolio&#39;s transaction exclusion filter.
 )
 ```
 

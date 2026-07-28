@@ -22,20 +22,114 @@ from uuid import UUID
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 
+import finbourne.sdk.services.lusid.models
+if TYPE_CHECKING:
+
+    from finbourne.sdk.services.lusid.models import (
+        EquityShiftDefinition, FxShiftDefinition, RateCurveShiftDefinition, VolSurfaceShiftDefinition)
+
 
 class ScenarioShiftDefinition(BaseModel):
     """
     ScenarioShiftDefinition
     """
-    shift_type:  StrictStr = Field(...,alias="shiftType") 
-    additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["shiftType"]
+    scenario_shift_type:  StrictStr = Field(...,alias="scenarioShiftType", description="Available values: RateCurveShiftDefinition, FxShiftDefinition, EquityShiftDefinition, VolSurfaceShiftDefinition.") 
+    __properties: ClassVar[List[str]] = ["scenarioShiftType"]
+
+    @field_validator('scenario_shift_type')
+    def scenario_shift_type_validate_enum(cls, value):
+        """Validates the enum"""
+
+        # Finbourne have removed enum validation on all models, except for this use case:
+        # Workflow and notification application SDK use the property name 'type' as the discriminator on a number of classes.
+        # During instantiation, the value of 'type' is checked against the enum values, 
+        
+
+        # check it's a class that uses the 'type' property as a discriminator
+        # list of classes can be found by searching for 'actual_instance: Union[' in the generated code
+        if 'ScenarioShiftDefinition' not in [ 
+                                    # For notification application classes
+                                    'AmazonSqsNotificationType',
+                                    'AmazonSqsNotificationTypeResponse',
+                                    'AmazonSqsPrincipalAuthNotificationType',
+                                    'AmazonSqsPrincipalAuthNotificationTypeResponse',
+                                    'AzureServiceBusTypeResponse',
+                                    'AzureServiceBusNotificationType',
+                                    'EmailNotificationType',
+                                    'EmailNotificationTypeResponse',
+                                    'SmsNotificationType',
+                                    'SmsNotificationTypeResponse',
+                                    'WebhookNotificationType',
+                                    'WebhookNotificationTypeResponse',
+                        
+                                    # For workflow application classes
+                                    'CreateChildTasksAction', 
+                                    'RunWorkerAction', 
+                                    'TriggerParentTaskAction',
+                                    'CreateChildTasksActionResponse', 
+                                    'RunWorkerActionResponse',
+                                    'TriggerParentTaskActionResponse',
+                                    'CreateNewTaskActivity',
+                                    'UpdateMatchingTasksActivity',
+                                    'CreateNewTaskActivityResponse', 
+                                    'UpdateMatchingTasksActivityResponse',
+                                    'Fail', 
+                                    'GroupReconciliation', 
+                                    'HealthCheck', 
+                                    'LuminesceView', 
+                                    'SchedulerJob', 
+                                    'Sleep',
+                                    'FailResponse', 
+                                    'GroupReconciliationResponse', 
+                                    'HealthCheckResponse', 
+                                    'LuminesceViewResponse', 
+                                    'SchedulerJobResponse', 
+                                    'SleepResponse',
+                                    'Library',
+                                    'LibraryResponse',
+                                    'DayRegularity',
+                                    'RelativeMonthRegularity',
+                                    'SpecificMonthRegularity',
+                                    'WeekRegularity',
+                                    'YearRegularity',
+                                    'LusidEntityDataQualityCheck',
+                                    'LusidEntityDataQualityCheckResponse',
+                                    'TriggerChildTasksActionResponse']:
+           return value
+        
+        # Only validate the 'type' property of the class
+        if "scenario_shift_type" != "type":
+            return value
+
+        if value not in ['RateCurveShiftDefinition', 'FxShiftDefinition', 'EquityShiftDefinition', 'VolSurfaceShiftDefinition']:
+            raise ValueError("must be one of enum values ('RateCurveShiftDefinition', 'FxShiftDefinition', 'EquityShiftDefinition', 'VolSurfaceShiftDefinition')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
+
+    # JSON field name that stores the object type
+    __discriminator_property_name: ClassVar[str] = 'scenarioShiftType'
+
+    # discriminator mappings
+    __discriminator_value_class_map: ClassVar[Dict[str, str]] = {
+        'EquityShiftDefinition': 'EquityShiftDefinition',
+        'FxShiftDefinition': 'FxShiftDefinition',
+        'RateCurveShiftDefinition': 'RateCurveShiftDefinition',
+        'VolSurfaceShiftDefinition': 'VolSurfaceShiftDefinition'
+    }
+
+    @classmethod
+    def get_discriminator_value(cls, obj: dict) -> str | None:
+        """Returns the discriminator value (object type) of the data"""
+        discriminator_value = obj[cls.__discriminator_property_name]
+        if discriminator_value:
+            return cls.__discriminator_value_class_map.get(discriminator_value)
+        else:
+            return None
 
     def __str__(self):
         """For `print` and `pprint`"""
@@ -54,7 +148,7 @@ class ScenarioShiftDefinition(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> ScenarioShiftDefinition:
+    def from_json(cls, json_str: str) -> Union[EquityShiftDefinition, FxShiftDefinition, RateCurveShiftDefinition, VolSurfaceShiftDefinition, ScenarioShiftDefinition]:
         """Create an instance of ScenarioShiftDefinition from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -63,34 +157,24 @@ class ScenarioShiftDefinition(BaseModel):
         _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
-                            "additional_properties"
                           },
                           exclude_none=True)
-        # puts key-value pairs in additional_properties in the top level
-        if self.additional_properties is not None:
-            for _key, _value in self.additional_properties.items():
-                _dict[_key] = _value
-
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> ScenarioShiftDefinition:
+    def from_dict(cls, obj: dict) -> Union[EquityShiftDefinition, FxShiftDefinition, RateCurveShiftDefinition, VolSurfaceShiftDefinition, ScenarioShiftDefinition]:
         """Create an instance of ScenarioShiftDefinition from a dict"""
-        if obj is None:
-            return None
-
-        if not isinstance(obj, dict):
-            return ScenarioShiftDefinition.model_validate(obj)
-
-        _obj = ScenarioShiftDefinition.model_validate({
-            "shift_type": obj.get("shiftType")
-        })
-        # store additional fields in additional_properties
-        for _key in obj.keys():
-            if _key not in cls.__properties:
-                _obj.additional_properties[_key] = obj.get(_key)
-
-        return _obj
+        # look up the object type based on discriminator mapping
+        object_type = cls.get_discriminator_value(obj)
+        if object_type:
+            klass = getattr(finbourne.sdk.services.lusid.models, object_type)
+            return klass.from_dict(obj)
+        elif obj.get(cls.__discriminator_property_name):
+            return cls.model_validate(obj)
+        else:
+            raise ValueError("Failed to lookup discriminator value from " +
+                            json.dumps(obj) + ". Discriminator property name: " + cls.__discriminator_property_name +
+                            ", mapping: " + json.dumps(cls.__discriminator_value_class_map))
 
 ScenarioShiftDefinition.model_rebuild()
 

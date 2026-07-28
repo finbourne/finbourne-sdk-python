@@ -49,6 +49,7 @@ from finbourne.sdk.services.lusid.api.order_management_api import OrderManagemen
 from finbourne.sdk.services.lusid.api.orders_api import OrdersApi
 from finbourne.sdk.services.lusid.api.packages_api import PackagesApi
 from finbourne.sdk.services.lusid.api.participations_api import ParticipationsApi
+from finbourne.sdk.services.lusid.api.payment_instructions_api import PaymentInstructionsApi
 from finbourne.sdk.services.lusid.api.persons_api import PersonsApi
 from finbourne.sdk.services.lusid.api.placements_api import PlacementsApi
 from finbourne.sdk.services.lusid.api.portfolio_groups_api import PortfolioGroupsApi
@@ -139,6 +140,7 @@ __all__ = [
     "OrdersApi",
     "PackagesApi",
     "ParticipationsApi",
+    "PaymentInstructionsApi",
     "PersonsApi",
     "PlacementsApi",
     "PortfolioGroupsApi",

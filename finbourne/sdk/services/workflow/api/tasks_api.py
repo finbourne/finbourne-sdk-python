@@ -567,7 +567,7 @@ class TasksApi:
         :type id: str
         :param as_at: The asAt datetime at which to retrieve the Task. Defaults to returning the latest version of the Task if not specified.
         :type as_at: datetime
-        :param property_keys: The property keys (in the TaskDefinition or Workflow domain) whose values to return on the Task.
+        :param property_keys: The property keys (in the TaskDefinition or Workflow domain) whose values to return on the Task. These values are a snapshot copied from the TaskDefinition and Workflow when the Task was created, so they reflect the state at creation time and are not affected by subsequent changes to the TaskDefinition or Workflow.
         :type property_keys: List[str]
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -590,7 +590,7 @@ class TasksApi:
         :type id: str
         :param as_at: The asAt datetime at which to retrieve the Task. Defaults to returning the latest version of the Task if not specified.
         :type as_at: datetime
-        :param property_keys: The property keys (in the TaskDefinition or Workflow domain) whose values to return on the Task.
+        :param property_keys: The property keys (in the TaskDefinition or Workflow domain) whose values to return on the Task. These values are a snapshot copied from the TaskDefinition and Workflow when the Task was created, so they reflect the state at creation time and are not affected by subsequent changes to the TaskDefinition or Workflow.
         :type property_keys: List[str]
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -838,7 +838,7 @@ class TasksApi:
         :type filter: str
         :param sort_by: A list of field names or properties to sort by, each optionally suffixed by \" ASC\" or \" DESC\"
         :type sort_by: List[str]
-        :param property_keys: The property keys (in the TaskDefinition or Workflow domain) whose values to return on each Task.
+        :param property_keys: The property keys (in the TaskDefinition or Workflow domain) whose values to return on each Task. These values are a snapshot copied from the TaskDefinition and Workflow when each Task was created, so they reflect the state at creation time and are not affected by subsequent changes to the TaskDefinition or Workflow.
         :type property_keys: List[str]
         :param limit: When paginating, limit the number of returned results to this many.
         :type limit: int
@@ -867,7 +867,7 @@ class TasksApi:
         :type filter: str
         :param sort_by: A list of field names or properties to sort by, each optionally suffixed by \" ASC\" or \" DESC\"
         :type sort_by: List[str]
-        :param property_keys: The property keys (in the TaskDefinition or Workflow domain) whose values to return on each Task.
+        :param property_keys: The property keys (in the TaskDefinition or Workflow domain) whose values to return on each Task. These values are a snapshot copied from the TaskDefinition and Workflow when each Task was created, so they reflect the state at creation time and are not affected by subsequent changes to the TaskDefinition or Workflow.
         :type property_keys: List[str]
         :param limit: When paginating, limit the number of returned results to this many.
         :type limit: int
@@ -1653,7 +1653,7 @@ class TasksApi:
             :type id: str
             :param as_at: The asAt datetime at which to retrieve the Task. Defaults to returning the latest version of the Task if not specified.
             :type as_at: datetime
-            :param property_keys: The property keys (in the TaskDefinition or Workflow domain) whose values to return on the Task.
+            :param property_keys: The property keys (in the TaskDefinition or Workflow domain) whose values to return on the Task. These values are a snapshot copied from the TaskDefinition and Workflow when the Task was created, so they reflect the state at creation time and are not affected by subsequent changes to the TaskDefinition or Workflow.
             :type property_keys: List[str]
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -1677,7 +1677,7 @@ class TasksApi:
             :type id: str
             :param as_at: The asAt datetime at which to retrieve the Task. Defaults to returning the latest version of the Task if not specified.
             :type as_at: datetime
-            :param property_keys: The property keys (in the TaskDefinition or Workflow domain) whose values to return on the Task.
+            :param property_keys: The property keys (in the TaskDefinition or Workflow domain) whose values to return on the Task. These values are a snapshot copied from the TaskDefinition and Workflow when the Task was created, so they reflect the state at creation time and are not affected by subsequent changes to the TaskDefinition or Workflow.
             :type property_keys: List[str]
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
@@ -1926,7 +1926,7 @@ class TasksApi:
             :type filter: str
             :param sort_by: A list of field names or properties to sort by, each optionally suffixed by \" ASC\" or \" DESC\"
             :type sort_by: List[str]
-            :param property_keys: The property keys (in the TaskDefinition or Workflow domain) whose values to return on each Task.
+            :param property_keys: The property keys (in the TaskDefinition or Workflow domain) whose values to return on each Task. These values are a snapshot copied from the TaskDefinition and Workflow when each Task was created, so they reflect the state at creation time and are not affected by subsequent changes to the TaskDefinition or Workflow.
             :type property_keys: List[str]
             :param limit: When paginating, limit the number of returned results to this many.
             :type limit: int
@@ -1956,7 +1956,7 @@ class TasksApi:
             :type filter: str
             :param sort_by: A list of field names or properties to sort by, each optionally suffixed by \" ASC\" or \" DESC\"
             :type sort_by: List[str]
-            :param property_keys: The property keys (in the TaskDefinition or Workflow domain) whose values to return on each Task.
+            :param property_keys: The property keys (in the TaskDefinition or Workflow domain) whose values to return on each Task. These values are a snapshot copied from the TaskDefinition and Workflow when each Task was created, so they reflect the state at creation time and are not affected by subsequent changes to the TaskDefinition or Workflow.
             :type property_keys: List[str]
             :param limit: When paginating, limit the number of returned results to this many.
             :type limit: int

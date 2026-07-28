@@ -37,6 +37,7 @@ class AssetClass(str, Enum):  # type: ignore[misc]
     MONEY = 'Money'
     UNKNOWN = 'Unknown'
     REALESTATE = 'RealEstate'
+    EXOTIC = 'Exotic'
 
     @classmethod
     def from_json(cls, json_str: str) -> AssetClass:

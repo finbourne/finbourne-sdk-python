@@ -30,8 +30,9 @@ class FundPnlBreakdown(BaseModel):
     """
     non_class_specific_pnl: Dict[str, FundAmount] = Field(description="Bucket of detail for PnL within the queried period that is not specific to any share class.", alias="nonClassSpecificPnl")
     aggregated_class_pnl: Dict[str, FundAmount] = Field(description="Bucket of detail for the sum of class PnL across all share classes in a fund and within the queried period.", alias="aggregatedClassPnl")
-    total_pnl: Dict[str, FundAmount] = Field(description="Bucket of detail for the sum of class PnL and PnL not specific to a class within the queried period.", alias="totalPnl")
-    __properties: ClassVar[List[str]] = ["nonClassSpecificPnl", "aggregatedClassPnl", "totalPnl"]
+    aggregated_group_pnl: Dict[str, FundAmount] = Field(description="Bucket of detail for the sum, across all share classes, of PnL allocated to allocation groups and apportioned to their member share classes, within the queried period.", alias="aggregatedGroupPnl")
+    total_pnl: Dict[str, FundAmount] = Field(description="Bucket of detail for the total PnL within the queried period: the sum of the class-specific, apportioned non-class-specific and allocation-group-apportioned PnL.", alias="totalPnl")
+    __properties: ClassVar[List[str]] = ["nonClassSpecificPnl", "aggregatedClassPnl", "aggregatedGroupPnl", "totalPnl"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -81,6 +82,13 @@ class FundPnlBreakdown(BaseModel):
                 if self.aggregated_class_pnl[_key]:
                     _field_dict[_key] = self.aggregated_class_pnl[_key].to_dict(by_alias=by_alias)
             _dict['aggregatedClassPnl'] = _field_dict
+        # override the default output from pydantic by calling `to_dict()` of each value in aggregated_group_pnl (dict)
+        _field_dict = {}
+        if self.aggregated_group_pnl:
+            for _key in self.aggregated_group_pnl:
+                if self.aggregated_group_pnl[_key]:
+                    _field_dict[_key] = self.aggregated_group_pnl[_key].to_dict(by_alias=by_alias)
+            _dict['aggregatedGroupPnl'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of each value in total_pnl (dict)
         _field_dict = {}
         if self.total_pnl:
@@ -111,6 +119,12 @@ class FundPnlBreakdown(BaseModel):
                 for _k, _v in _val.items()
             )
             if (_val := obj.get("aggregatedClassPnl")) is not None
+            else None,
+            "aggregated_group_pnl": dict(
+                (_k, FundAmount.from_dict(_v))
+                for _k, _v in _val.items()
+            )
+            if (_val := obj.get("aggregatedGroupPnl")) is not None
             else None,
             "total_pnl": dict(
                 (_k, FundAmount.from_dict(_v))

@@ -372,7 +372,7 @@ class PortfolioGroupsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def build_transactions_for_portfolio_group(self, scope: StrictStr, code: StrictStr, transaction_query_parameters: TransactionQueryParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, membership_type: Optional[StrictStr] = None, **kwargs) -> VersionedResourceListOfOutputTransaction:
+    def build_transactions_for_portfolio_group(self, scope: StrictStr, code: StrictStr, transaction_query_parameters: TransactionQueryParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, membership_type: Optional[StrictStr] = None, return_excluded_transactions: Optional[bool] = None, **kwargs) -> VersionedResourceListOfOutputTransaction:
         """BuildTransactionsForPortfolioGroup: Build transactions for transaction portfolios in a portfolio group  # noqa: E501
 
         Build transactions for transaction portfolios in a portfolio group over a given interval of effective time.                When the specified portfolio in a portfolio group is a derived transaction portfolio, the returned set of transactions is the  union set of all transactions of the parent (and any grandparents etc.) and the specified derived transaction portfolio itself.  # noqa: E501
@@ -398,6 +398,8 @@ class PortfolioGroupsApi:
         :type data_model_code: str
         :param membership_type: The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate.
         :type membership_type: str
+        :param return_excluded_transactions: Whether to include transactions that a portfolio's transaction exclusion filter marks as excluded. Defaults to false.
+        :type return_excluded_transactions: bool
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -408,11 +410,11 @@ class PortfolioGroupsApi:
             message = "Error! Please call the build_transactions_for_portfolio_group_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.build_transactions_for_portfolio_group_with_http_info(scope, code, transaction_query_parameters, as_at, filter, property_keys, limit, page, data_model_scope, data_model_code, membership_type, **kwargs)
+        response = self.build_transactions_for_portfolio_group_with_http_info(scope, code, transaction_query_parameters, as_at, filter, property_keys, limit, page, data_model_scope, data_model_code, membership_type, return_excluded_transactions, **kwargs)
         return response.data
 
     @validate_call
-    def build_transactions_for_portfolio_group_with_http_info(self, scope: StrictStr, code: StrictStr, transaction_query_parameters: TransactionQueryParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, membership_type: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfOutputTransaction]:
+    def build_transactions_for_portfolio_group_with_http_info(self, scope: StrictStr, code: StrictStr, transaction_query_parameters: TransactionQueryParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, membership_type: Optional[StrictStr] = None, return_excluded_transactions: Optional[bool] = None, **kwargs) -> ApiResponse[VersionedResourceListOfOutputTransaction]:
         """BuildTransactionsForPortfolioGroup: Build transactions for transaction portfolios in a portfolio group  # noqa: E501
 
         Build transactions for transaction portfolios in a portfolio group over a given interval of effective time.                When the specified portfolio in a portfolio group is a derived transaction portfolio, the returned set of transactions is the  union set of all transactions of the parent (and any grandparents etc.) and the specified derived transaction portfolio itself.  # noqa: E501
@@ -438,6 +440,8 @@ class PortfolioGroupsApi:
         :type data_model_code: str
         :param membership_type: The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate.
         :type membership_type: str
+        :param return_excluded_transactions: Whether to include transactions that a portfolio's transaction exclusion filter marks as excluded. Defaults to false.
+        :type return_excluded_transactions: bool
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -471,7 +475,8 @@ class PortfolioGroupsApi:
             'page',
             'data_model_scope',
             'data_model_code',
-            'membership_type'
+            'membership_type',
+            'return_excluded_transactions'
         ]
         _all_params.extend(
             [
@@ -535,6 +540,9 @@ class PortfolioGroupsApi:
 
         if _params.get('membership_type') is not None:  # noqa: E501
             _query_params.append(('membershipType', _params['membership_type']))
+
+        if _params.get('return_excluded_transactions') is not None:  # noqa: E501
+            _query_params.append(('returnExcludedTransactions', _params['return_excluded_transactions']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -4821,7 +4829,7 @@ class PortfolioGroupsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def build_transactions_for_portfolio_group_async(self, scope: StrictStr, code: StrictStr, transaction_query_parameters: TransactionQueryParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, membership_type: Optional[StrictStr] = None, **kwargs) -> VersionedResourceListOfOutputTransaction:
+    async def build_transactions_for_portfolio_group_async(self, scope: StrictStr, code: StrictStr, transaction_query_parameters: TransactionQueryParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, membership_type: Optional[StrictStr] = None, return_excluded_transactions: Optional[bool] = None, **kwargs) -> VersionedResourceListOfOutputTransaction:
             """BuildTransactionsForPortfolioGroup: Build transactions for transaction portfolios in a portfolio group  # noqa: E501
             Build transactions for transaction portfolios in a portfolio group over a given interval of effective time.                When the specified portfolio in a portfolio group is a derived transaction portfolio, the returned set of transactions is the  union set of all transactions of the parent (and any grandparents etc.) and the specified derived transaction portfolio itself.  # noqa: E501
             
@@ -4847,6 +4855,8 @@ class PortfolioGroupsApi:
             :type data_model_code: str
             :param membership_type: The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate.
             :type membership_type: str
+            :param return_excluded_transactions: Whether to include transactions that a portfolio's transaction exclusion filter marks as excluded. Defaults to false.
+            :type return_excluded_transactions: bool
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -4857,11 +4867,11 @@ class PortfolioGroupsApi:
                 message = "Error! Please call the build_transactions_for_portfolio_group_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.build_transactions_for_portfolio_group_with_http_info_async(scope, code, transaction_query_parameters, as_at, filter, property_keys, limit, page, data_model_scope, data_model_code, membership_type, **kwargs)
+            response = await self.build_transactions_for_portfolio_group_with_http_info_async(scope, code, transaction_query_parameters, as_at, filter, property_keys, limit, page, data_model_scope, data_model_code, membership_type, return_excluded_transactions, **kwargs)
             return response.data
 
     @validate_call
-    async def build_transactions_for_portfolio_group_with_http_info_async(self, scope: StrictStr, code: StrictStr, transaction_query_parameters: TransactionQueryParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, membership_type: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfOutputTransaction]:
+    async def build_transactions_for_portfolio_group_with_http_info_async(self, scope: StrictStr, code: StrictStr, transaction_query_parameters: TransactionQueryParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, membership_type: Optional[StrictStr] = None, return_excluded_transactions: Optional[bool] = None, **kwargs) -> ApiResponse[VersionedResourceListOfOutputTransaction]:
             """BuildTransactionsForPortfolioGroup: Build transactions for transaction portfolios in a portfolio group  # noqa: E501
 
             Build transactions for transaction portfolios in a portfolio group over a given interval of effective time.                When the specified portfolio in a portfolio group is a derived transaction portfolio, the returned set of transactions is the  union set of all transactions of the parent (and any grandparents etc.) and the specified derived transaction portfolio itself.  # noqa: E501
@@ -4888,6 +4898,8 @@ class PortfolioGroupsApi:
             :type data_model_code: str
             :param membership_type: The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate.
             :type membership_type: str
+            :param return_excluded_transactions: Whether to include transactions that a portfolio's transaction exclusion filter marks as excluded. Defaults to false.
+            :type return_excluded_transactions: bool
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -4921,7 +4933,8 @@ class PortfolioGroupsApi:
                 'page',
                 'data_model_scope',
                 'data_model_code',
-                'membership_type'
+                'membership_type',
+                'return_excluded_transactions'
             ]
             _all_params.extend(
                 [
@@ -4985,6 +4998,9 @@ class PortfolioGroupsApi:
 
             if _params.get('membership_type') is not None:  # noqa: E501
                 _query_params.append(('membershipType', _params['membership_type']))
+
+            if _params.get('return_excluded_transactions') is not None:  # noqa: E501
+                _query_params.append(('returnExcludedTransactions', _params['return_excluded_transactions']))
 
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))
