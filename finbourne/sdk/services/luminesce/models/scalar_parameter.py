@@ -33,7 +33,9 @@ class ScalarParameter(BaseModel):
     value: Optional[Any] = Field(default=None, description="the default value of the parameter")
     value_options: Optional[List[Any]] = Field(default=None, description="Values of the parameter listed as being available for choosing from.", alias="valueOptions")
     value_must_be_from_options: Optional[StrictBool] = Field(default=None, description="Must Value be one of ValueOptions (if any)?", alias="valueMustBeFromOptions")
-    __properties: ClassVar[List[str]] = ["name", "type", "value", "valueOptions", "valueMustBeFromOptions"]
+    parameter_value_options_query:  Optional[StrictStr] = Field(default=None,alias="parameterValueOptionsQuery", description="SQL that might have been used for generating the options list") 
+    parameter_value_options_query_error:  Optional[StrictStr] = Field(default=None,alias="parameterValueOptionsQueryError", description="Error generated but executing ParameterValueOptionsQuery, if any") 
+    __properties: ClassVar[List[str]] = ["name", "type", "value", "valueOptions", "valueMustBeFromOptions", "parameterValueOptionsQuery", "parameterValueOptionsQueryError"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,6 +81,16 @@ class ScalarParameter(BaseModel):
         if self.value_options is None and "value_options" in self.model_fields_set:
             _dict['valueOptions'] = None
 
+        # set to None if parameter_value_options_query (nullable) is None
+        # and model_fields_set contains the field
+        if self.parameter_value_options_query is None and "parameter_value_options_query" in self.model_fields_set:
+            _dict['parameterValueOptionsQuery'] = None
+
+        # set to None if parameter_value_options_query_error (nullable) is None
+        # and model_fields_set contains the field
+        if self.parameter_value_options_query_error is None and "parameter_value_options_query_error" in self.model_fields_set:
+            _dict['parameterValueOptionsQueryError'] = None
+
         return _dict
 
     @classmethod
@@ -95,7 +107,9 @@ class ScalarParameter(BaseModel):
             "type": obj.get("type"),
             "value": obj.get("value"),
             "value_options": obj.get("valueOptions"),
-            "value_must_be_from_options": obj.get("valueMustBeFromOptions")
+            "value_must_be_from_options": obj.get("valueMustBeFromOptions"),
+            "parameter_value_options_query": obj.get("parameterValueOptionsQuery"),
+            "parameter_value_options_query_error": obj.get("parameterValueOptionsQueryError")
         })
         return _obj
 

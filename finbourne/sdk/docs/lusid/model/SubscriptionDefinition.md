@@ -12,6 +12,7 @@
 | **timeline_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **address_keys** | **List[str]** | Optional | The set of addresses the subscriber wishes to receive. |
 | **by_tax_lots** | **bool** | Optional | *No description available.* |
+| **subscription_type** | **str** | Optional | The kind of data the subscription streams (holdings or transactions), defaulting to holdings.  Address keys and byTaxLots are not valid for a transactions subscription. Available values: Holdings, Transactions. |
 | **start_effective_at** | **datetime** | Optional | *No description available.* |
 | **end_effective_at** | **datetime** | Optional | *No description available.* |
 | **start_as_at** | **datetime** | Optional | *No description available.* |
@@ -33,6 +34,7 @@ instance = SubscriptionDefinition(
     timeline_id=ResourceId(...),  # optional
     address_keys=,  # optional — The set of addresses the subscriber wishes to receive.
     by_tax_lots=True,  # optional
+    subscription_type="...",  # optional — The kind of data the subscription streams (holdings or transactions), defaulting to holdings.  Address keys and byTaxLots are not valid for a transactions subscription. Available values: Holdings, Transactions.
     start_effective_at=datetime.now(),  # optional
     end_effective_at=datetime.now(),  # optional
     start_as_at=datetime.now()  # optional

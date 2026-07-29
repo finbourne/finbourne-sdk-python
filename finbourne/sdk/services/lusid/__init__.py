@@ -1012,6 +1012,11 @@ from finbourne.sdk.services.lusid.models.period_type import PeriodType
 from finbourne.sdk.services.lusid.models.perpetual_entity_state import PerpetualEntityState
 from finbourne.sdk.services.lusid.models.perpetual_property import PerpetualProperty
 from finbourne.sdk.services.lusid.models.person import Person
+from finbourne.sdk.services.lusid.models.pik_bond_cash_coupon_event import PikBondCashCouponEvent
+from finbourne.sdk.services.lusid.models.pik_bond_coupon_event import PikBondCouponEvent
+from finbourne.sdk.services.lusid.models.pik_bond_interest_capitalisation_event import PikBondInterestCapitalisationEvent
+from finbourne.sdk.services.lusid.models.pik_bond_principal_event import PikBondPrincipalEvent
+from finbourne.sdk.services.lusid.models.pik_election import PikElection
 from finbourne.sdk.services.lusid.models.place_blocks_request import PlaceBlocksRequest
 from finbourne.sdk.services.lusid.models.placement import Placement
 from finbourne.sdk.services.lusid.models.placement_request import PlacementRequest
@@ -1113,6 +1118,7 @@ from finbourne.sdk.services.lusid.models.quote_series_id import QuoteSeriesId
 from finbourne.sdk.services.lusid.models.quote_type import QuoteType
 from finbourne.sdk.services.lusid.models.rate_curve_shift_definition import RateCurveShiftDefinition
 from finbourne.sdk.services.lusid.models.rate_curve_shift_mode import RateCurveShiftMode
+from finbourne.sdk.services.lusid.models.rate_curve_shift_scale import RateCurveShiftScale
 from finbourne.sdk.services.lusid.models.raw_vendor_event import RawVendorEvent
 from finbourne.sdk.services.lusid.models.re_open_period_diary_entry_request import ReOpenPeriodDiaryEntryRequest
 from finbourne.sdk.services.lusid.models.realised_gain_loss import RealisedGainLoss
@@ -1279,6 +1285,7 @@ from finbourne.sdk.services.lusid.models.run_check_request import RunCheckReques
 from finbourne.sdk.services.lusid.models.run_check_response import RunCheckResponse
 from finbourne.sdk.services.lusid.models.scaling_methodology import ScalingMethodology
 from finbourne.sdk.services.lusid.models.scenario_definition import ScenarioDefinition
+from finbourne.sdk.services.lusid.models.scenario_reference import ScenarioReference
 from finbourne.sdk.services.lusid.models.scenario_shift_definition import ScenarioShiftDefinition
 from finbourne.sdk.services.lusid.models.scenario_shift_type import ScenarioShiftType
 from finbourne.sdk.services.lusid.models.schedule import Schedule
@@ -2605,6 +2612,11 @@ __all__ = [
     "PerpetualEntityState",
     "PerpetualProperty",
     "Person",
+    "PikBondCashCouponEvent",
+    "PikBondCouponEvent",
+    "PikBondInterestCapitalisationEvent",
+    "PikBondPrincipalEvent",
+    "PikElection",
     "PlaceBlocksRequest",
     "Placement",
     "PlacementRequest",
@@ -2706,6 +2718,7 @@ __all__ = [
     "QuoteType",
     "RateCurveShiftDefinition",
     "RateCurveShiftMode",
+    "RateCurveShiftScale",
     "RawVendorEvent",
     "ReOpenPeriodDiaryEntryRequest",
     "RealisedGainLoss",
@@ -2872,6 +2885,7 @@ __all__ = [
     "RunCheckResponse",
     "ScalingMethodology",
     "ScenarioDefinition",
+    "ScenarioReference",
     "ScenarioShiftDefinition",
     "ScenarioShiftType",
     "Schedule",

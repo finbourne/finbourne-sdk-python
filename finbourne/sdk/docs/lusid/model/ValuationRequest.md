@@ -19,6 +19,7 @@ Specification object for the parameters of a valuation
 | **valuation_schedule** | [ValuationSchedule](ValuationSchedule.md) | Required | *No description available.* |
 | **market_data_overrides** | [MarketDataOverrides](MarketDataOverrides.md) | Optional | *No description available.* |
 | **corporate_action_source_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **scenario** | [ScenarioReference](ScenarioReference.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -42,7 +43,8 @@ instance = ValuationRequest(
     portfolio_entity_ids=[],  # required — The set of portfolio or portfolio group identifier(s) that is to be valued.
     valuation_schedule=ValuationSchedule(...),  # required
     market_data_overrides=MarketDataOverrides(...),  # optional
-    corporate_action_source_id=ResourceId(...)  # optional
+    corporate_action_source_id=ResourceId(...),  # optional
+    scenario=ScenarioReference(...)  # optional
 )
 ```
 
@@ -58,6 +60,7 @@ instance = ValuationRequest(
 - [ValuationSchedule](ValuationSchedule.md)
 - [MarketDataOverrides](MarketDataOverrides.md)
 - [ResourceId](ResourceId.md)
+- [ScenarioReference](ScenarioReference.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

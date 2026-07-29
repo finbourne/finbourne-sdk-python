@@ -28,6 +28,7 @@ from finbourne.sdk.services.lusid.models.order_flow_configuration import OrderFl
 from finbourne.sdk.services.lusid.models.portfolio_entity_id import PortfolioEntityId
 from finbourne.sdk.services.lusid.models.property_filter import PropertyFilter
 from finbourne.sdk.services.lusid.models.resource_id import ResourceId
+from finbourne.sdk.services.lusid.models.scenario_reference import ScenarioReference
 from finbourne.sdk.services.lusid.models.valuation_schedule import ValuationSchedule
 
 
@@ -49,7 +50,8 @@ class ValuationRequest(BaseModel):
     valuation_schedule: ValuationSchedule = Field(alias="valuationSchedule")
     market_data_overrides: Optional[MarketDataOverrides] = Field(default=None, alias="marketDataOverrides")
     corporate_action_source_id: Optional[ResourceId] = Field(default=None, alias="corporateActionSourceId")
-    __properties: ClassVar[List[str]] = ["recipeId", "asAt", "metrics", "groupBy", "filters", "sort", "reportCurrency", "equipWithSubtotals", "returnResultAsExpandedTypes", "includeOrderFlow", "portfolioEntityIds", "valuationSchedule", "marketDataOverrides", "corporateActionSourceId"]
+    scenario: Optional[ScenarioReference] = None
+    __properties: ClassVar[List[str]] = ["recipeId", "asAt", "metrics", "groupBy", "filters", "sort", "reportCurrency", "equipWithSubtotals", "returnResultAsExpandedTypes", "includeOrderFlow", "portfolioEntityIds", "valuationSchedule", "marketDataOverrides", "corporateActionSourceId", "scenario"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -128,6 +130,9 @@ class ValuationRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of corporate_action_source_id
         if self.corporate_action_source_id:
             _dict['corporateActionSourceId'] = self.corporate_action_source_id.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of scenario
+        if self.scenario:
+            _dict['scenario'] = self.scenario.to_dict(by_alias=by_alias)
         # set to None if as_at (nullable) is None
         # and model_fields_set contains the field
         if self.as_at is None and "as_at" in self.model_fields_set:
@@ -178,7 +183,8 @@ class ValuationRequest(BaseModel):
             "portfolio_entity_ids": [PortfolioEntityId.from_dict(_item) for _item in _v] if (_v := obj.get("portfolioEntityIds")) is not None else None,
             "valuation_schedule": ValuationSchedule.from_dict(_v) if (_v := obj.get("valuationSchedule")) is not None else None,
             "market_data_overrides": MarketDataOverrides.from_dict(_v) if (_v := obj.get("marketDataOverrides")) is not None else None,
-            "corporate_action_source_id": ResourceId.from_dict(_v) if (_v := obj.get("corporateActionSourceId")) is not None else None
+            "corporate_action_source_id": ResourceId.from_dict(_v) if (_v := obj.get("corporateActionSourceId")) is not None else None,
+            "scenario": ScenarioReference.from_dict(_v) if (_v := obj.get("scenario")) is not None else None
         })
         return _obj
 
