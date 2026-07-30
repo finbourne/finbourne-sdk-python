@@ -71,6 +71,7 @@ from finbourne.sdk.services.lusid.api.portfolios_api import PortfoliosApi
 from finbourne.sdk.services.lusid.api.property_definitions_api import PropertyDefinitionsApi
 from finbourne.sdk.services.lusid.api.queryable_keys_api import QueryableKeysApi
 from finbourne.sdk.services.lusid.api.quotes_api import QuotesApi
+from finbourne.sdk.services.lusid.api.rec_result_sets_api import RecResultSetsApi
 from finbourne.sdk.services.lusid.api.reconciliations_api import ReconciliationsApi
 from finbourne.sdk.services.lusid.api.reference_lists_api import ReferenceListsApi
 from finbourne.sdk.services.lusid.api.reference_portfolio_api import ReferencePortfolioApi
@@ -969,6 +970,7 @@ from finbourne.sdk.services.lusid.models.paged_resource_list_of_posting_module_r
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_posting_module_rule import PagedResourceListOfPostingModuleRule
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_property_definition import PagedResourceListOfPropertyDefinition
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_property_definition_search_result import PagedResourceListOfPropertyDefinitionSearchResult
+from finbourne.sdk.services.lusid.models.paged_resource_list_of_rec_result_set import PagedResourceListOfRecResultSet
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_reconciliation import PagedResourceListOfReconciliation
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_reference_list_response import PagedResourceListOfReferenceListResponse
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_relational_data_point_response import PagedResourceListOfRelationalDataPointResponse
@@ -1122,6 +1124,27 @@ from finbourne.sdk.services.lusid.models.rate_curve_shift_scale import RateCurve
 from finbourne.sdk.services.lusid.models.raw_vendor_event import RawVendorEvent
 from finbourne.sdk.services.lusid.models.re_open_period_diary_entry_request import ReOpenPeriodDiaryEntryRequest
 from finbourne.sdk.services.lusid.models.realised_gain_loss import RealisedGainLoss
+from finbourne.sdk.services.lusid.models.rec_approval_decision import RecApprovalDecision
+from finbourne.sdk.services.lusid.models.rec_closed_exception_counts import RecClosedExceptionCounts
+from finbourne.sdk.services.lusid.models.rec_dates_reconciled import RecDatesReconciled
+from finbourne.sdk.services.lusid.models.rec_exception_count_by_closure_type import RecExceptionCountByClosureType
+from finbourne.sdk.services.lusid.models.rec_exception_count_by_result_type import RecExceptionCountByResultType
+from finbourne.sdk.services.lusid.models.rec_execution import RecExecution
+from finbourne.sdk.services.lusid.models.rec_instance_id import RecInstanceId
+from finbourne.sdk.services.lusid.models.rec_instance_summary import RecInstanceSummary
+from finbourne.sdk.services.lusid.models.rec_match_count_by_result_type import RecMatchCountByResultType
+from finbourne.sdk.services.lusid.models.rec_match_counts import RecMatchCounts
+from finbourne.sdk.services.lusid.models.rec_open_exception_counts import RecOpenExceptionCounts
+from finbourne.sdk.services.lusid.models.rec_requested_result_revision import RecRequestedResultRevision
+from finbourne.sdk.services.lusid.models.rec_required_approval import RecRequiredApproval
+from finbourne.sdk.services.lusid.models.rec_result_count_by_review_status import RecResultCountByReviewStatus
+from finbourne.sdk.services.lusid.models.rec_result_counts import RecResultCounts
+from finbourne.sdk.services.lusid.models.rec_result_set import RecResultSet
+from finbourne.sdk.services.lusid.models.rec_result_set_approval_decision_request import RecResultSetApprovalDecisionRequest
+from finbourne.sdk.services.lusid.models.rec_review import RecReview
+from finbourne.sdk.services.lusid.models.rec_submission import RecSubmission
+from finbourne.sdk.services.lusid.models.rec_superseded_run import RecSupersededRun
+from finbourne.sdk.services.lusid.models.rec_workflow_task import RecWorkflowTask
 from finbourne.sdk.services.lusid.models.recipe_block import RecipeBlock
 from finbourne.sdk.services.lusid.models.recipe_composer import RecipeComposer
 from finbourne.sdk.services.lusid.models.recipe_value import RecipeValue
@@ -1364,6 +1387,7 @@ from finbourne.sdk.services.lusid.models.string_list_compliance_parameter import
 from finbourne.sdk.services.lusid.models.structured_result_data import StructuredResultData
 from finbourne.sdk.services.lusid.models.structured_result_data_id import StructuredResultDataId
 from finbourne.sdk.services.lusid.models.sub_holding_key_value_equals import SubHoldingKeyValueEquals
+from finbourne.sdk.services.lusid.models.submit_rec_result_set_review_request import SubmitRecResultSetReviewRequest
 from finbourne.sdk.services.lusid.models.subscribe_election import SubscribeElection
 from finbourne.sdk.services.lusid.models.subscription_definition import SubscriptionDefinition
 from finbourne.sdk.services.lusid.models.swap_cash_flow_event import SwapCashFlowEvent
@@ -1673,6 +1697,7 @@ __all__ = [
     "PropertyDefinitionsApi",
     "QueryableKeysApi",
     "QuotesApi",
+    "RecResultSetsApi",
     "ReconciliationsApi",
     "ReferenceListsApi",
     "ReferencePortfolioApi",
@@ -2569,6 +2594,7 @@ __all__ = [
     "PagedResourceListOfPostingModuleRule",
     "PagedResourceListOfPropertyDefinition",
     "PagedResourceListOfPropertyDefinitionSearchResult",
+    "PagedResourceListOfRecResultSet",
     "PagedResourceListOfReconciliation",
     "PagedResourceListOfReferenceListResponse",
     "PagedResourceListOfRelationalDataPointResponse",
@@ -2722,6 +2748,27 @@ __all__ = [
     "RawVendorEvent",
     "ReOpenPeriodDiaryEntryRequest",
     "RealisedGainLoss",
+    "RecApprovalDecision",
+    "RecClosedExceptionCounts",
+    "RecDatesReconciled",
+    "RecExceptionCountByClosureType",
+    "RecExceptionCountByResultType",
+    "RecExecution",
+    "RecInstanceId",
+    "RecInstanceSummary",
+    "RecMatchCountByResultType",
+    "RecMatchCounts",
+    "RecOpenExceptionCounts",
+    "RecRequestedResultRevision",
+    "RecRequiredApproval",
+    "RecResultCountByReviewStatus",
+    "RecResultCounts",
+    "RecResultSet",
+    "RecResultSetApprovalDecisionRequest",
+    "RecReview",
+    "RecSubmission",
+    "RecSupersededRun",
+    "RecWorkflowTask",
     "RecipeBlock",
     "RecipeComposer",
     "RecipeValue",
@@ -2964,6 +3011,7 @@ __all__ = [
     "StructuredResultData",
     "StructuredResultDataId",
     "SubHoldingKeyValueEquals",
+    "SubmitRecResultSetReviewRequest",
     "SubscribeElection",
     "SubscriptionDefinition",
     "SwapCashFlowEvent",

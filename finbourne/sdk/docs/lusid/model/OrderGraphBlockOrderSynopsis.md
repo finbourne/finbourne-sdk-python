@@ -4,8 +4,10 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **quantity** | **float** | Required | Total number of units ordered. |
+| **quantity** | **float** | Optional | Total number of units ordered. |
 | **quantity_by_state** | **Dict[str, float]** | Optional | Total number of units placed. |
+| **amount** | **float** | Optional | Total monetary value ordered, in the block currency. |
+| **amount_by_state** | **Dict[str, float]** | Optional | Total monetary value ordered, broken down by order state. |
 | **details** | [List[OrderGraphBlockOrderDetail]](OrderGraphBlockOrderDetail.md) | Required | Identifiers and other info for each order in this block. |
 
 
@@ -17,8 +19,10 @@
 from finbourne.sdk.services.lusid.models.OrderGraphBlockOrderSynopsis import OrderGraphBlockOrderSynopsis
 
 instance = OrderGraphBlockOrderSynopsis(
-    quantity=0.0,  # required — Total number of units ordered.
+    quantity=0.0,  # optional — Total number of units ordered.
     quantity_by_state=,  # optional — Total number of units placed.
+    amount=0.0,  # optional — Total monetary value ordered, in the block currency.
+    amount_by_state=,  # optional — Total monetary value ordered, broken down by order state.
     details=[]  # required — Identifiers and other info for each order in this block.
 )
 ```

@@ -9,7 +9,8 @@ A request to create or update a Block.
 | **order_ids** | [List[ResourceId]](ResourceId.md) | Optional | The related order ids. |
 | **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Client-defined properties associated with this block. |
 | **instrument_identifiers** | **Dict[str, Optional[str]]** | Required | The instrument ordered. |
-| **quantity** | **float** | Required | The total quantity of given instrument ordered. |
+| **quantity** | **float** | Optional | The total quantity of given instrument ordered. |
+| **amount** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
 | **side** | **str** | Required | The client&#39;s representation of the block&#39;s side (buy, sell, short, etc) |
 | **type** | **str** | Optional | The block order&#39;s type (examples: Limit, Market, ...) |
 | **time_in_force** | **str** | Optional | The block orders&#39; time in force (examples: Day, GoodTilCancel, ...) |
@@ -31,7 +32,8 @@ instance = BlockRequest(
     order_ids=[],  # optional — The related order ids.
     properties=PerpetualProperty(...),  # optional — Client-defined properties associated with this block.
     instrument_identifiers=,  # required — The instrument ordered.
-    quantity=0.0,  # required — The total quantity of given instrument ordered.
+    quantity=0.0,  # optional — The total quantity of given instrument ordered.
+    amount=CurrencyAndAmount(...),  # optional
     side="...",  # required — The client&#39;s representation of the block&#39;s side (buy, sell, short, etc)
     type="...",  # optional — The block order&#39;s type (examples: Limit, Market, ...)
     time_in_force="...",  # optional — The block orders&#39; time in force (examples: Day, GoodTilCancel, ...)
@@ -48,6 +50,7 @@ instance = BlockRequest(
 - [ResourceId](ResourceId.md)
 - [ResourceId](ResourceId.md) — used in `order_ids`
 - [PerpetualProperty](PerpetualProperty.md) — used in `properties`
+- [CurrencyAndAmount](CurrencyAndAmount.md)
 - [CurrencyAndAmount](CurrencyAndAmount.md)
 - [CurrencyAndAmount](CurrencyAndAmount.md)
 

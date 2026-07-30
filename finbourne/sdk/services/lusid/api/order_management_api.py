@@ -595,7 +595,7 @@ class OrderManagementApi:
 
     @validate_call
     def create_orders(self, block_and_orders_create_request: BlockAndOrdersCreateRequest, **kwargs) -> ResourceListOfBlockAndOrders:
-        """CreateOrders: Upsert a Block and associated orders  # noqa: E501
+        """CreateOrders: Create Orders and create/update Block  # noqa: E501
 
         Create orders, and blocks if they don't already exist.  This will fail if the block exists and already references orders with differing blocking fields.  # noqa: E501
         :param block_and_orders_create_request: The collection of block and orders requests. (required)
@@ -615,7 +615,7 @@ class OrderManagementApi:
 
     @validate_call
     def create_orders_with_http_info(self, block_and_orders_create_request: BlockAndOrdersCreateRequest, **kwargs) -> ApiResponse[ResourceListOfBlockAndOrders]:
-        """CreateOrders: Upsert a Block and associated orders  # noqa: E501
+        """CreateOrders: Create Orders and create/update Block  # noqa: E501
 
         Create orders, and blocks if they don't already exist.  This will fail if the block exists and already references orders with differing blocking fields.  # noqa: E501
         :param block_and_orders_create_request: The collection of block and orders requests. (required)
@@ -2299,7 +2299,7 @@ class OrderManagementApi:
 
     @validate_call
     async def create_orders_async(self, block_and_orders_create_request: BlockAndOrdersCreateRequest, **kwargs) -> ResourceListOfBlockAndOrders:
-            """CreateOrders: Upsert a Block and associated orders  # noqa: E501
+            """CreateOrders: Create Orders and create/update Block  # noqa: E501
             Create orders, and blocks if they don't already exist.  This will fail if the block exists and already references orders with differing blocking fields.  # noqa: E501
             
             :param block_and_orders_create_request: The collection of block and orders requests. (required)
@@ -2319,7 +2319,7 @@ class OrderManagementApi:
 
     @validate_call
     async def create_orders_with_http_info_async(self, block_and_orders_create_request: BlockAndOrdersCreateRequest, **kwargs) -> ApiResponse[ResourceListOfBlockAndOrders]:
-            """CreateOrders: Upsert a Block and associated orders  # noqa: E501
+            """CreateOrders: Create Orders and create/update Block  # noqa: E501
 
             Create orders, and blocks if they don't already exist.  This will fail if the block exists and already references orders with differing blocking fields.  # noqa: E501
 

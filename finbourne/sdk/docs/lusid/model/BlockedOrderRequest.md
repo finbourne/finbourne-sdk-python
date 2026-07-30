@@ -5,7 +5,8 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Client-defined properties associated with this order. |
-| **quantity** | **float** | Required | The quantity of the given instrument ordered. |
+| **quantity** | **float** | Optional | The quantity of the given instrument ordered. |
+| **amount** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
 | **order_book_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **portfolio_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
@@ -26,7 +27,8 @@ from finbourne.sdk.services.lusid.models.BlockedOrderRequest import BlockedOrder
 
 instance = BlockedOrderRequest(
     properties=PerpetualProperty(...),  # optional — Client-defined properties associated with this order.
-    quantity=0.0,  # required — The quantity of the given instrument ordered.
+    quantity=0.0,  # optional — The quantity of the given instrument ordered.
+    amount=CurrencyAndAmount(...),  # optional
     order_book_id=ResourceId(...),  # optional
     portfolio_id=ResourceId(...),  # optional
     id=ResourceId(...),  # required
@@ -43,6 +45,7 @@ instance = BlockedOrderRequest(
 ## Related Models
 
 - [PerpetualProperty](PerpetualProperty.md) — used in `properties`
+- [CurrencyAndAmount](CurrencyAndAmount.md)
 - [ResourceId](ResourceId.md)
 - [ResourceId](ResourceId.md)
 - [ResourceId](ResourceId.md)

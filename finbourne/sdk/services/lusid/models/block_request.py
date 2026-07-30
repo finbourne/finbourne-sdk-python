@@ -34,7 +34,8 @@ class BlockRequest(BaseModel):
     order_ids: Optional[List[ResourceId]] = Field(default=None, description="The related order ids.", alias="orderIds")
     properties: Optional[Dict[str, PerpetualProperty]] = Field(default=None, description="Client-defined properties associated with this block.")
     instrument_identifiers: Dict[str, Optional[StrictStr]] = Field(description="The instrument ordered.", alias="instrumentIdentifiers")
-    quantity: Union[StrictFloat, StrictInt] = Field(description="The total quantity of given instrument ordered.")
+    quantity: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The total quantity of given instrument ordered.")
+    amount: Optional[CurrencyAndAmount] = None
     side:  StrictStr = Field(...,alias="side", description="The client's representation of the block's side (buy, sell, short, etc)") 
     type:  Optional[StrictStr] = Field(default=None,alias="type", description="The block order's type (examples: Limit, Market, ...)") 
     time_in_force:  Optional[StrictStr] = Field(default=None,alias="timeInForce", description="The block orders' time in force (examples: Day, GoodTilCancel, ...)") 
@@ -42,7 +43,7 @@ class BlockRequest(BaseModel):
     limit_price: Optional[CurrencyAndAmount] = Field(default=None, alias="limitPrice")
     stop_price: Optional[CurrencyAndAmount] = Field(default=None, alias="stopPrice")
     is_swept: Optional[StrictBool] = Field(default=None, description="Swept blocks are considered no longer of active interest, and no longer take part in various order management processes", alias="isSwept")
-    __properties: ClassVar[List[str]] = ["id", "orderIds", "properties", "instrumentIdentifiers", "quantity", "side", "type", "timeInForce", "createdDate", "limitPrice", "stopPrice", "isSwept"]
+    __properties: ClassVar[List[str]] = ["id", "orderIds", "properties", "instrumentIdentifiers", "quantity", "amount", "side", "type", "timeInForce", "createdDate", "limitPrice", "stopPrice", "isSwept"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -95,6 +96,9 @@ class BlockRequest(BaseModel):
                 if self.properties[_key]:
                     _field_dict[_key] = self.properties[_key].to_dict(by_alias=by_alias)
             _dict['properties'] = _field_dict
+        # override the default output from pydantic by calling `to_dict()` of amount
+        if self.amount:
+            _dict['amount'] = self.amount.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of limit_price
         if self.limit_price:
             _dict['limitPrice'] = self.limit_price.to_dict(by_alias=by_alias)
@@ -110,6 +114,11 @@ class BlockRequest(BaseModel):
         # and model_fields_set contains the field
         if self.properties is None and "properties" in self.model_fields_set:
             _dict['properties'] = None
+
+        # set to None if quantity (nullable) is None
+        # and model_fields_set contains the field
+        if self.quantity is None and "quantity" in self.model_fields_set:
+            _dict['quantity'] = None
 
         # set to None if type (nullable) is None
         # and model_fields_set contains the field
@@ -143,6 +152,7 @@ class BlockRequest(BaseModel):
             else None,
             "instrument_identifiers": obj.get("instrumentIdentifiers"),
             "quantity": obj.get("quantity"),
+            "amount": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("amount")) is not None else None,
             "side": obj.get("side"),
             "type": obj.get("type"),
             "time_in_force": obj.get("timeInForce"),

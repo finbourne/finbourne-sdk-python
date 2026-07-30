@@ -38,7 +38,8 @@ class Block(BaseModel):
     properties: Optional[Dict[str, PerpetualProperty]] = Field(default=None, description="Client-defined properties associated with this block.")
     instrument_identifiers: Dict[str, Optional[StrictStr]] = Field(description="The instrument ordered.", alias="instrumentIdentifiers")
     lusid_instrument_id:  StrictStr = Field(...,alias="lusidInstrumentId", description="The LUSID instrument id for the instrument ordered.") 
-    quantity: Union[StrictFloat, StrictInt] = Field(description="The total quantity of given instrument ordered.")
+    quantity: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The total quantity of given instrument ordered.")
+    amount: Optional[CurrencyAndAmount] = None
     side:  StrictStr = Field(...,alias="side", description="The client's representation of the block's side (buy, sell, short, etc)") 
     type:  Optional[StrictStr] = Field(default=None,alias="type", description="The block order's type (examples: Limit, Market, ...)") 
     time_in_force:  Optional[StrictStr] = Field(default=None,alias="timeInForce", description="The block orders' time in force (examples: Day, GoodTilCancel, ...)") 
@@ -49,7 +50,7 @@ class Block(BaseModel):
     version: Optional[Version] = None
     data_model_membership: Optional[DataModelMembership] = Field(default=None, alias="dataModelMembership")
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["id", "orderIds", "properties", "instrumentIdentifiers", "lusidInstrumentId", "quantity", "side", "type", "timeInForce", "createdDate", "limitPrice", "stopPrice", "isSwept", "version", "dataModelMembership", "links"]
+    __properties: ClassVar[List[str]] = ["id", "orderIds", "properties", "instrumentIdentifiers", "lusidInstrumentId", "quantity", "amount", "side", "type", "timeInForce", "createdDate", "limitPrice", "stopPrice", "isSwept", "version", "dataModelMembership", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -102,6 +103,9 @@ class Block(BaseModel):
                 if self.properties[_key]:
                     _field_dict[_key] = self.properties[_key].to_dict(by_alias=by_alias)
             _dict['properties'] = _field_dict
+        # override the default output from pydantic by calling `to_dict()` of amount
+        if self.amount:
+            _dict['amount'] = self.amount.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of limit_price
         if self.limit_price:
             _dict['limitPrice'] = self.limit_price.to_dict(by_alias=by_alias)
@@ -125,6 +129,11 @@ class Block(BaseModel):
         # and model_fields_set contains the field
         if self.properties is None and "properties" in self.model_fields_set:
             _dict['properties'] = None
+
+        # set to None if quantity (nullable) is None
+        # and model_fields_set contains the field
+        if self.quantity is None and "quantity" in self.model_fields_set:
+            _dict['quantity'] = None
 
         # set to None if type (nullable) is None
         # and model_fields_set contains the field
@@ -164,6 +173,7 @@ class Block(BaseModel):
             "instrument_identifiers": obj.get("instrumentIdentifiers"),
             "lusid_instrument_id": obj.get("lusidInstrumentId"),
             "quantity": obj.get("quantity"),
+            "amount": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("amount")) is not None else None,
             "side": obj.get("side"),
             "type": obj.get("type"),
             "time_in_force": obj.get("timeInForce"),
