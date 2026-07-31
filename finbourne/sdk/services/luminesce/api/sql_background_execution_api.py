@@ -171,7 +171,7 @@ class SqlBackgroundExecutionApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def fetch_query_result_csv(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, delimiter: Optional[StrictStr] = None, escape: Optional[StrictStr] = None, date_time_format: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> str:
+    def fetch_query_result_csv(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, delimiter: Optional[StrictStr] = None, escape: Optional[StrictStr] = None, date_time_format: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> str:
         """FetchQueryResultCsv: Fetch the result of a query as CSV  # noqa: E501
 
         Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
@@ -181,8 +181,10 @@ class SqlBackgroundExecutionApi:
         :type download: bool
         :param sort_by: Order the results by these fields.             Use the `-` sign to denote descending order, e.g. `-MyFieldName`.  Numeric indexes may be used also, e.g. `2,-3`.             Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.             Default is null, the sort order specified in the query itself.
         :type sort_by: str
-        :param filter: An ODATA filter per Finbourne.Filtering syntax.
+        :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - may be combined with `sqlFilter`.
         :type filter: str
+        :param sql_filter: Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'` - may be combined with `filter` while supporting additional syntax that cannot.
+        :type sql_filter: str
         :param select: Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - `MyField` - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name) - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but  it works) - `count(distinct x) as numOfXs` If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
         :type select: str
         :param group_by: Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. `2,3`, `myColumn`.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.             Only specify this if you are selecting aggregations in the \"select\" parameter.
@@ -209,11 +211,11 @@ class SqlBackgroundExecutionApi:
             message = "Error! Please call the fetch_query_result_csv_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.fetch_query_result_csv_with_http_info(execution_id, download, sort_by, filter, select, group_by, limit, page, delimiter, escape, date_time_format, load_wait_milliseconds, **kwargs)
+        response = self.fetch_query_result_csv_with_http_info(execution_id, download, sort_by, filter, sql_filter, select, group_by, limit, page, delimiter, escape, date_time_format, load_wait_milliseconds, **kwargs)
         return response.data
 
     @validate_call
-    def fetch_query_result_csv_with_http_info(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, delimiter: Optional[StrictStr] = None, escape: Optional[StrictStr] = None, date_time_format: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
+    def fetch_query_result_csv_with_http_info(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, delimiter: Optional[StrictStr] = None, escape: Optional[StrictStr] = None, date_time_format: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
         """FetchQueryResultCsv: Fetch the result of a query as CSV  # noqa: E501
 
         Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
@@ -223,8 +225,10 @@ class SqlBackgroundExecutionApi:
         :type download: bool
         :param sort_by: Order the results by these fields.             Use the `-` sign to denote descending order, e.g. `-MyFieldName`.  Numeric indexes may be used also, e.g. `2,-3`.             Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.             Default is null, the sort order specified in the query itself.
         :type sort_by: str
-        :param filter: An ODATA filter per Finbourne.Filtering syntax.
+        :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - may be combined with `sqlFilter`.
         :type filter: str
+        :param sql_filter: Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'` - may be combined with `filter` while supporting additional syntax that cannot.
+        :type sql_filter: str
         :param select: Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - `MyField` - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name) - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but  it works) - `count(distinct x) as numOfXs` If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
         :type select: str
         :param group_by: Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. `2,3`, `myColumn`.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.             Only specify this if you are selecting aggregations in the \"select\" parameter.
@@ -268,6 +272,7 @@ class SqlBackgroundExecutionApi:
             'download',
             'sort_by',
             'filter',
+            'sql_filter',
             'select',
             'group_by',
             'limit',
@@ -317,6 +322,9 @@ class SqlBackgroundExecutionApi:
 
         if _params.get('filter') is not None:  # noqa: E501
             _query_params.append(('filter', _params['filter']))
+
+        if _params.get('sql_filter') is not None:  # noqa: E501
+            _query_params.append(('sqlFilter', _params['sql_filter']))
 
         if _params.get('select') is not None:  # noqa: E501
             _query_params.append(('select', _params['select']))
@@ -380,7 +388,7 @@ class SqlBackgroundExecutionApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def fetch_query_result_excel(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, date_time_format: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> bytes:
+    def fetch_query_result_excel(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, date_time_format: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> bytes:
         """FetchQueryResultExcel: Fetch the result of a query as an Excel file  # noqa: E501
 
         Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
@@ -388,8 +396,10 @@ class SqlBackgroundExecutionApi:
         :type execution_id: str
         :param sort_by: Order the results by these fields.             Use the `-` sign to denote descending order, e.g. `-MyFieldName`.  Numeric indexes may be used also, e.g. `2,-3`.             Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.             Default is null, the sort order specified in the query itself.
         :type sort_by: str
-        :param filter: An ODATA filter per Finbourne.Filtering syntax.
+        :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - may be combined with `sqlFilter`.
         :type filter: str
+        :param sql_filter: Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'` - may be combined with `filter` while supporting additional syntax that cannot.
+        :type sql_filter: str
         :param select: Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - `MyField` - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name) - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but  it works) - `count(distinct x) as numOfXs` If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
         :type select: str
         :param group_by: Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. `2,3`, `myColumn`.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.             Only specify this if you are selecting aggregations in the \"select\" parameter.
@@ -408,11 +418,11 @@ class SqlBackgroundExecutionApi:
             message = "Error! Please call the fetch_query_result_excel_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.fetch_query_result_excel_with_http_info(execution_id, sort_by, filter, select, group_by, date_time_format, load_wait_milliseconds, **kwargs)
+        response = self.fetch_query_result_excel_with_http_info(execution_id, sort_by, filter, sql_filter, select, group_by, date_time_format, load_wait_milliseconds, **kwargs)
         return response.data
 
     @validate_call
-    def fetch_query_result_excel_with_http_info(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, date_time_format: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[bytes]:
+    def fetch_query_result_excel_with_http_info(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, date_time_format: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[bytes]:
         """FetchQueryResultExcel: Fetch the result of a query as an Excel file  # noqa: E501
 
         Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
@@ -420,8 +430,10 @@ class SqlBackgroundExecutionApi:
         :type execution_id: str
         :param sort_by: Order the results by these fields.             Use the `-` sign to denote descending order, e.g. `-MyFieldName`.  Numeric indexes may be used also, e.g. `2,-3`.             Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.             Default is null, the sort order specified in the query itself.
         :type sort_by: str
-        :param filter: An ODATA filter per Finbourne.Filtering syntax.
+        :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - may be combined with `sqlFilter`.
         :type filter: str
+        :param sql_filter: Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'` - may be combined with `filter` while supporting additional syntax that cannot.
+        :type sql_filter: str
         :param select: Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - `MyField` - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name) - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but  it works) - `count(distinct x) as numOfXs` If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
         :type select: str
         :param group_by: Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. `2,3`, `myColumn`.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.             Only specify this if you are selecting aggregations in the \"select\" parameter.
@@ -456,6 +468,7 @@ class SqlBackgroundExecutionApi:
             'execution_id',
             'sort_by',
             'filter',
+            'sql_filter',
             'select',
             'group_by',
             'date_time_format',
@@ -498,6 +511,9 @@ class SqlBackgroundExecutionApi:
 
         if _params.get('filter') is not None:  # noqa: E501
             _query_params.append(('filter', _params['filter']))
+
+        if _params.get('sql_filter') is not None:  # noqa: E501
+            _query_params.append(('sqlFilter', _params['sql_filter']))
 
         if _params.get('select') is not None:  # noqa: E501
             _query_params.append(('select', _params['select']))
@@ -563,7 +579,7 @@ class SqlBackgroundExecutionApi:
         :type end_at: datetime
         :param bucket_size: Optional histogram bucket width.  If not provided a set number of buckets between start/end range will be generated.
         :type bucket_size: str
-        :param filter: An ODATA filter per Finbourne.Filtering syntax.
+        :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - Or raw SqLite SQL, this must then begin with `WHERE ` and is more flexible, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'`
         :type filter: str
         :param json_proper: Should this be text/json (not json-encoded-as-a-string)
         :type json_proper: bool
@@ -595,7 +611,7 @@ class SqlBackgroundExecutionApi:
         :type end_at: datetime
         :param bucket_size: Optional histogram bucket width.  If not provided a set number of buckets between start/end range will be generated.
         :type bucket_size: str
-        :param filter: An ODATA filter per Finbourne.Filtering syntax.
+        :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - Or raw SqLite SQL, this must then begin with `WHERE ` and is more flexible, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'`
         :type filter: str
         :param json_proper: Should this be text/json (not json-encoded-as-a-string)
         :type json_proper: bool
@@ -724,7 +740,7 @@ class SqlBackgroundExecutionApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def fetch_query_result_json(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> str:
+    def fetch_query_result_json(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> str:
         """FetchQueryResultJson: Fetch the result of a query as a JSON string  # noqa: E501
 
          *Please move to '/jsonProper' instead.  This may be marked as Deprecated in the future.*  Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
@@ -732,8 +748,10 @@ class SqlBackgroundExecutionApi:
         :type execution_id: str
         :param sort_by: Order the results by these fields.             Use the `-` sign to denote descending order, e.g. `-MyFieldName`.  Numeric indexes may be used also, e.g. `2,-3`.             Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.             Default is null, the sort order specified in the query itself.
         :type sort_by: str
-        :param filter: An ODATA filter per Finbourne.Filtering syntax.
+        :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - may be combined with `sqlFilter`.
         :type filter: str
+        :param sql_filter: Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'` - may be combined with `filter` while supporting additional syntax that cannot.
+        :type sql_filter: str
         :param select: Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - `MyField` - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name) - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but  it works) - `count(distinct x) as numOfXs` If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
         :type select: str
         :param group_by: Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. `2,3`, `myColumn`.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.             Only specify this if you are selecting aggregations in the \"select\" parameter.
@@ -754,11 +772,11 @@ class SqlBackgroundExecutionApi:
             message = "Error! Please call the fetch_query_result_json_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.fetch_query_result_json_with_http_info(execution_id, sort_by, filter, select, group_by, limit, page, load_wait_milliseconds, **kwargs)
+        response = self.fetch_query_result_json_with_http_info(execution_id, sort_by, filter, sql_filter, select, group_by, limit, page, load_wait_milliseconds, **kwargs)
         return response.data
 
     @validate_call
-    def fetch_query_result_json_with_http_info(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
+    def fetch_query_result_json_with_http_info(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
         """FetchQueryResultJson: Fetch the result of a query as a JSON string  # noqa: E501
 
          *Please move to '/jsonProper' instead.  This may be marked as Deprecated in the future.*  Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
@@ -766,8 +784,10 @@ class SqlBackgroundExecutionApi:
         :type execution_id: str
         :param sort_by: Order the results by these fields.             Use the `-` sign to denote descending order, e.g. `-MyFieldName`.  Numeric indexes may be used also, e.g. `2,-3`.             Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.             Default is null, the sort order specified in the query itself.
         :type sort_by: str
-        :param filter: An ODATA filter per Finbourne.Filtering syntax.
+        :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - may be combined with `sqlFilter`.
         :type filter: str
+        :param sql_filter: Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'` - may be combined with `filter` while supporting additional syntax that cannot.
+        :type sql_filter: str
         :param select: Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - `MyField` - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name) - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but  it works) - `count(distinct x) as numOfXs` If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
         :type select: str
         :param group_by: Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. `2,3`, `myColumn`.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.             Only specify this if you are selecting aggregations in the \"select\" parameter.
@@ -804,6 +824,7 @@ class SqlBackgroundExecutionApi:
             'execution_id',
             'sort_by',
             'filter',
+            'sql_filter',
             'select',
             'group_by',
             'limit',
@@ -847,6 +868,9 @@ class SqlBackgroundExecutionApi:
 
         if _params.get('filter') is not None:  # noqa: E501
             _query_params.append(('filter', _params['filter']))
+
+        if _params.get('sql_filter') is not None:  # noqa: E501
+            _query_params.append(('sqlFilter', _params['sql_filter']))
 
         if _params.get('select') is not None:  # noqa: E501
             _query_params.append(('select', _params['select']))
@@ -901,7 +925,7 @@ class SqlBackgroundExecutionApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def fetch_query_result_json_proper(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> str:
+    def fetch_query_result_json_proper(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> str:
         """FetchQueryResultJsonProper: Fetch the result of a query as JSON  # noqa: E501
 
         Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
@@ -911,8 +935,10 @@ class SqlBackgroundExecutionApi:
         :type download: bool
         :param sort_by: Order the results by these fields.             Use the `-` sign to denote descending order, e.g. `-MyFieldName`.  Numeric indexes may be used also, e.g. `2,-3`.             Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.             Default is null, the sort order specified in the query itself.
         :type sort_by: str
-        :param filter: An ODATA filter per Finbourne.Filtering syntax.
+        :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - may be combined with `sqlFilter`.
         :type filter: str
+        :param sql_filter: Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'` - may be combined with `filter` while supporting additional syntax that cannot.
+        :type sql_filter: str
         :param select: Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - `MyField` - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name) - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but  it works) - `count(distinct x) as numOfXs` If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
         :type select: str
         :param group_by: Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. `2,3`, `myColumn`.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.             Only specify this if you are selecting aggregations in the \"select\" parameter.
@@ -933,11 +959,11 @@ class SqlBackgroundExecutionApi:
             message = "Error! Please call the fetch_query_result_json_proper_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.fetch_query_result_json_proper_with_http_info(execution_id, download, sort_by, filter, select, group_by, limit, page, load_wait_milliseconds, **kwargs)
+        response = self.fetch_query_result_json_proper_with_http_info(execution_id, download, sort_by, filter, sql_filter, select, group_by, limit, page, load_wait_milliseconds, **kwargs)
         return response.data
 
     @validate_call
-    def fetch_query_result_json_proper_with_http_info(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
+    def fetch_query_result_json_proper_with_http_info(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
         """FetchQueryResultJsonProper: Fetch the result of a query as JSON  # noqa: E501
 
         Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
@@ -947,8 +973,10 @@ class SqlBackgroundExecutionApi:
         :type download: bool
         :param sort_by: Order the results by these fields.             Use the `-` sign to denote descending order, e.g. `-MyFieldName`.  Numeric indexes may be used also, e.g. `2,-3`.             Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.             Default is null, the sort order specified in the query itself.
         :type sort_by: str
-        :param filter: An ODATA filter per Finbourne.Filtering syntax.
+        :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - may be combined with `sqlFilter`.
         :type filter: str
+        :param sql_filter: Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'` - may be combined with `filter` while supporting additional syntax that cannot.
+        :type sql_filter: str
         :param select: Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - `MyField` - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name) - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but  it works) - `count(distinct x) as numOfXs` If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
         :type select: str
         :param group_by: Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. `2,3`, `myColumn`.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.             Only specify this if you are selecting aggregations in the \"select\" parameter.
@@ -986,6 +1014,7 @@ class SqlBackgroundExecutionApi:
             'download',
             'sort_by',
             'filter',
+            'sql_filter',
             'select',
             'group_by',
             'limit',
@@ -1032,6 +1061,9 @@ class SqlBackgroundExecutionApi:
 
         if _params.get('filter') is not None:  # noqa: E501
             _query_params.append(('filter', _params['filter']))
+
+        if _params.get('sql_filter') is not None:  # noqa: E501
+            _query_params.append(('sqlFilter', _params['sql_filter']))
 
         if _params.get('select') is not None:  # noqa: E501
             _query_params.append(('select', _params['select']))
@@ -1086,7 +1118,7 @@ class SqlBackgroundExecutionApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def fetch_query_result_json_proper_with_lineage(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> str:
+    def fetch_query_result_json_proper_with_lineage(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> str:
         """FetchQueryResultJsonProperWithLineage: Fetch the result of a query as JSON, but including a Lineage Node (if available)  # noqa: E501
 
         Fetch the data in proper Json format (if available, or if not simply being informed it is not yet ready) But embeds the data under a `Data` node and Lineage (if requested when starting the execution) under a `Lineage` node. Lineage is just for the 'raw query' it ignores all of these parameters: sortBy, filter, select, groupBy and limit.  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
@@ -1096,8 +1128,10 @@ class SqlBackgroundExecutionApi:
         :type download: bool
         :param sort_by: Order the results by these fields.             Use the `-` sign to denote descending order, e.g. `-MyFieldName`.  Numeric indexes may be used also, e.g. `2,-3`.             Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.             Default is null, the sort order specified in the query itself.
         :type sort_by: str
-        :param filter: An ODATA filter per Finbourne.Filtering syntax.
+        :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - may be combined with `sqlFilter`.
         :type filter: str
+        :param sql_filter: Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'` - may be combined with `filter` while supporting additional syntax that cannot.
+        :type sql_filter: str
         :param select: Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - `MyField` - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name) - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but  it works) - `count(distinct x) as numOfXs` If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
         :type select: str
         :param group_by: Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. `2,3`, `myColumn`.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.             Only specify this if you are selecting aggregations in the \"select\" parameter.
@@ -1118,11 +1152,11 @@ class SqlBackgroundExecutionApi:
             message = "Error! Please call the fetch_query_result_json_proper_with_lineage_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.fetch_query_result_json_proper_with_lineage_with_http_info(execution_id, download, sort_by, filter, select, group_by, limit, page, load_wait_milliseconds, **kwargs)
+        response = self.fetch_query_result_json_proper_with_lineage_with_http_info(execution_id, download, sort_by, filter, sql_filter, select, group_by, limit, page, load_wait_milliseconds, **kwargs)
         return response.data
 
     @validate_call
-    def fetch_query_result_json_proper_with_lineage_with_http_info(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
+    def fetch_query_result_json_proper_with_lineage_with_http_info(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
         """FetchQueryResultJsonProperWithLineage: Fetch the result of a query as JSON, but including a Lineage Node (if available)  # noqa: E501
 
         Fetch the data in proper Json format (if available, or if not simply being informed it is not yet ready) But embeds the data under a `Data` node and Lineage (if requested when starting the execution) under a `Lineage` node. Lineage is just for the 'raw query' it ignores all of these parameters: sortBy, filter, select, groupBy and limit.  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
@@ -1132,8 +1166,10 @@ class SqlBackgroundExecutionApi:
         :type download: bool
         :param sort_by: Order the results by these fields.             Use the `-` sign to denote descending order, e.g. `-MyFieldName`.  Numeric indexes may be used also, e.g. `2,-3`.             Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.             Default is null, the sort order specified in the query itself.
         :type sort_by: str
-        :param filter: An ODATA filter per Finbourne.Filtering syntax.
+        :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - may be combined with `sqlFilter`.
         :type filter: str
+        :param sql_filter: Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'` - may be combined with `filter` while supporting additional syntax that cannot.
+        :type sql_filter: str
         :param select: Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - `MyField` - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name) - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but  it works) - `count(distinct x) as numOfXs` If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
         :type select: str
         :param group_by: Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. `2,3`, `myColumn`.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.             Only specify this if you are selecting aggregations in the \"select\" parameter.
@@ -1171,6 +1207,7 @@ class SqlBackgroundExecutionApi:
             'download',
             'sort_by',
             'filter',
+            'sql_filter',
             'select',
             'group_by',
             'limit',
@@ -1217,6 +1254,9 @@ class SqlBackgroundExecutionApi:
 
         if _params.get('filter') is not None:  # noqa: E501
             _query_params.append(('filter', _params['filter']))
+
+        if _params.get('sql_filter') is not None:  # noqa: E501
+            _query_params.append(('sqlFilter', _params['sql_filter']))
 
         if _params.get('select') is not None:  # noqa: E501
             _query_params.append(('select', _params['select']))
@@ -1271,7 +1311,7 @@ class SqlBackgroundExecutionApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def fetch_query_result_parquet(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> bytes:
+    def fetch_query_result_parquet(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> bytes:
         """FetchQueryResultParquet: Fetch the result of a query as Parquet  # noqa: E501
 
         Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
@@ -1279,8 +1319,10 @@ class SqlBackgroundExecutionApi:
         :type execution_id: str
         :param sort_by: Order the results by these fields.             Use the `-` sign to denote descending order, e.g. `-MyFieldName`.  Numeric indexes may be used also, e.g. `2,-3`.             Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.             Default is null, the sort order specified in the query itself.
         :type sort_by: str
-        :param filter: An ODATA filter per Finbourne.Filtering syntax.
+        :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - may be combined with `sqlFilter`.
         :type filter: str
+        :param sql_filter: Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'` - may be combined with `filter` while supporting additional syntax that cannot.
+        :type sql_filter: str
         :param select: Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - `MyField` - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name) - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but  it works) - `count(distinct x) as numOfXs` If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
         :type select: str
         :param group_by: Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. `2,3`, `myColumn`.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.             Only specify this if you are selecting aggregations in the \"select\" parameter.
@@ -1297,11 +1339,11 @@ class SqlBackgroundExecutionApi:
             message = "Error! Please call the fetch_query_result_parquet_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.fetch_query_result_parquet_with_http_info(execution_id, sort_by, filter, select, group_by, load_wait_milliseconds, **kwargs)
+        response = self.fetch_query_result_parquet_with_http_info(execution_id, sort_by, filter, sql_filter, select, group_by, load_wait_milliseconds, **kwargs)
         return response.data
 
     @validate_call
-    def fetch_query_result_parquet_with_http_info(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[bytes]:
+    def fetch_query_result_parquet_with_http_info(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[bytes]:
         """FetchQueryResultParquet: Fetch the result of a query as Parquet  # noqa: E501
 
         Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
@@ -1309,8 +1351,10 @@ class SqlBackgroundExecutionApi:
         :type execution_id: str
         :param sort_by: Order the results by these fields.             Use the `-` sign to denote descending order, e.g. `-MyFieldName`.  Numeric indexes may be used also, e.g. `2,-3`.             Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.             Default is null, the sort order specified in the query itself.
         :type sort_by: str
-        :param filter: An ODATA filter per Finbourne.Filtering syntax.
+        :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - may be combined with `sqlFilter`.
         :type filter: str
+        :param sql_filter: Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'` - may be combined with `filter` while supporting additional syntax that cannot.
+        :type sql_filter: str
         :param select: Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - `MyField` - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name) - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but  it works) - `count(distinct x) as numOfXs` If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
         :type select: str
         :param group_by: Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. `2,3`, `myColumn`.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.             Only specify this if you are selecting aggregations in the \"select\" parameter.
@@ -1343,6 +1387,7 @@ class SqlBackgroundExecutionApi:
             'execution_id',
             'sort_by',
             'filter',
+            'sql_filter',
             'select',
             'group_by',
             'load_wait_milliseconds'
@@ -1384,6 +1429,9 @@ class SqlBackgroundExecutionApi:
 
         if _params.get('filter') is not None:  # noqa: E501
             _query_params.append(('filter', _params['filter']))
+
+        if _params.get('sql_filter') is not None:  # noqa: E501
+            _query_params.append(('sqlFilter', _params['sql_filter']))
 
         if _params.get('select') is not None:  # noqa: E501
             _query_params.append(('select', _params['select']))
@@ -1432,7 +1480,7 @@ class SqlBackgroundExecutionApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def fetch_query_result_pipe(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, date_time_format: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> str:
+    def fetch_query_result_pipe(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, date_time_format: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> str:
         """FetchQueryResultPipe: Fetch the result of a query as pipe-delimited  # noqa: E501
 
         Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
@@ -1442,8 +1490,10 @@ class SqlBackgroundExecutionApi:
         :type download: bool
         :param sort_by: Order the results by these fields.             Use the `-` sign to denote descending order, e.g. `-MyFieldName`.  Numeric indexes may be used also, e.g. `2,-3`.             Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.             Default is null, the sort order specified in the query itself.
         :type sort_by: str
-        :param filter: An ODATA filter per Finbourne.Filtering syntax.
+        :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - may be combined with `sqlFilter`.
         :type filter: str
+        :param sql_filter: Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'` - may be combined with `filter` while supporting additional syntax that cannot.
+        :type sql_filter: str
         :param select: Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - `MyField` - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name) - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but  it works) - `count(distinct x) as numOfXs` If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
         :type select: str
         :param group_by: Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. `2,3`, `myColumn`.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.             Only specify this if you are selecting aggregations in the \"select\" parameter.
@@ -1466,11 +1516,11 @@ class SqlBackgroundExecutionApi:
             message = "Error! Please call the fetch_query_result_pipe_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.fetch_query_result_pipe_with_http_info(execution_id, download, sort_by, filter, select, group_by, limit, page, date_time_format, load_wait_milliseconds, **kwargs)
+        response = self.fetch_query_result_pipe_with_http_info(execution_id, download, sort_by, filter, sql_filter, select, group_by, limit, page, date_time_format, load_wait_milliseconds, **kwargs)
         return response.data
 
     @validate_call
-    def fetch_query_result_pipe_with_http_info(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, date_time_format: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
+    def fetch_query_result_pipe_with_http_info(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, date_time_format: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
         """FetchQueryResultPipe: Fetch the result of a query as pipe-delimited  # noqa: E501
 
         Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
@@ -1480,8 +1530,10 @@ class SqlBackgroundExecutionApi:
         :type download: bool
         :param sort_by: Order the results by these fields.             Use the `-` sign to denote descending order, e.g. `-MyFieldName`.  Numeric indexes may be used also, e.g. `2,-3`.             Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.             Default is null, the sort order specified in the query itself.
         :type sort_by: str
-        :param filter: An ODATA filter per Finbourne.Filtering syntax.
+        :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - may be combined with `sqlFilter`.
         :type filter: str
+        :param sql_filter: Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'` - may be combined with `filter` while supporting additional syntax that cannot.
+        :type sql_filter: str
         :param select: Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - `MyField` - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name) - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but  it works) - `count(distinct x) as numOfXs` If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
         :type select: str
         :param group_by: Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. `2,3`, `myColumn`.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.             Only specify this if you are selecting aggregations in the \"select\" parameter.
@@ -1521,6 +1573,7 @@ class SqlBackgroundExecutionApi:
             'download',
             'sort_by',
             'filter',
+            'sql_filter',
             'select',
             'group_by',
             'limit',
@@ -1568,6 +1621,9 @@ class SqlBackgroundExecutionApi:
 
         if _params.get('filter') is not None:  # noqa: E501
             _query_params.append(('filter', _params['filter']))
+
+        if _params.get('sql_filter') is not None:  # noqa: E501
+            _query_params.append(('sqlFilter', _params['sql_filter']))
 
         if _params.get('select') is not None:  # noqa: E501
             _query_params.append(('select', _params['select']))
@@ -1625,7 +1681,7 @@ class SqlBackgroundExecutionApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def fetch_query_result_sqlite(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> bytes:
+    def fetch_query_result_sqlite(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> bytes:
         """FetchQueryResultSqlite: Fetch the result of a query as SqLite  # noqa: E501
 
         Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
@@ -1633,8 +1689,10 @@ class SqlBackgroundExecutionApi:
         :type execution_id: str
         :param sort_by: Order the results by these fields.             Use the `-` sign to denote descending order, e.g. `-MyFieldName`.  Numeric indexes may be used also, e.g. `2,-3`.             Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.             Default is null, the sort order specified in the query itself.
         :type sort_by: str
-        :param filter: An ODATA filter per Finbourne.Filtering syntax.
+        :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - may be combined with `sqlFilter`.
         :type filter: str
+        :param sql_filter: Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'` - may be combined with `filter` while supporting additional syntax that cannot.
+        :type sql_filter: str
         :param select: Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - `MyField` - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name) - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but  it works) - `count(distinct x) as numOfXs` If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
         :type select: str
         :param group_by: Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. `2,3`, `myColumn`.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.             Only specify this if you are selecting aggregations in the \"select\" parameter.
@@ -1651,11 +1709,11 @@ class SqlBackgroundExecutionApi:
             message = "Error! Please call the fetch_query_result_sqlite_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.fetch_query_result_sqlite_with_http_info(execution_id, sort_by, filter, select, group_by, load_wait_milliseconds, **kwargs)
+        response = self.fetch_query_result_sqlite_with_http_info(execution_id, sort_by, filter, sql_filter, select, group_by, load_wait_milliseconds, **kwargs)
         return response.data
 
     @validate_call
-    def fetch_query_result_sqlite_with_http_info(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[bytes]:
+    def fetch_query_result_sqlite_with_http_info(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[bytes]:
         """FetchQueryResultSqlite: Fetch the result of a query as SqLite  # noqa: E501
 
         Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
@@ -1663,8 +1721,10 @@ class SqlBackgroundExecutionApi:
         :type execution_id: str
         :param sort_by: Order the results by these fields.             Use the `-` sign to denote descending order, e.g. `-MyFieldName`.  Numeric indexes may be used also, e.g. `2,-3`.             Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.             Default is null, the sort order specified in the query itself.
         :type sort_by: str
-        :param filter: An ODATA filter per Finbourne.Filtering syntax.
+        :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - may be combined with `sqlFilter`.
         :type filter: str
+        :param sql_filter: Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'` - may be combined with `filter` while supporting additional syntax that cannot.
+        :type sql_filter: str
         :param select: Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - `MyField` - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name) - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but  it works) - `count(distinct x) as numOfXs` If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
         :type select: str
         :param group_by: Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. `2,3`, `myColumn`.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.             Only specify this if you are selecting aggregations in the \"select\" parameter.
@@ -1697,6 +1757,7 @@ class SqlBackgroundExecutionApi:
             'execution_id',
             'sort_by',
             'filter',
+            'sql_filter',
             'select',
             'group_by',
             'load_wait_milliseconds'
@@ -1738,6 +1799,9 @@ class SqlBackgroundExecutionApi:
 
         if _params.get('filter') is not None:  # noqa: E501
             _query_params.append(('filter', _params['filter']))
+
+        if _params.get('sql_filter') is not None:  # noqa: E501
+            _query_params.append(('sqlFilter', _params['sql_filter']))
 
         if _params.get('select') is not None:  # noqa: E501
             _query_params.append(('select', _params['select']))
@@ -1786,7 +1850,7 @@ class SqlBackgroundExecutionApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def fetch_query_result_xml(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> str:
+    def fetch_query_result_xml(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> str:
         """FetchQueryResultXml: Fetch the result of a query as XML  # noqa: E501
 
         Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
@@ -1796,8 +1860,10 @@ class SqlBackgroundExecutionApi:
         :type download: bool
         :param sort_by: Order the results by these fields.             Use the `-` sign to denote descending order, e.g. `-MyFieldName`.  Numeric indexes may be used also, e.g. `2,-3`.             Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.             Default is null, the sort order specified in the query itself.
         :type sort_by: str
-        :param filter: An ODATA filter per Finbourne.Filtering syntax.
+        :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - may be combined with `sqlFilter`.
         :type filter: str
+        :param sql_filter: Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'` - may be combined with `filter` while supporting additional syntax that cannot.
+        :type sql_filter: str
         :param select: Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - `MyField` - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name) - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but  it works) - `count(distinct x) as numOfXs` If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
         :type select: str
         :param group_by: Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. `2,3`, `myColumn`.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.             Only specify this if you are selecting aggregations in the \"select\" parameter.
@@ -1818,11 +1884,11 @@ class SqlBackgroundExecutionApi:
             message = "Error! Please call the fetch_query_result_xml_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.fetch_query_result_xml_with_http_info(execution_id, download, sort_by, filter, select, group_by, limit, page, load_wait_milliseconds, **kwargs)
+        response = self.fetch_query_result_xml_with_http_info(execution_id, download, sort_by, filter, sql_filter, select, group_by, limit, page, load_wait_milliseconds, **kwargs)
         return response.data
 
     @validate_call
-    def fetch_query_result_xml_with_http_info(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
+    def fetch_query_result_xml_with_http_info(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
         """FetchQueryResultXml: Fetch the result of a query as XML  # noqa: E501
 
         Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
@@ -1832,8 +1898,10 @@ class SqlBackgroundExecutionApi:
         :type download: bool
         :param sort_by: Order the results by these fields.             Use the `-` sign to denote descending order, e.g. `-MyFieldName`.  Numeric indexes may be used also, e.g. `2,-3`.             Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.             Default is null, the sort order specified in the query itself.
         :type sort_by: str
-        :param filter: An ODATA filter per Finbourne.Filtering syntax.
+        :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - may be combined with `sqlFilter`.
         :type filter: str
+        :param sql_filter: Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'` - may be combined with `filter` while supporting additional syntax that cannot.
+        :type sql_filter: str
         :param select: Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - `MyField` - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name) - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but  it works) - `count(distinct x) as numOfXs` If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
         :type select: str
         :param group_by: Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. `2,3`, `myColumn`.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.             Only specify this if you are selecting aggregations in the \"select\" parameter.
@@ -1871,6 +1939,7 @@ class SqlBackgroundExecutionApi:
             'download',
             'sort_by',
             'filter',
+            'sql_filter',
             'select',
             'group_by',
             'limit',
@@ -1917,6 +1986,9 @@ class SqlBackgroundExecutionApi:
 
         if _params.get('filter') is not None:  # noqa: E501
             _query_params.append(('filter', _params['filter']))
+
+        if _params.get('sql_filter') is not None:  # noqa: E501
+            _query_params.append(('sqlFilter', _params['sql_filter']))
 
         if _params.get('select') is not None:  # noqa: E501
             _query_params.append(('select', _params['select']))
@@ -2545,7 +2617,7 @@ class SqlBackgroundExecutionApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def fetch_query_result_csv_async(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, delimiter: Optional[StrictStr] = None, escape: Optional[StrictStr] = None, date_time_format: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> str:
+    async def fetch_query_result_csv_async(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, delimiter: Optional[StrictStr] = None, escape: Optional[StrictStr] = None, date_time_format: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> str:
             """FetchQueryResultCsv: Fetch the result of a query as CSV  # noqa: E501
             Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
             
@@ -2555,8 +2627,10 @@ class SqlBackgroundExecutionApi:
             :type download: bool
             :param sort_by: Order the results by these fields.             Use the `-` sign to denote descending order, e.g. `-MyFieldName`.  Numeric indexes may be used also, e.g. `2,-3`.             Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.             Default is null, the sort order specified in the query itself.
             :type sort_by: str
-            :param filter: An ODATA filter per Finbourne.Filtering syntax.
+            :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - may be combined with `sqlFilter`.
             :type filter: str
+            :param sql_filter: Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'` - may be combined with `filter` while supporting additional syntax that cannot.
+            :type sql_filter: str
             :param select: Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - `MyField` - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name) - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but  it works) - `count(distinct x) as numOfXs` If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
             :type select: str
             :param group_by: Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. `2,3`, `myColumn`.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.             Only specify this if you are selecting aggregations in the \"select\" parameter.
@@ -2583,11 +2657,11 @@ class SqlBackgroundExecutionApi:
                 message = "Error! Please call the fetch_query_result_csv_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.fetch_query_result_csv_with_http_info_async(execution_id, download, sort_by, filter, select, group_by, limit, page, delimiter, escape, date_time_format, load_wait_milliseconds, **kwargs)
+            response = await self.fetch_query_result_csv_with_http_info_async(execution_id, download, sort_by, filter, sql_filter, select, group_by, limit, page, delimiter, escape, date_time_format, load_wait_milliseconds, **kwargs)
             return response.data
 
     @validate_call
-    async def fetch_query_result_csv_with_http_info_async(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, delimiter: Optional[StrictStr] = None, escape: Optional[StrictStr] = None, date_time_format: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
+    async def fetch_query_result_csv_with_http_info_async(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, delimiter: Optional[StrictStr] = None, escape: Optional[StrictStr] = None, date_time_format: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
             """FetchQueryResultCsv: Fetch the result of a query as CSV  # noqa: E501
 
             Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
@@ -2598,8 +2672,10 @@ class SqlBackgroundExecutionApi:
             :type download: bool
             :param sort_by: Order the results by these fields.             Use the `-` sign to denote descending order, e.g. `-MyFieldName`.  Numeric indexes may be used also, e.g. `2,-3`.             Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.             Default is null, the sort order specified in the query itself.
             :type sort_by: str
-            :param filter: An ODATA filter per Finbourne.Filtering syntax.
+            :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - may be combined with `sqlFilter`.
             :type filter: str
+            :param sql_filter: Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'` - may be combined with `filter` while supporting additional syntax that cannot.
+            :type sql_filter: str
             :param select: Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - `MyField` - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name) - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but  it works) - `count(distinct x) as numOfXs` If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
             :type select: str
             :param group_by: Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. `2,3`, `myColumn`.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.             Only specify this if you are selecting aggregations in the \"select\" parameter.
@@ -2643,6 +2719,7 @@ class SqlBackgroundExecutionApi:
                 'download',
                 'sort_by',
                 'filter',
+                'sql_filter',
                 'select',
                 'group_by',
                 'limit',
@@ -2692,6 +2769,9 @@ class SqlBackgroundExecutionApi:
 
             if _params.get('filter') is not None:  # noqa: E501
                 _query_params.append(('filter', _params['filter']))
+
+            if _params.get('sql_filter') is not None:  # noqa: E501
+                _query_params.append(('sqlFilter', _params['sql_filter']))
 
             if _params.get('select') is not None:  # noqa: E501
                 _query_params.append(('select', _params['select']))
@@ -2755,7 +2835,7 @@ class SqlBackgroundExecutionApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def fetch_query_result_excel_async(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, date_time_format: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> bytes:
+    async def fetch_query_result_excel_async(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, date_time_format: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> bytes:
             """FetchQueryResultExcel: Fetch the result of a query as an Excel file  # noqa: E501
             Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
             
@@ -2763,8 +2843,10 @@ class SqlBackgroundExecutionApi:
             :type execution_id: str
             :param sort_by: Order the results by these fields.             Use the `-` sign to denote descending order, e.g. `-MyFieldName`.  Numeric indexes may be used also, e.g. `2,-3`.             Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.             Default is null, the sort order specified in the query itself.
             :type sort_by: str
-            :param filter: An ODATA filter per Finbourne.Filtering syntax.
+            :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - may be combined with `sqlFilter`.
             :type filter: str
+            :param sql_filter: Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'` - may be combined with `filter` while supporting additional syntax that cannot.
+            :type sql_filter: str
             :param select: Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - `MyField` - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name) - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but  it works) - `count(distinct x) as numOfXs` If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
             :type select: str
             :param group_by: Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. `2,3`, `myColumn`.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.             Only specify this if you are selecting aggregations in the \"select\" parameter.
@@ -2783,11 +2865,11 @@ class SqlBackgroundExecutionApi:
                 message = "Error! Please call the fetch_query_result_excel_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.fetch_query_result_excel_with_http_info_async(execution_id, sort_by, filter, select, group_by, date_time_format, load_wait_milliseconds, **kwargs)
+            response = await self.fetch_query_result_excel_with_http_info_async(execution_id, sort_by, filter, sql_filter, select, group_by, date_time_format, load_wait_milliseconds, **kwargs)
             return response.data
 
     @validate_call
-    async def fetch_query_result_excel_with_http_info_async(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, date_time_format: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[bytes]:
+    async def fetch_query_result_excel_with_http_info_async(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, date_time_format: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[bytes]:
             """FetchQueryResultExcel: Fetch the result of a query as an Excel file  # noqa: E501
 
             Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
@@ -2796,8 +2878,10 @@ class SqlBackgroundExecutionApi:
             :type execution_id: str
             :param sort_by: Order the results by these fields.             Use the `-` sign to denote descending order, e.g. `-MyFieldName`.  Numeric indexes may be used also, e.g. `2,-3`.             Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.             Default is null, the sort order specified in the query itself.
             :type sort_by: str
-            :param filter: An ODATA filter per Finbourne.Filtering syntax.
+            :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - may be combined with `sqlFilter`.
             :type filter: str
+            :param sql_filter: Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'` - may be combined with `filter` while supporting additional syntax that cannot.
+            :type sql_filter: str
             :param select: Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - `MyField` - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name) - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but  it works) - `count(distinct x) as numOfXs` If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
             :type select: str
             :param group_by: Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. `2,3`, `myColumn`.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.             Only specify this if you are selecting aggregations in the \"select\" parameter.
@@ -2832,6 +2916,7 @@ class SqlBackgroundExecutionApi:
                 'execution_id',
                 'sort_by',
                 'filter',
+                'sql_filter',
                 'select',
                 'group_by',
                 'date_time_format',
@@ -2874,6 +2959,9 @@ class SqlBackgroundExecutionApi:
 
             if _params.get('filter') is not None:  # noqa: E501
                 _query_params.append(('filter', _params['filter']))
+
+            if _params.get('sql_filter') is not None:  # noqa: E501
+                _query_params.append(('sqlFilter', _params['sql_filter']))
 
             if _params.get('select') is not None:  # noqa: E501
                 _query_params.append(('select', _params['select']))
@@ -2939,7 +3027,7 @@ class SqlBackgroundExecutionApi:
             :type end_at: datetime
             :param bucket_size: Optional histogram bucket width.  If not provided a set number of buckets between start/end range will be generated.
             :type bucket_size: str
-            :param filter: An ODATA filter per Finbourne.Filtering syntax.
+            :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - Or raw SqLite SQL, this must then begin with `WHERE ` and is more flexible, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'`
             :type filter: str
             :param json_proper: Should this be text/json (not json-encoded-as-a-string)
             :type json_proper: bool
@@ -2972,7 +3060,7 @@ class SqlBackgroundExecutionApi:
             :type end_at: datetime
             :param bucket_size: Optional histogram bucket width.  If not provided a set number of buckets between start/end range will be generated.
             :type bucket_size: str
-            :param filter: An ODATA filter per Finbourne.Filtering syntax.
+            :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - Or raw SqLite SQL, this must then begin with `WHERE ` and is more flexible, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'`
             :type filter: str
             :param json_proper: Should this be text/json (not json-encoded-as-a-string)
             :type json_proper: bool
@@ -3101,7 +3189,7 @@ class SqlBackgroundExecutionApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def fetch_query_result_json_async(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> str:
+    async def fetch_query_result_json_async(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> str:
             """FetchQueryResultJson: Fetch the result of a query as a JSON string  # noqa: E501
              *Please move to '/jsonProper' instead.  This may be marked as Deprecated in the future.*  Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
             
@@ -3109,8 +3197,10 @@ class SqlBackgroundExecutionApi:
             :type execution_id: str
             :param sort_by: Order the results by these fields.             Use the `-` sign to denote descending order, e.g. `-MyFieldName`.  Numeric indexes may be used also, e.g. `2,-3`.             Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.             Default is null, the sort order specified in the query itself.
             :type sort_by: str
-            :param filter: An ODATA filter per Finbourne.Filtering syntax.
+            :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - may be combined with `sqlFilter`.
             :type filter: str
+            :param sql_filter: Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'` - may be combined with `filter` while supporting additional syntax that cannot.
+            :type sql_filter: str
             :param select: Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - `MyField` - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name) - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but  it works) - `count(distinct x) as numOfXs` If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
             :type select: str
             :param group_by: Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. `2,3`, `myColumn`.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.             Only specify this if you are selecting aggregations in the \"select\" parameter.
@@ -3131,11 +3221,11 @@ class SqlBackgroundExecutionApi:
                 message = "Error! Please call the fetch_query_result_json_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.fetch_query_result_json_with_http_info_async(execution_id, sort_by, filter, select, group_by, limit, page, load_wait_milliseconds, **kwargs)
+            response = await self.fetch_query_result_json_with_http_info_async(execution_id, sort_by, filter, sql_filter, select, group_by, limit, page, load_wait_milliseconds, **kwargs)
             return response.data
 
     @validate_call
-    async def fetch_query_result_json_with_http_info_async(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
+    async def fetch_query_result_json_with_http_info_async(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
             """FetchQueryResultJson: Fetch the result of a query as a JSON string  # noqa: E501
 
              *Please move to '/jsonProper' instead.  This may be marked as Deprecated in the future.*  Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
@@ -3144,8 +3234,10 @@ class SqlBackgroundExecutionApi:
             :type execution_id: str
             :param sort_by: Order the results by these fields.             Use the `-` sign to denote descending order, e.g. `-MyFieldName`.  Numeric indexes may be used also, e.g. `2,-3`.             Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.             Default is null, the sort order specified in the query itself.
             :type sort_by: str
-            :param filter: An ODATA filter per Finbourne.Filtering syntax.
+            :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - may be combined with `sqlFilter`.
             :type filter: str
+            :param sql_filter: Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'` - may be combined with `filter` while supporting additional syntax that cannot.
+            :type sql_filter: str
             :param select: Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - `MyField` - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name) - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but  it works) - `count(distinct x) as numOfXs` If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
             :type select: str
             :param group_by: Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. `2,3`, `myColumn`.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.             Only specify this if you are selecting aggregations in the \"select\" parameter.
@@ -3182,6 +3274,7 @@ class SqlBackgroundExecutionApi:
                 'execution_id',
                 'sort_by',
                 'filter',
+                'sql_filter',
                 'select',
                 'group_by',
                 'limit',
@@ -3225,6 +3318,9 @@ class SqlBackgroundExecutionApi:
 
             if _params.get('filter') is not None:  # noqa: E501
                 _query_params.append(('filter', _params['filter']))
+
+            if _params.get('sql_filter') is not None:  # noqa: E501
+                _query_params.append(('sqlFilter', _params['sql_filter']))
 
             if _params.get('select') is not None:  # noqa: E501
                 _query_params.append(('select', _params['select']))
@@ -3279,7 +3375,7 @@ class SqlBackgroundExecutionApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def fetch_query_result_json_proper_async(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> str:
+    async def fetch_query_result_json_proper_async(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> str:
             """FetchQueryResultJsonProper: Fetch the result of a query as JSON  # noqa: E501
             Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
             
@@ -3289,8 +3385,10 @@ class SqlBackgroundExecutionApi:
             :type download: bool
             :param sort_by: Order the results by these fields.             Use the `-` sign to denote descending order, e.g. `-MyFieldName`.  Numeric indexes may be used also, e.g. `2,-3`.             Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.             Default is null, the sort order specified in the query itself.
             :type sort_by: str
-            :param filter: An ODATA filter per Finbourne.Filtering syntax.
+            :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - may be combined with `sqlFilter`.
             :type filter: str
+            :param sql_filter: Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'` - may be combined with `filter` while supporting additional syntax that cannot.
+            :type sql_filter: str
             :param select: Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - `MyField` - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name) - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but  it works) - `count(distinct x) as numOfXs` If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
             :type select: str
             :param group_by: Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. `2,3`, `myColumn`.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.             Only specify this if you are selecting aggregations in the \"select\" parameter.
@@ -3311,11 +3409,11 @@ class SqlBackgroundExecutionApi:
                 message = "Error! Please call the fetch_query_result_json_proper_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.fetch_query_result_json_proper_with_http_info_async(execution_id, download, sort_by, filter, select, group_by, limit, page, load_wait_milliseconds, **kwargs)
+            response = await self.fetch_query_result_json_proper_with_http_info_async(execution_id, download, sort_by, filter, sql_filter, select, group_by, limit, page, load_wait_milliseconds, **kwargs)
             return response.data
 
     @validate_call
-    async def fetch_query_result_json_proper_with_http_info_async(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
+    async def fetch_query_result_json_proper_with_http_info_async(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
             """FetchQueryResultJsonProper: Fetch the result of a query as JSON  # noqa: E501
 
             Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
@@ -3326,8 +3424,10 @@ class SqlBackgroundExecutionApi:
             :type download: bool
             :param sort_by: Order the results by these fields.             Use the `-` sign to denote descending order, e.g. `-MyFieldName`.  Numeric indexes may be used also, e.g. `2,-3`.             Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.             Default is null, the sort order specified in the query itself.
             :type sort_by: str
-            :param filter: An ODATA filter per Finbourne.Filtering syntax.
+            :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - may be combined with `sqlFilter`.
             :type filter: str
+            :param sql_filter: Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'` - may be combined with `filter` while supporting additional syntax that cannot.
+            :type sql_filter: str
             :param select: Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - `MyField` - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name) - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but  it works) - `count(distinct x) as numOfXs` If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
             :type select: str
             :param group_by: Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. `2,3`, `myColumn`.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.             Only specify this if you are selecting aggregations in the \"select\" parameter.
@@ -3365,6 +3465,7 @@ class SqlBackgroundExecutionApi:
                 'download',
                 'sort_by',
                 'filter',
+                'sql_filter',
                 'select',
                 'group_by',
                 'limit',
@@ -3411,6 +3512,9 @@ class SqlBackgroundExecutionApi:
 
             if _params.get('filter') is not None:  # noqa: E501
                 _query_params.append(('filter', _params['filter']))
+
+            if _params.get('sql_filter') is not None:  # noqa: E501
+                _query_params.append(('sqlFilter', _params['sql_filter']))
 
             if _params.get('select') is not None:  # noqa: E501
                 _query_params.append(('select', _params['select']))
@@ -3465,7 +3569,7 @@ class SqlBackgroundExecutionApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def fetch_query_result_json_proper_with_lineage_async(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> str:
+    async def fetch_query_result_json_proper_with_lineage_async(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> str:
             """FetchQueryResultJsonProperWithLineage: Fetch the result of a query as JSON, but including a Lineage Node (if available)  # noqa: E501
             Fetch the data in proper Json format (if available, or if not simply being informed it is not yet ready) But embeds the data under a `Data` node and Lineage (if requested when starting the execution) under a `Lineage` node. Lineage is just for the 'raw query' it ignores all of these parameters: sortBy, filter, select, groupBy and limit.  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
             
@@ -3475,8 +3579,10 @@ class SqlBackgroundExecutionApi:
             :type download: bool
             :param sort_by: Order the results by these fields.             Use the `-` sign to denote descending order, e.g. `-MyFieldName`.  Numeric indexes may be used also, e.g. `2,-3`.             Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.             Default is null, the sort order specified in the query itself.
             :type sort_by: str
-            :param filter: An ODATA filter per Finbourne.Filtering syntax.
+            :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - may be combined with `sqlFilter`.
             :type filter: str
+            :param sql_filter: Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'` - may be combined with `filter` while supporting additional syntax that cannot.
+            :type sql_filter: str
             :param select: Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - `MyField` - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name) - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but  it works) - `count(distinct x) as numOfXs` If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
             :type select: str
             :param group_by: Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. `2,3`, `myColumn`.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.             Only specify this if you are selecting aggregations in the \"select\" parameter.
@@ -3497,11 +3603,11 @@ class SqlBackgroundExecutionApi:
                 message = "Error! Please call the fetch_query_result_json_proper_with_lineage_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.fetch_query_result_json_proper_with_lineage_with_http_info_async(execution_id, download, sort_by, filter, select, group_by, limit, page, load_wait_milliseconds, **kwargs)
+            response = await self.fetch_query_result_json_proper_with_lineage_with_http_info_async(execution_id, download, sort_by, filter, sql_filter, select, group_by, limit, page, load_wait_milliseconds, **kwargs)
             return response.data
 
     @validate_call
-    async def fetch_query_result_json_proper_with_lineage_with_http_info_async(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
+    async def fetch_query_result_json_proper_with_lineage_with_http_info_async(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
             """FetchQueryResultJsonProperWithLineage: Fetch the result of a query as JSON, but including a Lineage Node (if available)  # noqa: E501
 
             Fetch the data in proper Json format (if available, or if not simply being informed it is not yet ready) But embeds the data under a `Data` node and Lineage (if requested when starting the execution) under a `Lineage` node. Lineage is just for the 'raw query' it ignores all of these parameters: sortBy, filter, select, groupBy and limit.  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
@@ -3512,8 +3618,10 @@ class SqlBackgroundExecutionApi:
             :type download: bool
             :param sort_by: Order the results by these fields.             Use the `-` sign to denote descending order, e.g. `-MyFieldName`.  Numeric indexes may be used also, e.g. `2,-3`.             Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.             Default is null, the sort order specified in the query itself.
             :type sort_by: str
-            :param filter: An ODATA filter per Finbourne.Filtering syntax.
+            :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - may be combined with `sqlFilter`.
             :type filter: str
+            :param sql_filter: Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'` - may be combined with `filter` while supporting additional syntax that cannot.
+            :type sql_filter: str
             :param select: Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - `MyField` - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name) - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but  it works) - `count(distinct x) as numOfXs` If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
             :type select: str
             :param group_by: Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. `2,3`, `myColumn`.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.             Only specify this if you are selecting aggregations in the \"select\" parameter.
@@ -3551,6 +3659,7 @@ class SqlBackgroundExecutionApi:
                 'download',
                 'sort_by',
                 'filter',
+                'sql_filter',
                 'select',
                 'group_by',
                 'limit',
@@ -3597,6 +3706,9 @@ class SqlBackgroundExecutionApi:
 
             if _params.get('filter') is not None:  # noqa: E501
                 _query_params.append(('filter', _params['filter']))
+
+            if _params.get('sql_filter') is not None:  # noqa: E501
+                _query_params.append(('sqlFilter', _params['sql_filter']))
 
             if _params.get('select') is not None:  # noqa: E501
                 _query_params.append(('select', _params['select']))
@@ -3651,7 +3763,7 @@ class SqlBackgroundExecutionApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def fetch_query_result_parquet_async(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> bytes:
+    async def fetch_query_result_parquet_async(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> bytes:
             """FetchQueryResultParquet: Fetch the result of a query as Parquet  # noqa: E501
             Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
             
@@ -3659,8 +3771,10 @@ class SqlBackgroundExecutionApi:
             :type execution_id: str
             :param sort_by: Order the results by these fields.             Use the `-` sign to denote descending order, e.g. `-MyFieldName`.  Numeric indexes may be used also, e.g. `2,-3`.             Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.             Default is null, the sort order specified in the query itself.
             :type sort_by: str
-            :param filter: An ODATA filter per Finbourne.Filtering syntax.
+            :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - may be combined with `sqlFilter`.
             :type filter: str
+            :param sql_filter: Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'` - may be combined with `filter` while supporting additional syntax that cannot.
+            :type sql_filter: str
             :param select: Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - `MyField` - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name) - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but  it works) - `count(distinct x) as numOfXs` If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
             :type select: str
             :param group_by: Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. `2,3`, `myColumn`.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.             Only specify this if you are selecting aggregations in the \"select\" parameter.
@@ -3677,11 +3791,11 @@ class SqlBackgroundExecutionApi:
                 message = "Error! Please call the fetch_query_result_parquet_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.fetch_query_result_parquet_with_http_info_async(execution_id, sort_by, filter, select, group_by, load_wait_milliseconds, **kwargs)
+            response = await self.fetch_query_result_parquet_with_http_info_async(execution_id, sort_by, filter, sql_filter, select, group_by, load_wait_milliseconds, **kwargs)
             return response.data
 
     @validate_call
-    async def fetch_query_result_parquet_with_http_info_async(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[bytes]:
+    async def fetch_query_result_parquet_with_http_info_async(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[bytes]:
             """FetchQueryResultParquet: Fetch the result of a query as Parquet  # noqa: E501
 
             Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
@@ -3690,8 +3804,10 @@ class SqlBackgroundExecutionApi:
             :type execution_id: str
             :param sort_by: Order the results by these fields.             Use the `-` sign to denote descending order, e.g. `-MyFieldName`.  Numeric indexes may be used also, e.g. `2,-3`.             Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.             Default is null, the sort order specified in the query itself.
             :type sort_by: str
-            :param filter: An ODATA filter per Finbourne.Filtering syntax.
+            :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - may be combined with `sqlFilter`.
             :type filter: str
+            :param sql_filter: Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'` - may be combined with `filter` while supporting additional syntax that cannot.
+            :type sql_filter: str
             :param select: Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - `MyField` - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name) - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but  it works) - `count(distinct x) as numOfXs` If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
             :type select: str
             :param group_by: Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. `2,3`, `myColumn`.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.             Only specify this if you are selecting aggregations in the \"select\" parameter.
@@ -3724,6 +3840,7 @@ class SqlBackgroundExecutionApi:
                 'execution_id',
                 'sort_by',
                 'filter',
+                'sql_filter',
                 'select',
                 'group_by',
                 'load_wait_milliseconds'
@@ -3765,6 +3882,9 @@ class SqlBackgroundExecutionApi:
 
             if _params.get('filter') is not None:  # noqa: E501
                 _query_params.append(('filter', _params['filter']))
+
+            if _params.get('sql_filter') is not None:  # noqa: E501
+                _query_params.append(('sqlFilter', _params['sql_filter']))
 
             if _params.get('select') is not None:  # noqa: E501
                 _query_params.append(('select', _params['select']))
@@ -3813,7 +3933,7 @@ class SqlBackgroundExecutionApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def fetch_query_result_pipe_async(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, date_time_format: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> str:
+    async def fetch_query_result_pipe_async(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, date_time_format: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> str:
             """FetchQueryResultPipe: Fetch the result of a query as pipe-delimited  # noqa: E501
             Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
             
@@ -3823,8 +3943,10 @@ class SqlBackgroundExecutionApi:
             :type download: bool
             :param sort_by: Order the results by these fields.             Use the `-` sign to denote descending order, e.g. `-MyFieldName`.  Numeric indexes may be used also, e.g. `2,-3`.             Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.             Default is null, the sort order specified in the query itself.
             :type sort_by: str
-            :param filter: An ODATA filter per Finbourne.Filtering syntax.
+            :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - may be combined with `sqlFilter`.
             :type filter: str
+            :param sql_filter: Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'` - may be combined with `filter` while supporting additional syntax that cannot.
+            :type sql_filter: str
             :param select: Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - `MyField` - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name) - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but  it works) - `count(distinct x) as numOfXs` If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
             :type select: str
             :param group_by: Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. `2,3`, `myColumn`.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.             Only specify this if you are selecting aggregations in the \"select\" parameter.
@@ -3847,11 +3969,11 @@ class SqlBackgroundExecutionApi:
                 message = "Error! Please call the fetch_query_result_pipe_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.fetch_query_result_pipe_with_http_info_async(execution_id, download, sort_by, filter, select, group_by, limit, page, date_time_format, load_wait_milliseconds, **kwargs)
+            response = await self.fetch_query_result_pipe_with_http_info_async(execution_id, download, sort_by, filter, sql_filter, select, group_by, limit, page, date_time_format, load_wait_milliseconds, **kwargs)
             return response.data
 
     @validate_call
-    async def fetch_query_result_pipe_with_http_info_async(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, date_time_format: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
+    async def fetch_query_result_pipe_with_http_info_async(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, date_time_format: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
             """FetchQueryResultPipe: Fetch the result of a query as pipe-delimited  # noqa: E501
 
             Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
@@ -3862,8 +3984,10 @@ class SqlBackgroundExecutionApi:
             :type download: bool
             :param sort_by: Order the results by these fields.             Use the `-` sign to denote descending order, e.g. `-MyFieldName`.  Numeric indexes may be used also, e.g. `2,-3`.             Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.             Default is null, the sort order specified in the query itself.
             :type sort_by: str
-            :param filter: An ODATA filter per Finbourne.Filtering syntax.
+            :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - may be combined with `sqlFilter`.
             :type filter: str
+            :param sql_filter: Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'` - may be combined with `filter` while supporting additional syntax that cannot.
+            :type sql_filter: str
             :param select: Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - `MyField` - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name) - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but  it works) - `count(distinct x) as numOfXs` If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
             :type select: str
             :param group_by: Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. `2,3`, `myColumn`.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.             Only specify this if you are selecting aggregations in the \"select\" parameter.
@@ -3903,6 +4027,7 @@ class SqlBackgroundExecutionApi:
                 'download',
                 'sort_by',
                 'filter',
+                'sql_filter',
                 'select',
                 'group_by',
                 'limit',
@@ -3950,6 +4075,9 @@ class SqlBackgroundExecutionApi:
 
             if _params.get('filter') is not None:  # noqa: E501
                 _query_params.append(('filter', _params['filter']))
+
+            if _params.get('sql_filter') is not None:  # noqa: E501
+                _query_params.append(('sqlFilter', _params['sql_filter']))
 
             if _params.get('select') is not None:  # noqa: E501
                 _query_params.append(('select', _params['select']))
@@ -4007,7 +4135,7 @@ class SqlBackgroundExecutionApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def fetch_query_result_sqlite_async(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> bytes:
+    async def fetch_query_result_sqlite_async(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> bytes:
             """FetchQueryResultSqlite: Fetch the result of a query as SqLite  # noqa: E501
             Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
             
@@ -4015,8 +4143,10 @@ class SqlBackgroundExecutionApi:
             :type execution_id: str
             :param sort_by: Order the results by these fields.             Use the `-` sign to denote descending order, e.g. `-MyFieldName`.  Numeric indexes may be used also, e.g. `2,-3`.             Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.             Default is null, the sort order specified in the query itself.
             :type sort_by: str
-            :param filter: An ODATA filter per Finbourne.Filtering syntax.
+            :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - may be combined with `sqlFilter`.
             :type filter: str
+            :param sql_filter: Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'` - may be combined with `filter` while supporting additional syntax that cannot.
+            :type sql_filter: str
             :param select: Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - `MyField` - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name) - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but  it works) - `count(distinct x) as numOfXs` If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
             :type select: str
             :param group_by: Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. `2,3`, `myColumn`.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.             Only specify this if you are selecting aggregations in the \"select\" parameter.
@@ -4033,11 +4163,11 @@ class SqlBackgroundExecutionApi:
                 message = "Error! Please call the fetch_query_result_sqlite_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.fetch_query_result_sqlite_with_http_info_async(execution_id, sort_by, filter, select, group_by, load_wait_milliseconds, **kwargs)
+            response = await self.fetch_query_result_sqlite_with_http_info_async(execution_id, sort_by, filter, sql_filter, select, group_by, load_wait_milliseconds, **kwargs)
             return response.data
 
     @validate_call
-    async def fetch_query_result_sqlite_with_http_info_async(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[bytes]:
+    async def fetch_query_result_sqlite_with_http_info_async(self, execution_id: StrictStr, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[bytes]:
             """FetchQueryResultSqlite: Fetch the result of a query as SqLite  # noqa: E501
 
             Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
@@ -4046,8 +4176,10 @@ class SqlBackgroundExecutionApi:
             :type execution_id: str
             :param sort_by: Order the results by these fields.             Use the `-` sign to denote descending order, e.g. `-MyFieldName`.  Numeric indexes may be used also, e.g. `2,-3`.             Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.             Default is null, the sort order specified in the query itself.
             :type sort_by: str
-            :param filter: An ODATA filter per Finbourne.Filtering syntax.
+            :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - may be combined with `sqlFilter`.
             :type filter: str
+            :param sql_filter: Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'` - may be combined with `filter` while supporting additional syntax that cannot.
+            :type sql_filter: str
             :param select: Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - `MyField` - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name) - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but  it works) - `count(distinct x) as numOfXs` If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
             :type select: str
             :param group_by: Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. `2,3`, `myColumn`.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.             Only specify this if you are selecting aggregations in the \"select\" parameter.
@@ -4080,6 +4212,7 @@ class SqlBackgroundExecutionApi:
                 'execution_id',
                 'sort_by',
                 'filter',
+                'sql_filter',
                 'select',
                 'group_by',
                 'load_wait_milliseconds'
@@ -4121,6 +4254,9 @@ class SqlBackgroundExecutionApi:
 
             if _params.get('filter') is not None:  # noqa: E501
                 _query_params.append(('filter', _params['filter']))
+
+            if _params.get('sql_filter') is not None:  # noqa: E501
+                _query_params.append(('sqlFilter', _params['sql_filter']))
 
             if _params.get('select') is not None:  # noqa: E501
                 _query_params.append(('select', _params['select']))
@@ -4169,7 +4305,7 @@ class SqlBackgroundExecutionApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def fetch_query_result_xml_async(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> str:
+    async def fetch_query_result_xml_async(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> str:
             """FetchQueryResultXml: Fetch the result of a query as XML  # noqa: E501
             Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
             
@@ -4179,8 +4315,10 @@ class SqlBackgroundExecutionApi:
             :type download: bool
             :param sort_by: Order the results by these fields.             Use the `-` sign to denote descending order, e.g. `-MyFieldName`.  Numeric indexes may be used also, e.g. `2,-3`.             Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.             Default is null, the sort order specified in the query itself.
             :type sort_by: str
-            :param filter: An ODATA filter per Finbourne.Filtering syntax.
+            :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - may be combined with `sqlFilter`.
             :type filter: str
+            :param sql_filter: Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'` - may be combined with `filter` while supporting additional syntax that cannot.
+            :type sql_filter: str
             :param select: Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - `MyField` - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name) - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but  it works) - `count(distinct x) as numOfXs` If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
             :type select: str
             :param group_by: Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. `2,3`, `myColumn`.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.             Only specify this if you are selecting aggregations in the \"select\" parameter.
@@ -4201,11 +4339,11 @@ class SqlBackgroundExecutionApi:
                 message = "Error! Please call the fetch_query_result_xml_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.fetch_query_result_xml_with_http_info_async(execution_id, download, sort_by, filter, select, group_by, limit, page, load_wait_milliseconds, **kwargs)
+            response = await self.fetch_query_result_xml_with_http_info_async(execution_id, download, sort_by, filter, sql_filter, select, group_by, limit, page, load_wait_milliseconds, **kwargs)
             return response.data
 
     @validate_call
-    async def fetch_query_result_xml_with_http_info_async(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
+    async def fetch_query_result_xml_with_http_info_async(self, execution_id: StrictStr, download: Optional[bool] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[int] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
             """FetchQueryResultXml: Fetch the result of a query as XML  # noqa: E501
 
             Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
@@ -4216,8 +4354,10 @@ class SqlBackgroundExecutionApi:
             :type download: bool
             :param sort_by: Order the results by these fields.             Use the `-` sign to denote descending order, e.g. `-MyFieldName`.  Numeric indexes may be used also, e.g. `2,-3`.             Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.             Default is null, the sort order specified in the query itself.
             :type sort_by: str
-            :param filter: An ODATA filter per Finbourne.Filtering syntax.
+            :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - may be combined with `sqlFilter`.
             :type filter: str
+            :param sql_filter: Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'` - may be combined with `filter` while supporting additional syntax that cannot.
+            :type sql_filter: str
             :param select: Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - `MyField` - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name) - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but  it works) - `count(distinct x) as numOfXs` If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
             :type select: str
             :param group_by: Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. `2,3`, `myColumn`.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.             Only specify this if you are selecting aggregations in the \"select\" parameter.
@@ -4255,6 +4395,7 @@ class SqlBackgroundExecutionApi:
                 'download',
                 'sort_by',
                 'filter',
+                'sql_filter',
                 'select',
                 'group_by',
                 'limit',
@@ -4301,6 +4442,9 @@ class SqlBackgroundExecutionApi:
 
             if _params.get('filter') is not None:  # noqa: E501
                 _query_params.append(('filter', _params['filter']))
+
+            if _params.get('sql_filter') is not None:  # noqa: E501
+                _query_params.append(('sqlFilter', _params['sql_filter']))
 
             if _params.get('select') is not None:  # noqa: E501
                 _query_params.append(('select', _params['select']))

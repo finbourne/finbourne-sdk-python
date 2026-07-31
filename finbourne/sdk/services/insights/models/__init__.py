@@ -22,20 +22,32 @@ from finbourne.sdk.services.insights.models.audit_entry import AuditEntry
 from finbourne.sdk.services.insights.models.audit_entry_note import AuditEntryNote
 from finbourne.sdk.services.insights.models.audit_process import AuditProcess
 from finbourne.sdk.services.insights.models.audit_process_summary import AuditProcessSummary
+from finbourne.sdk.services.insights.models.boolean_comparator import BooleanComparator
 from finbourne.sdk.services.insights.models.bucket import Bucket
 from finbourne.sdk.services.insights.models.create_audit_entry import CreateAuditEntry
+from finbourne.sdk.services.insights.models.date_comparator import DateComparator
 from finbourne.sdk.services.insights.models.histogram import Histogram
 from finbourne.sdk.services.insights.models.id_selector_definition import IdSelectorDefinition
 from finbourne.sdk.services.insights.models.identifier_part_schema import IdentifierPartSchema
+from finbourne.sdk.services.insights.models.insights_filter import InsightsFilter
 from finbourne.sdk.services.insights.models.link import Link
 from finbourne.sdk.services.insights.models.lusid_problem_details import LusidProblemDetails
 from finbourne.sdk.services.insights.models.lusid_validation_problem_details import LusidValidationProblemDetails
+from finbourne.sdk.services.insights.models.numeric_comparator import NumericComparator
 from finbourne.sdk.services.insights.models.problem_details import ProblemDetails
+from finbourne.sdk.services.insights.models.queried_request_log import QueriedRequestLog
+from finbourne.sdk.services.insights.models.query_request_logs_request import QueryRequestLogsRequest
+from finbourne.sdk.services.insights.models.queryable_log_field import QueryableLogField
+from finbourne.sdk.services.insights.models.queryable_log_type import QueryableLogType
+from finbourne.sdk.services.insights.models.relative_boundary import RelativeBoundary
+from finbourne.sdk.services.insights.models.relative_offset import RelativeOffset
 from finbourne.sdk.services.insights.models.request import Request
 from finbourne.sdk.services.insights.models.request_log import RequestLog
 from finbourne.sdk.services.insights.models.resource import Resource
 from finbourne.sdk.services.insights.models.resource_list_of_access_controlled_resource import ResourceListOfAccessControlledResource
 from finbourne.sdk.services.insights.models.resource_list_of_audit_process_summary import ResourceListOfAuditProcessSummary
+from finbourne.sdk.services.insights.models.resource_list_of_queried_request_log import ResourceListOfQueriedRequestLog
+from finbourne.sdk.services.insights.models.resource_list_of_queryable_log_type import ResourceListOfQueryableLogType
 from finbourne.sdk.services.insights.models.resource_list_of_trace_event_log import ResourceListOfTraceEventLog
 from finbourne.sdk.services.insights.models.resource_list_of_trace_log import ResourceListOfTraceLog
 from finbourne.sdk.services.insights.models.resource_list_with_histogram_of_access_evaluation_log import ResourceListWithHistogramOfAccessEvaluationLog
@@ -43,6 +55,8 @@ from finbourne.sdk.services.insights.models.resource_list_with_histogram_of_requ
 from finbourne.sdk.services.insights.models.resource_list_with_histogram_of_vendor_log import ResourceListWithHistogramOfVendorLog
 from finbourne.sdk.services.insights.models.response import Response
 from finbourne.sdk.services.insights.models.scrollable_collection_of_audit_entry import ScrollableCollectionOfAuditEntry
+from finbourne.sdk.services.insights.models.text_comparator import TextComparator
+from finbourne.sdk.services.insights.models.time_range import TimeRange
 from finbourne.sdk.services.insights.models.trace_diagram_edge import TraceDiagramEdge
 from finbourne.sdk.services.insights.models.trace_diagram_node import TraceDiagramNode
 from finbourne.sdk.services.insights.models.trace_diagram_response import TraceDiagramResponse
@@ -64,20 +78,32 @@ __all__ = [
     "AuditEntryNote",
     "AuditProcess",
     "AuditProcessSummary",
+    "BooleanComparator",
     "Bucket",
     "CreateAuditEntry",
+    "DateComparator",
     "Histogram",
     "IdSelectorDefinition",
     "IdentifierPartSchema",
+    "InsightsFilter",
     "Link",
     "LusidProblemDetails",
     "LusidValidationProblemDetails",
+    "NumericComparator",
     "ProblemDetails",
+    "QueriedRequestLog",
+    "QueryRequestLogsRequest",
+    "QueryableLogField",
+    "QueryableLogType",
+    "RelativeBoundary",
+    "RelativeOffset",
     "Request",
     "RequestLog",
     "Resource",
     "ResourceListOfAccessControlledResource",
     "ResourceListOfAuditProcessSummary",
+    "ResourceListOfQueriedRequestLog",
+    "ResourceListOfQueryableLogType",
     "ResourceListOfTraceEventLog",
     "ResourceListOfTraceLog",
     "ResourceListWithHistogramOfAccessEvaluationLog",
@@ -85,6 +111,8 @@ __all__ = [
     "ResourceListWithHistogramOfVendorLog",
     "Response",
     "ScrollableCollectionOfAuditEntry",
+    "TextComparator",
+    "TimeRange",
     "TraceDiagramEdge",
     "TraceDiagramNode",
     "TraceDiagramResponse",

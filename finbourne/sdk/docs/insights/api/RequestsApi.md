@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**get_request_log**](RequestsApi.md#get_request_log) | **GET** /insights/api/requests/{id} | GetRequestLog: Get the log for a specific API request.
 [**get_response**](RequestsApi.md#get_response) | **GET** /insights/api/requests/{id}/response | GetResponse: Get the response for a specific API request.
 [**list_request_logs**](RequestsApi.md#list_request_logs) | **GET** /insights/api/requests | ListRequestLogs: Get the logs for API requests.
+[**query_request_logs**](RequestsApi.md#query_request_logs) | **POST** /insights/api/requests/$query | QueryRequestLogs: Query the logs for API requests, returning only the caller-specified fields in addition to the always-required fields (Timestamp, Id, Application, Operation). The server fetches only the requested columns from the underlying data source to minimise payload and query time.
 
 
 ### Example
@@ -190,6 +191,46 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **query_request_logs**
+> ResourceListOfQueriedRequestLog queryRequestLogs = query_request_logs(query_request_logs_request)
+
+QueryRequestLogs: Query the logs for API requests, returning only the caller-specified fields in addition to the always-required fields (Timestamp, Id, Application, Operation). The server fetches only the requested columns from the underlying data source to minimise payload and query time.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(RequestsApi)
+query_request_logs_request = QueryRequestLogsRequest()
+api_response = api_instance.query_request_logs(query_request_logs_request)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **query_request_logs_request** | [**QueryRequestLogsRequest**](QueryRequestLogsRequest.md)| The query parameters in the request body. | [required] 
+
+### Return type
+
+[**ResourceListOfQueriedRequestLog**](ResourceListOfQueriedRequestLog.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
  - **Accept**: text/plain, application/json, text/json
 
 ### HTTP response details

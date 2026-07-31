@@ -455,7 +455,7 @@ class WorkflowsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def list_workflows(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfWorkflowResponse:
+    def list_workflows(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfWorkflowResponse:
         """ListWorkflows: List Workflows  # noqa: E501
 
         :param as_at: The asAt datetime at which to list the Workflows. Defaults to return the latest version of each Workflow if not specified.
@@ -468,6 +468,8 @@ class WorkflowsApi:
         :type limit: int
         :param page: The pagination token to use to continue listing workflows from a previous call to list workflows. This value is returned from the previous call. If a pagination token is provided the sortBy, filter, effectiveAt, and asAt fields must not have changed since the original request.
         :type page: str
+        :param property_keys: The property keys (in the Workflow or TaskDefinition domain) whose values to return on each Workflow.
+        :type property_keys: List[str]
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -478,11 +480,11 @@ class WorkflowsApi:
             message = "Error! Please call the list_workflows_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.list_workflows_with_http_info(as_at, filter, sort_by, limit, page, **kwargs)
+        response = self.list_workflows_with_http_info(as_at, filter, sort_by, limit, page, property_keys, **kwargs)
         return response.data
 
     @validate_call
-    def list_workflows_with_http_info(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfWorkflowResponse]:
+    def list_workflows_with_http_info(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfWorkflowResponse]:
         """ListWorkflows: List Workflows  # noqa: E501
 
         :param as_at: The asAt datetime at which to list the Workflows. Defaults to return the latest version of each Workflow if not specified.
@@ -495,6 +497,8 @@ class WorkflowsApi:
         :type limit: int
         :param page: The pagination token to use to continue listing workflows from a previous call to list workflows. This value is returned from the previous call. If a pagination token is provided the sortBy, filter, effectiveAt, and asAt fields must not have changed since the original request.
         :type page: str
+        :param property_keys: The property keys (in the Workflow or TaskDefinition domain) whose values to return on each Workflow.
+        :type property_keys: List[str]
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -522,7 +526,8 @@ class WorkflowsApi:
             'filter',
             'sort_by',
             'limit',
-            'page'
+            'page',
+            'property_keys'
         ]
         _all_params.extend(
             [
@@ -571,6 +576,10 @@ class WorkflowsApi:
 
         if _params.get('page') is not None:  # noqa: E501
             _query_params.append(('page', _params['page']))
+
+        if _params.get('property_keys') is not None:  # noqa: E501
+            _query_params.append(('propertyKeys', _params['property_keys']))
+            _collection_formats['propertyKeys'] = 'multi'
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -1309,7 +1318,7 @@ class WorkflowsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def list_workflows_async(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfWorkflowResponse:
+    async def list_workflows_async(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfWorkflowResponse:
             """ListWorkflows: List Workflows  # noqa: E501
             
             :param as_at: The asAt datetime at which to list the Workflows. Defaults to return the latest version of each Workflow if not specified.
@@ -1322,6 +1331,8 @@ class WorkflowsApi:
             :type limit: int
             :param page: The pagination token to use to continue listing workflows from a previous call to list workflows. This value is returned from the previous call. If a pagination token is provided the sortBy, filter, effectiveAt, and asAt fields must not have changed since the original request.
             :type page: str
+            :param property_keys: The property keys (in the Workflow or TaskDefinition domain) whose values to return on each Workflow.
+            :type property_keys: List[str]
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -1332,11 +1343,11 @@ class WorkflowsApi:
                 message = "Error! Please call the list_workflows_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.list_workflows_with_http_info_async(as_at, filter, sort_by, limit, page, **kwargs)
+            response = await self.list_workflows_with_http_info_async(as_at, filter, sort_by, limit, page, property_keys, **kwargs)
             return response.data
 
     @validate_call
-    async def list_workflows_with_http_info_async(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfWorkflowResponse]:
+    async def list_workflows_with_http_info_async(self, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfWorkflowResponse]:
             """ListWorkflows: List Workflows  # noqa: E501
 
 
@@ -1350,6 +1361,8 @@ class WorkflowsApi:
             :type limit: int
             :param page: The pagination token to use to continue listing workflows from a previous call to list workflows. This value is returned from the previous call. If a pagination token is provided the sortBy, filter, effectiveAt, and asAt fields must not have changed since the original request.
             :type page: str
+            :param property_keys: The property keys (in the Workflow or TaskDefinition domain) whose values to return on each Workflow.
+            :type property_keys: List[str]
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -1377,7 +1390,8 @@ class WorkflowsApi:
                 'filter',
                 'sort_by',
                 'limit',
-                'page'
+                'page',
+                'property_keys'
             ]
             _all_params.extend(
                 [
@@ -1426,6 +1440,10 @@ class WorkflowsApi:
 
             if _params.get('page') is not None:  # noqa: E501
                 _query_params.append(('page', _params['page']))
+
+            if _params.get('property_keys') is not None:  # noqa: E501
+                _query_params.append(('propertyKeys', _params['property_keys']))
+                _collection_formats['propertyKeys'] = 'multi'
 
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))
