@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**delete_scenario**](ScenariosApi.md#delete_scenario) | **DELETE** /api/api/scenarios/{scope}/{code} | [EARLY ACCESS] DeleteScenario: Delete a Scenario, assuming that it is present.
 [**get_scenario**](ScenariosApi.md#get_scenario) | **GET** /api/api/scenarios/{scope}/{code} | [EARLY ACCESS] GetScenario: Get Scenario
 [**list_scenarios**](ScenariosApi.md#list_scenarios) | **GET** /api/api/scenarios/{scope} | [EARLY ACCESS] ListScenarios: List the set of Scenario definitions
+[**preview_scenario**](ScenariosApi.md#preview_scenario) | **POST** /api/api/scenarios/$preview | [EARLY ACCESS] PreviewScenario: Preview a Scenario
 [**upsert_scenario**](ScenariosApi.md#upsert_scenario) | **POST** /api/api/scenarios | [EARLY ACCESS] UpsertScenario: Upsert a Scenario. This creates or updates the scenario definition in LUSID.
 
 
@@ -213,6 +214,48 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The requested scenarios |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **preview_scenario**
+> ScenarioPreviewResponse previewScenario = preview_scenario(scenario_preview_request)
+
+[EARLY ACCESS] PreviewScenario: Preview a Scenario
+
+Preview what a scenario would do to a portfolio's market data, without running a valuation.                The portfolio's market data dependencies are resolved through the given recipe and the scenario's  shifts are applied; the response lists every market data target the shifts changed, with values  before and after, plus any market data that matched a shift but could not honour it. Supply  either a reference to a stored scenario, or inline shift definitions to test a definition before  saving it.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(ScenariosApi)
+scenario_preview_request = ScenarioPreviewRequest()
+api_response = api_instance.preview_scenario(scenario_preview_request)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scenario_preview_request** | [**ScenarioPreviewRequest**](ScenarioPreviewRequest.md)| The recipe, portfolios, effective date and scenario (stored reference or inline shifts) to preview | [required] 
+
+### Return type
+
+[**ScenarioPreviewResponse**](ScenarioPreviewResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The preview of the scenario&#39;s effect on the portfolio&#39;s market data, or any failure |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 

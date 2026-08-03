@@ -377,15 +377,15 @@ class ComplexMarketDataApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def list_complex_market_data(self, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> ResourceListOfListComplexMarketDataWithMetaDataResponse:
+    def list_complex_market_data(self, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, scope: Optional[StrictStr] = None, **kwargs) -> ResourceListOfListComplexMarketDataWithMetaDataResponse:
         """ListComplexMarketData: List the set of ComplexMarketData  # noqa: E501
 
         List the set of ComplexMarketData at the specified date/time,  along with the scope the data was stored in and its identifier in that scope.  # noqa: E501
         :param as_at: The asAt datetime at which to list the ComplexMarketData. Defaults to latest if not specified.
         :type as_at: datetime
-        :param effective_at: The effectiveAt datetime at which to list the ComplexMarketData. Defaults to latest if not specified. Note  that this parameter is not implemented at this time and the latest version of the ComplexMarketData will  always be returned.
+        :param effective_at: The effectiveAt datetime or cut label at which to list the ComplexMarketData. Defaults to latest if not specified.
         :type effective_at: str
-        :param page: The pagination token to use to continue listing ComplexMarketData; this              value is returned from the previous call. If a pagination token is provided, the effectiveAt              and asAt fields must not have changed since the original request.
+        :param page: The pagination token to use to continue listing ComplexMarketData; this              value is returned from the previous call. If a pagination token is provided, the filter, scope, effectiveAt              and asAt fields must not have changed since the original request.
         :type page: str
         :param limit: When paginating, limit the results to this number. If not specified, no pagination will be applied. It is  highly recommended to supply a value for this parameter as the default behaviour will change in the future.
         :type limit: int
@@ -395,6 +395,10 @@ class ComplexMarketDataApi:
         :type timeline_code: str
         :param closed_period_id: The closed period ID. If this is specified, both timelineScope and timelineCode must be specified.
         :type closed_period_id: str
+        :param filter: Expression to filter the result set. The following fields are supported:              'Scope', 'MarketDataId.MarketAsset', 'MarketDataId.Provider', 'MarketDataId.PriceSource',              'MarketDataId.Lineage' (the lineage of the stored market data) and 'MarketData.MarketDataType'.              The market data document contents are not filterable.              Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid.
+        :type filter: str
+        :param scope: Optionally restrict the results to ComplexMarketData in a single scope. If not              specified, ComplexMarketData from all scopes will be returned.
+        :type scope: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -405,19 +409,19 @@ class ComplexMarketDataApi:
             message = "Error! Please call the list_complex_market_data_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.list_complex_market_data_with_http_info(as_at, effective_at, page, limit, timeline_scope, timeline_code, closed_period_id, **kwargs)
+        response = self.list_complex_market_data_with_http_info(as_at, effective_at, page, limit, timeline_scope, timeline_code, closed_period_id, filter, scope, **kwargs)
         return response.data
 
     @validate_call
-    def list_complex_market_data_with_http_info(self, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfListComplexMarketDataWithMetaDataResponse]:
+    def list_complex_market_data_with_http_info(self, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfListComplexMarketDataWithMetaDataResponse]:
         """ListComplexMarketData: List the set of ComplexMarketData  # noqa: E501
 
         List the set of ComplexMarketData at the specified date/time,  along with the scope the data was stored in and its identifier in that scope.  # noqa: E501
         :param as_at: The asAt datetime at which to list the ComplexMarketData. Defaults to latest if not specified.
         :type as_at: datetime
-        :param effective_at: The effectiveAt datetime at which to list the ComplexMarketData. Defaults to latest if not specified. Note  that this parameter is not implemented at this time and the latest version of the ComplexMarketData will  always be returned.
+        :param effective_at: The effectiveAt datetime or cut label at which to list the ComplexMarketData. Defaults to latest if not specified.
         :type effective_at: str
-        :param page: The pagination token to use to continue listing ComplexMarketData; this              value is returned from the previous call. If a pagination token is provided, the effectiveAt              and asAt fields must not have changed since the original request.
+        :param page: The pagination token to use to continue listing ComplexMarketData; this              value is returned from the previous call. If a pagination token is provided, the filter, scope, effectiveAt              and asAt fields must not have changed since the original request.
         :type page: str
         :param limit: When paginating, limit the results to this number. If not specified, no pagination will be applied. It is  highly recommended to supply a value for this parameter as the default behaviour will change in the future.
         :type limit: int
@@ -427,6 +431,10 @@ class ComplexMarketDataApi:
         :type timeline_code: str
         :param closed_period_id: The closed period ID. If this is specified, both timelineScope and timelineCode must be specified.
         :type closed_period_id: str
+        :param filter: Expression to filter the result set. The following fields are supported:              'Scope', 'MarketDataId.MarketAsset', 'MarketDataId.Provider', 'MarketDataId.PriceSource',              'MarketDataId.Lineage' (the lineage of the stored market data) and 'MarketData.MarketDataType'.              The market data document contents are not filterable.              Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid.
+        :type filter: str
+        :param scope: Optionally restrict the results to ComplexMarketData in a single scope. If not              specified, ComplexMarketData from all scopes will be returned.
+        :type scope: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -456,7 +464,9 @@ class ComplexMarketDataApi:
             'limit',
             'timeline_scope',
             'timeline_code',
-            'closed_period_id'
+            'closed_period_id',
+            'filter',
+            'scope'
         ]
         _all_params.extend(
             [
@@ -510,6 +520,12 @@ class ComplexMarketDataApi:
 
         if _params.get('closed_period_id') is not None:  # noqa: E501
             _query_params.append(('closedPeriodId', _params['closed_period_id']))
+
+        if _params.get('filter') is not None:  # noqa: E501
+            _query_params.append(('filter', _params['filter']))
+
+        if _params.get('scope') is not None:  # noqa: E501
+            _query_params.append(('scope', _params['scope']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -1156,15 +1172,15 @@ class ComplexMarketDataApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def list_complex_market_data_async(self, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> ResourceListOfListComplexMarketDataWithMetaDataResponse:
+    async def list_complex_market_data_async(self, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, scope: Optional[StrictStr] = None, **kwargs) -> ResourceListOfListComplexMarketDataWithMetaDataResponse:
             """ListComplexMarketData: List the set of ComplexMarketData  # noqa: E501
             List the set of ComplexMarketData at the specified date/time,  along with the scope the data was stored in and its identifier in that scope.  # noqa: E501
             
             :param as_at: The asAt datetime at which to list the ComplexMarketData. Defaults to latest if not specified.
             :type as_at: datetime
-            :param effective_at: The effectiveAt datetime at which to list the ComplexMarketData. Defaults to latest if not specified. Note  that this parameter is not implemented at this time and the latest version of the ComplexMarketData will  always be returned.
+            :param effective_at: The effectiveAt datetime or cut label at which to list the ComplexMarketData. Defaults to latest if not specified.
             :type effective_at: str
-            :param page: The pagination token to use to continue listing ComplexMarketData; this              value is returned from the previous call. If a pagination token is provided, the effectiveAt              and asAt fields must not have changed since the original request.
+            :param page: The pagination token to use to continue listing ComplexMarketData; this              value is returned from the previous call. If a pagination token is provided, the filter, scope, effectiveAt              and asAt fields must not have changed since the original request.
             :type page: str
             :param limit: When paginating, limit the results to this number. If not specified, no pagination will be applied. It is  highly recommended to supply a value for this parameter as the default behaviour will change in the future.
             :type limit: int
@@ -1174,6 +1190,10 @@ class ComplexMarketDataApi:
             :type timeline_code: str
             :param closed_period_id: The closed period ID. If this is specified, both timelineScope and timelineCode must be specified.
             :type closed_period_id: str
+            :param filter: Expression to filter the result set. The following fields are supported:              'Scope', 'MarketDataId.MarketAsset', 'MarketDataId.Provider', 'MarketDataId.PriceSource',              'MarketDataId.Lineage' (the lineage of the stored market data) and 'MarketData.MarketDataType'.              The market data document contents are not filterable.              Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid.
+            :type filter: str
+            :param scope: Optionally restrict the results to ComplexMarketData in a single scope. If not              specified, ComplexMarketData from all scopes will be returned.
+            :type scope: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -1184,20 +1204,20 @@ class ComplexMarketDataApi:
                 message = "Error! Please call the list_complex_market_data_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.list_complex_market_data_with_http_info_async(as_at, effective_at, page, limit, timeline_scope, timeline_code, closed_period_id, **kwargs)
+            response = await self.list_complex_market_data_with_http_info_async(as_at, effective_at, page, limit, timeline_scope, timeline_code, closed_period_id, filter, scope, **kwargs)
             return response.data
 
     @validate_call
-    async def list_complex_market_data_with_http_info_async(self, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfListComplexMarketDataWithMetaDataResponse]:
+    async def list_complex_market_data_with_http_info_async(self, as_at: Optional[datetime] = None, effective_at: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfListComplexMarketDataWithMetaDataResponse]:
             """ListComplexMarketData: List the set of ComplexMarketData  # noqa: E501
 
             List the set of ComplexMarketData at the specified date/time,  along with the scope the data was stored in and its identifier in that scope.  # noqa: E501
 
             :param as_at: The asAt datetime at which to list the ComplexMarketData. Defaults to latest if not specified.
             :type as_at: datetime
-            :param effective_at: The effectiveAt datetime at which to list the ComplexMarketData. Defaults to latest if not specified. Note  that this parameter is not implemented at this time and the latest version of the ComplexMarketData will  always be returned.
+            :param effective_at: The effectiveAt datetime or cut label at which to list the ComplexMarketData. Defaults to latest if not specified.
             :type effective_at: str
-            :param page: The pagination token to use to continue listing ComplexMarketData; this              value is returned from the previous call. If a pagination token is provided, the effectiveAt              and asAt fields must not have changed since the original request.
+            :param page: The pagination token to use to continue listing ComplexMarketData; this              value is returned from the previous call. If a pagination token is provided, the filter, scope, effectiveAt              and asAt fields must not have changed since the original request.
             :type page: str
             :param limit: When paginating, limit the results to this number. If not specified, no pagination will be applied. It is  highly recommended to supply a value for this parameter as the default behaviour will change in the future.
             :type limit: int
@@ -1207,6 +1227,10 @@ class ComplexMarketDataApi:
             :type timeline_code: str
             :param closed_period_id: The closed period ID. If this is specified, both timelineScope and timelineCode must be specified.
             :type closed_period_id: str
+            :param filter: Expression to filter the result set. The following fields are supported:              'Scope', 'MarketDataId.MarketAsset', 'MarketDataId.Provider', 'MarketDataId.PriceSource',              'MarketDataId.Lineage' (the lineage of the stored market data) and 'MarketData.MarketDataType'.              The market data document contents are not filterable.              Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid.
+            :type filter: str
+            :param scope: Optionally restrict the results to ComplexMarketData in a single scope. If not              specified, ComplexMarketData from all scopes will be returned.
+            :type scope: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -1236,7 +1260,9 @@ class ComplexMarketDataApi:
                 'limit',
                 'timeline_scope',
                 'timeline_code',
-                'closed_period_id'
+                'closed_period_id',
+                'filter',
+                'scope'
             ]
             _all_params.extend(
                 [
@@ -1290,6 +1316,12 @@ class ComplexMarketDataApi:
 
             if _params.get('closed_period_id') is not None:  # noqa: E501
                 _query_params.append(('closedPeriodId', _params['closed_period_id']))
+
+            if _params.get('filter') is not None:  # noqa: E501
+                _query_params.append(('filter', _params['filter']))
+
+            if _params.get('scope') is not None:  # noqa: E501
+                _query_params.append(('scope', _params['scope']))
 
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))

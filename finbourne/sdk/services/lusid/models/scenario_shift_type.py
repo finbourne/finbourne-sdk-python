@@ -32,6 +32,7 @@ class ScenarioShiftType(str, Enum):  # type: ignore[misc]
     FXSHIFTDEFINITION = 'FxShiftDefinition'
     EQUITYSHIFTDEFINITION = 'EquityShiftDefinition'
     VOLSURFACESHIFTDEFINITION = 'VolSurfaceShiftDefinition'
+    MDKRGROUPSHIFTDEFINITION = 'MdkrGroupShiftDefinition'
 
     @classmethod
     def from_json(cls, json_str: str) -> ScenarioShiftType:

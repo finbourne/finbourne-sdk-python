@@ -27,6 +27,8 @@ from finbourne.sdk.services.lusid.models.annul_single_structured_data_response i
 from finbourne.sdk.services.lusid.models.create_scenario_from_template_request import CreateScenarioFromTemplateRequest
 from finbourne.sdk.services.lusid.models.get_scenario_response import GetScenarioResponse
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_get_scenario_response import PagedResourceListOfGetScenarioResponse
+from finbourne.sdk.services.lusid.models.scenario_preview_request import ScenarioPreviewRequest
+from finbourne.sdk.services.lusid.models.scenario_preview_response import ScenarioPreviewResponse
 from finbourne.sdk.services.lusid.models.upsert_scenario_request import UpsertScenarioRequest
 from finbourne.sdk.services.lusid.models.upsert_single_structured_data_response import UpsertSingleStructuredDataResponse
 from finbourne.sdk.api_client import ApiClient
@@ -595,6 +597,133 @@ class ScenariosApi:
 
         return self.sync_api_client.call_api(
             '/api/api/scenarios/{scope}', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    def preview_scenario(self, scenario_preview_request: ScenarioPreviewRequest, **kwargs) -> ScenarioPreviewResponse:
+        """[EARLY ACCESS] PreviewScenario: Preview a Scenario  # noqa: E501
+
+        Preview what a scenario would do to a portfolio's market data, without running a valuation.                The portfolio's market data dependencies are resolved through the given recipe and the scenario's  shifts are applied; the response lists every market data target the shifts changed, with values  before and after, plus any market data that matched a shift but could not honour it. Supply  either a reference to a stored scenario, or inline shift definitions to test a definition before  saving it.  # noqa: E501
+        :param scenario_preview_request: The recipe, portfolios, effective date and scenario (stored reference or inline shifts) to preview (required)
+        :type scenario_preview_request: ScenarioPreviewRequest
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: ScenarioPreviewResponse
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the preview_scenario_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.preview_scenario_with_http_info(scenario_preview_request, **kwargs)
+        return response.data
+
+    @validate_call
+    def preview_scenario_with_http_info(self, scenario_preview_request: ScenarioPreviewRequest, **kwargs) -> ApiResponse[ScenarioPreviewResponse]:
+        """[EARLY ACCESS] PreviewScenario: Preview a Scenario  # noqa: E501
+
+        Preview what a scenario would do to a portfolio's market data, without running a valuation.                The portfolio's market data dependencies are resolved through the given recipe and the scenario's  shifts are applied; the response lists every market data target the shifts changed, with values  before and after, plus any market data that matched a shift but could not honour it. Supply  either a reference to a stored scenario, or inline shift definitions to test a definition before  saving it.  # noqa: E501
+        :param scenario_preview_request: The recipe, portfolios, effective date and scenario (stored reference or inline shifts) to preview (required)
+        :type scenario_preview_request: ScenarioPreviewRequest
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(ScenarioPreviewResponse, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'scenario_preview_request'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method preview_scenario" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['scenario_preview_request'] is not None:
+            _body_params = _params['scenario_preview_request']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.sync_api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "ScenarioPreviewResponse",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/scenarios/$preview', 'POST',
             _path_params,
             _query_params,
             _header_params,
@@ -1287,6 +1416,134 @@ class ScenariosApi:
 
             return await self.api_client.call_api_async(
                 '/api/api/scenarios/{scope}', 'GET',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def preview_scenario_async(self, scenario_preview_request: ScenarioPreviewRequest, **kwargs) -> ScenarioPreviewResponse:
+            """[EARLY ACCESS] PreviewScenario: Preview a Scenario  # noqa: E501
+            Preview what a scenario would do to a portfolio's market data, without running a valuation.                The portfolio's market data dependencies are resolved through the given recipe and the scenario's  shifts are applied; the response lists every market data target the shifts changed, with values  before and after, plus any market data that matched a shift but could not honour it. Supply  either a reference to a stored scenario, or inline shift definitions to test a definition before  saving it.  # noqa: E501
+            
+            :param scenario_preview_request: The recipe, portfolios, effective date and scenario (stored reference or inline shifts) to preview (required)
+            :type scenario_preview_request: ScenarioPreviewRequest
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: ScenarioPreviewResponse
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the preview_scenario_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.preview_scenario_with_http_info_async(scenario_preview_request, **kwargs)
+            return response.data
+
+    @validate_call
+    async def preview_scenario_with_http_info_async(self, scenario_preview_request: ScenarioPreviewRequest, **kwargs) -> ApiResponse[ScenarioPreviewResponse]:
+            """[EARLY ACCESS] PreviewScenario: Preview a Scenario  # noqa: E501
+
+            Preview what a scenario would do to a portfolio's market data, without running a valuation.                The portfolio's market data dependencies are resolved through the given recipe and the scenario's  shifts are applied; the response lists every market data target the shifts changed, with values  before and after, plus any market data that matched a shift but could not honour it. Supply  either a reference to a stored scenario, or inline shift definitions to test a definition before  saving it.  # noqa: E501
+
+            :param scenario_preview_request: The recipe, portfolios, effective date and scenario (stored reference or inline shifts) to preview (required)
+            :type scenario_preview_request: ScenarioPreviewRequest
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(ScenarioPreviewResponse, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'scenario_preview_request'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method preview_scenario" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+
+            # process the query parameters
+            _query_params = []
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            if _params['scenario_preview_request'] is not None:
+                _body_params = _params['scenario_preview_request']
+
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # set the HTTP header `Content-Type`
+            _content_types_list = _params.get('_content_type',
+                self.api_client.select_header_content_type(
+                    ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+            if _content_types_list:
+                    _header_params['Content-Type'] = _content_types_list
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "ScenarioPreviewResponse",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/scenarios/$preview', 'POST',
                 _path_params,
                 _query_params,
                 _header_params,

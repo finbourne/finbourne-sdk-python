@@ -28,10 +28,12 @@ class OrderGraphBlockPlacementSynopsis(BaseModel):
     """
     OrderGraphBlockPlacementSynopsis
     """
-    quantity: Union[StrictFloat, StrictInt] = Field(description="Total number of units placed.")
+    quantity: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total number of units placed.")
     quantity_by_state: Optional[Dict[str, Union[StrictFloat, StrictInt]]] = Field(default=None, description="Total number of units placed.", alias="quantityByState")
+    amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total monetary value placed, in the block currency.")
+    amount_by_state: Optional[Dict[str, Union[StrictFloat, StrictInt]]] = Field(default=None, description="Total monetary value placed, broken down by placement state.", alias="amountByState")
     details: List[OrderGraphBlockPlacementDetail] = Field(description="Identifiers for each placement in this block.")
-    __properties: ClassVar[List[str]] = ["quantity", "quantityByState", "details"]
+    __properties: ClassVar[List[str]] = ["quantity", "quantityByState", "amount", "amountByState", "details"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -74,10 +76,25 @@ class OrderGraphBlockPlacementSynopsis(BaseModel):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['details'] = _items
+        # set to None if quantity (nullable) is None
+        # and model_fields_set contains the field
+        if self.quantity is None and "quantity" in self.model_fields_set:
+            _dict['quantity'] = None
+
         # set to None if quantity_by_state (nullable) is None
         # and model_fields_set contains the field
         if self.quantity_by_state is None and "quantity_by_state" in self.model_fields_set:
             _dict['quantityByState'] = None
+
+        # set to None if amount (nullable) is None
+        # and model_fields_set contains the field
+        if self.amount is None and "amount" in self.model_fields_set:
+            _dict['amount'] = None
+
+        # set to None if amount_by_state (nullable) is None
+        # and model_fields_set contains the field
+        if self.amount_by_state is None and "amount_by_state" in self.model_fields_set:
+            _dict['amountByState'] = None
 
         return _dict
 
@@ -93,6 +110,8 @@ class OrderGraphBlockPlacementSynopsis(BaseModel):
         _obj = OrderGraphBlockPlacementSynopsis.model_validate({
             "quantity": obj.get("quantity"),
             "quantity_by_state": obj.get("quantityByState"),
+            "amount": obj.get("amount"),
+            "amount_by_state": obj.get("amountByState"),
             "details": [OrderGraphBlockPlacementDetail.from_dict(_item) for _item in _v] if (_v := obj.get("details")) is not None else None
         })
         return _obj

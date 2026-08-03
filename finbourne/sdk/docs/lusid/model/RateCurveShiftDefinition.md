@@ -10,7 +10,7 @@
 | **end_tenor** | **str** | Optional | *No description available.* |
 | **shift_type** | **str** | Required | Available values: Parallel, Steepen, Flatten, Twist. |
 | **scale** | **str** | Optional | Available values: Bps, Percentage. |
-| **scenario_shift_type** | **str** | Required | Available values: RateCurveShiftDefinition, FxShiftDefinition, EquityShiftDefinition, VolSurfaceShiftDefinition. |
+| **scenario_shift_type** | **str** | Required | Available values: RateCurveShiftDefinition, FxShiftDefinition, EquityShiftDefinition, VolSurfaceShiftDefinition, MdkrGroupShiftDefinition. |
 
 
 ## Usage
@@ -27,7 +27,7 @@ instance = RateCurveShiftDefinition(
     end_tenor="...",  # optional
     shift_type="...",  # required — Available values: Parallel, Steepen, Flatten, Twist.
     scale="...",  # optional — Available values: Bps, Percentage.
-    scenario_shift_type="..."  # required — Available values: RateCurveShiftDefinition, FxShiftDefinition, EquityShiftDefinition, VolSurfaceShiftDefinition.
+    scenario_shift_type="..."  # required — Available values: RateCurveShiftDefinition, FxShiftDefinition, EquityShiftDefinition, VolSurfaceShiftDefinition, MdkrGroupShiftDefinition.
 )
 ```
 

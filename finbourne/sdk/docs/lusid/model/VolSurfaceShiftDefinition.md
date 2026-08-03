@@ -9,7 +9,7 @@
 | **strike** | **float** | Optional | *No description available.* |
 | **expiry** | **str** | Optional | *No description available.* |
 | **shift_type** | **str** | Required | Available values: Absolute, Relative. |
-| **scenario_shift_type** | **str** | Required | Available values: RateCurveShiftDefinition, FxShiftDefinition, EquityShiftDefinition, VolSurfaceShiftDefinition. |
+| **scenario_shift_type** | **str** | Required | Available values: RateCurveShiftDefinition, FxShiftDefinition, EquityShiftDefinition, VolSurfaceShiftDefinition, MdkrGroupShiftDefinition. |
 
 
 ## Usage
@@ -25,7 +25,7 @@ instance = VolSurfaceShiftDefinition(
     strike=0.0,  # optional
     expiry="...",  # optional
     shift_type="...",  # required — Available values: Absolute, Relative.
-    scenario_shift_type="..."  # required — Available values: RateCurveShiftDefinition, FxShiftDefinition, EquityShiftDefinition, VolSurfaceShiftDefinition.
+    scenario_shift_type="..."  # required — Available values: RateCurveShiftDefinition, FxShiftDefinition, EquityShiftDefinition, VolSurfaceShiftDefinition, MdkrGroupShiftDefinition.
 )
 ```
 

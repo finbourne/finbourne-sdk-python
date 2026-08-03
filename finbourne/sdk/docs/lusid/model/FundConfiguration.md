@@ -14,6 +14,9 @@
 | **external_fee_filters** | [List[ExternalFeeComponentFilter]](ExternalFeeComponentFilter.md) | Optional | The set of filters used to decide which JE lines are used for inputting fees from an external source. |
 | **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the Fund Configuration. |
 | **version** | [Version](Version.md) | Optional | *No description available.* |
+| **bucket_sets** | [List[BucketSetDefinition]](BucketSetDefinition.md) | Optional | The ordered set of component bucket set definitions for this fund configuration. Each bucket set defines how JE lines are grouped into buckets at VP finalisation. |
+| **apportionment_bucket_set** | **str** | Optional | The code of the bucket set definition within this fund configuration that is designated as the apportionment bucket set. Must reference a BucketSetDefinition code within the BucketSets collection. |
+| **apportionment_method_property** | [ApportionmentMethodProperty](ApportionmentMethodProperty.md) | Optional | *No description available.* |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
@@ -35,6 +38,9 @@ instance = FundConfiguration(
     external_fee_filters=[],  # optional — The set of filters used to decide which JE lines are used for inputting fees from an external source.
     properties=ModelProperty(...),  # optional — A set of properties for the Fund Configuration.
     version=Version(...),  # optional
+    bucket_sets=[],  # optional — The ordered set of component bucket set definitions for this fund configuration. Each bucket set defines how JE lines are grouped into buckets at VP finalisation.
+    apportionment_bucket_set="...",  # optional — The code of the bucket set definition within this fund configuration that is designated as the apportionment bucket set. Must reference a BucketSetDefinition code within the BucketSets collection.
+    apportionment_method_property=ApportionmentMethodProperty(...),  # optional
     links=[]  # optional
 )
 ```
@@ -46,6 +52,8 @@ instance = FundConfiguration(
 - [ExternalFeeComponentFilter](ExternalFeeComponentFilter.md) — used in `external_fee_filters`
 - [ModelProperty](ModelProperty.md) — used in `properties`
 - [Version](Version.md)
+- [BucketSetDefinition](BucketSetDefinition.md) — used in `bucket_sets`
+- [ApportionmentMethodProperty](ApportionmentMethodProperty.md)
 - [Link](Link.md)
 
 

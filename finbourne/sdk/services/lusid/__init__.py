@@ -236,6 +236,8 @@ from finbourne.sdk.services.lusid.models.branch_step import BranchStep
 from finbourne.sdk.services.lusid.models.branch_step_request import BranchStepRequest
 from finbourne.sdk.services.lusid.models.break_code_source import BreakCodeSource
 from finbourne.sdk.services.lusid.models.bucket import Bucket
+from finbourne.sdk.services.lusid.models.bucket_definition import BucketDefinition
+from finbourne.sdk.services.lusid.models.bucket_set_definition import BucketSetDefinition
 from finbourne.sdk.services.lusid.models.bucket_set_node import BucketSetNode
 from finbourne.sdk.services.lusid.models.bucket_set_result import BucketSetResult
 from finbourne.sdk.services.lusid.models.bucket_set_result_bucket import BucketSetResultBucket
@@ -774,6 +776,7 @@ from finbourne.sdk.services.lusid.models.item_and_workspace import ItemAndWorksp
 from finbourne.sdk.services.lusid.models.journal_entry_line import JournalEntryLine
 from finbourne.sdk.services.lusid.models.journal_entry_line_share_class_breakdown import JournalEntryLineShareClassBreakdown
 from finbourne.sdk.services.lusid.models.journal_entry_lines_query_parameters import JournalEntryLinesQueryParameters
+from finbourne.sdk.services.lusid.models.keyed_market_data_key_rule import KeyedMarketDataKeyRule
 from finbourne.sdk.services.lusid.models.label_value_set import LabelValueSet
 from finbourne.sdk.services.lusid.models.lapse_election import LapseElection
 from finbourne.sdk.services.lusid.models.leg_definition import LegDefinition
@@ -825,6 +828,7 @@ from finbourne.sdk.services.lusid.models.mbs_interest_deferral_event import MbsI
 from finbourne.sdk.services.lusid.models.mbs_interest_shortfall_event import MbsInterestShortfallEvent
 from finbourne.sdk.services.lusid.models.mbs_principal_event import MbsPrincipalEvent
 from finbourne.sdk.services.lusid.models.mbs_principal_write_off_event import MbsPrincipalWriteOffEvent
+from finbourne.sdk.services.lusid.models.mdkr_group_shift_definition import MdkrGroupShiftDefinition
 from finbourne.sdk.services.lusid.models.membership import Membership
 from finbourne.sdk.services.lusid.models.membership_amendment_request import MembershipAmendmentRequest
 from finbourne.sdk.services.lusid.models.membership_amendment_response import MembershipAmendmentResponse
@@ -1308,6 +1312,9 @@ from finbourne.sdk.services.lusid.models.run_check_request import RunCheckReques
 from finbourne.sdk.services.lusid.models.run_check_response import RunCheckResponse
 from finbourne.sdk.services.lusid.models.scaling_methodology import ScalingMethodology
 from finbourne.sdk.services.lusid.models.scenario_definition import ScenarioDefinition
+from finbourne.sdk.services.lusid.models.scenario_preview_applied_shift import ScenarioPreviewAppliedShift
+from finbourne.sdk.services.lusid.models.scenario_preview_request import ScenarioPreviewRequest
+from finbourne.sdk.services.lusid.models.scenario_preview_response import ScenarioPreviewResponse
 from finbourne.sdk.services.lusid.models.scenario_reference import ScenarioReference
 from finbourne.sdk.services.lusid.models.scenario_shift_definition import ScenarioShiftDefinition
 from finbourne.sdk.services.lusid.models.scenario_shift_type import ScenarioShiftType
@@ -1407,6 +1414,7 @@ from finbourne.sdk.services.lusid.models.term_deposit_principal_event import Ter
 from finbourne.sdk.services.lusid.models.time_zone_conventions import TimeZoneConventions
 from finbourne.sdk.services.lusid.models.timeline import Timeline
 from finbourne.sdk.services.lusid.models.to_be_announced import ToBeAnnounced
+from finbourne.sdk.services.lusid.models.to_be_announced_option import ToBeAnnouncedOption
 from finbourne.sdk.services.lusid.models.total_return_swap import TotalReturnSwap
 from finbourne.sdk.services.lusid.models.touch import Touch
 from finbourne.sdk.services.lusid.models.trade_ticket import TradeTicket
@@ -1580,6 +1588,7 @@ from finbourne.sdk.services.lusid.models.valuation_point import ValuationPoint
 from finbourne.sdk.services.lusid.models.valuation_point_data_query_parameters import ValuationPointDataQueryParameters
 from finbourne.sdk.services.lusid.models.valuation_point_data_request import ValuationPointDataRequest
 from finbourne.sdk.services.lusid.models.valuation_point_data_response import ValuationPointDataResponse
+from finbourne.sdk.services.lusid.models.valuation_point_entity import ValuationPointEntity
 from finbourne.sdk.services.lusid.models.valuation_point_instrument import ValuationPointInstrument
 from finbourne.sdk.services.lusid.models.valuation_point_overview import ValuationPointOverview
 from finbourne.sdk.services.lusid.models.valuation_point_resource_list_of_accounted_complex_market_data import ValuationPointResourceListOfAccountedComplexMarketData
@@ -1860,6 +1869,8 @@ __all__ = [
     "BranchStepRequest",
     "BreakCodeSource",
     "Bucket",
+    "BucketDefinition",
+    "BucketSetDefinition",
     "BucketSetNode",
     "BucketSetResult",
     "BucketSetResultBucket",
@@ -2398,6 +2409,7 @@ __all__ = [
     "JournalEntryLine",
     "JournalEntryLineShareClassBreakdown",
     "JournalEntryLinesQueryParameters",
+    "KeyedMarketDataKeyRule",
     "LabelValueSet",
     "LapseElection",
     "LegDefinition",
@@ -2449,6 +2461,7 @@ __all__ = [
     "MbsInterestShortfallEvent",
     "MbsPrincipalEvent",
     "MbsPrincipalWriteOffEvent",
+    "MdkrGroupShiftDefinition",
     "Membership",
     "MembershipAmendmentRequest",
     "MembershipAmendmentResponse",
@@ -2932,6 +2945,9 @@ __all__ = [
     "RunCheckResponse",
     "ScalingMethodology",
     "ScenarioDefinition",
+    "ScenarioPreviewAppliedShift",
+    "ScenarioPreviewRequest",
+    "ScenarioPreviewResponse",
     "ScenarioReference",
     "ScenarioShiftDefinition",
     "ScenarioShiftType",
@@ -3031,6 +3047,7 @@ __all__ = [
     "TimeZoneConventions",
     "Timeline",
     "ToBeAnnounced",
+    "ToBeAnnouncedOption",
     "TotalReturnSwap",
     "Touch",
     "TradeTicket",
@@ -3204,6 +3221,7 @@ __all__ = [
     "ValuationPointDataQueryParameters",
     "ValuationPointDataRequest",
     "ValuationPointDataResponse",
+    "ValuationPointEntity",
     "ValuationPointInstrument",
     "ValuationPointOverview",
     "ValuationPointResourceListOfAccountedComplexMarketData",

@@ -11,7 +11,8 @@ A street order for a quantity of a single instrument placed with a single market
 | **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Client-defined properties associated with this placement. |
 | **instrument_identifiers** | **Dict[str, Optional[str]]** | Required | The instrument ordered. |
 | **lusid_instrument_id** | **str** | Required | The LUSID instrument id for the instrument placement. |
-| **quantity** | **float** | Required | The quantity of given instrument ordered. |
+| **quantity** | **float** | Optional | The quantity of given instrument ordered. |
+| **amount** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
 | **state** | **str** | Required | The state of this placement (typically a FIX state; Open, Filled, etc). |
 | **side** | **str** | Required | The side (Buy, Sell, ...) of this placement. |
 | **time_in_force** | **str** | Required | The time in force applicable to this placement (GTC, FOK, Day, etc) |
@@ -41,7 +42,8 @@ instance = Placement(
     properties=PerpetualProperty(...),  # optional — Client-defined properties associated with this placement.
     instrument_identifiers=,  # required — The instrument ordered.
     lusid_instrument_id="...",  # required — The LUSID instrument id for the instrument placement.
-    quantity=0.0,  # required — The quantity of given instrument ordered.
+    quantity=0.0,  # optional — The quantity of given instrument ordered.
+    amount=CurrencyAndAmount(...),  # optional
     state="...",  # required — The state of this placement (typically a FIX state; Open, Filled, etc).
     side="...",  # required — The side (Buy, Sell, ...) of this placement.
     time_in_force="...",  # required — The time in force applicable to this placement (GTC, FOK, Day, etc)
@@ -65,6 +67,7 @@ instance = Placement(
 - [ResourceId](ResourceId.md)
 - [ResourceId](ResourceId.md) — used in `block_ids`
 - [PerpetualProperty](PerpetualProperty.md) — used in `properties`
+- [CurrencyAndAmount](CurrencyAndAmount.md)
 - [CurrencyAndAmount](CurrencyAndAmount.md)
 - [CurrencyAndAmount](CurrencyAndAmount.md)
 - [Version](Version.md)

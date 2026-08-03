@@ -7,6 +7,7 @@ A request to create or update a Placement.
 |------|------|----------|-------------|
 | **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **quantity** | **float** | Optional | The quantity of given instrument ordered. |
+| **amount** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
 | **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Client-defined properties associated with this placement. |
 | **type** | **str** | Optional | The type of this placement (Market, Limit, etc). |
 | **limit_price** | **float** | Optional | The optional price, as currency and amount, associated with this placement. |
@@ -26,6 +27,7 @@ from finbourne.sdk.services.lusid.models.PlacementUpdateRequest import Placement
 instance = PlacementUpdateRequest(
     id=ResourceId(...),  # required
     quantity=0.0,  # optional — The quantity of given instrument ordered.
+    amount=CurrencyAndAmount(...),  # optional
     properties=PerpetualProperty(...),  # optional — Client-defined properties associated with this placement.
     type="...",  # optional — The type of this placement (Market, Limit, etc).
     limit_price=0.0,  # optional — The optional price, as currency and amount, associated with this placement.
@@ -40,6 +42,7 @@ instance = PlacementUpdateRequest(
 ## Related Models
 
 - [ResourceId](ResourceId.md)
+- [CurrencyAndAmount](CurrencyAndAmount.md)
 - [PerpetualProperty](PerpetualProperty.md) — used in `properties`
 
 

@@ -13,6 +13,7 @@ Method | HTTP request | Description
 [**get_portfolio_changes**](EntitiesApi.md#get_portfolio_changes) | **GET** /api/api/entities/changes/portfolios | GetPortfolioChanges: Get the next change to each portfolio in a scope.
 [**get_property_definition_by_entity_unique_id**](EntitiesApi.md#get_property_definition_by_entity_unique_id) | **GET** /api/api/entities/propertydefinitions/{entityUniqueId} | GetPropertyDefinitionByEntityUniqueId: Get property definition by EntityUniqueId
 [**get_transaction_by_entity_unique_id**](EntitiesApi.md#get_transaction_by_entity_unique_id) | **GET** /api/api/entities/transactions/{entityUniqueId} | GetTransactionByEntityUniqueId: Get transaction by EntityUniqueId
+[**get_valuation_point_by_entity_unique_id**](EntitiesApi.md#get_valuation_point_by_entity_unique_id) | **GET** /api/api/entities/valuationpoints/{entityUniqueId} | GetValuationPointByEntityUniqueId: Get valuation point by EntityUniqueId
 
 
 ### Example
@@ -471,6 +472,52 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The requested transaction entity |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_valuation_point_by_entity_unique_id**
+> ValuationPointEntity getValuationPointByEntityUniqueId = get_valuation_point_by_entity_unique_id(entity_unique_id, as_at=as_at, previews=previews)
+
+GetValuationPointByEntityUniqueId: Get valuation point by EntityUniqueId
+
+Retrieve the definition of a particular valuation point.    If the valuation point is deleted, this will return the state of the valuation point immediately prior to deletion.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(EntitiesApi)
+entity_unique_id = 'entity_unique_id_example' # str
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+previews = ['previews_example'] # List[str] (optional)
+api_response = api_instance.get_valuation_point_by_entity_unique_id(entity_unique_id, as_at=as_at, previews=previews)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **entity_unique_id** | **str**| The universally unique identifier of the valuation point. | [required] 
+ **as_at** | **datetime**| The asAt datetime at which to retrieve the valuation point. Defaults to returning the latest version of the valuation point if not specified. | [optional] 
+ **previews** | [**List[str]**](str.md)| The ids of the staged modifications to be previewed in the response. | [optional] 
+
+### Return type
+
+[**ValuationPointEntity**](ValuationPointEntity.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The requested valuation point entity |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 

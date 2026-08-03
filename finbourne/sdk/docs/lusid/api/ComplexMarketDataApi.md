@@ -137,7 +137,7 @@ Name | Type | Description  | Notes
 ---
 
 # **list_complex_market_data**
-> ResourceListOfListComplexMarketDataWithMetaDataResponse listComplexMarketData = list_complex_market_data(as_at=as_at, effective_at=effective_at, page=page, limit=limit, timeline_scope=timeline_scope, timeline_code=timeline_code, closed_period_id=closed_period_id)
+> ResourceListOfListComplexMarketDataWithMetaDataResponse listComplexMarketData = list_complex_market_data(as_at=as_at, effective_at=effective_at, page=page, limit=limit, timeline_scope=timeline_scope, timeline_code=timeline_code, closed_period_id=closed_period_id, filter=filter, scope=scope)
 
 ListComplexMarketData: List the set of ComplexMarketData
 
@@ -154,7 +154,9 @@ limit = 56 # int (optional)
 timeline_scope = 'timeline_scope_example' # str (optional)
 timeline_code = 'timeline_code_example' # str (optional)
 closed_period_id = 'closed_period_id_example' # str (optional)
-api_response = api_instance.list_complex_market_data(as_at=as_at, effective_at=effective_at, page=page, limit=limit, timeline_scope=timeline_scope, timeline_code=timeline_code, closed_period_id=closed_period_id)
+filter = 'filter_example' # str (optional)
+scope = 'scope_example' # str (optional)
+api_response = api_instance.list_complex_market_data(as_at=as_at, effective_at=effective_at, page=page, limit=limit, timeline_scope=timeline_scope, timeline_code=timeline_code, closed_period_id=closed_period_id, filter=filter, scope=scope)
 pprint(api_response)
 ```
 
@@ -163,12 +165,14 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **as_at** | **datetime**| The asAt datetime at which to list the ComplexMarketData. Defaults to latest if not specified. | [optional] 
- **effective_at** | **str**| The effectiveAt datetime at which to list the ComplexMarketData. Defaults to latest if not specified. Note  that this parameter is not implemented at this time and the latest version of the ComplexMarketData will  always be returned. | [optional] 
- **page** | **str**| The pagination token to use to continue listing ComplexMarketData; this              value is returned from the previous call. If a pagination token is provided, the effectiveAt              and asAt fields must not have changed since the original request. | [optional] 
+ **effective_at** | **str**| The effectiveAt datetime or cut label at which to list the ComplexMarketData. Defaults to latest if not specified. | [optional] 
+ **page** | **str**| The pagination token to use to continue listing ComplexMarketData; this              value is returned from the previous call. If a pagination token is provided, the filter, scope, effectiveAt              and asAt fields must not have changed since the original request. | [optional] 
  **limit** | **int**| When paginating, limit the results to this number. If not specified, no pagination will be applied. It is  highly recommended to supply a value for this parameter as the default behaviour will change in the future. | [optional] 
  **timeline_scope** | **str**| The scope of the Timeline. | [optional] 
  **timeline_code** | **str**| The code of the Timeline. This can optionally include a colon followed by the Closed Period ID to use at the head of the timeline, for a timeline with unconfirmed periods. | [optional] 
  **closed_period_id** | **str**| The closed period ID. If this is specified, both timelineScope and timelineCode must be specified. | [optional] 
+ **filter** | **str**| Expression to filter the result set. The following fields are supported:              &#39;Scope&#39;, &#39;MarketDataId.MarketAsset&#39;, &#39;MarketDataId.Provider&#39;, &#39;MarketDataId.PriceSource&#39;,              &#39;MarketDataId.Lineage&#39; (the lineage of the stored market data) and &#39;MarketData.MarketDataType&#39;.              The market data document contents are not filterable.              Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid. | [optional] 
+ **scope** | **str**| Optionally restrict the results to ComplexMarketData in a single scope. If not              specified, ComplexMarketData from all scopes will be returned. | [optional] 
 
 ### Return type
 

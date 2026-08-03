@@ -21,6 +21,8 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
+from finbourne.sdk.services.lusid.models.apportionment_method_property import ApportionmentMethodProperty
+from finbourne.sdk.services.lusid.models.bucket_set_definition import BucketSetDefinition
 from finbourne.sdk.services.lusid.models.component_filter import ComponentFilter
 from finbourne.sdk.services.lusid.models.external_fee_component_filter import ExternalFeeComponentFilter
 from finbourne.sdk.services.lusid.models.link import Link
@@ -43,8 +45,11 @@ class FundConfiguration(BaseModel):
     external_fee_filters: Optional[List[ExternalFeeComponentFilter]] = Field(default=None, description="The set of filters used to decide which JE lines are used for inputting fees from an external source.", alias="externalFeeFilters")
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="A set of properties for the Fund Configuration.")
     version: Optional[Version] = None
+    bucket_sets: Optional[List[BucketSetDefinition]] = Field(default=None, description="The ordered set of component bucket set definitions for this fund configuration. Each bucket set defines how JE lines are grouped into buckets at VP finalisation.", alias="bucketSets")
+    apportionment_bucket_set:  Optional[StrictStr] = Field(default=None,alias="apportionmentBucketSet", description="The code of the bucket set definition within this fund configuration that is designated as the apportionment bucket set. Must reference a BucketSetDefinition code within the BucketSets collection.") 
+    apportionment_method_property: Optional[ApportionmentMethodProperty] = Field(default=None, alias="apportionmentMethodProperty")
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["href", "id", "displayName", "description", "dealingFilters", "pnlFilters", "backOutFilters", "externalFeeFilters", "properties", "version", "links"]
+    __properties: ClassVar[List[str]] = ["href", "id", "displayName", "description", "dealingFilters", "pnlFilters", "backOutFilters", "externalFeeFilters", "properties", "version", "bucketSets", "apportionmentBucketSet", "apportionmentMethodProperty", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -121,6 +126,16 @@ class FundConfiguration(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of version
         if self.version:
             _dict['version'] = self.version.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of each item in bucket_sets (list)
+        _items = []
+        if self.bucket_sets:
+            for _item in self.bucket_sets:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['bucketSets'] = _items
+        # override the default output from pydantic by calling `to_dict()` of apportionment_method_property
+        if self.apportionment_method_property:
+            _dict['apportionmentMethodProperty'] = self.apportionment_method_property.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each item in links (list)
         _items = []
         if self.links:
@@ -168,6 +183,16 @@ class FundConfiguration(BaseModel):
         if self.properties is None and "properties" in self.model_fields_set:
             _dict['properties'] = None
 
+        # set to None if bucket_sets (nullable) is None
+        # and model_fields_set contains the field
+        if self.bucket_sets is None and "bucket_sets" in self.model_fields_set:
+            _dict['bucketSets'] = None
+
+        # set to None if apportionment_bucket_set (nullable) is None
+        # and model_fields_set contains the field
+        if self.apportionment_bucket_set is None and "apportionment_bucket_set" in self.model_fields_set:
+            _dict['apportionmentBucketSet'] = None
+
         # set to None if links (nullable) is None
         # and model_fields_set contains the field
         if self.links is None and "links" in self.model_fields_set:
@@ -200,6 +225,9 @@ class FundConfiguration(BaseModel):
             if (_val := obj.get("properties")) is not None
             else None,
             "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
+            "bucket_sets": [BucketSetDefinition.from_dict(_item) for _item in _v] if (_v := obj.get("bucketSets")) is not None else None,
+            "apportionment_bucket_set": obj.get("apportionmentBucketSet"),
+            "apportionment_method_property": ApportionmentMethodProperty.from_dict(_v) if (_v := obj.get("apportionmentMethodProperty")) is not None else None,
             "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj

@@ -650,7 +650,7 @@ class FundConfigurationApi:
     def patch_fund_configuration(self, scope: StrictStr, code: StrictStr, operation: List[Operation], **kwargs) -> FundConfiguration:
         """[EXPERIMENTAL] PatchFundConfiguration: Patch Fund Configuration.  # noqa: E501
 
-        Create or update certain fields for a particular FundConfiguration.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, DealingFilters, PnlFilters, BackOutFilters, ExternalFeeFilters.  # noqa: E501
+        Create or update certain fields for a particular FundConfiguration.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, DealingFilters, PnlFilters, BackOutFilters, ExternalFeeFilters, BucketSets, ApportionmentBucketSet, ApportionmentMethodProperty.  # noqa: E501
         :param scope: The scope of the FundConfiguration. (required)
         :type scope: str
         :param code: The code of the FundConfiguration. Together with the              scope this uniquely identifies the FundConfiguration. (required)
@@ -674,7 +674,7 @@ class FundConfigurationApi:
     def patch_fund_configuration_with_http_info(self, scope: StrictStr, code: StrictStr, operation: List[Operation], **kwargs) -> ApiResponse[FundConfiguration]:
         """[EXPERIMENTAL] PatchFundConfiguration: Patch Fund Configuration.  # noqa: E501
 
-        Create or update certain fields for a particular FundConfiguration.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, DealingFilters, PnlFilters, BackOutFilters, ExternalFeeFilters.  # noqa: E501
+        Create or update certain fields for a particular FundConfiguration.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, DealingFilters, PnlFilters, BackOutFilters, ExternalFeeFilters, BucketSets, ApportionmentBucketSet, ApportionmentMethodProperty.  # noqa: E501
         :param scope: The scope of the FundConfiguration. (required)
         :type scope: str
         :param code: The code of the FundConfiguration. Together with the              scope this uniquely identifies the FundConfiguration. (required)
@@ -1535,7 +1535,7 @@ class FundConfigurationApi:
     @validate_call
     async def patch_fund_configuration_async(self, scope: StrictStr, code: StrictStr, operation: List[Operation], **kwargs) -> FundConfiguration:
             """[EXPERIMENTAL] PatchFundConfiguration: Patch Fund Configuration.  # noqa: E501
-            Create or update certain fields for a particular FundConfiguration.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, DealingFilters, PnlFilters, BackOutFilters, ExternalFeeFilters.  # noqa: E501
+            Create or update certain fields for a particular FundConfiguration.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, DealingFilters, PnlFilters, BackOutFilters, ExternalFeeFilters, BucketSets, ApportionmentBucketSet, ApportionmentMethodProperty.  # noqa: E501
             
             :param scope: The scope of the FundConfiguration. (required)
             :type scope: str
@@ -1560,7 +1560,7 @@ class FundConfigurationApi:
     async def patch_fund_configuration_with_http_info_async(self, scope: StrictStr, code: StrictStr, operation: List[Operation], **kwargs) -> ApiResponse[FundConfiguration]:
             """[EXPERIMENTAL] PatchFundConfiguration: Patch Fund Configuration.  # noqa: E501
 
-            Create or update certain fields for a particular FundConfiguration.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, DealingFilters, PnlFilters, BackOutFilters, ExternalFeeFilters.  # noqa: E501
+            Create or update certain fields for a particular FundConfiguration.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, DealingFilters, PnlFilters, BackOutFilters, ExternalFeeFilters, BucketSets, ApportionmentBucketSet, ApportionmentMethodProperty.  # noqa: E501
 
             :param scope: The scope of the FundConfiguration. (required)
             :type scope: str

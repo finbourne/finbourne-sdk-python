@@ -10,7 +10,8 @@ A request to create or update a Placement.
 | **block_ids** | [List[ResourceId]](ResourceId.md) | Required | The IDs of the Blocks associated with this placement. |
 | **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Client-defined properties associated with this order. |
 | **instrument_identifiers** | **Dict[str, Optional[str]]** | Required | The instrument ordered. |
-| **quantity** | **float** | Required | The quantity of given instrument ordered. |
+| **quantity** | **float** | Optional | The quantity of given instrument ordered. |
+| **amount** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
 | **state** | **str** | Optional | The state of this placement (typically a FIX state; Open, Filled, etc). |
 | **side** | **str** | Required | The side (Buy, Sell, ...) of this placement. |
 | **time_in_force** | **str** | Required | The time in force applicable to this placement (GTC, FOK, Day, etc) |
@@ -36,7 +37,8 @@ instance = PlacementRequest(
     block_ids=[],  # required — The IDs of the Blocks associated with this placement.
     properties=PerpetualProperty(...),  # optional — Client-defined properties associated with this order.
     instrument_identifiers=,  # required — The instrument ordered.
-    quantity=0.0,  # required — The quantity of given instrument ordered.
+    quantity=0.0,  # optional — The quantity of given instrument ordered.
+    amount=CurrencyAndAmount(...),  # optional
     state="...",  # optional — The state of this placement (typically a FIX state; Open, Filled, etc).
     side="...",  # required — The side (Buy, Sell, ...) of this placement.
     time_in_force="...",  # required — The time in force applicable to this placement (GTC, FOK, Day, etc)
@@ -57,6 +59,7 @@ instance = PlacementRequest(
 - [ResourceId](ResourceId.md)
 - [ResourceId](ResourceId.md) — used in `block_ids`
 - [PerpetualProperty](PerpetualProperty.md) — used in `properties`
+- [CurrencyAndAmount](CurrencyAndAmount.md)
 - [CurrencyAndAmount](CurrencyAndAmount.md)
 - [CurrencyAndAmount](CurrencyAndAmount.md)
 

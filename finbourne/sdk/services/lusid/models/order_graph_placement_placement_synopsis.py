@@ -29,8 +29,9 @@ class OrderGraphPlacementPlacementSynopsis(BaseModel):
     OrderGraphPlacementPlacementSynopsis
     """
     details: List[OrderGraphPlacementChildPlacementDetail] = Field(description="Identifiers for each child placement for this placement.")
-    quantity: Union[StrictFloat, StrictInt] = Field(description="Total number of units placed.")
-    __properties: ClassVar[List[str]] = ["details", "quantity"]
+    quantity: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total number of units placed.")
+    amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total monetary value placed, in the block currency.")
+    __properties: ClassVar[List[str]] = ["details", "quantity", "amount"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -73,6 +74,16 @@ class OrderGraphPlacementPlacementSynopsis(BaseModel):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['details'] = _items
+        # set to None if quantity (nullable) is None
+        # and model_fields_set contains the field
+        if self.quantity is None and "quantity" in self.model_fields_set:
+            _dict['quantity'] = None
+
+        # set to None if amount (nullable) is None
+        # and model_fields_set contains the field
+        if self.amount is None and "amount" in self.model_fields_set:
+            _dict['amount'] = None
+
         return _dict
 
     @classmethod
@@ -86,7 +97,8 @@ class OrderGraphPlacementPlacementSynopsis(BaseModel):
 
         _obj = OrderGraphPlacementPlacementSynopsis.model_validate({
             "details": [OrderGraphPlacementChildPlacementDetail.from_dict(_item) for _item in _v] if (_v := obj.get("details")) is not None else None,
-            "quantity": obj.get("quantity")
+            "quantity": obj.get("quantity"),
+            "amount": obj.get("amount")
         })
         return _obj
 

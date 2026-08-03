@@ -21,6 +21,7 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
+from finbourne.sdk.services.lusid.models.currency_and_amount import CurrencyAndAmount
 from finbourne.sdk.services.lusid.models.perpetual_property import PerpetualProperty
 from finbourne.sdk.services.lusid.models.resource_id import ResourceId
 
@@ -31,6 +32,7 @@ class PlacementUpdateRequest(BaseModel):
     """
     id: ResourceId
     quantity: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The quantity of given instrument ordered.")
+    amount: Optional[CurrencyAndAmount] = None
     properties: Optional[Dict[str, PerpetualProperty]] = Field(default=None, description="Client-defined properties associated with this placement.")
     type:  Optional[StrictStr] = Field(default=None,alias="type", description="The type of this placement (Market, Limit, etc).") 
     limit_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The optional price, as currency and amount, associated with this placement.", alias="limitPrice")
@@ -38,7 +40,7 @@ class PlacementUpdateRequest(BaseModel):
     counterparty:  Optional[StrictStr] = Field(default=None,alias="counterparty", description="Optionally specifies the market entity this placement is placed with.") 
     execution_system:  Optional[StrictStr] = Field(default=None,alias="executionSystem", description="Optionally specifies the execution system in use.") 
     entry_type:  Optional[StrictStr] = Field(default=None,alias="entryType", description="Optionally specifies the entry type of this placement. Available values: Undecided, Manual, Direct, Ems, External.") 
-    __properties: ClassVar[List[str]] = ["id", "quantity", "properties", "type", "limitPrice", "stopPrice", "counterparty", "executionSystem", "entryType"]
+    __properties: ClassVar[List[str]] = ["id", "quantity", "amount", "properties", "type", "limitPrice", "stopPrice", "counterparty", "executionSystem", "entryType"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -77,6 +79,9 @@ class PlacementUpdateRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of id
         if self.id:
             _dict['id'] = self.id.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of amount
+        if self.amount:
+            _dict['amount'] = self.amount.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each value in properties (dict)
         _field_dict = {}
         if self.properties:
@@ -138,6 +143,7 @@ class PlacementUpdateRequest(BaseModel):
         _obj = PlacementUpdateRequest.model_validate({
             "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
             "quantity": obj.get("quantity"),
+            "amount": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("amount")) is not None else None,
             "properties": dict(
                 (_k, PerpetualProperty.from_dict(_v))
                 for _k, _v in _val.items()
