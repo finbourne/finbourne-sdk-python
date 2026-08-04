@@ -389,6 +389,7 @@ from finbourne.sdk.services.lusid.models.delete_relation_request import DeleteRe
 from finbourne.sdk.services.lusid.models.delete_relational_data_point_request import DeleteRelationalDataPointRequest
 from finbourne.sdk.services.lusid.models.delete_relationship_request import DeleteRelationshipRequest
 from finbourne.sdk.services.lusid.models.deleted_entity_response import DeletedEntityResponse
+from finbourne.sdk.services.lusid.models.delisting_event import DelistingEvent
 from finbourne.sdk.services.lusid.models.dependency_source_filter import DependencySourceFilter
 from finbourne.sdk.services.lusid.models.deposit_close_event import DepositCloseEvent
 from finbourne.sdk.services.lusid.models.deposit_interest_payment_event import DepositInterestPaymentEvent
@@ -685,6 +686,7 @@ from finbourne.sdk.services.lusid.models.journal_entry_lines_query_parameters im
 from finbourne.sdk.services.lusid.models.keyed_market_data_key_rule import KeyedMarketDataKeyRule
 from finbourne.sdk.services.lusid.models.label_value_set import LabelValueSet
 from finbourne.sdk.services.lusid.models.lapse_election import LapseElection
+from finbourne.sdk.services.lusid.models.latest_as_at import LatestAsAt
 from finbourne.sdk.services.lusid.models.leg_definition import LegDefinition
 from finbourne.sdk.services.lusid.models.legal_entity import LegalEntity
 from finbourne.sdk.services.lusid.models.level_step import LevelStep
@@ -1932,6 +1934,7 @@ __all__ = [
     "DeleteRelationalDataPointRequest",
     "DeleteRelationshipRequest",
     "DeletedEntityResponse",
+    "DelistingEvent",
     "DependencySourceFilter",
     "DepositCloseEvent",
     "DepositInterestPaymentEvent",
@@ -2228,6 +2231,7 @@ __all__ = [
     "KeyedMarketDataKeyRule",
     "LabelValueSet",
     "LapseElection",
+    "LatestAsAt",
     "LegDefinition",
     "LegalEntity",
     "LevelStep",

@@ -125,6 +125,7 @@ from finbourne.sdk.services.horizon.models.tpf_portfolio import TpfPortfolio
 from finbourne.sdk.services.horizon.models.tpf_retry_element_result import TpfRetryElementResult
 from finbourne.sdk.services.horizon.models.tpf_retry_failed_delivery_request import TpfRetryFailedDeliveryRequest
 from finbourne.sdk.services.horizon.models.tpf_retry_sftp_response import TpfRetrySftpResponse
+from finbourne.sdk.services.horizon.models.tpf_transaction_search_request import TpfTransactionSearchRequest
 from finbourne.sdk.services.horizon.models.tpf_transaction_search_response import TpfTransactionSearchResponse
 from finbourne.sdk.services.horizon.models.transaction_payload import TransactionPayload
 from finbourne.sdk.services.horizon.models.transaction_response import TransactionResponse
@@ -247,6 +248,7 @@ __all__ = [
     "TpfRetryElementResult",
     "TpfRetryFailedDeliveryRequest",
     "TpfRetrySftpResponse",
+    "TpfTransactionSearchRequest",
     "TpfTransactionSearchResponse",
     "TransactionPayload",
     "TransactionResponse",

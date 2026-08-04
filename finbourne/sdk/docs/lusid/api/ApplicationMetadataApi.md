@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get_excel_addin**](ApplicationMetadataApi.md#get_excel_addin) | **GET** /api/api/metadata/downloads/exceladdin | GetExcelAddin: Download Excel Addin
+[**get_latest_as_at**](ApplicationMetadataApi.md#get_latest_as_at) | **GET** /api/api/metadata/asat | [EXPERIMENTAL] GetLatestAsAt: Get latest AsAt
 [**get_lusid_versions**](ApplicationMetadataApi.md#get_lusid_versions) | **GET** /api/api/metadata/versions | GetLusidVersions: Get LUSID versions
 [**list_access_controlled_resources**](ApplicationMetadataApi.md#list_access_controlled_resources) | **GET** /api/api/metadata/access/resources | ListAccessControlledResources: Get resources available for access control
 
@@ -70,6 +71,43 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_latest_as_at**
+> LatestAsAt getLatestAsAt = get_latest_as_at()
+
+[EXPERIMENTAL] GetLatestAsAt: Get latest AsAt
+
+Get the latest asAt datetime of the system, i.e. the asAt datetime of the most recent write.  This is the asAt datetime that a request made without an explicit asAt resolves to.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(ApplicationMetadataApi)
+api_response = api_instance.get_latest_as_at()
+pprint(api_response)
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**LatestAsAt**](LatestAsAt.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The latest asAt datetime of the system |  -  |
 **0** | Error response |  -  |
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)

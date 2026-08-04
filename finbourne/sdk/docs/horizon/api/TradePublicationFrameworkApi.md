@@ -5,7 +5,7 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get_tpf_file_deliveries**](TradePublicationFrameworkApi.md#get_tpf_file_deliveries) | **GET** /horizon/api/trade-publication-framework/instances/{instanceId}/deliveries | [EXPERIMENTAL] GetTpfFileDeliveries: Search TPF file deliveries for a specific instance
-[**get_tpf_transaction_history_search**](TradePublicationFrameworkApi.md#get_tpf_transaction_history_search) | **GET** /horizon/api/trade-publication-framework/transactions/search | [EXPERIMENTAL] GetTpfTransactionHistorySearch: Endpoint to search TPF transaction by transaction ID and/or instrument identifier, with filtering by instance and date range
+[**get_tpf_transaction_history_search**](TradePublicationFrameworkApi.md#get_tpf_transaction_history_search) | **POST** /horizon/api/trade-publication-framework/transactions/search | [EXPERIMENTAL] GetTpfTransactionHistorySearch: Search TPF transactions by transaction ID(s) and/or instrument identifier(s), with optional filtering by instance, date range, and publication status. Accepts multiple values in TransactionIds and InstrumentIdentifiers (OR&#39;d within each filter, AND&#39;d between filters).
 [**get_transaction_payload**](TradePublicationFrameworkApi.md#get_transaction_payload) | **GET** /horizon/api/trade-publication-framework/instances/{instanceId}/runs/{runId}/transactions/payload | [EXPERIMENTAL] GetTransactionPayload: Transaction payloads for a run, with pagination support. When transactionId is supplied the single matching payload is returned; otherwise all payloads for the instance/run are returned.
 [**list_failed_deliveries**](TradePublicationFrameworkApi.md#list_failed_deliveries) | **GET** /horizon/api/trade-publication-framework/instances/{instanceId}/failed | [EXPERIMENTAL] ListFailedDeliveries: List failed deliveries for a given TPF instance, filtered by resolved state, with pagination support.
 [**list_instance_run_history**](TradePublicationFrameworkApi.md#list_instance_run_history) | **GET** /horizon/api/trade-publication-framework/instances/{instanceId}/runs | [EXPERIMENTAL] ListInstanceRunHistory: List run history for a given TPF instance, with pagination support.
@@ -96,23 +96,16 @@ Name | Type | Description  | Notes
 ---
 
 # **get_tpf_transaction_history_search**
-> PagedResourceListOfTpfTransactionSearchResponse getTpfTransactionHistorySearch = get_tpf_transaction_history_search(transaction_id=transaction_id, instrument_id=instrument_id, date_from=date_from, date_to=date_to, status=status, instance_id=instance_id, page_size=page_size, page_token=page_token)
+> PagedResourceListOfTpfTransactionSearchResponse getTpfTransactionHistorySearch = get_tpf_transaction_history_search(tpf_transaction_search_request=tpf_transaction_search_request)
 
-[EXPERIMENTAL] GetTpfTransactionHistorySearch: Endpoint to search TPF transaction by transaction ID and/or instrument identifier, with filtering by instance and date range
+[EXPERIMENTAL] GetTpfTransactionHistorySearch: Search TPF transactions by transaction ID(s) and/or instrument identifier(s), with optional filtering by instance, date range, and publication status. Accepts multiple values in TransactionIds and InstrumentIdentifiers (OR'd within each filter, AND'd between filters).
 
 ### Example
 
 ```python
 api_instance = api_client_factory.build(TradePublicationFrameworkApi)
-transaction_id = 'transaction_id_example' # str (optional)
-instrument_id = 'instrument_id_example' # str (optional)
-date_from = 'date_from_example' # str (optional)
-date_to = 'date_to_example' # str (optional)
-status = 'status_example' # str (optional)
-instance_id = 'instance_id_example' # str (optional)
-page_size = 400 # int (optional)
-page_token = '' # str (optional)
-api_response = api_instance.get_tpf_transaction_history_search(transaction_id=transaction_id, instrument_id=instrument_id, date_from=date_from, date_to=date_to, status=status, instance_id=instance_id, page_size=page_size, page_token=page_token)
+tpf_transaction_search_request = TpfTransactionSearchRequest()
+api_response = api_instance.get_tpf_transaction_history_search(tpf_transaction_search_request=tpf_transaction_search_request)
 pprint(api_response)
 ```
 
@@ -120,14 +113,7 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **transaction_id** | **str**|  | [optional] 
- **instrument_id** | **str**|  | [optional] 
- **date_from** | **str**|  | [optional] 
- **date_to** | **str**|  | [optional] 
- **status** | **str**|  | [optional] 
- **instance_id** | **str**|  | [optional] 
- **page_size** | **int**|  | [optional] [default to 400]
- **page_token** | **str**|  | [optional] [default to &#39;&#39;]
+ **tpf_transaction_search_request** | [**TpfTransactionSearchRequest**](TpfTransactionSearchRequest.md)| Search filters and pagination options. | [optional] 
 
 ### Return type
 
@@ -135,7 +121,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
  - **Accept**: application/json
 
 ### HTTP response details

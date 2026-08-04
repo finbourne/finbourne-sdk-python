@@ -39,6 +39,7 @@ from finbourne.sdk.services.horizon.models.resolve_failed_delivery_response impo
 from finbourne.sdk.services.horizon.models.tpf_failed_delivery_response import TpfFailedDeliveryResponse
 from finbourne.sdk.services.horizon.models.tpf_retry_failed_delivery_request import TpfRetryFailedDeliveryRequest
 from finbourne.sdk.services.horizon.models.tpf_retry_sftp_response import TpfRetrySftpResponse
+from finbourne.sdk.services.horizon.models.tpf_transaction_search_request import TpfTransactionSearchRequest
 from finbourne.sdk.api_client import ApiClient
 from finbourne.sdk.api_response import ApiResponse
 from finbourne.sdk.extensions.api_client import SyncApiClient
@@ -230,25 +231,11 @@ class TradePublicationFrameworkApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def get_tpf_transaction_history_search(self, transaction_id: Optional[StrictStr] = None, instrument_id: Optional[StrictStr] = None, date_from: Optional[StrictStr] = None, date_to: Optional[StrictStr] = None, status: Optional[StrictStr] = None, instance_id: Optional[StrictStr] = None, page_size: Optional[int] = None, page_token: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfTpfTransactionSearchResponse:
-        """[EXPERIMENTAL] GetTpfTransactionHistorySearch: Endpoint to search TPF transaction by transaction ID and/or instrument identifier, with filtering by instance and date range  # noqa: E501
+    def get_tpf_transaction_history_search(self, tpf_transaction_search_request: Optional[TpfTransactionSearchRequest] = None, **kwargs) -> PagedResourceListOfTpfTransactionSearchResponse:
+        """[EXPERIMENTAL] GetTpfTransactionHistorySearch: Search TPF transactions by transaction ID(s) and/or instrument identifier(s), with optional filtering by instance, date range, and publication status. Accepts multiple values in TransactionIds and InstrumentIdentifiers (OR'd within each filter, AND'd between filters).  # noqa: E501
 
-        :param transaction_id: 
-        :type transaction_id: str
-        :param instrument_id: 
-        :type instrument_id: str
-        :param date_from: 
-        :type date_from: str
-        :param date_to: 
-        :type date_to: str
-        :param status: 
-        :type status: str
-        :param instance_id: 
-        :type instance_id: str
-        :param page_size: 
-        :type page_size: int
-        :param page_token: 
-        :type page_token: str
+        :param tpf_transaction_search_request: Search filters and pagination options.
+        :type tpf_transaction_search_request: TpfTransactionSearchRequest
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -259,29 +246,15 @@ class TradePublicationFrameworkApi:
             message = "Error! Please call the get_tpf_transaction_history_search_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.get_tpf_transaction_history_search_with_http_info(transaction_id, instrument_id, date_from, date_to, status, instance_id, page_size, page_token, **kwargs)
+        response = self.get_tpf_transaction_history_search_with_http_info(tpf_transaction_search_request, **kwargs)
         return response.data
 
     @validate_call
-    def get_tpf_transaction_history_search_with_http_info(self, transaction_id: Optional[StrictStr] = None, instrument_id: Optional[StrictStr] = None, date_from: Optional[StrictStr] = None, date_to: Optional[StrictStr] = None, status: Optional[StrictStr] = None, instance_id: Optional[StrictStr] = None, page_size: Optional[int] = None, page_token: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfTpfTransactionSearchResponse]:
-        """[EXPERIMENTAL] GetTpfTransactionHistorySearch: Endpoint to search TPF transaction by transaction ID and/or instrument identifier, with filtering by instance and date range  # noqa: E501
+    def get_tpf_transaction_history_search_with_http_info(self, tpf_transaction_search_request: Optional[TpfTransactionSearchRequest] = None, **kwargs) -> ApiResponse[PagedResourceListOfTpfTransactionSearchResponse]:
+        """[EXPERIMENTAL] GetTpfTransactionHistorySearch: Search TPF transactions by transaction ID(s) and/or instrument identifier(s), with optional filtering by instance, date range, and publication status. Accepts multiple values in TransactionIds and InstrumentIdentifiers (OR'd within each filter, AND'd between filters).  # noqa: E501
 
-        :param transaction_id: 
-        :type transaction_id: str
-        :param instrument_id: 
-        :type instrument_id: str
-        :param date_from: 
-        :type date_from: str
-        :param date_to: 
-        :type date_to: str
-        :param status: 
-        :type status: str
-        :param instance_id: 
-        :type instance_id: str
-        :param page_size: 
-        :type page_size: int
-        :param page_token: 
-        :type page_token: str
+        :param tpf_transaction_search_request: Search filters and pagination options.
+        :type tpf_transaction_search_request: TpfTransactionSearchRequest
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -305,14 +278,7 @@ class TradePublicationFrameworkApi:
         _params = locals()
 
         _all_params = [
-            'transaction_id',
-            'instrument_id',
-            'date_from',
-            'date_to',
-            'status',
-            'instance_id',
-            'page_size',
-            'page_token'
+            'tpf_transaction_search_request'
         ]
         _all_params.extend(
             [
@@ -343,30 +309,6 @@ class TradePublicationFrameworkApi:
 
         # process the query parameters
         _query_params = []
-        if _params.get('transaction_id') is not None:  # noqa: E501
-            _query_params.append(('transactionId', _params['transaction_id']))
-
-        if _params.get('instrument_id') is not None:  # noqa: E501
-            _query_params.append(('instrumentId', _params['instrument_id']))
-
-        if _params.get('date_from') is not None:  # noqa: E501
-            _query_params.append(('dateFrom', _params['date_from']))
-
-        if _params.get('date_to') is not None:  # noqa: E501
-            _query_params.append(('dateTo', _params['date_to']))
-
-        if _params.get('status') is not None:  # noqa: E501
-            _query_params.append(('status', _params['status']))
-
-        if _params.get('instance_id') is not None:  # noqa: E501
-            _query_params.append(('instanceId', _params['instance_id']))
-
-        if _params.get('page_size') is not None:  # noqa: E501
-            _query_params.append(('pageSize', _params['page_size']))
-
-        if _params.get('page_token') is not None:  # noqa: E501
-            _query_params.append(('pageToken', _params['page_token']))
-
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -374,9 +316,19 @@ class TradePublicationFrameworkApi:
         _files = {}
         # process the body parameter
         _body_params = None
+        if _params['tpf_transaction_search_request'] is not None:
+            _body_params = _params['tpf_transaction_search_request']
+
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.sync_api_client.select_header_accept(
             ['application/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.sync_api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
         _auth_settings = ['oauth2']  # noqa: E501
@@ -387,7 +339,7 @@ class TradePublicationFrameworkApi:
         }
 
         return self.sync_api_client.call_api(
-            '/horizon/api/trade-publication-framework/transactions/search', 'GET',
+            '/horizon/api/trade-publication-framework/transactions/search', 'POST',
             _path_params,
             _query_params,
             _header_params,
@@ -1947,25 +1899,11 @@ class TradePublicationFrameworkApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def get_tpf_transaction_history_search_async(self, transaction_id: Optional[StrictStr] = None, instrument_id: Optional[StrictStr] = None, date_from: Optional[StrictStr] = None, date_to: Optional[StrictStr] = None, status: Optional[StrictStr] = None, instance_id: Optional[StrictStr] = None, page_size: Optional[int] = None, page_token: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfTpfTransactionSearchResponse:
-            """[EXPERIMENTAL] GetTpfTransactionHistorySearch: Endpoint to search TPF transaction by transaction ID and/or instrument identifier, with filtering by instance and date range  # noqa: E501
+    async def get_tpf_transaction_history_search_async(self, tpf_transaction_search_request: Optional[TpfTransactionSearchRequest] = None, **kwargs) -> PagedResourceListOfTpfTransactionSearchResponse:
+            """[EXPERIMENTAL] GetTpfTransactionHistorySearch: Search TPF transactions by transaction ID(s) and/or instrument identifier(s), with optional filtering by instance, date range, and publication status. Accepts multiple values in TransactionIds and InstrumentIdentifiers (OR'd within each filter, AND'd between filters).  # noqa: E501
             
-            :param transaction_id: 
-            :type transaction_id: str
-            :param instrument_id: 
-            :type instrument_id: str
-            :param date_from: 
-            :type date_from: str
-            :param date_to: 
-            :type date_to: str
-            :param status: 
-            :type status: str
-            :param instance_id: 
-            :type instance_id: str
-            :param page_size: 
-            :type page_size: int
-            :param page_token: 
-            :type page_token: str
+            :param tpf_transaction_search_request: Search filters and pagination options.
+            :type tpf_transaction_search_request: TpfTransactionSearchRequest
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -1976,30 +1914,16 @@ class TradePublicationFrameworkApi:
                 message = "Error! Please call the get_tpf_transaction_history_search_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.get_tpf_transaction_history_search_with_http_info_async(transaction_id, instrument_id, date_from, date_to, status, instance_id, page_size, page_token, **kwargs)
+            response = await self.get_tpf_transaction_history_search_with_http_info_async(tpf_transaction_search_request, **kwargs)
             return response.data
 
     @validate_call
-    async def get_tpf_transaction_history_search_with_http_info_async(self, transaction_id: Optional[StrictStr] = None, instrument_id: Optional[StrictStr] = None, date_from: Optional[StrictStr] = None, date_to: Optional[StrictStr] = None, status: Optional[StrictStr] = None, instance_id: Optional[StrictStr] = None, page_size: Optional[int] = None, page_token: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfTpfTransactionSearchResponse]:
-            """[EXPERIMENTAL] GetTpfTransactionHistorySearch: Endpoint to search TPF transaction by transaction ID and/or instrument identifier, with filtering by instance and date range  # noqa: E501
+    async def get_tpf_transaction_history_search_with_http_info_async(self, tpf_transaction_search_request: Optional[TpfTransactionSearchRequest] = None, **kwargs) -> ApiResponse[PagedResourceListOfTpfTransactionSearchResponse]:
+            """[EXPERIMENTAL] GetTpfTransactionHistorySearch: Search TPF transactions by transaction ID(s) and/or instrument identifier(s), with optional filtering by instance, date range, and publication status. Accepts multiple values in TransactionIds and InstrumentIdentifiers (OR'd within each filter, AND'd between filters).  # noqa: E501
 
 
-            :param transaction_id: 
-            :type transaction_id: str
-            :param instrument_id: 
-            :type instrument_id: str
-            :param date_from: 
-            :type date_from: str
-            :param date_to: 
-            :type date_to: str
-            :param status: 
-            :type status: str
-            :param instance_id: 
-            :type instance_id: str
-            :param page_size: 
-            :type page_size: int
-            :param page_token: 
-            :type page_token: str
+            :param tpf_transaction_search_request: Search filters and pagination options.
+            :type tpf_transaction_search_request: TpfTransactionSearchRequest
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -2023,14 +1947,7 @@ class TradePublicationFrameworkApi:
             _params = locals()
 
             _all_params = [
-                'transaction_id',
-                'instrument_id',
-                'date_from',
-                'date_to',
-                'status',
-                'instance_id',
-                'page_size',
-                'page_token'
+                'tpf_transaction_search_request'
             ]
             _all_params.extend(
                 [
@@ -2061,30 +1978,6 @@ class TradePublicationFrameworkApi:
 
             # process the query parameters
             _query_params = []
-            if _params.get('transaction_id') is not None:  # noqa: E501
-                _query_params.append(('transactionId', _params['transaction_id']))
-
-            if _params.get('instrument_id') is not None:  # noqa: E501
-                _query_params.append(('instrumentId', _params['instrument_id']))
-
-            if _params.get('date_from') is not None:  # noqa: E501
-                _query_params.append(('dateFrom', _params['date_from']))
-
-            if _params.get('date_to') is not None:  # noqa: E501
-                _query_params.append(('dateTo', _params['date_to']))
-
-            if _params.get('status') is not None:  # noqa: E501
-                _query_params.append(('status', _params['status']))
-
-            if _params.get('instance_id') is not None:  # noqa: E501
-                _query_params.append(('instanceId', _params['instance_id']))
-
-            if _params.get('page_size') is not None:  # noqa: E501
-                _query_params.append(('pageSize', _params['page_size']))
-
-            if _params.get('page_token') is not None:  # noqa: E501
-                _query_params.append(('pageToken', _params['page_token']))
-
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))
             # process the form parameters
@@ -2092,9 +1985,19 @@ class TradePublicationFrameworkApi:
             _files = {}
             # process the body parameter
             _body_params = None
+            if _params['tpf_transaction_search_request'] is not None:
+                _body_params = _params['tpf_transaction_search_request']
+
             # set the HTTP header `Accept`
             _header_params['Accept'] = self.api_client.select_header_accept(
                 ['application/json'])  # noqa: E501
+
+            # set the HTTP header `Content-Type`
+            _content_types_list = _params.get('_content_type',
+                self.api_client.select_header_content_type(
+                    ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+            if _content_types_list:
+                    _header_params['Content-Type'] = _content_types_list
 
             # authentication setting
             _auth_settings = ['oauth2']  # noqa: E501
@@ -2105,7 +2008,7 @@ class TradePublicationFrameworkApi:
             }
 
             return await self.api_client.call_api_async(
-                '/horizon/api/trade-publication-framework/transactions/search', 'GET',
+                '/horizon/api/trade-publication-framework/transactions/search', 'POST',
                 _path_params,
                 _query_params,
                 _header_params,
