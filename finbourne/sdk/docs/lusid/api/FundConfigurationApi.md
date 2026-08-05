@@ -242,7 +242,7 @@ Create or update certain fields for a particular FundConfiguration.  The behavio
 api_instance = api_client_factory.build(FundConfigurationApi)
 scope = 'scope_example' # str
 code = 'code_example' # str
-operation = [{"value":[{"filterId":"SUB","filter":"GeneralLedgerAccountCode eq '3001'"},{"filterId":"RED","filter":"GeneralLedgerAccountCode eq '3002'"}],"path":"/dealingFilters","op":"add"}] # List[Operation]
+operation = [{"value":[{"filterId":"SUB","filter":"GeneralLedgerAccountCode eq '3001'"},{"filterId":"RED","filter":"GeneralLedgerAccountCode eq '3002'"}],"path":"/dealingFilters","op":"add"},{"value":{"code":"PriorAdjustedNav","scope":"default"},"path":"/apportionmentMethodProperty","op":"add"}] # List[Operation]
 api_response = api_instance.patch_fund_configuration(scope, code, operation)
 pprint(api_response)
 ```

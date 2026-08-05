@@ -14,7 +14,7 @@ The Valuation Point Data for a Share Class on a specified date.
 | **unitisation** | [UnitisationData](UnitisationData.md) | Optional | *No description available.* |
 | **miscellaneous** | [Dict[str, ShareClassAmount]](ShareClassAmount.md) | Optional | Not used directly by the LUSID engines but serves as a holding area for any custom derived data points that may be useful in, for example, fee calculations). |
 | **share_class_to_fund_fx_rate** | **float** | Required | The fx rate from the Share Class currency to the fund currency at this valuation point. |
-| **capital_ratio** | **float** | Required | The proportion of the fund&#39;s adjusted beginning equity (ie: the sum of the previous NAV and the net dealing) that is invested in the share class. |
+| **capital_ratio** | **float** | Required | The proportion of the fund&#39;s non-class-specific P&amp;L apportioned to this share class. Sums to 1 across the fund&#39;s share classes. |
 | **previous_share_class_breakdown** | [PreviousShareClassBreakdown](PreviousShareClassBreakdown.md) | Required | *No description available.* |
 
 
@@ -35,7 +35,7 @@ instance = ShareClassBreakdown(
     unitisation=UnitisationData(...),  # optional
     miscellaneous=ShareClassAmount(...),  # optional — Not used directly by the LUSID engines but serves as a holding area for any custom derived data points that may be useful in, for example, fee calculations).
     share_class_to_fund_fx_rate=0.0,  # required — The fx rate from the Share Class currency to the fund currency at this valuation point.
-    capital_ratio=0.0,  # required — The proportion of the fund&#39;s adjusted beginning equity (ie: the sum of the previous NAV and the net dealing) that is invested in the share class.
+    capital_ratio=0.0,  # required — The proportion of the fund&#39;s non-class-specific P&amp;L apportioned to this share class. Sums to 1 across the fund&#39;s share classes.
     previous_share_class_breakdown=PreviousShareClassBreakdown(...)  # required
 )
 ```

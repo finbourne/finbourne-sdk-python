@@ -20,9 +20,9 @@ from aenum import Enum, no_arg
 
 
 
-class EquityShiftMode(str, Enum):  # type: ignore[misc]
+class PriceShiftMode(str, Enum):  # type: ignore[misc]
     """
-    EquityShiftMode
+    PriceShiftMode
     """
 
     """
@@ -33,7 +33,7 @@ class EquityShiftMode(str, Enum):  # type: ignore[misc]
     PERCENTAGE = 'percentage'
 
     @classmethod
-    def from_json(cls, json_str: str) -> EquityShiftMode:
-        """Create an instance of EquityShiftMode from a JSON string"""
-        return EquityShiftMode(json.loads(json_str))
+    def from_json(cls, json_str: str) -> PriceShiftMode:
+        """Create an instance of PriceShiftMode from a JSON string"""
+        return PriceShiftMode(json.loads(json_str))
 

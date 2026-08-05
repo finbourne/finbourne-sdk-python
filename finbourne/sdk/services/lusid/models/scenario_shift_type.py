@@ -30,7 +30,7 @@ class ScenarioShiftType(str, Enum):  # type: ignore[misc]
     """
     RATECURVESHIFTDEFINITION = 'RateCurveShiftDefinition'
     FXSHIFTDEFINITION = 'FxShiftDefinition'
-    EQUITYSHIFTDEFINITION = 'EquityShiftDefinition'
+    PRICESHIFTDEFINITION = 'PriceShiftDefinition'
     VOLSURFACESHIFTDEFINITION = 'VolSurfaceShiftDefinition'
     MDKRGROUPSHIFTDEFINITION = 'MdkrGroupShiftDefinition'
 

@@ -10,7 +10,6 @@
 | **share_class_short_code** | **str** | Required | A short code that uniquely identifies the share class within the Fund. |
 | **launch_price** | **float** | Optional | The launch price set when a shareclass is added to the fund. Defaults to 1. |
 | **launch_date** | **datetime** | Optional | The launch date set when a shareclass is added to the fund. Defaults to Fund Inception Date. |
-| **apportionment_factor** | **float** | Optional | Only used for fixed percentage method or be zero, must equal 1 or 0 across all classes in the fund. |
 | **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | An optional set of properties to attach to the auto-created Instrument. Only applied when createInstrument is true. |
 | **fund_share_class_type** | **str** | Required | The Type of Share Class. Available values: Unitised, Inactive, Series, PrivateEquity, Partnership. |
 | **distribution_type** | **str** | Required | The type of distribution the ShareClass will calculate. Available values: Income, Accumulation. |
@@ -39,7 +38,6 @@ instance = ShareClassDefinition(
     share_class_short_code="...",  # required — A short code that uniquely identifies the share class within the Fund.
     launch_price=0.0,  # optional — The launch price set when a shareclass is added to the fund. Defaults to 1.
     launch_date=datetime.now(),  # optional — The launch date set when a shareclass is added to the fund. Defaults to Fund Inception Date.
-    apportionment_factor=0.0,  # optional — Only used for fixed percentage method or be zero, must equal 1 or 0 across all classes in the fund.
     properties=ModelProperty(...),  # optional — An optional set of properties to attach to the auto-created Instrument. Only applied when createInstrument is true.
     fund_share_class_type="...",  # required — The Type of Share Class. Available values: Unitised, Inactive, Series, PrivateEquity, Partnership.
     distribution_type="...",  # required — The type of distribution the ShareClass will calculate. Available values: Income, Accumulation.

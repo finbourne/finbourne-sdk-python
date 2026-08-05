@@ -5,7 +5,7 @@ The collection of reconciliation results for a given rec type within a rec insta
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **rec_type** | **str** | Required | The type of rec that this result set belongs to (e.g. Holding). Together with the rec instance, this uniquely identifies the result set. Available values: Holding, Transaction, Valuation, CashHolding. |
+| **rec_type** | **str** | Required | The type of rec that this result set belongs to (e.g. Holding). Together with the rec instance, this uniquely identifies the result set. Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity. |
 | **rec_instance** | [RecInstanceSummary](RecInstanceSummary.md) | Required | *No description available.* |
 | **run_number** | **int** | Required | The run number within the instance. Increments with each re-run. |
 | **run_as_at** | **datetime** | Required | The asAt datetime at which the run happened. |
@@ -31,7 +31,7 @@ The collection of reconciliation results for a given rec type within a rec insta
 from finbourne.sdk.services.lusid.models.RecResultSet import RecResultSet
 
 instance = RecResultSet(
-    rec_type="...",  # required — The type of rec that this result set belongs to (e.g. Holding). Together with the rec instance, this uniquely identifies the result set. Available values: Holding, Transaction, Valuation, CashHolding.
+    rec_type="...",  # required — The type of rec that this result set belongs to (e.g. Holding). Together with the rec instance, this uniquely identifies the result set. Available values: Holding, CashHolding, Valuation, InputTransaction, OutputTransaction, SettlementActivity.
     rec_instance=RecInstanceSummary(...),  # required
     run_number=0,  # required — The run number within the instance. Increments with each re-run.
     run_as_at=datetime.now(),  # required — The asAt datetime at which the run happened.

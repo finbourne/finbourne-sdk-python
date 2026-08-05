@@ -57,8 +57,8 @@ from finbourne.sdk.services.lusid.api.portfolios_api import PortfoliosApi
 from finbourne.sdk.services.lusid.api.property_definitions_api import PropertyDefinitionsApi
 from finbourne.sdk.services.lusid.api.queryable_keys_api import QueryableKeysApi
 from finbourne.sdk.services.lusid.api.quotes_api import QuotesApi
-from finbourne.sdk.services.lusid.api.rec_result_sets_api import RecResultSetsApi
 from finbourne.sdk.services.lusid.api.reconciliations_api import ReconciliationsApi
+from finbourne.sdk.services.lusid.api.recs_api import RecsApi
 from finbourne.sdk.services.lusid.api.reference_lists_api import ReferenceListsApi
 from finbourne.sdk.services.lusid.api.reference_portfolio_api import ReferencePortfolioApi
 from finbourne.sdk.services.lusid.api.relation_definitions_api import RelationDefinitionsApi
@@ -149,8 +149,8 @@ __all__ = [
     "PropertyDefinitionsApi",
     "QueryableKeysApi",
     "QuotesApi",
-    "RecResultSetsApi",
     "ReconciliationsApi",
+    "RecsApi",
     "ReferenceListsApi",
     "ReferencePortfolioApi",
     "RelationDefinitionsApi",

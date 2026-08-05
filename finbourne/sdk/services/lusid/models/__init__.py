@@ -217,6 +217,7 @@ from finbourne.sdk.services.lusid.models.close_period_diary_entry_request import
 from finbourne.sdk.services.lusid.models.closed_period import ClosedPeriod
 from finbourne.sdk.services.lusid.models.collateral import Collateral
 from finbourne.sdk.services.lusid.models.collateral_instrument import CollateralInstrument
+from finbourne.sdk.services.lusid.models.commodity_forward import CommodityForward
 from finbourne.sdk.services.lusid.models.comparison_attribute_value_pair import ComparisonAttributeValuePair
 from finbourne.sdk.services.lusid.models.complete_portfolio import CompletePortfolio
 from finbourne.sdk.services.lusid.models.complete_relation import CompleteRelation
@@ -429,8 +430,6 @@ from finbourne.sdk.services.lusid.models.equity_curve_by_prices_data import Equi
 from finbourne.sdk.services.lusid.models.equity_curve_dependency import EquityCurveDependency
 from finbourne.sdk.services.lusid.models.equity_model_options import EquityModelOptions
 from finbourne.sdk.services.lusid.models.equity_option import EquityOption
-from finbourne.sdk.services.lusid.models.equity_shift_definition import EquityShiftDefinition
-from finbourne.sdk.services.lusid.models.equity_shift_mode import EquityShiftMode
 from finbourne.sdk.services.lusid.models.equity_swap import EquitySwap
 from finbourne.sdk.services.lusid.models.equity_vol_dependency import EquityVolDependency
 from finbourne.sdk.services.lusid.models.equity_vol_surface_data import EquityVolSurfaceData
@@ -634,6 +633,7 @@ from finbourne.sdk.services.lusid.models.informational_event import Informationa
 from finbourne.sdk.services.lusid.models.inline_valuation_request import InlineValuationRequest
 from finbourne.sdk.services.lusid.models.inline_valuations_reconciliation_request import InlineValuationsReconciliationRequest
 from finbourne.sdk.services.lusid.models.input_transition import InputTransition
+from finbourne.sdk.services.lusid.models.instantiate_rec_request import InstantiateRecRequest
 from finbourne.sdk.services.lusid.models.instrument import Instrument
 from finbourne.sdk.services.lusid.models.instrument_activity import InstrumentActivity
 from finbourne.sdk.services.lusid.models.instrument_activity_adjustment import InstrumentActivityAdjustment
@@ -882,6 +882,7 @@ from finbourne.sdk.services.lusid.models.paged_resource_list_of_posting_module_r
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_posting_module_rule import PagedResourceListOfPostingModuleRule
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_property_definition import PagedResourceListOfPropertyDefinition
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_property_definition_search_result import PagedResourceListOfPropertyDefinitionSearchResult
+from finbourne.sdk.services.lusid.models.paged_resource_list_of_rec_instance import PagedResourceListOfRecInstance
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_rec_result_set import PagedResourceListOfRecResultSet
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_reconciliation import PagedResourceListOfReconciliation
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_reference_list_response import PagedResourceListOfReferenceListResponse
@@ -984,6 +985,8 @@ from finbourne.sdk.services.lusid.models.previous_fund_valuation_point_data impo
 from finbourne.sdk.services.lusid.models.previous_nav import PreviousNAV
 from finbourne.sdk.services.lusid.models.previous_share_class_breakdown import PreviousShareClassBreakdown
 from finbourne.sdk.services.lusid.models.previous_valuation_point import PreviousValuationPoint
+from finbourne.sdk.services.lusid.models.price_shift_definition import PriceShiftDefinition
+from finbourne.sdk.services.lusid.models.price_shift_mode import PriceShiftMode
 from finbourne.sdk.services.lusid.models.pricing_context import PricingContext
 from finbourne.sdk.services.lusid.models.pricing_model import PricingModel
 from finbourne.sdk.services.lusid.models.pricing_options import PricingOptions
@@ -1038,10 +1041,13 @@ from finbourne.sdk.services.lusid.models.re_open_period_diary_entry_request impo
 from finbourne.sdk.services.lusid.models.realised_gain_loss import RealisedGainLoss
 from finbourne.sdk.services.lusid.models.rec_approval_decision import RecApprovalDecision
 from finbourne.sdk.services.lusid.models.rec_closed_exception_counts import RecClosedExceptionCounts
+from finbourne.sdk.services.lusid.models.rec_closed_period_reference import RecClosedPeriodReference
+from finbourne.sdk.services.lusid.models.rec_closed_periods import RecClosedPeriods
 from finbourne.sdk.services.lusid.models.rec_dates_reconciled import RecDatesReconciled
 from finbourne.sdk.services.lusid.models.rec_exception_count_by_closure_type import RecExceptionCountByClosureType
 from finbourne.sdk.services.lusid.models.rec_exception_count_by_result_type import RecExceptionCountByResultType
 from finbourne.sdk.services.lusid.models.rec_execution import RecExecution
+from finbourne.sdk.services.lusid.models.rec_instance import RecInstance
 from finbourne.sdk.services.lusid.models.rec_instance_id import RecInstanceId
 from finbourne.sdk.services.lusid.models.rec_instance_summary import RecInstanceSummary
 from finbourne.sdk.services.lusid.models.rec_match_count_by_result_type import RecMatchCountByResultType
@@ -1054,6 +1060,7 @@ from finbourne.sdk.services.lusid.models.rec_result_counts import RecResultCount
 from finbourne.sdk.services.lusid.models.rec_result_set import RecResultSet
 from finbourne.sdk.services.lusid.models.rec_result_set_approval_decision_request import RecResultSetApprovalDecisionRequest
 from finbourne.sdk.services.lusid.models.rec_review import RecReview
+from finbourne.sdk.services.lusid.models.rec_run_log_entry import RecRunLogEntry
 from finbourne.sdk.services.lusid.models.rec_submission import RecSubmission
 from finbourne.sdk.services.lusid.models.rec_superseded_run import RecSupersededRun
 from finbourne.sdk.services.lusid.models.rec_workflow_task import RecWorkflowTask
@@ -1377,6 +1384,7 @@ from finbourne.sdk.services.lusid.models.transfer_agency_dates import TransferAg
 from finbourne.sdk.services.lusid.models.transfer_agency_order_result import TransferAgencyOrderResult
 from finbourne.sdk.services.lusid.models.transfer_agency_orders_response import TransferAgencyOrdersResponse
 from finbourne.sdk.services.lusid.models.transition_event import TransitionEvent
+from finbourne.sdk.services.lusid.models.transition_rec_instance_request import TransitionRecInstanceRequest
 from finbourne.sdk.services.lusid.models.translate_entities_inlined_request import TranslateEntitiesInlinedRequest
 from finbourne.sdk.services.lusid.models.translate_entities_request import TranslateEntitiesRequest
 from finbourne.sdk.services.lusid.models.translate_entities_response import TranslateEntitiesResponse
@@ -1762,6 +1770,7 @@ __all__ = [
     "ClosedPeriod",
     "Collateral",
     "CollateralInstrument",
+    "CommodityForward",
     "ComparisonAttributeValuePair",
     "CompletePortfolio",
     "CompleteRelation",
@@ -1974,8 +1983,6 @@ __all__ = [
     "EquityCurveDependency",
     "EquityModelOptions",
     "EquityOption",
-    "EquityShiftDefinition",
-    "EquityShiftMode",
     "EquitySwap",
     "EquityVolDependency",
     "EquityVolSurfaceData",
@@ -2179,6 +2186,7 @@ __all__ = [
     "InlineValuationRequest",
     "InlineValuationsReconciliationRequest",
     "InputTransition",
+    "InstantiateRecRequest",
     "Instrument",
     "InstrumentActivity",
     "InstrumentActivityAdjustment",
@@ -2427,6 +2435,7 @@ __all__ = [
     "PagedResourceListOfPostingModuleRule",
     "PagedResourceListOfPropertyDefinition",
     "PagedResourceListOfPropertyDefinitionSearchResult",
+    "PagedResourceListOfRecInstance",
     "PagedResourceListOfRecResultSet",
     "PagedResourceListOfReconciliation",
     "PagedResourceListOfReferenceListResponse",
@@ -2529,6 +2538,8 @@ __all__ = [
     "PreviousNAV",
     "PreviousShareClassBreakdown",
     "PreviousValuationPoint",
+    "PriceShiftDefinition",
+    "PriceShiftMode",
     "PricingContext",
     "PricingModel",
     "PricingOptions",
@@ -2583,10 +2594,13 @@ __all__ = [
     "RealisedGainLoss",
     "RecApprovalDecision",
     "RecClosedExceptionCounts",
+    "RecClosedPeriodReference",
+    "RecClosedPeriods",
     "RecDatesReconciled",
     "RecExceptionCountByClosureType",
     "RecExceptionCountByResultType",
     "RecExecution",
+    "RecInstance",
     "RecInstanceId",
     "RecInstanceSummary",
     "RecMatchCountByResultType",
@@ -2599,6 +2613,7 @@ __all__ = [
     "RecResultSet",
     "RecResultSetApprovalDecisionRequest",
     "RecReview",
+    "RecRunLogEntry",
     "RecSubmission",
     "RecSupersededRun",
     "RecWorkflowTask",
@@ -2922,6 +2937,7 @@ __all__ = [
     "TransferAgencyOrderResult",
     "TransferAgencyOrdersResponse",
     "TransitionEvent",
+    "TransitionRecInstanceRequest",
     "TranslateEntitiesInlinedRequest",
     "TranslateEntitiesRequest",
     "TranslateEntitiesResponse",

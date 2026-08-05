@@ -6,7 +6,7 @@ A group of keyed market data key rules (e.g. bid/mid/ask). When the scenario is 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **rules** | [List[KeyedMarketDataKeyRule]](KeyedMarketDataKeyRule.md) | Required | The keyed rules of the group. Keys must be unique within the group; each key produces one  result column. |
-| **scenario_shift_type** | **str** | Required | Available values: RateCurveShiftDefinition, FxShiftDefinition, EquityShiftDefinition, VolSurfaceShiftDefinition, MdkrGroupShiftDefinition. |
+| **scenario_shift_type** | **str** | Required | Available values: RateCurveShiftDefinition, FxShiftDefinition, PriceShiftDefinition, VolSurfaceShiftDefinition, MdkrGroupShiftDefinition. |
 
 
 ## Usage
@@ -18,7 +18,7 @@ from finbourne.sdk.services.lusid.models.MdkrGroupShiftDefinition import MdkrGro
 
 instance = MdkrGroupShiftDefinition(
     rules=[],  # required — The keyed rules of the group. Keys must be unique within the group; each key produces one  result column.
-    scenario_shift_type="..."  # required — Available values: RateCurveShiftDefinition, FxShiftDefinition, EquityShiftDefinition, VolSurfaceShiftDefinition, MdkrGroupShiftDefinition.
+    scenario_shift_type="..."  # required — Available values: RateCurveShiftDefinition, FxShiftDefinition, PriceShiftDefinition, VolSurfaceShiftDefinition, MdkrGroupShiftDefinition.
 )
 ```
 

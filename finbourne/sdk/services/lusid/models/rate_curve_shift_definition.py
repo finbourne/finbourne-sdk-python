@@ -34,9 +34,10 @@ class RateCurveShiftDefinition(ScenarioShiftDefinition):
     end_tenor:  Optional[StrictStr] = Field(default=None,alias="endTenor") 
     shift_type:  StrictStr = Field(...,alias="shiftType", description="Available values: Parallel, Steepen, Flatten, Twist.") 
     scale:  Optional[StrictStr] = Field(default=None,alias="scale", description="Available values: Bps, Percentage.") 
-    scenario_shift_type:  StrictStr = Field(...,alias="scenarioShiftType", description="Available values: RateCurveShiftDefinition, FxShiftDefinition, EquityShiftDefinition, VolSurfaceShiftDefinition, MdkrGroupShiftDefinition.") 
+    apply_to:  Optional[StrictStr] = Field(default=None,alias="applyTo", description="A LUSID filter expression over the instrument entity scoping which instruments this shift is  for, e.g. \"properties[Instrument/default/CountryOfIssue] eq 'Italy'\". The shifted market data  is used by the whole valuation run, but when the scenario is requested as a result column the  column is only populated for matching instruments. Only usable when the scenario is applied as  a per-metric column.") 
+    scenario_shift_type:  StrictStr = Field(...,alias="scenarioShiftType", description="Available values: RateCurveShiftDefinition, FxShiftDefinition, PriceShiftDefinition, VolSurfaceShiftDefinition, MdkrGroupShiftDefinition.") 
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["scenarioShiftType", "ccy", "amount", "startTenor", "endTenor", "shiftType", "scale"]
+    __properties: ClassVar[List[str]] = ["scenarioShiftType", "ccy", "amount", "startTenor", "endTenor", "shiftType", "scale", "applyTo"]
 
     @field_validator('shift_type')
     def shift_type_validate_enum(cls, value):
@@ -244,8 +245,8 @@ class RateCurveShiftDefinition(ScenarioShiftDefinition):
         if "scenario_shift_type" != "type":
             return value
 
-        if value not in ['RateCurveShiftDefinition', 'FxShiftDefinition', 'EquityShiftDefinition', 'VolSurfaceShiftDefinition', 'MdkrGroupShiftDefinition']:
-            raise ValueError("must be one of enum values ('RateCurveShiftDefinition', 'FxShiftDefinition', 'EquityShiftDefinition', 'VolSurfaceShiftDefinition', 'MdkrGroupShiftDefinition')")
+        if value not in ['RateCurveShiftDefinition', 'FxShiftDefinition', 'PriceShiftDefinition', 'VolSurfaceShiftDefinition', 'MdkrGroupShiftDefinition']:
+            raise ValueError("must be one of enum values ('RateCurveShiftDefinition', 'FxShiftDefinition', 'PriceShiftDefinition', 'VolSurfaceShiftDefinition', 'MdkrGroupShiftDefinition')")
         return value
 
     model_config = ConfigDict(
@@ -298,6 +299,11 @@ class RateCurveShiftDefinition(ScenarioShiftDefinition):
         if self.end_tenor is None and "end_tenor" in self.model_fields_set:
             _dict['endTenor'] = None
 
+        # set to None if apply_to (nullable) is None
+        # and model_fields_set contains the field
+        if self.apply_to is None and "apply_to" in self.model_fields_set:
+            _dict['applyTo'] = None
+
         return _dict
 
     @classmethod
@@ -316,7 +322,8 @@ class RateCurveShiftDefinition(ScenarioShiftDefinition):
             "start_tenor": obj.get("startTenor"),
             "end_tenor": obj.get("endTenor"),
             "shift_type": obj.get("shiftType"),
-            "scale": obj.get("scale")
+            "scale": obj.get("scale"),
+            "apply_to": obj.get("applyTo")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

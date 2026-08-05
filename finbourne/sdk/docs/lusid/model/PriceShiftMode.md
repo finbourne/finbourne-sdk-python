@@ -1,4 +1,4 @@
-# EquityShiftMode
+# PriceShiftMode
 
 ## Properties
 

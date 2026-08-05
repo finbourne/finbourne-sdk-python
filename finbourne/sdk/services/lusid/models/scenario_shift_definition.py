@@ -26,14 +26,14 @@ import finbourne.sdk.services.lusid.models
 if TYPE_CHECKING:
 
     from finbourne.sdk.services.lusid.models import (
-        EquityShiftDefinition, FxShiftDefinition, MdkrGroupShiftDefinition, RateCurveShiftDefinition, VolSurfaceShiftDefinition)
+        FxShiftDefinition, MdkrGroupShiftDefinition, PriceShiftDefinition, RateCurveShiftDefinition, VolSurfaceShiftDefinition)
 
 
 class ScenarioShiftDefinition(BaseModel):
     """
     ScenarioShiftDefinition
     """
-    scenario_shift_type:  StrictStr = Field(...,alias="scenarioShiftType", description="Available values: RateCurveShiftDefinition, FxShiftDefinition, EquityShiftDefinition, VolSurfaceShiftDefinition, MdkrGroupShiftDefinition.") 
+    scenario_shift_type:  StrictStr = Field(...,alias="scenarioShiftType", description="Available values: RateCurveShiftDefinition, FxShiftDefinition, PriceShiftDefinition, VolSurfaceShiftDefinition, MdkrGroupShiftDefinition.") 
     __properties: ClassVar[List[str]] = ["scenarioShiftType"]
 
     @field_validator('scenario_shift_type')
@@ -101,8 +101,8 @@ class ScenarioShiftDefinition(BaseModel):
         if "scenario_shift_type" != "type":
             return value
 
-        if value not in ['RateCurveShiftDefinition', 'FxShiftDefinition', 'EquityShiftDefinition', 'VolSurfaceShiftDefinition', 'MdkrGroupShiftDefinition']:
-            raise ValueError("must be one of enum values ('RateCurveShiftDefinition', 'FxShiftDefinition', 'EquityShiftDefinition', 'VolSurfaceShiftDefinition', 'MdkrGroupShiftDefinition')")
+        if value not in ['RateCurveShiftDefinition', 'FxShiftDefinition', 'PriceShiftDefinition', 'VolSurfaceShiftDefinition', 'MdkrGroupShiftDefinition']:
+            raise ValueError("must be one of enum values ('RateCurveShiftDefinition', 'FxShiftDefinition', 'PriceShiftDefinition', 'VolSurfaceShiftDefinition', 'MdkrGroupShiftDefinition')")
         return value
 
     model_config = ConfigDict(
@@ -116,9 +116,9 @@ class ScenarioShiftDefinition(BaseModel):
 
     # discriminator mappings
     __discriminator_value_class_map: ClassVar[Dict[str, str]] = {
-        'EquityShiftDefinition': 'EquityShiftDefinition',
         'FxShiftDefinition': 'FxShiftDefinition',
         'MdkrGroupShiftDefinition': 'MdkrGroupShiftDefinition',
+        'PriceShiftDefinition': 'PriceShiftDefinition',
         'RateCurveShiftDefinition': 'RateCurveShiftDefinition',
         'VolSurfaceShiftDefinition': 'VolSurfaceShiftDefinition'
     }
@@ -149,7 +149,7 @@ class ScenarioShiftDefinition(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Union[EquityShiftDefinition, FxShiftDefinition, MdkrGroupShiftDefinition, RateCurveShiftDefinition, VolSurfaceShiftDefinition, ScenarioShiftDefinition]:
+    def from_json(cls, json_str: str) -> Union[FxShiftDefinition, MdkrGroupShiftDefinition, PriceShiftDefinition, RateCurveShiftDefinition, VolSurfaceShiftDefinition, ScenarioShiftDefinition]:
         """Create an instance of ScenarioShiftDefinition from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -163,7 +163,7 @@ class ScenarioShiftDefinition(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Union[EquityShiftDefinition, FxShiftDefinition, MdkrGroupShiftDefinition, RateCurveShiftDefinition, VolSurfaceShiftDefinition, ScenarioShiftDefinition]:
+    def from_dict(cls, obj: dict) -> Union[FxShiftDefinition, MdkrGroupShiftDefinition, PriceShiftDefinition, RateCurveShiftDefinition, VolSurfaceShiftDefinition, ScenarioShiftDefinition]:
         """Create an instance of ScenarioShiftDefinition from a dict"""
         # look up the object type based on discriminator mapping
         object_type = cls.get_discriminator_value(obj)
