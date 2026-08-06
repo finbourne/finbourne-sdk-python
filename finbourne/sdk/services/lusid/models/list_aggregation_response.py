@@ -25,6 +25,7 @@ from finbourne.sdk.services.lusid.models.aggregation_measure_failure_detail impo
 from finbourne.sdk.services.lusid.models.link import Link
 from finbourne.sdk.services.lusid.models.resource_id import ResourceId
 from finbourne.sdk.services.lusid.models.result_data_schema import ResultDataSchema
+from finbourne.sdk.services.lusid.models.scenario_diagnostics import ScenarioDiagnostics
 
 
 class ListAggregationResponse(BaseModel):
@@ -39,8 +40,9 @@ class ListAggregationResponse(BaseModel):
     data_schema: Optional[ResultDataSchema] = Field(default=None, alias="dataSchema")
     aggregation_failures: Optional[List[AggregationMeasureFailureDetail]] = Field(default=None, alias="aggregationFailures")
     recipe_id: Optional[ResourceId] = Field(default=None, alias="recipeId")
+    scenario_diagnostics: Optional[ScenarioDiagnostics] = Field(default=None, alias="scenarioDiagnostics")
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["aggregationEffectiveAt", "aggregationAsAt", "href", "data", "aggregationCurrency", "dataSchema", "aggregationFailures", "recipeId", "links"]
+    __properties: ClassVar[List[str]] = ["aggregationEffectiveAt", "aggregationAsAt", "href", "data", "aggregationCurrency", "dataSchema", "aggregationFailures", "recipeId", "scenarioDiagnostics", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -89,6 +91,9 @@ class ListAggregationResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of recipe_id
         if self.recipe_id:
             _dict['recipeId'] = self.recipe_id.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of scenario_diagnostics
+        if self.scenario_diagnostics:
+            _dict['scenarioDiagnostics'] = self.scenario_diagnostics.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each item in links (list)
         _items = []
         if self.links:
@@ -141,6 +146,7 @@ class ListAggregationResponse(BaseModel):
             "data_schema": ResultDataSchema.from_dict(_v) if (_v := obj.get("dataSchema")) is not None else None,
             "aggregation_failures": [AggregationMeasureFailureDetail.from_dict(_item) for _item in _v] if (_v := obj.get("aggregationFailures")) is not None else None,
             "recipe_id": ResourceId.from_dict(_v) if (_v := obj.get("recipeId")) is not None else None,
+            "scenario_diagnostics": ScenarioDiagnostics.from_dict(_v) if (_v := obj.get("scenarioDiagnostics")) is not None else None,
             "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj

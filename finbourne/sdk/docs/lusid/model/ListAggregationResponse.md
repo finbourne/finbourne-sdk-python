@@ -12,6 +12,7 @@
 | **data_schema** | [ResultDataSchema](ResultDataSchema.md) | Optional | *No description available.* |
 | **aggregation_failures** | [List[AggregationMeasureFailureDetail]](AggregationMeasureFailureDetail.md) | Optional | *No description available.* |
 | **recipe_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **scenario_diagnostics** | [ScenarioDiagnostics](ScenarioDiagnostics.md) | Optional | *No description available.* |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
@@ -31,6 +32,7 @@ instance = ListAggregationResponse(
     data_schema=ResultDataSchema(...),  # optional
     aggregation_failures=[],  # optional
     recipe_id=ResourceId(...),  # optional
+    scenario_diagnostics=ScenarioDiagnostics(...),  # optional
     links=[]  # optional
 )
 ```
@@ -38,6 +40,7 @@ instance = ListAggregationResponse(
 - [ResultDataSchema](ResultDataSchema.md)
 - [AggregationMeasureFailureDetail](AggregationMeasureFailureDetail.md)
 - [ResourceId](ResourceId.md)
+- [ScenarioDiagnostics](ScenarioDiagnostics.md)
 - [Link](Link.md)
 
 

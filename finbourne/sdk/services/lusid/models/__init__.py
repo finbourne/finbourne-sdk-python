@@ -94,6 +94,7 @@ from finbourne.sdk.services.lusid.models.append_market_data_type import AppendMa
 from finbourne.sdk.services.lusid.models.applicable_entity import ApplicableEntity
 from finbourne.sdk.services.lusid.models.applicable_entity_types import ApplicableEntityTypes
 from finbourne.sdk.services.lusid.models.applicable_instrument_event import ApplicableInstrumentEvent
+from finbourne.sdk.services.lusid.models.applied_scenario_shift import AppliedScenarioShift
 from finbourne.sdk.services.lusid.models.apportionment_breakdown import ApportionmentBreakdown
 from finbourne.sdk.services.lusid.models.apportionment_member_factor import ApportionmentMemberFactor
 from finbourne.sdk.services.lusid.models.apportionment_method_property import ApportionmentMethodProperty
@@ -930,8 +931,10 @@ from finbourne.sdk.services.lusid.models.person import Person
 from finbourne.sdk.services.lusid.models.pik_bond_cash_coupon_event import PikBondCashCouponEvent
 from finbourne.sdk.services.lusid.models.pik_bond_coupon_event import PikBondCouponEvent
 from finbourne.sdk.services.lusid.models.pik_bond_interest_capitalisation_event import PikBondInterestCapitalisationEvent
+from finbourne.sdk.services.lusid.models.pik_bond_interest_event import PikBondInterestEvent
 from finbourne.sdk.services.lusid.models.pik_bond_principal_event import PikBondPrincipalEvent
 from finbourne.sdk.services.lusid.models.pik_election import PikElection
+from finbourne.sdk.services.lusid.models.pik_schedule import PikSchedule
 from finbourne.sdk.services.lusid.models.place_blocks_request import PlaceBlocksRequest
 from finbourne.sdk.services.lusid.models.placement import Placement
 from finbourne.sdk.services.lusid.models.placement_request import PlacementRequest
@@ -1227,6 +1230,7 @@ from finbourne.sdk.services.lusid.models.run_check_request import RunCheckReques
 from finbourne.sdk.services.lusid.models.run_check_response import RunCheckResponse
 from finbourne.sdk.services.lusid.models.scaling_methodology import ScalingMethodology
 from finbourne.sdk.services.lusid.models.scenario_definition import ScenarioDefinition
+from finbourne.sdk.services.lusid.models.scenario_diagnostics import ScenarioDiagnostics
 from finbourne.sdk.services.lusid.models.scenario_preview_applied_shift import ScenarioPreviewAppliedShift
 from finbourne.sdk.services.lusid.models.scenario_preview_request import ScenarioPreviewRequest
 from finbourne.sdk.services.lusid.models.scenario_preview_response import ScenarioPreviewResponse
@@ -1647,6 +1651,7 @@ __all__ = [
     "ApplicableEntity",
     "ApplicableEntityTypes",
     "ApplicableInstrumentEvent",
+    "AppliedScenarioShift",
     "ApportionmentBreakdown",
     "ApportionmentMemberFactor",
     "ApportionmentMethodProperty",
@@ -2483,8 +2488,10 @@ __all__ = [
     "PikBondCashCouponEvent",
     "PikBondCouponEvent",
     "PikBondInterestCapitalisationEvent",
+    "PikBondInterestEvent",
     "PikBondPrincipalEvent",
     "PikElection",
+    "PikSchedule",
     "PlaceBlocksRequest",
     "Placement",
     "PlacementRequest",
@@ -2780,6 +2787,7 @@ __all__ = [
     "RunCheckResponse",
     "ScalingMethodology",
     "ScenarioDefinition",
+    "ScenarioDiagnostics",
     "ScenarioPreviewAppliedShift",
     "ScenarioPreviewRequest",
     "ScenarioPreviewResponse",
