@@ -14,6 +14,7 @@
 | **explain_tooltip** | **str** | Optional | *No description available.* |
 | **arrow_to_parent_tooltip** | **str** | Optional | *No description available.* |
 | **full_formula** | **str** | Optional | *No description available.* |
+| **action_template** | **str** | Optional | *No description available.* |
 | **documentation_as_html** | **str** | Optional | *No description available.* |
 | **documentation_as_mark_down** | **str** | Optional | *No description available.* |
 | **children** | [List[Lineage]](Lineage.md) | Optional | *No description available.* |
@@ -37,6 +38,7 @@ instance = Lineage(
     explain_tooltip="...",  # optional
     arrow_to_parent_tooltip="...",  # optional
     full_formula="...",  # optional
+    action_template="...",  # optional
     documentation_as_html="...",  # optional
     documentation_as_mark_down="...",  # optional
     children=[]  # optional

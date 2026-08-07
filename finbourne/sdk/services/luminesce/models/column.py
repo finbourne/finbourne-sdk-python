@@ -34,6 +34,7 @@ class Column(BaseModel):
     is_main: Optional[StrictBool] = Field(default=None, alias="isMain")
     is_required_by_provider: Optional[StrictBool] = Field(default=None, alias="isRequiredByProvider")
     mandatory_for_actions:  Optional[StrictStr] = Field(default=None,alias="mandatoryForActions") 
+    action_template:  Optional[StrictStr] = Field(default=None,alias="actionTemplate") 
     lineage: Optional[Lineage] = None
     name:  Optional[StrictStr] = Field(default=None,alias="name") 
     type: Optional[DataType] = None
@@ -42,7 +43,7 @@ class Column(BaseModel):
     condition_usage: Optional[ConditionAttributes] = Field(default=None, alias="conditionUsage")
     sample_values:  Optional[StrictStr] = Field(default=None,alias="sampleValues") 
     allowed_values:  Optional[StrictStr] = Field(default=None,alias="allowedValues") 
-    __properties: ClassVar[List[str]] = ["isPrimaryKey", "isMain", "isRequiredByProvider", "mandatoryForActions", "lineage", "name", "type", "description", "displayName", "conditionUsage", "sampleValues", "allowedValues"]
+    __properties: ClassVar[List[str]] = ["isPrimaryKey", "isMain", "isRequiredByProvider", "mandatoryForActions", "actionTemplate", "lineage", "name", "type", "description", "displayName", "conditionUsage", "sampleValues", "allowedValues"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -86,6 +87,11 @@ class Column(BaseModel):
         if self.mandatory_for_actions is None and "mandatory_for_actions" in self.model_fields_set:
             _dict['mandatoryForActions'] = None
 
+        # set to None if action_template (nullable) is None
+        # and model_fields_set contains the field
+        if self.action_template is None and "action_template" in self.model_fields_set:
+            _dict['actionTemplate'] = None
+
         # set to None if name (nullable) is None
         # and model_fields_set contains the field
         if self.name is None and "name" in self.model_fields_set:
@@ -127,6 +133,7 @@ class Column(BaseModel):
             "is_main": obj.get("isMain"),
             "is_required_by_provider": obj.get("isRequiredByProvider"),
             "mandatory_for_actions": obj.get("mandatoryForActions"),
+            "action_template": obj.get("actionTemplate"),
             "lineage": Lineage.from_dict(_v) if (_v := obj.get("lineage")) is not None else None,
             "name": obj.get("name"),
             "type": obj.get("type"),

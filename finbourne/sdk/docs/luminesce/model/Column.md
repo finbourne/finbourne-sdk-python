@@ -8,6 +8,7 @@
 | **is_main** | **bool** | Optional | *No description available.* |
 | **is_required_by_provider** | **bool** | Optional | *No description available.* |
 | **mandatory_for_actions** | **str** | Optional | *No description available.* |
+| **action_template** | **str** | Optional | *No description available.* |
 | **lineage** | [Lineage](Lineage.md) | Optional | *No description available.* |
 | **name** | **str** | Optional | *No description available.* |
 | **type** | [DataType](DataType.md) | Optional | *No description available.* |
@@ -30,6 +31,7 @@ instance = Column(
     is_main=True,  # optional
     is_required_by_provider=True,  # optional
     mandatory_for_actions="...",  # optional
+    action_template="...",  # optional
     lineage=Lineage(...),  # optional
     name="...",  # optional
     type=DataType(...),  # optional
