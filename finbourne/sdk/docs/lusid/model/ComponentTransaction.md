@@ -6,8 +6,8 @@
 |------|------|----------|-------------|
 | **display_name** | **str** | Required | *No description available.* |
 | **condition** | **str** | Optional | *No description available.* |
-| **transaction_field_map** | [TransactionFieldMap](TransactionFieldMap.md) | Required | *No description available.* |
-| **transaction_property_map** | [List[TransactionPropertyMap]](TransactionPropertyMap.md) | Required | *No description available.* |
+| **transaction_field_map** | [../model/TransactionFieldMap](TransactionFieldMap.md) | Required | *No description available.* |
+| **transaction_property_map** | [../model/List[TransactionPropertyMap]](TransactionPropertyMap.md) | Required | *No description available.* |
 | **preserve_tax_lot_structure** | **bool** | Optional | Controls if tax lot structure should be preserved when cost base is transferred to a new holding. For example in Spin Off instrument events. |
 | **market_open_time_adjustments** | **List[str]** | Optional | *No description available.* |
 

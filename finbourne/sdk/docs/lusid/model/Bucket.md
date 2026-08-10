@@ -11,8 +11,8 @@
 | **economic_bucket_component** | **str** | Optional | The economic bucket component. |
 | **economic_bucket_variant** | **str** | Optional | The economic bucket component. |
 | **holding_sign** | **str** | Optional | The holding sign. |
-| **local** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
-| **base** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
+| **local** | [../model/CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
+| **base** | [../model/CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
 | **units** | **float** | Optional | The units. |
 | **activity_date** | **datetime** | Optional | The activity date of the bucket. |
 

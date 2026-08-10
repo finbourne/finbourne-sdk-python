@@ -6,8 +6,8 @@ A pointer to a Payment Details relational dataset series for a payor or payee en
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **series_scope** | **str** | Required | The scope of the relational datapoint. May differ from the scope of the dataset definition. |
-| **applicable_entity** | [PaymentDetailsApplicableEntity](PaymentDetailsApplicableEntity.md) | Required | *No description available.* |
-| **series_identifiers** | [PaymentDetailsSeriesIdentifiers](PaymentDetailsSeriesIdentifiers.md) | Required | *No description available.* |
+| **applicable_entity** | [../model/PaymentDetailsApplicableEntity](PaymentDetailsApplicableEntity.md) | Required | *No description available.* |
+| **series_identifiers** | [../model/PaymentDetailsSeriesIdentifiers](PaymentDetailsSeriesIdentifiers.md) | Required | *No description available.* |
 | **effective_date** | **datetime** | Required | The effective date of the relational datapoint observation to retrieve. ISO 8601 datetime. |
 | **as_at_date** | **datetime** | Required | The as-at date of the relational datapoint observation to retrieve. ISO 8601 datetime. |
 

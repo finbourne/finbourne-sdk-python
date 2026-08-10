@@ -5,7 +5,7 @@ Represents a LogRequest resource in the Okta API
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **ip_chain** | [List[LogIpChainEntry]](LogIpChainEntry.md) | Optional | *No description available.* |
+| **ip_chain** | [../model/List[LogIpChainEntry]](LogIpChainEntry.md) | Optional | *No description available.* |
 
 
 ## Usage

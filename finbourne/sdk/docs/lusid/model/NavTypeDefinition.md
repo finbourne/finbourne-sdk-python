@@ -7,18 +7,18 @@
 | **code** | **str** | Optional | The Code for the Nav Type. Must be unique within the Fund. |
 | **display_name** | **str** | Optional | The Display Name for the Nav Type. Must be unique within the Fund. |
 | **description** | **str** | Optional | The Description for the Nav Type. |
-| **chart_of_accounts_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **chart_of_accounts_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
 | **posting_module_codes** | **List[str]** | Optional | The Posting Module Codes from which the rules to be applied are retrieved. |
 | **cleardown_module_codes** | **List[str]** | Optional | The Cleardown Module Codes from which the rules to be applied are retrieved. |
-| **settlement_configuration** | [NavSettlementConfiguration](NavSettlementConfiguration.md) | Optional | *No description available.* |
-| **valuation_recipe_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
-| **holding_recipe_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **settlement_configuration** | [../model/NavSettlementConfiguration](NavSettlementConfiguration.md) | Optional | *No description available.* |
+| **valuation_recipe_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **holding_recipe_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
 | **accounting_method** | **str** | Required | Determines the accounting treatment given to the simple position portfolio&#39;s tax lots. A non-default value is required. Available values: AverageCost, FirstInFirstOut, LastInFirstOut, HighestCostFirst, LowestCostFirst, ProRateByUnits, ProRateByCost, ProRateByCostPortfolioCurrency, IntraDayThenFirstInFirstOut, LongTermHighestCostFirst, LongTermHighestCostFirstPortfolioCurrency, HighestCostFirstPortfolioCurrency, LowestCostFirstPortfolioCurrency, MaximumLossMinimumGain, MaximumLossMinimumGainPortfolioCurrency. |
 | **sub_holding_keys** | **List[str]** | Optional | A set of unique transaction properties to group the derived transaction portfolio&#39;s holdings by, perhaps for strategy tagging. Each property must be from the &#39;Transaction&#39; domain and identified by a key in the format {domain}/{scope}/{code}, for example &#39;Transaction/strategies/quantsignal&#39;. See https://support.lusid.com/knowledgebase/article/KA-01879/en-us for more information. |
 | **amortisation_method** | **str** | Required | The amortisation method used by the portfolio for the calculation. Available values: NoAmortisation, StraightLine, EffectiveYield, StraightLineSettlementDate, EffectiveYieldSettlementDate. |
 | **transaction_type_scope** | **str** | Required | The scope of the transaction types. |
 | **cash_gain_loss_calculation_date** | **str** | Required | The option when the Cash Gain Loss to be calulated, TransactionDate/SettlementDate. A non-default value is required. Available values: SettlementDate, TransactionDate. |
-| **amortisation_rule_set_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **amortisation_rule_set_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **leader_nav_type_code** | **str** | Optional | The code of the Nav Type that this Nav Type will follow when set. |
 | **transaction_template_scope** | **str** | Required | The Transaction Template Scope used by the NavType. |
 

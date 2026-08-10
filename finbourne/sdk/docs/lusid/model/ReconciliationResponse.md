@@ -5,8 +5,8 @@ Class representing the set of comparisons that result from comparing holdings an
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **comparisons** | [List[ReconciliationLine]](ReconciliationLine.md) | Optional | List of comparisons of left to right hand sides. |
-| **data_schema** | [ResultDataSchema](ResultDataSchema.md) | Optional | *No description available.* |
+| **comparisons** | [../model/List[ReconciliationLine]](ReconciliationLine.md) | Optional | List of comparisons of left to right hand sides. |
+| **data_schema** | [../model/ResultDataSchema](ResultDataSchema.md) | Optional | *No description available.* |
 
 
 ## Usage

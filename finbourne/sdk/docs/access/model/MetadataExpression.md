@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **metadata_key** | **str** | Required | *No description available.* |
-| **operator** | [Operator](Operator.md) | Required | *No description available.* |
+| **operator** | [../model/Operator](Operator.md) | Required | *No description available.* |
 | **text_value** | **str** | Optional | *No description available.* |
 
 

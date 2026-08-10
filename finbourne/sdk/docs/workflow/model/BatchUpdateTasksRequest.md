@@ -5,7 +5,7 @@ A request to update multiple Tasks
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **update_tasks** | [List[UpdateTaskWithIdAndTriggerRequest]](UpdateTaskWithIdAndTriggerRequest.md) | Optional | A Dictionary of task IDs to UpdateTaskRequest |
+| **update_tasks** | [../model/List[UpdateTaskWithIdAndTriggerRequest]](UpdateTaskWithIdAndTriggerRequest.md) | Optional | A Dictionary of task IDs to UpdateTaskRequest |
 
 
 ## Usage

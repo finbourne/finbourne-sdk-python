@@ -5,11 +5,11 @@ A subscription object
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
 | **display_name** | **str** | Required | The name of the subscription |
 | **description** | **str** | Optional | The summary of the services provided by the subscription |
 | **status** | **str** | Required | The current status of the subscription |
-| **matching_pattern** | [MatchingPattern](MatchingPattern.md) | Required | *No description available.* |
+| **matching_pattern** | [../model/MatchingPattern](MatchingPattern.md) | Required | *No description available.* |
 | **created_at** | **datetime** | Required | The time at which the subscription was made |
 | **user_id_created** | **str** | Required | The user who made the subscription |
 | **modified_at** | **datetime** | Required | The time at which the subscription was last modified |

@@ -8,8 +8,8 @@ Put Redemption (BPUT) — early redemption of a bond at the holder's election un
 | **payment_date** | **datetime** | Optional | Settlement date for the cash + security legs of the put redemption. |
 | **offer_price** | **float** | Required | Put price per unit of face value (AMI-SeCo OFFR). Per-100 PRCT semantics —  &#x60;OfferPrice &#x3D; 100.00&#x60; means par; &#x60;97.50&#x60; means 97.5% of par. Must be strictly positive. |
 | **currency** | **str** | Required | Settlement currency of the cash leg (ISO 4217 3-letter code). |
-| **cash_offer_elections** | [List[CashOfferElection]](CashOfferElection.md) | Required | List of possible CashOfferElections. Exactly one entry per event in both Mandatory and Voluntary paths. |
-| **lapse_elections** | [List[LapseElection]](LapseElection.md) | Required | List of possible LapseElections. Exactly one entry for Voluntary (NOAC default). Empty for Mandatory. |
+| **cash_offer_elections** | [../model/List[CashOfferElection]](CashOfferElection.md) | Required | List of possible CashOfferElections. Exactly one entry per event in both Mandatory and Voluntary paths. |
+| **lapse_elections** | [../model/List[LapseElection]](LapseElection.md) | Required | List of possible LapseElections. Exactly one entry for Voluntary (NOAC default). Empty for Mandatory. |
 | **market_deadline_date** | **datetime** | Optional | Issuer / agent deadline for holder instructions. Required for Voluntary participation;  optional for Mandatory (no holder-deadline concept). |
 | **response_deadline_date** | **datetime** | Optional | Account-servicer deadline. Defaults to MarketDeadlineDate when omitted.  If set, must be on or before MarketDeadlineDate. |
 | **early_response_deadline** | **datetime** | Optional | Early-participation deadline. Rare on BPUT; carried for cross-event consistency.  If set, must be on or before ResponseDeadlineDate. |

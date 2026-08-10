@@ -7,13 +7,13 @@ Contains required info to update a Task Definition
 |------|------|----------|-------------|
 | **display_name** | **str** | Required | Human readable name |
 | **description** | **str** | Optional | Human readable description |
-| **states** | [List[TaskStateDefinition]](TaskStateDefinition.md) | Required | The states this Task Definition operates over |
-| **field_schema** | [List[TaskFieldDefinition]](TaskFieldDefinition.md) | Optional | Defines the fields associated with this Task |
-| **initial_state** | [InitialState](InitialState.md) | Required | *No description available.* |
-| **triggers** | [List[TransitionTriggerDefinition]](TransitionTriggerDefinition.md) | Optional | Triggers |
-| **transitions** | [List[TaskTransitionDefinition]](TaskTransitionDefinition.md) | Optional | Transitions |
-| **actions** | [List[ActionDefinition]](ActionDefinition.md) | Optional | Actions |
-| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | The properties to set on the Task Definition, keyed by property key. Optional. A null property value deletes the property. |
+| **states** | [../model/List[TaskStateDefinition]](TaskStateDefinition.md) | Required | The states this Task Definition operates over |
+| **field_schema** | [../model/List[TaskFieldDefinition]](TaskFieldDefinition.md) | Optional | Defines the fields associated with this Task |
+| **initial_state** | [../model/InitialState](InitialState.md) | Required | *No description available.* |
+| **triggers** | [../model/List[TransitionTriggerDefinition]](TransitionTriggerDefinition.md) | Optional | Triggers |
+| **transitions** | [../model/List[TaskTransitionDefinition]](TaskTransitionDefinition.md) | Optional | Transitions |
+| **actions** | [../model/List[ActionDefinition]](ActionDefinition.md) | Optional | Actions |
+| **properties** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | The properties to set on the Task Definition, keyed by property key. Optional. A null property value deletes the property. |
 
 
 ## Usage

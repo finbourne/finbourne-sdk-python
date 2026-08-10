@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **data** | [List[AuditEntry]](AuditEntry.md) | Optional | *No description available.* |
+| **data** | [../model/List[AuditEntry]](AuditEntry.md) | Optional | *No description available.* |
 | **state** | **str** | Optional | *No description available.* |
 
 

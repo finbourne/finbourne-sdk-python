@@ -6,7 +6,7 @@ A directed edge in a Fund Structure, defining a relationship from a feeder node 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **var_from** | **str** | Required | The node code of the feeder node that is the source of this relationship. |
-| **to** | [FundStructureEdgeTarget](FundStructureEdgeTarget.md) | Required | *No description available.* |
+| **to** | [../model/FundStructureEdgeTarget](FundStructureEdgeTarget.md) | Required | *No description available.* |
 
 
 ## Usage

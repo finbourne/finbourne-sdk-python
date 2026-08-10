@@ -7,8 +7,8 @@ Change event (CHAN) — a reorganisation in which an instrument's certificates, 
 |------|------|----------|-------------|
 | **record_date** | **datetime** | Optional | The record date — the eligibility cutoff. Holders of record on this date enter the  change. |
 | **payment_date** | **datetime** | Optional | The payment date — the date the change fires and the paired StockMovement  transactions land. |
-| **new_instrument** | [NewInstrument](NewInstrument.md) | Required | *No description available.* |
-| **units_ratio** | [UnitsRatio](UnitsRatio.md) | Required | *No description available.* |
+| **new_instrument** | [../model/NewInstrument](NewInstrument.md) | Required | *No description available.* |
+| **units_ratio** | [../model/UnitsRatio](UnitsRatio.md) | Required | *No description available.* |
 | **change_type** | **str** | Required | The nature of the change — one of \&quot;Certificates\&quot;, \&quot;Name\&quot;, or \&quot;Terms\&quot;. Available values: Certificates, Name, Terms. |
 | **term_target** | **str** | Optional | The target of a terms change — one of \&quot;InstrumentDefinitionField\&quot; or  \&quot;InstrumentProperty\&quot;. Only applicable when ChangeType is \&quot;Terms\&quot;. Available values: InstrumentDefinitionField, InstrumentProperty. |
 | **term_target_identifier** | **str** | Optional | The identifier of the term target being changed. Must be paired with TermTarget. |

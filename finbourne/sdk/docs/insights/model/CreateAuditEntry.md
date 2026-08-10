@@ -5,8 +5,8 @@ Details to create an audit entry
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **process** | [AuditProcess](AuditProcess.md) | Required | *No description available.* |
-| **data** | [AuditData](AuditData.md) | Required | *No description available.* |
+| **process** | [../model/AuditProcess](AuditProcess.md) | Required | *No description available.* |
+| **data** | [../model/AuditData](AuditData.md) | Required | *No description available.* |
 
 
 ## Usage

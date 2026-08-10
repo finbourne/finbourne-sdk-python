@@ -11,7 +11,7 @@ The request to create an instruction for an instrument event
 | **election_key** | **str** | Optional | For elected instructions, the key to be chosen |
 | **holding_id** | **int** | Optional | For holding instructions, the id of the holding for which the instruction will apply |
 | **entitlement_date_instructed** | **datetime** | Optional | The instructed entitlement date for the event (where none is set on the event itself) |
-| **quantity_instructed** | [QuantityInstructed](QuantityInstructed.md) | Optional | *No description available.* |
+| **quantity_instructed** | [../model/QuantityInstructed](QuantityInstructed.md) | Optional | *No description available.* |
 | **tax_lot_id** | **str** | Optional | For loan facility holding instructions, the tax lot id of the holding for which the instruction will apply |
 | **ignore_cost_impact** | **bool** | Optional | For loan facility holding instructions, set this flag to &#39;true&#39; if you want the event to not impact cost. If you want to use this option, do not add multiple instructions to the same tax lot or you will get undefined behaviour. |
 

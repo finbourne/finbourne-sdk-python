@@ -7,7 +7,7 @@ Information on how to construct a file-read sql query
 |------|------|----------|-------------|
 | **query** | **str** | Optional | The generated SQL |
 | **error** | **str** | Optional | The error from running generated SQL Query, if any |
-| **columns** | [List[ColumnInfo]](ColumnInfo.md) | Optional | Column information for the results |
+| **columns** | [../model/List[ColumnInfo]](ColumnInfo.md) | Optional | Column information for the results |
 | **data** | **object** | Optional | The resulting data from running the Query |
 
 

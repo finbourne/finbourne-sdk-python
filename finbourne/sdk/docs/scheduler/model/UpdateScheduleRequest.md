@@ -5,14 +5,14 @@ Create a schedule definition
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **job_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **job_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
 | **name** | **str** | Required | The updated name of the schedule |
 | **description** | **str** | Required | The updated description of the schedule |
 | **author** | **str** | Optional | The updated author of the schedule |
 | **owner** | **str** | Optional | The update owner of the schedule |
 | **arguments** | **Dict[str, Optional[str]]** | Optional | Updated arguments to be passed to the job Note: The new arguments will completely replace old arguments |
-| **trigger** | [Trigger](Trigger.md) | Optional | *No description available.* |
-| **notifications** | [List[Notification]](Notification.md) | Optional | Updated notifications for this schedule |
+| **trigger** | [../model/Trigger](Trigger.md) | Optional | *No description available.* |
+| **notifications** | [../model/List[Notification]](Notification.md) | Optional | Updated notifications for this schedule |
 | **enabled** | **bool** | Optional | Specify whether schedule is enabled or not Defaults to true |
 | **use_as_auth** | **str** | Optional | Id of user associated with schedule. All calls to FINBOURNE services as part of execution of this schedule will be authenticated as this  user. Can be null, in which case we&#39;ll default to that of the user  making this request |
 

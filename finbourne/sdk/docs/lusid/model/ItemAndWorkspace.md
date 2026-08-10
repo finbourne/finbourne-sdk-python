@@ -6,7 +6,7 @@ An item plus its containing workspace name.
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **workspace_name** | **str** | Required | A workspace&#39;s name. |
-| **workspace_item** | [WorkspaceItem](WorkspaceItem.md) | Required | *No description available.* |
+| **workspace_item** | [../model/WorkspaceItem](WorkspaceItem.md) | Required | *No description available.* |
 
 
 ## Usage

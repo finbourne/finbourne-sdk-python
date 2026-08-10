@@ -12,8 +12,8 @@
 | **value_type** | **str** | Required | The expected type of the values. Available values: String, Int, Decimal, DateTime, Boolean, Map, List, PropertyArray, Percentage, Code, Id, Uri, CurrencyAndAmount, TradePrice, Currency, MetricValue, ResourceId, ResultValue, CutLocalTime, DateOrCutLabel, UnindexedText. |
 | **acceptable_values** | **List[str]** | Optional | The acceptable set of values for this data type. Only applies to &#39;open&#39; value type range. |
 | **unit_schema** | **str** | Optional | The schema of the data type&#39;s units. Available values: NoUnits, Basic, Iso4217Currency. |
-| **acceptable_units** | [List[CreateUnitDefinition]](CreateUnitDefinition.md) | Optional | The definitions of the acceptable units. |
-| **reference_data** | [ReferenceData](ReferenceData.md) | Optional | *No description available.* |
+| **acceptable_units** | [../model/List[CreateUnitDefinition]](CreateUnitDefinition.md) | Optional | The definitions of the acceptable units. |
+| **reference_data** | [../model/ReferenceData](ReferenceData.md) | Optional | *No description available.* |
 
 
 ## Usage

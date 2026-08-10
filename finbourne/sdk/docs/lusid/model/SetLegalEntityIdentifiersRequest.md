@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **identifiers** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | Identifiers to set for a Legal Entity. Identifiers not included in the request will not be amended. |
+| **identifiers** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | Identifiers to set for a Legal Entity. Identifiers not included in the request will not be amended. |
 
 
 ## Usage

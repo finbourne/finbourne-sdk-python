@@ -5,18 +5,18 @@ The expanded view of a rec instance: its identity, lifecycle status, lock state,
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [RecInstanceId](RecInstanceId.md) | Required | *No description available.* |
-| **rec_definition_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **id** | [../model/RecInstanceId](RecInstanceId.md) | Required | *No description available.* |
+| **rec_definition_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
 | **as_at_instantiated** | **datetime** | Required | The asAt datetime at which the instance was first created. |
-| **workflow_task_instantiated** | [RecWorkflowTask](RecWorkflowTask.md) | Optional | *No description available.* |
+| **workflow_task_instantiated** | [../model/RecWorkflowTask](RecWorkflowTask.md) | Optional | *No description available.* |
 | **status** | **str** | Required | The instance-level lifecycle rollup. Available values: Running, Failures, ReviewAndApproval, AllApproved, Locked. |
 | **as_at_locked** | **datetime** | Optional | The wall-clock time the lock action was performed. Null when the instance has not been locked. |
-| **dates_locked** | [RecDatesReconciled](RecDatesReconciled.md) | Optional | *No description available.* |
-| **closed_periods** | [RecClosedPeriods](RecClosedPeriods.md) | Optional | *No description available.* |
-| **run_log** | [List[RecRunLogEntry]](RecRunLogEntry.md) | Required | A chronologically ordered list of all runs on the instance. Always contains at least one entry. |
+| **dates_locked** | [../model/RecDatesReconciled](RecDatesReconciled.md) | Optional | *No description available.* |
+| **closed_periods** | [../model/RecClosedPeriods](RecClosedPeriods.md) | Optional | *No description available.* |
+| **run_log** | [../model/List[RecRunLogEntry]](RecRunLogEntry.md) | Required | A chronologically ordered list of all runs on the instance. Always contains at least one entry. |
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
-| **version** | [Version](Version.md) | Optional | *No description available.* |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

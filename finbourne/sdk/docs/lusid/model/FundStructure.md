@@ -6,16 +6,16 @@ Definition of the structure of a fund
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
-| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
 | **name** | **str** | Required | The display name of the Fund Structure. |
 | **description** | **str** | Optional | An optional description for the Fund Structure. |
-| **funds** | [List[Fund]](Fund.md) | Optional | An optional list of existing funds to be incorporated as part of the structure. |
-| **allocation_groups** | [List[AllocationGroup]](AllocationGroup.md) | Optional | An optional list of Allocation Groups that can apply across a Fund Structure. Only classes and feeder funds linked to the master fund specified are allowed. |
-| **nodes** | [List[FundStructureNode]](FundStructureNode.md) | Required | The list of nodes that make up the Fund Structure, each referencing a Fund and defining its role. |
-| **edges** | [List[FundStructureEdge]](FundStructureEdge.md) | Required | The list of edges that define the relationships between feeder and master nodes in the structure. |
-| **version** | [Version](Version.md) | Optional | *No description available.* |
-| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties to decorate onto the Fund Structure. |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **funds** | [../model/List[Fund]](Fund.md) | Optional | An optional list of existing funds to be incorporated as part of the structure. |
+| **allocation_groups** | [../model/List[AllocationGroup]](AllocationGroup.md) | Optional | An optional list of Allocation Groups that can apply across a Fund Structure. Only classes and feeder funds linked to the master fund specified are allowed. |
+| **nodes** | [../model/List[FundStructureNode]](FundStructureNode.md) | Required | The list of nodes that make up the Fund Structure, each referencing a Fund and defining its role. |
+| **edges** | [../model/List[FundStructureEdge]](FundStructureEdge.md) | Required | The list of edges that define the relationships between feeder and master nodes in the structure. |
+| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
+| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties to decorate onto the Fund Structure. |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

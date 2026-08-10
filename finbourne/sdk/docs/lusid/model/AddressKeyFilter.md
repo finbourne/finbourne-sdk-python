@@ -7,7 +7,7 @@ Class specifying a filtering operation
 |------|------|----------|-------------|
 | **left** | **str** | Optional | Address for the value in the row |
 | **operator** | **str** | Optional | What sort of comparison is the filter performing. Can be either \&quot;eq\&quot; for equals or \&quot;neq\&quot; for not equals. |
-| **right** | [ResultValue](ResultValue.md) | Optional | *No description available.* |
+| **right** | [../model/ResultValue](ResultValue.md) | Optional | *No description available.* |
 
 
 ## Usage

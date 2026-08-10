@@ -7,7 +7,7 @@ A split in the company's shares. Shareholders are given additional company share
 |------|------|----------|-------------|
 | **payment_date** | **datetime** | Optional | Date on which the stock split takes effect. |
 | **ex_date** | **datetime** | Optional | The first date on which the shares will trade at the post-split price. |
-| **units_ratio** | [UnitsRatio](UnitsRatio.md) | Required | *No description available.* |
+| **units_ratio** | [../model/UnitsRatio](UnitsRatio.md) | Required | *No description available.* |
 | **record_date** | **datetime** | Optional | Date you have to be the holder of record in order to receive the additional shares. |
 | **announcement_date** | **datetime** | Optional | Date the stock split was announced. |
 | **fractional_units_cash_price** | **float** | Optional | The cash price per unit paid in lieu when fractional units can not be distributed. |

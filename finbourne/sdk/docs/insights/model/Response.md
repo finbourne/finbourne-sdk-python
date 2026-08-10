@@ -11,7 +11,7 @@ DTO of Finbourne.AspNetCore.Http.TrackingEntry.ResponseInformation.
 | **body** | **str** | Optional | The recorded content. |
 | **body_was_truncated** | **bool** | Optional | Determines if the recorded body was truncated. |
 | **status_code** | **int** | Optional | Http Status Code of the request. |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

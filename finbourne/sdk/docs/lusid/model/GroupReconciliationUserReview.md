@@ -4,9 +4,9 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **break_codes** | [List[GroupReconciliationUserReviewBreakCode]](GroupReconciliationUserReviewBreakCode.md) | Optional | A list of break codes shared between the reconciliation runs of the same run instance and result hash. |
-| **match_keys** | [List[GroupReconciliationUserReviewMatchKey]](GroupReconciliationUserReviewMatchKey.md) | Optional | A list of match keys shared between the reconciliation runs of the same run instance and result hash. |
-| **comments** | [List[GroupReconciliationUserReviewComment]](GroupReconciliationUserReviewComment.md) | Optional | A list of comments shared between the reconciliation runs of the same run instance and result hash. |
+| **break_codes** | [../model/List[GroupReconciliationUserReviewBreakCode]](GroupReconciliationUserReviewBreakCode.md) | Optional | A list of break codes shared between the reconciliation runs of the same run instance and result hash. |
+| **match_keys** | [../model/List[GroupReconciliationUserReviewMatchKey]](GroupReconciliationUserReviewMatchKey.md) | Optional | A list of match keys shared between the reconciliation runs of the same run instance and result hash. |
+| **comments** | [../model/List[GroupReconciliationUserReviewComment]](GroupReconciliationUserReviewComment.md) | Optional | A list of comments shared between the reconciliation runs of the same run instance and result hash. |
 
 
 ## Usage

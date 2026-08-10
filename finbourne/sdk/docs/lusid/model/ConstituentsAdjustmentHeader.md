@@ -5,8 +5,8 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **effective_at** | **datetime** | Optional | There can be at most one holdings adjustment for a portfolio at a  specific effective time so this uniquely identifies the adjustment. |
-| **version** | [Version](Version.md) | Optional | *No description available.* |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

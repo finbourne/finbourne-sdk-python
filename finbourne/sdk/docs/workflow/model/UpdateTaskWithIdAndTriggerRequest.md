@@ -7,7 +7,7 @@ A request to update multiple Tasks Includes a trigger which is supplied from rou
 |------|------|----------|-------------|
 | **task_instance_id** | **str** | Optional | The ID of the task instance |
 | **correlation_ids** | **List[str]** | Optional | A set of guid identifiers that allow correlation across the application tier |
-| **fields** | [List[TaskInstanceField]](TaskInstanceField.md) | Optional | Defines the fields associated with the update |
+| **fields** | [../model/List[TaskInstanceField]](TaskInstanceField.md) | Optional | Defines the fields associated with the update |
 | **stacking_key** | **str** | Optional | The key for the Stack that this Task should be added to |
 | **trigger_name** | **str** | Optional | The trigger we want to update the task with |
 

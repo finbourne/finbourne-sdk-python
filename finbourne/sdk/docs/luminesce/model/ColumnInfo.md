@@ -6,7 +6,7 @@ Information on how to construct a file-read sql query
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **select** | **bool** | Optional | Should the column be used/selected? |
-| **type** | [DataType](DataType.md) | Optional | *No description available.* |
+| **type** | [../model/DataType](DataType.md) | Optional | *No description available.* |
 | **name** | **str** | Optional | The name of the column |
 | **x_path** | **str** | Optional | Xpath for the column (only applicable to XML defined columns) |
 

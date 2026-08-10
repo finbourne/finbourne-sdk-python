@@ -5,8 +5,8 @@ The details of the complex market data item to upsert into Lusid.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **market_data_id** | [ComplexMarketDataId](ComplexMarketDataId.md) | Required | *No description available.* |
-| **market_data** | [ComplexMarketData](ComplexMarketData.md) | Required | *No description available.* |
+| **market_data_id** | [../model/ComplexMarketDataId](ComplexMarketDataId.md) | Required | *No description available.* |
+| **market_data** | [../model/ComplexMarketData](ComplexMarketData.md) | Required | *No description available.* |
 
 
 ## Usage

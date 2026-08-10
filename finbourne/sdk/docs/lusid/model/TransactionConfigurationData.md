@@ -4,9 +4,9 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **aliases** | [List[TransactionConfigurationTypeAlias]](TransactionConfigurationTypeAlias.md) | Required | List of transaction types that map to this specific transaction configuration |
-| **movements** | [List[TransactionConfigurationMovementData]](TransactionConfigurationMovementData.md) | Required | Movement data for the transaction type |
-| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Properties attached to the transaction type |
+| **aliases** | [../model/List[TransactionConfigurationTypeAlias]](TransactionConfigurationTypeAlias.md) | Required | List of transaction types that map to this specific transaction configuration |
+| **movements** | [../model/List[TransactionConfigurationMovementData]](TransactionConfigurationMovementData.md) | Required | Movement data for the transaction type |
+| **properties** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Properties attached to the transaction type |
 
 
 ## Usage

@@ -4,13 +4,13 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **description** | **str** | Optional | The description of the Compliance Template |
-| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | Properties associated with the Compliance Template Variation |
-| **variations** | [List[ComplianceTemplateVariationDto]](ComplianceTemplateVariationDto.md) | Optional | Variation details of a Compliance Template |
+| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | Properties associated with the Compliance Template Variation |
+| **variations** | [../model/List[ComplianceTemplateVariationDto]](ComplianceTemplateVariationDto.md) | Optional | Variation details of a Compliance Template |
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested asAt datetime. |
-| **version** | [Version](Version.md) | Optional | *No description available.* |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

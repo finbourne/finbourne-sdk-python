@@ -4,10 +4,10 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **stock_settlement** | [SettlementConfigurationCategory](SettlementConfigurationCategory.md) | Optional | *No description available.* |
-| **cash_settlement** | [SettlementConfigurationCategory](SettlementConfigurationCategory.md) | Optional | *No description available.* |
-| **deferred_cash_receipt** | [SettlementConfigurationCategory](SettlementConfigurationCategory.md) | Optional | *No description available.* |
-| **transaction_matching_alternative_id** | [TransactionMatchingAlternativeId](TransactionMatchingAlternativeId.md) | Optional | *No description available.* |
+| **stock_settlement** | [../model/SettlementConfigurationCategory](SettlementConfigurationCategory.md) | Optional | *No description available.* |
+| **cash_settlement** | [../model/SettlementConfigurationCategory](SettlementConfigurationCategory.md) | Optional | *No description available.* |
+| **deferred_cash_receipt** | [../model/SettlementConfigurationCategory](SettlementConfigurationCategory.md) | Optional | *No description available.* |
+| **transaction_matching_alternative_id** | [../model/TransactionMatchingAlternativeId](TransactionMatchingAlternativeId.md) | Optional | *No description available.* |
 
 
 ## Usage

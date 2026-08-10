@@ -4,13 +4,13 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **version** | [Version](Version.md) | Required | *No description available.* |
-| **values** | [List[SettlementInstructionWithTransaction]](SettlementInstructionWithTransaction.md) | Required | The resources to list. |
+| **version** | [../model/Version](Version.md) | Required | *No description available.* |
+| **values** | [../model/List[SettlementInstructionWithTransaction]](SettlementInstructionWithTransaction.md) | Required | The resources to list. |
 | **href** | **str** | Optional | The URI of the resource list. |
-| **post_body** | [SettlementInstructionQuery](SettlementInstructionQuery.md) | Optional | *No description available.* |
-| **next_page** | [SettlementInstructionQuery](SettlementInstructionQuery.md) | Optional | *No description available.* |
-| **previous_page** | [SettlementInstructionQuery](SettlementInstructionQuery.md) | Optional | *No description available.* |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **post_body** | [../model/SettlementInstructionQuery](SettlementInstructionQuery.md) | Optional | *No description available.* |
+| **next_page** | [../model/SettlementInstructionQuery](SettlementInstructionQuery.md) | Optional | *No description available.* |
+| **previous_page** | [../model/SettlementInstructionQuery](SettlementInstructionQuery.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

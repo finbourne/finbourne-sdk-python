@@ -16,7 +16,7 @@ The full version of the configuration item
 | **is_secret** | **bool** | Required | Defines whether or not the value is a secret. |
 | **ref** | **str** | Required | The reference to the configuration item *(read-only)* |
 | **block_reveal** | **bool** | Required | Defines whether the value is blocked with non-internal request. |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

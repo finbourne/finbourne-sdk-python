@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **account_selector** | **str** | Optional | Available values: From, To. |
-| **custodian_account** | [CustodianAccount](CustodianAccount.md) | Required | *No description available.* |
+| **custodian_account** | [../model/CustodianAccount](CustodianAccount.md) | Required | *No description available.* |
 | **resolution_type** | **str** | Required | Available values: BookingEntry, ContextCustodian, RelatedAccount, PortfolioDefault. |
 
 

@@ -6,7 +6,7 @@ Readonly configuration for a Worker that calls a Scheduler job
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **type** | **str** | Optional | The type of worker |
-| **job_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **job_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
 
 
 ## Usage

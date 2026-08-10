@@ -8,7 +8,7 @@ Partial Defeasance event (PDEF). A mandatory notification that a bond issuer has
 | **refunded_fraction** | **float** | Required | The issue-level fraction allocated to the refunded (pre-refunded / escrowed) portion. Strictly  in the half-open interval (0, 1]; the non-refunded fraction is the derived complement. This is a  required field. |
 | **effective_date** | **datetime** | Optional | The date the defeasance status takes effect on the position. This is a required field. |
 | **actual_pay_date** | **datetime** | Optional | The future call date when the bond will actually be retired, used to update the position&#39;s  effective maturity in analytics. Must be on or after EffectiveDate. This is a  required field. |
-| **refunded_instrument** | [NewInstrument](NewInstrument.md) | Optional | *No description available.* |
+| **refunded_instrument** | [../model/NewInstrument](NewInstrument.md) | Optional | *No description available.* |
 | **new_securities_indicator** | **str** | Optional | Optional audit field preserving the wire-side codeword used for the refunded portion.  Supported string (enumeration) values are: [REFU, DEFE]. Both encodings carry identical semantics. Available values: REFU, DEFE. |
 | **additional_business_process** | **str** | Optional | Optional variant indicator. Supported string (enumeration) values are: [PPRE]. Absence (null)  encodes the default Partial Defeasance variant. Available values: PPRE. |
 | **lottery_date** | **datetime** | Optional | Optional. The wire&#39;s lottery date; null when the wire carried a sentinel value. |

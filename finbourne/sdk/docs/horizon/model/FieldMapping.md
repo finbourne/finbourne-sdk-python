@@ -7,7 +7,7 @@ Mapping from a set of Vendor Fields to a LUSID core entity field
 |------|------|----------|-------------|
 | **field_name** | **str** | Required | The LUSID core entity field |
 | **default_value** | **str** | Optional | Default value if needed |
-| **vendor_fields** | [List[VendorField]](VendorField.md) | Required | Fields that will be used to map to this field |
+| **vendor_fields** | [../model/List[VendorField]](VendorField.md) | Required | Fields that will be used to map to this field |
 | **transformation_description** | **str** | Optional | The transformation, if required, to map from VendorFields to the LUSID Property |
 | **entity_type** | **str** | Required | The LUSID Entity this is valid for |
 | **entity_sub_type** | **str** | Optional | The LUSID Entity sub type this is valid for |

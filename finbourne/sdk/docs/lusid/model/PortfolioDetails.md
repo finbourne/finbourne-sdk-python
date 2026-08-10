@@ -5,23 +5,23 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
-| **origin_portfolio_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
-| **version** | [Version](Version.md) | Required | *No description available.* |
+| **origin_portfolio_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **version** | [../model/Version](Version.md) | Required | *No description available.* |
 | **base_currency** | **str** | Required | The base currency of the transaction portfolio. |
-| **corporate_action_source_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **corporate_action_source_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **sub_holding_keys** | **List[str]** | Optional | *No description available.* |
 | **instrument_scopes** | **List[str]** | Optional | The resolution strategy used to resolve instruments of transactions/holdings upserted to the transaction portfolio. |
 | **accounting_method** | **str** | Optional | The AccountingMethod used for the portfolio. Available values: Default, AverageCost, FirstInFirstOut, LastInFirstOut, HighestCostFirst, LowestCostFirst, ProRateByUnits, ProRateByCost, ProRateByCostPortfolioCurrency, IntraDayThenFirstInFirstOut, LongTermHighestCostFirst, LongTermHighestCostFirstPortfolioCurrency, HighestCostFirstPortfolioCurrency, LowestCostFirstPortfolioCurrency, MaximumLossMinimumGain, MaximumLossMinimumGainPortfolioCurrency. |
 | **amortisation_method** | **str** | Optional | The amortisation method used by the portfolio for the calculation. Available values: NoAmortisation, StraightLine, EffectiveYield, StraightLineSettlementDate, EffectiveYieldSettlementDate. |
 | **transaction_type_scope** | **str** | Optional | The scope of the transaction types. |
 | **cash_gain_loss_calculation_date** | **str** | Optional | The option when the Cash Gain Loss to be calulated. Default value: SettlementDate. |
-| **instrument_event_configuration** | [InstrumentEventConfiguration](InstrumentEventConfiguration.md) | Optional | *No description available.* |
-| **amortisation_rule_set_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **instrument_event_configuration** | [../model/InstrumentEventConfiguration](InstrumentEventConfiguration.md) | Optional | *No description available.* |
+| **amortisation_rule_set_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **tax_rule_set_scope** | **str** | Optional | The scope of the tax rule sets for this portfolio. |
-| **settlement_configuration** | [PortfolioSettlementConfiguration](PortfolioSettlementConfiguration.md) | Optional | *No description available.* |
-| **staged_modifications** | [StagedModificationsInfo](StagedModificationsInfo.md) | Optional | *No description available.* |
+| **settlement_configuration** | [../model/PortfolioSettlementConfiguration](PortfolioSettlementConfiguration.md) | Optional | *No description available.* |
+| **staged_modifications** | [../model/StagedModificationsInfo](StagedModificationsInfo.md) | Optional | *No description available.* |
 | **transaction_exclusion_filter** | **str** | Optional | A filter expression that identifies transactions to exclude when building the transaction portfolio&#39;s transactions and holdings. Transactions matching this filter are flagged as excluded. |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

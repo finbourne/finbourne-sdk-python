@@ -4,17 +4,17 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **name** | **str** | Optional | *No description available.* |
 | **description** | **str** | Optional | *No description available.* |
 | **active** | **bool** | Optional | *No description available.* |
-| **template_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **template_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **variation** | **str** | Optional | *No description available.* |
-| **portfolio_group_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
-| **parameters** | [Dict[str, ComplianceParameter]](ComplianceParameter.md) | Optional | *No description available.* |
-| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | *No description available.* |
-| **version** | [Version](Version.md) | Optional | *No description available.* |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **portfolio_group_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **parameters** | [../model/Dict[str, ComplianceParameter]](ComplianceParameter.md) | Optional | *No description available.* |
+| **properties** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | *No description available.* |
+| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

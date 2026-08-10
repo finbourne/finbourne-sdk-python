@@ -4,9 +4,9 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **add** | [MetadataFieldsToAdd](MetadataFieldsToAdd.md) | Optional | *No description available.* |
-| **update** | [MetadataFieldsToUpdate](MetadataFieldsToUpdate.md) | Optional | *No description available.* |
-| **remove** | [MetadataFieldsToRemove](MetadataFieldsToRemove.md) | Optional | *No description available.* |
+| **add** | [../model/MetadataFieldsToAdd](MetadataFieldsToAdd.md) | Optional | *No description available.* |
+| **update** | [../model/MetadataFieldsToUpdate](MetadataFieldsToUpdate.md) | Optional | *No description available.* |
+| **remove** | [../model/MetadataFieldsToRemove](MetadataFieldsToRemove.md) | Optional | *No description available.* |
 
 
 ## Usage

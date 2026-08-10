@@ -10,16 +10,16 @@
 | **created** | **datetime** | Optional | The effective datetime at which to create the simple position portfolio. No holdings can be set on the simple position portfolio before this date. Defaults to the current LUSID system datetime if not specified. |
 | **enablement_date** | **datetime** | Optional | The effective datetime from which holdings set on the simple position portfolio begin contributing to valuations and other computed results. Holdings with an earlier effective date are still accepted and stored, but do not affect any computed results until this date. Defaults to the portfolio&#39;s creation date if not specified. |
 | **base_currency** | **str** | Required | The base currency of the simple position portfolio in ISO 4217 currency code format. |
-| **corporate_action_source_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **corporate_action_source_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **accounting_method** | **str** | Optional | Determines the accounting treatment given to the simple position portfolio&#39;s tax lots. Default value: AverageCost. Available values: Default, AverageCost, FirstInFirstOut, LastInFirstOut, HighestCostFirst, LowestCostFirst, ProRateByUnits, ProRateByCost, ProRateByCostPortfolioCurrency, IntraDayThenFirstInFirstOut, LongTermHighestCostFirst, LongTermHighestCostFirstPortfolioCurrency, HighestCostFirstPortfolioCurrency, LowestCostFirstPortfolioCurrency, MaximumLossMinimumGain, MaximumLossMinimumGainPortfolioCurrency. |
 | **sub_holding_keys** | **List[str]** | Optional | A set of unique transaction properties to group the simple position portfolio&#39;s holdings by, perhaps for strategy tagging. Each property must be from the &#39;Transaction&#39; domain and identified by a key in the format {domain}/{scope}/{code}, for example &#39;Transaction/strategies/quantsignal&#39;. See https://support.lusid.com/knowledgebase/article/KA-01879/en-us for more information. |
-| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of unique portfolio properties to add custom data to the simple position portfolio. Each property must be from the &#39;Portfolio&#39; domain and identified by a key in the format {domain}/{scope}/{code}, for example &#39;Portfolio/Manager/Id&#39;. Note these properties must be pre-defined. |
+| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of unique portfolio properties to add custom data to the simple position portfolio. Each property must be from the &#39;Portfolio&#39; domain and identified by a key in the format {domain}/{scope}/{code}, for example &#39;Portfolio/Manager/Id&#39;. Note these properties must be pre-defined. |
 | **instrument_scopes** | **List[str]** | Optional | The resolution strategy used to resolve instruments of holdings upserted to this portfolio. |
 | **amortisation_method** | **str** | Optional | The amortisation method used by the portfolio for the calculation. Available values: NoAmortisation, StraightLine, EffectiveYield, StraightLineSettlementDate, EffectiveYieldSettlementDate. |
 | **transaction_type_scope** | **str** | Optional | The scope of the transaction types. |
 | **cash_gain_loss_calculation_date** | **str** | Optional | The option when the Cash Gain Loss to be calulated. Default value: SettlementDate. Available values: Default, SettlementDate, TransactionDate. |
-| **instrument_event_configuration** | [InstrumentEventConfiguration](InstrumentEventConfiguration.md) | Optional | *No description available.* |
-| **amortisation_rule_set_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **instrument_event_configuration** | [../model/InstrumentEventConfiguration](InstrumentEventConfiguration.md) | Optional | *No description available.* |
+| **amortisation_rule_set_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
 
 
 ## Usage

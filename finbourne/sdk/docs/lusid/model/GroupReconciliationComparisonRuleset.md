@@ -4,15 +4,15 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
 | **display_name** | **str** | Required | The name of the ruleset |
 | **reconciliation_type** | **str** | Required | The type of reconciliation to perform. Available values: Holding, Transaction, Valuation, CashHolding. |
-| **filters** | [GroupReconciliationFilters](GroupReconciliationFilters.md) | Optional | *No description available.* |
-| **core_attribute_rules** | [List[GroupReconciliationCoreAttributeRule]](GroupReconciliationCoreAttributeRule.md) | Required | The core comparison rules |
-| **aggregate_attribute_rules** | [List[GroupReconciliationAggregateAttributeRule]](GroupReconciliationAggregateAttributeRule.md) | Required | The aggregate comparison rules |
+| **filters** | [../model/GroupReconciliationFilters](GroupReconciliationFilters.md) | Optional | *No description available.* |
+| **core_attribute_rules** | [../model/List[GroupReconciliationCoreAttributeRule]](GroupReconciliationCoreAttributeRule.md) | Required | The core comparison rules |
+| **aggregate_attribute_rules** | [../model/List[GroupReconciliationAggregateAttributeRule]](GroupReconciliationAggregateAttributeRule.md) | Required | The aggregate comparison rules |
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
-| **version** | [Version](Version.md) | Optional | *No description available.* |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

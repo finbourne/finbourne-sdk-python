@@ -5,14 +5,14 @@ Response object from the role API
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [RoleId](RoleId.md) | Required | *No description available.* |
+| **id** | [../model/RoleId](RoleId.md) | Required | *No description available.* |
 | **role_hierarchy_index** | **int** | Required | The hierarchical index of the role |
 | **description** | **str** | Optional | The description of the role |
-| **resource** | [RoleResourceRequest](RoleResourceRequest.md) | Required | *No description available.* |
-| **when** | [WhenSpec](WhenSpec.md) | Required | *No description available.* |
+| **resource** | [../model/RoleResourceRequest](RoleResourceRequest.md) | Required | *No description available.* |
+| **when** | [../model/WhenSpec](WhenSpec.md) | Required | *No description available.* |
 | **permission** | **str** | Required | The action key of the role |
 | **limit** | **Dict[str, str]** | Optional | The identifiers of the role with the maximum privileges that this role can have |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

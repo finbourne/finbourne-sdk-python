@@ -6,11 +6,11 @@ This request specifies target holdings. i.e. holding data that the  system shoul
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **instrument_identifiers** | **Dict[str, Optional[str]]** | Required | A set of instrument identifiers that can resolve the holding adjustment to a unique instrument. |
-| **sub_holding_keys** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Set of unique transaction properties and associated values to store with the holding adjustment transaction automatically created by LUSID. Each property must be from the &#39;Transaction&#39; domain. |
-| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Set of unique holding properties and associated values to store with the target holding. Each property must be from the &#39;Holding&#39; domain. |
-| **tax_lots** | [List[TargetTaxLotRequest]](TargetTaxLotRequest.md) | Required | The tax-lots that together make up the target holding. |
+| **sub_holding_keys** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Set of unique transaction properties and associated values to store with the holding adjustment transaction automatically created by LUSID. Each property must be from the &#39;Transaction&#39; domain. |
+| **properties** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Set of unique holding properties and associated values to store with the target holding. Each property must be from the &#39;Holding&#39; domain. |
+| **tax_lots** | [../model/List[TargetTaxLotRequest]](TargetTaxLotRequest.md) | Required | The tax-lots that together make up the target holding. |
 | **currency** | **str** | Optional | The Holding currency. This needs to be equal with the one on the TaxLot -&gt; cost if one is specified |
-| **custodian_account_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **custodian_account_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
 
 
 ## Usage

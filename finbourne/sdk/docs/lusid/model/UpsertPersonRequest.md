@@ -4,8 +4,8 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **identifiers** | [Dict[str, ModelProperty]](ModelProperty.md) | Required | The identifiers the person will be upserted with.The provided keys should be idTypeScope, idTypeCode, code |
-| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties associated to the Person. There can be multiple properties associated with a property key. |
+| **identifiers** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Required | The identifiers the person will be upserted with.The provided keys should be idTypeScope, idTypeCode, code |
+| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties associated to the Person. There can be multiple properties associated with a property key. |
 | **display_name** | **str** | Required | The display name of the Person |
 | **description** | **str** | Optional | The description of the Person |
 

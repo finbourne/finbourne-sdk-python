@@ -4,18 +4,18 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **source_role** | [RoleId](RoleId.md) | Optional | *No description available.* |
+| **source_role** | [../model/RoleId](RoleId.md) | Optional | *No description available.* |
 | **role_hierarchy_index** | **int** | Optional | *No description available.* |
 | **description** | **str** | Optional | *No description available.* |
 | **applications** | **List[str]** | Optional | *No description available.* |
-| **policy_type** | [PolicyType](PolicyType.md) | Optional | *No description available.* |
-| **id** | [PolicyId](PolicyId.md) | Optional | *No description available.* |
-| **grant** | [Grant](Grant.md) | Optional | *No description available.* |
-| **selectors** | [List[SelectorDefinition]](SelectorDefinition.md) | Optional | *No description available.* |
-| **var_for** | [List[ForSpec]](ForSpec.md) | Optional | *No description available.* |
-| **var_if** | [List[IfExpression]](IfExpression.md) | Optional | *No description available.* |
-| **when** | [WhenSpec](WhenSpec.md) | Optional | *No description available.* |
-| **how** | [HowSpec](HowSpec.md) | Optional | *No description available.* |
+| **policy_type** | [../model/PolicyType](PolicyType.md) | Optional | *No description available.* |
+| **id** | [../model/PolicyId](PolicyId.md) | Optional | *No description available.* |
+| **grant** | [../model/Grant](Grant.md) | Optional | *No description available.* |
+| **selectors** | [../model/List[SelectorDefinition]](SelectorDefinition.md) | Optional | *No description available.* |
+| **var_for** | [../model/List[ForSpec]](ForSpec.md) | Optional | *No description available.* |
+| **var_if** | [../model/List[IfExpression]](IfExpression.md) | Optional | *No description available.* |
+| **when** | [../model/WhenSpec](WhenSpec.md) | Optional | *No description available.* |
+| **how** | [../model/HowSpec](HowSpec.md) | Optional | *No description available.* |
 
 
 ## Usage

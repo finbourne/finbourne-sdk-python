@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
 | **name** | **str** | Required | *No description available.* |
 
 

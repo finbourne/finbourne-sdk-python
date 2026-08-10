@@ -6,9 +6,9 @@
 |------|------|----------|-------------|
 | **code** | **str** | Required | The code that the portfolio group will be created with. Together with the scope this uniquely identifies the portfolio group. |
 | **created** | **datetime** | Optional | The effective datetime at which the portfolio group was created. Defaults to the current LUSID system datetime if not specified. |
-| **values** | [List[ResourceId]](ResourceId.md) | Optional | The resource identifiers of the portfolios to be contained within the portfolio group. |
-| **sub_groups** | [List[ResourceId]](ResourceId.md) | Optional | The resource identifiers of the portfolio groups to be contained within the portfolio group as sub groups. |
-| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of unique group properties to add to the portfolio group. Each property must be from the &#39;PortfolioGroup&#39; domain and should be identified by its key which has the format {domain}/{scope}/{code}, e.g. &#39;PortfolioGroup/Manager/Id&#39;. These properties must be pre-defined. |
+| **values** | [../model/List[ResourceId]](ResourceId.md) | Optional | The resource identifiers of the portfolios to be contained within the portfolio group. |
+| **sub_groups** | [../model/List[ResourceId]](ResourceId.md) | Optional | The resource identifiers of the portfolio groups to be contained within the portfolio group as sub groups. |
+| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of unique group properties to add to the portfolio group. Each property must be from the &#39;PortfolioGroup&#39; domain and should be identified by its key which has the format {domain}/{scope}/{code}, e.g. &#39;PortfolioGroup/Manager/Id&#39;. These properties must be pre-defined. |
 | **display_name** | **str** | Required | The name of the portfolio group. |
 | **description** | **str** | Optional | A long form description of the portfolio group. |
 

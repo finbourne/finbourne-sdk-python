@@ -4,8 +4,8 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **expressions** | [List[MetadataExpression]](MetadataExpression.md) | Required | *No description available.* |
-| **actions** | [List[ActionId]](ActionId.md) | Required | *No description available.* |
+| **expressions** | [../model/List[MetadataExpression]](MetadataExpression.md) | Required | *No description available.* |
+| **actions** | [../model/List[ActionId]](ActionId.md) | Required | *No description available.* |
 | **name** | **str** | Optional | *No description available.* |
 | **description** | **str** | Optional | *No description available.* |
 

@@ -4,8 +4,8 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **version** | [Version](Version.md) | Optional | *No description available.* |
-| **relationship_definition_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
+| **relationship_definition_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
 | **source_entity_type** | **str** | Required | The entity type of the source entity object. Available values: Portfolio, PortfolioGroup, Person, LegalEntity, NextBestAction. |
 | **target_entity_type** | **str** | Required | The entity type of the target entity object. Available values: Portfolio, PortfolioGroup, Person, LegalEntity, NextBestAction. |
 | **display_name** | **str** | Required | The display name of the relationship. |
@@ -13,7 +13,7 @@
 | **inward_description** | **str** | Required | The description to relate target entity object and source entity object |
 | **life_time** | **str** | Required | Describes how the relationships can change over time. Available values: Perpetual, TimeVariant. |
 | **relationship_cardinality** | **str** | Required | Describes the cardinality of the relationship between source entity and target entity. Available values: ManyToOne, ManyToMany. |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

@@ -7,9 +7,9 @@
 | **application** | **str** | Optional | *No description available.* |
 | **name** | **str** | Optional | *No description available.* |
 | **description** | **str** | Required | *No description available.* |
-| **actions** | [List[AccessControlledAction]](AccessControlledAction.md) | Required | *No description available.* |
-| **identifier_parts** | [List[IdentifierPartSchema]](IdentifierPartSchema.md) | Optional | *No description available.* |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **actions** | [../model/List[AccessControlledAction]](AccessControlledAction.md) | Required | *No description available.* |
+| **identifier_parts** | [../model/List[IdentifierPartSchema]](IdentifierPartSchema.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

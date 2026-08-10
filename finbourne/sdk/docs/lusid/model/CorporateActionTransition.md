@@ -5,8 +5,8 @@ A 'transition' within a corporate action, representing a set of output movements
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **input_transition** | [CorporateActionTransitionComponent](CorporateActionTransitionComponent.md) | Optional | *No description available.* |
-| **output_transitions** | [List[CorporateActionTransitionComponent]](CorporateActionTransitionComponent.md) | Optional | What will be generated relative to the input transition |
+| **input_transition** | [../model/CorporateActionTransitionComponent](CorporateActionTransitionComponent.md) | Optional | *No description available.* |
+| **output_transitions** | [../model/List[CorporateActionTransitionComponent]](CorporateActionTransitionComponent.md) | Optional | What will be generated relative to the input transition |
 
 
 ## Usage

@@ -5,7 +5,7 @@ No content is returned when an instance is rerun.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **run_id** | [InstanceExecutionReferenceId](InstanceExecutionReferenceId.md) | Required | *No description available.* |
+| **run_id** | [../model/InstanceExecutionReferenceId](InstanceExecutionReferenceId.md) | Required | *No description available.* |
 
 
 ## Usage

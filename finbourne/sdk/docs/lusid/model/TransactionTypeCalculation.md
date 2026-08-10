@@ -7,8 +7,8 @@
 | **type** | **str** | Required | The type of calculation to perform |
 | **side** | **str** | Optional | The side to which the calculation is applied |
 | **formula** | **str** | Optional | The formula used to derive the total consideration amount when it is not provided on the transaction |
-| **transaction_fee_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
-| **transaction_fee_capitalisation** | [TransactionFeeCapitalisation](TransactionFeeCapitalisation.md) | Optional | *No description available.* |
+| **transaction_fee_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **transaction_fee_capitalisation** | [../model/TransactionFeeCapitalisation](TransactionFeeCapitalisation.md) | Optional | *No description available.* |
 
 
 ## Usage

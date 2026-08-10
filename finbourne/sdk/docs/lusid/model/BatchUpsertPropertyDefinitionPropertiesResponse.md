@@ -4,10 +4,10 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **values** | [Dict[str, ModelProperty]](ModelProperty.md) | Required | The properties that have been successfully upserted |
-| **failed** | [Dict[str, ErrorDetail]](ErrorDetail.md) | Required | The properties that could not be upserted along with a reason for their failure. |
+| **values** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Required | The properties that have been successfully upserted |
+| **failed** | [../model/Dict[str, ErrorDetail]](ErrorDetail.md) | Required | The properties that could not be upserted along with a reason for their failure. |
 | **as_at_date** | **datetime** | Required | The as-at datetime at which properties were created or updated. |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

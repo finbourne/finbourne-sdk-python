@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **order_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **order_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **transaction_id** | **str** | Optional | *No description available.* |
 
 

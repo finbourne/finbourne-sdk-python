@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **key** | **str** | Required | The property key that this time series belongs to. |
-| **values** | [List[PropertyInterval]](PropertyInterval.md) | Required | The complete time series (history) of intervals for the property key. |
+| **values** | [../model/List[PropertyInterval]](PropertyInterval.md) | Required | The complete time series (history) of intervals for the property key. |
 
 
 ## Usage

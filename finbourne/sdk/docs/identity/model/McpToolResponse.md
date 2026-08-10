@@ -15,10 +15,10 @@ The response representation of an MCP tool
 | **idempotent** | **bool** | Optional | Whether the tool is idempotent |
 | **open_world** | **bool** | Optional | Whether the tool operates in open world |
 | **read_only** | **bool** | Optional | Whether the tool is read-only |
-| **parameters** | [List[McpToolParameter]](McpToolParameter.md) | Optional | The parameters for this MCP tool |
+| **parameters** | [../model/List[McpToolParameter]](McpToolParameter.md) | Optional | The parameters for this MCP tool |
 | **payload_type** | **str** | Optional | The type of payload (Luminesce or Scheduler) |
-| **luminesce_payload** | [McpToolLuminescePayload](McpToolLuminescePayload.md) | Optional | *No description available.* |
-| **scheduler_payload** | [McpToolSchedulerPayload](McpToolSchedulerPayload.md) | Optional | *No description available.* |
+| **luminesce_payload** | [../model/McpToolLuminescePayload](McpToolLuminescePayload.md) | Optional | *No description available.* |
+| **scheduler_payload** | [../model/McpToolSchedulerPayload](McpToolSchedulerPayload.md) | Optional | *No description available.* |
 | **destructive_action_summary_template** | **str** | Optional | Template for human-readable destructive action summary. Uses {paramName} single-brace placeholders (e.g. \&quot;Delete file &#39;{filePath}&#39;\&quot;). Required when Destructive is true. |
 | **created_at** | **datetime** | Optional | When the MCP tool was created |
 | **created_by** | **str** | Optional | Who created the MCP tool |

@@ -10,8 +10,8 @@ Loan Facility. This is a very lightweight instrument which acts as a placeholder
 | **dom_ccy** | **str** | Required | The domestic currency of the instrument. |
 | **initial_commitment** | **float** | Required | The initial commitment for the loan facility. |
 | **loan_type** | **str** | Required | LoanType for this facility. The facility can either be a revolving or a  term loan. Available values: Revolver, TermLoan. |
-| **schedules** | [List[Schedule]](Schedule.md) | Required | Repayment schedules for the loan. |
-| **time_zone_conventions** | [TimeZoneConventions](TimeZoneConventions.md) | Optional | *No description available.* |
+| **schedules** | [../model/List[Schedule]](Schedule.md) | Required | Repayment schedules for the loan. |
+| **time_zone_conventions** | [../model/TimeZoneConventions](TimeZoneConventions.md) | Optional | *No description available.* |
 | **instrument_type** | **str** | Required | Available values: QuotedSecurity, InterestRateSwap, FxForward, Future, ExoticInstrument, FxOption, CreditDefaultSwap, InterestRateSwaption, Bond, EquityOption, FixedLeg, FloatingLeg, BespokeCashFlowsLeg, Unknown, TermDeposit, ContractForDifference, EquitySwap, CashPerpetual, CapFloor, CashSettled, CdsIndex, Basket, FundingLeg, FxSwap, ForwardRateAgreement, SimpleInstrument, Repo, Equity, ExchangeTradedOption, ReferenceInstrument, ComplexBond, InflationLinkedBond, InflationSwap, SimpleCashFlowLoan, TotalReturnSwap, InflationLeg, FundShareClass, FlexibleLoan, UnsettledCash, Cash, MasteredInstrument, LoanFacility, FlexibleDeposit, FlexibleRepo, ToBeAnnounced, VolatilitySwap, ToBeAnnouncedOption, CommodityForward. |
 
 

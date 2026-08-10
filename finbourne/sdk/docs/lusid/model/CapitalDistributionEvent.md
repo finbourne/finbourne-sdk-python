@@ -6,7 +6,7 @@ A capital distribution paid out to shareholders.
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **announcement_date** | **datetime** | Optional | Date on which the dividend was announced / declared. |
-| **cash_elections** | [List[CashElection]](CashElection.md) | Required | Possible elections for this event, each keyed with a unique identifier. |
+| **cash_elections** | [../model/List[CashElection]](CashElection.md) | Required | Possible elections for this event, each keyed with a unique identifier. |
 | **ex_date** | **datetime** | Optional | The first business day on which the dividend is not owed to the buying party. |
 | **payment_date** | **datetime** | Optional | The date the company begins distributing the dividend. |
 | **record_date** | **datetime** | Optional | Date you have to be the holder of record in order to participate in the tender. |

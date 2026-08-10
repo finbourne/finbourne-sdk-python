@@ -4,8 +4,8 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **values** | [List[ResourceId]](ResourceId.md) | Optional | *No description available.* |
-| **failed** | [Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | *No description available.* |
+| **values** | [../model/List[ResourceId]](ResourceId.md) | Optional | *No description available.* |
+| **failed** | [../model/Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | *No description available.* |
 
 
 ## Usage

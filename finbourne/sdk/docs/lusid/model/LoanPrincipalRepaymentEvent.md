@@ -7,7 +7,7 @@ Event to signify the repayment of some or all of the principal balance of a loan
 |------|------|----------|-------------|
 | **payment_date** | **datetime** | Optional | Date that the Principal is due to be paid. |
 | **currency** | **str** | Required | Currency of the repayment. |
-| **lapse_elections** | [List[LapseElection]](LapseElection.md) | Optional | Election for controlling whether the Principal is paid automatically or not.  Exactly one election must be provided. |
+| **lapse_elections** | [../model/List[LapseElection]](LapseElection.md) | Optional | Election for controlling whether the Principal is paid automatically or not.  Exactly one election must be provided. |
 | **fraction** | **float** | Optional | Fraction of the outstanding settled principal balance to be repaid. Must be between 0 and 1, inclusive.  Defaults to 1 if not set. Ignored if the field Amount is set to a value different than zero. |
 | **amount** | **float** | Optional | Amount to be repaid (independent of the fraction).  This field is not used at all if not set or set to 0, in this case the fraction field will be used instead.  Otherwise, the fraction field is ignored. |
 | **with_interest** | **bool** | Optional | If set to true, then active contracts whose balance is reduced by the repayment will have  their accrued interest repaid proportionally to the balance reduction. |

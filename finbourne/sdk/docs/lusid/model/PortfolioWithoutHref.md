@@ -5,30 +5,30 @@ A list of portfolios.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
 | **type** | **str** | Required | The type of the portfolio. Available values: Transaction, Reference, DerivedTransaction, SimplePosition. |
 | **display_name** | **str** | Required | The name of the portfolio. |
 | **description** | **str** | Optional | The long form description of the portfolio. |
 | **created** | **datetime** | Required | The effective datetime at which the portfolio was created. No transactions or constituents can be added to the portfolio before this date. |
 | **enablement_date** | **datetime** | Optional | The effective datetime from which transactions or holdings booked to the portfolio begin contributing to holdings, valuations and other computed results. Data with an earlier effective date is still accepted and stored, but does not affect any computed results until this date. Defaults to the portfolio&#39;s creation date when not explicitly set. |
-| **parent_portfolio_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
-| **version** | [Version](Version.md) | Optional | *No description available.* |
-| **staged_modifications** | [StagedModificationsInfo](StagedModificationsInfo.md) | Optional | *No description available.* |
+| **parent_portfolio_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
+| **staged_modifications** | [../model/StagedModificationsInfo](StagedModificationsInfo.md) | Optional | *No description available.* |
 | **is_derived** | **bool** | Optional | Whether or not this is a derived portfolio. |
 | **base_currency** | **str** | Optional | The base currency of the portfolio. |
-| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | The requested portfolio properties. These will be from the &#39;Portfolio&#39; domain. |
-| **relationships** | [List[Relationship]](Relationship.md) | Optional | A set of relationships associated to the portfolio. |
+| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | The requested portfolio properties. These will be from the &#39;Portfolio&#39; domain. |
+| **relationships** | [../model/List[Relationship]](Relationship.md) | Optional | A set of relationships associated to the portfolio. |
 | **instrument_scopes** | **List[str]** | Optional | The instrument scope resolution strategy of this portfolio. |
 | **accounting_method** | **str** | Optional | The AccountingMethod used for the portfolio. Available values: Default, AverageCost, FirstInFirstOut, LastInFirstOut, HighestCostFirst, LowestCostFirst, ProRateByUnits, ProRateByCost, ProRateByCostPortfolioCurrency, IntraDayThenFirstInFirstOut, LongTermHighestCostFirst, LongTermHighestCostFirstPortfolioCurrency, HighestCostFirstPortfolioCurrency, LowestCostFirstPortfolioCurrency, MaximumLossMinimumGain, MaximumLossMinimumGainPortfolioCurrency. |
 | **amortisation_method** | **str** | Optional | The amortisation method used by the portfolio for the calculation. Available values: NoAmortisation, StraightLine, EffectiveYield, StraightLineSettlementDate, EffectiveYieldSettlementDate. |
 | **transaction_type_scope** | **str** | Optional | The scope of the transaction types. |
 | **cash_gain_loss_calculation_date** | **str** | Optional | The scope of the transaction types. |
-| **instrument_event_configuration** | [InstrumentEventConfiguration](InstrumentEventConfiguration.md) | Optional | *No description available.* |
-| **amortisation_rule_set_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **instrument_event_configuration** | [../model/InstrumentEventConfiguration](InstrumentEventConfiguration.md) | Optional | *No description available.* |
+| **amortisation_rule_set_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **tax_rule_set_scope** | **str** | Optional | The scope of the tax rule sets for this portfolio. |
-| **settlement_configuration** | [PortfolioSettlementConfiguration](PortfolioSettlementConfiguration.md) | Optional | *No description available.* |
+| **settlement_configuration** | [../model/PortfolioSettlementConfiguration](PortfolioSettlementConfiguration.md) | Optional | *No description available.* |
 | **transaction_exclusion_filter** | **str** | Optional | A filter expression that identifies transactions to exclude when building the transaction portfolio&#39;s transactions and holdings. Transactions matching this filter are flagged as excluded. |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

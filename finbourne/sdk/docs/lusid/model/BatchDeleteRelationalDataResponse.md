@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **values** | **Dict[str, Optional[str]]** | Required | A list of data points that were successfully upserted. |
-| **failed** | [Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | A list of data points that failed to be upserted, along with the associated error message. |
+| **failed** | [../model/Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | A list of data points that failed to be upserted, along with the associated error message. |
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
 
 

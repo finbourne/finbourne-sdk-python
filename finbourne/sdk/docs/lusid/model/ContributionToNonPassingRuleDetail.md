@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **rule_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **rule_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **rule_status** | **str** | Optional | The status of the non-passing rule. |
 | **breach_task_ids** | **List[str]** | Optional | The task ids associated with the compliance breach for this order&#39;s groups (if failing). |
 | **likely_responsible_for_status** | **bool** | Optional | Whether this order is deemed as a likely contributor to the non-passing rule for this group. |

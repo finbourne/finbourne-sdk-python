@@ -4,9 +4,9 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **weekend_mask** | [WeekendMask](WeekendMask.md) | Required | *No description available.* |
+| **weekend_mask** | [../model/WeekendMask](WeekendMask.md) | Required | *No description available.* |
 | **source_provider** | **str** | Required | *No description available.* |
-| **properties** | [List[ModelProperty]](ModelProperty.md) | Required | *No description available.* |
+| **properties** | [../model/List[ModelProperty]](ModelProperty.md) | Required | *No description available.* |
 
 
 ## Usage

@@ -5,8 +5,8 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **comparison_result_id** | **str** | Required | Comparison result identifier, encoded value for core attribute results, aggregate attribute results, reconciliation type and run instanceId. |
-| **user_review_add** | [GroupReconciliationUserReviewAdd](GroupReconciliationUserReviewAdd.md) | Optional | *No description available.* |
-| **user_review_remove** | [GroupReconciliationUserReviewRemove](GroupReconciliationUserReviewRemove.md) | Optional | *No description available.* |
+| **user_review_add** | [../model/GroupReconciliationUserReviewAdd](GroupReconciliationUserReviewAdd.md) | Optional | *No description available.* |
+| **user_review_remove** | [../model/GroupReconciliationUserReviewRemove](GroupReconciliationUserReviewRemove.md) | Optional | *No description available.* |
 
 
 ## Usage

@@ -4,18 +4,18 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **display_name** | **str** | Optional | The name of the Group Reconciliation Definition |
 | **description** | **str** | Optional | The description of the Group Reconciliation Definition |
-| **portfolio_entity_ids** | [GroupReconciliationDefinitionPortfolioEntityIds](GroupReconciliationDefinitionPortfolioEntityIds.md) | Optional | *No description available.* |
-| **recipe_ids** | [GroupReconciliationDefinitionRecipeIds](GroupReconciliationDefinitionRecipeIds.md) | Optional | *No description available.* |
-| **currencies** | [GroupReconciliationDefinitionCurrencies](GroupReconciliationDefinitionCurrencies.md) | Optional | *No description available.* |
-| **transaction_date_windows** | [TransactionDateWindows](TransactionDateWindows.md) | Optional | *No description available.* |
-| **comparison_ruleset_ids** | [GroupReconciliationDefinitionComparisonRulesetIds](GroupReconciliationDefinitionComparisonRulesetIds.md) | Optional | *No description available.* |
-| **break_code_source** | [BreakCodeSource](BreakCodeSource.md) | Optional | *No description available.* |
-| **primary_schedule** | [PrimarySchedule](PrimarySchedule.md) | Optional | *No description available.* |
+| **portfolio_entity_ids** | [../model/GroupReconciliationDefinitionPortfolioEntityIds](GroupReconciliationDefinitionPortfolioEntityIds.md) | Optional | *No description available.* |
+| **recipe_ids** | [../model/GroupReconciliationDefinitionRecipeIds](GroupReconciliationDefinitionRecipeIds.md) | Optional | *No description available.* |
+| **currencies** | [../model/GroupReconciliationDefinitionCurrencies](GroupReconciliationDefinitionCurrencies.md) | Optional | *No description available.* |
+| **transaction_date_windows** | [../model/TransactionDateWindows](TransactionDateWindows.md) | Optional | *No description available.* |
+| **comparison_ruleset_ids** | [../model/GroupReconciliationDefinitionComparisonRulesetIds](GroupReconciliationDefinitionComparisonRulesetIds.md) | Optional | *No description available.* |
+| **break_code_source** | [../model/BreakCodeSource](BreakCodeSource.md) | Optional | *No description available.* |
+| **primary_schedule** | [../model/PrimarySchedule](PrimarySchedule.md) | Optional | *No description available.* |
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
-| **version** | [Version](Version.md) | Optional | *No description available.* |
+| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
 
 
 ## Usage

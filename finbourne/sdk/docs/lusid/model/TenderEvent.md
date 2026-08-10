@@ -9,14 +9,14 @@ Tender Event (TEND).
 | **ex_date** | **datetime** | Optional | The ex date (entitlement date) of the event. |
 | **record_date** | **datetime** | Optional | Date you have to be the holder of record in order to participate in the tender. |
 | **payment_date** | **datetime** | Optional | The payment date of the event. |
-| **new_instrument** | [NewInstrument](NewInstrument.md) | Required | *No description available.* |
+| **new_instrument** | [../model/NewInstrument](NewInstrument.md) | Required | *No description available.* |
 | **fractional_units_cash_price** | **float** | Optional | The cash price paid in lieu of fractionalUnits. |
 | **fractional_units_cash_currency** | **str** | Optional | The currency of the cash paid in lieu of fractionalUnits. |
 | **fractional_units_rounding_convention** | **str** | Optional | The convention used to round the fractional units entitlement. Defaults to Floor. Available values: Floor, Ceiling, RoundHalfUp, RoundHalfDown, RoundToDecimalPlaces, BuyUp, BankerRounding. |
 | **fractional_units_decimal_places** | **int** | Optional | The number of decimal places to round to when FractionalUnitsRoundingConvention is RoundToDecimalPlaces. |
-| **security_offer_elections** | [List[SecurityOfferElection]](SecurityOfferElection.md) | Optional | List of possible SecurityOfferElections for this event. |
-| **cash_and_security_offer_elections** | [List[CashAndSecurityOfferElection]](CashAndSecurityOfferElection.md) | Optional | List of possible CashAndSecurityOfferElections for this event. |
-| **cash_offer_elections** | [List[CashOfferElection]](CashOfferElection.md) | Optional | List of possible CashOfferElections for this event. |
+| **security_offer_elections** | [../model/List[SecurityOfferElection]](SecurityOfferElection.md) | Optional | List of possible SecurityOfferElections for this event. |
+| **cash_and_security_offer_elections** | [../model/List[CashAndSecurityOfferElection]](CashAndSecurityOfferElection.md) | Optional | List of possible CashAndSecurityOfferElections for this event. |
+| **cash_offer_elections** | [../model/List[CashOfferElection]](CashOfferElection.md) | Optional | List of possible CashOfferElections for this event. |
 | **offer_type** | **str** | Optional | Informational ISO 20022 OfferTp indicator (e.g. \&quot;ACPR\&quot;). Optional. No calculation impact. |
 | **accrued_interest_per_unit** | **float** | Optional | Optional per-unit accrued interest on the tendered face, from the last coupon date up to  (but excluding) PaymentDate. Bond instrument types only. If left empty, analytics-core  resolves it at event time from the bond&#39;s coupon schedule and market data. |
 | **min_piece_size** | **float** | Optional | Bond-specific minimum instructable face amount. Optional. Must be strictly positive when set. |

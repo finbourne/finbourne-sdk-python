@@ -4,8 +4,8 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **left** | [List[PortfolioEntityId]](PortfolioEntityId.md) | Required | Portfolio Entity Id of the left side of a reconciliation |
-| **right** | [List[PortfolioEntityId]](PortfolioEntityId.md) | Required | Portfolio Entity Id of the right side of a reconciliation |
+| **left** | [../model/List[PortfolioEntityId]](PortfolioEntityId.md) | Required | Portfolio Entity Id of the left side of a reconciliation |
+| **right** | [../model/List[PortfolioEntityId]](PortfolioEntityId.md) | Required | Portfolio Entity Id of the right side of a reconciliation |
 
 
 ## Usage

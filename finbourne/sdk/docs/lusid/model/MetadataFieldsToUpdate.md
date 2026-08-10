@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **metadata_fields** | [List[MetadataFieldDefinition]](MetadataFieldDefinition.md) | Optional | The metadata field definitions for this configuration. |
+| **metadata_fields** | [../model/List[MetadataFieldDefinition]](MetadataFieldDefinition.md) | Optional | The metadata field definitions for this configuration. |
 
 
 ## Usage

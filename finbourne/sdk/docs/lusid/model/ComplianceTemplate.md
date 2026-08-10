@@ -4,11 +4,11 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
 | **description** | **str** | Required | The description of the Compliance Template |
 | **tags** | **List[str]** | Optional | Tags for a Compliance Template |
-| **variations** | [List[ComplianceTemplateVariation]](ComplianceTemplateVariation.md) | Required | Variation details of a Compliance Template |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **variations** | [../model/List[ComplianceTemplateVariation]](ComplianceTemplateVariation.md) | Required | Variation details of a Compliance Template |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

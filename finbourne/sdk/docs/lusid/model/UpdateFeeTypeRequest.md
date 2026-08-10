@@ -6,7 +6,7 @@
 |------|------|----------|-------------|
 | **display_name** | **str** | Required | The name of the fee type. |
 | **description** | **str** | Optional | The description of the fee type. |
-| **component_transactions** | [List[ComponentTransaction]](ComponentTransaction.md) | Required | A set of component transactions that relate to the fee type to be created. |
+| **component_transactions** | [../model/List[ComponentTransaction]](ComponentTransaction.md) | Required | A set of component transactions that relate to the fee type to be created. |
 
 
 ## Usage

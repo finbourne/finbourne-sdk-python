@@ -11,9 +11,9 @@
 | **first_activity** | **datetime** | Optional | *No description available.* *(read-only)* |
 | **last_activity** | **datetime** | Optional | *No description available.* *(read-only)* |
 | **status** | **str** | Optional | *No description available.* *(read-only)* |
-| **source_record** | [IntegrationLogRecord](IntegrationLogRecord.md) | Optional | *No description available.* |
-| **target_record** | [IntegrationLogTargetRecord](IntegrationLogTargetRecord.md) | Optional | *No description available.* |
-| **activities** | [List[IntegrationLogActivity]](IntegrationLogActivity.md) | Required | *No description available.* *(read-only)* |
+| **source_record** | [../model/IntegrationLogRecord](IntegrationLogRecord.md) | Optional | *No description available.* |
+| **target_record** | [../model/IntegrationLogTargetRecord](IntegrationLogTargetRecord.md) | Optional | *No description available.* |
+| **activities** | [../model/List[IntegrationLogActivity]](IntegrationLogActivity.md) | Required | *No description available.* *(read-only)* |
 
 
 ## Usage

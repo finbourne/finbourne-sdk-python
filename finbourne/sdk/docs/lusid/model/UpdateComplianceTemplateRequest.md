@@ -6,7 +6,7 @@
 |------|------|----------|-------------|
 | **code** | **str** | Required | The code given for the Compliance Template |
 | **description** | **str** | Required | The description of the Compliance Template |
-| **variations** | [List[ComplianceTemplateVariationRequest]](ComplianceTemplateVariationRequest.md) | Required | Variation details of a Compliance Template |
+| **variations** | [../model/List[ComplianceTemplateVariationRequest]](ComplianceTemplateVariationRequest.md) | Required | Variation details of a Compliance Template |
 
 
 ## Usage

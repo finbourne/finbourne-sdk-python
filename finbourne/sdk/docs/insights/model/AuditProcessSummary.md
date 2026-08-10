@@ -4,9 +4,9 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **process** | [AuditProcess](AuditProcess.md) | Optional | *No description available.* |
-| **latest_entry** | [AuditData](AuditData.md) | Optional | *No description available.* |
-| **summary** | [AuditDataSummary](AuditDataSummary.md) | Optional | *No description available.* |
+| **process** | [../model/AuditProcess](AuditProcess.md) | Optional | *No description available.* |
+| **latest_entry** | [../model/AuditData](AuditData.md) | Optional | *No description available.* |
+| **summary** | [../model/AuditDataSummary](AuditDataSummary.md) | Optional | *No description available.* |
 
 
 ## Usage

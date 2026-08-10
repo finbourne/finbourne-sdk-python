@@ -10,7 +10,7 @@ An individual mapping rule, for mapping between a left and right field/property.
 | **comparison_type** | **str** | Optional | The type of comparison to be performed |
 | **comparison_value** | **float** | Optional | The (optional) value used with ComparisonType. |
 | **weight** | **float** | Optional | A factor used to influence the importance of this item. |
-| **mapped_strings** | [List[MappedString]](MappedString.md) | Optional | The (optional) value used to map string values. |
+| **mapped_strings** | [../model/List[MappedString]](MappedString.md) | Optional | The (optional) value used to map string values. |
 | **is_case_sensitive** | **bool** | Optional | Should string comparisons take case into account, defaults to &#x60;false&#x60;. |
 
 

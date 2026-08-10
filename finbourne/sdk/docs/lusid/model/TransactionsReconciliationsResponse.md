@@ -4,8 +4,8 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **mapping** | [Mapping](Mapping.md) | Optional | *No description available.* |
-| **data** | [List[ReconciledTransaction]](ReconciledTransaction.md) | Optional | The result of this reconciliation |
+| **mapping** | [../model/Mapping](Mapping.md) | Optional | *No description available.* |
+| **data** | [../model/List[ReconciledTransaction]](ReconciledTransaction.md) | Optional | The result of this reconciliation |
 
 
 ## Usage

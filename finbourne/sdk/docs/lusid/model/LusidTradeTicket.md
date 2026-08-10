@@ -10,16 +10,16 @@ A LUSID Trade Ticket comprising an instrument, a transaction, and a counterparty
 | **source** | **str** | Optional | Transaction Source. Referenced by Transaction Configuration. |
 | **transaction_date** | **str** | Required | Transaction Date. Date at which transaction is known. |
 | **settlement_date** | **str** | Required | Transaction settlement. Date at which transaction is finalised and realised into the system. |
-| **total_consideration** | [CurrencyAndAmount](CurrencyAndAmount.md) | Required | *No description available.* |
+| **total_consideration** | [../model/CurrencyAndAmount](CurrencyAndAmount.md) | Required | *No description available.* |
 | **units** | **float** | Required | Number of units in the transaction. For an OTC this is somewhat interchangeable with the quantity booked in the  instrument. As M x N or N x M are equivalent it is advised a client chooses one approach and sticks to it.  Arguably either the unit or holding is best unitised. |
 | **instrument_identifiers** | **Dict[str, Optional[str]]** | Required | Identifiers for the instrument. |
 | **instrument_scope** | **str** | Optional | Scope of instrument |
 | **instrument_name** | **str** | Optional | Name of instrument |
-| **instrument_definition** | [LusidInstrument](LusidInstrument.md) | Optional | *No description available.* |
-| **counterparty_agreement_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **instrument_definition** | [../model/LusidInstrument](LusidInstrument.md) | Optional | *No description available.* |
+| **counterparty_agreement_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **counterparty** | **str** | Optional | Counterparty |
-| **instrument_properties** | [List[ModelProperty]](ModelProperty.md) | Optional | Set of instrument properties (as defined by client/user). |
-| **transaction_properties** | [List[ModelProperty]](ModelProperty.md) | Optional | Set of transaction properties (as defined by client/user). |
+| **instrument_properties** | [../model/List[ModelProperty]](ModelProperty.md) | Optional | Set of instrument properties (as defined by client/user). |
+| **transaction_properties** | [../model/List[ModelProperty]](ModelProperty.md) | Optional | Set of transaction properties (as defined by client/user). |
 | **trade_ticket_type** | **str** | Required | Available values: LusidTradeTicket, ExternalTradeTicket. |
 
 

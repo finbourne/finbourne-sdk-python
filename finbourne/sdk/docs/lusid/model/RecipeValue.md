@@ -7,7 +7,7 @@ Recipe value represents a data that is then used to perform an atomic operation 
 |------|------|----------|-------------|
 | **as_json** | **str** | Optional | Field to allow providing a potentially complex json value. |
 | **as_string** | **str** | Optional | For simple value, a single input value, note complex nested objects are not allowed here. |
-| **from_recipe** | [FromRecipe](FromRecipe.md) | Optional | *No description available.* |
+| **from_recipe** | [../model/FromRecipe](FromRecipe.md) | Optional | *No description available.* |
 
 
 ## Usage

@@ -8,13 +8,13 @@ record containing details of a single instance.
 | **id** | **UUID** | Required | *No description available.* |
 | **name** | **str** | Required | *No description available.* |
 | **enabled** | **bool** | Required | *No description available.* |
-| **portfolios** | [List[TpfPortfolio]](TpfPortfolio.md) | Required | *No description available.* |
+| **portfolios** | [../model/List[TpfPortfolio]](TpfPortfolio.md) | Required | *No description available.* |
 | **schedule** | **str** | Optional | *No description available.* |
 | **schedule_timezone** | **str** | Optional | *No description available.* |
 | **last_run_at** | **datetime** | Optional | *No description available.* |
 | **last_run_status** | **str** | Optional | *No description available.* |
 | **latest_runs_in24_hours** | **str** | Optional | *No description available.* |
-| **destinations** | [List[InstanceDestinations]](InstanceDestinations.md) | Required | *No description available.* |
+| **destinations** | [../model/List[InstanceDestinations]](InstanceDestinations.md) | Required | *No description available.* |
 
 
 ## Usage

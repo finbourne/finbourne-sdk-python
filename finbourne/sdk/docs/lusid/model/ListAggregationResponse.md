@@ -9,11 +9,11 @@
 | **href** | **str** | Optional | *No description available.* |
 | **data** | **List[Dict[str, object]]** | Optional | *No description available.* |
 | **aggregation_currency** | **str** | Optional | *No description available.* |
-| **data_schema** | [ResultDataSchema](ResultDataSchema.md) | Optional | *No description available.* |
-| **aggregation_failures** | [List[AggregationMeasureFailureDetail]](AggregationMeasureFailureDetail.md) | Optional | *No description available.* |
-| **recipe_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
-| **scenario_diagnostics** | [ScenarioDiagnostics](ScenarioDiagnostics.md) | Optional | *No description available.* |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **data_schema** | [../model/ResultDataSchema](ResultDataSchema.md) | Optional | *No description available.* |
+| **aggregation_failures** | [../model/List[AggregationMeasureFailureDetail]](AggregationMeasureFailureDetail.md) | Optional | *No description available.* |
+| **recipe_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **scenario_diagnostics** | [../model/ScenarioDiagnostics](ScenarioDiagnostics.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

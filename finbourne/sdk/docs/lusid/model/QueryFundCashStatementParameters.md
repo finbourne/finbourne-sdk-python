@@ -5,8 +5,8 @@ Request body for querying a Fund Cash Statement.  Extends the diary entry query 
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **start** | [DateOrDiaryEntry](DateOrDiaryEntry.md) | Optional | *No description available.* |
-| **end** | [DateOrDiaryEntry](DateOrDiaryEntry.md) | Required | *No description available.* |
+| **start** | [../model/DateOrDiaryEntry](DateOrDiaryEntry.md) | Optional | *No description available.* |
+| **end** | [../model/DateOrDiaryEntry](DateOrDiaryEntry.md) | Required | *No description available.* |
 | **variant** | **str** | Optional | Optional diary entry variant (e.g. for multi-estimate scenarios). |
 | **display_mode** | **str** | Optional | Cash statement display mode: ShowReversal (default) shows full reversal/TrueUp detail; Consolidated collapses reversals into AvgRateCorrection rows. |
 

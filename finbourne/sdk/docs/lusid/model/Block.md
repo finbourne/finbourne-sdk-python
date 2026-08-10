@@ -5,23 +5,23 @@ A block of orders for the same instrument, intended to record for example a trad
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
-| **order_ids** | [List[ResourceId]](ResourceId.md) | Required | The related order ids. |
-| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Client-defined properties associated with this block. |
+| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **order_ids** | [../model/List[ResourceId]](ResourceId.md) | Required | The related order ids. |
+| **properties** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Client-defined properties associated with this block. |
 | **instrument_identifiers** | **Dict[str, Optional[str]]** | Required | The instrument ordered. |
 | **lusid_instrument_id** | **str** | Required | The LUSID instrument id for the instrument ordered. |
 | **quantity** | **float** | Optional | The total quantity of given instrument ordered. |
-| **amount** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
+| **amount** | [../model/CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
 | **side** | **str** | Required | The client&#39;s representation of the block&#39;s side (buy, sell, short, etc) |
 | **type** | **str** | Optional | The block order&#39;s type (examples: Limit, Market, ...) |
 | **time_in_force** | **str** | Optional | The block orders&#39; time in force (examples: Day, GoodTilCancel, ...) |
 | **created_date** | **datetime** | Required | The date on which the block was made |
-| **limit_price** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
-| **stop_price** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
+| **limit_price** | [../model/CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
+| **stop_price** | [../model/CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
 | **is_swept** | **bool** | Required | Swept blocks are considered no longer of active interest, and no longer take part in various order management processes |
-| **version** | [Version](Version.md) | Optional | *No description available.* |
-| **data_model_membership** | [DataModelMembership](DataModelMembership.md) | Optional | *No description available.* |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
+| **data_model_membership** | [../model/DataModelMembership](DataModelMembership.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

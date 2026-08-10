@@ -6,8 +6,8 @@ Counts for results that are exceptions with an Open status.
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **total** | **int** | Required | The total number of results in this category. |
-| **by_result_type** | [RecExceptionCountByResultType](RecExceptionCountByResultType.md) | Required | *No description available.* |
-| **by_review_status** | [RecResultCountByReviewStatus](RecResultCountByReviewStatus.md) | Required | *No description available.* |
+| **by_result_type** | [../model/RecExceptionCountByResultType](RecExceptionCountByResultType.md) | Required | *No description available.* |
+| **by_review_status** | [../model/RecResultCountByReviewStatus](RecResultCountByReviewStatus.md) | Required | *No description available.* |
 
 
 ## Usage

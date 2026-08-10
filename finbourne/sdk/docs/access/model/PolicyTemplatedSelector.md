@@ -7,7 +7,7 @@ Templated selector for a policy template
 |------|------|----------|-------------|
 | **application** | **str** | Required | The application that this selector definition applies to |
 | **tag** | **str** | Required | The type of policy that this selector definition applies to |
-| **selector** | [SelectorDefinition](SelectorDefinition.md) | Required | *No description available.* |
+| **selector** | [../model/SelectorDefinition](SelectorDefinition.md) | Required | *No description available.* |
 
 
 ## Usage

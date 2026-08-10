@@ -5,7 +5,7 @@ When importing data from an external source there are essentially three levels o
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **data_definitions** | [List[DataDefinition]](DataDefinition.md) | Optional | A map from LUSID item keys to data definitions that define the names, types and degree of uniqueness of data provided to LUSID in structured data stores. |
+| **data_definitions** | [../model/List[DataDefinition]](DataDefinition.md) | Optional | A map from LUSID item keys to data definitions that define the names, types and degree of uniqueness of data provided to LUSID in structured data stores. |
 
 
 ## Usage

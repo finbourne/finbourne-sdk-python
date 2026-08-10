@@ -9,7 +9,7 @@
 | **code** | **str** | Required | The code of the property. Together with the domain and scope this uniquely identifies the property. |
 | **value_required** | **bool** | Optional | This field is not implemented and should be disregarded. |
 | **display_name** | **str** | Required | The display name of the property. |
-| **data_type_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **data_type_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
 | **life_time** | **str** | Optional | Describes how the property&#39;s values can change over time. Available values: Perpetual, TimeVariant. |
 | **constraint_style** | **str** | Optional | Describes the uniqueness and cardinality of the property for entity objects under the property domain specified in Key. Defaults to \&quot;Property\&quot; if not specified. Valid values for this field are: Property, Collection or Identifier. |
 | **property_description** | **str** | Optional | Describes the property |

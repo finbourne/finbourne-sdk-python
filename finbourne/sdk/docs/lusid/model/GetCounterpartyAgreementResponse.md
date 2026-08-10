@@ -5,9 +5,9 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
-| **value** | [CounterpartyAgreement](CounterpartyAgreement.md) | Optional | *No description available.* |
-| **failed** | [Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The counterparty agreement that could not be retrieved along with a reason for failure. |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **value** | [../model/CounterpartyAgreement](CounterpartyAgreement.md) | Optional | *No description available.* |
+| **failed** | [../model/Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The counterparty agreement that could not be retrieved along with a reason for failure. |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

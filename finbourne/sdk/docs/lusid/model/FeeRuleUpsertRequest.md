@@ -14,9 +14,9 @@
 | **execution_broker** | **str** | Required |  |
 | **custodian** | **str** | Required |  |
 | **exchange** | **str** | Required |  |
-| **fee** | [CalculationInfo](CalculationInfo.md) | Required | *No description available.* |
-| **min_fee** | [CalculationInfo](CalculationInfo.md) | Optional | *No description available.* |
-| **max_fee** | [CalculationInfo](CalculationInfo.md) | Optional | *No description available.* |
+| **fee** | [../model/CalculationInfo](CalculationInfo.md) | Required | *No description available.* |
+| **min_fee** | [../model/CalculationInfo](CalculationInfo.md) | Optional | *No description available.* |
+| **max_fee** | [../model/CalculationInfo](CalculationInfo.md) | Optional | *No description available.* |
 | **additional_keys** | **Dict[str, Optional[str]]** | Optional |  |
 | **description** | **str** | Optional |  |
 

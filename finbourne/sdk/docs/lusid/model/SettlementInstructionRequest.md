@@ -12,11 +12,11 @@
 | **contractual_settlement_date** | **datetime** | Optional | *No description available.* |
 | **actual_settlement_date** | **datetime** | Required | *No description available.* |
 | **units** | **float** | Required | *No description available.* |
-| **sub_holding_key_overrides** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | *No description available.* |
-| **custodian_account_override** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **sub_holding_key_overrides** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | *No description available.* |
+| **custodian_account_override** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **instruction_to_portfolio_rate** | **float** | Optional | *No description available.* |
-| **settlement_in_lieu** | [SettlementInLieu](SettlementInLieu.md) | Optional | *No description available.* |
-| **properties** | [List[PerpetualProperty]](PerpetualProperty.md) | Optional | *No description available.* |
+| **settlement_in_lieu** | [../model/SettlementInLieu](SettlementInLieu.md) | Optional | *No description available.* |
+| **properties** | [../model/List[PerpetualProperty]](PerpetualProperty.md) | Optional | *No description available.* |
 
 
 ## Usage

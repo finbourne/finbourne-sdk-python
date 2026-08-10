@@ -10,7 +10,7 @@ A 'transition' within a corporate action, representing an output transition.
 | **cost_factor** | **float** | Required | The factor to scale cost by |
 | **lusid_instrument_id** | **str** | Optional | LUSID&#39;s internal unique instrument identifier, resolved from the instrument identifiers *(read-only)* |
 | **instrument_scope** | **str** | Optional | The scope in which the instrument lies. *(read-only)* |
-| **rounding** | [RoundingConfiguration](RoundingConfiguration.md) | Optional | *No description available.* |
+| **rounding** | [../model/RoundingConfiguration](RoundingConfiguration.md) | Optional | *No description available.* |
 
 
 ## Usage

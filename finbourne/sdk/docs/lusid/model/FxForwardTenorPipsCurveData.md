@@ -11,10 +11,10 @@ Contains data (i.e. tenors and pips + metadata) for building fx forward curves (
 | **tenors** | **List[str]** | Required | Tenors for which the forward rates apply.  For more information on tenors, see [knowledge base article KA-02097](https://support.lusid.com/knowledgebase/article/KA-02097) |
 | **pip_rates** | **List[float]** | Required | Rates provided for the fx forward (price in FgnCcy per unit of DomCcy), expressed in pips |
 | **lineage** | **str** | Optional | Description of the complex market data&#39;s lineage e.g. &#39;FundAccountant_GreenQuality&#39;. |
-| **market_data_options** | [MarketDataOptions](MarketDataOptions.md) | Optional | *No description available.* |
-| **calendars** | [List[FxTenorConvention]](FxTenorConvention.md) | Optional | The list of conventions that should be used when interpreting tenors as dates. |
+| **market_data_options** | [../model/MarketDataOptions](MarketDataOptions.md) | Optional | *No description available.* |
+| **calendars** | [../model/List[FxTenorConvention]](FxTenorConvention.md) | Optional | The list of conventions that should be used when interpreting tenors as dates. |
 | **spot_days_calculation_type** | **str** | Optional | Configures how to calculate the spot date from the build date using the Calendars provided. Available values: SingleCalendar, UnionCalendars. |
-| **version** | [Version](Version.md) | Optional | *No description available.* |
+| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
 | **market_data_type** | **str** | Required | Available values: DiscountFactorCurveData, EquityVolSurfaceData, FxVolSurfaceData, IrVolCubeData, OpaqueMarketData, YieldCurveData, FxForwardCurveData, FxForwardPipsCurveData, FxForwardTenorCurveData, FxForwardTenorPipsCurveData, FxForwardCurveByQuoteReference, CreditSpreadCurveData, EquityCurveByPricesData, ConstantVolatilitySurface. |
 
 

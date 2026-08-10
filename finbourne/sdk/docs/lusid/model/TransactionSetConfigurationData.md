@@ -5,9 +5,9 @@ A collection of the data required to configure transaction types..
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **transaction_configs** | [List[TransactionConfigurationData]](TransactionConfigurationData.md) | Required | Collection of transaction type models |
-| **side_definitions** | [List[SideConfigurationData]](SideConfigurationData.md) | Optional | Collection of side definitions |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **transaction_configs** | [../model/List[TransactionConfigurationData]](TransactionConfigurationData.md) | Required | Collection of transaction type models |
+| **side_definitions** | [../model/List[SideConfigurationData]](SideConfigurationData.md) | Optional | Collection of side definitions |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

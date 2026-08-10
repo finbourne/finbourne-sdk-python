@@ -8,7 +8,7 @@ A General Ledger Profile Definition.
 | **general_ledger_profile_code** | **str** | Required | The unique code for the General Ledger Profile |
 | **display_name** | **str** | Required | The name of the General Ledger Profile |
 | **description** | **str** | Optional | A description for the General Ledger Profile |
-| **general_ledger_profile_mappings** | [List[GeneralLedgerProfileMapping]](GeneralLedgerProfileMapping.md) | Required | Rules for mapping Account or property values to aggregation pattern definitions |
+| **general_ledger_profile_mappings** | [../model/List[GeneralLedgerProfileMapping]](GeneralLedgerProfileMapping.md) | Required | Rules for mapping Account or property values to aggregation pattern definitions |
 
 
 ## Usage

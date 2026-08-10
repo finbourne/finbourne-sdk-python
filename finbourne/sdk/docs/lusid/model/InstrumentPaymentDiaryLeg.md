@@ -7,7 +7,7 @@ A leg containing a set of cashflows.
 |------|------|----------|-------------|
 | **leg_index** | **int** | Optional | Index (integer) for the leg of a payment diary. |
 | **leg_id** | **str** | Optional | Identifier string for the leg of a payment diary. |
-| **rows** | [List[InstrumentPaymentDiaryRow]](InstrumentPaymentDiaryRow.md) | Optional | List of individual cashflows within the payment diary. |
+| **rows** | [../model/List[InstrumentPaymentDiaryRow]](InstrumentPaymentDiaryRow.md) | Optional | List of individual cashflows within the payment diary. |
 
 
 ## Usage

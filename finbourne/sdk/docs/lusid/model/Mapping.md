@@ -9,7 +9,7 @@ Defines the rule set to be used to determine if entries should be considered as 
 | **code** | **str** | Required | The code for this mapping. |
 | **name** | **str** | Required | The mapping name |
 | **reconciliation_type** | **str** | Required | What type of reconciliation this mapping is for. Available values: Transaction, Holding, Valuation, Cash, CashHolding. |
-| **rules** | [List[MappingRule]](MappingRule.md) | Optional | The rules in this mapping, keyed by the left field/property name |
+| **rules** | [../model/List[MappingRule]](MappingRule.md) | Optional | The rules in this mapping, keyed by the left field/property name |
 
 
 ## Usage

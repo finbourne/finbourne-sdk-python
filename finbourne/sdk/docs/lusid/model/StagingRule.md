@@ -7,8 +7,8 @@
 | **rule_id** | **str** | Required | The ID of the staging rule. |
 | **description** | **str** | Optional | A description for the staging rule. |
 | **status** | **str** | Required | Status of the rule. Available values: Active, Inactive. |
-| **match_criteria** | [StagingRuleMatchCriteria](StagingRuleMatchCriteria.md) | Required | *No description available.* |
-| **approval_criteria** | [StagingRuleApprovalCriteria](StagingRuleApprovalCriteria.md) | Required | *No description available.* |
+| **match_criteria** | [../model/StagingRuleMatchCriteria](StagingRuleMatchCriteria.md) | Required | *No description available.* |
+| **approval_criteria** | [../model/StagingRuleApprovalCriteria](StagingRuleApprovalCriteria.md) | Required | *No description available.* |
 
 
 ## Usage

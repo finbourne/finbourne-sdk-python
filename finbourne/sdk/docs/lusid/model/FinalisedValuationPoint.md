@@ -9,8 +9,8 @@
 | **display_name** | **str** | Required | The name of the Fund Calendar entry. |
 | **description** | **str** | Optional | A description for the Fund Calendar entry. |
 | **nav_type_code** | **str** | Required | The navTypeCode of the Fund Calendar Entry. This is the code of the NAV type that this Calendar Entry is associated with. |
-| **timeline_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
-| **previous_entry** | [PreviousFundCalendarEntry](PreviousFundCalendarEntry.md) | Optional | *No description available.* |
+| **timeline_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **previous_entry** | [../model/PreviousFundCalendarEntry](PreviousFundCalendarEntry.md) | Optional | *No description available.* |
 | **effective_at** | **datetime** | Optional | The effective at of the Calendar Entry. |
 | **as_at** | **datetime** | Required | The asAt datetime for the Calendar Entry. |
 | **entry_type** | **str** | Required | The type of the Fund Calendar Entry. Available values: FinalisedValuationPoint, FundEstimateValuationPoint, FundBookmark. |
@@ -18,8 +18,8 @@
 | **apply_clear_down** | **bool** | Required | Set to true if that closed period should have the clear down applied. |
 | **holdings_as_at_override** | **datetime** | Optional | The optional AsAt Override to use for building holdings in the Valuation Point. Defaults to QueryAsAt. |
 | **valuations_as_at_override** | **datetime** | Optional | The optional AsAt Override to use for performing valuations in the Valuation Point. Defaults to QueryAsAt. |
-| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | The properties for the Calendar Entry. These will be from the &#39;ClosedPeriod&#39; domain. |
-| **version** | [Version](Version.md) | Required | *No description available.* |
+| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | The properties for the Calendar Entry. These will be from the &#39;ClosedPeriod&#39; domain. |
+| **version** | [../model/Version](Version.md) | Required | *No description available.* |
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested asAt datetime. |
 | **leader_nav_type_code** | **str** | Optional | The code of the Nav Type that this Nav Type will follow when set. |
 | **date_of_last_pca_scan** | **datetime** | Optional | The last date a PCA scan was conducted for a Valuation Point |

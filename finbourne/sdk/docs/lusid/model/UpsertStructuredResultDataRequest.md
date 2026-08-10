@@ -5,8 +5,8 @@ The details of the structured unit result data item to upsert into Lusid.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [StructuredResultDataId](StructuredResultDataId.md) | Required | *No description available.* |
-| **data** | [StructuredResultData](StructuredResultData.md) | Optional | *No description available.* |
+| **id** | [../model/StructuredResultDataId](StructuredResultDataId.md) | Required | *No description available.* |
+| **data** | [../model/StructuredResultData](StructuredResultData.md) | Optional | *No description available.* |
 
 
 ## Usage

@@ -13,7 +13,7 @@
 | **notional_amount** | **str** | Optional | The value, field or property key defining the side&#39;s notional amount |
 | **current_face** | **str** | Optional | The value, field or property key defining the side&#39;s current face / outstanding notional. |
 | **scope** | **str** | Optional | The scope in which the side definition exists. |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

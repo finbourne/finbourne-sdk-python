@@ -6,13 +6,13 @@
 |------|------|----------|-------------|
 | **from_transaction_date** | **datetime** | Required | *No description available.* |
 | **to_transaction_date** | **datetime** | Required | *No description available.* |
-| **portfolio_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
-| **portfolio_entity_ids** | [List[PortfolioEntityId]](PortfolioEntityId.md) | Optional | The set of portfolio or portfolio group identifiers containing the relevant transactions. |
+| **portfolio_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **portfolio_entity_ids** | [../model/List[PortfolioEntityId]](PortfolioEntityId.md) | Optional | The set of portfolio or portfolio group identifiers containing the relevant transactions. |
 | **as_at** | **datetime** | Optional | *No description available.* |
-| **metrics** | [List[AggregateSpec]](AggregateSpec.md) | Required | *No description available.* |
+| **metrics** | [../model/List[AggregateSpec]](AggregateSpec.md) | Required | *No description available.* |
 | **group_by** | **List[str]** | Optional | *No description available.* |
-| **filters** | [List[PropertyFilter]](PropertyFilter.md) | Optional | *No description available.* |
-| **sort** | [List[OrderBySpec]](OrderBySpec.md) | Optional | *No description available.* |
+| **filters** | [../model/List[PropertyFilter]](PropertyFilter.md) | Optional | *No description available.* |
+| **sort** | [../model/List[OrderBySpec]](OrderBySpec.md) | Optional | *No description available.* |
 
 
 ## Usage

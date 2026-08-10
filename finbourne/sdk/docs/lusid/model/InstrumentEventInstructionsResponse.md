@@ -5,8 +5,8 @@ The collection of successfully upserted instructions, and the collection of fail
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **values** | [Dict[str, InstrumentEventInstruction]](InstrumentEventInstruction.md) | Optional | The collection of successfully upserted instructions |
-| **failed** | [Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The collection of error information for instructions that could not be upserted |
+| **values** | [../model/Dict[str, InstrumentEventInstruction]](InstrumentEventInstruction.md) | Optional | The collection of successfully upserted instructions |
+| **failed** | [../model/Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The collection of error information for instructions that could not be upserted |
 
 
 ## Usage

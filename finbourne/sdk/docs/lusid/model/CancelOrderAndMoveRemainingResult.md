@@ -4,9 +4,9 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **cancelled_order** | [Order](Order.md) | Optional | *No description available.* |
-| **new_order** | [Order](Order.md) | Optional | *No description available.* |
-| **new_block_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **cancelled_order** | [../model/Order](Order.md) | Optional | *No description available.* |
+| **new_order** | [../model/Order](Order.md) | Optional | *No description available.* |
+| **new_block_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
 
 
 ## Usage

@@ -5,17 +5,17 @@ Response object from the policy API
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [PolicyId](PolicyId.md) | Optional | *No description available.* |
+| **id** | [../model/PolicyId](PolicyId.md) | Optional | *No description available.* |
 | **description** | **str** | Optional | Description of what the policy is entitling |
 | **applications** | **List[str]** | Optional | Applications to which the policy applies |
-| **grant** | [Grant](Grant.md) | Optional | *No description available.* |
-| **selectors** | [List[SelectorDefinition]](SelectorDefinition.md) | Optional | Selectors that this policy will be applied to |
-| **var_for** | [List[ForSpec]](ForSpec.md) | Optional | \&quot;For Specification\&quot; for when the policy is to be applied |
-| **var_if** | [List[IfExpression]](IfExpression.md) | Optional | \&quot;If Specification\&quot; for when the policy is to be applied |
-| **when** | [WhenSpec](WhenSpec.md) | Optional | *No description available.* |
-| **how** | [HowSpec](HowSpec.md) | Optional | *No description available.* |
-| **template_metadata** | [TemplateMetadata](TemplateMetadata.md) | Optional | *No description available.* |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **grant** | [../model/Grant](Grant.md) | Optional | *No description available.* |
+| **selectors** | [../model/List[SelectorDefinition]](SelectorDefinition.md) | Optional | Selectors that this policy will be applied to |
+| **var_for** | [../model/List[ForSpec]](ForSpec.md) | Optional | \&quot;For Specification\&quot; for when the policy is to be applied |
+| **var_if** | [../model/List[IfExpression]](IfExpression.md) | Optional | \&quot;If Specification\&quot; for when the policy is to be applied |
+| **when** | [../model/WhenSpec](WhenSpec.md) | Optional | *No description available.* |
+| **how** | [../model/HowSpec](HowSpec.md) | Optional | *No description available.* |
+| **template_metadata** | [../model/TemplateMetadata](TemplateMetadata.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **description** | **str** | Required | The description of the transaction template. |
-| **component_transactions** | [List[ComponentTransaction]](ComponentTransaction.md) | Required | A set of component transactions that relate to the template to be created. |
+| **component_transactions** | [../model/List[ComponentTransaction]](ComponentTransaction.md) | Required | A set of component transactions that relate to the template to be created. |
 
 
 ## Usage

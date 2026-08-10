@@ -5,8 +5,8 @@ Generate policy from template
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **template_selection** | [List[TemplateSelection]](TemplateSelection.md) | Required | List of template selection, identifying policy templates to use for generation |
-| **selectors** | [List[SelectorDefinition]](SelectorDefinition.md) | Optional | List of additional selectors to be included in the policy |
+| **template_selection** | [../model/List[TemplateSelection]](TemplateSelection.md) | Required | List of template selection, identifying policy templates to use for generation |
+| **selectors** | [../model/List[SelectorDefinition]](SelectorDefinition.md) | Optional | List of additional selectors to be included in the policy |
 
 
 ## Usage

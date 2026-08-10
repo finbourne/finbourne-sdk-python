@@ -5,7 +5,7 @@ The information that determines the rules for instrument event inheritance.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **parent_corporate_action_source_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **parent_corporate_action_source_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
 
 
 ## Usage

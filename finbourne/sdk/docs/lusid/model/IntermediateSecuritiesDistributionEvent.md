@@ -9,8 +9,8 @@ IntermediateSecuritiesDistribution event (RHDI), representing the distribution o
 | **ex_date** | **datetime** | Optional | The first date on which the holder of record has entitled ownership of the new shares. |
 | **record_date** | **datetime** | Optional | Optional.  Date you have to be the holder of record in order to receive the additional shares. |
 | **payment_date** | **datetime** | Optional | Date on which the distribution of shares takes place. |
-| **new_instrument** | [NewInstrument](NewInstrument.md) | Required | *No description available.* |
-| **units_ratio** | [UnitsRatio](UnitsRatio.md) | Required | *No description available.* |
+| **new_instrument** | [../model/NewInstrument](NewInstrument.md) | Required | *No description available.* |
+| **units_ratio** | [../model/UnitsRatio](UnitsRatio.md) | Required | *No description available.* |
 | **cost_factor** | **float** | Optional | Optional. The fraction of cost that is transferred from the existing shares to the new shares. |
 | **fractional_units_cash_price** | **float** | Optional | Optional. Used in calculating cash-in-lieu of fractional shares. |
 | **fractional_units_cash_currency** | **str** | Optional | Optional. Used in calculating cash-in-lieu of fractional shares. |

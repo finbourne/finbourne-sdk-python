@@ -14,7 +14,7 @@ Entity to capture the calculable and queryable methods and practices of determin
 | **rounding_decimal_places** | **int** | Required | Where a calculation needs to be rounded to a specific number of decimal places,  this states the number that that requires. |
 | **initial_margin_amount** | **float** | Required | The initial margin that is required. In the reference currency |
 | **minimum_transfer_amount** | **float** | Required | The minimum amount, in the reference currency, that must be transferred when required. |
-| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
 
 
 ## Usage

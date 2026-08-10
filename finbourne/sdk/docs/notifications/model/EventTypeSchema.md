@@ -9,8 +9,8 @@ An EventType object
 | **display_name** | **str** | Optional | Identifier name of the event |
 | **description** | **str** | Optional | The summary of the event |
 | **application** | **str** | Optional | The application associated with the event |
-| **header_schema** | [List[EventFieldDefinition]](EventFieldDefinition.md) | Optional | The header schema for the event type *(read-only)* |
-| **body_schema** | [List[EventFieldDefinition]](EventFieldDefinition.md) | Optional | The body schema for the event type *(read-only)* |
+| **header_schema** | [../model/List[EventFieldDefinition]](EventFieldDefinition.md) | Optional | The header schema for the event type *(read-only)* |
+| **body_schema** | [../model/List[EventFieldDefinition]](EventFieldDefinition.md) | Optional | The body schema for the event type *(read-only)* |
 | **href** | **str** | Optional | A URI for retrieving this schema |
 
 

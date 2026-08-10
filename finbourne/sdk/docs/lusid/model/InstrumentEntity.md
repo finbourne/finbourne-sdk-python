@@ -13,11 +13,11 @@ A list of instruments.
 | **user_id_deleted** | **str** | Optional | The unique id of the user who deleted the entity. |
 | **request_id_deleted** | **str** | Optional | The unique request id of the command that deleted the entity. |
 | **effective_at_created** | **datetime** | Optional | The EffectiveAt this Entity is created, if entity does not currently exist in EffectiveAt. |
-| **prevailing_instrument** | [Instrument](Instrument.md) | Optional | *No description available.* |
-| **deleted_instrument** | [Instrument](Instrument.md) | Optional | *No description available.* |
+| **prevailing_instrument** | [../model/Instrument](Instrument.md) | Optional | *No description available.* |
+| **deleted_instrument** | [../model/Instrument](Instrument.md) | Optional | *No description available.* |
 | **previewed_status** | **str** | Optional | The status of the previewed entity. Available values: Prevailing, Deleted, DoesNotExist. |
-| **previewed_instrument** | [Instrument](Instrument.md) | Optional | *No description available.* |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **previewed_instrument** | [../model/Instrument](Instrument.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

@@ -5,8 +5,8 @@ Container class pairing economic dependency and complex market data (i.e. discou
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **economic_dependency** | [EconomicDependency](EconomicDependency.md) | Required | *No description available.* |
-| **complex_market_data** | [ComplexMarketData](ComplexMarketData.md) | Required | *No description available.* |
+| **economic_dependency** | [../model/EconomicDependency](EconomicDependency.md) | Required | *No description available.* |
+| **complex_market_data** | [../model/ComplexMarketData](ComplexMarketData.md) | Required | *No description available.* |
 
 
 ## Usage

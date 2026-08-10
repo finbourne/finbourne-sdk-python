@@ -5,9 +5,9 @@ Response object from the user role API
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **resource** | [RoleResourceRequest](RoleResourceRequest.md) | Required | *No description available.* |
-| **id** | [RoleId](RoleId.md) | Required | *No description available.* |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **resource** | [../model/RoleResourceRequest](RoleResourceRequest.md) | Required | *No description available.* |
+| **id** | [../model/RoleId](RoleId.md) | Required | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

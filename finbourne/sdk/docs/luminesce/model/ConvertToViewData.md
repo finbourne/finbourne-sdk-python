@@ -9,7 +9,7 @@ Representation of view data where will template the data into a 'create view' sq
 | **name** | **str** | Required | Name of view |
 | **description** | **str** | Optional | Description of view |
 | **documentation_link** | **str** | Optional | Documentation link |
-| **view_parameters** | [List[ViewParameter]](ViewParameter.md) | Optional | View parameters |
+| **view_parameters** | [../model/List[ViewParameter]](ViewParameter.md) | Optional | View parameters |
 | **other_parameters** | **Dict[str, Optional[str]]** | Optional | Other parameters not explicitly handled by the ConvertToView generation. These will be populated by the \&quot;From SQL\&quot; and should simply be returned by the web GUI should the user edit / update / regenerate |
 | **starting_variable_name** | **str** | Optional | Which variable the this start with, null if not started from a full Create View Sql Statement. |
 

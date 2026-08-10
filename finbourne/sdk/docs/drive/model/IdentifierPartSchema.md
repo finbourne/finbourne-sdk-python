@@ -9,7 +9,7 @@
 | **display_name** | **str** | Required | *No description available.* |
 | **description** | **str** | Required | *No description available.* |
 | **required** | **bool** | Required | *No description available.* |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

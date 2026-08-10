@@ -5,8 +5,8 @@ A bundle of requests to configure a set of transaction types.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **transaction_config_requests** | [List[TransactionConfigurationDataRequest]](TransactionConfigurationDataRequest.md) | Required | Collection of transaction type models |
-| **side_config_requests** | [List[SideConfigurationDataRequest]](SideConfigurationDataRequest.md) | Optional | Collection of side definition requests. |
+| **transaction_config_requests** | [../model/List[TransactionConfigurationDataRequest]](TransactionConfigurationDataRequest.md) | Required | Collection of transaction type models |
+| **side_config_requests** | [../model/List[SideConfigurationDataRequest]](SideConfigurationDataRequest.md) | Optional | Collection of side definition requests. |
 
 
 ## Usage

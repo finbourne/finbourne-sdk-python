@@ -4,8 +4,8 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **start** | [DateOrDiaryEntry](DateOrDiaryEntry.md) | Optional | *No description available.* |
-| **end** | [DateOrDiaryEntry](DateOrDiaryEntry.md) | Optional | *No description available.* |
+| **start** | [../model/DateOrDiaryEntry](DateOrDiaryEntry.md) | Optional | *No description available.* |
+| **end** | [../model/DateOrDiaryEntry](DateOrDiaryEntry.md) | Optional | *No description available.* |
 | **variant** | **str** | Optional | Unique Variant for the given Valuation points. If not provided, defaults to empty string. |
 | **date_mode** | **str** | Optional | The mode of calculation of the journal entry lines. Available values: ActivityDate, AccountingDate. |
 | **general_ledger_profile_code** | **str** | Optional | The optional code of a general ledger profile used to decorate journal entry lines with levels. |

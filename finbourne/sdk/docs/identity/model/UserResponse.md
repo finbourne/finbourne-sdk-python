@@ -11,7 +11,7 @@
 | **login** | **str** | Required | *No description available.* |
 | **first_name** | **str** | Required | The user&#39;s first name |
 | **last_name** | **str** | Required | The user&#39;s last name |
-| **roles** | [List[RoleResponse]](RoleResponse.md) | Optional | The roles that the user has. |
+| **roles** | [../model/List[RoleResponse]](RoleResponse.md) | Optional | The roles that the user has. |
 | **type** | **str** | Required | The type of user (e.g. Personal or Service) |
 | **status** | **str** | Required | The status of the user |
 | **external** | **bool** | Required | Whether or not the user originates from an external identity system |
@@ -20,7 +20,7 @@
 | **created** | **datetime** | Optional | Date the user was created |
 | **password_changed** | **datetime** | Optional | Last time the password was changed for this user |
 | **user_expiry** | **datetime** | Optional | The user&#39;s expiry unix datetime |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

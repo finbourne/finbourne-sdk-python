@@ -4,10 +4,10 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **values** | [Dict[str, Person]](Person.md) | Required | The Person(s) that have been successfully upserted |
-| **failed** | [Dict[str, ErrorDetail]](ErrorDetail.md) | Required | The Person(s) that could not be upserted along with a reason for their failure. |
+| **values** | [../model/Dict[str, Person]](Person.md) | Required | The Person(s) that have been successfully upserted |
+| **failed** | [../model/Dict[str, ErrorDetail]](ErrorDetail.md) | Required | The Person(s) that could not be upserted along with a reason for their failure. |
 | **as_at_date** | **datetime** | Required | The as-at datetime at which Person(s) were created or updated. |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

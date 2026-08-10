@@ -5,8 +5,8 @@ A packed WebAPI OpenFigi DTO and PermId DTO
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **open_figi_result** | [OpenFigiData](OpenFigiData.md) | Required | *No description available.* |
-| **perm_id_result** | [PermIdData](PermIdData.md) | Optional | *No description available.* |
+| **open_figi_result** | [../model/OpenFigiData](OpenFigiData.md) | Required | *No description available.* |
+| **perm_id_result** | [../model/PermIdData](PermIdData.md) | Optional | *No description available.* |
 
 
 ## Usage

@@ -5,15 +5,15 @@ Create a schedule definition
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **schedule_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
-| **job_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **schedule_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **job_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
 | **name** | **str** | Required | A display name for this Schedule |
 | **description** | **str** | Required | A description of the Schedule |
 | **author** | **str** | Optional | Name of the author of this schedule |
 | **owner** | **str** | Optional | Name of owner of this schedule |
 | **arguments** | **Dict[str, Optional[str]]** | Optional | All arguments specified by this Schedule that will be passed in to the Job |
-| **trigger** | [Trigger](Trigger.md) | Optional | *No description available.* |
-| **notifications** | [List[Notification]](Notification.md) | Optional | Notifications for this Schedule |
+| **trigger** | [../model/Trigger](Trigger.md) | Optional | *No description available.* |
+| **notifications** | [../model/List[Notification]](Notification.md) | Optional | Notifications for this Schedule |
 | **enabled** | **bool** | Optional | Specify whether schedule is enabled or not Defaults to true |
 | **use_as_auth** | **str** | Optional | ID of user associated with schedule. All calls to FINBOURNE services as part of processing this schedule (such as calls to Config Service) will be authenticated as this  user. Can be null, in which case we&#39;ll default to that of the user  making this request. Given the image is a trusted image, we will also supply an FBN_PAT to the environment variables of the image which will hold the System PAT of this UseAsAuth user |
 

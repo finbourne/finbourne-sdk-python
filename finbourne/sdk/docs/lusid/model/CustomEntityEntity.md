@@ -12,11 +12,11 @@
 | **user_id_deleted** | **str** | Optional | The unique id of the user who deleted the entity. |
 | **request_id_deleted** | **str** | Optional | The unique request id of the command that deleted the entity. |
 | **effective_at_created** | **datetime** | Optional | The EffectiveAt this Entity is created, if entity does not currently exist in EffectiveAt. |
-| **prevailing_custom_entity** | [CustomEntityResponse](CustomEntityResponse.md) | Optional | *No description available.* |
-| **deleted_custom_entity** | [CustomEntityResponse](CustomEntityResponse.md) | Optional | *No description available.* |
+| **prevailing_custom_entity** | [../model/CustomEntityResponse](CustomEntityResponse.md) | Optional | *No description available.* |
+| **deleted_custom_entity** | [../model/CustomEntityResponse](CustomEntityResponse.md) | Optional | *No description available.* |
 | **previewed_status** | **str** | Optional | The status of the previewed entity. Available values: Prevailing, Deleted, DoesNotExist. |
-| **previewed_custom_entity** | [CustomEntityResponse](CustomEntityResponse.md) | Optional | *No description available.* |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **previewed_custom_entity** | [../model/CustomEntityResponse](CustomEntityResponse.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

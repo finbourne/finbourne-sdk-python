@@ -5,8 +5,8 @@ The details of the point to be appended to a complex market data item.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **market_data_id** | [ComplexMarketDataId](ComplexMarketDataId.md) | Required | *No description available.* |
-| **append_market_data** | [AppendMarketData](AppendMarketData.md) | Required | *No description available.* |
+| **market_data_id** | [../model/ComplexMarketDataId](ComplexMarketDataId.md) | Required | *No description available.* |
+| **append_market_data** | [../model/AppendMarketData](AppendMarketData.md) | Required | *No description available.* |
 
 
 ## Usage

@@ -5,7 +5,7 @@ Response for error highlighting
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **errors** | [List[ErrorHighlightItem]](ErrorHighlightItem.md) | Required | The errors within the Sql |
+| **errors** | [../model/List[ErrorHighlightItem]](ErrorHighlightItem.md) | Required | The errors within the Sql |
 | **sql_with_marker** | **str** | Required | The SQL this is for, with characters indicating the error locations |
 
 

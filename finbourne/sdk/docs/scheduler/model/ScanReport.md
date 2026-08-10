@@ -10,8 +10,8 @@ Represents the details of a security scan of an image
 | **start_time** | **datetime** | Optional | The start time of the scanning process |
 | **end_time** | **datetime** | Optional | The end time of the scanning process |
 | **scan_duration** | **int** | Optional | The duration of the scan in seconds |
-| **summary** | [ScanSummary](ScanSummary.md) | Optional | *No description available.* |
-| **vulnerabilities** | [List[Vulnerability]](Vulnerability.md) | Optional | List of Finbourne.Scheduler.WebApi.Dtos.Images.Vulnerability |
+| **summary** | [../model/ScanSummary](ScanSummary.md) | Optional | *No description available.* |
+| **vulnerabilities** | [../model/List[Vulnerability]](Vulnerability.md) | Optional | List of Finbourne.Scheduler.WebApi.Dtos.Images.Vulnerability |
 
 
 ## Usage

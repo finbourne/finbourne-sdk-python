@@ -8,11 +8,11 @@ The request used to create a Fund Structure.
 | **code** | **str** | Required | The code of the Fund Structure. |
 | **name** | **str** | Required | The display name of the Fund Structure. |
 | **description** | **str** | Optional | An optional description for the Fund Structure. |
-| **existing_funds** | [List[ResourceId]](ResourceId.md) | Optional | An optional list of existing funds to be incorporated as part of the structure. |
-| **new_funds** | [List[FundDefinitionRequest]](FundDefinitionRequest.md) | Optional | An optional list of Fund definitions to be created inline as part of the structure. |
-| **allocation_groups** | [List[AllocationGroup]](AllocationGroup.md) | Optional | An optional list of Allocation Groups that can apply across a Fund Structure. Only classes and feeder funds linked to the master fund specified are allowed. |
-| **nodes** | [List[FundStructureNode]](FundStructureNode.md) | Required | The list of nodes that make up the Fund Structure, each referencing a Fund and defining its role. |
-| **edges** | [List[FundStructureEdge]](FundStructureEdge.md) | Required | The list of edges that define the relationships between feeder and master nodes in the structure. |
+| **existing_funds** | [../model/List[ResourceId]](ResourceId.md) | Optional | An optional list of existing funds to be incorporated as part of the structure. |
+| **new_funds** | [../model/List[FundDefinitionRequest]](FundDefinitionRequest.md) | Optional | An optional list of Fund definitions to be created inline as part of the structure. |
+| **allocation_groups** | [../model/List[AllocationGroup]](AllocationGroup.md) | Optional | An optional list of Allocation Groups that can apply across a Fund Structure. Only classes and feeder funds linked to the master fund specified are allowed. |
+| **nodes** | [../model/List[FundStructureNode]](FundStructureNode.md) | Required | The list of nodes that make up the Fund Structure, each referencing a Fund and defining its role. |
+| **edges** | [../model/List[FundStructureEdge]](FundStructureEdge.md) | Required | The list of edges that define the relationships between feeder and master nodes in the structure. |
 
 
 ## Usage

@@ -5,7 +5,7 @@ Diagnostics for the scenario shifts a valuation applied: every market data targe
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **applied** | [List[AppliedScenarioShift]](AppliedScenarioShift.md) | Optional | One entry per market data target changed by a shift. |
+| **applied** | [../model/List[AppliedScenarioShift]](AppliedScenarioShift.md) | Optional | One entry per market data target changed by a shift. |
 | **skipped** | **List[str]** | Optional | Market data that matched a shift but was skipped (e.g. an element type that does not support  transformation), with the reason. Prefixed with the scenario&#39;s \&quot;scope/code\&quot; reference. |
 | **omitted_applied** | **int** | Optional | The number of further applied records omitted from this section, when the valuation changed  more targets than the section carries (large portfolios over long schedules). Null when  nothing was omitted. The market data manifest always carries the complete set. |
 

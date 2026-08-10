@@ -4,10 +4,10 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **transaction_reconciliation** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
-| **holding_reconciliation** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
-| **valuation_reconciliation** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
-| **cash_holding_reconciliation** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **transaction_reconciliation** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **holding_reconciliation** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **valuation_reconciliation** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **cash_holding_reconciliation** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
 
 
 ## Usage

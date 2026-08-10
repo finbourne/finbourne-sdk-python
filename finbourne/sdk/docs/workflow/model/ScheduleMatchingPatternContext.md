@@ -6,7 +6,7 @@ Context for a Schedule Matching Pattern
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **time_zone** | **str** | Required | The time zone to use. A TZ Identifier e.g. \&quot;Europe/London\&quot; |
-| **holiday_calendars** | [List[CalendarReference]](CalendarReference.md) | Optional | References to any Holiday Calendars to use |
+| **holiday_calendars** | [../model/List[CalendarReference]](CalendarReference.md) | Optional | References to any Holiday Calendars to use |
 
 
 ## Usage

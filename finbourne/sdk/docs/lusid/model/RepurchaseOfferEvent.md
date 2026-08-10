@@ -8,9 +8,9 @@ Representation of a repurchase offer corporate action.  Represents an offer by t
 | **payment_date** | **datetime** | Optional | Payment date of the event. |
 | **market_deadline_date** | **datetime** | Optional | Date set by the issuer or by an agent of the issuer as the latest date to respond to the offer. Must be before or equal to the PaymentDate. |
 | **repurchase_quantity** | **float** | Required | Quantity of the security to be repurchased. |
-| **cash_offer_elections** | [List[CashOfferElection]](CashOfferElection.md) | Required | List of possible CashOfferElections for this event. Only 1 should be provided. |
-| **lapse_elections** | [List[LapseElection]](LapseElection.md) | Required | List of possible LapseElections for this event. Only 1 should be provided.  Allows the user to opt out of the offer. |
-| **tender_offer_elections** | [List[TenderOfferElection]](TenderOfferElection.md) | Required | List of possible TenderOfferElections for this event. Only 1 should be provided. |
+| **cash_offer_elections** | [../model/List[CashOfferElection]](CashOfferElection.md) | Required | List of possible CashOfferElections for this event. Only 1 should be provided. |
+| **lapse_elections** | [../model/List[LapseElection]](LapseElection.md) | Required | List of possible LapseElections for this event. Only 1 should be provided.  Allows the user to opt out of the offer. |
+| **tender_offer_elections** | [../model/List[TenderOfferElection]](TenderOfferElection.md) | Required | List of possible TenderOfferElections for this event. Only 1 should be provided. |
 | **proration_rate** | **float** | Optional | The fraction used to calculate a proportional adjustment for RepurchaseQuantity when a full period is not used.  Defaults to 1 if not set. Must be greater than 0 and less than or equal to 1. Default: `1` |
 | **response_deadline_date** | **datetime** | Optional | Date set by the account servicer as the latest date to respond to the offer.  Optional. If set, must be before or equal to MarketDeadlineDate.  Defaults to MarketDeadlineDate if not set. |
 | **early_response_deadline** | **datetime** | Optional | Optional CTEN early-tender deadline. If set, must be on or before ResponseDeadlineDate.  Used for bond tender offers where early tenders attract a premium. |

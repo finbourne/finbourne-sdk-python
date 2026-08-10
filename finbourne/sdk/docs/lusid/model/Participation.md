@@ -5,12 +5,12 @@ The record an order's participation in a specific placement.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
-| **placement_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
-| **order_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
-| **version** | [Version](Version.md) | Optional | *No description available.* |
-| **data_model_membership** | [DataModelMembership](DataModelMembership.md) | Optional | *No description available.* |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **placement_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **order_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
+| **data_model_membership** | [../model/DataModelMembership](DataModelMembership.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

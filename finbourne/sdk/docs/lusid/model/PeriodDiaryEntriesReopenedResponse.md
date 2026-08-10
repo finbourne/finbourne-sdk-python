@@ -10,7 +10,7 @@
 | **period_diary_entries_removed** | **int** | Required | Number of Diary Entries removed as a result of reopening periods |
 | **period_diary_entries_from** | **datetime** | Required | The start point where periods were removed from |
 | **period_diary_entries_to** | **datetime** | Required | The end point where periods were removed to |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

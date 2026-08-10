@@ -5,9 +5,9 @@ Request to translate financial entities with a specified script stored in LUSID,
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **entity_payloads** | [Dict[str, TranslationInput]](TranslationInput.md) | Required | Entity payloads to be translated, indexed by (ephemeral) unique correlation ids. |
-| **script_id** | [TranslationScriptId](TranslationScriptId.md) | Required | *No description available.* |
-| **dialect_id** | [DialectId](DialectId.md) | Optional | *No description available.* |
+| **entity_payloads** | [../model/Dict[str, TranslationInput]](TranslationInput.md) | Required | Entity payloads to be translated, indexed by (ephemeral) unique correlation ids. |
+| **script_id** | [../model/TranslationScriptId](TranslationScriptId.md) | Required | *No description available.* |
+| **dialect_id** | [../model/DialectId](DialectId.md) | Optional | *No description available.* |
 
 
 ## Usage

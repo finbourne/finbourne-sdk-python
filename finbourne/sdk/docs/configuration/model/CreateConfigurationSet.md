@@ -5,7 +5,7 @@ The information required to create a new configuration set
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
 | **type** | **str** | Required | The type (personal or shared) of the new configuration set |
 | **description** | **str** | Optional | The description of the new configuration set |
 

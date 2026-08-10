@@ -4,8 +4,8 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **values** | [Dict[str, ResourceId]](ResourceId.md) | Optional | The identifiers of blocks which have been successfully swept, indexed by ephemeral request-lived id. |
-| **failed** | [Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The identifiers of blocks that could not be swept, along with a reason for their failure. |
+| **values** | [../model/Dict[str, ResourceId]](ResourceId.md) | Optional | The identifiers of blocks which have been successfully swept, indexed by ephemeral request-lived id. |
+| **failed** | [../model/Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The identifiers of blocks that could not be swept, along with a reason for their failure. |
 
 
 ## Usage

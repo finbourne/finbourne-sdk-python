@@ -7,9 +7,9 @@
 | **entity_sub_type** | **str** | Optional | *No description available.* |
 | **entity_type** | **str** | Required | *No description available.* |
 | **optionality** | **str** | Required | *No description available.* |
-| **var_property** | [LusidPropertyDefinition](LusidPropertyDefinition.md) | Required | *No description available.* |
+| **var_property** | [../model/LusidPropertyDefinition](LusidPropertyDefinition.md) | Required | *No description available.* |
 | **transformation_description** | **str** | Optional | *No description available.* |
-| **vendor_fields** | [List[VendorField]](VendorField.md) | Required | *No description available.* |
+| **vendor_fields** | [../model/List[VendorField]](VendorField.md) | Required | *No description available.* |
 | **versions** | **List[str]** | Required | *No description available.* |
 
 

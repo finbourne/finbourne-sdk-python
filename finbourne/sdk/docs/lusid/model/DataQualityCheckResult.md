@@ -17,7 +17,7 @@ Represents the result of a data quality check operation
 | **rule_description** | **str** | Optional | The description of the rule (for RuleInvalid, RuleBreached, RuleBreachesOverLimit) |
 | **rule_formula** | **str** | Optional | The formula of the rule (for RuleInvalid, RuleBreached, RuleBreachesOverLimit) |
 | **severity** | **int** | Optional | The severity level |
-| **lusid_entity** | [LusidEntityResult](LusidEntityResult.md) | Optional | *No description available.* |
+| **lusid_entity** | [../model/LusidEntityResult](LusidEntityResult.md) | Optional | *No description available.* |
 | **count_rule_breaches** | **int** | Optional | The count of rule breaches (1 for RuleBreached, multiple for RuleBreachesOverLimit) |
 | **error_detail** | **str** | Optional | Error details (for RulesetInvalid, RuleInvalid) |
 | **result_id** | **str** | Optional | Unique identifier for the result in format: {{GUID of Check Definition}}-{{resultType}}-{{rulesetKey}}-{{ruleKey}}-{{entity GUID}} |

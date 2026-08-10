@@ -5,9 +5,9 @@ The response from upserting a set of Payment Instructions. Each request key from
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **successes** | [Dict[str, PaymentInstruction]](PaymentInstruction.md) | Optional | The Payment Instructions that were created or updated successfully, keyed by the ephemeral request key supplied by the caller. |
-| **failed** | [Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | Details of the requests that failed, keyed by the ephemeral request key supplied by the caller. |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **successes** | [../model/Dict[str, PaymentInstruction]](PaymentInstruction.md) | Optional | The Payment Instructions that were created or updated successfully, keyed by the ephemeral request key supplied by the caller. |
+| **failed** | [../model/Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | Details of the requests that failed, keyed by the ephemeral request key supplied by the caller. |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

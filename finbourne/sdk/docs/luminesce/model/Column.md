@@ -9,12 +9,12 @@
 | **is_required_by_provider** | **bool** | Optional | *No description available.* |
 | **mandatory_for_actions** | **str** | Optional | *No description available.* |
 | **action_template** | **str** | Optional | *No description available.* |
-| **lineage** | [Lineage](Lineage.md) | Optional | *No description available.* |
+| **lineage** | [../model/Lineage](Lineage.md) | Optional | *No description available.* |
 | **name** | **str** | Optional | *No description available.* |
-| **type** | [DataType](DataType.md) | Optional | *No description available.* |
+| **type** | [../model/DataType](DataType.md) | Optional | *No description available.* |
 | **description** | **str** | Optional | *No description available.* |
 | **display_name** | **str** | Optional | *No description available.* |
-| **condition_usage** | [ConditionAttributes](ConditionAttributes.md) | Optional | *No description available.* |
+| **condition_usage** | [../model/ConditionAttributes](ConditionAttributes.md) | Optional | *No description available.* |
 | **sample_values** | **str** | Optional | *No description available.* |
 | **allowed_values** | **str** | Optional | *No description available.* |
 

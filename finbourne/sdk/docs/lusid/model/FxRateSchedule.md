@@ -5,7 +5,7 @@ Schedule to define fx conversion of cashflows on complex bonds. If an fx schedul
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **flow_conventions** | [FlowConventions](FlowConventions.md) | Optional | *No description available.* |
+| **flow_conventions** | [../model/FlowConventions](FlowConventions.md) | Optional | *No description available.* |
 | **fx_conversion_types** | **List[str]** | Optional | List of flags to indicate if coupon payments, principal payments or both are converted |
 | **rate** | **float** | Optional | FxRate used to convert payments. Assumed to be in units of the ToCurrency so conversion is paymentAmount x fxRate |
 | **to_currency** | **str** | Optional | Currency that payments are converted to |

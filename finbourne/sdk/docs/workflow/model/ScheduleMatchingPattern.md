@@ -5,8 +5,8 @@ The Schedule Matching Pattern to trigger on
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **context** | [ScheduleMatchingPatternContext](ScheduleMatchingPatternContext.md) | Required | *No description available.* |
-| **recurrence_pattern** | [RecurrencePattern](RecurrencePattern.md) | Required | *No description available.* |
+| **context** | [../model/ScheduleMatchingPatternContext](ScheduleMatchingPatternContext.md) | Required | *No description available.* |
+| **recurrence_pattern** | [../model/RecurrencePattern](RecurrencePattern.md) | Required | *No description available.* |
 
 
 ## Usage

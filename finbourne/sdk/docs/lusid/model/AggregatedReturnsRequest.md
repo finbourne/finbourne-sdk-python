@@ -5,9 +5,9 @@ The request used in the AggregatedReturns.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **metrics** | [List[PerformanceReturnsMetric]](PerformanceReturnsMetric.md) | Required | A list of metrics to calculate in the AggregatedReturns. |
-| **return_ids** | [List[ResourceId]](ResourceId.md) | Optional | The Scope and code of the returns. |
-| **recipe_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **metrics** | [../model/List[PerformanceReturnsMetric]](PerformanceReturnsMetric.md) | Required | A list of metrics to calculate in the AggregatedReturns. |
+| **return_ids** | [../model/List[ResourceId]](ResourceId.md) | Optional | The Scope and code of the returns. |
+| **recipe_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **composite_method** | **str** | Optional | The method used to calculate the Portfolio performance. Available values: Equal, Asset. |
 | **period** | **str** | Optional | The type of the returns used to calculate the aggregation result. Available values: Daily, Monthly. |
 | **output_frequency** | **str** | Optional | The type of calculated output. Available values: Daily, Weekly, Monthly, Quarterly, HalfYearly, Yearly. |

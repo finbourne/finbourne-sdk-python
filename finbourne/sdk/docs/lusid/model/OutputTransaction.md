@@ -15,38 +15,38 @@ A list of output transactions.
 | **settlement_date** | **datetime** | Required | The settlement date of the transaction. |
 | **units** | **float** | Required | The number of units transacted in the associated instrument. |
 | **transaction_amount** | **float** | Optional | The total value of the transaction in the transaction currency. |
-| **transaction_price** | [TransactionPrice](TransactionPrice.md) | Optional | *No description available.* |
-| **total_consideration** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
+| **transaction_price** | [../model/TransactionPrice](TransactionPrice.md) | Optional | *No description available.* |
+| **total_consideration** | [../model/CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
 | **exchange_rate** | **float** | Optional | The exchange rate between the transaction and settlement currency (settlement currency being represented by the TotalConsideration.Currency). For example if the transaction currency is in USD and the settlement currency is in GBP this this the USD/GBP rate. |
 | **transaction_to_portfolio_rate** | **float** | Optional | The exchange rate between the transaction and portfolio currency. For example if the transaction currency is in USD and the portfolio currency is in GBP this this the USD/GBP rate. |
 | **transaction_currency** | **str** | Optional | The transaction currency. |
-| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Set of unique transaction properties and associated values to stored with the transaction. Each property will be from the &#39;Transaction&#39; domain. |
+| **properties** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Set of unique transaction properties and associated values to stored with the transaction. Each property will be from the &#39;Transaction&#39; domain. |
 | **counterparty_id** | **str** | Optional | The identifier for the counterparty of the transaction. |
 | **source** | **str** | Optional | The source of the transaction. This is used to look up the appropriate transaction group set in the transaction type configuration. |
 | **transaction_status** | **str** | Optional | The status of the transaction. Available values: Active, Amended, Cancelled, ActiveReversal, ActiveTrueUp, CancelledTrueUp. |
 | **entry_date_time** | **datetime** | Optional | The asAt datetime that the transaction was added to LUSID. |
 | **cancel_date_time** | **datetime** | Optional | If the transaction has been cancelled, the asAt datetime that the transaction was cancelled. |
-| **realised_gain_loss** | [List[RealisedGainLoss]](RealisedGainLoss.md) | Optional | The collection of realised gains or losses resulting from relevant transactions e.g. a sale transaction. The cost used in calculating the realised gain or loss is determined by the accounting method defined when the transaction portfolio is created. |
+| **realised_gain_loss** | [../model/List[RealisedGainLoss]](RealisedGainLoss.md) | Optional | The collection of realised gains or losses resulting from relevant transactions e.g. a sale transaction. The cost used in calculating the realised gain or loss is determined by the accounting method defined when the transaction portfolio is created. |
 | **holding_ids** | **List[int]** | Optional | The collection of single identifiers for the holding within the portfolio. The holdingId is constructed from the LusidInstrumentId, sub-holding keys and currrency and is unique within the portfolio. |
 | **source_type** | **str** | Optional | The type of source that the transaction originated from. Available values: Unknown, InputTransaction, InstrumentEvent, HoldingAdjustment, OverriddenVirtualTransaction. |
 | **source_instrument_event_id** | **str** | Optional | The unique ID of the instrument event that the transaction is related to. |
-| **custodian_account** | [CustodianAccount](CustodianAccount.md) | Optional | *No description available.* |
+| **custodian_account** | [../model/CustodianAccount](CustodianAccount.md) | Optional | *No description available.* |
 | **transaction_group_id** | **str** | Optional | The identifier for grouping economic events across multiple transactions |
-| **resolved_transaction_type_details** | [TransactionTypeDetails](TransactionTypeDetails.md) | Optional | *No description available.* |
+| **resolved_transaction_type_details** | [../model/TransactionTypeDetails](TransactionTypeDetails.md) | Optional | *No description available.* |
 | **gross_transaction_amount** | **float** | Optional | The total gross value of the transaction in the transaction currency. |
-| **otc_confirmation** | [OtcConfirmation](OtcConfirmation.md) | Optional | *No description available.* |
-| **order_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
-| **allocation_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **otc_confirmation** | [../model/OtcConfirmation](OtcConfirmation.md) | Optional | *No description available.* |
+| **order_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **allocation_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **accounting_date** | **datetime** | Optional | The accounting date of the transaction. |
-| **economics** | [List[Economics]](Economics.md) | Optional | Set of economic data related with the transaction impacts. |
-| **data_model_membership** | [DataModelMembership](DataModelMembership.md) | Optional | *No description available.* |
+| **economics** | [../model/List[Economics]](Economics.md) | Optional | Set of economic data related with the transaction impacts. |
+| **data_model_membership** | [../model/DataModelMembership](DataModelMembership.md) | Optional | *No description available.* |
 | **sequence** | **int** | Optional | The sequential position in which this transaction was processed. |
 | **sequence_priority** | **int** | Optional | The calculated priority level for this transaction. |
-| **settlement_summary** | [TransactionSettlementSummary](TransactionSettlementSummary.md) | Optional | *No description available.* |
-| **version** | [Version](Version.md) | Optional | *No description available.* |
-| **staged_modifications** | [StagedModificationsInfo](StagedModificationsInfo.md) | Optional | *No description available.* |
-| **custodian_entries** | [List[CustodianEntry]](CustodianEntry.md) | Optional | Set of of Custodian Entries associated with the transaction. |
-| **resolved_custodian_accounts** | [List[ResolvedCustodianAccount]](ResolvedCustodianAccount.md) | Optional | Set of Custodian Accounts resolved from each movement on the Transaction. |
+| **settlement_summary** | [../model/TransactionSettlementSummary](TransactionSettlementSummary.md) | Optional | *No description available.* |
+| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
+| **staged_modifications** | [../model/StagedModificationsInfo](StagedModificationsInfo.md) | Optional | *No description available.* |
+| **custodian_entries** | [../model/List[CustodianEntry]](CustodianEntry.md) | Optional | Set of of Custodian Entries associated with the transaction. |
+| **resolved_custodian_accounts** | [../model/List[ResolvedCustodianAccount]](ResolvedCustodianAccount.md) | Optional | Set of Custodian Accounts resolved from each movement on the Transaction. |
 | **is_excluded** | **bool** | Optional | Whether the transaction was excluded from the portfolio&#39;s holdings by the portfolio&#39;s transaction exclusion filter. |
 
 

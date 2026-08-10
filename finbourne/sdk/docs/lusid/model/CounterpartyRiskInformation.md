@@ -6,8 +6,8 @@ In the event that the legal entity is a counterparty to an OTC transaction  (as 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **country_of_risk** | **str** | Required | The country to which one would naturally ascribe risk, typically the legal entity&#39;s country of registration. This can be used to infer funding currency and related market data in the absence of a specific preference. |
-| **credit_ratings** | [List[CreditRating]](CreditRating.md) | Required |  |
-| **industry_classifiers** | [List[IndustryClassifier]](IndustryClassifier.md) | Required |  |
+| **credit_ratings** | [../model/List[CreditRating]](CreditRating.md) | Required |  |
+| **industry_classifiers** | [../model/List[IndustryClassifier]](IndustryClassifier.md) | Required |  |
 
 
 ## Usage

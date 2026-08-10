@@ -27,7 +27,7 @@ Holds logged information about an access check performed on an API.
 | **access_execution_time** | **str** | Optional | The execution time of the entitlement. |
 | **access_as_at_time** | **str** | Optional | The AsAt time of the entitlement. |
 | **required_licence_policy_id** | **str** | Optional | ID of the required licence policy. |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

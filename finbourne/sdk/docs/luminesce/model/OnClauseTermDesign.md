@@ -7,9 +7,9 @@ A single on clause term (a pair of columns to join or a column to filter on)
 |------|------|----------|-------------|
 | **left_table_field** | **str** | Optional | Name of field in the left table to join to (complex expressions are not supported at this time) |
 | **right_table_field** | **str** | Optional | Name of field in the left table to join to (complex expressions are not supported at this time) |
-| **operator** | [QueryDesignerBinaryOperator](QueryDesignerBinaryOperator.md) | Required | *No description available.* |
+| **operator** | [../model/QueryDesignerBinaryOperator](QueryDesignerBinaryOperator.md) | Required | *No description available.* |
 | **filter_value** | **str** | Optional | The value to compare against (always as a string, but will be formatted to the correct type) |
-| **filter_value_data_type** | [DataType](DataType.md) | Optional | *No description available.* |
+| **filter_value_data_type** | [../model/DataType](DataType.md) | Optional | *No description available.* |
 
 
 ## Usage

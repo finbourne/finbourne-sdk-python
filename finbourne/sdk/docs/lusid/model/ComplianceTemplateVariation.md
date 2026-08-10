@@ -6,10 +6,10 @@
 |------|------|----------|-------------|
 | **label** | **str** | Required | Label of a Compliance Template Variation |
 | **description** | **str** | Required | The description of the Compliance Template Variation |
-| **required_parameters** | [List[ComplianceTemplateParameter]](ComplianceTemplateParameter.md) | Required | A parameter required by a Compliance Template Variation |
-| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Required | Properties associated with the Compliance Template Variation |
-| **accepted_address_keys** | [ResourceId](ResourceId.md) | Required | *No description available.* |
-| **steps** | [List[ComplianceStep]](ComplianceStep.md) | Required | The steps expressed in this template, with their required parameters |
+| **required_parameters** | [../model/List[ComplianceTemplateParameter]](ComplianceTemplateParameter.md) | Required | A parameter required by a Compliance Template Variation |
+| **properties** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Required | Properties associated with the Compliance Template Variation |
+| **accepted_address_keys** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **steps** | [../model/List[ComplianceStep]](ComplianceStep.md) | Required | The steps expressed in this template, with their required parameters |
 | **referenced_group_label** | **str** | Optional | The label of a given referenced group in a Compliance Rule Template Variation |
 
 

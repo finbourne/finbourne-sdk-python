@@ -5,9 +5,9 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **href** | **str** | Optional | *No description available.* |
-| **value** | [SubscriptionDefinition](SubscriptionDefinition.md) | Optional | *No description available.* |
-| **failed** | [ErrorDetail](ErrorDetail.md) | Optional | *No description available.* |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **value** | [../model/SubscriptionDefinition](SubscriptionDefinition.md) | Optional | *No description available.* |
+| **failed** | [../model/ErrorDetail](ErrorDetail.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **metadata** | [List[AccessMetadataValue]](AccessMetadataValue.md) | Required | The access control metadata to assign to portfolios that match the identifier |
+| **metadata** | [../model/List[AccessMetadataValue]](AccessMetadataValue.md) | Required | The access control metadata to assign to portfolios that match the identifier |
 
 
 ## Usage

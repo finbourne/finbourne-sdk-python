@@ -9,7 +9,7 @@ Holds metadata for a trace.
 | **created_at** | **datetime** | Required | The datetime at which the trace was created. |
 | **user_id** | **str** | Required | The id of the user who created the trace. |
 | **description** | **str** | Optional | The description of the trace. |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

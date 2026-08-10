@@ -9,7 +9,7 @@ Encapsulates parts of a market data rule relating not to the nature of the marke
 | **asset_class** | **str** | Optional | Specify that a rule should only apply if the market data is requested by an instrument of a given asset class.  If null, then no filtering on asset class is applied. Available values: InterestRates, FX, Inflation, Equities, Credit, Commodities, Money, Unknown, RealEstate, Exotic. |
 | **dom_ccy** | **str** | Optional | Specify that a rule should only apply if the market data is requested by an instrument with a given domestic currency.  If null, then no filtering on currency is applied. |
 | **long_or_short_indicator** | **str** | Optional | Specify that a rule should apply if the market data is requested by a model with a given Long or Short indicator.  If none, then no filtering on LongOrShortIndicator is applied. Available values: NA, Long, Short. |
-| **address_key_filters** | [List[AddressKeyFilter]](AddressKeyFilter.md) | Optional | Specify that a rule should apply if the market data is requested by an instrument with features or properties  satisfying all the given address key filters. If an empty list is given, no additional filtering is done. |
+| **address_key_filters** | [../model/List[AddressKeyFilter]](AddressKeyFilter.md) | Optional | Specify that a rule should apply if the market data is requested by an instrument with features or properties  satisfying all the given address key filters. If an empty list is given, no additional filtering is done. |
 
 
 ## Usage

@@ -5,11 +5,11 @@ The information required to create a subscription
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
 | **display_name** | **str** | Required | The name of the subscription |
 | **description** | **str** | Optional | The summary of the services provided by the subscription |
 | **status** | **str** | Required | The current status of the subscription. Possible values are: Active, Inactive |
-| **matching_pattern** | [MatchingPattern](MatchingPattern.md) | Required | *No description available.* |
+| **matching_pattern** | [../model/MatchingPattern](MatchingPattern.md) | Required | *No description available.* |
 | **use_as_auth** | **str** | Optional | Id of user associated with subscription. All events associated with  the subscription will use this user to check entitlements against  the resource to send a notification. Can be null, in which case  we&#39;ll default to that of the user making this request |
 
 

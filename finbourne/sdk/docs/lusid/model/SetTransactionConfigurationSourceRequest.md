@@ -4,9 +4,9 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **aliases** | [List[SetTransactionConfigurationAlias]](SetTransactionConfigurationAlias.md) | Required | *No description available.* |
-| **movements** | [List[TransactionConfigurationMovementDataRequest]](TransactionConfigurationMovementDataRequest.md) | Required | *No description available.* |
-| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | *No description available.* |
+| **aliases** | [../model/List[SetTransactionConfigurationAlias]](SetTransactionConfigurationAlias.md) | Required | *No description available.* |
+| **movements** | [../model/List[TransactionConfigurationMovementDataRequest]](TransactionConfigurationMovementDataRequest.md) | Required | *No description available.* |
+| **properties** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | *No description available.* |
 
 
 ## Usage

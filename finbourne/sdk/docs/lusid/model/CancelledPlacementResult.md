@@ -4,8 +4,8 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **placement_state** | [Placement](Placement.md) | Optional | *No description available.* |
-| **cancelled_child_placements** | [List[ResourceId]](ResourceId.md) | Required | Child placements which have also been cancelled following cancellation of the parent |
+| **placement_state** | [../model/Placement](Placement.md) | Optional | *No description available.* |
+| **cancelled_child_placements** | [../model/List[ResourceId]](ResourceId.md) | Required | Child placements which have also been cancelled following cancellation of the parent |
 
 
 ## Usage

@@ -4,8 +4,8 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **block** | [Block](Block.md) | Required | *No description available.* |
-| **orders** | [List[Order]](Order.md) | Required | *No description available.* |
+| **block** | [../model/Block](Block.md) | Required | *No description available.* |
+| **orders** | [../model/List[Order]](Order.md) | Required | *No description available.* |
 
 
 ## Usage

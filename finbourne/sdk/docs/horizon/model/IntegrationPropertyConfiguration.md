@@ -6,8 +6,8 @@ Response containing the description of an integration.
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **type** | **str** | Required | The Integration this property configuration applies to |
-| **properties** | [List[PropertyMapping]](PropertyMapping.md) | Required | The mandatory and optional properties available in this integration |
-| **fields** | [List[FieldMapping]](FieldMapping.md) | Required | The fields available in this integration |
+| **properties** | [../model/List[PropertyMapping]](PropertyMapping.md) | Required | The mandatory and optional properties available in this integration |
+| **fields** | [../model/List[FieldMapping]](FieldMapping.md) | Required | The fields available in this integration |
 
 
 ## Usage

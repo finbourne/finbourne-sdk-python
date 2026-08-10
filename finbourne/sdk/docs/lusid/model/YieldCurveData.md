@@ -6,11 +6,11 @@ Market data for a yield curve,  represented by a list of instruments and corresp
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **base_date** | **datetime** | Required | Base date |
-| **instruments** | [List[LusidInstrument]](LusidInstrument.md) | Required | The set of instruments that define the curve. |
-| **quotes** | [List[MarketQuote]](MarketQuote.md) | Required | The market quotes corresponding to the the instruments used to define the curve |
+| **instruments** | [../model/List[LusidInstrument]](LusidInstrument.md) | Required | The set of instruments that define the curve. |
+| **quotes** | [../model/List[MarketQuote]](MarketQuote.md) | Required | The market quotes corresponding to the the instruments used to define the curve |
 | **lineage** | **str** | Optional | Description of the complex market data&#39;s lineage e.g. &#39;FundAccountant_GreenQuality&#39;. |
-| **market_data_options** | [MarketDataOptions](MarketDataOptions.md) | Optional | *No description available.* |
-| **version** | [Version](Version.md) | Optional | *No description available.* |
+| **market_data_options** | [../model/MarketDataOptions](MarketDataOptions.md) | Optional | *No description available.* |
+| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
 | **market_data_type** | **str** | Required | Available values: DiscountFactorCurveData, EquityVolSurfaceData, FxVolSurfaceData, IrVolCubeData, OpaqueMarketData, YieldCurveData, FxForwardCurveData, FxForwardPipsCurveData, FxForwardTenorCurveData, FxForwardTenorPipsCurveData, FxForwardCurveByQuoteReference, CreditSpreadCurveData, EquityCurveByPricesData, ConstantVolatilitySurface. |
 
 

@@ -16,7 +16,7 @@ An object representation of a drive file or folder
 | **size** | **int** | Optional | Size of the file in bytes |
 | **status** | **str** | Optional | File status corresponding to virus scan status. (Active, Available, Checking, MalwareDetected, Failed) |
 | **status_detail** | **str** | Optional | Detailed description describing any negative terminal state of file |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

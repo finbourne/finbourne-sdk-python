@@ -5,7 +5,7 @@ An atomic operation used in Recipe composer to compose a Configuration Recipe
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **value** | [RecipeValue](RecipeValue.md) | Optional | *No description available.* |
+| **value** | [../model/RecipeValue](RecipeValue.md) | Optional | *No description available.* |
 | **path** | **str** | Optional | Path of the Value that the operation is to be performed on. |
 | **op** | **str** | Optional | Operation to be performed on the part of the value. |
 

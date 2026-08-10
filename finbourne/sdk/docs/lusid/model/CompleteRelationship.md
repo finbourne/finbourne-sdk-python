@@ -6,10 +6,10 @@ Representation of a relationship containing details of source and target entitie
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
-| **version** | [Version](Version.md) | Optional | *No description available.* |
-| **relationship_definition_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
-| **source_entity** | [RelatedEntity](RelatedEntity.md) | Required | *No description available.* |
-| **target_entity** | [RelatedEntity](RelatedEntity.md) | Required | *No description available.* |
+| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
+| **relationship_definition_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **source_entity** | [../model/RelatedEntity](RelatedEntity.md) | Required | *No description available.* |
+| **target_entity** | [../model/RelatedEntity](RelatedEntity.md) | Required | *No description available.* |
 | **outward_description** | **str** | Required | Description of the relationship based on relationship definition&#39;s outward description. |
 | **inward_description** | **str** | Required | Description of the relationship based on relationship definition&#39;s inward description. |
 | **effective_from** | **datetime** | Optional | The effective datetime from which the relationship is valid. |

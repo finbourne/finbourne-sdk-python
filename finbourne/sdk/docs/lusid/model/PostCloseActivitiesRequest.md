@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **post_close_activities** | [List[PostCloseActivity]](PostCloseActivity.md) | Required | A collection of post-close activities. |
+| **post_close_activities** | [../model/List[PostCloseActivity]](PostCloseActivity.md) | Required | A collection of post-close activities. |
 
 
 ## Usage

@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **quality** | [DateQuality](DateQuality.md) | Optional | *No description available.* |
+| **quality** | [../model/DateQuality](DateQuality.md) | Optional | *No description available.* |
 
 
 ## Usage

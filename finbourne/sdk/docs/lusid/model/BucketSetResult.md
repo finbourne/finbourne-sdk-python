@@ -6,7 +6,7 @@ A valuation point's results for one bucket set: whether the set is the apportion
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **is_apportionment** | **bool** | Required | Whether this bucket set is the apportionment set (apportioning non-class-specific P&amp;L across share classes). |
-| **nodes** | [List[BucketSetNode]](BucketSetNode.md) | Required | The nodes making up the bucket set: the fund aggregate and one per share class. |
+| **nodes** | [../model/List[BucketSetNode]](BucketSetNode.md) | Required | The nodes making up the bucket set: the fund aggregate and one per share class. |
 
 
 ## Usage

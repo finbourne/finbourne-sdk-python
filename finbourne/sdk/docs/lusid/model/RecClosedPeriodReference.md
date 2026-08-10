@@ -5,7 +5,7 @@ A reference to a closed period created on a timeline when the instance was locke
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **timeline_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **timeline_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
 | **closed_period_id** | **str** | Required | The identifier of the closed period. |
 
 

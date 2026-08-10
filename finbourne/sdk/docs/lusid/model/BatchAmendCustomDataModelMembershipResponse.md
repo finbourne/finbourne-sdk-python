@@ -4,9 +4,9 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **values** | [Dict[str, MembershipAmendmentResponse]](MembershipAmendmentResponse.md) | Optional | *No description available.* |
-| **staged** | [Dict[str, MembershipAmendmentResponse]](MembershipAmendmentResponse.md) | Optional | *No description available.* |
-| **failed** | [Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | *No description available.* |
+| **values** | [../model/Dict[str, MembershipAmendmentResponse]](MembershipAmendmentResponse.md) | Optional | *No description available.* |
+| **staged** | [../model/Dict[str, MembershipAmendmentResponse]](MembershipAmendmentResponse.md) | Optional | *No description available.* |
+| **failed** | [../model/Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | *No description available.* |
 | **metadata** | **Dict[str, Optional[List[ResponseMetaData]]]** | Optional | *No description available.* |
 
 

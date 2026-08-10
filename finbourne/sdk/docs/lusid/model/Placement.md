@@ -5,27 +5,27 @@ A street order for a quantity of a single instrument placed with a single market
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
-| **parent_placement_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
-| **block_ids** | [List[ResourceId]](ResourceId.md) | Required | The IDs of the Blocks associated with this placement. |
-| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Client-defined properties associated with this placement. |
+| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **parent_placement_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **block_ids** | [../model/List[ResourceId]](ResourceId.md) | Required | The IDs of the Blocks associated with this placement. |
+| **properties** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Client-defined properties associated with this placement. |
 | **instrument_identifiers** | **Dict[str, Optional[str]]** | Required | The instrument ordered. |
 | **lusid_instrument_id** | **str** | Required | The LUSID instrument id for the instrument placement. |
 | **quantity** | **float** | Optional | The quantity of given instrument ordered. |
-| **amount** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
+| **amount** | [../model/CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
 | **state** | **str** | Required | The state of this placement (typically a FIX state; Open, Filled, etc). |
 | **side** | **str** | Required | The side (Buy, Sell, ...) of this placement. |
 | **time_in_force** | **str** | Required | The time in force applicable to this placement (GTC, FOK, Day, etc) |
 | **type** | **str** | Required | The type of this placement (Market, Limit, etc). |
 | **created_date** | **datetime** | Required | The active date of this placement. |
-| **limit_price** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
-| **stop_price** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
+| **limit_price** | [../model/CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
+| **stop_price** | [../model/CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
 | **counterparty** | **str** | Optional | Optionally specifies the market entity this placement is placed with. |
 | **execution_system** | **str** | Optional | Optionally specifies the execution system in use. |
 | **entry_type** | **str** | Optional | Optionally specifies the entry type of this placement. |
-| **version** | [Version](Version.md) | Optional | *No description available.* |
-| **data_model_membership** | [DataModelMembership](DataModelMembership.md) | Optional | *No description available.* |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
+| **data_model_membership** | [../model/DataModelMembership](DataModelMembership.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

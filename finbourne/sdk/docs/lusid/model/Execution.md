@@ -5,9 +5,9 @@ The record of a number of executions against a single Placement (directly analog
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
-| **placement_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
-| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Client-defined properties associated with this execution. |
+| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **placement_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **properties** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Client-defined properties associated with this execution. |
 | **instrument_identifiers** | **Dict[str, Optional[str]]** | Required | The instrument ordered. |
 | **lusid_instrument_id** | **str** | Required | The LUSID instrument id for the instrument execution. |
 | **quantity** | **float** | Required | The quantity of given instrument ordered. |
@@ -16,14 +16,14 @@ The record of a number of executions against a single Placement (directly analog
 | **type** | **str** | Required | The type of this execution (Market, Limit, etc). |
 | **created_date** | **datetime** | Required | The active date of this execution. |
 | **settlement_date** | **datetime** | Optional | The (optional) settlement date for this execution |
-| **price** | [CurrencyAndAmount](CurrencyAndAmount.md) | Required | *No description available.* |
+| **price** | [../model/CurrencyAndAmount](CurrencyAndAmount.md) | Required | *No description available.* |
 | **settlement_currency** | **str** | Required | The execution&#39;s settlement currency. |
 | **settlement_currency_fx_rate** | **float** | Required | The exectuion&#39;s settlement currency rate. |
 | **counterparty** | **str** | Required | The market entity this placement is placed with. |
 | **average_price** | **float** | Optional | The average price of all executions for a given placement at the time of upsert |
-| **version** | [Version](Version.md) | Optional | *No description available.* |
-| **data_model_membership** | [DataModelMembership](DataModelMembership.md) | Optional | *No description available.* |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
+| **data_model_membership** | [../model/DataModelMembership](DataModelMembership.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
 | **increment** | **int** | Required | The Resource Id of the sequence definition |
 | **min_value** | **int** | Required | The minimum value of the sequence |
 | **max_value** | **int** | Required | The maximum value of the sequence |
@@ -12,7 +12,7 @@
 | **value** | **int** | Optional | The last used value of the sequence |
 | **cycle** | **bool** | Required | Indicates if the sequence would start from minimun value once it reaches maximum value. If set to false, a failure would return if the sequence reaches maximum value. |
 | **pattern** | **str** | Optional | The pattern to be used to generate next values in the sequence. |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

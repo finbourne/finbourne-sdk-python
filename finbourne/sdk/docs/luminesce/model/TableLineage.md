@@ -4,8 +4,8 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **column_lineage** | [List[Lineage]](Lineage.md) | Optional | *No description available.* |
-| **whole_table_lineage** | [Lineage](Lineage.md) | Optional | *No description available.* |
+| **column_lineage** | [../model/List[Lineage]](Lineage.md) | Optional | *No description available.* |
+| **whole_table_lineage** | [../model/Lineage](Lineage.md) | Optional | *No description available.* |
 | **failure_reason** | **str** | Optional | *No description available.* |
 
 

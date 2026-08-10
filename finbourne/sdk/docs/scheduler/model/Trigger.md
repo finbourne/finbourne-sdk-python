@@ -5,7 +5,7 @@ Holds different kinds of triggers A schedule may only have one type of trigger
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **time_trigger** | [TimeTrigger](TimeTrigger.md) | Optional | *No description available.* |
+| **time_trigger** | [../model/TimeTrigger](TimeTrigger.md) | Optional | *No description available.* |
 
 
 ## Usage

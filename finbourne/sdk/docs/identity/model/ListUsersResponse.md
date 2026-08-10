@@ -6,9 +6,9 @@ Users directory query response
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **href** | **str** | Optional | Uri of this response |
-| **values** | [Dict[str, UserSummary]](UserSummary.md) | Optional | Successful entities, indexed by their id |
-| **failed** | [Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | Failed entities, indexed by their id |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **values** | [../model/Dict[str, UserSummary]](UserSummary.md) | Optional | Successful entities, indexed by their id |
+| **failed** | [../model/Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | Failed entities, indexed by their id |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

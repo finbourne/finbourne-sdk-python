@@ -6,7 +6,7 @@
 |------|------|----------|-------------|
 | **display_name** | **str** | Required |  |
 | **description** | **str** | Required |  |
-| **rules** | [List[TaxRule]](TaxRule.md) | Required |  |
+| **rules** | [../model/List[TaxRule]](TaxRule.md) | Required |  |
 
 
 ## Usage

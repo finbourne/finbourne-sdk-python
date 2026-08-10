@@ -9,7 +9,7 @@ An Account Holder of an Investment Account.
 | **scope** | **str** | Optional | The scope in which the Investor Record lies. |
 | **identifiers** | **Dict[str, Optional[str]]** | Optional | Single Account Holder identifier that should target the desired Investor Record. |
 | **entity_unique_id** | **str** | Optional | The unique InvestorRecord entity identifier |
-| **investor_record** | [InvestorRecord](InvestorRecord.md) | Optional | *No description available.* |
+| **investor_record** | [../model/InvestorRecord](InvestorRecord.md) | Optional | *No description available.* |
 
 
 ## Usage

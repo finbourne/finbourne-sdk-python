@@ -5,7 +5,7 @@ A request to upsert an address key alias.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **address_key_alias** | [AddressKeyAlias](AddressKeyAlias.md) | Optional | *No description available.* |
+| **address_key_alias** | [../model/AddressKeyAlias](AddressKeyAlias.md) | Optional | *No description available.* |
 
 
 ## Usage

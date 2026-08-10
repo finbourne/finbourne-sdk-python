@@ -9,12 +9,12 @@ Representation of Legal Entity on LUSID API
 | **description** | **str** | Optional | The description of the Legal Entity |
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
 | **lusid_legal_entity_id** | **str** | Optional | The unique LUSID Legal Entity Identifier of the Legal Entity. |
-| **identifiers** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | Unique client-defined identifiers of the Legal Entity. |
-| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties associated to the Legal Entity. |
-| **relationships** | [List[Relationship]](Relationship.md) | Optional | A set of relationships associated to the Legal Entity. |
-| **counterparty_risk_information** | [CounterpartyRiskInformation](CounterpartyRiskInformation.md) | Optional | *No description available.* |
-| **version** | [Version](Version.md) | Optional | *No description available.* |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **identifiers** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | Unique client-defined identifiers of the Legal Entity. |
+| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties associated to the Legal Entity. |
+| **relationships** | [../model/List[Relationship]](Relationship.md) | Optional | A set of relationships associated to the Legal Entity. |
+| **counterparty_risk_information** | [../model/CounterpartyRiskInformation](CounterpartyRiskInformation.md) | Optional | *No description available.* |
+| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

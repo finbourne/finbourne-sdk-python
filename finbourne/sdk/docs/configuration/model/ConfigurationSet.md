@@ -10,10 +10,10 @@ The full version of the configuration set
 | **last_modified_at** | **datetime** | Required | The date referring to the date when the configuration set was last modified |
 | **last_modified_by** | **str** | Required | Who modified the configuration set most recently |
 | **description** | **str** | Optional | Describes the configuration set |
-| **items** | [List[ConfigurationItemSummary]](ConfigurationItemSummary.md) | Optional | The collection of the configuration items that this set contains. |
-| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **items** | [../model/List[ConfigurationItemSummary]](ConfigurationItemSummary.md) | Optional | The collection of the configuration items that this set contains. |
+| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
 | **type** | **str** | Required | The type (personal or shared) of the configuration set |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

@@ -5,14 +5,14 @@ A request to create or update a Order Instruction.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
 | **created_date** | **datetime** | Required | The active date of this order instruction. |
-| **portfolio_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **portfolio_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **instrument_identifiers** | **Dict[str, Optional[str]]** | Optional | The instrument ordered. |
 | **quantity** | **float** | Optional | The quantity of given instrument ordered. |
 | **weight** | **float** | Optional | The proportion of the total portfolio value ordered for the given instrument ordered. |
-| **price** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
-| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Client-defined properties associated with this execution. |
+| **price** | [../model/CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
+| **properties** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Client-defined properties associated with this execution. |
 
 
 ## Usage

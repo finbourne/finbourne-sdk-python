@@ -4,8 +4,8 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **cash_settlement** | [NavSettlementConfigurationCategory](NavSettlementConfigurationCategory.md) | Optional | *No description available.* |
-| **deferred_cash_receipt** | [NavSettlementConfigurationCategory](NavSettlementConfigurationCategory.md) | Optional | *No description available.* |
+| **cash_settlement** | [../model/NavSettlementConfigurationCategory](NavSettlementConfigurationCategory.md) | Optional | *No description available.* |
+| **deferred_cash_receipt** | [../model/NavSettlementConfigurationCategory](NavSettlementConfigurationCategory.md) | Optional | *No description available.* |
 
 
 ## Usage

@@ -5,7 +5,7 @@ The nodes of a Workflow structure graph — the Task Definitions involved
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **task_definitions** | [List[TaskDefinition]](TaskDefinition.md) | Optional | The Task Definitions that make up the nodes of this Workflow |
+| **task_definitions** | [../model/List[TaskDefinition]](TaskDefinition.md) | Optional | The Task Definitions that make up the nodes of this Workflow |
 
 
 ## Usage

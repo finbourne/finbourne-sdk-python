@@ -7,7 +7,7 @@ A reverse split in the company's shares. Shareholders have their number of share
 |------|------|----------|-------------|
 | **payment_date** | **datetime** | Optional | Date on which the stock split takes effect. |
 | **ex_date** | **datetime** | Optional | The first date on which the shares will trade at the post-split price. |
-| **units_ratio** | [UnitsRatio](UnitsRatio.md) | Required | *No description available.* |
+| **units_ratio** | [../model/UnitsRatio](UnitsRatio.md) | Required | *No description available.* |
 | **record_date** | **datetime** | Optional | Date you have to be the holder of record in order to have their shares merged. |
 | **announcement_date** | **datetime** | Optional | Date the reverse stock split was announced. |
 | **fractional_units_cash_currency** | **str** | Optional | The currency of the cash paid in lieu of fractionalUnits. |

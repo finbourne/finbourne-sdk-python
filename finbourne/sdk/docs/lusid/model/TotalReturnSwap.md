@@ -7,10 +7,10 @@ A swap in which one party makes payments based on leg rates (fixed or floating) 
 |------|------|----------|-------------|
 | **start_date** | **datetime** | Required | The start date of the instrument. This is normally synonymous with the trade-date. |
 | **maturity_date** | **datetime** | Required | The final maturity date of the instrument. This means the last date on which the instruments makes a payment of any amount.  For the avoidance of doubt, that is not necessarily prior to its last sensitivity date for the purposes of risk; e.g. instruments such as  Constant Maturity Swaps (CMS) often have sensitivities to rates that may well be observed or set prior to the maturity date, but refer to a termination date beyond it. |
-| **asset_leg** | [AssetLeg](AssetLeg.md) | Required | *No description available.* |
-| **funding_leg** | [InstrumentLeg](InstrumentLeg.md) | Required | *No description available.* |
-| **additional_payments** | [List[AdditionalPayment]](AdditionalPayment.md) | Optional | Optional additional payments at a given date e.g. to level off an uneven total return swap.  The dates must be distinct and either all payments are Pay or all payments are Receive. |
-| **time_zone_conventions** | [TimeZoneConventions](TimeZoneConventions.md) | Optional | *No description available.* |
+| **asset_leg** | [../model/AssetLeg](AssetLeg.md) | Required | *No description available.* |
+| **funding_leg** | [../model/InstrumentLeg](InstrumentLeg.md) | Required | *No description available.* |
+| **additional_payments** | [../model/List[AdditionalPayment]](AdditionalPayment.md) | Optional | Optional additional payments at a given date e.g. to level off an uneven total return swap.  The dates must be distinct and either all payments are Pay or all payments are Receive. |
+| **time_zone_conventions** | [../model/TimeZoneConventions](TimeZoneConventions.md) | Optional | *No description available.* |
 | **instrument_type** | **str** | Required | Available values: QuotedSecurity, InterestRateSwap, FxForward, Future, ExoticInstrument, FxOption, CreditDefaultSwap, InterestRateSwaption, Bond, EquityOption, FixedLeg, FloatingLeg, BespokeCashFlowsLeg, Unknown, TermDeposit, ContractForDifference, EquitySwap, CashPerpetual, CapFloor, CashSettled, CdsIndex, Basket, FundingLeg, FxSwap, ForwardRateAgreement, SimpleInstrument, Repo, Equity, ExchangeTradedOption, ReferenceInstrument, ComplexBond, InflationLinkedBond, InflationSwap, SimpleCashFlowLoan, TotalReturnSwap, InflationLeg, FundShareClass, FlexibleLoan, UnsettledCash, Cash, MasteredInstrument, LoanFacility, FlexibleDeposit, FlexibleRepo, ToBeAnnounced, VolatilitySwap, ToBeAnnouncedOption, CommodityForward. |
 
 

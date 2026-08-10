@@ -7,8 +7,8 @@ The Valuation Point Data Response for the Fund and specified date.
 |------|------|----------|-------------|
 | **accounting_date** | **datetime** | Optional | The transaction&#39;s accounting date. |
 | **journal_entry_action** | **str** | Optional | The journal entry line action associated with this transaction. |
-| **transaction** | [OutputTransaction](OutputTransaction.md) | Optional | *No description available.* |
-| **portfolio_id** | [PortfolioId](PortfolioId.md) | Optional | *No description available.* |
+| **transaction** | [../model/OutputTransaction](OutputTransaction.md) | Optional | *No description available.* |
+| **portfolio_id** | [../model/PortfolioId](PortfolioId.md) | Optional | *No description available.* |
 | **valuation_point_origin** | **str** | Optional | Designates if the transaction was originally part of the Valuation Point or if it was added as part of a Complex Close action. Available values: None, Original, Added, OriginalAndAdded. |
 | **added_origin_valuation_point_code** | **str** | Optional | The Valuation Point, only for transaction added as part of a Complex Close action. |
 | **added_origin_valuation_point_variant_code** | **str** | Optional | The Valuation Point variant, only for transactions added as part of a Complex Close action. |

@@ -5,7 +5,7 @@ Dto used to request updating a user's role
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **resource** | [PolicyIdRoleResource](PolicyIdRoleResource.md) | Required | *No description available.* |
+| **resource** | [../model/PolicyIdRoleResource](PolicyIdRoleResource.md) | Required | *No description available.* |
 
 
 ## Usage

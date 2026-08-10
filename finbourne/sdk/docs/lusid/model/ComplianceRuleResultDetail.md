@@ -4,10 +4,10 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **rule_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
-| **affected_portfolios_details** | [List[ComplianceRuleResultPortfolioDetail]](ComplianceRuleResultPortfolioDetail.md) | Required | *No description available.* |
-| **affected_orders** | [List[ResourceId]](ResourceId.md) | Required | *No description available.* |
-| **template_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **rule_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **affected_portfolios_details** | [../model/List[ComplianceRuleResultPortfolioDetail]](ComplianceRuleResultPortfolioDetail.md) | Required | *No description available.* |
+| **affected_orders** | [../model/List[ResourceId]](ResourceId.md) | Required | *No description available.* |
+| **template_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
 | **template_description** | **str** | Required | *No description available.* |
 | **template_variation** | **str** | Required | *No description available.* |
 | **status** | **str** | Required | *No description available.* |

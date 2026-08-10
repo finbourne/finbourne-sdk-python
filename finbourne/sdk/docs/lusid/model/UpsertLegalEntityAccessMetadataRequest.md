@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **metadata** | [List[AccessMetadataValue]](AccessMetadataValue.md) | Optional | The access control metadata to assign to a Legal Entity that matches the identifier |
+| **metadata** | [../model/List[AccessMetadataValue]](AccessMetadataValue.md) | Optional | The access control metadata to assign to a Legal Entity that matches the identifier |
 
 
 ## Usage

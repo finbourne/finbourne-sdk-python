@@ -5,7 +5,7 @@ A request to create or update multiple Packages.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **requests** | [List[PackageRequest]](PackageRequest.md) | Optional | A collection of PackageRequests. |
+| **requests** | [../model/List[PackageRequest]](PackageRequest.md) | Optional | A collection of PackageRequests. |
 
 
 ## Usage

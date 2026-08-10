@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **days** | [List[DayOfWeek]](DayOfWeek.md) | Required | *No description available.* |
+| **days** | [../model/List[DayOfWeek]](DayOfWeek.md) | Required | *No description available.* |
 | **time_zone** | **str** | Required | *No description available.* |
 
 

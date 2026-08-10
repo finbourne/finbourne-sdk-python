@@ -6,9 +6,9 @@ Create a PolicyCollection, a logical group of Policies or other PolicyCollection
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **code** | **str** | Required | The identifier for the PolicyCollection being created |
-| **policies** | [List[PolicyId]](PolicyId.md) | Optional | The identifiers of the Policies in this collection |
+| **policies** | [../model/List[PolicyId]](PolicyId.md) | Optional | The identifiers of the Policies in this collection |
 | **metadata** | **Dict[str, Optional[List[EntitlementMetadata]]]** | Optional | Any relevant metadata associated with this resource for controlling access to this resource |
-| **policy_collections** | [List[PolicyCollectionId]](PolicyCollectionId.md) | Optional | The identifiers of the PolicyCollections in this collection |
+| **policy_collections** | [../model/List[PolicyCollectionId]](PolicyCollectionId.md) | Optional | The identifiers of the PolicyCollections in this collection |
 | **description** | **str** | Optional | A description of this policy collection |
 
 

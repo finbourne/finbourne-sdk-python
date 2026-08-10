@@ -5,8 +5,8 @@ Specification for the transactions of a scheduled reconciliation
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **transaction_window** | [DateRange](DateRange.md) | Optional | *No description available.* |
-| **mapping_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **transaction_window** | [../model/DateRange](DateRange.md) | Optional | *No description available.* |
+| **mapping_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
 
 
 ## Usage

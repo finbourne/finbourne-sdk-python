@@ -4,9 +4,9 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **left** | [GroupReconciliationCoreComparisonRuleOperand](GroupReconciliationCoreComparisonRuleOperand.md) | Required | *No description available.* |
-| **right** | [GroupReconciliationCoreComparisonRuleOperand](GroupReconciliationCoreComparisonRuleOperand.md) | Required | *No description available.* |
-| **allowable_string_mappings** | [List[GroupReconciliationComparisonRuleStringValueMap]](GroupReconciliationComparisonRuleStringValueMap.md) | Optional | The string mappings to use when comparing |
+| **left** | [../model/GroupReconciliationCoreComparisonRuleOperand](GroupReconciliationCoreComparisonRuleOperand.md) | Required | *No description available.* |
+| **right** | [../model/GroupReconciliationCoreComparisonRuleOperand](GroupReconciliationCoreComparisonRuleOperand.md) | Required | *No description available.* |
+| **allowable_string_mappings** | [../model/List[GroupReconciliationComparisonRuleStringValueMap]](GroupReconciliationComparisonRuleStringValueMap.md) | Optional | The string mappings to use when comparing |
 | **is_comparison_case_sensitive** | **bool** | Required | Whether the compare keys and strings mappings case sensitive or not |
 
 

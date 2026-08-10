@@ -5,18 +5,18 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **execution_id** | **UUID** | Optional | *No description available.* *(read-only)* |
-| **progress** | [Link](Link.md) | Optional | *No description available.* |
-| **cancel** | [Link](Link.md) | Optional | *No description available.* |
-| **fetch_json** | [List[Link]](Link.md) | Optional | Json (as a string) data request links for all of the child queries *(read-only)* |
-| **fetch_json_proper** | [List[Link]](Link.md) | Optional | Json-proper data request links for all of the child queries *(read-only)* |
-| **fetch_json_proper_with_lineage** | [List[Link]](Link.md) | Optional | Json-proper-with-lineage data request links for all of the child queries *(read-only)* |
-| **fetch_xml** | [List[Link]](Link.md) | Optional | Xml data request links for all of the child queries *(read-only)* |
-| **fetch_parquet** | [List[Link]](Link.md) | Optional | Parquet data request links for all of the child queries *(read-only)* |
-| **fetch_csv** | [List[Link]](Link.md) | Optional | CSV data request links for all of the child queries *(read-only)* |
-| **fetch_pipe** | [List[Link]](Link.md) | Optional | Pipe delimited data request links for all of the child queries *(read-only)* |
-| **fetch_excel** | [List[Link]](Link.md) | Optional | Excel workbook data request links for all of the child queries *(read-only)* |
-| **fetch_sqlite** | [List[Link]](Link.md) | Optional | SqLite DB data request links for all of the child queries *(read-only)* |
-| **histogram** | [List[Link]](Link.md) | Optional | Histogram links for all of the child queries *(read-only)* |
+| **progress** | [../model/Link](Link.md) | Optional | *No description available.* |
+| **cancel** | [../model/Link](Link.md) | Optional | *No description available.* |
+| **fetch_json** | [../model/List[Link]](Link.md) | Optional | Json (as a string) data request links for all of the child queries *(read-only)* |
+| **fetch_json_proper** | [../model/List[Link]](Link.md) | Optional | Json-proper data request links for all of the child queries *(read-only)* |
+| **fetch_json_proper_with_lineage** | [../model/List[Link]](Link.md) | Optional | Json-proper-with-lineage data request links for all of the child queries *(read-only)* |
+| **fetch_xml** | [../model/List[Link]](Link.md) | Optional | Xml data request links for all of the child queries *(read-only)* |
+| **fetch_parquet** | [../model/List[Link]](Link.md) | Optional | Parquet data request links for all of the child queries *(read-only)* |
+| **fetch_csv** | [../model/List[Link]](Link.md) | Optional | CSV data request links for all of the child queries *(read-only)* |
+| **fetch_pipe** | [../model/List[Link]](Link.md) | Optional | Pipe delimited data request links for all of the child queries *(read-only)* |
+| **fetch_excel** | [../model/List[Link]](Link.md) | Optional | Excel workbook data request links for all of the child queries *(read-only)* |
+| **fetch_sqlite** | [../model/List[Link]](Link.md) | Optional | SqLite DB data request links for all of the child queries *(read-only)* |
+| **histogram** | [../model/List[Link]](Link.md) | Optional | Histogram links for all of the child queries *(read-only)* |
 
 
 ## Usage

@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **date_or_diary_entry** | [DateOrDiaryEntry](DateOrDiaryEntry.md) | Required | *No description available.* |
+| **date_or_diary_entry** | [../model/DateOrDiaryEntry](DateOrDiaryEntry.md) | Required | *No description available.* |
 | **variant** | **str** | Optional | Optional variant code. Only required when it is necessary to choose between scenarios with multiple estimates. |
 
 

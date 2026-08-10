@@ -5,7 +5,7 @@ Aggregation context node. Whilst the market and pricing nodes concern themselves
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **options** | [AggregationOptions](AggregationOptions.md) | Optional | *No description available.* |
+| **options** | [../model/AggregationOptions](AggregationOptions.md) | Optional | *No description available.* |
 
 
 ## Usage

@@ -4,10 +4,10 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **var_date** | [PointInTimeSpecification](PointInTimeSpecification.md) | Optional | *No description available.* |
+| **var_date** | [../model/PointInTimeSpecification](PointInTimeSpecification.md) | Optional | *No description available.* |
 | **adjustment** | **int** | Optional | *No description available.* |
-| **unit** | [DateUnit](DateUnit.md) | Optional | *No description available.* |
-| **relative_to_date_time** | [RelativeToDateTime](RelativeToDateTime.md) | Optional | *No description available.* |
+| **unit** | [../model/DateUnit](DateUnit.md) | Optional | *No description available.* |
+| **relative_to_date_time** | [../model/RelativeToDateTime](RelativeToDateTime.md) | Optional | *No description available.* |
 
 
 ## Usage

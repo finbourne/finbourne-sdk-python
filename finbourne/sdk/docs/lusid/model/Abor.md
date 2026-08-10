@@ -6,15 +6,15 @@ An Abor entity.
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
-| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
 | **display_name** | **str** | Optional | The name of the Abor. |
 | **description** | **str** | Optional | The description for the Abor. |
-| **portfolio_ids** | [List[PortfolioEntityId]](PortfolioEntityId.md) | Required | The list with the portfolio ids which are part of the Abor. Note: These must all have the same base currency. |
-| **abor_configuration_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
-| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the Abor. |
-| **version** | [Version](Version.md) | Optional | *No description available.* |
+| **portfolio_ids** | [../model/List[PortfolioEntityId]](PortfolioEntityId.md) | Required | The list with the portfolio ids which are part of the Abor. Note: These must all have the same base currency. |
+| **abor_configuration_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the Abor. |
+| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
 | **base_currency** | **str** | Optional | The base currency of the abor based on contained portfolio base currencies. |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

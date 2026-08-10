@@ -5,7 +5,7 @@ Index convention that is to be stored in the convention data store.  Only one of
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **index_convention** | [IndexConvention](IndexConvention.md) | Optional | *No description available.* |
+| **index_convention** | [../model/IndexConvention](IndexConvention.md) | Optional | *No description available.* |
 
 
 ## Usage

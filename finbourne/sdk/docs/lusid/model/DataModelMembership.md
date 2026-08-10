@@ -4,8 +4,8 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **membership** | [List[Membership]](Membership.md) | Required | The collection of data models this entity is a member of. |
-| **current_model** | [MembershipAndStatus](MembershipAndStatus.md) | Optional | *No description available.* |
+| **membership** | [../model/List[Membership]](Membership.md) | Required | The collection of data models this entity is a member of. |
+| **current_model** | [../model/MembershipAndStatus](MembershipAndStatus.md) | Optional | *No description available.* |
 
 
 ## Usage

@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **quantity** | **float** | Required | Total number of units executed. |
-| **details** | [List[OrderGraphPlacementExecutionDetail]](OrderGraphPlacementExecutionDetail.md) | Required | Identifiers info for each execution against this placement. |
+| **details** | [../model/List[OrderGraphPlacementExecutionDetail]](OrderGraphPlacementExecutionDetail.md) | Required | Identifiers info for each execution against this placement. |
 
 
 ## Usage

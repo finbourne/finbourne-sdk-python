@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **side** | **str** | Required | A unique label identifying the side definition. |
-| **side_request** | [SideDefinitionRequest](SideDefinitionRequest.md) | Required | *No description available.* |
+| **side_request** | [../model/SideDefinitionRequest](SideDefinitionRequest.md) | Required | *No description available.* |
 
 
 ## Usage

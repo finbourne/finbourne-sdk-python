@@ -6,14 +6,14 @@ The time an entity was modified (amendment and/or historical correction).
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **href** | **str** | Optional | *No description available.* |
-| **entity_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **entity_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
 | **corrected** | **bool** | Required |  |
 | **correction_effective_at** | **datetime** | Optional |  |
 | **correction_as_at** | **datetime** | Optional |  |
 | **amended** | **bool** | Required |  |
 | **amendment_effective_at** | **datetime** | Optional |  |
 | **amendment_as_at** | **datetime** | Optional |  |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

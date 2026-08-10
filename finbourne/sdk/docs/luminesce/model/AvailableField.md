@@ -6,8 +6,8 @@ Information about a field that can be designed on (regardless if it currently is
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **name** | **str** | Required | Name of the Field |
-| **data_type** | [DataType](DataType.md) | Optional | *No description available.* |
-| **field_type** | [FieldType](FieldType.md) | Required | *No description available.* |
+| **data_type** | [../model/DataType](DataType.md) | Optional | *No description available.* |
+| **field_type** | [../model/FieldType](FieldType.md) | Required | *No description available.* |
 | **is_main** | **bool** | Optional | Is this a Main Field within the Provider |
 | **is_primary_key** | **bool** | Optional | Is this a member of the PrimaryKey of the Provider |
 

@@ -7,7 +7,7 @@
 | **href** | **str** | Optional | The Uri related to this Entity |
 | **effective_from** | **datetime** | Optional | The EffectiveFrom for this response |
 | **as_at** | **datetime** | Required | The AsAt for this response |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

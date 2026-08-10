@@ -6,7 +6,7 @@ A single clause within an Order BY
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **var_field** | **str** | Required | Name of the field to order by |
-| **direction** | [OrderByDirection](OrderByDirection.md) | Optional | *No description available.* |
+| **direction** | [../model/OrderByDirection](OrderByDirection.md) | Optional | *No description available.* |
 | **table_alias** | **str** | Optional | Table Alias of the field to order by |
 
 

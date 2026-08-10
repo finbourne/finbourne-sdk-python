@@ -16,7 +16,7 @@ Holds logged information about a request made to an external vendor.
 | **http_status_code** | **int** | Required | The status code of the operation. |
 | **user_id** | **str** | Required | The user that made the request to LUSID. |
 | **request_id** | **str** | Required | The ID of the request to LUSID. |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

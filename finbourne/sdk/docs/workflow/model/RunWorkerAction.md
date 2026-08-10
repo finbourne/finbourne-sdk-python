@@ -6,11 +6,11 @@ Defines a Run Worker Action
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **type** | **str** | Required | Type name for this Action |
-| **worker_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **worker_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
 | **worker_as_at** | **datetime** | Optional | Worker AsAt |
-| **worker_parameters** | [Dict[str, FieldMapping]](FieldMapping.md) | Optional | Parameters for this Worker |
-| **worker_status_triggers** | [WorkerStatusTriggers](WorkerStatusTriggers.md) | Optional | *No description available.* |
-| **child_task_configurations** | [List[ResultantChildTaskConfiguration]](ResultantChildTaskConfiguration.md) | Optional | Tasks can be generated from run worker results; this is the configuration |
+| **worker_parameters** | [../model/Dict[str, FieldMapping]](FieldMapping.md) | Optional | Parameters for this Worker |
+| **worker_status_triggers** | [../model/WorkerStatusTriggers](WorkerStatusTriggers.md) | Optional | *No description available.* |
+| **child_task_configurations** | [../model/List[ResultantChildTaskConfiguration]](ResultantChildTaskConfiguration.md) | Optional | Tasks can be generated from run worker results; this is the configuration |
 | **worker_timeout** | **int** | Optional | Worker WorkerTimeout in seconds |
 
 

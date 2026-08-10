@@ -8,14 +8,14 @@ The Valuation Point Data Response for the Fund and specified date.
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
 | **type** | **str** | Required | The Type of the associated Diary Entry (&#39;PeriodBoundary&#39;,&#39;ValuationPoint&#39;,&#39;Other&#39; or &#39;Adhoc&#39; when a diary entry wasn&#39;t used). Available values: PeriodBoundary, ValuationPoint, Other, Adhoc. |
 | **status** | **str** | Required | The status of a Diary Entry of Type &#39;ValuationPoint&#39;. Defaults to &#39;Estimate&#39; when upserting a diary entry, moves to &#39;Candidate&#39; or &#39;Final&#39; when a ValuationPoint is accepted, and &#39;Final&#39; when it is finalised.  The status of a Diary Entry becomes &#39;Unofficial&#39; when a diary entry wasn&#39;t used. Available values: Undefined, Estimate, Final, Candidate, Rejected, Unofficial. |
-| **fund_details** | [FundDetails](FundDetails.md) | Required | *No description available.* |
-| **fund_valuation_point_data** | [FundValuationPointData](FundValuationPointData.md) | Required | *No description available.* |
-| **share_class_data** | [List[ShareClassData]](ShareClassData.md) | Required | The data for all share classes in fund. Share classes are identified by their short codes. |
+| **fund_details** | [../model/FundDetails](FundDetails.md) | Required | *No description available.* |
+| **fund_valuation_point_data** | [../model/FundValuationPointData](FundValuationPointData.md) | Required | *No description available.* |
+| **share_class_data** | [../model/List[ShareClassData]](ShareClassData.md) | Required | The data for all share classes in fund. Share classes are identified by their short codes. |
 | **valuation_point_code** | **str** | Optional | The code of the valuation point. |
 | **previous_valuation_point_code** | **str** | Optional | The code of the previous valuation point. |
-| **apportionment_results** | [List[ApportionmentBreakdown]](ApportionmentBreakdown.md) | Optional | The apportionment results for the valuation point: one fund-level entry plus one entry per allocation group. |
-| **bucket_set_results** | [List[BucketSetResult]](BucketSetResult.md) | Optional | The bucket set results for the valuation point: for each bucket set, the per-node (fund and share class) buckets and NAV. |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **apportionment_results** | [../model/List[ApportionmentBreakdown]](ApportionmentBreakdown.md) | Optional | The apportionment results for the valuation point: one fund-level entry plus one entry per allocation group. |
+| **bucket_set_results** | [../model/List[BucketSetResult]](BucketSetResult.md) | Optional | The bucket set results for the valuation point: for each bucket set, the per-node (fund and share class) buckets and NAV. |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

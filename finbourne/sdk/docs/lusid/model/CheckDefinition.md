@@ -4,15 +4,15 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
 | **display_name** | **str** | Optional | The name of the Check Definition. |
 | **description** | **str** | Optional | A description for the Check Definition. |
-| **dataset_schema** | [CheckDefinitionDatasetSchema](CheckDefinitionDatasetSchema.md) | Optional | *No description available.* |
-| **rule_sets** | [List[CheckDefinitionRuleSet]](CheckDefinitionRuleSet.md) | Optional | A collection of rule sets for the Check Definition. |
+| **dataset_schema** | [../model/CheckDefinitionDatasetSchema](CheckDefinitionDatasetSchema.md) | Optional | *No description available.* |
+| **rule_sets** | [../model/List[CheckDefinitionRuleSet]](CheckDefinitionRuleSet.md) | Optional | A collection of rule sets for the Check Definition. |
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
-| **version** | [Version](Version.md) | Optional | *No description available.* |
-| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the Check Definition. |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
+| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the Check Definition. |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

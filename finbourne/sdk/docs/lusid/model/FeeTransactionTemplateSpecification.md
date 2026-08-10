@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **specification_type_name** | **str** | Required | *No description available.* |
-| **supported_template_fields** | [List[TemplateField]](TemplateField.md) | Required | *No description available.* |
+| **supported_template_fields** | [../model/List[TemplateField]](TemplateField.md) | Required | *No description available.* |
 
 
 ## Usage

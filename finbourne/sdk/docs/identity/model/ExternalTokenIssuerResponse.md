@@ -9,7 +9,7 @@ Response DTO exposed to client for an external token issuer.
 | **issuer** | **str** | Optional | Issuer of the External Token Issuer |
 | **audience** | **str** | Optional | Audience of the External Token Issuer |
 | **description** | **str** | Optional | The Description of the External Token Issuer |
-| **claim_mappings** | [ClaimMappings](ClaimMappings.md) | Optional | *No description available.* |
+| **claim_mappings** | [../model/ClaimMappings](ClaimMappings.md) | Optional | *No description available.* |
 | **logout_url** | **str** | Optional | The LogoutUrl of the External Token Issuer |
 
 

@@ -7,11 +7,11 @@
 | **instrument_event_id** | **str** | Required | Free string that uniquely identifies the event within the corporate action source |
 | **instrument_identifiers** | **Dict[str, Optional[str]]** | Required | The set of identifiers which determine the instrument this event relates to. |
 | **description** | **str** | Optional | The description of the instrument event. |
-| **instrument_event** | [InstrumentEvent](InstrumentEvent.md) | Required | *No description available.* |
-| **properties** | [List[PerpetualProperty]](PerpetualProperty.md) | Optional | The properties attached to this instrument event. |
+| **instrument_event** | [../model/InstrumentEvent](InstrumentEvent.md) | Required | *No description available.* |
+| **properties** | [../model/List[PerpetualProperty]](PerpetualProperty.md) | Optional | The properties attached to this instrument event. |
 | **sequence_number** | **int** | Optional | The order of the instrument event relative others on the same date (0 being processed first). Must be non negative. |
 | **participation_type** | **str** | Optional | Indicates the type of participation in this event. Default value: Mandatory. Available values: Mandatory, MandatoryWithChoices, Voluntary. Default: `'Mandatory'` |
-| **event_date_stamps** | [Dict[str, YearMonthDay]](YearMonthDay.md) | Optional | The date stamps corresponding to the relevant date-time fields for the instrument event. The key for each provided date stamp must match the field name of a valid datetime field from the InstrumentEvent DTO. |
+| **event_date_stamps** | [../model/Dict[str, YearMonthDay]](YearMonthDay.md) | Optional | The date stamps corresponding to the relevant date-time fields for the instrument event. The key for each provided date stamp must match the field name of a valid datetime field from the InstrumentEvent DTO. |
 
 
 ## Usage

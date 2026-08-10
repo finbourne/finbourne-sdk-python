@@ -7,7 +7,7 @@
 | **method** | **str** | Optional | The method of settlement for the movements of the relevant type(s). A value of Instructed means that such movements can only be settled with a SettlementInstruction. A value of Automatic means that such movements will settle automatically but a SettlementInstruction will still override automatic settlement. Available values: Automatic, Instructed. |
 | **calculate_instruction_to_portfolio_rate** | **bool** | Optional | An optional flag that allows for the calculation of the instruction to portfolio rate for instructions with settlement category CashSettlement or DeferredCashReceipt, if it is not provided on the settlement instruction. Defaults to false if not specified. |
 | **calculate_in_lieu_settlement_amount** | **bool** | Optional | An optional flag that allows for the calculation of the in lieu amount for instructions with settlement category CashSettlement or DeferredCashReceipt, if it is not provided on the settlement instruction. Defaults to false if not specified. |
-| **method_override** | [SettlementConfigurationMethodOverride](SettlementConfigurationMethodOverride.md) | Optional | *No description available.* |
+| **method_override** | [../model/SettlementConfigurationMethodOverride](SettlementConfigurationMethodOverride.md) | Optional | *No description available.* |
 | **calculate_trade_date_to_settlement_fx_pn_l** | **bool** | Optional | An optional flag that allows for the calculation of the in lieu amount for instructions with settlement category CashSettlement or DeferredCashReceipt, if it is not provided on the settlement instruction. Defaults to false if not specified. |
 
 

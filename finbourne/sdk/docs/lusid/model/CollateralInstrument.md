@@ -6,7 +6,7 @@ Wrapper for one instrument in a larger collateral basket, as part of a repurchas
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **units** | **float** | Required | The amount of the instrument in the basket for this repurchase agreement. |
-| **instrument** | [MasteredInstrument](MasteredInstrument.md) | Required | *No description available.* |
+| **instrument** | [../model/MasteredInstrument](MasteredInstrument.md) | Required | *No description available.* |
 
 
 ## Usage

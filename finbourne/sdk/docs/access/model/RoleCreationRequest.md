@@ -7,8 +7,8 @@ Request to create a role
 |------|------|----------|-------------|
 | **code** | **str** | Required | The code of the role |
 | **description** | **str** | Optional | The description of the role |
-| **resource** | [RoleResourceRequest](RoleResourceRequest.md) | Required | *No description available.* |
-| **when** | [WhenSpec](WhenSpec.md) | Required | *No description available.* |
+| **resource** | [../model/RoleResourceRequest](RoleResourceRequest.md) | Required | *No description available.* |
+| **when** | [../model/WhenSpec](WhenSpec.md) | Required | *No description available.* |
 
 
 ## Usage

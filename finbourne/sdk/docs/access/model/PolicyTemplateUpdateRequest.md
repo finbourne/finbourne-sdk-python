@@ -7,7 +7,7 @@ Update policy template request
 |------|------|----------|-------------|
 | **display_name** | **str** | Required | The display name of the policy template being created |
 | **description** | **str** | Required | Description of the policy template being craeted |
-| **templated_selectors** | [List[PolicyTemplatedSelector]](PolicyTemplatedSelector.md) | Required | The selector definitions of policies included in this policy template |
+| **templated_selectors** | [../model/List[PolicyTemplatedSelector]](PolicyTemplatedSelector.md) | Required | The selector definitions of policies included in this policy template |
 
 
 ## Usage

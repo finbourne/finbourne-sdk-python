@@ -12,7 +12,7 @@ Required information for each process
 | **data_action** | **str** | Required |  |
 | **schema_version** | **str** | Optional |  |
 | **user_id** | **str** | Required |  |
-| **process_summary** | [ProcessSummary](ProcessSummary.md) | Optional | *No description available.* |
+| **process_summary** | [../model/ProcessSummary](ProcessSummary.md) | Optional | *No description available.* |
 
 
 ## Usage

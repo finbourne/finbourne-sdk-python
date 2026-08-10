@@ -5,10 +5,10 @@ A request to create or update a Package.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
-| **order_ids** | [List[ResourceId]](ResourceId.md) | Required | Related order ids. |
-| **order_instruction_ids** | [List[ResourceId]](ResourceId.md) | Required | Related order instruction ids. |
-| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Client-defined properties associated with this execution. |
+| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **order_ids** | [../model/List[ResourceId]](ResourceId.md) | Required | Related order ids. |
+| **order_instruction_ids** | [../model/List[ResourceId]](ResourceId.md) | Required | Related order instruction ids. |
+| **properties** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Client-defined properties associated with this execution. |
 
 
 ## Usage

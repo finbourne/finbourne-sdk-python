@@ -5,8 +5,8 @@ References to the closed periods created on the left and right timelines when a 
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **left** | [RecClosedPeriodReference](RecClosedPeriodReference.md) | Required | *No description available.* |
-| **right** | [RecClosedPeriodReference](RecClosedPeriodReference.md) | Required | *No description available.* |
+| **left** | [../model/RecClosedPeriodReference](RecClosedPeriodReference.md) | Required | *No description available.* |
+| **right** | [../model/RecClosedPeriodReference](RecClosedPeriodReference.md) | Required | *No description available.* |
 
 
 ## Usage

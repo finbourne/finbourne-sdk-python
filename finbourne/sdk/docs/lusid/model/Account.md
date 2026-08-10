@@ -10,7 +10,7 @@ An account
 | **type** | **str** | Required | The Account type. Available values: Asset, Liabilities, Income, Expense, Capital, Revenue. |
 | **status** | **str** | Required | The Account status. Available values: Active, Inactive, Deleted. |
 | **control** | **str** | Optional | This allows users to specify whether this a protected Account that prevents direct manual journal adjustment. Default value: Manual. Available values: Manual, System. |
-| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the Account. |
+| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the Account. |
 
 
 ## Usage

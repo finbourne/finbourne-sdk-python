@@ -4,8 +4,8 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **request_definitions** | [List[FieldDefinition]](FieldDefinition.md) | Required | Definition of a reference data field. |
-| **request_values** | [List[FieldValue]](FieldValue.md) | Required | Reference data. |
+| **request_definitions** | [../model/List[FieldDefinition]](FieldDefinition.md) | Required | Definition of a reference data field. |
+| **request_values** | [../model/List[FieldValue]](FieldValue.md) | Required | Reference data. |
 
 
 ## Usage

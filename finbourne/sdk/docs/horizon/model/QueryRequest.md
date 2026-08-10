@@ -5,7 +5,7 @@ Used to control queries, including getting \"pages\" of data
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **specification** | [QuerySpecification](QuerySpecification.md) | Optional | *No description available.* |
+| **specification** | [../model/QuerySpecification](QuerySpecification.md) | Optional | *No description available.* |
 
 
 ## Usage

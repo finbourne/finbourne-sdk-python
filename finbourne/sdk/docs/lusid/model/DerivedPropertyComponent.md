@@ -7,10 +7,10 @@
 | **component** | **str** | Optional | The component of the formula which is being evaluated. |
 | **display_name** | **str** | Optional | The display name of the component being evaluated. |
 | **type** | **str** | Optional | The type of the formula component. Available values: Variable, DerivedProperty, Literal, PartialFormula. |
-| **value** | [PropertyValue](PropertyValue.md) | Optional | *No description available.* |
+| **value** | [../model/PropertyValue](PropertyValue.md) | Optional | *No description available.* |
 | **derivation_formula** | **str** | Optional | The derivation formula of the component. This field will only be populated if the component is a derived property. |
-| **sub_components** | [List[DerivedPropertyComponent]](DerivedPropertyComponent.md) | Optional | Any sub-components of this formula. If this formula cannot be further decomposed, this collection will be null. |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **sub_components** | [../model/List[DerivedPropertyComponent]](DerivedPropertyComponent.md) | Optional | Any sub-components of this formula. If this formula cannot be further decomposed, this collection will be null. |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

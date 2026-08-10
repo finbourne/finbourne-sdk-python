@@ -5,9 +5,9 @@ The language/format of a translatable entity. Entities can be LUSID native or ex
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [DialectId](DialectId.md) | Required | *No description available.* |
-| **var_schema** | [DialectSchema](DialectSchema.md) | Required | *No description available.* |
-| **version** | [Version](Version.md) | Optional | *No description available.* |
+| **id** | [../model/DialectId](DialectId.md) | Required | *No description available.* |
+| **var_schema** | [../model/DialectSchema](DialectSchema.md) | Required | *No description available.* |
+| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
 
 
 ## Usage

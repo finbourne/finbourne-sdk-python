@@ -7,11 +7,11 @@
 | **effective_date** | **datetime** | Optional | *No description available.* |
 | **settlement_date** | **datetime** | Optional | *No description available.* |
 | **event_source** | **str** | Required | *No description available.* |
-| **new_instrument** | [NewInstrument](NewInstrument.md) | Optional | *No description available.* |
-| **cash_offer_elections** | [List[CashOfferElection]](CashOfferElection.md) | Optional | *No description available.* |
-| **security_offer_elections** | [List[SecurityOfferElection]](SecurityOfferElection.md) | Optional | *No description available.* |
-| **mixed_lot_constituents_elections** | [List[MixedLotConstituentsElection]](MixedLotConstituentsElection.md) | Optional | *No description available.* |
-| **lapse_elections** | [List[LapseElection]](LapseElection.md) | Optional | *No description available.* |
+| **new_instrument** | [../model/NewInstrument](NewInstrument.md) | Optional | *No description available.* |
+| **cash_offer_elections** | [../model/List[CashOfferElection]](CashOfferElection.md) | Optional | *No description available.* |
+| **security_offer_elections** | [../model/List[SecurityOfferElection]](SecurityOfferElection.md) | Optional | *No description available.* |
+| **mixed_lot_constituents_elections** | [../model/List[MixedLotConstituentsElection]](MixedLotConstituentsElection.md) | Optional | *No description available.* |
+| **lapse_elections** | [../model/List[LapseElection]](LapseElection.md) | Optional | *No description available.* |
 | **min_piece_size** | **float** | Optional | *No description available.* |
 | **min_increment** | **float** | Optional | *No description available.* |
 | **fractional_units_cash_price** | **float** | Optional | *No description available.* |

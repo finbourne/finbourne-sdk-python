@@ -8,11 +8,11 @@
 | **description** | **str** | Optional | The description of the Person |
 | **href** | **str** | Optional | The specifc Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
 | **lusid_person_id** | **str** | Optional | The unique LUSID Person Identifier of the Person. |
-| **identifiers** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | Unique client-defined identifiers of the Person. |
-| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties associated to the Person. There can be multiple properties associated with a property key. |
-| **relationships** | [List[Relationship]](Relationship.md) | Optional | A set of relationships associated to the Person. |
-| **version** | [Version](Version.md) | Optional | *No description available.* |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **identifiers** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | Unique client-defined identifiers of the Person. |
+| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties associated to the Person. There can be multiple properties associated with a property key. |
+| **relationships** | [../model/List[Relationship]](Relationship.md) | Optional | A set of relationships associated to the Person. |
+| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

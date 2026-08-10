@@ -9,8 +9,8 @@ Response from retrying SFTP file delivery
 | **message** | **str** | Required | Status message describing the result |
 | **new_file_delivery_id** | **int** | Optional | ID of the new file delivery record created for this retry (if successful) |
 | **retried_at** | **datetime** | Optional | Timestamp when the retry was executed |
-| **original_file** | [TpfFileDeliveryInfo](TpfFileDeliveryInfo.md) | Optional | *No description available.* |
-| **duplicate_file** | [TpfFileDeliveryInfo](TpfFileDeliveryInfo.md) | Optional | *No description available.* |
+| **original_file** | [../model/TpfFileDeliveryInfo](TpfFileDeliveryInfo.md) | Optional | *No description available.* |
+| **duplicate_file** | [../model/TpfFileDeliveryInfo](TpfFileDeliveryInfo.md) | Optional | *No description available.* |
 
 
 ## Usage

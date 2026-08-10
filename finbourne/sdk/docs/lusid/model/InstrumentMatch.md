@@ -5,8 +5,8 @@ A collection of instrument search results
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **mastered_instruments** | [List[InstrumentDefinition]](InstrumentDefinition.md) | Optional | The collection of instruments found by the search which have been mastered within LUSID. |
-| **external_instruments** | [List[InstrumentDefinition]](InstrumentDefinition.md) | Optional | The collection of instruments found by the search which have not been mastered within LUSID and instead found via OpenFIGI. |
+| **mastered_instruments** | [../model/List[InstrumentDefinition]](InstrumentDefinition.md) | Optional | The collection of instruments found by the search which have been mastered within LUSID. |
+| **external_instruments** | [../model/List[InstrumentDefinition]](InstrumentDefinition.md) | Optional | The collection of instruments found by the search which have not been mastered within LUSID and instead found via OpenFIGI. |
 
 
 ## Usage

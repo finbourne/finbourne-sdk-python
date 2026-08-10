@@ -5,8 +5,8 @@ The data for a Share Class. Includes Valuation Point Data and instrument informa
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **share_class_breakdown** | [ShareClassBreakdown](ShareClassBreakdown.md) | Required | *No description available.* |
-| **share_class_details** | [ShareClassDetails](ShareClassDetails.md) | Optional | *No description available.* |
+| **share_class_breakdown** | [../model/ShareClassBreakdown](ShareClassBreakdown.md) | Required | *No description available.* |
+| **share_class_details** | [../model/ShareClassDetails](ShareClassDetails.md) | Optional | *No description available.* |
 
 
 ## Usage

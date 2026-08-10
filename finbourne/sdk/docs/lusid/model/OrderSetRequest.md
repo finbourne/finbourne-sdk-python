@@ -5,7 +5,7 @@ A request to create or update multiple Orders.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **order_requests** | [List[OrderRequest]](OrderRequest.md) | Optional | A collection of OrderRequests. |
+| **order_requests** | [../model/List[OrderRequest]](OrderRequest.md) | Optional | A collection of OrderRequests. |
 
 
 ## Usage

@@ -5,7 +5,7 @@ A request to create or update multiple OrderInstructions.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **requests** | [List[OrderInstructionRequest]](OrderInstructionRequest.md) | Optional | A collection of OrderInstructionRequests. |
+| **requests** | [../model/List[OrderInstructionRequest]](OrderInstructionRequest.md) | Optional | A collection of OrderInstructionRequests. |
 
 
 ## Usage

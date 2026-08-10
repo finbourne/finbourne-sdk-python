@@ -5,7 +5,7 @@ A request to create or update multiple Allocations.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **allocation_requests** | [List[AllocationRequest]](AllocationRequest.md) | Optional | A collection of AllocationRequests. |
+| **allocation_requests** | [../model/List[AllocationRequest]](AllocationRequest.md) | Optional | A collection of AllocationRequests. |
 
 
 ## Usage

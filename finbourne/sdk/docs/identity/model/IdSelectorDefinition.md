@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **identifier** | **Dict[str, Optional[str]]** | Required | *No description available.* |
-| **actions** | [List[ActionId]](ActionId.md) | Required | *No description available.* |
+| **actions** | [../model/List[ActionId]](ActionId.md) | Required | *No description available.* |
 | **name** | **str** | Optional | *No description available.* |
 | **description** | **str** | Optional | *No description available.* |
 

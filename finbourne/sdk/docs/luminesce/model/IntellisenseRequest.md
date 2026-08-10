@@ -6,7 +6,7 @@ Representation of a request for IntellisenseItems
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **lines** | **List[str]** | Required | The lines of text the user currently has in the editor |
-| **position** | [CursorPosition](CursorPosition.md) | Required | *No description available.* |
+| **position** | [../model/CursorPosition](CursorPosition.md) | Required | *No description available.* |
 
 
 ## Usage

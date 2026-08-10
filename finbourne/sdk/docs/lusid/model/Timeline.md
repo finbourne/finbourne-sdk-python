@@ -4,13 +4,13 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **display_name** | **str** | Optional | The name of the Timeline. |
 | **description** | **str** | Optional | A description for the Timeline. |
-| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | The Timelines properties. These will be from the &#39;Timeline&#39; domain. |
-| **version** | [Version](Version.md) | Optional | *No description available.* |
+| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | The Timelines properties. These will be from the &#39;Timeline&#39; domain. |
+| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested asAt datetime. |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

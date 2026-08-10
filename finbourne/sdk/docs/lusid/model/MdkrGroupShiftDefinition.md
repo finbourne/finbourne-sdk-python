@@ -5,7 +5,7 @@ A group of keyed market data key rules (e.g. bid/mid/ask). When the scenario is 
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **rules** | [List[KeyedMarketDataKeyRule]](KeyedMarketDataKeyRule.md) | Required | The keyed rules of the group. Keys must be unique within the group; each key produces one  result column. |
+| **rules** | [../model/List[KeyedMarketDataKeyRule]](KeyedMarketDataKeyRule.md) | Required | The keyed rules of the group. Keys must be unique within the group; each key produces one  result column. |
 | **scenario_shift_type** | **str** | Required | Available values: RateCurveShiftDefinition, FxShiftDefinition, PriceShiftDefinition, VolSurfaceShiftDefinition, MdkrGroupShiftDefinition. |
 
 

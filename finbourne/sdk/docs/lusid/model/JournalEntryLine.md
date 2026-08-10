@@ -7,14 +7,14 @@ A Journal Entry line entity.
 |------|------|----------|-------------|
 | **accounting_date** | **datetime** | Required | The Journal Entry Line accounting date. |
 | **activity_date** | **datetime** | Required | The actual date of the activity. Differs from the accounting date when creating journals that would occur in a closed period. |
-| **portfolio_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **portfolio_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
 | **instrument_id** | **str** | Required | To indicate the instrument of the transaction that the Journal Entry Line posted for, if applicable. |
 | **instrument_scope** | **str** | Required | The scope in which the Journal Entry Line instrument is in. |
-| **sub_holding_keys** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | The sub-holding properties which are part of the AccountingKey. |
+| **sub_holding_keys** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | The sub-holding properties which are part of the AccountingKey. |
 | **tax_lot_id** | **str** | Optional | If the holding type is &#39;B&#39; (settled cash balance), this is 1. Otherwise, this is the ID of a tax lot if applicable, or the source ID of the original transaction if not. |
 | **general_ledger_account_code** | **str** | Required | The code of the account in the general ledger the Journal Entry was posted to. |
-| **local** | [CurrencyAndAmount](CurrencyAndAmount.md) | Required | *No description available.* |
-| **base** | [CurrencyAndAmount](CurrencyAndAmount.md) | Required | *No description available.* |
+| **local** | [../model/CurrencyAndAmount](CurrencyAndAmount.md) | Required | *No description available.* |
+| **base** | [../model/CurrencyAndAmount](CurrencyAndAmount.md) | Required | *No description available.* |
 | **units** | **float** | Required | Units held for the Journal Entry Line. |
 | **posting_module_code** | **str** | Optional | The code of the posting module where the posting rules derived the Journal Entry lines. |
 | **posting_rule** | **str** | Required | The rule generating the Journal Entry Line. |
@@ -22,7 +22,7 @@ A Journal Entry line entity.
 | **activities_description** | **str** | Optional | This would be the description of the business activities this Journal Entry Line is for. |
 | **source_type** | **str** | Required | The type of source for the Journal Entry Line. Available values: LusidTransaction, LusidValuation, Manual, External. |
 | **source_id** | **str** | Required | For the Lusid Source Type this will be the txn Id. For the rest will be what the user populates. |
-| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the Abor. |
+| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the Abor. |
 | **movement_name** | **str** | Optional | If the JE Line is generated from a transaction, the name of the side in the transaction type&#39;s movement. If from a valuation, this is &#39;MarkToMarket&#39;. |
 | **holding_type** | **str** | Required | One of the LUSID holding types such as &#39;P&#39; for position or &#39;B&#39; for settled cash balance. |
 | **economic_bucket** | **str** | Required | LUSID automatically categorises a JE Line into a broad economic bucket such as &#39;NA_Cost&#39; or &#39;PL_RealPriceGL&#39;. |
@@ -34,7 +34,7 @@ A Journal Entry line entity.
 | **holding_sign** | **str** | Optional | Indicates if the Journal Entry Line is operating against a Long or Short holding. Available values: NA, Long, Short. |
 | **ledger_column** | **str** | Optional | Indicates if the Journal Entry Line is credit or debit. Available values: Debit, Credit. |
 | **journal_entry_line_type** | **str** | Optional | Indicates the Journal Entry Line type. Available values: Default, Reversal, TrueUp. |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

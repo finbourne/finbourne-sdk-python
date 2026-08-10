@@ -5,16 +5,16 @@ Schedule
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **schedule_identifier** | [ResourceId](ResourceId.md) | Required | *No description available.* |
-| **job_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **schedule_identifier** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **job_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **name** | **str** | Optional | A display name for this Schedule |
 | **description** | **str** | Optional | A description of the Schedule |
 | **author** | **str** | Optional | Name of the author of this schedule |
 | **owner** | **str** | Optional | Name of owner of this schedule |
 | **use_as_auth** | **str** | Optional | User to runs schedule when automatically run and authenticates  requests in the schedule |
 | **arguments** | **Dict[str, Optional[str]]** | Optional | All arguments specified by this Schedule that will be passed in to the Job |
-| **trigger** | [Trigger](Trigger.md) | Optional | *No description available.* |
-| **notifications** | [List[Notification]](Notification.md) | Optional | Notifications for this Schedule |
+| **trigger** | [../model/Trigger](Trigger.md) | Optional | *No description available.* |
+| **notifications** | [../model/List[Notification]](Notification.md) | Optional | Notifications for this Schedule |
 | **enabled** | **bool** | Optional | The status of this schedule |
 
 

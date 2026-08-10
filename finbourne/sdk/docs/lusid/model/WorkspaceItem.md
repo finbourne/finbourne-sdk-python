@@ -11,8 +11,8 @@ An item stored in a workspace.
 | **group** | **str** | Required | The group containing a workspace item. |
 | **description** | **str** | Required | The description of a workspace item. |
 | **content** | **object** | Required | The content associated with a workspace item. |
-| **version** | [Version](Version.md) | Optional | *No description available.* |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

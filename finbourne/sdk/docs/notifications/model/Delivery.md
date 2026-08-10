@@ -6,11 +6,11 @@
 |------|------|----------|-------------|
 | **id** | **UUID** | Required | The identifier of the delivery. |
 | **event_id** | **str** | Required | The identifier of the associated event. |
-| **subscription_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **subscription_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
 | **notification_id** | **str** | Required | The identifier of the associated notification. |
 | **delivery_channel** | **str** | Required | The delivery channel of the message. |
 | **message_details** | **str** | Required | The Details of the delivery message as JSON string. |
-| **attempts** | [List[Attempt]](Attempt.md) | Required | A list of all the delivery attempts made for this message. |
+| **attempts** | [../model/List[Attempt]](Attempt.md) | Required | A list of all the delivery attempts made for this message. |
 
 
 ## Usage

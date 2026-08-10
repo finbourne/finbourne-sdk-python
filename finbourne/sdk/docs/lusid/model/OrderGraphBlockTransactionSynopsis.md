@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **quantity** | **float** | Required | Total number of units booked. |
-| **details** | [List[OrderGraphBlockTransactionDetail]](OrderGraphBlockTransactionDetail.md) | Required | Identifiers for each transaction in this block. |
+| **details** | [../model/List[OrderGraphBlockTransactionDetail]](OrderGraphBlockTransactionDetail.md) | Required | Identifiers for each transaction in this block. |
 
 
 ## Usage

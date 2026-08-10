@@ -7,8 +7,8 @@
 | **election_key** | **str** | Required | *No description available.* |
 | **is_default** | **bool** | Optional | *No description available.* |
 | **is_chosen** | **bool** | Optional | *No description available.* |
-| **securities_constituents** | [List[SecurityOfferConstituent]](SecurityOfferConstituent.md) | Optional | *No description available.* |
-| **cash_constituents** | [List[CashOfferConstituent]](CashOfferConstituent.md) | Optional | *No description available.* |
+| **securities_constituents** | [../model/List[SecurityOfferConstituent]](SecurityOfferConstituent.md) | Optional | *No description available.* |
+| **cash_constituents** | [../model/List[CashOfferConstituent]](CashOfferConstituent.md) | Optional | *No description available.* |
 | **cost_factor** | **float** | Optional | *No description available.* |
 
 

@@ -6,27 +6,27 @@ A Fund entity.
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
-| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
 | **display_name** | **str** | Optional | The name of the Fund. |
 | **description** | **str** | Optional | A description for the Fund. |
 | **base_currency** | **str** | Optional | The base currency of the Fund in ISO 4217 currency code format. All portfolios must be of a matching base currency. |
 | **investor_structure** | **str** | Required | The Investor structure to be used by the Fund. Available values: NonUnitised, Classes. |
-| **portfolio_ids** | [List[PortfolioEntityIdWithDetails]](PortfolioEntityIdWithDetails.md) | Optional | A list of the portfolios on the fund, which are part of the Fund. Note: These must all have the same base currency, which must also match the Fund Base Currency. |
-| **fund_configuration_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
-| **abor_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
-| **share_class_instruments** | [List[InstrumentResolutionDetail]](InstrumentResolutionDetail.md) | Optional | Details the user-provided instrument identifiers and the instrument resolved from them. These would be decommissioned in favour of the new AllocationGroups and ShareClasses structures. |
+| **portfolio_ids** | [../model/List[PortfolioEntityIdWithDetails]](PortfolioEntityIdWithDetails.md) | Optional | A list of the portfolios on the fund, which are part of the Fund. Note: These must all have the same base currency, which must also match the Fund Base Currency. |
+| **fund_configuration_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **abor_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **share_class_instruments** | [../model/List[InstrumentResolutionDetail]](InstrumentResolutionDetail.md) | Optional | Details the user-provided instrument identifiers and the instrument resolved from them. These would be decommissioned in favour of the new AllocationGroups and ShareClasses structures. |
 | **type** | **str** | Optional | The type of fund. Available values: Standalone, Master, Feeder. |
 | **inception_date** | **datetime** | Required | Inception date of the Fund |
 | **decimal_places** | **int** | Optional | Number of decimal places for reporting |
-| **year_end_date** | [DayMonth](DayMonth.md) | Optional | *No description available.* |
-| **primary_nav_type** | [NavType](NavType.md) | Optional | *No description available.* |
-| **additional_nav_types** | [List[NavType]](NavType.md) | Optional | The definitions for any additional NAVs on the Fund. |
-| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the Fund. |
+| **year_end_date** | [../model/DayMonth](DayMonth.md) | Optional | *No description available.* |
+| **primary_nav_type** | [../model/NavType](NavType.md) | Optional | *No description available.* |
+| **additional_nav_types** | [../model/List[NavType]](NavType.md) | Optional | The definitions for any additional NAVs on the Fund. |
+| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the Fund. |
 | **create_instrument** | **bool** | Optional | Whether to create instruments for the Fund&#39;s share classes, series, or partner classes upon creation. Defaults to false. |
-| **allocation_groups** | [List[AllocationGroup]](AllocationGroup.md) | Optional | An optional list of Allocation Group definitions for the Fund. |
-| **share_classes** | [List[ShareClass]](ShareClass.md) | Optional | An optional list of Share Class definitions for the Fund. |
-| **version** | [Version](Version.md) | Optional | *No description available.* |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **allocation_groups** | [../model/List[AllocationGroup]](AllocationGroup.md) | Optional | An optional list of Allocation Group definitions for the Fund. |
+| **share_classes** | [../model/List[ShareClass]](ShareClass.md) | Optional | An optional list of Share Class definitions for the Fund. |
+| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

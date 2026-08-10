@@ -5,9 +5,9 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **transaction_id** | **str** | Required | The unique identifier for the transaction. |
-| **settlement_buckets** | [List[TransactionSettlementBucket]](TransactionSettlementBucket.md) | Optional | The transaction&#39;s external movements (ie: with SettlementMode&#x3D;External) are grouped into buckets with each bucket uniquely defined by the combination of SettlementCategory, LusidInstrumentId, InstrumentScope and ContractualSettlementDate. |
-| **invalid_instructions** | [List[TransactionSettlementInstruction]](TransactionSettlementInstruction.md) | Optional | Invalid settlement instructions where the referenced transaction exists but the settlement bucket implied by the settlement instruction does not exist. |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **settlement_buckets** | [../model/List[TransactionSettlementBucket]](TransactionSettlementBucket.md) | Optional | The transaction&#39;s external movements (ie: with SettlementMode&#x3D;External) are grouped into buckets with each bucket uniquely defined by the combination of SettlementCategory, LusidInstrumentId, InstrumentScope and ContractualSettlementDate. |
+| **invalid_instructions** | [../model/List[TransactionSettlementInstruction]](TransactionSettlementInstruction.md) | Optional | Invalid settlement instructions where the referenced transaction exists but the settlement bucket implied by the settlement instruction does not exist. |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

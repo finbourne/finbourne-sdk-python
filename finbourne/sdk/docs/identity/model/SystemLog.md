@@ -5,20 +5,20 @@ A system log event
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **actor** | [LogActor](LogActor.md) | Optional | *No description available.* |
-| **authentication_context** | [LogAuthenticationContext](LogAuthenticationContext.md) | Optional | *No description available.* |
-| **client_info** | [LogClientInfo](LogClientInfo.md) | Optional | *No description available.* |
-| **debug_context** | [LogDebugContext](LogDebugContext.md) | Optional | *No description available.* |
+| **actor** | [../model/LogActor](LogActor.md) | Optional | *No description available.* |
+| **authentication_context** | [../model/LogAuthenticationContext](LogAuthenticationContext.md) | Optional | *No description available.* |
+| **client_info** | [../model/LogClientInfo](LogClientInfo.md) | Optional | *No description available.* |
+| **debug_context** | [../model/LogDebugContext](LogDebugContext.md) | Optional | *No description available.* |
 | **display_message** | **str** | Optional | Represents a DisplayMessage resource in the Okta API |
 | **event_type** | **str** | Optional | Represents a EventType resource in the Okta API |
 | **legacy_event_type** | **str** | Optional | Represents a LegacyEventType resource in the Okta API |
-| **outcome** | [LogOutcome](LogOutcome.md) | Optional | *No description available.* |
+| **outcome** | [../model/LogOutcome](LogOutcome.md) | Optional | *No description available.* |
 | **published** | **datetime** | Optional | Represents when Published in the Okta API |
-| **request** | [LogRequest](LogRequest.md) | Optional | *No description available.* |
-| **security_context** | [LogSecurityContext](LogSecurityContext.md) | Optional | *No description available.* |
-| **severity** | [LogSeverity](LogSeverity.md) | Optional | *No description available.* |
-| **target** | [List[LogTarget]](LogTarget.md) | Optional | Represents a LogTarget resource in the Okta API |
-| **transaction** | [LogTransaction](LogTransaction.md) | Optional | *No description available.* |
+| **request** | [../model/LogRequest](LogRequest.md) | Optional | *No description available.* |
+| **security_context** | [../model/LogSecurityContext](LogSecurityContext.md) | Optional | *No description available.* |
+| **severity** | [../model/LogSeverity](LogSeverity.md) | Optional | *No description available.* |
+| **target** | [../model/List[LogTarget]](LogTarget.md) | Optional | Represents a LogTarget resource in the Okta API |
+| **transaction** | [../model/LogTransaction](LogTransaction.md) | Optional | *No description available.* |
 | **uuid** | **str** | Optional | Represents Uuid in the Okta API |
 | **version** | **str** | Optional | Represents a Version in the Okta API |
 

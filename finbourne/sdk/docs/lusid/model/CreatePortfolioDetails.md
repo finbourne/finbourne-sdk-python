@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **corporate_action_source_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **corporate_action_source_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
 
 
 ## Usage

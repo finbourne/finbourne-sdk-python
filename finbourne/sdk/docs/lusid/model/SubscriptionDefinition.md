@@ -8,8 +8,8 @@
 | **code** | **str** | Required | *No description available.* |
 | **display_name** | **str** | Optional | *No description available.* |
 | **description** | **str** | Optional | *No description available.* |
-| **portfolio_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
-| **timeline_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **portfolio_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **timeline_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **address_keys** | **List[str]** | Optional | The set of addresses the subscriber wishes to receive. |
 | **by_tax_lots** | **bool** | Optional | *No description available.* |
 | **subscription_type** | **str** | Optional | The kind of data the subscription streams (holdings or transactions), defaulting to holdings.  Address keys and byTaxLots are not valid for a transactions subscription. Available values: Holdings, Transactions. |

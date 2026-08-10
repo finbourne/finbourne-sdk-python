@@ -6,7 +6,7 @@ State changes happen in response to Triggers
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **name** | **str** | Required | The key/Name of this Trigger |
-| **trigger** | [TriggerSchema](TriggerSchema.md) | Required | *No description available.* |
+| **trigger** | [../model/TriggerSchema](TriggerSchema.md) | Required | *No description available.* |
 | **display_name** | **str** | Optional | Display name for trigger |
 | **description** | **str** | Optional | Description of trigger |
 

@@ -6,23 +6,23 @@ Defines a Task created based on a Task Definition
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **id** | **UUID** | Required | The unique id for this Task |
-| **task_definition_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
-| **task_definition_version** | [TaskDefinitionVersion](TaskDefinitionVersion.md) | Required | *No description available.* |
+| **task_definition_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **task_definition_version** | [../model/TaskDefinitionVersion](TaskDefinitionVersion.md) | Required | *No description available.* |
 | **task_definition_display_name** | **str** | Required | The display name of the Task Definition used by this Task |
-| **workflow_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **workflow_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **workflow_display_name** | **str** | Optional | The display name of the Workflow that this Task is a member of, if any |
 | **state** | **str** | Required | Current State |
 | **state_display_name** | **str** | Optional | The display name of the current State, from the Task Definition, if one is provided |
-| **ultimate_parent_task** | [TaskSummary](TaskSummary.md) | Required | *No description available.* |
-| **parent_task** | [TaskSummary](TaskSummary.md) | Optional | *No description available.* |
-| **child_tasks** | [List[TaskSummary]](TaskSummary.md) | Optional | This Task&#39;s child tasks |
+| **ultimate_parent_task** | [../model/TaskSummary](TaskSummary.md) | Required | *No description available.* |
+| **parent_task** | [../model/TaskSummary](TaskSummary.md) | Optional | *No description available.* |
+| **child_tasks** | [../model/List[TaskSummary]](TaskSummary.md) | Optional | This Task&#39;s child tasks |
 | **correlation_ids** | **List[str]** | Optional | User-provided ID used to link entities and tasks |
-| **version** | [VersionInfo](VersionInfo.md) | Optional | *No description available.* |
+| **version** | [../model/VersionInfo](VersionInfo.md) | Optional | *No description available.* |
 | **terminal_state** | **bool** | Required | True if no onward transitions are possible |
 | **as_at_last_transition** | **datetime** | Optional | Last Transition timestamp |
-| **fields** | [List[TaskInstanceField]](TaskInstanceField.md) | Optional | Fields and their latest values - should correspond with the Task Definition field schema |
+| **fields** | [../model/List[TaskInstanceField]](TaskInstanceField.md) | Optional | Fields and their latest values - should correspond with the Task Definition field schema |
 | **stacking_key** | **str** | Optional | The key used to determine which stack to add the Task to |
-| **stack** | [Stack](Stack.md) | Optional | *No description available.* |
+| **stack** | [../model/Stack](Stack.md) | Optional | *No description available.* |
 | **action_log_id_created** | **UUID** | Optional | The Id of the Action that created this Task |
 | **action_log_id_modified** | **UUID** | Optional | The Id of the Action that last modified this Task |
 | **action_log_id_submitted** | **UUID** | Optional | The Id of the last Action submitted by this Task |
@@ -31,7 +31,7 @@ Defines a Task created based on a Task Definition
 | **open_duration** | **int** | Optional | Duration in seconds since the Task was created. If the Task is Completed, this is the duration from creation to the last transition. |
 | **open_duration_since_last_update** | **int** | Optional | Duration in seconds since the Task was last updated. 0 if the Task is Completed. |
 | **open_duration_since_last_transition** | **int** | Optional | Duration in seconds since the Task last transitioned. 0 if the Task is Completed. |
-| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | The requested TaskDefinition and Workflow properties decorated onto this Task, keyed by property key. Only populated when property keys were requested. |
+| **properties** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | The requested TaskDefinition and Workflow properties decorated onto this Task, keyed by property key. Only populated when property keys were requested. |
 
 
 ## Usage

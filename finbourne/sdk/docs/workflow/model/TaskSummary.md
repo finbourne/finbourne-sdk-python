@@ -6,8 +6,8 @@ Summary of a Task created based on a Task Definition
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **id** | **UUID** | Required | The unique id for this Task |
-| **task_definition_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
-| **task_definition_version** | [TaskDefinitionVersion](TaskDefinitionVersion.md) | Required | *No description available.* |
+| **task_definition_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **task_definition_version** | [../model/TaskDefinitionVersion](TaskDefinitionVersion.md) | Required | *No description available.* |
 | **task_definition_display_name** | **str** | Required | The display name of the Task Definition used by this Task |
 | **state** | **str** | Required | Current State |
 | **state_display_name** | **str** | Optional | The display name of the current State, from the Task Definition, if one is provided |

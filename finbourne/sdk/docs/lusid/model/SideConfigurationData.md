@@ -11,7 +11,7 @@ Configuration needed to define a side. Sides are referenced by Label. Beyond tha
 | **rate** | **str** | Required | The rate. |
 | **units** | **str** | Required | The units. |
 | **amount** | **str** | Required | The amount. |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

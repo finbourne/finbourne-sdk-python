@@ -4,12 +4,12 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **placement** | [Placement](Placement.md) | Required | *No description available.* |
-| **block_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
-| **ordered** | [OrderGraphPlacementOrderSynopsis](OrderGraphPlacementOrderSynopsis.md) | Required | *No description available.* |
-| **placed** | [OrderGraphPlacementPlacementSynopsis](OrderGraphPlacementPlacementSynopsis.md) | Required | *No description available.* |
-| **executed** | [OrderGraphPlacementExecutionSynopsis](OrderGraphPlacementExecutionSynopsis.md) | Required | *No description available.* |
-| **allocated** | [OrderGraphPlacementAllocationSynopsis](OrderGraphPlacementAllocationSynopsis.md) | Required | *No description available.* |
+| **placement** | [../model/Placement](Placement.md) | Required | *No description available.* |
+| **block_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **ordered** | [../model/OrderGraphPlacementOrderSynopsis](OrderGraphPlacementOrderSynopsis.md) | Required | *No description available.* |
+| **placed** | [../model/OrderGraphPlacementPlacementSynopsis](OrderGraphPlacementPlacementSynopsis.md) | Required | *No description available.* |
+| **executed** | [../model/OrderGraphPlacementExecutionSynopsis](OrderGraphPlacementExecutionSynopsis.md) | Required | *No description available.* |
+| **allocated** | [../model/OrderGraphPlacementAllocationSynopsis](OrderGraphPlacementAllocationSynopsis.md) | Required | *No description available.* |
 | **derived_state** | **str** | Required | A simple description of the overall state of a placement. |
 | **calculated_average_price** | **float** | Optional | Average price realised on executions for a given placement |
 

@@ -6,7 +6,7 @@ Representation of the selected field and a list of: filter, source, and target.
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **selected_field** | **str** | Optional | Selected field in the SQL query. |
-| **case_statement_items** | [List[CaseStatementItem]](CaseStatementItem.md) | Optional | A list containing the filter, source, and target. |
+| **case_statement_items** | [../model/List[CaseStatementItem]](CaseStatementItem.md) | Optional | A list containing the filter, source, and target. |
 
 
 ## Usage

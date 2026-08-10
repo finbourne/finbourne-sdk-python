@@ -11,8 +11,8 @@ LUSID representation of a Forward Rate Agreement.
 | **fixing_date** | **datetime** | Required | The date at which the rate to be paid, the reference rate, is confirmed/observed. |
 | **fra_rate** | **float** | Required | The rate at which the FRA is traded. |
 | **notional** | **float** | Required | The amount for which the FRA is traded. |
-| **index_convention** | [IndexConvention](IndexConvention.md) | Optional | *No description available.* |
-| **time_zone_conventions** | [TimeZoneConventions](TimeZoneConventions.md) | Optional | *No description available.* |
+| **index_convention** | [../model/IndexConvention](IndexConvention.md) | Optional | *No description available.* |
+| **time_zone_conventions** | [../model/TimeZoneConventions](TimeZoneConventions.md) | Optional | *No description available.* |
 | **instrument_type** | **str** | Required | Available values: QuotedSecurity, InterestRateSwap, FxForward, Future, ExoticInstrument, FxOption, CreditDefaultSwap, InterestRateSwaption, Bond, EquityOption, FixedLeg, FloatingLeg, BespokeCashFlowsLeg, Unknown, TermDeposit, ContractForDifference, EquitySwap, CashPerpetual, CapFloor, CashSettled, CdsIndex, Basket, FundingLeg, FxSwap, ForwardRateAgreement, SimpleInstrument, Repo, Equity, ExchangeTradedOption, ReferenceInstrument, ComplexBond, InflationLinkedBond, InflationSwap, SimpleCashFlowLoan, TotalReturnSwap, InflationLeg, FundShareClass, FlexibleLoan, UnsettledCash, Cash, MasteredInstrument, LoanFacility, FlexibleDeposit, FlexibleRepo, ToBeAnnounced, VolatilitySwap, ToBeAnnouncedOption, CommodityForward. |
 
 

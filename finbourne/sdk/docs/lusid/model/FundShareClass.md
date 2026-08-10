@@ -10,9 +10,9 @@ LUSID representation of a FundShareClass.  A ShareClass represents a pool of sha
 | **distribution_payment_type** | **str** | Required | The tax treatment applied to any distributions calculated within the ShareClass. Can be either &#39;Net&#39; (Distribution Calculated net of tax) or &#39;Gross&#39; (Distribution calculated gross of tax). Available values: Invalid, Gross, Net. |
 | **hedging** | **str** | Required | A flag to indicate the ShareClass is operating currency hedging as a means to limit currency risk as part of its investment strategy. Available values: Invalid, None, ApplyHedging. |
 | **dom_ccy** | **str** | Required | The domestic currency of the instrument. |
-| **rounding_conventions** | [List[SimpleRoundingConvention]](SimpleRoundingConvention.md) | Optional | Rounding Convention used for the FundShareClass quotes |
-| **trading_conventions** | [TradingConventions](TradingConventions.md) | Optional | *No description available.* |
-| **time_zone_conventions** | [TimeZoneConventions](TimeZoneConventions.md) | Optional | *No description available.* |
+| **rounding_conventions** | [../model/List[SimpleRoundingConvention]](SimpleRoundingConvention.md) | Optional | Rounding Convention used for the FundShareClass quotes |
+| **trading_conventions** | [../model/TradingConventions](TradingConventions.md) | Optional | *No description available.* |
+| **time_zone_conventions** | [../model/TimeZoneConventions](TimeZoneConventions.md) | Optional | *No description available.* |
 | **instrument_type** | **str** | Required | Available values: QuotedSecurity, InterestRateSwap, FxForward, Future, ExoticInstrument, FxOption, CreditDefaultSwap, InterestRateSwaption, Bond, EquityOption, FixedLeg, FloatingLeg, BespokeCashFlowsLeg, Unknown, TermDeposit, ContractForDifference, EquitySwap, CashPerpetual, CapFloor, CashSettled, CdsIndex, Basket, FundingLeg, FxSwap, ForwardRateAgreement, SimpleInstrument, Repo, Equity, ExchangeTradedOption, ReferenceInstrument, ComplexBond, InflationLinkedBond, InflationSwap, SimpleCashFlowLoan, TotalReturnSwap, InflationLeg, FundShareClass, FlexibleLoan, UnsettledCash, Cash, MasteredInstrument, LoanFacility, FlexibleDeposit, FlexibleRepo, ToBeAnnounced, VolatilitySwap, ToBeAnnouncedOption, CommodityForward. |
 
 

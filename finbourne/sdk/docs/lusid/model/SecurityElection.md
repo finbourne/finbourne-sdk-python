@@ -9,7 +9,7 @@ Security election for Events that result in equity
 | **is_chosen** | **bool** | Optional | Is this the election that has been explicitly chosen from multiple options. |
 | **is_default** | **bool** | Optional | Is this election automatically applied in the absence of an election having been made.  May only be true for one election if multiple are provided. |
 | **price** | **float** | Optional | Price per unit of the security. At least one of UnitsRatio or Price must be provided.  Price must non-zero. |
-| **units_ratio** | [UnitsRatio](UnitsRatio.md) | Optional | *No description available.* |
+| **units_ratio** | [../model/UnitsRatio](UnitsRatio.md) | Optional | *No description available.* |
 | **security_election_currency** | **str** | Optional | Optional currency in which the security election&#39;s price is denominated |
 
 

@@ -6,9 +6,9 @@
 |------|------|----------|-------------|
 | **id** | **str** | Required | *No description available.* |
 | **var_date** | **datetime** | Required | *No description available.* |
-| **process** | [AuditProcess](AuditProcess.md) | Required | *No description available.* |
-| **data** | [AuditData](AuditData.md) | Required | *No description available.* |
-| **notes** | [List[AuditEntryNote]](AuditEntryNote.md) | Optional | *No description available.* |
+| **process** | [../model/AuditProcess](AuditProcess.md) | Required | *No description available.* |
+| **data** | [../model/AuditData](AuditData.md) | Required | *No description available.* |
+| **notes** | [../model/List[AuditEntryNote]](AuditEntryNote.md) | Optional | *No description available.* |
 
 
 ## Usage

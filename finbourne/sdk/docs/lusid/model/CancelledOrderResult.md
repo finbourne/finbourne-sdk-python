@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **order_state** | [Order](Order.md) | Optional | *No description available.* |
+| **order_state** | [../model/Order](Order.md) | Optional | *No description available.* |
 
 
 ## Usage

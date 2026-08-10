@@ -5,7 +5,7 @@ A recipe composer that is to be stored in the recipe composer data store or used
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **recipe_composer** | [RecipeComposer](RecipeComposer.md) | Optional | *No description available.* |
+| **recipe_composer** | [../model/RecipeComposer](RecipeComposer.md) | Optional | *No description available.* |
 
 
 ## Usage

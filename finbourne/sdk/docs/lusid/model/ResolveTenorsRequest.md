@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **start_date** | **datetime** | Required | *No description available.* |
-| **calendars** | [List[ResourceId]](ResourceId.md) | Required | *No description available.* |
+| **calendars** | [../model/List[ResourceId]](ResourceId.md) | Required | *No description available.* |
 | **spot_days** | **int** | Required | *No description available.* |
 | **tenors** | **List[str]** | Required | *No description available.* |
 | **business_day_convention** | **str** | Optional | Available values: NoAdjustment, None, Previous, P, Following, F, ModifiedPrevious, MP, ModifiedFollowing, MF, HalfMonthModifiedFollowing, Nearest, Invalid. |

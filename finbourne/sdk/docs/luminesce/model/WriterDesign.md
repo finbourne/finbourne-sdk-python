@@ -6,9 +6,9 @@ Representation of a \"designable Query for a writer\" suitable for formatting to
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **sql** | **str** | Required | Original SQL that started this off |
-| **available_to_map_from** | [List[ExpressionWithAlias]](ExpressionWithAlias.md) | Optional | The data able to be mapped from as derived from the Sql |
-| **parameter** | [AvailableParameter](AvailableParameter.md) | Optional | *No description available.* |
-| **available_parameters** | [List[AvailableParameter]](AvailableParameter.md) | Optional | All the parameter the user may wish to design |
+| **available_to_map_from** | [../model/List[ExpressionWithAlias]](ExpressionWithAlias.md) | Optional | The data able to be mapped from as derived from the Sql |
+| **parameter** | [../model/AvailableParameter](AvailableParameter.md) | Optional | *No description available.* |
+| **available_parameters** | [../model/List[AvailableParameter]](AvailableParameter.md) | Optional | All the parameter the user may wish to design |
 
 
 ## Usage

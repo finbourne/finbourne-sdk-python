@@ -5,19 +5,19 @@ Representation of Reconciliation in LUSID Api
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [ReconciliationId](ReconciliationId.md) | Optional | *No description available.* |
+| **id** | [../model/ReconciliationId](ReconciliationId.md) | Optional | *No description available.* |
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
 | **name** | **str** | Optional | The name of the scheduled reconciliation |
 | **description** | **str** | Optional | A description of the scheduled reconciliation |
 | **is_portfolio_group** | **bool** | Optional | Specifies whether reconciliation is between portfolios or portfolio groups |
-| **left** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
-| **right** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
-| **transactions** | [ReconciliationTransactions](ReconciliationTransactions.md) | Optional | *No description available.* |
-| **positions** | [ReconciliationConfiguration](ReconciliationConfiguration.md) | Optional | *No description available.* |
-| **valuations** | [ReconciliationConfiguration](ReconciliationConfiguration.md) | Optional | *No description available.* |
-| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | Reconciliation properties |
-| **version** | [Version](Version.md) | Optional | *No description available.* |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **left** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **right** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **transactions** | [../model/ReconciliationTransactions](ReconciliationTransactions.md) | Optional | *No description available.* |
+| **positions** | [../model/ReconciliationConfiguration](ReconciliationConfiguration.md) | Optional | *No description available.* |
+| **valuations** | [../model/ReconciliationConfiguration](ReconciliationConfiguration.md) | Optional | *No description available.* |
+| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | Reconciliation properties |
+| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

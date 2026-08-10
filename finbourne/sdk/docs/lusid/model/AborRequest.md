@@ -8,9 +8,9 @@ The request used to create an Abor.
 | **code** | **str** | Required | The code given for the Abor. |
 | **display_name** | **str** | Required | The name of the Abor. |
 | **description** | **str** | Optional | The description for the Abor. |
-| **portfolio_ids** | [List[PortfolioEntityId]](PortfolioEntityId.md) | Required | The list with the portfolio ids which are part of the Abor. Note: These must all have the same base currency. |
-| **abor_configuration_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
-| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the Abor. |
+| **portfolio_ids** | [../model/List[PortfolioEntityId]](PortfolioEntityId.md) | Required | The list with the portfolio ids which are part of the Abor. Note: These must all have the same base currency. |
+| **abor_configuration_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the Abor. |
 
 
 ## Usage

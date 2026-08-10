@@ -5,11 +5,11 @@ Request to create or update an legal entity
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **identifiers** | [Dict[str, ModelProperty]](ModelProperty.md) | Required | The identifiers the legal entity will be upserted with.The provided keys should be idTypeScope, idTypeCode, code |
-| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties associated to the Legal Entity. |
+| **identifiers** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Required | The identifiers the legal entity will be upserted with.The provided keys should be idTypeScope, idTypeCode, code |
+| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties associated to the Legal Entity. |
 | **display_name** | **str** | Required | The display name of the Legal Entity |
 | **description** | **str** | Optional | The description of the Legal Entity |
-| **counterparty_risk_information** | [CounterpartyRiskInformation](CounterpartyRiskInformation.md) | Optional | *No description available.* |
+| **counterparty_risk_information** | [../model/CounterpartyRiskInformation](CounterpartyRiskInformation.md) | Optional | *No description available.* |
 
 
 ## Usage

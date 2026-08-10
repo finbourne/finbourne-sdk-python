@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **details** | [List[OrderGraphPlacementOrderDetail]](OrderGraphPlacementOrderDetail.md) | Required | Identifiers for each order in the block. |
+| **details** | [../model/List[OrderGraphPlacementOrderDetail]](OrderGraphPlacementOrderDetail.md) | Required | Identifiers for each order in the block. |
 
 
 ## Usage

@@ -8,7 +8,7 @@ The information required to create a notification
 | **notification_id** | **str** | Required | The identifier of the notification. |
 | **display_name** | **str** | Required | The name of the notification |
 | **description** | **str** | Optional | The summary of the services provided by the notification |
-| **notification_type** | [NotificationType](NotificationType.md) | Required | *No description available.* |
+| **notification_type** | [../model/NotificationType](NotificationType.md) | Required | *No description available.* |
 
 
 ## Usage

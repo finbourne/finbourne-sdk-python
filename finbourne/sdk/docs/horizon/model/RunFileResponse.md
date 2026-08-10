@@ -10,7 +10,7 @@ record containing details of a single file for a run.
 | **row_count** | **int** | Required | *No description available.* |
 | **file_hash** | **str** | Required | *No description available.* |
 | **encrypted** | **bool** | Required | *No description available.* |
-| **destinations** | [List[FileDestinationResponse]](FileDestinationResponse.md) | Required | *No description available.* |
+| **destinations** | [../model/List[FileDestinationResponse]](FileDestinationResponse.md) | Required | *No description available.* |
 | **transaction_ids** | **List[UUID]** | Required | *No description available.* |
 
 

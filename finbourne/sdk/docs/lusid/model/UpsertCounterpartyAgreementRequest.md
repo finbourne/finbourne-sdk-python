@@ -5,7 +5,7 @@ Counterparty Agreement that is to be stored in the convention data store.  There
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **counterparty_agreement** | [CounterpartyAgreement](CounterpartyAgreement.md) | Required | *No description available.* |
+| **counterparty_agreement** | [../model/CounterpartyAgreement](CounterpartyAgreement.md) | Required | *No description available.* |
 
 
 ## Usage

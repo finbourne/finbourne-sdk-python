@@ -5,8 +5,8 @@ Representation of the data used in a filter for the where clause
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **filter_type** | [FilterType](FilterType.md) | Required | *No description available.* |
-| **type** | [Type](Type.md) | Optional | *No description available.* |
+| **filter_type** | [../model/FilterType](FilterType.md) | Required | *No description available.* |
+| **type** | [../model/Type](Type.md) | Optional | *No description available.* |
 | **filter** | **str** | Optional | The filter value |
 | **filter_to** | **float** | Optional | The upper bound filter value for the number filter type |
 | **values** | **List[str]** | Optional | An array of possible values for the set filter type |

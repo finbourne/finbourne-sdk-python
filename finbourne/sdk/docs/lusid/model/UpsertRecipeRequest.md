@@ -5,7 +5,7 @@ A recipe that is to be stored in the recipe structured data store.  Only one of 
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **configuration_recipe** | [ConfigurationRecipe](ConfigurationRecipe.md) | Optional | *No description available.* |
+| **configuration_recipe** | [../model/ConfigurationRecipe](ConfigurationRecipe.md) | Optional | *No description available.* |
 
 
 ## Usage

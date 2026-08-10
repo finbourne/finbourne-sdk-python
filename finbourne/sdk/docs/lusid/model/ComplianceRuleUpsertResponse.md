@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **values** | [Dict[str, ComplianceRule]](ComplianceRule.md) | Required | *No description available.* |
+| **values** | [../model/Dict[str, ComplianceRule]](ComplianceRule.md) | Required | *No description available.* |
 
 
 ## Usage

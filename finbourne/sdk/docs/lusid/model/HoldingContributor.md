@@ -5,9 +5,9 @@ A list of transactions contributed to a holding.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **transaction** | [Transaction](Transaction.md) | Required | *No description available.* |
+| **transaction** | [../model/Transaction](Transaction.md) | Required | *No description available.* |
 | **holding_id** | **int** | Optional | The unique holding identifier |
-| **movements** | [List[MovementSettlementSummary]](MovementSettlementSummary.md) | Optional | Movements contributed to holding |
+| **movements** | [../model/List[MovementSettlementSummary]](MovementSettlementSummary.md) | Optional | Movements contributed to holding |
 
 
 ## Usage

@@ -8,14 +8,14 @@ A prior run snapshot, frozen at the point of re-run. Has the same shape as the r
 | **run_number** | **int** | Required | The run number within the instance. Increments with each re-run. |
 | **run_as_at** | **datetime** | Required | The asAt datetime at which the run happened. |
 | **superseded_as_at** | **datetime** | Required | The asAt datetime at which this run was superseded by a subsequent run. |
-| **execution** | [RecExecution](RecExecution.md) | Required | *No description available.* |
-| **dates_reconciled** | [RecDatesReconciled](RecDatesReconciled.md) | Required | *No description available.* |
-| **result_counts** | [RecResultCounts](RecResultCounts.md) | Required | *No description available.* |
-| **review** | [RecReview](RecReview.md) | Required | *No description available.* |
+| **execution** | [../model/RecExecution](RecExecution.md) | Required | *No description available.* |
+| **dates_reconciled** | [../model/RecDatesReconciled](RecDatesReconciled.md) | Required | *No description available.* |
+| **result_counts** | [../model/RecResultCounts](RecResultCounts.md) | Required | *No description available.* |
+| **review** | [../model/RecReview](RecReview.md) | Required | *No description available.* |
 | **approval_status** | **str** | Required | The position of this result set in the approval ceremony. Available values: UnderReview, PendingApproval, RevisionsRequested, Approved, NotApplicable. |
-| **required_approvals** | [List[RecRequiredApproval]](RecRequiredApproval.md) | Required | The approval slots required for this result set, passed through from the rec definition&#39;s review configuration. May be empty. |
-| **submissions** | [List[RecSubmission]](RecSubmission.md) | Required | An append-only log of review submissions. May be empty. |
-| **decisions** | [List[RecApprovalDecision]](RecApprovalDecision.md) | Required | An append-only log of approver decisions. May be empty. |
+| **required_approvals** | [../model/List[RecRequiredApproval]](RecRequiredApproval.md) | Required | The approval slots required for this result set, passed through from the rec definition&#39;s review configuration. May be empty. |
+| **submissions** | [../model/List[RecSubmission]](RecSubmission.md) | Required | An append-only log of review submissions. May be empty. |
+| **decisions** | [../model/List[RecApprovalDecision]](RecApprovalDecision.md) | Required | An append-only log of approver decisions. May be empty. |
 
 
 ## Usage

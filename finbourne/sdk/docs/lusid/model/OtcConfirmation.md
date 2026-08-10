@@ -5,7 +5,7 @@ For the storage of any information pertinent to the confirmation of an OTC trade
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **counterparty_agreement_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **counterparty_agreement_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
 
 
 ## Usage

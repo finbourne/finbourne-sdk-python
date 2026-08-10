@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **transaction_template_scopes** | **List[str]** | Optional | *No description available.* |
-| **recipe_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **recipe_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
 
 
 ## Usage

@@ -12,15 +12,15 @@
 | **settlement_category** | **str** | Required | A category representing the set of movement types that this instruction applies to. Available values: StockSettlement, CashSettlement, DeferredCashReceipt, NotApplicable. |
 | **lusid_instrument_id** | **str** | Required | The LusidInstrumentId of the instrument being settled. |
 | **contractual_settlement_date** | **datetime** | Optional | The contractual settlement date. Used to match the instruction to the correct settlement bucket. |
-| **sub_holding_key_overrides** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Allows one or more sub-holding keys to be overridden for any movement being settled by an instruction. Providing a key and value will set the sub-holding key to the specified value; Providing a key only will nullify the sub-holding key. Not referenced sub-holding keys will not be impacted.  |
-| **custodian_account_override** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **sub_holding_key_overrides** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Allows one or more sub-holding keys to be overridden for any movement being settled by an instruction. Providing a key and value will set the sub-holding key to the specified value; Providing a key only will nullify the sub-holding key. Not referenced sub-holding keys will not be impacted.  |
+| **custodian_account_override** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **instrument_identifiers** | **Dict[str, Optional[str]]** | Required | A set of instrument identifiers that can resolve the settlement instruction to a unique instrument. |
 | **status** | **str** | Optional | The status of the settlement instruction. Available values: Applied, Inactive, Invalid, Orphan, Rejected. Available values: Invalid, Rejected, Applied, Orphan. |
 | **instruction_to_portfolio_rate** | **float** | Optional | The exchange rate between the Settlement Instruction and Portfolio. |
-| **settlement_in_lieu** | [SettlementInLieu](SettlementInLieu.md) | Optional | *No description available.* |
+| **settlement_in_lieu** | [../model/SettlementInLieu](SettlementInLieu.md) | Optional | *No description available.* |
 | **is_active** | **bool** | Optional | Indicates whether the settlement instruction is active. When false, the instruction has no impact on settlement positions, but remains visible. Defaults to true. |
-| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | The properties which have been requested to be decorated onto the settlement instruction. These will be from the &#39;SettlementInstruction&#39;, &#39;Portfolio&#39;, or &#39;Instrument&#39; domains. |
-| **version** | [Version](Version.md) | Optional | *No description available.* |
+| **properties** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | The properties which have been requested to be decorated onto the settlement instruction. These will be from the &#39;SettlementInstruction&#39;, &#39;Portfolio&#39;, or &#39;Instrument&#39; domains. |
+| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
 
 
 ## Usage

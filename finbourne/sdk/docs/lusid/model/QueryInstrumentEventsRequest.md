@@ -8,9 +8,9 @@ Instrument event query.
 | **as_at** | **datetime** | Optional | The time of the system at which to query for bucketed cashflows. |
 | **window_start** | **datetime** | Required | The start date of the window. |
 | **window_end** | **datetime** | Required | The end date of the window. |
-| **portfolio_entity_ids** | [List[PortfolioEntityId]](PortfolioEntityId.md) | Required | The set of portfolios and portfolio groups to which the instrument events must belong. |
+| **portfolio_entity_ids** | [../model/List[PortfolioEntityId]](PortfolioEntityId.md) | Required | The set of portfolios and portfolio groups to which the instrument events must belong. |
 | **effective_at** | **datetime** | Required | The Effective date used in the valuation of the cashflows. |
-| **recipe_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **recipe_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
 | **filter_instrument_events** | **str** | Optional | Expression to filter the result set. |
 
 

@@ -5,8 +5,8 @@ Describes the structure of a Workflow as a graph of Task Definitions
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **nodes** | [WorkflowStructureNodes](WorkflowStructureNodes.md) | Optional | *No description available.* |
-| **edges** | [WorkflowStructureEdges](WorkflowStructureEdges.md) | Optional | *No description available.* |
+| **nodes** | [../model/WorkflowStructureNodes](WorkflowStructureNodes.md) | Optional | *No description available.* |
+| **edges** | [../model/WorkflowStructureEdges](WorkflowStructureEdges.md) | Optional | *No description available.* |
 
 
 ## Usage

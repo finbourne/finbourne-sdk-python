@@ -9,7 +9,7 @@ Definition of a PIK Bond Interest Event  This is an event that describes the pai
 | **payment_date** | **datetime** | Optional | The date on which the securities are delivered |
 | **currency** | **str** | Required | The currency in which the interest amount is expressed |
 | **coupon_per_unit** | **float** | Optional | The interest amount, in cash terms, per unit of the held bond&#39;s current face |
-| **new_instrument** | [NewInstrument](NewInstrument.md) | Required | *No description available.* |
+| **new_instrument** | [../model/NewInstrument](NewInstrument.md) | Required | *No description available.* |
 | **delivery_price** | **float** | Optional | The clean price the deliverable is delivered at, as a percentage of its nominal per unit  following bond market convention: 100 is par and 98.5 is a one-and-a-half point discount.  This is not a cash amount per unit. Null is par. It governs how many units the interest  amount buys, not how much face each of those units carries. |
 | **delivered_contract_size** | **float** | Optional | The deliverable&#39;s nominal per unit - its contract size. Null is 1. |
 | **delivered_current_face_per_unit** | **float** | Optional | The current face each delivered unit carries. Null falls back to DeliveredContractSize;  supply it for a seasoned note whose face has already amortised away from its contract size.  When both are absent the delivered lot carries no current face, which is how a deliverable  that is not current-face-based, such as an equity, is expressed. |

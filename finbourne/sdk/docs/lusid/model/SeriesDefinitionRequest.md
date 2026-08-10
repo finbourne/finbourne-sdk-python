@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **share_class_code** | **str** | Required | The code of the Share Class this Series belongs to. |
-| **series_definitions** | [List[SeriesDefinition]](SeriesDefinition.md) | Required | The definitions of the Series to add to the Share Class. |
+| **series_definitions** | [../model/List[SeriesDefinition]](SeriesDefinition.md) | Required | The definitions of the Series to add to the Share Class. |
 
 
 ## Usage

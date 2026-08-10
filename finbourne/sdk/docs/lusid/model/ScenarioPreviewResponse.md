@@ -5,7 +5,7 @@ The result of previewing a scenario: every market data target the scenario's shi
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **applied** | [List[ScenarioPreviewAppliedShift]](ScenarioPreviewAppliedShift.md) | Optional | One entry per market data target changed by a shift. |
+| **applied** | [../model/List[ScenarioPreviewAppliedShift]](ScenarioPreviewAppliedShift.md) | Optional | One entry per market data target changed by a shift. |
 | **skipped** | **List[str]** | Optional | Market data that matched a shift but was skipped (e.g. an element type that does not support  transformation), with the reason. |
 
 

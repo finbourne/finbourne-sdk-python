@@ -4,9 +4,9 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **add** | [RelationalDatasetFieldsToAdd](RelationalDatasetFieldsToAdd.md) | Optional | *No description available.* |
-| **update** | [RelationalDatasetFieldsToUpdate](RelationalDatasetFieldsToUpdate.md) | Optional | *No description available.* |
-| **remove** | [RelationalDatasetFieldsToRemove](RelationalDatasetFieldsToRemove.md) | Optional | *No description available.* |
+| **add** | [../model/RelationalDatasetFieldsToAdd](RelationalDatasetFieldsToAdd.md) | Optional | *No description available.* |
+| **update** | [../model/RelationalDatasetFieldsToUpdate](RelationalDatasetFieldsToUpdate.md) | Optional | *No description available.* |
+| **remove** | [../model/RelationalDatasetFieldsToRemove](RelationalDatasetFieldsToRemove.md) | Optional | *No description available.* |
 
 
 ## Usage

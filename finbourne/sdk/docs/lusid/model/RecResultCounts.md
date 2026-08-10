@@ -5,9 +5,9 @@ Counts of results broken down by the structural categories that align with the r
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **open_exceptions** | [RecOpenExceptionCounts](RecOpenExceptionCounts.md) | Required | *No description available.* |
-| **closed_exceptions** | [RecClosedExceptionCounts](RecClosedExceptionCounts.md) | Required | *No description available.* |
-| **matches** | [RecMatchCounts](RecMatchCounts.md) | Required | *No description available.* |
+| **open_exceptions** | [../model/RecOpenExceptionCounts](RecOpenExceptionCounts.md) | Required | *No description available.* |
+| **closed_exceptions** | [../model/RecClosedExceptionCounts](RecClosedExceptionCounts.md) | Required | *No description available.* |
+| **matches** | [../model/RecMatchCounts](RecMatchCounts.md) | Required | *No description available.* |
 
 
 ## Usage

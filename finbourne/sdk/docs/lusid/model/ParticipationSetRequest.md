@@ -5,7 +5,7 @@ A request to create or update multiple Participations.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **requests** | [List[ParticipationRequest]](ParticipationRequest.md) | Optional | A collection of ParticipationRequests. |
+| **requests** | [../model/List[ParticipationRequest]](ParticipationRequest.md) | Optional | A collection of ParticipationRequests. |
 
 
 ## Usage

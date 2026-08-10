@@ -6,7 +6,7 @@ Rows identified by the composite id, based on the data maps
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **row_id** | **Dict[str, Optional[str]]** | Optional | The identifier for the row. This is keyed by address keys, and values obtained through applying the data map to the documents. |
-| **row_data** | [GroupedResultOfAddressKey](GroupedResultOfAddressKey.md) | Optional | *No description available.* |
+| **row_data** | [../model/GroupedResultOfAddressKey](GroupedResultOfAddressKey.md) | Optional | *No description available.* |
 
 
 ## Usage

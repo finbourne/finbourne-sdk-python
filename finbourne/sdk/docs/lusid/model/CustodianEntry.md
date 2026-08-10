@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **account_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **account_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
 | **account_selector** | **str** | Optional | Available values: From, To. |
 
 

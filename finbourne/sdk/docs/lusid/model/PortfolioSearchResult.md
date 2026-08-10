@@ -5,17 +5,17 @@ A list of portfolios.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
 | **type** | **str** | Required | The type of the portfolio. Available values: Transaction, Reference, DerivedTransaction, SimplePosition. |
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
 | **description** | **str** | Optional | The long form description of the portfolio. |
 | **display_name** | **str** | Required | The name of the portfolio. |
 | **is_derived** | **bool** | Optional | Whether or not this is a derived portfolio. *(read-only)* |
 | **created** | **datetime** | Required | The effective datetime at which the portfolio was created. No transactions or constituents can be added to the portfolio before this date. |
-| **parent_portfolio_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **parent_portfolio_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **base_currency** | **str** | Optional | The base currency of the portfolio. |
-| **properties** | [List[ModelProperty]](ModelProperty.md) | Optional | The requested portfolio properties. These will be from the &#39;Portfolio&#39; domain. |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **properties** | [../model/List[ModelProperty]](ModelProperty.md) | Optional | The requested portfolio properties. These will be from the &#39;Portfolio&#39; domain. |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

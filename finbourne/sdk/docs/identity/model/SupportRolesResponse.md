@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **support_roles** | [List[SupportRole]](SupportRole.md) | Optional | *No description available.* |
+| **support_roles** | [../model/List[SupportRole]](SupportRole.md) | Optional | *No description available.* |
 
 
 ## Usage

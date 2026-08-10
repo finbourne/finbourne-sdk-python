@@ -4,8 +4,8 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **var_from** | [AsAtPredicateContract](AsAtPredicateContract.md) | Required | *No description available.* |
-| **to** | [AsAtPredicateContract](AsAtPredicateContract.md) | Required | *No description available.* |
+| **var_from** | [../model/AsAtPredicateContract](AsAtPredicateContract.md) | Required | *No description available.* |
+| **to** | [../model/AsAtPredicateContract](AsAtPredicateContract.md) | Required | *No description available.* |
 
 
 ## Usage

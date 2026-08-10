@@ -5,8 +5,8 @@ Mapping from a set of VendorFields to a LUSID Property
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **var_property** | [LusidPropertyDefinition](LusidPropertyDefinition.md) | Required | *No description available.* |
-| **vendor_fields** | [List[VendorField]](VendorField.md) | Required | Fields that will be used to map to this Property Definition |
+| **var_property** | [../model/LusidPropertyDefinition](LusidPropertyDefinition.md) | Required | *No description available.* |
+| **vendor_fields** | [../model/List[VendorField]](VendorField.md) | Required | Fields that will be used to map to this Property Definition |
 | **optionality** | **str** | Required | Whether the Property is Mandatory, Suggested or Optional |
 | **entity_type** | **str** | Required | The LUSID Entity this is valid for |
 | **entity_sub_type** | **str** | Optional | The LUSID Entity sub type this is valid for |

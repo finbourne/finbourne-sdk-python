@@ -8,7 +8,7 @@ The request for an approver to approve a submitted review or request revisions. 
 | **approval_code** | **str** | Required | The approval slot being decided. Must match a required approval code. |
 | **decision** | **str** | Required | The decision made. Available values: Approve, RequestRevisions. |
 | **reason** | **str** | Optional | Rationale for the decision. |
-| **requested_result_revisions** | [List[RecRequestedResultRevision]](RecRequestedResultRevision.md) | Optional | The results flagged for re-review. Only applicable when the decision is Request Revisions. |
+| **requested_result_revisions** | [../model/List[RecRequestedResultRevision]](RecRequestedResultRevision.md) | Optional | The results flagged for re-review. Only applicable when the decision is Request Revisions. |
 
 
 ## Usage

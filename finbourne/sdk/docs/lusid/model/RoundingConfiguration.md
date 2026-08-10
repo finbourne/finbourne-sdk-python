@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **stock_units** | [RoundingConfigurationComponent](RoundingConfigurationComponent.md) | Optional | *No description available.* |
+| **stock_units** | [../model/RoundingConfigurationComponent](RoundingConfigurationComponent.md) | Optional | *No description available.* |
 
 
 ## Usage

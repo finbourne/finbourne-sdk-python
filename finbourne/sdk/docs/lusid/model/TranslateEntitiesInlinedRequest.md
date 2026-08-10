@@ -5,9 +5,9 @@ Request to translate financial entities with a given script body.  The output of
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **entity_payloads** | [Dict[str, TranslationInput]](TranslationInput.md) | Required | Entity payloads to be translated indexed by (ephemeral) unique correlation ids. |
+| **entity_payloads** | [../model/Dict[str, TranslationInput]](TranslationInput.md) | Required | Entity payloads to be translated indexed by (ephemeral) unique correlation ids. |
 | **script_body** | **str** | Required | The body of the translation script to use for translating the entities. |
-| **var_schema** | [DialectSchema](DialectSchema.md) | Optional | *No description available.* |
+| **var_schema** | [../model/DialectSchema](DialectSchema.md) | Optional | *No description available.* |
 
 
 ## Usage

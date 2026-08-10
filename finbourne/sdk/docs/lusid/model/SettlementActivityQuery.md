@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **as_at** | **datetime** | Optional | The asAt time at which to query settlement activity. Defaults to latest. |
-| **portfolio_entity_ids** | [List[PortfolioEntityId]](PortfolioEntityId.md) | Optional | The portfolios and / or portfolio groups to query. At least one entry is required. |
+| **portfolio_entity_ids** | [../model/List[PortfolioEntityId]](PortfolioEntityId.md) | Optional | The portfolios and / or portfolio groups to query. At least one entry is required. |
 | **start_activity_date** | **str** | Optional | Lower bound (inclusive) of the activity date range. If not set, no lower bound is applied. |
 | **end_activity_date** | **str** | Optional | Upper bound (inclusive) of the activity date range. Defaults to the current date and time. Treated as effectiveAt. |
 | **filter** | **str** | Optional | A LUSID standard filter expression. Supports traversal into transaction and settlementInstruction. |

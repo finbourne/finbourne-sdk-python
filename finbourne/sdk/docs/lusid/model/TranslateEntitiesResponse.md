@@ -4,9 +4,9 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **values** | [Dict[str, TranslationResult]](TranslationResult.md) | Optional | The entities that were successfully translated. |
-| **failed** | [Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The error details corresponding to entities that failed to be translated. |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **values** | [../model/Dict[str, TranslationResult]](TranslationResult.md) | Optional | The entities that were successfully translated. |
+| **failed** | [../model/Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The error details corresponding to entities that failed to be translated. |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

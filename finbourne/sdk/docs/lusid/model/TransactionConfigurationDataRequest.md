@@ -4,9 +4,9 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **aliases** | [List[TransactionConfigurationTypeAlias]](TransactionConfigurationTypeAlias.md) | Required | List of transaction codes that map to this specific transaction model |
-| **movements** | [List[TransactionConfigurationMovementDataRequest]](TransactionConfigurationMovementDataRequest.md) | Required | Movement data for the transaction code |
-| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Properties attached to the underlying holding. |
+| **aliases** | [../model/List[TransactionConfigurationTypeAlias]](TransactionConfigurationTypeAlias.md) | Required | List of transaction codes that map to this specific transaction model |
+| **movements** | [../model/List[TransactionConfigurationMovementDataRequest]](TransactionConfigurationMovementDataRequest.md) | Required | Movement data for the transaction code |
+| **properties** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Properties attached to the underlying holding. |
 
 
 ## Usage

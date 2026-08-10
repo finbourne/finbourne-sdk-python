@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **data_series** | [DataSeries](DataSeries.md) | Required | *No description available.* |
+| **data_series** | [../model/DataSeries](DataSeries.md) | Required | *No description available.* |
 | **effective_at** | **str** | Required | The effectiveAt or cut-label datetime of the DataPoint. |
 
 

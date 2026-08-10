@@ -6,10 +6,10 @@
 |------|------|----------|-------------|
 | **href** | **str** | Required | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
 | **entity_type** | **str** | Required | The type of custom entity this is. |
-| **identifiers** | [List[CustomEntityId]](CustomEntityId.md) | Required | The identifiers the custom entity will be upserted with. |
-| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | The properties that decorate the custom entity. |
-| **version** | [Version](Version.md) | Required | *No description available.* |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **identifiers** | [../model/List[CustomEntityId]](CustomEntityId.md) | Required | The identifiers the custom entity will be upserted with. |
+| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | The properties that decorate the custom entity. |
+| **version** | [../model/Version](Version.md) | Required | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

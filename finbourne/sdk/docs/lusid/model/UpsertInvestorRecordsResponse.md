@@ -5,9 +5,9 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
-| **values** | [Dict[str, InvestorRecord]](InvestorRecord.md) | Optional | The investor records which have been successfully updated or created. |
-| **failed** | [Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The investor records that could not be updated or created or were left unchanged without error along with a reason for their failure. |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **values** | [../model/Dict[str, InvestorRecord]](InvestorRecord.md) | Optional | The investor records which have been successfully updated or created. |
+| **failed** | [../model/Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The investor records that could not be updated or created or were left unchanged without error along with a reason for their failure. |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

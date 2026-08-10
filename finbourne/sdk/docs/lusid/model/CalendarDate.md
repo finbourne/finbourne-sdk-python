@@ -12,7 +12,7 @@
 | **timezone** | **str** | Required | *No description available.* |
 | **description** | **str** | Required | *No description available.* |
 | **type** | **str** | Optional | *No description available.* |
-| **attributes** | [DateAttributes](DateAttributes.md) | Optional | *No description available.* |
+| **attributes** | [../model/DateAttributes](DateAttributes.md) | Optional | *No description available.* |
 | **source_data** | **Dict[str, Optional[str]]** | Optional | *No description available.* |
 
 

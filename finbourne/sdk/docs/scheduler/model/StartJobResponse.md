@@ -5,7 +5,7 @@ Response from starting a job
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **job_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **job_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **run_id** | **str** | Optional | Unique RunId of the started job run |
 | **status** | **str** | Optional | Link to the status of the started job |
 | **result** | **str** | Optional | Link to the result of the job run when completed |

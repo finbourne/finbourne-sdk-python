@@ -4,11 +4,11 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **values** | [Dict[str, Transaction]](Transaction.md) | Optional | The transactions which have been successfully upserted. |
-| **failed** | [Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The transactions that could not be upserted along with a reason for their failure. |
+| **values** | [../model/Dict[str, Transaction]](Transaction.md) | Optional | The transactions which have been successfully upserted. |
+| **failed** | [../model/Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The transactions that could not be upserted along with a reason for their failure. |
 | **metadata** | **Dict[str, Optional[List[ResponseMetaData]]]** | Optional | Contains warnings related to unresolved instruments or non-existent transaction types for the upserted trades |
-| **staged** | [Dict[str, Transaction]](Transaction.md) | Optional | The transactions that have been staged pending approval. |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **staged** | [../model/Dict[str, Transaction]](Transaction.md) | Optional | The transactions that have been staged pending approval. |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **lusid_entity_dataset** | [LusidEntityDataset](LusidEntityDataset.md) | Optional | *No description available.* |
+| **lusid_entity_dataset** | [../model/LusidEntityDataset](LusidEntityDataset.md) | Optional | *No description available.* |
 | **limit_individual_breaches_per_rule** | **int** | Optional | The maximum number of individual breaches to return per rule. Defaults to 100 if not specified. |
 
 

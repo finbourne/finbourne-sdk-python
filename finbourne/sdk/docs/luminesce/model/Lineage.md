@@ -9,7 +9,7 @@
 | **legend_text** | **str** | Optional | *No description available.* |
 | **alias** | **str** | Optional | *No description available.* |
 | **column_title_tooltip** | **str** | Optional | *No description available.* |
-| **column_title_icon** | [LineageColumnIcon](LineageColumnIcon.md) | Optional | *No description available.* |
+| **column_title_icon** | [../model/LineageColumnIcon](LineageColumnIcon.md) | Optional | *No description available.* |
 | **explain_title** | **str** | Optional | *No description available.* |
 | **explain_tooltip** | **str** | Optional | *No description available.* |
 | **arrow_to_parent_tooltip** | **str** | Optional | *No description available.* |
@@ -17,7 +17,7 @@
 | **action_template** | **str** | Optional | *No description available.* |
 | **documentation_as_html** | **str** | Optional | *No description available.* |
 | **documentation_as_mark_down** | **str** | Optional | *No description available.* |
-| **children** | [List[Lineage]](Lineage.md) | Optional | *No description available.* |
+| **children** | [../model/List[Lineage]](Lineage.md) | Optional | *No description available.* |
 
 
 ## Usage

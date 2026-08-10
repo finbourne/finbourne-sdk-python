@@ -6,7 +6,7 @@ A liquidation payment event (LIQU).
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **announcement_date** | **datetime** | Optional | The announcement date. Optional; informational only. |
-| **cash_offer_elections** | [List[CashOfferElection]](CashOfferElection.md) | Required | The cash offer elections for this event. |
+| **cash_offer_elections** | [../model/List[CashOfferElection]](CashOfferElection.md) | Required | The cash offer elections for this event. |
 | **ex_date** | **datetime** | Optional | The ex-date. Optional; informational only — entitlement uses RecordDate. |
 | **is_final** | **bool** | Required | True if this is the final distribution and the position should be closed; false for a partial distribution  where the position is retained and cost basis is reduced by the cash amount. |
 | **payment_date** | **datetime** | Optional | The date the cash distribution is settled. |

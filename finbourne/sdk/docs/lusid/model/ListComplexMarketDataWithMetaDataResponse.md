@@ -6,8 +6,8 @@ Wraps a ComplexMarketData object with information that was retrieved from storag
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **scope** | **str** | Optional | The scope that the listed ComplexMarketData entity is stored in. |
-| **market_data_id** | [ComplexMarketDataId](ComplexMarketDataId.md) | Optional | *No description available.* |
-| **market_data** | [ComplexMarketData](ComplexMarketData.md) | Optional | *No description available.* |
+| **market_data_id** | [../model/ComplexMarketDataId](ComplexMarketDataId.md) | Optional | *No description available.* |
+| **market_data** | [../model/ComplexMarketData](ComplexMarketData.md) | Optional | *No description available.* |
 
 
 ## Usage

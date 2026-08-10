@@ -5,12 +5,12 @@ ResourceList with additional aggregation data about the values.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **histogram** | [Histogram](Histogram.md) | Optional | *No description available.* |
-| **values** | [List[AccessEvaluationLog]](AccessEvaluationLog.md) | Required | *No description available.* |
+| **histogram** | [../model/Histogram](Histogram.md) | Optional | *No description available.* |
+| **values** | [../model/List[AccessEvaluationLog]](AccessEvaluationLog.md) | Required | *No description available.* |
 | **href** | **str** | Optional | *No description available.* |
 | **next_page** | **str** | Optional | *No description available.* |
 | **previous_page** | **str** | Optional | *No description available.* |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

@@ -4,8 +4,8 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **run_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
-| **details** | [List[ComplianceRuleResultDetail]](ComplianceRuleResultDetail.md) | Required | *No description available.* |
+| **run_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **details** | [../model/List[ComplianceRuleResultDetail]](ComplianceRuleResultDetail.md) | Required | *No description available.* |
 
 
 ## Usage

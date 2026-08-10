@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **label** | **str** | Required | The label of the compliance step |
-| **parameters** | [List[ComplianceTemplateParameter]](ComplianceTemplateParameter.md) | Required | Parameters required for the step |
+| **parameters** | [../model/List[ComplianceTemplateParameter]](ComplianceTemplateParameter.md) | Required | Parameters required for the step |
 | **compliance_step_type** | **str** | Required | The type of the compliance step. Available values: FilterStep, GroupByStep, GroupFilterStep, BranchStep, RecombineStep, CheckStep, PercentCheckStep. |
 
 

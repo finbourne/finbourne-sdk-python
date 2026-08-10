@@ -6,8 +6,8 @@ The value of the property.
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **label_value** | **str** | Optional | The text value of a property defined as having the &#39;Label&#39; type. |
-| **metric_value** | [MetricValue](MetricValue.md) | Optional | *No description available.* |
-| **label_value_set** | [LabelValueSet](LabelValueSet.md) | Optional | *No description available.* |
+| **metric_value** | [../model/MetricValue](MetricValue.md) | Optional | *No description available.* |
+| **label_value_set** | [../model/LabelValueSet](LabelValueSet.md) | Optional | *No description available.* |
 
 
 ## Usage

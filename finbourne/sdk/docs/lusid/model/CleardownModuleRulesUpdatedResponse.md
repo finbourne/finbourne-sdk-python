@@ -5,10 +5,10 @@ A Cleardown Module rules update response
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **rules** | [List[CleardownModuleRule]](CleardownModuleRule.md) | Optional | The Cleardown Rules that apply for the Cleardown Module. Rules are evaluated in the order they occur in this collection. |
-| **version** | [Version](Version.md) | Optional | *No description available.* |
+| **rules** | [../model/List[CleardownModuleRule]](CleardownModuleRule.md) | Optional | The Cleardown Rules that apply for the Cleardown Module. Rules are evaluated in the order they occur in this collection. |
+| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

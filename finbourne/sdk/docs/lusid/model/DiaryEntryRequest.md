@@ -10,7 +10,7 @@ The request to add a diary entry
 | **status** | **str** | Optional | The status of a Diary Entry of Type &#39;Other&#39;. Defaults to &#39;Undefined&#39; and supports &#39;Undefined&#39;, &#39;Estimate&#39;, &#39;Candidate&#39;, and &#39;Final&#39;. Available values: Undefined, Estimate, Final, Candidate, Unofficial. |
 | **effective_at** | **datetime** | Required | The effective time of the diary entry. |
 | **query_as_at** | **datetime** | Optional | The query time of the diary entry. Defaults to latest. |
-| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the diary entry. |
+| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the diary entry. |
 
 
 ## Usage

@@ -6,7 +6,7 @@ Optionality Schedule represents a class for creation of schedules for optionalit
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **exercise_type** | **str** | Optional | The exercise type of the optionality schedule (American or European).  For American type, the bond is perpetually callable from a given exercise date until it matures, or the next date in the schedule.  For European type, the bond is only callable on a given exercise date.    Supported string (enumeration) values are: [European, American].  Defaults to \&quot;European\&quot; if not set. |
-| **option_entries** | [List[OptionEntry]](OptionEntry.md) | Optional | The dates at which the bond call/put may be actioned, and associated strikes. |
+| **option_entries** | [../model/List[OptionEntry]](OptionEntry.md) | Optional | The dates at which the bond call/put may be actioned, and associated strikes. |
 | **option_type** | **str** | Optional | Type of optionality for the schedule.    Supported string (enumeration) values are: [Call, Put].  Defaults to \&quot;Call\&quot; if not set. |
 | **schedule_type** | **str** | Required | Available values: FixedSchedule, FloatSchedule, OptionalitySchedule, StepSchedule, Exercise, FxRateSchedule, FxLinkedNotionalSchedule, BondConversionSchedule, PikSchedule, Invalid. |
 

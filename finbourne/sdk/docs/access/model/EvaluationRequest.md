@@ -5,8 +5,8 @@ Specification for a server side evaluation of entitlement.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **request** | [RequestDetails](RequestDetails.md) | Required | *No description available.* |
-| **resource** | [ResourceDetails](ResourceDetails.md) | Required | *No description available.* |
+| **request** | [../model/RequestDetails](RequestDetails.md) | Required | *No description available.* |
+| **resource** | [../model/ResourceDetails](ResourceDetails.md) | Required | *No description available.* |
 
 
 ## Usage

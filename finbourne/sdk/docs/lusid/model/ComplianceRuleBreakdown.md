@@ -8,7 +8,7 @@
 | **results_used** | **Dict[str, float]** | Required | Dictionary of AddressKey (as string) and their corresponding decimal values, that were used in this rule. |
 | **properties_used** | **Dict[str, Optional[List[ModelProperty]]]** | Required | Dictionary of PropertyKey (as string) and their corresponding Properties, that were used in this rule |
 | **missing_data_information** | **List[str]** | Required | List of string information detailing data that was missing from contributions processed in this rule |
-| **lineage** | [List[LineageMember]](LineageMember.md) | Required | *No description available.* |
+| **lineage** | [../model/List[LineageMember]](LineageMember.md) | Required | *No description available.* |
 
 
 ## Usage

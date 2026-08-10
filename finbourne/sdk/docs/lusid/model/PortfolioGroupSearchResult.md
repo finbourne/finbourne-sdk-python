@@ -5,14 +5,14 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
-| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
 | **display_name** | **str** | Required | The name of the portfolio group. |
 | **description** | **str** | Optional | The long form description of the portfolio group. |
 | **created** | **datetime** | Optional | The effective datetime at which the portfolio group was created. No portfolios or sub groups can be added to the group before this date. |
-| **portfolios** | [List[ResourceId]](ResourceId.md) | Optional | The collection of resource identifiers for the portfolios contained in the portfolio group. |
-| **sub_groups** | [List[ResourceId]](ResourceId.md) | Optional | The collection of resource identifiers for the portfolio groups contained in the portfolio group as sub groups. |
-| **version** | [Version](Version.md) | Optional | *No description available.* |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **portfolios** | [../model/List[ResourceId]](ResourceId.md) | Optional | The collection of resource identifiers for the portfolios contained in the portfolio group. |
+| **sub_groups** | [../model/List[ResourceId]](ResourceId.md) | Optional | The collection of resource identifiers for the portfolio groups contained in the portfolio group as sub groups. |
+| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

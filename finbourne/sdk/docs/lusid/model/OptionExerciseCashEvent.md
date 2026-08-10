@@ -11,7 +11,7 @@ Event for cash option exercises.
 | **exercise_type** | **str** | Required | The optionality type of the underlying option. Available values: None, European, Bermudan, American. |
 | **maturity_date** | **datetime** | Optional | The maturity date of the option. |
 | **moneyness** | **str** | Optional | The moneyness of the option. Available values: Unknown, InTheMoney, OutOfTheMoney, AtTheMoney. |
-| **option_exercise_elections** | [List[OptionExerciseElection]](OptionExerciseElection.md) | Optional | Option exercise election for this OptionExercisePhysicalEvent. |
+| **option_exercise_elections** | [../model/List[OptionExerciseElection]](OptionExerciseElection.md) | Optional | Option exercise election for this OptionExercisePhysicalEvent. |
 | **option_type** | **str** | Required | Type of optionality that is present. Available values: None, Call, Put. |
 | **start_date** | **datetime** | Optional | The start date of the option. |
 | **strike_currency** | **str** | Required | The strike currency of the equity option. |

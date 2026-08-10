@@ -6,15 +6,15 @@
 |------|------|----------|-------------|
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
 | **entity_type** | **str** | Required | The type of custom entity this is. |
-| **version** | [Version](Version.md) | Required | *No description available.* |
-| **staged_modifications** | [StagedModificationsInfo](StagedModificationsInfo.md) | Optional | *No description available.* |
+| **version** | [../model/Version](Version.md) | Required | *No description available.* |
+| **staged_modifications** | [../model/StagedModificationsInfo](StagedModificationsInfo.md) | Optional | *No description available.* |
 | **display_name** | **str** | Required | A display label for the custom entity. |
 | **description** | **str** | Optional | A description of the custom entity. |
-| **identifiers** | [List[CustomEntityId]](CustomEntityId.md) | Required | The identifiers the custom entity will be upserted with. |
-| **fields** | [List[CustomEntityField]](CustomEntityField.md) | Required | The fields that decorate the custom entity. |
-| **relationships** | [List[Relationship]](Relationship.md) | Required | A set of relationships associated to the custom entity. |
-| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | The properties that decorate the custom entity. |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **identifiers** | [../model/List[CustomEntityId]](CustomEntityId.md) | Required | The identifiers the custom entity will be upserted with. |
+| **fields** | [../model/List[CustomEntityField]](CustomEntityField.md) | Required | The fields that decorate the custom entity. |
+| **relationships** | [../model/List[Relationship]](Relationship.md) | Required | A set of relationships associated to the custom entity. |
+| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | The properties that decorate the custom entity. |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

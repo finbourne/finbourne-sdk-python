@@ -9,7 +9,7 @@
 | **display_name** | **str** | Required | The name of the corporate action source |
 | **description** | **str** | Optional | The description of the corporate action source |
 | **instrument_scopes** | **List[str]** | Optional | The list of instrument scopes used as the scope resolution strategy when resolving instruments of upserted corporate actions. |
-| **event_inheritance** | [EventInheritance](EventInheritance.md) | Optional | *No description available.* |
+| **event_inheritance** | [../model/EventInheritance](EventInheritance.md) | Optional | *No description available.* |
 
 
 ## Usage

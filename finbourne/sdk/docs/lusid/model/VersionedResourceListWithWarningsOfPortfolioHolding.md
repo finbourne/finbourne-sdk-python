@@ -4,13 +4,13 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **version** | [Version](Version.md) | Required | *No description available.* |
-| **values** | [List[PortfolioHolding]](PortfolioHolding.md) | Required | The resources to list. |
+| **version** | [../model/Version](Version.md) | Required | *No description available.* |
+| **values** | [../model/List[PortfolioHolding]](PortfolioHolding.md) | Required | The resources to list. |
 | **href** | **str** | Optional | The URI of the resource list. |
 | **next_page** | **str** | Optional | The next page of results. |
 | **previous_page** | **str** | Optional | The previous page of results. |
-| **warnings** | [List[Warning]](Warning.md) | Optional | *No description available.* |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **warnings** | [../model/List[Warning]](Warning.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

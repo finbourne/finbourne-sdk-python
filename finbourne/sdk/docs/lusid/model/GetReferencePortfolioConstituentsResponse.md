@@ -8,9 +8,9 @@
 | **weight_type** | **str** | Required | Available values: Static, Floating, Periodical. |
 | **period_type** | **str** | Optional | Available values: Daily, Weekly, Monthly, Quarterly, Annually. |
 | **period_count** | **int** | Optional |  |
-| **constituents** | [List[ReferencePortfolioConstituent]](ReferencePortfolioConstituent.md) | Required | Set of constituents (instrument/weight pairings) |
+| **constituents** | [../model/List[ReferencePortfolioConstituent]](ReferencePortfolioConstituent.md) | Required | Set of constituents (instrument/weight pairings) |
 | **href** | **str** | Optional | The Uri that returns the same result as the original request,  but may include resolved as at time(s). |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

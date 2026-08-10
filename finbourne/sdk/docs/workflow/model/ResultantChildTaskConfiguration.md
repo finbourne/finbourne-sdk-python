@@ -5,11 +5,11 @@ Child Task Configuration
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **result_matching_pattern** | [ResultMatchingPattern](ResultMatchingPattern.md) | Optional | *No description available.* |
-| **task_definition_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **result_matching_pattern** | [../model/ResultMatchingPattern](ResultMatchingPattern.md) | Optional | *No description available.* |
+| **task_definition_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
 | **task_definition_as_at** | **datetime** | Optional | TaskDefinition AsAt timestamp |
 | **initial_trigger** | **str** | Optional | The Initial Trigger for automatic start |
-| **child_task_fields** | [Dict[str, FieldMapping]](FieldMapping.md) | Required | Field Mappings |
+| **child_task_fields** | [../model/Dict[str, FieldMapping]](FieldMapping.md) | Required | Field Mappings |
 | **map_stacking_key_from** | **str** | Optional | The field to be mapped as the ChildTasks Stacking Key |
 
 

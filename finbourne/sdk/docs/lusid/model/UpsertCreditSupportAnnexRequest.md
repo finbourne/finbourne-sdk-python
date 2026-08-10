@@ -5,7 +5,7 @@ Credit Support Annex information. The interaction in terms of margining requirem
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **credit_support_annex** | [CreditSupportAnnex](CreditSupportAnnex.md) | Optional | *No description available.* |
+| **credit_support_annex** | [../model/CreditSupportAnnex](CreditSupportAnnex.md) | Optional | *No description available.* |
 
 
 ## Usage

@@ -4,11 +4,11 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **data_model_summary** | [DataModelSummary](DataModelSummary.md) | Optional | *No description available.* |
-| **inherited** | [CustomDataModelCriteria](CustomDataModelCriteria.md) | Optional | *No description available.* |
-| **incremental** | [CustomDataModelCriteria](CustomDataModelCriteria.md) | Optional | *No description available.* |
-| **applied** | [CustomDataModelCriteria](CustomDataModelCriteria.md) | Optional | *No description available.* |
-| **version** | [Version](Version.md) | Optional | *No description available.* |
+| **data_model_summary** | [../model/DataModelSummary](DataModelSummary.md) | Optional | *No description available.* |
+| **inherited** | [../model/CustomDataModelCriteria](CustomDataModelCriteria.md) | Optional | *No description available.* |
+| **incremental** | [../model/CustomDataModelCriteria](CustomDataModelCriteria.md) | Optional | *No description available.* |
+| **applied** | [../model/CustomDataModelCriteria](CustomDataModelCriteria.md) | Optional | *No description available.* |
+| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
 
 
 ## Usage

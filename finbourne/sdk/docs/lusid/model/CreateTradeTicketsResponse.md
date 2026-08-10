@@ -5,8 +5,8 @@ Batch trade ticket creation response
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **values** | [List[LusidTradeTicket]](LusidTradeTicket.md) | Required | *No description available.* |
-| **failures** | [List[ErrorDetail]](ErrorDetail.md) | Required | *No description available.* |
+| **values** | [../model/List[LusidTradeTicket]](LusidTradeTicket.md) | Required | *No description available.* |
+| **failures** | [../model/List[ErrorDetail]](ErrorDetail.md) | Required | *No description available.* |
 
 
 ## Usage

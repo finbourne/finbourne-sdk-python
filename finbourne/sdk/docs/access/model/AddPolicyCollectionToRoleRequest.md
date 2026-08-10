@@ -5,7 +5,7 @@ Request body used to add Policy Collections to a Role
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **policy_collections** | [List[PolicyCollectionId]](PolicyCollectionId.md) | Required | Identifiers of policy collections to add to a role |
+| **policy_collections** | [../model/List[PolicyCollectionId]](PolicyCollectionId.md) | Required | Identifiers of policy collections to add to a role |
 
 
 ## Usage

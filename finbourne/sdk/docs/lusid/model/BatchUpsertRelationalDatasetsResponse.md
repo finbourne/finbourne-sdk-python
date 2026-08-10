@@ -4,10 +4,10 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **values** | [Dict[str, RelationalDataPointResponse]](RelationalDataPointResponse.md) | Required | A list of data points that were successfully upserted. |
-| **failed** | [Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | A list of data points that failed to be upserted, along with the associated error message. |
+| **values** | [../model/Dict[str, RelationalDataPointResponse]](RelationalDataPointResponse.md) | Required | A list of data points that were successfully upserted. |
+| **failed** | [../model/Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | A list of data points that failed to be upserted, along with the associated error message. |
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

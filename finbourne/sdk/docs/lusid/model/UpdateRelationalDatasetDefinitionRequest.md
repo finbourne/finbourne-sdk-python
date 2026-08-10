@@ -7,7 +7,7 @@
 | **display_name** | **str** | Required | A user-friendly display name for the relational dataset definition. |
 | **description** | **str** | Optional | A detailed description of the relational dataset definition and its purpose. |
 | **applicable_entity_types** | **List[str]** | Required | The types of entities this relational dataset definition can be applied to (e.g. Instrument, Portfolio, etc.). |
-| **field_schema** | [List[RelationalDatasetFieldDefinition]](RelationalDatasetFieldDefinition.md) | Required | The schema defining the structure and data types of the relational dataset. |
+| **field_schema** | [../model/List[RelationalDatasetFieldDefinition]](RelationalDatasetFieldDefinition.md) | Required | The schema defining the structure and data types of the relational dataset. |
 
 
 ## Usage

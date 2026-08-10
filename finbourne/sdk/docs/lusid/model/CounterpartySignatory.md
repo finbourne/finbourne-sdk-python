@@ -6,7 +6,7 @@ The counterpartyAgreement is signed by two parties, one of which is implicitly t
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **name** | **str** | Required | A user-defined name or label for the counterparty signatory.  There is no requirement for this to match the \&quot;displayName\&quot; of the legal entity. |
-| **legal_entity_identifier** | [TypedResourceId](TypedResourceId.md) | Required | *No description available.* |
+| **legal_entity_identifier** | [../model/TypedResourceId](TypedResourceId.md) | Required | *No description available.* |
 
 
 ## Usage

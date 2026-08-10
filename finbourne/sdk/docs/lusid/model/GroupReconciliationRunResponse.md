@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **reconciliation_summaries** | [List[GroupReconciliationSummary]](GroupReconciliationSummary.md) | Required | One summary record for each of the \&quot;Holding\&quot; | \&quot;Transaction\&quot; | \&quot;Valuation\&quot; reconciliations performed |
+| **reconciliation_summaries** | [../model/List[GroupReconciliationSummary]](GroupReconciliationSummary.md) | Required | One summary record for each of the \&quot;Holding\&quot; | \&quot;Transaction\&quot; | \&quot;Valuation\&quot; reconciliations performed |
 
 
 ## Usage

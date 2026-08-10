@@ -10,7 +10,7 @@ A definition for the period you wish to close
 | **effective_at** | **datetime** | Optional | The effective time of the diary entry. |
 | **query_as_at** | **datetime** | Optional | The query time of the diary entry. Defaults to latest. |
 | **status** | **str** | Optional | The status of a Diary Entry of Type &#39;PeriodBoundary&#39;. Defaults to &#39;Estimate&#39; when closing a period, and supports &#39;Estimate&#39; and &#39;Final&#39; for closing periods and &#39;Final&#39; for locking periods. Available values: Undefined, Estimate, Final, Candidate, Unofficial. |
-| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the diary entry. |
+| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the diary entry. |
 | **closing_options** | **List[str]** | Optional | The options which will be executed once a period is closed or locked. Available values: ApplyClearDown. |
 
 

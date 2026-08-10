@@ -7,7 +7,7 @@ Supported pricing models for an instrument.
 |------|------|----------|-------------|
 | **instrument_id** | **str** | Optional | The unique LUSID Instrument Identifier (LUID) of the instrument. |
 | **supported_models** | **List[str]** | Optional | The pricing models supported by the instrument e.g. &#39;Discounting&#39;. |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

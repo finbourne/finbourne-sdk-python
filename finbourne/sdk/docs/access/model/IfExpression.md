@@ -4,10 +4,10 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **if_request_header_expression** | [IfRequestHeaderExpression](IfRequestHeaderExpression.md) | Optional | *No description available.* |
-| **if_identity_claim_expression** | [IfIdentityClaimExpression](IfIdentityClaimExpression.md) | Optional | *No description available.* |
-| **if_identity_scope_expression** | [IfIdentityScopeExpression](IfIdentityScopeExpression.md) | Optional | *No description available.* |
-| **if_via_api_expression** | [IfViaApiExpression](IfViaApiExpression.md) | Optional | *No description available.* |
+| **if_request_header_expression** | [../model/IfRequestHeaderExpression](IfRequestHeaderExpression.md) | Optional | *No description available.* |
+| **if_identity_claim_expression** | [../model/IfIdentityClaimExpression](IfIdentityClaimExpression.md) | Optional | *No description available.* |
+| **if_identity_scope_expression** | [../model/IfIdentityScopeExpression](IfIdentityScopeExpression.md) | Optional | *No description available.* |
+| **if_via_api_expression** | [../model/IfViaApiExpression](IfViaApiExpression.md) | Optional | *No description available.* |
 
 
 ## Usage

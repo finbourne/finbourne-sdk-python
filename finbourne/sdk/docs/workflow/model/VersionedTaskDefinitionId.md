@@ -5,7 +5,7 @@ A Task Definition Id with an optional asAt timestamp identifying a specific vers
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **task_definition_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **task_definition_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **task_definition_as_at** | **datetime** | Optional | The asAt time of this version of the Task Definition. Null means the latest version. |
 
 

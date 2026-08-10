@@ -6,7 +6,7 @@ Configuration for a Worker that calls a Scheduler Job
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **type** | **str** | Required | The type of worker |
-| **job_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **job_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
 
 
 ## Usage

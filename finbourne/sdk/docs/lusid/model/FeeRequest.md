@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **code** | **str** | Required | The code of the Fee. |
-| **fee_type_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **fee_type_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
 | **display_name** | **str** | Required | The name of the Fee. |
 | **description** | **str** | Optional | A description for the Fee. |
 | **origin** | **str** | Optional | The origin or source of the Fee accrual. |
@@ -18,9 +18,9 @@
 | **business_day_convention** | **str** | Required | The business day convention to use for Fee calculations on weekends or holidays. Available values: None, P, Previous, F, Following. |
 | **start_date** | **datetime** | Required | The start date of the Fee. |
 | **end_date** | **datetime** | Optional | The end date of the Fee. |
-| **anchor_date** | [DayMonth](DayMonth.md) | Optional | *No description available.* |
-| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | The Fee properties. These will be from the &#39;Fee&#39; domain. |
-| **portfolio_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **anchor_date** | [../model/DayMonth](DayMonth.md) | Optional | *No description available.* |
+| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | The Fee properties. These will be from the &#39;Fee&#39; domain. |
+| **portfolio_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **share_classes** | **List[str]** | Optional | The short codes of the ShareClasses that the Fee should be applied to. Optional: if this is null or empty, then the Fee will be divided between all the ShareClasses of the Fund according to the capital ratio. |
 
 

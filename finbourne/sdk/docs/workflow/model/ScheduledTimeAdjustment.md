@@ -5,8 +5,8 @@ Represents an adjustment to the scheduled time of an EventHandler. Only relevant
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **date_adjustment** | [DateAdjustment](DateAdjustment.md) | Required | *No description available.* |
-| **time_adjustment** | [TimeAdjustment](TimeAdjustment.md) | Required | *No description available.* |
+| **date_adjustment** | [../model/DateAdjustment](DateAdjustment.md) | Required | *No description available.* |
+| **time_adjustment** | [../model/TimeAdjustment](TimeAdjustment.md) | Required | *No description available.* |
 
 
 ## Usage

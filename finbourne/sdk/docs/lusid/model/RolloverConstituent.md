@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **contract_details** | [ContractDetails](ContractDetails.md) | Required | *No description available.* |
+| **contract_details** | [../model/ContractDetails](ContractDetails.md) | Required | *No description available.* |
 | **balance_change** | **float** | Required | Balance of the new contract holding. |
 
 

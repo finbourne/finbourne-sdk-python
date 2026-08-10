@@ -4,9 +4,9 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **left** | [ReconciliationSideConfiguration](ReconciliationSideConfiguration.md) | Optional | *No description available.* |
-| **right** | [ReconciliationSideConfiguration](ReconciliationSideConfiguration.md) | Optional | *No description available.* |
-| **mapping_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **left** | [../model/ReconciliationSideConfiguration](ReconciliationSideConfiguration.md) | Optional | *No description available.* |
+| **right** | [../model/ReconciliationSideConfiguration](ReconciliationSideConfiguration.md) | Optional | *No description available.* |
+| **mapping_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
 
 
 ## Usage

@@ -5,7 +5,7 @@ The underlying instrument representing one side of the TRS and its pay-receive d
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **asset** | [LusidInstrument](LusidInstrument.md) | Required | *No description available.* |
+| **asset** | [../model/LusidInstrument](LusidInstrument.md) | Required | *No description available.* |
 | **pay_receive** | **str** | Required | Either Pay or Receive stating direction of the asset in the swap.    Supported string (enumeration) values are: [Pay, Receive]. |
 
 

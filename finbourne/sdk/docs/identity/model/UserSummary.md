@@ -13,7 +13,7 @@ Lightweight view of an user details
 | **last_name** | **str** | Optional | User&#39;s last name |
 | **type** | **str** | Optional | User&#39;s type (Personal, Service...) |
 | **alternative_user_ids** | **Dict[str, Optional[str]]** | Optional | User&#39;s alternative user IDs. Only returned for the current user |
-| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

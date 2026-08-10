@@ -5,13 +5,13 @@ A Workflow
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
-| **version** | [VersionInfo](VersionInfo.md) | Optional | *No description available.* |
+| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **version** | [../model/VersionInfo](VersionInfo.md) | Optional | *No description available.* |
 | **display_name** | **str** | Required | Human readable name |
 | **description** | **str** | Optional | Human readable description |
-| **root_task_definition_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
-| **workflow_structure** | [WorkflowStructure](WorkflowStructure.md) | Optional | *No description available.* |
-| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | The properties of the Workflow, keyed by property key. |
+| **root_task_definition_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **workflow_structure** | [../model/WorkflowStructure](WorkflowStructure.md) | Optional | *No description available.* |
+| **properties** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | The properties of the Workflow, keyed by property key. |
 
 
 ## Usage

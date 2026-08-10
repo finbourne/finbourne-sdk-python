@@ -5,7 +5,7 @@ The edges of a Workflow structure graph — the parent-child relationships betwe
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **child_task_definitions** | [List[ChildTaskDefinitionEdge]](ChildTaskDefinitionEdge.md) | Optional | The child Task Definition relationships |
+| **child_task_definitions** | [../model/List[ChildTaskDefinitionEdge]](ChildTaskDefinitionEdge.md) | Optional | The child Task Definition relationships |
 
 
 ## Usage

@@ -6,7 +6,7 @@
 |------|------|----------|-------------|
 | **settlement_instruction_id** | **str** | Required | *No description available.* |
 | **operation** | **str** | Optional | Available values: Activate, Deactivate. |
-| **properties** | [List[PerpetualProperty]](PerpetualProperty.md) | Optional | *No description available.* |
+| **properties** | [../model/List[PerpetualProperty]](PerpetualProperty.md) | Optional | *No description available.* |
 
 
 ## Usage

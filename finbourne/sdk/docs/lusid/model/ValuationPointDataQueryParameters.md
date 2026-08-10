@@ -5,8 +5,8 @@ The parameters used in getting the ValuationPointData.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **start** | [DateOrDiaryEntry](DateOrDiaryEntry.md) | Optional | *No description available.* |
-| **end** | [DateOrDiaryEntry](DateOrDiaryEntry.md) | Required | *No description available.* |
+| **start** | [../model/DateOrDiaryEntry](DateOrDiaryEntry.md) | Optional | *No description available.* |
+| **end** | [../model/DateOrDiaryEntry](DateOrDiaryEntry.md) | Required | *No description available.* |
 | **variant** | **str** | Optional | Optional variant code. Only required when it is necessary to choose between scenarios with multiple estimates. |
 
 
