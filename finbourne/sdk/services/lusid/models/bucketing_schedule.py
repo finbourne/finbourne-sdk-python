@@ -28,7 +28,9 @@ class BucketingSchedule(BaseModel):
     A schedule for dates  # noqa: E501
     """
     tenor:  Optional[StrictStr] = Field(default=None,alias="tenor", description="Rolling tenor") 
-    __properties: ClassVar[List[str]] = ["tenor"]
+    roll_direction:  Optional[StrictStr] = Field(default=None,alias="rollDirection", description="Optional direction in which the bucketing dates are rolled out from the schedule tenor.  Supported string (enumeration) values are: [ForwardFromStart, BackwardFromEnd].  If absent (and StubType is also absent), the pre-existing date generation behaviour is used. Available values: ForwardFromStart, BackwardFromEnd.") 
+    stub_type:  Optional[StrictStr] = Field(default=None,alias="stubType", description="Optional treatment of the irregular (stub) period when the window length is not an exact multiple of the tenor.  Supported string (enumeration) values are: [ShortStub, LongStub].  If absent (and RollDirection is also absent), the pre-existing date generation behaviour is used. Available values: ShortStub, LongStub.") 
+    __properties: ClassVar[List[str]] = ["tenor", "rollDirection", "stubType"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -69,6 +71,16 @@ class BucketingSchedule(BaseModel):
         if self.tenor is None and "tenor" in self.model_fields_set:
             _dict['tenor'] = None
 
+        # set to None if roll_direction (nullable) is None
+        # and model_fields_set contains the field
+        if self.roll_direction is None and "roll_direction" in self.model_fields_set:
+            _dict['rollDirection'] = None
+
+        # set to None if stub_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.stub_type is None and "stub_type" in self.model_fields_set:
+            _dict['stubType'] = None
+
         return _dict
 
     @classmethod
@@ -81,7 +93,9 @@ class BucketingSchedule(BaseModel):
             return BucketingSchedule.model_validate(obj)
 
         _obj = BucketingSchedule.model_validate({
-            "tenor": obj.get("tenor")
+            "tenor": obj.get("tenor"),
+            "roll_direction": obj.get("rollDirection"),
+            "stub_type": obj.get("stubType")
         })
         return _obj
 

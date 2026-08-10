@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**query_applicable_instrument_events**](InstrumentEventsApi.md#query_applicable_instrument_events) | **POST** /api/api/instrumentevents/$queryApplicableInstrumentEvents | QueryApplicableInstrumentEvents: Returns a list of applicable instrument events based on the holdings of the portfolios and date range specified in the query.
+[**query_bucket_cash_flow_drill_down**](InstrumentEventsApi.md#query_bucket_cash_flow_drill_down) | **POST** /api/api/instrumentevents/$queryBucketCashFlowDrillDown | QueryBucketCashFlowDrillDown: Returns the individual cashflows that make up a single cashflow bucket, with their source lineage.
 [**query_bucketed_cash_flows**](InstrumentEventsApi.md#query_bucketed_cash_flows) | **POST** /api/api/instrumentevents/$queryBucketedCashFlows | QueryBucketedCashFlows: Returns bucketed cashflows based on the holdings of the portfolios and date range specified in the query.
 [**query_cash_flows**](InstrumentEventsApi.md#query_cash_flows) | **POST** /api/api/instrumentevents/$queryCashFlows | QueryCashFlows: Returns a list of cashflows based on the holdings of the portfolios and date range specified in the query.
 [**query_instrument_events**](InstrumentEventsApi.md#query_instrument_events) | **POST** /api/api/instrumentevents/$query | QueryInstrumentEvents: Returns a list of instrument events based on the holdings of the portfolios and date range specified in the query.
@@ -77,6 +78,48 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Applicable Instrument Events |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **query_bucket_cash_flow_drill_down**
+> ResourceListOfCashFlowDetail queryBucketCashFlowDrillDown = query_bucket_cash_flow_drill_down(query_bucket_cash_flow_drill_down_request=query_bucket_cash_flow_drill_down_request)
+
+QueryBucketCashFlowDrillDown: Returns the individual cashflows that make up a single cashflow bucket, with their source lineage.
+
+Returns the individual cashflows inside the requested bucket window for the holdings of the specified  portfolios, annotated with the source (Instrument, Transaction or SRS) that produced each cashflow.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(InstrumentEventsApi)
+query_bucket_cash_flow_drill_down_request = QueryBucketCashFlowDrillDownRequest()
+api_response = api_instance.query_bucket_cash_flow_drill_down(query_bucket_cash_flow_drill_down_request=query_bucket_cash_flow_drill_down_request)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **query_bucket_cash_flow_drill_down_request** | [**QueryBucketCashFlowDrillDownRequest**](QueryBucketCashFlowDrillDownRequest.md)| The Query Information. | [optional] 
+
+### Return type
+
+[**ResourceListOfCashFlowDetail**](ResourceListOfCashFlowDetail.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The individual cashflows inside the requested bucket. |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 

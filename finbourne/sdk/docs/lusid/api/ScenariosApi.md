@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**create_scenario_from_template**](ScenariosApi.md#create_scenario_from_template) | **POST** /api/api/scenarios/{scope}/$fromTemplate | [EARLY ACCESS] CreateScenarioFromTemplate: [EARLY ACCESS] CreateScenarioFromTemplate: Create a Scenario from a pre-built template.
 [**delete_scenario**](ScenariosApi.md#delete_scenario) | **DELETE** /api/api/scenarios/{scope}/{code} | [EARLY ACCESS] DeleteScenario: Delete a Scenario, assuming that it is present.
 [**get_scenario**](ScenariosApi.md#get_scenario) | **GET** /api/api/scenarios/{scope}/{code} | [EARLY ACCESS] GetScenario: Get Scenario
+[**list_scenario_versions**](ScenariosApi.md#list_scenario_versions) | **GET** /api/api/scenarios/{scope}/{code}/versions | [EARLY ACCESS] ListScenarioVersions: List the versions of a Scenario
 [**list_scenarios**](ScenariosApi.md#list_scenarios) | **GET** /api/api/scenarios/{scope} | [EARLY ACCESS] ListScenarios: List the set of Scenario definitions
 [**preview_scenario**](ScenariosApi.md#preview_scenario) | **POST** /api/api/scenarios/$preview | [EARLY ACCESS] PreviewScenario: Preview a Scenario
 [**upsert_scenario**](ScenariosApi.md#upsert_scenario) | **POST** /api/api/scenarios | [EARLY ACCESS] UpsertScenario: Upsert a Scenario. This creates or updates the scenario definition in LUSID.
@@ -164,6 +165,56 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The successfully retrieved Scenario or any failure |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **list_scenario_versions**
+> PagedResourceListOfVersion listScenarioVersions = list_scenario_versions(scope, code, as_at=as_at, limit=limit, page=page)
+
+[EARLY ACCESS] ListScenarioVersions: List the versions of a Scenario
+
+List the AsAt versions of a single Scenario definition, newest first: one entry per change,  with the version number, the AsAt datetime it was written, and the user that wrote it.                Scenarios are perpetual (AsAt-only), so a version's AsAt datetime identifies it completely:  pass it as the asAt on GetScenario to view that version, or as the scenario reference's  asAt on a valuation to price under it.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(ScenariosApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+limit = 56 # int (optional)
+page = 'page_example' # str (optional)
+api_response = api_instance.list_scenario_versions(scope, code, as_at=as_at, limit=limit, page=page)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the Scenario to list versions for. | [required] 
+ **code** | **str**| The code of the Scenario to list versions for. | [required] 
+ **as_at** | **datetime**| The asAt datetime to cap the version history at. Defaults to all versions up to now. | [optional] 
+ **limit** | **int**| Maximum number of results to return. Defaults to 100. | [optional] 
+ **page** | **str**| Pagination token from a previous result to fetch the next page. | [optional] 
+
+### Return type
+
+[**PagedResourceListOfVersion**](PagedResourceListOfVersion.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The versions of the scenario, newest first |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 

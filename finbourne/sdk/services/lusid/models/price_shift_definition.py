@@ -30,7 +30,7 @@ class PriceShiftDefinition(ScenarioShiftDefinition):
     """
     instrument:  Optional[StrictStr] = Field(default=None,alias="instrument", description="A single instrument identifier this shift applies to. Exactly one of Instrument and Filter  must be supplied.") 
     filter:  Optional[StrictStr] = Field(default=None,alias="filter", description="A LUSID filter expression over the instrument entity - fields and properties - selecting which  instruments' quotes the shift applies to, e.g.  \"assetClass eq 'Bond' and properties[Instrument/Issuer/Name] eq 'X'\".  Exactly one of Instrument and Filter must be supplied.") 
-    amount: Union[StrictFloat, StrictInt]
+    amount: Optional[Union[StrictFloat, StrictInt]] = None
     shift_type:  StrictStr = Field(...,alias="shiftType", description="Available values: Absolute, Relative, Percentage.") 
     quote_type:  Optional[StrictStr] = Field(default=None,alias="quoteType", description="Available values: Price, Spread, Rate, LogNormalVol, NormalVol, ParSpread, IsdaSpread, Upfront, Index, Ratio, Delta, PoolFactor, InflationAssumption, DirtyPrice, PrincipalWriteOff, InterestDeferred, InterestShortfall, ConstituentWeightFactor.") 
     scenario_shift_type:  StrictStr = Field(...,alias="scenarioShiftType", description="Available values: RateCurveShiftDefinition, FxShiftDefinition, PriceShiftDefinition, VolSurfaceShiftDefinition, MdkrGroupShiftDefinition.") 
@@ -296,6 +296,11 @@ class PriceShiftDefinition(ScenarioShiftDefinition):
         # and model_fields_set contains the field
         if self.filter is None and "filter" in self.model_fields_set:
             _dict['filter'] = None
+
+        # set to None if amount (nullable) is None
+        # and model_fields_set contains the field
+        if self.amount is None and "amount" in self.model_fields_set:
+            _dict['amount'] = None
 
         # set to None if quote_type (nullable) is None
         # and model_fields_set contains the field

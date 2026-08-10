@@ -27,6 +27,7 @@ from finbourne.sdk.services.lusid.models.annul_single_structured_data_response i
 from finbourne.sdk.services.lusid.models.create_scenario_from_template_request import CreateScenarioFromTemplateRequest
 from finbourne.sdk.services.lusid.models.get_scenario_response import GetScenarioResponse
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_get_scenario_response import PagedResourceListOfGetScenarioResponse
+from finbourne.sdk.services.lusid.models.paged_resource_list_of_version import PagedResourceListOfVersion
 from finbourne.sdk.services.lusid.models.scenario_preview_request import ScenarioPreviewRequest
 from finbourne.sdk.services.lusid.models.scenario_preview_response import ScenarioPreviewResponse
 from finbourne.sdk.services.lusid.models.upsert_scenario_request import UpsertScenarioRequest
@@ -442,6 +443,161 @@ class ScenariosApi:
 
         return self.sync_api_client.call_api(
             '/api/api/scenarios/{scope}/{code}', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    def list_scenario_versions(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfVersion:
+        """[EARLY ACCESS] ListScenarioVersions: List the versions of a Scenario  # noqa: E501
+
+        List the AsAt versions of a single Scenario definition, newest first: one entry per change,  with the version number, the AsAt datetime it was written, and the user that wrote it.                Scenarios are perpetual (AsAt-only), so a version's AsAt datetime identifies it completely:  pass it as the asAt on GetScenario to view that version, or as the scenario reference's  asAt on a valuation to price under it.  # noqa: E501
+        :param scope: The scope of the Scenario to list versions for. (required)
+        :type scope: str
+        :param code: The code of the Scenario to list versions for. (required)
+        :type code: str
+        :param as_at: The asAt datetime to cap the version history at. Defaults to all versions up to now.
+        :type as_at: datetime
+        :param limit: Maximum number of results to return. Defaults to 100.
+        :type limit: int
+        :param page: Pagination token from a previous result to fetch the next page.
+        :type page: str
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: PagedResourceListOfVersion
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the list_scenario_versions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.list_scenario_versions_with_http_info(scope, code, as_at, limit, page, **kwargs)
+        return response.data
+
+    @validate_call
+    def list_scenario_versions_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfVersion]:
+        """[EARLY ACCESS] ListScenarioVersions: List the versions of a Scenario  # noqa: E501
+
+        List the AsAt versions of a single Scenario definition, newest first: one entry per change,  with the version number, the AsAt datetime it was written, and the user that wrote it.                Scenarios are perpetual (AsAt-only), so a version's AsAt datetime identifies it completely:  pass it as the asAt on GetScenario to view that version, or as the scenario reference's  asAt on a valuation to price under it.  # noqa: E501
+        :param scope: The scope of the Scenario to list versions for. (required)
+        :type scope: str
+        :param code: The code of the Scenario to list versions for. (required)
+        :type code: str
+        :param as_at: The asAt datetime to cap the version history at. Defaults to all versions up to now.
+        :type as_at: datetime
+        :param limit: Maximum number of results to return. Defaults to 100.
+        :type limit: int
+        :param page: Pagination token from a previous result to fetch the next page.
+        :type page: str
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(PagedResourceListOfVersion, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'scope',
+            'code',
+            'as_at',
+            'limit',
+            'page'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method list_scenario_versions" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['scope'] is not None:
+            _path_params['scope'] = _params['scope']
+
+        if _params['code'] is not None:
+            _path_params['code'] = _params['code']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('as_at') is not None:  # noqa: E501
+            if isinstance(_params['as_at'], datetime):
+                _query_params.append(('asAt', _params['as_at'].strftime(self.sync_api_client.configuration.datetime_format)))
+            else:
+                _query_params.append(('asAt', _params['as_at']))
+
+        if _params.get('limit') is not None:  # noqa: E501
+            _query_params.append(('limit', _params['limit']))
+
+        if _params.get('page') is not None:  # noqa: E501
+            _query_params.append(('page', _params['page']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "PagedResourceListOfVersion",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/scenarios/{scope}/{code}/versions', 'GET',
             _path_params,
             _query_params,
             _header_params,
@@ -1260,6 +1416,162 @@ class ScenariosApi:
 
             return await self.api_client.call_api_async(
                 '/api/api/scenarios/{scope}/{code}', 'GET',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def list_scenario_versions_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfVersion:
+            """[EARLY ACCESS] ListScenarioVersions: List the versions of a Scenario  # noqa: E501
+            List the AsAt versions of a single Scenario definition, newest first: one entry per change,  with the version number, the AsAt datetime it was written, and the user that wrote it.                Scenarios are perpetual (AsAt-only), so a version's AsAt datetime identifies it completely:  pass it as the asAt on GetScenario to view that version, or as the scenario reference's  asAt on a valuation to price under it.  # noqa: E501
+            
+            :param scope: The scope of the Scenario to list versions for. (required)
+            :type scope: str
+            :param code: The code of the Scenario to list versions for. (required)
+            :type code: str
+            :param as_at: The asAt datetime to cap the version history at. Defaults to all versions up to now.
+            :type as_at: datetime
+            :param limit: Maximum number of results to return. Defaults to 100.
+            :type limit: int
+            :param page: Pagination token from a previous result to fetch the next page.
+            :type page: str
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: PagedResourceListOfVersion
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the list_scenario_versions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.list_scenario_versions_with_http_info_async(scope, code, as_at, limit, page, **kwargs)
+            return response.data
+
+    @validate_call
+    async def list_scenario_versions_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfVersion]:
+            """[EARLY ACCESS] ListScenarioVersions: List the versions of a Scenario  # noqa: E501
+
+            List the AsAt versions of a single Scenario definition, newest first: one entry per change,  with the version number, the AsAt datetime it was written, and the user that wrote it.                Scenarios are perpetual (AsAt-only), so a version's AsAt datetime identifies it completely:  pass it as the asAt on GetScenario to view that version, or as the scenario reference's  asAt on a valuation to price under it.  # noqa: E501
+
+            :param scope: The scope of the Scenario to list versions for. (required)
+            :type scope: str
+            :param code: The code of the Scenario to list versions for. (required)
+            :type code: str
+            :param as_at: The asAt datetime to cap the version history at. Defaults to all versions up to now.
+            :type as_at: datetime
+            :param limit: Maximum number of results to return. Defaults to 100.
+            :type limit: int
+            :param page: Pagination token from a previous result to fetch the next page.
+            :type page: str
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(PagedResourceListOfVersion, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'scope',
+                'code',
+                'as_at',
+                'limit',
+                'page'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method list_scenario_versions" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['scope'] is not None:
+                _path_params['scope'] = _params['scope']
+
+            if _params['code'] is not None:
+                _path_params['code'] = _params['code']
+
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('as_at') is not None:  # noqa: E501
+                if isinstance(_params['as_at'], datetime):
+                    _query_params.append(('asAt', _params['as_at'].strftime(self.api_client.configuration.datetime_format)))
+                else:
+                    _query_params.append(('asAt', _params['as_at']))
+
+            if _params.get('limit') is not None:  # noqa: E501
+                _query_params.append(('limit', _params['limit']))
+
+            if _params.get('page') is not None:  # noqa: E501
+                _query_params.append(('page', _params['page']))
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "PagedResourceListOfVersion",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/scenarios/{scope}/{code}/versions', 'GET',
                 _path_params,
                 _query_params,
                 _header_params,

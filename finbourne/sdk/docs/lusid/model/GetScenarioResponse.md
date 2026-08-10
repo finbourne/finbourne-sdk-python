@@ -6,6 +6,7 @@
 |------|------|----------|-------------|
 | **href** | **str** | Optional | *No description available.* |
 | **value** | [ScenarioDefinition](ScenarioDefinition.md) | Optional | *No description available.* |
+| **version** | [Version](Version.md) | Optional | *No description available.* |
 | **failed** | [ErrorDetail](ErrorDetail.md) | Optional | *No description available.* |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
@@ -20,12 +21,14 @@ from finbourne.sdk.services.lusid.models.GetScenarioResponse import GetScenarioR
 instance = GetScenarioResponse(
     href="...",  # optional
     value=ScenarioDefinition(...),  # optional
+    version=Version(...),  # optional
     failed=ErrorDetail(...),  # optional
     links=[]  # optional
 )
 ```
 
 - [ScenarioDefinition](ScenarioDefinition.md)
+- [Version](Version.md)
 - [ErrorDetail](ErrorDetail.md)
 - [Link](Link.md)
 

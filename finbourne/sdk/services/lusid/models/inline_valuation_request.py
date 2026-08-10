@@ -26,6 +26,7 @@ from finbourne.sdk.services.lusid.models.market_data_overrides import MarketData
 from finbourne.sdk.services.lusid.models.order_by_spec import OrderBySpec
 from finbourne.sdk.services.lusid.models.property_filter import PropertyFilter
 from finbourne.sdk.services.lusid.models.resource_id import ResourceId
+from finbourne.sdk.services.lusid.models.scenario_reference import ScenarioReference
 from finbourne.sdk.services.lusid.models.valuation_schedule import ValuationSchedule
 from finbourne.sdk.services.lusid.models.weighted_instrument import WeightedInstrument
 
@@ -47,7 +48,8 @@ class InlineValuationRequest(BaseModel):
     instruments: List[WeightedInstrument] = Field(description="The set of instruments, weighted by the quantities held that are required.  It is identified by an identifier tag that can be used to identify it externally.  For a single, unique trade or transaction this can be thought of as equivalent to the transaction identifier, or  a composite of the sub-holding keys for a regular sub-holding. When there are multiple transactions sharing the same underlying instrument  such as purchase of shares on multiple dates where tax implications are different this would not be the case.")
     market_data_overrides: Optional[MarketDataOverrides] = Field(default=None, alias="marketDataOverrides")
     corporate_action_source_id: Optional[ResourceId] = Field(default=None, alias="corporateActionSourceId")
-    __properties: ClassVar[List[str]] = ["recipeId", "asAt", "metrics", "groupBy", "filters", "sort", "reportCurrency", "equipWithSubtotals", "returnResultAsExpandedTypes", "valuationSchedule", "instruments", "marketDataOverrides", "corporateActionSourceId"]
+    scenario: Optional[ScenarioReference] = None
+    __properties: ClassVar[List[str]] = ["recipeId", "asAt", "metrics", "groupBy", "filters", "sort", "reportCurrency", "equipWithSubtotals", "returnResultAsExpandedTypes", "valuationSchedule", "instruments", "marketDataOverrides", "corporateActionSourceId", "scenario"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -123,6 +125,9 @@ class InlineValuationRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of corporate_action_source_id
         if self.corporate_action_source_id:
             _dict['corporateActionSourceId'] = self.corporate_action_source_id.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of scenario
+        if self.scenario:
+            _dict['scenario'] = self.scenario.to_dict(by_alias=by_alias)
         # set to None if as_at (nullable) is None
         # and model_fields_set contains the field
         if self.as_at is None and "as_at" in self.model_fields_set:
@@ -172,7 +177,8 @@ class InlineValuationRequest(BaseModel):
             "valuation_schedule": ValuationSchedule.from_dict(_v) if (_v := obj.get("valuationSchedule")) is not None else None,
             "instruments": [WeightedInstrument.from_dict(_item) for _item in _v] if (_v := obj.get("instruments")) is not None else None,
             "market_data_overrides": MarketDataOverrides.from_dict(_v) if (_v := obj.get("marketDataOverrides")) is not None else None,
-            "corporate_action_source_id": ResourceId.from_dict(_v) if (_v := obj.get("corporateActionSourceId")) is not None else None
+            "corporate_action_source_id": ResourceId.from_dict(_v) if (_v := obj.get("corporateActionSourceId")) is not None else None,
+            "scenario": ScenarioReference.from_dict(_v) if (_v := obj.get("scenario")) is not None else None
         })
         return _obj
 

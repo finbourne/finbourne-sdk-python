@@ -1604,7 +1604,7 @@ Name | Type | Description  | Notes
 ---
 
 # **get_portfolio_cash_flows**
-> ResourceListOfInstrumentCashFlow getPortfolioCashFlows = get_portfolio_cash_flows(scope, code, effective_at=effective_at, window_start=window_start, window_end=window_end, as_at=as_at, filter=filter, recipe_id_scope=recipe_id_scope, recipe_id_code=recipe_id_code, exclude_unsettled_trades=exclude_unsettled_trades)
+> ResourceListOfInstrumentCashFlow getPortfolioCashFlows = get_portfolio_cash_flows(scope, code, effective_at=effective_at, window_start=window_start, window_end=window_end, as_at=as_at, filter=filter, recipe_id_scope=recipe_id_scope, recipe_id_code=recipe_id_code, exclude_unsettled_trades=exclude_unsettled_trades, cash_flow_calculation_version=cash_flow_calculation_version)
 
 GetPortfolioCashFlows: Get portfolio cash flows
 
@@ -1624,7 +1624,8 @@ filter = 'filter_example' # str (optional)
 recipe_id_scope = 'recipe_id_scope_example' # str (optional)
 recipe_id_code = 'recipe_id_code_example' # str (optional)
 exclude_unsettled_trades = False # bool (optional)
-api_response = api_instance.get_portfolio_cash_flows(scope, code, effective_at=effective_at, window_start=window_start, window_end=window_end, as_at=as_at, filter=filter, recipe_id_scope=recipe_id_scope, recipe_id_code=recipe_id_code, exclude_unsettled_trades=exclude_unsettled_trades)
+cash_flow_calculation_version = 'cash_flow_calculation_version_example' # str (optional)
+api_response = api_instance.get_portfolio_cash_flows(scope, code, effective_at=effective_at, window_start=window_start, window_end=window_end, as_at=as_at, filter=filter, recipe_id_scope=recipe_id_scope, recipe_id_code=recipe_id_code, exclude_unsettled_trades=exclude_unsettled_trades, cash_flow_calculation_version=cash_flow_calculation_version)
 pprint(api_response)
 ```
 
@@ -1642,6 +1643,7 @@ Name | Type | Description  | Notes
  **recipe_id_scope** | **str**| The scope of the given recipeId | [optional] 
  **recipe_id_code** | **str**| The code of the given recipeID | [optional] 
  **exclude_unsettled_trades** | **bool**| If absent or set to false, cashflows will returned based on trade date - more specifically, cashflows from any unsettled trades will be included in the results. If set to true, unsettled trades will be excluded from the result set. | [optional] [default to False]
+ **cash_flow_calculation_version** | **str**| The version of the cash flow calculation logic to use. Defaults to &#39;1&#39; if not specified; valid values are &#39;1&#39; (the current production behaviour)               and &#39;2&#39; (cash flows resolved via a deterministic source waterfall, with factual cash flows classified by transaction trade date and corporate action date filtering applied). | [optional] 
 
 ### Return type
 
@@ -1664,7 +1666,7 @@ Name | Type | Description  | Notes
 ---
 
 # **get_portfolio_cash_ladder**
-> ResourceListOfPortfolioCashLadder getPortfolioCashLadder = get_portfolio_cash_ladder(scope, code, from_effective_at, to_effective_at, effective_at, as_at=as_at, filter=filter, recipe_id_scope=recipe_id_scope, recipe_id_code=recipe_id_code, exclude_unsettled_trades=exclude_unsettled_trades)
+> ResourceListOfPortfolioCashLadder getPortfolioCashLadder = get_portfolio_cash_ladder(scope, code, from_effective_at, to_effective_at, effective_at, as_at=as_at, filter=filter, recipe_id_scope=recipe_id_scope, recipe_id_code=recipe_id_code, exclude_unsettled_trades=exclude_unsettled_trades, cash_flow_calculation_version=cash_flow_calculation_version)
 
 GetPortfolioCashLadder: Get portfolio cash ladder
 
@@ -1684,7 +1686,8 @@ filter = 'filter_example' # str (optional)
 recipe_id_scope = 'recipe_id_scope_example' # str (optional)
 recipe_id_code = 'recipe_id_code_example' # str (optional)
 exclude_unsettled_trades = False # bool (optional)
-api_response = api_instance.get_portfolio_cash_ladder(scope, code, from_effective_at, to_effective_at, effective_at, as_at=as_at, filter=filter, recipe_id_scope=recipe_id_scope, recipe_id_code=recipe_id_code, exclude_unsettled_trades=exclude_unsettled_trades)
+cash_flow_calculation_version = 'cash_flow_calculation_version_example' # str (optional)
+api_response = api_instance.get_portfolio_cash_ladder(scope, code, from_effective_at, to_effective_at, effective_at, as_at=as_at, filter=filter, recipe_id_scope=recipe_id_scope, recipe_id_code=recipe_id_code, exclude_unsettled_trades=exclude_unsettled_trades, cash_flow_calculation_version=cash_flow_calculation_version)
 pprint(api_response)
 ```
 
@@ -1702,6 +1705,7 @@ Name | Type | Description  | Notes
  **recipe_id_scope** | **str**| The scope of the given recipeId | [optional] 
  **recipe_id_code** | **str**| The code of the given recipeID | [optional] 
  **exclude_unsettled_trades** | **bool**| If absent or set to false, cashflows will returned based on trade date - more specifically, cashflows from any unsettled trades will be included in the results. If set to true, unsettled trades will be excluded from the result set. | [optional] [default to False]
+ **cash_flow_calculation_version** | **str**| The version of the cash flow calculation logic to use. Defaults to &#39;1&#39; if not specified; valid values are &#39;1&#39; (the current production behaviour)              and &#39;2&#39; (cash flows resolved via a deterministic source waterfall, with factual cash flows classified by transaction trade date and corporate action date filtering applied). | [optional] 
 
 ### Return type
 
@@ -1950,7 +1954,7 @@ Name | Type | Description  | Notes
 ---
 
 # **get_upsertable_portfolio_cash_flows**
-> ResourceListOfTransaction getUpsertablePortfolioCashFlows = get_upsertable_portfolio_cash_flows(scope, code, effective_at=effective_at, window_start=window_start, window_end=window_end, as_at=as_at, filter=filter, recipe_id_scope=recipe_id_scope, recipe_id_code=recipe_id_code, exclude_unsettled_trades=exclude_unsettled_trades)
+> ResourceListOfTransaction getUpsertablePortfolioCashFlows = get_upsertable_portfolio_cash_flows(scope, code, effective_at=effective_at, window_start=window_start, window_end=window_end, as_at=as_at, filter=filter, recipe_id_scope=recipe_id_scope, recipe_id_code=recipe_id_code, exclude_unsettled_trades=exclude_unsettled_trades, cash_flow_calculation_version=cash_flow_calculation_version)
 
 GetUpsertablePortfolioCashFlows: Get upsertable portfolio cash flows.
 
@@ -1970,7 +1974,8 @@ filter = 'filter_example' # str (optional)
 recipe_id_scope = 'recipe_id_scope_example' # str (optional)
 recipe_id_code = 'recipe_id_code_example' # str (optional)
 exclude_unsettled_trades = True # bool (optional)
-api_response = api_instance.get_upsertable_portfolio_cash_flows(scope, code, effective_at=effective_at, window_start=window_start, window_end=window_end, as_at=as_at, filter=filter, recipe_id_scope=recipe_id_scope, recipe_id_code=recipe_id_code, exclude_unsettled_trades=exclude_unsettled_trades)
+cash_flow_calculation_version = 'cash_flow_calculation_version_example' # str (optional)
+api_response = api_instance.get_upsertable_portfolio_cash_flows(scope, code, effective_at=effective_at, window_start=window_start, window_end=window_end, as_at=as_at, filter=filter, recipe_id_scope=recipe_id_scope, recipe_id_code=recipe_id_code, exclude_unsettled_trades=exclude_unsettled_trades, cash_flow_calculation_version=cash_flow_calculation_version)
 pprint(api_response)
 ```
 
@@ -1988,6 +1993,7 @@ Name | Type | Description  | Notes
  **recipe_id_scope** | **str**| The scope of the given recipeId | [optional] 
  **recipe_id_code** | **str**| The code of the given recipeID | [optional] 
  **exclude_unsettled_trades** | **bool**| If absent or set to true, unsettled trades will be excluded from the result set. If set to false, cashflows will returned based on trade date - more specifically, cashflows from any unsettled trades will be included in the results. | [optional] [default to True]
+ **cash_flow_calculation_version** | **str**| The version of the cash flow calculation logic to use. Defaults to &#39;1&#39; if not specified; valid values are &#39;1&#39; (the current production behaviour)               and &#39;2&#39; (cash flows resolved via a deterministic source waterfall, with factual cash flows classified by transaction trade date and corporate action date filtering applied). | [optional] 
 
 ### Return type
 

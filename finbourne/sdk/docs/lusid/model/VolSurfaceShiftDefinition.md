@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **instrument** | **str** | Required | *No description available.* |
-| **amount** | **float** | Required | *No description available.* |
+| **amount** | **float** | Optional | *No description available.* |
 | **strike** | **float** | Optional | *No description available.* |
 | **expiry** | **str** | Optional | *No description available.* |
 | **shift_type** | **str** | Required | Available values: Absolute, Relative. |
@@ -21,7 +21,7 @@ from finbourne.sdk.services.lusid.models.VolSurfaceShiftDefinition import VolSur
 
 instance = VolSurfaceShiftDefinition(
     instrument="...",  # required
-    amount=0.0,  # required
+    amount=0.0,  # optional
     strike=0.0,  # optional
     expiry="...",  # optional
     shift_type="...",  # required — Available values: Absolute, Relative.

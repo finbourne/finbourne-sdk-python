@@ -29,7 +29,7 @@ class VolSurfaceShiftDefinition(ScenarioShiftDefinition):
     VolSurfaceShiftDefinition
     """
     instrument:  StrictStr = Field(...,alias="instrument") 
-    amount: Union[StrictFloat, StrictInt]
+    amount: Optional[Union[StrictFloat, StrictInt]] = None
     strike: Optional[Union[StrictFloat, StrictInt]] = None
     expiry:  Optional[StrictStr] = Field(default=None,alias="expiry") 
     shift_type:  StrictStr = Field(...,alias="shiftType", description="Available values: Absolute, Relative.") 
@@ -214,6 +214,11 @@ class VolSurfaceShiftDefinition(ScenarioShiftDefinition):
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
                 _dict[_key] = _value
+
+        # set to None if amount (nullable) is None
+        # and model_fields_set contains the field
+        if self.amount is None and "amount" in self.model_fields_set:
+            _dict['amount'] = None
 
         # set to None if strike (nullable) is None
         # and model_fields_set contains the field

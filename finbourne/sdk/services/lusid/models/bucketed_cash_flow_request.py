@@ -45,7 +45,8 @@ class BucketedCashFlowRequest(BaseModel):
     cash_flow_type:  Optional[StrictStr] = Field(default=None,alias="cashFlowType", description="Indicate the requested cash flow representation InstrumentCashFlows or PortfolioCashFlows (GetCashLadder uses this). Available values: InstrumentCashFlow, PortfolioCashFlow, TransactionCashFlow.") 
     bucketing_schedule: Optional[BucketingSchedule] = Field(default=None, alias="bucketingSchedule")
     filter:  Optional[StrictStr] = Field(default=None,alias="filter", description="") 
-    __properties: ClassVar[List[str]] = ["roundingMethod", "bucketingDates", "bucketTenors", "effectiveAt", "windowStart", "windowEnd", "recipeId", "reportCurrency", "groupBy", "addresses", "equipWithSubtotals", "asAt", "excludeUnsettledTrades", "cashFlowType", "bucketingSchedule", "filter"]
+    cash_flow_calculation_version:  Optional[StrictStr] = Field(default=None,alias="cashFlowCalculationVersion", description="The version of the cash flow calculation logic to use. Defaults to '1' if not specified. Valid values are '1' and '2'.  '1' is the current production behaviour: cash flows booked as transactions are de-duplicated against the  instrument cash flows by identifier, and movements are treated as factual when they settle on or before the effective date.  '2' resolves cash flows via a deterministic source waterfall (structured result store > transaction > instrument),  classifies cash flows as factual by the transaction trade date (so trades dealt on or before the effective date  that settle afterwards are factual), and applies corporate action date filtering.") 
+    __properties: ClassVar[List[str]] = ["roundingMethod", "bucketingDates", "bucketTenors", "effectiveAt", "windowStart", "windowEnd", "recipeId", "reportCurrency", "groupBy", "addresses", "equipWithSubtotals", "asAt", "excludeUnsettledTrades", "cashFlowType", "bucketingSchedule", "filter", "cashFlowCalculationVersion"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -142,6 +143,11 @@ class BucketedCashFlowRequest(BaseModel):
         if self.filter is None and "filter" in self.model_fields_set:
             _dict['filter'] = None
 
+        # set to None if cash_flow_calculation_version (nullable) is None
+        # and model_fields_set contains the field
+        if self.cash_flow_calculation_version is None and "cash_flow_calculation_version" in self.model_fields_set:
+            _dict['cashFlowCalculationVersion'] = None
+
         return _dict
 
     @classmethod
@@ -169,7 +175,8 @@ class BucketedCashFlowRequest(BaseModel):
             "exclude_unsettled_trades": obj.get("excludeUnsettledTrades"),
             "cash_flow_type": obj.get("cashFlowType"),
             "bucketing_schedule": BucketingSchedule.from_dict(_v) if (_v := obj.get("bucketingSchedule")) is not None else None,
-            "filter": obj.get("filter")
+            "filter": obj.get("filter"),
+            "cash_flow_calculation_version": obj.get("cashFlowCalculationVersion")
         })
         return _obj
 

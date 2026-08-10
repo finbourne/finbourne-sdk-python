@@ -22,6 +22,10 @@ Query for bucketed cashflows from one or more portfolios.
 | **cash_flow_type** | **str** | Optional | Indicate the requested cash flow representation InstrumentCashFlows or PortfolioCashFlows (GetCashLadder uses this). Available values: InstrumentCashFlow, PortfolioCashFlow, TransactionCashFlow. |
 | **bucketing_schedule** | [BucketingSchedule](BucketingSchedule.md) | Optional | *No description available.* |
 | **filter** | **str** | Optional |  |
+| **cash_flow_calculation_version** | **str** | Optional | The version of the cash flow calculation logic to use. Defaults to &#39;1&#39; if not specified. Valid values are &#39;1&#39; and &#39;2&#39;.  &#39;1&#39; is the current production behaviour: cash flows booked as transactions are de-duplicated against the  instrument cash flows by identifier, and movements are treated as factual when they settle on or before the effective date.  &#39;2&#39; resolves cash flows via a deterministic source waterfall (structured result store &gt; transaction &gt; instrument),  classifies cash flows as factual by the transaction trade date (so trades dealt on or before the effective date  that settle afterwards are factual), and applies corporate action date filtering. |
+| **haircut_rules** | [List[CashFlowHaircutRule]](CashFlowHaircutRule.md) | Optional | Optional ordered haircut rules applied to cashflow inflows; the first matching rule wins and a rule with no criteria acts as a catch-all. When supplied, the additional per-bucket columns &#39;Valuation/Bucket/HaircutAmount&#39; and &#39;Valuation/Bucket/NetOfHaircutAmount&#39; are produced; with no rules the results are unchanged. Only supported for the InstrumentCashFlow CashFlowType. |
+| **border_configuration** | [BucketBorderConfiguration](BucketBorderConfiguration.md) | Optional | *No description available.* |
+| **starting_balance** | **str** | Optional | The balance to use at the start of the bucketing window when computing open/close balances.  Supported string (enumeration) values are: [PortfolioCashBalance, Zero]. Defaults to &#39;PortfolioCashBalance&#39;. Available values: PortfolioCashBalance, Zero. |
 
 
 ## Usage
@@ -48,13 +52,19 @@ instance = QueryBucketedCashFlowsRequest(
     exclude_unsettled_trades=True,  # optional — Flag directing the Valuation call to exclude cashflows from unsettled trades.  If absent or set to false, cashflows will returned based on trade date - more specifically, cashflows from any unsettled trades will be included in the results. If set to true, unsettled trades will be excluded from the result set.
     cash_flow_type="...",  # optional — Indicate the requested cash flow representation InstrumentCashFlows or PortfolioCashFlows (GetCashLadder uses this). Available values: InstrumentCashFlow, PortfolioCashFlow, TransactionCashFlow.
     bucketing_schedule=BucketingSchedule(...),  # optional
-    filter="..."  # optional — 
+    filter="...",  # optional — 
+    cash_flow_calculation_version="...",  # optional — The version of the cash flow calculation logic to use. Defaults to &#39;1&#39; if not specified. Valid values are &#39;1&#39; and &#39;2&#39;.  &#39;1&#39; is the current production behaviour: cash flows booked as transactions are de-duplicated against the  instrument cash flows by identifier, and movements are treated as factual when they settle on or before the effective date.  &#39;2&#39; resolves cash flows via a deterministic source waterfall (structured result store &gt; transaction &gt; instrument),  classifies cash flows as factual by the transaction trade date (so trades dealt on or before the effective date  that settle afterwards are factual), and applies corporate action date filtering.
+    haircut_rules=[],  # optional — Optional ordered haircut rules applied to cashflow inflows; the first matching rule wins and a rule with no criteria acts as a catch-all. When supplied, the additional per-bucket columns &#39;Valuation/Bucket/HaircutAmount&#39; and &#39;Valuation/Bucket/NetOfHaircutAmount&#39; are produced; with no rules the results are unchanged. Only supported for the InstrumentCashFlow CashFlowType.
+    border_configuration=BucketBorderConfiguration(...),  # optional
+    starting_balance="..."  # optional — The balance to use at the start of the bucketing window when computing open/close balances.  Supported string (enumeration) values are: [PortfolioCashBalance, Zero]. Defaults to &#39;PortfolioCashBalance&#39;. Available values: PortfolioCashBalance, Zero.
 )
 ```
 
 - [PortfolioEntityId](PortfolioEntityId.md) — used in `portfolio_entity_ids`
 - [ResourceId](ResourceId.md)
 - [BucketingSchedule](BucketingSchedule.md)
+- [CashFlowHaircutRule](CashFlowHaircutRule.md) — used in `haircut_rules`
+- [BucketBorderConfiguration](BucketBorderConfiguration.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

@@ -18,6 +18,7 @@ Specification object for the parameters of an inline valuation
 | **instruments** | [List[WeightedInstrument]](WeightedInstrument.md) | Required | The set of instruments, weighted by the quantities held that are required.  It is identified by an identifier tag that can be used to identify it externally.  For a single, unique trade or transaction this can be thought of as equivalent to the transaction identifier, or  a composite of the sub-holding keys for a regular sub-holding. When there are multiple transactions sharing the same underlying instrument  such as purchase of shares on multiple dates where tax implications are different this would not be the case. |
 | **market_data_overrides** | [MarketDataOverrides](MarketDataOverrides.md) | Optional | *No description available.* |
 | **corporate_action_source_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **scenario** | [ScenarioReference](ScenarioReference.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -40,7 +41,8 @@ instance = InlineValuationRequest(
     valuation_schedule=ValuationSchedule(...),  # optional
     instruments=[],  # required — The set of instruments, weighted by the quantities held that are required.  It is identified by an identifier tag that can be used to identify it externally.  For a single, unique trade or transaction this can be thought of as equivalent to the transaction identifier, or  a composite of the sub-holding keys for a regular sub-holding. When there are multiple transactions sharing the same underlying instrument  such as purchase of shares on multiple dates where tax implications are different this would not be the case.
     market_data_overrides=MarketDataOverrides(...),  # optional
-    corporate_action_source_id=ResourceId(...)  # optional
+    corporate_action_source_id=ResourceId(...),  # optional
+    scenario=ScenarioReference(...)  # optional
 )
 ```
 
@@ -55,6 +57,7 @@ instance = InlineValuationRequest(
 - [WeightedInstrument](WeightedInstrument.md) — used in `instruments`
 - [MarketDataOverrides](MarketDataOverrides.md)
 - [ResourceId](ResourceId.md)
+- [ScenarioReference](ScenarioReference.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

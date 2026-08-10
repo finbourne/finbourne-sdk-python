@@ -35,7 +35,8 @@ class QueryCashFlowsRequest(BaseModel):
     portfolio_entity_ids: List[PortfolioEntityId] = Field(description="The set of portfolios and portfolio groups to which the instrument events must belong.", alias="portfolioEntityIds")
     recipe_id: ResourceId = Field(alias="recipeId")
     effective_at: datetime = Field(description="The Effective date used in the valuation of the cashflows.", alias="effectiveAt")
-    __properties: ClassVar[List[str]] = ["asAt", "windowStart", "windowEnd", "portfolioEntityIds", "recipeId", "effectiveAt"]
+    cash_flow_calculation_version:  Optional[StrictStr] = Field(default=None,alias="cashFlowCalculationVersion", description="The version of the cash flow calculation logic to use. Defaults to '1' if not specified. Valid values are '1' and '2'.  '1' is the current production behaviour: cash flows booked as transactions are de-duplicated against the  instrument cash flows by identifier, and movements are treated as factual when they settle on or before the effective date.  '2' resolves cash flows via a deterministic source waterfall (structured result store > transaction > instrument),  classifies cash flows as factual by the transaction trade date (so trades dealt on or before the effective date  that settle afterwards are factual), and applies corporate action date filtering.") 
+    __properties: ClassVar[List[str]] = ["asAt", "windowStart", "windowEnd", "portfolioEntityIds", "recipeId", "effectiveAt", "cashFlowCalculationVersion"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -86,6 +87,11 @@ class QueryCashFlowsRequest(BaseModel):
         if self.as_at is None and "as_at" in self.model_fields_set:
             _dict['asAt'] = None
 
+        # set to None if cash_flow_calculation_version (nullable) is None
+        # and model_fields_set contains the field
+        if self.cash_flow_calculation_version is None and "cash_flow_calculation_version" in self.model_fields_set:
+            _dict['cashFlowCalculationVersion'] = None
+
         return _dict
 
     @classmethod
@@ -103,7 +109,8 @@ class QueryCashFlowsRequest(BaseModel):
             "window_end": obj.get("windowEnd"),
             "portfolio_entity_ids": [PortfolioEntityId.from_dict(_item) for _item in _v] if (_v := obj.get("portfolioEntityIds")) is not None else None,
             "recipe_id": ResourceId.from_dict(_v) if (_v := obj.get("recipeId")) is not None else None,
-            "effective_at": obj.get("effectiveAt")
+            "effective_at": obj.get("effectiveAt"),
+            "cash_flow_calculation_version": obj.get("cashFlowCalculationVersion")
         })
         return _obj
 

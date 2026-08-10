@@ -4951,7 +4951,7 @@ class TransactionPortfoliosApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def get_portfolio_cash_flows(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, window_start: Optional[StrictStr] = None, window_end: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, exclude_unsettled_trades: Optional[bool] = None, **kwargs) -> ResourceListOfInstrumentCashFlow:
+    def get_portfolio_cash_flows(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, window_start: Optional[StrictStr] = None, window_end: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, exclude_unsettled_trades: Optional[bool] = None, cash_flow_calculation_version: Optional[StrictStr] = None, **kwargs) -> ResourceListOfInstrumentCashFlow:
         """GetPortfolioCashFlows: Get portfolio cash flows  # noqa: E501
 
         Get the set of cash flows that occur in a window for the transaction portfolio's instruments.                Note that grouping can affect the quantity of information returned; where a holding is an amalgamation of one or more (e.g. cash) instruments, a unique  transaction identifier will not be available. The same may go for diagnostic information (e.g. multiple sources of an aggregate cash amount on a date that is  not split out. Grouping at the transaction and instrument level is recommended for those seeking to attribute individual flows.  # noqa: E501
@@ -4975,6 +4975,8 @@ class TransactionPortfoliosApi:
         :type recipe_id_code: str
         :param exclude_unsettled_trades: If absent or set to false, cashflows will returned based on trade date - more specifically, cashflows from any unsettled trades will be included in the results. If set to true, unsettled trades will be excluded from the result set.
         :type exclude_unsettled_trades: bool
+        :param cash_flow_calculation_version: The version of the cash flow calculation logic to use. Defaults to '1' if not specified; valid values are '1' (the current production behaviour)               and '2' (cash flows resolved via a deterministic source waterfall, with factual cash flows classified by transaction trade date and corporate action date filtering applied).
+        :type cash_flow_calculation_version: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -4985,11 +4987,11 @@ class TransactionPortfoliosApi:
             message = "Error! Please call the get_portfolio_cash_flows_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.get_portfolio_cash_flows_with_http_info(scope, code, effective_at, window_start, window_end, as_at, filter, recipe_id_scope, recipe_id_code, exclude_unsettled_trades, **kwargs)
+        response = self.get_portfolio_cash_flows_with_http_info(scope, code, effective_at, window_start, window_end, as_at, filter, recipe_id_scope, recipe_id_code, exclude_unsettled_trades, cash_flow_calculation_version, **kwargs)
         return response.data
 
     @validate_call
-    def get_portfolio_cash_flows_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, window_start: Optional[StrictStr] = None, window_end: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, exclude_unsettled_trades: Optional[bool] = None, **kwargs) -> ApiResponse[ResourceListOfInstrumentCashFlow]:
+    def get_portfolio_cash_flows_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, window_start: Optional[StrictStr] = None, window_end: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, exclude_unsettled_trades: Optional[bool] = None, cash_flow_calculation_version: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfInstrumentCashFlow]:
         """GetPortfolioCashFlows: Get portfolio cash flows  # noqa: E501
 
         Get the set of cash flows that occur in a window for the transaction portfolio's instruments.                Note that grouping can affect the quantity of information returned; where a holding is an amalgamation of one or more (e.g. cash) instruments, a unique  transaction identifier will not be available. The same may go for diagnostic information (e.g. multiple sources of an aggregate cash amount on a date that is  not split out. Grouping at the transaction and instrument level is recommended for those seeking to attribute individual flows.  # noqa: E501
@@ -5013,6 +5015,8 @@ class TransactionPortfoliosApi:
         :type recipe_id_code: str
         :param exclude_unsettled_trades: If absent or set to false, cashflows will returned based on trade date - more specifically, cashflows from any unsettled trades will be included in the results. If set to true, unsettled trades will be excluded from the result set.
         :type exclude_unsettled_trades: bool
+        :param cash_flow_calculation_version: The version of the cash flow calculation logic to use. Defaults to '1' if not specified; valid values are '1' (the current production behaviour)               and '2' (cash flows resolved via a deterministic source waterfall, with factual cash flows classified by transaction trade date and corporate action date filtering applied).
+        :type cash_flow_calculation_version: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -5045,7 +5049,8 @@ class TransactionPortfoliosApi:
             'filter',
             'recipe_id_scope',
             'recipe_id_code',
-            'exclude_unsettled_trades'
+            'exclude_unsettled_trades',
+            'cash_flow_calculation_version'
         ]
         _all_params.extend(
             [
@@ -5109,6 +5114,9 @@ class TransactionPortfoliosApi:
         if _params.get('exclude_unsettled_trades') is not None:  # noqa: E501
             _query_params.append(('excludeUnsettledTrades', _params['exclude_unsettled_trades']))
 
+        if _params.get('cash_flow_calculation_version') is not None:  # noqa: E501
+            _query_params.append(('cashFlowCalculationVersion', _params['cash_flow_calculation_version']))
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -5146,7 +5154,7 @@ class TransactionPortfoliosApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def get_portfolio_cash_ladder(self, scope: StrictStr, code: StrictStr, from_effective_at: StrictStr, to_effective_at: StrictStr, effective_at: StrictStr, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, exclude_unsettled_trades: Optional[bool] = None, **kwargs) -> ResourceListOfPortfolioCashLadder:
+    def get_portfolio_cash_ladder(self, scope: StrictStr, code: StrictStr, from_effective_at: StrictStr, to_effective_at: StrictStr, effective_at: StrictStr, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, exclude_unsettled_trades: Optional[bool] = None, cash_flow_calculation_version: Optional[StrictStr] = None, **kwargs) -> ResourceListOfPortfolioCashLadder:
         """GetPortfolioCashLadder: Get portfolio cash ladder  # noqa: E501
 
         Get a cash ladder for a transaction portfolio.  # noqa: E501
@@ -5170,6 +5178,8 @@ class TransactionPortfoliosApi:
         :type recipe_id_code: str
         :param exclude_unsettled_trades: If absent or set to false, cashflows will returned based on trade date - more specifically, cashflows from any unsettled trades will be included in the results. If set to true, unsettled trades will be excluded from the result set.
         :type exclude_unsettled_trades: bool
+        :param cash_flow_calculation_version: The version of the cash flow calculation logic to use. Defaults to '1' if not specified; valid values are '1' (the current production behaviour)              and '2' (cash flows resolved via a deterministic source waterfall, with factual cash flows classified by transaction trade date and corporate action date filtering applied).
+        :type cash_flow_calculation_version: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -5180,11 +5190,11 @@ class TransactionPortfoliosApi:
             message = "Error! Please call the get_portfolio_cash_ladder_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.get_portfolio_cash_ladder_with_http_info(scope, code, from_effective_at, to_effective_at, effective_at, as_at, filter, recipe_id_scope, recipe_id_code, exclude_unsettled_trades, **kwargs)
+        response = self.get_portfolio_cash_ladder_with_http_info(scope, code, from_effective_at, to_effective_at, effective_at, as_at, filter, recipe_id_scope, recipe_id_code, exclude_unsettled_trades, cash_flow_calculation_version, **kwargs)
         return response.data
 
     @validate_call
-    def get_portfolio_cash_ladder_with_http_info(self, scope: StrictStr, code: StrictStr, from_effective_at: StrictStr, to_effective_at: StrictStr, effective_at: StrictStr, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, exclude_unsettled_trades: Optional[bool] = None, **kwargs) -> ApiResponse[ResourceListOfPortfolioCashLadder]:
+    def get_portfolio_cash_ladder_with_http_info(self, scope: StrictStr, code: StrictStr, from_effective_at: StrictStr, to_effective_at: StrictStr, effective_at: StrictStr, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, exclude_unsettled_trades: Optional[bool] = None, cash_flow_calculation_version: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfPortfolioCashLadder]:
         """GetPortfolioCashLadder: Get portfolio cash ladder  # noqa: E501
 
         Get a cash ladder for a transaction portfolio.  # noqa: E501
@@ -5208,6 +5218,8 @@ class TransactionPortfoliosApi:
         :type recipe_id_code: str
         :param exclude_unsettled_trades: If absent or set to false, cashflows will returned based on trade date - more specifically, cashflows from any unsettled trades will be included in the results. If set to true, unsettled trades will be excluded from the result set.
         :type exclude_unsettled_trades: bool
+        :param cash_flow_calculation_version: The version of the cash flow calculation logic to use. Defaults to '1' if not specified; valid values are '1' (the current production behaviour)              and '2' (cash flows resolved via a deterministic source waterfall, with factual cash flows classified by transaction trade date and corporate action date filtering applied).
+        :type cash_flow_calculation_version: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -5240,7 +5252,8 @@ class TransactionPortfoliosApi:
             'filter',
             'recipe_id_scope',
             'recipe_id_code',
-            'exclude_unsettled_trades'
+            'exclude_unsettled_trades',
+            'cash_flow_calculation_version'
         ]
         _all_params.extend(
             [
@@ -5303,6 +5316,9 @@ class TransactionPortfoliosApi:
 
         if _params.get('exclude_unsettled_trades') is not None:  # noqa: E501
             _query_params.append(('excludeUnsettledTrades', _params['exclude_unsettled_trades']))
+
+        if _params.get('cash_flow_calculation_version') is not None:  # noqa: E501
+            _query_params.append(('cashFlowCalculationVersion', _params['cash_flow_calculation_version']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -6069,7 +6085,7 @@ class TransactionPortfoliosApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def get_upsertable_portfolio_cash_flows(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, window_start: Optional[StrictStr] = None, window_end: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, exclude_unsettled_trades: Optional[bool] = None, **kwargs) -> ResourceListOfTransaction:
+    def get_upsertable_portfolio_cash_flows(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, window_start: Optional[StrictStr] = None, window_end: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, exclude_unsettled_trades: Optional[bool] = None, cash_flow_calculation_version: Optional[StrictStr] = None, **kwargs) -> ResourceListOfTransaction:
         """GetUpsertablePortfolioCashFlows: Get upsertable portfolio cash flows.  # noqa: E501
 
         Get the set of cash flows that occur in a window for the given portfolio instruments as a set of upsertable transactions (DTOs).                Note that grouping can affect the quantity of information returned; where a holding is an amalgamation of one or more (e.g. cash) instruments, a unique  transaction identifier will not be available. The same may go for diagnostic information (e.g. multiple sources of an aggregate cash amount on a date that is  not split out. Grouping at the transaction and instrument level is recommended for those seeking to attribute individual flows.                In essence this is identical to the 'GetCashFlows' endpoint but returns the cash flows as a set of transactions suitable for directly putting back into LUSID.  There are a couple of important points:  (1) Internally it can not be fully known where the user wishes to insert these transactions, e.g. portfolio and movement type.      These are therefore defaulted to a sensible option; the user will likely need to change these.  (2) Similarly, knowledge of any properties the user might wish to add to a transaction are unknown and consequently left empty.  (3) The transaction id that is added is simply a concatenation of the original transaction id, instrument id and payment date and direction. The user can happily override this.  # noqa: E501
@@ -6093,6 +6109,8 @@ class TransactionPortfoliosApi:
         :type recipe_id_code: str
         :param exclude_unsettled_trades: If absent or set to true, unsettled trades will be excluded from the result set. If set to false, cashflows will returned based on trade date - more specifically, cashflows from any unsettled trades will be included in the results.
         :type exclude_unsettled_trades: bool
+        :param cash_flow_calculation_version: The version of the cash flow calculation logic to use. Defaults to '1' if not specified; valid values are '1' (the current production behaviour)               and '2' (cash flows resolved via a deterministic source waterfall, with factual cash flows classified by transaction trade date and corporate action date filtering applied).
+        :type cash_flow_calculation_version: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -6103,11 +6121,11 @@ class TransactionPortfoliosApi:
             message = "Error! Please call the get_upsertable_portfolio_cash_flows_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.get_upsertable_portfolio_cash_flows_with_http_info(scope, code, effective_at, window_start, window_end, as_at, filter, recipe_id_scope, recipe_id_code, exclude_unsettled_trades, **kwargs)
+        response = self.get_upsertable_portfolio_cash_flows_with_http_info(scope, code, effective_at, window_start, window_end, as_at, filter, recipe_id_scope, recipe_id_code, exclude_unsettled_trades, cash_flow_calculation_version, **kwargs)
         return response.data
 
     @validate_call
-    def get_upsertable_portfolio_cash_flows_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, window_start: Optional[StrictStr] = None, window_end: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, exclude_unsettled_trades: Optional[bool] = None, **kwargs) -> ApiResponse[ResourceListOfTransaction]:
+    def get_upsertable_portfolio_cash_flows_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, window_start: Optional[StrictStr] = None, window_end: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, exclude_unsettled_trades: Optional[bool] = None, cash_flow_calculation_version: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfTransaction]:
         """GetUpsertablePortfolioCashFlows: Get upsertable portfolio cash flows.  # noqa: E501
 
         Get the set of cash flows that occur in a window for the given portfolio instruments as a set of upsertable transactions (DTOs).                Note that grouping can affect the quantity of information returned; where a holding is an amalgamation of one or more (e.g. cash) instruments, a unique  transaction identifier will not be available. The same may go for diagnostic information (e.g. multiple sources of an aggregate cash amount on a date that is  not split out. Grouping at the transaction and instrument level is recommended for those seeking to attribute individual flows.                In essence this is identical to the 'GetCashFlows' endpoint but returns the cash flows as a set of transactions suitable for directly putting back into LUSID.  There are a couple of important points:  (1) Internally it can not be fully known where the user wishes to insert these transactions, e.g. portfolio and movement type.      These are therefore defaulted to a sensible option; the user will likely need to change these.  (2) Similarly, knowledge of any properties the user might wish to add to a transaction are unknown and consequently left empty.  (3) The transaction id that is added is simply a concatenation of the original transaction id, instrument id and payment date and direction. The user can happily override this.  # noqa: E501
@@ -6131,6 +6149,8 @@ class TransactionPortfoliosApi:
         :type recipe_id_code: str
         :param exclude_unsettled_trades: If absent or set to true, unsettled trades will be excluded from the result set. If set to false, cashflows will returned based on trade date - more specifically, cashflows from any unsettled trades will be included in the results.
         :type exclude_unsettled_trades: bool
+        :param cash_flow_calculation_version: The version of the cash flow calculation logic to use. Defaults to '1' if not specified; valid values are '1' (the current production behaviour)               and '2' (cash flows resolved via a deterministic source waterfall, with factual cash flows classified by transaction trade date and corporate action date filtering applied).
+        :type cash_flow_calculation_version: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -6163,7 +6183,8 @@ class TransactionPortfoliosApi:
             'filter',
             'recipe_id_scope',
             'recipe_id_code',
-            'exclude_unsettled_trades'
+            'exclude_unsettled_trades',
+            'cash_flow_calculation_version'
         ]
         _all_params.extend(
             [
@@ -6226,6 +6247,9 @@ class TransactionPortfoliosApi:
 
         if _params.get('exclude_unsettled_trades') is not None:  # noqa: E501
             _query_params.append(('excludeUnsettledTrades', _params['exclude_unsettled_trades']))
+
+        if _params.get('cash_flow_calculation_version') is not None:  # noqa: E501
+            _query_params.append(('cashFlowCalculationVersion', _params['cash_flow_calculation_version']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -13483,7 +13507,7 @@ class TransactionPortfoliosApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def get_portfolio_cash_flows_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, window_start: Optional[StrictStr] = None, window_end: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, exclude_unsettled_trades: Optional[bool] = None, **kwargs) -> ResourceListOfInstrumentCashFlow:
+    async def get_portfolio_cash_flows_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, window_start: Optional[StrictStr] = None, window_end: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, exclude_unsettled_trades: Optional[bool] = None, cash_flow_calculation_version: Optional[StrictStr] = None, **kwargs) -> ResourceListOfInstrumentCashFlow:
             """GetPortfolioCashFlows: Get portfolio cash flows  # noqa: E501
             Get the set of cash flows that occur in a window for the transaction portfolio's instruments.                Note that grouping can affect the quantity of information returned; where a holding is an amalgamation of one or more (e.g. cash) instruments, a unique  transaction identifier will not be available. The same may go for diagnostic information (e.g. multiple sources of an aggregate cash amount on a date that is  not split out. Grouping at the transaction and instrument level is recommended for those seeking to attribute individual flows.  # noqa: E501
             
@@ -13507,6 +13531,8 @@ class TransactionPortfoliosApi:
             :type recipe_id_code: str
             :param exclude_unsettled_trades: If absent or set to false, cashflows will returned based on trade date - more specifically, cashflows from any unsettled trades will be included in the results. If set to true, unsettled trades will be excluded from the result set.
             :type exclude_unsettled_trades: bool
+            :param cash_flow_calculation_version: The version of the cash flow calculation logic to use. Defaults to '1' if not specified; valid values are '1' (the current production behaviour)               and '2' (cash flows resolved via a deterministic source waterfall, with factual cash flows classified by transaction trade date and corporate action date filtering applied).
+            :type cash_flow_calculation_version: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -13517,11 +13543,11 @@ class TransactionPortfoliosApi:
                 message = "Error! Please call the get_portfolio_cash_flows_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.get_portfolio_cash_flows_with_http_info_async(scope, code, effective_at, window_start, window_end, as_at, filter, recipe_id_scope, recipe_id_code, exclude_unsettled_trades, **kwargs)
+            response = await self.get_portfolio_cash_flows_with_http_info_async(scope, code, effective_at, window_start, window_end, as_at, filter, recipe_id_scope, recipe_id_code, exclude_unsettled_trades, cash_flow_calculation_version, **kwargs)
             return response.data
 
     @validate_call
-    async def get_portfolio_cash_flows_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, window_start: Optional[StrictStr] = None, window_end: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, exclude_unsettled_trades: Optional[bool] = None, **kwargs) -> ApiResponse[ResourceListOfInstrumentCashFlow]:
+    async def get_portfolio_cash_flows_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, window_start: Optional[StrictStr] = None, window_end: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, exclude_unsettled_trades: Optional[bool] = None, cash_flow_calculation_version: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfInstrumentCashFlow]:
             """GetPortfolioCashFlows: Get portfolio cash flows  # noqa: E501
 
             Get the set of cash flows that occur in a window for the transaction portfolio's instruments.                Note that grouping can affect the quantity of information returned; where a holding is an amalgamation of one or more (e.g. cash) instruments, a unique  transaction identifier will not be available. The same may go for diagnostic information (e.g. multiple sources of an aggregate cash amount on a date that is  not split out. Grouping at the transaction and instrument level is recommended for those seeking to attribute individual flows.  # noqa: E501
@@ -13546,6 +13572,8 @@ class TransactionPortfoliosApi:
             :type recipe_id_code: str
             :param exclude_unsettled_trades: If absent or set to false, cashflows will returned based on trade date - more specifically, cashflows from any unsettled trades will be included in the results. If set to true, unsettled trades will be excluded from the result set.
             :type exclude_unsettled_trades: bool
+            :param cash_flow_calculation_version: The version of the cash flow calculation logic to use. Defaults to '1' if not specified; valid values are '1' (the current production behaviour)               and '2' (cash flows resolved via a deterministic source waterfall, with factual cash flows classified by transaction trade date and corporate action date filtering applied).
+            :type cash_flow_calculation_version: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -13578,7 +13606,8 @@ class TransactionPortfoliosApi:
                 'filter',
                 'recipe_id_scope',
                 'recipe_id_code',
-                'exclude_unsettled_trades'
+                'exclude_unsettled_trades',
+                'cash_flow_calculation_version'
             ]
             _all_params.extend(
                 [
@@ -13642,6 +13671,9 @@ class TransactionPortfoliosApi:
             if _params.get('exclude_unsettled_trades') is not None:  # noqa: E501
                 _query_params.append(('excludeUnsettledTrades', _params['exclude_unsettled_trades']))
 
+            if _params.get('cash_flow_calculation_version') is not None:  # noqa: E501
+                _query_params.append(('cashFlowCalculationVersion', _params['cash_flow_calculation_version']))
+
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))
             # process the form parameters
@@ -13679,7 +13711,7 @@ class TransactionPortfoliosApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def get_portfolio_cash_ladder_async(self, scope: StrictStr, code: StrictStr, from_effective_at: StrictStr, to_effective_at: StrictStr, effective_at: StrictStr, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, exclude_unsettled_trades: Optional[bool] = None, **kwargs) -> ResourceListOfPortfolioCashLadder:
+    async def get_portfolio_cash_ladder_async(self, scope: StrictStr, code: StrictStr, from_effective_at: StrictStr, to_effective_at: StrictStr, effective_at: StrictStr, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, exclude_unsettled_trades: Optional[bool] = None, cash_flow_calculation_version: Optional[StrictStr] = None, **kwargs) -> ResourceListOfPortfolioCashLadder:
             """GetPortfolioCashLadder: Get portfolio cash ladder  # noqa: E501
             Get a cash ladder for a transaction portfolio.  # noqa: E501
             
@@ -13703,6 +13735,8 @@ class TransactionPortfoliosApi:
             :type recipe_id_code: str
             :param exclude_unsettled_trades: If absent or set to false, cashflows will returned based on trade date - more specifically, cashflows from any unsettled trades will be included in the results. If set to true, unsettled trades will be excluded from the result set.
             :type exclude_unsettled_trades: bool
+            :param cash_flow_calculation_version: The version of the cash flow calculation logic to use. Defaults to '1' if not specified; valid values are '1' (the current production behaviour)              and '2' (cash flows resolved via a deterministic source waterfall, with factual cash flows classified by transaction trade date and corporate action date filtering applied).
+            :type cash_flow_calculation_version: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -13713,11 +13747,11 @@ class TransactionPortfoliosApi:
                 message = "Error! Please call the get_portfolio_cash_ladder_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.get_portfolio_cash_ladder_with_http_info_async(scope, code, from_effective_at, to_effective_at, effective_at, as_at, filter, recipe_id_scope, recipe_id_code, exclude_unsettled_trades, **kwargs)
+            response = await self.get_portfolio_cash_ladder_with_http_info_async(scope, code, from_effective_at, to_effective_at, effective_at, as_at, filter, recipe_id_scope, recipe_id_code, exclude_unsettled_trades, cash_flow_calculation_version, **kwargs)
             return response.data
 
     @validate_call
-    async def get_portfolio_cash_ladder_with_http_info_async(self, scope: StrictStr, code: StrictStr, from_effective_at: StrictStr, to_effective_at: StrictStr, effective_at: StrictStr, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, exclude_unsettled_trades: Optional[bool] = None, **kwargs) -> ApiResponse[ResourceListOfPortfolioCashLadder]:
+    async def get_portfolio_cash_ladder_with_http_info_async(self, scope: StrictStr, code: StrictStr, from_effective_at: StrictStr, to_effective_at: StrictStr, effective_at: StrictStr, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, exclude_unsettled_trades: Optional[bool] = None, cash_flow_calculation_version: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfPortfolioCashLadder]:
             """GetPortfolioCashLadder: Get portfolio cash ladder  # noqa: E501
 
             Get a cash ladder for a transaction portfolio.  # noqa: E501
@@ -13742,6 +13776,8 @@ class TransactionPortfoliosApi:
             :type recipe_id_code: str
             :param exclude_unsettled_trades: If absent or set to false, cashflows will returned based on trade date - more specifically, cashflows from any unsettled trades will be included in the results. If set to true, unsettled trades will be excluded from the result set.
             :type exclude_unsettled_trades: bool
+            :param cash_flow_calculation_version: The version of the cash flow calculation logic to use. Defaults to '1' if not specified; valid values are '1' (the current production behaviour)              and '2' (cash flows resolved via a deterministic source waterfall, with factual cash flows classified by transaction trade date and corporate action date filtering applied).
+            :type cash_flow_calculation_version: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -13774,7 +13810,8 @@ class TransactionPortfoliosApi:
                 'filter',
                 'recipe_id_scope',
                 'recipe_id_code',
-                'exclude_unsettled_trades'
+                'exclude_unsettled_trades',
+                'cash_flow_calculation_version'
             ]
             _all_params.extend(
                 [
@@ -13837,6 +13874,9 @@ class TransactionPortfoliosApi:
 
             if _params.get('exclude_unsettled_trades') is not None:  # noqa: E501
                 _query_params.append(('excludeUnsettledTrades', _params['exclude_unsettled_trades']))
+
+            if _params.get('cash_flow_calculation_version') is not None:  # noqa: E501
+                _query_params.append(('cashFlowCalculationVersion', _params['cash_flow_calculation_version']))
 
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))
@@ -14607,7 +14647,7 @@ class TransactionPortfoliosApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def get_upsertable_portfolio_cash_flows_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, window_start: Optional[StrictStr] = None, window_end: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, exclude_unsettled_trades: Optional[bool] = None, **kwargs) -> ResourceListOfTransaction:
+    async def get_upsertable_portfolio_cash_flows_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, window_start: Optional[StrictStr] = None, window_end: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, exclude_unsettled_trades: Optional[bool] = None, cash_flow_calculation_version: Optional[StrictStr] = None, **kwargs) -> ResourceListOfTransaction:
             """GetUpsertablePortfolioCashFlows: Get upsertable portfolio cash flows.  # noqa: E501
             Get the set of cash flows that occur in a window for the given portfolio instruments as a set of upsertable transactions (DTOs).                Note that grouping can affect the quantity of information returned; where a holding is an amalgamation of one or more (e.g. cash) instruments, a unique  transaction identifier will not be available. The same may go for diagnostic information (e.g. multiple sources of an aggregate cash amount on a date that is  not split out. Grouping at the transaction and instrument level is recommended for those seeking to attribute individual flows.                In essence this is identical to the 'GetCashFlows' endpoint but returns the cash flows as a set of transactions suitable for directly putting back into LUSID.  There are a couple of important points:  (1) Internally it can not be fully known where the user wishes to insert these transactions, e.g. portfolio and movement type.      These are therefore defaulted to a sensible option; the user will likely need to change these.  (2) Similarly, knowledge of any properties the user might wish to add to a transaction are unknown and consequently left empty.  (3) The transaction id that is added is simply a concatenation of the original transaction id, instrument id and payment date and direction. The user can happily override this.  # noqa: E501
             
@@ -14631,6 +14671,8 @@ class TransactionPortfoliosApi:
             :type recipe_id_code: str
             :param exclude_unsettled_trades: If absent or set to true, unsettled trades will be excluded from the result set. If set to false, cashflows will returned based on trade date - more specifically, cashflows from any unsettled trades will be included in the results.
             :type exclude_unsettled_trades: bool
+            :param cash_flow_calculation_version: The version of the cash flow calculation logic to use. Defaults to '1' if not specified; valid values are '1' (the current production behaviour)               and '2' (cash flows resolved via a deterministic source waterfall, with factual cash flows classified by transaction trade date and corporate action date filtering applied).
+            :type cash_flow_calculation_version: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -14641,11 +14683,11 @@ class TransactionPortfoliosApi:
                 message = "Error! Please call the get_upsertable_portfolio_cash_flows_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.get_upsertable_portfolio_cash_flows_with_http_info_async(scope, code, effective_at, window_start, window_end, as_at, filter, recipe_id_scope, recipe_id_code, exclude_unsettled_trades, **kwargs)
+            response = await self.get_upsertable_portfolio_cash_flows_with_http_info_async(scope, code, effective_at, window_start, window_end, as_at, filter, recipe_id_scope, recipe_id_code, exclude_unsettled_trades, cash_flow_calculation_version, **kwargs)
             return response.data
 
     @validate_call
-    async def get_upsertable_portfolio_cash_flows_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, window_start: Optional[StrictStr] = None, window_end: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, exclude_unsettled_trades: Optional[bool] = None, **kwargs) -> ApiResponse[ResourceListOfTransaction]:
+    async def get_upsertable_portfolio_cash_flows_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, window_start: Optional[StrictStr] = None, window_end: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, recipe_id_scope: Optional[StrictStr] = None, recipe_id_code: Optional[StrictStr] = None, exclude_unsettled_trades: Optional[bool] = None, cash_flow_calculation_version: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfTransaction]:
             """GetUpsertablePortfolioCashFlows: Get upsertable portfolio cash flows.  # noqa: E501
 
             Get the set of cash flows that occur in a window for the given portfolio instruments as a set of upsertable transactions (DTOs).                Note that grouping can affect the quantity of information returned; where a holding is an amalgamation of one or more (e.g. cash) instruments, a unique  transaction identifier will not be available. The same may go for diagnostic information (e.g. multiple sources of an aggregate cash amount on a date that is  not split out. Grouping at the transaction and instrument level is recommended for those seeking to attribute individual flows.                In essence this is identical to the 'GetCashFlows' endpoint but returns the cash flows as a set of transactions suitable for directly putting back into LUSID.  There are a couple of important points:  (1) Internally it can not be fully known where the user wishes to insert these transactions, e.g. portfolio and movement type.      These are therefore defaulted to a sensible option; the user will likely need to change these.  (2) Similarly, knowledge of any properties the user might wish to add to a transaction are unknown and consequently left empty.  (3) The transaction id that is added is simply a concatenation of the original transaction id, instrument id and payment date and direction. The user can happily override this.  # noqa: E501
@@ -14670,6 +14712,8 @@ class TransactionPortfoliosApi:
             :type recipe_id_code: str
             :param exclude_unsettled_trades: If absent or set to true, unsettled trades will be excluded from the result set. If set to false, cashflows will returned based on trade date - more specifically, cashflows from any unsettled trades will be included in the results.
             :type exclude_unsettled_trades: bool
+            :param cash_flow_calculation_version: The version of the cash flow calculation logic to use. Defaults to '1' if not specified; valid values are '1' (the current production behaviour)               and '2' (cash flows resolved via a deterministic source waterfall, with factual cash flows classified by transaction trade date and corporate action date filtering applied).
+            :type cash_flow_calculation_version: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -14702,7 +14746,8 @@ class TransactionPortfoliosApi:
                 'filter',
                 'recipe_id_scope',
                 'recipe_id_code',
-                'exclude_unsettled_trades'
+                'exclude_unsettled_trades',
+                'cash_flow_calculation_version'
             ]
             _all_params.extend(
                 [
@@ -14765,6 +14810,9 @@ class TransactionPortfoliosApi:
 
             if _params.get('exclude_unsettled_trades') is not None:  # noqa: E501
                 _query_params.append(('excludeUnsettledTrades', _params['exclude_unsettled_trades']))
+
+            if _params.get('cash_flow_calculation_version') is not None:  # noqa: E501
+                _query_params.append(('cashFlowCalculationVersion', _params['cash_flow_calculation_version']))
 
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))

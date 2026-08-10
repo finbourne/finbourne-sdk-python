@@ -21,22 +21,20 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
-from finbourne.sdk.services.lusid.models.error_detail import ErrorDetail
 from finbourne.sdk.services.lusid.models.link import Link
-from finbourne.sdk.services.lusid.models.scenario_definition import ScenarioDefinition
 from finbourne.sdk.services.lusid.models.version import Version
 
 
-class GetScenarioResponse(BaseModel):
+class PagedResourceListOfVersion(BaseModel):
     """
-    GetScenarioResponse
+    PagedResourceListOfVersion
     """
+    next_page:  Optional[StrictStr] = Field(default=None,alias="nextPage") 
+    previous_page:  Optional[StrictStr] = Field(default=None,alias="previousPage") 
+    values: List[Version]
     href:  Optional[StrictStr] = Field(default=None,alias="href") 
-    value: Optional[ScenarioDefinition] = None
-    version: Optional[Version] = None
-    failed: Optional[ErrorDetail] = None
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["href", "value", "version", "failed", "links"]
+    __properties: ClassVar[List[str]] = ["nextPage", "previousPage", "values", "href", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -61,8 +59,8 @@ class GetScenarioResponse(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> GetScenarioResponse:
-        """Create an instance of GetScenarioResponse from a JSON string"""
+    def from_json(cls, json_str: str) -> PagedResourceListOfVersion:
+        """Create an instance of PagedResourceListOfVersion from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self, by_alias=True):
@@ -72,15 +70,13 @@ class GetScenarioResponse(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of value
-        if self.value:
-            _dict['value'] = self.value.to_dict(by_alias=by_alias)
-        # override the default output from pydantic by calling `to_dict()` of version
-        if self.version:
-            _dict['version'] = self.version.to_dict(by_alias=by_alias)
-        # override the default output from pydantic by calling `to_dict()` of failed
-        if self.failed:
-            _dict['failed'] = self.failed.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of each item in values (list)
+        _items = []
+        if self.values:
+            for _item in self.values:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['values'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in links (list)
         _items = []
         if self.links:
@@ -88,6 +84,16 @@ class GetScenarioResponse(BaseModel):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['links'] = _items
+        # set to None if next_page (nullable) is None
+        # and model_fields_set contains the field
+        if self.next_page is None and "next_page" in self.model_fields_set:
+            _dict['nextPage'] = None
+
+        # set to None if previous_page (nullable) is None
+        # and model_fields_set contains the field
+        if self.previous_page is None and "previous_page" in self.model_fields_set:
+            _dict['previousPage'] = None
+
         # set to None if href (nullable) is None
         # and model_fields_set contains the field
         if self.href is None and "href" in self.model_fields_set:
@@ -101,22 +107,22 @@ class GetScenarioResponse(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> GetScenarioResponse:
-        """Create an instance of GetScenarioResponse from a dict"""
+    def from_dict(cls, obj: dict) -> PagedResourceListOfVersion:
+        """Create an instance of PagedResourceListOfVersion from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return GetScenarioResponse.model_validate(obj)
+            return PagedResourceListOfVersion.model_validate(obj)
 
-        _obj = GetScenarioResponse.model_validate({
+        _obj = PagedResourceListOfVersion.model_validate({
+            "next_page": obj.get("nextPage"),
+            "previous_page": obj.get("previousPage"),
+            "values": [Version.from_dict(_item) for _item in _v] if (_v := obj.get("values")) is not None else None,
             "href": obj.get("href"),
-            "value": ScenarioDefinition.from_dict(_v) if (_v := obj.get("value")) is not None else None,
-            "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
-            "failed": ErrorDetail.from_dict(_v) if (_v := obj.get("failed")) is not None else None,
             "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj
 
-GetScenarioResponse.model_rebuild()
+PagedResourceListOfVersion.model_rebuild()
 

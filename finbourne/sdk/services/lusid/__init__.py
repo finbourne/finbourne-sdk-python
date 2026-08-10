@@ -237,6 +237,7 @@ from finbourne.sdk.services.lusid.models.branch_step import BranchStep
 from finbourne.sdk.services.lusid.models.branch_step_request import BranchStepRequest
 from finbourne.sdk.services.lusid.models.break_code_source import BreakCodeSource
 from finbourne.sdk.services.lusid.models.bucket import Bucket
+from finbourne.sdk.services.lusid.models.bucket_border_configuration import BucketBorderConfiguration
 from finbourne.sdk.services.lusid.models.bucket_definition import BucketDefinition
 from finbourne.sdk.services.lusid.models.bucket_set_definition import BucketSetDefinition
 from finbourne.sdk.services.lusid.models.bucket_set_node import BucketSetNode
@@ -269,7 +270,10 @@ from finbourne.sdk.services.lusid.models.cash_and_security_offer_election import
 from finbourne.sdk.services.lusid.models.cash_dependency import CashDependency
 from finbourne.sdk.services.lusid.models.cash_dividend_event import CashDividendEvent
 from finbourne.sdk.services.lusid.models.cash_election import CashElection
+from finbourne.sdk.services.lusid.models.cash_flow_detail import CashFlowDetail
 from finbourne.sdk.services.lusid.models.cash_flow_event import CashFlowEvent
+from finbourne.sdk.services.lusid.models.cash_flow_haircut_rule import CashFlowHaircutRule
+from finbourne.sdk.services.lusid.models.cash_flow_haircut_term_point import CashFlowHaircutTermPoint
 from finbourne.sdk.services.lusid.models.cash_flow_lineage import CashFlowLineage
 from finbourne.sdk.services.lusid.models.cash_flow_value import CashFlowValue
 from finbourne.sdk.services.lusid.models.cash_flow_value_set import CashFlowValueSet
@@ -995,6 +999,7 @@ from finbourne.sdk.services.lusid.models.paged_resource_list_of_transaction_temp
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_translation_script_id import PagedResourceListOfTranslationScriptId
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_valuation_point_instrument import PagedResourceListOfValuationPointInstrument
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_valuation_point_overview import PagedResourceListOfValuationPointOverview
+from finbourne.sdk.services.lusid.models.paged_resource_list_of_version import PagedResourceListOfVersion
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_virtual_row import PagedResourceListOfVirtualRow
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_workspace import PagedResourceListOfWorkspace
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_workspace_item import PagedResourceListOfWorkspaceItem
@@ -1113,6 +1118,7 @@ from finbourne.sdk.services.lusid.models.protection_payout_cash_flow_event impor
 from finbourne.sdk.services.lusid.models.put_redemption_event import PutRedemptionEvent
 from finbourne.sdk.services.lusid.models.quantity_instructed import QuantityInstructed
 from finbourne.sdk.services.lusid.models.query_applicable_instrument_events_request import QueryApplicableInstrumentEventsRequest
+from finbourne.sdk.services.lusid.models.query_bucket_cash_flow_drill_down_request import QueryBucketCashFlowDrillDownRequest
 from finbourne.sdk.services.lusid.models.query_bucketed_cash_flows_request import QueryBucketedCashFlowsRequest
 from finbourne.sdk.services.lusid.models.query_cash_flows_request import QueryCashFlowsRequest
 from finbourne.sdk.services.lusid.models.query_fund_cash_statement_parameters import QueryFundCashStatementParameters
@@ -1130,6 +1136,7 @@ from finbourne.sdk.services.lusid.models.quote_id import QuoteId
 from finbourne.sdk.services.lusid.models.quote_instrument_id_type import QuoteInstrumentIdType
 from finbourne.sdk.services.lusid.models.quote_series_id import QuoteSeriesId
 from finbourne.sdk.services.lusid.models.quote_type import QuoteType
+from finbourne.sdk.services.lusid.models.rate_breakdown_component import RateBreakdownComponent
 from finbourne.sdk.services.lusid.models.rate_curve_shift_definition import RateCurveShiftDefinition
 from finbourne.sdk.services.lusid.models.rate_curve_shift_mode import RateCurveShiftMode
 from finbourne.sdk.services.lusid.models.rate_curve_shift_scale import RateCurveShiftScale
@@ -1225,6 +1232,7 @@ from finbourne.sdk.services.lusid.models.resource_list_of_applicable_instrument_
 from finbourne.sdk.services.lusid.models.resource_list_of_block import ResourceListOfBlock
 from finbourne.sdk.services.lusid.models.resource_list_of_block_and_orders import ResourceListOfBlockAndOrders
 from finbourne.sdk.services.lusid.models.resource_list_of_calendar_date import ResourceListOfCalendarDate
+from finbourne.sdk.services.lusid.models.resource_list_of_cash_flow_detail import ResourceListOfCashFlowDetail
 from finbourne.sdk.services.lusid.models.resource_list_of_change import ResourceListOfChange
 from finbourne.sdk.services.lusid.models.resource_list_of_change_history import ResourceListOfChangeHistory
 from finbourne.sdk.services.lusid.models.resource_list_of_change_interval import ResourceListOfChangeInterval
@@ -1884,6 +1892,7 @@ __all__ = [
     "BranchStepRequest",
     "BreakCodeSource",
     "Bucket",
+    "BucketBorderConfiguration",
     "BucketDefinition",
     "BucketSetDefinition",
     "BucketSetNode",
@@ -1916,7 +1925,10 @@ __all__ = [
     "CashDependency",
     "CashDividendEvent",
     "CashElection",
+    "CashFlowDetail",
     "CashFlowEvent",
+    "CashFlowHaircutRule",
+    "CashFlowHaircutTermPoint",
     "CashFlowLineage",
     "CashFlowValue",
     "CashFlowValueSet",
@@ -2642,6 +2654,7 @@ __all__ = [
     "PagedResourceListOfTranslationScriptId",
     "PagedResourceListOfValuationPointInstrument",
     "PagedResourceListOfValuationPointOverview",
+    "PagedResourceListOfVersion",
     "PagedResourceListOfVirtualRow",
     "PagedResourceListOfWorkspace",
     "PagedResourceListOfWorkspaceItem",
@@ -2760,6 +2773,7 @@ __all__ = [
     "PutRedemptionEvent",
     "QuantityInstructed",
     "QueryApplicableInstrumentEventsRequest",
+    "QueryBucketCashFlowDrillDownRequest",
     "QueryBucketedCashFlowsRequest",
     "QueryCashFlowsRequest",
     "QueryFundCashStatementParameters",
@@ -2777,6 +2791,7 @@ __all__ = [
     "QuoteInstrumentIdType",
     "QuoteSeriesId",
     "QuoteType",
+    "RateBreakdownComponent",
     "RateCurveShiftDefinition",
     "RateCurveShiftMode",
     "RateCurveShiftScale",
@@ -2872,6 +2887,7 @@ __all__ = [
     "ResourceListOfBlock",
     "ResourceListOfBlockAndOrders",
     "ResourceListOfCalendarDate",
+    "ResourceListOfCashFlowDetail",
     "ResourceListOfChange",
     "ResourceListOfChangeHistory",
     "ResourceListOfChangeInterval",

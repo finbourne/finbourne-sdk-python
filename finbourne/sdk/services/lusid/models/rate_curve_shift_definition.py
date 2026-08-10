@@ -29,7 +29,7 @@ class RateCurveShiftDefinition(ScenarioShiftDefinition):
     RateCurveShiftDefinition
     """
     ccy:  StrictStr = Field(...,alias="ccy") 
-    amount: Union[StrictFloat, StrictInt] = Field(description="The size of the shift, in the units given by Scale: basis points by default (50 means +50bps),  or a percentage of each rate when Scale is Percentage (1 means rates scaled by 1.01).")
+    amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The size of the shift, in the units given by Scale: basis points by default (50 means +50bps),  or a percentage of each rate when Scale is Percentage (1 means rates scaled by 1.01).")
     start_tenor:  Optional[StrictStr] = Field(default=None,alias="startTenor") 
     end_tenor:  Optional[StrictStr] = Field(default=None,alias="endTenor") 
     shift_type:  StrictStr = Field(...,alias="shiftType", description="Available values: Parallel, Steepen, Flatten, Twist.") 
@@ -288,6 +288,11 @@ class RateCurveShiftDefinition(ScenarioShiftDefinition):
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
                 _dict[_key] = _value
+
+        # set to None if amount (nullable) is None
+        # and model_fields_set contains the field
+        if self.amount is None and "amount" in self.model_fields_set:
+            _dict['amount'] = None
 
         # set to None if start_tenor (nullable) is None
         # and model_fields_set contains the field
