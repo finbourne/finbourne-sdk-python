@@ -5,10 +5,10 @@ The result of a batch upsert of properties on a Workflow.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **values** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | The properties that were successfully upserted or deleted, keyed by property key. |
-| **failed** | [../model/Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The properties that could not be upserted or deleted, keyed by property key. |
+| **values** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | The properties that were successfully upserted or deleted, keyed by property key. |
+| **failed** | [Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The properties that could not be upserted or deleted, keyed by property key. |
 | **as_at_date** | **datetime** | Optional | The asAt datetime at which the properties were updated or created. |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

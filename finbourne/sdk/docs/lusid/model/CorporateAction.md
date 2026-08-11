@@ -11,7 +11,7 @@ A corporate action
 | **ex_date** | **datetime** | Optional | The ex date of the corporate action |
 | **record_date** | **datetime** | Optional | The record date of the corporate action |
 | **payment_date** | **datetime** | Optional | The payment date of the corporate action |
-| **transitions** | [../model/List[CorporateActionTransition]](CorporateActionTransition.md) | Optional | The transitions that result from this corporate action |
+| **transitions** | [List[CorporateActionTransition]](CorporateActionTransition.md) | Optional | The transitions that result from this corporate action |
 
 
 ## Usage

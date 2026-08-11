@@ -5,11 +5,11 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **count_new** | **int** | Required | The number of comparison results of resultStatus \&quot;New\&quot; with this instanceId and reconciliationType |
-| **link_new** | [../model/Link](Link.md) | Required | *No description available.* |
+| **link_new** | [Link](Link.md) | Required | *No description available.* |
 | **count_confirmed** | **int** | Required | The number of comparison results of resultStatus \&quot;Confirmed\&quot; with this instanceId and reconciliationType |
-| **link_confirmed** | [../model/Link](Link.md) | Required | *No description available.* |
+| **link_confirmed** | [Link](Link.md) | Required | *No description available.* |
 | **count_changed** | **int** | Required | The number of comparison results of resultStatus \&quot;Changed\&quot; with this instanceId and reconciliationType |
-| **link_changed** | [../model/Link](Link.md) | Required | *No description available.* |
+| **link_changed** | [Link](Link.md) | Required | *No description available.* |
 
 
 ## Usage

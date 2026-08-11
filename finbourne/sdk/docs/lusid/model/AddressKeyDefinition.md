@@ -6,8 +6,8 @@
 |------|------|----------|-------------|
 | **address_key** | **str** | Required | The address key of the address key definition. |
 | **type** | **str** | Required | The type of the address key definition. Available values: Text, Integer, Decimal, Boolean, DateTime, Result0D. |
-| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **version** | [Version](Version.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

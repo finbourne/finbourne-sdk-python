@@ -5,10 +5,10 @@ The breakdown of PnL for a Share Class on a specified date.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **apportioned_non_class_specific_pnl** | [../model/Dict[str, ShareClassAmount]](ShareClassAmount.md) | Required | Bucket of detail for PnL within the queried period not explicitly allocated to any share class but has been apportioned to the share class. |
-| **class_pnl** | [../model/Dict[str, ShareClassAmount]](ShareClassAmount.md) | Required | Bucket of detail for PnL specific to the share class within the queried period. |
-| **group_apportioned_pnl** | [../model/Dict[str, ShareClassAmount]](ShareClassAmount.md) | Required | Bucket of detail for the share class&#39;s apportioned share of PnL allocated to the allocation groups it belongs to, within the queried period. |
-| **total_pnl** | [../model/Dict[str, ShareClassAmount]](ShareClassAmount.md) | Required | Bucket of detail for the total PnL within the queried period: the sum of the class-specific, apportioned non-class-specific and allocation-group-apportioned PnL. |
+| **apportioned_non_class_specific_pnl** | [Dict[str, ShareClassAmount]](ShareClassAmount.md) | Required | Bucket of detail for PnL within the queried period not explicitly allocated to any share class but has been apportioned to the share class. |
+| **class_pnl** | [Dict[str, ShareClassAmount]](ShareClassAmount.md) | Required | Bucket of detail for PnL specific to the share class within the queried period. |
+| **group_apportioned_pnl** | [Dict[str, ShareClassAmount]](ShareClassAmount.md) | Required | Bucket of detail for the share class&#39;s apportioned share of PnL allocated to the allocation groups it belongs to, within the queried period. |
+| **total_pnl** | [Dict[str, ShareClassAmount]](ShareClassAmount.md) | Required | Bucket of detail for the total PnL within the queried period: the sum of the class-specific, apportioned non-class-specific and allocation-group-apportioned PnL. |
 
 
 ## Usage

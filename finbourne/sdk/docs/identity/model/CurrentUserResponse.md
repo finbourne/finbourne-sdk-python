@@ -10,7 +10,7 @@
 | **domain_type** | **str** | Optional | The type of domain in which the user exists |
 | **user_expiry** | **datetime** | Optional | The user&#39;s user expiry datetime |
 | **groups** | **List[str]** | Optional | The groups this user belongs to |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

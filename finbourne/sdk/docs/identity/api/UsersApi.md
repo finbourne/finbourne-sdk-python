@@ -68,12 +68,12 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_user_request** | [**CreateUserRequest**](CreateUserRequest.md)| Details of the User to be created | [required] 
+ **create_user_request** | [**CreateUserRequest**](../model/CreateUserRequest.md)| Details of the User to be created | [required] 
  **wait_for_reindex** | **bool**| Should the request wait until the newly created User is indexed (available in List) before returning | [optional] [default to False]
 
 ### Return type
 
-[**UserResponse**](UserResponse.md)
+[**UserResponse**](../model/UserResponse.md)
 
 ### HTTP request headers
 
@@ -158,7 +158,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TemporaryPassword**](TemporaryPassword.md)
+[**TemporaryPassword**](../model/TemporaryPassword.md)
 
 ### HTTP request headers
 
@@ -196,11 +196,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**List[str]**](str.md)| A list of unique identifiers for the users | [required] 
+ **id** | [**List[str]**](../model/str.md)| A list of unique identifiers for the users | [required] 
 
 ### Return type
 
-[**ListUsersResponse**](ListUsersResponse.md)
+[**ListUsersResponse**](../model/ListUsersResponse.md)
 
 ### HTTP request headers
 
@@ -244,7 +244,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UserResponse**](UserResponse.md)
+[**UserResponse**](../model/UserResponse.md)
 
 ### HTTP request headers
 
@@ -286,7 +286,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UserResponse**](UserResponse.md)
+[**UserResponse**](../model/UserResponse.md)
 
 ### HTTP request headers
 
@@ -324,7 +324,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**UserSchemaResponse**](UserSchemaResponse.md)
+[**UserSchemaResponse**](../model/UserSchemaResponse.md)
 
 ### HTTP request headers
 
@@ -361,7 +361,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**List[UserResponse]**](UserResponse.md)
+[**List[UserResponse]**](../model/UserResponse.md)
 
 ### HTTP request headers
 
@@ -402,7 +402,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List[UserResponse]**](UserResponse.md)
+[**List[UserResponse]**](../model/UserResponse.md)
 
 ### HTTP request headers
 
@@ -647,11 +647,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| The unique identifier for the User to be updated | [required] 
- **update_user_request** | [**UpdateUserRequest**](UpdateUserRequest.md)| The new definition of the User | [required] 
+ **update_user_request** | [**UpdateUserRequest**](../model/UpdateUserRequest.md)| The new definition of the User | [required] 
 
 ### Return type
 
-[**UserResponse**](UserResponse.md)
+[**UserResponse**](../model/UserResponse.md)
 
 ### HTTP request headers
 
@@ -689,11 +689,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **update_user_schema_request** | [**UpdateUserSchemaRequest**](UpdateUserSchemaRequest.md)| The new User Schema | [required] 
+ **update_user_schema_request** | [**UpdateUserSchemaRequest**](../model/UpdateUserSchemaRequest.md)| The new User Schema | [required] 
 
 ### Return type
 
-[**UserSchemaResponse**](UserSchemaResponse.md)
+[**UserSchemaResponse**](../model/UserSchemaResponse.md)
 
 ### HTTP request headers
 

@@ -77,7 +77,7 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **request_body** | [**Dict[str, UpsertInstrumentPropertyRequest]**](UpsertInstrumentPropertyRequest.md)| A list of instruments and associated instrument properties to create or update. | [required] 
+ **request_body** | [**Dict[str, UpsertInstrumentPropertyRequest]**](../model/UpsertInstrumentPropertyRequest.md)| A list of instruments and associated instrument properties to create or update. | [required] 
  **scope** | **str**| The scope in which the instrument lies. When not supplied the scope is &#39;default&#39;. | [optional] [default to &#39;default&#39;]
  **identifier_effective_at** | **str**| The effective datetime used to resolve each instrument from the provided identifiers. Defaults to the current LUSID system datetime if not specified. | [optional] 
  **success_mode** | **str**| Whether the batch request should fail Atomically or in a Partial fashion - Allowed Values: Atomic, Partial. | [optional] [default to &#39;Partial&#39;]
@@ -86,7 +86,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BatchUpsertInstrumentPropertiesResponse**](BatchUpsertInstrumentPropertiesResponse.md)
+[**BatchUpsertInstrumentPropertiesResponse**](../model/BatchUpsertInstrumentPropertiesResponse.md)
 
 ### HTTP request headers
 
@@ -136,7 +136,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AddBusinessDaysToDateResponse**](AddBusinessDaysToDateResponse.md)
+[**AddBusinessDaysToDateResponse**](../model/AddBusinessDaysToDateResponse.md)
 
 ### HTTP request headers
 
@@ -182,7 +182,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeleteInstrumentResponse**](DeleteInstrumentResponse.md)
+[**DeleteInstrumentResponse**](../model/DeleteInstrumentResponse.md)
 
 ### HTTP request headers
 
@@ -228,7 +228,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **identifier_type** | **str**| The unique identifier type to search, for example &#39;Figi&#39;. | [required] 
  **identifier** | **str**| An &lt;i&gt;identifierType&lt;/i&gt; value to use to identify the instrument, for example &#39;BBG000BLNNV0&#39;. | [required] 
- **request_body** | [**List[str]**](str.md)| A list of property keys from the &#39;Instruments&#39; domain whose properties to delete. | [required] 
+ **request_body** | [**List[str]**](../model/str.md)| A list of property keys from the &#39;Instruments&#39; domain whose properties to delete. | [required] 
  **effective_at** | **str**| The effective datetime or cut label at which to delete time-variant properties from.              The property must exist at the specified &#39;effectiveAt&#39; datetime. If the &#39;effectiveAt&#39; is not provided or is              before the time-variant property exists then a failure is returned. Do not specify this parameter if any of              the properties to delete are perpetual. | [optional] 
  **scope** | **str**| The scope in which the instrument lies. When not supplied the scope is &#39;default&#39;. | [optional] [default to &#39;default&#39;]
  **data_model_scope** | **str**| The optional scope of a Custom Data Model to use | [optional] 
@@ -236,7 +236,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeleteInstrumentPropertiesResponse**](DeleteInstrumentPropertiesResponse.md)
+[**DeleteInstrumentPropertiesResponse**](../model/DeleteInstrumentPropertiesResponse.md)
 
 ### HTTP request headers
 
@@ -276,13 +276,13 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **request_body** | [**List[str]**](str.md)| The list of lusidInstrumentId&#39;s to delete. | [required] 
+ **request_body** | [**List[str]**](../model/str.md)| The list of lusidInstrumentId&#39;s to delete. | [required] 
  **delete_mode** | **str**| The delete mode to use. Default value: Soft. Available values: Soft, Hard. | [optional] 
  **scope** | **str**| The scope in which the instruments lie. When not supplied the scope is &#39;default&#39;. | [optional] [default to &#39;default&#39;]
 
 ### Return type
 
-[**DeleteInstrumentsResponse**](DeleteInstrumentsResponse.md)
+[**DeleteInstrumentsResponse**](../model/DeleteInstrumentsResponse.md)
 
 ### HTTP request headers
 
@@ -378,7 +378,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InstrumentCapabilities**](InstrumentCapabilities.md)
+[**InstrumentCapabilities**](../model/InstrumentCapabilities.md)
 
 ### HTTP request headers
 
@@ -430,7 +430,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InstrumentModels**](InstrumentModels.md)
+[**InstrumentModels**](../model/InstrumentModels.md)
 
 ### HTTP request headers
 
@@ -483,9 +483,9 @@ Name | Type | Description  | Notes
  **identifier** | **str**| An &lt;i&gt;identifierType&lt;/i&gt; value to use to identify the instrument, for example &#39;BBG000BLNNV0&#39;. | [required] 
  **effective_at** | **str**| The effective datetime or cut label at which to retrieve the instrument.              Defaults to the current LUSID system datetime if not specified. | [optional] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the instrument. Defaults to              returning the latest version if not specified. | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the &#39;Instrument&#39; domain to decorate onto              the instrument, or from any domain that supports relationships to decorate onto related entities.              These must have the format {domain}/{scope}/{code}, for example &#39;Instrument/system/Name&#39;. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the &#39;Instrument&#39; domain to decorate onto              the instrument, or from any domain that supports relationships to decorate onto related entities.              These must have the format {domain}/{scope}/{code}, for example &#39;Instrument/system/Name&#39;. | [optional] 
  **scope** | **str**| The scope in which the instrument lies. When not supplied the scope is &#39;default&#39;. | [optional] [default to &#39;default&#39;]
- **relationship_definition_ids** | [**List[str]**](str.md)| A list of relationship definitions that are used to decorate related entities              onto the instrument in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}. | [optional] 
+ **relationship_definition_ids** | [**List[str]**](../model/str.md)| A list of relationship definitions that are used to decorate related entities              onto the instrument in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}. | [optional] 
  **data_model_scope** | **str**| The optional scope of a Custom Data Model to use. | [optional] 
  **data_model_code** | **str**| The optional code of a Custom Data Model to use. | [optional] 
  **timeline_scope** | **str**| The scope of the Timeline. | [optional] 
@@ -494,7 +494,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Instrument**](Instrument.md)
+[**Instrument**](../model/Instrument.md)
 
 ### HTTP request headers
 
@@ -532,7 +532,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ResourceListOfInstrumentIdTypeDescriptor**](ResourceListOfInstrumentIdTypeDescriptor.md)
+[**ResourceListOfInstrumentIdTypeDescriptor**](../model/ResourceListOfInstrumentIdTypeDescriptor.md)
 
 ### HTTP request headers
 
@@ -585,7 +585,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InstrumentPaymentDiary**](InstrumentPaymentDiary.md)
+[**InstrumentPaymentDiary**](../model/InstrumentPaymentDiary.md)
 
 ### HTTP request headers
 
@@ -635,7 +635,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InstrumentProperties**](InstrumentProperties.md)
+[**InstrumentProperties**](../model/InstrumentProperties.md)
 
 ### HTTP request headers
 
@@ -693,7 +693,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfPropertyInterval**](ResourceListOfPropertyInterval.md)
+[**ResourceListOfPropertyInterval**](../model/ResourceListOfPropertyInterval.md)
 
 ### HTTP request headers
 
@@ -742,12 +742,12 @@ Name | Type | Description  | Notes
  **effective_at** | **str**| The effective datetime or cut label at which to get relationships. Defaults to the current LUSID system datetime if not specified. | [optional] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve relationships. Defaults to return the latest LUSID AsAt time if not specified. | [optional] 
  **filter** | **str**| Expression to filter relationships. Users should provide null or empty string for this field until further notice. | [optional] 
- **identifier_types** | [**List[str]**](str.md)| Identifier types (as property keys) used for referencing Persons or Legal Entities.              These can be specified from the &#39;Person&#39; or &#39;LegalEntity&#39; domains and have the format {domain}/{scope}/{code}, for example              &#39;Person/CompanyDetails/Role&#39;. An Empty array may be used to return all related Entities. | [optional] 
+ **identifier_types** | [**List[str]**](../model/str.md)| Identifier types (as property keys) used for referencing Persons or Legal Entities.              These can be specified from the &#39;Person&#39; or &#39;LegalEntity&#39; domains and have the format {domain}/{scope}/{code}, for example              &#39;Person/CompanyDetails/Role&#39;. An Empty array may be used to return all related Entities. | [optional] 
  **scope** | **str**| The entity scope in which the instrument lies. When not supplied the scope is &#39;default&#39;. | [optional] [default to &#39;default&#39;]
 
 ### Return type
 
-[**ResourceListOfRelationship**](ResourceListOfRelationship.md)
+[**ResourceListOfRelationship**](../model/ResourceListOfRelationship.md)
 
 ### HTTP request headers
 
@@ -794,18 +794,18 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **identifier_type** | **str**| The unique identifier type to use, for example &#39;Figi&#39;. | [required] 
- **request_body** | [**List[str]**](str.md)| A list of one or more &lt;i&gt;identifierType&lt;/i&gt; values to use to identify instruments. | [required] 
+ **request_body** | [**List[str]**](../model/str.md)| A list of one or more &lt;i&gt;identifierType&lt;/i&gt; values to use to identify instruments. | [required] 
  **effective_at** | **str**| The effective datetime or cut label at which to retrieve the instrument definitions.               Defaults to the current LUSID system datetime if not specified. | [optional] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the instrument definitions.               Defaults to returning the latest version of each instrument definition if not specified. | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the &#39;Instrument&#39; domain to decorate onto               each instrument, or from any domain that supports relationships to decorate onto related entities.               These must have the format {domain}/{scope}/{code}, for example &#39;Instrument/system/Name&#39;. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the &#39;Instrument&#39; domain to decorate onto               each instrument, or from any domain that supports relationships to decorate onto related entities.               These must have the format {domain}/{scope}/{code}, for example &#39;Instrument/system/Name&#39;. | [optional] 
  **scope** | **str**| The scope in which the instrument lies. When not supplied the scope is &#39;default&#39;. | [optional] [default to &#39;default&#39;]
- **relationship_definition_ids** | [**List[str]**](str.md)| A list of relationship definitions that are used to decorate related entities               onto each instrument in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}. | [optional] 
+ **relationship_definition_ids** | [**List[str]**](../model/str.md)| A list of relationship definitions that are used to decorate related entities               onto each instrument in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}. | [optional] 
  **data_model_scope** | **str**| The optional scope of a Custom Data Model to use. | [optional] 
  **data_model_code** | **str**| The optional code of a Custom Data Model to use. | [optional] 
 
 ### Return type
 
-[**GetInstrumentsResponse**](GetInstrumentsResponse.md)
+[**GetInstrumentsResponse**](../model/GetInstrumentsResponse.md)
 
 ### HTTP request headers
 
@@ -859,7 +859,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfProperty**](ResourceListOfProperty.md)
+[**ResourceListOfProperty**](../model/ResourceListOfProperty.md)
 
 ### HTTP request headers
 
@@ -914,12 +914,12 @@ Name | Type | Description  | Notes
  **as_at** | **datetime**| The asAt datetime at which to list instruments. Defaults to returning the latest               version of each instrument if not specified. | [optional] 
  **effective_at** | **str**| The effective datetime or cut label at which to list instruments.               Defaults to the current LUSID system datetime if not specified. | [optional] 
  **page** | **str**| The pagination token to use to continue listing instruments; this value is returned from               the previous call. If a pagination token is provided, the &lt;i&gt;sortBy&lt;/i&gt;, &lt;i&gt;filter&lt;/i&gt;, &lt;i&gt;effectiveAt&lt;/i&gt; and               &lt;i&gt;asAt&lt;/i&gt; fields must not have changed since the original request.               For more information, see https://support.lusid.com/knowledgebase/article/KA-01915. | [optional] 
- **sort_by** | [**List[str]**](str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
  **limit** | **int**| When paginating, limit the results to this number. | [optional] 
  **filter** | **str**| Expression to filter the result set. Defaults to filtering out inactive instruments               (that is, those that have been deleted). For more information about filtering results,               see https://support.lusid.com/knowledgebase/article/KA-01914. | [optional] [default to &#39;State eq \&#39;Active\&#39;&#39;]
- **instrument_property_keys** | [**List[str]**](str.md)| A list of property keys from the &#39;Instrument&#39; domain to decorate onto               instruments, or from any domain that supports relationships to decorate onto related entities.               These must have the format {domain}/{scope}/{code}, for example &#39;Instrument/system/Name&#39;. | [optional] 
+ **instrument_property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the &#39;Instrument&#39; domain to decorate onto               instruments, or from any domain that supports relationships to decorate onto related entities.               These must have the format {domain}/{scope}/{code}, for example &#39;Instrument/system/Name&#39;. | [optional] 
  **scope** | **str**| The scope in which the instrument lies. When not supplied the scope is &#39;default&#39;.                 Use &#39;*&#39; to list instruments across all scopes. | [optional] [default to &#39;default&#39;]
- **relationship_definition_ids** | [**List[str]**](str.md)| A list of relationship definitions that are used to decorate related entities               onto each instrument in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}. | [optional] 
+ **relationship_definition_ids** | [**List[str]**](../model/str.md)| A list of relationship definitions that are used to decorate related entities               onto each instrument in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}. | [optional] 
  **data_model_scope** | **str**| The optional scope of a Custom Data Model to use. | [optional] 
  **data_model_code** | **str**| The optional code of a Custom Data Model to use. | [optional] 
  **membership_type** | **str**| The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate. | [optional] 
@@ -929,7 +929,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PagedResourceListOfInstrument**](PagedResourceListOfInstrument.md)
+[**PagedResourceListOfInstrument**](../model/PagedResourceListOfInstrument.md)
 
 ### HTTP request headers
 
@@ -968,12 +968,12 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **lusid_instrument** | [**LusidInstrument**](LusidInstrument.md)| The definition of the instrument. | [required] 
+ **lusid_instrument** | [**LusidInstrument**](../model/LusidInstrument.md)| The definition of the instrument. | [required] 
  **model** | **str**| A pricing model for the instrument. Defaults to Unknown if not specified. If not specified the SupportedAddresses and EconomicDependencies are not provided. | [optional] 
 
 ### Return type
 
-[**InstrumentCapabilities**](InstrumentCapabilities.md)
+[**InstrumentCapabilities**](../model/InstrumentCapabilities.md)
 
 ### HTTP request headers
 
@@ -1018,14 +1018,14 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **identifier_type** | **str**| The unique identifier type to search, for example &#39;Figi&#39;. | [required] 
  **identifier** | **str**| An &lt;i&gt;identifierType&lt;/i&gt; value to use to identify the instrument, for example &#39;BBG000BLNNV0&#39;. | [required] 
- **update_instrument_identifier_request** | [**UpdateInstrumentIdentifierRequest**](UpdateInstrumentIdentifierRequest.md)| The identifier to update or delete. This need not be the same value as the               &#39;identifier&#39; parameter used to retrieve the instrument. | [required] 
+ **update_instrument_identifier_request** | [**UpdateInstrumentIdentifierRequest**](../model/UpdateInstrumentIdentifierRequest.md)| The identifier to update or delete. This need not be the same value as the               &#39;identifier&#39; parameter used to retrieve the instrument. | [required] 
  **scope** | **str**| The scope in which the instrument lies. When not supplied the scope is &#39;default&#39;. | [optional] [default to &#39;default&#39;]
  **data_model_scope** | **str**| The optional scope of a Custom Data Model to use | [optional] 
  **data_model_code** | **str**| The optional code of a Custom Data Model to use | [optional] 
 
 ### Return type
 
-[**Instrument**](Instrument.md)
+[**Instrument**](../model/Instrument.md)
 
 ### HTTP request headers
 
@@ -1066,14 +1066,14 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **request_body** | [**Dict[str, InstrumentDefinition]**](InstrumentDefinition.md)| The definitions of the instruments to create or update. | [required] 
+ **request_body** | [**Dict[str, InstrumentDefinition]**](../model/InstrumentDefinition.md)| The definitions of the instruments to create or update. | [required] 
  **scope** | **str**| The scope in which the instrument lies. When not supplied the scope is &#39;default&#39;. | [optional] [default to &#39;default&#39;]
  **data_model_scope** | **str**| The optional scope of a Custom Data Model to use | [optional] 
  **data_model_code** | **str**| The optional code of a Custom Data Model to use | [optional] 
 
 ### Return type
 
-[**UpsertInstrumentsResponse**](UpsertInstrumentsResponse.md)
+[**UpsertInstrumentsResponse**](../model/UpsertInstrumentsResponse.md)
 
 ### HTTP request headers
 
@@ -1114,14 +1114,14 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **upsert_instrument_property_request** | [**List[UpsertInstrumentPropertyRequest]**](UpsertInstrumentPropertyRequest.md)| A list of instruments and associated instrument properties to create or update. | [required] 
+ **upsert_instrument_property_request** | [**List[UpsertInstrumentPropertyRequest]**](../model/UpsertInstrumentPropertyRequest.md)| A list of instruments and associated instrument properties to create or update. | [required] 
  **scope** | **str**| The scope in which the instrument lies. When not supplied the scope is &#39;default&#39;. | [optional] [default to &#39;default&#39;]
  **data_model_scope** | **str**| The optional scope of a Custom Data Model to use | [optional] 
  **data_model_code** | **str**| The optional code of a Custom Data Model to use | [optional] 
 
 ### Return type
 
-[**UpsertInstrumentPropertiesResponse**](UpsertInstrumentPropertiesResponse.md)
+[**UpsertInstrumentPropertiesResponse**](../model/UpsertInstrumentPropertiesResponse.md)
 
 ### HTTP request headers
 

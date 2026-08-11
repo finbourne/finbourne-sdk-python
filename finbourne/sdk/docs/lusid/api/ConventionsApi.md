@@ -69,7 +69,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AnnulSingleStructuredDataResponse**](AnnulSingleStructuredDataResponse.md)
+[**AnnulSingleStructuredDataResponse**](../model/AnnulSingleStructuredDataResponse.md)
 
 ### HTTP request headers
 
@@ -113,7 +113,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AnnulSingleStructuredDataResponse**](AnnulSingleStructuredDataResponse.md)
+[**AnnulSingleStructuredDataResponse**](../model/AnnulSingleStructuredDataResponse.md)
 
 ### HTTP request headers
 
@@ -157,7 +157,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AnnulSingleStructuredDataResponse**](AnnulSingleStructuredDataResponse.md)
+[**AnnulSingleStructuredDataResponse**](../model/AnnulSingleStructuredDataResponse.md)
 
 ### HTTP request headers
 
@@ -203,7 +203,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetCdsFlowConventionsResponse**](GetCdsFlowConventionsResponse.md)
+[**GetCdsFlowConventionsResponse**](../model/GetCdsFlowConventionsResponse.md)
 
 ### HTTP request headers
 
@@ -249,7 +249,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetFlowConventionsResponse**](GetFlowConventionsResponse.md)
+[**GetFlowConventionsResponse**](../model/GetFlowConventionsResponse.md)
 
 ### HTTP request headers
 
@@ -295,7 +295,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetIndexConventionResponse**](GetIndexConventionResponse.md)
+[**GetIndexConventionResponse**](../model/GetIndexConventionResponse.md)
 
 ### HTTP request headers
 
@@ -337,7 +337,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfGetCdsFlowConventionsResponse**](ResourceListOfGetCdsFlowConventionsResponse.md)
+[**ResourceListOfGetCdsFlowConventionsResponse**](../model/ResourceListOfGetCdsFlowConventionsResponse.md)
 
 ### HTTP request headers
 
@@ -379,7 +379,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfGetFlowConventionsResponse**](ResourceListOfGetFlowConventionsResponse.md)
+[**ResourceListOfGetFlowConventionsResponse**](../model/ResourceListOfGetFlowConventionsResponse.md)
 
 ### HTTP request headers
 
@@ -421,7 +421,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfGetIndexConventionResponse**](ResourceListOfGetIndexConventionResponse.md)
+[**ResourceListOfGetIndexConventionResponse**](../model/ResourceListOfGetIndexConventionResponse.md)
 
 ### HTTP request headers
 
@@ -459,11 +459,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **upsert_cds_flow_conventions_request** | [**UpsertCdsFlowConventionsRequest**](UpsertCdsFlowConventionsRequest.md)| The CDS Flow Conventions to update or insert | [required] 
+ **upsert_cds_flow_conventions_request** | [**UpsertCdsFlowConventionsRequest**](../model/UpsertCdsFlowConventionsRequest.md)| The CDS Flow Conventions to update or insert | [required] 
 
 ### Return type
 
-[**UpsertSingleStructuredDataResponse**](UpsertSingleStructuredDataResponse.md)
+[**UpsertSingleStructuredDataResponse**](../model/UpsertSingleStructuredDataResponse.md)
 
 ### HTTP request headers
 
@@ -501,11 +501,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **upsert_flow_conventions_request** | [**UpsertFlowConventionsRequest**](UpsertFlowConventionsRequest.md)| The Flow Conventions to update or insert | [required] 
+ **upsert_flow_conventions_request** | [**UpsertFlowConventionsRequest**](../model/UpsertFlowConventionsRequest.md)| The Flow Conventions to update or insert | [required] 
 
 ### Return type
 
-[**UpsertSingleStructuredDataResponse**](UpsertSingleStructuredDataResponse.md)
+[**UpsertSingleStructuredDataResponse**](../model/UpsertSingleStructuredDataResponse.md)
 
 ### HTTP request headers
 
@@ -543,11 +543,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **upsert_index_convention_request** | [**UpsertIndexConventionRequest**](UpsertIndexConventionRequest.md)| The Index Conventions to update or insert | [required] 
+ **upsert_index_convention_request** | [**UpsertIndexConventionRequest**](../model/UpsertIndexConventionRequest.md)| The Index Conventions to update or insert | [required] 
 
 ### Return type
 
-[**UpsertSingleStructuredDataResponse**](UpsertSingleStructuredDataResponse.md)
+[**UpsertSingleStructuredDataResponse**](../model/UpsertSingleStructuredDataResponse.md)
 
 ### HTTP request headers
 

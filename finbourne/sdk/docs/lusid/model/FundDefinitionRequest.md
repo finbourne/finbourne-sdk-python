@@ -10,18 +10,18 @@ The request used to create a Fund.
 | **description** | **str** | Optional | A description for the Fund. |
 | **base_currency** | **str** | Required | The base currency of the Fund in ISO 4217 currency code format. All portfolios must be of a matching base currency. |
 | **investor_structure** | **str** | Optional | The Investor structure to be used by the Fund. Available values: NonUnitised, Classes. |
-| **portfolio_ids** | [../model/List[PortfolioEntityId]](PortfolioEntityId.md) | Required | A list of the Portfolio IDs associated with the fund, which are part of the Fund. Note: These must all have the same base currency, which must also match the Fund Base Currency. |
-| **fund_configuration_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **portfolio_ids** | [List[PortfolioEntityId]](PortfolioEntityId.md) | Required | A list of the Portfolio IDs associated with the fund, which are part of the Fund. Note: These must all have the same base currency, which must also match the Fund Base Currency. |
+| **fund_configuration_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **share_class_instrument_scopes** | **List[str]** | Optional | The scopes in which the instruments lie, currently limited to one. |
-| **share_class_instruments** | [../model/List[InstrumentResolutionDetail]](InstrumentResolutionDetail.md) | Optional | Details the user-provided instrument identifiers and the instrument resolved from them. These would be decommissioned in favour of the new AllocationGroups and ShareClasses structures. |
+| **share_class_instruments** | [List[InstrumentResolutionDetail]](InstrumentResolutionDetail.md) | Optional | Details the user-provided instrument identifiers and the instrument resolved from them. These would be decommissioned in favour of the new AllocationGroups and ShareClasses structures. |
 | **type** | **str** | Optional | The type of fund. Available values: Standalone, Master, Feeder. |
 | **inception_date** | **datetime** | Required | Inception date of the Fund |
 | **decimal_places** | **int** | Optional | Number of decimal places for reporting |
-| **primary_nav_type** | [../model/NavTypeDefinition](NavTypeDefinition.md) | Required | *No description available.* |
-| **additional_nav_types** | [../model/List[NavTypeDefinition]](NavTypeDefinition.md) | Optional | The definitions for any additional NAVs on the Fund. |
-| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the Fund. |
+| **primary_nav_type** | [NavTypeDefinition](NavTypeDefinition.md) | Required | *No description available.* |
+| **additional_nav_types** | [List[NavTypeDefinition]](NavTypeDefinition.md) | Optional | The definitions for any additional NAVs on the Fund. |
+| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the Fund. |
 | **create_instrument** | **bool** | Optional | Whether to create instruments for the Fund&#39;s share classes, series, or partner classes upon creation. Defaults to false. |
-| **share_classes** | [../model/List[ShareClassDefinition]](ShareClassDefinition.md) | Optional | An optional list of Share Class definitions for the Fund. |
+| **share_classes** | [List[ShareClassDefinition]](ShareClassDefinition.md) | Optional | An optional list of Share Class definitions for the Fund. |
 
 
 ## Usage

@@ -9,7 +9,7 @@ An item of structured result data that is to be inserted into Lusid. This will t
 | **version** | **str** | Optional | The semantic version of the document format; MAJOR.MINOR.PATCH |
 | **name** | **str** | Optional | The name or description for the document |
 | **document** | **str** | Required | The document that will be stored (or retrieved) and which describes a unit result data entity such as a set of prices or yields |
-| **data_map_key** | [../model/DataMapKey](DataMapKey.md) | Optional | *No description available.* |
+| **data_map_key** | [DataMapKey](DataMapKey.md) | Optional | *No description available.* |
 
 
 ## Usage

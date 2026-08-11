@@ -6,7 +6,7 @@ Holder class for a group of results. It consists of a list of columns and values
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **columns** | **List[str]** | Optional | The columns, or keys, for a particular group of results |
-| **values** | [../model/List[ResultValue]](ResultValue.md) | Optional | The values for the list of results |
+| **values** | [List[ResultValue]](ResultValue.md) | Optional | The values for the list of results |
 
 
 ## Usage

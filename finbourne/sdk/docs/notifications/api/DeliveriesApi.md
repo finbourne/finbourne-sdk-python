@@ -60,7 +60,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfDelivery**](ResourceListOfDelivery.md)
+[**ResourceListOfDelivery**](../model/ResourceListOfDelivery.md)
 
 ### HTTP request headers
 

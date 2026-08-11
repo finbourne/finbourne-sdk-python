@@ -12,7 +12,7 @@
 | **previous_accrual** | **float** | Optional | The previous valuation point&#39;s total accrual. |
 | **previous_total_accrual** | **float** | Optional | The previous valuation point&#39;s total accrual. |
 | **total_accrual** | **float** | Optional | The sum of the PreviousAccrual and Amount. |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

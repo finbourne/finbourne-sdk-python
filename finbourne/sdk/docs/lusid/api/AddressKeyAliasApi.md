@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AnnulSingleStructuredDataResponse**](AnnulSingleStructuredDataResponse.md)
+[**AnnulSingleStructuredDataResponse**](../model/AnnulSingleStructuredDataResponse.md)
 
 ### HTTP request headers
 
@@ -107,7 +107,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetAddressKeyAliasResponse**](GetAddressKeyAliasResponse.md)
+[**GetAddressKeyAliasResponse**](../model/GetAddressKeyAliasResponse.md)
 
 ### HTTP request headers
 
@@ -157,7 +157,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PagedResourceListOfGetAddressKeyAliasResponse**](PagedResourceListOfGetAddressKeyAliasResponse.md)
+[**PagedResourceListOfGetAddressKeyAliasResponse**](../model/PagedResourceListOfGetAddressKeyAliasResponse.md)
 
 ### HTTP request headers
 
@@ -195,11 +195,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **upsert_address_key_alias_request** | [**UpsertAddressKeyAliasRequest**](UpsertAddressKeyAliasRequest.md)| The Address Key Alias to update or insert | [required] 
+ **upsert_address_key_alias_request** | [**UpsertAddressKeyAliasRequest**](../model/UpsertAddressKeyAliasRequest.md)| The Address Key Alias to update or insert | [required] 
 
 ### Return type
 
-[**UpsertSingleStructuredDataResponse**](UpsertSingleStructuredDataResponse.md)
+[**UpsertSingleStructuredDataResponse**](../model/UpsertSingleStructuredDataResponse.md)
 
 ### HTTP request headers
 

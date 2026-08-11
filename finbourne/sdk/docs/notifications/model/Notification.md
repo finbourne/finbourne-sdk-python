@@ -8,7 +8,7 @@ A notification object
 | **notification_id** | **str** | Required | The identifier of the notification |
 | **display_name** | **str** | Required | The name of the notification |
 | **description** | **str** | Optional | The summary of the services provided by the notification |
-| **notification_type** | [../model/NotificationTypeResponse](NotificationTypeResponse.md) | Required | *No description available.* |
+| **notification_type** | [NotificationTypeResponse](NotificationTypeResponse.md) | Required | *No description available.* |
 | **created_at** | **datetime** | Required | The time at which the subscription was made |
 | **user_id_created** | **str** | Required | The user who made the subscription |
 | **modified_at** | **datetime** | Required | The time at which the subscription was last modified |

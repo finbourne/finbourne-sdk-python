@@ -7,7 +7,7 @@
 | **when** | **datetime** | Optional | *No description available.* |
 | **session_id** | **UUID** | Optional | *No description available.* |
 | **execution_id** | **UUID** | Optional | *No description available.* |
-| **level** | [../model/FeedbackLevel](FeedbackLevel.md) | Optional | *No description available.* |
+| **level** | [FeedbackLevel](FeedbackLevel.md) | Optional | *No description available.* |
 | **sender** | **str** | Optional | *No description available.* |
 | **state_id** | **int** | Optional | *No description available.* |
 | **message_template** | **str** | Optional | *No description available.* |

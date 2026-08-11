@@ -6,8 +6,8 @@ A list of Composite Breakdowns.
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **effective_at** | **datetime** | Required | The effectiveAt for the calculation. |
-| **composite** | [../model/PortfolioReturnBreakdown](PortfolioReturnBreakdown.md) | Optional | *No description available.* |
-| **constituents** | [../model/List[PortfolioReturnBreakdown]](PortfolioReturnBreakdown.md) | Optional | The constituents with their information which are part of the composite. |
+| **composite** | [PortfolioReturnBreakdown](PortfolioReturnBreakdown.md) | Optional | *No description available.* |
+| **constituents** | [List[PortfolioReturnBreakdown]](PortfolioReturnBreakdown.md) | Optional | The constituents with their information which are part of the composite. |
 
 
 ## Usage

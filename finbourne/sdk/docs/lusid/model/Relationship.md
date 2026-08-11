@@ -5,9 +5,9 @@ Representation of a Relationship between a requested entity with the stated enti
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
-| **relationship_definition_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
-| **related_entity** | [../model/RelatedEntity](RelatedEntity.md) | Required | *No description available.* |
+| **version** | [Version](Version.md) | Optional | *No description available.* |
+| **relationship_definition_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **related_entity** | [RelatedEntity](RelatedEntity.md) | Required | *No description available.* |
 | **traversal_direction** | **str** | Required | Direction of relationship between the requested entity and related entity. This can be &#39;In&#39; or &#39;Out&#39;. Read more about relationships traversal direction in LUSID Knowledge Base here https://support.lusid.com/knowledgebase/article/KA-01679. |
 | **traversal_description** | **str** | Required | Description of the relationship based on relationship&#39;s traversal direction. If &#39;TraversalDirection&#39; is &#39;Out&#39;, this description would be &#39;OutwardDescription&#39; from the associated relationship definition. If &#39;TraversalDirection&#39; is &#39;In&#39;, this description would be &#39;InwardDescription&#39; from the associated relationship definition. |
 | **effective_from** | **datetime** | Optional | The effective datetime from which the relationship is valid. |

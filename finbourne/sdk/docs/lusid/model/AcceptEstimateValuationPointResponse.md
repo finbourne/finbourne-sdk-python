@@ -6,9 +6,9 @@ The Valuation Point Data Response for AcceptEstimate called on the Fund and spec
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
-| **candidate_valuation_point** | [../model/ValuationPointDataResponse](ValuationPointDataResponse.md) | Required | *No description available.* |
-| **latest_valuation_point** | [../model/ValuationPointDataResponse](ValuationPointDataResponse.md) | Optional | *No description available.* |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **candidate_valuation_point** | [ValuationPointDataResponse](ValuationPointDataResponse.md) | Required | *No description available.* |
+| **latest_valuation_point** | [ValuationPointDataResponse](ValuationPointDataResponse.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

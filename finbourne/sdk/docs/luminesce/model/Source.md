@@ -6,7 +6,7 @@ Information leading to choosing the provider
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **location** | **str** | Optional | The source location.  Start of a provider name, &#x60;Drive&#x60;, &#x60;LocalFs&#x60;, &#x60;AwsS3&#x60; etc. |
-| **type** | [../model/SourceType](SourceType.md) | Optional | *No description available.* |
+| **type** | [SourceType](SourceType.md) | Optional | *No description available.* |
 
 
 ## Usage

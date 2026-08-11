@@ -4,14 +4,14 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **compliance_state** | **str** | Required | The compliance state of this order. Available values: Pending, Failed, Passed, ManuallyApproved, PartiallyOverridden, Warning. |
 | **approval_state** | **str** | Required | The approval state of this order. Available values: Pending, Rejected, Approved, Placed. |
-| **portfolio_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **portfolio_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **portfolio_name** | **str** | Optional | The name of the order&#39;s referenced Portfolio. |
 | **order_approval_task_id** | **str** | Optional | The task id associated with the approval state of the order. |
-| **order_approval_task_definition_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
-| **non_passing_compliance_rule_results** | [../model/List[ContributionToNonPassingRuleDetail]](ContributionToNonPassingRuleDetail.md) | Optional | The details of compliance rules in non-passing states. |
+| **order_approval_task_definition_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **non_passing_compliance_rule_results** | [List[ContributionToNonPassingRuleDetail]](ContributionToNonPassingRuleDetail.md) | Optional | The details of compliance rules in non-passing states. |
 
 
 ## Usage

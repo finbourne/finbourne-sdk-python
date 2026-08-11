@@ -69,7 +69,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfSystemLog**](ResourceListOfSystemLog.md)
+[**ResourceListOfSystemLog**](../model/ResourceListOfSystemLog.md)
 
 ### HTTP request headers
 
@@ -119,7 +119,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfSystemLog**](ResourceListOfSystemLog.md)
+[**ResourceListOfSystemLog**](../model/ResourceListOfSystemLog.md)
 
 ### HTTP request headers
 

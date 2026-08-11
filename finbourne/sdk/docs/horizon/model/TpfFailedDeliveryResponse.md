@@ -6,7 +6,7 @@ Response for bulk retry operation of failed deliveries
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **submitted** | **int** | Required | Number of batch elements submitted for retry |
-| **results** | [../model/List[TpfRetryElementResult]](TpfRetryElementResult.md) | Required | Per-element retry results |
+| **results** | [List[TpfRetryElementResult]](TpfRetryElementResult.md) | Required | Per-element retry results |
 
 
 ## Usage

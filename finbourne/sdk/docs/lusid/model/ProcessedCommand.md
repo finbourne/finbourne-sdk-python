@@ -7,7 +7,7 @@ The list of commands.
 |------|------|----------|-------------|
 | **description** | **str** | Required | The description of the command issued. |
 | **path** | **str** | Optional | The unique identifier for the command including the request id. |
-| **user_id** | [../model/User](User.md) | Required | *No description available.* |
+| **user_id** | [User](User.md) | Required | *No description available.* |
 | **processed_time** | **datetime** | Required | The asAt datetime that the events published by the processing of this command were committed to LUSID. |
 
 

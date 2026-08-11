@@ -5,7 +5,7 @@ The request to instantiate a new rec instance from a rec definition and start it
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **rec_definition_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **rec_definition_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **left_effective_at** | **str** | Optional | The left effective datetime, as a date-time or a LUSID cut label. Defaults to the current date-time. |
 | **left_as_at** | **str** | Optional | The left asAt datetime, as a date-time or a LUSID cut label. Defaults to the current date-time. |
 | **right_effective_at** | **str** | Optional | The right effective datetime, as a date-time or a LUSID cut label. Defaults to the current date-time. |

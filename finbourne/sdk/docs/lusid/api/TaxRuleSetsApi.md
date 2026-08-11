@@ -57,12 +57,12 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_tax_rule_set_request** | [**CreateTaxRuleSetRequest**](CreateTaxRuleSetRequest.md)| The contents of the rule set. | [required] 
+ **create_tax_rule_set_request** | [**CreateTaxRuleSetRequest**](../model/CreateTaxRuleSetRequest.md)| The contents of the rule set. | [required] 
  **effective_at** | **str**| The effective datetime or cut label at which the rule set will take effect.  Defaults to the current LUSID system datetime if not specified. | [optional] 
 
 ### Return type
 
-[**TaxRuleSet**](TaxRuleSet.md)
+[**TaxRuleSet**](../model/TaxRuleSet.md)
 
 ### HTTP request headers
 
@@ -106,7 +106,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -154,7 +154,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TaxRuleSet**](TaxRuleSet.md)
+[**TaxRuleSet**](../model/TaxRuleSet.md)
 
 ### HTTP request headers
 
@@ -198,7 +198,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfTaxRuleSet**](ResourceListOfTaxRuleSet.md)
+[**ResourceListOfTaxRuleSet**](../model/ResourceListOfTaxRuleSet.md)
 
 ### HTTP request headers
 
@@ -241,12 +241,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The rule set scope. | [required] 
  **code** | **str**| The rule set code. | [required] 
- **update_tax_rule_set_request** | [**UpdateTaxRuleSetRequest**](UpdateTaxRuleSetRequest.md)| The contents of the rule set. | [required] 
+ **update_tax_rule_set_request** | [**UpdateTaxRuleSetRequest**](../model/UpdateTaxRuleSetRequest.md)| The contents of the rule set. | [required] 
  **effective_at** | **str**| The effective datetime or cut label at which the rule set will take effect.  Defaults to the current LUSID system datetime if not specified. | [optional] 
 
 ### Return type
 
-[**TaxRuleSet**](TaxRuleSet.md)
+[**TaxRuleSet**](../model/TaxRuleSet.md)
 
 ### HTTP request headers
 

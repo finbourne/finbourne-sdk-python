@@ -4,8 +4,8 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **values** | [../model/Dict[str, FeeRule]](FeeRule.md) | Required | *No description available.* |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **values** | [Dict[str, FeeRule]](FeeRule.md) | Required | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

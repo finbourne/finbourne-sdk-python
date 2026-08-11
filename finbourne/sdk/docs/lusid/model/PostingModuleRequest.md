@@ -8,7 +8,7 @@ A Posting Module request definition
 | **code** | **str** | Required | The code of the Posting Module. |
 | **display_name** | **str** | Required | The name of the Posting Module. |
 | **description** | **str** | Optional | A description for the Posting Module. |
-| **rules** | [../model/List[PostingModuleRule]](PostingModuleRule.md) | Optional | The Posting Rules that apply for the Posting Module. Rules are evaluated in the order they occur in this collection. |
+| **rules** | [List[PostingModuleRule]](PostingModuleRule.md) | Optional | The Posting Rules that apply for the Posting Module. Rules are evaluated in the order they occur in this collection. |
 
 
 ## Usage

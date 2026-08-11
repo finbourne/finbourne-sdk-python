@@ -5,10 +5,10 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
-| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
-| **properties** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | The properties that were upserted on the transaction. |
+| **version** | [Version](Version.md) | Optional | *No description available.* |
+| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | The properties that were upserted on the transaction. |
 | **metadata** | **Dict[str, Optional[List[ResponseMetaData]]]** | Optional | Contains warnings related to the upsert event. |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

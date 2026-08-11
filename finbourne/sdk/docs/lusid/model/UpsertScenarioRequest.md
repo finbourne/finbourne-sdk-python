@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **scenario** | [../model/ScenarioDefinition](ScenarioDefinition.md) | Required | *No description available.* |
+| **scenario** | [ScenarioDefinition](ScenarioDefinition.md) | Required | *No description available.* |
 
 
 ## Usage

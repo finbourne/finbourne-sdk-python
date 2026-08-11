@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **subscription** | [../model/SubscriptionDefinition](SubscriptionDefinition.md) | Required | *No description available.* |
+| **subscription** | [SubscriptionDefinition](SubscriptionDefinition.md) | Required | *No description available.* |
 
 
 ## Usage

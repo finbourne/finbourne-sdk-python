@@ -5,8 +5,8 @@ Response for querying trade tickets
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **source_portfolio_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
-| **trade_ticket** | [../model/LusidTradeTicket](LusidTradeTicket.md) | Optional | *No description available.* |
+| **source_portfolio_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **trade_ticket** | [LusidTradeTicket](LusidTradeTicket.md) | Optional | *No description available.* |
 
 
 ## Usage

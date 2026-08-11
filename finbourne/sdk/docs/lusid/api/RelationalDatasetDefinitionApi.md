@@ -58,11 +58,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_relational_dataset_definition_request** | [**CreateRelationalDatasetDefinitionRequest**](CreateRelationalDatasetDefinitionRequest.md)| The relational dataset definition to create. | [required] 
+ **create_relational_dataset_definition_request** | [**CreateRelationalDatasetDefinitionRequest**](../model/CreateRelationalDatasetDefinitionRequest.md)| The relational dataset definition to create. | [required] 
 
 ### Return type
 
-[**RelationalDatasetDefinition**](RelationalDatasetDefinition.md)
+[**RelationalDatasetDefinition**](../model/RelationalDatasetDefinition.md)
 
 ### HTTP request headers
 
@@ -106,7 +106,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -152,7 +152,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**RelationalDatasetDefinition**](RelationalDatasetDefinition.md)
+[**RelationalDatasetDefinition**](../model/RelationalDatasetDefinition.md)
 
 ### HTTP request headers
 
@@ -196,13 +196,13 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **as_at** | **datetime**| The asAt datetime at which to list the relational dataset definitions. Defaults to return the latest version if not specified. | [optional] 
  **page** | **str**| The pagination token to use to continue listing relational dataset definitions from a previous call to list relational dataset definitions. | [optional] 
- **sort_by** | [**List[str]**](str.md)| A list of field names to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot; | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| A list of field names to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot; | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many. | [optional] 
  **filter** | **str**| Expression to filter the result set. | [optional] 
 
 ### Return type
 
-[**PagedResourceListOfRelationalDatasetDefinition**](PagedResourceListOfRelationalDatasetDefinition.md)
+[**PagedResourceListOfRelationalDatasetDefinition**](../model/PagedResourceListOfRelationalDatasetDefinition.md)
 
 ### HTTP request headers
 
@@ -244,11 +244,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the relational dataset definition. | [required] 
  **code** | **str**| The code of the relational dataset definition. | [required] 
- **update_relational_dataset_definition_request** | [**UpdateRelationalDatasetDefinitionRequest**](UpdateRelationalDatasetDefinitionRequest.md)| The updated relational dataset definition. | [optional] 
+ **update_relational_dataset_definition_request** | [**UpdateRelationalDatasetDefinitionRequest**](../model/UpdateRelationalDatasetDefinitionRequest.md)| The updated relational dataset definition. | [optional] 
 
 ### Return type
 
-[**RelationalDatasetDefinition**](RelationalDatasetDefinition.md)
+[**RelationalDatasetDefinition**](../model/RelationalDatasetDefinition.md)
 
 ### HTTP request headers
 
@@ -290,11 +290,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the relational dataset definition. | [required] 
  **code** | **str**| The code of the relational dataset definition. | [required] 
- **update_relational_dataset_details** | [**UpdateRelationalDatasetDetails**](UpdateRelationalDatasetDetails.md)| The updated details of the relational dataset. | [optional] 
+ **update_relational_dataset_details** | [**UpdateRelationalDatasetDetails**](../model/UpdateRelationalDatasetDetails.md)| The updated details of the relational dataset. | [optional] 
 
 ### Return type
 
-[**RelationalDatasetDefinition**](RelationalDatasetDefinition.md)
+[**RelationalDatasetDefinition**](../model/RelationalDatasetDefinition.md)
 
 ### HTTP request headers
 
@@ -336,11 +336,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the relational dataset definition. | [required] 
  **code** | **str**| The code of the relational dataset definition. | [required] 
- **update_relational_dataset_field_schema** | [**UpdateRelationalDatasetFieldSchema**](UpdateRelationalDatasetFieldSchema.md)| Relational dataset fields to add, update or remove. | [optional] 
+ **update_relational_dataset_field_schema** | [**UpdateRelationalDatasetFieldSchema**](../model/UpdateRelationalDatasetFieldSchema.md)| Relational dataset fields to add, update or remove. | [optional] 
 
 ### Return type
 
-[**RelationalDatasetDefinition**](RelationalDatasetDefinition.md)
+[**RelationalDatasetDefinition**](../model/RelationalDatasetDefinition.md)
 
 ### HTTP request headers
 

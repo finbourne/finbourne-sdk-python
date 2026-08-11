@@ -5,7 +5,7 @@ Represents a portfolio and its target allocation weight.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **portfolio_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **portfolio_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **weight** | **float** | Required | The relative weight of the Portfolio compared to the other Portfolios specified, used to determine the allocation split between Portfolios when there are no Orders within the Block to allocate to. |
 
 

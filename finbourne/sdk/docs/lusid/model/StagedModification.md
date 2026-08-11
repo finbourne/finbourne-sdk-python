@@ -10,19 +10,19 @@
 | **requested_id_staged** | **str** | Optional | The Request Id that initiated this staged modification. |
 | **request_reason** | **str** | Optional | The Request Reason from the context that initiated this staged modification. |
 | **action** | **str** | Optional | Type of action of the staged modification, either create, update or delete. |
-| **staging_rule** | [../model/StagedModificationStagingRule](StagedModificationStagingRule.md) | Optional | *No description available.* |
-| **decisions** | [../model/List[StagedModificationDecision]](StagedModificationDecision.md) | Optional | Object containing information relating to the decision on the staged modification. |
+| **staging_rule** | [StagedModificationStagingRule](StagedModificationStagingRule.md) | Optional | *No description available.* |
+| **decisions** | [List[StagedModificationDecision]](StagedModificationDecision.md) | Optional | Object containing information relating to the decision on the staged modification. |
 | **decisions_count** | **int** | Optional | Number of decisions made. |
 | **status** | **str** | Optional | The status of the staged modification. |
 | **as_at_closed** | **datetime** | Optional | Time at which the modification was closed by either rejection or approval. |
 | **entity_type** | **str** | Optional | The type of the entity that the staged modification applies to. |
 | **scope** | **str** | Optional | The scope of the entity that this staged modification applies to. |
 | **entity_unique_id** | **str** | Optional | The unique Id of the entity the staged modification applies to. |
-| **requested_changes** | [../model/RequestedChanges](RequestedChanges.md) | Optional | *No description available.* |
-| **entity_hrefs** | [../model/StagedModificationsEntityHrefs](StagedModificationsEntityHrefs.md) | Optional | *No description available.* |
+| **requested_changes** | [RequestedChanges](RequestedChanges.md) | Optional | *No description available.* |
+| **entity_hrefs** | [StagedModificationsEntityHrefs](StagedModificationsEntityHrefs.md) | Optional | *No description available.* |
 | **display_name** | **str** | Optional | The display name of the entity the staged modification applies to. |
-| **source_entity** | [../model/StagedModificationSourceEntity](StagedModificationSourceEntity.md) | Optional | *No description available.* |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **source_entity** | [StagedModificationSourceEntity](StagedModificationSourceEntity.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

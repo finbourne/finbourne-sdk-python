@@ -6,7 +6,7 @@ A perpetual property (i.e. without effective dates) on a Workflow. A property is
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **key** | **str** | Required | The property key in the form {domain}/{scope}/{code}. The domain must be &#39;Workflow&#39;. |
-| **value** | [../model/PropertyValue](PropertyValue.md) | Optional | *No description available.* |
+| **value** | [PropertyValue](PropertyValue.md) | Optional | *No description available.* |
 
 
 ## Usage

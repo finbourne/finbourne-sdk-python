@@ -5,7 +5,7 @@ A request to create or update multiple Blocks.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **requests** | [../model/List[BlockRequest]](BlockRequest.md) | Optional | A collection of BlockRequests. |
+| **requests** | [List[BlockRequest]](BlockRequest.md) | Optional | A collection of BlockRequests. |
 
 
 ## Usage

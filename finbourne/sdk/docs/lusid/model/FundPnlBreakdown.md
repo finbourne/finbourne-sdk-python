@@ -5,10 +5,10 @@ The breakdown of PnL for a Fund on a specified date.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **non_class_specific_pnl** | [../model/Dict[str, FundAmount]](FundAmount.md) | Required | Bucket of detail for PnL within the queried period that is not specific to any share class. |
-| **aggregated_class_pnl** | [../model/Dict[str, FundAmount]](FundAmount.md) | Required | Bucket of detail for the sum of class PnL across all share classes in a fund and within the queried period. |
-| **aggregated_group_pnl** | [../model/Dict[str, FundAmount]](FundAmount.md) | Required | Bucket of detail for the sum, across all share classes, of PnL allocated to allocation groups and apportioned to their member share classes, within the queried period. |
-| **total_pnl** | [../model/Dict[str, FundAmount]](FundAmount.md) | Required | Bucket of detail for the total PnL within the queried period: the sum of the class-specific, apportioned non-class-specific and allocation-group-apportioned PnL. |
+| **non_class_specific_pnl** | [Dict[str, FundAmount]](FundAmount.md) | Required | Bucket of detail for PnL within the queried period that is not specific to any share class. |
+| **aggregated_class_pnl** | [Dict[str, FundAmount]](FundAmount.md) | Required | Bucket of detail for the sum of class PnL across all share classes in a fund and within the queried period. |
+| **aggregated_group_pnl** | [Dict[str, FundAmount]](FundAmount.md) | Required | Bucket of detail for the sum, across all share classes, of PnL allocated to allocation groups and apportioned to their member share classes, within the queried period. |
+| **total_pnl** | [Dict[str, FundAmount]](FundAmount.md) | Required | Bucket of detail for the total PnL within the queried period: the sum of the class-specific, apportioned non-class-specific and allocation-group-apportioned PnL. |
 
 
 ## Usage

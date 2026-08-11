@@ -9,8 +9,8 @@ A group of changes made by the same person at the same time.
 | **modified_as_at** | **datetime** | Required | The date/time of the change. |
 | **request_id** | **str** | Required | The unique identifier of the request that the changes were part of. |
 | **action** | **str** | Required | The action performed on the transaction. Available values: Create, Update, Delete. |
-| **changes** | [../model/List[ChangeItem]](ChangeItem.md) | Required | The collection of changes that were made. |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **changes** | [List[ChangeItem]](ChangeItem.md) | Required | The collection of changes that were made. |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

@@ -5,7 +5,7 @@ A request to create or update multiple Executions.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **requests** | [../model/List[ExecutionRequest]](ExecutionRequest.md) | Optional | A collection of ExecutionRequests. |
+| **requests** | [List[ExecutionRequest]](ExecutionRequest.md) | Optional | A collection of ExecutionRequests. |
 
 
 ## Usage

@@ -4,14 +4,14 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **display_name** | **str** | Required | A user-friendly display name for the relational dataset definition. |
 | **description** | **str** | Optional | A detailed description of the relational dataset definition and its purpose. |
 | **applicable_entity_types** | **List[str]** | Required | The types of entities this relational dataset definition can be applied to (e.g. Instrument, Portfolio, etc.). |
-| **field_schema** | [../model/List[RelationalDatasetFieldDefinition]](RelationalDatasetFieldDefinition.md) | Required | The schema defining the structure and data types of the relational dataset. |
+| **field_schema** | [List[RelationalDatasetFieldDefinition]](RelationalDatasetFieldDefinition.md) | Required | The schema defining the structure and data types of the relational dataset. |
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
-| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **version** | [Version](Version.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

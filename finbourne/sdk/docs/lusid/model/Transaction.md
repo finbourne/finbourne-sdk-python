@@ -13,27 +13,27 @@ A list of transactions.
 | **transaction_date** | **datetime** | Required | The date of the transaction. |
 | **settlement_date** | **datetime** | Required | The settlement date of the transaction. |
 | **units** | **float** | Required | The number of units transacted in the associated instrument. |
-| **transaction_price** | [../model/TransactionPrice](TransactionPrice.md) | Optional | *No description available.* |
-| **total_consideration** | [../model/CurrencyAndAmount](CurrencyAndAmount.md) | Required | *No description available.* |
+| **transaction_price** | [TransactionPrice](TransactionPrice.md) | Optional | *No description available.* |
+| **total_consideration** | [CurrencyAndAmount](CurrencyAndAmount.md) | Required | *No description available.* |
 | **exchange_rate** | **float** | Optional | The exchange rate between the transaction and settlement currency (settlement currency being represented by the TotalConsideration.Currency). For example if the transaction currency is in USD and the settlement currency is in GBP this this the USD/GBP rate. |
 | **transaction_currency** | **str** | Optional | The transaction currency. |
-| **properties** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Set of unique transaction properties and associated values to stored with the transaction. Each property will be from the &#39;Transaction&#39; domain. |
+| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Set of unique transaction properties and associated values to stored with the transaction. Each property will be from the &#39;Transaction&#39; domain. |
 | **counterparty_id** | **str** | Optional | The identifier for the counterparty of the transaction. |
 | **source** | **str** | Optional | The source of the transaction. This is used to look up the appropriate transaction group set in the transaction type configuration. |
 | **entry_date_time** | **datetime** | Optional | The asAt datetime that the transaction was added to LUSID. |
-| **otc_confirmation** | [../model/OtcConfirmation](OtcConfirmation.md) | Optional | *No description available.* |
+| **otc_confirmation** | [OtcConfirmation](OtcConfirmation.md) | Optional | *No description available.* |
 | **transaction_status** | **str** | Optional | The status of the transaction. Available values: Active, Amended, Cancelled, ActiveReversal, ActiveTrueUp, CancelledTrueUp. |
 | **cancel_date_time** | **datetime** | Optional | If the transaction has been cancelled, the asAt datetime that the transaction was cancelled. |
-| **order_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
-| **allocation_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
-| **custodian_account** | [../model/CustodianAccount](CustodianAccount.md) | Optional | *No description available.* |
+| **order_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **allocation_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **custodian_account** | [CustodianAccount](CustodianAccount.md) | Optional | *No description available.* |
 | **transaction_group_id** | **str** | Optional | The identifier for grouping economic events across multiple transactions |
-| **strategy_tag** | [../model/List[Strategy]](Strategy.md) | Optional | A list of strategies representing the allocation of units across multiple sub-holding keys |
-| **resolved_transaction_type_details** | [../model/TransactionTypeDetails](TransactionTypeDetails.md) | Optional | *No description available.* |
-| **data_model_membership** | [../model/DataModelMembership](DataModelMembership.md) | Optional | *No description available.* |
-| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
-| **staged_modifications** | [../model/StagedModificationsInfo](StagedModificationsInfo.md) | Optional | *No description available.* |
-| **custodian_entries** | [../model/List[CustodianEntry]](CustodianEntry.md) | Optional | A list of Custodian Entries associated with the transaction. |
+| **strategy_tag** | [List[Strategy]](Strategy.md) | Optional | A list of strategies representing the allocation of units across multiple sub-holding keys |
+| **resolved_transaction_type_details** | [TransactionTypeDetails](TransactionTypeDetails.md) | Optional | *No description available.* |
+| **data_model_membership** | [DataModelMembership](DataModelMembership.md) | Optional | *No description available.* |
+| **version** | [Version](Version.md) | Optional | *No description available.* |
+| **staged_modifications** | [StagedModificationsInfo](StagedModificationsInfo.md) | Optional | *No description available.* |
+| **custodian_entries** | [List[CustodianEntry]](CustodianEntry.md) | Optional | A list of Custodian Entries associated with the transaction. |
 
 
 ## Usage

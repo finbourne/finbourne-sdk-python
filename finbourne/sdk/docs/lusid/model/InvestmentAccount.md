@@ -6,18 +6,18 @@ Representation of an Investment Account on the LUSID API
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **scope** | **str** | Optional | The scope in which the Investment Account lies. |
-| **identifiers** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | Unique client-defined identifiers of the Investment Account. |
+| **identifiers** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | Unique client-defined identifiers of the Investment Account. |
 | **display_name** | **str** | Optional | The display name of the Investment Account |
 | **description** | **str** | Optional | The description of the Investment Account |
 | **account_type** | **str** | Optional | The type of the of the Investment Account. |
-| **account_holders** | [../model/List[AccountHolder]](AccountHolder.md) | Optional | The Account Holders of the Investment Account. |
-| **investment_portfolios** | [../model/List[InvestmentPortfolio]](InvestmentPortfolio.md) | Optional | The Investment Portfolios of the Investment Account. |
+| **account_holders** | [List[AccountHolder]](AccountHolder.md) | Optional | The Account Holders of the Investment Account. |
+| **investment_portfolios** | [List[InvestmentPortfolio]](InvestmentPortfolio.md) | Optional | The Investment Portfolios of the Investment Account. |
 | **lusid_investment_account_id** | **str** | Optional | The unique LUSID Investment Account Identifier of the Investment Account. |
-| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties associated to the Investment Account. |
-| **relationships** | [../model/List[Relationship]](Relationship.md) | Optional | A set of relationships associated to the Investment Account. |
+| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties associated to the Investment Account. |
+| **relationships** | [List[Relationship]](Relationship.md) | Optional | A set of relationships associated to the Investment Account. |
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
-| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **version** | [Version](Version.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

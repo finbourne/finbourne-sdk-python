@@ -6,7 +6,7 @@ Defines a Create Child Tasks Action
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **type** | **str** | Required | Type name for this Action |
-| **child_task_configurations** | [../model/List[CreateChildTaskConfiguration]](CreateChildTaskConfiguration.md) | Required | The Child Task Configurations |
+| **child_task_configurations** | [List[CreateChildTaskConfiguration]](CreateChildTaskConfiguration.md) | Required | The Child Task Configurations |
 
 
 ## Usage

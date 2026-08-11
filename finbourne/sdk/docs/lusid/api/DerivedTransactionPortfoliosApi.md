@@ -55,11 +55,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope in which to create the derived transaction portfolio. | [required] 
- **create_derived_transaction_portfolio_request** | [**CreateDerivedTransactionPortfolioRequest**](CreateDerivedTransactionPortfolioRequest.md)| The definition of the derived transaction portfolio. | [optional] 
+ **create_derived_transaction_portfolio_request** | [**CreateDerivedTransactionPortfolioRequest**](../model/CreateDerivedTransactionPortfolioRequest.md)| The definition of the derived transaction portfolio. | [optional] 
 
 ### Return type
 
-[**Portfolio**](Portfolio.md)
+[**Portfolio**](../model/Portfolio.md)
 
 ### HTTP request headers
 
@@ -105,7 +105,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 

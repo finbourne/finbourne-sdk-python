@@ -6,7 +6,7 @@ The workflow service task that instantiated a rec instance.  Minimal placeholder
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **id** | **str** | Optional | The identifier of the workflow service task. |
-| **task_definition_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **task_definition_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **state** | **str** | Optional | The current state of the workflow service task. |
 
 

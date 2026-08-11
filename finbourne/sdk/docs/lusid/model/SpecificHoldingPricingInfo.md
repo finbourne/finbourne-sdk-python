@@ -5,7 +5,7 @@ Allows a user to specify fallbacks/overrides using Holding fields for sources th
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **dependency_source_filter** | [../model/DependencySourceFilter](DependencySourceFilter.md) | Required | *No description available.* |
+| **dependency_source_filter** | [DependencySourceFilter](DependencySourceFilter.md) | Required | *No description available.* |
 | **var_field** | **str** | Required | The Holding field which the fallback/override should use to create a price quote. Available values: None, UnitCost, LastTradedPrice, UnitAmortisedCost, UnitCostClean, UnitCostDirty, UnitAmortisedCostClean, UnitAmortisedCostDirty. |
 
 

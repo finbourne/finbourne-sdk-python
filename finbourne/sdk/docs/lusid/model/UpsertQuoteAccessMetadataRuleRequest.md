@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [../model/QuoteAccessMetadataRuleId](QuoteAccessMetadataRuleId.md) | Required | *No description available.* |
+| **id** | [QuoteAccessMetadataRuleId](QuoteAccessMetadataRuleId.md) | Required | *No description available.* |
 | **metadata** | **Dict[str, Optional[List[AccessMetadataValue]]]** | Required | The access control metadata to assign to quotes that match the identifier |
 
 

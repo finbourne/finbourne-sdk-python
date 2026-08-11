@@ -8,15 +8,15 @@ The request used to create a Fund.
 | **code** | **str** | Required | The code given for the Fund. |
 | **display_name** | **str** | Optional | The name of the Fund. |
 | **description** | **str** | Optional | A description for the Fund. |
-| **fund_configuration_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
-| **abor_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **fund_configuration_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **abor_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **share_class_instrument_scopes** | **List[str]** | Optional | The scopes in which the instruments lie, currently limited to one. |
-| **share_class_instruments** | [../model/List[InstrumentResolutionDetail]](InstrumentResolutionDetail.md) | Optional | Details the user-provided instrument identifiers and the instrument resolved from them. These would be decommissioned in favour of the new AllocationGroups and ShareClasses structures. |
+| **share_class_instruments** | [List[InstrumentResolutionDetail]](InstrumentResolutionDetail.md) | Optional | Details the user-provided instrument identifiers and the instrument resolved from them. These would be decommissioned in favour of the new AllocationGroups and ShareClasses structures. |
 | **type** | **str** | Required | The type of fund. Available values: Standalone, Master, Feeder. |
 | **inception_date** | **datetime** | Required | Inception date of the Fund |
 | **decimal_places** | **int** | Optional | Number of decimal places for reporting |
-| **year_end_date** | [../model/DayMonth](DayMonth.md) | Required | *No description available.* |
-| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the Fund. |
+| **year_end_date** | [DayMonth](DayMonth.md) | Required | *No description available.* |
+| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the Fund. |
 
 
 ## Usage

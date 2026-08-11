@@ -54,11 +54,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope in which to create the simple position portfolio. | [required] 
- **create_simple_position_portfolio_request** | [**CreateSimplePositionPortfolioRequest**](CreateSimplePositionPortfolioRequest.md)| The definition of the simple position portfolio. | [required] 
+ **create_simple_position_portfolio_request** | [**CreateSimplePositionPortfolioRequest**](../model/CreateSimplePositionPortfolioRequest.md)| The definition of the simple position portfolio. | [required] 
 
 ### Return type
 
-[**Portfolio**](Portfolio.md)
+[**Portfolio**](../model/Portfolio.md)
 
 ### HTTP request headers
 

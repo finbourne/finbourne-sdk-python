@@ -17,7 +17,7 @@ A flow convention defines the specification for generation of the date schedule 
 | **accrual_date_adjustment** | **str** | Optional | Indicates if the accrual dates are adjusted using the business day convention. The default value is &#39;Adjusted&#39;.    Supported string (enumeration) values are: [Adjusted, Unadjusted]. |
 | **business_day_convention** | **str** | Optional | When generating a set of dates, what convention should be used for adjusting dates that coincide with a non-business day.                If not set, defaults to the value of RollConvention. Available values: NoAdjustment, None, Previous, P, Following, F, ModifiedPrevious, MP, ModifiedFollowing, MF, HalfMonthModifiedFollowing, Nearest, Invalid. |
 | **accrual_day_count_convention** | **str** | Optional | Optional, if not set the main DayCountConvention is used for all accrual calculations.  This only needs to be set when accrual uses a different day count to the coupon calculation. |
-| **coupon_payment_lag** | [../model/RelativeDateOffset](RelativeDateOffset.md) | Optional | *No description available.* |
+| **coupon_payment_lag** | [RelativeDateOffset](RelativeDateOffset.md) | Optional | *No description available.* |
 | **scope** | **str** | Optional | The scope used when updating or inserting the convention. |
 | **code** | **str** | Optional | The code of the convention. |
 

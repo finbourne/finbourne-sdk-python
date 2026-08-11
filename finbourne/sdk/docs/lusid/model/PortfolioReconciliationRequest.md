@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **portfolio_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **portfolio_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **effective_at** | **str** | Required | The effective date of the portfolio |
 | **as_at** | **datetime** | Optional | Optional. The AsAt date of the portfolio |
 

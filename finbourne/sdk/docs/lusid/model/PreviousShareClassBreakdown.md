@@ -5,8 +5,8 @@ The data for a Share Class at the previous valuation point.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **nav** | [../model/PreviousNAV](PreviousNAV.md) | Required | *No description available.* |
-| **unitisation** | [../model/UnitisationData](UnitisationData.md) | Optional | *No description available.* |
+| **nav** | [PreviousNAV](PreviousNAV.md) | Required | *No description available.* |
+| **unitisation** | [UnitisationData](UnitisationData.md) | Optional | *No description available.* |
 | **share_class_to_fund_fx_rate** | **float** | Required | The fx rate from the Share Class currency to the fund currency at this valuation point. |
 
 

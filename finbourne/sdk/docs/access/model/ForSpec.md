@@ -4,11 +4,11 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **as_at_range_for_spec** | [../model/AsAtRangeForSpec](AsAtRangeForSpec.md) | Optional | *No description available.* |
-| **as_at_relative** | [../model/AsAtRelative](AsAtRelative.md) | Optional | *No description available.* |
-| **effective_date_has_quality** | [../model/EffectiveDateHasQuality](EffectiveDateHasQuality.md) | Optional | *No description available.* |
-| **effective_date_relative** | [../model/EffectiveDateRelative](EffectiveDateRelative.md) | Optional | *No description available.* |
-| **effective_range** | [../model/EffectiveRange](EffectiveRange.md) | Optional | *No description available.* |
+| **as_at_range_for_spec** | [AsAtRangeForSpec](AsAtRangeForSpec.md) | Optional | *No description available.* |
+| **as_at_relative** | [AsAtRelative](AsAtRelative.md) | Optional | *No description available.* |
+| **effective_date_has_quality** | [EffectiveDateHasQuality](EffectiveDateHasQuality.md) | Optional | *No description available.* |
+| **effective_date_relative** | [EffectiveDateRelative](EffectiveDateRelative.md) | Optional | *No description available.* |
+| **effective_range** | [EffectiveRange](EffectiveRange.md) | Optional | *No description available.* |
 
 
 ## Usage

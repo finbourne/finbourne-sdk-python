@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **units** | **float** | Required | The number of units of the instrument in this tax-lot. |
-| **cost** | [../model/CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
+| **cost** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
 | **portfolio_cost** | **float** | Optional | The total cost of the tax-lot in the transaction portfolio&#39;s base currency. |
 | **price** | **float** | Optional | The purchase price of each unit of the instrument held in this tax-lot. This forms part of the unique key required for multiple tax-lots. |
 | **purchase_date** | **datetime** | Optional | The purchase date of this tax-lot. This forms part of the unique key required for multiple tax-lots. |

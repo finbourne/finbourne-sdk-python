@@ -56,11 +56,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_task_definition_request** | [**CreateTaskDefinitionRequest**](CreateTaskDefinitionRequest.md)| The data to create a Task Definition | [required] 
+ **create_task_definition_request** | [**CreateTaskDefinitionRequest**](../model/CreateTaskDefinitionRequest.md)| The data to create a Task Definition | [required] 
 
 ### Return type
 
-[**TaskDefinition**](TaskDefinition.md)
+[**TaskDefinition**](../model/TaskDefinition.md)
 
 ### HTTP request headers
 
@@ -102,7 +102,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -145,11 +145,11 @@ Name | Type | Description  | Notes
  **scope** | **str**| The scope that identifies a Task Definition | [required] 
  **code** | **str**| The code that identifies a Task Definition | [required] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the Task Definition. Defaults to returning the latest version of the Task Definition if not specified. | [optional] 
- **property_keys** | [**List[str]**](str.md)| The property keys whose values to return on the Task Definition. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| The property keys whose values to return on the Task Definition. | [optional] 
 
 ### Return type
 
-[**TaskDefinition**](TaskDefinition.md)
+[**TaskDefinition**](../model/TaskDefinition.md)
 
 ### HTTP request headers
 
@@ -193,14 +193,14 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **as_at** | **datetime**| The asAt datetime at which to list the Task Definitions. Defaults to return the latest version of each Task Definition if not specified. | [optional] 
  **filter** | **str**| Expression to filter the result set. Read more about filtering results from LUSID here: https://support.lusid.com/filtering-results-from-lusid. | [optional] 
- **sort_by** | [**List[str]**](str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot; | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot; | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many. | [optional] [default to 10]
  **page** | **str**| The pagination token to use to continue listing task definitions from a previous call to list task definitions. This value is returned from the previous call. If a pagination token is provided the sortBy, filter, effectiveAt, and asAt fields must not have changed since the original request. | [optional] 
- **property_keys** | [**List[str]**](str.md)| The property keys whose values to return on each Task Definition. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| The property keys whose values to return on each Task Definition. | [optional] 
 
 ### Return type
 
-[**PagedResourceListOfTaskDefinition**](PagedResourceListOfTaskDefinition.md)
+[**PagedResourceListOfTaskDefinition**](../model/PagedResourceListOfTaskDefinition.md)
 
 ### HTTP request headers
 
@@ -243,11 +243,11 @@ Name | Type | Description  | Notes
  **scope** | **str**| The scope that identifies a Task Definition | [required] 
  **code** | **str**| The code that identifies a Task Definition | [required] 
  **as_at** | **datetime**| The asAt datetime at which to list the Tasks. Defaults to return the latest version of each Task if not specified. | [optional] 
- **property_keys** | [**List[str]**](str.md)| The property keys (in the TaskDefinition or Workflow domain) whose values to return on each Task. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| The property keys (in the TaskDefinition or Workflow domain) whose values to return on each Task. | [optional] 
 
 ### Return type
 
-[**ResourceListOfTask**](ResourceListOfTask.md)
+[**ResourceListOfTask**](../model/ResourceListOfTask.md)
 
 ### HTTP request headers
 
@@ -288,11 +288,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope that identifies a Task Definition | [required] 
  **code** | **str**| The code that identifies a Task Definition | [required] 
- **update_task_definition_request** | [**UpdateTaskDefinitionRequest**](UpdateTaskDefinitionRequest.md)| The data to update a Task Definition | [required] 
+ **update_task_definition_request** | [**UpdateTaskDefinitionRequest**](../model/UpdateTaskDefinitionRequest.md)| The data to update a Task Definition | [required] 
 
 ### Return type
 
-[**TaskDefinition**](TaskDefinition.md)
+[**TaskDefinition**](../model/TaskDefinition.md)
 
 ### HTTP request headers
 
@@ -334,12 +334,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope that identifies a Task Definition | [required] 
  **code** | **str**| The code that identifies a Task Definition | [required] 
- **request_body** | [**Dict[str, PerpetualProperty]**](PerpetualProperty.md)| The properties to upsert, keyed by property key. A null value deletes the property. | [required] 
+ **request_body** | [**Dict[str, PerpetualProperty]**](../model/PerpetualProperty.md)| The properties to upsert, keyed by property key. A null value deletes the property. | [required] 
  **success_mode** | **str**| Whether the batch should fail Atomically or Partially. Defaults to Partial. | [optional] [default to &#39;Partial&#39;]
 
 ### Return type
 
-[**BatchUpsertTaskDefinitionPropertiesResponse**](BatchUpsertTaskDefinitionPropertiesResponse.md)
+[**BatchUpsertTaskDefinitionPropertiesResponse**](../model/BatchUpsertTaskDefinitionPropertiesResponse.md)
 
 ### HTTP request headers
 

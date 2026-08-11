@@ -5,7 +5,7 @@ A list of Composite Breakdowns.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **portfolio_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **portfolio_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **rate_of_return** | **float** | Optional | The return number. |
 | **opening_market_value** | **float** | Optional | The opening market value. |
 | **closing_market_value** | **float** | Optional | The closing market value. |

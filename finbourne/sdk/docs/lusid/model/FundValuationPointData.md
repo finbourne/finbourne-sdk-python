@@ -5,14 +5,14 @@ The Valuation Point Data for a Fund on a specified date.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **back_out** | [../model/Dict[str, FundAmount]](FundAmount.md) | Required | Bucket of detail for the Valuation Point where data points have been &#39;backed out&#39;. |
-| **dealing** | [../model/Dict[str, FundAmount]](FundAmount.md) | Required | Bucket of detail for any &#39;Dealing&#39; that has occurred inside the queried period. |
-| **pn_l** | [../model/FundPnlBreakdown](FundPnlBreakdown.md) | Required | *No description available.* |
+| **back_out** | [Dict[str, FundAmount]](FundAmount.md) | Required | Bucket of detail for the Valuation Point where data points have been &#39;backed out&#39;. |
+| **dealing** | [Dict[str, FundAmount]](FundAmount.md) | Required | Bucket of detail for any &#39;Dealing&#39; that has occurred inside the queried period. |
+| **pn_l** | [FundPnlBreakdown](FundPnlBreakdown.md) | Required | *No description available.* |
 | **gav** | **float** | Required | The Gross Asset Value of the Fund or Share Class at the Valuation Point. This is effectively a summation of all Trial balance entries linked to accounts of types &#39;Asset&#39; and &#39;Liabilities&#39;. |
-| **fees** | [../model/Dict[str, FeeAccrual]](FeeAccrual.md) | Required | Bucket of detail for any &#39;Fees&#39; that have been charged in the selected period. |
+| **fees** | [Dict[str, FeeAccrual]](FeeAccrual.md) | Required | Bucket of detail for any &#39;Fees&#39; that have been charged in the selected period. |
 | **nav** | **float** | Required | The Net Asset Value of the Fund or Share Class at the Valuation Point. This represents the GAV with any fees applied in the period. |
-| **miscellaneous** | [../model/Dict[str, FundAmount]](FundAmount.md) | Optional | Not used directly by the LUSID engines but serves as a holding area for any custom derived data points that may be useful in, for example, fee calculations). |
-| **previous_valuation_point_data** | [../model/PreviousFundValuationPointData](PreviousFundValuationPointData.md) | Optional | *No description available.* |
+| **miscellaneous** | [Dict[str, FundAmount]](FundAmount.md) | Optional | Not used directly by the LUSID engines but serves as a holding area for any custom derived data points that may be useful in, for example, fee calculations). |
+| **previous_valuation_point_data** | [PreviousFundValuationPointData](PreviousFundValuationPointData.md) | Optional | *No description available.* |
 
 
 ## Usage

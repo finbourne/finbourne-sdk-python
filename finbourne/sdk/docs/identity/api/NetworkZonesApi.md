@@ -56,11 +56,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_network_zone_request** | [**CreateNetworkZoneRequest**](CreateNetworkZoneRequest.md)| The details of the network zone to define | [required] 
+ **create_network_zone_request** | [**CreateNetworkZoneRequest**](../model/CreateNetworkZoneRequest.md)| The details of the network zone to define | [required] 
 
 ### Return type
 
-[**NetworkZoneDefinitionResponse**](NetworkZoneDefinitionResponse.md)
+[**NetworkZoneDefinitionResponse**](../model/NetworkZoneDefinitionResponse.md)
 
 ### HTTP request headers
 
@@ -143,7 +143,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**NetworkZoneDefinitionResponse**](NetworkZoneDefinitionResponse.md)
+[**NetworkZoneDefinitionResponse**](../model/NetworkZoneDefinitionResponse.md)
 
 ### HTTP request headers
 
@@ -181,7 +181,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**List[NetworkZoneDefinitionResponse]**](NetworkZoneDefinitionResponse.md)
+[**List[NetworkZoneDefinitionResponse]**](../model/NetworkZoneDefinitionResponse.md)
 
 ### HTTP request headers
 
@@ -220,11 +220,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **code** | **str**| The unique identifier of the network zone | [required] 
- **update_network_zone_request** | [**UpdateNetworkZoneRequest**](UpdateNetworkZoneRequest.md)| The updated definition of the network zone | [required] 
+ **update_network_zone_request** | [**UpdateNetworkZoneRequest**](../model/UpdateNetworkZoneRequest.md)| The updated definition of the network zone | [required] 
 
 ### Return type
 
-[**NetworkZoneDefinitionResponse**](NetworkZoneDefinitionResponse.md)
+[**NetworkZoneDefinitionResponse**](../model/NetworkZoneDefinitionResponse.md)
 
 ### HTTP request headers
 

@@ -7,8 +7,8 @@ Body of the QueryRequestLogs endpoint. A query is bounded by a time range (Finbo
 |------|------|----------|-------------|
 | **start_at** | **datetime** | Optional | The inclusive start of the time range to query. Required unless Finbourne.Insights.WebApi.Dtos.QueryRequestLogsRequest.Page is supplied. Used to bound the underlying partition scan, so a tighter range is cheaper and faster. |
 | **end_at** | **datetime** | Optional | The end of the time range to query. Required unless Finbourne.Insights.WebApi.Dtos.QueryRequestLogsRequest.Page or Finbourne.Insights.WebApi.Dtos.QueryRequestLogsRequest.TimeRange is supplied. |
-| **time_range** | [../model/TimeRange](TimeRange.md) | Optional | *No description available.* |
-| **filters** | [../model/List[InsightsFilter]](InsightsFilter.md) | Optional | Optional filters to apply, combined with logical AND. Each filter targets a filterable field and supplies exactly one comparator matching that field&#39;s data type. |
+| **time_range** | [TimeRange](TimeRange.md) | Optional | *No description available.* |
+| **filters** | [List[InsightsFilter]](InsightsFilter.md) | Optional | Optional filters to apply, combined with logical AND. Each filter targets a filterable field and supplies exactly one comparator matching that field&#39;s data type. |
 | **sort_by** | **str** | Optional | Order the results by these fields. Use the &#39;-&#39; sign to denote descending order e.g. -MyFieldName. Multiple fields can be denoted by a comma e.g. -MyFieldName,AnotherFieldName,-AFurtherFieldName. |
 | **max_results** | **int** | Optional | The maximum total number of records to capture in the result set; applied as the Luminesce query limit and so bounding the work the query performs. The minimum value is 1 and the maximum is 10000; defaults to 500 when not supplied. The per-page limit then controls how many of these captured records are returned per page. |
 | **limit** | **int** | Optional | When paginating, only return this number of records per page. The minimum value is 0 (return all captured records in a single page) and the maximum is 10000. |

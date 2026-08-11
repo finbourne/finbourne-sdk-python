@@ -104,11 +104,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_role_request** | [**CreateRoleRequest**](CreateRoleRequest.md)| Details of the role to be created | [required] 
+ **create_role_request** | [**CreateRoleRequest**](../model/CreateRoleRequest.md)| Details of the role to be created | [required] 
 
 ### Return type
 
-[**RoleResponse**](RoleResponse.md)
+[**RoleResponse**](../model/RoleResponse.md)
 
 ### HTTP request headers
 
@@ -192,7 +192,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**RoleResponse**](RoleResponse.md)
+[**RoleResponse**](../model/RoleResponse.md)
 
 ### HTTP request headers
 
@@ -237,7 +237,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**RoleResponse**](RoleResponse.md)
+[**RoleResponse**](../model/RoleResponse.md)
 
 ### HTTP request headers
 
@@ -276,7 +276,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**List[RoleResponse]**](RoleResponse.md)
+[**List[RoleResponse]**](../model/RoleResponse.md)
 
 ### HTTP request headers
 
@@ -317,7 +317,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List[UserResponse]**](UserResponse.md)
+[**List[UserResponse]**](../model/UserResponse.md)
 
 ### HTTP request headers
 
@@ -401,11 +401,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| The unique identifier for the role to be updated | [required] 
- **update_role_request** | [**UpdateRoleRequest**](UpdateRoleRequest.md)| The new definition of the role | [optional] 
+ **update_role_request** | [**UpdateRoleRequest**](../model/UpdateRoleRequest.md)| The new definition of the role | [optional] 
 
 ### Return type
 
-[**RoleResponse**](RoleResponse.md)
+[**RoleResponse**](../model/RoleResponse.md)
 
 ### HTTP request headers
 

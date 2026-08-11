@@ -7,7 +7,7 @@ Information about a field that can be designed on (regardless if it currently is
 |------|------|----------|-------------|
 | **provider_name** | **str** | Required | Name of the Provider with a TableParameter |
 | **parameter_name** | **str** | Required | Name of the TableParameter on the Provider |
-| **fields** | [../model/List[MappableField]](MappableField.md) | Required | Fields that can be mapped to |
+| **fields** | [List[MappableField]](MappableField.md) | Required | Fields that can be mapped to |
 
 
 ## Usage

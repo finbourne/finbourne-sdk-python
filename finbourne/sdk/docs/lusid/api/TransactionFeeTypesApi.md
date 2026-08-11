@@ -60,11 +60,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the transaction fee type. | [required] 
  **code** | **str**| The code of the transaction fee type.              Together with the scope this uniquely identifies the transaction fee type. | [required] 
- **create_transaction_fee_type_request** | [**CreateTransactionFeeTypeRequest**](CreateTransactionFeeTypeRequest.md)| The contents of the transaction fee type. | [required] 
+ **create_transaction_fee_type_request** | [**CreateTransactionFeeTypeRequest**](../model/CreateTransactionFeeTypeRequest.md)| The contents of the transaction fee type. | [required] 
 
 ### Return type
 
-[**TransactionFeeType**](TransactionFeeType.md)
+[**TransactionFeeType**](../model/TransactionFeeType.md)
 
 ### HTTP request headers
 
@@ -108,7 +108,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -154,11 +154,11 @@ Name | Type | Description  | Notes
  **code** | **str**| The code of the transaction fee type.              Together with the scope this uniquely identifies the transaction fee type. | [required] 
  **effective_at** | **str**| The effective datetime at which to retrieve the transaction fee type properties.              Defaults to the current LUSID system datetime if not specified. | [optional] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the transaction fee types.              Defaults to latest if not specified. | [optional] 
- **property_keys** | [**List[str]**](str.md)| The collection of &#x60;PropertyKey&#x60;s that we want to decorate on the transaction fee type. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| The collection of &#x60;PropertyKey&#x60;s that we want to decorate on the transaction fee type. | [optional] 
 
 ### Return type
 
-[**TransactionFeeType**](TransactionFeeType.md)
+[**TransactionFeeType**](../model/TransactionFeeType.md)
 
 ### HTTP request headers
 
@@ -207,12 +207,12 @@ Name | Type | Description  | Notes
  **page** | **str**| The pagination token to use to continue listing transaction fee types from a previous call to list transaction fee types.  This value is returned from the previous call. If a pagination token is provided the filter,  sortBy, effectiveAt and asAt field must not have changed since the original request. | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many. Defaults to 100 if not specified. | [optional] 
  **filter** | **str**| Expression to filter the result set.              For example, to filter on the Scope, use \&quot;scope eq &#39;ExampleScope&#39;\&quot;              Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid. | [optional] 
- **sort_by** | [**List[str]**](str.md)| A list of field names to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot; | [optional] 
- **property_keys** | [**List[str]**](str.md)| The collection of &#x60;PropertyKey&#x60;s to filter on | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| A list of field names to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot; | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| The collection of &#x60;PropertyKey&#x60;s to filter on | [optional] 
 
 ### Return type
 
-[**ResourceListOfTransactionFeeType**](ResourceListOfTransactionFeeType.md)
+[**ResourceListOfTransactionFeeType**](../model/ResourceListOfTransactionFeeType.md)
 
 ### HTTP request headers
 
@@ -254,11 +254,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the transaction fee type. | [required] 
  **code** | **str**| The code of the specified transaction fee type.              Together with the scope this uniquely identifies the transaction fee type. | [required] 
- **update_transaction_fee_type_request** | [**UpdateTransactionFeeTypeRequest**](UpdateTransactionFeeTypeRequest.md)| The updated contents of the transaction fee type. | [required] 
+ **update_transaction_fee_type_request** | [**UpdateTransactionFeeTypeRequest**](../model/UpdateTransactionFeeTypeRequest.md)| The updated contents of the transaction fee type. | [required] 
 
 ### Return type
 
-[**TransactionFeeType**](TransactionFeeType.md)
+[**TransactionFeeType**](../model/TransactionFeeType.md)
 
 ### HTTP request headers
 

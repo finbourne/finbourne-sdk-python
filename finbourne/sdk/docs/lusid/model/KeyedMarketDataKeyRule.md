@@ -6,7 +6,7 @@ One keyed rule of an MdkrGroup shift: the key names the result column (scenario:
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **key** | **str** | Required | The key naming this rule&#39;s result column, e.g. \&quot;bid\&quot;. |
-| **rule** | [../model/MarketDataKeyRule](MarketDataKeyRule.md) | Required | *No description available.* |
+| **rule** | [MarketDataKeyRule](MarketDataKeyRule.md) | Required | *No description available.* |
 
 
 ## Usage

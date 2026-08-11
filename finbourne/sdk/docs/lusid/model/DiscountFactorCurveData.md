@@ -9,8 +9,8 @@ A curve containing discount factors and dates to which they apply
 | **dates** | **List[datetime]** | Required | Dates for which the discount factors apply |
 | **discount_factors** | **List[float]** | Required | Discount factors to be applied to cashflow on the specified dates |
 | **lineage** | **str** | Optional | Description of the complex market data&#39;s lineage e.g. &#39;FundAccountant_GreenQuality&#39;. |
-| **market_data_options** | [../model/MarketDataOptions](MarketDataOptions.md) | Optional | *No description available.* |
-| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
+| **market_data_options** | [MarketDataOptions](MarketDataOptions.md) | Optional | *No description available.* |
+| **version** | [Version](Version.md) | Optional | *No description available.* |
 | **market_data_type** | **str** | Required | Available values: DiscountFactorCurveData, EquityVolSurfaceData, FxVolSurfaceData, IrVolCubeData, OpaqueMarketData, YieldCurveData, FxForwardCurveData, FxForwardPipsCurveData, FxForwardTenorCurveData, FxForwardTenorPipsCurveData, FxForwardCurveByQuoteReference, CreditSpreadCurveData, EquityCurveByPricesData, ConstantVolatilitySurface. |
 
 

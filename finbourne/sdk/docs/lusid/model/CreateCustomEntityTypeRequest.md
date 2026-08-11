@@ -7,7 +7,7 @@
 | **entity_type_name** | **str** | Required | A name for the custom entity type. This will be prefixed with “~” and returned as “entityType”, which is the identifier for the custom entity type. |
 | **display_name** | **str** | Required | A display label for the custom entity type. |
 | **description** | **str** | Required | A description for the custom entity type. |
-| **field_schema** | [../model/List[CustomEntityFieldDefinition]](CustomEntityFieldDefinition.md) | Required | The description of the fields on the custom entity type. |
+| **field_schema** | [List[CustomEntityFieldDefinition]](CustomEntityFieldDefinition.md) | Required | The description of the fields on the custom entity type. |
 
 
 ## Usage

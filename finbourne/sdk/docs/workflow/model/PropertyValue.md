@@ -6,8 +6,8 @@ The value of a property. Exactly one of Finbourne.Workflow.WebApi.Common.Dto.Jso
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **label_value** | **str** | Optional | The value of a text property. |
-| **metric_value** | [../model/MetricValue](MetricValue.md) | Optional | *No description available.* |
-| **label_value_set** | [../model/LabelValueSet](LabelValueSet.md) | Optional | *No description available.* |
+| **metric_value** | [MetricValue](MetricValue.md) | Optional | *No description available.* |
+| **label_value_set** | [LabelValueSet](LabelValueSet.md) | Optional | *No description available.* |
 
 
 ## Usage

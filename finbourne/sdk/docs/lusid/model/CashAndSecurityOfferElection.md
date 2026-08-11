@@ -11,7 +11,7 @@ Election for events that result in both cash and equity via a merger or acquisit
 | **election_key** | **str** | Required | Unique key associated to this election. |
 | **is_chosen** | **bool** | Optional | Is this the election that has been explicitly chosen from multiple options. |
 | **is_default** | **bool** | Optional | Is this election automatically applied in the absence of an election having been made.  May only be true for one election if multiple are provided. |
-| **units_ratio** | [../model/UnitsRatio](UnitsRatio.md) | Required | *No description available.* |
+| **units_ratio** | [UnitsRatio](UnitsRatio.md) | Required | *No description available.* |
 
 
 ## Usage

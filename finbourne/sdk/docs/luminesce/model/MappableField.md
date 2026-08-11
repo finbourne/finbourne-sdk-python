@@ -6,13 +6,13 @@ Information about a field that can be designed on (regardless if it currently is
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **name** | **str** | Optional | Name of the field in need of mapping (The field name from within the Table Parameter itself) |
-| **type** | [../model/DataType](DataType.md) | Optional | *No description available.* |
+| **type** | [DataType](DataType.md) | Optional | *No description available.* |
 | **description** | **str** | Optional | Description of the field (just for rendering to the user) |
 | **display_name** | **str** | Optional | Display Name of the field (just for rendering to the user) |
 | **sample_values** | **str** | Optional | Example values for the field (just for rendering to the user) |
 | **allowed_values** | **str** | Optional | Any set of exactly allowed values for the field (perhaps just for rendering to the user, if nothing else) |
 | **mandatory_for_actions** | **str** | Optional | Which &#x60;Actions&#x60; is this mandatory for? If any (and potentially when), perhaps just for rendering to the user, if nothing else |
-| **mapping** | [../model/ExpressionWithAlias](ExpressionWithAlias.md) | Optional | *No description available.* |
+| **mapping** | [ExpressionWithAlias](ExpressionWithAlias.md) | Optional | *No description available.* |
 
 
 ## Usage

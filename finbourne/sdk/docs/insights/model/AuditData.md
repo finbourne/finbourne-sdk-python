@@ -8,7 +8,7 @@
 | **category** | **str** | Required | *No description available.* |
 | **user_id** | **str** | Optional | *No description available.* |
 | **message** | **str** | Optional | *No description available.* |
-| **resource** | [../model/Resource](Resource.md) | Optional | *No description available.* |
+| **resource** | [Resource](Resource.md) | Optional | *No description available.* |
 | **details_type** | **str** | Optional | *No description available.* |
 | **details** | **object** | Optional | *No description available.* |
 

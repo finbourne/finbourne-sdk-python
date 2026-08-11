@@ -5,8 +5,8 @@ Represents a parent-child relationship between two Task Definitions in a Workflo
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **parent** | [../model/VersionedTaskDefinitionId](VersionedTaskDefinitionId.md) | Optional | *No description available.* |
-| **child** | [../model/VersionedTaskDefinitionId](VersionedTaskDefinitionId.md) | Optional | *No description available.* |
+| **parent** | [VersionedTaskDefinitionId](VersionedTaskDefinitionId.md) | Optional | *No description available.* |
+| **child** | [VersionedTaskDefinitionId](VersionedTaskDefinitionId.md) | Optional | *No description available.* |
 
 
 ## Usage

@@ -57,11 +57,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **policy_template_creation_request** | [**PolicyTemplateCreationRequest**](PolicyTemplateCreationRequest.md)| The definition of the policy template | [required] 
+ **policy_template_creation_request** | [**PolicyTemplateCreationRequest**](../model/PolicyTemplateCreationRequest.md)| The definition of the policy template | [required] 
 
 ### Return type
 
-[**PolicyTemplateResponse**](PolicyTemplateResponse.md)
+[**PolicyTemplateResponse**](../model/PolicyTemplateResponse.md)
 
 ### HTTP request headers
 
@@ -143,12 +143,12 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **generate_policy_from_template_request** | [**GeneratePolicyFromTemplateRequest**](GeneratePolicyFromTemplateRequest.md)| Definition of the generate request | [required] 
+ **generate_policy_from_template_request** | [**GeneratePolicyFromTemplateRequest**](../model/GeneratePolicyFromTemplateRequest.md)| Definition of the generate request | [required] 
  **as_at** | **datetime**| Optional. The AsAt date time of the data | [optional] 
 
 ### Return type
 
-[**GeneratedPolicyComponents**](GeneratedPolicyComponents.md)
+[**GeneratedPolicyComponents**](../model/GeneratedPolicyComponents.md)
 
 ### HTTP request headers
 
@@ -194,7 +194,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PolicyTemplateResponse**](PolicyTemplateResponse.md)
+[**PolicyTemplateResponse**](../model/PolicyTemplateResponse.md)
 
 ### HTTP request headers
 
@@ -244,7 +244,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfPolicyTemplateResponse**](ResourceListOfPolicyTemplateResponse.md)
+[**ResourceListOfPolicyTemplateResponse**](../model/ResourceListOfPolicyTemplateResponse.md)
 
 ### HTTP request headers
 
@@ -284,11 +284,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **code** | **str**| Code of the policy template to update | [required] 
- **policy_template_update_request** | [**PolicyTemplateUpdateRequest**](PolicyTemplateUpdateRequest.md)| Definition of the updated policy template | [optional] 
+ **policy_template_update_request** | [**PolicyTemplateUpdateRequest**](../model/PolicyTemplateUpdateRequest.md)| Definition of the updated policy template | [optional] 
 
 ### Return type
 
-[**PolicyTemplateResponse**](PolicyTemplateResponse.md)
+[**PolicyTemplateResponse**](../model/PolicyTemplateResponse.md)
 
 ### HTTP request headers
 

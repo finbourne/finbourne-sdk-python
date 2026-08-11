@@ -15,9 +15,9 @@ Defines a change that occured for an entity, with extra detail about the change
 | **staged_modification_id_modified** | **str** | Optional | The id of the staged modification that was approved. Will be null if the change didn&#39;t come from a staged modification. |
 | **action** | **str** | Optional | The action performed on the field. |
 | **attribute_name** | **str** | Optional | The name of the field or property that has been changed. |
-| **previous_value** | [../model/PropertyValue](PropertyValue.md) | Optional | *No description available.* |
-| **new_value** | [../model/PropertyValue](PropertyValue.md) | Optional | *No description available.* |
-| **effective_range** | [../model/EffectiveRange](EffectiveRange.md) | Optional | *No description available.* |
+| **previous_value** | [PropertyValue](PropertyValue.md) | Optional | *No description available.* |
+| **new_value** | [PropertyValue](PropertyValue.md) | Optional | *No description available.* |
+| **effective_range** | [EffectiveRange](EffectiveRange.md) | Optional | *No description available.* |
 | **is_inherited** | **bool** | Optional | Indicates whether this change interval is a result of a change to an ancestor or the entity itself. |
 
 

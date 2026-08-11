@@ -5,7 +5,7 @@ The unique identifier of the quote.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **quote_series_id** | [../model/QuoteSeriesId](QuoteSeriesId.md) | Required | *No description available.* |
+| **quote_series_id** | [QuoteSeriesId](QuoteSeriesId.md) | Required | *No description available.* |
 | **effective_at** | **str** | Required | The effective datetime or cut label at which the quote is valid from. |
 
 

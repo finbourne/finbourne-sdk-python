@@ -5,9 +5,9 @@ The delete custodian accounts response
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
-| **custodian_account_ids** | [../model/List[ResourceId]](ResourceId.md) | Optional | The Custodian Accounts which have been soft/hard deleted. |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **version** | [Version](Version.md) | Optional | *No description available.* |
+| **custodian_account_ids** | [List[ResourceId]](ResourceId.md) | Optional | The Custodian Accounts which have been soft/hard deleted. |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

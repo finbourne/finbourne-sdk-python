@@ -5,8 +5,8 @@ A2B Category - one of the five major categories in the A2BDataRecord
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **holding_currency** | [../model/A2BBreakdown](A2BBreakdown.md) | Optional | *No description available.* |
-| **portfolio_currency** | [../model/A2BBreakdown](A2BBreakdown.md) | Optional | *No description available.* |
+| **holding_currency** | [A2BBreakdown](A2BBreakdown.md) | Optional | *No description available.* |
+| **portfolio_currency** | [A2BBreakdown](A2BBreakdown.md) | Optional | *No description available.* |
 
 
 ## Usage

@@ -6,9 +6,9 @@ Representation of the table structure
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **header_names** | **Dict[str, Optional[str]]** | Required | Mapping of column ids to aliases |
-| **column_state** | [../model/List[ColumnStateType]](ColumnStateType.md) | Required | Array of all columns in the dashboard |
-| **filters** | [../model/Dict[str, FilterModel]](FilterModel.md) | Optional | Filters applied to columns in the dashboard |
-| **meta** | [../model/TableMeta](TableMeta.md) | Required | *No description available.* |
+| **column_state** | [List[ColumnStateType]](ColumnStateType.md) | Required | Array of all columns in the dashboard |
+| **filters** | [Dict[str, FilterModel]](FilterModel.md) | Optional | Filters applied to columns in the dashboard |
+| **meta** | [TableMeta](TableMeta.md) | Required | *No description available.* |
 
 
 ## Usage

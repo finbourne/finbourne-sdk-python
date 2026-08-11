@@ -58,7 +58,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BackgroundQueryCancelResponse**](BackgroundQueryCancelResponse.md)
+[**BackgroundQueryCancelResponse**](../model/BackgroundQueryCancelResponse.md)
 
 ### HTTP request headers
 
@@ -98,7 +98,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BackgroundMultiQueryProgressResponse**](BackgroundMultiQueryProgressResponse.md)
+[**BackgroundMultiQueryProgressResponse**](../model/BackgroundMultiQueryProgressResponse.md)
 
 ### HTTP request headers
 
@@ -144,7 +144,7 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **type** | [**MultiQueryDefinitionType**](.md)| An enum value defining the set of statements being executed | [required] 
+ **type** | [**MultiQueryDefinitionType**](../model/.md)| An enum value defining the set of statements being executed | [required] 
  **body** | **str**| A \&quot;search\&quot; value (e.g. &#39;Apple&#39; on an instrument search, a &#x60;Finbourne.Filtering&#x60; expression of Insights, etc.) In the cases where \&quot;Nothing\&quot; is valid for a &#x60;Finbourne.Filtering&#x60; expression, pass &#x60;True&#x60;. | [required] 
  **as_at** | **datetime**| The AsAt time used by any bitemporal provider in the queries. | [optional] 
  **effective_at** | **datetime**| The EffectiveAt time used by any bitemporal provider in the queries. | [optional] 
@@ -158,7 +158,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BackgroundMultiQueryResponse**](BackgroundMultiQueryResponse.md)
+[**BackgroundMultiQueryResponse**](../model/BackgroundMultiQueryResponse.md)
 
 ### HTTP request headers
 

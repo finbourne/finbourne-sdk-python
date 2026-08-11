@@ -8,7 +8,7 @@
 | **preview** | **str** | Optional | The specific Uniform Resource Identifier (URI) for the preview of staged modification change once applied. |
 | **latest** | **str** | Optional | The specific Uniform Resource Identifier (URI) for the staged modification at latest time. |
 | **when_closed** | **str** | Optional | The specific Uniform Resource Identifier (URI) for the staged modification after it has been applied. |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

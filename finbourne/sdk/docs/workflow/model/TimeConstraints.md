@@ -7,7 +7,7 @@ Time constraints for a Recurrence Pattern
 |------|------|----------|-------------|
 | **start_date** | **str** | Required | Start date of the Recurrence Pattern e.g. 2025-12-25 |
 | **end_date** | **str** | Optional | Optional end date of the Recurrence Pattern e.g. 2025-12-31 |
-| **times_of_day** | [../model/List[TimeOfDay]](TimeOfDay.md) | Required | Times of the day to run the Recurrence Pattern |
+| **times_of_day** | [List[TimeOfDay]](TimeOfDay.md) | Required | Times of the day to run the Recurrence Pattern |
 
 
 ## Usage

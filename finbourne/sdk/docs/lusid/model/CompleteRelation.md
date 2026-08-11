@@ -6,8 +6,8 @@ Representation of a relation containing details of source and target entities, a
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **href** | **str** | Optional | *No description available.* |
-| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
-| **relation_definition_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **version** | [Version](Version.md) | Optional | *No description available.* |
+| **relation_definition_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **source_entity_id** | **Dict[str, Optional[str]]** | Required | *No description available.* |
 | **target_entity_id** | **Dict[str, Optional[str]]** | Required | *No description available.* |
 | **outward_description** | **str** | Required | *No description available.* |

@@ -53,11 +53,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **translate_instrument_definitions_request** | [**TranslateInstrumentDefinitionsRequest**](TranslateInstrumentDefinitionsRequest.md)| The definitions of the instruments to translate along with the target dialect. | [required] 
+ **translate_instrument_definitions_request** | [**TranslateInstrumentDefinitionsRequest**](../model/TranslateInstrumentDefinitionsRequest.md)| The definitions of the instruments to translate along with the target dialect. | [required] 
 
 ### Return type
 
-[**TranslateInstrumentDefinitionsResponse**](TranslateInstrumentDefinitionsResponse.md)
+[**TranslateInstrumentDefinitionsResponse**](../model/TranslateInstrumentDefinitionsResponse.md)
 
 ### HTTP request headers
 
@@ -95,11 +95,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **translate_trade_ticket_request** | [**TranslateTradeTicketRequest**](TranslateTradeTicketRequest.md)| The definitions of the trade ticket to translate along with the target dialect. | [required] 
+ **translate_trade_ticket_request** | [**TranslateTradeTicketRequest**](../model/TranslateTradeTicketRequest.md)| The definitions of the trade ticket to translate along with the target dialect. | [required] 
 
 ### Return type
 
-[**TranslateTradeTicketsResponse**](TranslateTradeTicketsResponse.md)
+[**TranslateTradeTicketsResponse**](../model/TranslateTradeTicketsResponse.md)
 
 ### HTTP request headers
 

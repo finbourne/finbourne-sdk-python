@@ -7,11 +7,11 @@
 | **code** | **str** | Optional |  |
 | **display_name** | **str** | Optional |  |
 | **description** | **str** | Optional |  |
-| **cut_local_time** | [../model/CutLocalTime](CutLocalTime.md) | Optional | *No description available.* |
+| **cut_local_time** | [CutLocalTime](CutLocalTime.md) | Optional | *No description available.* |
 | **time_zone** | **str** | Optional |  |
 | **href** | **str** | Optional | *No description available.* |
-| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **version** | [Version](Version.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

@@ -5,10 +5,10 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
-| **values** | [../model/Dict[str, CustomEntityResponse]](CustomEntityResponse.md) | Optional | The custom-entities which have been successfully updated or created. |
-| **staged** | [../model/Dict[str, CustomEntityResponse]](CustomEntityResponse.md) | Optional | The custom-entities that have been staged for update or creation. |
-| **failed** | [../model/Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The custom-entities that could not be updated or created or were left unchanged without error along with a reason for their failure. |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **values** | [Dict[str, CustomEntityResponse]](CustomEntityResponse.md) | Optional | The custom-entities which have been successfully updated or created. |
+| **staged** | [Dict[str, CustomEntityResponse]](CustomEntityResponse.md) | Optional | The custom-entities that have been staged for update or creation. |
+| **failed** | [Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The custom-entities that could not be updated or created or were left unchanged without error along with a reason for their failure. |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

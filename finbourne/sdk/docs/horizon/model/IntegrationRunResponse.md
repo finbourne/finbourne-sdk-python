@@ -12,8 +12,8 @@ Integration run response
 | **instance_name** | **str** | Optional | *No description available.* |
 | **status** | **str** | Optional |  |
 | **message** | **str** | Optional |  |
-| **integration** | [../model/IntegrationRunIntegration](IntegrationRunIntegration.md) | Required | *No description available.* |
-| **version** | [../model/IntegrationRunVersion](IntegrationRunVersion.md) | Required | *No description available.* |
+| **integration** | [IntegrationRunIntegration](IntegrationRunIntegration.md) | Required | *No description available.* |
+| **version** | [IntegrationRunVersion](IntegrationRunVersion.md) | Required | *No description available.* |
 | **integration_logs** | **Dict[str, Dict[str, IntegrationRunLog]]** | Optional |  |
 
 

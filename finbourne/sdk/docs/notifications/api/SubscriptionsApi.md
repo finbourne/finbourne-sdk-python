@@ -54,11 +54,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_subscription** | [**CreateSubscription**](CreateSubscription.md)| The data to create a subscription | [required] 
+ **create_subscription** | [**CreateSubscription**](../model/CreateSubscription.md)| The data to create a subscription | [required] 
 
 ### Return type
 
-[**Subscription**](Subscription.md)
+[**Subscription**](../model/Subscription.md)
 
 ### HTTP request headers
 
@@ -142,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Subscription**](Subscription.md)
+[**Subscription**](../model/Subscription.md)
 
 ### HTTP request headers
 
@@ -189,7 +189,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfSubscription**](ResourceListOfSubscription.md)
+[**ResourceListOfSubscription**](../model/ResourceListOfSubscription.md)
 
 ### HTTP request headers
 
@@ -229,11 +229,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope that identifies a subscription | [required] 
  **code** | **str**| The code that identifies a subscription | [required] 
- **update_subscription** | [**UpdateSubscription**](UpdateSubscription.md)| The data to update a subscription | [required] 
+ **update_subscription** | [**UpdateSubscription**](../model/UpdateSubscription.md)| The data to update a subscription | [required] 
 
 ### Return type
 
-[**Subscription**](Subscription.md)
+[**Subscription**](../model/Subscription.md)
 
 ### HTTP request headers
 

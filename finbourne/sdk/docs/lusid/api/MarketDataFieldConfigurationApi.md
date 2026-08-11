@@ -59,7 +59,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**MarketDataFieldConfiguration**](MarketDataFieldConfiguration.md)
+[**MarketDataFieldConfiguration**](../model/MarketDataFieldConfiguration.md)
 
 ### HTTP request headers
 
@@ -99,11 +99,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **market_data_category** | **str**| The market data category. | [required] 
- **update_market_data_field_configuration_request** | [**UpdateMarketDataFieldConfigurationRequest**](UpdateMarketDataFieldConfigurationRequest.md)| The metadata fields to add, update, or remove. | [required] 
+ **update_market_data_field_configuration_request** | [**UpdateMarketDataFieldConfigurationRequest**](../model/UpdateMarketDataFieldConfigurationRequest.md)| The metadata fields to add, update, or remove. | [required] 
 
 ### Return type
 
-[**MarketDataFieldConfiguration**](MarketDataFieldConfiguration.md)
+[**MarketDataFieldConfiguration**](../model/MarketDataFieldConfiguration.md)
 
 ### HTTP request headers
 

@@ -6,8 +6,8 @@ Specification class to request for the creation/supplementing of a configuration
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **recipe_creation_market_data_scopes** | **List[str]** | Required | The scopes in which the recipe creation would look for quotes/data. |
-| **recipe_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
-| **inline_recipe** | [../model/ConfigurationRecipe](ConfigurationRecipe.md) | Optional | *No description available.* |
+| **recipe_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **inline_recipe** | [ConfigurationRecipe](ConfigurationRecipe.md) | Optional | *No description available.* |
 | **as_at** | **datetime** | Optional | The asAt date to use |
 | **effective_at** | **str** | Required | The market data time, i.e. the recipe generated will look for rules with this effectiveAt. |
 

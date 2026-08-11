@@ -5,18 +5,18 @@ A request to create or update a Block.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
-| **order_ids** | [../model/List[ResourceId]](ResourceId.md) | Optional | The related order ids. |
-| **properties** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Client-defined properties associated with this block. |
+| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **order_ids** | [List[ResourceId]](ResourceId.md) | Optional | The related order ids. |
+| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Client-defined properties associated with this block. |
 | **instrument_identifiers** | **Dict[str, Optional[str]]** | Required | The instrument ordered. |
 | **quantity** | **float** | Optional | The total quantity of given instrument ordered. |
-| **amount** | [../model/CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
+| **amount** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
 | **side** | **str** | Required | The client&#39;s representation of the block&#39;s side (buy, sell, short, etc) |
 | **type** | **str** | Optional | The block order&#39;s type (examples: Limit, Market, ...) |
 | **time_in_force** | **str** | Optional | The block orders&#39; time in force (examples: Day, GoodTilCancel, ...) |
 | **created_date** | **datetime** | Required | The date on which the block was made |
-| **limit_price** | [../model/CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
-| **stop_price** | [../model/CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
+| **limit_price** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
+| **stop_price** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
 | **is_swept** | **bool** | Optional | Swept blocks are considered no longer of active interest, and no longer take part in various order management processes |
 
 

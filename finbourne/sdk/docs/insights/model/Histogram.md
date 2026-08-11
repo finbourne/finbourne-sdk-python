@@ -5,7 +5,7 @@ A histogram showing an item's count in buckets of equal timespans.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **buckets** | [../model/List[Bucket]](Bucket.md) | Optional | An ordered list of the histogram buckets. |
+| **buckets** | [List[Bucket]](Bucket.md) | Optional | An ordered list of the histogram buckets. |
 
 
 ## Usage

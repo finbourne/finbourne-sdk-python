@@ -5,8 +5,8 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **had_data** | **bool** | Optional | *No description available.* |
-| **previous_status** | [../model/TaskStatus](TaskStatus.md) | Optional | *No description available.* |
-| **previous_state** | [../model/BackgroundQueryState](BackgroundQueryState.md) | Optional | *No description available.* |
+| **previous_status** | [TaskStatus](TaskStatus.md) | Optional | *No description available.* |
+| **previous_state** | [BackgroundQueryState](BackgroundQueryState.md) | Optional | *No description available.* |
 | **progress** | **str** | Optional | *No description available.* |
 
 

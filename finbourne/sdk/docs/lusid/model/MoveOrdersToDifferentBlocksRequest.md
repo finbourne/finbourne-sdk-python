@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **requests** | [../model/List[BlockAndOrderIdRequest]](BlockAndOrderIdRequest.md) | Required | A collection of BlockAndOrderId. |
+| **requests** | [List[BlockAndOrderIdRequest]](BlockAndOrderIdRequest.md) | Required | A collection of BlockAndOrderId. |
 
 
 ## Usage

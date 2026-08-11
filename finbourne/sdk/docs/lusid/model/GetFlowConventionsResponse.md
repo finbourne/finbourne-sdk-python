@@ -5,9 +5,9 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
-| **value** | [../model/FlowConventions](FlowConventions.md) | Optional | *No description available.* |
-| **failed** | [../model/Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The identifiers that did not resolve to a conventions along with the nature of the failure. |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **value** | [FlowConventions](FlowConventions.md) | Optional | *No description available.* |
+| **failed** | [Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The identifiers that did not resolve to a conventions along with the nature of the failure. |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

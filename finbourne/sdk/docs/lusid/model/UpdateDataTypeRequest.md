@@ -7,7 +7,7 @@
 | **display_name** | **str** | Optional | The display name of the data type. |
 | **description** | **str** | Optional | The description of the data type. |
 | **acceptable_values** | **List[str]** | Optional | The acceptable set of values for this data type. Only applies to &#39;open&#39; value type range. |
-| **acceptable_units** | [../model/List[UpdateUnitRequest]](UpdateUnitRequest.md) | Optional | The definitions of the acceptable units. |
+| **acceptable_units** | [List[UpdateUnitRequest]](UpdateUnitRequest.md) | Optional | The definitions of the acceptable units. |
 
 
 ## Usage

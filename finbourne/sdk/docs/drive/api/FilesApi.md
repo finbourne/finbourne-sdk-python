@@ -65,7 +65,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StorageObject**](StorageObject.md)
+[**StorageObject**](../model/StorageObject.md)
 
 ### HTTP request headers
 
@@ -186,7 +186,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StorageObject**](StorageObject.md)
+[**StorageObject**](../model/StorageObject.md)
 
 ### HTTP request headers
 
@@ -230,7 +230,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StorageObject**](StorageObject.md)
+[**StorageObject**](../model/StorageObject.md)
 
 ### HTTP request headers
 
@@ -268,11 +268,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Identifier of the file to be updated | [required] 
- **update_file** | [**UpdateFile**](UpdateFile.md)| Update to be applied to file | [required] 
+ **update_file** | [**UpdateFile**](../model/UpdateFile.md)| Update to be applied to file | [required] 
 
 ### Return type
 
-[**StorageObject**](StorageObject.md)
+[**StorageObject**](../model/StorageObject.md)
 
 ### HTTP request headers
 

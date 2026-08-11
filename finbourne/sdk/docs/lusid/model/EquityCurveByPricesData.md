@@ -9,8 +9,8 @@ Contains data (i.e. dates and prices + metadata) for building Equity curves
 | **dates** | **List[datetime]** | Required | Dates provided for the forward price of the Equity at the corresponding price in Prices.  These dates should be in the future with respect to the BaseDate. |
 | **lineage** | **str** | Optional | Description of the complex market data&#39;s lineage e.g. &#39;FundAccountant_GreenQuality&#39;. |
 | **prices** | **List[float]** | Required | Prices provided for the forward price of the Equity at the corresponding date in Dates. |
-| **market_data_options** | [../model/MarketDataOptions](MarketDataOptions.md) | Optional | *No description available.* |
-| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
+| **market_data_options** | [MarketDataOptions](MarketDataOptions.md) | Optional | *No description available.* |
+| **version** | [Version](Version.md) | Optional | *No description available.* |
 | **market_data_type** | **str** | Required | Available values: DiscountFactorCurveData, EquityVolSurfaceData, FxVolSurfaceData, IrVolCubeData, OpaqueMarketData, YieldCurveData, FxForwardCurveData, FxForwardPipsCurveData, FxForwardTenorCurveData, FxForwardTenorPipsCurveData, FxForwardCurveByQuoteReference, CreditSpreadCurveData, EquityCurveByPricesData, ConstantVolatilitySurface. |
 
 

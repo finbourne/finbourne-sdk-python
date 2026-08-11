@@ -6,14 +6,14 @@
 |------|------|----------|-------------|
 | **has_data** | **bool** | Optional | Is there currently data for this Query? |
 | **row_count** | **int** | Optional | Number of rows of data held. -1 if none as yet. |
-| **status** | [../model/TaskStatus](TaskStatus.md) | Optional | *No description available.* |
-| **state** | [../model/BackgroundQueryState](BackgroundQueryState.md) | Optional | *No description available.* |
+| **status** | [TaskStatus](TaskStatus.md) | Optional | *No description available.* |
+| **state** | [BackgroundQueryState](BackgroundQueryState.md) | Optional | *No description available.* |
 | **progress** | **str** | Optional | The full progress log (up to this point at least) |
-| **feedback** | [../model/List[FeedbackEventArgs]](FeedbackEventArgs.md) | Optional | Individual Feedback Messages (to replace Progress).  A given message will be returned from only one call. |
+| **feedback** | [List[FeedbackEventArgs]](FeedbackEventArgs.md) | Optional | Individual Feedback Messages (to replace Progress).  A given message will be returned from only one call. |
 | **query** | **str** | Optional | The LuminesceSql of the original request |
 | **query_name** | **str** | Optional | The QueryName given in the original request |
-| **columns_available** | [../model/List[Column]](Column.md) | Optional | When HasData is true this is the schema of columns that will be returned if the data is requested |
-| **lineage** | [../model/TableLineage](TableLineage.md) | Optional | *No description available.* |
+| **columns_available** | [List[Column]](Column.md) | Optional | When HasData is true this is the schema of columns that will be returned if the data is requested |
+| **lineage** | [TableLineage](TableLineage.md) | Optional | *No description available.* |
 
 
 ## Usage

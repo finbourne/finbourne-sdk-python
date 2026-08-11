@@ -5,7 +5,7 @@ A request to insert external log records.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **logs** | [../model/List[ExternalLogRecord]](ExternalLogRecord.md) | Required | The collection of external log records to insert. |
+| **logs** | [List[ExternalLogRecord]](ExternalLogRecord.md) | Required | The collection of external log records to insert. |
 
 
 ## Usage

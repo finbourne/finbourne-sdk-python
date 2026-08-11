@@ -6,7 +6,7 @@ A BondConversionSchedule object represents a class containing the  information r
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **identifiers** | **Dict[str, Optional[str]]** | Optional | The market identifier(s) of the share that the bond converts to. The instrument  will not fail validation if no identifier is supplied. |
-| **bond_conversion_entries** | [../model/List[BondConversionEntry]](BondConversionEntry.md) | Optional | The dates at which the bond may be converted and associated information required about the conversion. |
+| **bond_conversion_entries** | [List[BondConversionEntry]](BondConversionEntry.md) | Optional | The dates at which the bond may be converted and associated information required about the conversion. |
 | **conversion_trigger** | **str** | Required | Corporate event that triggers a conversion    Supported string (enumeration) values are: [NextEquityFinancing, IpoConversion, KnownDates, SoftCall]. |
 | **delivery_type** | **str** | Optional | Is a conversion made into cash or into shares?  Defaults to \&quot;Physical\&quot; if not set.    Supported string (enumeration) values are: [Cash, Physical]. |
 | **exercise_type** | **str** | Required | The exercise type of the conversion schedule (American or European).  For American type, the bond is convertible from a given exercise date until the next date in the schedule, or until it matures.  For European type, the bond is only convertible on the given exercise date.    Supported string (enumeration) values are: [European, Bermudan, American]. |

@@ -58,12 +58,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the relation definition | [required] 
  **code** | **str**| The code of the relation definition | [required] 
- **create_relation_request** | [**CreateRelationRequest**](CreateRelationRequest.md)| The details of the relation to create. | [required] 
+ **create_relation_request** | [**CreateRelationRequest**](../model/CreateRelationRequest.md)| The details of the relation to create. | [required] 
  **effective_at** | **str**| The effective datetime or cut label at which the relation should be effective from. Defaults to the current LUSID system datetime if not specified. | [optional] 
 
 ### Return type
 
-[**CompleteRelation**](CompleteRelation.md)
+[**CompleteRelation**](../model/CompleteRelation.md)
 
 ### HTTP request headers
 
@@ -106,12 +106,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the relation definition | [required] 
  **code** | **str**| The code of the relation definition | [required] 
- **delete_relation_request** | [**DeleteRelationRequest**](DeleteRelationRequest.md)| The details of the relation to delete. | [required] 
+ **delete_relation_request** | [**DeleteRelationRequest**](../model/DeleteRelationRequest.md)| The details of the relation to delete. | [required] 
  **effective_at** | **str**| The effective datetime or cut label at which the relation should the deletion be effective from. Defaults to the current LUSID system datetime if not specified. | [optional] 
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 

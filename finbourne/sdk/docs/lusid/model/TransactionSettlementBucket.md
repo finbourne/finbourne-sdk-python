@@ -14,8 +14,8 @@
 | **overdue_units** | **float** | Optional | The overdue units. |
 | **configured_settlement** | **str** | Optional | The effective method of settlement for the settlement bucket. This reflects any transaction-level settlement method overrides, falling back to the portfolio&#39;s SettlementConfiguration if no override applies. Available values: Automatic, Instructed, NotApplicable. |
 | **status** | **str** | Required | The Status of the settlement bucket - &#39;Settled&#39;, &#39;Part Settled&#39; or &#39;Unsettled&#39;. Available values: Unsettled, PartSettled, Settled, None. |
-| **settlement_instructions** | [../model/List[TransactionSettlementInstruction]](TransactionSettlementInstruction.md) | Optional | The settlement instructions received for this settlement bucket. |
-| **movements** | [../model/List[TransactionSettlementMovement]](TransactionSettlementMovement.md) | Optional | The movements for the settlement bucket. |
+| **settlement_instructions** | [List[TransactionSettlementInstruction]](TransactionSettlementInstruction.md) | Optional | The settlement instructions received for this settlement bucket. |
+| **movements** | [List[TransactionSettlementMovement]](TransactionSettlementMovement.md) | Optional | The movements for the settlement bucket. |
 
 
 ## Usage

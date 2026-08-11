@@ -5,9 +5,9 @@ A request to create or update a Participation.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
-| **placement_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
-| **order_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **placement_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **order_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 
 
 ## Usage

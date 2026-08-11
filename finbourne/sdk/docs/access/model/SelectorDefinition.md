@@ -4,10 +4,10 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **metadata_selector_definition** | [../model/MetadataSelectorDefinition](MetadataSelectorDefinition.md) | Optional | *No description available.* |
-| **id_selector_definition** | [../model/IdSelectorDefinition](IdSelectorDefinition.md) | Optional | *No description available.* |
-| **match_all_selector_definition** | [../model/MatchAllSelectorDefinition](MatchAllSelectorDefinition.md) | Optional | *No description available.* |
-| **policy_selector_definition** | [../model/PolicySelectorDefinition](PolicySelectorDefinition.md) | Optional | *No description available.* |
+| **metadata_selector_definition** | [MetadataSelectorDefinition](MetadataSelectorDefinition.md) | Optional | *No description available.* |
+| **id_selector_definition** | [IdSelectorDefinition](IdSelectorDefinition.md) | Optional | *No description available.* |
+| **match_all_selector_definition** | [MatchAllSelectorDefinition](MatchAllSelectorDefinition.md) | Optional | *No description available.* |
+| **policy_selector_definition** | [PolicySelectorDefinition](PolicySelectorDefinition.md) | Optional | *No description available.* |
 
 
 ## Usage

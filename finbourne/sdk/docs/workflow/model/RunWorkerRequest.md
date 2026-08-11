@@ -5,7 +5,7 @@ Request to Create a new worker
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **parameters** | [../model/List[ParameterValue]](ParameterValue.md) | Required | The Parameter and their values. |
+| **parameters** | [List[ParameterValue]](ParameterValue.md) | Required | The Parameter and their values. |
 | **worker_timeout** | **int** | Optional | The timeout in seconds for the worker |
 
 

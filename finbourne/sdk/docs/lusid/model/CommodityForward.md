@@ -10,7 +10,7 @@ LUSID representation of an OTC bilateral commodity forward.  The forward settles
 | **dom_ccy** | **str** | Required | The domestic currency of the instrument. |
 | **strike** | **float** | Optional | Agreed forward price at trade inception. Reference only — not used in the market value calculation,  which consumes the pre-netted price from the quote store. |
 | **delivery_type** | **str** | Required | Whether the forward settles in cash or through physical delivery of the underlying.                Supported string (enumeration) values are: [Cash, Physical]. Available values: Cash, Physical. |
-| **underlying** | [../model/LusidInstrument](LusidInstrument.md) | Optional | *No description available.* |
+| **underlying** | [LusidInstrument](LusidInstrument.md) | Optional | *No description available.* |
 | **instrument_type** | **str** | Required | Available values: QuotedSecurity, InterestRateSwap, FxForward, Future, ExoticInstrument, FxOption, CreditDefaultSwap, InterestRateSwaption, Bond, EquityOption, FixedLeg, FloatingLeg, BespokeCashFlowsLeg, Unknown, TermDeposit, ContractForDifference, EquitySwap, CashPerpetual, CapFloor, CashSettled, CdsIndex, Basket, FundingLeg, FxSwap, ForwardRateAgreement, SimpleInstrument, Repo, Equity, ExchangeTradedOption, ReferenceInstrument, ComplexBond, InflationLinkedBond, InflationSwap, SimpleCashFlowLoan, TotalReturnSwap, InflationLeg, FundShareClass, FlexibleLoan, UnsettledCash, Cash, MasteredInstrument, LoanFacility, FlexibleDeposit, FlexibleRepo, ToBeAnnounced, VolatilitySwap, ToBeAnnouncedOption, CommodityForward. |
 
 

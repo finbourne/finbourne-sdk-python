@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **scope** | [../model/DataScope](DataScope.md) | Optional | *No description available.* |
+| **scope** | [DataScope](DataScope.md) | Optional | *No description available.* |
 | **identifier** | **str** | Optional | *No description available.* |
 
 

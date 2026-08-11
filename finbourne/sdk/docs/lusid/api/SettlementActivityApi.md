@@ -52,11 +52,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **settlement_activity_query** | [**SettlementActivityQuery**](SettlementActivityQuery.md)| The query parameters controlling which settlement activity is returned. | [required] 
+ **settlement_activity_query** | [**SettlementActivityQuery**](../model/SettlementActivityQuery.md)| The query parameters controlling which settlement activity is returned. | [required] 
 
 ### Return type
 
-[**ResourceListWithPostBodiesOfSettlementActivityToSettlementActivityQuery**](ResourceListWithPostBodiesOfSettlementActivityToSettlementActivityQuery.md)
+[**ResourceListWithPostBodiesOfSettlementActivityToSettlementActivityQuery**](../model/ResourceListWithPostBodiesOfSettlementActivityToSettlementActivityQuery.md)
 
 ### HTTP request headers
 

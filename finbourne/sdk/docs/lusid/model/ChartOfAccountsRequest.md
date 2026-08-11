@@ -8,7 +8,7 @@ The request used to create a chart of account.
 | **code** | **str** | Required | The code given for the Chart of Accounts. |
 | **display_name** | **str** | Optional | The name of the Chart of Account. |
 | **description** | **str** | Optional | A description of the Chart of Accounts. |
-| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the Chart of Accounts. |
+| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the Chart of Accounts. |
 
 
 ## Usage

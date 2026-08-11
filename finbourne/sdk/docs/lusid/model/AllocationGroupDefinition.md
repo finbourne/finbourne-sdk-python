@@ -4,11 +4,11 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **classes** | [../model/List[AllocationGroupClassDefinition]](AllocationGroupClassDefinition.md) | Optional | An optional list of share classes that belong to this group. Each entry must reference a ShareClass already present on the Fund. You can provide this or the Formula, but not both. |
+| **classes** | [List[AllocationGroupClassDefinition]](AllocationGroupClassDefinition.md) | Optional | An optional list of share classes that belong to this group. Each entry must reference a ShareClass already present on the Fund. You can provide this or the Formula, but not both. |
 | **name** | **str** | Required | The display name of the Allocation Group. |
 | **description** | **str** | Optional | An optional description for the Allocation Group. |
 | **share_class_short_code** | **str** | Required | The short code that identifies the Allocation Group. |
-| **apportionment_method_property** | [../model/ApportionmentMethodProperty](ApportionmentMethodProperty.md) | Optional | *No description available.* |
+| **apportionment_method_property** | [ApportionmentMethodProperty](ApportionmentMethodProperty.md) | Optional | *No description available.* |
 | **formula** | **str** | Optional | An optional filter expression used to define which classes belong to this group, based on fund grouping criteria. You can provide this or the Classes, but not both. |
 
 

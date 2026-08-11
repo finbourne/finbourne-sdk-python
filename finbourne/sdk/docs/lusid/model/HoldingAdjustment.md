@@ -8,11 +8,11 @@ The target holdings.
 | **instrument_identifiers** | **Dict[str, Optional[str]]** | Optional | A set of instrument identifiers that can resolve the holding adjustment to a unique instrument. |
 | **instrument_scope** | **str** | Optional | The scope of the instrument that the holding adjustment is in. |
 | **instrument_uid** | **str** | Required | The unique Lusid Instrument Id (LUID) of the instrument that the holding adjustment is in. |
-| **sub_holding_keys** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | The set of unique transaction properties and associated values stored with the holding adjustment transactions automatically created by LUSID. Each property will be from the &#39;Transaction&#39; domain. |
-| **properties** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | The set of unique holding properties and associated values stored with the target holding. Each property will be from the &#39;Holding&#39; domain. |
-| **tax_lots** | [../model/List[TargetTaxLot]](TargetTaxLot.md) | Required | The tax-lots that together make up the target holding. |
+| **sub_holding_keys** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | The set of unique transaction properties and associated values stored with the holding adjustment transactions automatically created by LUSID. Each property will be from the &#39;Transaction&#39; domain. |
+| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | The set of unique holding properties and associated values stored with the target holding. Each property will be from the &#39;Holding&#39; domain. |
+| **tax_lots** | [List[TargetTaxLot]](TargetTaxLot.md) | Required | The tax-lots that together make up the target holding. |
 | **currency** | **str** | Optional | The Holding currency. |
-| **custodian_account_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **custodian_account_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 
 
 ## Usage

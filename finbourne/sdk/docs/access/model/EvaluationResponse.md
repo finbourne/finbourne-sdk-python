@@ -5,7 +5,7 @@ The result of an evaluation request
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **result** | [../model/EvaluationResult](EvaluationResult.md) | Required | *No description available.* |
+| **result** | [EvaluationResult](EvaluationResult.md) | Required | *No description available.* |
 | **detailed_message** | **str** | Optional | In the case of the evaluation being denied a message may be returned |
 
 

@@ -5,7 +5,7 @@ Year Regularity
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **dates** | [../model/List[DayOfYear]](DayOfYear.md) | Required | The dates in the year |
+| **dates** | [List[DayOfYear]](DayOfYear.md) | Required | The dates in the year |
 | **type** | **str** | Required | The type of Date Regularity |
 
 

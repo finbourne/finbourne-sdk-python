@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **id** | **str** | Required | The role&#39;s system supplied unique identifier |
-| **role_id** | [../model/RoleId](RoleId.md) | Required | *No description available.* |
+| **role_id** | [RoleId](RoleId.md) | Required | *No description available.* |
 | **source** | **str** | Required | The source of the role |
 | **name** | **str** | Required | The role name, which must be unique within the system. |
 | **description** | **str** | Optional | The description for this role |

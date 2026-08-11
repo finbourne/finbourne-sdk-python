@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **activity_id** | **str** | Required | A unique identifier for the settlement activity row, composed from the portfolio, activity type and the underlying transaction or settlement instruction. |
-| **portfolio_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **portfolio_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **activity_type** | **str** | Required | The type of settlement activity: Expected for outstanding units that are due or overdue, or Settled for units that have settled. Available values: Expected, Settled. |
 | **activity_basis** | **str** | Required | The basis on which the settlement activity arose: Inferred for outstanding units, Automatic for units settled per the portfolio&#39;s settlement configuration, or Instruction for units settled by a settlement instruction. Available values: Inferred, Automatic, Instruction. |
 | **activity_date** | **datetime** | Required | The date of the settlement activity. For Expected activity this is the query&#39;s end activity date; for Automatic settlement it is the contractual settlement date; for Instruction settlement it is the instruction&#39;s actual settlement date. |
@@ -16,14 +16,14 @@
 | **lusid_instrument_id** | **str** | Required | The LUSID instrument identifier (LUID) of the instrument being settled. |
 | **instrument_scope** | **str** | Required | The scope in which the instrument is defined. |
 | **contractual_settlement_date** | **datetime** | Required | The contractual settlement date of the underlying movements. |
-| **custodian_account_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **custodian_account_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **custodian_account_number** | **str** | Optional | The account number of the associated custodian account, if any. |
 | **custodian_account_name** | **str** | Optional | The name of the associated custodian account, if any. |
 | **units** | **float** | Required | The signed number of units settled or expected to settle for this activity. |
 | **direction** | **str** | Required | The direction of the settlement from the portfolio&#39;s perspective. Available values: Debit, Credit. |
 | **days_overdue** | **float** | Optional | The number of days the activity is overdue, calculated as the activity date minus the contractual settlement date. Zero for settled activity. |
-| **transaction** | [../model/OutputTransaction](OutputTransaction.md) | Optional | *No description available.* |
-| **settlement_instruction** | [../model/TransactionSettlementInstruction](TransactionSettlementInstruction.md) | Optional | *No description available.* |
+| **transaction** | [OutputTransaction](OutputTransaction.md) | Optional | *No description available.* |
+| **settlement_instruction** | [TransactionSettlementInstruction](TransactionSettlementInstruction.md) | Optional | *No description available.* |
 
 
 ## Usage

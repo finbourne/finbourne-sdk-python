@@ -77,7 +77,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -129,7 +129,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -174,12 +174,12 @@ Name | Type | Description  | Notes
  **id_type_scope** | **str**| Scope of the legal entity identifier type. | [required] 
  **id_type_code** | **str**| Code of the legal entity identifier type. | [required] 
  **code** | **str**| Code of the legal entity under specified identifier type&#39;s scope and code. This together with stated identifier type uniquely              identifies the legal entity. | [required] 
- **property_keys** | [**List[str]**](str.md)| The property keys of the identifiers to delete. These take the format              {domain}/{scope}/{code} e.g. \&quot;LegalEntity/CreditAgency/Identifier\&quot;. Each property must be from the \&quot;LegalEntity\&quot; domain. Identifiers or identifiers not specified in request will not be changed. | [required] 
+ **property_keys** | [**List[str]**](../model/str.md)| The property keys of the identifiers to delete. These take the format              {domain}/{scope}/{code} e.g. \&quot;LegalEntity/CreditAgency/Identifier\&quot;. Each property must be from the \&quot;LegalEntity\&quot; domain. Identifiers or identifiers not specified in request will not be changed. | [required] 
  **effective_at** | **str**| The effective datetime or cut label at which to delete the identifiers. Defaults to the current LUSID system datetime if not specified.              Must not include an effective datetime if identifiers are perpetual. | [optional] 
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -224,12 +224,12 @@ Name | Type | Description  | Notes
  **id_type_scope** | **str**| Scope of the legal entity identifier type. | [required] 
  **id_type_code** | **str**| Code of the legal entity identifier type. | [required] 
  **code** | **str**| Code of the legal entity under specified identifier type&#39;s scope and code. This together with stated identifier type uniquely              identifies the legal entity. | [required] 
- **property_keys** | [**List[str]**](str.md)| The property keys of the legal entities properties to delete. These take the format              {domain}/{scope}/{code} e.g. \&quot;LegalEntity/CompanyDetails/Role\&quot;. Each property must be from the \&quot;LegalEntity\&quot; domain. Properties or identifiers not specified in request will not be changed. | [required] 
+ **property_keys** | [**List[str]**](../model/str.md)| The property keys of the legal entities properties to delete. These take the format              {domain}/{scope}/{code} e.g. \&quot;LegalEntity/CompanyDetails/Role\&quot;. Each property must be from the \&quot;LegalEntity\&quot; domain. Properties or identifiers not specified in request will not be changed. | [required] 
  **effective_at** | **str**| The effective datetime or cut label at which to delete time-variant properties from.              The property must exist at the specified &#39;effectiveAt&#39; datetime. If the &#39;effectiveAt&#39; is not provided or is              before the time-variant property exists then a failure is returned. Do not specify this parameter if any of              the properties to delete are perpetual. | [optional] 
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -326,14 +326,14 @@ Name | Type | Description  | Notes
  **id_type_scope** | **str**| Scope of the legal entity identifier type. | [required] 
  **id_type_code** | **str**| Code of the legal entity identifier type. | [required] 
  **code** | **str**| Code of the legal entity under specified identifier type&#39;s scope and code. This together with stated identifier type uniquely              identifies the legal entity. | [required] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys or identifier types (as property keys) from the \&quot;LegalEntity\&quot; domain              to include for found legal entity, or from any domain that supports relationships to decorate onto related entities.              These take the format {domain}/{scope}/{code} e.g. \&quot;LegalEntity/ContactDetails/Address\&quot;. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys or identifier types (as property keys) from the \&quot;LegalEntity\&quot; domain              to include for found legal entity, or from any domain that supports relationships to decorate onto related entities.              These take the format {domain}/{scope}/{code} e.g. \&quot;LegalEntity/ContactDetails/Address\&quot;. | [optional] 
  **effective_at** | **str**| The effective datetime or cut label at which to retrieve the legal entity. Defaults to the current LUSID system datetime if not specified. | [optional] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the legal entity. Defaults to return the latest version of the legal entity if not specified. | [optional] 
- **relationship_definition_ids** | [**List[str]**](str.md)| A list of relationship definitions that are used to decorate related entities              onto the legal entity in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}. | [optional] 
+ **relationship_definition_ids** | [**List[str]**](../model/str.md)| A list of relationship definitions that are used to decorate related entities              onto the legal entity in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}. | [optional] 
 
 ### Return type
 
-[**LegalEntity**](LegalEntity.md)
+[**LegalEntity**](../model/LegalEntity.md)
 
 ### HTTP request headers
 
@@ -385,7 +385,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List[AccessMetadataValue]**](AccessMetadataValue.md)
+[**List[AccessMetadataValue]**](../model/AccessMetadataValue.md)
 
 ### HTTP request headers
 
@@ -441,7 +441,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfPropertyInterval**](ResourceListOfPropertyInterval.md)
+[**ResourceListOfPropertyInterval**](../model/ResourceListOfPropertyInterval.md)
 
 ### HTTP request headers
 
@@ -491,11 +491,11 @@ Name | Type | Description  | Notes
  **effective_at** | **str**| The effective datetime or cut label at which to get relations. Defaults to the current LUSID system datetime if not specified. | [optional] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the legal entity&#39;s relations. Defaults to return the latest LUSID AsAt time if not specified. | [optional] 
  **filter** | **str**| Expression to filter the relations. Users should provide null or empty string for this field until further notice. | [optional] 
- **identifier_types** | [**List[str]**](str.md)| Identifiers types (as property keys) used for referencing Persons or Legal Entities. These take the format              {domain}/{scope}/{code} e.g. \&quot;Person/CompanyDetails/Role\&quot;. They must be from the \&quot;Person\&quot; or \&quot;LegalEntity\&quot; domain.              Only identifier types stated will be used to look up relevant entities in relations. If not applicable, provide an empty array. | [optional] 
+ **identifier_types** | [**List[str]**](../model/str.md)| Identifiers types (as property keys) used for referencing Persons or Legal Entities. These take the format              {domain}/{scope}/{code} e.g. \&quot;Person/CompanyDetails/Role\&quot;. They must be from the \&quot;Person\&quot; or \&quot;LegalEntity\&quot; domain.              Only identifier types stated will be used to look up relevant entities in relations. If not applicable, provide an empty array. | [optional] 
 
 ### Return type
 
-[**ResourceListOfRelation**](ResourceListOfRelation.md)
+[**ResourceListOfRelation**](../model/ResourceListOfRelation.md)
 
 ### HTTP request headers
 
@@ -545,11 +545,11 @@ Name | Type | Description  | Notes
  **effective_at** | **str**| The effective datetime or cut label at which to get relationships. Defaults to the current LUSID system datetime if not specified. | [optional] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve relationships. Defaults to return the latest LUSID AsAt time if not specified. | [optional] 
  **filter** | **str**| Expression to filter relationships. Users should provide null or empty string for this field until further notice. | [optional] 
- **identifier_types** | [**List[str]**](str.md)| Identifier types (as property keys) used for referencing Persons or Legal Entities.              These can be specified from the &#39;Person&#39; or &#39;LegalEntity&#39; domains and have the format {domain}/{scope}/{code}, for example              &#39;Person/CompanyDetails/Role&#39;. An Empty array may be used to return all related Entities. | [optional] 
+ **identifier_types** | [**List[str]**](../model/str.md)| Identifier types (as property keys) used for referencing Persons or Legal Entities.              These can be specified from the &#39;Person&#39; or &#39;LegalEntity&#39; domains and have the format {domain}/{scope}/{code}, for example              &#39;Person/CompanyDetails/Role&#39;. An Empty array may be used to return all related Entities. | [optional] 
 
 ### Return type
 
-[**ResourceListOfRelationship**](ResourceListOfRelationship.md)
+[**ResourceListOfRelationship**](../model/ResourceListOfRelationship.md)
 
 ### HTTP request headers
 
@@ -599,13 +599,13 @@ Name | Type | Description  | Notes
  **page** | **str**| The pagination token to use to continue listing legal entities from a previous call to list legal entities. This  value is returned from the previous call. If a pagination token is provided the filter, effectiveAt, sortBy  and asAt fields must not have changed since the original request. | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many. Defaults to 5000 if not specified. | [optional] 
  **filter** | **str**| Expression to filter the result set.               Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid. | [optional] 
- **sort_by** | [**List[str]**](str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys or identifier types (as property keys) from the \&quot;LegalEntity\&quot; domain              to include for each legal entity, or from any domain that supports relationships to decorate onto related entities.              These take the format {domain}/{scope}/{code} e.g. \&quot;LegalEntity/ContactDetails/Address\&quot;. | [optional] 
- **relationship_definition_ids** | [**List[str]**](str.md)| A list of relationship definitions that are used to decorate related entities              onto each portfolio in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}. | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys or identifier types (as property keys) from the \&quot;LegalEntity\&quot; domain              to include for each legal entity, or from any domain that supports relationships to decorate onto related entities.              These take the format {domain}/{scope}/{code} e.g. \&quot;LegalEntity/ContactDetails/Address\&quot;. | [optional] 
+ **relationship_definition_ids** | [**List[str]**](../model/str.md)| A list of relationship definitions that are used to decorate related entities              onto each portfolio in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}. | [optional] 
 
 ### Return type
 
-[**ResourceListOfLegalEntity**](ResourceListOfLegalEntity.md)
+[**ResourceListOfLegalEntity**](../model/ResourceListOfLegalEntity.md)
 
 ### HTTP request headers
 
@@ -659,13 +659,13 @@ Name | Type | Description  | Notes
  **page** | **str**| The pagination token to use to continue listing legal entities from a previous call to list legal entities. This  value is returned from the previous call. If a pagination token is provided the filter, effectiveAt, sortBy  and asAt fields must not have changed since the original request. | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many. Defaults to 100 if not specified. | [optional] 
  **filter** | **str**| Expression to filter the result set.               Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid. | [optional] 
- **sort_by** | [**List[str]**](str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys or identifier types (as property keys) from the \&quot;LegalEntity\&quot; domain              to include for each legal entity, or from any domain that supports relationships to decorate onto related entities.              These take the format {domain}/{scope}/{code} e.g. \&quot;LegalEntity/ContactDetails/Address\&quot;. | [optional] 
- **relationship_definition_ids** | [**List[str]**](str.md)| A list of relationship definitions that are used to decorate related entities              onto each portfolio in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}. | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys or identifier types (as property keys) from the \&quot;LegalEntity\&quot; domain              to include for each legal entity, or from any domain that supports relationships to decorate onto related entities.              These take the format {domain}/{scope}/{code} e.g. \&quot;LegalEntity/ContactDetails/Address\&quot;. | [optional] 
+ **relationship_definition_ids** | [**List[str]**](../model/str.md)| A list of relationship definitions that are used to decorate related entities              onto each portfolio in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}. | [optional] 
 
 ### Return type
 
-[**PagedResourceListOfLegalEntity**](PagedResourceListOfLegalEntity.md)
+[**PagedResourceListOfLegalEntity**](../model/PagedResourceListOfLegalEntity.md)
 
 ### HTTP request headers
 
@@ -711,7 +711,7 @@ Name | Type | Description  | Notes
  **id_type_scope** | **str**| Scope of the Legal Entity identifier. | [required] 
  **id_type_code** | **str**| Code of the Legal Entity identifier. | [required] 
  **code** | **str**| Code of the Legal Entity under specified identifier type&#39;s scope and code. | [required] 
- **access_metadata_operation** | [**List[AccessMetadataOperation]**](AccessMetadataOperation.md)| The Json Patch document | [required] 
+ **access_metadata_operation** | [**List[AccessMetadataOperation]**](../model/AccessMetadataOperation.md)| The Json Patch document | [required] 
  **effective_at** | **str**| The effectiveAt datetime at which to upsert the Access Metadata | [optional] 
  **effective_until** | **datetime**| The effective datetime until which the Access Metadata is valid. If not supplied this will be valid indefinitely, or until the next &#39;effectiveAt&#39; datetime of the Access Metadata | [optional] 
 
@@ -761,11 +761,11 @@ Name | Type | Description  | Notes
  **id_type_scope** | **str**| Scope of the legal entity identifier type. | [required] 
  **id_type_code** | **str**| Code of the legal entity identifier type. | [required] 
  **code** | **str**| Code of the legal entity under specified identifier type&#39;s scope and code. This together with stated identifier type uniquely              identifies the legal entity. | [required] 
- **set_legal_entity_identifiers_request** | [**SetLegalEntityIdentifiersRequest**](SetLegalEntityIdentifiersRequest.md)| Request containing identifiers to set for the legal entity. Identifiers not specified in request will not be changed. | [required] 
+ **set_legal_entity_identifiers_request** | [**SetLegalEntityIdentifiersRequest**](../model/SetLegalEntityIdentifiersRequest.md)| Request containing identifiers to set for the legal entity. Identifiers not specified in request will not be changed. | [required] 
 
 ### Return type
 
-[**LegalEntity**](LegalEntity.md)
+[**LegalEntity**](../model/LegalEntity.md)
 
 ### HTTP request headers
 
@@ -809,11 +809,11 @@ Name | Type | Description  | Notes
  **id_type_scope** | **str**| Scope of the legal entity identifier type. | [required] 
  **id_type_code** | **str**| Code of the legal entity identifier type. | [required] 
  **code** | **str**| Code of the legal entity under specified identifier type&#39;s scope and code. This together with stated identifier type uniquely              identifies the legal entity. | [required] 
- **set_legal_entity_properties_request** | [**SetLegalEntityPropertiesRequest**](SetLegalEntityPropertiesRequest.md)| Request containing properties to set for the legal entity. Properties not specified in request will not be changed. | [required] 
+ **set_legal_entity_properties_request** | [**SetLegalEntityPropertiesRequest**](../model/SetLegalEntityPropertiesRequest.md)| Request containing properties to set for the legal entity. Properties not specified in request will not be changed. | [required] 
 
 ### Return type
 
-[**LegalEntity**](LegalEntity.md)
+[**LegalEntity**](../model/LegalEntity.md)
 
 ### HTTP request headers
 
@@ -853,11 +853,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **success_mode** | **str**| Whether the batch request should fail Atomically or in a Partial fashion - Allowed Values: Atomic, Partial | [required] 
- **request_body** | [**Dict[str, UpsertLegalEntityRequest]**](UpsertLegalEntityRequest.md)| A collection of requests to create or update Legal Entities. | [required] 
+ **request_body** | [**Dict[str, UpsertLegalEntityRequest]**](../model/UpsertLegalEntityRequest.md)| A collection of requests to create or update Legal Entities. | [required] 
 
 ### Return type
 
-[**UpsertLegalEntitiesResponse**](UpsertLegalEntitiesResponse.md)
+[**UpsertLegalEntitiesResponse**](../model/UpsertLegalEntitiesResponse.md)
 
 ### HTTP request headers
 
@@ -895,11 +895,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **upsert_legal_entity_request** | [**UpsertLegalEntityRequest**](UpsertLegalEntityRequest.md)| Request to create or update a legal entity. | [required] 
+ **upsert_legal_entity_request** | [**UpsertLegalEntityRequest**](../model/UpsertLegalEntityRequest.md)| Request to create or update a legal entity. | [required] 
 
 ### Return type
 
-[**LegalEntity**](LegalEntity.md)
+[**LegalEntity**](../model/LegalEntity.md)
 
 ### HTTP request headers
 
@@ -947,13 +947,13 @@ Name | Type | Description  | Notes
  **id_type_code** | **str**| Code of the Legal Entity identifier. | [required] 
  **code** | **str**| Code of the Legal Entity under specified identifier type&#39;s scope and code. | [required] 
  **metadata_key** | **str**| Key of the metadata entry to retrieve | [required] 
- **upsert_legal_entity_access_metadata_request** | [**UpsertLegalEntityAccessMetadataRequest**](UpsertLegalEntityAccessMetadataRequest.md)| The Legal Entity Access Metadata entry to upsert | [required] 
+ **upsert_legal_entity_access_metadata_request** | [**UpsertLegalEntityAccessMetadataRequest**](../model/UpsertLegalEntityAccessMetadataRequest.md)| The Legal Entity Access Metadata entry to upsert | [required] 
  **effective_at** | **str**| The effectiveAt datetime at which to upsert the Access Metadata | [optional] 
  **effective_until** | **datetime**| The effective datetime until which the Access Metadata is valid. If not supplied this will be valid indefinitely, or until the next &#39;effectiveAt&#39; datetime of the Access Metadata | [optional] 
 
 ### Return type
 
-[**ResourceListOfAccessMetadataValueOf**](ResourceListOfAccessMetadataValueOf.md)
+[**ResourceListOfAccessMetadataValueOf**](../model/ResourceListOfAccessMetadataValueOf.md)
 
 ### HTTP request headers
 

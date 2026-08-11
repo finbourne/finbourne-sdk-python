@@ -5,9 +5,9 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
-| **values** | [../model/Dict[str, Quote]](Quote.md) | Optional | The quotes which have been successfully updated or inserted. |
-| **failed** | [../model/Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The quotes that could not be updated or inserted along with a reason for their failure. |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **values** | [Dict[str, Quote]](Quote.md) | Optional | The quotes which have been successfully updated or inserted. |
+| **failed** | [Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The quotes that could not be updated or inserted along with a reason for their failure. |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

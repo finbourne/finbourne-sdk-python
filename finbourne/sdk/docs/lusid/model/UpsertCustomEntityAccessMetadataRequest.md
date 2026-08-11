@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **metadata** | [../model/List[AccessMetadataValue]](AccessMetadataValue.md) | Optional | The access control metadata to assign to a CustomEntity that matches the identifier |
+| **metadata** | [List[AccessMetadataValue]](AccessMetadataValue.md) | Optional | The access control metadata to assign to a CustomEntity that matches the identifier |
 
 
 ## Usage

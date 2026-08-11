@@ -4,14 +4,14 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **display_name** | **str** | Required | The name of the Custom Data Model. |
 | **description** | **str** | Optional | A description for the Custom Data Model. |
 | **entity_type** | **str** | Required | The entity type that the Custom Data Model binds to. |
 | **type** | **str** | Required | Either Root or Leaf or Intermediate. |
 | **precedence** | **int** | Required | Where in the hierarchy this model sits. |
-| **parent** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
-| **children** | [../model/List[DataModelSummary]](DataModelSummary.md) | Required | Child Custom Data Models that will inherit from this data model. |
+| **parent** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **children** | [List[DataModelSummary]](DataModelSummary.md) | Required | Child Custom Data Models that will inherit from this data model. |
 
 
 ## Usage

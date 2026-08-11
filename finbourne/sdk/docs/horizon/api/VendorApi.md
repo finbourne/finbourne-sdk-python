@@ -64,7 +64,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List[LusidField]**](LusidField.md)
+[**List[LusidField]**](../model/LusidField.md)
 
 ### HTTP request headers
 
@@ -110,7 +110,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Dict[str, LusidPropertyDefinitionOverrides]**](LusidPropertyDefinitionOverrides.md)
+[**Dict[str, LusidPropertyDefinitionOverrides]**](../model/LusidPropertyDefinitionOverrides.md)
 
 ### HTTP request headers
 
@@ -156,7 +156,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List[LusidPropertyToVendorFieldMapping]**](LusidPropertyToVendorFieldMapping.md)
+[**List[LusidPropertyToVendorFieldMapping]**](../model/LusidPropertyToVendorFieldMapping.md)
 
 ### HTTP request headers
 
@@ -192,11 +192,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **query_request** | [**QueryRequest**](QueryRequest.md)|  | [required] 
+ **query_request** | [**QueryRequest**](../model/QueryRequest.md)|  | [required] 
 
 ### Return type
 
-[**PagedResourceListOfVendorProduct**](PagedResourceListOfVendorProduct.md)
+[**PagedResourceListOfVendorProduct**](../model/PagedResourceListOfVendorProduct.md)
 
 ### HTTP request headers
 
@@ -239,12 +239,12 @@ Name | Type | Description  | Notes
  **vendor_name** | **str**|  | [required] 
  **product_name** | **str**|  | [required] 
  **lusid_entity_type** | **str**|  | [required] 
- **request_body** | [**Dict[str, LusidPropertyDefinitionOverrides]**](LusidPropertyDefinitionOverrides.md)|  | [required] 
+ **request_body** | [**Dict[str, LusidPropertyDefinitionOverrides]**](../model/LusidPropertyDefinitionOverrides.md)|  | [required] 
  **lusid_entity_sub_type** | **str**|  | [optional] 
 
 ### Return type
 
-[**Dict[str, LusidPropertyDefinitionOverridesResponse]**](LusidPropertyDefinitionOverridesResponse.md)
+[**Dict[str, LusidPropertyDefinitionOverridesResponse]**](../model/LusidPropertyDefinitionOverridesResponse.md)
 
 ### HTTP request headers
 

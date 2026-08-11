@@ -4,10 +4,10 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **display_name** | **str** | Required | The name of the Timeline. |
 | **description** | **str** | Optional | A description for the Timeline. |
-| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | The Timelines properties. These will be from the &#39;Timeline&#39; domain. |
+| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | The Timelines properties. These will be from the &#39;Timeline&#39; domain. |
 
 
 ## Usage

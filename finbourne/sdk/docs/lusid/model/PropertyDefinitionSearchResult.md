@@ -9,7 +9,7 @@ A property definition search result
 | **key** | **str** | Optional | The property key which uniquely identifies the property. The format for the property key is {domain}/{scope}/{code}, e.g. &#39;Portfolio/Manager/Id&#39;. |
 | **value_type** | **str** | Optional | The type of values that can be associated with this property. This is defined by the property&#39;s data type. Available values: String, Int, Decimal, DateTime, Boolean, Map, List, PropertyArray, Percentage, Code, Id, Uri, CurrencyAndAmount, TradePrice, Currency, MetricValue, ResourceId, ResultValue, CutLocalTime, DateOrCutLabel, UnindexedText. |
 | **display_name** | **str** | Optional | The display name of the property. |
-| **data_type_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **data_type_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **type** | **str** | Optional | The type of the property. Available values: Label, Metric, Information. |
 | **unit_schema** | **str** | Optional | The units that can be associated with the property&#39;s values. This is defined by the property&#39;s data type. Available values: NoUnits, Basic, Iso4217Currency. |
 | **domain** | **str** | Optional | The domain that the property exists in. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, TaskDefinition, Workflow, IdentifierDefinition, SettlementInstruction, TransactionFeeType, PaymentInstruction. |
@@ -22,7 +22,7 @@ A property definition search result
 | **property_description** | **str** | Optional | A brief description of what a property of this property definition contains. |
 | **derivation_formula** | **str** | Optional | The rule that defines how data is composed for a derived property. |
 | **is_filterable** | **bool** | Optional | Bool indicating whether the values of this property are fitlerable, this is true for all non-derived property defintions.  For a derived definition this must be set true to enable filtering. |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

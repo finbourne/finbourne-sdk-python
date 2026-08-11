@@ -5,8 +5,8 @@ Returns entity, used for configuring the calculation of aggregated returns.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
-| **recipe_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **recipe_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **recipe_entity** | **str** | Optional | Entity a recipe is retrieved from for use in the aggregated returns calculation. Either RecipeId or RecipeEntity must be specified. Available values: Portfolio, PortfolioGroup, ABOR. |
 | **fee_handling** | **str** | Optional | Configures how fees are handled in the aggregated returns calculation. Available values: Net, Gross. |
 | **flow_handling** | **str** | Optional | Configures how flows are handled in the aggregated returns calculation. Available values: BeginningOfDay, EndOfDay. |

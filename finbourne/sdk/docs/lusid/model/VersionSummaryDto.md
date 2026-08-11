@@ -7,7 +7,7 @@
 | **api_version** | **str** | Optional | *No description available.* |
 | **build_version** | **str** | Optional | *No description available.* |
 | **excel_version** | **str** | Optional | *No description available.* |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

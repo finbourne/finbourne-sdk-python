@@ -6,7 +6,7 @@ Parameters of view
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **name** | **str** | Required | Name of the provider |
-| **data_type** | [../model/DataType](DataType.md) | Required | *No description available.* |
+| **data_type** | [DataType](DataType.md) | Required | *No description available.* |
 | **value** | **str** | Required | Value of the provider |
 | **is_table_data_mandatory** | **bool** | Optional | Should this be selected? False would imply it is only being filtered on. Ignored when Aggregations are present |
 | **description** | **str** | Optional | Description of the parameter |

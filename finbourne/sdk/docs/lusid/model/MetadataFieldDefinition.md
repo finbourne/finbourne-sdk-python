@@ -7,7 +7,7 @@
 | **field_name** | **str** | Required | The unique identifier for the metadata field. |
 | **display_name** | **str** | Optional | A user-friendly display name for the metadata field. |
 | **description** | **str** | Optional | A detailed description of the metadata field and its purpose. |
-| **data_type_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **data_type_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 
 
 ## Usage

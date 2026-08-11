@@ -8,9 +8,9 @@ Information held about the minting / revoking of a certificate. It does *not* co
 | **key** | **str** | Optional | The \&quot;key\&quot; to which this belongs in the dictionary, basically the CN without any version information |
 | **version** | **int** | Optional | The version of this certificate |
 | **common_name** | **str** | Optional | The common Name of the Certificate |
-| **type** | [../model/CertificateType](CertificateType.md) | Optional | *No description available.* |
-| **creation_status** | [../model/CertificateStatus](CertificateStatus.md) | Optional | *No description available.* |
-| **revocation_status** | [../model/CertificateStatus](CertificateStatus.md) | Optional | *No description available.* |
+| **type** | [CertificateType](CertificateType.md) | Optional | *No description available.* |
+| **creation_status** | [CertificateStatus](CertificateStatus.md) | Optional | *No description available.* |
+| **revocation_status** | [CertificateStatus](CertificateStatus.md) | Optional | *No description available.* |
 | **validity_start** | **datetime** | Optional | The earliest point at which a certificate can be used |
 | **validity_end** | **datetime** | Optional | The latest point at which a certificate can be used |
 | **revoked_at** | **datetime** | Optional | The point at which this was revoked, if any |
@@ -19,7 +19,7 @@ Information held about the minting / revoking of a certificate. It does *not* co
 | **permissions_set_at** | **datetime** | Optional | The point at which permissions were adjusted by the system |
 | **created_by** | **str** | Optional | The user which created this |
 | **serial_number** | **str** | Optional | The Vault-issued serial number of the certificate, if any - used for revocation |
-| **links** | [../model/List[Link]](Link.md) | Optional | The location within Configuration Store that this is saved to |
+| **links** | [List[Link]](Link.md) | Optional | The location within Configuration Store that this is saved to |
 
 
 ## Usage

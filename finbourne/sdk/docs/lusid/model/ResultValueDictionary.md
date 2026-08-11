@@ -5,7 +5,7 @@ Result value for a collection of key-value pairs. Used for diagnostics associate
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **elements** | [../model/Dict[str, ResultValue]](ResultValue.md) | Optional | The dictionary elements |
+| **elements** | [Dict[str, ResultValue]](ResultValue.md) | Optional | The dictionary elements |
 | **result_value_type** | **str** | Required | Available values: ResultValue, ResultValueDictionary, ResultValue0D, ResultValueDecimal, ResultValueInt, ResultValueString, ResultValueBool, ResultValueCurrency, CashFlowValue, CashFlowValueSet, ResultValueLifeCycleEventValue, ResultValueDateTimeOffset. |
 
 

@@ -6,7 +6,7 @@ Dto used to request creating a user's role
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **user_id** | **str** | Required | The Id of the user for whom to create the role. |
-| **resource** | [../model/PolicyIdRoleResource](PolicyIdRoleResource.md) | Required | *No description available.* |
+| **resource** | [PolicyIdRoleResource](PolicyIdRoleResource.md) | Required | *No description available.* |
 
 
 ## Usage

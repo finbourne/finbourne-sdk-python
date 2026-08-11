@@ -4,12 +4,12 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **display_name** | **str** | Required | The name of the ruleset |
 | **reconciliation_type** | **str** | Required | The type of reconciliation to perform. Available values: Holding, Transaction, Valuation, CashHolding. |
-| **filters** | [../model/GroupReconciliationFilters](GroupReconciliationFilters.md) | Optional | *No description available.* |
-| **core_attribute_rules** | [../model/List[GroupReconciliationCoreAttributeRule]](GroupReconciliationCoreAttributeRule.md) | Required | The core comparison rules |
-| **aggregate_attribute_rules** | [../model/List[GroupReconciliationAggregateAttributeRule]](GroupReconciliationAggregateAttributeRule.md) | Required | The aggregate comparison rules |
+| **filters** | [GroupReconciliationFilters](GroupReconciliationFilters.md) | Optional | *No description available.* |
+| **core_attribute_rules** | [List[GroupReconciliationCoreAttributeRule]](GroupReconciliationCoreAttributeRule.md) | Required | The core comparison rules |
+| **aggregate_attribute_rules** | [List[GroupReconciliationAggregateAttributeRule]](GroupReconciliationAggregateAttributeRule.md) | Required | The aggregate comparison rules |
 
 
 ## Usage

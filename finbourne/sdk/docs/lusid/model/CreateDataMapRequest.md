@@ -5,8 +5,8 @@ Request to create a new data map
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [../model/DataMapKey](DataMapKey.md) | Required | *No description available.* |
-| **data** | [../model/DataMapping](DataMapping.md) | Optional | *No description available.* |
+| **id** | [DataMapKey](DataMapKey.md) | Required | *No description available.* |
+| **data** | [DataMapping](DataMapping.md) | Optional | *No description available.* |
 
 
 ## Usage

@@ -8,7 +8,7 @@
 | **display_name** | **str** | Optional | The name of the Rule Set. |
 | **description** | **str** | Optional | A description for the Rule Set. |
 | **rule_set_filter** | **str** | Optional | A filter for the Rule Set to filter entity instances the rule set applies to. |
-| **rules** | [../model/List[CheckDefinitionRule]](CheckDefinitionRule.md) | Optional | A collection of rules for the Rule Set. |
+| **rules** | [List[CheckDefinitionRule]](CheckDefinitionRule.md) | Optional | A collection of rules for the Rule Set. |
 
 
 ## Usage

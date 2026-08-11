@@ -10,9 +10,9 @@ The Client facing representation of a NetworkZone
 | **description** | **str** | Optional | The Description of the Network Zone |
 | **created_at** | **datetime** | Optional | Network Zone Creation timestamp |
 | **updated_at** | **datetime** | Optional | Timestamp of the last update |
-| **network_zone_ips** | [../model/List[IpAddressDefinition]](IpAddressDefinition.md) | Optional | Network zone IP information (IPs and CIDR ranges) |
+| **network_zone_ips** | [List[IpAddressDefinition]](IpAddressDefinition.md) | Optional | Network zone IP information (IPs and CIDR ranges) |
 | **action** | **str** | Optional | Kind of action to apply when a request matches this Network Zone (Block/Allow/NoOp) |
-| **apply_rules** | [../model/NetworkZonesApplyRules](NetworkZonesApplyRules.md) | Optional | *No description available.* |
+| **apply_rules** | [NetworkZonesApplyRules](NetworkZonesApplyRules.md) | Optional | *No description available.* |
 | **created_by** | **str** | Optional | User Id that created the Network Zone |
 | **updated_by** | **str** | Optional | User Id of the last update on the Network Zone |
 

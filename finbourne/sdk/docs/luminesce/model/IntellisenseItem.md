@@ -10,7 +10,7 @@ Representation of an item in an Intellisense popup
 | **meta** | **str** | Optional | The light-grey text shown to the right of the Caption in the popup |
 | **score** | **int** | Optional | How important is this.  Bigger is more important. |
 | **doc_html** | **str** | Optional | Popup further info (as in a whole documentation article!) |
-| **type** | [../model/IntellisenseType](IntellisenseType.md) | Optional | *No description available.* |
+| **type** | [IntellisenseType](IntellisenseType.md) | Optional | *No description available.* |
 
 
 ## Usage

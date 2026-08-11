@@ -5,7 +5,7 @@ Extra policy template metadata information, used during a generation request
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **template_selection** | [../model/List[TemplateSelection]](TemplateSelection.md) | Optional | List of policy templates used for a generation request |
+| **template_selection** | [List[TemplateSelection]](TemplateSelection.md) | Optional | List of policy templates used for a generation request |
 | **build_as_at** | **datetime** | Optional | Policy template build AsAt time used for a generation request |
 
 

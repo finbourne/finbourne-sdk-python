@@ -56,11 +56,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_external_token_issuer_request** | [**CreateExternalTokenIssuerRequest**](CreateExternalTokenIssuerRequest.md)|  | [required] 
+ **create_external_token_issuer_request** | [**CreateExternalTokenIssuerRequest**](../model/CreateExternalTokenIssuerRequest.md)|  | [required] 
 
 ### Return type
 
-[**ExternalTokenIssuerResponse**](ExternalTokenIssuerResponse.md)
+[**ExternalTokenIssuerResponse**](../model/ExternalTokenIssuerResponse.md)
 
 ### HTTP request headers
 
@@ -143,7 +143,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExternalTokenIssuerResponse**](ExternalTokenIssuerResponse.md)
+[**ExternalTokenIssuerResponse**](../model/ExternalTokenIssuerResponse.md)
 
 ### HTTP request headers
 
@@ -181,7 +181,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**List[ExternalTokenIssuerResponse]**](ExternalTokenIssuerResponse.md)
+[**List[ExternalTokenIssuerResponse]**](../model/ExternalTokenIssuerResponse.md)
 
 ### HTTP request headers
 
@@ -220,11 +220,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **code** | **str**| Identifier of the External Token Issuer to update | [required] 
- **update_external_token_issuer_request** | [**UpdateExternalTokenIssuerRequest**](UpdateExternalTokenIssuerRequest.md)|  | [required] 
+ **update_external_token_issuer_request** | [**UpdateExternalTokenIssuerRequest**](../model/UpdateExternalTokenIssuerRequest.md)|  | [required] 
 
 ### Return type
 
-[**ExternalTokenIssuerResponse**](ExternalTokenIssuerResponse.md)
+[**ExternalTokenIssuerResponse**](../model/ExternalTokenIssuerResponse.md)
 
 ### HTTP request headers
 

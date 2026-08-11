@@ -8,8 +8,8 @@ Representation of an Investor on the LUSID API
 | **investor_type** | **str** | Optional | The type of the Investor |
 | **identifiers** | **Dict[str, Optional[str]]** | Optional | The identifiers of the Investor |
 | **entity_unique_id** | **str** | Optional | The unique Investor entity identifier |
-| **person** | [../model/Person](Person.md) | Optional | *No description available.* |
-| **legal_entity** | [../model/LegalEntity](LegalEntity.md) | Optional | *No description available.* |
+| **person** | [Person](Person.md) | Optional | *No description available.* |
+| **legal_entity** | [LegalEntity](LegalEntity.md) | Optional | *No description available.* |
 
 
 ## Usage

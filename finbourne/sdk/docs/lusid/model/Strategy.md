@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **keys** | [../model/List[PerpetualProperty]](PerpetualProperty.md) | Required | *No description available.* |
+| **keys** | [List[PerpetualProperty]](PerpetualProperty.md) | Required | *No description available.* |
 | **value_type** | **str** | Required | Available values: Units, Weight. |
 | **value** | **float** | Required | *No description available.* |
 

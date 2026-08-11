@@ -5,11 +5,11 @@ Contains required info to create a new Workflow
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **display_name** | **str** | Required | Human readable name |
 | **description** | **str** | Optional | Human readable description |
-| **root_task_definition_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
-| **properties** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | The properties to set on the Workflow, keyed by property key. Optional. |
+| **root_task_definition_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | The properties to set on the Workflow, keyed by property key. Optional. |
 
 
 ## Usage

@@ -5,7 +5,7 @@ Class that models a set of instruments of which each has some quantity and can b
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **instruments** | [../model/List[WeightedInstrument]](WeightedInstrument.md) | Required | The instruments that are held in the set. |
+| **instruments** | [List[WeightedInstrument]](WeightedInstrument.md) | Required | The instruments that are held in the set. |
 
 
 ## Usage

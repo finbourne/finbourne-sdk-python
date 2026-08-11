@@ -6,8 +6,8 @@ Result class for a cash flow value
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **payment_date** | **datetime** | Required | The payment date of the cash flow |
-| **diagnostics** | [../model/ResultValueDictionary](ResultValueDictionary.md) | Optional | *No description available.* |
-| **cash_flow_lineage** | [../model/CashFlowLineage](CashFlowLineage.md) | Optional | *No description available.* |
+| **diagnostics** | [ResultValueDictionary](ResultValueDictionary.md) | Optional | *No description available.* |
+| **cash_flow_lineage** | [CashFlowLineage](CashFlowLineage.md) | Optional | *No description available.* |
 | **payment_amount** | **float** | Required | The amount paid or received |
 | **payment_ccy** | **str** | Required | The currency of the transaction |
 | **result_value_type** | **str** | Required | Available values: ResultValue, ResultValueDictionary, ResultValue0D, ResultValueDecimal, ResultValueInt, ResultValueString, ResultValueBool, ResultValueCurrency, CashFlowValue, CashFlowValueSet, ResultValueLifeCycleEventValue, ResultValueDateTimeOffset. |

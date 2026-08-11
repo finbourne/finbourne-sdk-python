@@ -8,7 +8,7 @@
 | **code** | **str** | Required | *No description available.* |
 | **display_name** | **str** | Optional | *No description available.* |
 | **description** | **str** | Optional | *No description available.* |
-| **shifts** | [../model/List[ScenarioShiftDefinition]](ScenarioShiftDefinition.md) | Optional | *No description available.* |
+| **shifts** | [List[ScenarioShiftDefinition]](ScenarioShiftDefinition.md) | Optional | *No description available.* |
 
 
 ## Usage

@@ -6,10 +6,10 @@ A single filter applied to a queryable log field. Exactly one comparator (Finbou
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **var_field** | **str** | Required | The name of the field to filter on (case-insensitive). Must be a filterable field of the queried log type. |
-| **text** | [../model/TextComparator](TextComparator.md) | Optional | *No description available.* |
-| **numeric** | [../model/NumericComparator](NumericComparator.md) | Optional | *No description available.* |
-| **var_date** | [../model/DateComparator](DateComparator.md) | Optional | *No description available.* |
-| **boolean** | [../model/BooleanComparator](BooleanComparator.md) | Optional | *No description available.* |
+| **text** | [TextComparator](TextComparator.md) | Optional | *No description available.* |
+| **numeric** | [NumericComparator](NumericComparator.md) | Optional | *No description available.* |
+| **var_date** | [DateComparator](DateComparator.md) | Optional | *No description available.* |
+| **boolean** | [BooleanComparator](BooleanComparator.md) | Optional | *No description available.* |
 
 
 ## Usage

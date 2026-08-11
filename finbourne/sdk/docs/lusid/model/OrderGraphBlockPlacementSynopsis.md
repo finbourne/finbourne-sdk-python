@@ -8,7 +8,7 @@
 | **quantity_by_state** | **Dict[str, float]** | Optional | Total number of units placed. |
 | **amount** | **float** | Optional | Total monetary value placed, in the block currency. |
 | **amount_by_state** | **Dict[str, float]** | Optional | Total monetary value placed, broken down by placement state. |
-| **details** | [../model/List[OrderGraphBlockPlacementDetail]](OrderGraphBlockPlacementDetail.md) | Required | Identifiers for each placement in this block. |
+| **details** | [List[OrderGraphBlockPlacementDetail]](OrderGraphBlockPlacementDetail.md) | Required | Identifiers for each placement in this block. |
 
 
 ## Usage

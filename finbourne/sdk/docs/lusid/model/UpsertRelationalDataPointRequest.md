@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **data_series** | [../model/DataSeries](DataSeries.md) | Required | *No description available.* |
+| **data_series** | [DataSeries](DataSeries.md) | Required | *No description available.* |
 | **effective_at** | **str** | Required | The effectiveAt or cut-label datetime of the DataPoint. |
 | **value_fields** | **Dict[str, Optional[object]]** | Required | The values associated with the DataPoint, structured according to the FieldSchema of the parent RelationalDatasetDefinition. |
 | **meta_data_fields** | **Dict[str, Optional[object]]** | Optional | The metadata associated with the DataPoint, structured according to the FieldSchema of the parent RelationalDatasetDefinition. |

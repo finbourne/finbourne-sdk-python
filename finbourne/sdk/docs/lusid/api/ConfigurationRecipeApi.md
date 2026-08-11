@@ -68,7 +68,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AnnulSingleStructuredDataResponse**](AnnulSingleStructuredDataResponse.md)
+[**AnnulSingleStructuredDataResponse**](../model/AnnulSingleStructuredDataResponse.md)
 
 ### HTTP request headers
 
@@ -112,7 +112,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AnnulSingleStructuredDataResponse**](AnnulSingleStructuredDataResponse.md)
+[**AnnulSingleStructuredDataResponse**](../model/AnnulSingleStructuredDataResponse.md)
 
 ### HTTP request headers
 
@@ -158,7 +158,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetRecipeResponse**](GetRecipeResponse.md)
+[**GetRecipeResponse**](../model/GetRecipeResponse.md)
 
 ### HTTP request headers
 
@@ -204,7 +204,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetRecipeResponse**](GetRecipeResponse.md)
+[**GetRecipeResponse**](../model/GetRecipeResponse.md)
 
 ### HTTP request headers
 
@@ -250,7 +250,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetRecipeComposerResponse**](GetRecipeComposerResponse.md)
+[**GetRecipeComposerResponse**](../model/GetRecipeComposerResponse.md)
 
 ### HTTP request headers
 
@@ -288,11 +288,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **upsert_recipe_composer_request** | [**UpsertRecipeComposerRequest**](UpsertRecipeComposerRequest.md)| Recipe composer used to expand into the Configuration Recipe. | [required] 
+ **upsert_recipe_composer_request** | [**UpsertRecipeComposerRequest**](../model/UpsertRecipeComposerRequest.md)| Recipe composer used to expand into the Configuration Recipe. | [required] 
 
 ### Return type
 
-[**GetRecipeResponse**](GetRecipeResponse.md)
+[**GetRecipeResponse**](../model/GetRecipeResponse.md)
 
 ### HTTP request headers
 
@@ -336,7 +336,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfGetRecipeResponse**](ResourceListOfGetRecipeResponse.md)
+[**ResourceListOfGetRecipeResponse**](../model/ResourceListOfGetRecipeResponse.md)
 
 ### HTTP request headers
 
@@ -380,7 +380,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfGetRecipeResponse**](ResourceListOfGetRecipeResponse.md)
+[**ResourceListOfGetRecipeResponse**](../model/ResourceListOfGetRecipeResponse.md)
 
 ### HTTP request headers
 
@@ -424,7 +424,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfGetRecipeComposerResponse**](ResourceListOfGetRecipeComposerResponse.md)
+[**ResourceListOfGetRecipeComposerResponse**](../model/ResourceListOfGetRecipeComposerResponse.md)
 
 ### HTTP request headers
 
@@ -462,11 +462,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **upsert_recipe_request** | [**UpsertRecipeRequest**](UpsertRecipeRequest.md)| The Configuration Recipe to update or insert | [required] 
+ **upsert_recipe_request** | [**UpsertRecipeRequest**](../model/UpsertRecipeRequest.md)| The Configuration Recipe to update or insert | [required] 
 
 ### Return type
 
-[**UpsertSingleStructuredDataResponse**](UpsertSingleStructuredDataResponse.md)
+[**UpsertSingleStructuredDataResponse**](../model/UpsertSingleStructuredDataResponse.md)
 
 ### HTTP request headers
 
@@ -504,11 +504,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **upsert_recipe_composer_request** | [**UpsertRecipeComposerRequest**](UpsertRecipeComposerRequest.md)| The Recipe Composer to update or insert | [required] 
+ **upsert_recipe_composer_request** | [**UpsertRecipeComposerRequest**](../model/UpsertRecipeComposerRequest.md)| The Recipe Composer to update or insert | [required] 
 
 ### Return type
 
-[**UpsertSingleStructuredDataResponse**](UpsertSingleStructuredDataResponse.md)
+[**UpsertSingleStructuredDataResponse**](../model/UpsertSingleStructuredDataResponse.md)
 
 ### HTTP request headers
 

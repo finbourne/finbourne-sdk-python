@@ -54,7 +54,7 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **type** | [**LuminesceBinaryType**](.md)| Type of binary to download (each requires separate licenses and entitlements) | [optional] 
+ **type** | [**LuminesceBinaryType**](../model/.md)| Type of binary to download (each requires separate licenses and entitlements) | [optional] 
  **version** | **str**| An explicit version of the binary.  Leave blank to get the latest version (recommended) | [optional] 
 
 ### Return type
@@ -97,7 +97,7 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **type** | [**LuminesceBinaryType**](.md)| Type of binary to fetch available versions of | [optional] 
+ **type** | [**LuminesceBinaryType**](../model/.md)| Type of binary to fetch available versions of | [optional] 
 
 ### Return type
 

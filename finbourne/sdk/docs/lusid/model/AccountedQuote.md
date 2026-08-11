@@ -5,7 +5,7 @@ The Valuation Point quote response for a Fund, including the origin of the quote
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **quote** | [../model/Quote](Quote.md) | Optional | *No description available.* |
+| **quote** | [Quote](Quote.md) | Optional | *No description available.* |
 | **valuation_point_origin** | **str** | Optional | Designates if the quote was originally part of the Valuation Point or if it was added as part of a Complex Close action. Available values: None, Original, Added, OriginalAndAdded. |
 | **added_origin_valuation_point_code** | **str** | Optional | The Valuation Point code, only for quotes added as part of a Complex Close action. |
 | **added_origin_valuation_point_variant_code** | **str** | Optional | The Valuation Point variant code, only for quotes added as part of a Complex Close action. |

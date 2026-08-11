@@ -58,11 +58,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope that identifies a subscription | [required] 
  **code** | **str**| The code that identifies a subscription | [required] 
- **create_notification_request** | [**CreateNotificationRequest**](CreateNotificationRequest.md)| The data to create a notification | [required] 
+ **create_notification_request** | [**CreateNotificationRequest**](../model/CreateNotificationRequest.md)| The data to create a notification | [required] 
 
 ### Return type
 
-[**Notification**](Notification.md)
+[**Notification**](../model/Notification.md)
 
 ### HTTP request headers
 
@@ -150,7 +150,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Notification**](Notification.md)
+[**Notification**](../model/Notification.md)
 
 ### HTTP request headers
 
@@ -193,7 +193,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfNotification**](ResourceListOfNotification.md)
+[**ResourceListOfNotification**](../model/ResourceListOfNotification.md)
 
 ### HTTP request headers
 
@@ -236,11 +236,11 @@ Name | Type | Description  | Notes
  **scope** | **str**| The scope that identifies a subscription | [required] 
  **code** | **str**| The code that identifies a subscription | [required] 
  **id** | **str**| The unique identifier of the notification | [required] 
- **update_notification_request** | [**UpdateNotificationRequest**](UpdateNotificationRequest.md)| The data to update a notification | [required] 
+ **update_notification_request** | [**UpdateNotificationRequest**](../model/UpdateNotificationRequest.md)| The data to update a notification | [required] 
 
 ### Return type
 
-[**Notification**](Notification.md)
+[**Notification**](../model/Notification.md)
 
 ### HTTP request headers
 

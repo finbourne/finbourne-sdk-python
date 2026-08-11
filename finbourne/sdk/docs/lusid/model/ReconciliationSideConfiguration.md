@@ -5,7 +5,7 @@ Specification for one side of a valuations/positions scheduled reconciliation
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **recipe_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **recipe_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **effective_at** | **datetime** | Optional | *No description available.* |
 | **as_at** | **datetime** | Optional | *No description available.* |
 | **currency** | **str** | Optional | *No description available.* |

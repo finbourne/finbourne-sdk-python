@@ -60,7 +60,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BackgroundQueryCancelResponse**](BackgroundQueryCancelResponse.md)
+[**BackgroundQueryCancelResponse**](../model/BackgroundQueryCancelResponse.md)
 
 ### HTTP request headers
 
@@ -210,7 +210,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BackgroundQueryResponse**](BackgroundQueryResponse.md)
+[**BackgroundQueryResponse**](../model/BackgroundQueryResponse.md)
 
 ### HTTP request headers
 
@@ -250,7 +250,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BackgroundQueryProgressResponse**](BackgroundQueryProgressResponse.md)
+[**BackgroundQueryProgressResponse**](../model/BackgroundQueryProgressResponse.md)
 
 ### HTTP request headers
 

@@ -7,7 +7,7 @@ Representation of a set of inlined properties for a given provider so that SQL c
 |------|------|----------|-------------|
 | **provider_name** | **str** | Optional | The provider name for which these properties are to be inlined |
 | **provider_name_extension** | **str** | Optional | The provider extension name for extended providers |
-| **inlined_property_items** | [../model/List[InlinedPropertyItem]](InlinedPropertyItem.md) | Optional | Collection of Inlined properties |
+| **inlined_property_items** | [List[InlinedPropertyItem]](InlinedPropertyItem.md) | Optional | Collection of Inlined properties |
 
 
 ## Usage

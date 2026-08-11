@@ -4,9 +4,9 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **left** | [../model/GroupReconciliationAggregateComparisonRuleOperand](GroupReconciliationAggregateComparisonRuleOperand.md) | Required | *No description available.* |
-| **right** | [../model/GroupReconciliationAggregateComparisonRuleOperand](GroupReconciliationAggregateComparisonRuleOperand.md) | Required | *No description available.* |
-| **tolerance** | [../model/GroupReconciliationComparisonRuleTolerance](GroupReconciliationComparisonRuleTolerance.md) | Optional | *No description available.* |
+| **left** | [GroupReconciliationAggregateComparisonRuleOperand](GroupReconciliationAggregateComparisonRuleOperand.md) | Required | *No description available.* |
+| **right** | [GroupReconciliationAggregateComparisonRuleOperand](GroupReconciliationAggregateComparisonRuleOperand.md) | Required | *No description available.* |
+| **tolerance** | [GroupReconciliationComparisonRuleTolerance](GroupReconciliationComparisonRuleTolerance.md) | Optional | *No description available.* |
 
 
 ## Usage

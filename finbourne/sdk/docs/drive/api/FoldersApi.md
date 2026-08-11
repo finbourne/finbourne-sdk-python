@@ -56,11 +56,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_folder** | [**CreateFolder**](CreateFolder.md)| A CreateFolder object that defines the name and path of the new folder | [required] 
+ **create_folder** | [**CreateFolder**](../model/CreateFolder.md)| A CreateFolder object that defines the name and path of the new folder | [required] 
 
 ### Return type
 
-[**StorageObject**](StorageObject.md)
+[**StorageObject**](../model/StorageObject.md)
 
 ### HTTP request headers
 
@@ -140,7 +140,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StorageObject**](StorageObject.md)
+[**StorageObject**](../model/StorageObject.md)
 
 ### HTTP request headers
 
@@ -184,14 +184,14 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Unique ID of the folder | [required] 
  **page** | **str**| The pagination token to use to continue listing contents from a previous call to list contents.             This value is returned from the previous call. If a pagination token is provided the sortBy and filter fields             must not have changed since the original request. Also, if set, a start value cannot be provided. | [optional] 
- **sort_by** | [**List[str]**](str.md)| Order the results by these fields. Use use the &#39;-&#39; sign to denote descending order. | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| Order the results by these fields. Use use the &#39;-&#39; sign to denote descending order. | [optional] 
  **start** | **int**| When paginating, skip this number of results. | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many. | [optional] 
  **filter** | **str**| Expression to filter the result set. | [optional] [default to &#39;&#39;]
 
 ### Return type
 
-[**PagedResourceListOfStorageObject**](PagedResourceListOfStorageObject.md)
+[**PagedResourceListOfStorageObject**](../model/PagedResourceListOfStorageObject.md)
 
 ### HTTP request headers
 
@@ -233,14 +233,14 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **page** | **str**| The pagination token to use to continue listing contents from a previous call to list contents.             This value is returned from the previous call. If a pagination token is provided the sortBy and filter fields             must not have changed since the original request. Also, if set, a start value cannot be provided. | [optional] 
- **sort_by** | [**List[str]**](str.md)| Order the results by these fields. Use use the &#39;-&#39; sign to denote descending order. | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| Order the results by these fields. Use use the &#39;-&#39; sign to denote descending order. | [optional] 
  **start** | **int**| When paginating, skip this number of results. | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many. | [optional] 
  **filter** | **str**| Expression to filter the result set. | [optional] [default to &#39;true&#39;]
 
 ### Return type
 
-[**PagedResourceListOfStorageObject**](PagedResourceListOfStorageObject.md)
+[**PagedResourceListOfStorageObject**](../model/PagedResourceListOfStorageObject.md)
 
 ### HTTP request headers
 
@@ -280,13 +280,13 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Unique ID of the folder where the files should be moved | [required] 
- **request_body** | [**List[str]**](str.md)| Enumerable of unique IDs of files that should be moved | [required] 
+ **request_body** | [**List[str]**](../model/str.md)| Enumerable of unique IDs of files that should be moved | [required] 
  **overwrite** | **bool**| True if the destination has file with same name if should be overwritten | [optional] [default to False]
  **delete_source** | **bool**| If true after moving the original file is deleted | [optional] [default to False]
 
 ### Return type
 
-[**PagedResourceListOfStorageObject**](PagedResourceListOfStorageObject.md)
+[**PagedResourceListOfStorageObject**](../model/PagedResourceListOfStorageObject.md)
 
 ### HTTP request headers
 
@@ -326,11 +326,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Unique ID of the folder | [required] 
- **update_folder** | [**UpdateFolder**](UpdateFolder.md)| An UpdateFolder object that defines the new name or path of the folder | [required] 
+ **update_folder** | [**UpdateFolder**](../model/UpdateFolder.md)| An UpdateFolder object that defines the new name or path of the folder | [required] 
 
 ### Return type
 
-[**StorageObject**](StorageObject.md)
+[**StorageObject**](../model/StorageObject.md)
 
 ### HTTP request headers
 

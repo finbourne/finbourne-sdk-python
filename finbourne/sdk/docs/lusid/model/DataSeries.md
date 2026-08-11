@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **series_scope** | **str** | Required | The scope of the DataSeries. |
-| **applicable_entity** | [../model/ApplicableEntity](ApplicableEntity.md) | Required | *No description available.* |
+| **applicable_entity** | [ApplicableEntity](ApplicableEntity.md) | Required | *No description available.* |
 | **series_identifiers** | **Dict[str, Optional[object]]** | Optional | The identifiers that uniquely define this DataSeries, if any, structured according to the FieldSchema of the parent RelationalDatasetDefinition. |
 
 

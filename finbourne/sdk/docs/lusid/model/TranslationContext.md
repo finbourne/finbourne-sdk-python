@@ -6,7 +6,7 @@ Options for overriding default scripted translation configuration.
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **disable_scripted_translation** | **bool** | Optional | *No description available.* |
-| **script_map** | [../model/ScriptMapReference](ScriptMapReference.md) | Optional | *No description available.* |
+| **script_map** | [ScriptMapReference](ScriptMapReference.md) | Optional | *No description available.* |
 
 
 ## Usage

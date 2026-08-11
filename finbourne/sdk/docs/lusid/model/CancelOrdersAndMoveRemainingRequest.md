@@ -5,9 +5,9 @@ A request to create or update a Order.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **cancel_order_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
-| **move_remaining_to_order_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
-| **move_remaining_to_block_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **cancel_order_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **move_remaining_to_order_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **move_remaining_to_block_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 
 
 ## Usage

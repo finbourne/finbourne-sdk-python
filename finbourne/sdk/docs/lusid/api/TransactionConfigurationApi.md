@@ -68,7 +68,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -114,7 +114,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -158,7 +158,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -204,7 +204,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SideDefinition**](SideDefinition.md)
+[**SideDefinition**](../model/SideDefinition.md)
 
 ### HTTP request headers
 
@@ -252,7 +252,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TransactionType**](TransactionType.md)
+[**TransactionType**](../model/TransactionType.md)
 
 ### HTTP request headers
 
@@ -296,7 +296,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfSideDefinition**](ResourceListOfSideDefinition.md)
+[**ResourceListOfSideDefinition**](../model/ResourceListOfSideDefinition.md)
 
 ### HTTP request headers
 
@@ -381,12 +381,12 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **side** | **str**| The label to uniquely identify the side. | [required] 
- **side_definition_request** | [**SideDefinitionRequest**](SideDefinitionRequest.md)| The side definition to create or replace. | [required] 
+ **side_definition_request** | [**SideDefinitionRequest**](../model/SideDefinitionRequest.md)| The side definition to create or replace. | [required] 
  **scope** | **str**| The scope in which the side exists. When not supplied the scope is &#39;default&#39;. | [optional] [default to &#39;default&#39;]
 
 ### Return type
 
-[**SideDefinition**](SideDefinition.md)
+[**SideDefinition**](../model/SideDefinition.md)
 
 ### HTTP request headers
 
@@ -425,12 +425,12 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sides_definition_request** | [**List[SidesDefinitionRequest]**](SidesDefinitionRequest.md)| The list of side definitions to create, or replace. | [required] 
+ **sides_definition_request** | [**List[SidesDefinitionRequest]**](../model/SidesDefinitionRequest.md)| The list of side definitions to create, or replace. | [required] 
  **scope** | **str**| The scope in which the side exists. When not supplied the scope is &#39;default&#39;. | [optional] [default to &#39;default&#39;]
 
 ### Return type
 
-[**ResourceListOfSideDefinition**](ResourceListOfSideDefinition.md)
+[**ResourceListOfSideDefinition**](../model/ResourceListOfSideDefinition.md)
 
 ### HTTP request headers
 
@@ -473,12 +473,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **source** | **str**| The source to set the transaction configuration for | [required] 
  **type** | **str**| One of the transaction configuration alias types to uniquely identify the configuration. If this type does not exist, then a new transaction type is created using the body of the request in the given source, without including this type | [required] 
- **transaction_type_request** | [**TransactionTypeRequest**](TransactionTypeRequest.md)| The transaction configuration to set | [required] 
+ **transaction_type_request** | [**TransactionTypeRequest**](../model/TransactionTypeRequest.md)| The transaction configuration to set | [required] 
  **scope** | **str**| The scope in which the transaction types exists. When not supplied the scope is &#39;default&#39;. | [optional] [default to &#39;default&#39;]
 
 ### Return type
 
-[**TransactionType**](TransactionType.md)
+[**TransactionType**](../model/TransactionType.md)
 
 ### HTTP request headers
 
@@ -519,12 +519,12 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **source** | **str**| The source to set the transaction types for. | [required] 
- **transaction_type_request** | [**List[TransactionTypeRequest]**](TransactionTypeRequest.md)| The set of transaction types. | [required] 
+ **transaction_type_request** | [**List[TransactionTypeRequest]**](../model/TransactionTypeRequest.md)| The set of transaction types. | [required] 
  **scope** | **str**| The scope in which the transaction types exists. When not supplied the scope is &#39;default&#39;. | [optional] [default to &#39;default&#39;]
 
 ### Return type
 
-[**ResourceListOfTransactionType**](ResourceListOfTransactionType.md)
+[**ResourceListOfTransactionType**](../model/ResourceListOfTransactionType.md)
 
 ### HTTP request headers
 

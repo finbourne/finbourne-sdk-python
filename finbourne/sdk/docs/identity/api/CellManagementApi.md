@@ -61,7 +61,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**CellParentStatusResponse**](CellParentStatusResponse.md)
+[**CellParentStatusResponse**](../model/CellParentStatusResponse.md)
 
 ### HTTP request headers
 
@@ -98,11 +98,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **detach_parent_cell_request** | [**DetachParentCellRequest**](DetachParentCellRequest.md)|  | [required] 
+ **detach_parent_cell_request** | [**DetachParentCellRequest**](../model/DetachParentCellRequest.md)|  | [required] 
 
 ### Return type
 
-[**CellParentStatusResponse**](CellParentStatusResponse.md)
+[**CellParentStatusResponse**](../model/CellParentStatusResponse.md)
 
 ### HTTP request headers
 
@@ -140,7 +140,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**CellParentStatusResponse**](CellParentStatusResponse.md)
+[**CellParentStatusResponse**](../model/CellParentStatusResponse.md)
 
 ### HTTP request headers
 
@@ -177,7 +177,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**CellParentStatusResponse**](CellParentStatusResponse.md)
+[**CellParentStatusResponse**](../model/CellParentStatusResponse.md)
 
 ### HTTP request headers
 
@@ -214,7 +214,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**CellParentStatusResponse**](CellParentStatusResponse.md)
+[**CellParentStatusResponse**](../model/CellParentStatusResponse.md)
 
 ### HTTP request headers
 
@@ -251,11 +251,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **rotate_attaching_key_request** | [**RotateAttachingKeyRequest**](RotateAttachingKeyRequest.md)|  | [required] 
+ **rotate_attaching_key_request** | [**RotateAttachingKeyRequest**](../model/RotateAttachingKeyRequest.md)|  | [required] 
 
 ### Return type
 
-[**CellParentStatusResponse**](CellParentStatusResponse.md)
+[**CellParentStatusResponse**](../model/CellParentStatusResponse.md)
 
 ### HTTP request headers
 
@@ -293,7 +293,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**CellParentStatusResponse**](CellParentStatusResponse.md)
+[**CellParentStatusResponse**](../model/CellParentStatusResponse.md)
 
 ### HTTP request headers
 
@@ -330,11 +330,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **set_attaching_key_request** | [**SetAttachingKeyRequest**](SetAttachingKeyRequest.md)|  | [required] 
+ **set_attaching_key_request** | [**SetAttachingKeyRequest**](../model/SetAttachingKeyRequest.md)|  | [required] 
 
 ### Return type
 
-[**CellParentStatusResponse**](CellParentStatusResponse.md)
+[**CellParentStatusResponse**](../model/CellParentStatusResponse.md)
 
 ### HTTP request headers
 
@@ -372,11 +372,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **set_parent_cell_request** | [**SetParentCellRequest**](SetParentCellRequest.md)|  | [required] 
+ **set_parent_cell_request** | [**SetParentCellRequest**](../model/SetParentCellRequest.md)|  | [required] 
 
 ### Return type
 
-[**CellParentStatusResponse**](CellParentStatusResponse.md)
+[**CellParentStatusResponse**](../model/CellParentStatusResponse.md)
 
 ### HTTP request headers
 
@@ -414,7 +414,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**CellParentStatusResponse**](CellParentStatusResponse.md)
+[**CellParentStatusResponse**](../model/CellParentStatusResponse.md)
 
 ### HTTP request headers
 

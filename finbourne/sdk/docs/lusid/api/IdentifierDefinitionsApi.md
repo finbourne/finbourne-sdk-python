@@ -56,11 +56,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_identifier_definition_request** | [**CreateIdentifierDefinitionRequest**](CreateIdentifierDefinitionRequest.md)| The request defining the new definition | [optional] 
+ **create_identifier_definition_request** | [**CreateIdentifierDefinitionRequest**](../model/CreateIdentifierDefinitionRequest.md)| The request defining the new definition | [optional] 
 
 ### Return type
 
-[**IdentifierDefinition**](IdentifierDefinition.md)
+[**IdentifierDefinition**](../model/IdentifierDefinition.md)
 
 ### HTTP request headers
 
@@ -106,7 +106,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -154,11 +154,11 @@ Name | Type | Description  | Notes
  **identifier_type** | **str**| What the identifier represents. Together with \&quot;domain\&quot; and \&quot;identifierScope\&quot; this uniquely identifies the identifier definition | [required] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the Identifier Definition. Defaults to return              the latest version of the definition if not specified. | [optional] 
  **effective_at** | **str**| The effectiveAt datetime at which to retrieve the Identifier Definitions.              Since Identifier Definitions exist for all effective time, this will only apply to properties (if requested)              on the Identifier Definition. | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the &#39;IdentifierDefinition&#39; domain to decorate onto the Identifier Definition.              These must take the format {domain}/{scope}/{code}. If no properties are specified, then no properties will be returned. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the &#39;IdentifierDefinition&#39; domain to decorate onto the Identifier Definition.              These must take the format {domain}/{scope}/{code}. If no properties are specified, then no properties will be returned. | [optional] 
 
 ### Return type
 
-[**IdentifierDefinition**](IdentifierDefinition.md)
+[**IdentifierDefinition**](../model/IdentifierDefinition.md)
 
 ### HTTP request headers
 
@@ -207,12 +207,12 @@ Name | Type | Description  | Notes
  **page** | **str**| The pagination token to use to continue listing Identifier Definitions from a previous call to list              Identifier Definitions. This value is returned from the previous call. If a pagination token is provided the sortBy,              filter, effectiveAt, and asAt fields must not have changed since the original request. | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many per page. | [optional] 
  **filter** | **str**| Expression to filter the result set. Read more about filtering results from LUSID here:              https://support.lusid.com/filtering-results-from-lusid. | [optional] 
- **sort_by** | [**List[str]**](str.md)| A list of field names to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot; | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the &#39;IdentifierDefinition&#39; domain to decorate onto the Identifier Definition.              These must take the format {domain}/{scope}/{code}. | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| A list of field names to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot; | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the &#39;IdentifierDefinition&#39; domain to decorate onto the Identifier Definition.              These must take the format {domain}/{scope}/{code}. | [optional] 
 
 ### Return type
 
-[**PagedResourceListOfIdentifierDefinition**](PagedResourceListOfIdentifierDefinition.md)
+[**PagedResourceListOfIdentifierDefinition**](../model/PagedResourceListOfIdentifierDefinition.md)
 
 ### HTTP request headers
 
@@ -256,11 +256,11 @@ Name | Type | Description  | Notes
  **domain** | **str**| The type of entity to which the identifier relates. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, TaskDefinition, Workflow, IdentifierDefinition, SettlementInstruction, TransactionFeeType, PaymentInstruction. | [required] 
  **identifier_scope** | **str**| The scope that the identifier exists in | [required] 
  **identifier_type** | **str**| What the identifier represents. Together with \&quot;domain\&quot; and \&quot;identifierScope\&quot; this uniquely identifies the Identifier Definition | [required] 
- **update_identifier_definition_request** | [**UpdateIdentifierDefinitionRequest**](UpdateIdentifierDefinitionRequest.md)| The request containing the updated details of the Identifier Definition. | [optional] 
+ **update_identifier_definition_request** | [**UpdateIdentifierDefinitionRequest**](../model/UpdateIdentifierDefinitionRequest.md)| The request containing the updated details of the Identifier Definition. | [optional] 
 
 ### Return type
 
-[**IdentifierDefinition**](IdentifierDefinition.md)
+[**IdentifierDefinition**](../model/IdentifierDefinition.md)
 
 ### HTTP request headers
 

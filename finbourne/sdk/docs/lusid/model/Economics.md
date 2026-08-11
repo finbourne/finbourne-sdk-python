@@ -6,8 +6,8 @@
 |------|------|----------|-------------|
 | **instrument_scope** | **str** | Optional | The scope in which the instrument lies. |
 | **lusid_instrument_id** | **str** | Required | The unique Lusid Instrument Id (LUID) of the instrument that economics are for. |
-| **sub_holding_keys** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | The sub-holding properties which identify the Economic. Each property will be from the &#39;Transaction&#39; domain. These are configured on a transaction portfolio. |
-| **buckets** | [../model/List[Bucket]](Bucket.md) | Optional | Set of economic data related with each of the side impact of the transaction. |
+| **sub_holding_keys** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | The sub-holding properties which identify the Economic. Each property will be from the &#39;Transaction&#39; domain. These are configured on a transaction portfolio. |
+| **buckets** | [List[Bucket]](Bucket.md) | Optional | Set of economic data related with each of the side impact of the transaction. |
 
 
 ## Usage

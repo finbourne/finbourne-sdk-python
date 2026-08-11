@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -107,7 +107,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ReferenceListResponse**](ReferenceListResponse.md)
+[**ReferenceListResponse**](../model/ReferenceListResponse.md)
 
 ### HTTP request headers
 
@@ -155,7 +155,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PagedResourceListOfReferenceListResponse**](PagedResourceListOfReferenceListResponse.md)
+[**PagedResourceListOfReferenceListResponse**](../model/PagedResourceListOfReferenceListResponse.md)
 
 ### HTTP request headers
 
@@ -193,11 +193,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **reference_list_request** | [**ReferenceListRequest**](ReferenceListRequest.md)| The payload describing the Reference List instance. | [optional] 
+ **reference_list_request** | [**ReferenceListRequest**](../model/ReferenceListRequest.md)| The payload describing the Reference List instance. | [optional] 
 
 ### Return type
 
-[**ReferenceListResponse**](ReferenceListResponse.md)
+[**ReferenceListResponse**](../model/ReferenceListResponse.md)
 
 ### HTTP request headers
 

@@ -6,9 +6,9 @@
 |------|------|----------|-------------|
 | **next_page** | **str** | Optional | *No description available.* |
 | **previous_page** | **str** | Optional | *No description available.* |
-| **values** | [../model/List[IPropertyMapping]](IPropertyMapping.md) | Required | *No description available.* |
+| **values** | [List[IPropertyMapping]](IPropertyMapping.md) | Required | *No description available.* |
 | **href** | **str** | Optional | *No description available.* |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

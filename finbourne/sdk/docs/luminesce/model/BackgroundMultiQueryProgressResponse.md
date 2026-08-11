@@ -5,9 +5,9 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **progress** | **str** | Optional | The full progress log (up to this point at least) |
-| **feedback** | [../model/List[FeedbackEventArgs]](FeedbackEventArgs.md) | Optional | Individual Feedback Messages (to replace Progress).  A given message will be returned from only one call. |
-| **status** | [../model/TaskStatus](TaskStatus.md) | Optional | *No description available.* |
-| **queries** | [../model/List[BackgroundQueryProgressResponse]](BackgroundQueryProgressResponse.md) | Optional | *No description available.* |
+| **feedback** | [List[FeedbackEventArgs]](FeedbackEventArgs.md) | Optional | Individual Feedback Messages (to replace Progress).  A given message will be returned from only one call. |
+| **status** | [TaskStatus](TaskStatus.md) | Optional | *No description available.* |
+| **queries** | [List[BackgroundQueryProgressResponse]](BackgroundQueryProgressResponse.md) | Optional | *No description available.* |
 
 
 ## Usage

@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **event_handler_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **event_handler_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 
 
 ## Usage

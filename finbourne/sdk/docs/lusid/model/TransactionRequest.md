@@ -10,20 +10,20 @@
 | **transaction_date** | **str** | Required | The date of the transaction. |
 | **settlement_date** | **str** | Required | The settlement date of the transaction. |
 | **units** | **float** | Required | The number of units of the transacted instrument. |
-| **transaction_price** | [../model/TransactionPrice](TransactionPrice.md) | Optional | *No description available.* |
-| **total_consideration** | [../model/CurrencyAndAmount](CurrencyAndAmount.md) | Required | *No description available.* |
+| **transaction_price** | [TransactionPrice](TransactionPrice.md) | Optional | *No description available.* |
+| **total_consideration** | [CurrencyAndAmount](CurrencyAndAmount.md) | Required | *No description available.* |
 | **exchange_rate** | **float** | Optional | The exchange rate between the transaction and settlement currency (settlement currency being represented by TotalConsideration.Currency). For example, if the transaction currency is USD and the settlement currency is GBP, this would be the appropriate USD/GBP rate. |
 | **transaction_currency** | **str** | Optional | The transaction currency. |
-| **properties** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | A list of unique transaction properties and associated values to store for the transaction. Each property must be from the &#39;Transaction&#39; domain. |
+| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | A list of unique transaction properties and associated values to store for the transaction. Each property must be from the &#39;Transaction&#39; domain. |
 | **counterparty_id** | **str** | Optional | The identifier for the counterparty of the transaction. |
 | **source** | **str** | Optional | The source of the transaction. This is used to look up the appropriate transaction group set in the transaction type configuration. |
-| **otc_confirmation** | [../model/OtcConfirmation](OtcConfirmation.md) | Optional | *No description available.* |
-| **order_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
-| **allocation_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
-| **custodian_account_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **otc_confirmation** | [OtcConfirmation](OtcConfirmation.md) | Optional | *No description available.* |
+| **order_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **allocation_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **custodian_account_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **transaction_group_id** | **str** | Optional | The identifier for grouping economic events across multiple transactions |
-| **strategy_tag** | [../model/List[Strategy]](Strategy.md) | Optional | A list of strategies representing the allocation of units across multiple sub-holding keys |
-| **custodian_entries** | [../model/List[CustodianEntry]](CustodianEntry.md) | Optional | A list of Custodian Entries associated with the transaction. |
+| **strategy_tag** | [List[Strategy]](Strategy.md) | Optional | A list of strategies representing the allocation of units across multiple sub-holding keys |
+| **custodian_entries** | [List[CustodianEntry]](CustodianEntry.md) | Optional | A list of Custodian Entries associated with the transaction. |
 
 
 ## Usage

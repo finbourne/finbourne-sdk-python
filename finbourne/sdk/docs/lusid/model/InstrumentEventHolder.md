@@ -6,15 +6,15 @@ An instrument event equipped with additional metadata.
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **instrument_event_id** | **str** | Required | The unique identifier of this corporate action. |
-| **corporate_action_source_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **corporate_action_source_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **instrument_identifiers** | **Dict[str, Optional[str]]** | Required | The set of identifiers which determine the instrument this event relates to. |
 | **lusid_instrument_id** | **str** | Required | The LUID for the instrument. |
 | **instrument_scope** | **str** | Required | The scope of the instrument. |
 | **description** | **str** | Required | The description of the instrument event. |
-| **event_date_range** | [../model/EventDateRange](EventDateRange.md) | Required | *No description available.* |
+| **event_date_range** | [EventDateRange](EventDateRange.md) | Required | *No description available.* |
 | **completeness** | **str** | Optional | Is the event Economically Complete, or is it missing some DataDependent fields (Incomplete). Available values: Complete, Incomplete. *(read-only)* |
-| **instrument_event** | [../model/InstrumentEvent](InstrumentEvent.md) | Required | *No description available.* |
-| **properties** | [../model/List[PerpetualProperty]](PerpetualProperty.md) | Optional | The properties attached to this instrument event. |
+| **instrument_event** | [InstrumentEvent](InstrumentEvent.md) | Required | *No description available.* |
+| **properties** | [List[PerpetualProperty]](PerpetualProperty.md) | Optional | The properties attached to this instrument event. |
 | **sequence_number** | **int** | Optional | The order of the instrument event relative others on the same date (0 being processed first). Must be non negative. |
 | **participation_type** | **str** | Optional | Indicates the type of participation in this event. Default value: Mandatory. Available values: Mandatory, MandatoryWithChoices, Voluntary. Default: `'Mandatory'` |
 | **as_at** | **datetime** | Optional | The AsAt time of the instrument event, if available. This is a readonly field and should not be provided on upsert. *(read-only)* |

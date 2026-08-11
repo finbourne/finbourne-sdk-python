@@ -64,11 +64,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of corporate action source | [required] 
  **code** | **str**| The code of the corporate action source | [required] 
- **upsert_corporate_action_request** | [**List[UpsertCorporateActionRequest]**](UpsertCorporateActionRequest.md)| The corporate action definitions | [optional] 
+ **upsert_corporate_action_request** | [**List[UpsertCorporateActionRequest]**](../model/UpsertCorporateActionRequest.md)| The corporate action definitions | [optional] 
 
 ### Return type
 
-[**UpsertCorporateActionsResponse**](UpsertCorporateActionsResponse.md)
+[**UpsertCorporateActionsResponse**](../model/UpsertCorporateActionsResponse.md)
 
 ### HTTP request headers
 
@@ -106,11 +106,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_corporate_action_source_request** | [**CreateCorporateActionSourceRequest**](CreateCorporateActionSourceRequest.md)| The corporate action source definition | [required] 
+ **create_corporate_action_source_request** | [**CreateCorporateActionSourceRequest**](../model/CreateCorporateActionSourceRequest.md)| The corporate action source definition | [required] 
 
 ### Return type
 
-[**CorporateActionSource**](CorporateActionSource.md)
+[**CorporateActionSource**](../model/CorporateActionSource.md)
 
 ### HTTP request headers
 
@@ -154,7 +154,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -196,11 +196,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the corporate action source | [required] 
  **code** | **str**| The code of the corporate action source | [required] 
- **corporate_action_ids** | [**List[str]**](str.md)| The IDs of the corporate actions to delete | [required] 
+ **corporate_action_ids** | [**List[str]**](../model/str.md)| The IDs of the corporate actions to delete | [required] 
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -242,11 +242,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the corporate action source | [required] 
  **code** | **str**| The code of the corporate action source | [required] 
- **instrument_event_ids** | [**List[str]**](str.md)| The IDs of the instrument events to delete | [required] 
+ **instrument_event_ids** | [**List[str]**](../model/str.md)| The IDs of the instrument events to delete | [required] 
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -296,13 +296,13 @@ Name | Type | Description  | Notes
  **from_effective_at** | **str**| Optional. The start effective date of the data range. | [optional] 
  **to_effective_at** | **str**| Optional. The end effective date of the data range. | [optional] 
  **as_at** | **datetime**| Optional. The AsAt date of the data. | [optional] 
- **sort_by** | [**List[str]**](str.md)| Optional. Order the results by these fields. Use use the &#39;-&#39; sign to denote descending order e.g. -MyFieldName | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| Optional. Order the results by these fields. Use use the &#39;-&#39; sign to denote descending order e.g. -MyFieldName | [optional] 
  **limit** | **int**| Optional. When paginating, limit the results to this number. | [optional] 
  **filter** | **str**| Optional. Expression to filter the result set.              For example, to filter on the Announcement Date, use \&quot;announcementDate eq &#39;2020-03-06&#39;\&quot;              Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid. | [optional] 
 
 ### Return type
 
-[**ResourceListOfCorporateAction**](ResourceListOfCorporateAction.md)
+[**ResourceListOfCorporateAction**](../model/ResourceListOfCorporateAction.md)
 
 ### HTTP request headers
 
@@ -360,7 +360,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PagedResourceListOfInstrumentEventHolder**](PagedResourceListOfInstrumentEventHolder.md)
+[**PagedResourceListOfInstrumentEventHolder**](../model/PagedResourceListOfInstrumentEventHolder.md)
 
 ### HTTP request headers
 
@@ -403,14 +403,14 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **as_at** | **datetime**| Optional. The AsAt date of the data | [optional] 
- **sort_by** | [**List[str]**](str.md)| Optional. Order the results by these fields. Use use the &#39;-&#39; sign to denote descending order e.g. -MyFieldName | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| Optional. Order the results by these fields. Use use the &#39;-&#39; sign to denote descending order e.g. -MyFieldName | [optional] 
  **limit** | **int**| Optional. When paginating, limit the number of returned results to this many. If not specified, a default  of 100 is used. | [optional] [default to 100]
  **filter** | **str**| Optional. Expression to filter the result set. For example, to  filter on the Display Name, use \&quot;displayName eq &#39;string&#39;\&quot;  Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid. | [optional] 
  **page** | **str**| Optional. The pagination token to use to continue listing items from a previous call. Page values are  return from list calls, and must be supplied exactly as returned. Additionally, when specifying this  value, the filter, asAt, and limit must not  be modified. | [optional] 
 
 ### Return type
 
-[**PagedResourceListOfCorporateActionSource**](PagedResourceListOfCorporateActionSource.md)
+[**PagedResourceListOfCorporateActionSource**](../model/PagedResourceListOfCorporateActionSource.md)
 
 ### HTTP request headers
 
@@ -452,11 +452,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the corporate action source. | [required] 
  **code** | **str**| The code of the corporate action source. | [required] 
- **upsert_instrument_event_request** | [**List[UpsertInstrumentEventRequest]**](UpsertInstrumentEventRequest.md)| The instrument event definitions. | [optional] 
+ **upsert_instrument_event_request** | [**List[UpsertInstrumentEventRequest]**](../model/UpsertInstrumentEventRequest.md)| The instrument event definitions. | [optional] 
 
 ### Return type
 
-[**UpsertInstrumentEventsResponse**](UpsertInstrumentEventsResponse.md)
+[**UpsertInstrumentEventsResponse**](../model/UpsertInstrumentEventsResponse.md)
 
 ### HTTP request headers
 

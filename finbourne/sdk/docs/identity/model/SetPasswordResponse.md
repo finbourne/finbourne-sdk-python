@@ -6,7 +6,7 @@ The result of setting a password
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **updated_at** | **datetime** | Required | The date and time at which the password was successfully updated |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

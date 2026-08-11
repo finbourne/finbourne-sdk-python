@@ -7,9 +7,9 @@ A workspace.
 |------|------|----------|-------------|
 | **name** | **str** | Required | A workspace&#39;s name. |
 | **description** | **str** | Required | A friendly description for the workspace. |
-| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
-| **permitted_item_actions** | [../model/WorkspacePermittedItemActions](WorkspacePermittedItemActions.md) | Optional | *No description available.* |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **version** | [Version](Version.md) | Optional | *No description available.* |
+| **permitted_item_actions** | [WorkspacePermittedItemActions](WorkspacePermittedItemActions.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

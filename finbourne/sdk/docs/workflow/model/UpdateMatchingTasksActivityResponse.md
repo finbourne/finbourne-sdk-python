@@ -8,9 +8,9 @@ Readonly TaskActivity response
 | **type** | **str** | Optional | The type of task activity |
 | **filter** | **str** | Optional | The filter that matches on existing tasks |
 | **trigger** | **str** | Optional | Trigger to supply to all tasks that have been matched |
-| **correlation_ids** | [../model/List[EventHandlerMapping]](EventHandlerMapping.md) | Optional | The event to correlation ID mappings |
-| **task_fields** | [../model/Dict[str, FieldMapping]](FieldMapping.md) | Optional | The event to task field mappings |
-| **schedule_dependent_task_fields** | [../model/Dict[str, ScheduledTimeAdjustment]](ScheduledTimeAdjustment.md) | Optional | The Schedule dependent task field mappings. Only relevant if a Finbourne.Workflow.WebApi.Common.Dto.Json.EventHandlers.ScheduleMatchingPattern is specified |
+| **correlation_ids** | [List[EventHandlerMapping]](EventHandlerMapping.md) | Optional | The event to correlation ID mappings |
+| **task_fields** | [Dict[str, FieldMapping]](FieldMapping.md) | Optional | The event to task field mappings |
+| **schedule_dependent_task_fields** | [Dict[str, ScheduledTimeAdjustment]](ScheduledTimeAdjustment.md) | Optional | The Schedule dependent task field mappings. Only relevant if a Finbourne.Workflow.WebApi.Common.Dto.Json.EventHandlers.ScheduleMatchingPattern is specified |
 
 
 ## Usage

@@ -673,6 +673,7 @@
 * [Collateral](lusid/model/Collateral.md)
 * [CollateralInstrument](lusid/model/CollateralInstrument.md)
 * [CommodityForward](lusid/model/CommodityForward.md)
+* [CommodityForwardCashSettlementEvent](lusid/model/CommodityForwardCashSettlementEvent.md)
 * [ComparisonAttributeValuePair](lusid/model/ComparisonAttributeValuePair.md)
 * [CompletePortfolio](lusid/model/CompletePortfolio.md)
 * [CompleteRelation](lusid/model/CompleteRelation.md)

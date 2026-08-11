@@ -5,28 +5,28 @@ An Allocation of a certain quantity of a specific instrument against an originat
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
-| **allocated_order_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
-| **portfolio_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **allocated_order_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **portfolio_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **quantity** | **float** | Required | The quantity of given instrument allocated. |
 | **instrument_identifiers** | **Dict[str, Optional[str]]** | Required | The instrument allocated. |
-| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
-| **properties** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Client-defined properties associated with this allocation. |
+| **version** | [Version](Version.md) | Optional | *No description available.* |
+| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Client-defined properties associated with this allocation. |
 | **instrument_scope** | **str** | Optional | The scope in which the instrument lies |
 | **lusid_instrument_id** | **str** | Required | The LUSID instrument id for the instrument allocated. |
-| **placement_ids** | [../model/List[ResourceId]](ResourceId.md) | Optional | A placement - also known as an order placed in the market - associated with this allocation. |
+| **placement_ids** | [List[ResourceId]](ResourceId.md) | Optional | A placement - also known as an order placed in the market - associated with this allocation. |
 | **state** | **str** | Optional | The state of this allocation. |
 | **side** | **str** | Optional | The side of this allocation (examples: Buy, Sell, ...). |
 | **type** | **str** | Optional | The type of order associated with this allocation (examples: Limit, Market, ...). |
 | **settlement_date** | **datetime** | Optional | The settlement date for this allocation. |
 | **var_date** | **datetime** | Optional | The date of this allocation. |
-| **price** | [../model/CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
+| **price** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
 | **settlement_currency** | **str** | Optional | The settlement currency of this allocation. |
 | **settlement_currency_fx_rate** | **float** | Optional | The settlement currency to allocation currency FX rate. |
 | **counterparty** | **str** | Optional | The counterparty for this allocation. |
-| **execution_ids** | [../model/List[ResourceId]](ResourceId.md) | Optional | The executions associated with this allocation |
-| **data_model_membership** | [../model/DataModelMembership](DataModelMembership.md) | Optional | *No description available.* |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **execution_ids** | [List[ResourceId]](ResourceId.md) | Optional | The executions associated with this allocation |
+| **data_model_membership** | [DataModelMembership](DataModelMembership.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

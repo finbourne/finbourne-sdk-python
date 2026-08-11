@@ -7,13 +7,13 @@ A Posting Module definition
 |------|------|----------|-------------|
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
 | **posting_module_code** | **str** | Required | The code of the Posting Module. |
-| **chart_of_accounts_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **chart_of_accounts_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **display_name** | **str** | Required | The name of the Posting Module. |
 | **description** | **str** | Optional | A description for the Posting Module. |
-| **rules** | [../model/List[PostingModuleRule]](PostingModuleRule.md) | Optional | The Posting Rules that apply for the Posting Module. Rules are evaluated in the order they occur in this collection. |
+| **rules** | [List[PostingModuleRule]](PostingModuleRule.md) | Optional | The Posting Rules that apply for the Posting Module. Rules are evaluated in the order they occur in this collection. |
 | **status** | **str** | Required | The Posting Module status. Default value: Active. Available values: Active, Inactive, Deleted. |
-| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **version** | [Version](Version.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

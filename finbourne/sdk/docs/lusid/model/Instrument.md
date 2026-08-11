@@ -8,20 +8,20 @@ A list of instruments.
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
 | **scope** | **str** | Optional | The scope in which the instrument lies. |
 | **lusid_instrument_id** | **str** | Required | The unique LUSID Instrument Identifier (LUID) of the instrument. |
-| **version** | [../model/Version](Version.md) | Required | *No description available.* |
-| **staged_modifications** | [../model/StagedModificationsInfo](StagedModificationsInfo.md) | Optional | *No description available.* |
+| **version** | [Version](Version.md) | Required | *No description available.* |
+| **staged_modifications** | [StagedModificationsInfo](StagedModificationsInfo.md) | Optional | *No description available.* |
 | **name** | **str** | Required | The name of the instrument. |
 | **identifiers** | **Dict[str, Optional[str]]** | Required | The set of identifiers that can be used to identify the instrument. |
-| **properties** | [../model/List[ModelProperty]](ModelProperty.md) | Optional | The requested instrument properties. These will be from the &#39;Instrument&#39; domain. |
-| **lookthrough_portfolio** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
-| **instrument_definition** | [../model/LusidInstrument](LusidInstrument.md) | Optional | *No description available.* |
+| **properties** | [List[ModelProperty]](ModelProperty.md) | Optional | The requested instrument properties. These will be from the &#39;Instrument&#39; domain. |
+| **lookthrough_portfolio** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **instrument_definition** | [LusidInstrument](LusidInstrument.md) | Optional | *No description available.* |
 | **state** | **str** | Required | The state of of the instrument at the asAt datetime of this version of the instrument definition. Available values: Active, Inactive, Deleted. |
 | **asset_class** | **str** | Optional | The nominal asset class of the instrument. Available values: InterestRates, FX, Inflation, Equities, Credit, Commodities, Money, Unknown, RealEstate, Exotic. |
 | **dom_ccy** | **str** | Optional | The domestic currency, meaning the currency in which the instrument would typically be expected to pay cashflows, e.g. a share in AAPL being USD. |
-| **relationships** | [../model/List[Relationship]](Relationship.md) | Optional | A set of relationships associated to the instrument. |
-| **settlement_cycle** | [../model/SettlementCycle](SettlementCycle.md) | Optional | *No description available.* |
-| **data_model_membership** | [../model/DataModelMembership](DataModelMembership.md) | Optional | *No description available.* |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **relationships** | [List[Relationship]](Relationship.md) | Optional | A set of relationships associated to the instrument. |
+| **settlement_cycle** | [SettlementCycle](SettlementCycle.md) | Optional | *No description available.* |
+| **data_model_membership** | [DataModelMembership](DataModelMembership.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

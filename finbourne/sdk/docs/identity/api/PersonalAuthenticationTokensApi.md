@@ -54,11 +54,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_api_key** | [**CreateApiKey**](CreateApiKey.md)| The request to create a new Personal Access Token | [required] 
+ **create_api_key** | [**CreateApiKey**](../model/CreateApiKey.md)| The request to create a new Personal Access Token | [required] 
 
 ### Return type
 
-[**CreatedApiKey**](CreatedApiKey.md)
+[**CreatedApiKey**](../model/CreatedApiKey.md)
 
 ### HTTP request headers
 
@@ -100,7 +100,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiKey**](ApiKey.md)
+[**ApiKey**](../model/ApiKey.md)
 
 ### HTTP request headers
 
@@ -138,7 +138,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**List[ApiKey]**](ApiKey.md)
+[**List[ApiKey]**](../model/ApiKey.md)
 
 ### HTTP request headers
 

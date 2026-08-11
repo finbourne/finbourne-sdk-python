@@ -10,15 +10,15 @@
 | **purchase_trade_date** | **datetime** | Optional | The effective datetime at which the units associated with this gain or loss were originally purchased. *(read-only)* |
 | **purchase_settlement_date** | **datetime** | Optional | The effective datetime at which the units associated with this gain or loss were originally settled. *(read-only)* |
 | **purchase_price** | **float** | Optional | The purchase price of each unit associated with this gain or loss. |
-| **cost_trade_ccy** | [../model/CurrencyAndAmount](CurrencyAndAmount.md) | Required | *No description available.* |
-| **cost_portfolio_ccy** | [../model/CurrencyAndAmount](CurrencyAndAmount.md) | Required | *No description available.* |
-| **realised_trade_ccy** | [../model/CurrencyAndAmount](CurrencyAndAmount.md) | Required | *No description available.* |
-| **realised_total** | [../model/CurrencyAndAmount](CurrencyAndAmount.md) | Required | *No description available.* |
-| **realised_market** | [../model/CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
-| **realised_currency** | [../model/CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
+| **cost_trade_ccy** | [CurrencyAndAmount](CurrencyAndAmount.md) | Required | *No description available.* |
+| **cost_portfolio_ccy** | [CurrencyAndAmount](CurrencyAndAmount.md) | Required | *No description available.* |
+| **realised_trade_ccy** | [CurrencyAndAmount](CurrencyAndAmount.md) | Required | *No description available.* |
+| **realised_total** | [CurrencyAndAmount](CurrencyAndAmount.md) | Required | *No description available.* |
+| **realised_market** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
+| **realised_currency** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
 | **tax_lot_id** | **str** | Optional | The identifier of the tax lot with which this gain or loss is associated. |
-| **realised_amortisation** | [../model/CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
-| **trade_date_to_settlement_date_realised_currency** | [../model/CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
+| **realised_amortisation** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
+| **trade_date_to_settlement_date_realised_currency** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
 
 
 ## Usage

@@ -5,14 +5,14 @@ Information about the Worker
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **display_name** | **str** | Required | Human readable name |
 | **description** | **str** | Optional | Human readable description |
-| **worker_configuration** | [../model/WorkerConfigurationResponse](WorkerConfigurationResponse.md) | Required | *No description available.* |
-| **version** | [../model/VersionInfo](VersionInfo.md) | Optional | *No description available.* |
-| **parameters** | [../model/List[Parameter]](Parameter.md) | Optional | The Parameters this Worker accepts or requires. |
-| **result_fields** | [../model/List[ResultField]](ResultField.md) | Optional | The Fields that the Worker results will come back with. |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **worker_configuration** | [WorkerConfigurationResponse](WorkerConfigurationResponse.md) | Required | *No description available.* |
+| **version** | [VersionInfo](VersionInfo.md) | Optional | *No description available.* |
+| **parameters** | [List[Parameter]](Parameter.md) | Optional | The Parameters this Worker accepts or requires. |
+| **result_fields** | [List[ResultField]](ResultField.md) | Optional | The Fields that the Worker results will come back with. |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

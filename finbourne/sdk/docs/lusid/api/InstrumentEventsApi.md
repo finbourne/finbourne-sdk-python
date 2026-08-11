@@ -63,11 +63,11 @@ Name | Type | Description  | Notes
  **as_at** | **datetime**| The as at time to use. | [optional] 
  **limit** | **int**| Optional. When paginating, limit the number of returned results to this many. If not specified, a default  of 100 is used. | [optional] [default to 100]
  **page** | **str**| Optional. The pagination token to use to continue listing items from a previous call. Page values are  return from list calls, and must be supplied exactly as returned. Additionally, when specifying this | [optional] 
- **query_applicable_instrument_events_request** | [**QueryApplicableInstrumentEventsRequest**](QueryApplicableInstrumentEventsRequest.md)| The filter parameters used to retrieve applicable instrument events. | [optional] 
+ **query_applicable_instrument_events_request** | [**QueryApplicableInstrumentEventsRequest**](../model/QueryApplicableInstrumentEventsRequest.md)| The filter parameters used to retrieve applicable instrument events. | [optional] 
 
 ### Return type
 
-[**ResourceListOfApplicableInstrumentEvent**](ResourceListOfApplicableInstrumentEvent.md)
+[**ResourceListOfApplicableInstrumentEvent**](../model/ResourceListOfApplicableInstrumentEvent.md)
 
 ### HTTP request headers
 
@@ -105,11 +105,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **query_bucket_cash_flow_drill_down_request** | [**QueryBucketCashFlowDrillDownRequest**](QueryBucketCashFlowDrillDownRequest.md)| The Query Information. | [optional] 
+ **query_bucket_cash_flow_drill_down_request** | [**QueryBucketCashFlowDrillDownRequest**](../model/QueryBucketCashFlowDrillDownRequest.md)| The Query Information. | [optional] 
 
 ### Return type
 
-[**ResourceListOfCashFlowDetail**](ResourceListOfCashFlowDetail.md)
+[**ResourceListOfCashFlowDetail**](../model/ResourceListOfCashFlowDetail.md)
 
 ### HTTP request headers
 
@@ -147,11 +147,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **query_bucketed_cash_flows_request** | [**QueryBucketedCashFlowsRequest**](QueryBucketedCashFlowsRequest.md)| The Query Information. | [optional] 
+ **query_bucketed_cash_flows_request** | [**QueryBucketedCashFlowsRequest**](../model/QueryBucketedCashFlowsRequest.md)| The Query Information. | [optional] 
 
 ### Return type
 
-[**BucketedCashFlowResponse**](BucketedCashFlowResponse.md)
+[**BucketedCashFlowResponse**](../model/BucketedCashFlowResponse.md)
 
 ### HTTP request headers
 
@@ -193,11 +193,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **limit** | **int**| Optional. When paginating, limit the number of returned results to this many. If not specified, a default  of 1000 is used. | [optional] [default to 1000]
  **page** | **str**| Optional. The pagination token to use to continue listing items from a previous call. Page values are  return from list calls, and must be supplied exactly as returned. Additionally, when specifying this  value, queryBody, and limit must not  be modified. | [optional] 
- **query_cash_flows_request** | [**QueryCashFlowsRequest**](QueryCashFlowsRequest.md)| The filter parameters used to retrieve instrument events. | [optional] 
+ **query_cash_flows_request** | [**QueryCashFlowsRequest**](../model/QueryCashFlowsRequest.md)| The filter parameters used to retrieve instrument events. | [optional] 
 
 ### Return type
 
-[**ResourceListOfInstrumentCashFlow**](ResourceListOfInstrumentCashFlow.md)
+[**ResourceListOfInstrumentCashFlow**](../model/ResourceListOfInstrumentCashFlow.md)
 
 ### HTTP request headers
 
@@ -239,11 +239,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **limit** | **int**| Optional. When paginating, limit the number of returned results to this many. If not specified, a default  of 1000 is used. | [optional] [default to 1000]
  **page** | **str**| Optional. The pagination token to use to continue listing items from a previous call. Page values are  return from list calls, and must be supplied exactly as returned. Additionally, when specifying this  value, queryBody, and limit must not  be modified. | [optional] 
- **query_instrument_events_request** | [**QueryInstrumentEventsRequest**](QueryInstrumentEventsRequest.md)| The filter parameters used to retrieve instrument events. | [optional] 
+ **query_instrument_events_request** | [**QueryInstrumentEventsRequest**](../model/QueryInstrumentEventsRequest.md)| The filter parameters used to retrieve instrument events. | [optional] 
 
 ### Return type
 
-[**ResourceListOfInstrumentEventHolder**](ResourceListOfInstrumentEventHolder.md)
+[**ResourceListOfInstrumentEventHolder**](../model/ResourceListOfInstrumentEventHolder.md)
 
 ### HTTP request headers
 
@@ -285,11 +285,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **limit** | **int**| Optional. When paginating, limit the number of returned results to this many. If not specified, a default  of 1000 is used. | [optional] [default to 1000]
  **page** | **str**| Optional. The pagination token to use to continue listing items from a previous call. Page values are  return from list calls, and must be supplied exactly as returned. Additionally, when specifying this  value, queryBody, and limit must not  be modified. | [optional] 
- **query_trade_tickets_request** | [**QueryTradeTicketsRequest**](QueryTradeTicketsRequest.md)| The filter parameters used to retrieve instrument events. | [optional] 
+ **query_trade_tickets_request** | [**QueryTradeTicketsRequest**](../model/QueryTradeTicketsRequest.md)| The filter parameters used to retrieve instrument events. | [optional] 
 
 ### Return type
 
-[**ResourceListOfPortfolioTradeTicket**](ResourceListOfPortfolioTradeTicket.md)
+[**ResourceListOfPortfolioTradeTicket**](../model/ResourceListOfPortfolioTradeTicket.md)
 
 ### HTTP request headers
 

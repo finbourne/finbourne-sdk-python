@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **quantity** | **float** | Required | Total number of units executed. |
-| **details** | [../model/List[OrderGraphBlockExecutionDetail]](OrderGraphBlockExecutionDetail.md) | Required | Identifiers for each execution in this block. |
+| **details** | [List[OrderGraphBlockExecutionDetail]](OrderGraphBlockExecutionDetail.md) | Required | Identifiers for each execution in this block. |
 
 
 ## Usage

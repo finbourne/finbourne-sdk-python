@@ -5,12 +5,12 @@ Represents a LogClientInfo resource in the Okta API
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **user_agent** | [../model/LogUserAgent](LogUserAgent.md) | Optional | *No description available.* |
+| **user_agent** | [LogUserAgent](LogUserAgent.md) | Optional | *No description available.* |
 | **zone** | **str** | Optional | *No description available.* |
 | **device** | **str** | Optional | *No description available.* |
 | **id** | **str** | Optional | *No description available.* |
 | **ip_address** | **str** | Optional | *No description available.* |
-| **geographical_context** | [../model/LogGeographicalContext](LogGeographicalContext.md) | Optional | *No description available.* |
+| **geographical_context** | [LogGeographicalContext](LogGeographicalContext.md) | Optional | *No description available.* |
 
 
 ## Usage

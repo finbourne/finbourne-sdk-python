@@ -8,7 +8,7 @@
 | **scope** | **str** | Required | The scope that the property exists in. |
 | **code** | **str** | Required | The code of the property. Together with the domain and scope this uniquely identifies the property. |
 | **display_name** | **str** | Required | The display name of the property. |
-| **data_type_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **data_type_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **property_description** | **str** | Optional | Describes the property |
 | **derivation_formula** | **str** | Required | The rule that defines how data is composed for a derived property. |
 | **is_filterable** | **bool** | Required | Bool indicating whether the values of this property are fitlerable, this is true for all non-derived property defintions.  For a derived definition this must be set true to enable filtering. |

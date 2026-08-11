@@ -6,7 +6,7 @@
 |------|------|----------|-------------|
 | **display_name** | **str** | Required | The name of the staging rule set. |
 | **description** | **str** | Optional | A description for the staging rule set. |
-| **rules** | [../model/List[StagingRule]](StagingRule.md) | Required | The list of staging rules that apply to a specific entity type. |
+| **rules** | [List[StagingRule]](StagingRule.md) | Required | The list of staging rules that apply to a specific entity type. |
 
 
 ## Usage

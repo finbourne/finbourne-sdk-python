@@ -5,10 +5,10 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
-| **values** | [../model/Dict[str, CancelOrderAndMoveRemainingResult]](CancelOrderAndMoveRemainingResult.md) | Optional | The orders which have been successfully cancelled, and any remaining quantities moved. |
-| **failed** | [../model/Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The orders that could not be cancelled, along with a reason for their failure. |
+| **values** | [Dict[str, CancelOrderAndMoveRemainingResult]](CancelOrderAndMoveRemainingResult.md) | Optional | The orders which have been successfully cancelled, and any remaining quantities moved. |
+| **failed** | [Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The orders that could not be cancelled, along with a reason for their failure. |
 | **metadata** | **Dict[str, Optional[List[ResponseMetaData]]]** | Optional | Meta data associated with the cancellation event. |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

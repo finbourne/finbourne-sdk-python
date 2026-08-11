@@ -56,11 +56,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_custom_entity_type_request** | [**CreateCustomEntityTypeRequest**](CreateCustomEntityTypeRequest.md)| The payload containing the description of the Custom Entity Type. | [required] 
+ **create_custom_entity_type_request** | [**CreateCustomEntityTypeRequest**](../model/CreateCustomEntityTypeRequest.md)| The payload containing the description of the Custom Entity Type. | [required] 
 
 ### Return type
 
-[**CustomEntityType**](CustomEntityType.md)
+[**CustomEntityType**](../model/CustomEntityType.md)
 
 ### HTTP request headers
 
@@ -102,7 +102,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -146,7 +146,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CustomEntityType**](CustomEntityType.md)
+[**CustomEntityType**](../model/CustomEntityType.md)
 
 ### HTTP request headers
 
@@ -191,12 +191,12 @@ Name | Type | Description  | Notes
  **as_at** | **datetime**| The asAt datetime at which to list the entities. Defaults to returning the latest version              of each Custom Entity Type if not specified. | [optional] 
  **limit** | **int**| When paginating, limit the results to this number. Defaults to 100 if not specified. | [optional] 
  **filter** | **str**| Expression to filter the results. For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914. | [optional] 
- **sort_by** | [**List[str]**](str.md)| A list of field names to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot; | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| A list of field names to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot; | [optional] 
  **page** | **str**| The pagination token to use to continue listing entities; this              value is returned from the previous call. If a pagination token is provided, the filter, limit, sortBy,              and asAt fields must not have changed since the original request. | [optional] 
 
 ### Return type
 
-[**PagedResourceListOfCustomEntityType**](PagedResourceListOfCustomEntityType.md)
+[**PagedResourceListOfCustomEntityType**](../model/PagedResourceListOfCustomEntityType.md)
 
 ### HTTP request headers
 
@@ -236,11 +236,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **entity_type** | **str**| The identifier for the Custom Entity Type, derived from the \&quot;entityTypeName\&quot; provided on creation. | [required] 
- **update_custom_entity_type_request** | [**UpdateCustomEntityTypeRequest**](UpdateCustomEntityTypeRequest.md)| The payload containing the description of the Custom Entity Type. | [required] 
+ **update_custom_entity_type_request** | [**UpdateCustomEntityTypeRequest**](../model/UpdateCustomEntityTypeRequest.md)| The payload containing the description of the Custom Entity Type. | [required] 
 
 ### Return type
 
-[**CustomEntityType**](CustomEntityType.md)
+[**CustomEntityType**](../model/CustomEntityType.md)
 
 ### HTTP request headers
 

@@ -70,12 +70,12 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **code** | **str**| The code of the PolicyCollection | [required] 
- **add_to_policy_collection_request** | [**AddToPolicyCollectionRequest**](AddToPolicyCollectionRequest.md)| Ids of the PolicyCollections and/or Policies to add to the PolicyCollection | [required] 
+ **add_to_policy_collection_request** | [**AddToPolicyCollectionRequest**](../model/AddToPolicyCollectionRequest.md)| Ids of the PolicyCollections and/or Policies to add to the PolicyCollection | [required] 
  **scope** | **str**| Optional. Will use the default scope if not provided. The scope of the PolicyCollection | [optional] 
 
 ### Return type
 
-[**PolicyCollectionResponse**](PolicyCollectionResponse.md)
+[**PolicyCollectionResponse**](../model/PolicyCollectionResponse.md)
 
 ### HTTP request headers
 
@@ -113,11 +113,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **policy_creation_request** | [**PolicyCreationRequest**](PolicyCreationRequest.md)| The definition of the Policy | [required] 
+ **policy_creation_request** | [**PolicyCreationRequest**](../model/PolicyCreationRequest.md)| The definition of the Policy | [required] 
 
 ### Return type
 
-[**PolicyResponse**](PolicyResponse.md)
+[**PolicyResponse**](../model/PolicyResponse.md)
 
 ### HTTP request headers
 
@@ -155,11 +155,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **policy_collection_creation_request** | [**PolicyCollectionCreationRequest**](PolicyCollectionCreationRequest.md)| The definition of the PolicyCollection | [required] 
+ **policy_collection_creation_request** | [**PolicyCollectionCreationRequest**](../model/PolicyCollectionCreationRequest.md)| The definition of the PolicyCollection | [required] 
 
 ### Return type
 
-[**PolicyCollectionResponse**](PolicyCollectionResponse.md)
+[**PolicyCollectionResponse**](../model/PolicyCollectionResponse.md)
 
 ### HTTP request headers
 
@@ -284,12 +284,12 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **request_body** | [**Dict[str, EvaluationRequest]**](EvaluationRequest.md)| A dictionary of evaluations, keyed using any arbitrary correlation id (it will be returned with the response for that evaluation). | [required] 
- **applications** | [**List[str]**](str.md)| Optional. The application type of the roles and policies to use when evaluating. | [optional] 
+ **request_body** | [**Dict[str, EvaluationRequest]**](../model/EvaluationRequest.md)| A dictionary of evaluations, keyed using any arbitrary correlation id (it will be returned with the response for that evaluation). | [required] 
+ **applications** | [**List[str]**](../model/str.md)| Optional. The application type of the roles and policies to use when evaluating. | [optional] 
 
 ### Return type
 
-[**Dict[str, EvaluationResponse]**](EvaluationResponse.md)
+[**Dict[str, EvaluationResponse]**](../model/EvaluationResponse.md)
 
 ### HTTP request headers
 
@@ -327,11 +327,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **applications** | [**List[str]**](str.md)| Optional. Filter on the applications that the policies apply to | [optional] 
+ **applications** | [**List[str]**](../model/str.md)| Optional. Filter on the applications that the policies apply to | [optional] 
 
 ### Return type
 
-[**List[AttachedPolicyDefinitionResponse]**](AttachedPolicyDefinitionResponse.md)
+[**List[AttachedPolicyDefinitionResponse]**](../model/AttachedPolicyDefinitionResponse.md)
 
 ### HTTP request headers
 
@@ -377,7 +377,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PolicyResponse**](PolicyResponse.md)
+[**PolicyResponse**](../model/PolicyResponse.md)
 
 ### HTTP request headers
 
@@ -421,7 +421,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PolicyCollectionResponse**](PolicyCollectionResponse.md)
+[**PolicyCollectionResponse**](../model/PolicyCollectionResponse.md)
 
 ### HTTP request headers
 
@@ -463,7 +463,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List[PolicyResponse]**](PolicyResponse.md)
+[**List[PolicyResponse]**](../model/PolicyResponse.md)
 
 ### HTTP request headers
 
@@ -505,7 +505,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List[PolicyCollectionResponse]**](PolicyCollectionResponse.md)
+[**List[PolicyCollectionResponse]**](../model/PolicyCollectionResponse.md)
 
 ### HTTP request headers
 
@@ -553,7 +553,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfPolicyResponse**](ResourceListOfPolicyResponse.md)
+[**ResourceListOfPolicyResponse**](../model/ResourceListOfPolicyResponse.md)
 
 ### HTTP request headers
 
@@ -601,7 +601,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfPolicyCollectionResponse**](ResourceListOfPolicyCollectionResponse.md)
+[**ResourceListOfPolicyCollectionResponse**](../model/ResourceListOfPolicyCollectionResponse.md)
 
 ### HTTP request headers
 
@@ -642,12 +642,12 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **code** | **str**| The code of the PolicyCollection | [required] 
- **remove_from_policy_collection_request** | [**RemoveFromPolicyCollectionRequest**](RemoveFromPolicyCollectionRequest.md)| Ids of the PolicyCollections and/or Policies to remove from the PolicyCollection | [required] 
+ **remove_from_policy_collection_request** | [**RemoveFromPolicyCollectionRequest**](../model/RemoveFromPolicyCollectionRequest.md)| Ids of the PolicyCollections and/or Policies to remove from the PolicyCollection | [required] 
  **scope** | **str**| Optional. Will use the default scope if not provided. The scope of the PolicyCollection | [optional] 
 
 ### Return type
 
-[**PolicyCollectionResponse**](PolicyCollectionResponse.md)
+[**PolicyCollectionResponse**](../model/PolicyCollectionResponse.md)
 
 ### HTTP request headers
 
@@ -688,12 +688,12 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **code** | **str**| The code of the Policy | [required] 
- **policy_update_request** | [**PolicyUpdateRequest**](PolicyUpdateRequest.md)| The updated definition of the Policy | [required] 
+ **policy_update_request** | [**PolicyUpdateRequest**](../model/PolicyUpdateRequest.md)| The updated definition of the Policy | [required] 
  **scope** | **str**| Optional. Will use the default scope if not provided. The scope of the Policy | [optional] 
 
 ### Return type
 
-[**PolicyResponse**](PolicyResponse.md)
+[**PolicyResponse**](../model/PolicyResponse.md)
 
 ### HTTP request headers
 
@@ -734,12 +734,12 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **code** | **str**| The code of the PolicyCollection | [required] 
- **policy_collection_update_request** | [**PolicyCollectionUpdateRequest**](PolicyCollectionUpdateRequest.md)| The updated definition of the PolicyCollection | [required] 
+ **policy_collection_update_request** | [**PolicyCollectionUpdateRequest**](../model/PolicyCollectionUpdateRequest.md)| The updated definition of the PolicyCollection | [required] 
  **scope** | **str**| Optional. Will use the default scope if not provided. The scope of the PolicyCollection | [optional] 
 
 ### Return type
 
-[**PolicyCollectionResponse**](PolicyCollectionResponse.md)
+[**PolicyCollectionResponse**](../model/PolicyCollectionResponse.md)
 
 ### HTTP request headers
 

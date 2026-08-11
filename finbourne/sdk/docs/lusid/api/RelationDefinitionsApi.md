@@ -54,11 +54,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_relation_definition_request** | [**CreateRelationDefinitionRequest**](CreateRelationDefinitionRequest.md)| The definition of the new relation. | [required] 
+ **create_relation_definition_request** | [**CreateRelationDefinitionRequest**](../model/CreateRelationDefinitionRequest.md)| The definition of the new relation. | [required] 
 
 ### Return type
 
-[**RelationDefinition**](RelationDefinition.md)
+[**RelationDefinition**](../model/RelationDefinition.md)
 
 ### HTTP request headers
 
@@ -102,7 +102,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -148,7 +148,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**RelationDefinition**](RelationDefinition.md)
+[**RelationDefinition**](../model/RelationDefinition.md)
 
 ### HTTP request headers
 

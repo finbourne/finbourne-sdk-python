@@ -8,7 +8,7 @@ A single run within an instance's run log. All runs share the same effective dat
 | **run_number** | **int** | Required | The run number within the instance. Increments with each re-run. |
 | **run_as_at** | **datetime** | Required | The asAt datetime at which the run happened. |
 | **superseded_as_at** | **datetime** | Optional | The asAt datetime at which this run was superseded by a subsequent run. |
-| **dates_reconciled** | [../model/RecDatesReconciled](RecDatesReconciled.md) | Required | *No description available.* |
+| **dates_reconciled** | [RecDatesReconciled](RecDatesReconciled.md) | Required | *No description available.* |
 
 
 ## Usage

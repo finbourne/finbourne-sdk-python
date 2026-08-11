@@ -59,7 +59,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AddScimResponse**](AddScimResponse.md)
+[**AddScimResponse**](../model/AddScimResponse.md)
 
 ### HTTP request headers
 

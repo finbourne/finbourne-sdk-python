@@ -54,7 +54,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ActionLog**](ActionLog.md)
+[**ActionLog**](../model/ActionLog.md)
 
 ### HTTP request headers
 

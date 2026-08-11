@@ -5,13 +5,13 @@ A request to create or update a Order.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **quantity** | **float** | Optional | The quantity of the given instrument ordered. |
-| **portfolio_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
-| **properties** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Client-defined properties associated with this order. |
-| **price** | [../model/CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
-| **limit_price** | [../model/CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
-| **stop_price** | [../model/CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
+| **portfolio_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Client-defined properties associated with this order. |
+| **price** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
+| **limit_price** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
+| **stop_price** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
 | **var_date** | **datetime** | Optional | The date on which the order was made |
 | **side** | **str** | Optional | The client&#39;s representation of the order&#39;s side (buy, sell, short, etc) |
 

@@ -4,11 +4,11 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **run_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **run_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **instigated_at** | **datetime** | Required | *No description available.* |
 | **completed_at** | **datetime** | Required | *No description available.* |
 | **schedule** | **str** | Required | Available values: None, PreTrade, PostTrade, PreAndPostTrade. |
-| **results** | [../model/List[ComplianceSummaryRuleResult]](ComplianceSummaryRuleResult.md) | Required | *No description available.* |
+| **results** | [List[ComplianceSummaryRuleResult]](ComplianceSummaryRuleResult.md) | Required | *No description available.* |
 
 
 ## Usage

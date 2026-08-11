@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **display_name** | **str** | Optional | *No description available.* |
 | **description** | **str** | Optional | *No description available.* |
 | **type** | **str** | Optional | Available values: String, Int, Decimal, DateTime, Boolean, Map, List, PropertyArray, Percentage, Code, Id, Uri, CurrencyAndAmount, TradePrice, Currency, MetricValue, ResourceId, ResultValue, CutLocalTime, DateOrCutLabel, UnindexedText. |

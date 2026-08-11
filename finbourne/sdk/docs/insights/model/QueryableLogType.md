@@ -6,7 +6,7 @@ The queryable fields of a single log type, returned by the queryable-fields meta
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **log_type** | **str** | Required | The log type, e.g. Requests, Vendor, Access, Trace or TraceEvent. |
-| **fields** | [../model/List[QueryableLogField]](QueryableLogField.md) | Required | The fields of this log type that can be selected and/or filtered. |
+| **fields** | [List[QueryableLogField]](QueryableLogField.md) | Required | The fields of this log type that can be selected and/or filtered. |
 
 
 ## Usage

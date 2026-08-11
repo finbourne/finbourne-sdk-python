@@ -16,7 +16,7 @@ Most, if not all, information about contracts is standardised. See, e.g. https:/
 | **exercise_type** | **str** | Required | The exercise type, European, American or Bermudan.    Supported string (enumeration) values are: [European, Bermudan, American]. |
 | **option_code** | **str** | Required | Option Contract Code, typically one or two letters, e.g. OG &#x3D;&gt; Option on Gold. |
 | **option_type** | **str** | Required | The option type, Call or Put.    Supported string (enumeration) values are: [Call, Put]. |
-| **underlying** | [../model/LusidInstrument](LusidInstrument.md) | Required | *No description available.* |
+| **underlying** | [LusidInstrument](LusidInstrument.md) | Required | *No description available.* |
 | **underlying_code** | **str** | Required | Code of the underlying, for an option on futures this should be the futures code. |
 | **delivery_days** | **int** | Optional | Number of business days between exercise date and settlement of the option payoff or underlying.  Defaults to 0 if not set. |
 | **business_day_convention** | **str** | Optional | The adjustment type to apply to dates that fall upon a non-business day, e.g. modified following or following.  Default value: F. Available values: NoAdjustment, None, Previous, P, Following, F, ModifiedPrevious, MP, ModifiedFollowing, MF, HalfMonthModifiedFollowing, Nearest, Invalid. |

@@ -7,7 +7,7 @@ Defines the Actions for a Task in a read-only form
 |------|------|----------|-------------|
 | **name** | **str** | Optional | The Name of this Action |
 | **run_as_user_id** | **str** | Optional | The ID of the user that this action will be performed by. If not specified, the actions will be performed by the \&quot;current user\&quot;. |
-| **action_details** | [../model/ActionDetailsResponse](ActionDetailsResponse.md) | Optional | *No description available.* |
+| **action_details** | [ActionDetailsResponse](ActionDetailsResponse.md) | Optional | *No description available.* |
 | **display_name** | **str** | Optional | Schema for the Action |
 | **description** | **str** | Optional | Schema for the Action |
 | **category** | **str** | Optional | Schema for the Action |

@@ -4,13 +4,13 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **relational_dataset_definition_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
-| **data_series** | [../model/RelationalDataSeriesResponse](RelationalDataSeriesResponse.md) | Required | *No description available.* |
+| **relational_dataset_definition_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **data_series** | [RelationalDataSeriesResponse](RelationalDataSeriesResponse.md) | Required | *No description available.* |
 | **effective_at** | **datetime** | Required | The effectiveAt or cut-label datetime of the DataPoint. |
-| **value_fields** | [../model/Dict[str, RelationalDataPointFieldValueResponse]](RelationalDataPointFieldValueResponse.md) | Required | The values associated with the DataPoint, structured according to the FieldSchema of the parent RelationalDatasetDefinition. |
-| **meta_data_fields** | [../model/Dict[str, RelationalDataPointFieldValueResponse]](RelationalDataPointFieldValueResponse.md) | Required | The metadata associated with the DataPoint, structured according to the FieldSchema of the parent RelationalDatasetDefinition. |
+| **value_fields** | [Dict[str, RelationalDataPointFieldValueResponse]](RelationalDataPointFieldValueResponse.md) | Required | The values associated with the DataPoint, structured according to the FieldSchema of the parent RelationalDatasetDefinition. |
+| **meta_data_fields** | [Dict[str, RelationalDataPointFieldValueResponse]](RelationalDataPointFieldValueResponse.md) | Required | The metadata associated with the DataPoint, structured according to the FieldSchema of the parent RelationalDatasetDefinition. |
 | **effective_at_entered** | **str** | Required | The effectiveAt datetime as entered when the DataPoint was created. |
-| **data_point_version** | [../model/DataPointVersion](DataPointVersion.md) | Optional | *No description available.* |
+| **data_point_version** | [DataPointVersion](DataPointVersion.md) | Optional | *No description available.* |
 
 
 ## Usage

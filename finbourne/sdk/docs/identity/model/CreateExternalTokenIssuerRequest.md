@@ -9,7 +9,7 @@ Client input for creating an external token issuer.
 | **issuer** | **str** | Required | *No description available.* |
 | **audience** | **str** | Required | *No description available.* |
 | **description** | **str** | Optional | *No description available.* |
-| **claim_mappings** | [../model/ClaimMappings](ClaimMappings.md) | Optional | *No description available.* |
+| **claim_mappings** | [ClaimMappings](ClaimMappings.md) | Optional | *No description available.* |
 | **logout_url** | **str** | Required | *No description available.* |
 
 

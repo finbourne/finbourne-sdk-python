@@ -7,14 +7,14 @@
 | **code** | **str** | Required |  |
 | **display_name** | **str** | Optional | The name of the Fund. |
 | **description** | **str** | Optional | A description for the Fund. |
-| **dealing_filters** | [../model/List[ComponentFilter]](ComponentFilter.md) | Optional | The set of filters used to decide which JE lines are included in the dealing. |
-| **pnl_filters** | [../model/List[ComponentFilter]](ComponentFilter.md) | Optional | The set of filters used to decide which JE lines are included in the PnL. |
-| **back_out_filters** | [../model/List[ComponentFilter]](ComponentFilter.md) | Optional | The set of filters used to decide which JE lines are included in the back outs. |
-| **external_fee_filters** | [../model/List[ExternalFeeComponentFilter]](ExternalFeeComponentFilter.md) | Optional | The set of filters used to decide which JE lines are used for inputting fees from an external source. |
-| **bucket_sets** | [../model/List[BucketSetDefinition]](BucketSetDefinition.md) | Optional | The ordered set of component bucket set definitions for this fund configuration. Each bucket set defines how JE lines are grouped into buckets at VP finalisation. |
-| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the Fund Configuration. |
+| **dealing_filters** | [List[ComponentFilter]](ComponentFilter.md) | Optional | The set of filters used to decide which JE lines are included in the dealing. |
+| **pnl_filters** | [List[ComponentFilter]](ComponentFilter.md) | Optional | The set of filters used to decide which JE lines are included in the PnL. |
+| **back_out_filters** | [List[ComponentFilter]](ComponentFilter.md) | Optional | The set of filters used to decide which JE lines are included in the back outs. |
+| **external_fee_filters** | [List[ExternalFeeComponentFilter]](ExternalFeeComponentFilter.md) | Optional | The set of filters used to decide which JE lines are used for inputting fees from an external source. |
+| **bucket_sets** | [List[BucketSetDefinition]](BucketSetDefinition.md) | Optional | The ordered set of component bucket set definitions for this fund configuration. Each bucket set defines how JE lines are grouped into buckets at VP finalisation. |
+| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the Fund Configuration. |
 | **apportionment_bucket_set** | **str** | Optional | The code of the bucket set definition within this fund configuration that is designated as the apportionment bucket set. Must reference a BucketSetDefinition code within the BucketSets collection. |
-| **apportionment_method_property** | [../model/ApportionmentMethodProperty](ApportionmentMethodProperty.md) | Optional | *No description available.* |
+| **apportionment_method_property** | [ApportionmentMethodProperty](ApportionmentMethodProperty.md) | Optional | *No description available.* |
 
 
 ## Usage

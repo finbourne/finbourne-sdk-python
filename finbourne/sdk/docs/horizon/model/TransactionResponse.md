@@ -19,7 +19,7 @@ Response containing details of a single transaction for a run.
 | **failure_reason** | **str** | Optional | *No description available.* |
 | **output_file_name** | **str** | Optional | *No description available.* |
 | **sent_at** | **datetime** | Optional | *No description available.* |
-| **destinations** | [../model/List[DestinationResponse]](DestinationResponse.md) | Required | *No description available.* |
+| **destinations** | [List[DestinationResponse]](DestinationResponse.md) | Required | *No description available.* |
 
 
 ## Usage

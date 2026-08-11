@@ -10,16 +10,16 @@
 | **share_class_short_code** | **str** | Required | A short code that uniquely identifies the share class within the Fund. |
 | **launch_price** | **float** | Optional | The launch price set when a shareclass is added to the fund. Defaults to 1. |
 | **launch_date** | **datetime** | Optional | The launch date set when a shareclass is added to the fund. Defaults to Fund Inception Date. |
-| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | An optional set of properties to attach to the auto-created Instrument. Only applied when createInstrument is true. |
+| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | An optional set of properties to attach to the auto-created Instrument. Only applied when createInstrument is true. |
 | **fund_share_class_type** | **str** | Required | The Type of Share Class. Available values: Unitised, Inactive, Series, PrivateEquity, Partnership. |
 | **distribution_type** | **str** | Required | The type of distribution the ShareClass will calculate. Available values: Income, Accumulation. |
 | **dom_ccy** | **str** | Required | The domestic currency of the ShareClass instrument. |
-| **trading_conventions** | [../model/TradingConventions](TradingConventions.md) | Optional | *No description available.* |
+| **trading_conventions** | [TradingConventions](TradingConventions.md) | Optional | *No description available.* |
 | **units_precision** | **int** | Optional | Decimal places for the share class units. |
 | **price_precision** | **int** | Optional | Decimal places for the share class price. |
-| **rounding_conventions** | [../model/List[SimpleRoundingConvention]](SimpleRoundingConvention.md) | Optional | Rounding conventions used for the ShareClass quotes. |
-| **rounding_conventions_units** | [../model/List[SimpleRoundingConvention]](SimpleRoundingConvention.md) | Optional | Rounding conventions used for the ShareClass units. |
-| **time_zone_conventions** | [../model/TimeZoneConventions](TimeZoneConventions.md) | Optional | *No description available.* |
+| **rounding_conventions** | [List[SimpleRoundingConvention]](SimpleRoundingConvention.md) | Optional | Rounding conventions used for the ShareClass quotes. |
+| **rounding_conventions_units** | [List[SimpleRoundingConvention]](SimpleRoundingConvention.md) | Optional | Rounding conventions used for the ShareClass units. |
+| **time_zone_conventions** | [TimeZoneConventions](TimeZoneConventions.md) | Optional | *No description available.* |
 | **distribution_payment_type** | **str** | Optional | The tax treatment applied to distributions. Available values: Invalid, Gross, Net. |
 | **hedging** | **str** | Required | Indicates whether the ShareClass applies currency hedging. Available values: Invalid, None, ApplyHedging. |
 

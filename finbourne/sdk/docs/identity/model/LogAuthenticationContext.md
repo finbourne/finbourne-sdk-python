@@ -8,7 +8,7 @@ Represents a LogAuthenticationContext resource in the Okta API
 | **authentication_provider** | **str** | Optional | *No description available.* |
 | **credential_provider** | **List[str]** | Optional | *No description available.* |
 | **credential_type** | **List[str]** | Optional | *No description available.* |
-| **issuer** | [../model/LogIssuer](LogIssuer.md) | Optional | *No description available.* |
+| **issuer** | [LogIssuer](LogIssuer.md) | Optional | *No description available.* |
 | **interface** | **str** | Optional | *No description available.* |
 | **authentication_step** | **int** | Optional | *No description available.* |
 | **external_session_id** | **str** | Optional | *No description available.* |

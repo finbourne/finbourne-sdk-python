@@ -5,10 +5,10 @@ A request to create or update a Placement.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **quantity** | **float** | Optional | The quantity of given instrument ordered. |
-| **amount** | [../model/CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
-| **properties** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Client-defined properties associated with this placement. |
+| **amount** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
+| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Client-defined properties associated with this placement. |
 | **type** | **str** | Optional | The type of this placement (Market, Limit, etc). |
 | **limit_price** | **float** | Optional | The optional price, as currency and amount, associated with this placement. |
 | **stop_price** | **float** | Optional | The optional price, as currency and amount, associated with this placement. |

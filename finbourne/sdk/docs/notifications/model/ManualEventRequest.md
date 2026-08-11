@@ -5,7 +5,7 @@ The information required to trigger a manual event
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **body** | [../model/ManualEventBody](ManualEventBody.md) | Required | *No description available.* |
+| **body** | [ManualEventBody](ManualEventBody.md) | Required | *No description available.* |
 
 
 ## Usage

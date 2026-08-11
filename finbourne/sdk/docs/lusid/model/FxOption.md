@@ -11,7 +11,7 @@ LUSID representation of an FX Option.  Including Vanilla, American, European, an
 | **fgn_ccy** | **str** | Required | The foreign currency of the FX. |
 | **fgn_amount** | **float** | Optional | For a vanilla FxOption contract, FgnAmount cannot be set.  In case of a digital FxOption (IsPayoffDigital&#x3D;&#x3D;true)  a payoff (if the option is in the money) can be either  in domestic or in foreign currency - for the latter  FgnAmount must be set.  Note: It is invalid to have FgnAmount and DomAmount  at the same time. |
 | **strike** | **float** | Optional | The strike of the option. |
-| **barriers** | [../model/List[Barrier]](Barrier.md) | Optional | For a barrier option the list should not be empty. Up to two barriers are supported.  An option cannot be at the same time barrier- and touch-option.  One (or both) of the lists must be empty. |
+| **barriers** | [List[Barrier]](Barrier.md) | Optional | For a barrier option the list should not be empty. Up to two barriers are supported.  An option cannot be at the same time barrier- and touch-option.  One (or both) of the lists must be empty. |
 | **exercise_type** | **str** | Optional | Type of optionality that is present; European, American.    Supported string (enumeration) values are: [European, American].  Defaults to \&quot;European\&quot; if not set. |
 | **is_call_not_put** | **bool** | Required | True if the option is a call, false if the option is a put. |
 | **is_delivery_not_cash** | **bool** | Required | True if the option delivers the FX underlying, False if the option is settled in cash. |
@@ -19,9 +19,9 @@ LUSID representation of an FX Option.  Including Vanilla, American, European, an
 | **option_maturity_date** | **datetime** | Required | The maturity date of the option. |
 | **option_settlement_date** | **datetime** | Required | The settlement date of the option. |
 | **payout_style** | **str** | Optional | PayoutStyle for touch options.                For options without touch optionality, payoutStyle should not be set.  For options with touch optionality (where the touches data has been set), payoutStyle must be defined and cannot be None.    Supported string (enumeration) values are: [Deferred, Immediate].  Defaults to \&quot;None\&quot; if not set. |
-| **premium** | [../model/Premium](Premium.md) | Optional | *No description available.* |
-| **touches** | [../model/List[Touch]](Touch.md) | Optional | For a touch option the list should not be empty. Up to two touches are supported.  An option cannot be at the same time barrier- and touch-option.  One (or both) of the lists must be empty. |
-| **time_zone_conventions** | [../model/TimeZoneConventions](TimeZoneConventions.md) | Optional | *No description available.* |
+| **premium** | [Premium](Premium.md) | Optional | *No description available.* |
+| **touches** | [List[Touch]](Touch.md) | Optional | For a touch option the list should not be empty. Up to two touches are supported.  An option cannot be at the same time barrier- and touch-option.  One (or both) of the lists must be empty. |
+| **time_zone_conventions** | [TimeZoneConventions](TimeZoneConventions.md) | Optional | *No description available.* |
 | **instrument_type** | **str** | Required | Available values: QuotedSecurity, InterestRateSwap, FxForward, Future, ExoticInstrument, FxOption, CreditDefaultSwap, InterestRateSwaption, Bond, EquityOption, FixedLeg, FloatingLeg, BespokeCashFlowsLeg, Unknown, TermDeposit, ContractForDifference, EquitySwap, CashPerpetual, CapFloor, CashSettled, CdsIndex, Basket, FundingLeg, FxSwap, ForwardRateAgreement, SimpleInstrument, Repo, Equity, ExchangeTradedOption, ReferenceInstrument, ComplexBond, InflationLinkedBond, InflationSwap, SimpleCashFlowLoan, TotalReturnSwap, InflationLeg, FundShareClass, FlexibleLoan, UnsettledCash, Cash, MasteredInstrument, LoanFacility, FlexibleDeposit, FlexibleRepo, ToBeAnnounced, VolatilitySwap, ToBeAnnouncedOption, CommodityForward. |
 
 

@@ -55,7 +55,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccessEvaluationLog**](AccessEvaluationLog.md)
+[**AccessEvaluationLog**](../model/AccessEvaluationLog.md)
 
 ### HTTP request headers
 
@@ -107,7 +107,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListWithHistogramOfAccessEvaluationLog**](ResourceListWithHistogramOfAccessEvaluationLog.md)
+[**ResourceListWithHistogramOfAccessEvaluationLog**](../model/ResourceListWithHistogramOfAccessEvaluationLog.md)
 
 ### HTTP request headers
 

@@ -5,11 +5,11 @@ A PolicyCollection encapsulating one or more Policies and PolicyCollections
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [../model/PolicyCollectionId](PolicyCollectionId.md) | Optional | *No description available.* |
-| **policies** | [../model/List[PolicyId]](PolicyId.md) | Optional | The identifiers of the Policies in this collection |
-| **policy_collections** | [../model/List[PolicyCollectionId]](PolicyCollectionId.md) | Optional | The identifiers of the PolicyCollections in this collection |
+| **id** | [PolicyCollectionId](PolicyCollectionId.md) | Optional | *No description available.* |
+| **policies** | [List[PolicyId]](PolicyId.md) | Optional | The identifiers of the Policies in this collection |
+| **policy_collections** | [List[PolicyCollectionId]](PolicyCollectionId.md) | Optional | The identifiers of the PolicyCollections in this collection |
 | **description** | **str** | Optional | A description of this policy collection |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

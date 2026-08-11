@@ -9,7 +9,7 @@ One node within a bucket set result: the fund aggregate or a single share class.
 | **share_class_short_code** | **str** | Optional | The short code of the share class this node is for, or null for the fund node. |
 | **nav** | **float** | Optional | The net asset value at this node, in the fund currency, or null where it does not apply to the node type. |
 | **capital_ratio** | **float** | Optional | The share class&#39;s capital ratio (its share of the fund NAV), set only on share class nodes. |
-| **buckets** | [../model/List[BucketSetResultBucket]](BucketSetResultBucket.md) | Required | The buckets on this node, each with its period movement and cumulative values. |
+| **buckets** | [List[BucketSetResultBucket]](BucketSetResultBucket.md) | Required | The buckets on this node, each with its period movement and cumulative values. |
 
 
 ## Usage

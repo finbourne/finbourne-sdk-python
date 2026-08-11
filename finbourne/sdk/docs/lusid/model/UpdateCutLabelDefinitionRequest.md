@@ -7,7 +7,7 @@ This request specifies a new Cut Label Definition
 |------|------|----------|-------------|
 | **display_name** | **str** | Required | *No description available.* |
 | **description** | **str** | Optional | *No description available.* |
-| **cut_local_time** | [../model/CutLocalTime](CutLocalTime.md) | Required | *No description available.* |
+| **cut_local_time** | [CutLocalTime](CutLocalTime.md) | Required | *No description available.* |
 | **time_zone** | **str** | Required | *No description available.* |
 
 

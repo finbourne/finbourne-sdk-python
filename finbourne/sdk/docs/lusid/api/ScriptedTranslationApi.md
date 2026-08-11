@@ -75,7 +75,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Dialect**](Dialect.md)
+[**Dialect**](../model/Dialect.md)
 
 ### HTTP request headers
 
@@ -123,7 +123,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TranslationScript**](TranslationScript.md)
+[**TranslationScript**](../model/TranslationScript.md)
 
 ### HTTP request headers
 
@@ -171,7 +171,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PagedResourceListOfDialectId**](PagedResourceListOfDialectId.md)
+[**PagedResourceListOfDialectId**](../model/PagedResourceListOfDialectId.md)
 
 ### HTTP request headers
 
@@ -219,7 +219,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PagedResourceListOfTranslationScriptId**](PagedResourceListOfTranslationScriptId.md)
+[**PagedResourceListOfTranslationScriptId**](../model/PagedResourceListOfTranslationScriptId.md)
 
 ### HTTP request headers
 
@@ -257,11 +257,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **translate_entities_request** | [**TranslateEntitiesRequest**](TranslateEntitiesRequest.md)| The entities to translate, along with identifiers for the script and (optional) dialect to use. | [required] 
+ **translate_entities_request** | [**TranslateEntitiesRequest**](../model/TranslateEntitiesRequest.md)| The entities to translate, along with identifiers for the script and (optional) dialect to use. | [required] 
 
 ### Return type
 
-[**TranslateEntitiesResponse**](TranslateEntitiesResponse.md)
+[**TranslateEntitiesResponse**](../model/TranslateEntitiesResponse.md)
 
 ### HTTP request headers
 
@@ -299,11 +299,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **translate_entities_inlined_request** | [**TranslateEntitiesInlinedRequest**](TranslateEntitiesInlinedRequest.md)| The entities to translate, along with the script to use and an optional schema for validation. | [required] 
+ **translate_entities_inlined_request** | [**TranslateEntitiesInlinedRequest**](../model/TranslateEntitiesInlinedRequest.md)| The entities to translate, along with the script to use and an optional schema for validation. | [required] 
 
 ### Return type
 
-[**TranslateEntitiesResponse**](TranslateEntitiesResponse.md)
+[**TranslateEntitiesResponse**](../model/TranslateEntitiesResponse.md)
 
 ### HTTP request headers
 
@@ -341,11 +341,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **upsert_dialect_request** | [**UpsertDialectRequest**](UpsertDialectRequest.md)| The dialect to upsert. | [required] 
+ **upsert_dialect_request** | [**UpsertDialectRequest**](../model/UpsertDialectRequest.md)| The dialect to upsert. | [required] 
 
 ### Return type
 
-[**Dialect**](Dialect.md)
+[**Dialect**](../model/Dialect.md)
 
 ### HTTP request headers
 
@@ -383,11 +383,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **upsert_translation_script_request** | [**UpsertTranslationScriptRequest**](UpsertTranslationScriptRequest.md)| The translation script to be upserted. | [required] 
+ **upsert_translation_script_request** | [**UpsertTranslationScriptRequest**](../model/UpsertTranslationScriptRequest.md)| The translation script to be upserted. | [required] 
 
 ### Return type
 
-[**TranslationScript**](TranslationScript.md)
+[**TranslationScript**](../model/TranslationScript.md)
 
 ### HTTP request headers
 

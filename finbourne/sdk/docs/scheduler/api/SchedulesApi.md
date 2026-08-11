@@ -57,11 +57,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_schedule_request** | [**CreateScheduleRequest**](CreateScheduleRequest.md)|  | [required] 
+ **create_schedule_request** | [**CreateScheduleRequest**](../model/CreateScheduleRequest.md)|  | [required] 
 
 ### Return type
 
-[**ScheduleDefinition**](ScheduleDefinition.md)
+[**ScheduleDefinition**](../model/ScheduleDefinition.md)
 
 ### HTTP request headers
 
@@ -146,7 +146,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ScheduleDefinition**](ScheduleDefinition.md)
+[**ScheduleDefinition**](../model/ScheduleDefinition.md)
 
 ### HTTP request headers
 
@@ -188,7 +188,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ScheduleDefinition**](ScheduleDefinition.md)
+[**ScheduleDefinition**](../model/ScheduleDefinition.md)
 
 ### HTTP request headers
 
@@ -224,7 +224,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ResourceListOfString**](ResourceListOfString.md)
+[**ResourceListOfString**](../model/ResourceListOfString.md)
 
 ### HTTP request headers
 
@@ -264,14 +264,14 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **page** | **str**| The pagination token to use to continue listing instruments from a previous call to list instruments.             This value is returned from the previous call. If a pagination token is provided the sortBy and filter fields             must not have changed since the original request. Also, if set, a start value cannot be provided. | [optional] 
- **sort_by** | [**List[str]**](str.md)| Order the results by these fields. Use use the &#39;-&#39; sign to denote descending order e.g. -MyFieldName. | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| Order the results by these fields. Use use the &#39;-&#39; sign to denote descending order e.g. -MyFieldName. | [optional] 
  **start** | **int**| When paginating, skip this number of results. | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many. Defaults to 2000 if not specified. Maximum is 5000. | [optional] [default to 2000]
  **filter** | **str**| Expression to filter the result set. | [optional] 
 
 ### Return type
 
-[**ResourceListOfScheduleDefinition**](ResourceListOfScheduleDefinition.md)
+[**ResourceListOfScheduleDefinition**](../model/ResourceListOfScheduleDefinition.md)
 
 ### HTTP request headers
 
@@ -313,7 +313,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StartScheduleResponse**](StartScheduleResponse.md)
+[**StartScheduleResponse**](../model/StartScheduleResponse.md)
 
 ### HTTP request headers
 
@@ -353,11 +353,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| Scope of the schedule to be updated | [required] 
  **code** | **str**| Code of the schedule to be updated | [required] 
- **update_schedule_request** | [**UpdateScheduleRequest**](UpdateScheduleRequest.md)| The updated schedule | [required] 
+ **update_schedule_request** | [**UpdateScheduleRequest**](../model/UpdateScheduleRequest.md)| The updated schedule | [required] 
 
 ### Return type
 
-[**ScheduleDefinition**](ScheduleDefinition.md)
+[**ScheduleDefinition**](../model/ScheduleDefinition.md)
 
 ### HTTP request headers
 

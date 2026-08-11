@@ -5,9 +5,9 @@ Specifies the parameter to be use when performing a Transaction Reconciliation.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **left_portfolio_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
-| **right_portfolio_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
-| **mapping_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **left_portfolio_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **right_portfolio_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **mapping_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **from_transaction_date** | **datetime** | Required | *No description available.* |
 | **to_transaction_date** | **datetime** | Required | *No description available.* |
 | **as_at** | **datetime** | Optional | *No description available.* |

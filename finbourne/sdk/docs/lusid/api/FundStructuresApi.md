@@ -56,11 +56,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the Fund Structure. | [required] 
- **fund_structure_request** | [**FundStructureRequest**](FundStructureRequest.md)| The definition of the Fund Structure. | [required] 
+ **fund_structure_request** | [**FundStructureRequest**](../model/FundStructureRequest.md)| The definition of the Fund Structure. | [required] 
 
 ### Return type
 
-[**FundStructure**](FundStructure.md)
+[**FundStructure**](../model/FundStructure.md)
 
 ### HTTP request headers
 
@@ -104,11 +104,11 @@ Name | Type | Description  | Notes
  **scope** | **str**| The scope of the Fund Structure. | [required] 
  **code** | **str**| The code of the Fund Structure. Together with the scope this uniquely identifies the Fund Structure. | [required] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the Fund Structure. Defaults to returning the latest version if not specified. | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the &#39;FundStructure&#39; domain to decorate onto the Fund Structure.              These must take the format {domain}/{scope}/{code}, for example &#39;FundStructure/Manager/Id&#39;. If no properties are specified, then no properties will be returned. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the &#39;FundStructure&#39; domain to decorate onto the Fund Structure.              These must take the format {domain}/{scope}/{code}, for example &#39;FundStructure/Manager/Id&#39;. If no properties are specified, then no properties will be returned. | [optional] 
 
 ### Return type
 
-[**FundStructure**](FundStructure.md)
+[**FundStructure**](../model/FundStructure.md)
 
 ### HTTP request headers
 
@@ -155,12 +155,12 @@ Name | Type | Description  | Notes
  **page** | **str**| The pagination token to use to continue listing Fund Structures; this value is returned from the previous call. If a pagination token is provided, the filter and asAt fields must not have changed since the original request. | [optional] 
  **limit** | **int**| When paginating, limit the results to this number. Defaults to 100 if not specified. | [optional] 
  **filter** | **str**| Expression to filter the results. For example, to filter on the Fund Structure code, specify \&quot;id.Code eq &#39;Structure1&#39;\&quot;. For more information about filtering results, see https://support.lusid.com/knowledgebase/article/KA-01914. | [optional] 
- **sort_by** | [**List[str]**](str.md)| A list of field names to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the &#39;FundStructure&#39; domain to decorate onto each Fund Structure.              These must take the format {domain}/{scope}/{code}, for example &#39;FundStructure/Manager/Id&#39;. | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| A list of field names to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the &#39;FundStructure&#39; domain to decorate onto each Fund Structure.              These must take the format {domain}/{scope}/{code}, for example &#39;FundStructure/Manager/Id&#39;. | [optional] 
 
 ### Return type
 
-[**PagedResourceListOfFundStructure**](PagedResourceListOfFundStructure.md)
+[**PagedResourceListOfFundStructure**](../model/PagedResourceListOfFundStructure.md)
 
 ### HTTP request headers
 

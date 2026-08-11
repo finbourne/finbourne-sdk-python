@@ -5,9 +5,9 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **description** | **str** | Optional | *No description available.* |
-| **network_zone_ips** | [../model/List[IpAddressDefinition]](IpAddressDefinition.md) | Required | *No description available.* |
+| **network_zone_ips** | [List[IpAddressDefinition]](IpAddressDefinition.md) | Required | *No description available.* |
 | **action** | **str** | Optional | *No description available.* |
-| **apply_rules** | [../model/NetworkZonesApplyRules](NetworkZonesApplyRules.md) | Required | *No description available.* |
+| **apply_rules** | [NetworkZonesApplyRules](NetworkZonesApplyRules.md) | Required | *No description available.* |
 | **hierarchy** | **int** | Required | *No description available.* |
 
 

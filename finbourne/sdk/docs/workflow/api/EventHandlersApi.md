@@ -54,11 +54,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_event_handler_request** | [**CreateEventHandlerRequest**](CreateEventHandlerRequest.md)| The data to create an Event Handler | [required] 
+ **create_event_handler_request** | [**CreateEventHandlerRequest**](../model/CreateEventHandlerRequest.md)| The data to create an Event Handler | [required] 
 
 ### Return type
 
-[**EventHandler**](EventHandler.md)
+[**EventHandler**](../model/EventHandler.md)
 
 ### HTTP request headers
 
@@ -102,7 +102,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -149,7 +149,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**EventHandler**](EventHandler.md)
+[**EventHandler**](../model/EventHandler.md)
 
 ### HTTP request headers
 
@@ -195,7 +195,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PagedResourceListOfEventHandler**](PagedResourceListOfEventHandler.md)
+[**PagedResourceListOfEventHandler**](../model/PagedResourceListOfEventHandler.md)
 
 ### HTTP request headers
 
@@ -235,11 +235,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope that identifies an Event Handler | [required] 
  **code** | **str**| The code that identifies an Event Handler | [required] 
- **update_event_handler_request** | [**UpdateEventHandlerRequest**](UpdateEventHandlerRequest.md)| The data to update an Event Handler | [required] 
+ **update_event_handler_request** | [**UpdateEventHandlerRequest**](../model/UpdateEventHandlerRequest.md)| The data to update an Event Handler | [required] 
 
 ### Return type
 
-[**EventHandler**](EventHandler.md)
+[**EventHandler**](../model/EventHandler.md)
 
 ### HTTP request headers
 

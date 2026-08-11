@@ -62,11 +62,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope in which to create or update data maps. | [required] 
- **request_body** | [**Dict[str, CreateDataMapRequest]**](CreateDataMapRequest.md)| Individual data map creation requests. | [required] 
+ **request_body** | [**Dict[str, CreateDataMapRequest]**](../model/CreateDataMapRequest.md)| Individual data map creation requests. | [required] 
 
 ### Return type
 
-[**UpsertStructuredDataResponse**](UpsertStructuredDataResponse.md)
+[**UpsertStructuredDataResponse**](../model/UpsertStructuredDataResponse.md)
 
 ### HTTP request headers
 
@@ -106,11 +106,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope from which to delete data items. | [required] 
- **request_body** | [**Dict[str, StructuredResultDataId]**](StructuredResultDataId.md)| The data IDs to delete, each keyed by a unique, ephemeral correlation ID. | [required] 
+ **request_body** | [**Dict[str, StructuredResultDataId]**](../model/StructuredResultDataId.md)| The data IDs to delete, each keyed by a unique, ephemeral correlation ID. | [required] 
 
 ### Return type
 
-[**AnnulStructuredDataResponse**](AnnulStructuredDataResponse.md)
+[**AnnulStructuredDataResponse**](../model/AnnulStructuredDataResponse.md)
 
 ### HTTP request headers
 
@@ -162,7 +162,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfAddressKeyDefinition**](ResourceListOfAddressKeyDefinition.md)
+[**ResourceListOfAddressKeyDefinition**](../model/ResourceListOfAddressKeyDefinition.md)
 
 ### HTTP request headers
 
@@ -202,11 +202,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope from which to retrieve data maps. | [required] 
- **request_body** | [**Dict[str, DataMapKey]**](DataMapKey.md)| The data map keys to look up, each keyed by a unique, ephemeral correlation ID. | [required] 
+ **request_body** | [**Dict[str, DataMapKey]**](../model/DataMapKey.md)| The data map keys to look up, each keyed by a unique, ephemeral correlation ID. | [required] 
 
 ### Return type
 
-[**GetDataMapResponse**](GetDataMapResponse.md)
+[**GetDataMapResponse**](../model/GetDataMapResponse.md)
 
 ### HTTP request headers
 
@@ -248,13 +248,13 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope from which to retrieve data items. | [required] 
- **request_body** | [**Dict[str, StructuredResultDataId]**](StructuredResultDataId.md)| The time invariant set of structured data identifiers to retrieve, keyed by a unique, ephemeral correlation ID. | [required] 
+ **request_body** | [**Dict[str, StructuredResultDataId]**](../model/StructuredResultDataId.md)| The time invariant set of structured data identifiers to retrieve, keyed by a unique, ephemeral correlation ID. | [required] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the structured result data. Defaults to returning the latest version if not specified. | [optional] 
  **max_age** | **str**| The duration of the look-back window in ISO8601 time interval format, for example &#39;P1Y2M3DT4H30M&#39; (1 year, 2 months, 3 days, 4 hours and 30 minutes).               This is subtracted from the provided effectiveAt datetime to generate a effective datetime window inside which a data item must exist to be retrieved. | [optional] 
 
 ### Return type
 
-[**GetStructuredResultDataResponse**](GetStructuredResultDataResponse.md)
+[**GetStructuredResultDataResponse**](../model/GetStructuredResultDataResponse.md)
 
 ### HTTP request headers
 
@@ -295,12 +295,12 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope in which to construct the virtual documents. | [required] 
- **request_body** | [**Dict[str, StructuredResultDataId]**](StructuredResultDataId.md)| The time invariant set of structured data identifiers to retrieve, keyed by a unique, ephemeral correlation ID. | [required] 
+ **request_body** | [**Dict[str, StructuredResultDataId]**](../model/StructuredResultDataId.md)| The time invariant set of structured data identifiers to retrieve, keyed by a unique, ephemeral correlation ID. | [required] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the structured result data. Defaults to returning the latest version if not specified. | [optional] 
 
 ### Return type
 
-[**GetVirtualDocumentResponse**](GetVirtualDocumentResponse.md)
+[**GetVirtualDocumentResponse**](../model/GetVirtualDocumentResponse.md)
 
 ### HTTP request headers
 
@@ -358,7 +358,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PagedResourceListOfVirtualRow**](PagedResourceListOfVirtualRow.md)
+[**PagedResourceListOfVirtualRow**](../model/PagedResourceListOfVirtualRow.md)
 
 ### HTTP request headers
 
@@ -398,11 +398,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope in which to construct the virtual documents. | [required] 
- **request_body** | [**Dict[str, UpsertResultValuesDataRequest]**](UpsertResultValuesDataRequest.md)| The time invariant set of structured data identifiers to retrieve, keyed by a unique, ephemeral correlation ID. | [required] 
+ **request_body** | [**Dict[str, UpsertResultValuesDataRequest]**](../model/UpsertResultValuesDataRequest.md)| The time invariant set of structured data identifiers to retrieve, keyed by a unique, ephemeral correlation ID. | [required] 
 
 ### Return type
 
-[**UpsertStructuredDataResponse**](UpsertStructuredDataResponse.md)
+[**UpsertStructuredDataResponse**](../model/UpsertStructuredDataResponse.md)
 
 ### HTTP request headers
 
@@ -442,11 +442,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope in which to create or update data items. | [required] 
- **request_body** | [**Dict[str, UpsertStructuredResultDataRequest]**](UpsertStructuredResultDataRequest.md)| The set of data items to create or update, keyed by a unique, ephemeral correlation ID. | [required] 
+ **request_body** | [**Dict[str, UpsertStructuredResultDataRequest]**](../model/UpsertStructuredResultDataRequest.md)| The set of data items to create or update, keyed by a unique, ephemeral correlation ID. | [required] 
 
 ### Return type
 
-[**UpsertStructuredDataResponse**](UpsertStructuredDataResponse.md)
+[**UpsertStructuredDataResponse**](../model/UpsertStructuredDataResponse.md)
 
 ### HTTP request headers
 

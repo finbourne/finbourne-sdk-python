@@ -5,10 +5,10 @@ A lightweight view of the rec instance, nested on each result set. It carries th
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [../model/RecInstanceId](RecInstanceId.md) | Required | *No description available.* |
-| **rec_definition_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **id** | [RecInstanceId](RecInstanceId.md) | Required | *No description available.* |
+| **rec_definition_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **as_at_instantiated** | **datetime** | Required | The asAt datetime at which the instance was first created. |
-| **workflow_task_instantiated** | [../model/RecWorkflowTask](RecWorkflowTask.md) | Optional | *No description available.* |
+| **workflow_task_instantiated** | [RecWorkflowTask](RecWorkflowTask.md) | Optional | *No description available.* |
 | **status** | **str** | Required | The instance-level lifecycle rollup. Available values: Running, Failures, ReviewAndApproval, AllApproved, Locked. |
 | **as_at_locked** | **datetime** | Optional | The wall-clock time the lock action was performed. Null when the instance has not been locked. |
 

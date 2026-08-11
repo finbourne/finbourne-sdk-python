@@ -14,10 +14,10 @@
 | **query_as_at** | **datetime** | Optional | The AsAt time of the Valuation Point. This is the AsAt time that will be used when requests are made using the entry. |
 | **holdings_as_at** | **datetime** | Optional | The AsAt time used for building holdings in the Valuation Point. |
 | **valuation_as_at** | **datetime** | Optional | The AsAt time used for performing valuations in the Valuation Point. |
-| **previous** | [../model/PreviousValuationPoint](PreviousValuationPoint.md) | Optional | *No description available.* |
-| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | The Valuation Point properties. These are from the &#39;DiaryEntry&#39; domain. |
-| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **previous** | [PreviousValuationPoint](PreviousValuationPoint.md) | Optional | *No description available.* |
+| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | The Valuation Point properties. These are from the &#39;DiaryEntry&#39; domain. |
+| **version** | [Version](Version.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

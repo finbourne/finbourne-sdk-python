@@ -57,7 +57,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TraceDiagramResponse**](TraceDiagramResponse.md)
+[**TraceDiagramResponse**](../model/TraceDiagramResponse.md)
 
 ### HTTP request headers
 
@@ -97,7 +97,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TraceLog**](TraceLog.md)
+[**TraceLog**](../model/TraceLog.md)
 
 ### HTTP request headers
 
@@ -139,7 +139,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfTraceEventLog**](ResourceListOfTraceEventLog.md)
+[**ResourceListOfTraceEventLog**](../model/ResourceListOfTraceEventLog.md)
 
 ### HTTP request headers
 
@@ -185,7 +185,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfTraceLog**](ResourceListOfTraceLog.md)
+[**ResourceListOfTraceLog**](../model/ResourceListOfTraceLog.md)
 
 ### HTTP request headers
 

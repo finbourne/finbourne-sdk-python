@@ -4,8 +4,8 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [../model/DialectId](DialectId.md) | Required | *No description available.* |
-| **var_schema** | [../model/DialectSchema](DialectSchema.md) | Required | *No description available.* |
+| **id** | [DialectId](DialectId.md) | Required | *No description available.* |
+| **var_schema** | [DialectSchema](DialectSchema.md) | Required | *No description available.* |
 
 
 ## Usage

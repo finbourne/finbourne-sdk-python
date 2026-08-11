@@ -9,7 +9,7 @@ An Investment Portfolio of an Investment Account.
 | **scope** | **str** | Optional | The scope of the Investment Portfolio |
 | **identifiers** | **Dict[str, Optional[str]]** | Optional | The code identifier of the Investment Portfolio |
 | **entity_unique_id** | **str** | Optional | The unique Portfolio entity identifier |
-| **portfolio** | [../model/Portfolio](Portfolio.md) | Optional | *No description available.* |
+| **portfolio** | [Portfolio](Portfolio.md) | Optional | *No description available.* |
 
 
 ## Usage

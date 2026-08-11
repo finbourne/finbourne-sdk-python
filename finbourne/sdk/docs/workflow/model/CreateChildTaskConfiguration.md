@@ -5,10 +5,10 @@ Create Child Task Configuration
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **task_definition_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **task_definition_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **task_definition_as_at** | **datetime** | Optional | TaskDefinition AsAt timestamp |
 | **initial_trigger** | **str** | Optional | The Initial Trigger for automatic start |
-| **child_task_fields** | [../model/Dict[str, FieldMapping]](FieldMapping.md) | Optional | Field Mappings |
+| **child_task_fields** | [Dict[str, FieldMapping]](FieldMapping.md) | Optional | Field Mappings |
 | **map_stacking_key_from** | **str** | Optional | If present, the value of this field on the parent task will be the Stacking Key on any created child tasks |
 
 

@@ -5,7 +5,7 @@ The details of the requested evaluation
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **action** | [../model/RequestedActionKey](RequestedActionKey.md) | Required | *No description available.* |
+| **action** | [RequestedActionKey](RequestedActionKey.md) | Required | *No description available.* |
 | **from_effective_date** | **datetime** | Optional | The start date for the requested effective date range for the resource (if null, UtcNow) |
 | **to_effective_date** | **datetime** | Optional | The end date for the requested effective date range for the resource (if null, same as from date) |
 | **from_as_at** | **datetime** | Optional | The requested AsAt date for the resource (if null, Latest). If specifying a range of AsAt dates, this is the lower bounds. |

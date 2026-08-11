@@ -59,12 +59,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **relational_dataset_definition_scope** | **str**| The Scope of the relational dataset definition. | [required] 
  **relational_dataset_definition_code** | **str**| The Code of the relational dataset definition. | [required] 
- **request_body** | [**Dict[str, DeleteRelationalDataPointRequest]**](DeleteRelationalDataPointRequest.md)| The Delete Request. | [required] 
+ **request_body** | [**Dict[str, DeleteRelationalDataPointRequest]**](../model/DeleteRelationalDataPointRequest.md)| The Delete Request. | [required] 
  **success_mode** | **str**| Whether the batch request should fail Atomically or in a Partial fashion - Allowed Values: Atomic, Partial.              Note: If using partial failure modes, then it is important to check the response body for failures as any failures will still return a 200 status code. | [optional] [default to &#39;Partial&#39;]
 
 ### Return type
 
-[**BatchDeleteRelationalDataResponse**](BatchDeleteRelationalDataResponse.md)
+[**BatchDeleteRelationalDataResponse**](../model/BatchDeleteRelationalDataResponse.md)
 
 ### HTTP request headers
 
@@ -107,12 +107,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **relational_dataset_definition_scope** | **str**| The Scope of the relational dataset definition. | [required] 
  **relational_dataset_definition_code** | **str**| The Code of the relational dataset definition. | [required] 
- **request_body** | [**Dict[str, UpsertRelationalDataPointRequest]**](UpsertRelationalDataPointRequest.md)| The DataPoints to upsert. | [required] 
+ **request_body** | [**Dict[str, UpsertRelationalDataPointRequest]**](../model/UpsertRelationalDataPointRequest.md)| The DataPoints to upsert. | [required] 
  **success_mode** | **str**| Whether the batch request should fail Atomically or in a Partial fashion - Allowed Values: Atomic, Partial.              Note: If using partial failure modes, then it is important to check the response body for failures as any failures will still return a 200 status code. | [optional] [default to &#39;Partial&#39;]
 
 ### Return type
 
-[**BatchUpsertRelationalDatasetsResponse**](BatchUpsertRelationalDatasetsResponse.md)
+[**BatchUpsertRelationalDatasetsResponse**](../model/BatchUpsertRelationalDatasetsResponse.md)
 
 ### HTTP request headers
 
@@ -162,11 +162,11 @@ Name | Type | Description  | Notes
  **effective_at** | **str**| The effective datetime or cut label at which to query the datasets.              Defaults to the current LUSID system datetime if not specified. | [optional] 
  **page** | **str**| The pagination token to use to continue query datasets. This value is returned from the previous call.              If a pagination token is provided, the filter, customSortBy, effectiveAt and asAt fields must not have changed since the original request. | [optional] 
  **limit** | **int**| When paginating, limit the results to this number. Defaults to 100 if not specified. | [optional] 
- **query_relational_dataset_request** | [**QueryRelationalDatasetRequest**](QueryRelationalDatasetRequest.md)| The query request. | [optional] 
+ **query_relational_dataset_request** | [**QueryRelationalDatasetRequest**](../model/QueryRelationalDatasetRequest.md)| The query request. | [optional] 
 
 ### Return type
 
-[**PagedResourceListOfRelationalDataPointResponse**](PagedResourceListOfRelationalDataPointResponse.md)
+[**PagedResourceListOfRelationalDataPointResponse**](../model/PagedResourceListOfRelationalDataPointResponse.md)
 
 ### HTTP request headers
 

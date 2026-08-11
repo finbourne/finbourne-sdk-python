@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **filter** | **str** | Required |  |
-| **values** | [../model/List[ResourceId]](ResourceId.md) | Optional |  *(read-only)* |
+| **values** | [List[ResourceId]](ResourceId.md) | Optional |  *(read-only)* |
 | **reference_list_type** | **str** | Required | The reference list values. Available values: PortfolioGroupIdList, PortfolioIdList, AddressKeyList, StringList, InstrumentList, DecimalList, PropertyList, FundIdList, FilteredFundIdList. |
 
 

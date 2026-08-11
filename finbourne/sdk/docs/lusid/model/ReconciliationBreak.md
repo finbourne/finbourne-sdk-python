@@ -7,14 +7,14 @@ A reconciliation break
 |------|------|----------|-------------|
 | **instrument_scope** | **str** | Optional | The scope in which the instrument lies. |
 | **instrument_uid** | **str** | Required | Unique instrument identifier |
-| **sub_holding_keys** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Required | Any other properties that comprise the Sub-Holding Key |
+| **sub_holding_keys** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Required | Any other properties that comprise the Sub-Holding Key |
 | **left_units** | **float** | Required | Units from the left hand side |
 | **right_units** | **float** | Required | Units from the right hand side |
 | **difference_units** | **float** | Required | Difference in units |
-| **left_cost** | [../model/CurrencyAndAmount](CurrencyAndAmount.md) | Required | *No description available.* |
-| **right_cost** | [../model/CurrencyAndAmount](CurrencyAndAmount.md) | Required | *No description available.* |
-| **difference_cost** | [../model/CurrencyAndAmount](CurrencyAndAmount.md) | Required | *No description available.* |
-| **instrument_properties** | [../model/List[ModelProperty]](ModelProperty.md) | Required | Additional features relating to the instrument |
+| **left_cost** | [CurrencyAndAmount](CurrencyAndAmount.md) | Required | *No description available.* |
+| **right_cost** | [CurrencyAndAmount](CurrencyAndAmount.md) | Required | *No description available.* |
+| **difference_cost** | [CurrencyAndAmount](CurrencyAndAmount.md) | Required | *No description available.* |
+| **instrument_properties** | [List[ModelProperty]](ModelProperty.md) | Required | Additional features relating to the instrument |
 
 
 ## Usage

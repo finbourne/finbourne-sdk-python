@@ -8,7 +8,7 @@ Denormalised information about vendors, the products they provide and the LUSID 
 | **vendor_name** | **str** | Required | *No description available.* |
 | **product_name** | **str** | Required | *No description available.* |
 | **vendor_product_key** | **str** | Required | *No description available.* |
-| **lusid_entity** | [../model/LusidEntity](LusidEntity.md) | Required | *No description available.* |
+| **lusid_entity** | [LusidEntity](LusidEntity.md) | Required | *No description available.* |
 
 
 ## Usage

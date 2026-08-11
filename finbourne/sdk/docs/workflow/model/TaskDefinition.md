@@ -5,17 +5,17 @@ Task Definition
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
-| **version** | [../model/VersionInfo](VersionInfo.md) | Optional | *No description available.* |
+| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **version** | [VersionInfo](VersionInfo.md) | Optional | *No description available.* |
 | **display_name** | **str** | Required | Human readable name |
 | **description** | **str** | Optional | Human readable description |
-| **states** | [../model/List[TaskStateDefinition]](TaskStateDefinition.md) | Required | The states this Task Definition operates over |
-| **field_schema** | [../model/List[TaskFieldDefinition]](TaskFieldDefinition.md) | Optional | The Fields that this Task Definition operates on |
-| **initial_state** | [../model/InitialState](InitialState.md) | Required | *No description available.* |
-| **triggers** | [../model/List[TransitionTriggerDefinition]](TransitionTriggerDefinition.md) | Optional | The Triggers for State transition |
-| **actions** | [../model/List[ActionDefinitionResponse]](ActionDefinitionResponse.md) | Optional | The Actions of this Task - executed after a Transition completion |
-| **transitions** | [../model/List[TaskTransitionDefinition]](TaskTransitionDefinition.md) | Optional | The Transitions between States |
-| **properties** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | The properties of the Task Definition, keyed by property key. Only populated when set on the request (Create/Update) or when property keys are requested (Get/List). |
+| **states** | [List[TaskStateDefinition]](TaskStateDefinition.md) | Required | The states this Task Definition operates over |
+| **field_schema** | [List[TaskFieldDefinition]](TaskFieldDefinition.md) | Optional | The Fields that this Task Definition operates on |
+| **initial_state** | [InitialState](InitialState.md) | Required | *No description available.* |
+| **triggers** | [List[TransitionTriggerDefinition]](TransitionTriggerDefinition.md) | Optional | The Triggers for State transition |
+| **actions** | [List[ActionDefinitionResponse]](ActionDefinitionResponse.md) | Optional | The Actions of this Task - executed after a Transition completion |
+| **transitions** | [List[TaskTransitionDefinition]](TaskTransitionDefinition.md) | Optional | The Transitions between States |
+| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | The properties of the Task Definition, keyed by property key. Only populated when set on the request (Create/Update) or when property keys are requested (Get/List). |
 
 
 ## Usage

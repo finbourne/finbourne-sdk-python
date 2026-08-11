@@ -7,8 +7,8 @@
 | **application** | **str** | Optional | *No description available.* |
 | **name** | **str** | Optional | *No description available.* |
 | **description** | **str** | Optional | *No description available.* |
-| **actions** | [../model/List[AccessControlledAction]](AccessControlledAction.md) | Optional | *No description available.* |
-| **identifier_parts** | [../model/List[AccessControlledResourceIdentifierPartSchemaAttribute]](AccessControlledResourceIdentifierPartSchemaAttribute.md) | Optional | *No description available.* |
+| **actions** | [List[AccessControlledAction]](AccessControlledAction.md) | Optional | *No description available.* |
+| **identifier_parts** | [List[AccessControlledResourceIdentifierPartSchemaAttribute]](AccessControlledResourceIdentifierPartSchemaAttribute.md) | Optional | *No description available.* |
 
 
 ## Usage

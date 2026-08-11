@@ -6,18 +6,18 @@ Response for Background Query Start requests
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **execution_id** | **str** | Optional | ExecutionId of the started-query |
-| **progress** | [../model/Link](Link.md) | Optional | *No description available.* |
-| **cancel** | [../model/Link](Link.md) | Optional | *No description available.* |
-| **fetch_json** | [../model/Link](Link.md) | Optional | *No description available.* |
-| **fetch_json_proper** | [../model/Link](Link.md) | Optional | *No description available.* |
-| **fetch_json_proper_with_lineage** | [../model/Link](Link.md) | Optional | *No description available.* |
-| **fetch_xml** | [../model/Link](Link.md) | Optional | *No description available.* |
-| **fetch_parquet** | [../model/Link](Link.md) | Optional | *No description available.* |
-| **fetch_csv** | [../model/Link](Link.md) | Optional | *No description available.* |
-| **fetch_pipe** | [../model/Link](Link.md) | Optional | *No description available.* |
-| **fetch_excel** | [../model/Link](Link.md) | Optional | *No description available.* |
-| **fetch_sqlite** | [../model/Link](Link.md) | Optional | *No description available.* |
-| **histogram** | [../model/Link](Link.md) | Optional | *No description available.* |
+| **progress** | [Link](Link.md) | Optional | *No description available.* |
+| **cancel** | [Link](Link.md) | Optional | *No description available.* |
+| **fetch_json** | [Link](Link.md) | Optional | *No description available.* |
+| **fetch_json_proper** | [Link](Link.md) | Optional | *No description available.* |
+| **fetch_json_proper_with_lineage** | [Link](Link.md) | Optional | *No description available.* |
+| **fetch_xml** | [Link](Link.md) | Optional | *No description available.* |
+| **fetch_parquet** | [Link](Link.md) | Optional | *No description available.* |
+| **fetch_csv** | [Link](Link.md) | Optional | *No description available.* |
+| **fetch_pipe** | [Link](Link.md) | Optional | *No description available.* |
+| **fetch_excel** | [Link](Link.md) | Optional | *No description available.* |
+| **fetch_sqlite** | [Link](Link.md) | Optional | *No description available.* |
+| **histogram** | [Link](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

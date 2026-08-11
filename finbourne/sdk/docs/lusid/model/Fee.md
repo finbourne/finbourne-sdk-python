@@ -6,7 +6,7 @@
 |------|------|----------|-------------|
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
 | **fee_code** | **str** | Optional | The code of the Fee. |
-| **fee_type_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **fee_type_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **display_name** | **str** | Required | The name of the Fee. |
 | **description** | **str** | Optional | A description for the Fee. |
 | **origin** | **str** | Optional | The origin or source of the Fee accrual. |
@@ -19,13 +19,13 @@
 | **business_day_convention** | **str** | Required | The business day convention to use for Fee calculations on weekends or holidays. Available values: None, P, Previous, F, Following. |
 | **start_date** | **datetime** | Required | The start date of the Fee. |
 | **end_date** | **datetime** | Optional | The end date of the Fee. |
-| **anchor_date** | [../model/DayMonth](DayMonth.md) | Optional | *No description available.* |
-| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | The Fee properties. These will be from the &#39;Fee&#39; domain. |
-| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
-| **portfolio_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **anchor_date** | [DayMonth](DayMonth.md) | Optional | *No description available.* |
+| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | The Fee properties. These will be from the &#39;Fee&#39; domain. |
+| **version** | [Version](Version.md) | Optional | *No description available.* |
+| **portfolio_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **share_classes** | **List[str]** | Optional | The short codes of the ShareClasses that the Fee should be applied to. Optional: if this is null or empty, then the Fee will be divided between all the ShareClasses of the Fund according to the capital ratio. |
 | **nav_type_code** | **str** | Optional | When provided runs against the specified NAV Type, otherwise the Primary NAV Type will be used. |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

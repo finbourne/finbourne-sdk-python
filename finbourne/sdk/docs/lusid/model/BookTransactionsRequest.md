@@ -4,8 +4,8 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **allocation_ids** | [../model/List[ResourceId]](ResourceId.md) | Required | A collection of Allocation IDs |
-| **transaction_properties** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | A collection of properties |
+| **allocation_ids** | [List[ResourceId]](ResourceId.md) | Required | A collection of Allocation IDs |
+| **transaction_properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | A collection of properties |
 | **fx_instrument_type** | **str** | Optional | The type of FX instrument to create when settlement currency differs from portfolio base currency. Use None to suppress FX instrument and order creation. Defaults to None. Available values: None, FxForward, FxSpot. |
 
 

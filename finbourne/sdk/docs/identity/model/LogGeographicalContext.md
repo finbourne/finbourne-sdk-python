@@ -9,7 +9,7 @@ Represents a LogGeographicalContext resource in the Okta API
 | **state** | **str** | Optional | *No description available.* |
 | **country** | **str** | Optional | *No description available.* |
 | **postal_code** | **str** | Optional | *No description available.* |
-| **geolocation** | [../model/LogGeolocation](LogGeolocation.md) | Optional | *No description available.* |
+| **geolocation** | [LogGeolocation](LogGeolocation.md) | Optional | *No description available.* |
 
 
 ## Usage

@@ -58,11 +58,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_job_request** | [**CreateJobRequest**](CreateJobRequest.md)| The request to create a new job | [required] 
+ **create_job_request** | [**CreateJobRequest**](../model/CreateJobRequest.md)| The request to create a new job | [required] 
 
 ### Return type
 
-[**JobDefinition**](JobDefinition.md)
+[**JobDefinition**](../model/JobDefinition.md)
 
 ### HTTP request headers
 
@@ -104,7 +104,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfScheduleDefinition**](ResourceListOfScheduleDefinition.md)
+[**ResourceListOfScheduleDefinition**](../model/ResourceListOfScheduleDefinition.md)
 
 ### HTTP request headers
 
@@ -145,14 +145,14 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **page** | **str**| The pagination token to use to continue listing instruments from a previous call to list instruments.             This value is returned from the previous call. If a pagination token is provided the sortBy and filter fields             must not have changed since the original request. Also, if set, a start value cannot be provided. | [optional] 
- **sort_by** | [**List[str]**](str.md)| Order the results by these fields. Use use the &#39;-&#39; sign to denote descending order e.g. -MyFieldName. | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| Order the results by these fields. Use use the &#39;-&#39; sign to denote descending order e.g. -MyFieldName. | [optional] 
  **start** | **int**| This field is obsolete, the value of this field would not be considered. | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many. Defaults to 2000 if not specified. Maximum is 5000. | [optional] 
  **filter** | **str**| Expression to filter the result set. | [optional] 
 
 ### Return type
 
-[**ResourceListOfJobHistory**](ResourceListOfJobHistory.md)
+[**ResourceListOfJobHistory**](../model/ResourceListOfJobHistory.md)
 
 ### HTTP request headers
 
@@ -232,7 +232,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**JobRunResult**](JobRunResult.md)
+[**JobRunResult**](../model/JobRunResult.md)
 
 ### HTTP request headers
 
@@ -274,7 +274,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfScheduleDefinition**](ResourceListOfScheduleDefinition.md)
+[**ResourceListOfScheduleDefinition**](../model/ResourceListOfScheduleDefinition.md)
 
 ### HTTP request headers
 
@@ -315,14 +315,14 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **page** | **str**| The pagination token to use to continue listing instruments from a previous call to list instruments.             This value is returned from the previous call. If a pagination token is provided the sortBy and filter fields             must not have changed since the original request. Also, if set, a start value cannot be provided. | [optional] 
- **sort_by** | [**List[str]**](str.md)| Order the results by these fields. Use use the &#39;-&#39; sign to denote descending order e.g. -MyFieldName. | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| Order the results by these fields. Use use the &#39;-&#39; sign to denote descending order e.g. -MyFieldName. | [optional] 
  **start** | **int**| When paginating, skip this number of results. | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many. Defaults to 2000 if not specified. Maximum is 5000. | [optional] [default to 2000]
  **filter** | **str**| Expression to filter the result set. | [optional] 
 
 ### Return type
 
-[**ResourceListOfJobDefinition**](ResourceListOfJobDefinition.md)
+[**ResourceListOfJobDefinition**](../model/ResourceListOfJobDefinition.md)
 
 ### HTTP request headers
 
@@ -362,11 +362,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the job | [required] 
  **code** | **str**| The code of the job | [required] 
- **start_job_request** | [**StartJobRequest**](StartJobRequest.md)| The request for starting job | [required] 
+ **start_job_request** | [**StartJobRequest**](../model/StartJobRequest.md)| The request for starting job | [required] 
 
 ### Return type
 
-[**StartJobResponse**](StartJobResponse.md)
+[**StartJobResponse**](../model/StartJobResponse.md)
 
 ### HTTP request headers
 
@@ -406,11 +406,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**|  | [required] 
  **code** | **str**|  | [required] 
- **update_job_request** | [**UpdateJobRequest**](UpdateJobRequest.md)|  | [required] 
+ **update_job_request** | [**UpdateJobRequest**](../model/UpdateJobRequest.md)|  | [required] 
 
 ### Return type
 
-[**JobDefinition**](JobDefinition.md)
+[**JobDefinition**](../model/JobDefinition.md)
 
 ### HTTP request headers
 

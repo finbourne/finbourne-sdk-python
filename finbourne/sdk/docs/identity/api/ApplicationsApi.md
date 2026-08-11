@@ -56,11 +56,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_application_request** | [**CreateApplicationRequest**](CreateApplicationRequest.md)| Details of the application to be created | [optional] 
+ **create_application_request** | [**CreateApplicationRequest**](../model/CreateApplicationRequest.md)| Details of the application to be created | [optional] 
 
 ### Return type
 
-[**OAuthApplication**](OAuthApplication.md)
+[**OAuthApplication**](../model/OAuthApplication.md)
 
 ### HTTP request headers
 
@@ -145,7 +145,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OAuthApplication**](OAuthApplication.md)
+[**OAuthApplication**](../model/OAuthApplication.md)
 
 ### HTTP request headers
 
@@ -184,7 +184,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**List[OAuthApplication]**](OAuthApplication.md)
+[**List[OAuthApplication]**](../model/OAuthApplication.md)
 
 ### HTTP request headers
 
@@ -225,7 +225,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OAuthApplication**](OAuthApplication.md)
+[**OAuthApplication**](../model/OAuthApplication.md)
 
 ### HTTP request headers
 

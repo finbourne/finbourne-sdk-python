@@ -9,8 +9,8 @@ Completed event details
 | **category** | **str** | Optional |  |
 | **status** | **str** | Required |  |
 | **message** | **str** | Required |  |
-| **rows** | [../model/RowDetails](RowDetails.md) | Required | *No description available.* |
-| **file_details** | [../model/List[FileDetails]](FileDetails.md) | Optional |  |
+| **rows** | [RowDetails](RowDetails.md) | Required | *No description available.* |
+| **file_details** | [List[FileDetails]](FileDetails.md) | Optional |  |
 
 
 ## Usage

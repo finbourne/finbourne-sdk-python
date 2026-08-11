@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **instance_id** | **str** | Required | Reconciliation run Id. Consists of run type (manual or workflow) and identifier. |
-| **dates_to_reconcile** | [../model/GroupReconciliationDates](GroupReconciliationDates.md) | Optional | *No description available.* |
+| **dates_to_reconcile** | [GroupReconciliationDates](GroupReconciliationDates.md) | Optional | *No description available.* |
 
 
 ## Usage

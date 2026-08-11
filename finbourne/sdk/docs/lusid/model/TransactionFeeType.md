@@ -4,17 +4,17 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **display_name** | **str** | Optional | The display name of the transaction fee type. |
 | **description** | **str** | Optional | A description of the transaction fee type. |
-| **calculation** | [../model/FeeCalculationRequest](FeeCalculationRequest.md) | Optional | *No description available.* |
+| **calculation** | [FeeCalculationRequest](FeeCalculationRequest.md) | Optional | *No description available.* |
 | **condition** | **str** | Optional | The condition that the transaction must meet in order for the fee to be applied. |
 | **txn_property_key** | **str** | Optional | The property key to which the fee value will be applied and decorated onto the transaction. Must be in the &#39;Transaction&#39; property domain. |
-| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the transaction fee type. |
-| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
+| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the transaction fee type. |
+| **version** | [Version](Version.md) | Optional | *No description available.* |
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
 | **is_active** | **bool** | Optional | Indicates whether the transaction fee type is currently active and should be applied to transactions. Optional when creating a transaction fee type, defaults to true, if a value is not provided. |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

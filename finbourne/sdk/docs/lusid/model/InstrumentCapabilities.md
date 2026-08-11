@@ -8,9 +8,9 @@ Instrument capabilities containing useful information about the instrument and t
 | **instrument_id** | **str** | Optional | The Lusid instrument id for the instrument e.g. &#39;LUID_00003D4X&#39;. |
 | **model** | **str** | Optional | The pricing model e.g. &#39;Discounting&#39;. |
 | **features** | **Dict[str, Optional[str]]** | Optional | Features of the instrument describing its optionality, payoff type and more e.g. &#39;Instrument/Features/Exercise: American&#39;, &#39;Instrument/Features/Product: Option&#39; |
-| **supported_addresses** | [../model/List[DescribedAddressKey]](DescribedAddressKey.md) | Optional | Queryable addresses supported by the model, e.g. &#39;Valuation/Pv&#39;, &#39;Valuation/Accrued&#39;. |
-| **economic_dependencies** | [../model/List[EconomicDependency]](EconomicDependency.md) | Optional | Economic dependencies for the model, e.g. &#39;Fx:GBP.USD&#39;, &#39;Cash:GBP&#39;, &#39;Rates:GBP.GBPOIS&#39;. |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **supported_addresses** | [List[DescribedAddressKey]](DescribedAddressKey.md) | Optional | Queryable addresses supported by the model, e.g. &#39;Valuation/Pv&#39;, &#39;Valuation/Accrued&#39;. |
+| **economic_dependencies** | [List[EconomicDependency]](EconomicDependency.md) | Optional | Economic dependencies for the model, e.g. &#39;Fx:GBP.USD&#39;, &#39;Cash:GBP&#39;, &#39;Rates:GBP.GBPOIS&#39;. |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

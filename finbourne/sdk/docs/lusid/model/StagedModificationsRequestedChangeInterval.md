@@ -5,11 +5,11 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **attribute_name** | **str** | Optional | Name of the property the change applies to. |
-| **effective_range** | [../model/StagedModificationEffectiveRange](StagedModificationEffectiveRange.md) | Optional | *No description available.* |
-| **previous_value** | [../model/PropertyValue](PropertyValue.md) | Optional | *No description available.* |
-| **new_value** | [../model/PropertyValue](PropertyValue.md) | Optional | *No description available.* |
+| **effective_range** | [StagedModificationEffectiveRange](StagedModificationEffectiveRange.md) | Optional | *No description available.* |
+| **previous_value** | [PropertyValue](PropertyValue.md) | Optional | *No description available.* |
+| **new_value** | [PropertyValue](PropertyValue.md) | Optional | *No description available.* |
 | **as_at_basis** | **str** | Optional | Whether the change represents the modification when the request was made or the modification as it would be at the latest time. |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **requests** | [../model/List[PlacementRequest]](PlacementRequest.md) | Required | A collection of PlacementRequest. |
+| **requests** | [List[PlacementRequest]](PlacementRequest.md) | Required | A collection of PlacementRequest. |
 
 
 ## Usage

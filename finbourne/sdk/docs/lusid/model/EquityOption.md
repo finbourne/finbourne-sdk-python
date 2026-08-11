@@ -16,14 +16,14 @@ LUSID representation of a plain vanilla OTC Equity Option.
 | **code** | **str** | Optional | The identifying code for the equity underlying, e.g. &#39;IBM.N&#39;.  Optional field, should be used in combination with the UnderlyingIdentifier field.  Not compatible with the Underlying field. |
 | **equity_option_type** | **str** | Optional | Equity option types. E.g. Vanilla (default), RightsIssue, Warrant.    Supported string (enumeration) values are: [Vanilla, RightsIssue, Warrant]. |
 | **number_of_shares** | **float** | Optional | The amount of shares to exchange if the option is exercised. |
-| **premium** | [../model/Premium](Premium.md) | Optional | *No description available.* |
+| **premium** | [Premium](Premium.md) | Optional | *No description available.* |
 | **exercise_type** | **str** | Optional | Type of optionality that is present; European, American.    Supported string (enumeration) values are: [European, American].  Defaults to \&quot;European\&quot; if not set. |
-| **underlying** | [../model/LusidInstrument](LusidInstrument.md) | Optional | *No description available.* |
+| **underlying** | [LusidInstrument](LusidInstrument.md) | Optional | *No description available.* |
 | **delivery_days** | **int** | Optional | Number of business days between exercise date and settlement of the option payoff or underlying.  Defaults to 0 if not set. |
 | **business_day_convention** | **str** | Optional | Business day convention for option exercise date to settlement date calculation.  Default value: F. Available values: NoAdjustment, None, Previous, P, Following, F, ModifiedPrevious, MP, ModifiedFollowing, MF, HalfMonthModifiedFollowing, Nearest, Invalid. |
 | **settlement_calendars** | **List[str]** | Optional | Holiday calendars for option exercise date to settlement date calculation. |
-| **time_zone_conventions** | [../model/TimeZoneConventions](TimeZoneConventions.md) | Optional | *No description available.* |
-| **trading_conventions** | [../model/TradingConventions](TradingConventions.md) | Optional | *No description available.* |
+| **time_zone_conventions** | [TimeZoneConventions](TimeZoneConventions.md) | Optional | *No description available.* |
+| **trading_conventions** | [TradingConventions](TradingConventions.md) | Optional | *No description available.* |
 | **instrument_type** | **str** | Required | Available values: QuotedSecurity, InterestRateSwap, FxForward, Future, ExoticInstrument, FxOption, CreditDefaultSwap, InterestRateSwaption, Bond, EquityOption, FixedLeg, FloatingLeg, BespokeCashFlowsLeg, Unknown, TermDeposit, ContractForDifference, EquitySwap, CashPerpetual, CapFloor, CashSettled, CdsIndex, Basket, FundingLeg, FxSwap, ForwardRateAgreement, SimpleInstrument, Repo, Equity, ExchangeTradedOption, ReferenceInstrument, ComplexBond, InflationLinkedBond, InflationSwap, SimpleCashFlowLoan, TotalReturnSwap, InflationLeg, FundShareClass, FlexibleLoan, UnsettledCash, Cash, MasteredInstrument, LoanFacility, FlexibleDeposit, FlexibleRepo, ToBeAnnounced, VolatilitySwap, ToBeAnnouncedOption, CommodityForward. |
 
 

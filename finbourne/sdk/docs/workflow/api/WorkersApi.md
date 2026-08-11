@@ -58,11 +58,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_worker_request** | [**CreateWorkerRequest**](CreateWorkerRequest.md)| Worker to be created | [required] 
+ **create_worker_request** | [**CreateWorkerRequest**](../model/CreateWorkerRequest.md)| Worker to be created | [required] 
 
 ### Return type
 
-[**Worker**](Worker.md)
+[**Worker**](../model/Worker.md)
 
 ### HTTP request headers
 
@@ -106,7 +106,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -153,7 +153,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Worker**](Worker.md)
+[**Worker**](../model/Worker.md)
 
 ### HTTP request headers
 
@@ -193,7 +193,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetWorkerResultResponse**](GetWorkerResultResponse.md)
+[**GetWorkerResultResponse**](../model/GetWorkerResultResponse.md)
 
 ### HTTP request headers
 
@@ -235,13 +235,13 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **as_at** | **datetime**| The asAt datetime at which to list the Workers. Defaults to return the latest version of each Worker if not specified. | [optional] 
  **filter** | **str**| Expression to filter the result set. Read more about filtering results from LUSID here: https://support.lusid.com/filtering-results-from-lusid. | [optional] 
- **sort_by** | [**List[str]**](str.md)| A list of field names or properties to sort by, each optionally suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot; | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| A list of field names or properties to sort by, each optionally suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot; | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many. | [optional] [default to 10]
  **page** | **str**| The pagination token to use to continue listing workers from a previous call to list workers. This value is returned from the previous call. If a pagination token is provided the sortBy, filter, effectiveAt, and asAt fields must not have changed since the original request. | [optional] 
 
 ### Return type
 
-[**PagedResourceListOfWorker**](PagedResourceListOfWorker.md)
+[**PagedResourceListOfWorker**](../model/PagedResourceListOfWorker.md)
 
 ### HTTP request headers
 
@@ -282,12 +282,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| Scope of the worker | [required] 
  **code** | **str**| Code of the worker | [required] 
- **run_worker_request** | [**RunWorkerRequest**](RunWorkerRequest.md)|  | [required] 
+ **run_worker_request** | [**RunWorkerRequest**](../model/RunWorkerRequest.md)|  | [required] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the Worker. Defaults to returning the latest version of the Worker if not specified. | [optional] 
 
 ### Return type
 
-[**RunWorkerResponse**](RunWorkerResponse.md)
+[**RunWorkerResponse**](../model/RunWorkerResponse.md)
 
 ### HTTP request headers
 
@@ -329,11 +329,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| Scope of the worker to be updated | [required] 
  **code** | **str**| Code of the worker to be updated | [required] 
- **update_worker_request** | [**UpdateWorkerRequest**](UpdateWorkerRequest.md)| State of the updated worker | [required] 
+ **update_worker_request** | [**UpdateWorkerRequest**](../model/UpdateWorkerRequest.md)| State of the updated worker | [required] 
 
 ### Return type
 
-[**Worker**](Worker.md)
+[**Worker**](../model/Worker.md)
 
 ### HTTP request headers
 

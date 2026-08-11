@@ -5,9 +5,9 @@ Specification for the reconciliation request. Left and Right hand sides are cons
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **left** | [../model/InlineValuationRequest](InlineValuationRequest.md) | Required | *No description available.* |
-| **right** | [../model/InlineValuationRequest](InlineValuationRequest.md) | Required | *No description available.* |
-| **left_to_right_mapping** | [../model/List[ReconciliationLeftRightAddressKeyPair]](ReconciliationLeftRightAddressKeyPair.md) | Optional | The mapping from property keys requested by left aggregation to property keys on right hand side |
+| **left** | [InlineValuationRequest](InlineValuationRequest.md) | Required | *No description available.* |
+| **right** | [InlineValuationRequest](InlineValuationRequest.md) | Required | *No description available.* |
+| **left_to_right_mapping** | [List[ReconciliationLeftRightAddressKeyPair]](ReconciliationLeftRightAddressKeyPair.md) | Optional | The mapping from property keys requested by left aggregation to property keys on right hand side |
 | **preserve_keys** | **List[str]** | Optional | List of keys to preserve (from rhs) in the diff. Used in conjunction with filtering/grouping |
 
 

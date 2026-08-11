@@ -55,11 +55,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cancel_run_request** | [**CancelRunRequest**](CancelRunRequest.md)| Contains the run identifiers and a message to be set e.g. \&quot;b64135e7-98a0-41af-a845-d86167d54cc7\&quot;. | [required] 
+ **cancel_run_request** | [**CancelRunRequest**](../model/CancelRunRequest.md)| Contains the run identifiers and a message to be set e.g. \&quot;b64135e7-98a0-41af-a845-d86167d54cc7\&quot;. | [required] 
 
 ### Return type
 
-[**IntegrationCancellationResponse**](IntegrationCancellationResponse.md)
+[**IntegrationCancellationResponse**](../model/IntegrationCancellationResponse.md)
 
 ### HTTP request headers
 
@@ -102,13 +102,13 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **filter** | **str**| Expression to filter the result set. | [optional] 
- **sort_by** | [**List[str]**](str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
  **limit** | **int**| When paginating, limit the results to this number. | [optional] [default to 100]
  **page_token** | **str**| The pagination token to use to continue listing integration runs; this value is returned from             the previous call. If a pagination token is provided, the &lt;i&gt;sortBy&lt;/i&gt; and &lt;i&gt;filter&lt;/i&gt; fields must not have changed since the original request. | [optional] [default to &#39;&#39;]
 
 ### Return type
 
-[**PagedResourceListOfIntegrationRunResponse**](PagedResourceListOfIntegrationRunResponse.md)
+[**PagedResourceListOfIntegrationRunResponse**](../model/PagedResourceListOfIntegrationRunResponse.md)
 
 ### HTTP request headers
 
@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**IntegrationRerunResponse**](IntegrationRerunResponse.md)
+[**IntegrationRerunResponse**](../model/IntegrationRerunResponse.md)
 
 ### HTTP request headers
 

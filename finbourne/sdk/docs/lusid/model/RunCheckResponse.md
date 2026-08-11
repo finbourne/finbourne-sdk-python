@@ -5,7 +5,7 @@ Response containing the results of running data quality checks
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **data_quality_check_results** | [../model/List[DataQualityCheckResult]](DataQualityCheckResult.md) | Optional | Collection of data quality check results |
+| **data_quality_check_results** | [List[DataQualityCheckResult]](DataQualityCheckResult.md) | Optional | Collection of data quality check results |
 
 
 ## Usage

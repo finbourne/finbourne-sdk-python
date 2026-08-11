@@ -5,7 +5,7 @@ The mapping of a LUSID Property from the Vendor Field that would populate it
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **var_property** | [../model/LusidPropertyDefinition](LusidPropertyDefinition.md) | Required | *No description available.* |
+| **var_property** | [LusidPropertyDefinition](LusidPropertyDefinition.md) | Required | *No description available.* |
 | **vendor_field** | **str** | Required | *No description available.* |
 | **vendor_package** | **str** | Required | *No description available.* |
 | **vendor_namespace** | **str** | Required | *No description available.* |

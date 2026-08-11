@@ -7,13 +7,13 @@ Representation of a \"designable Query\" suitable for formatting to SQL or being
 |------|------|----------|-------------|
 | **table_name** | **str** | Required | Name of the table being designed |
 | **alias** | **str** | Optional | Alias for the table in the generated SQL, if any |
-| **fields** | [../model/List[FieldDesign]](FieldDesign.md) | Required | Fields to be selected, aggregated over and/or filtered on |
-| **joined_tables** | [../model/List[JoinedTableDesign]](JoinedTableDesign.md) | Optional | Joined in table to the main TableName / Alias |
-| **order_by** | [../model/List[OrderByTermDesign]](OrderByTermDesign.md) | Optional | Order By clauses to apply |
+| **fields** | [List[FieldDesign]](FieldDesign.md) | Required | Fields to be selected, aggregated over and/or filtered on |
+| **joined_tables** | [List[JoinedTableDesign]](JoinedTableDesign.md) | Optional | Joined in table to the main TableName / Alias |
+| **order_by** | [List[OrderByTermDesign]](OrderByTermDesign.md) | Optional | Order By clauses to apply |
 | **limit** | **int** | Optional | Row limit to apply, if any |
 | **offset** | **int** | Optional | Row offset to apply, if any |
 | **warnings** | **List[str]** | Optional | Any warnings to show the user when converting from SQL to this representation |
-| **available_fields** | [../model/List[AvailableField]](AvailableField.md) | Optional | Fields that are known to be available for design when parsing SQL |
+| **available_fields** | [List[AvailableField]](AvailableField.md) | Optional | Fields that are known to be available for design when parsing SQL |
 
 
 ## Usage

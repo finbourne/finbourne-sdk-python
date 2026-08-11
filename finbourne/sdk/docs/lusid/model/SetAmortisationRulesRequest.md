@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **rules_interval** | [../model/RulesInterval](RulesInterval.md) | Required | *No description available.* |
+| **rules_interval** | [RulesInterval](RulesInterval.md) | Required | *No description available.* |
 
 
 ## Usage

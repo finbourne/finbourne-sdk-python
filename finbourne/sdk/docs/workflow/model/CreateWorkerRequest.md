@@ -5,10 +5,10 @@ Request to Create a new worker
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **display_name** | **str** | Required | Human readable name |
 | **description** | **str** | Optional | Human readable description |
-| **worker_configuration** | [../model/WorkerConfiguration](WorkerConfiguration.md) | Required | *No description available.* |
+| **worker_configuration** | [WorkerConfiguration](WorkerConfiguration.md) | Required | *No description available.* |
 
 
 ## Usage

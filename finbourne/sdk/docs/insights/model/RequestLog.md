@@ -24,7 +24,7 @@ Holds logged information about a request performed on an API.
 | **source_application** | **str** | Optional | The name of the application that made the request. |
 | **correlation_id** | **List[str]** | Optional | The chain of requestIds preceding this request |
 | **impersonating_user** | **str** | Optional | The impersonating user. Only present if the request is an impersonated one |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

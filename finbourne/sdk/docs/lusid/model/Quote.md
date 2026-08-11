@@ -5,8 +5,8 @@ The quote id, value and lineage of the quotes all keyed by a unique correlation 
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **quote_id** | [../model/QuoteId](QuoteId.md) | Required | *No description available.* |
-| **metric_value** | [../model/MetricValue](MetricValue.md) | Optional | *No description available.* |
+| **quote_id** | [QuoteId](QuoteId.md) | Required | *No description available.* |
+| **metric_value** | [MetricValue](MetricValue.md) | Optional | *No description available.* |
 | **lineage** | **str** | Optional | Description of the quote&#39;s lineage e.g. &#39;FundAccountant_GreenQuality&#39;. |
 | **cut_label** | **str** | Optional | The cut label that this quote was updated or inserted with. |
 | **uploaded_by** | **str** | Required | The unique id of the user that updated or inserted the quote. |

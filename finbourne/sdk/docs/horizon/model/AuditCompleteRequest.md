@@ -16,7 +16,7 @@ An incoming request for a Horizon Complete Event
 | **rows_succeeded** | **int** | Required | The number of data rows successfully operated on |
 | **rows_failed** | **int** | Required | The number of data rows that failed to be operated on |
 | **rows_ignored** | **int** | Required | The number of data rows that had no actions taken |
-| **audit_files** | [../model/List[AuditFileDetails]](AuditFileDetails.md) | Required | A list of file details for attaching to the event |
+| **audit_files** | [List[AuditFileDetails]](AuditFileDetails.md) | Required | A list of file details for attaching to the event |
 | **process_name_override** | **str** | Optional | Optional Name for how the process appears in Data Feed Monitoring |
 
 

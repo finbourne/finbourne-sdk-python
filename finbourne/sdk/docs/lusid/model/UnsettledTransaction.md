@@ -5,8 +5,8 @@ A transaction that remains unsettled as at the valuation point, with per-bucket 
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **transaction** | [../model/OutputTransaction](OutputTransaction.md) | Optional | *No description available.* |
-| **portfolio_id** | [../model/PortfolioId](PortfolioId.md) | Optional | *No description available.* |
+| **transaction** | [OutputTransaction](OutputTransaction.md) | Optional | *No description available.* |
+| **portfolio_id** | [PortfolioId](PortfolioId.md) | Optional | *No description available.* |
 | **overall_settlement_status** | **str** | Optional | The overall settlement status of the transaction (Unsettled, PartSettled, Settled, None). |
 | **overall_is_overdue** | **bool** | Optional | Whether the transaction is overdue for settlement. |
 | **cash_settlement_status** | **str** | Optional | The settlement status of the cash component. |

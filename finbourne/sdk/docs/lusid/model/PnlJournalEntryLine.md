@@ -5,8 +5,8 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **pnl_bucket** | **str** | Optional | The Filter ID of the grouping used from the Fund Configuration PnL filters |
-| **journal_entry_line** | [../model/JournalEntryLine](JournalEntryLine.md) | Optional | *No description available.* |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **journal_entry_line** | [JournalEntryLine](JournalEntryLine.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

@@ -4,12 +4,12 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **display_name** | **str** | Required | The name of the Check Definition. |
 | **description** | **str** | Required | A description for the Check Definition. |
-| **dataset_schema** | [../model/CheckDefinitionDatasetSchema](CheckDefinitionDatasetSchema.md) | Optional | *No description available.* |
-| **rule_sets** | [../model/List[UpdateCheckDefinitionRuleSet]](UpdateCheckDefinitionRuleSet.md) | Required | A collection of rule sets for the Check Definition. |
-| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the Check Definition. |
+| **dataset_schema** | [CheckDefinitionDatasetSchema](CheckDefinitionDatasetSchema.md) | Optional | *No description available.* |
+| **rule_sets** | [List[UpdateCheckDefinitionRuleSet]](UpdateCheckDefinitionRuleSet.md) | Required | A collection of rule sets for the Check Definition. |
+| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the Check Definition. |
 
 
 ## Usage

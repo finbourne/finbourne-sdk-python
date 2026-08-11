@@ -10,7 +10,7 @@
 | **ex_date** | **datetime** | Required | The ex date of the corporate action |
 | **record_date** | **datetime** | Required | The record date of the corporate action |
 | **payment_date** | **datetime** | Required | The payment date of the corporate action |
-| **transitions** | [../model/List[CorporateActionTransitionRequest]](CorporateActionTransitionRequest.md) | Required | The transitions that result from this corporate action |
+| **transitions** | [List[CorporateActionTransitionRequest]](CorporateActionTransitionRequest.md) | Required | The transitions that result from this corporate action |
 
 
 ## Usage

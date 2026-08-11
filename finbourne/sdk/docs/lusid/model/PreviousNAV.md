@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **amount** | [../model/ShareClassAmount](ShareClassAmount.md) | Optional | *No description available.* |
+| **amount** | [ShareClassAmount](ShareClassAmount.md) | Optional | *No description available.* |
 
 
 ## Usage

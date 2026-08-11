@@ -10,7 +10,7 @@ A definition for the period you wish to close
 | **name** | **str** | Optional | Identifiable Name assigned to the Valuation Point. |
 | **effective_at** | **datetime** | Required | The effective time of the diary entry. |
 | **query_as_at** | **datetime** | Optional | The query time of the diary entry. Defaults to latest. |
-| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the diary entry. |
+| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the diary entry. |
 | **apply_clear_down** | **bool** | Optional | Defaults to false. Set to true if you want that the closed period to have the clear down applied. |
 | **holdings_as_at_override** | **datetime** | Optional | The optional AsAt Override to use for building holdings in the Valuation Point. Defaults to QueryAsAt. |
 | **valuations_as_at_override** | **datetime** | Optional | The optional AsAt Override to use for performing valuations in the Valuation Point. Defaults to QueryAsAt. |

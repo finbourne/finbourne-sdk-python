@@ -65,11 +65,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **entity_unique_id** | **str**| The universally unique identifier of the bookmark. | [required] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the bookmark. Defaults to returning the latest version of the bookmark if not specified. | [optional] 
- **previews** | [**List[str]**](str.md)| The ids of the staged modifications to be previewed in the response. | [optional] 
+ **previews** | [**List[str]**](../model/str.md)| The ids of the staged modifications to be previewed in the response. | [optional] 
 
 ### Return type
 
-[**BookmarkEntity**](BookmarkEntity.md)
+[**BookmarkEntity**](../model/BookmarkEntity.md)
 
 ### HTTP request headers
 
@@ -113,11 +113,11 @@ Name | Type | Description  | Notes
  **entity_unique_id** | **str**| The universally unique identifier of the Custom Entity. | [required] 
  **effective_at** | **str**| The effective datetime or cut label at which to retrieve the Custom Entity. Defaults to the current LUSID system datetime if not specified. | [optional] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the Custom Entity. Defaults to returning the latest version of the Custom Entity if not specified. | [optional] 
- **previews** | [**List[str]**](str.md)| The ids of the staged modifications to be previewed in the response. | [optional] 
+ **previews** | [**List[str]**](../model/str.md)| The ids of the staged modifications to be previewed in the response. | [optional] 
 
 ### Return type
 
-[**CustomEntityEntity**](CustomEntityEntity.md)
+[**CustomEntityEntity**](../model/CustomEntityEntity.md)
 
 ### HTTP request headers
 
@@ -159,11 +159,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **entity_unique_id** | **str**| The universally unique identifier of the DataType definition. | [required] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the DataType definition. Defaults to returning the latest version of the DataType definition if not specified. | [optional] 
- **previews** | [**List[str]**](str.md)| The ids of the staged modifications to be previewed in the response. | [optional] 
+ **previews** | [**List[str]**](../model/str.md)| The ids of the staged modifications to be previewed in the response. | [optional] 
 
 ### Return type
 
-[**DataTypeEntity**](DataTypeEntity.md)
+[**DataTypeEntity**](../model/DataTypeEntity.md)
 
 ### HTTP request headers
 
@@ -213,11 +213,11 @@ Name | Type | Description  | Notes
  **page** | **str**| The pagination token to use to continue listing change history information from a previous call to list change              history information. This value is returned from the previous call. If a pagination token is provided the filter, sortBy              and asAt fields must not have changed since the original request. | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many. Defaults to 100 if not specified. | [optional] 
  **filter** | **str**| Expression to filter the result set.              Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid. | [optional] 
- **sort_by** | [**List[str]**](str.md)| A list of field names suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot; | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| A list of field names suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot; | [optional] 
 
 ### Return type
 
-[**ResourceListOfChangeInterval**](ResourceListOfChangeInterval.md)
+[**ResourceListOfChangeInterval**](../model/ResourceListOfChangeInterval.md)
 
 ### HTTP request headers
 
@@ -263,13 +263,13 @@ Name | Type | Description  | Notes
  **entity_unique_id** | **str**| The universally unique identifier of the instrument definition. | [required] 
  **effective_at** | **str**| The effective datetime or cut label at which to retrieve the Instrument definition. Defaults to the current LUSID system datetime if not specified. | [optional] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the instrument definition. Defaults to returning the latest version of the instrument definition if not specified. | [optional] 
- **previews** | [**List[str]**](str.md)| The ids of the staged modifications to be previewed in the response. | [optional] 
+ **previews** | [**List[str]**](../model/str.md)| The ids of the staged modifications to be previewed in the response. | [optional] 
  **data_model_scope** | **str**| The optional scope of a Custom Data Model to use. | [optional] 
  **data_model_code** | **str**| The optional code of a Custom Data Model to use. | [optional] 
 
 ### Return type
 
-[**InstrumentEntity**](InstrumentEntity.md)
+[**InstrumentEntity**](../model/InstrumentEntity.md)
 
 ### HTTP request headers
 
@@ -313,11 +313,11 @@ Name | Type | Description  | Notes
  **entity_unique_id** | **str**| The universally unique identifier of the portfolio definition. | [required] 
  **effective_at** | **str**| The effective datetime or cut label at which to retrieve the portfolio definition. Defaults to the current LUSID system datetime if not specified. | [optional] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the portfolio definition. Defaults to returning the latest version of the portfolio definition if not specified. | [optional] 
- **previews** | [**List[str]**](str.md)| The ids of the staged modifications to be previewed in the response. | [optional] 
+ **previews** | [**List[str]**](../model/str.md)| The ids of the staged modifications to be previewed in the response. | [optional] 
 
 ### Return type
 
-[**PortfolioEntity**](PortfolioEntity.md)
+[**PortfolioEntity**](../model/PortfolioEntity.md)
 
 ### HTTP request headers
 
@@ -363,7 +363,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfChange**](ResourceListOfChange.md)
+[**ResourceListOfChange**](../model/ResourceListOfChange.md)
 
 ### HTTP request headers
 
@@ -407,11 +407,11 @@ Name | Type | Description  | Notes
  **entity_unique_id** | **str**| The universally unique identifier of the property definition. | [required] 
  **effective_at** | **str**| The effective datetime at which to retrieve the property definition. Defaults to the current LUSID system datetime if not specified. | [optional] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the property definition. Defaults to returning the latest version of the property definition if not specified. | [optional] 
- **previews** | [**List[str]**](str.md)| The ids of the staged modifications to be previewed in the response. | [optional] 
+ **previews** | [**List[str]**](../model/str.md)| The ids of the staged modifications to be previewed in the response. | [optional] 
 
 ### Return type
 
-[**PropertyDefinitionEntity**](PropertyDefinitionEntity.md)
+[**PropertyDefinitionEntity**](../model/PropertyDefinitionEntity.md)
 
 ### HTTP request headers
 
@@ -455,13 +455,13 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **entity_unique_id** | **str**| The entity unique identifier of the transaction. The expected format is &#39;{portfolioEntityUniqueId}_{transactionId}&#39;. | [required] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the transaction. Defaults to returning the latest version of the transaction if not specified. | [optional] 
- **previews** | [**List[str]**](str.md)| The ids of the staged modifications to be previewed in the response. | [optional] 
+ **previews** | [**List[str]**](../model/str.md)| The ids of the staged modifications to be previewed in the response. | [optional] 
  **data_model_scope** | **str**| The optional scope of a Custom Data Model to use. | [optional] 
  **data_model_code** | **str**| The optional code of a Custom Data Model to use. | [optional] 
 
 ### Return type
 
-[**TransactionEntity**](TransactionEntity.md)
+[**TransactionEntity**](../model/TransactionEntity.md)
 
 ### HTTP request headers
 
@@ -503,11 +503,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **entity_unique_id** | **str**| The universally unique identifier of the valuation point. | [required] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the valuation point. Defaults to returning the latest version of the valuation point if not specified. | [optional] 
- **previews** | [**List[str]**](str.md)| The ids of the staged modifications to be previewed in the response. | [optional] 
+ **previews** | [**List[str]**](../model/str.md)| The ids of the staged modifications to be previewed in the response. | [optional] 
 
 ### Return type
 
-[**ValuationPointEntity**](ValuationPointEntity.md)
+[**ValuationPointEntity**](../model/ValuationPointEntity.md)
 
 ### HTTP request headers
 

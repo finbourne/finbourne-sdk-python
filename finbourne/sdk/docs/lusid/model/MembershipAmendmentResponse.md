@@ -4,14 +4,14 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **custom_data_model_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **custom_data_model_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **entity_type** | **str** | Required | The type of the entity that was added or removed from the Custom Data Model. |
 | **entity_unique_id** | **str** | Required | The entity unique identifier of the entity that was added or removed from the Custom Data Model. |
 | **operation** | **str** | Required | The operation that was performed on the entity&#39;s membership in the Custom Data Model. Either &#39;Add&#39; or &#39;Remove&#39;. |
 | **entity_display_name** | **str** | Required | The display name of the entity that was added or removed from the Custom Data Model. |
-| **data_model_membership** | [../model/DataModelMembership](DataModelMembership.md) | Optional | *No description available.* |
-| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
-| **staged_modifications** | [../model/StagedModificationsInfo](StagedModificationsInfo.md) | Optional | *No description available.* |
+| **data_model_membership** | [DataModelMembership](DataModelMembership.md) | Optional | *No description available.* |
+| **version** | [Version](Version.md) | Optional | *No description available.* |
+| **staged_modifications** | [StagedModificationsInfo](StagedModificationsInfo.md) | Optional | *No description available.* |
 
 
 ## Usage

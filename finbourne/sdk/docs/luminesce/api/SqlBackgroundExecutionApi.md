@@ -69,7 +69,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BackgroundQueryCancelResponse**](BackgroundQueryCancelResponse.md)
+[**BackgroundQueryCancelResponse**](../model/BackgroundQueryCancelResponse.md)
 
 ### HTTP request headers
 
@@ -697,7 +697,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BackgroundQueryProgressResponse**](BackgroundQueryProgressResponse.md)
+[**BackgroundQueryProgressResponse**](../model/BackgroundQueryProgressResponse.md)
 
 ### HTTP request headers
 
@@ -741,7 +741,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BackgroundQueryProgressResponse**](BackgroundQueryProgressResponse.md)
+[**BackgroundQueryProgressResponse**](../model/BackgroundQueryProgressResponse.md)
 
 ### HTTP request headers
 
@@ -785,15 +785,15 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | **str**| The LuminesceSql query to kick off. | [required] 
  **execution_id** | **str**| An explicit ExecutionId to use.  This must be blank OR assigned to a valid GUID-as-a-string. It might be ignored / replaced, for example if using the query cache and a cached query is found. | [optional] 
- **scalar_parameters** | [**Dict[str, str]**](str.md)| Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution. | [optional] 
+ **scalar_parameters** | [**Dict[str, str]**](../model/str.md)| Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution. | [optional] 
  **query_name** | **str**| A name for this query.  This goes into logs and is available in &#x60;Sys.Logs.HcQueryStart&#x60;. | [optional] 
  **timeout_seconds** | **int**| Maximum time the query may run for, in seconds: &lt;0 → ∞, 0 → 7200 (2h) | [optional] [default to 0]
  **keep_for_seconds** | **int**| Maximum time the result may be kept for, in seconds: &lt;0 → 1200 (20m), 0 → 28800 (8h), max &#x3D; 2,678,400 (31d) | [optional] [default to 0]
- **execution_flags** | [**SqlExecutionFlags**](.md)| Optional request flags for the execution.  Currently limited by may grow in time: - ProvideLineage : Should Lineage be requested when running the query?  This must be set in order to later retrieve Lineage. | [optional] 
+ **execution_flags** | [**SqlExecutionFlags**](../model/.md)| Optional request flags for the execution.  Currently limited by may grow in time: - ProvideLineage : Should Lineage be requested when running the query?  This must be set in order to later retrieve Lineage. | [optional] 
 
 ### Return type
 
-[**BackgroundQueryResponse**](BackgroundQueryResponse.md)
+[**BackgroundQueryResponse**](../model/BackgroundQueryResponse.md)
 
 ### HTTP request headers
 

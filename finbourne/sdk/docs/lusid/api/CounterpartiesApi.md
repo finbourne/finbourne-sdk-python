@@ -65,7 +65,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AnnulSingleStructuredDataResponse**](AnnulSingleStructuredDataResponse.md)
+[**AnnulSingleStructuredDataResponse**](../model/AnnulSingleStructuredDataResponse.md)
 
 ### HTTP request headers
 
@@ -109,7 +109,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AnnulSingleStructuredDataResponse**](AnnulSingleStructuredDataResponse.md)
+[**AnnulSingleStructuredDataResponse**](../model/AnnulSingleStructuredDataResponse.md)
 
 ### HTTP request headers
 
@@ -155,7 +155,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetCounterpartyAgreementResponse**](GetCounterpartyAgreementResponse.md)
+[**GetCounterpartyAgreementResponse**](../model/GetCounterpartyAgreementResponse.md)
 
 ### HTTP request headers
 
@@ -201,7 +201,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetCreditSupportAnnexResponse**](GetCreditSupportAnnexResponse.md)
+[**GetCreditSupportAnnexResponse**](../model/GetCreditSupportAnnexResponse.md)
 
 ### HTTP request headers
 
@@ -243,7 +243,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfGetCounterpartyAgreementResponse**](ResourceListOfGetCounterpartyAgreementResponse.md)
+[**ResourceListOfGetCounterpartyAgreementResponse**](../model/ResourceListOfGetCounterpartyAgreementResponse.md)
 
 ### HTTP request headers
 
@@ -285,7 +285,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfGetCreditSupportAnnexResponse**](ResourceListOfGetCreditSupportAnnexResponse.md)
+[**ResourceListOfGetCreditSupportAnnexResponse**](../model/ResourceListOfGetCreditSupportAnnexResponse.md)
 
 ### HTTP request headers
 
@@ -323,11 +323,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **upsert_counterparty_agreement_request** | [**UpsertCounterpartyAgreementRequest**](UpsertCounterpartyAgreementRequest.md)| The Counterparty Agreement to update or insert | [required] 
+ **upsert_counterparty_agreement_request** | [**UpsertCounterpartyAgreementRequest**](../model/UpsertCounterpartyAgreementRequest.md)| The Counterparty Agreement to update or insert | [required] 
 
 ### Return type
 
-[**UpsertSingleStructuredDataResponse**](UpsertSingleStructuredDataResponse.md)
+[**UpsertSingleStructuredDataResponse**](../model/UpsertSingleStructuredDataResponse.md)
 
 ### HTTP request headers
 
@@ -365,11 +365,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **upsert_credit_support_annex_request** | [**UpsertCreditSupportAnnexRequest**](UpsertCreditSupportAnnexRequest.md)| The Credit Support Annex to update or insert | [required] 
+ **upsert_credit_support_annex_request** | [**UpsertCreditSupportAnnexRequest**](../model/UpsertCreditSupportAnnexRequest.md)| The Credit Support Annex to update or insert | [required] 
 
 ### Return type
 
-[**UpsertSingleStructuredDataResponse**](UpsertSingleStructuredDataResponse.md)
+[**UpsertSingleStructuredDataResponse**](../model/UpsertSingleStructuredDataResponse.md)
 
 ### HTTP request headers
 

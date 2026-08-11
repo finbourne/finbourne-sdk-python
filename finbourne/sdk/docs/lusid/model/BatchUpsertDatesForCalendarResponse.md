@@ -4,10 +4,10 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **values** | [../model/Dict[str, CalendarDate]](CalendarDate.md) | Optional | The dates which have been successfully upserted. |
-| **failed** | [../model/Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The dates that could not be upserted along with a reason for their failure. |
+| **values** | [Dict[str, CalendarDate]](CalendarDate.md) | Optional | The dates which have been successfully upserted. |
+| **failed** | [Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The dates that could not be upserted along with a reason for their failure. |
 | **metadata** | **Dict[str, Optional[List[ResponseMetaData]]]** | Optional | Contains warnings related to the upserted dates |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

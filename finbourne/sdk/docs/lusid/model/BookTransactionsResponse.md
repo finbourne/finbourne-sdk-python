@@ -4,9 +4,9 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **values** | [../model/Dict[str, Transaction]](Transaction.md) | Optional | *No description available.* |
-| **failed** | [../model/Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | *No description available.* |
-| **fx_orders** | [../model/List[BlockAndOrders]](BlockAndOrders.md) | Optional | *No description available.* |
+| **values** | [Dict[str, Transaction]](Transaction.md) | Optional | *No description available.* |
+| **failed** | [Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | *No description available.* |
+| **fx_orders** | [List[BlockAndOrders]](BlockAndOrders.md) | Optional | *No description available.* |
 
 
 ## Usage

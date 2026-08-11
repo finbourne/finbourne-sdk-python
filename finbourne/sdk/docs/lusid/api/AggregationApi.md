@@ -59,11 +59,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the portfolio | [required] 
  **code** | **str**| The code of the portfolio | [required] 
- **create_recipe_request** | [**CreateRecipeRequest**](CreateRecipeRequest.md)| The request specifying the parameters to generating the recipe | [optional] 
+ **create_recipe_request** | [**CreateRecipeRequest**](../model/CreateRecipeRequest.md)| The request specifying the parameters to generating the recipe | [optional] 
 
 ### Return type
 
-[**ConfigurationRecipe**](ConfigurationRecipe.md)
+[**ConfigurationRecipe**](../model/ConfigurationRecipe.md)
 
 ### HTTP request headers
 
@@ -109,7 +109,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfAggregationQuery**](ResourceListOfAggregationQuery.md)
+[**ResourceListOfAggregationQuery**](../model/ResourceListOfAggregationQuery.md)
 
 ### HTTP request headers
 
@@ -147,11 +147,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **valuation_request** | [**ValuationRequest**](ValuationRequest.md)| The request specifying the set of portfolios and dates on which to calculate a set of valuation metrics | [optional] 
+ **valuation_request** | [**ValuationRequest**](../model/ValuationRequest.md)| The request specifying the set of portfolios and dates on which to calculate a set of valuation metrics | [optional] 
 
 ### Return type
 
-[**ListAggregationResponse**](ListAggregationResponse.md)
+[**ListAggregationResponse**](../model/ListAggregationResponse.md)
 
 ### HTTP request headers
 
@@ -189,11 +189,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_valuation_request** | [**InlineValuationRequest**](InlineValuationRequest.md)| The request specifying the set of portfolios and dates on which to calculate a set of valuation metrics | [optional] 
+ **inline_valuation_request** | [**InlineValuationRequest**](../model/InlineValuationRequest.md)| The request specifying the set of portfolios and dates on which to calculate a set of valuation metrics | [optional] 
 
 ### Return type
 
-[**ListAggregationResponse**](ListAggregationResponse.md)
+[**ListAggregationResponse**](../model/ListAggregationResponse.md)
 
 ### HTTP request headers
 

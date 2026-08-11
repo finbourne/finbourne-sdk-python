@@ -7,7 +7,7 @@ Details of an attempt of delivery.
 |------|------|----------|-------------|
 | **attempt_number** | **int** | Required | The attempt number of the delivery. |
 | **attempt_time** | **datetime** | Required | The time that the delivery was attempted. |
-| **status** | [../model/AttemptStatus](AttemptStatus.md) | Required | *No description available.* |
+| **status** | [AttemptStatus](AttemptStatus.md) | Required | *No description available.* |
 
 
 ## Usage

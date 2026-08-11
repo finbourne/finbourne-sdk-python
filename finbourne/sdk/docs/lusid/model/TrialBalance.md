@@ -10,12 +10,12 @@ A TrialBalance entity.
 | **levels** | **List[str]** | Required | The levels that have been derived from the specified General Ledger Profile. |
 | **account_type** | **str** | Required | The account type attributed to the record. |
 | **local_currency** | **str** | Required | The local currency for the amounts specified. Defaults to base currency if multiple different currencies present in the grouped line. |
-| **opening** | [../model/MultiCurrencyAmounts](MultiCurrencyAmounts.md) | Required | *No description available.* |
-| **closing** | [../model/MultiCurrencyAmounts](MultiCurrencyAmounts.md) | Required | *No description available.* |
-| **debit** | [../model/MultiCurrencyAmounts](MultiCurrencyAmounts.md) | Required | *No description available.* |
-| **credit** | [../model/MultiCurrencyAmounts](MultiCurrencyAmounts.md) | Required | *No description available.* |
-| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | Properties found on the mapped &#39;Account&#39;, as specified in request. |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **opening** | [MultiCurrencyAmounts](MultiCurrencyAmounts.md) | Required | *No description available.* |
+| **closing** | [MultiCurrencyAmounts](MultiCurrencyAmounts.md) | Required | *No description available.* |
+| **debit** | [MultiCurrencyAmounts](MultiCurrencyAmounts.md) | Required | *No description available.* |
+| **credit** | [MultiCurrencyAmounts](MultiCurrencyAmounts.md) | Required | *No description available.* |
+| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | Properties found on the mapped &#39;Account&#39;, as specified in request. |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

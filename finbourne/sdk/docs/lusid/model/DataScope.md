@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **client** | [../model/Client](Client.md) | Optional | *No description available.* |
+| **client** | [Client](Client.md) | Optional | *No description available.* |
 | **scope** | **str** | Optional | *No description available.* |
 
 

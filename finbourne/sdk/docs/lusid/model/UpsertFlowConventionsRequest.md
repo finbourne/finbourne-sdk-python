@@ -5,7 +5,7 @@ Flow conventions that is to be stored in the convention data store.  Only one of
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **flow_conventions** | [../model/FlowConventions](FlowConventions.md) | Optional | *No description available.* |
+| **flow_conventions** | [FlowConventions](FlowConventions.md) | Optional | *No description available.* |
 
 
 ## Usage

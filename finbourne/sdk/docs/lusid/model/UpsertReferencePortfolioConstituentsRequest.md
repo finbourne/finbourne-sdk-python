@@ -8,7 +8,7 @@
 | **weight_type** | **str** | Required | Available values: Static, Floating, Periodical. |
 | **period_type** | **str** | Optional | Available values: Daily, Weekly, Monthly, Quarterly, Annually. |
 | **period_count** | **int** | Optional |  |
-| **constituents** | [../model/List[ReferencePortfolioConstituentRequest]](ReferencePortfolioConstituentRequest.md) | Required | Set of constituents (instrument/weight pairings) |
+| **constituents** | [List[ReferencePortfolioConstituentRequest]](ReferencePortfolioConstituentRequest.md) | Required | Set of constituents (instrument/weight pairings) |
 
 
 ## Usage

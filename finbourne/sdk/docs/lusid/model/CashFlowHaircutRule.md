@@ -11,7 +11,7 @@ A rule describing how projected cashflow inflows are reduced by a haircut repres
 | **instrument_type** | **str** | Optional | Optional instrument type filter, e.g. &#39;Bond&#39;. When supplied the rule only matches cashflows from instruments of that type. |
 | **haircut_type** | **str** | Required | The mathematical form of the haircut. One of &#39;CumulativeAnnualised&#39; (net &#x3D; gross x (1 - rate)^t, where t is the ACT/365.25 year fraction from the valuation date to the payment date) or &#39;Flat&#39; (net &#x3D; gross x (1 - h(t)), where h(t) is the flat rate or the term structure rate at t). Available values: CumulativeAnnualised, Flat. |
 | **rate** | **float** | Optional | The haircut rate as a fraction in the range [0, 1]. Exactly one of Rate and TermStructure must be supplied. |
-| **term_structure** | [../model/List[CashFlowHaircutTermPoint]](CashFlowHaircutTermPoint.md) | Optional | The haircut rate term structure, linearly interpolated on time-to-payment with flat extrapolation beyond either end. Exactly one of Rate and TermStructure must be supplied. |
+| **term_structure** | [List[CashFlowHaircutTermPoint]](CashFlowHaircutTermPoint.md) | Optional | The haircut rate term structure, linearly interpolated on time-to-payment with flat extrapolation beyond either end. Exactly one of Rate and TermStructure must be supplied. |
 
 
 ## Usage

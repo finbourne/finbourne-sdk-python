@@ -7,7 +7,7 @@ Contract for an expression of data we \"have\" that we may \"want to map to a ta
 |------|------|----------|-------------|
 | **expression** | **str** | Required | Expression (column name, constant, complex expression, etc.) |
 | **alias** | **str** | Optional | Column Alias for the expression |
-| **flags** | [../model/MappingFlags](MappingFlags.md) | Optional | *No description available.* |
+| **flags** | [MappingFlags](MappingFlags.md) | Optional | *No description available.* |
 
 
 ## Usage

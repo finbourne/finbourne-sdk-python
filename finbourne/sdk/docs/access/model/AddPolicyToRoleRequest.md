@@ -5,7 +5,7 @@ Request body used to add Policies to a Role
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **policies** | [../model/List[PolicyId]](PolicyId.md) | Required | Identifiers of policies to add to a role |
+| **policies** | [List[PolicyId]](PolicyId.md) | Required | Identifiers of policies to add to a role |
 
 
 ## Usage

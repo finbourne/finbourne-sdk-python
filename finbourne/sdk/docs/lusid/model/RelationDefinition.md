@@ -4,8 +4,8 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
-| **relation_definition_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **version** | [Version](Version.md) | Optional | *No description available.* |
+| **relation_definition_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **source_entity_domain** | **str** | Optional | The entity domain of the source entity object. |
 | **target_entity_domain** | **str** | Optional | The entity domain of the target entity object. |
 | **display_name** | **str** | Optional | The display name of the relation. |
@@ -13,7 +13,7 @@
 | **inward_description** | **str** | Optional | The description to relate target entity object and source entity object |
 | **life_time** | **str** | Optional | Describes how the relations can change over time, allowed values are \&quot;Perpetual\&quot; and \&quot;TimeVariant\&quot; |
 | **constraint_style** | **str** | Optional | Describes the uniqueness and cardinality for relations with a specific source entity object and relations under this definition. Allowed values are \&quot;Property\&quot; and \&quot;Collection\&quot;, defaults to \&quot;Collection\&quot; if not specified. |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

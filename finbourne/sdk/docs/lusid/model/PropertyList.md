@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **values** | [../model/List[ModelProperty]](ModelProperty.md) | Required | *No description available.* |
+| **values** | [List[ModelProperty]](ModelProperty.md) | Required | *No description available.* |
 | **reference_list_type** | **str** | Required | The reference list values. Available values: PortfolioGroupIdList, PortfolioIdList, AddressKeyList, StringList, InstrumentList, DecimalList, PropertyList, FundIdList, FilteredFundIdList. |
 
 

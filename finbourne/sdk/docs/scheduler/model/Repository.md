@@ -11,8 +11,8 @@ An object representation of a repository
 | **description** | **str** | Optional | Description of the repository |
 | **pull_count** | **int** | Optional | Number of times images were pulled from this repository |
 | **image_count** | **int** | Optional | The number of versions of this image |
-| **images** | [../model/Link](Link.md) | Optional | *No description available.* |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **images** | [Link](Link.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

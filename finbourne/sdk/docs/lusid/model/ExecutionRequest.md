@@ -5,9 +5,9 @@ A request to create or update a Execution.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
-| **placement_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
-| **properties** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Client-defined properties associated with this execution. |
+| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **placement_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Client-defined properties associated with this execution. |
 | **instrument_identifiers** | **Dict[str, Optional[str]]** | Required | The instrument ordered. |
 | **quantity** | **float** | Required | The quantity of given instrument ordered. |
 | **state** | **str** | Required | The state of this execution (typically a FIX state; Open, Filled, etc). |
@@ -15,7 +15,7 @@ A request to create or update a Execution.
 | **type** | **str** | Required | The type of this execution (Market, Limit, etc). |
 | **created_date** | **datetime** | Required | The active date of this execution. |
 | **settlement_date** | **datetime** | Optional | The (optional) settlement date for this execution |
-| **price** | [../model/CurrencyAndAmount](CurrencyAndAmount.md) | Required | *No description available.* |
+| **price** | [CurrencyAndAmount](CurrencyAndAmount.md) | Required | *No description available.* |
 | **settlement_currency** | **str** | Required | The execution&#39;s settlement currency. |
 | **settlement_currency_fx_rate** | **float** | Required | The exectuion&#39;s settlement currency rate. |
 | **counterparty** | **str** | Required | The market entity this placement is placed with. |

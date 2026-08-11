@@ -6,8 +6,8 @@ A server-resolved time window for a query, as an alternative to supplying absolu
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **preset** | **str** | Optional | A named preset window. One of the Finbourne.Insights.WebApi.Dtos.Querying.TimeRangePreset values. Mutually exclusive with Finbourne.Insights.WebApi.Dtos.Querying.TimeRange.From/Finbourne.Insights.WebApi.Dtos.Querying.TimeRange.To. |
-| **var_from** | [../model/RelativeBoundary](RelativeBoundary.md) | Optional | *No description available.* |
-| **to** | [../model/RelativeBoundary](RelativeBoundary.md) | Optional | *No description available.* |
+| **var_from** | [RelativeBoundary](RelativeBoundary.md) | Optional | *No description available.* |
+| **to** | [RelativeBoundary](RelativeBoundary.md) | Optional | *No description available.* |
 | **time_zone** | **str** | Optional | Optional IANA time-zone identifier (e.g. \&quot;Europe/London\&quot;) used to anchor calendar boundaries (start of day/week/month/quarter/year). Defaults to UTC when not supplied. |
 
 

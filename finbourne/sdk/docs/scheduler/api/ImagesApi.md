@@ -57,7 +57,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Image**](Image.md)
+[**Image**](../model/Image.md)
 
 ### HTTP request headers
 
@@ -100,14 +100,14 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| The name of the Repository | [required] 
  **page** | **str**| The pagination token to use to continue listing images from a previous call to list images.             This value is returned from the previous call. If a pagination token is provided the sortBy and filter fields             must not have changed since the original request. Also, if set, a start value cannot be provided. | [optional] 
- **sort_by** | [**List[str]**](str.md)| Order the results by these fields. Use use the &#39;-&#39; sign to denote descending order e.g. -MyFieldName. | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| Order the results by these fields. Use use the &#39;-&#39; sign to denote descending order e.g. -MyFieldName. | [optional] 
  **start** | **int**| When paginating, skip this number of results. | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many. Defaults to 2000 if not specified. Maximum is 5000. | [optional] [default to 2000]
  **filter** | **str**| Expression to filter the result set. | [optional] 
 
 ### Return type
 
-[**ResourceListOfImageSummary**](ResourceListOfImageSummary.md)
+[**ResourceListOfImageSummary**](../model/ResourceListOfImageSummary.md)
 
 ### HTTP request headers
 
@@ -148,14 +148,14 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **page** | **str**| The pagination token to use to continue listing images from a previous call to list images.             This value is returned from the previous call. If a pagination token is provided the sortBy and filter fields             must not have changed since the original request. Also, if set, a start value cannot be provided. | [optional] 
- **sort_by** | [**List[str]**](str.md)| Order the results by these fields. Use use the &#39;-&#39; sign to denote descending order e.g. -MyFieldName. | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| Order the results by these fields. Use use the &#39;-&#39; sign to denote descending order e.g. -MyFieldName. | [optional] 
  **start** | **int**| When paginating, skip this number of results. | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many. Defaults to 2000 if not specified. Maximum is 5000. | [optional] [default to 2000]
  **filter** | **str**| Expression to filter the result set. | [optional] 
 
 ### Return type
 
-[**ResourceListOfRepository**](ResourceListOfRepository.md)
+[**ResourceListOfRepository**](../model/ResourceListOfRepository.md)
 
 ### HTTP request headers
 
@@ -193,11 +193,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **upload_image_request** | [**UploadImageRequest**](UploadImageRequest.md)| Request to upload image | [required] 
+ **upload_image_request** | [**UploadImageRequest**](../model/UploadImageRequest.md)| Request to upload image | [required] 
 
 ### Return type
 
-[**UploadImageInstructions**](UploadImageInstructions.md)
+[**UploadImageInstructions**](../model/UploadImageInstructions.md)
 
 ### HTTP request headers
 

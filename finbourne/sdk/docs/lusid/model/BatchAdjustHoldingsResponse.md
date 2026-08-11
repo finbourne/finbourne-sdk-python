@@ -4,10 +4,10 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **values** | [../model/Dict[str, HoldingAdjustmentWithDate]](HoldingAdjustmentWithDate.md) | Optional | The holdings which have been successfully adjusted. |
-| **failed** | [../model/Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The holdings that could not be adjusted along with a reason for their failure. |
+| **values** | [Dict[str, HoldingAdjustmentWithDate]](HoldingAdjustmentWithDate.md) | Optional | The holdings which have been successfully adjusted. |
+| **failed** | [Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The holdings that could not be adjusted along with a reason for their failure. |
 | **metadata** | **Dict[str, Optional[List[ResponseMetaData]]]** | Optional | Contains warnings related to adjusted holdings |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

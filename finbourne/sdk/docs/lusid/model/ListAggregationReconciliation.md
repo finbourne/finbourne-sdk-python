@@ -4,10 +4,10 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **left** | [../model/ListAggregationResponse](ListAggregationResponse.md) | Optional | *No description available.* |
-| **right** | [../model/ListAggregationResponse](ListAggregationResponse.md) | Optional | *No description available.* |
+| **left** | [ListAggregationResponse](ListAggregationResponse.md) | Optional | *No description available.* |
+| **right** | [ListAggregationResponse](ListAggregationResponse.md) | Optional | *No description available.* |
 | **diff** | **List[Dict[str, object]]** | Optional | *No description available.* |
-| **data_schema** | [../model/ResultDataSchema](ResultDataSchema.md) | Optional | *No description available.* |
+| **data_schema** | [ResultDataSchema](ResultDataSchema.md) | Optional | *No description available.* |
 
 
 ## Usage

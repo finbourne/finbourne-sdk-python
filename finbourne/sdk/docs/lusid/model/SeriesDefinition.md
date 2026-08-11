@@ -9,7 +9,7 @@
 | **launch_date** | **datetime** | Required | The date on which the Series was launched. |
 | **launch_price_type** | **str** | Required | The type of launch price for the Series. Available values: Manual, Calculated. |
 | **dom_ccy** | **str** | Required | The denomination currency of the Series. |
-| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | An optional set of properties to associate with the Series. Only applied if createInstrument is set to true on the parent Fund. |
+| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | An optional set of properties to associate with the Series. Only applied if createInstrument is set to true on the parent Fund. |
 
 
 ## Usage

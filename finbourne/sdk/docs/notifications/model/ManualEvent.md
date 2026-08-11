@@ -5,8 +5,8 @@ Details of a manually triggered event
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **header** | [../model/ManualEventHeader](ManualEventHeader.md) | Required | *No description available.* |
-| **body** | [../model/ManualEventBody](ManualEventBody.md) | Required | *No description available.* |
+| **header** | [ManualEventHeader](ManualEventHeader.md) | Required | *No description available.* |
+| **body** | [ManualEventBody](ManualEventBody.md) | Required | *No description available.* |
 
 
 ## Usage

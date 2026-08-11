@@ -56,8 +56,8 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **type** | [**CertificateType**](.md)| User or Domain level cert (Domain level requires additional entitlements) | [optional] 
- **file_type** | [**CertificateFileType**](.md)| Should the public key or private key be downloaded? (both must be in place to run providers) | [optional] 
+ **type** | [**CertificateType**](../model/.md)| User or Domain level cert (Domain level requires additional entitlements) | [optional] 
+ **file_type** | [**CertificateFileType**](../model/.md)| Should the public key or private key be downloaded? (both must be in place to run providers) | [optional] 
  **may_auto_create** | **bool**| If no matching cert is available, should an attempt be made to Create/Renew it with default options? | [optional] [default to False]
 
 ### Return type
@@ -100,7 +100,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**List[CertificateState]**](CertificateState.md)
+[**List[CertificateState]**](../model/CertificateState.md)
 
 ### HTTP request headers
 
@@ -143,8 +143,8 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **action** | [**CertificateAction**](.md)| The Action to perform, e.g. Create / Renew / Revoke | [optional] 
- **type** | [**CertificateType**](.md)| User or Domain level cert (Domain level requires additional entitlements) | [optional] 
+ **action** | [**CertificateAction**](../model/.md)| The Action to perform, e.g. Create / Renew / Revoke | [optional] 
+ **type** | [**CertificateType**](../model/.md)| User or Domain level cert (Domain level requires additional entitlements) | [optional] 
  **version** | **int**| Version number of the cert, the request will fail to validate if incorrect | [optional] [default to 1]
  **validity_start** | **datetime**| When should the cert first be valid (defaults to the current time in UTC) | [optional] 
  **validity_end** | **datetime**| When should the cert no longer be valid (defaults to 13 months from now) | [optional] 
@@ -152,7 +152,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CertificateState**](CertificateState.md)
+[**CertificateState**](../model/CertificateState.md)
 
 ### HTTP request headers
 

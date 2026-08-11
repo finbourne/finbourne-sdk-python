@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AnnulSingleStructuredDataResponse**](AnnulSingleStructuredDataResponse.md)
+[**AnnulSingleStructuredDataResponse**](../model/AnnulSingleStructuredDataResponse.md)
 
 ### HTTP request headers
 
@@ -107,7 +107,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetSubscriptionResponse**](GetSubscriptionResponse.md)
+[**GetSubscriptionResponse**](../model/GetSubscriptionResponse.md)
 
 ### HTTP request headers
 
@@ -157,7 +157,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PagedResourceListOfGetSubscriptionResponse**](PagedResourceListOfGetSubscriptionResponse.md)
+[**PagedResourceListOfGetSubscriptionResponse**](../model/PagedResourceListOfGetSubscriptionResponse.md)
 
 ### HTTP request headers
 
@@ -195,11 +195,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **upsert_subscription_request** | [**UpsertSubscriptionRequest**](UpsertSubscriptionRequest.md)| The Subscription to update or insert | [required] 
+ **upsert_subscription_request** | [**UpsertSubscriptionRequest**](../model/UpsertSubscriptionRequest.md)| The Subscription to update or insert | [required] 
 
 ### Return type
 
-[**UpsertSingleStructuredDataResponse**](UpsertSingleStructuredDataResponse.md)
+[**UpsertSingleStructuredDataResponse**](../model/UpsertSingleStructuredDataResponse.md)
 
 ### HTTP request headers
 

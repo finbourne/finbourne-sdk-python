@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **portfolio_scaling** | **str** | Required | Available values: Sum, AbsoluteSum, Unity. |
-| **lookthrough_portfolio_relationship_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **lookthrough_portfolio_relationship_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **model_options_type** | **str** | Required | Available values: Invalid, OpaqueModelOptions, EmptyModelOptions, IndexModelOptions, FxForwardModelOptions, FundingLegModelOptions, EquityModelOptions, CdsModelOptions, FlexibleLoanPricerOptions. |
 
 

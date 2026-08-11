@@ -5,10 +5,10 @@ A Posting Module rules update response
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **rules** | [../model/List[PostingModuleRule]](PostingModuleRule.md) | Optional | The Posting Rules that apply for the Posting Module. Rules are evaluated in the order they occur in this collection. |
-| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
+| **rules** | [List[PostingModuleRule]](PostingModuleRule.md) | Optional | The Posting Rules that apply for the Posting Module. Rules are evaluated in the order they occur in this collection. |
+| **version** | [Version](Version.md) | Optional | *No description available.* |
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

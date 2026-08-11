@@ -4,9 +4,9 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **successes** | [../model/Dict[str, TransferAgencyOrderResult]](TransferAgencyOrderResult.md) | Optional | A dictionary of successfully processed orders, keyed by the request key. |
-| **failed** | [../model/Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | A dictionary of failed order processing attempts, keyed by the request key, containing error details. |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **successes** | [Dict[str, TransferAgencyOrderResult]](TransferAgencyOrderResult.md) | Optional | A dictionary of successfully processed orders, keyed by the request key. |
+| **failed** | [Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | A dictionary of failed order processing attempts, keyed by the request key, containing error details. |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

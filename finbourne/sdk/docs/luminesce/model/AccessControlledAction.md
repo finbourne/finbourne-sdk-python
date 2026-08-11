@@ -5,8 +5,8 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **description** | **str** | Optional | *No description available.* |
-| **action** | [../model/ActionId](ActionId.md) | Optional | *No description available.* |
-| **limited_set** | [../model/List[IdSelectorDefinition]](IdSelectorDefinition.md) | Optional | *No description available.* |
+| **action** | [ActionId](ActionId.md) | Optional | *No description available.* |
+| **limited_set** | [List[IdSelectorDefinition]](IdSelectorDefinition.md) | Optional | *No description available.* |
 
 
 ## Usage

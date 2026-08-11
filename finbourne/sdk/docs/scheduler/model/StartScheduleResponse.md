@@ -5,8 +5,8 @@ Response from a manual run of a schedule
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **schedule_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
-| **job_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **schedule_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **job_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **run_id** | **str** | Optional | Unique RunId of the started schedule |
 | **status** | **str** | Optional | Status of the started schedule |
 | **result** | **str** | Optional | Link to the result of the job run when completed |

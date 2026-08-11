@@ -6,10 +6,10 @@ Market Data for an fx vol surface, represented by a list of fx options and corre
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **base_date** | **datetime** | Required | Base date of the surface |
-| **instruments** | [../model/List[LusidInstrument]](LusidInstrument.md) | Required | The set of instruments that define the surface. |
-| **quotes** | [../model/List[MarketQuote]](MarketQuote.md) | Required | The set of market quotes that define the surface, in NormalVol or LogNormalVol terms. |
+| **instruments** | [List[LusidInstrument]](LusidInstrument.md) | Required | The set of instruments that define the surface. |
+| **quotes** | [List[MarketQuote]](MarketQuote.md) | Required | The set of market quotes that define the surface, in NormalVol or LogNormalVol terms. |
 | **lineage** | **str** | Optional | Description of the complex market data&#39;s lineage e.g. &#39;FundAccountant_GreenQuality&#39;. |
-| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
+| **version** | [Version](Version.md) | Optional | *No description available.* |
 | **market_data_type** | **str** | Required | Available values: DiscountFactorCurveData, EquityVolSurfaceData, FxVolSurfaceData, IrVolCubeData, OpaqueMarketData, YieldCurveData, FxForwardCurveData, FxForwardPipsCurveData, FxForwardTenorCurveData, FxForwardTenorPipsCurveData, FxForwardCurveByQuoteReference, CreditSpreadCurveData, EquityCurveByPricesData, ConstantVolatilitySurface. |
 
 

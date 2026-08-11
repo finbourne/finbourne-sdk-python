@@ -8,7 +8,7 @@
 | **display_name** | **str** | Required | *No description available.* |
 | **nav_types** | **List[str]** | Optional | *No description available.* |
 | **unitised** | **bool** | Required | *No description available.* |
-| **buckets** | [../model/List[BucketDefinition]](BucketDefinition.md) | Required | *No description available.* |
+| **buckets** | [List[BucketDefinition]](BucketDefinition.md) | Required | *No description available.* |
 
 
 ## Usage

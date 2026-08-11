@@ -5,7 +5,7 @@ The data for a Fund at the previous valuation point.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **nav** | [../model/FundPreviousNAV](FundPreviousNAV.md) | Required | *No description available.* |
+| **nav** | [FundPreviousNAV](FundPreviousNAV.md) | Required | *No description available.* |
 
 
 ## Usage

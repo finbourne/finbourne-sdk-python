@@ -5,8 +5,8 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **identity_restriction** | **Dict[str, Optional[str]]** | Optional | *No description available.* |
-| **restriction_selectors** | [../model/List[SelectorDefinition]](SelectorDefinition.md) | Optional | *No description available.* |
-| **actions** | [../model/List[ActionId]](ActionId.md) | Required | *No description available.* |
+| **restriction_selectors** | [List[SelectorDefinition]](SelectorDefinition.md) | Optional | *No description available.* |
+| **actions** | [List[ActionId]](ActionId.md) | Required | *No description available.* |
 | **name** | **str** | Optional | *No description available.* |
 | **description** | **str** | Optional | *No description available.* |
 

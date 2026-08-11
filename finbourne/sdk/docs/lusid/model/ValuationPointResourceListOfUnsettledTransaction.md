@@ -5,13 +5,13 @@ ResourceList with extra header fields used by the various ValuationPoint endpoin
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **start_valuation_point** | [../model/DiaryEntry](DiaryEntry.md) | Optional | *No description available.* |
-| **version** | [../model/Version](Version.md) | Required | *No description available.* |
-| **values** | [../model/List[UnsettledTransaction]](UnsettledTransaction.md) | Required | *No description available.* |
+| **start_valuation_point** | [DiaryEntry](DiaryEntry.md) | Optional | *No description available.* |
+| **version** | [Version](Version.md) | Required | *No description available.* |
+| **values** | [List[UnsettledTransaction]](UnsettledTransaction.md) | Required | *No description available.* |
 | **href** | **str** | Optional | *No description available.* |
 | **next_page** | **str** | Optional | *No description available.* |
 | **previous_page** | **str** | Optional | *No description available.* |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

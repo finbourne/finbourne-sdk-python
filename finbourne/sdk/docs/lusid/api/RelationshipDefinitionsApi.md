@@ -56,11 +56,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_relationship_definition_request** | [**CreateRelationshipDefinitionRequest**](CreateRelationshipDefinitionRequest.md)| The definition of the new relationship. | [required] 
+ **create_relationship_definition_request** | [**CreateRelationshipDefinitionRequest**](../model/CreateRelationshipDefinitionRequest.md)| The definition of the new relationship. | [required] 
 
 ### Return type
 
-[**RelationshipDefinition**](RelationshipDefinition.md)
+[**RelationshipDefinition**](../model/RelationshipDefinition.md)
 
 ### HTTP request headers
 
@@ -104,7 +104,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -150,7 +150,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**RelationshipDefinition**](RelationshipDefinition.md)
+[**RelationshipDefinition**](../model/RelationshipDefinition.md)
 
 ### HTTP request headers
 
@@ -196,11 +196,11 @@ Name | Type | Description  | Notes
  **page** | **str**| The pagination token to use to continue listing relationship definitions from a previous call to list relationship definitions. This  value is returned from the previous call. If a pagination token is provided the filter, sortBy and asAt field  must not have changed since the original request. | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many. Defaults to 100 if not specified. | [optional] 
  **filter** | **str**| Expression to filter the result set.              For example, to filter on the Scope, use \&quot;scope eq &#39;ExampleScope&#39;\&quot;              Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid. | [optional] 
- **sort_by** | [**List[str]**](str.md)| A list of field names to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot; | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| A list of field names to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot; | [optional] 
 
 ### Return type
 
-[**PagedResourceListOfRelationshipDefinition**](PagedResourceListOfRelationshipDefinition.md)
+[**PagedResourceListOfRelationshipDefinition**](../model/PagedResourceListOfRelationshipDefinition.md)
 
 ### HTTP request headers
 
@@ -242,11 +242,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the relationship definition being updated. | [required] 
  **code** | **str**| The code of the relationship definition being updated. Together with the scope this uniquely              identifies the relationship definition. | [required] 
- **update_relationship_definition_request** | [**UpdateRelationshipDefinitionRequest**](UpdateRelationshipDefinitionRequest.md)| The details of relationship definition to update. | [required] 
+ **update_relationship_definition_request** | [**UpdateRelationshipDefinitionRequest**](../model/UpdateRelationshipDefinitionRequest.md)| The details of relationship definition to update. | [required] 
 
 ### Return type
 
-[**RelationshipDefinition**](RelationshipDefinition.md)
+[**RelationshipDefinition**](../model/RelationshipDefinition.md)
 
 ### HTTP request headers
 

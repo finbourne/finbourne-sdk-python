@@ -4,10 +4,10 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **values** | [../model/Dict[str, GroupReconciliationComparisonResult]](GroupReconciliationComparisonResult.md) | Optional | The collection of comparison results that have been successfully updated. |
-| **failed** | [../model/Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The collection of comparison results that could not be updated with the provided user input along with a reason for their failure. |
+| **values** | [Dict[str, GroupReconciliationComparisonResult]](GroupReconciliationComparisonResult.md) | Optional | The collection of comparison results that have been successfully updated. |
+| **failed** | [Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The collection of comparison results that could not be updated with the provided user input along with a reason for their failure. |
 | **metadata** | **Dict[str, Optional[List[ResponseMetaData]]]** | Optional | Contains warnings related to the updated comparison result user input |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

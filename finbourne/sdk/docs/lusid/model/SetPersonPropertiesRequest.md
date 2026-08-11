@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Required | Properties to set for a Person. All time-variant properties must have same EffectiveFrom date. Properties not included in the request will not be amended. |
+| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Required | Properties to set for a Person. All time-variant properties must have same EffectiveFrom date. Properties not included in the request will not be amended. |
 
 
 ## Usage

@@ -10,8 +10,8 @@ Represents the metadata of an image
 | **pull_time** | **datetime** | Optional | The latest pull time of the image |
 | **digest** | **str** | Optional | The digest of the image |
 | **size** | **int** | Optional | The size of the image (in bytes) |
-| **tags** | [../model/List[Tag]](Tag.md) | Optional | The tags of the image |
-| **scan_report** | [../model/ScanReport](ScanReport.md) | Optional | *No description available.* |
+| **tags** | [List[Tag]](Tag.md) | Optional | The tags of the image |
+| **scan_report** | [ScanReport](ScanReport.md) | Optional | *No description available.* |
 
 
 ## Usage

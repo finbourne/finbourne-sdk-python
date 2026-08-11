@@ -6,9 +6,9 @@ This request specifies single target holding. i.e. holding data that the  system
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **instrument_identifiers** | **Dict[str, Optional[str]]** | Required | A set of instrument identifiers that can resolve the holding adjustment to a unique instrument. |
-| **sub_holding_keys** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | The sub-holding properties which identify the holding. Each property must be from the &#39;Transaction&#39; domain. |
+| **sub_holding_keys** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | The sub-holding properties which identify the holding. Each property must be from the &#39;Transaction&#39; domain. |
 | **currency** | **str** | Required | The Holding currency. |
-| **custodian_account_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **custodian_account_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 
 
 ## Usage

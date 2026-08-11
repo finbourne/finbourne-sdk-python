@@ -5,8 +5,8 @@ Represents a trace diagram composed of nodes and edges.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **nodes** | [../model/List[TraceDiagramNode]](TraceDiagramNode.md) | Optional | The nodes that make up the diagram. |
-| **edges** | [../model/List[TraceDiagramEdge]](TraceDiagramEdge.md) | Optional | The edges that connect the nodes in the diagram. |
+| **nodes** | [List[TraceDiagramNode]](TraceDiagramNode.md) | Optional | The nodes that make up the diagram. |
+| **edges** | [List[TraceDiagramEdge]](TraceDiagramEdge.md) | Optional | The edges that connect the nodes in the diagram. |
 
 
 ## Usage

@@ -6,8 +6,8 @@ Response object for policy generated from template
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **applications** | **List[str]** | Optional | Applications to which the policy applies |
-| **template_metadata** | [../model/TemplateMetadata](TemplateMetadata.md) | Optional | *No description available.* |
-| **selectors** | [../model/List[SelectorDefinition]](SelectorDefinition.md) | Optional | Selectors that this policy will be applied to |
+| **template_metadata** | [TemplateMetadata](TemplateMetadata.md) | Optional | *No description available.* |
+| **selectors** | [List[SelectorDefinition]](SelectorDefinition.md) | Optional | Selectors that this policy will be applied to |
 
 
 ## Usage

@@ -5,7 +5,7 @@ A time adjustment to apply to the scheduled time of an EventHandler with a Finbo
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **set_to** | [../model/SpecifiedTime](SpecifiedTime.md) | Required | *No description available.* |
+| **set_to** | [SpecifiedTime](SpecifiedTime.md) | Required | *No description available.* |
 
 
 ## Usage

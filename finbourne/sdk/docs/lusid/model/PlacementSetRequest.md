@@ -5,7 +5,7 @@ A request to create or update multiple Placements.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **requests** | [../model/List[PlacementRequest]](PlacementRequest.md) | Optional | A collection of PlacementRequests. |
+| **requests** | [List[PlacementRequest]](PlacementRequest.md) | Optional | A collection of PlacementRequests. |
 
 
 ## Usage

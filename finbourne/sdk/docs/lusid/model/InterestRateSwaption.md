@@ -7,11 +7,11 @@ LUSID representation of an Interest Rate Swaption.
 |------|------|----------|-------------|
 | **start_date** | **datetime** | Required | The start date of the instrument. This is normally synonymous with the trade-date. |
 | **pay_or_receive_fixed** | **str** | Required | Pay or Receive the fixed leg of the underlying swap.    Supported string (enumeration) values are: [Pay, Receive]. |
-| **premium** | [../model/Premium](Premium.md) | Optional | *No description available.* |
+| **premium** | [Premium](Premium.md) | Optional | *No description available.* |
 | **delivery_method** | **str** | Required | How does the option settle    Supported string (enumeration) values are: [Cash, Physical]. |
-| **swap** | [../model/InterestRateSwap](InterestRateSwap.md) | Optional | *No description available.* |
-| **time_zone_conventions** | [../model/TimeZoneConventions](TimeZoneConventions.md) | Optional | *No description available.* |
-| **underlying** | [../model/LusidInstrument](LusidInstrument.md) | Optional | *No description available.* |
+| **swap** | [InterestRateSwap](InterestRateSwap.md) | Optional | *No description available.* |
+| **time_zone_conventions** | [TimeZoneConventions](TimeZoneConventions.md) | Optional | *No description available.* |
+| **underlying** | [LusidInstrument](LusidInstrument.md) | Optional | *No description available.* |
 | **delivery_days** | **int** | Optional | Number of business days between exercise date and settlement of the option payoff or underlying.                Defaults to 0. |
 | **business_day_convention** | **str** | Optional | Business day convention for option exercise date to settlement date calculation.  Default value: F. Available values: NoAdjustment, None, Previous, P, Following, F, ModifiedPrevious, MP, ModifiedFollowing, MF, HalfMonthModifiedFollowing, Nearest, Invalid. |
 | **settlement_calendars** | **List[str]** | Optional | Holiday calendars for option exercise date to settlement date calculation. |

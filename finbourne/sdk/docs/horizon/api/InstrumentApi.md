@@ -55,11 +55,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **onboard_instrument_request** | [**OnboardInstrumentRequest**](OnboardInstrumentRequest.md)|  | [required] 
+ **onboard_instrument_request** | [**OnboardInstrumentRequest**](../model/OnboardInstrumentRequest.md)|  | [required] 
 
 ### Return type
 
-[**OnboardInstrumentResponse**](OnboardInstrumentResponse.md)
+[**OnboardInstrumentResponse**](../model/OnboardInstrumentResponse.md)
 
 ### HTTP request headers
 
@@ -97,11 +97,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **vendor_product_key** | **str**|  | [required] 
- **identifiers** | [**Identifiers**](Identifiers.md)|  | [required] 
+ **identifiers** | [**Identifiers**](../model/Identifiers.md)|  | [required] 
 
 ### Return type
 
-[**EnrichmentResponse**](EnrichmentResponse.md)
+[**EnrichmentResponse**](../model/EnrichmentResponse.md)
 
 ### HTTP request headers
 
@@ -137,11 +137,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **parameter_name** | [**OpenFigiParameterOptionName**](.md)| OpenFigi API Parameters that have a restricted / permitted range of values. | [required] 
+ **parameter_name** | [**OpenFigiParameterOptionName**](../model/.md)| OpenFigi API Parameters that have a restricted / permitted range of values. | [required] 
 
 ### Return type
 
-[**List[AllowedParameterValue]**](AllowedParameterValue.md)
+[**List[AllowedParameterValue]**](../model/AllowedParameterValue.md)
 
 ### HTTP request headers
 
@@ -181,7 +181,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List[PermIdData]**](PermIdData.md)
+[**List[PermIdData]**](../model/PermIdData.md)
 
 ### HTTP request headers
 
@@ -227,7 +227,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OpenFigiSearchResult**](OpenFigiSearchResult.md)
+[**OpenFigiSearchResult**](../model/OpenFigiSearchResult.md)
 
 ### HTTP request headers
 
@@ -271,7 +271,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List[VendorProduct]**](VendorProduct.md)
+[**List[VendorProduct]**](../model/VendorProduct.md)
 
 ### HTTP request headers
 

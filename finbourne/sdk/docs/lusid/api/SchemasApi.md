@@ -59,7 +59,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ModelSchema**](ModelSchema.md)
+[**ModelSchema**](../model/ModelSchema.md)
 
 ### HTTP request headers
 
@@ -98,12 +98,12 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **property_keys** | [**List[str]**](str.md)| One or more property keys for which the schema is requested | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| One or more property keys for which the schema is requested | [optional] 
  **as_at** | **datetime**| Optional. The AsAt date of the data | [optional] 
 
 ### Return type
 
-[**PropertySchema**](PropertySchema.md)
+[**PropertySchema**](../model/PropertySchema.md)
 
 ### HTTP request headers
 
@@ -142,12 +142,12 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sort_by** | [**List[str]**](str.md)| Optional. Order the results by these fields. Use use the &#39;-&#39; sign to denote descending order e.g. -MyFieldName | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| Optional. Order the results by these fields. Use use the &#39;-&#39; sign to denote descending order e.g. -MyFieldName | [optional] 
  **limit** | **int**| Optional. When paginating, limit the number of returned results to this many. | [optional] 
 
 ### Return type
 
-[**ResourceListOfValueType**](ResourceListOfValueType.md)
+[**ResourceListOfValueType**](../model/ResourceListOfValueType.md)
 
 ### HTTP request headers
 
@@ -185,7 +185,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ResourceListOfString**](ResourceListOfString.md)
+[**ResourceListOfString**](../model/ResourceListOfString.md)
 
 ### HTTP request headers
 

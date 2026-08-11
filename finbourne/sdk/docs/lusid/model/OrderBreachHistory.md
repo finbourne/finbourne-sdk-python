@@ -4,9 +4,9 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
-| **order_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
-| **run_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **order_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **run_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **breaches_by_rule** | **Dict[str, Optional[List[OrderRuleBreach]]]** | Optional | Compliance rule breaches associations with the order and run. |
 | **as_at** | **datetime** | Required | The asAt datetime at which the order breach was created in LUSID. |
 

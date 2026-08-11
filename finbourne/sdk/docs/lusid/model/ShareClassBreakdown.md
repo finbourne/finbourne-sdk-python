@@ -5,17 +5,17 @@ The Valuation Point Data for a Share Class on a specified date.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **back_out** | [../model/Dict[str, ShareClassAmount]](ShareClassAmount.md) | Required | Bucket of detail for the Valuation Point where data points have been &#39;backed out&#39;. |
-| **dealing** | [../model/ShareClassDealingBreakdown](ShareClassDealingBreakdown.md) | Required | *No description available.* |
-| **pn_l** | [../model/ShareClassPnlBreakdown](ShareClassPnlBreakdown.md) | Required | *No description available.* |
-| **gav** | [../model/ShareClassAmount](ShareClassAmount.md) | Required | *No description available.* |
-| **fees** | [../model/Dict[str, FeeAccrual]](FeeAccrual.md) | Required | Bucket of detail for any &#39;Fees&#39; that have been charged in the selected period. |
-| **nav** | [../model/ShareClassAmount](ShareClassAmount.md) | Required | *No description available.* |
-| **unitisation** | [../model/UnitisationData](UnitisationData.md) | Optional | *No description available.* |
-| **miscellaneous** | [../model/Dict[str, ShareClassAmount]](ShareClassAmount.md) | Optional | Not used directly by the LUSID engines but serves as a holding area for any custom derived data points that may be useful in, for example, fee calculations). |
+| **back_out** | [Dict[str, ShareClassAmount]](ShareClassAmount.md) | Required | Bucket of detail for the Valuation Point where data points have been &#39;backed out&#39;. |
+| **dealing** | [ShareClassDealingBreakdown](ShareClassDealingBreakdown.md) | Required | *No description available.* |
+| **pn_l** | [ShareClassPnlBreakdown](ShareClassPnlBreakdown.md) | Required | *No description available.* |
+| **gav** | [ShareClassAmount](ShareClassAmount.md) | Required | *No description available.* |
+| **fees** | [Dict[str, FeeAccrual]](FeeAccrual.md) | Required | Bucket of detail for any &#39;Fees&#39; that have been charged in the selected period. |
+| **nav** | [ShareClassAmount](ShareClassAmount.md) | Required | *No description available.* |
+| **unitisation** | [UnitisationData](UnitisationData.md) | Optional | *No description available.* |
+| **miscellaneous** | [Dict[str, ShareClassAmount]](ShareClassAmount.md) | Optional | Not used directly by the LUSID engines but serves as a holding area for any custom derived data points that may be useful in, for example, fee calculations). |
 | **share_class_to_fund_fx_rate** | **float** | Required | The fx rate from the Share Class currency to the fund currency at this valuation point. |
 | **capital_ratio** | **float** | Required | The proportion of the fund&#39;s non-class-specific P&amp;L apportioned to this share class. Sums to 1 across the fund&#39;s share classes. |
-| **previous_share_class_breakdown** | [../model/PreviousShareClassBreakdown](PreviousShareClassBreakdown.md) | Required | *No description available.* |
+| **previous_share_class_breakdown** | [PreviousShareClassBreakdown](PreviousShareClassBreakdown.md) | Required | *No description available.* |
 
 
 ## Usage

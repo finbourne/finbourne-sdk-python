@@ -5,17 +5,17 @@ Information about an Event Handler
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
-| **version** | [../model/VersionInfo](VersionInfo.md) | Optional | *No description available.* |
+| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **version** | [VersionInfo](VersionInfo.md) | Optional | *No description available.* |
 | **display_name** | **str** | Required | Human readable name |
 | **description** | **str** | Optional | Human readable description |
 | **status** | **str** | Required | The current status of the event handler |
-| **event_matching_pattern** | [../model/EventMatchingPattern](EventMatchingPattern.md) | Optional | *No description available.* |
-| **schedule_matching_pattern** | [../model/ScheduleMatchingPattern](ScheduleMatchingPattern.md) | Optional | *No description available.* |
-| **run_as_user_id** | [../model/EventHandlerMapping](EventHandlerMapping.md) | Required | *No description available.* |
-| **task_definition_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **event_matching_pattern** | [EventMatchingPattern](EventMatchingPattern.md) | Optional | *No description available.* |
+| **schedule_matching_pattern** | [ScheduleMatchingPattern](ScheduleMatchingPattern.md) | Optional | *No description available.* |
+| **run_as_user_id** | [EventHandlerMapping](EventHandlerMapping.md) | Required | *No description available.* |
+| **task_definition_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **task_definition_as_at** | **datetime** | Optional | AsAt of the required task definition |
-| **task_activity** | [../model/TaskActivityResponse](TaskActivityResponse.md) | Required | *No description available.* |
+| **task_activity** | [TaskActivityResponse](TaskActivityResponse.md) | Required | *No description available.* |
 
 
 ## Usage

@@ -8,7 +8,7 @@
 | **description** | **str** | Required | *No description available.* |
 | **outcome_description** | **str** | Optional | *No description available.* |
 | **referenced_group_label** | **str** | Optional | *No description available.* |
-| **steps** | [../model/List[ComplianceStep]](ComplianceStep.md) | Required | *No description available.* |
+| **steps** | [List[ComplianceStep]](ComplianceStep.md) | Required | *No description available.* |
 
 
 ## Usage

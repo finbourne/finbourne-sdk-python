@@ -4,13 +4,13 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **name** | **str** | Required | The name of the reference list. |
 | **description** | **str** | Optional | The description of the reference list. |
 | **tags** | **List[str]** | Optional | The tags associated with the reference list. |
-| **reference_list** | [../model/ReferenceList](ReferenceList.md) | Required | *No description available.* |
-| **version** | [../model/Version](Version.md) | Required | *No description available.* |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **reference_list** | [ReferenceList](ReferenceList.md) | Required | *No description available.* |
+| **version** | [Version](Version.md) | Required | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

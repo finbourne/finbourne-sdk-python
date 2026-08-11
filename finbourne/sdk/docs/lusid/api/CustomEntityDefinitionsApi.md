@@ -56,11 +56,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **custom_entity_definition_request** | [**CustomEntityDefinitionRequest**](CustomEntityDefinitionRequest.md)| The payload containing the description of the Custom Entity type. | [required] 
+ **custom_entity_definition_request** | [**CustomEntityDefinitionRequest**](../model/CustomEntityDefinitionRequest.md)| The payload containing the description of the Custom Entity type. | [required] 
 
 ### Return type
 
-[**CustomEntityDefinition**](CustomEntityDefinition.md)
+[**CustomEntityDefinition**](../model/CustomEntityDefinition.md)
 
 ### HTTP request headers
 
@@ -102,7 +102,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -146,7 +146,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CustomEntityDefinition**](CustomEntityDefinition.md)
+[**CustomEntityDefinition**](../model/CustomEntityDefinition.md)
 
 ### HTTP request headers
 
@@ -194,7 +194,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PagedResourceListOfCustomEntityDefinition**](PagedResourceListOfCustomEntityDefinition.md)
+[**PagedResourceListOfCustomEntityDefinition**](../model/PagedResourceListOfCustomEntityDefinition.md)
 
 ### HTTP request headers
 
@@ -234,11 +234,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **entity_type** | **str**| The identifier for the Custom Entity type, derived from the \&quot;entityTypeName\&quot; provided on creation. | [required] 
- **update_custom_entity_definition_request** | [**UpdateCustomEntityDefinitionRequest**](UpdateCustomEntityDefinitionRequest.md)| The payload containing the description of the Custom Entity type. | [required] 
+ **update_custom_entity_definition_request** | [**UpdateCustomEntityDefinitionRequest**](../model/UpdateCustomEntityDefinitionRequest.md)| The payload containing the description of the Custom Entity type. | [required] 
 
 ### Return type
 
-[**CustomEntityDefinition**](CustomEntityDefinition.md)
+[**CustomEntityDefinition**](../model/CustomEntityDefinition.md)
 
 ### HTTP request headers
 

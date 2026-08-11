@@ -68,11 +68,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the reconciliation | [required] 
- **create_reconciliation_request** | [**CreateReconciliationRequest**](CreateReconciliationRequest.md)| The definition of the reconciliation | [optional] 
+ **create_reconciliation_request** | [**CreateReconciliationRequest**](../model/CreateReconciliationRequest.md)| The definition of the reconciliation | [optional] 
 
 ### Return type
 
-[**Reconciliation**](Reconciliation.md)
+[**Reconciliation**](../model/Reconciliation.md)
 
 ### HTTP request headers
 
@@ -116,7 +116,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -206,11 +206,11 @@ Name | Type | Description  | Notes
  **code** | **str**| The code of the scheduled reconciliation | [required] 
  **effective_at** | **str**| The effective datetime or cut label at which to retrieve the scheduled reconciliation. Defaults to the current LUSID system datetime if not specified. | [optional] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the scheduled reconciliation. Defaults to returning the latest version of the reconciliation if not specified. | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the &#39;Reconciliation&#39; property domain to decorate onto the reconciliation.              These must take the form {domain}/{scope}/{code}, for example &#39;Reconciliation/Broker/Id&#39;. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the &#39;Reconciliation&#39; property domain to decorate onto the reconciliation.              These must take the form {domain}/{scope}/{code}, for example &#39;Reconciliation/Broker/Id&#39;. | [optional] 
 
 ### Return type
 
-[**Reconciliation**](Reconciliation.md)
+[**Reconciliation**](../model/Reconciliation.md)
 
 ### HTTP request headers
 
@@ -254,7 +254,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Mapping**](Mapping.md)
+[**Mapping**](../model/Mapping.md)
 
 ### HTTP request headers
 
@@ -296,7 +296,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfMapping**](ResourceListOfMapping.md)
+[**ResourceListOfMapping**](../model/ResourceListOfMapping.md)
 
 ### HTTP request headers
 
@@ -344,11 +344,11 @@ Name | Type | Description  | Notes
  **page** | **str**| The pagination token to use to continue listing reconciliations; this              value is returned from the previous call. If a pagination token is provided, the filter, effectiveAt              and asAt fields must not have changed since the original request. | [optional] 
  **limit** | **int**| When paginating, limit the results to this number. Defaults to 100 if not specified. | [optional] 
  **filter** | **str**| Expression to filter the results.              For example, to filter on the reconciliation type, specify \&quot;id.Code eq &#39;001&#39;\&quot;. For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914. | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the &#39;Reconciliation&#39; domain to decorate onto each reconciliation.              These must take the format {domain}/{scope}/{code}, for example &#39;Reconciliation/Broker/Id&#39;. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the &#39;Reconciliation&#39; domain to decorate onto each reconciliation.              These must take the format {domain}/{scope}/{code}, for example &#39;Reconciliation/Broker/Id&#39;. | [optional] 
 
 ### Return type
 
-[**PagedResourceListOfReconciliation**](PagedResourceListOfReconciliation.md)
+[**PagedResourceListOfReconciliation**](../model/PagedResourceListOfReconciliation.md)
 
 ### HTTP request headers
 
@@ -386,11 +386,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **reconciliation_request** | [**ReconciliationRequest**](ReconciliationRequest.md)| The specifications of the inputs to the reconciliation | [optional] 
+ **reconciliation_request** | [**ReconciliationRequest**](../model/ReconciliationRequest.md)| The specifications of the inputs to the reconciliation | [optional] 
 
 ### Return type
 
-[**ReconciliationResponse**](ReconciliationResponse.md)
+[**ReconciliationResponse**](../model/ReconciliationResponse.md)
 
 ### HTTP request headers
 
@@ -431,14 +431,14 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sort_by** | [**List[str]**](str.md)| Optional. Order the results by these fields. Use use the &#39;-&#39; sign to denote descending order e.g. -MyFieldName | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| Optional. Order the results by these fields. Use use the &#39;-&#39; sign to denote descending order e.g. -MyFieldName | [optional] 
  **limit** | **int**| Optional. When paginating, limit the number of returned results to this many. | [optional] 
  **filter** | **str**| Optional. Expression to filter the result set.              For example, to filter on the left portfolio Code, use \&quot;left.portfolioId.code eq &#39;string&#39;\&quot;              Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid. | [optional] 
- **portfolios_reconciliation_request** | [**PortfoliosReconciliationRequest**](PortfoliosReconciliationRequest.md)| The specifications of the inputs to the reconciliation | [optional] 
+ **portfolios_reconciliation_request** | [**PortfoliosReconciliationRequest**](../model/PortfoliosReconciliationRequest.md)| The specifications of the inputs to the reconciliation | [optional] 
 
 ### Return type
 
-[**ResourceListOfReconciliationBreak**](ResourceListOfReconciliationBreak.md)
+[**ResourceListOfReconciliationBreak**](../model/ResourceListOfReconciliationBreak.md)
 
 ### HTTP request headers
 
@@ -476,11 +476,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_valuations_reconciliation_request** | [**InlineValuationsReconciliationRequest**](InlineValuationsReconciliationRequest.md)| The specifications of the inputs to the reconciliation | [optional] 
+ **inline_valuations_reconciliation_request** | [**InlineValuationsReconciliationRequest**](../model/InlineValuationsReconciliationRequest.md)| The specifications of the inputs to the reconciliation | [optional] 
 
 ### Return type
 
-[**ListAggregationReconciliation**](ListAggregationReconciliation.md)
+[**ListAggregationReconciliation**](../model/ListAggregationReconciliation.md)
 
 ### HTTP request headers
 
@@ -518,11 +518,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **transaction_reconciliation_request** | [**TransactionReconciliationRequest**](TransactionReconciliationRequest.md)|  | [optional] 
+ **transaction_reconciliation_request** | [**TransactionReconciliationRequest**](../model/TransactionReconciliationRequest.md)|  | [optional] 
 
 ### Return type
 
-[**TransactionsReconciliationsResponse**](TransactionsReconciliationsResponse.md)
+[**TransactionsReconciliationsResponse**](../model/TransactionsReconciliationsResponse.md)
 
 ### HTTP request headers
 
@@ -560,11 +560,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **transaction_reconciliation_request_v2** | [**TransactionReconciliationRequestV2**](TransactionReconciliationRequestV2.md)|  | [optional] 
+ **transaction_reconciliation_request_v2** | [**TransactionReconciliationRequestV2**](../model/TransactionReconciliationRequestV2.md)|  | [optional] 
 
 ### Return type
 
-[**ReconciliationResponse**](ReconciliationResponse.md)
+[**ReconciliationResponse**](../model/ReconciliationResponse.md)
 
 ### HTTP request headers
 
@@ -602,11 +602,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **valuations_reconciliation_request** | [**ValuationsReconciliationRequest**](ValuationsReconciliationRequest.md)| The specifications of the inputs to the reconciliation | [optional] 
+ **valuations_reconciliation_request** | [**ValuationsReconciliationRequest**](../model/ValuationsReconciliationRequest.md)| The specifications of the inputs to the reconciliation | [optional] 
 
 ### Return type
 
-[**ListAggregationReconciliation**](ListAggregationReconciliation.md)
+[**ListAggregationReconciliation**](../model/ListAggregationReconciliation.md)
 
 ### HTTP request headers
 
@@ -648,11 +648,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the reconciliation to be updated | [required] 
  **code** | **str**| The code of the reconciliation to be updated | [required] 
- **update_reconciliation_request** | [**UpdateReconciliationRequest**](UpdateReconciliationRequest.md)| The updated definition of the reconciliation | [optional] 
+ **update_reconciliation_request** | [**UpdateReconciliationRequest**](../model/UpdateReconciliationRequest.md)| The updated definition of the reconciliation | [optional] 
 
 ### Return type
 
-[**Reconciliation**](Reconciliation.md)
+[**Reconciliation**](../model/Reconciliation.md)
 
 ### HTTP request headers
 
@@ -690,11 +690,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **mapping** | [**Mapping**](Mapping.md)| The mapping to be created / updated. | [optional] 
+ **mapping** | [**Mapping**](../model/Mapping.md)| The mapping to be created / updated. | [optional] 
 
 ### Return type
 
-[**Mapping**](Mapping.md)
+[**Mapping**](../model/Mapping.md)
 
 ### HTTP request headers
 

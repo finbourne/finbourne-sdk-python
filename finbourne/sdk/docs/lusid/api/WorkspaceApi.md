@@ -66,11 +66,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **visibility** | **str**| The visibility for the containing workspace; case is important. Available values: shared, personal. | [required] 
  **workspace_name** | **str**| The item&#39;s workspace name. | [required] 
- **workspace_item_creation_request** | [**WorkspaceItemCreationRequest**](WorkspaceItemCreationRequest.md)| The item to be created. | [optional] 
+ **workspace_item_creation_request** | [**WorkspaceItemCreationRequest**](../model/WorkspaceItemCreationRequest.md)| The item to be created. | [optional] 
 
 ### Return type
 
-[**WorkspaceItem**](WorkspaceItem.md)
+[**WorkspaceItem**](../model/WorkspaceItem.md)
 
 ### HTTP request headers
 
@@ -111,12 +111,12 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **visibility** | **str**| The visibility for the workspace being created; case is important. Available values: shared, personal. | [required] 
- **workspace_creation_request** | [**WorkspaceCreationRequest**](WorkspaceCreationRequest.md)| The workspace to be created. | [required] 
+ **workspace_creation_request** | [**WorkspaceCreationRequest**](../model/WorkspaceCreationRequest.md)| The workspace to be created. | [required] 
  **include_item_access** | **bool**| If true, includes the workspace item actions the user is permitted to perform in the response. Defaults to false. | [optional] [default to False]
 
 ### Return type
 
-[**Workspace**](Workspace.md)
+[**Workspace**](../model/Workspace.md)
 
 ### HTTP request headers
 
@@ -164,7 +164,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -210,7 +210,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -260,7 +260,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**WorkspaceItem**](WorkspaceItem.md)
+[**WorkspaceItem**](../model/WorkspaceItem.md)
 
 ### HTTP request headers
 
@@ -308,7 +308,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Workspace**](Workspace.md)
+[**Workspace**](../model/Workspace.md)
 
 ### HTTP request headers
 
@@ -356,13 +356,13 @@ Name | Type | Description  | Notes
  **workspace_name** | **str**| The item&#39;s workspace name. | [required] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve workspace items. Defaults to &#39;latest&#39; if not specified. | [optional] 
  **page** | **str**| The pagination token to use to continue listing workspaces items from a previous call to list workspaces items.              This value is returned from the previous call. If a pagination token is provided the sortBy, filter, effectiveAt, and asAt fields              must not have changed since the original request. | [optional] 
- **sort_by** | [**List[str]**](str.md)| A list of field names to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| A list of field names to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many. | [optional] 
  **filter** | **str**| Expression to filter the result set. Read more about filtering results from LUSID here:              https://support.lusid.com/filtering-results-from-lusid. | [optional] 
 
 ### Return type
 
-[**PagedResourceListOfWorkspaceItem**](PagedResourceListOfWorkspaceItem.md)
+[**PagedResourceListOfWorkspaceItem**](../model/PagedResourceListOfWorkspaceItem.md)
 
 ### HTTP request headers
 
@@ -409,14 +409,14 @@ Name | Type | Description  | Notes
  **visibility** | **str**| The visibility for the workspaces; case is important. Available values: shared, personal. | [required] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve workspaces. Defaults to &#39;latest&#39; if not specified. | [optional] 
  **page** | **str**| The pagination token to use to continue listing workspaces from a previous call to list workspaces.              This value is returned from the previous call. If a pagination token is provided the sortBy, filter, effectiveAt, and asAt fields              must not have changed since the original request. | [optional] 
- **sort_by** | [**List[str]**](str.md)| A list of field names to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| A list of field names to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many. | [optional] 
  **filter** | **str**| Expression to filter the result set. Read more about filtering results from LUSID here:              https://support.lusid.com/filtering-results-from-lusid. | [optional] 
  **include_item_access** | **bool**| If true, includes the workspace item actions the user is permitted to perform in the response. Defaults to false. | [optional] [default to False]
 
 ### Return type
 
-[**PagedResourceListOfWorkspace**](PagedResourceListOfWorkspace.md)
+[**PagedResourceListOfWorkspace**](../model/PagedResourceListOfWorkspace.md)
 
 ### HTTP request headers
 
@@ -462,13 +462,13 @@ Name | Type | Description  | Notes
  **visibility** | **str**| The visibility for the containing workspace; case is important. Available values: shared, personal. | [required] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve workspace items. Defaults to &#39;latest&#39; if not specified. | [optional] 
  **page** | **str**| The pagination token to use to continue listing workspaces items from a previous call to list workspaces items.              This value is returned from the previous call. If a pagination token is provided the sortBy, filter, effectiveAt, and asAt fields              must not have changed since the original request. | [optional] 
- **sort_by** | [**List[str]**](str.md)| A list of field names to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| A list of field names to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many. | [optional] 
  **filter** | **str**| Expression to filter the result set. Read more about filtering results from LUSID here:              https://support.lusid.com/filtering-results-from-lusid. | [optional] 
 
 ### Return type
 
-[**PagedResourceListOfItemAndWorkspace**](PagedResourceListOfItemAndWorkspace.md)
+[**PagedResourceListOfItemAndWorkspace**](../model/PagedResourceListOfItemAndWorkspace.md)
 
 ### HTTP request headers
 
@@ -514,11 +514,11 @@ Name | Type | Description  | Notes
  **workspace_name** | **str**| The workspace name. | [required] 
  **group_name** | **str**| The group containing the item. | [required] 
  **item_name** | **str**| The item name. | [required] 
- **workspace_item_update_request** | [**WorkspaceItemUpdateRequest**](WorkspaceItemUpdateRequest.md)| The new item details. | [optional] 
+ **workspace_item_update_request** | [**WorkspaceItemUpdateRequest**](../model/WorkspaceItemUpdateRequest.md)| The new item details. | [optional] 
 
 ### Return type
 
-[**WorkspaceItem**](WorkspaceItem.md)
+[**WorkspaceItem**](../model/WorkspaceItem.md)
 
 ### HTTP request headers
 
@@ -561,12 +561,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **visibility** | **str**| The visibility for the workspace; case is important. Available values: shared, personal. | [required] 
  **workspace_name** | **str**| The workspace name. | [required] 
- **workspace_update_request** | [**WorkspaceUpdateRequest**](WorkspaceUpdateRequest.md)| The new workspace details. | [required] 
+ **workspace_update_request** | [**WorkspaceUpdateRequest**](../model/WorkspaceUpdateRequest.md)| The new workspace details. | [required] 
  **include_item_access** | **bool**| If true, includes the workspace item actions the user is permitted to perform in the response. Defaults to false. | [optional] [default to False]
 
 ### Return type
 
-[**Workspace**](Workspace.md)
+[**Workspace**](../model/Workspace.md)
 
 ### HTTP request headers
 

@@ -63,7 +63,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfScopeDefinition**](ResourceListOfScopeDefinition.md)
+[**ResourceListOfScopeDefinition**](../model/ResourceListOfScopeDefinition.md)
 
 ### HTTP request headers
 
@@ -105,7 +105,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfScopeDefinition**](ResourceListOfScopeDefinition.md)
+[**ResourceListOfScopeDefinition**](../model/ResourceListOfScopeDefinition.md)
 
 ### HTTP request headers
 

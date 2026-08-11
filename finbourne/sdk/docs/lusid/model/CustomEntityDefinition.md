@@ -10,9 +10,9 @@ Representation of Custom Entity Definition on LUSID API
 | **display_name** | **str** | Required | A display label for the custom entity type. |
 | **description** | **str** | Optional | A description for the custom entity type. |
 | **entity_type** | **str** | Required | The identifier for the custom entity type, derived from the “entityTypeName” provided on creation. |
-| **field_schema** | [../model/List[CustomEntityFieldDefinition]](CustomEntityFieldDefinition.md) | Required | The description of the fields on the custom entity type. |
-| **version** | [../model/Version](Version.md) | Required | *No description available.* |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **field_schema** | [List[CustomEntityFieldDefinition]](CustomEntityFieldDefinition.md) | Required | The description of the fields on the custom entity type. |
+| **version** | [Version](Version.md) | Required | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

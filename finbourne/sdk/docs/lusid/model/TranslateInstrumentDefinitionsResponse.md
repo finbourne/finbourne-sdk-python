@@ -6,9 +6,9 @@ A response from a request to translate a collection of instruments to a given ta
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
-| **values** | [../model/Dict[str, LusidInstrument]](LusidInstrument.md) | Optional | The instruments which have been successfully translated. |
-| **failed** | [../model/Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The instruments that could not be translated along with a reason for their failure. |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **values** | [Dict[str, LusidInstrument]](LusidInstrument.md) | Optional | The instruments which have been successfully translated. |
+| **failed** | [Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The instruments that could not be translated along with a reason for their failure. |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

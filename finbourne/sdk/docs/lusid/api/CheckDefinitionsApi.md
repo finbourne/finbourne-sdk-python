@@ -59,11 +59,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_check_definition_request** | [**CreateCheckDefinitionRequest**](CreateCheckDefinitionRequest.md)| The request containing the details of the Check Definition | [optional] 
+ **create_check_definition_request** | [**CreateCheckDefinitionRequest**](../model/CreateCheckDefinitionRequest.md)| The request containing the details of the Check Definition | [optional] 
 
 ### Return type
 
-[**CheckDefinition**](CheckDefinition.md)
+[**CheckDefinition**](../model/CheckDefinition.md)
 
 ### HTTP request headers
 
@@ -107,7 +107,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -149,11 +149,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the specified Check Definition. | [required] 
  **code** | **str**| The code of the specified Check Definition. Together with the domain and scope this uniquely              identifies the Check Definition. | [required] 
- **delete_data_quality_rule** | [**List[DeleteDataQualityRule]**](DeleteDataQualityRule.md)| The request containing the rules to be deleted | [optional] 
+ **delete_data_quality_rule** | [**List[DeleteDataQualityRule]**](../model/DeleteDataQualityRule.md)| The request containing the rules to be deleted | [optional] 
 
 ### Return type
 
-[**CheckDefinition**](CheckDefinition.md)
+[**CheckDefinition**](../model/CheckDefinition.md)
 
 ### HTTP request headers
 
@@ -199,11 +199,11 @@ Name | Type | Description  | Notes
  **code** | **str**| The code of the specified Check Definition. Together with the scope this uniquely              identifies the Check Definition. | [required] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the Check Definition definition. Defaults to return              the latest version of the definition if not specified. | [optional] 
  **effective_at** | **str**| The effective datetime or cut label at which to retrieve the check definition properties.              Defaults to the current LUSID system datetime if not specified. | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the &#39;CheckDefinition&#39; domain to decorate onto              the Check Definition.              These must have the format {domain}/{scope}/{code}, for example &#39;CheckDefinition/system/Name&#39;. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the &#39;CheckDefinition&#39; domain to decorate onto              the Check Definition.              These must have the format {domain}/{scope}/{code}, for example &#39;CheckDefinition/system/Name&#39;. | [optional] 
 
 ### Return type
 
-[**CheckDefinition**](CheckDefinition.md)
+[**CheckDefinition**](../model/CheckDefinition.md)
 
 ### HTTP request headers
 
@@ -252,12 +252,12 @@ Name | Type | Description  | Notes
  **page** | **str**| The pagination token to use to continue listing Check Definitions; this              value is returned from the previous call. If a pagination token is provided, the filter, effectiveAt              and asAt fields must not have changed since the original request. | [optional] 
  **limit** | **int**| When paginating, limit the results to this number. Defaults to 100 if not specified. | [optional] 
  **filter** | **str**| Expression to filter the results.              For example, to filter on the displayName, specify \&quot;displayName eq &#39;MyCheckDefinition&#39;\&quot;. For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914. | [optional] 
- **sort_by** | [**List[str]**](str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot; | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the &#39;CheckDefinition&#39; domain to decorate onto each Check Definition.              These must take the format {domain}/{scope}/{code}, for example &#39;CheckDefinition/Account/id&#39;. | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot; | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the &#39;CheckDefinition&#39; domain to decorate onto each Check Definition.              These must take the format {domain}/{scope}/{code}, for example &#39;CheckDefinition/Account/id&#39;. | [optional] 
 
 ### Return type
 
-[**PagedResourceListOfCheckDefinition**](PagedResourceListOfCheckDefinition.md)
+[**PagedResourceListOfCheckDefinition**](../model/PagedResourceListOfCheckDefinition.md)
 
 ### HTTP request headers
 
@@ -299,11 +299,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| Scope of the CheckDefinition to run. | [required] 
  **code** | **str**| Code of the CheckDefinition to run. | [required] 
- **run_check_request** | [**RunCheckRequest**](RunCheckRequest.md)| Run request defining what dataset to run against. | [optional] 
+ **run_check_request** | [**RunCheckRequest**](../model/RunCheckRequest.md)| Run request defining what dataset to run against. | [optional] 
 
 ### Return type
 
-[**RunCheckResponse**](RunCheckResponse.md)
+[**RunCheckResponse**](../model/RunCheckResponse.md)
 
 ### HTTP request headers
 
@@ -345,11 +345,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the specified Check Definition. | [required] 
  **code** | **str**| The code of the specified Check Definition. Together with the domain and scope this uniquely identifies the Check Definition. | [required] 
- **update_check_definition_request** | [**UpdateCheckDefinitionRequest**](UpdateCheckDefinitionRequest.md)| The request containing the updated details of the Check Definition | [optional] 
+ **update_check_definition_request** | [**UpdateCheckDefinitionRequest**](../model/UpdateCheckDefinitionRequest.md)| The request containing the updated details of the Check Definition | [optional] 
 
 ### Return type
 
-[**CheckDefinition**](CheckDefinition.md)
+[**CheckDefinition**](../model/CheckDefinition.md)
 
 ### HTTP request headers
 
@@ -391,11 +391,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the specified Check Definition. | [required] 
  **code** | **str**| The code of the specified Check Definition. Together with the domain and scope this uniquely              identifies the Check Definition. | [required] 
- **upsert_data_quality_rule** | [**List[UpsertDataQualityRule]**](UpsertDataQualityRule.md)| The request containing the rules to be upserted | [optional] 
+ **upsert_data_quality_rule** | [**List[UpsertDataQualityRule]**](../model/UpsertDataQualityRule.md)| The request containing the rules to be upserted | [optional] 
 
 ### Return type
 
-[**CheckDefinition**](CheckDefinition.md)
+[**CheckDefinition**](../model/CheckDefinition.md)
 
 ### HTTP request headers
 

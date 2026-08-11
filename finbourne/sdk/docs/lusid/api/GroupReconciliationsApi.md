@@ -70,12 +70,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| Shared Scope of the GroupReconciliationDefinition and GroupReconciliationComparisonResults. | [required] 
  **code** | **str**| GroupReconciliationDefinitionId code. | [required] 
- **batch_update_user_review_for_comparison_result_request** | [**List[BatchUpdateUserReviewForComparisonResultRequest]**](BatchUpdateUserReviewForComparisonResultRequest.md)| A collection of the comparison result Ids and their user review entries to be added or removed.                  Single request contains resultId, break code/match key/comment to add and break code/match key/comment to remove by added timestamp. | [required] 
+ **batch_update_user_review_for_comparison_result_request** | [**List[BatchUpdateUserReviewForComparisonResultRequest]**](../model/BatchUpdateUserReviewForComparisonResultRequest.md)| A collection of the comparison result Ids and their user review entries to be added or removed.                  Single request contains resultId, break code/match key/comment to add and break code/match key/comment to remove by added timestamp. | [required] 
  **success_mode** | **str**| Defines whether the request should fail if at least one of the entries is failed to update                  or process all the entries regardless and return collections of successful and failed updates. \&quot;Partial\&quot; (default) | \&quot;Atomic\&quot;. | [optional] [default to &#39;Partial&#39;]
 
 ### Return type
 
-[**BatchUpdateUserReviewForComparisonResultResponse**](BatchUpdateUserReviewForComparisonResultResponse.md)
+[**BatchUpdateUserReviewForComparisonResultResponse**](../model/BatchUpdateUserReviewForComparisonResultResponse.md)
 
 ### HTTP request headers
 
@@ -113,11 +113,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_group_reconciliation_comparison_ruleset_request** | [**CreateGroupReconciliationComparisonRulesetRequest**](CreateGroupReconciliationComparisonRulesetRequest.md)| The request containing the details of the ruleset | [optional] 
+ **create_group_reconciliation_comparison_ruleset_request** | [**CreateGroupReconciliationComparisonRulesetRequest**](../model/CreateGroupReconciliationComparisonRulesetRequest.md)| The request containing the details of the ruleset | [optional] 
 
 ### Return type
 
-[**GroupReconciliationComparisonRuleset**](GroupReconciliationComparisonRuleset.md)
+[**GroupReconciliationComparisonRuleset**](../model/GroupReconciliationComparisonRuleset.md)
 
 ### HTTP request headers
 
@@ -155,11 +155,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_group_reconciliation_definition_request** | [**CreateGroupReconciliationDefinitionRequest**](CreateGroupReconciliationDefinitionRequest.md)| The definition Group Reconciliation Definition details | [optional] 
+ **create_group_reconciliation_definition_request** | [**CreateGroupReconciliationDefinitionRequest**](../model/CreateGroupReconciliationDefinitionRequest.md)| The definition Group Reconciliation Definition details | [optional] 
 
 ### Return type
 
-[**GroupReconciliationDefinition**](GroupReconciliationDefinition.md)
+[**GroupReconciliationDefinition**](../model/GroupReconciliationDefinition.md)
 
 ### HTTP request headers
 
@@ -203,7 +203,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -247,7 +247,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -295,7 +295,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GroupReconciliationComparisonResult**](GroupReconciliationComparisonResult.md)
+[**GroupReconciliationComparisonResult**](../model/GroupReconciliationComparisonResult.md)
 
 ### HTTP request headers
 
@@ -341,7 +341,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GroupReconciliationComparisonRuleset**](GroupReconciliationComparisonRuleset.md)
+[**GroupReconciliationComparisonRuleset**](../model/GroupReconciliationComparisonRuleset.md)
 
 ### HTTP request headers
 
@@ -389,7 +389,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GroupReconciliationDefinition**](GroupReconciliationDefinition.md)
+[**GroupReconciliationDefinition**](../model/GroupReconciliationDefinition.md)
 
 ### HTTP request headers
 
@@ -433,13 +433,13 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **as_at** | **datetime**| The asAt datetime at which to retrieve the comparison results. Defaults to return the latest              version of the comparison results if not specified. | [optional] 
  **page** | **str**| The pagination token to use to continue listing comparison results from a previous call to list              comparison results. This value is returned from the previous call. If a pagination token is provided the sortBy,              filter, effectiveAt, and asAt fields must not have changed since the original request. | [optional] 
- **sort_by** | [**List[str]**](str.md)| A list of field names to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| A list of field names to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many per page. | [optional] 
  **filter** | **str**| Expression to filter the result set. Read more about filtering results from LUSID here:              https://support.lusid.com/filtering-results-from-lusid. | [optional] 
 
 ### Return type
 
-[**PagedResourceListOfGroupReconciliationComparisonResult**](PagedResourceListOfGroupReconciliationComparisonResult.md)
+[**PagedResourceListOfGroupReconciliationComparisonResult**](../model/PagedResourceListOfGroupReconciliationComparisonResult.md)
 
 ### HTTP request headers
 
@@ -483,13 +483,13 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **as_at** | **datetime**| The asAt datetime at which to retrieve the comparison rulesets. Defaults to return the latest              version of the comparison rulesets if not specified. | [optional] 
  **page** | **str**| The pagination token to use to continue listing comparison rulesets from a previous call to list              comparison rulesets. This value is returned from the previous call. If a pagination token is provided the sortBy,              filter, effectiveAt, and asAt fields must not have changed since the original request. | [optional] 
- **sort_by** | [**List[str]**](str.md)| A list of field names to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot; | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| A list of field names to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot; | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many per page. | [optional] 
  **filter** | **str**| Expression to filter the result set. Read more about filtering results from LUSID here:              https://support.lusid.com/filtering-results-from-lusid. | [optional] 
 
 ### Return type
 
-[**PagedResourceListOfGroupReconciliationComparisonRuleset**](PagedResourceListOfGroupReconciliationComparisonRuleset.md)
+[**PagedResourceListOfGroupReconciliationComparisonRuleset**](../model/PagedResourceListOfGroupReconciliationComparisonRuleset.md)
 
 ### HTTP request headers
 
@@ -537,11 +537,11 @@ Name | Type | Description  | Notes
  **page** | **str**| The pagination token to use to continue listing group reconciliation definitions from a previous call to list group reconciliation definitions. This  value is returned from the previous call. If a pagination token is provided the filter, effectiveAt, sortBy  and asAt fields must not have changed since the original request. | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many. Defaults to no limit if not specified. | [optional] 
  **filter** | **str**| Expression to filter the result set.              For example, to filter on the Display Name, use \&quot;displayName eq &#39;string&#39;\&quot;              Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid. | [optional] 
- **sort_by** | [**List[str]**](str.md)| A list of field names to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot; | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| A list of field names to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot; | [optional] 
 
 ### Return type
 
-[**PagedResourceListOfGroupReconciliationDefinition**](PagedResourceListOfGroupReconciliationDefinition.md)
+[**PagedResourceListOfGroupReconciliationDefinition**](../model/PagedResourceListOfGroupReconciliationDefinition.md)
 
 ### HTTP request headers
 
@@ -584,12 +584,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the group reconciliation definition to use for the reconciliation. | [required] 
  **code** | **str**| The code of the group reconciliation definition to use for the reconciliation. | [required] 
- **group_reconciliation_run_request** | [**GroupReconciliationRunRequest**](GroupReconciliationRunRequest.md)|  | [required] 
+ **group_reconciliation_run_request** | [**GroupReconciliationRunRequest**](../model/GroupReconciliationRunRequest.md)|  | [required] 
  **instance_run_type** | **str**| The run type of the group reconciliation run instance. Default value: Manual. Available values: Manual, WorkflowServiceTaskId. | [optional] 
 
 ### Return type
 
-[**GroupReconciliationRunResponse**](GroupReconciliationRunResponse.md)
+[**GroupReconciliationRunResponse**](../model/GroupReconciliationRunResponse.md)
 
 ### HTTP request headers
 
@@ -631,11 +631,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the specified comparison ruleset. | [required] 
  **code** | **str**| The code of the specified comparison ruleset. Together with the domain and scope this uniquely                  identifies the reconciliation comparison ruleset. | [required] 
- **update_group_reconciliation_comparison_ruleset_request** | [**UpdateGroupReconciliationComparisonRulesetRequest**](UpdateGroupReconciliationComparisonRulesetRequest.md)| The request containing the updated details of the ruleset | [optional] 
+ **update_group_reconciliation_comparison_ruleset_request** | [**UpdateGroupReconciliationComparisonRulesetRequest**](../model/UpdateGroupReconciliationComparisonRulesetRequest.md)| The request containing the updated details of the ruleset | [optional] 
 
 ### Return type
 
-[**GroupReconciliationComparisonRuleset**](GroupReconciliationComparisonRuleset.md)
+[**GroupReconciliationComparisonRuleset**](../model/GroupReconciliationComparisonRuleset.md)
 
 ### HTTP request headers
 
@@ -677,11 +677,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the group reconciliation definition to update the details for. | [required] 
  **code** | **str**| The code of the group reconciliation definition to update the details for. Together with the scope this uniquely identifies the group reconciliation definition. | [required] 
- **update_group_reconciliation_definition_request** | [**UpdateGroupReconciliationDefinitionRequest**](UpdateGroupReconciliationDefinitionRequest.md)| The updated group reconciliation definition. | [optional] 
+ **update_group_reconciliation_definition_request** | [**UpdateGroupReconciliationDefinitionRequest**](../model/UpdateGroupReconciliationDefinitionRequest.md)| The updated group reconciliation definition. | [optional] 
 
 ### Return type
 
-[**GroupReconciliationDefinition**](GroupReconciliationDefinition.md)
+[**GroupReconciliationDefinition**](../model/GroupReconciliationDefinition.md)
 
 ### HTTP request headers
 

@@ -62,11 +62,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **userid** | **str**| Id of the User Role to get | [required] 
- **add_policy_collection_to_role_request** | [**AddPolicyCollectionToRoleRequest**](AddPolicyCollectionToRoleRequest.md)| Dto of the policy collection to be added. | [required] 
+ **add_policy_collection_to_role_request** | [**AddPolicyCollectionToRoleRequest**](../model/AddPolicyCollectionToRoleRequest.md)| Dto of the policy collection to be added. | [required] 
 
 ### Return type
 
-[**UserRoleResponse**](UserRoleResponse.md)
+[**UserRoleResponse**](../model/UserRoleResponse.md)
 
 ### HTTP request headers
 
@@ -106,11 +106,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **userid** | **str**| Id of the User Role to get | [required] 
- **add_policy_to_role_request** | [**AddPolicyToRoleRequest**](AddPolicyToRoleRequest.md)| Dto of the policy to be added. | [required] 
+ **add_policy_to_role_request** | [**AddPolicyToRoleRequest**](../model/AddPolicyToRoleRequest.md)| Dto of the policy to be added. | [required] 
 
 ### Return type
 
-[**UserRoleResponse**](UserRoleResponse.md)
+[**UserRoleResponse**](../model/UserRoleResponse.md)
 
 ### HTTP request headers
 
@@ -148,11 +148,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_role_creation_request** | [**UserRoleCreationRequest**](UserRoleCreationRequest.md)| Definition of the user-role to create. | [required] 
+ **user_role_creation_request** | [**UserRoleCreationRequest**](../model/UserRoleCreationRequest.md)| Definition of the user-role to create. | [required] 
 
 ### Return type
 
-[**UserRoleResponse**](UserRoleResponse.md)
+[**UserRoleResponse**](../model/UserRoleResponse.md)
 
 ### HTTP request headers
 
@@ -235,7 +235,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UserRoleResponse**](UserRoleResponse.md)
+[**UserRoleResponse**](../model/UserRoleResponse.md)
 
 ### HTTP request headers
 
@@ -283,7 +283,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfUserRoleResponse**](ResourceListOfUserRoleResponse.md)
+[**ResourceListOfUserRoleResponse**](../model/ResourceListOfUserRoleResponse.md)
 
 ### HTTP request headers
 
@@ -413,11 +413,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **userid** | **str**| Id of the user-role to be updated. | [required] 
- **user_role_update_request** | [**UserRoleUpdateRequest**](UserRoleUpdateRequest.md)| Definition of the update to apply to the user-role. | [required] 
+ **user_role_update_request** | [**UserRoleUpdateRequest**](../model/UserRoleUpdateRequest.md)| Definition of the update to apply to the user-role. | [required] 
 
 ### Return type
 
-[**UserRoleResponse**](UserRoleResponse.md)
+[**UserRoleResponse**](../model/UserRoleResponse.md)
 
 ### HTTP request headers
 

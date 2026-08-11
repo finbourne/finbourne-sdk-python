@@ -5,24 +5,24 @@ A request to create or update an Order.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **properties** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Client-defined properties associated with this order. |
+| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Client-defined properties associated with this order. |
 | **instrument_identifiers** | **Dict[str, Optional[str]]** | Required | The instrument ordered. |
 | **quantity** | **float** | Optional | The quantity of the given instrument ordered. |
 | **side** | **str** | Required | The client&#39;s representation of the order&#39;s side (buy, sell, short, etc) |
-| **order_book_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
-| **portfolio_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
-| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **order_book_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **portfolio_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **state** | **str** | Optional | The order&#39;s state (examples: New, PartiallyFilled, ...) |
 | **type** | **str** | Optional | The order&#39;s type (examples: Limit, Market, ...) |
 | **time_in_force** | **str** | Optional | The order&#39;s time in force (examples: Day, GoodTilCancel, ...) |
 | **var_date** | **datetime** | Optional | The date on which the order was made |
-| **price** | [../model/CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
-| **limit_price** | [../model/CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
-| **stop_price** | [../model/CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
-| **order_instruction** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
-| **package** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **price** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
+| **limit_price** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
+| **stop_price** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
+| **order_instruction** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **package** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **weight** | **float** | Optional | The proportion of the total portfolio value ordered for the given instrument ordered. |
-| **amount** | [../model/CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
+| **amount** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
 
 
 ## Usage

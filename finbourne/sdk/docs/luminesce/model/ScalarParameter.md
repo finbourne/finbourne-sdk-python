@@ -6,7 +6,7 @@ Describes a scalar parameter as defined in the SQL
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **name** | **str** | Required | Name of the scalar parameter |
-| **type** | [../model/DataType](DataType.md) | Required | *No description available.* |
+| **type** | [DataType](DataType.md) | Required | *No description available.* |
 | **value** | **object** | Optional | the default value of the parameter |
 | **value_options** | **List[object]** | Optional | Values of the parameter listed as being available for choosing from. |
 | **value_must_be_from_options** | **bool** | Optional | Must Value be one of ValueOptions (if any)? |

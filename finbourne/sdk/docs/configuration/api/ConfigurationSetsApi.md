@@ -70,12 +70,12 @@ Name | Type | Description  | Notes
  **type** | **str**| Whether the configuration set is Personal or Shared | [required] 
  **scope** | **str**| The scope that identifies a configuration set | [required] 
  **code** | **str**| The code that identifies a configuration set | [required] 
- **create_configuration_item** | [**CreateConfigurationItem**](CreateConfigurationItem.md)| The data to create a configuration item | [required] 
+ **create_configuration_item** | [**CreateConfigurationItem**](../model/CreateConfigurationItem.md)| The data to create a configuration item | [required] 
  **user_id** | **str**| Feature that allows Administrators to administer personal settings  (but never reveal the value of secrets) of a specific user. | [optional] 
 
 ### Return type
 
-[**ConfigurationSet**](ConfigurationSet.md)
+[**ConfigurationSet**](../model/ConfigurationSet.md)
 
 ### HTTP request headers
 
@@ -148,12 +148,12 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_configuration_set** | [**CreateConfigurationSet**](CreateConfigurationSet.md)| The data to create a configuration set | [required] 
+ **create_configuration_set** | [**CreateConfigurationSet**](../model/CreateConfigurationSet.md)| The data to create a configuration set | [required] 
  **user_id** | **str**| Feature that allows Administrators to administer personal settings  (but never reveal the value of secrets) of a specific user. | [optional] 
 
 ### Return type
 
-[**ConfigurationSet**](ConfigurationSet.md)
+[**ConfigurationSet**](../model/ConfigurationSet.md)
 
 ### HTTP request headers
 
@@ -321,7 +321,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PersonalAccessToken**](PersonalAccessToken.md)
+[**PersonalAccessToken**](../model/PersonalAccessToken.md)
 
 ### HTTP request headers
 
@@ -371,7 +371,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ConfigurationItem**](ConfigurationItem.md)
+[**ConfigurationItem**](../model/ConfigurationItem.md)
 
 ### HTTP request headers
 
@@ -420,7 +420,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ConfigurationSet**](ConfigurationSet.md)
+[**ConfigurationSet**](../model/ConfigurationSet.md)
 
 ### HTTP request headers
 
@@ -465,7 +465,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfConfigurationItem**](ResourceListOfConfigurationItem.md)
+[**ResourceListOfConfigurationItem**](../model/ResourceListOfConfigurationItem.md)
 
 ### HTTP request headers
 
@@ -508,7 +508,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfConfigurationSet**](ResourceListOfConfigurationSet.md)
+[**ResourceListOfConfigurationSet**](../model/ResourceListOfConfigurationSet.md)
 
 ### HTTP request headers
 
@@ -551,7 +551,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfConfigurationSetSummary**](ResourceListOfConfigurationSetSummary.md)
+[**ResourceListOfConfigurationSetSummary**](../model/ResourceListOfConfigurationSetSummary.md)
 
 ### HTTP request headers
 
@@ -596,12 +596,12 @@ Name | Type | Description  | Notes
  **scope** | **str**| The scope that identifies a configuration set | [required] 
  **code** | **str**| The code that identifies a configuration set | [required] 
  **key** | **str**| The key that identifies a configuration item | [required] 
- **update_configuration_item** | [**UpdateConfigurationItem**](UpdateConfigurationItem.md)| The data to update a configuration item | [required] 
+ **update_configuration_item** | [**UpdateConfigurationItem**](../model/UpdateConfigurationItem.md)| The data to update a configuration item | [required] 
  **user_id** | **str**| Feature that allows Administrators to administer personal settings  (but never reveal the value of secrets) of a specific user. | [optional] 
 
 ### Return type
 
-[**ConfigurationItem**](ConfigurationItem.md)
+[**ConfigurationItem**](../model/ConfigurationItem.md)
 
 ### HTTP request headers
 
@@ -645,12 +645,12 @@ Name | Type | Description  | Notes
  **type** | **str**| Whether the configuration set is Personal or Shared | [required] 
  **scope** | **str**| The scope that identifies a configuration set | [required] 
  **code** | **str**| The code that identifies a configuration set | [required] 
- **update_configuration_set** | [**UpdateConfigurationSet**](UpdateConfigurationSet.md)| The data to update a configuration set | [required] 
+ **update_configuration_set** | [**UpdateConfigurationSet**](../model/UpdateConfigurationSet.md)| The data to update a configuration set | [required] 
  **user_id** | **str**| Feature that allows Administrators to administer personal settings  (but never reveal the value of secrets) of a specific user. | [optional] 
 
 ### Return type
 
-[**ConfigurationSet**](ConfigurationSet.md)
+[**ConfigurationSet**](../model/ConfigurationSet.md)
 
 ### HTTP request headers
 

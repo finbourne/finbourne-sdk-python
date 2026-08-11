@@ -63,11 +63,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_derived_property_definition_request** | [**CreateDerivedPropertyDefinitionRequest**](CreateDerivedPropertyDefinitionRequest.md)| The definition of the new derived property. | [required] 
+ **create_derived_property_definition_request** | [**CreateDerivedPropertyDefinitionRequest**](../model/CreateDerivedPropertyDefinitionRequest.md)| The definition of the new derived property. | [required] 
 
 ### Return type
 
-[**PropertyDefinition**](PropertyDefinition.md)
+[**PropertyDefinition**](../model/PropertyDefinition.md)
 
 ### HTTP request headers
 
@@ -105,11 +105,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_property_definition_request** | [**CreatePropertyDefinitionRequest**](CreatePropertyDefinitionRequest.md)| The definition of the new property. | [required] 
+ **create_property_definition_request** | [**CreatePropertyDefinitionRequest**](../model/CreatePropertyDefinitionRequest.md)| The definition of the new property. | [required] 
 
 ### Return type
 
-[**PropertyDefinition**](PropertyDefinition.md)
+[**PropertyDefinition**](../model/PropertyDefinition.md)
 
 ### HTTP request headers
 
@@ -155,7 +155,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -200,12 +200,12 @@ Name | Type | Description  | Notes
  **domain** | **str**| The domain of the property definition to delete properties from. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, TaskDefinition, Workflow, IdentifierDefinition, SettlementInstruction, TransactionFeeType, PaymentInstruction. | [required] 
  **scope** | **str**| The scope of the property definition to delete properties from. | [required] 
  **code** | **str**| The code of the property definition to delete properties from. | [required] 
- **request_body** | [**List[str]**](str.md)| The property keys of the properties to delete. These must take the format              {domain}/{scope}/{code} e.g \&quot;PropertyDefinition/myScope/someAttributeKey\&quot;. Each property must be from the \&quot;PropertyDefinition\&quot; domain. | [required] 
+ **request_body** | [**List[str]**](../model/str.md)| The property keys of the properties to delete. These must take the format              {domain}/{scope}/{code} e.g \&quot;PropertyDefinition/myScope/someAttributeKey\&quot;. Each property must be from the \&quot;PropertyDefinition\&quot; domain. | [required] 
  **effective_at** | **str**| The effective datetime or cut label at which to delete time-variant properties from.              The property must exist at the specified &#39;effectiveAt&#39; datetime. If the &#39;effectiveAt&#39; is not provided or is before              the time-variant property exists then a failure is returned. Do not specify this parameter if an of the properties to delete are perpetual. | [optional] 
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -245,13 +245,13 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **derivation_formula_explain_request** | [**DerivationFormulaExplainRequest**](DerivationFormulaExplainRequest.md)| Information about the derivation formula to explain, and optionally, the entity to resolve the formula against. | [required] 
+ **derivation_formula_explain_request** | [**DerivationFormulaExplainRequest**](../model/DerivationFormulaExplainRequest.md)| Information about the derivation formula to explain, and optionally, the entity to resolve the formula against. | [required] 
  **as_at** | **datetime**| The asAt datetime at which to resolve the entity. Defaults to returning the latest asAt in LUSID              if not specified. | [optional] 
  **effective_at** | **str**| The effective datetime or cut label at which to resolve the entity. Defaults to the current LUSID              system datetime if not specified. | [optional] 
 
 ### Return type
 
-[**DerivedPropertyComponent**](DerivedPropertyComponent.md)
+[**DerivedPropertyComponent**](../model/DerivedPropertyComponent.md)
 
 ### HTTP request headers
 
@@ -292,14 +292,14 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **property_keys** | [**List[str]**](str.md)| One or more property keys which identify each property that a definition should              be retrieved for. The format for each property key is {domain}/{scope}/{code}, e.g. &#39;Portfolio/Manager/Id&#39;. | [required] 
+ **property_keys** | [**List[str]**](../model/str.md)| One or more property keys which identify each property that a definition should              be retrieved for. The format for each property key is {domain}/{scope}/{code}, e.g. &#39;Portfolio/Manager/Id&#39;. | [required] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the property definitions. Defaults to return              the latest version of each definition if not specified. | [optional] 
  **filter** | **str**| Expression to filter the result set.               For example, to filter on the Lifetime, use \&quot;lifeTime eq &#39;Perpetual&#39;\&quot;              Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid. | [optional] 
  **effective_at** | **str**| The effective datetime or cut label at which to list properties attached to the Property Definition.              Defaults to the current LUSID system datetime if not specified. | [optional] 
 
 ### Return type
 
-[**ResourceListOfPropertyDefinition**](ResourceListOfPropertyDefinition.md)
+[**ResourceListOfPropertyDefinition**](../model/ResourceListOfPropertyDefinition.md)
 
 ### HTTP request headers
 
@@ -349,7 +349,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PropertyDefinition**](PropertyDefinition.md)
+[**PropertyDefinition**](../model/PropertyDefinition.md)
 
 ### HTTP request headers
 
@@ -405,7 +405,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfPropertyInterval**](ResourceListOfPropertyInterval.md)
+[**ResourceListOfPropertyInterval**](../model/ResourceListOfPropertyInterval.md)
 
 ### HTTP request headers
 
@@ -451,15 +451,15 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **effective_at** | **str**| The effective datetime or cut label at which to list the property definitions. Defaults to the current LUSID              system datetime if not specified. | [optional] 
  **as_at** | **datetime**| The asAt datetime at which to list the property definitions. Defaults to returning the latest version              of each property definition if not specified. | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the &#39;Property Definition&#39; domain to decorate onto              property definitions. These must take the format              {domain}/{scope}/{code} e.g \&quot;PropertyDefinition/myScope/someAttributeKey\&quot;. Each property must be from the \&quot;PropertyDefinition\&quot; domain. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the &#39;Property Definition&#39; domain to decorate onto              property definitions. These must take the format              {domain}/{scope}/{code} e.g \&quot;PropertyDefinition/myScope/someAttributeKey\&quot;. Each property must be from the \&quot;PropertyDefinition\&quot; domain. | [optional] 
  **page** | **str**| The pagination token to use to continue listing property definitions; this              value is returned from the previous call. If a pagination token is provided, the filter, effectiveAt              and asAt fields must not have changed since the original request. | [optional] 
  **limit** | **int**| When paginating, limit the results to this number. Defaults to 100 if not specified. | [optional] 
  **filter** | **str**| Expression to filter the results.              For example, to filter on the display name, specify \&quot;DisplayName eq &#39;DisplayName&#39;\&quot;. For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914. | [optional] 
- **sort_by** | [**List[str]**](str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot; | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot; | [optional] 
 
 ### Return type
 
-[**PagedResourceListOfPropertyDefinition**](PagedResourceListOfPropertyDefinition.md)
+[**PagedResourceListOfPropertyDefinition**](../model/PagedResourceListOfPropertyDefinition.md)
 
 ### HTTP request headers
 
@@ -503,11 +503,11 @@ Name | Type | Description  | Notes
  **domain** | **str**| Domain of the property definition. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, TaskDefinition, Workflow, IdentifierDefinition, SettlementInstruction, TransactionFeeType, PaymentInstruction. | [required] 
  **scope** | **str**| Scope of the property definition | [required] 
  **code** | **str**| Code of the property definition | [required] 
- **update_derived_property_definition_request** | [**UpdateDerivedPropertyDefinitionRequest**](UpdateDerivedPropertyDefinitionRequest.md)| Information about the derived property definition being updated | [required] 
+ **update_derived_property_definition_request** | [**UpdateDerivedPropertyDefinitionRequest**](../model/UpdateDerivedPropertyDefinitionRequest.md)| Information about the derived property definition being updated | [required] 
 
 ### Return type
 
-[**PropertyDefinition**](PropertyDefinition.md)
+[**PropertyDefinition**](../model/PropertyDefinition.md)
 
 ### HTTP request headers
 
@@ -551,11 +551,11 @@ Name | Type | Description  | Notes
  **domain** | **str**| The domain of the property being updated. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, TaskDefinition, Workflow, IdentifierDefinition, SettlementInstruction, TransactionFeeType, PaymentInstruction. | [required] 
  **scope** | **str**| The scope of the property being updated. | [required] 
  **code** | **str**| The code of the property being updated. Together with the domain and scope this uniquely              identifies the property. | [required] 
- **update_property_definition_request** | [**UpdatePropertyDefinitionRequest**](UpdatePropertyDefinitionRequest.md)| The updated definition of the property. | [required] 
+ **update_property_definition_request** | [**UpdatePropertyDefinitionRequest**](../model/UpdatePropertyDefinitionRequest.md)| The updated definition of the property. | [required] 
 
 ### Return type
 
-[**PropertyDefinition**](PropertyDefinition.md)
+[**PropertyDefinition**](../model/PropertyDefinition.md)
 
 ### HTTP request headers
 
@@ -600,12 +600,12 @@ Name | Type | Description  | Notes
  **domain** | **str**| The domain of the specified property. Available values: Transaction, Portfolio, Holding, ReferenceHolding, TransactionConfiguration, Instrument, PortfolioGroup, Person, Order, Allocation, Calendar, LegalEntity, InvestorRecord, InvestmentAccount, Placement, Execution, Block, Participation, Package, OrderInstruction, CustomEntity, InstrumentEvent, Account, ChartOfAccounts, CustodianAccount, CheckDefinition, Abor, AborConfiguration, Fund, FundConfiguration, Fee, Reconciliation, PropertyDefinition, Compliance, DiaryEntry, Leg, DerivedValuation, Timeline, ClosedPeriod, TaskDefinition, Workflow, IdentifierDefinition, SettlementInstruction, TransactionFeeType, PaymentInstruction. | [required] 
  **scope** | **str**| The scope of the specified property. | [required] 
  **code** | **str**| The code of the specified property. Together with the domain and scope this uniquely | [required] 
- **request_body** | [**Dict[str, ModelProperty]**](ModelProperty.md)| The properties to be created or updated. Each property in              the request must be keyed by its unique property key. This has the format {domain}/{scope}/{code}, for example              &#39;PropertyDefinition/Manager/Id&#39;. | [required] 
+ **request_body** | [**Dict[str, ModelProperty]**](../model/ModelProperty.md)| The properties to be created or updated. Each property in              the request must be keyed by its unique property key. This has the format {domain}/{scope}/{code}, for example              &#39;PropertyDefinition/Manager/Id&#39;. | [required] 
  **success_mode** | **str**| Whether the batch request should fail Atomically or in a Partial fashion - Allowed Values: Atomic, Partial. | [optional] [default to &#39;Partial&#39;]
 
 ### Return type
 
-[**BatchUpsertPropertyDefinitionPropertiesResponse**](BatchUpsertPropertyDefinitionPropertiesResponse.md)
+[**BatchUpsertPropertyDefinitionPropertiesResponse**](../model/BatchUpsertPropertyDefinitionPropertiesResponse.md)
 
 ### HTTP request headers
 

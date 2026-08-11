@@ -11,10 +11,10 @@
 | **transaction_date** | **str** | Required | *No description available.* |
 | **settlement_date** | **str** | Required | *No description available.* |
 | **units** | **str** | Required | *No description available.* |
-| **transaction_price** | [../model/TransactionPriceAndType](TransactionPriceAndType.md) | Optional | *No description available.* |
+| **transaction_price** | [TransactionPriceAndType](TransactionPriceAndType.md) | Optional | *No description available.* |
 | **transaction_currency** | **str** | Required | *No description available.* |
 | **exchange_rate** | **str** | Optional | *No description available.* |
-| **total_consideration** | [../model/TransactionCurrencyAndAmount](TransactionCurrencyAndAmount.md) | Required | *No description available.* |
+| **total_consideration** | [TransactionCurrencyAndAmount](TransactionCurrencyAndAmount.md) | Required | *No description available.* |
 
 
 ## Usage

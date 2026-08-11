@@ -6,8 +6,8 @@ Counts for non-exception results (Match, Cross).
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **total** | **int** | Required | The total number of results in this category. |
-| **by_result_type** | [../model/RecMatchCountByResultType](RecMatchCountByResultType.md) | Required | *No description available.* |
-| **by_review_status** | [../model/RecResultCountByReviewStatus](RecResultCountByReviewStatus.md) | Required | *No description available.* |
+| **by_result_type** | [RecMatchCountByResultType](RecMatchCountByResultType.md) | Required | *No description available.* |
+| **by_review_status** | [RecResultCountByReviewStatus](RecResultCountByReviewStatus.md) | Required | *No description available.* |
 
 
 ## Usage

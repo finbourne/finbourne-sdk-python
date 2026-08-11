@@ -8,10 +8,10 @@
 | **staging_rule_set_id** | **str** | Required | System generated unique id for the staging rule set. |
 | **display_name** | **str** | Required | The name of the staging rule set. |
 | **description** | **str** | Optional | A description for the staging rule set. |
-| **rules** | [../model/List[StagingRule]](StagingRule.md) | Required | The list of staging rules that apply to a specific entity type. |
+| **rules** | [List[StagingRule]](StagingRule.md) | Required | The list of staging rules that apply to a specific entity type. |
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
-| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **version** | [Version](Version.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

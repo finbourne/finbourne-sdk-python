@@ -6,7 +6,7 @@ The settlement cycle for an instrument
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **business_day_offset** | **int** | Required | *No description available.* |
-| **calendars** | [../model/List[ResourceId]](ResourceId.md) | Required | *No description available.* |
+| **calendars** | [List[ResourceId]](ResourceId.md) | Required | *No description available.* |
 
 
 ## Usage

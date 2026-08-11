@@ -13,7 +13,7 @@ Cash election for Events that result in a cash payment.
 | **is_default** | **bool** | Optional | Is this election the default.  Only one Election may be Default per Event |
 | **dividend_currency** | **str** | Required | The payment currency for this CashElection. |
 | **payment_date** | **datetime** | Optional | Optional option-level payment date. When set, it takes precedence over the event-level payment date; when omitted, the event-level payment date applies. |
-| **rate_breakdown** | [../model/List[RateBreakdownComponent]](RateBreakdownComponent.md) | Optional | Optional tax-characterised payout lines for this election (CashDividendEvent only). When absent or empty, the election produces a single standard payment. |
+| **rate_breakdown** | [List[RateBreakdownComponent]](RateBreakdownComponent.md) | Optional | Optional tax-characterised payout lines for this election (CashDividendEvent only). When absent or empty, the election produces a single standard payment. |
 
 
 ## Usage

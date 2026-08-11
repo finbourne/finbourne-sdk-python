@@ -11,7 +11,7 @@ Response object for a policy template
 | **description** | **str** | Optional | Description of the policy template being created |
 | **applications** | **List[str]** | Optional | List of applications that this policy template covers |
 | **tags** | **List[str]** | Optional | List of policy types that this policy template covers |
-| **templated_selectors** | [../model/List[PolicyTemplatedSelector]](PolicyTemplatedSelector.md) | Optional | The selector definitions of policies included in this policy template |
+| **templated_selectors** | [List[PolicyTemplatedSelector]](PolicyTemplatedSelector.md) | Optional | The selector definitions of policies included in this policy template |
 
 
 ## Usage

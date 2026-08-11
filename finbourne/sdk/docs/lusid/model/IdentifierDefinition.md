@@ -13,8 +13,8 @@
 | **hierarchy_level** | **str** | Optional | Optional metadata associated with the identifier definition. |
 | **display_name** | **str** | Optional | A display name for the identifier. E.g. Figi. |
 | **description** | **str** | Optional | An optional description for the identifier. |
-| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the identifier definition. |
-| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
+| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the identifier definition. |
+| **version** | [Version](Version.md) | Optional | *No description available.* |
 
 
 ## Usage

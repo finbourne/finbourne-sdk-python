@@ -6,10 +6,10 @@
 |------|------|----------|-------------|
 | **market_data_category** | **str** | Required | The category of market data this configuration applies to. Available values: Quote, Complex. |
 | **scope** | **str** | Required | The scope of the market data field configuration. |
-| **metadata_field_schema** | [../model/List[MetadataFieldDefinition]](MetadataFieldDefinition.md) | Required | The metadata field definitions for this configuration. |
+| **metadata_field_schema** | [List[MetadataFieldDefinition]](MetadataFieldDefinition.md) | Required | The metadata field definitions for this configuration. |
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
-| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **version** | [Version](Version.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

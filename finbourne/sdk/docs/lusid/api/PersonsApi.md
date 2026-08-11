@@ -77,7 +77,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -129,7 +129,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -174,12 +174,12 @@ Name | Type | Description  | Notes
  **id_type_scope** | **str**| Scope of the person identifier type. | [required] 
  **id_type_code** | **str**| Code of the person identifier type. | [required] 
  **code** | **str**| Code of the person under specified identifier type&#39;s scope and code. This together with stated identifier type uniquely              identifies the person. | [required] 
- **property_keys** | [**List[str]**](str.md)| The property keys of the identifiers to delete. These take the format              {domain}/{scope}/{code} e.g. \&quot;Person/CompanyDetails/Role\&quot;. Each property must be from the \&quot;Person\&quot; domain. Identifiers or identifiers not specified in request will not be changed. | [required] 
+ **property_keys** | [**List[str]**](../model/str.md)| The property keys of the identifiers to delete. These take the format              {domain}/{scope}/{code} e.g. \&quot;Person/CompanyDetails/Role\&quot;. Each property must be from the \&quot;Person\&quot; domain. Identifiers or identifiers not specified in request will not be changed. | [required] 
  **effective_at** | **str**| The effective datetime or cut label at which to delete the identifiers. Defaults to the current LUSID system datetime if not specified.              Must not include an effective datetime if identifiers are perpetual. | [optional] 
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -224,12 +224,12 @@ Name | Type | Description  | Notes
  **id_type_scope** | **str**| Scope of the person identifier type. | [required] 
  **id_type_code** | **str**| Code of the person identifier type. | [required] 
  **code** | **str**| Code of the person under specified identifier type&#39;s scope and code. This together with stated identifier type uniquely              identifies the person. | [required] 
- **property_keys** | [**List[str]**](str.md)| The property keys of the person&#39;s properties to delete. These take the format              {domain}/{scope}/{code} e.g. \&quot;Person/CompanyDetails/Role\&quot;. Each property must be from the \&quot;Person\&quot; domain. Properties or identifiers not specified in request will not be changed. | [required] 
+ **property_keys** | [**List[str]**](../model/str.md)| The property keys of the person&#39;s properties to delete. These take the format              {domain}/{scope}/{code} e.g. \&quot;Person/CompanyDetails/Role\&quot;. Each property must be from the \&quot;Person\&quot; domain. Properties or identifiers not specified in request will not be changed. | [required] 
  **effective_at** | **str**| The effective datetime or cut label at which to delete time-variant properties from.              The property must exist at the specified &#39;effectiveAt&#39; datetime. If the &#39;effectiveAt&#39; is not provided or is              before the time-variant property exists then a failure is returned. Do not specify this parameter if any of              the properties to delete are perpetual. | [optional] 
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -326,14 +326,14 @@ Name | Type | Description  | Notes
  **id_type_scope** | **str**| Scope of the person identifier type. | [required] 
  **id_type_code** | **str**| Code of the person identifier type. | [required] 
  **code** | **str**| Code of the person under specified scope and code. This together with stated identifier type uniquely              identifies the person. | [required] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the \&quot;Person\&quot; domain to decorate onto the person,               or from any domain that supports relationships to decorate onto related entities.              These take the format {domain}/{scope}/{code} e.g. \&quot;Person/ContactDetails/Address\&quot;. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the \&quot;Person\&quot; domain to decorate onto the person,               or from any domain that supports relationships to decorate onto related entities.              These take the format {domain}/{scope}/{code} e.g. \&quot;Person/ContactDetails/Address\&quot;. | [optional] 
  **effective_at** | **str**| The effective datetime or cut label at which to retrieve the person. Defaults to the current LUSID system datetime if not specified. | [optional] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the person. Defaults to return the latest version of the person if not specified. | [optional] 
- **relationship_definition_ids** | [**List[str]**](str.md)| A list of relationship definitions that are used to decorate related entities              onto the person in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}. | [optional] 
+ **relationship_definition_ids** | [**List[str]**](../model/str.md)| A list of relationship definitions that are used to decorate related entities              onto the person in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}. | [optional] 
 
 ### Return type
 
-[**Person**](Person.md)
+[**Person**](../model/Person.md)
 
 ### HTTP request headers
 
@@ -385,7 +385,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List[AccessMetadataValue]**](AccessMetadataValue.md)
+[**List[AccessMetadataValue]**](../model/AccessMetadataValue.md)
 
 ### HTTP request headers
 
@@ -441,7 +441,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfPropertyInterval**](ResourceListOfPropertyInterval.md)
+[**ResourceListOfPropertyInterval**](../model/ResourceListOfPropertyInterval.md)
 
 ### HTTP request headers
 
@@ -491,11 +491,11 @@ Name | Type | Description  | Notes
  **effective_at** | **str**| The effective datetime or cut label at which to get relations. Defaults to the current LUSID system datetime if not specified. | [optional] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the person&#39;s relations. Defaults to return the latest LUSID AsAt time if not specified. | [optional] 
  **filter** | **str**| Expression to filter the relations. Users should provide null or empty string for this field until further notice. | [optional] 
- **identifier_types** | [**List[str]**](str.md)| Identifiers types (as property keys) used for referencing Persons or Legal Entities. These take the format              {domain}/{scope}/{code} e.g. \&quot;Person/CompanyDetails/Role\&quot;. They must be from the \&quot;Person\&quot; or \&quot;LegalEntity\&quot; domain.              Only identifier types stated will be used to look up relevant entities in relations. If not applicable, provide an empty array. | [optional] 
+ **identifier_types** | [**List[str]**](../model/str.md)| Identifiers types (as property keys) used for referencing Persons or Legal Entities. These take the format              {domain}/{scope}/{code} e.g. \&quot;Person/CompanyDetails/Role\&quot;. They must be from the \&quot;Person\&quot; or \&quot;LegalEntity\&quot; domain.              Only identifier types stated will be used to look up relevant entities in relations. If not applicable, provide an empty array. | [optional] 
 
 ### Return type
 
-[**ResourceListOfRelation**](ResourceListOfRelation.md)
+[**ResourceListOfRelation**](../model/ResourceListOfRelation.md)
 
 ### HTTP request headers
 
@@ -545,11 +545,11 @@ Name | Type | Description  | Notes
  **effective_at** | **str**| The effective datetime or cut label at which to get relationships. Defaults to the current LUSID system datetime if not specified. | [optional] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve relationships. Defaults to return the latest LUSID AsAt time if not specified. | [optional] 
  **filter** | **str**| Expression to filter relationships. Users should provide null or empty string for this field until further notice. | [optional] 
- **identifier_types** | [**List[str]**](str.md)| Identifier types (as property keys) used for referencing Persons or Legal Entities.              These can be specified from the &#39;Person&#39; or &#39;LegalEntity&#39; domains and have the format {domain}/{scope}/{code}, for example              &#39;Person/CompanyDetails/Role&#39;. An Empty array may be used to return all related Entities. | [optional] 
+ **identifier_types** | [**List[str]**](../model/str.md)| Identifier types (as property keys) used for referencing Persons or Legal Entities.              These can be specified from the &#39;Person&#39; or &#39;LegalEntity&#39; domains and have the format {domain}/{scope}/{code}, for example              &#39;Person/CompanyDetails/Role&#39;. An Empty array may be used to return all related Entities. | [optional] 
 
 ### Return type
 
-[**ResourceListOfRelationship**](ResourceListOfRelationship.md)
+[**ResourceListOfRelationship**](../model/ResourceListOfRelationship.md)
 
 ### HTTP request headers
 
@@ -598,12 +598,12 @@ Name | Type | Description  | Notes
  **page** | **str**| The pagination token to use to continue listing persons from a previous call to list persons. This              value is returned from the previous call. If a pagination token is provided the filter, effectiveAt              and asAt fields must not have changed since the original request. | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many. Defaults to 5000 if not specified. | [optional] 
  **filter** | **str**| Expression to filter the result set.               For example, to filter on the display name, use \&quot;displayName eq &#39;John&#39;\&quot;              Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid. | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the \&quot;Person\&quot; domain to decorate onto each person,               or from any domain that supports relationships to decorate onto related entities.              These take the format {domain}/{scope}/{code} e.g. \&quot;Person/ContactDetails/Address\&quot;. | [optional] 
- **relationship_definition_ids** | [**List[str]**](str.md)| A list of relationship definitions that are used to decorate related entities              onto the persons in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the \&quot;Person\&quot; domain to decorate onto each person,               or from any domain that supports relationships to decorate onto related entities.              These take the format {domain}/{scope}/{code} e.g. \&quot;Person/ContactDetails/Address\&quot;. | [optional] 
+ **relationship_definition_ids** | [**List[str]**](../model/str.md)| A list of relationship definitions that are used to decorate related entities              onto the persons in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}. | [optional] 
 
 ### Return type
 
-[**ResourceListOfPerson**](ResourceListOfPerson.md)
+[**ResourceListOfPerson**](../model/ResourceListOfPerson.md)
 
 ### HTTP request headers
 
@@ -656,12 +656,12 @@ Name | Type | Description  | Notes
  **page** | **str**| The pagination token to use to continue listing persons from a previous call to list persons. This              value is returned from the previous call. If a pagination token is provided the filter, effectiveAt              and asAt fields must not have changed since the original request. | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many. Defaults to 100 if not specified. | [optional] 
  **filter** | **str**| Expression to filter the result set.               For example, to filter on the LUPID, use \&quot;lusidPersonId eq &#39;string&#39;\&quot;              Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid. | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the \&quot;Person\&quot; domain to decorate onto each person,               or from any domain that supports relationships to decorate onto related entities.              These take the format {domain}/{scope}/{code} e.g. \&quot;Person/ContactDetails/Address\&quot;. | [optional] 
- **relationship_definition_ids** | [**List[str]**](str.md)| A list of relationship definitions that are used to decorate related entities              onto the persons in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the \&quot;Person\&quot; domain to decorate onto each person,               or from any domain that supports relationships to decorate onto related entities.              These take the format {domain}/{scope}/{code} e.g. \&quot;Person/ContactDetails/Address\&quot;. | [optional] 
+ **relationship_definition_ids** | [**List[str]**](../model/str.md)| A list of relationship definitions that are used to decorate related entities              onto the persons in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}. | [optional] 
 
 ### Return type
 
-[**PagedResourceListOfPerson**](PagedResourceListOfPerson.md)
+[**PagedResourceListOfPerson**](../model/PagedResourceListOfPerson.md)
 
 ### HTTP request headers
 
@@ -707,7 +707,7 @@ Name | Type | Description  | Notes
  **id_type_scope** | **str**| Scope of the person identifier. | [required] 
  **id_type_code** | **str**| Code of the person identifier. | [required] 
  **code** | **str**| Code of the person under specified identifier type&#39;s scope and code. | [required] 
- **access_metadata_operation** | [**List[AccessMetadataOperation]**](AccessMetadataOperation.md)| The Json Patch document | [required] 
+ **access_metadata_operation** | [**List[AccessMetadataOperation]**](../model/AccessMetadataOperation.md)| The Json Patch document | [required] 
  **effective_at** | **str**| The effectiveAt datetime at which to upsert the Access Metadata | [optional] 
  **effective_until** | **datetime**| The effective datetime until which the Access Metadata is valid. If not supplied this will be valid indefinitely, or until the next &#39;effectiveAt&#39; datetime of the Access Metadata | [optional] 
 
@@ -757,11 +757,11 @@ Name | Type | Description  | Notes
  **id_type_scope** | **str**| Scope of the person identifier type. | [required] 
  **id_type_code** | **str**| Code of the person identifier type. | [required] 
  **code** | **str**| Code of the person under specified identifier type&#39;s scope and code. This together with stated identifier type uniquely              identifies the person. | [required] 
- **set_person_identifiers_request** | [**SetPersonIdentifiersRequest**](SetPersonIdentifiersRequest.md)| Request containing identifiers to set for the person. Identifiers not specified in request will not be changed. | [required] 
+ **set_person_identifiers_request** | [**SetPersonIdentifiersRequest**](../model/SetPersonIdentifiersRequest.md)| Request containing identifiers to set for the person. Identifiers not specified in request will not be changed. | [required] 
 
 ### Return type
 
-[**Person**](Person.md)
+[**Person**](../model/Person.md)
 
 ### HTTP request headers
 
@@ -805,11 +805,11 @@ Name | Type | Description  | Notes
  **id_type_scope** | **str**| Scope of the person identifier type. | [required] 
  **id_type_code** | **str**| Code of the person identifier type. | [required] 
  **code** | **str**| Code of the person under specified identifier type&#39;s scope and code. This together with stated identifier type uniquely              identifies the person. | [required] 
- **set_person_properties_request** | [**SetPersonPropertiesRequest**](SetPersonPropertiesRequest.md)| Request containing properties to set for the person. Properties not specified in request will not be changed. | [required] 
+ **set_person_properties_request** | [**SetPersonPropertiesRequest**](../model/SetPersonPropertiesRequest.md)| Request containing properties to set for the person. Properties not specified in request will not be changed. | [required] 
 
 ### Return type
 
-[**Person**](Person.md)
+[**Person**](../model/Person.md)
 
 ### HTTP request headers
 
@@ -847,11 +847,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **upsert_person_request** | [**UpsertPersonRequest**](UpsertPersonRequest.md)| Request to create or update a person. | [required] 
+ **upsert_person_request** | [**UpsertPersonRequest**](../model/UpsertPersonRequest.md)| Request to create or update a person. | [required] 
 
 ### Return type
 
-[**Person**](Person.md)
+[**Person**](../model/Person.md)
 
 ### HTTP request headers
 
@@ -899,13 +899,13 @@ Name | Type | Description  | Notes
  **id_type_code** | **str**| Code of the person identifier. | [required] 
  **code** | **str**| Code of the person under specified identifier type&#39;s scope and code. | [required] 
  **metadata_key** | **str**| Key of the metadata entry to retrieve | [required] 
- **upsert_person_access_metadata_request** | [**UpsertPersonAccessMetadataRequest**](UpsertPersonAccessMetadataRequest.md)| The Person Access Metadata entry to upsert | [required] 
+ **upsert_person_access_metadata_request** | [**UpsertPersonAccessMetadataRequest**](../model/UpsertPersonAccessMetadataRequest.md)| The Person Access Metadata entry to upsert | [required] 
  **effective_at** | **str**| The effectiveAt datetime at which to upsert the Access Metadata | [optional] 
  **effective_until** | **datetime**| The effective datetime until which the Access Metadata is valid. If not supplied this will be valid indefinitely, or until the next &#39;effectiveAt&#39; datetime of the Access Metadata | [optional] 
 
 ### Return type
 
-[**ResourceListOfAccessMetadataValueOf**](ResourceListOfAccessMetadataValueOf.md)
+[**ResourceListOfAccessMetadataValueOf**](../model/ResourceListOfAccessMetadataValueOf.md)
 
 ### HTTP request headers
 
@@ -945,11 +945,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **success_mode** | **str**| Whether the batch request should fail Atomically or in a Partial fashion - Allowed Values: Atomic, Partial | [required] 
- **request_body** | [**Dict[str, UpsertPersonRequest]**](UpsertPersonRequest.md)| A collection of requests to create or update Person(s). | [required] 
+ **request_body** | [**Dict[str, UpsertPersonRequest]**](../model/UpsertPersonRequest.md)| A collection of requests to create or update Person(s). | [required] 
 
 ### Return type
 
-[**UpsertPersonsResponse**](UpsertPersonsResponse.md)
+[**UpsertPersonsResponse**](../model/UpsertPersonsResponse.md)
 
 ### HTTP request headers
 

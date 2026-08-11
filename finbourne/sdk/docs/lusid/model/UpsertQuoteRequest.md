@@ -5,8 +5,8 @@ The details of the quote including its unique identifier, value and lineage.  Pl
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **quote_id** | [../model/QuoteId](QuoteId.md) | Required | *No description available.* |
-| **metric_value** | [../model/MetricValue](MetricValue.md) | Optional | *No description available.* |
+| **quote_id** | [QuoteId](QuoteId.md) | Required | *No description available.* |
+| **metric_value** | [MetricValue](MetricValue.md) | Optional | *No description available.* |
 | **lineage** | **str** | Optional | Description of the quote&#39;s lineage e.g. &#39;FundAccountant_GreenQuality&#39;. |
 | **scale_factor** | **float** | Optional | An optional scale factor for non-standard scaling of quotes against the instrument. For example, if you wish the quote&#39;s Value to be scaled down by a factor of 100, enter 100. If not supplied, the default ScaleFactor is 1. |
 | **metadata_fields** | **Dict[str, Optional[object]]** | Optional | The metadata field values for this quote, keyed by field name. |

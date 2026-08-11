@@ -5,9 +5,9 @@ Defines a representation of tasks that have been updated
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **values** | [../model/List[Task]](Task.md) | Optional | Successful tasks brought back from the BatchUpdate call *(read-only)* |
-| **failed** | [../model/List[ErrorDetail]](ErrorDetail.md) | Optional | Individual failures for each task returned from the BatchUpdate call *(read-only)* |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **values** | [List[Task]](Task.md) | Optional | Successful tasks brought back from the BatchUpdate call *(read-only)* |
+| **failed** | [List[ErrorDetail]](ErrorDetail.md) | Optional | Individual failures for each task returned from the BatchUpdate call *(read-only)* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

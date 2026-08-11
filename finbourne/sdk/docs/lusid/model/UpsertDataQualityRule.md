@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **rule_set_key** | **str** | Optional | *No description available.* |
-| **rule** | [../model/CheckDefinitionRule](CheckDefinitionRule.md) | Optional | *No description available.* |
+| **rule** | [CheckDefinitionRule](CheckDefinitionRule.md) | Optional | *No description available.* |
 
 
 ## Usage

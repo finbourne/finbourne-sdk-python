@@ -7,7 +7,7 @@
 | **name** | **str** | Required | A user-friendly name |
 | **description** | **str** | Required | A description for this rule |
 | **rate** | **float** | Required | The rate to be applied if all criteria are met |
-| **match_criteria** | [../model/List[MatchCriterion]](MatchCriterion.md) | Required | A set of criteria to be met for this rule to be applied |
+| **match_criteria** | [List[MatchCriterion]](MatchCriterion.md) | Required | A set of criteria to be met for this rule to be applied |
 
 
 ## Usage

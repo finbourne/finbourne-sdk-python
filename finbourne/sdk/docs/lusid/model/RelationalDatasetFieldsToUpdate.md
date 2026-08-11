@@ -4,8 +4,8 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **series_identifiers** | [../model/List[UpdateSeriesIdentifierField]](UpdateSeriesIdentifierField.md) | Optional | The schema defining the structure and data types of the relational dataset. |
-| **value_and_metadata_fields** | [../model/List[RelationalDatasetFieldDefinition]](RelationalDatasetFieldDefinition.md) | Optional | The schema defining the structure and data types of the relational dataset. |
+| **series_identifiers** | [List[UpdateSeriesIdentifierField]](UpdateSeriesIdentifierField.md) | Optional | The schema defining the structure and data types of the relational dataset. |
+| **value_and_metadata_fields** | [List[RelationalDatasetFieldDefinition]](RelationalDatasetFieldDefinition.md) | Optional | The schema defining the structure and data types of the relational dataset. |
 
 
 ## Usage

@@ -5,7 +5,7 @@ record containing a list of instances.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **instances** | [../model/List[InstanceResponse]](InstanceResponse.md) | Required | *No description available.* |
+| **instances** | [List[InstanceResponse]](InstanceResponse.md) | Required | *No description available.* |
 
 
 ## Usage

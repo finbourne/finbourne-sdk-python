@@ -5,7 +5,7 @@ Response coming back from a search request to OpenFIGI
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **results** | [../model/List[OpenFigiData]](OpenFigiData.md) | Required | Enumerable list of OpenFIGI results |
+| **results** | [List[OpenFigiData]](OpenFigiData.md) | Required | Enumerable list of OpenFIGI results |
 | **perm_id_uri** | **str** | Optional | URI of the related PermID response, if requested |
 
 

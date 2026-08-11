@@ -223,6 +223,7 @@ from finbourne.sdk.services.lusid.models.closed_period import ClosedPeriod
 from finbourne.sdk.services.lusid.models.collateral import Collateral
 from finbourne.sdk.services.lusid.models.collateral_instrument import CollateralInstrument
 from finbourne.sdk.services.lusid.models.commodity_forward import CommodityForward
+from finbourne.sdk.services.lusid.models.commodity_forward_cash_settlement_event import CommodityForwardCashSettlementEvent
 from finbourne.sdk.services.lusid.models.comparison_attribute_value_pair import ComparisonAttributeValuePair
 from finbourne.sdk.services.lusid.models.complete_portfolio import CompletePortfolio
 from finbourne.sdk.services.lusid.models.complete_relation import CompleteRelation
@@ -1788,6 +1789,7 @@ __all__ = [
     "Collateral",
     "CollateralInstrument",
     "CommodityForward",
+    "CommodityForwardCashSettlementEvent",
     "ComparisonAttributeValuePair",
     "CompletePortfolio",
     "CompleteRelation",

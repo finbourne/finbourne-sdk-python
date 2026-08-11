@@ -5,9 +5,9 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
-| **values** | [../model/Dict[str, Instrument]](Instrument.md) | Optional | The instrument definitions, keyed by the identifier used to retrieve them. Only instruments that were found will be contained in this collection. |
-| **failed** | [../model/Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The identifiers that did not resolve to an instrument along with the nature of the failure. |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **values** | [Dict[str, Instrument]](Instrument.md) | Optional | The instrument definitions, keyed by the identifier used to retrieve them. Only instruments that were found will be contained in this collection. |
+| **failed** | [Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The identifiers that did not resolve to an instrument along with the nature of the failure. |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

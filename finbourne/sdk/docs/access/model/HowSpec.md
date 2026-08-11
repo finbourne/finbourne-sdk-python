@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **type** | **str** | Optional | *No description available.* |
-| **parameters** | [../model/List[KeyValuePairOfStringToString]](KeyValuePairOfStringToString.md) | Optional | *No description available.* |
+| **parameters** | [List[KeyValuePairOfStringToString]](KeyValuePairOfStringToString.md) | Optional | *No description available.* |
 
 
 ## Usage

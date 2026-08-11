@@ -69,7 +69,7 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **instance_id** | **str**| Integration instance ID | [required] 
- **status** | [**FileDeliveryStatus**](.md)| Filter by delivery status (Completed, Error, Pending) | [optional] 
+ **status** | [**FileDeliveryStatus**](../model/.md)| Filter by delivery status (Completed, Error, Pending) | [optional] 
  **date_from** | **datetime**| Filter deliveries from this time (inclusive) | [optional] 
  **date_to** | **datetime**| Filter deliveries to this time (inclusive) | [optional] 
  **limit** | **int**| Page size for pagination (default 50, max 500) | [optional] [default to 50]
@@ -77,7 +77,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PagedResourceListOfTpfFileDeliveryResponse**](PagedResourceListOfTpfFileDeliveryResponse.md)
+[**PagedResourceListOfTpfFileDeliveryResponse**](../model/PagedResourceListOfTpfFileDeliveryResponse.md)
 
 ### HTTP request headers
 
@@ -113,11 +113,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **tpf_transaction_search_request** | [**TpfTransactionSearchRequest**](TpfTransactionSearchRequest.md)| Search filters and pagination options. | [optional] 
+ **tpf_transaction_search_request** | [**TpfTransactionSearchRequest**](../model/TpfTransactionSearchRequest.md)| Search filters and pagination options. | [optional] 
 
 ### Return type
 
-[**PagedResourceListOfTpfTransactionSearchResponse**](PagedResourceListOfTpfTransactionSearchResponse.md)
+[**PagedResourceListOfTpfTransactionSearchResponse**](../model/PagedResourceListOfTpfTransactionSearchResponse.md)
 
 ### HTTP request headers
 
@@ -165,7 +165,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PagedResourceListOfTransactionPayload**](PagedResourceListOfTransactionPayload.md)
+[**PagedResourceListOfTransactionPayload**](../model/PagedResourceListOfTransactionPayload.md)
 
 ### HTTP request headers
 
@@ -212,7 +212,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PagedResourceListOfFailedDeliveryResponse**](PagedResourceListOfFailedDeliveryResponse.md)
+[**PagedResourceListOfFailedDeliveryResponse**](../model/PagedResourceListOfFailedDeliveryResponse.md)
 
 ### HTTP request headers
 
@@ -257,7 +257,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PagedResourceListOfInstanceRunResponse**](PagedResourceListOfInstanceRunResponse.md)
+[**PagedResourceListOfInstanceRunResponse**](../model/PagedResourceListOfInstanceRunResponse.md)
 
 ### HTTP request headers
 
@@ -293,7 +293,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InstancesResponse**](InstancesResponse.md)
+[**InstancesResponse**](../model/InstancesResponse.md)
 
 ### HTTP request headers
 
@@ -338,7 +338,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PagedResourceListOfRunFileResponse**](PagedResourceListOfRunFileResponse.md)
+[**PagedResourceListOfRunFileResponse**](../model/PagedResourceListOfRunFileResponse.md)
 
 ### HTTP request headers
 
@@ -387,7 +387,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PagedResourceListOfTransactionResponse**](PagedResourceListOfTransactionResponse.md)
+[**PagedResourceListOfTransactionResponse**](../model/PagedResourceListOfTransactionResponse.md)
 
 ### HTTP request headers
 
@@ -426,11 +426,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **instance_id** | **str**|  | [required] 
- **replay_transactions_request** | [**ReplayTransactionsRequest**](ReplayTransactionsRequest.md)|  | [required] 
+ **replay_transactions_request** | [**ReplayTransactionsRequest**](../model/ReplayTransactionsRequest.md)|  | [required] 
 
 ### Return type
 
-[**ReplayTransactionsResponse**](ReplayTransactionsResponse.md)
+[**ReplayTransactionsResponse**](../model/ReplayTransactionsResponse.md)
 
 ### HTTP request headers
 
@@ -471,11 +471,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **instance_id** | **str**|  | [required] 
  **batch_reference_id** | **str**|  | [required] 
- **resolve_failed_delivery_request** | [**ResolveFailedDeliveryRequest**](ResolveFailedDeliveryRequest.md)|  | [required] 
+ **resolve_failed_delivery_request** | [**ResolveFailedDeliveryRequest**](../model/ResolveFailedDeliveryRequest.md)|  | [required] 
 
 ### Return type
 
-[**ResolveFailedDeliveryResponse**](ResolveFailedDeliveryResponse.md)
+[**ResolveFailedDeliveryResponse**](../model/ResolveFailedDeliveryResponse.md)
 
 ### HTTP request headers
 
@@ -517,11 +517,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **instance_id** | **str**| Integration instance identifier | [required] 
- **tpf_retry_failed_delivery_request** | [**TpfRetryFailedDeliveryRequest**](TpfRetryFailedDeliveryRequest.md)| Request containing batch element reference identifiers to retry | [required] 
+ **tpf_retry_failed_delivery_request** | [**TpfRetryFailedDeliveryRequest**](../model/TpfRetryFailedDeliveryRequest.md)| Request containing batch element reference identifiers to retry | [required] 
 
 ### Return type
 
-[**TpfFailedDeliveryResponse**](TpfFailedDeliveryResponse.md)
+[**TpfFailedDeliveryResponse**](../model/TpfFailedDeliveryResponse.md)
 
 ### HTTP request headers
 
@@ -564,7 +564,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TpfRetrySftpResponse**](TpfRetrySftpResponse.md)
+[**TpfRetrySftpResponse**](../model/TpfRetrySftpResponse.md)
 
 ### HTTP request headers
 

@@ -53,11 +53,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **request_body** | [**Dict[str, CalculateOrderDatesRequest]**](CalculateOrderDatesRequest.md)| The request containing the dates used for calculation | [required] 
+ **request_body** | [**Dict[str, CalculateOrderDatesRequest]**](../model/CalculateOrderDatesRequest.md)| The request containing the dates used for calculation | [required] 
 
 ### Return type
 
-[**CalculateOrderDatesResponse**](CalculateOrderDatesResponse.md)
+[**CalculateOrderDatesResponse**](../model/CalculateOrderDatesResponse.md)
 
 ### HTTP request headers
 
@@ -95,11 +95,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **request_body** | [**Dict[str, UpsertTransferAgencyOrderRequest]**](UpsertTransferAgencyOrderRequest.md)| The transfer agency orders to upsert, keyed by a unique request identifier. | [required] 
+ **request_body** | [**Dict[str, UpsertTransferAgencyOrderRequest]**](../model/UpsertTransferAgencyOrderRequest.md)| The transfer agency orders to upsert, keyed by a unique request identifier. | [required] 
 
 ### Return type
 
-[**TransferAgencyOrdersResponse**](TransferAgencyOrdersResponse.md)
+[**TransferAgencyOrdersResponse**](../model/TransferAgencyOrdersResponse.md)
 
 ### HTTP request headers
 

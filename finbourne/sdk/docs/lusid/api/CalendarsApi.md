@@ -68,11 +68,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| Scope within which to search for the calendars | [required] 
- **add_business_days_to_date_request** | [**AddBusinessDaysToDateRequest**](AddBusinessDaysToDateRequest.md)| Request Details: start date, number of days to add (which can be negative, but not zero), calendar codes and optionally an AsAt date for searching the calendar store | [required] 
+ **add_business_days_to_date_request** | [**AddBusinessDaysToDateRequest**](../model/AddBusinessDaysToDateRequest.md)| Request Details: start date, number of days to add (which can be negative, but not zero), calendar codes and optionally an AsAt date for searching the calendar store | [required] 
 
 ### Return type
 
-[**AddBusinessDaysToDateResponse**](AddBusinessDaysToDateResponse.md)
+[**AddBusinessDaysToDateResponse**](../model/AddBusinessDaysToDateResponse.md)
 
 ### HTTP request headers
 
@@ -114,11 +114,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| Scope of the calendar | [required] 
  **code** | **str**| Code of the calendar | [required] 
- **create_date_request** | [**CreateDateRequest**](CreateDateRequest.md)| Add date to calendar request | [required] 
+ **create_date_request** | [**CreateDateRequest**](../model/CreateDateRequest.md)| Add date to calendar request | [required] 
 
 ### Return type
 
-[**CalendarDate**](CalendarDate.md)
+[**CalendarDate**](../model/CalendarDate.md)
 
 ### HTTP request headers
 
@@ -162,11 +162,11 @@ Name | Type | Description  | Notes
  **scope** | **str**| Scope of the calendar | [required] 
  **code** | **str**| Code of the calendar | [required] 
  **success_mode** | **str**| Whether the batch request should fail Atomically or in a Partial fashion - Allowed Values: Atomic, Partial. | [required] [default to &#39;Partial&#39;]
- **request_body** | [**Dict[str, CreateDateRequest]**](CreateDateRequest.md)| Create Date Requests of dates to upsert | [required] 
+ **request_body** | [**Dict[str, CreateDateRequest]**](../model/CreateDateRequest.md)| Create Date Requests of dates to upsert | [required] 
 
 ### Return type
 
-[**BatchUpsertDatesForCalendarResponse**](BatchUpsertDatesForCalendarResponse.md)
+[**BatchUpsertDatesForCalendarResponse**](../model/BatchUpsertDatesForCalendarResponse.md)
 
 ### HTTP request headers
 
@@ -204,11 +204,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_calendar_request** | [**CreateCalendarRequest**](CreateCalendarRequest.md)| A request to create the calendar | [required] 
+ **create_calendar_request** | [**CreateCalendarRequest**](../model/CreateCalendarRequest.md)| A request to create the calendar | [required] 
 
 ### Return type
 
-[**Calendar**](Calendar.md)
+[**Calendar**](../model/Calendar.md)
 
 ### HTTP request headers
 
@@ -252,7 +252,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Calendar**](Calendar.md)
+[**Calendar**](../model/Calendar.md)
 
 ### HTTP request headers
 
@@ -298,7 +298,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CalendarDate**](CalendarDate.md)
+[**CalendarDate**](../model/CalendarDate.md)
 
 ### HTTP request headers
 
@@ -340,11 +340,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| Scope of the calendar | [required] 
  **code** | **str**| Code of the calendar | [required] 
- **request_body** | [**List[str]**](str.md)| Identifiers of the dates to be removed | [required] 
+ **request_body** | [**List[str]**](../model/str.md)| Identifiers of the dates to be removed | [required] 
 
 ### Return type
 
-[**Dict[str, CalendarDate]**](CalendarDate.md)
+[**Dict[str, CalendarDate]**](../model/CalendarDate.md)
 
 ### HTTP request headers
 
@@ -385,7 +385,7 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| Scope of the calendars to use | [required] 
- **valuation_schedule** | [**ValuationSchedule**](ValuationSchedule.md)| The ValuationSchedule to generate schedule dates from | [required] 
+ **valuation_schedule** | [**ValuationSchedule**](../model/ValuationSchedule.md)| The ValuationSchedule to generate schedule dates from | [required] 
  **as_at** | **datetime**| Optional AsAt for searching the calendar store. Defaults to Latest. | [optional] 
 
 ### Return type
@@ -433,12 +433,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| Scope of the calendar identifier | [required] 
  **code** | **str**| Code of the calendar identifier | [required] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the \&quot;Calendar\&quot; domain to decorate onto the calendar,               These take the format {domain}/{scope}/{code} e.g. \&quot;Calendar/System/Name\&quot;. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the \&quot;Calendar\&quot; domain to decorate onto the calendar,               These take the format {domain}/{scope}/{code} e.g. \&quot;Calendar/System/Name\&quot;. | [optional] 
  **as_at** | **datetime**| The AsAt datetime at which to retrieve the calendar | [optional] 
 
 ### Return type
 
-[**Calendar**](Calendar.md)
+[**Calendar**](../model/Calendar.md)
 
 ### HTTP request headers
 
@@ -486,11 +486,11 @@ Name | Type | Description  | Notes
  **from_effective_at** | **str**| Where the effective window of dates should begin from | [optional] 
  **to_effective_at** | **str**| Where the effective window of dates should end | [optional] 
  **as_at** | **datetime**| AsAt the dates should be retrieved at | [optional] 
- **id_filter** | [**List[str]**](str.md)| An additional filter that will filter dates based on their identifer | [optional] 
+ **id_filter** | [**List[str]**](../model/str.md)| An additional filter that will filter dates based on their identifer | [optional] 
 
 ### Return type
 
-[**ResourceListOfCalendarDate**](ResourceListOfCalendarDate.md)
+[**ResourceListOfCalendarDate**](../model/ResourceListOfCalendarDate.md)
 
 ### HTTP request headers
 
@@ -538,7 +538,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**IsBusinessDayResponse**](IsBusinessDayResponse.md)
+[**IsBusinessDayResponse**](../model/IsBusinessDayResponse.md)
 
 ### HTTP request headers
 
@@ -583,12 +583,12 @@ Name | Type | Description  | Notes
  **as_at** | **datetime**| The AsAt datetime at which to retrieve the calendars | [optional] 
  **page** | **str**| The pagination token to use to continue listing calendars from a previous call to list calendars.              This value is returned from the previous call. If a pagination token is provided the sortBy, filter, and asAt fields              must not have changed since the original request. | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many. | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the \&quot;Calendar\&quot; domain to decorate onto the calendar,               These take the format {domain}/{scope}/{code} e.g. \&quot;Calendar/System/Name\&quot;. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the \&quot;Calendar\&quot; domain to decorate onto the calendar,               These take the format {domain}/{scope}/{code} e.g. \&quot;Calendar/System/Name\&quot;. | [optional] 
  **filter** | **str**| Expression to filter the result set. Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid. | [optional] 
 
 ### Return type
 
-[**PagedResourceListOfCalendar**](PagedResourceListOfCalendar.md)
+[**PagedResourceListOfCalendar**](../model/PagedResourceListOfCalendar.md)
 
 ### HTTP request headers
 
@@ -635,12 +635,12 @@ Name | Type | Description  | Notes
  **as_at** | **datetime**| The AsAt datetime at which to retrieve the calendars | [optional] 
  **page** | **str**| The pagination token to use to continue listing calendars from a previous call to list calendars.              This value is returned from the previous call. If a pagination token is provided the sortBy, filter, and asAt fields              must not have changed since the original request. | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many. | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the \&quot;Calendar\&quot; domain to decorate onto the calendar,               These take the format {domain}/{scope}/{code} e.g. \&quot;Calendar/System/Name\&quot;. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the \&quot;Calendar\&quot; domain to decorate onto the calendar,               These take the format {domain}/{scope}/{code} e.g. \&quot;Calendar/System/Name\&quot;. | [optional] 
  **filter** | **str**| Expression to filter the result set. Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid. | [optional] 
 
 ### Return type
 
-[**PagedResourceListOfCalendar**](PagedResourceListOfCalendar.md)
+[**PagedResourceListOfCalendar**](../model/PagedResourceListOfCalendar.md)
 
 ### HTTP request headers
 
@@ -678,11 +678,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resolve_tenors_request** | [**ResolveTenorsRequest**](ResolveTenorsRequest.md)| Request containing start date, calendars, spot days, tenors, and optional conventions | [required] 
+ **resolve_tenors_request** | [**ResolveTenorsRequest**](../model/ResolveTenorsRequest.md)| Request containing start date, calendars, spot days, tenors, and optional conventions | [required] 
 
 ### Return type
 
-[**ResolveTenorsResponse**](ResolveTenorsResponse.md)
+[**ResolveTenorsResponse**](../model/ResolveTenorsResponse.md)
 
 ### HTTP request headers
 
@@ -724,11 +724,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| Scope of the request | [required] 
  **code** | **str**| Code of the request | [required] 
- **update_calendar_request** | [**UpdateCalendarRequest**](UpdateCalendarRequest.md)| The new state of the calendar | [required] 
+ **update_calendar_request** | [**UpdateCalendarRequest**](../model/UpdateCalendarRequest.md)| The new state of the calendar | [required] 
 
 ### Return type
 
-[**Calendar**](Calendar.md)
+[**Calendar**](../model/Calendar.md)
 
 ### HTTP request headers
 

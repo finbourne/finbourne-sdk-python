@@ -6,7 +6,7 @@ A request to update a Task
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **correlation_ids** | **List[str]** | Optional | A set of guid identifiers that allow correlation across the application tier |
-| **fields** | [../model/List[TaskInstanceField]](TaskInstanceField.md) | Optional | Defines the fields associated with the update |
+| **fields** | [List[TaskInstanceField]](TaskInstanceField.md) | Optional | Defines the fields associated with the update |
 | **stacking_key** | **str** | Optional | The key for the Stack that this Task should be added to |
 
 

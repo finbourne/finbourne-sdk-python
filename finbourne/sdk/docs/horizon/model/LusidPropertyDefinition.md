@@ -11,7 +11,7 @@ Defines the information in a LUSID Property Definition
 | **scope** | **str** | Required | The scope of this definition. |
 | **code** | **str** | Required | The code of this definition. |
 | **display_name** | **str** | Required | The name used when this definition is displayed. |
-| **data_type_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **data_type_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **description** | **str** | Required |  |
 | **lifetime** | **str** | Required |  |
 | **constraint_style** | **str** | Required |  |

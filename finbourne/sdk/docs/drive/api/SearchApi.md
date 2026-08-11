@@ -54,15 +54,15 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **search_body** | [**SearchBody**](SearchBody.md)| Search parameters | [required] 
+ **search_body** | [**SearchBody**](../model/SearchBody.md)| Search parameters | [required] 
  **page** | **str**|  | [optional] 
- **sort_by** | [**List[str]**](str.md)|  | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)|  | [optional] 
  **limit** | **int**|  | [optional] 
  **filter** | **str**|  | [optional] [default to &#39;&#39;]
 
 ### Return type
 
-[**PagedResourceListOfStorageObject**](PagedResourceListOfStorageObject.md)
+[**PagedResourceListOfStorageObject**](../model/PagedResourceListOfStorageObject.md)
 
 ### HTTP request headers
 

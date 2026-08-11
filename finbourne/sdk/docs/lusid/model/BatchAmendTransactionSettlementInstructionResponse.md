@@ -5,9 +5,9 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
-| **values** | [../model/Dict[str, TransactionSettlementInstruction]](TransactionSettlementInstruction.md) | Optional | The settlement instructions which have been successfully upserted. |
-| **failed** | [../model/Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The request ids of the settlement instructions which could not be upserted, along with a reason for their failure. |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **values** | [Dict[str, TransactionSettlementInstruction]](TransactionSettlementInstruction.md) | Optional | The settlement instructions which have been successfully upserted. |
+| **failed** | [Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The request ids of the settlement instructions which could not be upserted, along with a reason for their failure. |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

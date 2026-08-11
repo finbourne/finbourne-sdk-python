@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **conditions** | [../model/UpdatePasswordPolicyRequestConditions](UpdatePasswordPolicyRequestConditions.md) | Required | *No description available.* |
+| **conditions** | [UpdatePasswordPolicyRequestConditions](UpdatePasswordPolicyRequestConditions.md) | Required | *No description available.* |
 
 
 ## Usage

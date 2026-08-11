@@ -5,8 +5,8 @@ RoleResourceRequest
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **non_transitive_supervisor_role_resource** | [../model/NonTransitiveSupervisorRoleResource](NonTransitiveSupervisorRoleResource.md) | Optional | *No description available.* |
-| **policy_id_role_resource** | [../model/PolicyIdRoleResource](PolicyIdRoleResource.md) | Optional | *No description available.* |
+| **non_transitive_supervisor_role_resource** | [NonTransitiveSupervisorRoleResource](NonTransitiveSupervisorRoleResource.md) | Optional | *No description available.* |
+| **policy_id_role_resource** | [PolicyIdRoleResource](PolicyIdRoleResource.md) | Optional | *No description available.* |
 
 
 ## Usage

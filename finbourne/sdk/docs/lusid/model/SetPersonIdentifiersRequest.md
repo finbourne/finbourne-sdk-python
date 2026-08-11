@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **identifiers** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | Identifiers to set for a Person. Identifiers not included in the request will not be amended. |
+| **identifiers** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | Identifiers to set for a Person. Identifiers not included in the request will not be amended. |
 
 
 ## Usage

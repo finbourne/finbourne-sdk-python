@@ -5,12 +5,12 @@ Request to preview a scenario against a portfolio's market data without running 
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **recipe_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
-| **portfolio_entity_ids** | [../model/List[PortfolioEntityId]](PortfolioEntityId.md) | Required | The portfolios whose market data dependencies the scenario is previewed against. |
+| **recipe_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **portfolio_entity_ids** | [List[PortfolioEntityId]](PortfolioEntityId.md) | Required | The portfolios whose market data dependencies the scenario is previewed against. |
 | **effective_at** | **datetime** | Required | The effective date to resolve market data at. |
 | **as_at** | **datetime** | Optional | The as-at time to resolve at. Defaults to the latest. |
-| **scenario** | [../model/ScenarioReference](ScenarioReference.md) | Optional | *No description available.* |
-| **shifts** | [../model/List[ScenarioShiftDefinition]](ScenarioShiftDefinition.md) | Optional | Inline shift definitions to preview without saving a scenario, e.g. to test what a definition  would match while authoring it. Mutually exclusive with supplying a stored scenario reference. |
+| **scenario** | [ScenarioReference](ScenarioReference.md) | Optional | *No description available.* |
+| **shifts** | [List[ScenarioShiftDefinition]](ScenarioShiftDefinition.md) | Optional | Inline shift definitions to preview without saving a scenario, e.g. to test what a definition  would match while authoring it. Mutually exclusive with supplying a stored scenario reference. |
 
 
 ## Usage

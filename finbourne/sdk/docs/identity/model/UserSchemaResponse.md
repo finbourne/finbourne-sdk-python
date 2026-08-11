@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **alternative_user_ids** | [../model/List[UserSchemaProperty]](UserSchemaProperty.md) | Optional | *No description available.* |
+| **alternative_user_ids** | [List[UserSchemaProperty]](UserSchemaProperty.md) | Optional | *No description available.* |
 
 
 ## Usage

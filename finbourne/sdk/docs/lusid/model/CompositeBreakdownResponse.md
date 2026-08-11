@@ -6,7 +6,7 @@
 |------|------|----------|-------------|
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
 | **results** | **Dict[str, Optional[List[CompositeBreakdown]]]** | Required | The Composite calculation with the constituens which were included. |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

@@ -7,7 +7,7 @@
 | **issuer** | **str** | Optional | *No description available.* |
 | **audience** | **str** | Optional | *No description available.* |
 | **description** | **str** | Optional | *No description available.* |
-| **claim_mappings** | [../model/ClaimMappings](ClaimMappings.md) | Optional | *No description available.* |
+| **claim_mappings** | [ClaimMappings](ClaimMappings.md) | Optional | *No description available.* |
 | **logout_url** | **str** | Optional | *No description available.* |
 
 

@@ -55,7 +55,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**EventTypeSchema**](EventTypeSchema.md)
+[**EventTypeSchema**](../model/EventTypeSchema.md)
 
 ### HTTP request headers
 
@@ -92,7 +92,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ResourceListOfEventTypeSchema**](ResourceListOfEventTypeSchema.md)
+[**ResourceListOfEventTypeSchema**](../model/ResourceListOfEventTypeSchema.md)
 
 ### HTTP request headers
 

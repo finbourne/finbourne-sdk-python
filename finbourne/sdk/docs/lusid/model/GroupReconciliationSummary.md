@@ -4,17 +4,17 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **run_details** | [../model/GroupReconciliationRunDetails](GroupReconciliationRunDetails.md) | Optional | *No description available.* |
-| **group_reconciliation_definition_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **run_details** | [GroupReconciliationRunDetails](GroupReconciliationRunDetails.md) | Optional | *No description available.* |
+| **group_reconciliation_definition_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **reconciliation_type** | **str** | Required | The type of reconciliation to perform. Available values: Holding, Transaction, Valuation, CashHolding. |
-| **instance_id** | [../model/GroupReconciliationInstanceId](GroupReconciliationInstanceId.md) | Required | *No description available.* |
-| **dates_reconciled** | [../model/GroupReconciliationDates](GroupReconciliationDates.md) | Required | *No description available.* |
+| **instance_id** | [GroupReconciliationInstanceId](GroupReconciliationInstanceId.md) | Required | *No description available.* |
+| **dates_reconciled** | [GroupReconciliationDates](GroupReconciliationDates.md) | Required | *No description available.* |
 | **reconciliation_run_as_at** | **datetime** | Required | The date and time the reconciliation was run |
 | **count_comparison_results** | **int** | Required | The total number of comparison results with this InstanceId and ReconciliationType |
-| **link_comparison_results** | [../model/Link](Link.md) | Optional | *No description available.* |
-| **result_types** | [../model/GroupReconciliationResultTypes](GroupReconciliationResultTypes.md) | Optional | *No description available.* |
-| **result_statuses** | [../model/GroupReconciliationResultStatuses](GroupReconciliationResultStatuses.md) | Optional | *No description available.* |
-| **review_statuses** | [../model/GroupReconciliationReviewStatuses](GroupReconciliationReviewStatuses.md) | Optional | *No description available.* |
+| **link_comparison_results** | [Link](Link.md) | Optional | *No description available.* |
+| **result_types** | [GroupReconciliationResultTypes](GroupReconciliationResultTypes.md) | Optional | *No description available.* |
+| **result_statuses** | [GroupReconciliationResultStatuses](GroupReconciliationResultStatuses.md) | Optional | *No description available.* |
+| **review_statuses** | [GroupReconciliationReviewStatuses](GroupReconciliationReviewStatuses.md) | Optional | *No description available.* |
 
 
 ## Usage

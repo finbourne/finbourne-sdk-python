@@ -50,11 +50,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **manual_event_request** | [**ManualEventRequest**](ManualEventRequest.md)| The data required to trigger a manual event. | [required] 
+ **manual_event_request** | [**ManualEventRequest**](../model/ManualEventRequest.md)| The data required to trigger a manual event. | [required] 
 
 ### Return type
 
-[**ManualEvent**](ManualEvent.md)
+[**ManualEvent**](../model/ManualEvent.md)
 
 ### HTTP request headers
 

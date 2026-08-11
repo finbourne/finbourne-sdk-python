@@ -66,13 +66,13 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **book_transactions_request** | [**BookTransactionsRequest**](BookTransactionsRequest.md)| The allocations to create transactions for | [required] 
+ **book_transactions_request** | [**BookTransactionsRequest**](../model/BookTransactionsRequest.md)| The allocations to create transactions for | [required] 
  **apply_fees_and_commission** | **bool**| Whether to apply fees and commissions to transactions (default: true) | [optional] [default to True]
  **mark_orders_and_allocations_as_booked** | **bool**| Whether to mark allocations and fully-booked orders with state Booked | [optional] [default to False]
 
 ### Return type
 
-[**BookTransactionsResponse**](BookTransactionsResponse.md)
+[**BookTransactionsResponse**](../model/BookTransactionsResponse.md)
 
 ### HTTP request headers
 
@@ -110,11 +110,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **request_body** | [**Dict[str, ResourceId]**](ResourceId.md)| The request containing the ids of the orders to be cancelled. | [required] 
+ **request_body** | [**Dict[str, ResourceId]**](../model/ResourceId.md)| The request containing the ids of the orders to be cancelled. | [required] 
 
 ### Return type
 
-[**CancelOrdersResponse**](CancelOrdersResponse.md)
+[**CancelOrdersResponse**](../model/CancelOrdersResponse.md)
 
 ### HTTP request headers
 
@@ -152,11 +152,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **request_body** | [**Dict[str, CancelOrdersAndMoveRemainingRequest]**](CancelOrdersAndMoveRemainingRequest.md)| The request containing the orders to be cancelled, and the destinations of remaining quantities. | [required] 
+ **request_body** | [**Dict[str, CancelOrdersAndMoveRemainingRequest]**](../model/CancelOrdersAndMoveRemainingRequest.md)| The request containing the orders to be cancelled, and the destinations of remaining quantities. | [required] 
 
 ### Return type
 
-[**CancelOrdersAndMoveRemainingResponse**](CancelOrdersAndMoveRemainingResponse.md)
+[**CancelOrdersAndMoveRemainingResponse**](../model/CancelOrdersAndMoveRemainingResponse.md)
 
 ### HTTP request headers
 
@@ -194,11 +194,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **request_body** | [**Dict[str, ResourceId]**](ResourceId.md)| The request containing the ids of the placements to be cancelled. | [required] 
+ **request_body** | [**Dict[str, ResourceId]**](../model/ResourceId.md)| The request containing the ids of the placements to be cancelled. | [required] 
 
 ### Return type
 
-[**CancelPlacementsResponse**](CancelPlacementsResponse.md)
+[**CancelPlacementsResponse**](../model/CancelPlacementsResponse.md)
 
 ### HTTP request headers
 
@@ -236,11 +236,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **block_and_orders_create_request** | [**BlockAndOrdersCreateRequest**](BlockAndOrdersCreateRequest.md)| The collection of block and orders requests. | [required] 
+ **block_and_orders_create_request** | [**BlockAndOrdersCreateRequest**](../model/BlockAndOrdersCreateRequest.md)| The collection of block and orders requests. | [required] 
 
 ### Return type
 
-[**ResourceListOfBlockAndOrders**](ResourceListOfBlockAndOrders.md)
+[**ResourceListOfBlockAndOrders**](../model/ResourceListOfBlockAndOrders.md)
 
 ### HTTP request headers
 
@@ -286,7 +286,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfChangeIntervalWithOrderManagementDetail**](ResourceListOfChangeIntervalWithOrderManagementDetail.md)
+[**ResourceListOfChangeIntervalWithOrderManagementDetail**](../model/ResourceListOfChangeIntervalWithOrderManagementDetail.md)
 
 ### HTTP request headers
 
@@ -325,11 +325,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **move_orders_to_different_blocks_request** | [**MoveOrdersToDifferentBlocksRequest**](MoveOrdersToDifferentBlocksRequest.md)| The collection of order and destination block ids. | [required] 
+ **move_orders_to_different_blocks_request** | [**MoveOrdersToDifferentBlocksRequest**](../model/MoveOrdersToDifferentBlocksRequest.md)| The collection of order and destination block ids. | [required] 
 
 ### Return type
 
-[**ResourceListOfMovedOrderToDifferentBlockResponse**](ResourceListOfMovedOrderToDifferentBlockResponse.md)
+[**ResourceListOfMovedOrderToDifferentBlockResponse**](../model/ResourceListOfMovedOrderToDifferentBlockResponse.md)
 
 ### HTTP request headers
 
@@ -367,11 +367,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **place_blocks_request** | [**PlaceBlocksRequest**](PlaceBlocksRequest.md)| The request containing the blocks to the placed. | [optional] 
+ **place_blocks_request** | [**PlaceBlocksRequest**](../model/PlaceBlocksRequest.md)| The request containing the blocks to the placed. | [optional] 
 
 ### Return type
 
-[**ResourceListOfPlacement**](ResourceListOfPlacement.md)
+[**ResourceListOfPlacement**](../model/ResourceListOfPlacement.md)
 
 ### HTTP request headers
 
@@ -410,12 +410,12 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resource_id** | [**List[ResourceId]**](ResourceId.md)| The List of Placement IDs for which you wish to allocate Executions. | [required] 
+ **resource_id** | [**List[ResourceId]**](../model/ResourceId.md)| The List of Placement IDs for which you wish to allocate Executions. | [required] 
  **allocation_algorithm** | **str**| A string representation of the allocation algorithm you would like to use to allocate shares from executions e.g. \&quot;PR-FIFO\&quot;.  This defaults to \&quot;PR-FIFO\&quot;. | [optional] 
 
 ### Return type
 
-[**AllocationServiceRunResponse**](AllocationServiceRunResponse.md)
+[**AllocationServiceRunResponse**](../model/AllocationServiceRunResponse.md)
 
 ### HTTP request headers
 
@@ -454,12 +454,12 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **weighted_allocation_service_run_request** | [**WeightedAllocationServiceRunRequest**](WeightedAllocationServiceRunRequest.md)| The placement IDs to allocate against, and the portfolio weights to use for the allocation split. | [required] 
+ **weighted_allocation_service_run_request** | [**WeightedAllocationServiceRunRequest**](../model/WeightedAllocationServiceRunRequest.md)| The placement IDs to allocate against, and the portfolio weights to use for the allocation split. | [required] 
  **allocation_algorithm** | **str**| A string representation of the allocation algorithm you would like to use to allocate shares from executions e.g. \&quot;PR-LF\&quot;.  Allocating with weights means the base algorithm is always pro-rata, and the orphan allocation algorithm is either Largest First or Smallest First.  This defaults to \&quot;PR-LF\&quot;. Valid values are \&quot;PR-LF\&quot;, \&quot;PR-SF\&quot;, \&quot;LF\&quot;, \&quot;SF\&quot;. | [optional] 
 
 ### Return type
 
-[**AllocationServiceRunResponse**](AllocationServiceRunResponse.md)
+[**AllocationServiceRunResponse**](../model/AllocationServiceRunResponse.md)
 
 ### HTTP request headers
 
@@ -497,11 +497,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sweep_blocks_request** | [**SweepBlocksRequest**](SweepBlocksRequest.md)|  | [required] 
+ **sweep_blocks_request** | [**SweepBlocksRequest**](../model/SweepBlocksRequest.md)|  | [required] 
 
 ### Return type
 
-[**SweepBlocksResponse**](SweepBlocksResponse.md)
+[**SweepBlocksResponse**](../model/SweepBlocksResponse.md)
 
 ### HTTP request headers
 
@@ -539,11 +539,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **request_body** | [**Dict[str, OrderUpdateRequest]**](OrderUpdateRequest.md)| The request containing the orders to be updated. | [required] 
+ **request_body** | [**Dict[str, OrderUpdateRequest]**](../model/OrderUpdateRequest.md)| The request containing the orders to be updated. | [required] 
 
 ### Return type
 
-[**UpdateOrdersResponse**](UpdateOrdersResponse.md)
+[**UpdateOrdersResponse**](../model/UpdateOrdersResponse.md)
 
 ### HTTP request headers
 
@@ -581,11 +581,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **request_body** | [**Dict[str, PlacementUpdateRequest]**](PlacementUpdateRequest.md)| The request containing the placements to be updated. | [required] 
+ **request_body** | [**Dict[str, PlacementUpdateRequest]**](../model/PlacementUpdateRequest.md)| The request containing the placements to be updated. | [required] 
 
 ### Return type
 
-[**UpdatePlacementsResponse**](UpdatePlacementsResponse.md)
+[**UpdatePlacementsResponse**](../model/UpdatePlacementsResponse.md)
 
 ### HTTP request headers
 

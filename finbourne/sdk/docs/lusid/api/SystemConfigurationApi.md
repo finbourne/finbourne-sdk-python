@@ -58,11 +58,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **transaction_configuration_data_request** | [**TransactionConfigurationDataRequest**](TransactionConfigurationDataRequest.md)| A transaction type definition. | [optional] 
+ **transaction_configuration_data_request** | [**TransactionConfigurationDataRequest**](../model/TransactionConfigurationDataRequest.md)| A transaction type definition. | [optional] 
 
 ### Return type
 
-[**TransactionSetConfigurationData**](TransactionSetConfigurationData.md)
+[**TransactionSetConfigurationData**](../model/TransactionSetConfigurationData.md)
 
 ### HTTP request headers
 
@@ -100,11 +100,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **side_configuration_data_request** | [**SideConfigurationDataRequest**](SideConfigurationDataRequest.md)| The definition of the side. | [optional] 
+ **side_configuration_data_request** | [**SideConfigurationDataRequest**](../model/SideConfigurationDataRequest.md)| The definition of the side. | [optional] 
 
 ### Return type
 
-[**TransactionSetConfigurationData**](TransactionSetConfigurationData.md)
+[**TransactionSetConfigurationData**](../model/TransactionSetConfigurationData.md)
 
 ### HTTP request headers
 
@@ -146,7 +146,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -190,7 +190,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TransactionSetConfigurationData**](TransactionSetConfigurationData.md)
+[**TransactionSetConfigurationData**](../model/TransactionSetConfigurationData.md)
 
 ### HTTP request headers
 
@@ -232,7 +232,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TransactionSetConfigurationData**](TransactionSetConfigurationData.md)
+[**TransactionSetConfigurationData**](../model/TransactionSetConfigurationData.md)
 
 ### HTTP request headers
 
@@ -270,11 +270,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **transaction_set_configuration_data_request** | [**TransactionSetConfigurationDataRequest**](TransactionSetConfigurationDataRequest.md)| The complete set of transaction type definitions. | [optional] 
+ **transaction_set_configuration_data_request** | [**TransactionSetConfigurationDataRequest**](../model/TransactionSetConfigurationDataRequest.md)| The complete set of transaction type definitions. | [optional] 
 
 ### Return type
 
-[**TransactionSetConfigurationData**](TransactionSetConfigurationData.md)
+[**TransactionSetConfigurationData**](../model/TransactionSetConfigurationData.md)
 
 ### HTTP request headers
 
@@ -314,11 +314,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **source** | **str**| The source to set the transaction configurations for | [required] 
- **set_transaction_configuration_source_request** | [**List[SetTransactionConfigurationSourceRequest]**](SetTransactionConfigurationSourceRequest.md)| The set of transaction configurations | [required] 
+ **set_transaction_configuration_source_request** | [**List[SetTransactionConfigurationSourceRequest]**](../model/SetTransactionConfigurationSourceRequest.md)| The set of transaction configurations | [required] 
 
 ### Return type
 
-[**TransactionSetConfigurationData**](TransactionSetConfigurationData.md)
+[**TransactionSetConfigurationData**](../model/TransactionSetConfigurationData.md)
 
 ### HTTP request headers
 

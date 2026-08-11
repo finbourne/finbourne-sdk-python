@@ -6,9 +6,9 @@ The upsert accounts response
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
-| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
-| **custodian_accounts** | [../model/List[CustodianAccount]](CustodianAccount.md) | Optional | The Custodian Accounts which have been upserted. |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **version** | [Version](Version.md) | Optional | *No description available.* |
+| **custodian_accounts** | [List[CustodianAccount]](CustodianAccount.md) | Optional | The Custodian Accounts which have been upserted. |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

@@ -4,8 +4,8 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **left** | [../model/GroupReconciliationDatePair](GroupReconciliationDatePair.md) | Optional | *No description available.* |
-| **right** | [../model/GroupReconciliationDatePair](GroupReconciliationDatePair.md) | Optional | *No description available.* |
+| **left** | [GroupReconciliationDatePair](GroupReconciliationDatePair.md) | Optional | *No description available.* |
+| **right** | [GroupReconciliationDatePair](GroupReconciliationDatePair.md) | Optional | *No description available.* |
 
 
 ## Usage

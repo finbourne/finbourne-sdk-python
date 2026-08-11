@@ -5,8 +5,8 @@ Representation of a Relation between a requested entity with the stated entity a
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
-| **relation_definition_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **version** | [Version](Version.md) | Optional | *No description available.* |
+| **relation_definition_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **related_entity_id** | **Dict[str, Optional[str]]** | Required | *No description available.* |
 | **traversal_direction** | **str** | Required | *No description available.* |
 | **traversal_description** | **str** | Required | *No description available.* |

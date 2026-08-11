@@ -6,10 +6,10 @@
 |------|------|----------|-------------|
 | **display_name** | **str** | Required | The display name of the transaction fee type. |
 | **description** | **str** | Optional | A description of the transaction fee type. |
-| **calculation** | [../model/FeeCalculationRequest](FeeCalculationRequest.md) | Required | *No description available.* |
+| **calculation** | [FeeCalculationRequest](FeeCalculationRequest.md) | Required | *No description available.* |
 | **condition** | **str** | Required | The condition that the transaction must meet in order for the fee to be applied. |
 | **txn_property_key** | **str** | Required | The property key to which the fee value will be applied and decorated onto the transaction. Must be in the &#39;Transaction&#39; property domain. |
-| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the transaction fee type. |
+| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the transaction fee type. |
 | **is_active** | **bool** | Optional | Indicates whether the transaction fee type is currently active and should be applied to transactions. Optional when creating a transaction fee type, defaults to true, if a value is not provided. |
 
 

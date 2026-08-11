@@ -14,7 +14,7 @@
 | **upper_bound** | **float** | Required |  |
 | **schedule** | **str** | Required | Available values: PreTrade, PostTrade, PreAndPostTrade. |
 | **hard_requirement** | **bool** | Required |  |
-| **target_portfolio_ids** | [../model/List[ResourceId]](ResourceId.md) | Required |  |
+| **target_portfolio_ids** | [List[ResourceId]](ResourceId.md) | Required |  |
 | **description** | **str** | Optional |  |
 | **address_key** | **str** | Optional |  |
 

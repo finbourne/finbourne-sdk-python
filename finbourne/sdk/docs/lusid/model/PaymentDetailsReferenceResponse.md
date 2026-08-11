@@ -5,10 +5,10 @@ Response representation of a Payment Details reference. Extends the request shap
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **relational_dataset_definition_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **relational_dataset_definition_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **series_scope** | **str** | Required | The scope of the relational datapoint. May differ from the scope of the dataset definition. |
-| **applicable_entity** | [../model/PaymentDetailsApplicableEntity](PaymentDetailsApplicableEntity.md) | Required | *No description available.* |
-| **series_identifiers** | [../model/PaymentDetailsSeriesIdentifiers](PaymentDetailsSeriesIdentifiers.md) | Required | *No description available.* |
+| **applicable_entity** | [PaymentDetailsApplicableEntity](PaymentDetailsApplicableEntity.md) | Required | *No description available.* |
+| **series_identifiers** | [PaymentDetailsSeriesIdentifiers](PaymentDetailsSeriesIdentifiers.md) | Required | *No description available.* |
 | **effective_date** | **datetime** | Required | The effective date of the relational datapoint observation to retrieve. ISO 8601 datetime. |
 | **as_at_date** | **datetime** | Required | The as-at date of the relational datapoint observation to retrieve. ISO 8601 datetime. |
 

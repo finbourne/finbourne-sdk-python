@@ -8,7 +8,7 @@
 | **results_used** | **Dict[str, float]** | Required | *No description available.* |
 | **properties_used** | **Dict[str, Optional[List[ModelProperty]]]** | Required | *No description available.* |
 | **missing_data_information** | **List[str]** | Required | *No description available.* |
-| **lineage** | [../model/List[LineageMember]](LineageMember.md) | Required | *No description available.* |
+| **lineage** | [List[LineageMember]](LineageMember.md) | Required | *No description available.* |
 
 
 ## Usage

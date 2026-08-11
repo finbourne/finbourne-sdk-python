@@ -4,8 +4,8 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **left_aggregate_attributes** | [../model/List[ComparisonAttributeValuePair]](ComparisonAttributeValuePair.md) | Required | Aggregate attribute names and values for the left hand entity being reconciled. |
-| **right_aggregate_attributes** | [../model/List[ComparisonAttributeValuePair]](ComparisonAttributeValuePair.md) | Required | Aggregate attribute names and values for the right hand entity being reconciled. |
+| **left_aggregate_attributes** | [List[ComparisonAttributeValuePair]](ComparisonAttributeValuePair.md) | Required | Aggregate attribute names and values for the left hand entity being reconciled. |
+| **right_aggregate_attributes** | [List[ComparisonAttributeValuePair]](ComparisonAttributeValuePair.md) | Required | Aggregate attribute names and values for the right hand entity being reconciled. |
 
 
 ## Usage

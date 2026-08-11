@@ -87,11 +87,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the Chart of Accounts. | [required] 
- **chart_of_accounts_request** | [**ChartOfAccountsRequest**](ChartOfAccountsRequest.md)| The definition of the Chart of Accounts. | [required] 
+ **chart_of_accounts_request** | [**ChartOfAccountsRequest**](../model/ChartOfAccountsRequest.md)| The definition of the Chart of Accounts. | [required] 
 
 ### Return type
 
-[**ChartOfAccounts**](ChartOfAccounts.md)
+[**ChartOfAccounts**](../model/ChartOfAccounts.md)
 
 ### HTTP request headers
 
@@ -133,11 +133,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the Chart of Accounts. | [required] 
  **code** | **str**| The code of the Chart of Accounts. Together with the scope this uniquely identifies the Chart of Accounts. | [required] 
- **cleardown_module_request** | [**CleardownModuleRequest**](CleardownModuleRequest.md)| The definition of the Cleardown Module. | [required] 
+ **cleardown_module_request** | [**CleardownModuleRequest**](../model/CleardownModuleRequest.md)| The definition of the Cleardown Module. | [required] 
 
 ### Return type
 
-[**CleardownModuleResponse**](CleardownModuleResponse.md)
+[**CleardownModuleResponse**](../model/CleardownModuleResponse.md)
 
 ### HTTP request headers
 
@@ -179,11 +179,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the Chart of Accounts. | [required] 
  **code** | **str**| The code of the Chart of Accounts. | [required] 
- **general_ledger_profile_request** | [**GeneralLedgerProfileRequest**](GeneralLedgerProfileRequest.md)| The definition of the General Ledger Profile. | [required] 
+ **general_ledger_profile_request** | [**GeneralLedgerProfileRequest**](../model/GeneralLedgerProfileRequest.md)| The definition of the General Ledger Profile. | [required] 
 
 ### Return type
 
-[**GeneralLedgerProfileResponse**](GeneralLedgerProfileResponse.md)
+[**GeneralLedgerProfileResponse**](../model/GeneralLedgerProfileResponse.md)
 
 ### HTTP request headers
 
@@ -225,11 +225,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the Chart of Accounts. | [required] 
  **code** | **str**| The code of the Chart of Accounts. Together with the scope this uniquely identifies the Chart of Accounts. | [required] 
- **posting_module_request** | [**PostingModuleRequest**](PostingModuleRequest.md)| The definition of the Posting Module. | [required] 
+ **posting_module_request** | [**PostingModuleRequest**](../model/PostingModuleRequest.md)| The definition of the Posting Module. | [required] 
 
 ### Return type
 
-[**PostingModuleResponse**](PostingModuleResponse.md)
+[**PostingModuleResponse**](../model/PostingModuleResponse.md)
 
 ### HTTP request headers
 
@@ -272,12 +272,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the Chart of Accounts. | [required] 
  **code** | **str**| The code of the Chart of Accounts. Together with the scope this uniquely identifies              the Chart of Accounts. | [required] 
- **request_body** | [**List[str]**](str.md)| The codes of the accounts to delete. | [required] 
+ **request_body** | [**List[str]**](../model/str.md)| The codes of the accounts to delete. | [required] 
  **delete_mode** | **str**| The delete mode to use. Default value: Soft. Available values: Soft, Hard. | [optional] 
 
 ### Return type
 
-[**DeleteAccountsResponse**](DeleteAccountsResponse.md)
+[**DeleteAccountsResponse**](../model/DeleteAccountsResponse.md)
 
 ### HTTP request headers
 
@@ -321,7 +321,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -367,7 +367,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -413,7 +413,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -459,7 +459,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -507,11 +507,11 @@ Name | Type | Description  | Notes
  **account_code** | **str**| The code of the Account. | [required] 
  **effective_at** | **str**| The effective datetime or cut label at which to retrieve the Account properties. Defaults to the current LUSID system datetime if not specified. | [optional] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the Account definition. Defaults to returning the latest version of the Account definition if not specified. | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the &#39;Account&#39; domain to decorate onto the Account.              These must take the format {domain}/{scope}/{code}, for example &#39;Account/Manager/Id&#39;. If no properties are specified, then no properties will be returned. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the &#39;Account&#39; domain to decorate onto the Account.              These must take the format {domain}/{scope}/{code}, for example &#39;Account/Manager/Id&#39;. If no properties are specified, then no properties will be returned. | [optional] 
 
 ### Return type
 
-[**Account**](Account.md)
+[**Account**](../model/Account.md)
 
 ### HTTP request headers
 
@@ -561,7 +561,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccountProperties**](AccountProperties.md)
+[**AccountProperties**](../model/AccountProperties.md)
 
 ### HTTP request headers
 
@@ -607,11 +607,11 @@ Name | Type | Description  | Notes
  **code** | **str**| The code of the Chart of Accounts. Together with the scope this uniquely identifies the Chart of Accounts. | [required] 
  **effective_at** | **str**| The effective datetime or cut label at which to retrieve the Chart of Accounts properties. Defaults to the current LUSID system datetime if not specified. | [optional] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the Chart of Accounts definition. Defaults to returning the latest version of the Chart of Accounts definition if not specified. | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the &#39;ChartOfAccounts&#39; domain to decorate onto the Chart of Accounts.              These must take the format {domain}/{scope}/{code}, for example &#39;ChartOfAccounts/Manager/Id&#39;. If no properties are specified, then no properties will be returned. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the &#39;ChartOfAccounts&#39; domain to decorate onto the Chart of Accounts.              These must take the format {domain}/{scope}/{code}, for example &#39;ChartOfAccounts/Manager/Id&#39;. If no properties are specified, then no properties will be returned. | [optional] 
 
 ### Return type
 
-[**ChartOfAccounts**](ChartOfAccounts.md)
+[**ChartOfAccounts**](../model/ChartOfAccounts.md)
 
 ### HTTP request headers
 
@@ -659,7 +659,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ChartOfAccountsProperties**](ChartOfAccountsProperties.md)
+[**ChartOfAccountsProperties**](../model/ChartOfAccountsProperties.md)
 
 ### HTTP request headers
 
@@ -707,7 +707,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CleardownModuleResponse**](CleardownModuleResponse.md)
+[**CleardownModuleResponse**](../model/CleardownModuleResponse.md)
 
 ### HTTP request headers
 
@@ -755,7 +755,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GeneralLedgerProfileResponse**](GeneralLedgerProfileResponse.md)
+[**GeneralLedgerProfileResponse**](../model/GeneralLedgerProfileResponse.md)
 
 ### HTTP request headers
 
@@ -803,7 +803,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PostingModuleResponse**](PostingModuleResponse.md)
+[**PostingModuleResponse**](../model/PostingModuleResponse.md)
 
 ### HTTP request headers
 
@@ -855,11 +855,11 @@ Name | Type | Description  | Notes
  **page** | **str**| The pagination token to use to continue listing charts of accounts; this              value is returned from the previous call. If a pagination token is provided, the filter, effectiveAt              and asAt fields must not have changed since the original request. | [optional] 
  **limit** | **int**| When paginating, limit the results to this number. Defaults to 100 if not specified. | [optional] 
  **filter** | **str**| Expression to filter the results.              For example, to filter on the Account type, specify \&quot;code eq &#39;001&#39;\&quot;. For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914. | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the &#39;Account&#39; domain to decorate onto the Account.              These must have the format {domain}/{scope}/{code}, for example &#39;Account/system/Name&#39;. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the &#39;Account&#39; domain to decorate onto the Account.              These must have the format {domain}/{scope}/{code}, for example &#39;Account/system/Name&#39;. | [optional] 
 
 ### Return type
 
-[**PagedResourceListOfAccount**](PagedResourceListOfAccount.md)
+[**PagedResourceListOfAccount**](../model/PagedResourceListOfAccount.md)
 
 ### HTTP request headers
 
@@ -908,12 +908,12 @@ Name | Type | Description  | Notes
  **page** | **str**| The pagination token to use to continue listing charts of accounts; this              value is returned from the previous call. If a pagination token is provided, the filter, effectiveAt              and asAt fields must not have changed since the original request. | [optional] 
  **limit** | **int**| When paginating, limit the results to this number. Defaults to 100 if not specified. | [optional] 
  **filter** | **str**| Expression to filter the results.              For example, to filter on the Chart of Accounts type, specify \&quot;id.Code eq &#39;001&#39;\&quot;. For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914. | [optional] 
- **sort_by** | [**List[str]**](str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the &#39;ChartOfAccounts&#39; domain to decorate onto each Chart of Accounts.              These must take the format {domain}/{scope}/{code}, for example &#39;ChartOfAccounts/Manager/Id&#39;. | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the &#39;ChartOfAccounts&#39; domain to decorate onto each Chart of Accounts.              These must take the format {domain}/{scope}/{code}, for example &#39;ChartOfAccounts/Manager/Id&#39;. | [optional] 
 
 ### Return type
 
-[**PagedResourceListOfChartOfAccounts**](PagedResourceListOfChartOfAccounts.md)
+[**PagedResourceListOfChartOfAccounts**](../model/PagedResourceListOfChartOfAccounts.md)
 
 ### HTTP request headers
 
@@ -967,7 +967,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PagedResourceListOfCleardownModuleRule**](PagedResourceListOfCleardownModuleRule.md)
+[**PagedResourceListOfCleardownModuleRule**](../model/PagedResourceListOfCleardownModuleRule.md)
 
 ### HTTP request headers
 
@@ -1017,11 +1017,11 @@ Name | Type | Description  | Notes
  **page** | **str**| The pagination token to use to continue listing Cleardown Modules; this              value is returned from the previous call. If a pagination token is provided, the filter, effectiveAt              and asAt fields must not have changed since the original request. | [optional] 
  **limit** | **int**| When paginating, limit the results to this number. Defaults to 100 if not specified. | [optional] 
  **filter** | **str**| Expression to filter the results.              For example, to filter on the Cleardown Module status, specify \&quot;status eq &#39;Active&#39;\&quot;. For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914. | [optional] 
- **sort_by** | [**List[str]**](str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
 
 ### Return type
 
-[**PagedResourceListOfCleardownModuleResponse**](PagedResourceListOfCleardownModuleResponse.md)
+[**PagedResourceListOfCleardownModuleResponse**](../model/PagedResourceListOfCleardownModuleResponse.md)
 
 ### HTTP request headers
 
@@ -1071,11 +1071,11 @@ Name | Type | Description  | Notes
  **page** | **str**| The pagination token to use to continue listing General Ledger Profiles; this              value is returned from the previous call. If a pagination token is provided, the filter, effectiveAt              and asAt fields must not have changed since the original request. | [optional] 
  **limit** | **int**| When paginating, limit the results to this number. Defaults to 100 if not specified. | [optional] 
  **filter** | **str**| Expression to filter the results.              For example, to filter on the General Ledger profiles type, specify \&quot;type eq &#39;PeriodBoundary&#39;\&quot;. For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914. | [optional] 
- **sort_by** | [**List[str]**](str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
 
 ### Return type
 
-[**PagedResourceListOfGeneralLedgerProfileResponse**](PagedResourceListOfGeneralLedgerProfileResponse.md)
+[**PagedResourceListOfGeneralLedgerProfileResponse**](../model/PagedResourceListOfGeneralLedgerProfileResponse.md)
 
 ### HTTP request headers
 
@@ -1129,7 +1129,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PagedResourceListOfPostingModuleRule**](PagedResourceListOfPostingModuleRule.md)
+[**PagedResourceListOfPostingModuleRule**](../model/PagedResourceListOfPostingModuleRule.md)
 
 ### HTTP request headers
 
@@ -1179,11 +1179,11 @@ Name | Type | Description  | Notes
  **page** | **str**| The pagination token to use to continue listing Posting Modules; this              value is returned from the previous call. If a pagination token is provided, the filter, effectiveAt              and asAt fields must not have changed since the original request. | [optional] 
  **limit** | **int**| When paginating, limit the results to this number. Defaults to 100 if not specified. | [optional] 
  **filter** | **str**| Expression to filter the results.              For example, to filter on the Posting Module status, specify \&quot;status eq &#39;Active&#39;\&quot;. For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914. | [optional] 
- **sort_by** | [**List[str]**](str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
 
 ### Return type
 
-[**PagedResourceListOfPostingModuleResponse**](PagedResourceListOfPostingModuleResponse.md)
+[**PagedResourceListOfPostingModuleResponse**](../model/PagedResourceListOfPostingModuleResponse.md)
 
 ### HTTP request headers
 
@@ -1225,11 +1225,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the Chart of Accounts. | [required] 
  **code** | **str**| The code of the Chart of Accounts. Together with the scope this uniquely identifies the Chart of Accounts. | [required] 
- **operation** | [**List[Operation]**](Operation.md)| The json patch document. For more information see: https://datatracker.ietf.org/doc/html/rfc6902. | [required] 
+ **operation** | [**List[Operation]**](../model/Operation.md)| The json patch document. For more information see: https://datatracker.ietf.org/doc/html/rfc6902. | [required] 
 
 ### Return type
 
-[**ChartOfAccounts**](ChartOfAccounts.md)
+[**ChartOfAccounts**](../model/ChartOfAccounts.md)
 
 ### HTTP request headers
 
@@ -1273,11 +1273,11 @@ Name | Type | Description  | Notes
  **scope** | **str**| The scope of the Chart of Accounts. | [required] 
  **code** | **str**| The code of the Chart of Accounts. Together with the scope this uniquely identifies the Chart of Accounts. | [required] 
  **cleardown_module_code** | **str**| The code of the Cleardown Module to be updated. | [required] 
- **operation** | [**List[Operation]**](Operation.md)| The json patch document. For more information see: https://datatracker.ietf.org/doc/html/rfc6902. | [required] 
+ **operation** | [**List[Operation]**](../model/Operation.md)| The json patch document. For more information see: https://datatracker.ietf.org/doc/html/rfc6902. | [required] 
 
 ### Return type
 
-[**CleardownModuleResponse**](CleardownModuleResponse.md)
+[**CleardownModuleResponse**](../model/CleardownModuleResponse.md)
 
 ### HTTP request headers
 
@@ -1321,11 +1321,11 @@ Name | Type | Description  | Notes
  **scope** | **str**| The scope of the Chart of Accounts. | [required] 
  **code** | **str**| The code of the Chart of Accounts. Together with the scope this uniquely identifies the Chart of Accounts. | [required] 
  **posting_module_code** | **str**| The code of the Posting Module to be updated. | [required] 
- **operation** | [**List[Operation]**](Operation.md)| The json patch document. For more information see: https://datatracker.ietf.org/doc/html/rfc6902. | [required] 
+ **operation** | [**List[Operation]**](../model/Operation.md)| The json patch document. For more information see: https://datatracker.ietf.org/doc/html/rfc6902. | [required] 
 
 ### Return type
 
-[**PostingModuleResponse**](PostingModuleResponse.md)
+[**PostingModuleResponse**](../model/PostingModuleResponse.md)
 
 ### HTTP request headers
 
@@ -1369,11 +1369,11 @@ Name | Type | Description  | Notes
  **scope** | **str**| The scope of the Chart of Accounts. | [required] 
  **code** | **str**| The code of the Chart of Accounts. Together with the scope this uniquely identifies the Chart of Accounts. | [required] 
  **cleardown_module_code** | **str**| The code of the Cleardown Module to be updated. | [required] 
- **cleardown_module_details** | [**CleardownModuleDetails**](CleardownModuleDetails.md)| The new details for the Cleardown Module. | [required] 
+ **cleardown_module_details** | [**CleardownModuleDetails**](../model/CleardownModuleDetails.md)| The new details for the Cleardown Module. | [required] 
 
 ### Return type
 
-[**CleardownModuleResponse**](CleardownModuleResponse.md)
+[**CleardownModuleResponse**](../model/CleardownModuleResponse.md)
 
 ### HTTP request headers
 
@@ -1417,11 +1417,11 @@ Name | Type | Description  | Notes
  **scope** | **str**| The scope of the Chart of Accounts. | [required] 
  **code** | **str**| The code of the Chart of Accounts. Together with the scope this uniquely identifies the Chart of Accounts. | [required] 
  **cleardown_module_code** | **str**| The code of the Cleardown Module to be updated. | [required] 
- **cleardown_module_rule** | [**List[CleardownModuleRule]**](CleardownModuleRule.md)| The new rule set for the Cleardown Module. | [required] 
+ **cleardown_module_rule** | [**List[CleardownModuleRule]**](../model/CleardownModuleRule.md)| The new rule set for the Cleardown Module. | [required] 
 
 ### Return type
 
-[**CleardownModuleRulesUpdatedResponse**](CleardownModuleRulesUpdatedResponse.md)
+[**CleardownModuleRulesUpdatedResponse**](../model/CleardownModuleRulesUpdatedResponse.md)
 
 ### HTTP request headers
 
@@ -1465,11 +1465,11 @@ Name | Type | Description  | Notes
  **scope** | **str**| The scope of the Chart of Accounts. | [required] 
  **code** | **str**| The code of the Chart of Accounts. | [required] 
  **general_ledger_profile_code** | **str**| The code of the General Ledger Profile | [required] 
- **general_ledger_profile_mapping** | [**List[GeneralLedgerProfileMapping]**](GeneralLedgerProfileMapping.md)| The updated General Ledger Profile Mappings, the previous mappings will be wholly replaced with this data. Mappings will be evaluated in the order they are provided. | [required] 
+ **general_ledger_profile_mapping** | [**List[GeneralLedgerProfileMapping]**](../model/GeneralLedgerProfileMapping.md)| The updated General Ledger Profile Mappings, the previous mappings will be wholly replaced with this data. Mappings will be evaluated in the order they are provided. | [required] 
 
 ### Return type
 
-[**GeneralLedgerProfileResponse**](GeneralLedgerProfileResponse.md)
+[**GeneralLedgerProfileResponse**](../model/GeneralLedgerProfileResponse.md)
 
 ### HTTP request headers
 
@@ -1513,11 +1513,11 @@ Name | Type | Description  | Notes
  **scope** | **str**| The scope of the Chart of Accounts. | [required] 
  **code** | **str**| The code of the Chart of Accounts. Together with the scope this uniquely identifies the Chart of Accounts. | [required] 
  **posting_module_code** | **str**| The code of the Posting Module to be updated. | [required] 
- **posting_module_details** | [**PostingModuleDetails**](PostingModuleDetails.md)| The new details for the Posting Module. | [required] 
+ **posting_module_details** | [**PostingModuleDetails**](../model/PostingModuleDetails.md)| The new details for the Posting Module. | [required] 
 
 ### Return type
 
-[**PostingModuleResponse**](PostingModuleResponse.md)
+[**PostingModuleResponse**](../model/PostingModuleResponse.md)
 
 ### HTTP request headers
 
@@ -1561,11 +1561,11 @@ Name | Type | Description  | Notes
  **scope** | **str**| The scope of the Chart of Accounts. | [required] 
  **code** | **str**| The code of the Chart of Accounts. Together with the scope this uniquely identifies the Chart of Accounts. | [required] 
  **posting_module_code** | **str**| The code of the Posting Module to be updated. | [required] 
- **posting_module_rule** | [**List[PostingModuleRule]**](PostingModuleRule.md)| The new rule set for the Posting Module. | [required] 
+ **posting_module_rule** | [**List[PostingModuleRule]**](../model/PostingModuleRule.md)| The new rule set for the Posting Module. | [required] 
 
 ### Return type
 
-[**PostingModuleRulesUpdatedResponse**](PostingModuleRulesUpdatedResponse.md)
+[**PostingModuleRulesUpdatedResponse**](../model/PostingModuleRulesUpdatedResponse.md)
 
 ### HTTP request headers
 
@@ -1609,11 +1609,11 @@ Name | Type | Description  | Notes
  **scope** | **str**| The scope of the Chart of Accounts to update or insert the properties onto. | [required] 
  **code** | **str**| The code of the Chart of Accounts to update or insert the properties onto. Together with the scope this uniquely identifies the Chart of Accounts. | [required] 
  **account_code** | **str**| The unique ID of the account to create or update properties for. | [required] 
- **request_body** | [**Dict[str, ModelProperty]**](ModelProperty.md)| The properties to be updated or inserted onto the chart of account. Each property in               the request must be keyed by its unique property key. This has the format {domain}/{scope}/{code} e.g. \&quot;Account/Manager/Id\&quot;. | [optional] 
+ **request_body** | [**Dict[str, ModelProperty]**](../model/ModelProperty.md)| The properties to be updated or inserted onto the chart of account. Each property in               the request must be keyed by its unique property key. This has the format {domain}/{scope}/{code} e.g. \&quot;Account/Manager/Id\&quot;. | [optional] 
 
 ### Return type
 
-[**AccountProperties**](AccountProperties.md)
+[**AccountProperties**](../model/AccountProperties.md)
 
 ### HTTP request headers
 
@@ -1655,11 +1655,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the Chart of Accounts. | [required] 
  **code** | **str**| The code of the Chart of Accounts. Together with the scope this uniquely identifies              the Chart of Accounts. | [required] 
- **account** | [**List[Account]**](Account.md)| A list of accounts to be created or updated. | [required] 
+ **account** | [**List[Account]**](../model/Account.md)| A list of accounts to be created or updated. | [required] 
 
 ### Return type
 
-[**AccountsUpsertResponse**](AccountsUpsertResponse.md)
+[**AccountsUpsertResponse**](../model/AccountsUpsertResponse.md)
 
 ### HTTP request headers
 
@@ -1701,11 +1701,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the Chart of Accounts to update or insert the properties onto. | [required] 
  **code** | **str**| The code of the Chart of Accounts to update or insert the properties onto. Together with the scope this uniquely identifies the Chart of Accounts. | [required] 
- **request_body** | [**Dict[str, ModelProperty]**](ModelProperty.md)| The properties to be updated or inserted onto the chart of account. Each property in               the request must be keyed by its unique property key. This has the format {domain}/{scope}/{code} e.g. \&quot;ChartOfAccounts/Manager/Id\&quot;. | [optional] 
+ **request_body** | [**Dict[str, ModelProperty]**](../model/ModelProperty.md)| The properties to be updated or inserted onto the chart of account. Each property in               the request must be keyed by its unique property key. This has the format {domain}/{scope}/{code} e.g. \&quot;ChartOfAccounts/Manager/Id\&quot;. | [optional] 
 
 ### Return type
 
-[**ChartOfAccountsProperties**](ChartOfAccountsProperties.md)
+[**ChartOfAccountsProperties**](../model/ChartOfAccountsProperties.md)
 
 ### HTTP request headers
 

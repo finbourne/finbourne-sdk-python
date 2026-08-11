@@ -60,7 +60,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**AuthenticationInformation**](AuthenticationInformation.md)
+[**AuthenticationInformation**](../model/AuthenticationInformation.md)
 
 ### HTTP request headers
 
@@ -101,7 +101,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PasswordPolicyResponse**](PasswordPolicyResponse.md)
+[**PasswordPolicyResponse**](../model/PasswordPolicyResponse.md)
 
 ### HTTP request headers
 
@@ -139,7 +139,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**SessionPolicyResponse**](SessionPolicyResponse.md)
+[**SessionPolicyResponse**](../model/SessionPolicyResponse.md)
 
 ### HTTP request headers
 
@@ -182,7 +182,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List[SupportAccessResponse]**](SupportAccessResponse.md)
+[**List[SupportAccessResponse]**](../model/SupportAccessResponse.md)
 
 ### HTTP request headers
 
@@ -220,7 +220,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**SupportRolesResponse**](SupportRolesResponse.md)
+[**SupportRolesResponse**](../model/SupportRolesResponse.md)
 
 ### HTTP request headers
 
@@ -257,11 +257,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **support_access_request** | [**SupportAccessRequest**](SupportAccessRequest.md)| Request detailing the duration and reasons for supplying support access | [required] 
+ **support_access_request** | [**SupportAccessRequest**](../model/SupportAccessRequest.md)| Request detailing the duration and reasons for supplying support access | [required] 
 
 ### Return type
 
-[**SupportAccessResponse**](SupportAccessResponse.md)
+[**SupportAccessResponse**](../model/SupportAccessResponse.md)
 
 ### HTTP request headers
 
@@ -299,7 +299,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**List[SupportAccessResponse]**](SupportAccessResponse.md)
+[**List[SupportAccessResponse]**](../model/SupportAccessResponse.md)
 
 ### HTTP request headers
 
@@ -338,11 +338,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_type** | **str**| The type of user (should only be personal or service) | [required] 
- **update_password_policy_request** | [**UpdatePasswordPolicyRequest**](UpdatePasswordPolicyRequest.md)| The password policy for the given user type | [optional] 
+ **update_password_policy_request** | [**UpdatePasswordPolicyRequest**](../model/UpdatePasswordPolicyRequest.md)| The password policy for the given user type | [optional] 
 
 ### Return type
 
-[**PasswordPolicyResponse**](PasswordPolicyResponse.md)
+[**PasswordPolicyResponse**](../model/PasswordPolicyResponse.md)
 
 ### HTTP request headers
 
@@ -380,11 +380,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **update_session_policy_request** | [**UpdateSessionPolicyRequest**](UpdateSessionPolicyRequest.md)| The desired session timing settings | [required] 
+ **update_session_policy_request** | [**UpdateSessionPolicyRequest**](../model/UpdateSessionPolicyRequest.md)| The desired session timing settings | [required] 
 
 ### Return type
 
-[**SessionPolicyResponse**](SessionPolicyResponse.md)
+[**SessionPolicyResponse**](../model/SessionPolicyResponse.md)
 
 ### HTTP request headers
 

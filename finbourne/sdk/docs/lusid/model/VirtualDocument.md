@@ -5,8 +5,8 @@ Virtual document consists of (potentially several) upserted documents.          
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **document_id** | [../model/StructuredResultDataId](StructuredResultDataId.md) | Optional | *No description available.* |
-| **data** | [../model/List[VirtualDocumentRow]](VirtualDocumentRow.md) | Optional | The data inside the document |
+| **document_id** | [StructuredResultDataId](StructuredResultDataId.md) | Optional | *No description available.* |
+| **data** | [List[VirtualDocumentRow]](VirtualDocumentRow.md) | Optional | The data inside the document |
 
 
 ## Usage

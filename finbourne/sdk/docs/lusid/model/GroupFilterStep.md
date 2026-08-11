@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **label** | **str** | Required | The label of the compliance step |
-| **limit_check_parameters** | [../model/List[ComplianceTemplateParameter]](ComplianceTemplateParameter.md) | Required | Parameters required for an absolute limit check |
+| **limit_check_parameters** | [List[ComplianceTemplateParameter]](ComplianceTemplateParameter.md) | Required | Parameters required for an absolute limit check |
 | **compliance_step_type** | **str** | Required | The type of the compliance step. Available values: FilterStep, GroupByStep, GroupFilterStep, BranchStep, RecombineStep, CheckStep, PercentCheckStep. |
 
 

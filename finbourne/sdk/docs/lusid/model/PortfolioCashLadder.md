@@ -5,10 +5,10 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **currency** | **str** | Required | The currency of the cash-flows. |
-| **sub_holding_keys** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | The sub-holding properties which identify the holding. Each property will be from the &#39;Transaction&#39; domain. These are configured on a transaction portfolio. |
-| **records** | [../model/List[CashLadderRecord]](CashLadderRecord.md) | Required | A record of cash flows on a specific date. |
-| **failed** | [../model/Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The records that could not be returned along with a reason for their failure. |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **sub_holding_keys** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | The sub-holding properties which identify the holding. Each property will be from the &#39;Transaction&#39; domain. These are configured on a transaction portfolio. |
+| **records** | [List[CashLadderRecord]](CashLadderRecord.md) | Required | A record of cash flows on a specific date. |
+| **failed** | [Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The records that could not be returned along with a reason for their failure. |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

@@ -10,7 +10,7 @@
 | **second_email_address** | **str** | Optional | *No description available.* |
 | **login** | **str** | Required | The user&#39;s login username, in the form of an email address, which must be unique within the system. For user accounts this should exactly match the user&#39;s email address. |
 | **alternative_user_ids** | **Dict[str, Optional[str]]** | Optional | *No description available.* |
-| **roles** | [../model/List[RoleId]](RoleId.md) | Optional | Deprecated. To update a user&#39;s roles use the AddUserToRole and RemoveUserFromRole endpoints |
+| **roles** | [List[RoleId]](RoleId.md) | Optional | Deprecated. To update a user&#39;s roles use the AddUserToRole and RemoveUserFromRole endpoints |
 | **user_expiry** | **datetime** | Optional | The user&#39;s expiry unix datetime |
 
 

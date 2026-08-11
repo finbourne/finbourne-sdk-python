@@ -5,9 +5,9 @@ The delete accounts response
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
+| **version** | [Version](Version.md) | Optional | *No description available.* |
 | **account_ids** | **List[str]** | Optional | The Accounts which have been soft/hard deleted. |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

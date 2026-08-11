@@ -7,26 +7,26 @@
 | **schema_version** | **str** | Optional | *No description available.* |
 | **valid** | **bool** | Optional | *No description available.* |
 | **reference** | **str** | Optional | *No description available.* |
-| **ref** | [../model/JSchema](JSchema.md) | Optional | *No description available.* |
+| **ref** | [JSchema](JSchema.md) | Optional | *No description available.* |
 | **recursive_reference** | **str** | Optional | *No description available.* |
 | **recursive_anchor** | **bool** | Optional | *No description available.* |
 | **id** | **str** | Optional | *No description available.* |
 | **anchor** | **str** | Optional | *No description available.* |
-| **type** | [../model/JSchemaType](JSchemaType.md) | Optional | *No description available.* |
+| **type** | [JSchemaType](JSchemaType.md) | Optional | *No description available.* |
 | **default** | **object** | Optional | *No description available.* |
-| **properties** | [../model/Dict[str, JSchema]](JSchema.md) | Required | *No description available.* *(read-only)* |
-| **items** | [../model/List[JSchema]](JSchema.md) | Required | *No description available.* *(read-only)* |
+| **properties** | [Dict[str, JSchema]](JSchema.md) | Required | *No description available.* *(read-only)* |
+| **items** | [List[JSchema]](JSchema.md) | Required | *No description available.* *(read-only)* |
 | **items_position_validation** | **bool** | Required | *No description available.* |
 | **required** | **List[str]** | Required | *No description available.* *(read-only)* |
-| **all_of** | [../model/List[JSchema]](JSchema.md) | Required | *No description available.* *(read-only)* |
-| **any_of** | [../model/List[JSchema]](JSchema.md) | Required | *No description available.* *(read-only)* |
-| **one_of** | [../model/List[JSchema]](JSchema.md) | Required | *No description available.* *(read-only)* |
-| **var_if** | [../model/JSchema](JSchema.md) | Optional | *No description available.* |
-| **then** | [../model/JSchema](JSchema.md) | Optional | *No description available.* |
-| **var_else** | [../model/JSchema](JSchema.md) | Optional | *No description available.* |
-| **var_not** | [../model/JSchema](JSchema.md) | Optional | *No description available.* |
-| **contains** | [../model/JSchema](JSchema.md) | Optional | *No description available.* |
-| **property_names** | [../model/JSchema](JSchema.md) | Optional | *No description available.* |
+| **all_of** | [List[JSchema]](JSchema.md) | Required | *No description available.* *(read-only)* |
+| **any_of** | [List[JSchema]](JSchema.md) | Required | *No description available.* *(read-only)* |
+| **one_of** | [List[JSchema]](JSchema.md) | Required | *No description available.* *(read-only)* |
+| **var_if** | [JSchema](JSchema.md) | Optional | *No description available.* |
+| **then** | [JSchema](JSchema.md) | Optional | *No description available.* |
+| **var_else** | [JSchema](JSchema.md) | Optional | *No description available.* |
+| **var_not** | [JSchema](JSchema.md) | Optional | *No description available.* |
+| **contains** | [JSchema](JSchema.md) | Optional | *No description available.* |
+| **property_names** | [JSchema](JSchema.md) | Optional | *No description available.* |
 | **enum** | **List[object]** | Required | *No description available.* *(read-only)* |
 | **const** | **object** | Optional | *No description available.* |
 | **unique_items** | **bool** | Required | *No description available.* |
@@ -51,17 +51,17 @@
 | **pattern** | **str** | Optional | *No description available.* |
 | **dependencies** | **Dict[str, object]** | Required | *No description available.* *(read-only)* |
 | **dependent_required** | **Dict[str, List[str]]** | Required | *No description available.* *(read-only)* |
-| **dependent_schemas** | [../model/Dict[str, JSchema]](JSchema.md) | Required | *No description available.* *(read-only)* |
-| **pattern_properties** | [../model/Dict[str, JSchema]](JSchema.md) | Required | *No description available.* *(read-only)* |
-| **additional_properties** | [../model/JSchema](JSchema.md) | Optional | *No description available.* |
+| **dependent_schemas** | [Dict[str, JSchema]](JSchema.md) | Required | *No description available.* *(read-only)* |
+| **pattern_properties** | [Dict[str, JSchema]](JSchema.md) | Required | *No description available.* *(read-only)* |
+| **additional_properties** | [JSchema](JSchema.md) | Optional | *No description available.* |
 | **allow_additional_properties** | **bool** | Required | *No description available.* |
 | **allow_additional_properties_specified** | **bool** | Required | *No description available.* |
-| **unevaluated_properties** | [../model/JSchema](JSchema.md) | Optional | *No description available.* |
+| **unevaluated_properties** | [JSchema](JSchema.md) | Optional | *No description available.* |
 | **allow_unevaluated_properties** | **bool** | Optional | *No description available.* |
-| **additional_items** | [../model/JSchema](JSchema.md) | Optional | *No description available.* |
+| **additional_items** | [JSchema](JSchema.md) | Optional | *No description available.* |
 | **allow_additional_items** | **bool** | Required | *No description available.* |
 | **allow_additional_items_specified** | **bool** | Required | *No description available.* |
-| **unevaluated_items** | [../model/JSchema](JSchema.md) | Optional | *No description available.* |
+| **unevaluated_items** | [JSchema](JSchema.md) | Optional | *No description available.* |
 | **allow_unevaluated_items** | **bool** | Optional | *No description available.* |
 | **format** | **str** | Optional | *No description available.* |
 | **validators** | **List[object]** | Required | *No description available.* *(read-only)* |

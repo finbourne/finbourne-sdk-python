@@ -12,7 +12,7 @@ DTO of Finbourne.AspNetCore.Http.TrackingEntry.RequestInformation.
 | **body_was_truncated** | **bool** | Optional | Determines if the recorded body was truncated. |
 | **method** | **str** | Optional | Method called by the request |
 | **url** | **str** | Optional | URL of the request |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

@@ -5,11 +5,11 @@ Response from upserting Returns
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **version** | [../model/Version](Version.md) | Required | *No description available.* |
+| **version** | [Version](Version.md) | Required | *No description available.* |
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
 | **values** | **List[Dict[str, datetime]]** | Optional | The set of values that were successfully retrieved. |
 | **failed** | **List[Dict[str, ErrorDetail]]** | Optional | The set of values that could not be retrieved due along with a reason for this, e.g badly formed request. |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

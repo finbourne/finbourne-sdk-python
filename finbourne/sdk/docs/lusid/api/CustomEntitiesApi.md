@@ -73,7 +73,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -127,7 +127,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -231,7 +231,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CustomEntityProperties**](CustomEntityProperties.md)
+[**CustomEntityProperties**](../model/CustomEntityProperties.md)
 
 ### HTTP request headers
 
@@ -283,13 +283,13 @@ Name | Type | Description  | Notes
  **identifier_scope** | **str**| The identifier scope. | [required] 
  **as_at** | **datetime**| The AsAt datetime at which to retrieve the Custom Entity instance. | [optional] 
  **effective_at** | **str**| The effective datetime or cut label at which to get the Custom Entity instance. Defaults to the current LUSID system datetime if not specified. | [optional] 
- **related_entity_property_keys** | [**List[str]**](str.md)| A list of property keys from any domain that supports relationships              to decorate onto related entities. These must take the format {domain}/{scope}/{code}, for example &#39;Portfolio/Manager/Id&#39;. | [optional] 
- **relationship_definition_ids** | [**List[str]**](str.md)| A list of relationship definitions that are used to decorate related entities              onto the entity in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}. | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the &#39;CustomEntity&#39; domain to decorate onto              the custom entities of any type supported by that property (defined within the property definition CustomEntityTypes).              These must have the format {domain}/{scope}/{code}, for example &#39;CustomEntity/someScope/id&#39;. | [optional] 
+ **related_entity_property_keys** | [**List[str]**](../model/str.md)| A list of property keys from any domain that supports relationships              to decorate onto related entities. These must take the format {domain}/{scope}/{code}, for example &#39;Portfolio/Manager/Id&#39;. | [optional] 
+ **relationship_definition_ids** | [**List[str]**](../model/str.md)| A list of relationship definitions that are used to decorate related entities              onto the entity in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the &#39;CustomEntity&#39; domain to decorate onto              the custom entities of any type supported by that property (defined within the property definition CustomEntityTypes).              These must have the format {domain}/{scope}/{code}, for example &#39;CustomEntity/someScope/id&#39;. | [optional] 
 
 ### Return type
 
-[**CustomEntityResponse**](CustomEntityResponse.md)
+[**CustomEntityResponse**](../model/CustomEntityResponse.md)
 
 ### HTTP request headers
 
@@ -343,7 +343,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List[AccessMetadataValue]**](AccessMetadataValue.md)
+[**List[AccessMetadataValue]**](../model/AccessMetadataValue.md)
 
 ### HTTP request headers
 
@@ -395,11 +395,11 @@ Name | Type | Description  | Notes
  **effective_at** | **str**| The effective datetime or cut label at which to get relationships. Defaults to the current LUSID system datetime if not specified. | [optional] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve relationships. Defaults to return the latest LUSID AsAt time if not specified. | [optional] 
  **filter** | **str**| Expression to filter relationships. Users should provide null or empty string for this field until further notice. | [optional] 
- **identifier_types** | [**List[str]**](str.md)| Identifiers types (as property keys) used for referencing Persons or Legal Entities. These take the format              {domain}/{scope}/{code} e.g. \&quot;Person/CompanyDetails/Role\&quot;. They must be from the \&quot;Person\&quot; or \&quot;LegalEntity\&quot; domain.              Only identifier types stated will be used to look up relevant entities in relationships. If not applicable, provide an empty array. | [optional] 
+ **identifier_types** | [**List[str]**](../model/str.md)| Identifiers types (as property keys) used for referencing Persons or Legal Entities. These take the format              {domain}/{scope}/{code} e.g. \&quot;Person/CompanyDetails/Role\&quot;. They must be from the \&quot;Person\&quot; or \&quot;LegalEntity\&quot; domain.              Only identifier types stated will be used to look up relevant entities in relationships. If not applicable, provide an empty array. | [optional] 
 
 ### Return type
 
-[**ResourceListOfRelationship**](ResourceListOfRelationship.md)
+[**ResourceListOfRelationship**](../model/ResourceListOfRelationship.md)
 
 ### HTTP request headers
 
@@ -451,15 +451,15 @@ Name | Type | Description  | Notes
  **as_at** | **datetime**| The asAt datetime at which to list the entities. Defaults to returning the latest version              of each portfolio if not specified. | [optional] 
  **limit** | **int**| When paginating, limit the results to this number. Defaults to 100 if not specified. | [optional] 
  **filter** | **str**| Expression to filter the results. For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914. | [optional] 
- **sort_by** | [**List[str]**](str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
  **page** | **str**| The pagination token to use to continue listing entities; this              value is returned from the previous call. If a pagination token is provided, the filter, effectiveAt              and asAt fields must not have changed since the original request. | [optional] 
- **related_entity_property_keys** | [**List[str]**](str.md)| A list of property keys from any domain that supports relationships              to decorate onto related entities. These must take the format {domain}/{scope}/{code}, for example &#39;Portfolio/Manager/Id&#39;. | [optional] 
- **relationship_definition_ids** | [**List[str]**](str.md)| A list of relationship definitions that are used to decorate related entities              onto the entities in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}. | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the &#39;CustomEntity&#39; domain to decorate onto              the custom entities of any type supported by that property (defined within the property definition CustomEntityTypes).              These must have the format {domain}/{scope}/{code}, for example &#39;CustomEntity/someScope/id&#39;. | [optional] 
+ **related_entity_property_keys** | [**List[str]**](../model/str.md)| A list of property keys from any domain that supports relationships              to decorate onto related entities. These must take the format {domain}/{scope}/{code}, for example &#39;Portfolio/Manager/Id&#39;. | [optional] 
+ **relationship_definition_ids** | [**List[str]**](../model/str.md)| A list of relationship definitions that are used to decorate related entities              onto the entities in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the &#39;CustomEntity&#39; domain to decorate onto              the custom entities of any type supported by that property (defined within the property definition CustomEntityTypes).              These must have the format {domain}/{scope}/{code}, for example &#39;CustomEntity/someScope/id&#39;. | [optional] 
 
 ### Return type
 
-[**PagedResourceListOfCustomEntityResponse**](PagedResourceListOfCustomEntityResponse.md)
+[**PagedResourceListOfCustomEntityResponse**](../model/PagedResourceListOfCustomEntityResponse.md)
 
 ### HTTP request headers
 
@@ -507,7 +507,7 @@ Name | Type | Description  | Notes
  **identifier_type** | **str**| An identifier type attached to the Custom Entity instance. | [required] 
  **identifier_value** | **str**| The identifier value. | [required] 
  **identifier_scope** | **str**| The identifier scope. | [required] 
- **access_metadata_operation** | [**List[AccessMetadataOperation]**](AccessMetadataOperation.md)| The Json Patch document | [required] 
+ **access_metadata_operation** | [**List[AccessMetadataOperation]**](../model/AccessMetadataOperation.md)| The Json Patch document | [required] 
  **effective_at** | **str**| The effectiveAt datetime at which the Access Metadata will be effective from | [optional] 
  **effective_until** | **datetime**| The effective datetime until which the Access Metadata is valid. If not supplied this will be valid indefinitely, or until the next &#39;effectiveAt&#39; datetime of the Access Metadata | [optional] 
 
@@ -555,11 +555,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **entity_type** | **str**| The type of the Custom Entity to be created. An entityType can be created using the \&quot;CreateCustomEntityDefinition\&quot; endpoint for CustomEntityDefinitions. | [required] 
  **success_mode** | **str**| Whether the batch request should fail Atomically or in a Partial fashion - Allowed Values: Atomic, Partial | [required] 
- **request_body** | [**Dict[str, CustomEntityRequest]**](CustomEntityRequest.md)| The payload describing the Custom Entity instances | [required] 
+ **request_body** | [**Dict[str, CustomEntityRequest]**](../model/CustomEntityRequest.md)| The payload describing the Custom Entity instances | [required] 
 
 ### Return type
 
-[**UpsertCustomEntitiesResponse**](UpsertCustomEntitiesResponse.md)
+[**UpsertCustomEntitiesResponse**](../model/UpsertCustomEntitiesResponse.md)
 
 ### HTTP request headers
 
@@ -599,11 +599,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **entity_type** | **str**| The type of the Custom Entity to be created. An entityType can be created using the \&quot;CreateCustomEntityDefinition\&quot; endpoint for CustomEntityDefinitions. | [required] 
- **custom_entity_request** | [**CustomEntityRequest**](CustomEntityRequest.md)| The payload describing the Custom Entity instance. | [required] 
+ **custom_entity_request** | [**CustomEntityRequest**](../model/CustomEntityRequest.md)| The payload describing the Custom Entity instance. | [required] 
 
 ### Return type
 
-[**CustomEntityResponse**](CustomEntityResponse.md)
+[**CustomEntityResponse**](../model/CustomEntityResponse.md)
 
 ### HTTP request headers
 
@@ -653,13 +653,13 @@ Name | Type | Description  | Notes
  **identifier_value** | **str**| The identifier value. | [required] 
  **metadata_key** | **str**| Key of the metadata entry to retrieve | [required] 
  **identifier_scope** | **str**| The identifier scope. | [required] 
- **upsert_custom_entity_access_metadata_request** | [**UpsertCustomEntityAccessMetadataRequest**](UpsertCustomEntityAccessMetadataRequest.md)| The Custom Entity Access Metadata entry to upsert | [required] 
+ **upsert_custom_entity_access_metadata_request** | [**UpsertCustomEntityAccessMetadataRequest**](../model/UpsertCustomEntityAccessMetadataRequest.md)| The Custom Entity Access Metadata entry to upsert | [required] 
  **effective_at** | **str**| The effectiveAt datetime at which the Access Metadata will be effective from | [optional] 
  **effective_until** | **datetime**| The effective datetime until which the Access Metadata is valid. If not supplied this will be valid indefinitely, or until the next &#39;effectiveAt&#39; datetime of the Access Metadata | [optional] 
 
 ### Return type
 
-[**List[AccessMetadataValue]**](AccessMetadataValue.md)
+[**List[AccessMetadataValue]**](../model/AccessMetadataValue.md)
 
 ### HTTP request headers
 

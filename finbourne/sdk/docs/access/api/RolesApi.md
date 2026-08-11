@@ -62,11 +62,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the Role | [required] 
  **code** | **str**| The code of the Role | [required] 
- **add_policy_collection_to_role_request** | [**AddPolicyCollectionToRoleRequest**](AddPolicyCollectionToRoleRequest.md)| The policy collections to add | [required] 
+ **add_policy_collection_to_role_request** | [**AddPolicyCollectionToRoleRequest**](../model/AddPolicyCollectionToRoleRequest.md)| The policy collections to add | [required] 
 
 ### Return type
 
-[**RoleResponse**](RoleResponse.md)
+[**RoleResponse**](../model/RoleResponse.md)
 
 ### HTTP request headers
 
@@ -104,11 +104,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **role_creation_request** | [**RoleCreationRequest**](RoleCreationRequest.md)| The definition of the Role | [required] 
+ **role_creation_request** | [**RoleCreationRequest**](../model/RoleCreationRequest.md)| The definition of the Role | [required] 
 
 ### Return type
 
-[**RoleResponse**](RoleResponse.md)
+[**RoleResponse**](../model/RoleResponse.md)
 
 ### HTTP request headers
 
@@ -195,7 +195,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**RoleResponse**](RoleResponse.md)
+[**RoleResponse**](../model/RoleResponse.md)
 
 ### HTTP request headers
 
@@ -237,7 +237,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List[RoleResponse]**](RoleResponse.md)
+[**List[RoleResponse]**](../model/RoleResponse.md)
 
 ### HTTP request headers
 
@@ -285,7 +285,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**RoleResponse**](RoleResponse.md)
+[**RoleResponse**](../model/RoleResponse.md)
 
 ### HTTP request headers
 
@@ -330,7 +330,7 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **code** | **str**| The code of the Role | [required] 
- **role_update_request** | [**RoleUpdateRequest**](RoleUpdateRequest.md)| The updated definition of the Role | [required] 
+ **role_update_request** | [**RoleUpdateRequest**](../model/RoleUpdateRequest.md)| The updated definition of the Role | [required] 
  **scope** | **str**| &gt;Optional. Will use default scope if not supplied. The scope of the Role | [optional] 
  **before_scope** | **str**| Optional. The scope of the Role. Will use default scope if not supplied. | [optional] 
  **before_code** | **str**| Optional. The code of the Role | [optional] 
@@ -339,7 +339,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**RoleResponse**](RoleResponse.md)
+[**RoleResponse**](../model/RoleResponse.md)
 
 ### HTTP request headers
 

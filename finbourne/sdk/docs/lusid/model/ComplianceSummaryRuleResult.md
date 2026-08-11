@@ -4,14 +4,14 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **rule_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
-| **template_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **rule_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **template_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **variation** | **str** | Required | *No description available.* |
 | **rule_status** | **str** | Required | *No description available.* |
-| **affected_portfolios** | [../model/List[ResourceId]](ResourceId.md) | Required | *No description available.* |
-| **affected_orders** | [../model/List[ResourceId]](ResourceId.md) | Required | *No description available.* |
+| **affected_portfolios** | [List[ResourceId]](ResourceId.md) | Required | *No description available.* |
+| **affected_orders** | [List[ResourceId]](ResourceId.md) | Required | *No description available.* |
 | **parameters_used** | **Dict[str, Optional[str]]** | Required | *No description available.* |
-| **rule_breakdown** | [../model/List[ComplianceRuleBreakdown]](ComplianceRuleBreakdown.md) | Required | *No description available.* |
+| **rule_breakdown** | [List[ComplianceRuleBreakdown]](ComplianceRuleBreakdown.md) | Required | *No description available.* |
 
 
 ## Usage

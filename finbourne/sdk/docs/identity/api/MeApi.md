@@ -53,7 +53,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**CurrentUserResponse**](CurrentUserResponse.md)
+[**CurrentUserResponse**](../model/CurrentUserResponse.md)
 
 ### HTTP request headers
 
@@ -90,11 +90,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **set_password** | [**SetPassword**](SetPassword.md)| The request containing the new password value | [required] 
+ **set_password** | [**SetPassword**](../model/SetPassword.md)| The request containing the new password value | [required] 
 
 ### Return type
 
-[**SetPasswordResponse**](SetPasswordResponse.md)
+[**SetPasswordResponse**](../model/SetPasswordResponse.md)
 
 ### HTTP request headers
 

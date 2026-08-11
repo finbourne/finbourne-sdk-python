@@ -5,7 +5,7 @@ The full structure of a instrument creation / onboarding request
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **data_results** | [../model/List[OpenFigiPermIdResult]](OpenFigiPermIdResult.md) | Required | Enumerable packed OpenFigi/PermId information used to create instruments |
+| **data_results** | [List[OpenFigiPermIdResult]](OpenFigiPermIdResult.md) | Required | Enumerable packed OpenFigi/PermId information used to create instruments |
 | **primary_vendor_key** | **str** | Optional | Primary vendor used to master instrument from Unknown to an asset type |
 | **secondary_vendor_keys** | **List[str]** | Optional | Secondary vendors used to decorate additional properties |
 

@@ -8,7 +8,7 @@
 | **description** | **str** | Optional | A long form text description of the portfolio. |
 | **code** | **str** | Required | Unique identifier for the portfolio. |
 | **created** | **datetime** | Optional | The original creation date, defaults to today if not specified when creating a portfolio. |
-| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | Portfolio properties to add to the portfolio. |
+| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | Portfolio properties to add to the portfolio. |
 | **instrument_scopes** | **List[str]** | Optional | Instrument Scopes. |
 | **base_currency** | **str** | Optional | The base currency of the transaction portfolio in ISO 4217 currency code format. |
 

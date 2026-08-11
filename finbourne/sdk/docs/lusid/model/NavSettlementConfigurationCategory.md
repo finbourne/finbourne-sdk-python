@@ -4,8 +4,8 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **calculate_instruction_to_portfolio_rate** | **bool** | Optional | An optional flag that allows for the calculation of the instruction to portfolio rate for instructions with settlement category CashSettlement or DeferredCashReceipt, if it is not provided on the settlement instruction. |
-| **calculate_trade_date_to_settlement_fx_pn_l** | **bool** | Optional | An optional flag that allows for the calculation of FxPnL between Trade and Settlement Date. |
+| **calculate_instruction_to_portfolio_rate** | **bool** | Required | An optional flag that allows for the calculation of the instruction to portfolio rate for instructions with settlement category CashSettlement or DeferredCashReceipt, if it is not provided on the settlement instruction. |
+| **calculate_trade_date_to_settlement_fx_pn_l** | **bool** | Required | An optional flag that allows for the calculation of FxPnL between Trade and Settlement Date. |
 
 
 ## Usage
@@ -16,8 +16,8 @@
 from finbourne.sdk.services.lusid.models.NavSettlementConfigurationCategory import NavSettlementConfigurationCategory
 
 instance = NavSettlementConfigurationCategory(
-    calculate_instruction_to_portfolio_rate=True,  # optional — An optional flag that allows for the calculation of the instruction to portfolio rate for instructions with settlement category CashSettlement or DeferredCashReceipt, if it is not provided on the settlement instruction.
-    calculate_trade_date_to_settlement_fx_pn_l=True  # optional — An optional flag that allows for the calculation of FxPnL between Trade and Settlement Date.
+    calculate_instruction_to_portfolio_rate=True,  # required — An optional flag that allows for the calculation of the instruction to portfolio rate for instructions with settlement category CashSettlement or DeferredCashReceipt, if it is not provided on the settlement instruction.
+    calculate_trade_date_to_settlement_fx_pn_l=True  # required — An optional flag that allows for the calculation of FxPnL between Trade and Settlement Date.
 )
 ```
 

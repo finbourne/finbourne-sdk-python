@@ -7,10 +7,10 @@ Represents the legal agreement between two parties engaged in an OTC transaction
 |------|------|----------|-------------|
 | **display_name** | **str** | Required | A user-defined display label for the Counterparty Agreement. |
 | **agreement_type** | **str** | Required | A user-defined field to capture the type of agreement this represents. Examples might be \&quot;ISDA 2002 Master Agreement\&quot; or \&quot;ISDA 1992 Master Agreement\&quot;. |
-| **counterparty_signatory** | [../model/CounterpartySignatory](CounterpartySignatory.md) | Required | *No description available.* |
+| **counterparty_signatory** | [CounterpartySignatory](CounterpartySignatory.md) | Required | *No description available.* |
 | **dated_as_of** | **datetime** | Required | The date on which the CounterpartyAgreement was signed by both parties. |
-| **credit_support_annex_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
-| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **credit_support_annex_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 
 
 ## Usage

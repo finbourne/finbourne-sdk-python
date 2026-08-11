@@ -5,7 +5,7 @@ Definition of a job
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **job_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **job_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **name** | **str** | Optional | Name of the job |
 | **author** | **str** | Optional | Author of the job |
 | **date_created** | **datetime** | Optional | Date when job was created |
@@ -16,9 +16,9 @@ Definition of a job
 | **max_cpu** | **str** | Optional | Specifies  maximum number of CPUs to be allocated for the job |
 | **min_memory** | **str** | Optional | Specifies the minimum amount of memory (in GiB) to be allocated for the job |
 | **max_memory** | **str** | Optional | Specifies the maximum amount of memory (in GiB) to be allocated for the job |
-| **argument_definitions** | [../model/Dict[str, ArgumentDefinition]](ArgumentDefinition.md) | Optional | All arguments for this job to run |
+| **argument_definitions** | [Dict[str, ArgumentDefinition]](ArgumentDefinition.md) | Optional | All arguments for this job to run |
 | **command_line_argument_separator** | **str** | Optional | Value to separate command line arguments e.g : If a job has a command line argument named &#39;folder&#39; and the runtime value is &#39;s3://path&#39; then this would be supplied to the command as &#39;folder{separatorValue}s3://path&#39; Default to a space |
-| **required_resources** | [../model/RequiredResources](RequiredResources.md) | Optional | *No description available.* |
+| **required_resources** | [RequiredResources](RequiredResources.md) | Optional | *No description available.* |
 
 
 ## Usage

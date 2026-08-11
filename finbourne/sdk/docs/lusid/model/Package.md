@@ -5,13 +5,13 @@ A structure used to describe the structure of an order or orders that make up a 
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
-| **order_ids** | [../model/List[ResourceId]](ResourceId.md) | Required | Related order ids. |
-| **order_instruction_ids** | [../model/List[ResourceId]](ResourceId.md) | Required | Related order instruction ids. |
-| **properties** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Client-defined properties associated with this execution. |
-| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
-| **data_model_membership** | [../model/DataModelMembership](DataModelMembership.md) | Optional | *No description available.* |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **order_ids** | [List[ResourceId]](ResourceId.md) | Required | Related order ids. |
+| **order_instruction_ids** | [List[ResourceId]](ResourceId.md) | Required | Related order instruction ids. |
+| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Client-defined properties associated with this execution. |
+| **version** | [Version](Version.md) | Optional | *No description available.* |
+| **data_model_membership** | [DataModelMembership](DataModelMembership.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

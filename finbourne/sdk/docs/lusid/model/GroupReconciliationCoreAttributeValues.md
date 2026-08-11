@@ -4,8 +4,8 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **left_core_attributes** | [../model/List[ComparisonAttributeValuePair]](ComparisonAttributeValuePair.md) | Required | Core attribute names and values for the left hand entity being reconciled. |
-| **right_core_attributes** | [../model/List[ComparisonAttributeValuePair]](ComparisonAttributeValuePair.md) | Required | Core attribute names and values for the right hand entity being reconciled. |
+| **left_core_attributes** | [List[ComparisonAttributeValuePair]](ComparisonAttributeValuePair.md) | Required | Core attribute names and values for the left hand entity being reconciled. |
+| **right_core_attributes** | [List[ComparisonAttributeValuePair]](ComparisonAttributeValuePair.md) | Required | Core attribute names and values for the right hand entity being reconciled. |
 
 
 ## Usage

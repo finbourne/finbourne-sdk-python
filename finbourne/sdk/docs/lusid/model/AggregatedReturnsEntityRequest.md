@@ -5,10 +5,10 @@ The request body for the aggregated-returns (TWR) endpoint: the entity to calcul
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **entity** | [../model/AggregatedReturnsEntityId](AggregatedReturnsEntityId.md) | Required | *No description available.* |
+| **entity** | [AggregatedReturnsEntityId](AggregatedReturnsEntityId.md) | Required | *No description available.* |
 | **returns_scope** | **str** | Required | *No description available.* |
 | **returns_code** | **str** | Required | *No description available.* |
-| **metrics** | [../model/List[ReturnsMetric]](ReturnsMetric.md) | Required | *No description available.* |
+| **metrics** | [List[ReturnsMetric]](ReturnsMetric.md) | Required | *No description available.* |
 | **period** | **str** | Optional | Available values: Daily, Monthly. |
 | **from_effective_at** | **str** | Optional | *No description available.* |
 | **to_effective_at** | **str** | Optional | *No description available.* |

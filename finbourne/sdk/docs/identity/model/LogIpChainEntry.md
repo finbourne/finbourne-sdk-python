@@ -6,7 +6,7 @@ Represents a LogIpChainEntry resource in the Okta API
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **ip** | **str** | Optional | *No description available.* |
-| **geographical_context** | [../model/LogGeographicalContext](LogGeographicalContext.md) | Optional | *No description available.* |
+| **geographical_context** | [LogGeographicalContext](LogGeographicalContext.md) | Optional | *No description available.* |
 | **version** | **str** | Optional | *No description available.* |
 | **source** | **str** | Optional | *No description available.* |
 

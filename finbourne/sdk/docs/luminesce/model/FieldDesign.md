@@ -8,10 +8,10 @@ Treatment of a single field within a QueryDesign
 | **name** | **str** | Required | Name of the Field (column name, constant, complex expression, etc.) |
 | **table_alias** | **str** | Optional | Alias of the Table the field belongs to |
 | **alias** | **str** | Optional | Alias if any (if none the Name is used) |
-| **data_type** | [../model/DataType](DataType.md) | Optional | *No description available.* |
+| **data_type** | [DataType](DataType.md) | Optional | *No description available.* |
 | **should_select** | **bool** | Optional | Should this be selected? False would imply it is only being filtered on. Ignored when Aggregations are present |
-| **filters** | [../model/List[FilterTermDesign]](FilterTermDesign.md) | Optional | Filter clauses to apply to this field (And&#39;ed together) |
-| **aggregations** | [../model/List[Aggregation]](Aggregation.md) | Optional | Aggregations to apply (as opposed to simply selecting) |
+| **filters** | [List[FilterTermDesign]](FilterTermDesign.md) | Optional | Filter clauses to apply to this field (And&#39;ed together) |
+| **aggregations** | [List[Aggregation]](Aggregation.md) | Optional | Aggregations to apply (as opposed to simply selecting) |
 | **is_expression** | **bool** | Optional | Is this field an expression |
 
 

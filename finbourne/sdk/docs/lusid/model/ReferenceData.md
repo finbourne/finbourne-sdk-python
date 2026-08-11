@@ -4,8 +4,8 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **field_definitions** | [../model/List[FieldDefinition]](FieldDefinition.md) | Required | *No description available.* |
-| **values** | [../model/List[FieldValue]](FieldValue.md) | Required | *No description available.* |
+| **field_definitions** | [List[FieldDefinition]](FieldDefinition.md) | Required | *No description available.* |
+| **values** | [List[FieldValue]](FieldValue.md) | Required | *No description available.* |
 
 
 ## Usage

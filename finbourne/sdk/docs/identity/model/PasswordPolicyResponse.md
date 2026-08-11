@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **conditions** | [../model/PasswordPolicyResponseConditions](PasswordPolicyResponseConditions.md) | Required | *No description available.* |
+| **conditions** | [PasswordPolicyResponseConditions](PasswordPolicyResponseConditions.md) | Required | *No description available.* |
 
 
 ## Usage

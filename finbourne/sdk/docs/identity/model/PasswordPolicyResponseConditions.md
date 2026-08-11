@@ -5,9 +5,9 @@ Password policy conditions for a password policy
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **complexity** | [../model/PasswordPolicyResponseComplexity](PasswordPolicyResponseComplexity.md) | Required | *No description available.* |
-| **age** | [../model/PasswordPolicyResponseAge](PasswordPolicyResponseAge.md) | Required | *No description available.* |
-| **lockout** | [../model/PasswordPolicyResponseLockout](PasswordPolicyResponseLockout.md) | Required | *No description available.* |
+| **complexity** | [PasswordPolicyResponseComplexity](PasswordPolicyResponseComplexity.md) | Required | *No description available.* |
+| **age** | [PasswordPolicyResponseAge](PasswordPolicyResponseAge.md) | Required | *No description available.* |
+| **lockout** | [PasswordPolicyResponseLockout](PasswordPolicyResponseLockout.md) | Required | *No description available.* |
 
 
 ## Usage

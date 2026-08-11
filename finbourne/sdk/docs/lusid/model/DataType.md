@@ -5,18 +5,18 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **type_value_range** | **str** | Required | Available values: Open, Closed. |
-| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **display_name** | **str** | Required | *No description available.* |
 | **description** | **str** | Required | *No description available.* |
 | **value_type** | **str** | Required | Available values: String, Int, Decimal, DateTime, Boolean, Map, List, PropertyArray, Percentage, Code, Id, Uri, CurrencyAndAmount, TradePrice, Currency, MetricValue, ResourceId, ResultValue, CutLocalTime, DateOrCutLabel, UnindexedText. |
 | **acceptable_values** | **List[str]** | Optional | *No description available.* |
 | **unit_schema** | **str** | Optional | Available values: NoUnits, Basic, Iso4217Currency. |
-| **acceptable_units** | [../model/List[IUnitDefinitionDto]](IUnitDefinitionDto.md) | Optional | *No description available.* |
-| **reference_data** | [../model/ReferenceData](ReferenceData.md) | Optional | *No description available.* |
-| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
+| **acceptable_units** | [List[IUnitDefinitionDto]](IUnitDefinitionDto.md) | Optional | *No description available.* |
+| **reference_data** | [ReferenceData](ReferenceData.md) | Optional | *No description available.* |
+| **version** | [Version](Version.md) | Optional | *No description available.* |
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
-| **staged_modifications** | [../model/StagedModificationsInfo](StagedModificationsInfo.md) | Optional | *No description available.* |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **staged_modifications** | [StagedModificationsInfo](StagedModificationsInfo.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

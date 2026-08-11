@@ -5,10 +5,10 @@ Schedule for notional changes based on the change in FX rate.  Used in the repre
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **fx_conventions** | [../model/FxConventions](FxConventions.md) | Required | *No description available.* |
+| **fx_conventions** | [FxConventions](FxConventions.md) | Required | *No description available.* |
 | **varying_notional_currency** | **str** | Required | The currency of the varying notional amount. |
-| **varying_notional_fixing_dates** | [../model/RelativeDateOffset](RelativeDateOffset.md) | Required | *No description available.* |
-| **varying_notional_interim_exchange_payment_dates** | [../model/RelativeDateOffset](RelativeDateOffset.md) | Optional | *No description available.* |
+| **varying_notional_fixing_dates** | [RelativeDateOffset](RelativeDateOffset.md) | Required | *No description available.* |
+| **varying_notional_interim_exchange_payment_dates** | [RelativeDateOffset](RelativeDateOffset.md) | Optional | *No description available.* |
 | **schedule_type** | **str** | Required | Available values: FixedSchedule, FloatSchedule, OptionalitySchedule, StepSchedule, Exercise, FxRateSchedule, FxLinkedNotionalSchedule, BondConversionSchedule, PikSchedule, Invalid. |
 
 

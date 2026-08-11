@@ -5,11 +5,11 @@ Available intellisense response information
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **auto_complete_list** | [../model/List[IntellisenseItem]](IntellisenseItem.md) | Required | The available items at this point |
+| **auto_complete_list** | [List[IntellisenseItem]](IntellisenseItem.md) | Required | The available items at this point |
 | **try_again_soon_for_more** | **bool** | Required | Should the caller try again soon? (true means a cache is being built and this is a preliminary response!) |
 | **sql_with_marker** | **str** | Required | The SQL this is for with characters indicating the location the pop-up is for |
-| **start_replacement_position** | [../model/CursorPosition](CursorPosition.md) | Required | *No description available.* |
-| **end_replacement_position** | [../model/CursorPosition](CursorPosition.md) | Required | *No description available.* |
+| **start_replacement_position** | [CursorPosition](CursorPosition.md) | Required | *No description available.* |
+| **end_replacement_position** | [CursorPosition](CursorPosition.md) | Required | *No description available.* |
 
 
 ## Usage

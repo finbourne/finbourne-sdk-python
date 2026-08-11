@@ -8,8 +8,8 @@
 | **instrument_event_type** | **str** | Required | A value that represents the instrument event type. |
 | **description** | **str** | Required | The description of the transaction template. |
 | **scope** | **str** | Required | The scope in which the transaction template resides. |
-| **component_transactions** | [../model/List[ComponentTransaction]](ComponentTransaction.md) | Required | A set of component transactions that relate to the template to be created. |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **component_transactions** | [List[ComponentTransaction]](ComponentTransaction.md) | Required | A set of component transactions that relate to the template to be created. |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

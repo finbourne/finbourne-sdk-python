@@ -7,7 +7,7 @@
 | **instrument_identifiers** | **Dict[str, Optional[str]]** | Optional | Unique instrument identifiers |
 | **instrument_uid** | **str** | Required | LUSID&#39;s internal unique instrument identifier, resolved from the instrument identifiers |
 | **currency** | **str** | Required |  |
-| **properties** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Properties associated with the constituent |
+| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Properties associated with the constituent |
 | **weight** | **float** | Required |  |
 | **floating_weight** | **float** | Optional |  |
 | **instrument_scope** | **str** | Optional |  |

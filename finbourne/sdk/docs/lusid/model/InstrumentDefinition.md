@@ -5,11 +5,11 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **name** | **str** | Required | The name of the instrument. |
-| **identifiers** | [../model/Dict[str, InstrumentIdValue]](InstrumentIdValue.md) | Required | A set of identifiers that can be used to identify the instrument. At least one of these must be configured to be a unique identifier. |
-| **properties** | [../model/List[ModelProperty]](ModelProperty.md) | Optional | Set of unique instrument properties and associated values to store with the instrument. Each property must be from the &#39;Instrument&#39; domain. |
-| **look_through_portfolio_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
-| **definition** | [../model/LusidInstrument](LusidInstrument.md) | Optional | *No description available.* |
-| **settlement_cycle** | [../model/SettlementCycle](SettlementCycle.md) | Optional | *No description available.* |
+| **identifiers** | [Dict[str, InstrumentIdValue]](InstrumentIdValue.md) | Required | A set of identifiers that can be used to identify the instrument. At least one of these must be configured to be a unique identifier. |
+| **properties** | [List[ModelProperty]](ModelProperty.md) | Optional | Set of unique instrument properties and associated values to store with the instrument. Each property must be from the &#39;Instrument&#39; domain. |
+| **look_through_portfolio_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **definition** | [LusidInstrument](LusidInstrument.md) | Optional | *No description available.* |
+| **settlement_cycle** | [SettlementCycle](SettlementCycle.md) | Optional | *No description available.* |
 
 
 ## Usage

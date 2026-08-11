@@ -8,10 +8,10 @@ A payment diary containing all the cashflows on a single instrument.
 | **instrument_id_type** | **str** | Optional | The identifier type of the instrument. |
 | **instrument_id** | **str** | Optional | The identifier for the instrument. |
 | **instrument_scope** | **str** | Optional | The scope of the instrument. |
-| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
-| **legs** | [../model/List[InstrumentPaymentDiaryLeg]](InstrumentPaymentDiaryLeg.md) | Optional | Aggregated sets of Cashflows. |
+| **version** | [Version](Version.md) | Optional | *No description available.* |
+| **legs** | [List[InstrumentPaymentDiaryLeg]](InstrumentPaymentDiaryLeg.md) | Optional | Aggregated sets of Cashflows. |
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

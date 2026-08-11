@@ -6,10 +6,10 @@ Market Data required to build a volatility cube for swaption pricing,  represent
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **base_date** | **datetime** | Required | Base date of the cube - this is the start date of the swaptions on the cube. |
-| **instruments** | [../model/List[LusidInstrument]](LusidInstrument.md) | Required | Retrieve the set of instruments that define the cube. |
-| **quotes** | [../model/List[MarketQuote]](MarketQuote.md) | Required | Access the set of quotes that define the cube. |
+| **instruments** | [List[LusidInstrument]](LusidInstrument.md) | Required | Retrieve the set of instruments that define the cube. |
+| **quotes** | [List[MarketQuote]](MarketQuote.md) | Required | Access the set of quotes that define the cube. |
 | **lineage** | **str** | Optional | Description of the complex market data&#39;s lineage e.g. &#39;FundAccountant_GreenQuality&#39;. |
-| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
+| **version** | [Version](Version.md) | Optional | *No description available.* |
 | **market_data_type** | **str** | Required | Available values: DiscountFactorCurveData, EquityVolSurfaceData, FxVolSurfaceData, IrVolCubeData, OpaqueMarketData, YieldCurveData, FxForwardCurveData, FxForwardPipsCurveData, FxForwardTenorCurveData, FxForwardTenorPipsCurveData, FxForwardCurveByQuoteReference, CreditSpreadCurveData, EquityCurveByPricesData, ConstantVolatilitySurface. |
 
 

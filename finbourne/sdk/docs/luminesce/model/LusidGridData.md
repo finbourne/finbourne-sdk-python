@@ -5,11 +5,11 @@ Representation of the data we will get from the dashboard
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **lusid_grid_design** | [../model/TableView](TableView.md) | Required | *No description available.* |
-| **resource_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
-| **dashboard_type** | [../model/DashboardType](DashboardType.md) | Optional | *No description available.* |
+| **lusid_grid_design** | [TableView](TableView.md) | Required | *No description available.* |
+| **resource_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **dashboard_type** | [DashboardType](DashboardType.md) | Optional | *No description available.* |
 | **use_settle_date** | **bool** | Optional | Whether to use the Settlement date or the Transaction date |
-| **dates** | [../model/DateParameters](DateParameters.md) | Optional | *No description available.* |
+| **dates** | [DateParameters](DateParameters.md) | Optional | *No description available.* |
 | **recipe** | **str** | Optional | The recipe to use for valuations |
 | **currency** | **str** | Optional | The currency to use for valuations |
 | **tenor** | **str** | Optional | The tenor to use for valuations |

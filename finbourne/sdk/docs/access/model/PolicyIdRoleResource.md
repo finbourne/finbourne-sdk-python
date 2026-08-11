@@ -4,8 +4,8 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **policies** | [../model/List[PolicyId]](PolicyId.md) | Optional | *No description available.* |
-| **policy_collections** | [../model/List[PolicyCollectionId]](PolicyCollectionId.md) | Optional | *No description available.* |
+| **policies** | [List[PolicyId]](PolicyId.md) | Optional | *No description available.* |
+| **policy_collections** | [List[PolicyCollectionId]](PolicyCollectionId.md) | Optional | *No description available.* |
 
 
 ## Usage

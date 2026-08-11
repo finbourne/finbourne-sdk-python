@@ -5,9 +5,9 @@ Representation of a sql error
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **start** | [../model/CursorPosition](CursorPosition.md) | Required | *No description available.* |
-| **stop** | [../model/CursorPosition](CursorPosition.md) | Required | *No description available.* |
-| **no_viable_alternative_start** | [../model/CursorPosition](CursorPosition.md) | Optional | *No description available.* |
+| **start** | [CursorPosition](CursorPosition.md) | Required | *No description available.* |
+| **stop** | [CursorPosition](CursorPosition.md) | Required | *No description available.* |
+| **no_viable_alternative_start** | [CursorPosition](CursorPosition.md) | Optional | *No description available.* |
 | **length** | **int** | Required | The length of the error token counting line breaks if any |
 | **message** | **str** | Required | The error message |
 

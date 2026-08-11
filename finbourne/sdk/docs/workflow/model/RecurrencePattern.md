@@ -5,8 +5,8 @@ The Recurrence Pattern
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **time_constraints** | [../model/TimeConstraints](TimeConstraints.md) | Required | *No description available.* |
-| **date_regularity** | [../model/DateRegularity](DateRegularity.md) | Required | *No description available.* |
+| **time_constraints** | [TimeConstraints](TimeConstraints.md) | Required | *No description available.* |
+| **date_regularity** | [DateRegularity](DateRegularity.md) | Required | *No description available.* |
 | **business_day_adjustment** | **str** | Required | The Business Day Adjustment. One of None, Previous, Following, ModifiedPrevious, ModifiedFollowing, HalfMonthModifiedFollowing, Nearest |
 
 

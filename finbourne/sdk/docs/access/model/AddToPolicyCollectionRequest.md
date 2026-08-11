@@ -5,8 +5,8 @@ Base properties to create or update a policy collection
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **policies** | [../model/List[PolicyId]](PolicyId.md) | Optional | The identifiers of the Policies to be added to the collection. |
-| **policy_collections** | [../model/List[PolicyCollectionId]](PolicyCollectionId.md) | Optional | The identifiers of the PolicyCollections to be added to the collection. |
+| **policies** | [List[PolicyId]](PolicyId.md) | Optional | The identifiers of the Policies to be added to the collection. |
+| **policy_collections** | [List[PolicyCollectionId]](PolicyCollectionId.md) | Optional | The identifiers of the PolicyCollections to be added to the collection. |
 
 
 ## Usage

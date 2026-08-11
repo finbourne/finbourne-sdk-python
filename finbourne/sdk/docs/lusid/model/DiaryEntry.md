@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
-| **abor_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **abor_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **diary_entry_code** | **str** | Optional | The code of the diary entry. |
 | **type** | **str** | Required | The type of the diary entry. Available values: PeriodBoundary, ValuationPoint, Other. |
 | **name** | **str** | Optional | The name of the diary entry. |
@@ -14,9 +14,9 @@
 | **effective_at** | **datetime** | Required | The effective time of the diary entry. |
 | **query_as_at** | **datetime** | Optional | The query time of the diary entry. Defaults to latest. |
 | **previous_entry_time** | **datetime** | Optional | The entry time of the previous diary entry. |
-| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the diary entry. |
-| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the diary entry. |
+| **version** | [Version](Version.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

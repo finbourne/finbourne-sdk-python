@@ -58,11 +58,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| Scope of the sequence. | [required] 
- **create_sequence_request** | [**CreateSequenceRequest**](CreateSequenceRequest.md)| Request to create sequence | [required] 
+ **create_sequence_request** | [**CreateSequenceRequest**](../model/CreateSequenceRequest.md)| Request to create sequence | [required] 
 
 ### Return type
 
-[**SequenceDefinition**](SequenceDefinition.md)
+[**SequenceDefinition**](../model/SequenceDefinition.md)
 
 ### HTTP request headers
 
@@ -106,7 +106,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -150,7 +150,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SequenceDefinition**](SequenceDefinition.md)
+[**SequenceDefinition**](../model/SequenceDefinition.md)
 
 ### HTTP request headers
 
@@ -196,7 +196,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PagedResourceListOfSequenceDefinition**](PagedResourceListOfSequenceDefinition.md)
+[**PagedResourceListOfSequenceDefinition**](../model/PagedResourceListOfSequenceDefinition.md)
 
 ### HTTP request headers
 
@@ -242,7 +242,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**NextValueInSequenceResponse**](NextValueInSequenceResponse.md)
+[**NextValueInSequenceResponse**](../model/NextValueInSequenceResponse.md)
 
 ### HTTP request headers
 

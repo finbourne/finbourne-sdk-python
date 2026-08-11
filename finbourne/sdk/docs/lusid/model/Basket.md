@@ -5,9 +5,9 @@ LUSID representation of a basket of instruments.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **basket_name** | [../model/BasketIdentifier](BasketIdentifier.md) | Required | *No description available.* |
+| **basket_name** | [BasketIdentifier](BasketIdentifier.md) | Required | *No description available.* |
 | **basket_type** | **str** | Required | What contents does the basket have. The validation will check that the instrument types contained match those expected.    Supported string (enumeration) values are: [Bonds, Credits, Equities, EquitySwap]. |
-| **weighted_instruments** | [../model/WeightedInstruments](WeightedInstruments.md) | Required | *No description available.* |
+| **weighted_instruments** | [WeightedInstruments](WeightedInstruments.md) | Required | *No description available.* |
 | **instrument_type** | **str** | Required | Available values: QuotedSecurity, InterestRateSwap, FxForward, Future, ExoticInstrument, FxOption, CreditDefaultSwap, InterestRateSwaption, Bond, EquityOption, FixedLeg, FloatingLeg, BespokeCashFlowsLeg, Unknown, TermDeposit, ContractForDifference, EquitySwap, CashPerpetual, CapFloor, CashSettled, CdsIndex, Basket, FundingLeg, FxSwap, ForwardRateAgreement, SimpleInstrument, Repo, Equity, ExchangeTradedOption, ReferenceInstrument, ComplexBond, InflationLinkedBond, InflationSwap, SimpleCashFlowLoan, TotalReturnSwap, InflationLeg, FundShareClass, FlexibleLoan, UnsettledCash, Cash, MasteredInstrument, LoanFacility, FlexibleDeposit, FlexibleRepo, ToBeAnnounced, VolatilitySwap, ToBeAnnouncedOption, CommodityForward. |
 
 

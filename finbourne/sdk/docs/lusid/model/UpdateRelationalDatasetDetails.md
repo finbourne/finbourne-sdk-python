@@ -6,7 +6,7 @@
 |------|------|----------|-------------|
 | **display_name** | **str** | Required | A user-friendly display name for the relational dataset definition. |
 | **description** | **str** | Optional | A detailed description of the relational dataset definition and its purpose. |
-| **applicable_entity_types** | [../model/ApplicableEntityTypes](ApplicableEntityTypes.md) | Optional | *No description available.* |
+| **applicable_entity_types** | [ApplicableEntityTypes](ApplicableEntityTypes.md) | Optional | *No description available.* |
 
 
 ## Usage

@@ -68,11 +68,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_instance_request** | [**CreateInstanceRequest**](CreateInstanceRequest.md)| The new integration instance. | [required] 
+ **create_instance_request** | [**CreateInstanceRequest**](../model/CreateInstanceRequest.md)| The new integration instance. | [required] 
 
 ### Return type
 
-[**InstanceIdentifier**](InstanceIdentifier.md)
+[**InstanceIdentifier**](../model/InstanceIdentifier.md)
 
 ### HTTP request headers
 
@@ -157,7 +157,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExecuteInstanceResponse**](ExecuteInstanceResponse.md)
+[**ExecuteInstanceResponse**](../model/ExecuteInstanceResponse.md)
 
 ### HTTP request headers
 
@@ -198,11 +198,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **instance_id** | **str**| Instance identifier e.g. \&quot;b64135e7-98a0-41af-a845-d86167d54cc7\&quot;. | [required] 
- **request_body** | [**Dict[str, str]**](str.md)| Dictionary(string,string) of runtime parameters passed to the integration instance | [required] 
+ **request_body** | [**Dict[str, str]**](../model/str.md)| Dictionary(string,string) of runtime parameters passed to the integration instance | [required] 
 
 ### Return type
 
-[**ExecuteInstanceResponse**](ExecuteInstanceResponse.md)
+[**ExecuteInstanceResponse**](../model/ExecuteInstanceResponse.md)
 
 ### HTTP request headers
 
@@ -243,7 +243,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ProcessorSchemaResponse**](ProcessorSchemaResponse.md)
+[**ProcessorSchemaResponse**](../model/ProcessorSchemaResponse.md)
 
 ### HTTP request headers
 
@@ -331,7 +331,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**IntegrationInstanceResponse**](IntegrationInstanceResponse.md)
+[**IntegrationInstanceResponse**](../model/IntegrationInstanceResponse.md)
 
 ### HTTP request headers
 
@@ -376,7 +376,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Dict[str, LusidPropertyDefinitionOverridesByType]**](LusidPropertyDefinitionOverridesByType.md)
+[**Dict[str, LusidPropertyDefinitionOverridesByType]**](../model/LusidPropertyDefinitionOverridesByType.md)
 
 ### HTTP request headers
 
@@ -419,7 +419,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**IntegrationPropertyConfiguration**](IntegrationPropertyConfiguration.md)
+[**IntegrationPropertyConfiguration**](../model/IntegrationPropertyConfiguration.md)
 
 ### HTTP request headers
 
@@ -464,13 +464,13 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **integration** | **str**|  | [required] 
  **filter** | **str**|  | [optional] 
- **sort_by** | [**List[str]**](str.md)|  | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)|  | [optional] 
  **limit** | **int**|  | [optional] [default to 100]
  **page_token** | **str**|  | [optional] [default to &#39;&#39;]
 
 ### Return type
 
-[**PagedResourceListOfIFieldMapping**](PagedResourceListOfIFieldMapping.md)
+[**PagedResourceListOfIFieldMapping**](../model/PagedResourceListOfIFieldMapping.md)
 
 ### HTTP request headers
 
@@ -515,13 +515,13 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **integration** | **str**|  | [required] 
  **filter** | **str**|  | [optional] 
- **sort_by** | [**List[str]**](str.md)|  | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)|  | [optional] 
  **limit** | **int**|  | [optional] [default to 100]
  **page_token** | **str**|  | [optional] [default to &#39;&#39;]
 
 ### Return type
 
-[**PagedResourceListOfIPropertyMapping**](PagedResourceListOfIPropertyMapping.md)
+[**PagedResourceListOfIPropertyMapping**](../model/PagedResourceListOfIPropertyMapping.md)
 
 ### HTTP request headers
 
@@ -564,7 +564,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**JSchema**](JSchema.md)
+[**JSchema**](../model/JSchema.md)
 
 ### HTTP request headers
 
@@ -603,7 +603,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**List[ProcessorDescription]**](ProcessorDescription.md)
+[**List[ProcessorDescription]**](../model/ProcessorDescription.md)
 
 ### HTTP request headers
 
@@ -641,7 +641,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**List[IntegrationInstance]**](IntegrationInstance.md)
+[**List[IntegrationInstance]**](../model/IntegrationInstance.md)
 
 ### HTTP request headers
 
@@ -679,7 +679,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**List[IntegrationDescription]**](IntegrationDescription.md)
+[**List[IntegrationDescription]**](../model/IntegrationDescription.md)
 
 ### HTTP request headers
 
@@ -720,11 +720,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **instance_id** | **str**| Identifier of the instance | [required] 
  **integration** | **str**| The type of the integration e.g. \&quot;copp-clark\&quot;. | [required] 
- **request_body** | [**Dict[str, LusidPropertyDefinitionOverridesByType]**](LusidPropertyDefinitionOverridesByType.md)| Properties to be included and any overrides | [optional] 
+ **request_body** | [**Dict[str, LusidPropertyDefinitionOverridesByType]**](../model/LusidPropertyDefinitionOverridesByType.md)| Properties to be included and any overrides | [optional] 
 
 ### Return type
 
-[**Dict[str, LusidPropertyDefinitionOverridesByType]**](LusidPropertyDefinitionOverridesByType.md)
+[**Dict[str, LusidPropertyDefinitionOverridesByType]**](../model/LusidPropertyDefinitionOverridesByType.md)
 
 ### HTTP request headers
 
@@ -764,7 +764,7 @@ api_instance.update_instance(instance_id, update_instance_request)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **instance_id** | **str**| Instance identifier e.g. \&quot;b64135e7-98a0-41af-a845-d86167d54cc7\&quot;. | [required] 
- **update_instance_request** | [**UpdateInstanceRequest**](UpdateInstanceRequest.md)| The new integration instance. | [required] 
+ **update_instance_request** | [**UpdateInstanceRequest**](../model/UpdateInstanceRequest.md)| The new integration instance. | [required] 
 
 ### Return type
 

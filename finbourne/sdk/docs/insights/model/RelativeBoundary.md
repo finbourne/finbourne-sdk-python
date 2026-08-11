@@ -7,7 +7,7 @@ One end of a relative time range. Exactly one of the options must be set: Finbou
 |------|------|----------|-------------|
 | **now** | **bool** | Optional | When &#x60;true&#x60;, this boundary is the current instant (\&quot;now\&quot;). |
 | **midnight** | **bool** | Optional | When &#x60;true&#x60;, this boundary is the start of the current day (midnight) in the range&#39;s time zone. |
-| **offset** | [../model/RelativeOffset](RelativeOffset.md) | Optional | *No description available.* |
+| **offset** | [RelativeOffset](RelativeOffset.md) | Optional | *No description available.* |
 | **absolute** | **datetime** | Optional | An explicit absolute instant. |
 
 

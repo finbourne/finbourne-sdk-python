@@ -5,8 +5,8 @@ Container class pairing economic dependencies and quote data
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **economic_dependency** | [../model/EconomicDependency](EconomicDependency.md) | Required | *No description available.* |
-| **metric_value** | [../model/MetricValue](MetricValue.md) | Required | *No description available.* |
+| **economic_dependency** | [EconomicDependency](EconomicDependency.md) | Required | *No description available.* |
+| **metric_value** | [MetricValue](MetricValue.md) | Required | *No description available.* |
 | **scale_factor** | **float** | Optional | Scale factor for the quote - this can be null, in which case we default to 1. |
 
 

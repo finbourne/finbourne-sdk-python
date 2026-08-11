@@ -5,7 +5,7 @@ How to aggregate over a field
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **type** | [../model/AggregateFunction](AggregateFunction.md) | Required | *No description available.* |
+| **type** | [AggregateFunction](AggregateFunction.md) | Required | *No description available.* |
 | **alias** | **str** | Optional | Alias, if any, for the Aggregate expression when selected |
 
 

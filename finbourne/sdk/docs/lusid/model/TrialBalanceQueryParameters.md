@@ -4,8 +4,8 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **start** | [../model/DateOrDiaryEntry](DateOrDiaryEntry.md) | Optional | *No description available.* |
-| **end** | [../model/DateOrDiaryEntry](DateOrDiaryEntry.md) | Optional | *No description available.* |
+| **start** | [DateOrDiaryEntry](DateOrDiaryEntry.md) | Optional | *No description available.* |
+| **end** | [DateOrDiaryEntry](DateOrDiaryEntry.md) | Optional | *No description available.* |
 | **date_mode** | **str** | Optional | The mode of calculation of the trial balance. Available values: ActivityDate, AccountingDate. |
 | **general_ledger_profile_code** | **str** | Optional | The optional code of a general ledger profile used to decorate trial balance with levels. |
 | **property_keys** | **List[str]** | Optional | A list of property keys from the &#39;Account&#39; domain to decorate onto the trial balance. |

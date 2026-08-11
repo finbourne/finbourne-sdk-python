@@ -5,27 +5,27 @@ A2B Movement Record - shows A2B category based changes relating to a specific mo
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **portfolio_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **portfolio_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **holding_type** | **str** | Optional | The code for the type of the holding e.g. P, B, C, R, F etc. |
 | **instrument_scope** | **str** | Optional | The unique Lusid Instrument Id (LUID) of the instrument that the holding is in. |
 | **instrument_uid** | **str** | Optional | The unique Lusid Instrument Id (LUID) of the instrument that the holding is in. |
-| **sub_holding_keys** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | The sub-holding properties which identify the holding. Each property will be from the &#39;Transaction&#39; domain. These are configured on a transaction portfolio. |
+| **sub_holding_keys** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | The sub-holding properties which identify the holding. Each property will be from the &#39;Transaction&#39; domain. These are configured on a transaction portfolio. |
 | **currency** | **str** | Optional | The holding currency. |
 | **transaction_id** | **str** | Optional | The unique identifier for the transaction. |
 | **movement_name** | **str** | Optional | The name of the movement. |
 | **effective_date** | **datetime** | Optional | The date of the movement. |
 | **units** | **float** | Optional | The number of units of the instrument that are affected by the movement. |
 | **running_units** | **float** | Optional | The cumulative number of units for this sub-holding, as at this movement. |
-| **running_balance** | [../model/A2BCategory](A2BCategory.md) | Optional | *No description available.* |
+| **running_balance** | [A2BCategory](A2BCategory.md) | Optional | *No description available.* |
 | **running_cost** | **float** | Optional | The running cost in portfolio currency for this sub-holding, as at this movement. |
-| **start** | [../model/A2BCategory](A2BCategory.md) | Optional | *No description available.* |
-| **flows** | [../model/A2BCategory](A2BCategory.md) | Optional | *No description available.* |
-| **gains** | [../model/A2BCategory](A2BCategory.md) | Optional | *No description available.* |
-| **carry** | [../model/A2BCategory](A2BCategory.md) | Optional | *No description available.* |
-| **end** | [../model/A2BCategory](A2BCategory.md) | Optional | *No description available.* |
-| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | The properties which have been requested to be decorated onto the holding. These will be from the &#39;Instrument&#39; domain. |
+| **start** | [A2BCategory](A2BCategory.md) | Optional | *No description available.* |
+| **flows** | [A2BCategory](A2BCategory.md) | Optional | *No description available.* |
+| **gains** | [A2BCategory](A2BCategory.md) | Optional | *No description available.* |
+| **carry** | [A2BCategory](A2BCategory.md) | Optional | *No description available.* |
+| **end** | [A2BCategory](A2BCategory.md) | Optional | *No description available.* |
+| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | The properties which have been requested to be decorated onto the holding. These will be from the &#39;Instrument&#39; domain. |
 | **group_id** | **str** | Optional | Arbitrary string that can be used to cross reference an entry in the A2B report with activity in the A2B-Movements. This should be used purely as a token. The content should not be relied upon. |
-| **errors** | [../model/List[ResponseMetaData]](ResponseMetaData.md) | Optional | Any errors with the record are reported here. |
+| **errors** | [List[ResponseMetaData]](ResponseMetaData.md) | Optional | Any errors with the record are reported here. |
 
 
 ## Usage

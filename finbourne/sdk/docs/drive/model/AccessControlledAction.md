@@ -5,9 +5,9 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **description** | **str** | Required | *No description available.* |
-| **action** | [../model/ActionId](ActionId.md) | Required | *No description available.* |
-| **limited_set** | [../model/List[IdSelectorDefinition]](IdSelectorDefinition.md) | Optional | *No description available.* |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **action** | [ActionId](ActionId.md) | Required | *No description available.* |
+| **limited_set** | [List[IdSelectorDefinition]](IdSelectorDefinition.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

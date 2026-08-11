@@ -58,7 +58,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Request**](Request.md)
+[**Request**](../model/Request.md)
 
 ### HTTP request headers
 
@@ -98,7 +98,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**RequestLog**](RequestLog.md)
+[**RequestLog**](../model/RequestLog.md)
 
 ### HTTP request headers
 
@@ -138,7 +138,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Response**](Response.md)
+[**Response**](../model/Response.md)
 
 ### HTTP request headers
 
@@ -186,7 +186,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListWithHistogramOfRequestLog**](ResourceListWithHistogramOfRequestLog.md)
+[**ResourceListWithHistogramOfRequestLog**](../model/ResourceListWithHistogramOfRequestLog.md)
 
 ### HTTP request headers
 
@@ -222,11 +222,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **query_request_logs_request** | [**QueryRequestLogsRequest**](QueryRequestLogsRequest.md)| The query parameters in the request body. | [required] 
+ **query_request_logs_request** | [**QueryRequestLogsRequest**](../model/QueryRequestLogsRequest.md)| The query parameters in the request body. | [required] 
 
 ### Return type
 
-[**ResourceListOfQueriedRequestLog**](ResourceListOfQueriedRequestLog.md)
+[**ResourceListOfQueriedRequestLog**](../model/ResourceListOfQueriedRequestLog.md)
 
 ### HTTP request headers
 

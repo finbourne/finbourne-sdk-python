@@ -7,7 +7,7 @@ The response to a request to annul (delete) a set of structured data from Lusid.
 |------|------|----------|-------------|
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
 | **value** | **datetime** | Optional | The time at which the identifier was annulled |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

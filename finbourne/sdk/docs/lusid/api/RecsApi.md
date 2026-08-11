@@ -61,11 +61,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **entity_unique_id** | **str**| The entity unique id of the rec result set (its version.entityUniqueId). | [required] 
- **rec_result_set_approval_decision_request** | [**RecResultSetApprovalDecisionRequest**](RecResultSetApprovalDecisionRequest.md)| The approval decision request. | [required] 
+ **rec_result_set_approval_decision_request** | [**RecResultSetApprovalDecisionRequest**](../model/RecResultSetApprovalDecisionRequest.md)| The approval decision request. | [required] 
 
 ### Return type
 
-[**RecResultSet**](RecResultSet.md)
+[**RecResultSet**](../model/RecResultSet.md)
 
 ### HTTP request headers
 
@@ -111,7 +111,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**RecInstance**](RecInstance.md)
+[**RecInstance**](../model/RecInstance.md)
 
 ### HTTP request headers
 
@@ -157,7 +157,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**RecResultSet**](RecResultSet.md)
+[**RecResultSet**](../model/RecResultSet.md)
 
 ### HTTP request headers
 
@@ -195,11 +195,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **instantiate_rec_request** | [**InstantiateRecRequest**](InstantiateRecRequest.md)| The instantiation request. | [required] 
+ **instantiate_rec_request** | [**InstantiateRecRequest**](../model/InstantiateRecRequest.md)| The instantiation request. | [required] 
 
 ### Return type
 
-[**RecInstance**](RecInstance.md)
+[**RecInstance**](../model/RecInstance.md)
 
 ### HTTP request headers
 
@@ -245,11 +245,11 @@ Name | Type | Description  | Notes
  **page** | **str**| The pagination token to use to continue listing instances from a previous call. If a pagination token is provided the filter and asAt fields must not have changed since the original request. | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many. Defaults to 100 if not specified. | [optional] 
  **filter** | **str**| Expression to filter the result set. Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid. | [optional] 
- **sort_by** | [**List[str]**](str.md)| A list of field names suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| A list of field names suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
 
 ### Return type
 
-[**PagedResourceListOfRecInstance**](PagedResourceListOfRecInstance.md)
+[**PagedResourceListOfRecInstance**](../model/PagedResourceListOfRecInstance.md)
 
 ### HTTP request headers
 
@@ -297,11 +297,11 @@ Name | Type | Description  | Notes
  **page** | **str**| The pagination token to use to continue listing result sets from a previous call. If a pagination token is provided the filter and asAt fields must not have changed since the original request. | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many. Defaults to 100 if not specified. | [optional] 
  **filter** | **str**| Expression to filter the result set. Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid. | [optional] 
- **sort_by** | [**List[str]**](str.md)| A list of field names suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| A list of field names suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
 
 ### Return type
 
-[**PagedResourceListOfRecResultSet**](PagedResourceListOfRecResultSet.md)
+[**PagedResourceListOfRecResultSet**](../model/PagedResourceListOfRecResultSet.md)
 
 ### HTTP request headers
 
@@ -341,11 +341,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **entity_unique_id** | **str**| The entity unique id of the rec result set (its version.entityUniqueId). | [required] 
- **submit_rec_result_set_review_request** | [**SubmitRecResultSetReviewRequest**](SubmitRecResultSetReviewRequest.md)| The submission request. | [required] 
+ **submit_rec_result_set_review_request** | [**SubmitRecResultSetReviewRequest**](../model/SubmitRecResultSetReviewRequest.md)| The submission request. | [required] 
 
 ### Return type
 
-[**RecResultSet**](RecResultSet.md)
+[**RecResultSet**](../model/RecResultSet.md)
 
 ### HTTP request headers
 
@@ -387,11 +387,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **instance_id_type** | **str**| How the instance was created: \&quot;WorkflowServiceTaskId\&quot; or \&quot;Manual\&quot;. Available values: WorkflowServiceTaskId, Manual. | [required] 
  **instance_id_value** | **str**| The instance identifier value (a GUID). | [required] 
- **transition_rec_instance_request** | [**TransitionRecInstanceRequest**](TransitionRecInstanceRequest.md)| The transition request. | [required] 
+ **transition_rec_instance_request** | [**TransitionRecInstanceRequest**](../model/TransitionRecInstanceRequest.md)| The transition request. | [required] 
 
 ### Return type
 
-[**RecInstance**](RecInstance.md)
+[**RecInstance**](../model/RecInstance.md)
 
 ### HTTP request headers
 

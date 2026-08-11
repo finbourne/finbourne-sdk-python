@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -105,11 +105,11 @@ Name | Type | Description  | Notes
  **scope** | **str**| The scope to which the orderInstruction belongs. | [required] 
  **code** | **str**| The orderInstruction&#39;s unique identifier. | [required] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the orderInstruction. Defaults to return the latest version of the orderInstruction if not specified. | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the \&quot;OrderInstruction\&quot; domain to decorate onto the orderInstruction.              These take the format {domain}/{scope}/{code} e.g. \&quot;OrderInstruction/system/Name\&quot;. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the \&quot;OrderInstruction\&quot; domain to decorate onto the orderInstruction.              These take the format {domain}/{scope}/{code} e.g. \&quot;OrderInstruction/system/Name\&quot;. | [optional] 
 
 ### Return type
 
-[**OrderInstruction**](OrderInstruction.md)
+[**OrderInstruction**](../model/OrderInstruction.md)
 
 ### HTTP request headers
 
@@ -154,14 +154,14 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **as_at** | **datetime**| The asAt datetime at which to retrieve the orderInstruction. Defaults to return the latest version of the orderInstruction if not specified. | [optional] 
  **page** | **str**| The pagination token to use to continue listing orderInstructions from a previous call to list orderInstructions.              This value is returned from the previous call. If a pagination token is provided the sortBy, filter, effectiveAt, and asAt fields              must not have changed since the original request. | [optional] 
- **sort_by** | [**List[str]**](str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many. | [optional] 
  **filter** | **str**| Expression to filter the result set. Read more about filtering results from LUSID here:              https://support.lusid.com/filtering-results-from-lusid. | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the \&quot;OrderInstruction\&quot; domain to decorate onto each orderInstruction.                  These take the format {domain}/{scope}/{code} e.g. \&quot;OrderInstruction/system/Name\&quot;.                  All properties, except derived properties, are returned by default, without specifying here. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the \&quot;OrderInstruction\&quot; domain to decorate onto each orderInstruction.                  These take the format {domain}/{scope}/{code} e.g. \&quot;OrderInstruction/system/Name\&quot;.                  All properties, except derived properties, are returned by default, without specifying here. | [optional] 
 
 ### Return type
 
-[**PagedResourceListOfOrderInstruction**](PagedResourceListOfOrderInstruction.md)
+[**PagedResourceListOfOrderInstruction**](../model/PagedResourceListOfOrderInstruction.md)
 
 ### HTTP request headers
 
@@ -199,11 +199,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **order_instruction_set_request** | [**OrderInstructionSetRequest**](OrderInstructionSetRequest.md)| The collection of orderInstruction requests. | [optional] 
+ **order_instruction_set_request** | [**OrderInstructionSetRequest**](../model/OrderInstructionSetRequest.md)| The collection of orderInstruction requests. | [optional] 
 
 ### Return type
 
-[**ResourceListOfOrderInstruction**](ResourceListOfOrderInstruction.md)
+[**ResourceListOfOrderInstruction**](../model/ResourceListOfOrderInstruction.md)
 
 ### HTTP request headers
 

@@ -58,11 +58,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the complex market data to delete. | [required] 
- **request_body** | [**Dict[str, ComplexMarketDataId]**](ComplexMarketDataId.md)| The complex market data Ids to delete, each keyed by a unique correlation id. | [required] 
+ **request_body** | [**Dict[str, ComplexMarketDataId]**](../model/ComplexMarketDataId.md)| The complex market data Ids to delete, each keyed by a unique correlation id. | [required] 
 
 ### Return type
 
-[**AnnulStructuredDataResponse**](AnnulStructuredDataResponse.md)
+[**AnnulStructuredDataResponse**](../model/AnnulStructuredDataResponse.md)
 
 ### HTTP request headers
 
@@ -108,7 +108,7 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the complex market data to retrieve. | [required] 
- **request_body** | [**Dict[str, ComplexMarketDataId]**](ComplexMarketDataId.md)| The time invariant set of complex data identifiers to retrieve the data for. These need to be               keyed by a unique correlation id allowing the retrieved item to be identified in the response. | [required] 
+ **request_body** | [**Dict[str, ComplexMarketDataId]**](../model/ComplexMarketDataId.md)| The time invariant set of complex data identifiers to retrieve the data for. These need to be               keyed by a unique correlation id allowing the retrieved item to be identified in the response. | [required] 
  **effective_at** | **str**| The effective datetime at which to retrieve the complex market data.               Defaults to the current LUSID system datetime if not specified.               Must match the Effective at of each ComplexMarketDataId given in the request body. | [optional] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the complex market data. Defaults to return the latest version if not specified. | [optional] 
  **max_age** | **str**| The duration of the look back window in an ISO8601 time interval format e.g. P1Y2M3DT4H30M (1 year, 2 months, 3 days, 4 hours and 30 minutes).               This is subtracted from the provided effectiveAt datetime to generate a effective datetime window inside which a complex market data item must exist to be retrieved. | [optional] 
@@ -118,7 +118,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetComplexMarketDataResponse**](GetComplexMarketDataResponse.md)
+[**GetComplexMarketDataResponse**](../model/GetComplexMarketDataResponse.md)
 
 ### HTTP request headers
 
@@ -176,7 +176,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfListComplexMarketDataWithMetaDataResponse**](ResourceListOfListComplexMarketDataWithMetaDataResponse.md)
+[**ResourceListOfListComplexMarketDataWithMetaDataResponse**](../model/ResourceListOfListComplexMarketDataWithMetaDataResponse.md)
 
 ### HTTP request headers
 
@@ -217,12 +217,12 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the complex market data to append. | [required] 
- **append_complex_market_data_request** | [**AppendComplexMarketDataRequest**](AppendComplexMarketDataRequest.md)| Request definition of the point to append. | [required] 
+ **append_complex_market_data_request** | [**AppendComplexMarketDataRequest**](../model/AppendComplexMarketDataRequest.md)| Request definition of the point to append. | [required] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the complex market data. Defaults to return the latest version if not specified. | [optional] 
 
 ### Return type
 
-[**UpsertSingleStructuredDataResponse**](UpsertSingleStructuredDataResponse.md)
+[**UpsertSingleStructuredDataResponse**](../model/UpsertSingleStructuredDataResponse.md)
 
 ### HTTP request headers
 
@@ -262,11 +262,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope to use when updating or inserting the complex market data. | [required] 
- **request_body** | [**Dict[str, UpsertComplexMarketDataRequest]**](UpsertComplexMarketDataRequest.md)| The set of complex market data items to update or insert keyed by a unique correlation id. | [required] 
+ **request_body** | [**Dict[str, UpsertComplexMarketDataRequest]**](../model/UpsertComplexMarketDataRequest.md)| The set of complex market data items to update or insert keyed by a unique correlation id. | [required] 
 
 ### Return type
 
-[**UpsertStructuredDataResponse**](UpsertStructuredDataResponse.md)
+[**UpsertStructuredDataResponse**](../model/UpsertStructuredDataResponse.md)
 
 ### HTTP request headers
 

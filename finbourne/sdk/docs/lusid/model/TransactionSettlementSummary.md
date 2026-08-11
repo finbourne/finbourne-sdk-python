@@ -4,10 +4,10 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **overall_status** | [../model/CategorySettlementStatus](CategorySettlementStatus.md) | Required | *No description available.* |
-| **stock_status** | [../model/CategorySettlementStatus](CategorySettlementStatus.md) | Required | *No description available.* |
-| **cash_status** | [../model/CategorySettlementStatus](CategorySettlementStatus.md) | Required | *No description available.* |
-| **deferred_cash_receipt_status** | [../model/CategorySettlementStatus](CategorySettlementStatus.md) | Required | *No description available.* |
+| **overall_status** | [CategorySettlementStatus](CategorySettlementStatus.md) | Required | *No description available.* |
+| **stock_status** | [CategorySettlementStatus](CategorySettlementStatus.md) | Required | *No description available.* |
+| **cash_status** | [CategorySettlementStatus](CategorySettlementStatus.md) | Required | *No description available.* |
+| **deferred_cash_receipt_status** | [CategorySettlementStatus](CategorySettlementStatus.md) | Required | *No description available.* |
 
 
 ## Usage

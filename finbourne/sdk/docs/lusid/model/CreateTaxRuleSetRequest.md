@@ -4,11 +4,11 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **display_name** | **str** | Required |  |
 | **description** | **str** | Required |  |
 | **output_property_key** | **str** | Required |  |
-| **rules** | [../model/List[TaxRule]](TaxRule.md) | Required |  |
+| **rules** | [List[TaxRule]](TaxRule.md) | Required |  |
 
 
 ## Usage

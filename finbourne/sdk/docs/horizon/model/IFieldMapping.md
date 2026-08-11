@@ -9,7 +9,7 @@
 | **entity_type** | **str** | Required | *No description available.* |
 | **field_name** | **str** | Required | *No description available.* |
 | **transformation_description** | **str** | Optional | *No description available.* |
-| **vendor_fields** | [../model/List[VendorField]](VendorField.md) | Required | *No description available.* |
+| **vendor_fields** | [List[VendorField]](VendorField.md) | Required | *No description available.* |
 | **versions** | **List[str]** | Required | *No description available.* |
 
 

@@ -12,9 +12,9 @@
 | **resource_state** | **object** | Required | The state of the resource associated with this record. |
 | **dependencies** | **List[str]** | Required | A collection of resource identifiers that this resource depends on. |
 | **tracking_state** | **object** | Optional | The tracking state of the resource record. |
-| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
+| **version** | [Version](Version.md) | Optional | *No description available.* |
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for the resource record at the requested effective and asAt datetime. |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

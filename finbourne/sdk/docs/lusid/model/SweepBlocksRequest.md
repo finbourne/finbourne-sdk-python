@@ -5,7 +5,7 @@ A request to sweep specified blocks.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **block_ids** | [../model/Dict[str, ResourceId]](ResourceId.md) | Required | A dictionary mapping ephemeral identifiers, which live as long as the request, to specific blocks to sweep. |
+| **block_ids** | [Dict[str, ResourceId]](ResourceId.md) | Required | A dictionary mapping ephemeral identifiers, which live as long as the request, to specific blocks to sweep. |
 | **latest_allowable_modification_time** | **str** | Required | Timestamp or cut label which the  block or related entities must not have been updated after. |
 
 

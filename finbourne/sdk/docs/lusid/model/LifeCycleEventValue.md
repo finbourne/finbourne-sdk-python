@@ -6,8 +6,8 @@ The instrument life cycle event result value type
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **effective_date** | **datetime** | Optional | The effective date of the event |
-| **event_values** | [../model/ResultValueDictionary](ResultValueDictionary.md) | Optional | *No description available.* |
-| **event_lineage** | [../model/LifeCycleEventLineage](LifeCycleEventLineage.md) | Optional | *No description available.* |
+| **event_values** | [ResultValueDictionary](ResultValueDictionary.md) | Optional | *No description available.* |
+| **event_lineage** | [LifeCycleEventLineage](LifeCycleEventLineage.md) | Optional | *No description available.* |
 | **result_value_type** | **str** | Required | Available values: ResultValue, ResultValueDictionary, ResultValue0D, ResultValueDecimal, ResultValueInt, ResultValueString, ResultValueBool, ResultValueCurrency, CashFlowValue, CashFlowValueSet, ResultValueLifeCycleEventValue, ResultValueDateTimeOffset. |
 
 

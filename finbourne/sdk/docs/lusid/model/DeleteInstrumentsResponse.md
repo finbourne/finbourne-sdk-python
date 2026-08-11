@@ -6,8 +6,8 @@
 |------|------|----------|-------------|
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
 | **as_at** | **datetime** | Required | The as-at datetime at which the instrument was deleted. |
-| **staged** | [../model/Dict[str, StagedModificationsInfo]](StagedModificationsInfo.md) | Optional | Information about the pending staged modifications for the current entity. *(read-only)* |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **staged** | [Dict[str, StagedModificationsInfo]](StagedModificationsInfo.md) | Optional | Information about the pending staged modifications for the current entity. *(read-only)* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

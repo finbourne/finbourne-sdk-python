@@ -60,11 +60,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_data_type_request** | [**CreateDataTypeRequest**](CreateDataTypeRequest.md)| The definition of the new data type | [optional] 
+ **create_data_type_request** | [**CreateDataTypeRequest**](../model/CreateDataTypeRequest.md)| The definition of the new data type | [optional] 
 
 ### Return type
 
-[**DataType**](DataType.md)
+[**DataType**](../model/DataType.md)
 
 ### HTTP request headers
 
@@ -108,7 +108,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -154,7 +154,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DataType**](DataType.md)
+[**DataType**](../model/DataType.md)
 
 ### HTTP request headers
 
@@ -198,13 +198,13 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the data type | [required] 
  **code** | **str**| The code of the data type | [required] 
- **units** | [**List[str]**](str.md)| One or more unit identifiers for which the definition is being requested | [optional] 
+ **units** | [**List[str]**](../model/str.md)| One or more unit identifiers for which the definition is being requested | [optional] 
  **filter** | **str**| Optional. Expression to filter the result set.               For example, to filter on the Schema, use \&quot;schema eq &#39;string&#39;\&quot;              Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid. | [optional] 
  **as_at** | **datetime**| Optional. The as at of the requested data type | [optional] 
 
 ### Return type
 
-[**ResourceListOfIUnitDefinitionDto**](ResourceListOfIUnitDefinitionDto.md)
+[**ResourceListOfIUnitDefinitionDto**](../model/ResourceListOfIUnitDefinitionDto.md)
 
 ### HTTP request headers
 
@@ -250,11 +250,11 @@ Name | Type | Description  | Notes
  **page** | **str**| The pagination token to use to continue listing data type summaries. This  value is returned from the previous call. If a pagination token is provided, the filter, sortBy  and asAt fields must not have changed since the original request. | [optional] 
  **limit** | **int**| When paginating, limit the results to this number. Defaults to 100 if not specified. | [optional] 
  **filter** | **str**| Optional. Expression to filter the result set.                For example, to filter on the Scope, use \&quot;id.scope eq &#39;myscope&#39;\&quot;, to filter on Schema, use \&quot;schema eq &#39;string&#39;\&quot;,               to filter on AcceptableValues use \&quot;acceptableValues any (~ eq &#39;value&#39;)\&quot;               Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid. | [optional] 
- **sort_by** | [**List[str]**](str.md)| A list of field names to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot; | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| A list of field names to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot; | [optional] 
 
 ### Return type
 
-[**PagedResourceListOfDataTypeSummary**](PagedResourceListOfDataTypeSummary.md)
+[**PagedResourceListOfDataTypeSummary**](../model/PagedResourceListOfDataTypeSummary.md)
 
 ### HTTP request headers
 
@@ -300,13 +300,13 @@ Name | Type | Description  | Notes
  **scope** | **str**| The requested scope of the data types | [required] 
  **as_at** | **datetime**| The as at of the requested data types | [optional] 
  **include_system** | **bool**| Whether to additionally include those data types in the \&quot;system\&quot; scope | [optional] 
- **sort_by** | [**List[str]**](str.md)| Optional. Order the results by these fields. Use use the &#39;-&#39; sign to denote descending order e.g. -MyFieldName | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| Optional. Order the results by these fields. Use use the &#39;-&#39; sign to denote descending order e.g. -MyFieldName | [optional] 
  **limit** | **int**| Optional. When paginating, limit the number of returned results to this many. | [optional] 
  **filter** | **str**| Optional. Expression to filter the result set.              For example, to filter on the Display Name, use \&quot;displayName eq &#39;string&#39;\&quot;              Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid. | [optional] 
 
 ### Return type
 
-[**ResourceListOfDataType**](ResourceListOfDataType.md)
+[**ResourceListOfDataType**](../model/ResourceListOfDataType.md)
 
 ### HTTP request headers
 
@@ -348,11 +348,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the data type | [required] 
  **code** | **str**| The code of the data type | [required] 
- **update_data_type_request** | [**UpdateDataTypeRequest**](UpdateDataTypeRequest.md)| The updated definition of the data type | [required] 
+ **update_data_type_request** | [**UpdateDataTypeRequest**](../model/UpdateDataTypeRequest.md)| The updated definition of the data type | [required] 
 
 ### Return type
 
-[**DataType**](DataType.md)
+[**DataType**](../model/DataType.md)
 
 ### HTTP request headers
 
@@ -394,11 +394,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the data type | [required] 
  **code** | **str**| The code of the data type | [required] 
- **update_reference_data_request** | [**UpdateReferenceDataRequest**](UpdateReferenceDataRequest.md)| The updated reference data | [required] 
+ **update_reference_data_request** | [**UpdateReferenceDataRequest**](../model/UpdateReferenceDataRequest.md)| The updated reference data | [required] 
 
 ### Return type
 
-[**DataType**](DataType.md)
+[**DataType**](../model/DataType.md)
 
 ### HTTP request headers
 
@@ -440,11 +440,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the data type | [required] 
  **code** | **str**| The code of the data type | [required] 
- **field_value** | [**List[FieldValue]**](FieldValue.md)| The updated reference values | [required] 
+ **field_value** | [**List[FieldValue]**](../model/FieldValue.md)| The updated reference values | [required] 
 
 ### Return type
 
-[**DataType**](DataType.md)
+[**DataType**](../model/DataType.md)
 
 ### HTTP request headers
 

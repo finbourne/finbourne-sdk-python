@@ -6,14 +6,14 @@
 |------|------|----------|-------------|
 | **code** | **str** | Required | The unique Code of the Calendar Entry. The Calendar Entry, together with the Fund Scope and Code, uniquely identifies a Fund Calendar Entry. |
 | **nav_type_code** | **str** | Required | The navTypeCode of the Fund Calendar Entry. This is the code of the NAV type that this Calendar Entry is associated with. |
-| **timeline_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
-| **previous_entry** | [../model/PreviousFundCalendarEntry](PreviousFundCalendarEntry.md) | Optional | *No description available.* |
+| **timeline_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **previous_entry** | [PreviousFundCalendarEntry](PreviousFundCalendarEntry.md) | Optional | *No description available.* |
 | **effective_at** | **datetime** | Optional | The effective at of the Calendar Entry. |
 | **entry_type** | **str** | Required | The type of the Fund Calendar Entry. Available values: FinalisedValuationPoint, FundEstimateValuationPoint, FundBookmark. |
 | **status** | **str** | Optional | The status of the Fund Calendar Entry. Can be &#39;Estimate&#39;, &#39;Unofficial&#39; or &#39;Final&#39;. |
 | **apply_clear_down** | **bool** | Optional | Set to true if that closed period should have the clear down applied. |
 | **leader_nav_type_code** | **str** | Optional | The code of the Nav Type that this Nav Type will follow when set. |
-| **variants** | [../model/List[EstimateVariant]](EstimateVariant.md) | Optional | The variants of the Estimate Valuation Point.  |
+| **variants** | [List[EstimateVariant]](EstimateVariant.md) | Optional | The variants of the Estimate Valuation Point.  |
 | **fund_calendar_entries_type** | **str** | Required | The type of the Calendar Entry. Available values: FinalisedValuationPoint, FundEstimateValuationPoint, FundBookmark. |
 
 

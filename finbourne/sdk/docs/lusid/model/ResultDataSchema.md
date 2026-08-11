@@ -5,9 +5,9 @@ The shape and type of the returned data. The AddressSchema gives information abo
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **node_value_schema** | [../model/Dict[str, FieldSchema]](FieldSchema.md) | Optional | This has been deprecated. Please use AddressSchema instead. |
-| **property_schema** | [../model/Dict[str, FieldSchema]](FieldSchema.md) | Optional | This has been deprecated. Please use AddressSchema instead. |
-| **address_schema** | [../model/Dict[str, AddressDefinition]](AddressDefinition.md) | Optional | *No description available.* |
+| **node_value_schema** | [Dict[str, FieldSchema]](FieldSchema.md) | Optional | This has been deprecated. Please use AddressSchema instead. |
+| **property_schema** | [Dict[str, FieldSchema]](FieldSchema.md) | Optional | This has been deprecated. Please use AddressSchema instead. |
+| **address_schema** | [Dict[str, AddressDefinition]](AddressDefinition.md) | Optional | *No description available.* |
 
 
 ## Usage

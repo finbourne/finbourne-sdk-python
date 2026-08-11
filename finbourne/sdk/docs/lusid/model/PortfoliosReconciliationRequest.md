@@ -4,8 +4,8 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **left** | [../model/PortfolioReconciliationRequest](PortfolioReconciliationRequest.md) | Required | *No description available.* |
-| **right** | [../model/PortfolioReconciliationRequest](PortfolioReconciliationRequest.md) | Required | *No description available.* |
+| **left** | [PortfolioReconciliationRequest](PortfolioReconciliationRequest.md) | Required | *No description available.* |
+| **right** | [PortfolioReconciliationRequest](PortfolioReconciliationRequest.md) | Required | *No description available.* |
 | **instrument_property_keys** | **List[str]** | Required | Instrument properties to be included with any identified breaks. These properties will be in the effective and AsAt dates of the left portfolio |
 
 

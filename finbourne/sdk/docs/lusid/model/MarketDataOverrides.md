@@ -5,8 +5,8 @@ Class which holds market data overrides to be used in valuation
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **complex_market_data** | [../model/List[EconomicDependencyWithComplexMarketData]](EconomicDependencyWithComplexMarketData.md) | Optional | A list of EconomicDependency paired with quote data satisfying that economic dependency |
-| **quotes** | [../model/List[EconomicDependencyWithQuote]](EconomicDependencyWithQuote.md) | Optional | A list of EconomicDependency paired with a ComplexMarketData satisfying that economic dependency |
+| **complex_market_data** | [List[EconomicDependencyWithComplexMarketData]](EconomicDependencyWithComplexMarketData.md) | Optional | A list of EconomicDependency paired with quote data satisfying that economic dependency |
+| **quotes** | [List[EconomicDependencyWithQuote]](EconomicDependencyWithQuote.md) | Optional | A list of EconomicDependency paired with a ComplexMarketData satisfying that economic dependency |
 
 
 ## Usage

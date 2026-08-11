@@ -4,9 +4,9 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **destination_block** | [../model/Block](Block.md) | Optional | *No description available.* |
-| **order** | [../model/Order](Order.md) | Optional | *No description available.* |
-| **source_block_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **destination_block** | [Block](Block.md) | Optional | *No description available.* |
+| **order** | [Order](Order.md) | Optional | *No description available.* |
+| **source_block_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 
 
 ## Usage

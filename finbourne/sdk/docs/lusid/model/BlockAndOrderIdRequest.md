@@ -4,8 +4,8 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **destination_block_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
-| **order_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **destination_block_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **order_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 
 
 ## Usage

@@ -5,8 +5,8 @@ A Settlement Instruction with its Matched Transaction (if any)
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **settlement_instruction** | [../model/TransactionSettlementInstruction](TransactionSettlementInstruction.md) | Optional | *No description available.* |
-| **matched_transaction** | [../model/OutputTransaction](OutputTransaction.md) | Optional | *No description available.* |
+| **settlement_instruction** | [TransactionSettlementInstruction](TransactionSettlementInstruction.md) | Optional | *No description available.* |
+| **matched_transaction** | [OutputTransaction](OutputTransaction.md) | Optional | *No description available.* |
 
 
 ## Usage

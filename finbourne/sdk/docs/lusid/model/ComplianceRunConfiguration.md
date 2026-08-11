@@ -5,7 +5,7 @@ Specification object for the configuration parameters of a compliance run
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **pre_trade_configuration** | [../model/PreTradeConfiguration](PreTradeConfiguration.md) | Required | *No description available.* |
+| **pre_trade_configuration** | [PreTradeConfiguration](PreTradeConfiguration.md) | Required | *No description available.* |
 
 
 ## Usage

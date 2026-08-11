@@ -9,7 +9,7 @@ Representation of a Personal Access Token under a Configuration Item format.
 | **type** | **str** | Required | The type of the Personal Access Token. *(read-only)* |
 | **description** | **str** | Required | The description of the Personal Access Token. *(read-only)* |
 | **ref** | **str** | Required | The reference to the Personal Access Token *(read-only)* |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

@@ -7,8 +7,8 @@ The response to a request to annul (delete) a set of structured data from Lusid.
 |------|------|----------|-------------|
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
 | **values** | **Dict[str, datetime]** | Optional | The set of values that were removed. |
-| **failed** | [../model/Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The set of values where removal failed, with a description as to why that is the case, e.g. badly formed request |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **failed** | [Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The set of values where removal failed, with a description as to why that is the case, e.g. badly formed request |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

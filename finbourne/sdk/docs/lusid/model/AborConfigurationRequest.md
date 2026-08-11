@@ -8,11 +8,11 @@ The request used to create an AborConfiguration.
 | **code** | **str** | Required | The code given for the Abor Configuration. |
 | **display_name** | **str** | Optional | The name of the Abor Configuration. |
 | **description** | **str** | Optional | A description for the Abor Configuration. |
-| **recipe_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
-| **chart_of_accounts_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **recipe_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **chart_of_accounts_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **posting_module_codes** | **List[str]** | Optional | The Posting Module Codes from which the rules to be applied are retrieved. |
 | **cleardown_module_codes** | **List[str]** | Optional | The Cleardown Module Codes from which the rules to be applied are retrieved. |
-| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the Abor Configuration. |
+| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the Abor Configuration. |
 
 
 ## Usage

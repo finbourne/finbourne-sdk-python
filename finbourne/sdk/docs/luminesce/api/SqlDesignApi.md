@@ -117,7 +117,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CaseStatementDesign**](CaseStatementDesign.md)
+[**CaseStatementDesign**](../model/CaseStatementDesign.md)
 
 ### HTTP request headers
 
@@ -155,7 +155,7 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **case_statement_design** | [**CaseStatementDesign**](CaseStatementDesign.md)| CaseStatementDesign object to try and create a SQL query from | [required] 
+ **case_statement_design** | [**CaseStatementDesign**](../model/CaseStatementDesign.md)| CaseStatementDesign object to try and create a SQL query from | [required] 
 
 ### Return type
 
@@ -198,12 +198,12 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **file_reader_builder_def** | [**FileReaderBuilderDef**](FileReaderBuilderDef.md)| Structured file read design object to generate SQL from | [required] 
+ **file_reader_builder_def** | [**FileReaderBuilderDef**](../model/FileReaderBuilderDef.md)| Structured file read design object to generate SQL from | [required] 
  **execute_query** | **bool**| Should the generated query be executed to build preview data or determine errors.&gt; | [optional] [default to True]
 
 ### Return type
 
-[**FileReaderBuilderResponse**](FileReaderBuilderResponse.md)
+[**FileReaderBuilderResponse**](../model/FileReaderBuilderResponse.md)
 
 ### HTTP request headers
 
@@ -245,7 +245,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlinedPropertyDesign**](InlinedPropertyDesign.md)
+[**InlinedPropertyDesign**](../model/InlinedPropertyDesign.md)
 
 ### HTTP request headers
 
@@ -283,7 +283,7 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inlined_property_design** | [**InlinedPropertyDesign**](InlinedPropertyDesign.md)| Inlined properties Designer specification to generate SQL from | [required] 
+ **inlined_property_design** | [**InlinedPropertyDesign**](../model/InlinedPropertyDesign.md)| Inlined properties Designer specification to generate SQL from | [required] 
 
 ### Return type
 
@@ -325,11 +325,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **intellisense_request** | [**IntellisenseRequest**](IntellisenseRequest.md)| SQL and a row/colum position within it from which to determine intellisense options for the user to potentially choose from. | [required] 
+ **intellisense_request** | [**IntellisenseRequest**](../model/IntellisenseRequest.md)| SQL and a row/colum position within it from which to determine intellisense options for the user to potentially choose from. | [required] 
 
 ### Return type
 
-[**IntellisenseResponse**](IntellisenseResponse.md)
+[**IntellisenseResponse**](../model/IntellisenseResponse.md)
 
 ### HTTP request headers
 
@@ -367,11 +367,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **error_highlight_request** | [**ErrorHighlightRequest**](ErrorHighlightRequest.md)| SQL (by line) to syntax check and return error ranges from within, if any. | [required] 
+ **error_highlight_request** | [**ErrorHighlightRequest**](../model/ErrorHighlightRequest.md)| SQL (by line) to syntax check and return error ranges from within, if any. | [required] 
 
 ### Return type
 
-[**ErrorHighlightResponse**](ErrorHighlightResponse.md)
+[**ErrorHighlightResponse**](../model/ErrorHighlightResponse.md)
 
 ### HTTP request headers
 
@@ -409,7 +409,7 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **lusid_grid_data** | [**LusidGridData**](LusidGridData.md)|  | [required] 
+ **lusid_grid_data** | [**LusidGridData**](../model/LusidGridData.md)|  | [required] 
 
 ### Return type
 
@@ -451,7 +451,7 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **query_design** | [**QueryDesign**](QueryDesign.md)| Structured Query design object to generate SQL from | [required] 
+ **query_design** | [**QueryDesign**](../model/QueryDesign.md)| Structured Query design object to generate SQL from | [required] 
 
 ### Return type
 
@@ -565,7 +565,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List[ScalarParameter]**](ScalarParameter.md)
+[**List[ScalarParameter]**](../model/ScalarParameter.md)
 
 ### HTTP request headers
 
@@ -609,7 +609,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FileReaderBuilderDef**](FileReaderBuilderDef.md)
+[**FileReaderBuilderDef**](../model/FileReaderBuilderDef.md)
 
 ### HTTP request headers
 
@@ -651,11 +651,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | **str**| SQL query to generate the design object from | [required] 
  **validate_with_metadata** | **bool**| Should the table be validated against the users&#39; view of Sys.Field to fill in DataTypes, etc.? | [optional] [default to True]
- **version** | [**QueryDesignerVersion**](.md)| Designer version number used to support multiple web user interface versions. Only some values will be allowed and this will change over time (as mentioned this whole method is largely internal to the Finbourne web user interfaces and evolves over time). | [optional] 
+ **version** | [**QueryDesignerVersion**](../model/.md)| Designer version number used to support multiple web user interface versions. Only some values will be allowed and this will change over time (as mentioned this whole method is largely internal to the Finbourne web user interfaces and evolves over time). | [optional] 
 
 ### Return type
 
-[**QueryDesign**](QueryDesign.md)
+[**QueryDesign**](../model/QueryDesign.md)
 
 ### HTTP request headers
 
@@ -697,7 +697,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ConvertToViewData**](ConvertToViewData.md)
+[**ConvertToViewData**](../model/ConvertToViewData.md)
 
 ### HTTP request headers
 
@@ -741,7 +741,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**WriterDesign**](WriterDesign.md)
+[**WriterDesign**](../model/WriterDesign.md)
 
 ### HTTP request headers
 
@@ -779,7 +779,7 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **convert_to_view_data** | [**ConvertToViewData**](ConvertToViewData.md)| Structured Query design object to generate SQL from | [required] 
+ **convert_to_view_data** | [**ConvertToViewData**](../model/ConvertToViewData.md)| Structured Query design object to generate SQL from | [required] 
 
 ### Return type
 
@@ -821,7 +821,7 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **writer_design** | [**WriterDesign**](WriterDesign.md)| Structured Writer Design design object to generate Writer SQL from | [required] 
+ **writer_design** | [**WriterDesign**](../model/WriterDesign.md)| Structured Writer Design design object to generate Writer SQL from | [required] 
 
 ### Return type
 

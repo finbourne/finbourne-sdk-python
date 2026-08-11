@@ -7,7 +7,7 @@ Details of a request made to a vendor service.
 |------|------|----------|-------------|
 | **id** | **str** | Required | The ID of the log. |
 | **request** | **str** | Required | The body of the request. |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

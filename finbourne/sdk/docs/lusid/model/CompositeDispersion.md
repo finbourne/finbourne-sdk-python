@@ -11,8 +11,8 @@ A list of Dispersion calculations for the given years.
 | **first_quartile** | **float** | Optional | First Quartile (Q1) &#x3D;  (lower quartile) &#x3D; the middle of the bottom half of the returns. |
 | **third_quartile** | **float** | Optional | Third Quartile (Q3) &#x3D;  (higher quartile) &#x3D; the middle of the top half of the returns. |
 | **range** | **float** | Optional | Highest return - Lowest return. |
-| **constituents_in_scope** | [../model/List[ResourceId]](ResourceId.md) | Optional | List containing Composite members which are part of the dispersion calcualtion. |
-| **constituents_excluded** | [../model/List[ResourceId]](ResourceId.md) | Optional | List containing the Composite members which are not part of the dispersion calculation |
+| **constituents_in_scope** | [List[ResourceId]](ResourceId.md) | Optional | List containing Composite members which are part of the dispersion calcualtion. |
+| **constituents_excluded** | [List[ResourceId]](ResourceId.md) | Optional | List containing the Composite members which are not part of the dispersion calculation |
 
 
 ## Usage

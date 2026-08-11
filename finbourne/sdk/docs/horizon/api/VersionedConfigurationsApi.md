@@ -63,11 +63,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **config_type** | **str**| The category of configuration. | [required] 
  **name** | **str**| The logical name of the configuration. | [required] 
- **create_versioned_configuration_draft_request** | [**CreateVersionedConfigurationDraftRequest**](CreateVersionedConfigurationDraftRequest.md)| Options for the new draft, including optional explicit version and source version. | [optional] 
+ **create_versioned_configuration_draft_request** | [**CreateVersionedConfigurationDraftRequest**](../model/CreateVersionedConfigurationDraftRequest.md)| Options for the new draft, including optional explicit version and source version. | [optional] 
 
 ### Return type
 
-[**VersionedConfigurationResponse**](VersionedConfigurationResponse.md)
+[**VersionedConfigurationResponse**](../model/VersionedConfigurationResponse.md)
 
 ### HTTP request headers
 
@@ -117,7 +117,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**VersionedConfigurationResponse**](VersionedConfigurationResponse.md)
+[**VersionedConfigurationResponse**](../model/VersionedConfigurationResponse.md)
 
 ### HTTP request headers
 
@@ -168,7 +168,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**VersionedConfigurationResponse**](VersionedConfigurationResponse.md)
+[**VersionedConfigurationResponse**](../model/VersionedConfigurationResponse.md)
 
 ### HTTP request headers
 
@@ -207,7 +207,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**List[VersionedConfigurationTypeResponse]**](VersionedConfigurationTypeResponse.md)
+[**List[VersionedConfigurationTypeResponse]**](../model/VersionedConfigurationTypeResponse.md)
 
 ### HTTP request headers
 
@@ -245,7 +245,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**List[VersionedConfigurationResponse]**](VersionedConfigurationResponse.md)
+[**List[VersionedConfigurationResponse]**](../model/VersionedConfigurationResponse.md)
 
 ### HTTP request headers
 
@@ -287,7 +287,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List[VersionedConfigurationResponse]**](VersionedConfigurationResponse.md)
+[**List[VersionedConfigurationResponse]**](../model/VersionedConfigurationResponse.md)
 
 ### HTTP request headers
 
@@ -336,7 +336,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**VersionedConfigurationResponse**](VersionedConfigurationResponse.md)
+[**VersionedConfigurationResponse**](../model/VersionedConfigurationResponse.md)
 
 ### HTTP request headers
 
@@ -383,11 +383,11 @@ Name | Type | Description  | Notes
  **name** | **str**| The logical name of the configuration. | [required] 
  **major_version** | **int**| The major version of the draft to update. | [required] 
  **minor_version** | **int**| The minor version of the draft to update. | [required] 
- **update_versioned_configuration_draft_request** | [**UpdateVersionedConfigurationDraftRequest**](UpdateVersionedConfigurationDraftRequest.md)| The updated value. | [optional] 
+ **update_versioned_configuration_draft_request** | [**UpdateVersionedConfigurationDraftRequest**](../model/UpdateVersionedConfigurationDraftRequest.md)| The updated value. | [optional] 
 
 ### Return type
 
-[**VersionedConfigurationResponse**](VersionedConfigurationResponse.md)
+[**VersionedConfigurationResponse**](../model/VersionedConfigurationResponse.md)
 
 ### HTTP request headers
 

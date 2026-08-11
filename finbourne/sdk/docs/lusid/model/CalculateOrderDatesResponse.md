@@ -4,9 +4,9 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **successes** | [../model/Dict[str, TransferAgencyDates]](TransferAgencyDates.md) | Optional | A dictionary of successful date calculations, keyed by the request key. |
-| **failed** | [../model/Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | A dictionary of failed date calculations, keyed by the request key, containing the error details of any failures that occurred during the calculation. |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **successes** | [Dict[str, TransferAgencyDates]](TransferAgencyDates.md) | Optional | A dictionary of successful date calculations, keyed by the request key. |
+| **failed** | [Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | A dictionary of failed date calculations, keyed by the request key, containing the error details of any failures that occurred during the calculation. |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

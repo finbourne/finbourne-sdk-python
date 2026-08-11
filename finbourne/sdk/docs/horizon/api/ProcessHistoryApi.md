@@ -54,11 +54,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **audit_complete_request** | [**AuditCompleteRequest**](AuditCompleteRequest.md)|  | [required] 
+ **audit_complete_request** | [**AuditCompleteRequest**](../model/AuditCompleteRequest.md)|  | [required] 
 
 ### Return type
 
-[**AuditCompleteResponse**](AuditCompleteResponse.md)
+[**AuditCompleteResponse**](../model/AuditCompleteResponse.md)
 
 ### HTTP request headers
 
@@ -94,11 +94,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **audit_update_request** | [**AuditUpdateRequest**](AuditUpdateRequest.md)|  | [required] 
+ **audit_update_request** | [**AuditUpdateRequest**](../model/AuditUpdateRequest.md)|  | [required] 
 
 ### Return type
 
-[**AuditUpdateResponse**](AuditUpdateResponse.md)
+[**AuditUpdateResponse**](../model/AuditUpdateResponse.md)
 
 ### HTTP request headers
 
@@ -134,7 +134,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**List[ProcessInformation]**](ProcessInformation.md)
+[**List[ProcessInformation]**](../model/ProcessInformation.md)
 
 ### HTTP request headers
 
@@ -171,11 +171,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **run_id** | **str**|  | [required] 
- **query_request** | [**QueryRequest**](QueryRequest.md)|  | [required] 
+ **query_request** | [**QueryRequest**](../model/QueryRequest.md)|  | [required] 
 
 ### Return type
 
-[**PagedResourceListOfProcessUpdateResult**](PagedResourceListOfProcessUpdateResult.md)
+[**PagedResourceListOfProcessUpdateResult**](../model/PagedResourceListOfProcessUpdateResult.md)
 
 ### HTTP request headers
 
@@ -212,12 +212,12 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **query_request** | [**QueryRequest**](QueryRequest.md)|  | [required] 
+ **query_request** | [**QueryRequest**](../model/QueryRequest.md)|  | [required] 
  **process_name** | **str**|  | [optional] 
 
 ### Return type
 
-[**PagedResourceListOfProcessInformation**](PagedResourceListOfProcessInformation.md)
+[**PagedResourceListOfProcessInformation**](../model/PagedResourceListOfProcessInformation.md)
 
 ### HTTP request headers
 

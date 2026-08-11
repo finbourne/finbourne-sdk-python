@@ -58,11 +58,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **entity_type** | **str**| The entity type for which to create the staging rule set. | [required] 
- **create_staging_rule_set_request** | [**CreateStagingRuleSetRequest**](CreateStagingRuleSetRequest.md)| Request to create a staging rule set. | [required] 
+ **create_staging_rule_set_request** | [**CreateStagingRuleSetRequest**](../model/CreateStagingRuleSetRequest.md)| Request to create a staging rule set. | [required] 
 
 ### Return type
 
-[**StagingRuleSet**](StagingRuleSet.md)
+[**StagingRuleSet**](../model/StagingRuleSet.md)
 
 ### HTTP request headers
 
@@ -104,7 +104,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -148,7 +148,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StagingRuleSet**](StagingRuleSet.md)
+[**StagingRuleSet**](../model/StagingRuleSet.md)
 
 ### HTTP request headers
 
@@ -192,13 +192,13 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **as_at** | **datetime**| The asAt datetime at which to retrieve the staging rule sets. Defaults to return the latest              version of the staging rule sets if not specified. | [optional] 
  **page** | **str**| The pagination token to use to continue listing staging rule sets from a previous call to list              staging rule sets. This value is returned from the previous call. If a pagination token is provided the sortBy,              filter, effectiveAt, and asAt fields must not have changed since the original request. | [optional] 
- **sort_by** | [**List[str]**](str.md)| A list of field names to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot; | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| A list of field names to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot; | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many. | [optional] 
  **filter** | **str**| Expression to filter the result set. Read more about filtering results from LUSID here:              https://support.lusid.com/filtering-results-from-lusid. | [optional] 
 
 ### Return type
 
-[**PagedResourceListOfStagingRuleSet**](PagedResourceListOfStagingRuleSet.md)
+[**PagedResourceListOfStagingRuleSet**](../model/PagedResourceListOfStagingRuleSet.md)
 
 ### HTTP request headers
 
@@ -238,11 +238,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **entity_type** | **str**| The entity type for which to update the staging rule set. | [required] 
- **update_staging_rule_set_request** | [**UpdateStagingRuleSetRequest**](UpdateStagingRuleSetRequest.md)| Request to update a staging rule set. | [required] 
+ **update_staging_rule_set_request** | [**UpdateStagingRuleSetRequest**](../model/UpdateStagingRuleSetRequest.md)| Request to update a staging rule set. | [required] 
 
 ### Return type
 
-[**StagingRuleSet**](StagingRuleSet.md)
+[**StagingRuleSet**](../model/StagingRuleSet.md)
 
 ### HTTP request headers
 

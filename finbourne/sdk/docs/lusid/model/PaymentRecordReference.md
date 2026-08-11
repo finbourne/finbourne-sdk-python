@@ -5,7 +5,7 @@ Identifies a Payment Record attached to a specific transaction within a portfoli
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **portfolio_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **portfolio_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **transaction_id** | **str** | Required | The ID of the cash transaction within the portfolio to which the Payment Record is attached. |
 | **payment_record_id** | **str** | Required | The unique identifier of the Payment Record attached to the above transaction. |
 

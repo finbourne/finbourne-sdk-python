@@ -4,8 +4,8 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **new_instrument** | [../model/NewInstrument](NewInstrument.md) | Required | *No description available.* |
-| **units_ratio** | [../model/UnitsRatio](UnitsRatio.md) | Required | *No description available.* |
+| **new_instrument** | [NewInstrument](NewInstrument.md) | Required | *No description available.* |
+| **units_ratio** | [UnitsRatio](UnitsRatio.md) | Required | *No description available.* |
 | **settlement_date** | **datetime** | Required | *No description available.* |
 | **min_piece_size** | **float** | Optional | *No description available.* |
 | **min_increment** | **float** | Optional | *No description available.* |

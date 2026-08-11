@@ -8,7 +8,7 @@
 | **claim_value_type** | **str** | Optional | *No description available.* |
 | **claim_issuer** | **str** | Optional | *No description available.* |
 | **claim_original_issuer** | **str** | Optional | *No description available.* |
-| **operator** | [../model/TextOperator](TextOperator.md) | Required | *No description available.* |
+| **operator** | [TextOperator](TextOperator.md) | Required | *No description available.* |
 | **value** | **str** | Optional | *No description available.* |
 
 

@@ -5,8 +5,8 @@ Information about reconciled transactions.  At least one of Left and Right will 
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **left** | [../model/Transaction](Transaction.md) | Optional | *No description available.* |
-| **right** | [../model/Transaction](Transaction.md) | Optional | *No description available.* |
+| **left** | [Transaction](Transaction.md) | Optional | *No description available.* |
+| **right** | [Transaction](Transaction.md) | Optional | *No description available.* |
 | **percentage_match** | **float** | Optional | How good a match this is considered to be. |
 | **mapping_rule_set_results** | **List[bool]** | Optional | The result of each individual mapping rule result.  Will only be present if both Left and Right are populated. |
 

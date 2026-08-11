@@ -57,7 +57,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**VendorLog**](VendorLog.md)
+[**VendorLog**](../model/VendorLog.md)
 
 ### HTTP request headers
 
@@ -97,7 +97,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**VendorRequest**](VendorRequest.md)
+[**VendorRequest**](../model/VendorRequest.md)
 
 ### HTTP request headers
 
@@ -137,7 +137,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**VendorResponse**](VendorResponse.md)
+[**VendorResponse**](../model/VendorResponse.md)
 
 ### HTTP request headers
 
@@ -185,7 +185,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListWithHistogramOfVendorLog**](ResourceListWithHistogramOfVendorLog.md)
+[**ResourceListWithHistogramOfVendorLog**](../model/ResourceListWithHistogramOfVendorLog.md)
 
 ### HTTP request headers
 

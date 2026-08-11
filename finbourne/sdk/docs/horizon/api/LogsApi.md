@@ -57,13 +57,13 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **filter** | **str**| Expression to filter the result set. | [optional] 
- **sort_by** | [**List[str]**](str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
  **limit** | **int**| When paginating, limit the results to this number. | [optional] [default to 100]
  **page_token** | **str**| The pagination token to use to continue listing integration logs; this value is returned from             the previous call. If a pagination token is provided, the &lt;i&gt;sortBy&lt;/i&gt; and &lt;i&gt;filter&lt;/i&gt; fields must not have changed since the original request.             For more information, see https://support.lusid.com/knowledgebase/article/KA-01915. | [optional] [default to &#39;&#39;]
 
 ### Return type
 
-[**PagedResourceListOfIIntegrationLogResponse**](PagedResourceListOfIIntegrationLogResponse.md)
+[**PagedResourceListOfIIntegrationLogResponse**](../model/PagedResourceListOfIIntegrationLogResponse.md)
 
 ### HTTP request headers
 
@@ -104,7 +104,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **instanceid** | **str**|  | [required] 
  **runid** | **str**|  | [required] 
- **external_log_insertion_request** | [**ExternalLogInsertionRequest**](ExternalLogInsertionRequest.md)|  | [required] 
+ **external_log_insertion_request** | [**ExternalLogInsertionRequest**](../model/ExternalLogInsertionRequest.md)|  | [required] 
 
 ### Return type
 

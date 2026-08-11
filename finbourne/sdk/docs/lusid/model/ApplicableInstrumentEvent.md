@@ -5,20 +5,20 @@ Represents applicable instrument event.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **portfolio_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **portfolio_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **holding_id** | **int** | Required | *No description available.* |
 | **lusid_instrument_id** | **str** | Required | *No description available.* |
 | **instrument_scope** | **str** | Required | *No description available.* |
 | **instrument_type** | **str** | Required | *No description available.* |
 | **instrument_event_type** | **str** | Required | *No description available.* |
 | **instrument_event_id** | **str** | Required | *No description available.* |
-| **generated_event** | [../model/InstrumentEventHolder](InstrumentEventHolder.md) | Optional | *No description available.* |
-| **generated_event_diagnostics** | [../model/GeneratedEventDiagnostics](GeneratedEventDiagnostics.md) | Optional | *No description available.* |
-| **loaded_event** | [../model/InstrumentEventHolder](InstrumentEventHolder.md) | Optional | *No description available.* |
+| **generated_event** | [InstrumentEventHolder](InstrumentEventHolder.md) | Optional | *No description available.* |
+| **generated_event_diagnostics** | [GeneratedEventDiagnostics](GeneratedEventDiagnostics.md) | Optional | *No description available.* |
+| **loaded_event** | [InstrumentEventHolder](InstrumentEventHolder.md) | Optional | *No description available.* |
 | **applied_instrument_event_instruction_id** | **str** | Optional | *No description available.* |
-| **transactions** | [../model/List[Transaction]](Transaction.md) | Optional | *No description available.* |
-| **transaction_diagnostics** | [../model/TransactionDiagnostics](TransactionDiagnostics.md) | Optional | *No description available.* |
-| **applied_instrument_event_instruction** | [../model/InstrumentEventInstruction](InstrumentEventInstruction.md) | Optional | *No description available.* |
+| **transactions** | [List[Transaction]](Transaction.md) | Optional | *No description available.* |
+| **transaction_diagnostics** | [TransactionDiagnostics](TransactionDiagnostics.md) | Optional | *No description available.* |
+| **applied_instrument_event_instruction** | [InstrumentEventInstruction](InstrumentEventInstruction.md) | Optional | *No description available.* |
 | **eligible_balance** | **float** | Optional | *No description available.* |
 
 

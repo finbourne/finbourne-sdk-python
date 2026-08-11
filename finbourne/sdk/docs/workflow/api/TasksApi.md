@@ -57,11 +57,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **batch_update_tasks_request** | [**BatchUpdateTasksRequest**](BatchUpdateTasksRequest.md)| The details of the request | [optional] 
+ **batch_update_tasks_request** | [**BatchUpdateTasksRequest**](../model/BatchUpdateTasksRequest.md)| The details of the request | [optional] 
 
 ### Return type
 
-[**BatchUpdateTasksResponse**](BatchUpdateTasksResponse.md)
+[**BatchUpdateTasksResponse**](../model/BatchUpdateTasksResponse.md)
 
 ### HTTP request headers
 
@@ -98,12 +98,12 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_task_request** | [**CreateTaskRequest**](CreateTaskRequest.md)| Request to create Task | [required] 
+ **create_task_request** | [**CreateTaskRequest**](../model/CreateTaskRequest.md)| Request to create Task | [required] 
  **trigger** | **str**| The name of the Trigger to invoke | [optional] 
 
 ### Return type
 
-[**Task**](Task.md)
+[**Task**](../model/Task.md)
 
 ### HTTP request headers
 
@@ -143,7 +143,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -180,11 +180,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **delete_tasks_request** | [**DeleteTasksRequest**](DeleteTasksRequest.md)| Request with the task instance ids to delete. | [optional] 
+ **delete_tasks_request** | [**DeleteTasksRequest**](../model/DeleteTasksRequest.md)| Request with the task instance ids to delete. | [optional] 
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -225,11 +225,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Id of the Task to retrieve | [required] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the Task. Defaults to returning the latest version of the Task if not specified. | [optional] 
- **property_keys** | [**List[str]**](str.md)| The property keys (in the TaskDefinition or Workflow domain) whose values to return on the Task. These values are a snapshot copied from the TaskDefinition and Workflow when the Task was created, so they reflect the state at creation time and are not affected by subsequent changes to the TaskDefinition or Workflow. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| The property keys (in the TaskDefinition or Workflow domain) whose values to return on the Task. These values are a snapshot copied from the TaskDefinition and Workflow when the Task was created, so they reflect the state at creation time and are not affected by subsequent changes to the TaskDefinition or Workflow. | [optional] 
 
 ### Return type
 
-[**Task**](Task.md)
+[**Task**](../model/Task.md)
 
 ### HTTP request headers
 
@@ -272,7 +272,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfChangeItem**](ResourceListOfChangeItem.md)
+[**ResourceListOfChangeItem**](../model/ResourceListOfChangeItem.md)
 
 ### HTTP request headers
 
@@ -316,14 +316,14 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **as_at** | **datetime**| The asAt datetime at which to list the Tasks. Defaults to return the latest version of each Task if not specified. | [optional] 
  **filter** | **str**| Expression to filter the result set. Read more about filtering results from LUSID here: https://support.lusid.com/filtering-results-from-lusid. | [optional] 
- **sort_by** | [**List[str]**](str.md)| A list of field names or properties to sort by, each optionally suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot; | [optional] 
- **property_keys** | [**List[str]**](str.md)| The property keys (in the TaskDefinition or Workflow domain) whose values to return on each Task. These values are a snapshot copied from the TaskDefinition and Workflow when each Task was created, so they reflect the state at creation time and are not affected by subsequent changes to the TaskDefinition or Workflow. | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| A list of field names or properties to sort by, each optionally suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot; | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| The property keys (in the TaskDefinition or Workflow domain) whose values to return on each Task. These values are a snapshot copied from the TaskDefinition and Workflow when each Task was created, so they reflect the state at creation time and are not affected by subsequent changes to the TaskDefinition or Workflow. | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many. | [optional] [default to 10]
  **page** | **str**| The pagination token to use to continue listing tasks from a previous call to list tasks. This value is returned from the previous call. If a pagination token is provided the sortBy, filter, effectiveAt, and asAt fields must not have changed since the original request. | [optional] 
 
 ### Return type
 
-[**PagedResourceListOfTask**](PagedResourceListOfTask.md)
+[**PagedResourceListOfTask**](../model/PagedResourceListOfTask.md)
 
 ### HTTP request headers
 
@@ -364,11 +364,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Id of the Task to act upon | [required] 
  **trigger** | **str**|  | [optional] 
- **update_task_request** | [**UpdateTaskRequest**](UpdateTaskRequest.md)| The details of the request | [optional] 
+ **update_task_request** | [**UpdateTaskRequest**](../model/UpdateTaskRequest.md)| The details of the request | [optional] 
 
 ### Return type
 
-[**Task**](Task.md)
+[**Task**](../model/Task.md)
 
 ### HTTP request headers
 

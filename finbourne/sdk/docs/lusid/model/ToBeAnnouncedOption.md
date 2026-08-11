@@ -11,14 +11,14 @@ LUSID representation of an OTC option on a ToBeAnnounced (TBA) forward contract.
 | **option_type** | **str** | Required | Type of optionality for the option.                Supported string (enumeration) values are: [Call, Put]. |
 | **strike** | **float** | Required | The strike of the option. |
 | **delivery_type** | **str** | Required | Is the option cash settled or physical delivery of the underlying TBA.                Supported string (enumeration) values are: [Cash, Physical]. |
-| **underlying** | [../model/MasteredInstrument](MasteredInstrument.md) | Required | *No description available.* |
+| **underlying** | [MasteredInstrument](MasteredInstrument.md) | Required | *No description available.* |
 | **exercise_type** | **str** | Required | Type of optionality that is present; European only in this scope.                Supported string (enumeration) values are: [European]. |
-| **premium** | [../model/Premium](Premium.md) | Required | *No description available.* |
+| **premium** | [Premium](Premium.md) | Required | *No description available.* |
 | **delivery_days** | **int** | Optional | Number of business days between exercise date and settlement of the option payoff or underlying.  Defaults to 0 if not set. |
 | **business_day_convention** | **str** | Optional | Business day convention for option exercise date to settlement date calculation.  Default value: F. Available values: NoAdjustment, None, Previous, P, Following, F, ModifiedPrevious, MP, ModifiedFollowing, MF, HalfMonthModifiedFollowing, Nearest, Invalid. |
 | **settlement_calendars** | **List[str]** | Optional | Holiday calendar for option exercise date to settlement date calculation. |
-| **time_zone_conventions** | [../model/TimeZoneConventions](TimeZoneConventions.md) | Optional | *No description available.* |
-| **trading_conventions** | [../model/TradingConventions](TradingConventions.md) | Optional | *No description available.* |
+| **time_zone_conventions** | [TimeZoneConventions](TimeZoneConventions.md) | Optional | *No description available.* |
+| **trading_conventions** | [TradingConventions](TradingConventions.md) | Optional | *No description available.* |
 | **instrument_type** | **str** | Required | Available values: QuotedSecurity, InterestRateSwap, FxForward, Future, ExoticInstrument, FxOption, CreditDefaultSwap, InterestRateSwaption, Bond, EquityOption, FixedLeg, FloatingLeg, BespokeCashFlowsLeg, Unknown, TermDeposit, ContractForDifference, EquitySwap, CashPerpetual, CapFloor, CashSettled, CdsIndex, Basket, FundingLeg, FxSwap, ForwardRateAgreement, SimpleInstrument, Repo, Equity, ExchangeTradedOption, ReferenceInstrument, ComplexBond, InflationLinkedBond, InflationSwap, SimpleCashFlowLoan, TotalReturnSwap, InflationLeg, FundShareClass, FlexibleLoan, UnsettledCash, Cash, MasteredInstrument, LoanFacility, FlexibleDeposit, FlexibleRepo, ToBeAnnounced, VolatilitySwap, ToBeAnnouncedOption, CommodityForward. |
 
 

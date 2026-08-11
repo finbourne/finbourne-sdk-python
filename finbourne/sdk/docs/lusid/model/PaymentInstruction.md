@@ -5,17 +5,17 @@ A Payment Instruction groups one or more Payment Records into a single block  fo
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
-| **payment_record_ids** | [../model/List[PaymentRecordReference]](PaymentRecordReference.md) | Required | One or more Payment Records batched into this instruction block. All referenced Payment Records must share the same currency as the top-level currency field. |
+| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **payment_record_ids** | [List[PaymentRecordReference]](PaymentRecordReference.md) | Required | One or more Payment Records batched into this instruction block. All referenced Payment Records must share the same currency as the top-level currency field. |
 | **currency** | **str** | Required | ISO 4217 currency code. All referenced Payment Records must share this currency value. |
 | **total_payment_amount** | **float** | Required | Total payment amount across all referenced Payment Records. |
 | **payment_date** | **datetime** | Required | The value date on which settlement is due. ISO 8601 date. |
-| **payor_payment_details_reference** | [../model/PaymentDetailsReferenceResponse](PaymentDetailsReferenceResponse.md) | Required | *No description available.* |
-| **payee_payment_details_reference** | [../model/PaymentDetailsReferenceResponse](PaymentDetailsReferenceResponse.md) | Required | *No description available.* |
-| **properties** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Client-defined properties associated with this Payment Instruction. |
-| **status** | [../model/PaymentInstructionStatus](PaymentInstructionStatus.md) | Required | *No description available.* |
-| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **payor_payment_details_reference** | [PaymentDetailsReferenceResponse](PaymentDetailsReferenceResponse.md) | Required | *No description available.* |
+| **payee_payment_details_reference** | [PaymentDetailsReferenceResponse](PaymentDetailsReferenceResponse.md) | Required | *No description available.* |
+| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Client-defined properties associated with this Payment Instruction. |
+| **status** | [PaymentInstructionStatus](PaymentInstructionStatus.md) | Required | *No description available.* |
+| **version** | [Version](Version.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

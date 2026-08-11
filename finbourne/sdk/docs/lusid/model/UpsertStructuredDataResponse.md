@@ -7,8 +7,8 @@ Response from upserting structured data document
 |------|------|----------|-------------|
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
 | **values** | **Dict[str, datetime]** | Optional | The set of values that were successfully retrieved. |
-| **failed** | [../model/Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The set of values that could not be retrieved due along with a reason for this, e.g badly formed request. |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **failed** | [Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The set of values that could not be retrieved due along with a reason for this, e.g badly formed request. |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

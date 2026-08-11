@@ -8,7 +8,7 @@ A Cleardown Module request definition
 | **code** | **str** | Required | The code of the Cleardown Module. |
 | **display_name** | **str** | Required | The name of the Cleardown Module. |
 | **description** | **str** | Optional | A description for the Cleardown Module. |
-| **rules** | [../model/List[CleardownModuleRule]](CleardownModuleRule.md) | Optional | The Cleardown Rules that apply for the Cleardown Module. Rules are evaluated in the order they occur in this collection. |
+| **rules** | [List[CleardownModuleRule]](CleardownModuleRule.md) | Optional | The Cleardown Rules that apply for the Cleardown Module. Rules are evaluated in the order they occur in this collection. |
 
 
 ## Usage

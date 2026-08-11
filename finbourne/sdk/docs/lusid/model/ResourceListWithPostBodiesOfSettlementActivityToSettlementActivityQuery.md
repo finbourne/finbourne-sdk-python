@@ -5,12 +5,12 @@ A version of the resource list for use with list endpoints that use the POST ver
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **values** | [../model/List[SettlementActivity]](SettlementActivity.md) | Required | The resources to list. |
+| **values** | [List[SettlementActivity]](SettlementActivity.md) | Required | The resources to list. |
 | **href** | **str** | Optional | The URI of the resource list. |
-| **post_body** | [../model/SettlementActivityQuery](SettlementActivityQuery.md) | Optional | *No description available.* |
-| **next_page** | [../model/SettlementActivityQuery](SettlementActivityQuery.md) | Optional | *No description available.* |
-| **previous_page** | [../model/SettlementActivityQuery](SettlementActivityQuery.md) | Optional | *No description available.* |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **post_body** | [SettlementActivityQuery](SettlementActivityQuery.md) | Optional | *No description available.* |
+| **next_page** | [SettlementActivityQuery](SettlementActivityQuery.md) | Optional | *No description available.* |
+| **previous_page** | [SettlementActivityQuery](SettlementActivityQuery.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

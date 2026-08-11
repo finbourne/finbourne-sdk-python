@@ -11,14 +11,14 @@
 | **as_at_deleted** | **datetime** | Optional | The asAt datetime at which the portfolio (and by extension, the transaction) was deleted. |
 | **user_id_deleted** | **str** | Optional | The unique id of the user who deleted the portfolio. |
 | **request_id_deleted** | **str** | Optional | The unique request id of the command that deleted the portfolio. |
-| **prevailing_portfolio** | [../model/PortfolioWithoutHref](PortfolioWithoutHref.md) | Optional | *No description available.* |
-| **prevailing_input_transaction** | [../model/Transaction](Transaction.md) | Optional | *No description available.* |
-| **deleted_portfolio** | [../model/PortfolioWithoutHref](PortfolioWithoutHref.md) | Optional | *No description available.* |
-| **deleted_input_transaction** | [../model/Transaction](Transaction.md) | Optional | *No description available.* |
+| **prevailing_portfolio** | [PortfolioWithoutHref](PortfolioWithoutHref.md) | Optional | *No description available.* |
+| **prevailing_input_transaction** | [Transaction](Transaction.md) | Optional | *No description available.* |
+| **deleted_portfolio** | [PortfolioWithoutHref](PortfolioWithoutHref.md) | Optional | *No description available.* |
+| **deleted_input_transaction** | [Transaction](Transaction.md) | Optional | *No description available.* |
 | **previewed_status** | **str** | Optional | The status of the transaction after the staged modification is applied. Always &#39;Prevailing&#39; for transaction previews. Available values: Prevailing, Deleted, DoesNotExist. |
-| **previewed_portfolio** | [../model/PortfolioWithoutHref](PortfolioWithoutHref.md) | Optional | *No description available.* |
-| **previewed_input_transaction** | [../model/Transaction](Transaction.md) | Optional | *No description available.* |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **previewed_portfolio** | [PortfolioWithoutHref](PortfolioWithoutHref.md) | Optional | *No description available.* |
+| **previewed_input_transaction** | [Transaction](Transaction.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

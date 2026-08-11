@@ -62,7 +62,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -100,11 +100,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **aggregated_returns_entity_request** | [**AggregatedReturnsEntityRequest**](AggregatedReturnsEntityRequest.md)| The entity to calculate returns for, the Returns entity that configures the              calculation, the effective window and the metrics to calculate. | [required] 
+ **aggregated_returns_entity_request** | [**AggregatedReturnsEntityRequest**](../model/AggregatedReturnsEntityRequest.md)| The entity to calculate returns for, the Returns entity that configures the              calculation, the effective window and the metrics to calculate. | [required] 
 
 ### Return type
 
-[**AggregatedReturnsResponse**](AggregatedReturnsResponse.md)
+[**AggregatedReturnsResponse**](../model/AggregatedReturnsResponse.md)
 
 ### HTTP request headers
 
@@ -150,7 +150,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ReturnsEntity**](ReturnsEntity.md)
+[**ReturnsEntity**](../model/ReturnsEntity.md)
 
 ### HTTP request headers
 
@@ -192,7 +192,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfReturnsEntity**](ResourceListOfReturnsEntity.md)
+[**ResourceListOfReturnsEntity**](../model/ResourceListOfReturnsEntity.md)
 
 ### HTTP request headers
 
@@ -230,11 +230,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **returns_entity** | [**ReturnsEntity**](ReturnsEntity.md)| Definition of the returns entity. | [required] 
+ **returns_entity** | [**ReturnsEntity**](../model/ReturnsEntity.md)| Definition of the returns entity. | [required] 
 
 ### Return type
 
-[**ReturnsEntity**](ReturnsEntity.md)
+[**ReturnsEntity**](../model/ReturnsEntity.md)
 
 ### HTTP request headers
 

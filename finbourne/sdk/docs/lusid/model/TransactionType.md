@@ -4,12 +4,12 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **aliases** | [../model/List[TransactionTypeAlias]](TransactionTypeAlias.md) | Required | List of transaction types that map to this specific transaction configuration |
-| **movements** | [../model/List[TransactionTypeMovement]](TransactionTypeMovement.md) | Required | Movement data for the transaction type |
-| **properties** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Properties attached to the transaction type |
-| **calculations** | [../model/List[TransactionTypeCalculation]](TransactionTypeCalculation.md) | Optional | Calculations to be performed for the transaction type |
+| **aliases** | [List[TransactionTypeAlias]](TransactionTypeAlias.md) | Required | List of transaction types that map to this specific transaction configuration |
+| **movements** | [List[TransactionTypeMovement]](TransactionTypeMovement.md) | Required | Movement data for the transaction type |
+| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Properties attached to the transaction type |
+| **calculations** | [List[TransactionTypeCalculation]](TransactionTypeCalculation.md) | Optional | Calculations to be performed for the transaction type |
 | **scope** | **str** | Optional | The scope in which the transaction type exists. |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

@@ -57,11 +57,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the relationship | [required] 
  **code** | **str**| The code of the relationship | [required] 
- **create_relationship_request** | [**CreateRelationshipRequest**](CreateRelationshipRequest.md)| The details of the relationship to create. | [required] 
+ **create_relationship_request** | [**CreateRelationshipRequest**](../model/CreateRelationshipRequest.md)| The details of the relationship to create. | [required] 
 
 ### Return type
 
-[**CompleteRelationship**](CompleteRelationship.md)
+[**CompleteRelationship**](../model/CompleteRelationship.md)
 
 ### HTTP request headers
 
@@ -103,11 +103,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the relationship | [required] 
  **code** | **str**| The code of the relationship | [required] 
- **delete_relationship_request** | [**DeleteRelationshipRequest**](DeleteRelationshipRequest.md)| The details of the relationship to delete. | [required] 
+ **delete_relationship_request** | [**DeleteRelationshipRequest**](../model/DeleteRelationshipRequest.md)| The details of the relationship to delete. | [required] 
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 

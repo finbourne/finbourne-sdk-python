@@ -4,22 +4,22 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **reconciliation_type** | **str** | Required | The type of reconciliation to perform. Available values: Holding, Transaction, Valuation, CashHolding. |
-| **group_reconciliation_definition_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
-| **instance_id** | [../model/GroupReconciliationInstanceId](GroupReconciliationInstanceId.md) | Required | *No description available.* |
+| **group_reconciliation_definition_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **instance_id** | [GroupReconciliationInstanceId](GroupReconciliationInstanceId.md) | Required | *No description available.* |
 | **comparison_result_id** | **str** | Required | Comparison result identifier, encoded value for core attribute results, aggregate attribute results, reconciliation type and run instanceId. |
 | **reconciliation_run_as_at** | **datetime** | Required | The timestamp when the run occurred. |
 | **result_type** | **str** | Required | Reconciliation run general result. Available values: Match, PartialMatch, Break, NotFound, Resolved. |
 | **result_status** | **str** | Required | Indicates how a particular result evolves from one run to the next. Available values: New, Confirmed, Changed. |
 | **review_status** | **str** | Required | Status of whether user has provided any input (comments, manual matches, break codes). Available values: Pending, Reviewed, Matched, Invalid. |
-| **dates_reconciled** | [../model/GroupReconciliationDates](GroupReconciliationDates.md) | Required | *No description available.* |
-| **core_attributes** | [../model/GroupReconciliationCoreAttributeValues](GroupReconciliationCoreAttributeValues.md) | Required | *No description available.* |
-| **aggregate_attributes** | [../model/GroupReconciliationAggregateAttributeValues](GroupReconciliationAggregateAttributeValues.md) | Required | *No description available.* |
-| **user_review** | [../model/GroupReconciliationUserReview](GroupReconciliationUserReview.md) | Optional | *No description available.* |
+| **dates_reconciled** | [GroupReconciliationDates](GroupReconciliationDates.md) | Required | *No description available.* |
+| **core_attributes** | [GroupReconciliationCoreAttributeValues](GroupReconciliationCoreAttributeValues.md) | Required | *No description available.* |
+| **aggregate_attributes** | [GroupReconciliationAggregateAttributeValues](GroupReconciliationAggregateAttributeValues.md) | Required | *No description available.* |
+| **user_review** | [GroupReconciliationUserReview](GroupReconciliationUserReview.md) | Optional | *No description available.* |
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
-| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **version** | [Version](Version.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

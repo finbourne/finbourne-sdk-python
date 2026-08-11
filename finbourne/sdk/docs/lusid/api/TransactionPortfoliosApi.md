@@ -110,14 +110,14 @@ Name | Type | Description  | Notes
  **scope** | **str**| The scope of the transaction portfolio. | [required] 
  **code** | **str**| The code of the transaction portfolio. Together with the scope this uniquely identifies              the transaction portfolio. | [required] 
  **effective_at** | **str**| The effective datetime or cut label at which the holdings should be set to the provided targets. | [required] 
- **adjust_holding_request** | [**List[AdjustHoldingRequest]**](AdjustHoldingRequest.md)| The selected set of holdings to adjust to the provided targets for the              transaction portfolio. | [required] 
- **reconciliation_methods** | [**List[str]**](str.md)| Optional parameter for specifying a reconciliation method: e.g. FxForward. | [optional] 
+ **adjust_holding_request** | [**List[AdjustHoldingRequest]**](../model/AdjustHoldingRequest.md)| The selected set of holdings to adjust to the provided targets for the              transaction portfolio. | [required] 
+ **reconciliation_methods** | [**List[str]**](../model/str.md)| Optional parameter for specifying a reconciliation method: e.g. FxForward. | [optional] 
  **override_movement_name** | **str**| Optional parameter to override movement name for the set holdings. | [optional] 
  **override_offset_movement_name** | **str**| Optional parameter will create an additional offset movement for the set holdings with this new name and transaction type: CarryAsPnl | [optional] 
 
 ### Return type
 
-[**AdjustHolding**](AdjustHolding.md)
+[**AdjustHolding**](../model/AdjustHolding.md)
 
 ### HTTP request headers
 
@@ -162,12 +162,12 @@ Name | Type | Description  | Notes
  **scope** | **str**| The scope of the transaction portfolio. | [required] 
  **code** | **str**| The code of the transaction portfolio. Together with the scope this uniquely identifies               the transaction portfolio. | [required] 
  **success_mode** | **str**| Whether the batch request should fail Atomically or in a Partial fashion - Allowed Values: Atomic, Partial | [required] [default to &#39;Partial&#39;]
- **request_body** | [**Dict[str, AdjustHoldingForDateRequest]**](AdjustHoldingForDateRequest.md)| The selected set of holdings to adjust to the provided targets for the               transaction portfolio. | [required] 
- **reconciliation_methods** | [**List[str]**](str.md)| Optional parameter for specifying a reconciliation method: e.g. FxForward. | [optional] 
+ **request_body** | [**Dict[str, AdjustHoldingForDateRequest]**](../model/AdjustHoldingForDateRequest.md)| The selected set of holdings to adjust to the provided targets for the               transaction portfolio. | [required] 
+ **reconciliation_methods** | [**List[str]**](../model/str.md)| Optional parameter for specifying a reconciliation method: e.g. FxForward. | [optional] 
 
 ### Return type
 
-[**BatchAdjustHoldingsResponse**](BatchAdjustHoldingsResponse.md)
+[**BatchAdjustHoldingsResponse**](../model/BatchAdjustHoldingsResponse.md)
 
 ### HTTP request headers
 
@@ -210,12 +210,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the portfolio. | [required] 
  **code** | **str**| The code of the portfolio. | [required] 
- **request_body** | [**Dict[str, SettlementInstructionAmendRequest]**](SettlementInstructionAmendRequest.md)| The amendments to make to the settlement instructions. | [required] 
+ **request_body** | [**Dict[str, SettlementInstructionAmendRequest]**](../model/SettlementInstructionAmendRequest.md)| The amendments to make to the settlement instructions. | [required] 
  **success_mode** | **str**| Whether the batch request should fail Atomically or in a Partial fashion - Allowed Values: Atomic, Partial | [optional] [default to &#39;Partial&#39;]
 
 ### Return type
 
-[**BatchAmendTransactionSettlementInstructionResponse**](BatchAmendTransactionSettlementInstructionResponse.md)
+[**BatchAmendTransactionSettlementInstructionResponse**](../model/BatchAmendTransactionSettlementInstructionResponse.md)
 
 ### HTTP request headers
 
@@ -257,11 +257,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the transaction portfolio. | [required] 
  **code** | **str**| The code of the transaction portfolio. Together with the scope this uniquely identifies              the transaction portfolio. | [required] 
- **lusid_trade_ticket** | [**List[LusidTradeTicket]**](LusidTradeTicket.md)| the trade tickets to create | [required] 
+ **lusid_trade_ticket** | [**List[LusidTradeTicket]**](../model/LusidTradeTicket.md)| the trade tickets to create | [required] 
 
 ### Return type
 
-[**CreateTradeTicketsResponse**](CreateTradeTicketsResponse.md)
+[**CreateTradeTicketsResponse**](../model/CreateTradeTicketsResponse.md)
 
 ### HTTP request headers
 
@@ -306,12 +306,12 @@ Name | Type | Description  | Notes
  **scope** | **str**| The scope of the transaction portfolio. | [required] 
  **code** | **str**| The code of the transaction portfolio. Together with the scope this uniquely identifies               the transaction portfolio. | [required] 
  **success_mode** | **str**| Whether the batch request should fail Atomically or in a Partial fashion - Allowed Values: Atomic, Partial | [required] [default to &#39;Partial&#39;]
- **request_body** | [**Dict[str, AdjustHoldingForDateRequest]**](AdjustHoldingForDateRequest.md)| The selected set of holdings to adjust to the provided targets for the               transaction portfolio. | [required] 
- **reconciliation_methods** | [**List[str]**](str.md)| Optional parameter for specifying a reconciliation method: e.g. FxForward. Available values: FxForward. | [optional] 
+ **request_body** | [**Dict[str, AdjustHoldingForDateRequest]**](../model/AdjustHoldingForDateRequest.md)| The selected set of holdings to adjust to the provided targets for the               transaction portfolio. | [required] 
+ **reconciliation_methods** | [**List[str]**](../model/str.md)| Optional parameter for specifying a reconciliation method: e.g. FxForward. Available values: FxForward. | [optional] 
 
 ### Return type
 
-[**BatchAdjustHoldingsResponse**](BatchAdjustHoldingsResponse.md)
+[**BatchAdjustHoldingsResponse**](../model/BatchAdjustHoldingsResponse.md)
 
 ### HTTP request headers
 
@@ -354,12 +354,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the portfolio. | [required] 
  **code** | **str**| The code of the portfolio. | [required] 
- **request_body** | [**Dict[str, SettlementInstructionRequest]**](SettlementInstructionRequest.md)| The definition of the settlement instruction. | [required] 
+ **request_body** | [**Dict[str, SettlementInstructionRequest]**](../model/SettlementInstructionRequest.md)| The definition of the settlement instruction. | [required] 
  **success_mode** | **str**| Whether the batch request should fail Atomically or in a Partial fashion - Allowed Values: Atomic, Partial | [optional] [default to &#39;Partial&#39;]
 
 ### Return type
 
-[**BatchUpsertTransactionSettlementInstructionResponse**](BatchUpsertTransactionSettlementInstructionResponse.md)
+[**BatchUpsertTransactionSettlementInstructionResponse**](../model/BatchUpsertTransactionSettlementInstructionResponse.md)
 
 ### HTTP request headers
 
@@ -406,14 +406,14 @@ Name | Type | Description  | Notes
  **scope** | **str**| The scope of the transaction portfolio. | [required] 
  **code** | **str**| The code of the transaction portfolio. Together with the scope this uniquely identifies              the transaction portfolio. | [required] 
  **success_mode** | **str**| Whether the batch request should fail Atomically or in a Partial fashion - Allowed Values: Atomic, Partial. | [required] [default to &#39;Partial&#39;]
- **request_body** | [**Dict[str, TransactionRequest]**](TransactionRequest.md)| The payload describing the transactions to be created or updated. | [required] 
+ **request_body** | [**Dict[str, TransactionRequest]**](../model/TransactionRequest.md)| The payload describing the transactions to be created or updated. | [required] 
  **preserve_properties** | **bool**| If set to false, the entire property set will be overwritten by the provided properties. If not specified or set to true, only the properties provided will be updated. | [optional] [default to True]
  **data_model_scope** | **str**| The optional scope of a Custom Data Model to use | [optional] 
  **data_model_code** | **str**| The optional code of a Custom Data Model to use | [optional] 
 
 ### Return type
 
-[**BatchUpsertPortfolioTransactionsResponse**](BatchUpsertPortfolioTransactionsResponse.md)
+[**BatchUpsertPortfolioTransactionsResponse**](../model/BatchUpsertPortfolioTransactionsResponse.md)
 
 ### HTTP request headers
 
@@ -455,11 +455,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the transaction portfolio. | [required] 
  **code** | **str**| The code of the transaction portfolio. Together with the scope this uniquely identifies              the transaction portfolio. | [required] 
- **settlement_instruction_query** | [**SettlementInstructionQuery**](SettlementInstructionQuery.md)| The queryParameters which control how the settlement instructions are built and returned. | [required] 
+ **settlement_instruction_query** | [**SettlementInstructionQuery**](../model/SettlementInstructionQuery.md)| The queryParameters which control how the settlement instructions are built and returned. | [required] 
 
 ### Return type
 
-[**VersionedResourceListWithPostBodiesOfSettlementInstructionWithTransactionToSettlementInstructionQuery**](VersionedResourceListWithPostBodiesOfSettlementInstructionWithTransactionToSettlementInstructionQuery.md)
+[**VersionedResourceListWithPostBodiesOfSettlementInstructionWithTransactionToSettlementInstructionQuery**](../model/VersionedResourceListWithPostBodiesOfSettlementInstructionWithTransactionToSettlementInstructionQuery.md)
 
 ### HTTP request headers
 
@@ -510,10 +510,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the transaction portfolio. | [required] 
  **code** | **str**| The code of the transaction portfolio. Together with the scope this uniquely identifies              the transaction portfolio. | [required] 
- **transaction_query_parameters** | [**TransactionQueryParameters**](TransactionQueryParameters.md)| The query queryParameters which control how the output transactions are built. | [required] 
+ **transaction_query_parameters** | [**TransactionQueryParameters**](../model/TransactionQueryParameters.md)| The query queryParameters which control how the output transactions are built. | [required] 
  **as_at** | **datetime**| The asAt datetime at which to build the transactions. Defaults to return the latest              version of each transaction if not specified. | [optional] 
  **filter** | **str**| Expression to filter the result set.              For example, to return only transactions with a transaction type of &#39;Buy&#39;, specify \&quot;type eq &#39;Buy&#39;\&quot;.              For more information about filtering LUSID results, see https://support.lusid.com/knowledgebase/article/KA-01914. | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the \&quot;Instrument\&quot; or \&quot;Transaction\&quot; domain to decorate onto              the transactions. These take the format {domain}/{scope}/{code} e.g. \&quot;Instrument/system/Name\&quot; or              \&quot;Transaction/strategy/quantsignal\&quot;. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the \&quot;Instrument\&quot; or \&quot;Transaction\&quot; domain to decorate onto              the transactions. These take the format {domain}/{scope}/{code} e.g. \&quot;Instrument/system/Name\&quot; or              \&quot;Transaction/strategy/quantsignal\&quot;. | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many. Defaults to 100 if not specified. | [optional] 
  **page** | **str**| The pagination token to use to continue listing transactions from a previous call to BuildTransactions. | [optional] 
  **data_model_scope** | **str**| The optional scope of a Custom Data Model to use | [optional] 
@@ -523,7 +523,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**VersionedResourceListOfOutputTransaction**](VersionedResourceListOfOutputTransaction.md)
+[**VersionedResourceListOfOutputTransaction**](../model/VersionedResourceListOfOutputTransaction.md)
 
 ### HTTP request headers
 
@@ -569,7 +569,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -613,11 +613,11 @@ Name | Type | Description  | Notes
  **scope** | **str**| The scope of the transaction portfolio. | [required] 
  **code** | **str**| The code of the transaction portfolio. Together with the scope this uniquely identifies              the transaction portfolio. | [required] 
  **effective_at** | **str**| The effective datetime or cut label at which the previous adjustment was made. | [required] 
- **cancel_single_holding_adjustment_request** | [**CancelSingleHoldingAdjustmentRequest**](CancelSingleHoldingAdjustmentRequest.md)| The selected holding adjustment to be canceled. | [required] 
+ **cancel_single_holding_adjustment_request** | [**CancelSingleHoldingAdjustmentRequest**](../model/CancelSingleHoldingAdjustmentRequest.md)| The selected holding adjustment to be canceled. | [required] 
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -659,11 +659,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the transaction portfolio. | [required] 
  **code** | **str**| The code of the transaction portfolio. Together with the scope this uniquely identifies              the transaction portfolio. | [required] 
- **transaction_ids** | [**List[str]**](str.md)| The IDs of the transactions to cancel. | [required] 
+ **transaction_ids** | [**List[str]**](../model/str.md)| The IDs of the transactions to cancel. | [required] 
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -703,11 +703,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope in which to create the transaction portfolio. | [required] 
- **create_transaction_portfolio_request** | [**CreateTransactionPortfolioRequest**](CreateTransactionPortfolioRequest.md)| The definition of the transaction portfolio. | [required] 
+ **create_transaction_portfolio_request** | [**CreateTransactionPortfolioRequest**](../model/CreateTransactionPortfolioRequest.md)| The definition of the transaction portfolio. | [required] 
 
 ### Return type
 
-[**Portfolio**](Portfolio.md)
+[**Portfolio**](../model/Portfolio.md)
 
 ### HTTP request headers
 
@@ -749,11 +749,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the transaction portfolio. | [required] 
  **code** | **str**| The code of the transaction portfolio. Together with the scope this uniquely identifies              the transaction portfolio. | [required] 
- **lusid_trade_ticket** | [**LusidTradeTicket**](LusidTradeTicket.md)| the trade ticket to upsert | [optional] 
+ **lusid_trade_ticket** | [**LusidTradeTicket**](../model/LusidTradeTicket.md)| the trade ticket to upsert | [optional] 
 
 ### Return type
 
-[**LusidTradeTicket**](LusidTradeTicket.md)
+[**LusidTradeTicket**](../model/LusidTradeTicket.md)
 
 ### HTTP request headers
 
@@ -796,12 +796,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the Transaction Portfolios. | [required] 
  **code** | **str**| The code of the Transaction Portfolios. Together with the scope this uniquely identifies              the Transaction Portfolios. | [required] 
- **resource_id** | [**List[ResourceId]**](ResourceId.md)| The scope and codes of the custodian accounts to delete. | [required] 
+ **resource_id** | [**List[ResourceId]**](../model/ResourceId.md)| The scope and codes of the custodian accounts to delete. | [required] 
  **delete_mode** | **str**| The delete mode to use. Default value: Soft. Available values: Soft, Hard. | [optional] 
 
 ### Return type
 
-[**DeleteCustodianAccountsResponse**](DeleteCustodianAccountsResponse.md)
+[**DeleteCustodianAccountsResponse**](../model/DeleteCustodianAccountsResponse.md)
 
 ### HTTP request headers
 
@@ -845,11 +845,11 @@ Name | Type | Description  | Notes
  **scope** | **str**| The scope of the transaction portfolio. | [required] 
  **code** | **str**| The code of the transaction portfolio. Together with the scope this uniquely identifies              the transaction portfolio. | [required] 
  **transaction_id** | **str**| The unique ID of the transaction from which to delete properties. | [required] 
- **property_keys** | [**List[str]**](str.md)| The property keys of the properties to delete.              These must be from the \&quot;Transaction\&quot; domain and have the format {domain}/{scope}/{code}, for example              \&quot;Transaction/strategy/quantsignal\&quot;. | [required] 
+ **property_keys** | [**List[str]**](../model/str.md)| The property keys of the properties to delete.              These must be from the \&quot;Transaction\&quot; domain and have the format {domain}/{scope}/{code}, for example              \&quot;Transaction/strategy/quantsignal\&quot;. | [required] 
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -891,11 +891,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the portfolio. | [required] 
  **code** | **str**| The code of the portfolio. Together with the scope this uniquely identifies              the portfolio. | [required] 
- **settlement_instruction_ids** | [**List[str]**](str.md)| A list of Ids of settlement instructions to be deleted. | [required] 
+ **settlement_instruction_ids** | [**List[str]**](../model/str.md)| A list of Ids of settlement instructions to be deleted. | [required] 
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -943,7 +943,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -996,12 +996,12 @@ Name | Type | Description  | Notes
  **as_at** | **datetime**| The asAt datetime at which to retrieve the portfolio. Defaults to return the latest version              of each transaction if not specified. | [optional] 
  **recipe_id_scope** | **str**| The scope of the given recipeId | [optional] 
  **recipe_id_code** | **str**| The code of the given recipeId | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the \&quot;Instrument\&quot; domain to decorate onto              the results. These take the format {domain}/{scope}/{code} e.g. \&quot;Instrument/system/Name\&quot;. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the \&quot;Instrument\&quot; domain to decorate onto              the results. These take the format {domain}/{scope}/{code} e.g. \&quot;Instrument/system/Name\&quot;. | [optional] 
  **filter** | **str**| Expression to filter the result set.              Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid. | [optional] 
 
 ### Return type
 
-[**VersionedResourceListOfA2BDataRecord**](VersionedResourceListOfA2BDataRecord.md)
+[**VersionedResourceListOfA2BDataRecord**](../model/VersionedResourceListOfA2BDataRecord.md)
 
 ### HTTP request headers
 
@@ -1054,12 +1054,12 @@ Name | Type | Description  | Notes
  **as_at** | **datetime**| The asAt datetime at which to retrieve the portfolio. Defaults to return the latest version              of each transaction if not specified. | [optional] 
  **recipe_id_scope** | **str**| The scope of the given recipeId | [optional] 
  **recipe_id_code** | **str**| The code of the given recipeId | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the \&quot;Instrument\&quot; domain to decorate onto              the results. These take the format {domain}/{scope}/{code} e.g. \&quot;Instrument/system/Name\&quot;. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the \&quot;Instrument\&quot; domain to decorate onto              the results. These take the format {domain}/{scope}/{code} e.g. \&quot;Instrument/system/Name\&quot;. | [optional] 
  **filter** | **str**| Expression to filter the result set.              Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid. | [optional] 
 
 ### Return type
 
-[**VersionedResourceListOfA2BMovementRecord**](VersionedResourceListOfA2BMovementRecord.md)
+[**VersionedResourceListOfA2BMovementRecord**](../model/VersionedResourceListOfA2BMovementRecord.md)
 
 ### HTTP request headers
 
@@ -1115,7 +1115,7 @@ Name | Type | Description  | Notes
  **as_at** | **datetime**| The asAt datetime at which to retrieve the portfolio. Defaults to return the latest version              of each transaction if not specified. | [optional] 
  **recipe_id_scope** | **str**| The scope of the given recipeId | [optional] 
  **recipe_id_code** | **str**| The code of the given recipeId | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the \&quot;Instrument\&quot; domain to decorate onto              the results. These take the format {domain}/{scope}/{code} e.g. \&quot;Instrument/system/Name\&quot;. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the \&quot;Instrument\&quot; domain to decorate onto              the results. These take the format {domain}/{scope}/{code} e.g. \&quot;Instrument/system/Name\&quot;. | [optional] 
  **filter** | **str**| Expression to filter the result set.              Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid. | [optional] 
  **timeline_scope** | **str**| The scope of the timeline to use for loading data per closed period. | [optional] 
  **timeline_code** | **str**| The code of the timeline to use for loading data per closed period. | [optional] 
@@ -1123,7 +1123,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**VersionedResourceListOfA2BMovementRecord**](VersionedResourceListOfA2BMovementRecord.md)
+[**VersionedResourceListOfA2BMovementRecord**](../model/VersionedResourceListOfA2BMovementRecord.md)
 
 ### HTTP request headers
 
@@ -1165,11 +1165,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the transaction portfolio. | [required] 
  **code** | **str**| The code of the transaction portfolio. Together with the scope this uniquely identifies the portfolio. | [required] 
- **bucketed_cash_flow_request** | [**BucketedCashFlowRequest**](BucketedCashFlowRequest.md)| Request specifying the bucketing of cashflows | [optional] 
+ **bucketed_cash_flow_request** | [**BucketedCashFlowRequest**](../model/BucketedCashFlowRequest.md)| Request specifying the bucketing of cashflows | [optional] 
 
 ### Return type
 
-[**BucketedCashFlowResponse**](BucketedCashFlowResponse.md)
+[**BucketedCashFlowResponse**](../model/BucketedCashFlowResponse.md)
 
 ### HTTP request headers
 
@@ -1219,11 +1219,11 @@ Name | Type | Description  | Notes
  **custodian_account_code** | **str**| The code of the Custodian Account. | [required] 
  **effective_at** | **str**| The effective datetime or cut label at which to retrieve the Custodian Account properties. Defaults to the current LUSID system datetime if not specified. | [optional] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the Custodian Account definition. Defaults to returning the latest version of the Custodian Account definition if not specified. | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the &#39;CustodianAccount&#39; domain to decorate onto the Custodian Account.              These must take the format {domain}/{scope}/{code}, for example &#39;CustodianAccount/Manager/Id&#39;. If no properties are specified, then no properties will be returned. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the &#39;CustodianAccount&#39; domain to decorate onto the Custodian Account.              These must take the format {domain}/{scope}/{code}, for example &#39;CustodianAccount/Manager/Id&#39;. If no properties are specified, then no properties will be returned. | [optional] 
 
 ### Return type
 
-[**CustodianAccount**](CustodianAccount.md)
+[**CustodianAccount**](../model/CustodianAccount.md)
 
 ### HTTP request headers
 
@@ -1271,7 +1271,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PortfolioDetails**](PortfolioDetails.md)
+[**PortfolioDetails**](../model/PortfolioDetails.md)
 
 ### HTTP request headers
 
@@ -1339,7 +1339,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**VersionedResourceListOfHoldingContributor**](VersionedResourceListOfHoldingContributor.md)
+[**VersionedResourceListOfHoldingContributor**](../model/VersionedResourceListOfHoldingContributor.md)
 
 ### HTTP request headers
 
@@ -1393,7 +1393,7 @@ Name | Type | Description  | Notes
  **effective_at** | **str**| The effective datetime or cut label at which to retrieve the holdings of the transaction              portfolio. Defaults to the current LUSID system datetime if not specified. | [optional] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the holdings of the transaction portfolio. Defaults              to return the latest version if not specified. | [optional] 
  **filter** | **str**| Expression to filter the result set.              For example, to filter on the Holding Type, use \&quot;holdingType eq &#39;p&#39;\&quot;.              For more information about filtering LUSID results, see https://support.lusid.com/knowledgebase/article/KA-01914. | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the \&quot;Instrument\&quot;, \&quot;Holding\&quot;, \&quot;Custodian Account\&quot;, \&quot;Legal Entity\&quot; or \&quot;Portfolio\&quot; domain to decorate onto              holdings. These must have the format {domain}/{scope}/{code}, for example \&quot;Instrument/system/Name\&quot; or \&quot;Holding/system/Cost\&quot;. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the \&quot;Instrument\&quot;, \&quot;Holding\&quot;, \&quot;Custodian Account\&quot;, \&quot;Legal Entity\&quot; or \&quot;Portfolio\&quot; domain to decorate onto              holdings. These must have the format {domain}/{scope}/{code}, for example \&quot;Instrument/system/Name\&quot; or \&quot;Holding/system/Cost\&quot;. | [optional] 
  **by_taxlots** | **bool**| Whether or not to expand the holdings to return the underlying tax-lots. Defaults to              False. | [optional] 
  **include_settlement_events_after_days** | **int**| Number of days ahead to bring back settlements from, in relation to the specified effectiveAt | [optional] 
  **timeline_scope** | **str**| The scope of the Timeline. | [optional] 
@@ -1403,7 +1403,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**VersionedResourceListOfPortfolioHolding**](VersionedResourceListOfPortfolioHolding.md)
+[**VersionedResourceListOfPortfolioHolding**](../model/VersionedResourceListOfPortfolioHolding.md)
 
 ### HTTP request headers
 
@@ -1450,12 +1450,12 @@ Name | Type | Description  | Notes
  **code** | **str**| The code of the transaction portfolio. Together with the scope this uniquely identifies              the transaction portfolio. | [required] 
  **effective_at** | **str**| The effective datetime or cut label of the holdings adjustment. | [required] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the holdings adjustment. Defaults to the return the latest              version of the holdings adjustment if not specified. | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the &#39;Instrument&#39; domain to decorate onto holdings adjustments.              These must have the format {domain}/{scope}/{code}, for example &#39;Instrument/system/Name&#39;.              Note that properties from the &#39;Holding&#39; domain are automatically returned. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the &#39;Instrument&#39; domain to decorate onto holdings adjustments.              These must have the format {domain}/{scope}/{code}, for example &#39;Instrument/system/Name&#39;.              Note that properties from the &#39;Holding&#39; domain are automatically returned. | [optional] 
  **filter** | **str**| Expression to filter the holding adjustments result set.              Supported fields: InstrumentUid, InstrumentScope, Currency, Properties[Holding/{scope}/{code}], SubHoldingKeys[Transaction/{scope}/{code}].              For example, to filter on a specific instrument, specify \&quot;InstrumentUid eq &#39;LUID_00003D4X&#39;\&quot;.              For more information about filtering LUSID results, see https://support.lusid.com/knowledgebase/article/KA-01914. | [optional] 
 
 ### Return type
 
-[**HoldingsAdjustment**](HoldingsAdjustment.md)
+[**HoldingsAdjustment**](../model/HoldingsAdjustment.md)
 
 ### HTTP request headers
 
@@ -1508,7 +1508,7 @@ Name | Type | Description  | Notes
  **effective_at** | **str**| The effective datetime or cut label at which to retrieve the holdings of the transaction              portfolio. Defaults to the current LUSID system datetime if not specified. | [optional] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the holdings of the transaction portfolio. Defaults              to return the latest version of the holdings if not specified. | [optional] 
  **filter** | **str**| Expression to filter the result set.              For example, to filter on the Holding Type, use \&quot;holdingType eq &#39;p&#39;\&quot;              For more information about filtering LUSID results, see https://support.lusid.com/knowledgebase/article/KA-01914. | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the \&quot;Instrument\&quot;, \&quot;Holding\&quot; or \&quot;Portfolio\&quot; domain to decorate onto              the holdings. These take the format {domain}/{scope}/{code} e.g. \&quot;Instrument/system/Name\&quot; or \&quot;Holding/system/Cost\&quot;. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the \&quot;Instrument\&quot;, \&quot;Holding\&quot; or \&quot;Portfolio\&quot; domain to decorate onto              the holdings. These take the format {domain}/{scope}/{code} e.g. \&quot;Instrument/system/Name\&quot; or \&quot;Holding/system/Cost\&quot;. | [optional] 
  **by_taxlots** | **bool**| Whether or not to expand the holdings to return the underlying tax-lots. Defaults to              False. | [optional] 
  **recipe_id_scope** | **str**| The scope of the given recipeId | [optional] 
  **recipe_id_code** | **str**| The code of the given recipeId | [optional] 
@@ -1517,7 +1517,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**VersionedResourceListWithWarningsOfPortfolioHolding**](VersionedResourceListWithWarningsOfPortfolioHolding.md)
+[**VersionedResourceListWithWarningsOfPortfolioHolding**](../model/VersionedResourceListWithWarningsOfPortfolioHolding.md)
 
 ### HTTP request headers
 
@@ -1570,7 +1570,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the transaction portfolio. | [required] 
  **code** | **str**| The code of the transaction portfolio. Together with the scope this uniquely identifies              the transaction portfolio. | [required] 
- **holding_ids_request** | [**HoldingIdsRequest**](HoldingIdsRequest.md)| The array of unique holding identifiers | [required] 
+ **holding_ids_request** | [**HoldingIdsRequest**](../model/HoldingIdsRequest.md)| The array of unique holding identifiers | [required] 
  **effective_date** | **str**| Effective date | [optional] 
  **from_transaction_date** | **str**| The from trade date, defaults to first time this holding is opened, lower bound for transactions | [optional] 
  **to_transaction_date** | **str**| The to trade date upper bound date, defaults to effectiveDate. upper bound for transactions | [optional] 
@@ -1585,7 +1585,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**VersionedResourceListOfHoldingContributor**](VersionedResourceListOfHoldingContributor.md)
+[**VersionedResourceListOfHoldingContributor**](../model/VersionedResourceListOfHoldingContributor.md)
 
 ### HTTP request headers
 
@@ -1647,7 +1647,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfInstrumentCashFlow**](ResourceListOfInstrumentCashFlow.md)
+[**ResourceListOfInstrumentCashFlow**](../model/ResourceListOfInstrumentCashFlow.md)
 
 ### HTTP request headers
 
@@ -1709,7 +1709,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfPortfolioCashLadder**](ResourceListOfPortfolioCashLadder.md)
+[**ResourceListOfPortfolioCashLadder**](../model/ResourceListOfPortfolioCashLadder.md)
 
 ### HTTP request headers
 
@@ -1763,11 +1763,11 @@ Name | Type | Description  | Notes
  **filter** | **str**| Expression to filter the result set.              For example, to return only transactions with a transaction type of &#39;Buy&#39;, specify \&quot;type eq &#39;Buy&#39;\&quot;.              For more information about filtering LUSID results, see https://support.lusid.com/knowledgebase/article/KA-01914. | [optional] 
  **recipe_id_scope** | **str**| The scope of the given recipeId | [optional] 
  **recipe_id_code** | **str**| The code of the given recipeID | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the \&quot;Instrument\&quot; or \&quot;Transaction\&quot; domain to decorate onto              the cash flows&#39; transactions. These take the format {domain}/{scope}/{code} e.g. \&quot;Instrument/system/Name\&quot; or              \&quot;Transaction/strategy/quantsignal\&quot;. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the \&quot;Instrument\&quot; or \&quot;Transaction\&quot; domain to decorate onto              the cash flows&#39; transactions. These take the format {domain}/{scope}/{code} e.g. \&quot;Instrument/system/Name\&quot; or              \&quot;Transaction/strategy/quantsignal\&quot;. | [optional] 
 
 ### Return type
 
-[**ResourceListOfPortfolioCashFlow**](ResourceListOfPortfolioCashFlow.md)
+[**ResourceListOfPortfolioCashFlow**](../model/ResourceListOfPortfolioCashFlow.md)
 
 ### HTTP request headers
 
@@ -1815,7 +1815,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfChangeHistory**](ResourceListOfChangeHistory.md)
+[**ResourceListOfChangeHistory**](../model/ResourceListOfChangeHistory.md)
 
 ### HTTP request headers
 
@@ -1863,11 +1863,11 @@ Name | Type | Description  | Notes
  **transaction_id** | **str**| The ID of the transaction. | [required] 
  **effective_at** | **str**| The effective date and time or cut label to get the transaction settlement status.              This defaults to the current LUSID system time if not specified. | [optional] 
  **as_at** | **datetime**| The asAt date and time to get the transaction settlement status.               This defaults to return the latest status if not specified. | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the &#39;SettlementInstruction&#39;, &#39;Instrument&#39; or &#39;Portfolio&#39; domains to decorate onto              settlement instructions. These must have the format {domain}/{scope}/{code}, for example &#39;Instrument/system/Name&#39; or &#39;SettlementInstruction/strategy/quantsignal&#39;. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the &#39;SettlementInstruction&#39;, &#39;Instrument&#39; or &#39;Portfolio&#39; domains to decorate onto              settlement instructions. These must have the format {domain}/{scope}/{code}, for example &#39;Instrument/system/Name&#39; or &#39;SettlementInstruction/strategy/quantsignal&#39;. | [optional] 
 
 ### Return type
 
-[**TransactionSettlementStatus**](TransactionSettlementStatus.md)
+[**TransactionSettlementStatus**](../model/TransactionSettlementStatus.md)
 
 ### HTTP request headers
 
@@ -1924,18 +1924,18 @@ Name | Type | Description  | Notes
  **to_transaction_date** | **str**| The upper bound effective datetime or cut label (inclusive) from which to retrieve transactions.               There is no upper bound if this is not specified. | [optional] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve transactions. Defaults to returning the latest version               of each transaction if not specified. | [optional] 
  **filter** | **str**| Expression with which to filter the result set.               For example, to return only transactions with a transaction type of &#39;Buy&#39;, specify \&quot;type eq &#39;Buy&#39;\&quot;               For more information about filtering LUSID results, see https://support.lusid.com/knowledgebase/article/KA-01914. | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the &#39;Instrument&#39;, &#39;Transaction&#39;, \&quot;LegalEntity\&quot; or \&quot;CustodianAccount\&quot; domain to decorate onto               transactions. These must have the format {domain}/{scope}/{code}, for example &#39;Instrument/system/Name&#39; or               &#39;Transaction/strategy/quantsignal&#39;. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the &#39;Instrument&#39;, &#39;Transaction&#39;, \&quot;LegalEntity\&quot; or \&quot;CustodianAccount\&quot; domain to decorate onto               transactions. These must have the format {domain}/{scope}/{code}, for example &#39;Instrument/system/Name&#39; or               &#39;Transaction/strategy/quantsignal&#39;. | [optional] 
  **page** | **str**| The pagination token to use to continue listing transactions from a previous call to GetTransactions. | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many. The current behaviour is               to return all transactions if possible, but this will change to defaulting to 1000 if not specified in the future. It is recommended               to populate this field to enable pagination. | [optional] 
  **show_cancelled_transactions** | **bool**| Option to specify whether or not to include cancelled transactions,               including previous versions of transactions which have since been amended.               Defaults to False if not specified. | [optional] 
- **sort_by** | [**List[str]**](str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
  **data_model_scope** | **str**| The optional scope of a Custom Data Model to use | [optional] 
  **data_model_code** | **str**| The optional code of a Custom Data Model to use | [optional] 
  **membership_type** | **str**| The membership types of the specified Custom Data Model to return. Default value: Member. Available values: All, Member, Candidate. | [optional] 
 
 ### Return type
 
-[**VersionedResourceListOfTransaction**](VersionedResourceListOfTransaction.md)
+[**VersionedResourceListOfTransaction**](../model/VersionedResourceListOfTransaction.md)
 
 ### HTTP request headers
 
@@ -1997,7 +1997,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfTransaction**](ResourceListOfTransaction.md)
+[**ResourceListOfTransaction**](../model/ResourceListOfTransaction.md)
 
 ### HTTP request headers
 
@@ -2049,11 +2049,11 @@ Name | Type | Description  | Notes
  **page** | **str**| The pagination token to use to continue listing custodian accounts; this              value is returned from the previous call. If a pagination token is provided, the filter, effectiveAt              and asAt fields must not have changed since the original request. | [optional] 
  **limit** | **int**| When paginating, limit the results to this number. Defaults to 100 if not specified. | [optional] 
  **filter** | **str**| Expression to filter the results.              For example, to filter on the Custodian Account type, specify \&quot;code eq &#39;001&#39;\&quot;. For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914. | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the &#39;CustodianAccount&#39; domain to decorate onto the Custodian Account.              These must have the format {domain}/{scope}/{code}, for example &#39;CustodianAccount/system/Name&#39;. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the &#39;CustodianAccount&#39; domain to decorate onto the Custodian Account.              These must have the format {domain}/{scope}/{code}, for example &#39;CustodianAccount/system/Name&#39;. | [optional] 
 
 ### Return type
 
-[**PagedResourceListOfCustodianAccount**](PagedResourceListOfCustodianAccount.md)
+[**PagedResourceListOfCustodianAccount**](../model/PagedResourceListOfCustodianAccount.md)
 
 ### HTTP request headers
 
@@ -2105,7 +2105,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfHoldingsAdjustmentHeader**](ResourceListOfHoldingsAdjustmentHeader.md)
+[**ResourceListOfHoldingsAdjustmentHeader**](../model/ResourceListOfHoldingsAdjustmentHeader.md)
 
 ### HTTP request headers
 
@@ -2162,14 +2162,14 @@ Name | Type | Description  | Notes
  **limit** | **int**| When paginating, limit the results to this number. Defaults to 100 if not specified. | [optional] 
  **filter** | **str**| The expression to filter out settlement instructions | [optional] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the settlement instructions. Defaults to return the latest if not specified. | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the &#39;SettlementInstruction&#39;, &#39;Instrument&#39; or &#39;Portfolio&#39; domains to decorate onto              settlement instructions. These must have the format {domain}/{scope}/{code}, for example &#39;Instrument/system/Name&#39; or &#39;SettlementInstruction/strategy/quantsignal&#39;. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the &#39;SettlementInstruction&#39;, &#39;Instrument&#39; or &#39;Portfolio&#39; domains to decorate onto              settlement instructions. These must have the format {domain}/{scope}/{code}, for example &#39;Instrument/system/Name&#39; or &#39;SettlementInstruction/strategy/quantsignal&#39;. | [optional] 
  **timeline_scope** | **str**| The scope of the Timeline. | [optional] 
  **timeline_code** | **str**| The code of the Timeline. This can optionally include a colon followed by the Closed Period ID to use at the head of the timeline, for a timeline with unconfirmed periods. | [optional] 
  **closed_period_id** | **str**| The closed period ID. If this is specified, both timelineScope and timelineCode must be specified. Either closedPeriodId or effectiveAt can be used with a Timeline. | [optional] 
 
 ### Return type
 
-[**VersionedResourceListOfTransactionSettlementInstruction**](VersionedResourceListOfTransactionSettlementInstruction.md)
+[**VersionedResourceListOfTransactionSettlementInstruction**](../model/VersionedResourceListOfTransactionSettlementInstruction.md)
 
 ### HTTP request headers
 
@@ -2212,12 +2212,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the transaction portfolio. | [required] 
  **code** | **str**| The code of the transaction portfolio. Together with the              scope this uniquely identifies the transaction portfolio. | [required] 
- **operation** | [**List[Operation]**](Operation.md)| The patch document. | [required] 
+ **operation** | [**List[Operation]**](../model/Operation.md)| The patch document. | [required] 
  **effective_at** | **str**| The effective datetime or cut label at which the updated or inserted details should become valid.              Defaults to the current LUSID system datetime if not specified.              Note that this will affect all bitemporal fields (eg: SettlementConfiguration) in the request (but will not be used for any              perpetual fields). When patching a bitemporal field, the field will be updated from the              effectiveAt onwards and until the end of effective time. | [optional] 
 
 ### Return type
 
-[**PortfolioDetails**](PortfolioDetails.md)
+[**PortfolioDetails**](../model/PortfolioDetails.md)
 
 ### HTTP request headers
 
@@ -2264,8 +2264,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the transaction portfolio. | [required] 
  **code** | **str**| The code of the transaction portfolio. Together with the scope this uniquely identifies              the transaction portfolio. | [required] 
- **transaction_request** | [**TransactionRequest**](TransactionRequest.md)| The transaction to be previewed. | [required] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the \&quot;Instrument\&quot; or \&quot;Transaction\&quot; domain to decorate onto              the transactions. These take the format {domain}/{scope}/{code} e.g. \&quot;Instrument/system/Name\&quot; or              \&quot;Transaction/strategy/quantsignal\&quot;. | [optional] 
+ **transaction_request** | [**TransactionRequest**](../model/TransactionRequest.md)| The transaction to be previewed. | [required] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the \&quot;Instrument\&quot; or \&quot;Transaction\&quot; domain to decorate onto              the transactions. These take the format {domain}/{scope}/{code} e.g. \&quot;Instrument/system/Name\&quot; or              \&quot;Transaction/strategy/quantsignal\&quot;. | [optional] 
  **show_cancelled_transactions** | **bool**| Option to specify whether to include previous versions of an amended transaction in the response.              Defaults to False if not specified. | [optional] 
  **preserve_properties** | **bool**| If the preview transaction is an amendment to an existing transaction, then setting this to true will carry forward any unmodified properties from the earlier version. | [optional] 
  **data_model_scope** | **str**| The optional scope of a Custom Data Model to use | [optional] 
@@ -2273,7 +2273,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfOutputTransaction**](ResourceListOfOutputTransaction.md)
+[**ResourceListOfOutputTransaction**](../model/ResourceListOfOutputTransaction.md)
 
 ### HTTP request headers
 
@@ -2323,11 +2323,11 @@ Name | Type | Description  | Notes
  **instrument_identifier_value** | **str**| The value for the given instrument identifier. | [required] 
  **from_effective_at** | **str**| The lower bound effective datetime or cut label (inclusive) from which to retrieve the data.              There is no lower bound if this is not specified. | [optional] 
  **re_resolve** | **bool**| When set to true, instrument resolution will be attempted for all transactions and holdings for the given identifier and date range.              When set to false (default behaviour), instrument resolution will only be attempted for those transactions and holdings that were previously unresolved. | [optional] [default to False]
- **request_body** | [**Dict[str, str]**](str.md)| The dictionary with the instrument identifiers to be updated on the             transaction and holdings. | [optional] 
+ **request_body** | [**Dict[str, str]**](../model/str.md)| The dictionary with the instrument identifiers to be updated on the             transaction and holdings. | [optional] 
 
 ### Return type
 
-[**UpsertPortfolioTransactionsResponse**](UpsertPortfolioTransactionsResponse.md)
+[**UpsertPortfolioTransactionsResponse**](../model/UpsertPortfolioTransactionsResponse.md)
 
 ### HTTP request headers
 
@@ -2374,14 +2374,14 @@ Name | Type | Description  | Notes
  **scope** | **str**| The scope of the transaction portfolio. | [required] 
  **code** | **str**| The code of the transaction portfolio. Together with the scope this uniquely identifies              the transaction portfolio. | [required] 
  **effective_at** | **str**| The effective datetime or cut label at which the holdings should be set to the provided targets. | [required] 
- **adjust_holding_request** | [**List[AdjustHoldingRequest]**](AdjustHoldingRequest.md)| The complete set of target holdings for the transaction portfolio. | [required] 
- **reconciliation_methods** | [**List[str]**](str.md)| Optional parameter for specifying a reconciliation method: e.g. FxForward. | [optional] 
+ **adjust_holding_request** | [**List[AdjustHoldingRequest]**](../model/AdjustHoldingRequest.md)| The complete set of target holdings for the transaction portfolio. | [required] 
+ **reconciliation_methods** | [**List[str]**](../model/str.md)| Optional parameter for specifying a reconciliation method: e.g. FxForward. | [optional] 
  **override_movement_name** | **str**| Optional parameter to override movement name for the set holdings. | [optional] 
  **override_offset_movement_name** | **str**| Optional parameter will create an additional offset movement for the set holdings with this new name and transaction type: CarryAsPnl | [optional] 
 
 ### Return type
 
-[**AdjustHolding**](AdjustHolding.md)
+[**AdjustHolding**](../model/AdjustHolding.md)
 
 ### HTTP request headers
 
@@ -2423,11 +2423,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the Transaction Portfolio. | [required] 
  **code** | **str**| The code of the Transaction Portfolio. Together with the scope this uniquely identifies              the Transaction Portfolios. | [required] 
- **custodian_account_request** | [**List[CustodianAccountRequest]**](CustodianAccountRequest.md)| A list of Custodian Accounts to be created or updated. | [required] 
+ **custodian_account_request** | [**List[CustodianAccountRequest]**](../model/CustodianAccountRequest.md)| A list of Custodian Accounts to be created or updated. | [required] 
 
 ### Return type
 
-[**CustodianAccountsUpsertResponse**](CustodianAccountsUpsertResponse.md)
+[**CustodianAccountsUpsertResponse**](../model/CustodianAccountsUpsertResponse.md)
 
 ### HTTP request headers
 
@@ -2473,11 +2473,11 @@ Name | Type | Description  | Notes
  **code** | **str**| The code of the Transaction Portfolios to update or insert the properties onto. Together with the scope this uniquely identifies the Transaction Portfolios. | [required] 
  **custodian_account_scope** | **str**| The scope of the Custodian Account to update or insert the properties onto. | [required] 
  **custodian_account_code** | **str**| The unique ID of the custodian account to create or update properties for. | [required] 
- **request_body** | [**Dict[str, ModelProperty]**](ModelProperty.md)| The properties to be updated or inserted onto the Transaction Portfolio. Each property in               the request must be keyed by its unique property key. This has the format {domain}/{scope}/{code} e.g. \&quot;CustodianAccount/Manager/Id\&quot;. | [optional] 
+ **request_body** | [**Dict[str, ModelProperty]**](../model/ModelProperty.md)| The properties to be updated or inserted onto the Transaction Portfolio. Each property in               the request must be keyed by its unique property key. This has the format {domain}/{scope}/{code} e.g. \&quot;CustodianAccount/Manager/Id\&quot;. | [optional] 
 
 ### Return type
 
-[**CustodianAccountProperties**](CustodianAccountProperties.md)
+[**CustodianAccountProperties**](../model/CustodianAccountProperties.md)
 
 ### HTTP request headers
 
@@ -2520,12 +2520,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the transaction portfolio. | [required] 
  **code** | **str**| The code of the transaction portfolio. Together with the               scope this uniquely identifies the transaction portfolio. | [required] 
- **create_portfolio_details** | [**CreatePortfolioDetails**](CreatePortfolioDetails.md)| The details to create or update for the specified transaction portfolio. | [required] 
+ **create_portfolio_details** | [**CreatePortfolioDetails**](../model/CreatePortfolioDetails.md)| The details to create or update for the specified transaction portfolio. | [required] 
  **effective_at** | **str**| The effective datetime or cut label at which the updated or inserted details should become valid.               Defaults to the current LUSID system datetime if not specified. | [optional] 
 
 ### Return type
 
-[**PortfolioDetails**](PortfolioDetails.md)
+[**PortfolioDetails**](../model/PortfolioDetails.md)
 
 ### HTTP request headers
 
@@ -2567,11 +2567,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the portfolio. | [required] 
  **code** | **str**| The code of the portfolio. | [required] 
- **settlement_instruction_request** | [**List[SettlementInstructionRequest]**](SettlementInstructionRequest.md)| The definition of the settlement instruction. | [required] 
+ **settlement_instruction_request** | [**List[SettlementInstructionRequest]**](../model/SettlementInstructionRequest.md)| The definition of the settlement instruction. | [required] 
 
 ### Return type
 
-[**ResourceListOfTransactionSettlementInstruction**](ResourceListOfTransactionSettlementInstruction.md)
+[**ResourceListOfTransactionSettlementInstruction**](../model/ResourceListOfTransactionSettlementInstruction.md)
 
 ### HTTP request headers
 
@@ -2615,11 +2615,11 @@ Name | Type | Description  | Notes
  **scope** | **str**| The scope of the transaction portfolio. | [required] 
  **code** | **str**| The code of the transaction portfolio. Together with the scope this uniquely identifies              the transaction portfolio. | [required] 
  **transaction_id** | **str**| The unique ID of the transaction to create or update properties for. | [required] 
- **request_body** | [**Dict[str, PerpetualProperty]**](PerpetualProperty.md)| The properties and their associated values to create or update. | [required] 
+ **request_body** | [**Dict[str, PerpetualProperty]**](../model/PerpetualProperty.md)| The properties and their associated values to create or update. | [required] 
 
 ### Return type
 
-[**UpsertTransactionPropertiesResponse**](UpsertTransactionPropertiesResponse.md)
+[**UpsertTransactionPropertiesResponse**](../model/UpsertTransactionPropertiesResponse.md)
 
 ### HTTP request headers
 
@@ -2664,14 +2664,14 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the transaction portfolio. | [required] 
  **code** | **str**| The code of the transaction portfolio. Together with the scope this uniquely identifies              the transaction portfolio. | [required] 
- **transaction_request** | [**List[TransactionRequest]**](TransactionRequest.md)| A list of transactions to be created or updated. | [required] 
+ **transaction_request** | [**List[TransactionRequest]**](../model/TransactionRequest.md)| A list of transactions to be created or updated. | [required] 
  **preserve_properties** | **bool**| If set to false, the entire property set will be overwritten by the provided properties. If not specified or set to true, only the properties provided will be updated. | [optional] [default to True]
  **data_model_scope** | **str**| The optional scope of a Custom Data Model to use | [optional] 
  **data_model_code** | **str**| The optional code of a Custom Data Model to use | [optional] 
 
 ### Return type
 
-[**UpsertPortfolioTransactionsResponse**](UpsertPortfolioTransactionsResponse.md)
+[**UpsertPortfolioTransactionsResponse**](../model/UpsertPortfolioTransactionsResponse.md)
 
 ### HTTP request headers
 
@@ -2719,7 +2719,7 @@ Name | Type | Description  | Notes
  **scope** | **str**| The scope of the transaction portfolio. | [required] 
  **code** | **str**| The code of the transaction portfolio. Together with the scope this uniquely identifies              the transaction portfolio. | [required] 
  **instrument_event_id** | **str**| The ID of the instrument event whose virtual transactions should be overridden. | [required] 
- **transaction_request** | [**List[TransactionRequest]**](TransactionRequest.md)| A list of transactions to replace the virtual transactions generated by the instrument event. | [required] 
+ **transaction_request** | [**List[TransactionRequest]**](../model/TransactionRequest.md)| A list of transactions to replace the virtual transactions generated by the instrument event. | [required] 
  **portfolio_effective_at** | **str**| The effective datetime used to resolve the portfolio. Defaults to the current LUSID system datetime if not specified. | [optional] 
  **preserve_properties** | **bool**| If set to false, the entire property set will be overwritten by the provided properties. If not specified or set to true, only the properties provided will be updated. | [optional] [default to True]
  **data_model_scope** | **str**| The optional scope of a Custom Data Model to use | [optional] 
@@ -2727,7 +2727,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OverrideVirtualTransactionsResponse**](OverrideVirtualTransactionsResponse.md)
+[**OverrideVirtualTransactionsResponse**](../model/OverrideVirtualTransactionsResponse.md)
 
 ### HTTP request headers
 

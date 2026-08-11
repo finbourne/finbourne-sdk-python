@@ -85,13 +85,13 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **request_body** | [**Dict[str, BatchUpsertPortfolioAccessMetadataRequest]**](BatchUpsertPortfolioAccessMetadataRequest.md)| The Access Metadata Rules to upsert and the Portfolio identifiers to upsert for | [required] 
+ **request_body** | [**Dict[str, BatchUpsertPortfolioAccessMetadataRequest]**](../model/BatchUpsertPortfolioAccessMetadataRequest.md)| The Access Metadata Rules to upsert and the Portfolio identifiers to upsert for | [required] 
  **effective_at** | **str**| The date these rules will be effective from | [optional] 
  **effective_until** | **str**| The effective date until which the Access Metadata is valid. If not supplied, this will be valid indefinitely, or until the next &#39;effectiveAt&#39; date of the Access Metadata | [optional] 
 
 ### Return type
 
-[**BatchUpsertPortfolioAccessMetadataResponse**](BatchUpsertPortfolioAccessMetadataResponse.md)
+[**BatchUpsertPortfolioAccessMetadataResponse**](../model/BatchUpsertPortfolioAccessMetadataResponse.md)
 
 ### HTTP request headers
 
@@ -139,7 +139,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -189,7 +189,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -233,7 +233,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -276,12 +276,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the portfolio. | [required] 
  **code** | **str**| The code of the portfolio. Together with the scope this uniquely identifies the portfolio. | [required] 
- **property_keys** | [**List[str]**](str.md)| The property keys of the properties to delete. These must take the format              {domain}/{scope}/{code}, for example &#39;Portfolio/Manager/Id&#39;. Each property must be from the &#39;Portfolio&#39; domain. | [required] 
+ **property_keys** | [**List[str]**](../model/str.md)| The property keys of the properties to delete. These must take the format              {domain}/{scope}/{code}, for example &#39;Portfolio/Manager/Id&#39;. Each property must be from the &#39;Portfolio&#39; domain. | [required] 
  **effective_at** | **str**| The effective datetime or cut label at which to delete time-variant properties from.              The property must exist at the specified &#39;effectiveAt&#39; datetime. If the &#39;effectiveAt&#39; is not provided or is              before the time-variant property exists then a failure is returned. Do not specify this parameter if any of              the properties to delete are perpetual. | [optional] 
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -335,7 +335,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -378,12 +378,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the Portfolio. | [required] 
  **code** | **str**| The code of the  Portfolio. | [required] 
- **aggregated_returns_dispersion_request** | [**AggregatedReturnsDispersionRequest**](AggregatedReturnsDispersionRequest.md)| The request used in the AggregatedReturnsDispersionMetric. | [required] 
+ **aggregated_returns_dispersion_request** | [**AggregatedReturnsDispersionRequest**](../model/AggregatedReturnsDispersionRequest.md)| The request used in the AggregatedReturnsDispersionMetric. | [required] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the Returns. Defaults to the latest. | [optional] 
 
 ### Return type
 
-[**CompositeDispersionResponse**](CompositeDispersionResponse.md)
+[**CompositeDispersionResponse**](../model/CompositeDispersionResponse.md)
 
 ### HTTP request headers
 
@@ -428,14 +428,14 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the Portfolio. | [required] 
  **code** | **str**| The code of the  Portfolio. | [required] 
- **composite_breakdown_request** | [**CompositeBreakdownRequest**](CompositeBreakdownRequest.md)| The request used in the GetCompositeBreakdown. | [required] 
+ **composite_breakdown_request** | [**CompositeBreakdownRequest**](../model/CompositeBreakdownRequest.md)| The request used in the GetCompositeBreakdown. | [required] 
  **from_effective_at** | **str**| The start date from which to calculate the Returns. | [optional] 
  **to_effective_at** | **str**| The end date for which to calculate the Returns. | [optional] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the Returns. Defaults to the latest. | [optional] 
 
 ### Return type
 
-[**CompositeBreakdownResponse**](CompositeBreakdownResponse.md)
+[**CompositeBreakdownResponse**](../model/CompositeBreakdownResponse.md)
 
 ### HTTP request headers
 
@@ -491,7 +491,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InstrumentEventInstruction**](InstrumentEventInstruction.md)
+[**InstrumentEventInstruction**](../model/InstrumentEventInstruction.md)
 
 ### HTTP request headers
 
@@ -538,12 +538,12 @@ Name | Type | Description  | Notes
  **code** | **str**| The code of the portfolio. Together with the scope this uniquely identifies the portfolio. | [required] 
  **effective_at** | **str**| The effective datetime or cut label at which to retrieve the portfolio definition. Defaults to the current LUSID system datetime if not specified. | [optional] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the portfolio definition. Defaults to returning the latest version of the portfolio definition if not specified. | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the &#39;Portfolio&#39; domain to decorate onto the portfolio,              or from any domain that supports relationships to decorate onto related entities. These must take the format              {domain}/{scope}/{code}, for example &#39;Portfolio/Manager/Id&#39;. | [optional] 
- **relationship_definition_ids** | [**List[str]**](str.md)| A list of relationship definitions that are used to decorate related entities              onto the portfolio in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the &#39;Portfolio&#39; domain to decorate onto the portfolio,              or from any domain that supports relationships to decorate onto related entities. These must take the format              {domain}/{scope}/{code}, for example &#39;Portfolio/Manager/Id&#39;. | [optional] 
+ **relationship_definition_ids** | [**List[str]**](../model/str.md)| A list of relationship definitions that are used to decorate related entities              onto the portfolio in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}. | [optional] 
 
 ### Return type
 
-[**Portfolio**](Portfolio.md)
+[**Portfolio**](../model/Portfolio.md)
 
 ### HTTP request headers
 
@@ -605,13 +605,13 @@ Name | Type | Description  | Notes
  **composite_method** | **str**| The method used to calculate the Portfolio performance. Available values: Equal, Asset. | [optional] 
  **period** | **str**| The type of the returns used to calculate the aggregation result. Available values: Daily, Monthly. | [optional] 
  **output_frequency** | **str**| The type of calculated output. Available values: Daily, Weekly, Monthly, Quarterly, HalfYearly, Yearly. | [optional] 
- **metrics** | [**List[str]**](str.md)| Determines what type of returns should be calculated, see https://support.lusid.com/knowledgebase/article/KA-01675/en-us for a list of available metrics. | [optional] 
+ **metrics** | [**List[str]**](../model/str.md)| Determines what type of returns should be calculated, see https://support.lusid.com/knowledgebase/article/KA-01675/en-us for a list of available metrics. | [optional] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the Returns. Defaults to the latest. | [optional] 
  **alternative_inc_date** | **str**| The date from which to consider the Returns on the Portfolio, if this is different from the date when Returns begin. Can be a date string or Portfolio property. | [optional] 
 
 ### Return type
 
-[**ResourceListOfAggregatedReturn**](ResourceListOfAggregatedReturn.md)
+[**ResourceListOfAggregatedReturn**](../model/ResourceListOfAggregatedReturn.md)
 
 ### HTTP request headers
 
@@ -656,14 +656,14 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the Portfolio. | [required] 
  **code** | **str**| The code of the  Portfolio. | [required] 
- **aggregated_returns_request** | [**AggregatedReturnsRequest**](AggregatedReturnsRequest.md)| The request used in the AggregatedReturns. | [required] 
+ **aggregated_returns_request** | [**AggregatedReturnsRequest**](../model/AggregatedReturnsRequest.md)| The request used in the AggregatedReturns. | [required] 
  **from_effective_at** | **str**| The start date from which to calculate the Returns. | [optional] 
  **to_effective_at** | **str**| The end date for which to calculate the Returns. | [optional] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve the Returns. Defaults to the latest. | [optional] 
 
 ### Return type
 
-[**AggregatedReturnsResponse**](AggregatedReturnsResponse.md)
+[**AggregatedReturnsResponse**](../model/AggregatedReturnsResponse.md)
 
 ### HTTP request headers
 
@@ -717,7 +717,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfProcessedCommand**](ResourceListOfProcessedCommand.md)
+[**ResourceListOfProcessedCommand**](../model/ResourceListOfProcessedCommand.md)
 
 ### HTTP request headers
 
@@ -813,7 +813,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PortfolioProperties**](PortfolioProperties.md)
+[**PortfolioProperties**](../model/PortfolioProperties.md)
 
 ### HTTP request headers
 
@@ -860,7 +860,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the portfolio. | [required] 
  **code** | **str**| The code of the portfolio. Together with the scope this uniquely identifies the portfolio. | [required] 
- **property_keys** | [**List[str]**](str.md)| The property keys of the properties whose history to show. These must be from the &#39;Portfolio&#39; domain and in the format {domain}/{scope}/{code}, for example &#39;Portfolio/Manager/Id&#39;. | [required] 
+ **property_keys** | [**List[str]**](../model/str.md)| The property keys of the properties whose history to show. These must be from the &#39;Portfolio&#39; domain and in the format {domain}/{scope}/{code}, for example &#39;Portfolio/Manager/Id&#39;. | [required] 
  **portfolio_effective_at** | **str**| The effective datetime used to resolve the portfolio. Defaults to the current LUSID system datetime if not specified. | [optional] 
  **as_at** | **datetime**| The asAt datetime at which to show the history. Defaults to returning the current datetime if not supplied. | [optional] 
  **filter** | **str**| Expression to filter the results. For more information about filtering,              see https://support.lusid.com/knowledgebase/article/KA-01914. | [optional] 
@@ -869,7 +869,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfPropertyIntervalTimeSeries**](ResourceListOfPropertyIntervalTimeSeries.md)
+[**ResourceListOfPropertyIntervalTimeSeries**](../model/ResourceListOfPropertyIntervalTimeSeries.md)
 
 ### HTTP request headers
 
@@ -925,7 +925,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfPropertyInterval**](ResourceListOfPropertyInterval.md)
+[**ResourceListOfPropertyInterval**](../model/ResourceListOfPropertyInterval.md)
 
 ### HTTP request headers
 
@@ -973,11 +973,11 @@ Name | Type | Description  | Notes
  **effective_at** | **str**| The effective datetime or cut label at which to retrieve relations. Defaults to the current LUSID system datetime if not specified. | [optional] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve relations. Defaults to returning the latest LUSID AsAt time if not specified. | [optional] 
  **filter** | **str**| Expression to filter the relations. Provide a null or empty string for this field until further notice. | [optional] 
- **identifier_types** | [**List[str]**](str.md)| Identifier types (as property keys) used for referencing Persons or Legal Entities.              These must be from the &#39;Person&#39; or &#39;LegalEntity&#39; domains and have the format {domain}/{scope}/{code}, for example              &#39;Person/CompanyDetails/Role&#39;. Only identifier types provided will be used to look up relevant entities in relations. If not applicable, provide an empty array. | [optional] 
+ **identifier_types** | [**List[str]**](../model/str.md)| Identifier types (as property keys) used for referencing Persons or Legal Entities.              These must be from the &#39;Person&#39; or &#39;LegalEntity&#39; domains and have the format {domain}/{scope}/{code}, for example              &#39;Person/CompanyDetails/Role&#39;. Only identifier types provided will be used to look up relevant entities in relations. If not applicable, provide an empty array. | [optional] 
 
 ### Return type
 
-[**ResourceListOfRelation**](ResourceListOfRelation.md)
+[**ResourceListOfRelation**](../model/ResourceListOfRelation.md)
 
 ### HTTP request headers
 
@@ -1025,11 +1025,11 @@ Name | Type | Description  | Notes
  **effective_at** | **str**| The effective datetime or cut label at which to retrieve relationships. Defaults to the current LUSID system datetime if not specified. | [optional] 
  **as_at** | **datetime**| The asAt datetime at which to retrieve relationships. Defaults to returning the latest LUSID AsAt time if not specified. | [optional] 
  **filter** | **str**| Expression to filter the relationships. Provide a null or empty string for this field until further notice. | [optional] 
- **identifier_types** | [**List[str]**](str.md)| Identifier types (as property keys) used for referencing Persons or Legal Entities.              These can be specified from the &#39;Person&#39; or &#39;LegalEntity&#39; domains and have the format {domain}/{scope}/{code}, for example              &#39;Person/CompanyDetails/Role&#39;. An Empty array may be used to return all related Entities. | [optional] 
+ **identifier_types** | [**List[str]**](../model/str.md)| Identifier types (as property keys) used for referencing Persons or Legal Entities.              These can be specified from the &#39;Person&#39; or &#39;LegalEntity&#39; domains and have the format {domain}/{scope}/{code}, for example              &#39;Person/CompanyDetails/Role&#39;. An Empty array may be used to return all related Entities. | [optional] 
 
 ### Return type
 
-[**ResourceListOfRelationship**](ResourceListOfRelationship.md)
+[**ResourceListOfRelationship**](../model/ResourceListOfRelationship.md)
 
 ### HTTP request headers
 
@@ -1085,7 +1085,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfPerformanceReturn**](ResourceListOfPerformanceReturn.md)
+[**ResourceListOfPerformanceReturn**](../model/ResourceListOfPerformanceReturn.md)
 
 ### HTTP request headers
 
@@ -1135,7 +1135,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List[AccessMetadataValue]**](AccessMetadataValue.md)
+[**List[AccessMetadataValue]**](../model/AccessMetadataValue.md)
 
 ### HTTP request headers
 
@@ -1190,14 +1190,14 @@ Name | Type | Description  | Notes
  **page** | **str**| The pagination token to use to continue listing instructions; this value is returned from the previous call.              If a pagination token is provided, the filter, effectiveAt and asAt fields must not have changed since the original request. | [optional] 
  **limit** | **int**| When paginating, limit the results to this number. Defaults to 100 if not specified. | [optional] 
  **filter** | **str**| Expression to filter the results. For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914. | [optional] 
- **sort_by** | [**List[str]**](str.md)| A list of field names to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| A list of field names to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
  **timeline_scope** | **str**| The scope of the Timeline, used to override the AsAt, and fetch post close activity data.              If this is provided, timelineCode must also be provided. | [optional] 
  **timeline_code** | **str**| The code of the Timeline, used to override the AsAt, and fetch post close activity data.              If this is provided, timelineScope must also be provided. | [optional] 
  **closed_period_id** | **str**| The code of the ClosedPeriod attached to the timeline, used to override the AsAt, and fetch post close activity data.              If this field is left empty and the timelineScope and timelineCode fields are filled out, the portfolioEffectiveAt will be used to resolve the relevant closed period. | [optional] 
 
 ### Return type
 
-[**PagedResourceListOfInstrumentEventInstruction**](PagedResourceListOfInstrumentEventInstruction.md)
+[**PagedResourceListOfInstrumentEventInstruction**](../model/PagedResourceListOfInstrumentEventInstruction.md)
 
 ### HTTP request headers
 
@@ -1249,7 +1249,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfProperty**](ResourceListOfProperty.md)
+[**ResourceListOfProperty**](../model/ResourceListOfProperty.md)
 
 ### HTTP request headers
 
@@ -1300,14 +1300,14 @@ Name | Type | Description  | Notes
  **page** | **str**| The pagination token to use to continue listing portfolios; this              value is returned from the previous call. If a pagination token is provided, the filter, effectiveAt              and asAt fields must not have changed since the original request. | [optional] 
  **limit** | **int**| When paginating, limit the results to this number. Defaults to 100 if not specified. | [optional] 
  **filter** | **str**| Expression to filter the results.              For example, to filter on the transaction type, specify \&quot;type eq &#39;Transaction&#39;\&quot;. For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914. | [optional] 
- **sort_by** | [**List[str]**](str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
  **query** | **str**| Expression specifying the criteria that the returned portfolios must meet. For example, to see which              portfolios have holdings in instruments with a LusidInstrumentId (LUID) of &#39;LUID_PPA8HI6M&#39; or a Figi of &#39;BBG000BLNNH6&#39;,              specify \&quot;instrument.identifiers in ((&#39;LusidInstrumentId&#39;, &#39;LUID_PPA8HI6M&#39;), (&#39;Figi&#39;, &#39;BBG000BLNNH6&#39;))\&quot;. | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the &#39;Portfolio&#39; domain to decorate onto each portfolio,              or from any domain that supports relationships to decorate onto related entities. These must take the              format {domain}/{scope}/{code}, for example &#39;Portfolio/Manager/Id&#39;. | [optional] 
- **relationship_definition_ids** | [**List[str]**](str.md)| A list of relationship definitions that are used to decorate related entities              onto the portfolios in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the &#39;Portfolio&#39; domain to decorate onto each portfolio,              or from any domain that supports relationships to decorate onto related entities. These must take the              format {domain}/{scope}/{code}, for example &#39;Portfolio/Manager/Id&#39;. | [optional] 
+ **relationship_definition_ids** | [**List[str]**](../model/str.md)| A list of relationship definitions that are used to decorate related entities              onto the portfolios in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}. | [optional] 
 
 ### Return type
 
-[**ResourceListOfPortfolio**](ResourceListOfPortfolio.md)
+[**ResourceListOfPortfolio**](../model/ResourceListOfPortfolio.md)
 
 ### HTTP request headers
 
@@ -1359,13 +1359,13 @@ Name | Type | Description  | Notes
  **page** | **str**| The pagination token to use to continue listing portfolios. This  value is returned from the previous call. If a pagination token is provided, the filter, effectiveAt  and asAt fields must not have changed since the original request. | [optional] 
  **limit** | **int**| When paginating, limit the results to this number. Defaults to 100 if not specified. | [optional] 
  **filter** | **str**| Expression to filter the results.              For example, to return only transactions with a transaction type of &#39;Buy&#39;, specify \&quot;type eq &#39;Buy&#39;\&quot;.              For more information about filtering results, see https://support.lusid.com/knowledgebase/article/KA-01914. | [optional] 
- **sort_by** | [**List[str]**](str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
- **property_keys** | [**List[str]**](str.md)| A list of property keys from the &#39;Portfolio&#39; domain to decorate onto each portfolio,              or from any domain that supports relationships to decorate onto related entities. These must take the              format {domain}/{scope}/{code}, for example &#39;Portfolio/Manager/Id&#39;. | [optional] 
- **relationship_definition_ids** | [**List[str]**](str.md)| A list of relationship definitions that are used to decorate related entities              onto the portfolios in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}. | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the &#39;Portfolio&#39; domain to decorate onto each portfolio,              or from any domain that supports relationships to decorate onto related entities. These must take the              format {domain}/{scope}/{code}, for example &#39;Portfolio/Manager/Id&#39;. | [optional] 
+ **relationship_definition_ids** | [**List[str]**](../model/str.md)| A list of relationship definitions that are used to decorate related entities              onto the portfolios in the response. These must take the form {relationshipDefinitionScope}/{relationshipDefinitionCode}. | [optional] 
 
 ### Return type
 
-[**ResourceListOfPortfolio**](ResourceListOfPortfolio.md)
+[**ResourceListOfPortfolio**](../model/ResourceListOfPortfolio.md)
 
 ### HTTP request headers
 
@@ -1407,11 +1407,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the portfolio. | [required] 
  **code** | **str**| The code of the portfolio. Together with the              scope this uniquely identifies the portfolio. | [required] 
- **operation** | [**List[Operation]**](Operation.md)| The json patch document. For more check: https://datatracker.ietf.org/doc/html/rfc6902. | [required] 
+ **operation** | [**List[Operation]**](../model/Operation.md)| The json patch document. For more check: https://datatracker.ietf.org/doc/html/rfc6902. | [required] 
 
 ### Return type
 
-[**Portfolio**](Portfolio.md)
+[**Portfolio**](../model/Portfolio.md)
 
 ### HTTP request headers
 
@@ -1455,7 +1455,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the Portfolio Access Metadata Rule. | [required] 
  **code** | **str**| Portfolio code | [required] 
- **access_metadata_operation** | [**List[AccessMetadataOperation]**](AccessMetadataOperation.md)| The Json Patch document | [required] 
+ **access_metadata_operation** | [**List[AccessMetadataOperation]**](../model/AccessMetadataOperation.md)| The Json Patch document | [required] 
  **effective_at** | **str**| The date this rule will effective from | [optional] 
  **effective_until** | **datetime**| The effective date until which the Access Metadata is valid. If not supplied this will be valid indefinitely, or until the next &#39;effectiveAt&#39; date of the Access Metadata | [optional] 
 
@@ -1504,12 +1504,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the portfolio. | [required] 
  **code** | **str**| The code of the portfolio. Together with the scope this uniquely identifies the portfolio. | [required] 
- **update_portfolio_request** | [**UpdatePortfolioRequest**](UpdatePortfolioRequest.md)| The updated portfolio definition. | [required] 
+ **update_portfolio_request** | [**UpdatePortfolioRequest**](../model/UpdatePortfolioRequest.md)| The updated portfolio definition. | [required] 
  **effective_at** | **str**| The effective datetime or cut label at which to update the definition. Defaults to the current               LUSID system datetime if not specified. | [optional] 
 
 ### Return type
 
-[**Portfolio**](Portfolio.md)
+[**Portfolio**](../model/Portfolio.md)
 
 ### HTTP request headers
 
@@ -1554,12 +1554,12 @@ Name | Type | Description  | Notes
  **scope** | **str**| The scope of the portfolio. | [required] 
  **code** | **str**| The code of the portfolio. Together with the scope this uniquely identifies the portfolio. | [required] 
  **success_mode** | **str**| Whether the batch request should fail atomically or in a partial fashion - allowed values: Atomic, Partial (default) | [required] [default to &#39;Partial&#39;]
- **request_body** | [**Dict[str, InstrumentEventInstructionRequest]**](InstrumentEventInstructionRequest.md)| The instructions to be upserted to the portfolio. | [required] 
+ **request_body** | [**Dict[str, InstrumentEventInstructionRequest]**](../model/InstrumentEventInstructionRequest.md)| The instructions to be upserted to the portfolio. | [required] 
  **portfolio_effective_at** | **str**| The effective date at which the portfolio will be resolved. Defaults to current time if not specified. | [optional] 
 
 ### Return type
 
-[**InstrumentEventInstructionsResponse**](InstrumentEventInstructionsResponse.md)
+[**InstrumentEventInstructionsResponse**](../model/InstrumentEventInstructionsResponse.md)
 
 ### HTTP request headers
 
@@ -1605,13 +1605,13 @@ Name | Type | Description  | Notes
  **scope** | **str**| The scope to use when updating or inserting the Portfolio Access Metadata Rule. | [required] 
  **code** | **str**| Portfolio code | [required] 
  **metadata_key** | **str**| Key of the access metadata to upsert | [required] 
- **upsert_portfolio_access_metadata_request** | [**UpsertPortfolioAccessMetadataRequest**](UpsertPortfolioAccessMetadataRequest.md)| The Portfolio Access Metadata Rule to update or insert | [required] 
+ **upsert_portfolio_access_metadata_request** | [**UpsertPortfolioAccessMetadataRequest**](../model/UpsertPortfolioAccessMetadataRequest.md)| The Portfolio Access Metadata Rule to update or insert | [required] 
  **effective_at** | **str**| The date this rule will effective from | [optional] 
  **effective_until** | **datetime**| The effective date until which the Access Metadata is valid. If not supplied this will be valid indefinitely, or until the next &#39;effectiveAt&#39; date of the Access Metadata | [optional] 
 
 ### Return type
 
-[**ResourceListOfAccessMetadataValueOf**](ResourceListOfAccessMetadataValueOf.md)
+[**ResourceListOfAccessMetadataValueOf**](../model/ResourceListOfAccessMetadataValueOf.md)
 
 ### HTTP request headers
 
@@ -1653,11 +1653,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the portfolio. | [required] 
  **code** | **str**| The code of the portfolio. Together with the scope this uniquely identifies the portfolio. | [required] 
- **request_body** | [**Dict[str, ModelProperty]**](ModelProperty.md)| The properties to be created or updated. Each property in               the request must be keyed by its unique property key. This has the format {domain}/{scope}/{code}, for example               &#39;Portfolio/Manager/Id&#39;. | [required] 
+ **request_body** | [**Dict[str, ModelProperty]**](../model/ModelProperty.md)| The properties to be created or updated. Each property in               the request must be keyed by its unique property key. This has the format {domain}/{scope}/{code}, for example               &#39;Portfolio/Manager/Id&#39;. | [required] 
 
 ### Return type
 
-[**PortfolioProperties**](PortfolioProperties.md)
+[**PortfolioProperties**](../model/PortfolioProperties.md)
 
 ### HTTP request headers
 
@@ -1703,11 +1703,11 @@ Name | Type | Description  | Notes
  **code** | **str**| The code of the  Portfolio. | [required] 
  **return_scope** | **str**| The scope of the Returns. | [required] 
  **return_code** | **str**| The code of the Returns. | [required] 
- **performance_return** | [**List[PerformanceReturn]**](PerformanceReturn.md)| This contains the Returns which need to be upsert. | [required] 
+ **performance_return** | [**List[PerformanceReturn]**](../model/PerformanceReturn.md)| This contains the Returns which need to be upsert. | [required] 
 
 ### Return type
 
-[**UpsertReturnsResponse**](UpsertReturnsResponse.md)
+[**UpsertReturnsResponse**](../model/UpsertReturnsResponse.md)
 
 ### HTTP request headers
 

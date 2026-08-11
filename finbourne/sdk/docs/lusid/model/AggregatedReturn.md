@@ -12,7 +12,7 @@ A list of Aggregated Returns.
 | **metrics_value** | **Dict[str, float]** | Required | The value for the specified metric. |
 | **frequency** | **str** | Optional | Show the aggregated output returns on a Daily or Monthly period. |
 | **composite_members** | **int** | Optional | The number of members in the Composite on the given day. |
-| **composite_members_without_return** | [../model/List[ResourceId]](ResourceId.md) | Optional | List containing Composite members which post no return on the given day. |
+| **composite_members_without_return** | [List[ResourceId]](ResourceId.md) | Optional | List containing Composite members which post no return on the given day. |
 | **warnings** | **List[str]** | Optional | List of the warnings about the calculation of the aggregated return. |
 
 

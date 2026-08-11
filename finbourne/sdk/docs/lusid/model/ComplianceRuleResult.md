@@ -7,7 +7,7 @@
 | **rule_id** | **str** | Required | The unique identifierof a compliance rule |
 | **rule_name** | **str** | Required | The User-given name of the rule |
 | **rule_description** | **str** | Required | The User-given description of the rule |
-| **portfolio** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **portfolio** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **passed** | **bool** | Required | The result of an individual compliance run, true if passed |
 | **result_value** | **float** | Required | The calculation result that was used to confirm a pass/fail |
 | **rule_information_match** | **str** | Required | The value matched by the rule |

@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **instrument_identifiers** | **Dict[str, Optional[str]]** | Required | Unique instrument identifiers |
-| **properties** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | *No description available.* |
+| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | *No description available.* |
 | **weight** | **float** | Required |  |
 | **currency** | **str** | Optional |  |
 

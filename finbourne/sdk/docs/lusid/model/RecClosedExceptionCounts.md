@@ -6,8 +6,8 @@ Counts for results that are exceptions with a Closed status.
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **total** | **int** | Required | The total number of results in this category. |
-| **by_closure_type** | [../model/RecExceptionCountByClosureType](RecExceptionCountByClosureType.md) | Required | *No description available.* |
-| **by_review_status** | [../model/RecResultCountByReviewStatus](RecResultCountByReviewStatus.md) | Required | *No description available.* |
+| **by_closure_type** | [RecExceptionCountByClosureType](RecExceptionCountByClosureType.md) | Required | *No description available.* |
+| **by_review_status** | [RecResultCountByReviewStatus](RecResultCountByReviewStatus.md) | Required | *No description available.* |
 
 
 ## Usage

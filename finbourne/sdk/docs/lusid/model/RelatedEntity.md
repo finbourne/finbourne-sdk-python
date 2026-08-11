@@ -8,10 +8,10 @@ Information about the other related entity in the relationship
 | **entity_type** | **str** | Required | The type of the entity. |
 | **entity_id** | **Dict[str, Optional[str]]** | Required | The identifier of the other related entity in the relationship. It contains &#39;scope&#39; and &#39;code&#39; as keys for identifiers of a Portfolio or Portfolio Group, or &#39;idTypeScope&#39;, &#39;idTypeCode&#39;, &#39;code&#39; as keys for identifiers of a Person or Legal entity, or &#39;scope&#39;, &#39;identifierType&#39;, &#39;identifierValue&#39; as keys for identifiers of an Instrument |
 | **display_name** | **str** | Required | The display name of the entity. |
-| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | The properties of the entity. This field is empty until further notice. |
+| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | The properties of the entity. This field is empty until further notice. |
 | **scope** | **str** | Optional | The scope of the identifier |
-| **lusid_unique_id** | [../model/LusidUniqueId](LusidUniqueId.md) | Optional | *No description available.* |
-| **identifiers** | [../model/List[EntityIdentifier]](EntityIdentifier.md) | Required | The identifiers of the related entity in the relationship. |
+| **lusid_unique_id** | [LusidUniqueId](LusidUniqueId.md) | Optional | *No description available.* |
+| **identifiers** | [List[EntityIdentifier]](EntityIdentifier.md) | Required | The identifiers of the related entity in the relationship. |
 | **href** | **str** | Optional | The link to the entity. |
 
 

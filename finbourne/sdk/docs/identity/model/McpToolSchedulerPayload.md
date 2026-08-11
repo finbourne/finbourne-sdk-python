@@ -9,7 +9,7 @@ Payload data for a Scheduler job MCP tool
 | **job_code** | **str** | Required | The code of the scheduler job to run |
 | **arguments** | **Dict[str, Optional[str]]** | Optional | Arguments to pass to the scheduler job (key-value pairs) |
 | **run_as** | **str** | Optional | Optional service user identifier to run the job as (if not the current user) |
-| **notifications** | [../model/List[McpToolSchedulerNotification]](McpToolSchedulerNotification.md) | Optional | Optional additional notifications for the job |
+| **notifications** | [List[McpToolSchedulerNotification]](McpToolSchedulerNotification.md) | Optional | Optional additional notifications for the job |
 
 
 ## Usage

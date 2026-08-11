@@ -4,8 +4,8 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **cash_settlement** | [../model/NavSettlementConfigurationCategory](NavSettlementConfigurationCategory.md) | Optional | *No description available.* |
-| **deferred_cash_receipt** | [../model/NavSettlementConfigurationCategory](NavSettlementConfigurationCategory.md) | Optional | *No description available.* |
+| **cash_settlement** | [NavSettlementConfigurationCategory](NavSettlementConfigurationCategory.md) | Required | *No description available.* |
+| **deferred_cash_receipt** | [NavSettlementConfigurationCategory](NavSettlementConfigurationCategory.md) | Required | *No description available.* |
 
 
 ## Usage
@@ -16,8 +16,8 @@
 from finbourne.sdk.services.lusid.models.NavSettlementConfiguration import NavSettlementConfiguration
 
 instance = NavSettlementConfiguration(
-    cash_settlement=NavSettlementConfigurationCategory(...),  # optional
-    deferred_cash_receipt=NavSettlementConfigurationCategory(...)  # optional
+    cash_settlement=NavSettlementConfigurationCategory(...),  # required
+    deferred_cash_receipt=NavSettlementConfigurationCategory(...)  # required
 )
 ```
 

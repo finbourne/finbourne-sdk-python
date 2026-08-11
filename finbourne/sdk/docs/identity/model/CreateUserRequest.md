@@ -11,7 +11,7 @@ Details necessary for creating a new user
 | **second_email_address** | **str** | Optional | The user&#39;s second email address. Only allowed for Service users |
 | **login** | **str** | Required | The user&#39;s login username, which must be unique within the system. For user accounts this should exactly match the user&#39;s email address. |
 | **alternative_user_ids** | **Dict[str, Optional[str]]** | Optional | *No description available.* |
-| **roles** | [../model/List[RoleId]](RoleId.md) | Optional | Optional. Any known roles the user should be created with. |
+| **roles** | [List[RoleId]](RoleId.md) | Optional | Optional. Any known roles the user should be created with. |
 | **type** | **str** | Required | The type of user (e.g. Personal or Service) |
 | **user_expiry** | **datetime** | Optional | The user&#39;s expiry unix datetime |
 

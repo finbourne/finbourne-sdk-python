@@ -6,10 +6,10 @@ An Action Log contains the processing history of an Action
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **id** | **UUID** | Required | Unique identifier of the Action |
-| **origin** | [../model/ActionLogOrigin](ActionLogOrigin.md) | Required | *No description available.* |
+| **origin** | [ActionLogOrigin](ActionLogOrigin.md) | Required | *No description available.* |
 | **action_type** | **str** | Required | The type of the Action |
 | **run_as_user_id** | **str** | Optional | The ID of the user that the Action was performed by. If not specified, the actions were performed by the \&quot;current user\&quot;. |
-| **logged_items** | [../model/List[ActionLogItem]](ActionLogItem.md) | Required | The logged items for this Action |
+| **logged_items** | [List[ActionLogItem]](ActionLogItem.md) | Required | The logged items for this Action |
 
 
 ## Usage

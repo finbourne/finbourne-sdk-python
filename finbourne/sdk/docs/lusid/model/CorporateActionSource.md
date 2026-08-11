@@ -6,13 +6,13 @@ A corporate action source
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
-| **id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
-| **version** | [../model/Version](Version.md) | Optional | *No description available.* |
+| **id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **version** | [Version](Version.md) | Optional | *No description available.* |
 | **display_name** | **str** | Optional | The name of the corporate action source |
 | **description** | **str** | Optional | The description of the corporate action source |
 | **instrument_scopes** | **List[str]** | Optional | The list of instrument scopes used as the scope resolution strategy when resolving instruments of upserted corporate actions. |
-| **event_inheritance** | [../model/EventInheritance](EventInheritance.md) | Optional | *No description available.* |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **event_inheritance** | [EventInheritance](EventInheritance.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

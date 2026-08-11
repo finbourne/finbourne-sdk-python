@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **order_id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **order_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 
 
 ## Usage

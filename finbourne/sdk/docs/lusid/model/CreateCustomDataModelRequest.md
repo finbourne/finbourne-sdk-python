@@ -4,15 +4,15 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
+| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **display_name** | **str** | Required | The name of the Custom Data Model. |
 | **description** | **str** | Optional | A description for the Custom Data Model. |
-| **parent_data_model** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **parent_data_model** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **conditions** | **str** | Optional | The conditions that the bound entity must meet to be valid. |
-| **properties** | [../model/List[CustomDataModelPropertySpecification]](CustomDataModelPropertySpecification.md) | Optional | The properties that are required or allowed on the bound entity. |
-| **identifier_types** | [../model/List[CustomDataModelIdentifierTypeSpecification]](CustomDataModelIdentifierTypeSpecification.md) | Optional | The identifier types that are required or allowed on the bound entity. |
-| **attribute_aliases** | [../model/List[Alias]](Alias.md) | Optional | The aliases for property keys, identifier types, and fields on the bound entity. |
-| **recommended_sort_by** | [../model/List[RecommendedSortBy]](RecommendedSortBy.md) | Optional | The preferred default sorting instructions. |
+| **properties** | [List[CustomDataModelPropertySpecification]](CustomDataModelPropertySpecification.md) | Optional | The properties that are required or allowed on the bound entity. |
+| **identifier_types** | [List[CustomDataModelIdentifierTypeSpecification]](CustomDataModelIdentifierTypeSpecification.md) | Optional | The identifier types that are required or allowed on the bound entity. |
+| **attribute_aliases** | [List[Alias]](Alias.md) | Optional | The aliases for property keys, identifier types, and fields on the bound entity. |
+| **recommended_sort_by** | [List[RecommendedSortBy]](RecommendedSortBy.md) | Optional | The preferred default sorting instructions. |
 | **supplemental_property_keys** | **List[str]** | Optional | Additional property keys that should be decorated on the bound entity. |
 
 

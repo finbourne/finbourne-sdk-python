@@ -4,10 +4,10 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **document_id** | [../model/StructuredResultDataId](StructuredResultDataId.md) | Required | *No description available.* |
+| **document_id** | [StructuredResultDataId](StructuredResultDataId.md) | Required | *No description available.* |
 | **key** | **Dict[str, Optional[str]]** | Optional | The structured unit result data key. |
 | **data_address** | **str** | Optional | The address of the piece of unit result data |
-| **result_value** | [../model/ResultValue](ResultValue.md) | Optional | *No description available.* |
+| **result_value** | [ResultValue](ResultValue.md) | Optional | *No description available.* |
 
 
 ## Usage

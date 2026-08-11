@@ -5,11 +5,11 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime. |
-| **values** | [../model/Dict[str, Instrument]](Instrument.md) | Optional | The instruments which have been successfully updated or created. |
-| **staged** | [../model/Dict[str, Instrument]](Instrument.md) | Optional | The instruments that have been staged for updation or creation. |
-| **failed** | [../model/Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The instruments that could not be updated or created or were left unchanged without error along with a reason for their failure. |
+| **values** | [Dict[str, Instrument]](Instrument.md) | Optional | The instruments which have been successfully updated or created. |
+| **staged** | [Dict[str, Instrument]](Instrument.md) | Optional | The instruments that have been staged for updation or creation. |
+| **failed** | [Dict[str, ErrorDetail]](ErrorDetail.md) | Optional | The instruments that could not be updated or created or were left unchanged without error along with a reason for their failure. |
 | **metadata** | **Dict[str, Optional[List[ResponseMetaData]]]** | Optional | Meta data associated with the upsert event. |
-| **links** | [../model/List[Link]](Link.md) | Optional | *No description available.* |
+| **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
 ## Usage

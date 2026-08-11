@@ -65,7 +65,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeletedEntityResponse**](DeletedEntityResponse.md)
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
 
 ### HTTP request headers
 
@@ -113,7 +113,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceRecord**](ResourceRecord.md)
+[**ResourceRecord**](../model/ResourceRecord.md)
 
 ### HTTP request headers
 
@@ -159,7 +159,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfString**](ResourceListOfString.md)
+[**ResourceListOfString**](../model/ResourceListOfString.md)
 
 ### HTTP request headers
 
@@ -205,7 +205,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceListOfScopeDefinition**](ResourceListOfScopeDefinition.md)
+[**ResourceListOfScopeDefinition**](../model/ResourceListOfScopeDefinition.md)
 
 ### HTTP request headers
 
@@ -253,13 +253,13 @@ Name | Type | Description  | Notes
  **code** | **str**| The code of the resource record. | [required] 
  **as_at** | **datetime**| The asAt datetime at which to list the resource record. Defaults to return the latest version if not specified. | [optional] 
  **page** | **str**| The pagination token to use to continue listing resource records from a previous call. | [optional] 
- **sort_by** | [**List[str]**](str.md)| A list of field names to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot; | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| A list of field names to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot; | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many. | [optional] 
  **filter** | **str**| Expression to filter the result set. | [optional] 
 
 ### Return type
 
-[**PagedResourceListOfResourceRecord**](PagedResourceListOfResourceRecord.md)
+[**PagedResourceListOfResourceRecord**](../model/PagedResourceListOfResourceRecord.md)
 
 ### HTTP request headers
 
@@ -297,11 +297,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **upsert_resource_record_request** | [**UpsertResourceRecordRequest**](UpsertResourceRecordRequest.md)| The resource record to upsert. | [required] 
+ **upsert_resource_record_request** | [**UpsertResourceRecordRequest**](../model/UpsertResourceRecordRequest.md)| The resource record to upsert. | [required] 
 
 ### Return type
 
-[**ResourceRecord**](ResourceRecord.md)
+[**ResourceRecord**](../model/ResourceRecord.md)
 
 ### HTTP request headers
 

@@ -5,7 +5,7 @@ CDS Flow convention that is to be stored in the convention data store.  Only one
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **cds_flow_conventions** | [../model/CdsFlowConventions](CdsFlowConventions.md) | Optional | *No description available.* |
+| **cds_flow_conventions** | [CdsFlowConventions](CdsFlowConventions.md) | Optional | *No description available.* |
 
 
 ## Usage

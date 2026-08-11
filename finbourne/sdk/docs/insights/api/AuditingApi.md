@@ -52,11 +52,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_audit_entry** | [**CreateAuditEntry**](CreateAuditEntry.md)| Information about the entry to be created. | [optional] 
+ **create_audit_entry** | [**CreateAuditEntry**](../model/CreateAuditEntry.md)| Information about the entry to be created. | [optional] 
 
 ### Return type
 
-[**AuditEntry**](AuditEntry.md)
+[**AuditEntry**](../model/AuditEntry.md)
 
 ### HTTP request headers
 
@@ -95,7 +95,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ResourceListOfAuditProcessSummary**](ResourceListOfAuditProcessSummary.md)
+[**ResourceListOfAuditProcessSummary**](../model/ResourceListOfAuditProcessSummary.md)
 
 ### HTTP request headers
 
@@ -142,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ScrollableCollectionOfAuditEntry**](ScrollableCollectionOfAuditEntry.md)
+[**ScrollableCollectionOfAuditEntry**](../model/ScrollableCollectionOfAuditEntry.md)
 
 ### HTTP request headers
 

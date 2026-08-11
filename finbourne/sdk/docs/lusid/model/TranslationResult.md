@@ -6,7 +6,7 @@ The result of invoking a translation script.
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **entity** | **str** | Required | The serialised entity the translation script produced. |
-| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Required | Any properties the translation script produced. |
+| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Required | Any properties the translation script produced. |
 
 
 ## Usage

@@ -5,7 +5,7 @@ A single filter clause
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **operator** | [../model/QueryDesignerBinaryOperator](QueryDesignerBinaryOperator.md) | Required | *No description available.* |
+| **operator** | [QueryDesignerBinaryOperator](QueryDesignerBinaryOperator.md) | Required | *No description available.* |
 | **value** | **str** | Required | The value to compare against (always as a string, but will be formatted to the correct type) |
 
 

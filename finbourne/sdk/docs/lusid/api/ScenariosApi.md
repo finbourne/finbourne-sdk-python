@@ -60,11 +60,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope in which to create the scenario | [required] 
- **create_scenario_from_template_request** | [**CreateScenarioFromTemplateRequest**](CreateScenarioFromTemplateRequest.md)| The template, code and parameters to create the scenario from | [required] 
+ **create_scenario_from_template_request** | [**CreateScenarioFromTemplateRequest**](../model/CreateScenarioFromTemplateRequest.md)| The template, code and parameters to create the scenario from | [required] 
 
 ### Return type
 
-[**UpsertSingleStructuredDataResponse**](UpsertSingleStructuredDataResponse.md)
+[**UpsertSingleStructuredDataResponse**](../model/UpsertSingleStructuredDataResponse.md)
 
 ### HTTP request headers
 
@@ -108,7 +108,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AnnulSingleStructuredDataResponse**](AnnulSingleStructuredDataResponse.md)
+[**AnnulSingleStructuredDataResponse**](../model/AnnulSingleStructuredDataResponse.md)
 
 ### HTTP request headers
 
@@ -154,7 +154,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetScenarioResponse**](GetScenarioResponse.md)
+[**GetScenarioResponse**](../model/GetScenarioResponse.md)
 
 ### HTTP request headers
 
@@ -204,7 +204,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PagedResourceListOfVersion**](PagedResourceListOfVersion.md)
+[**PagedResourceListOfVersion**](../model/PagedResourceListOfVersion.md)
 
 ### HTTP request headers
 
@@ -254,7 +254,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PagedResourceListOfGetScenarioResponse**](PagedResourceListOfGetScenarioResponse.md)
+[**PagedResourceListOfGetScenarioResponse**](../model/PagedResourceListOfGetScenarioResponse.md)
 
 ### HTTP request headers
 
@@ -292,11 +292,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **scenario_preview_request** | [**ScenarioPreviewRequest**](ScenarioPreviewRequest.md)| The recipe, portfolios, effective date and scenario (stored reference or inline shifts) to preview | [required] 
+ **scenario_preview_request** | [**ScenarioPreviewRequest**](../model/ScenarioPreviewRequest.md)| The recipe, portfolios, effective date and scenario (stored reference or inline shifts) to preview | [required] 
 
 ### Return type
 
-[**ScenarioPreviewResponse**](ScenarioPreviewResponse.md)
+[**ScenarioPreviewResponse**](../model/ScenarioPreviewResponse.md)
 
 ### HTTP request headers
 
@@ -334,11 +334,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **upsert_scenario_request** | [**UpsertScenarioRequest**](UpsertScenarioRequest.md)| The Scenario to update or insert | [required] 
+ **upsert_scenario_request** | [**UpsertScenarioRequest**](../model/UpsertScenarioRequest.md)| The Scenario to update or insert | [required] 
 
 ### Return type
 
-[**UpsertSingleStructuredDataResponse**](UpsertSingleStructuredDataResponse.md)
+[**UpsertSingleStructuredDataResponse**](../model/UpsertSingleStructuredDataResponse.md)
 
 ### HTTP request headers
 

@@ -4,8 +4,8 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [../model/ResourceId](ResourceId.md) | Required | *No description available.* |
-| **allocated_order_id** | [../model/ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **allocated_order_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **quantity** | **float** | Required | The quantity of this allocation, with direction relative to the containing block. |
 
 

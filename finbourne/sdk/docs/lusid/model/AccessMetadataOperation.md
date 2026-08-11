@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **value** | [../model/List[AccessMetadataValue]](AccessMetadataValue.md) | Required | *No description available.* |
+| **value** | [List[AccessMetadataValue]](AccessMetadataValue.md) | Required | *No description available.* |
 | **path** | **str** | Required | *No description available.* |
 | **op** | **str** | Required | Available values: add, remove. |
 | **var_from** | **str** | Optional | *No description available.* |

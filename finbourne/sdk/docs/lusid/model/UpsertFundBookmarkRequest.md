@@ -10,7 +10,7 @@ A definition for the period you wish to close
 | **description** | **str** | Optional | Description assigned to the Bookmark. |
 | **effective_at** | **datetime** | Required | The effective time of the Bookmark. |
 | **query_as_at** | **datetime** | Optional | The query time of the Bookmark. Defaults to latest. |
-| **properties** | [../model/Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the Bookmark. |
+| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the Bookmark. |
 | **holdings_as_at_override** | **datetime** | Optional | The optional AsAt Override to use for building holdings in the Bookmark. Defaults to Latest. |
 | **valuations_as_at_override** | **datetime** | Optional | The optional AsAt Override to use for performing valuations in the Bookmark. Defaults to Latest. |
 

@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **identifiers** | **Dict[str, Optional[str]]** | Required | A set of instrument identifiers that can resolve the constituent to a unique instrument. |
-| **properties** | [../model/Dict[str, PerpetualProperty]](PerpetualProperty.md) | Required | The updated collection of properties of the constituent. |
+| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Required | The updated collection of properties of the constituent. |
 
 
 ## Usage

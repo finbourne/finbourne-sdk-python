@@ -60,11 +60,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the MCP tool | [required] 
  **code** | **str**| The code of the MCP tool | [required] 
- **upsert_mcp_tool_request** | [**UpsertMcpToolRequest**](UpsertMcpToolRequest.md)| The MCP tool definition | [required] 
+ **upsert_mcp_tool_request** | [**UpsertMcpToolRequest**](../model/UpsertMcpToolRequest.md)| The MCP tool definition | [required] 
 
 ### Return type
 
-[**McpToolResponse**](McpToolResponse.md)
+[**McpToolResponse**](../model/McpToolResponse.md)
 
 ### HTTP request headers
 
@@ -154,7 +154,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**McpToolResponse**](McpToolResponse.md)
+[**McpToolResponse**](../model/McpToolResponse.md)
 
 ### HTTP request headers
 
@@ -192,7 +192,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**List[McpToolResponse]**](McpToolResponse.md)
+[**List[McpToolResponse]**](../model/McpToolResponse.md)
 
 ### HTTP request headers
 
@@ -233,11 +233,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the MCP tool | [required] 
  **code** | **str**| The code of the MCP tool | [required] 
- **upsert_mcp_tool_request** | [**UpsertMcpToolRequest**](UpsertMcpToolRequest.md)| The updated MCP tool definition | [required] 
+ **upsert_mcp_tool_request** | [**UpsertMcpToolRequest**](../model/UpsertMcpToolRequest.md)| The updated MCP tool definition | [required] 
 
 ### Return type
 
-[**McpToolResponse**](McpToolResponse.md)
+[**McpToolResponse**](../model/McpToolResponse.md)
 
 ### HTTP request headers
 

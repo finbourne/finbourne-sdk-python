@@ -54,11 +54,11 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_address_key_definition_request** | [**CreateAddressKeyDefinitionRequest**](CreateAddressKeyDefinitionRequest.md)| The request used to create the address key definition. | [required] 
+ **create_address_key_definition_request** | [**CreateAddressKeyDefinitionRequest**](../model/CreateAddressKeyDefinitionRequest.md)| The request used to create the address key definition. | [required] 
 
 ### Return type
 
-[**AddressKeyDefinition**](AddressKeyDefinition.md)
+[**AddressKeyDefinition**](../model/AddressKeyDefinition.md)
 
 ### HTTP request headers
 
@@ -102,7 +102,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AddressKeyDefinition**](AddressKeyDefinition.md)
+[**AddressKeyDefinition**](../model/AddressKeyDefinition.md)
 
 ### HTTP request headers
 
@@ -150,7 +150,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PagedResourceListOfAddressKeyDefinition**](PagedResourceListOfAddressKeyDefinition.md)
+[**PagedResourceListOfAddressKeyDefinition**](../model/PagedResourceListOfAddressKeyDefinition.md)
 
 ### HTTP request headers
 

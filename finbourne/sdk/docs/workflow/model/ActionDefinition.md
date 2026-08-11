@@ -7,7 +7,7 @@ Defines the Actions for a Task
 |------|------|----------|-------------|
 | **name** | **str** | Required | The Name of this Action |
 | **run_as_user_id** | **str** | Optional | The ID of the user that this action will be performed by. If not specified, the actions will be performed by the \&quot;current user\&quot;. |
-| **action_details** | [../model/ActionDetails](ActionDetails.md) | Required | *No description available.* |
+| **action_details** | [ActionDetails](ActionDetails.md) | Required | *No description available.* |
 | **display_name** | **str** | Optional | The display name of this Action |
 | **description** | **str** | Optional | The description of this Action |
 

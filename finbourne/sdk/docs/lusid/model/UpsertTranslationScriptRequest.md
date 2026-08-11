@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | [../model/TranslationScriptId](TranslationScriptId.md) | Required | *No description available.* |
+| **id** | [TranslationScriptId](TranslationScriptId.md) | Required | *No description available.* |
 | **body** | **str** | Required | Body of the translation script, i.e. the actual translation code. |
 
 

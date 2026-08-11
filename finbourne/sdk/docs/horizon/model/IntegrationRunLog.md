@@ -6,7 +6,7 @@ Integration run log
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **count** | **int** | Required |  |
-| **link** | [../model/IntegrationRunLogLink](IntegrationRunLogLink.md) | Required | *No description available.* |
+| **link** | [IntegrationRunLogLink](IntegrationRunLogLink.md) | Required | *No description available.* |
 
 
 ## Usage

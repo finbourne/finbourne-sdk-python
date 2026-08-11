@@ -6,11 +6,11 @@ LUSID representation of an Exchange Traded Option.  Including, but not limited t
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **start_date** | **datetime** | Required | The start date of the instrument. This is normally synonymous with the trade-date. |
-| **contract_details** | [../model/ExchangeTradedOptionContractDetails](ExchangeTradedOptionContractDetails.md) | Required | *No description available.* |
+| **contract_details** | [ExchangeTradedOptionContractDetails](ExchangeTradedOptionContractDetails.md) | Required | *No description available.* |
 | **contracts** | **float** | Required | The number of contracts held. |
 | **ref_spot_price** | **float** | Required | The reference spot price for the option at which the contract was entered into. |
-| **trading_conventions** | [../model/TradingConventions](TradingConventions.md) | Optional | *No description available.* |
-| **time_zone_conventions** | [../model/TimeZoneConventions](TimeZoneConventions.md) | Optional | *No description available.* |
+| **trading_conventions** | [TradingConventions](TradingConventions.md) | Optional | *No description available.* |
+| **time_zone_conventions** | [TimeZoneConventions](TimeZoneConventions.md) | Optional | *No description available.* |
 | **instrument_type** | **str** | Required | Available values: QuotedSecurity, InterestRateSwap, FxForward, Future, ExoticInstrument, FxOption, CreditDefaultSwap, InterestRateSwaption, Bond, EquityOption, FixedLeg, FloatingLeg, BespokeCashFlowsLeg, Unknown, TermDeposit, ContractForDifference, EquitySwap, CashPerpetual, CapFloor, CashSettled, CdsIndex, Basket, FundingLeg, FxSwap, ForwardRateAgreement, SimpleInstrument, Repo, Equity, ExchangeTradedOption, ReferenceInstrument, ComplexBond, InflationLinkedBond, InflationSwap, SimpleCashFlowLoan, TotalReturnSwap, InflationLeg, FundShareClass, FlexibleLoan, UnsettledCash, Cash, MasteredInstrument, LoanFacility, FlexibleDeposit, FlexibleRepo, ToBeAnnounced, VolatilitySwap, ToBeAnnouncedOption, CommodityForward. |
 
 

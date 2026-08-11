@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **quantity** | **float** | Required | Total number of units allocated. |
-| **details** | [../model/List[OrderGraphPlacementAllocationDetail]](OrderGraphPlacementAllocationDetail.md) | Required | Identifiers for each allocation in this placement. |
+| **details** | [List[OrderGraphPlacementAllocationDetail]](OrderGraphPlacementAllocationDetail.md) | Required | Identifiers for each allocation in this placement. |
 
 
 ## Usage
