@@ -67,7 +67,7 @@ class AborApi:
 
     @validate_call
     def add_diary_entry(self, scope: StrictStr, code: StrictStr, diary_entry_request: DiaryEntryRequest, **kwargs) -> DiaryEntry:
-        """[EXPERIMENTAL] AddDiaryEntry: Add a diary entry to the specified Abor. This would be type 'Other'.  # noqa: E501
+        """[EARLY ACCESS] AddDiaryEntry: Add a diary entry to the specified Abor. This would be type 'Other'.  # noqa: E501
 
         Adds a new diary entry to the specified Abor  # noqa: E501
         :param scope: The scope of the Abor. (required)
@@ -91,7 +91,7 @@ class AborApi:
 
     @validate_call
     def add_diary_entry_with_http_info(self, scope: StrictStr, code: StrictStr, diary_entry_request: DiaryEntryRequest, **kwargs) -> ApiResponse[DiaryEntry]:
-        """[EXPERIMENTAL] AddDiaryEntry: Add a diary entry to the specified Abor. This would be type 'Other'.  # noqa: E501
+        """[EARLY ACCESS] AddDiaryEntry: Add a diary entry to the specified Abor. This would be type 'Other'.  # noqa: E501
 
         Adds a new diary entry to the specified Abor  # noqa: E501
         :param scope: The scope of the Abor. (required)
@@ -210,7 +210,7 @@ class AborApi:
 
     @validate_call
     def close_period(self, scope: StrictStr, code: StrictStr, close_period_diary_entry_request: ClosePeriodDiaryEntryRequest, **kwargs) -> DiaryEntry:
-        """[EXPERIMENTAL] ClosePeriod: Closes or locks the current period for the given Abor.  # noqa: E501
+        """[EARLY ACCESS] ClosePeriod: Closes or locks the current period for the given Abor.  # noqa: E501
 
         Closes or Locks the current open period for the given Abor.  # noqa: E501
         :param scope: The scope of the Abor. (required)
@@ -234,7 +234,7 @@ class AborApi:
 
     @validate_call
     def close_period_with_http_info(self, scope: StrictStr, code: StrictStr, close_period_diary_entry_request: ClosePeriodDiaryEntryRequest, **kwargs) -> ApiResponse[DiaryEntry]:
-        """[EXPERIMENTAL] ClosePeriod: Closes or locks the current period for the given Abor.  # noqa: E501
+        """[EARLY ACCESS] ClosePeriod: Closes or locks the current period for the given Abor.  # noqa: E501
 
         Closes or Locks the current open period for the given Abor.  # noqa: E501
         :param scope: The scope of the Abor. (required)
@@ -353,7 +353,7 @@ class AborApi:
 
     @validate_call
     def create_abor(self, scope: StrictStr, abor_request: AborRequest, **kwargs) -> Abor:
-        """[EXPERIMENTAL] CreateAbor: Create an Abor.  # noqa: E501
+        """[EARLY ACCESS] CreateAbor: Create an Abor.  # noqa: E501
 
         Create the given Abor.  # noqa: E501
         :param scope: The scope of the Abor. (required)
@@ -375,7 +375,7 @@ class AborApi:
 
     @validate_call
     def create_abor_with_http_info(self, scope: StrictStr, abor_request: AborRequest, **kwargs) -> ApiResponse[Abor]:
-        """[EXPERIMENTAL] CreateAbor: Create an Abor.  # noqa: E501
+        """[EARLY ACCESS] CreateAbor: Create an Abor.  # noqa: E501
 
         Create the given Abor.  # noqa: E501
         :param scope: The scope of the Abor. (required)
@@ -488,7 +488,7 @@ class AborApi:
 
     @validate_call
     def delete_abor(self, scope: StrictStr, code: StrictStr, **kwargs) -> DeletedEntityResponse:
-        """[EXPERIMENTAL] DeleteAbor: Delete an Abor.  # noqa: E501
+        """[EARLY ACCESS] DeleteAbor: Delete an Abor.  # noqa: E501
 
         Delete the given Abor.  # noqa: E501
         :param scope: The scope of the Abor to be deleted. (required)
@@ -510,7 +510,7 @@ class AborApi:
 
     @validate_call
     def delete_abor_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-        """[EXPERIMENTAL] DeleteAbor: Delete an Abor.  # noqa: E501
+        """[EARLY ACCESS] DeleteAbor: Delete an Abor.  # noqa: E501
 
         Delete the given Abor.  # noqa: E501
         :param scope: The scope of the Abor to be deleted. (required)
@@ -616,7 +616,7 @@ class AborApi:
 
     @validate_call
     def delete_diary_entry(self, scope: StrictStr, code: StrictStr, diary_entry_code: StrictStr, **kwargs) -> DeletedEntityResponse:
-        """[EXPERIMENTAL] DeleteDiaryEntry: Delete a diary entry type 'Other' from the specified Abor.  # noqa: E501
+        """[EARLY ACCESS] DeleteDiaryEntry: Delete a diary entry type 'Other' from the specified Abor.  # noqa: E501
 
         Delete a diary entry type 'Other' from the specified Abor.  # noqa: E501
         :param scope: The scope of the Abor. (required)
@@ -640,7 +640,7 @@ class AborApi:
 
     @validate_call
     def delete_diary_entry_with_http_info(self, scope: StrictStr, code: StrictStr, diary_entry_code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-        """[EXPERIMENTAL] DeleteDiaryEntry: Delete a diary entry type 'Other' from the specified Abor.  # noqa: E501
+        """[EARLY ACCESS] DeleteDiaryEntry: Delete a diary entry type 'Other' from the specified Abor.  # noqa: E501
 
         Delete a diary entry type 'Other' from the specified Abor.  # noqa: E501
         :param scope: The scope of the Abor. (required)
@@ -752,7 +752,7 @@ class AborApi:
 
     @validate_call
     def get_abor(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> Abor:
-        """[EXPERIMENTAL] GetAbor: Get Abor.  # noqa: E501
+        """[EARLY ACCESS] GetAbor: Get Abor.  # noqa: E501
 
         Retrieve the definition of a particular Abor.  # noqa: E501
         :param scope: The scope of the Abor. (required)
@@ -780,7 +780,7 @@ class AborApi:
 
     @validate_call
     def get_abor_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[Abor]:
-        """[EXPERIMENTAL] GetAbor: Get Abor.  # noqa: E501
+        """[EARLY ACCESS] GetAbor: Get Abor.  # noqa: E501
 
         Retrieve the definition of a particular Abor.  # noqa: E501
         :param scope: The scope of the Abor. (required)
@@ -908,7 +908,7 @@ class AborApi:
 
     @validate_call
     def get_abor_properties(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> AborProperties:
-        """[EXPERIMENTAL] GetAborProperties: Get Abor properties  # noqa: E501
+        """[EARLY ACCESS] GetAborProperties: Get Abor properties  # noqa: E501
 
         Get all the properties of a single abor.  # noqa: E501
         :param scope: The scope of the Abor to list the properties for. (required)
@@ -934,7 +934,7 @@ class AborApi:
 
     @validate_call
     def get_abor_properties_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[AborProperties]:
-        """[EXPERIMENTAL] GetAborProperties: Get Abor properties  # noqa: E501
+        """[EARLY ACCESS] GetAborProperties: Get Abor properties  # noqa: E501
 
         Get all the properties of a single abor.  # noqa: E501
         :param scope: The scope of the Abor to list the properties for. (required)
@@ -1055,7 +1055,7 @@ class AborApi:
 
     @validate_call
     def get_journal_entry_lines(self, scope: StrictStr, code: StrictStr, journal_entry_lines_query_parameters: JournalEntryLinesQueryParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> VersionedResourceListOfJournalEntryLine:
-        """[EXPERIMENTAL] GetJournalEntryLines: Get the Journal Entry lines for the given Abor.  # noqa: E501
+        """[EARLY ACCESS] GetJournalEntryLines: Get the Journal Entry lines for the given Abor.  # noqa: E501
 
         Gets the Journal Entry lines for the given Abor                The Journal Entry lines have been generated from transactions and translated via posting rules  # noqa: E501
         :param scope: The scope of the Abor. (required)
@@ -1087,7 +1087,7 @@ class AborApi:
 
     @validate_call
     def get_journal_entry_lines_with_http_info(self, scope: StrictStr, code: StrictStr, journal_entry_lines_query_parameters: JournalEntryLinesQueryParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfJournalEntryLine]:
-        """[EXPERIMENTAL] GetJournalEntryLines: Get the Journal Entry lines for the given Abor.  # noqa: E501
+        """[EARLY ACCESS] GetJournalEntryLines: Get the Journal Entry lines for the given Abor.  # noqa: E501
 
         Gets the Journal Entry lines for the given Abor                The Journal Entry lines have been generated from transactions and translated via posting rules  # noqa: E501
         :param scope: The scope of the Abor. (required)
@@ -1233,22 +1233,22 @@ class AborApi:
 
     @validate_call
     def get_trial_balance(self, scope: StrictStr, code: StrictStr, trial_balance_query_parameters: TrialBalanceQueryParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> VersionedResourceListOfTrialBalance:
-        """[EXPERIMENTAL] GetTrialBalance: Get the Trial Balance for the given Abor.  # noqa: E501
+        """[EARLY ACCESS] GetTrialBalance: Get the Trial Balance for the given Abor.  # noqa: E501
 
-        Gets the Trial Balance for the given Abor.    The Trial Balance has been generated from transactions, translated via Posting Rules  and aggregated based on a General Ledger Profile (where specified).  # noqa: E501
+        Gets the Trial Balance for the given Abor.    The Trial Balance has been generated from transactions, translated via Posting Rules  and aggregated based on a General Ledger Profile (where specified).                Supplying the X-LUSID-SuppressImbalanceValidation header suppresses the imbalance check.  Any caller with access to this endpoint may use it; it is not role-restricted.  # noqa: E501
         :param scope: The scope of the Abor. (required)
         :type scope: str
         :param code: The code of the Abor. Together with the scope this uniquely identifies the Abor. (required)
         :type code: str
         :param trial_balance_query_parameters: The query parameters used in running the generation of the Trial Balance. (required)
         :type trial_balance_query_parameters: TrialBalanceQueryParameters
-        :param as_at: The asAt datetime at which to retrieve the Trial Balance.              Defaults to returning the latest version if not specified.
+        :param as_at: The asAt datetime at which to retrieve the Trial Balance.               Defaults to returning the latest version if not specified.
         :type as_at: datetime
-        :param filter: Expression to filter the results by.              For more information about filtering results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results by.               For more information about filtering results, see https://support.lusid.com/knowledgebase/article/KA-01914.
         :type filter: str
-        :param limit: When paginating, limit the number of returned results to this many.              Defaults to 100 if not specified.
+        :param limit: When paginating, limit the number of returned results to this many.               Defaults to 100 if not specified.
         :type limit: int
-        :param page: The pagination token to use to continue listing Trial Balances.              This token is returned from the previous call.              If a pagination token is provided, the filter, effectiveAt and asAt fields              must not have changed since the original request.
+        :param page: The pagination token to use to continue listing Trial Balances.               This token is returned from the previous call.               If a pagination token is provided, the filter, effectiveAt and asAt fields               must not have changed since the original request.
         :type page: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -1265,22 +1265,22 @@ class AborApi:
 
     @validate_call
     def get_trial_balance_with_http_info(self, scope: StrictStr, code: StrictStr, trial_balance_query_parameters: TrialBalanceQueryParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfTrialBalance]:
-        """[EXPERIMENTAL] GetTrialBalance: Get the Trial Balance for the given Abor.  # noqa: E501
+        """[EARLY ACCESS] GetTrialBalance: Get the Trial Balance for the given Abor.  # noqa: E501
 
-        Gets the Trial Balance for the given Abor.    The Trial Balance has been generated from transactions, translated via Posting Rules  and aggregated based on a General Ledger Profile (where specified).  # noqa: E501
+        Gets the Trial Balance for the given Abor.    The Trial Balance has been generated from transactions, translated via Posting Rules  and aggregated based on a General Ledger Profile (where specified).                Supplying the X-LUSID-SuppressImbalanceValidation header suppresses the imbalance check.  Any caller with access to this endpoint may use it; it is not role-restricted.  # noqa: E501
         :param scope: The scope of the Abor. (required)
         :type scope: str
         :param code: The code of the Abor. Together with the scope this uniquely identifies the Abor. (required)
         :type code: str
         :param trial_balance_query_parameters: The query parameters used in running the generation of the Trial Balance. (required)
         :type trial_balance_query_parameters: TrialBalanceQueryParameters
-        :param as_at: The asAt datetime at which to retrieve the Trial Balance.              Defaults to returning the latest version if not specified.
+        :param as_at: The asAt datetime at which to retrieve the Trial Balance.               Defaults to returning the latest version if not specified.
         :type as_at: datetime
-        :param filter: Expression to filter the results by.              For more information about filtering results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results by.               For more information about filtering results, see https://support.lusid.com/knowledgebase/article/KA-01914.
         :type filter: str
-        :param limit: When paginating, limit the number of returned results to this many.              Defaults to 100 if not specified.
+        :param limit: When paginating, limit the number of returned results to this many.               Defaults to 100 if not specified.
         :type limit: int
-        :param page: The pagination token to use to continue listing Trial Balances.              This token is returned from the previous call.              If a pagination token is provided, the filter, effectiveAt and asAt fields              must not have changed since the original request.
+        :param page: The pagination token to use to continue listing Trial Balances.               This token is returned from the previous call.               If a pagination token is provided, the filter, effectiveAt and asAt fields               must not have changed since the original request.
         :type page: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -1411,7 +1411,7 @@ class AborApi:
 
     @validate_call
     def list_abors(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfAbor:
-        """[EXPERIMENTAL] ListAbors: List Abors.  # noqa: E501
+        """[EARLY ACCESS] ListAbors: List Abors.  # noqa: E501
 
         List all the Abors matching particular criteria.  # noqa: E501
         :param effective_at: The effective datetime or cut label at which to list the TimeVariant properties for the Abor. Defaults to the current LUSID              system datetime if not specified.
@@ -1443,7 +1443,7 @@ class AborApi:
 
     @validate_call
     def list_abors_with_http_info(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfAbor]:
-        """[EXPERIMENTAL] ListAbors: List Abors.  # noqa: E501
+        """[EARLY ACCESS] ListAbors: List Abors.  # noqa: E501
 
         List all the Abors matching particular criteria.  # noqa: E501
         :param effective_at: The effective datetime or cut label at which to list the TimeVariant properties for the Abor. Defaults to the current LUSID              system datetime if not specified.
@@ -1584,7 +1584,7 @@ class AborApi:
 
     @validate_call
     def list_diary_entries(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfDiaryEntry:
-        """[EXPERIMENTAL] ListDiaryEntries: List diary entries.  # noqa: E501
+        """[EARLY ACCESS] ListDiaryEntries: List diary entries.  # noqa: E501
 
         List all the diary entries matching particular criteria.  # noqa: E501
         :param scope: The scope of the Abor. (required)
@@ -1620,7 +1620,7 @@ class AborApi:
 
     @validate_call
     def list_diary_entries_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfDiaryEntry]:
-        """[EXPERIMENTAL] ListDiaryEntries: List diary entries.  # noqa: E501
+        """[EARLY ACCESS] ListDiaryEntries: List diary entries.  # noqa: E501
 
         List all the diary entries matching particular criteria.  # noqa: E501
         :param scope: The scope of the Abor. (required)
@@ -1773,7 +1773,7 @@ class AborApi:
 
     @validate_call
     def lock_period(self, scope: StrictStr, code: StrictStr, lock_period_diary_entry_request: Optional[LockPeriodDiaryEntryRequest] = None, **kwargs) -> DiaryEntry:
-        """[EXPERIMENTAL] LockPeriod: Locks the last Closed or given Closed Period.  # noqa: E501
+        """[EARLY ACCESS] LockPeriod: Locks the last Closed or given Closed Period.  # noqa: E501
 
         Locks the specified or last locked period for the given Abor.  # noqa: E501
         :param scope: The scope of the Abor. (required)
@@ -1797,7 +1797,7 @@ class AborApi:
 
     @validate_call
     def lock_period_with_http_info(self, scope: StrictStr, code: StrictStr, lock_period_diary_entry_request: Optional[LockPeriodDiaryEntryRequest] = None, **kwargs) -> ApiResponse[DiaryEntry]:
-        """[EXPERIMENTAL] LockPeriod: Locks the last Closed or given Closed Period.  # noqa: E501
+        """[EARLY ACCESS] LockPeriod: Locks the last Closed or given Closed Period.  # noqa: E501
 
         Locks the specified or last locked period for the given Abor.  # noqa: E501
         :param scope: The scope of the Abor. (required)
@@ -1916,7 +1916,7 @@ class AborApi:
 
     @validate_call
     def patch_abor(self, scope: StrictStr, code: StrictStr, operation: List[Operation], **kwargs) -> Abor:
-        """[EXPERIMENTAL] PatchAbor: Patch Abor.  # noqa: E501
+        """[EARLY ACCESS] PatchAbor: Patch Abor.  # noqa: E501
 
         Create or update certain fields for a particular Abor.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: PortfolioIds.  # noqa: E501
         :param scope: The scope of the Abor. (required)
@@ -1940,7 +1940,7 @@ class AborApi:
 
     @validate_call
     def patch_abor_with_http_info(self, scope: StrictStr, code: StrictStr, operation: List[Operation], **kwargs) -> ApiResponse[Abor]:
-        """[EXPERIMENTAL] PatchAbor: Patch Abor.  # noqa: E501
+        """[EARLY ACCESS] PatchAbor: Patch Abor.  # noqa: E501
 
         Create or update certain fields for a particular Abor.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: PortfolioIds.  # noqa: E501
         :param scope: The scope of the Abor. (required)
@@ -2059,7 +2059,7 @@ class AborApi:
 
     @validate_call
     def re_open_periods(self, scope: StrictStr, code: StrictStr, re_open_period_diary_entry_request: Optional[ReOpenPeriodDiaryEntryRequest] = None, **kwargs) -> PeriodDiaryEntriesReopenedResponse:
-        """[EXPERIMENTAL] ReOpenPeriods: Reopen periods from a seed Diary Entry Code or when not specified, the last Closed Period for the given Abor.  # noqa: E501
+        """[EARLY ACCESS] ReOpenPeriods: Reopen periods from a seed Diary Entry Code or when not specified, the last Closed Period for the given Abor.  # noqa: E501
 
         Reopens one or more periods.  # noqa: E501
         :param scope: The scope of the Abor. (required)
@@ -2083,7 +2083,7 @@ class AborApi:
 
     @validate_call
     def re_open_periods_with_http_info(self, scope: StrictStr, code: StrictStr, re_open_period_diary_entry_request: Optional[ReOpenPeriodDiaryEntryRequest] = None, **kwargs) -> ApiResponse[PeriodDiaryEntriesReopenedResponse]:
-        """[EXPERIMENTAL] ReOpenPeriods: Reopen periods from a seed Diary Entry Code or when not specified, the last Closed Period for the given Abor.  # noqa: E501
+        """[EARLY ACCESS] ReOpenPeriods: Reopen periods from a seed Diary Entry Code or when not specified, the last Closed Period for the given Abor.  # noqa: E501
 
         Reopens one or more periods.  # noqa: E501
         :param scope: The scope of the Abor. (required)
@@ -2202,7 +2202,7 @@ class AborApi:
 
     @validate_call
     def upsert_abor_properties(self, scope: StrictStr, code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> AborProperties:
-        """[EXPERIMENTAL] UpsertAborProperties: Upsert Abor properties  # noqa: E501
+        """[EARLY ACCESS] UpsertAborProperties: Upsert Abor properties  # noqa: E501
 
         Update or insert one or more properties onto a single Abor. A property will be updated if it  already exists and inserted if it does not. All properties must be of the domain 'Abor'.                Upserting a property that exists for an Abor, with a null value, will delete the instance of the property for that group.                Properties have an <i>effectiveFrom</i> datetime for which the property is valid, and an <i>effectiveUntil</i>  datetime until which the property is valid. Not supplying an <i>effectiveUntil</i> datetime results in the property being  valid indefinitely, or until the next <i>effectiveFrom</i> datetime of the property.  # noqa: E501
         :param scope: The scope of the Abor to update or insert the properties onto. (required)
@@ -2226,7 +2226,7 @@ class AborApi:
 
     @validate_call
     def upsert_abor_properties_with_http_info(self, scope: StrictStr, code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> ApiResponse[AborProperties]:
-        """[EXPERIMENTAL] UpsertAborProperties: Upsert Abor properties  # noqa: E501
+        """[EARLY ACCESS] UpsertAborProperties: Upsert Abor properties  # noqa: E501
 
         Update or insert one or more properties onto a single Abor. A property will be updated if it  already exists and inserted if it does not. All properties must be of the domain 'Abor'.                Upserting a property that exists for an Abor, with a null value, will delete the instance of the property for that group.                Properties have an <i>effectiveFrom</i> datetime for which the property is valid, and an <i>effectiveUntil</i>  datetime until which the property is valid. Not supplying an <i>effectiveUntil</i> datetime results in the property being  valid indefinitely, or until the next <i>effectiveFrom</i> datetime of the property.  # noqa: E501
         :param scope: The scope of the Abor to update or insert the properties onto. (required)
@@ -2349,7 +2349,7 @@ class AborApi:
 
     @validate_call
     async def add_diary_entry_async(self, scope: StrictStr, code: StrictStr, diary_entry_request: DiaryEntryRequest, **kwargs) -> DiaryEntry:
-            """[EXPERIMENTAL] AddDiaryEntry: Add a diary entry to the specified Abor. This would be type 'Other'.  # noqa: E501
+            """[EARLY ACCESS] AddDiaryEntry: Add a diary entry to the specified Abor. This would be type 'Other'.  # noqa: E501
             Adds a new diary entry to the specified Abor  # noqa: E501
             
             :param scope: The scope of the Abor. (required)
@@ -2373,7 +2373,7 @@ class AborApi:
 
     @validate_call
     async def add_diary_entry_with_http_info_async(self, scope: StrictStr, code: StrictStr, diary_entry_request: DiaryEntryRequest, **kwargs) -> ApiResponse[DiaryEntry]:
-            """[EXPERIMENTAL] AddDiaryEntry: Add a diary entry to the specified Abor. This would be type 'Other'.  # noqa: E501
+            """[EARLY ACCESS] AddDiaryEntry: Add a diary entry to the specified Abor. This would be type 'Other'.  # noqa: E501
 
             Adds a new diary entry to the specified Abor  # noqa: E501
 
@@ -2493,7 +2493,7 @@ class AborApi:
 
     @validate_call
     async def close_period_async(self, scope: StrictStr, code: StrictStr, close_period_diary_entry_request: ClosePeriodDiaryEntryRequest, **kwargs) -> DiaryEntry:
-            """[EXPERIMENTAL] ClosePeriod: Closes or locks the current period for the given Abor.  # noqa: E501
+            """[EARLY ACCESS] ClosePeriod: Closes or locks the current period for the given Abor.  # noqa: E501
             Closes or Locks the current open period for the given Abor.  # noqa: E501
             
             :param scope: The scope of the Abor. (required)
@@ -2517,7 +2517,7 @@ class AborApi:
 
     @validate_call
     async def close_period_with_http_info_async(self, scope: StrictStr, code: StrictStr, close_period_diary_entry_request: ClosePeriodDiaryEntryRequest, **kwargs) -> ApiResponse[DiaryEntry]:
-            """[EXPERIMENTAL] ClosePeriod: Closes or locks the current period for the given Abor.  # noqa: E501
+            """[EARLY ACCESS] ClosePeriod: Closes or locks the current period for the given Abor.  # noqa: E501
 
             Closes or Locks the current open period for the given Abor.  # noqa: E501
 
@@ -2637,7 +2637,7 @@ class AborApi:
 
     @validate_call
     async def create_abor_async(self, scope: StrictStr, abor_request: AborRequest, **kwargs) -> Abor:
-            """[EXPERIMENTAL] CreateAbor: Create an Abor.  # noqa: E501
+            """[EARLY ACCESS] CreateAbor: Create an Abor.  # noqa: E501
             Create the given Abor.  # noqa: E501
             
             :param scope: The scope of the Abor. (required)
@@ -2659,7 +2659,7 @@ class AborApi:
 
     @validate_call
     async def create_abor_with_http_info_async(self, scope: StrictStr, abor_request: AborRequest, **kwargs) -> ApiResponse[Abor]:
-            """[EXPERIMENTAL] CreateAbor: Create an Abor.  # noqa: E501
+            """[EARLY ACCESS] CreateAbor: Create an Abor.  # noqa: E501
 
             Create the given Abor.  # noqa: E501
 
@@ -2773,7 +2773,7 @@ class AborApi:
 
     @validate_call
     async def delete_abor_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> DeletedEntityResponse:
-            """[EXPERIMENTAL] DeleteAbor: Delete an Abor.  # noqa: E501
+            """[EARLY ACCESS] DeleteAbor: Delete an Abor.  # noqa: E501
             Delete the given Abor.  # noqa: E501
             
             :param scope: The scope of the Abor to be deleted. (required)
@@ -2795,7 +2795,7 @@ class AborApi:
 
     @validate_call
     async def delete_abor_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-            """[EXPERIMENTAL] DeleteAbor: Delete an Abor.  # noqa: E501
+            """[EARLY ACCESS] DeleteAbor: Delete an Abor.  # noqa: E501
 
             Delete the given Abor.  # noqa: E501
 
@@ -2902,7 +2902,7 @@ class AborApi:
 
     @validate_call
     async def delete_diary_entry_async(self, scope: StrictStr, code: StrictStr, diary_entry_code: StrictStr, **kwargs) -> DeletedEntityResponse:
-            """[EXPERIMENTAL] DeleteDiaryEntry: Delete a diary entry type 'Other' from the specified Abor.  # noqa: E501
+            """[EARLY ACCESS] DeleteDiaryEntry: Delete a diary entry type 'Other' from the specified Abor.  # noqa: E501
             Delete a diary entry type 'Other' from the specified Abor.  # noqa: E501
             
             :param scope: The scope of the Abor. (required)
@@ -2926,7 +2926,7 @@ class AborApi:
 
     @validate_call
     async def delete_diary_entry_with_http_info_async(self, scope: StrictStr, code: StrictStr, diary_entry_code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-            """[EXPERIMENTAL] DeleteDiaryEntry: Delete a diary entry type 'Other' from the specified Abor.  # noqa: E501
+            """[EARLY ACCESS] DeleteDiaryEntry: Delete a diary entry type 'Other' from the specified Abor.  # noqa: E501
 
             Delete a diary entry type 'Other' from the specified Abor.  # noqa: E501
 
@@ -3039,7 +3039,7 @@ class AborApi:
 
     @validate_call
     async def get_abor_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> Abor:
-            """[EXPERIMENTAL] GetAbor: Get Abor.  # noqa: E501
+            """[EARLY ACCESS] GetAbor: Get Abor.  # noqa: E501
             Retrieve the definition of a particular Abor.  # noqa: E501
             
             :param scope: The scope of the Abor. (required)
@@ -3067,7 +3067,7 @@ class AborApi:
 
     @validate_call
     async def get_abor_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[Abor]:
-            """[EXPERIMENTAL] GetAbor: Get Abor.  # noqa: E501
+            """[EARLY ACCESS] GetAbor: Get Abor.  # noqa: E501
 
             Retrieve the definition of a particular Abor.  # noqa: E501
 
@@ -3196,7 +3196,7 @@ class AborApi:
 
     @validate_call
     async def get_abor_properties_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> AborProperties:
-            """[EXPERIMENTAL] GetAborProperties: Get Abor properties  # noqa: E501
+            """[EARLY ACCESS] GetAborProperties: Get Abor properties  # noqa: E501
             Get all the properties of a single abor.  # noqa: E501
             
             :param scope: The scope of the Abor to list the properties for. (required)
@@ -3222,7 +3222,7 @@ class AborApi:
 
     @validate_call
     async def get_abor_properties_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[AborProperties]:
-            """[EXPERIMENTAL] GetAborProperties: Get Abor properties  # noqa: E501
+            """[EARLY ACCESS] GetAborProperties: Get Abor properties  # noqa: E501
 
             Get all the properties of a single abor.  # noqa: E501
 
@@ -3344,7 +3344,7 @@ class AborApi:
 
     @validate_call
     async def get_journal_entry_lines_async(self, scope: StrictStr, code: StrictStr, journal_entry_lines_query_parameters: JournalEntryLinesQueryParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> VersionedResourceListOfJournalEntryLine:
-            """[EXPERIMENTAL] GetJournalEntryLines: Get the Journal Entry lines for the given Abor.  # noqa: E501
+            """[EARLY ACCESS] GetJournalEntryLines: Get the Journal Entry lines for the given Abor.  # noqa: E501
             Gets the Journal Entry lines for the given Abor                The Journal Entry lines have been generated from transactions and translated via posting rules  # noqa: E501
             
             :param scope: The scope of the Abor. (required)
@@ -3376,7 +3376,7 @@ class AborApi:
 
     @validate_call
     async def get_journal_entry_lines_with_http_info_async(self, scope: StrictStr, code: StrictStr, journal_entry_lines_query_parameters: JournalEntryLinesQueryParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfJournalEntryLine]:
-            """[EXPERIMENTAL] GetJournalEntryLines: Get the Journal Entry lines for the given Abor.  # noqa: E501
+            """[EARLY ACCESS] GetJournalEntryLines: Get the Journal Entry lines for the given Abor.  # noqa: E501
 
             Gets the Journal Entry lines for the given Abor                The Journal Entry lines have been generated from transactions and translated via posting rules  # noqa: E501
 
@@ -3523,8 +3523,8 @@ class AborApi:
 
     @validate_call
     async def get_trial_balance_async(self, scope: StrictStr, code: StrictStr, trial_balance_query_parameters: TrialBalanceQueryParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> VersionedResourceListOfTrialBalance:
-            """[EXPERIMENTAL] GetTrialBalance: Get the Trial Balance for the given Abor.  # noqa: E501
-            Gets the Trial Balance for the given Abor.    The Trial Balance has been generated from transactions, translated via Posting Rules  and aggregated based on a General Ledger Profile (where specified).  # noqa: E501
+            """[EARLY ACCESS] GetTrialBalance: Get the Trial Balance for the given Abor.  # noqa: E501
+            Gets the Trial Balance for the given Abor.    The Trial Balance has been generated from transactions, translated via Posting Rules  and aggregated based on a General Ledger Profile (where specified).                Supplying the X-LUSID-SuppressImbalanceValidation header suppresses the imbalance check.  Any caller with access to this endpoint may use it; it is not role-restricted.  # noqa: E501
             
             :param scope: The scope of the Abor. (required)
             :type scope: str
@@ -3532,13 +3532,13 @@ class AborApi:
             :type code: str
             :param trial_balance_query_parameters: The query parameters used in running the generation of the Trial Balance. (required)
             :type trial_balance_query_parameters: TrialBalanceQueryParameters
-            :param as_at: The asAt datetime at which to retrieve the Trial Balance.              Defaults to returning the latest version if not specified.
+            :param as_at: The asAt datetime at which to retrieve the Trial Balance.               Defaults to returning the latest version if not specified.
             :type as_at: datetime
-            :param filter: Expression to filter the results by.              For more information about filtering results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results by.               For more information about filtering results, see https://support.lusid.com/knowledgebase/article/KA-01914.
             :type filter: str
-            :param limit: When paginating, limit the number of returned results to this many.              Defaults to 100 if not specified.
+            :param limit: When paginating, limit the number of returned results to this many.               Defaults to 100 if not specified.
             :type limit: int
-            :param page: The pagination token to use to continue listing Trial Balances.              This token is returned from the previous call.              If a pagination token is provided, the filter, effectiveAt and asAt fields              must not have changed since the original request.
+            :param page: The pagination token to use to continue listing Trial Balances.               This token is returned from the previous call.               If a pagination token is provided, the filter, effectiveAt and asAt fields               must not have changed since the original request.
             :type page: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -3555,9 +3555,9 @@ class AborApi:
 
     @validate_call
     async def get_trial_balance_with_http_info_async(self, scope: StrictStr, code: StrictStr, trial_balance_query_parameters: TrialBalanceQueryParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfTrialBalance]:
-            """[EXPERIMENTAL] GetTrialBalance: Get the Trial Balance for the given Abor.  # noqa: E501
+            """[EARLY ACCESS] GetTrialBalance: Get the Trial Balance for the given Abor.  # noqa: E501
 
-            Gets the Trial Balance for the given Abor.    The Trial Balance has been generated from transactions, translated via Posting Rules  and aggregated based on a General Ledger Profile (where specified).  # noqa: E501
+            Gets the Trial Balance for the given Abor.    The Trial Balance has been generated from transactions, translated via Posting Rules  and aggregated based on a General Ledger Profile (where specified).                Supplying the X-LUSID-SuppressImbalanceValidation header suppresses the imbalance check.  Any caller with access to this endpoint may use it; it is not role-restricted.  # noqa: E501
 
             :param scope: The scope of the Abor. (required)
             :type scope: str
@@ -3565,13 +3565,13 @@ class AborApi:
             :type code: str
             :param trial_balance_query_parameters: The query parameters used in running the generation of the Trial Balance. (required)
             :type trial_balance_query_parameters: TrialBalanceQueryParameters
-            :param as_at: The asAt datetime at which to retrieve the Trial Balance.              Defaults to returning the latest version if not specified.
+            :param as_at: The asAt datetime at which to retrieve the Trial Balance.               Defaults to returning the latest version if not specified.
             :type as_at: datetime
-            :param filter: Expression to filter the results by.              For more information about filtering results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results by.               For more information about filtering results, see https://support.lusid.com/knowledgebase/article/KA-01914.
             :type filter: str
-            :param limit: When paginating, limit the number of returned results to this many.              Defaults to 100 if not specified.
+            :param limit: When paginating, limit the number of returned results to this many.               Defaults to 100 if not specified.
             :type limit: int
-            :param page: The pagination token to use to continue listing Trial Balances.              This token is returned from the previous call.              If a pagination token is provided, the filter, effectiveAt and asAt fields              must not have changed since the original request.
+            :param page: The pagination token to use to continue listing Trial Balances.               This token is returned from the previous call.               If a pagination token is provided, the filter, effectiveAt and asAt fields               must not have changed since the original request.
             :type page: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
@@ -3702,7 +3702,7 @@ class AborApi:
 
     @validate_call
     async def list_abors_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfAbor:
-            """[EXPERIMENTAL] ListAbors: List Abors.  # noqa: E501
+            """[EARLY ACCESS] ListAbors: List Abors.  # noqa: E501
             List all the Abors matching particular criteria.  # noqa: E501
             
             :param effective_at: The effective datetime or cut label at which to list the TimeVariant properties for the Abor. Defaults to the current LUSID              system datetime if not specified.
@@ -3734,7 +3734,7 @@ class AborApi:
 
     @validate_call
     async def list_abors_with_http_info_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfAbor]:
-            """[EXPERIMENTAL] ListAbors: List Abors.  # noqa: E501
+            """[EARLY ACCESS] ListAbors: List Abors.  # noqa: E501
 
             List all the Abors matching particular criteria.  # noqa: E501
 
@@ -3876,7 +3876,7 @@ class AborApi:
 
     @validate_call
     async def list_diary_entries_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfDiaryEntry:
-            """[EXPERIMENTAL] ListDiaryEntries: List diary entries.  # noqa: E501
+            """[EARLY ACCESS] ListDiaryEntries: List diary entries.  # noqa: E501
             List all the diary entries matching particular criteria.  # noqa: E501
             
             :param scope: The scope of the Abor. (required)
@@ -3912,7 +3912,7 @@ class AborApi:
 
     @validate_call
     async def list_diary_entries_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfDiaryEntry]:
-            """[EXPERIMENTAL] ListDiaryEntries: List diary entries.  # noqa: E501
+            """[EARLY ACCESS] ListDiaryEntries: List diary entries.  # noqa: E501
 
             List all the diary entries matching particular criteria.  # noqa: E501
 
@@ -4066,7 +4066,7 @@ class AborApi:
 
     @validate_call
     async def lock_period_async(self, scope: StrictStr, code: StrictStr, lock_period_diary_entry_request: Optional[LockPeriodDiaryEntryRequest] = None, **kwargs) -> DiaryEntry:
-            """[EXPERIMENTAL] LockPeriod: Locks the last Closed or given Closed Period.  # noqa: E501
+            """[EARLY ACCESS] LockPeriod: Locks the last Closed or given Closed Period.  # noqa: E501
             Locks the specified or last locked period for the given Abor.  # noqa: E501
             
             :param scope: The scope of the Abor. (required)
@@ -4090,7 +4090,7 @@ class AborApi:
 
     @validate_call
     async def lock_period_with_http_info_async(self, scope: StrictStr, code: StrictStr, lock_period_diary_entry_request: Optional[LockPeriodDiaryEntryRequest] = None, **kwargs) -> ApiResponse[DiaryEntry]:
-            """[EXPERIMENTAL] LockPeriod: Locks the last Closed or given Closed Period.  # noqa: E501
+            """[EARLY ACCESS] LockPeriod: Locks the last Closed or given Closed Period.  # noqa: E501
 
             Locks the specified or last locked period for the given Abor.  # noqa: E501
 
@@ -4210,7 +4210,7 @@ class AborApi:
 
     @validate_call
     async def patch_abor_async(self, scope: StrictStr, code: StrictStr, operation: List[Operation], **kwargs) -> Abor:
-            """[EXPERIMENTAL] PatchAbor: Patch Abor.  # noqa: E501
+            """[EARLY ACCESS] PatchAbor: Patch Abor.  # noqa: E501
             Create or update certain fields for a particular Abor.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: PortfolioIds.  # noqa: E501
             
             :param scope: The scope of the Abor. (required)
@@ -4234,7 +4234,7 @@ class AborApi:
 
     @validate_call
     async def patch_abor_with_http_info_async(self, scope: StrictStr, code: StrictStr, operation: List[Operation], **kwargs) -> ApiResponse[Abor]:
-            """[EXPERIMENTAL] PatchAbor: Patch Abor.  # noqa: E501
+            """[EARLY ACCESS] PatchAbor: Patch Abor.  # noqa: E501
 
             Create or update certain fields for a particular Abor.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: PortfolioIds.  # noqa: E501
 
@@ -4354,7 +4354,7 @@ class AborApi:
 
     @validate_call
     async def re_open_periods_async(self, scope: StrictStr, code: StrictStr, re_open_period_diary_entry_request: Optional[ReOpenPeriodDiaryEntryRequest] = None, **kwargs) -> PeriodDiaryEntriesReopenedResponse:
-            """[EXPERIMENTAL] ReOpenPeriods: Reopen periods from a seed Diary Entry Code or when not specified, the last Closed Period for the given Abor.  # noqa: E501
+            """[EARLY ACCESS] ReOpenPeriods: Reopen periods from a seed Diary Entry Code or when not specified, the last Closed Period for the given Abor.  # noqa: E501
             Reopens one or more periods.  # noqa: E501
             
             :param scope: The scope of the Abor. (required)
@@ -4378,7 +4378,7 @@ class AborApi:
 
     @validate_call
     async def re_open_periods_with_http_info_async(self, scope: StrictStr, code: StrictStr, re_open_period_diary_entry_request: Optional[ReOpenPeriodDiaryEntryRequest] = None, **kwargs) -> ApiResponse[PeriodDiaryEntriesReopenedResponse]:
-            """[EXPERIMENTAL] ReOpenPeriods: Reopen periods from a seed Diary Entry Code or when not specified, the last Closed Period for the given Abor.  # noqa: E501
+            """[EARLY ACCESS] ReOpenPeriods: Reopen periods from a seed Diary Entry Code or when not specified, the last Closed Period for the given Abor.  # noqa: E501
 
             Reopens one or more periods.  # noqa: E501
 
@@ -4498,7 +4498,7 @@ class AborApi:
 
     @validate_call
     async def upsert_abor_properties_async(self, scope: StrictStr, code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> AborProperties:
-            """[EXPERIMENTAL] UpsertAborProperties: Upsert Abor properties  # noqa: E501
+            """[EARLY ACCESS] UpsertAborProperties: Upsert Abor properties  # noqa: E501
             Update or insert one or more properties onto a single Abor. A property will be updated if it  already exists and inserted if it does not. All properties must be of the domain 'Abor'.                Upserting a property that exists for an Abor, with a null value, will delete the instance of the property for that group.                Properties have an <i>effectiveFrom</i> datetime for which the property is valid, and an <i>effectiveUntil</i>  datetime until which the property is valid. Not supplying an <i>effectiveUntil</i> datetime results in the property being  valid indefinitely, or until the next <i>effectiveFrom</i> datetime of the property.  # noqa: E501
             
             :param scope: The scope of the Abor to update or insert the properties onto. (required)
@@ -4522,7 +4522,7 @@ class AborApi:
 
     @validate_call
     async def upsert_abor_properties_with_http_info_async(self, scope: StrictStr, code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> ApiResponse[AborProperties]:
-            """[EXPERIMENTAL] UpsertAborProperties: Upsert Abor properties  # noqa: E501
+            """[EARLY ACCESS] UpsertAborProperties: Upsert Abor properties  # noqa: E501
 
             Update or insert one or more properties onto a single Abor. A property will be updated if it  already exists and inserted if it does not. All properties must be of the domain 'Abor'.                Upserting a property that exists for an Abor, with a null value, will delete the instance of the property for that group.                Properties have an <i>effectiveFrom</i> datetime for which the property is valid, and an <i>effectiveUntil</i>  datetime until which the property is valid. Not supplying an <i>effectiveUntil</i> datetime results in the property being  valid indefinitely, or until the next <i>effectiveFrom</i> datetime of the property.  # noqa: E501
 

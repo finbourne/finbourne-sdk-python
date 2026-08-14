@@ -24,6 +24,7 @@ from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictF
 from finbourne.sdk.services.lusid.models.model_property import ModelProperty
 from finbourne.sdk.services.lusid.models.previous_fund_calendar_entry import PreviousFundCalendarEntry
 from finbourne.sdk.services.lusid.models.resource_id import ResourceId
+from finbourne.sdk.services.lusid.models.staged_modifications_info import StagedModificationsInfo
 from finbourne.sdk.services.lusid.models.version import Version
 
 
@@ -49,75 +50,27 @@ class FundCalendarEntry(BaseModel):
     version: Version
     href:  Optional[StrictStr] = Field(default=None,alias="href", description="The specific Uniform Resource Identifier (URI) for this resource at the requested asAt datetime.") 
     leader_nav_type_code:  Optional[StrictStr] = Field(default=None,alias="leaderNavTypeCode", description="The code of the Nav Type that this Nav Type will follow when set.") 
-    __properties: ClassVar[List[str]] = ["code", "variant", "displayName", "description", "navTypeCode", "timelineId", "previousEntry", "effectiveAt", "asAt", "entryType", "status", "applyClearDown", "holdingsAsAtOverride", "valuationsAsAtOverride", "properties", "version", "href", "leaderNavTypeCode"]
+    staged_modifications: Optional[StagedModificationsInfo] = Field(default=None, alias="stagedModifications")
+    __properties: ClassVar[List[str]] = ["code", "variant", "displayName", "description", "navTypeCode", "timelineId", "previousEntry", "effectiveAt", "asAt", "entryType", "status", "applyClearDown", "holdingsAsAtOverride", "valuationsAsAtOverride", "properties", "version", "href", "leaderNavTypeCode", "stagedModifications"]
 
     @field_validator('entry_type')
     def entry_type_validate_enum(cls, value):
         """Validates the enum"""
 
-        # Finbourne have removed enum validation on all models, except for this use case:
-        # Workflow and notification application SDK use the property name 'type' as the discriminator on a number of classes.
-        # During instantiation, the value of 'type' is checked against the enum values, 
-        
+        # Finbourne removed enum validation on all models except the
+        # oneOf-discriminator case: each oneOf variant declares a `type`
+        # field whose enum has exactly one allowable value, which pydantic
+        # uses to route the union. We detect that shape here (property
+        # named `type`, single allowable value) — no manual class list.
 
-        # check it's a class that uses the 'type' property as a discriminator
-        # list of classes can be found by searching for 'actual_instance: Union[' in the generated code
-        if 'FundCalendarEntry' not in [ 
-                                    # For notification application classes
-                                    'AmazonSqsNotificationType',
-                                    'AmazonSqsNotificationTypeResponse',
-                                    'AmazonSqsPrincipalAuthNotificationType',
-                                    'AmazonSqsPrincipalAuthNotificationTypeResponse',
-                                    'AzureServiceBusTypeResponse',
-                                    'AzureServiceBusNotificationType',
-                                    'EmailNotificationType',
-                                    'EmailNotificationTypeResponse',
-                                    'SmsNotificationType',
-                                    'SmsNotificationTypeResponse',
-                                    'WebhookNotificationType',
-                                    'WebhookNotificationTypeResponse',
-                        
-                                    # For workflow application classes
-                                    'CreateChildTasksAction', 
-                                    'RunWorkerAction', 
-                                    'TriggerParentTaskAction',
-                                    'CreateChildTasksActionResponse', 
-                                    'RunWorkerActionResponse',
-                                    'TriggerParentTaskActionResponse',
-                                    'CreateNewTaskActivity',
-                                    'UpdateMatchingTasksActivity',
-                                    'CreateNewTaskActivityResponse', 
-                                    'UpdateMatchingTasksActivityResponse',
-                                    'Fail', 
-                                    'GroupReconciliation', 
-                                    'HealthCheck', 
-                                    'LuminesceView', 
-                                    'SchedulerJob', 
-                                    'Sleep',
-                                    'FailResponse', 
-                                    'GroupReconciliationResponse', 
-                                    'HealthCheckResponse', 
-                                    'LuminesceViewResponse', 
-                                    'SchedulerJobResponse', 
-                                    'SleepResponse',
-                                    'Library',
-                                    'LibraryResponse',
-                                    'DayRegularity',
-                                    'RelativeMonthRegularity',
-                                    'SpecificMonthRegularity',
-                                    'WeekRegularity',
-                                    'YearRegularity',
-                                    'LusidEntityDataQualityCheck',
-                                    'LusidEntityDataQualityCheckResponse',
-                                    'TriggerChildTasksActionResponse']:
-           return value
-        
-        # Only validate the 'type' property of the class
         if "entry_type" != "type":
             return value
 
-        if value not in ['ValuationPointFundCalendarEntry', 'BookmarkFundCalendarEntry']:
-            raise ValueError("must be one of enum values ('ValuationPointFundCalendarEntry', 'BookmarkFundCalendarEntry')")
+        _allowed = ['ValuationPointFundCalendarEntry', 'BookmarkFundCalendarEntry']
+        if len(_allowed) != 1:
+            return value
+        if value not in _allowed:
+            raise ValueError(f"must be one of enum values {_allowed}")
         return value
 
     model_config = ConfigDict(
@@ -170,6 +123,9 @@ class FundCalendarEntry(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of version
         if self.version:
             _dict['version'] = self.version.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of staged_modifications
+        if self.staged_modifications:
+            _dict['stagedModifications'] = self.staged_modifications.to_dict(by_alias=by_alias)
         # set to None if variant (nullable) is None
         # and model_fields_set contains the field
         if self.variant is None and "variant" in self.model_fields_set:
@@ -244,7 +200,8 @@ class FundCalendarEntry(BaseModel):
             else None,
             "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
             "href": obj.get("href"),
-            "leader_nav_type_code": obj.get("leaderNavTypeCode")
+            "leader_nav_type_code": obj.get("leaderNavTypeCode"),
+            "staged_modifications": StagedModificationsInfo.from_dict(_v) if (_v := obj.get("stagedModifications")) is not None else None
         })
         return _obj
 

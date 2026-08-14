@@ -39,8 +39,7 @@ class SubscriptionDefinition(BaseModel):
     subscription_type:  Optional[StrictStr] = Field(default=None,alias="subscriptionType", description="The kind of data the subscription streams (holdings or transactions), defaulting to holdings.  Address keys and byTaxLots are not valid for a transactions subscription. Available values: Holdings, Transactions.") 
     start_effective_at: Optional[datetime] = Field(default=None, alias="startEffectiveAt")
     end_effective_at: Optional[datetime] = Field(default=None, alias="endEffectiveAt")
-    start_as_at: Optional[datetime] = Field(default=None, alias="startAsAt")
-    __properties: ClassVar[List[str]] = ["scope", "code", "displayName", "description", "portfolioId", "timelineId", "addressKeys", "byTaxLots", "subscriptionType", "startEffectiveAt", "endEffectiveAt", "startAsAt"]
+    __properties: ClassVar[List[str]] = ["scope", "code", "displayName", "description", "portfolioId", "timelineId", "addressKeys", "byTaxLots", "subscriptionType", "startEffectiveAt", "endEffectiveAt"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -112,11 +111,6 @@ class SubscriptionDefinition(BaseModel):
         if self.end_effective_at is None and "end_effective_at" in self.model_fields_set:
             _dict['endEffectiveAt'] = None
 
-        # set to None if start_as_at (nullable) is None
-        # and model_fields_set contains the field
-        if self.start_as_at is None and "start_as_at" in self.model_fields_set:
-            _dict['startAsAt'] = None
-
         return _dict
 
     @classmethod
@@ -139,8 +133,7 @@ class SubscriptionDefinition(BaseModel):
             "by_tax_lots": obj.get("byTaxLots"),
             "subscription_type": obj.get("subscriptionType"),
             "start_effective_at": obj.get("startEffectiveAt"),
-            "end_effective_at": obj.get("endEffectiveAt"),
-            "start_as_at": obj.get("startAsAt")
+            "end_effective_at": obj.get("endEffectiveAt")
         })
         return _obj
 

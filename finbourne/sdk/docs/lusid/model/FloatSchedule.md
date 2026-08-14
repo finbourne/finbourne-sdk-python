@@ -23,7 +23,7 @@ Schedule for floating rate coupon payments.
 | **cap_rate** | **float** | Optional | The maximum floating rate which a cashflow can accrue. |
 | **floor_rate** | **float** | Optional | The minimum floating rate which a cashflow can accrue. |
 | **schedule_id** | **str** | Optional | Optional: identifier for the Schedule. This is only used for Schedules on FlexibleDeposit instruments where the list of Schedules  on the instrument definition can be modified by upsert of a DepositRollEvent. |
-| **schedule_type** | **str** | Required | Available values: FixedSchedule, FloatSchedule, OptionalitySchedule, StepSchedule, Exercise, FxRateSchedule, FxLinkedNotionalSchedule, BondConversionSchedule, PikSchedule, Invalid. |
+| **schedule_type** | **str** | Required | Available values: FixedSchedule, FloatSchedule, OptionalitySchedule, StepSchedule, Exercise, FxRateSchedule, FxLinkedNotionalSchedule, BondConversionSchedule, PikSchedule, Invalid, CancelSchedule. |
 
 
 ## Usage
@@ -52,7 +52,7 @@ instance = FloatSchedule(
     cap_rate=0.0,  # optional — The maximum floating rate which a cashflow can accrue.
     floor_rate=0.0,  # optional — The minimum floating rate which a cashflow can accrue.
     schedule_id="...",  # optional — Optional: identifier for the Schedule. This is only used for Schedules on FlexibleDeposit instruments where the list of Schedules  on the instrument definition can be modified by upsert of a DepositRollEvent.
-    schedule_type="..."  # required — Available values: FixedSchedule, FloatSchedule, OptionalitySchedule, StepSchedule, Exercise, FxRateSchedule, FxLinkedNotionalSchedule, BondConversionSchedule, PikSchedule, Invalid.
+    schedule_type="..."  # required — Available values: FixedSchedule, FloatSchedule, OptionalitySchedule, StepSchedule, Exercise, FxRateSchedule, FxLinkedNotionalSchedule, BondConversionSchedule, PikSchedule, Invalid, CancelSchedule.
 )
 ```
 

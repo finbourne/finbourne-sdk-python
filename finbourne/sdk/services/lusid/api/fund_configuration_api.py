@@ -56,7 +56,7 @@ class FundConfigurationApi:
 
     @validate_call
     def create_fund_configuration(self, scope: StrictStr, fund_configuration_request: FundConfigurationRequest, **kwargs) -> FundConfiguration:
-        """[EXPERIMENTAL] CreateFundConfiguration: Create a FundConfiguration.  # noqa: E501
+        """[EARLY ACCESS] CreateFundConfiguration: Create a FundConfiguration.  # noqa: E501
 
         Create the given FundConfiguration.  # noqa: E501
         :param scope: The scope of the FundConfiguration. (required)
@@ -78,7 +78,7 @@ class FundConfigurationApi:
 
     @validate_call
     def create_fund_configuration_with_http_info(self, scope: StrictStr, fund_configuration_request: FundConfigurationRequest, **kwargs) -> ApiResponse[FundConfiguration]:
-        """[EXPERIMENTAL] CreateFundConfiguration: Create a FundConfiguration.  # noqa: E501
+        """[EARLY ACCESS] CreateFundConfiguration: Create a FundConfiguration.  # noqa: E501
 
         Create the given FundConfiguration.  # noqa: E501
         :param scope: The scope of the FundConfiguration. (required)
@@ -191,7 +191,7 @@ class FundConfigurationApi:
 
     @validate_call
     def delete_fund_configuration(self, scope: StrictStr, code: StrictStr, **kwargs) -> DeletedEntityResponse:
-        """[EXPERIMENTAL] DeleteFundConfiguration: Delete a FundConfiguration.  # noqa: E501
+        """[EARLY ACCESS] DeleteFundConfiguration: Delete a FundConfiguration.  # noqa: E501
 
         Delete the given FundConfiguration.  # noqa: E501
         :param scope: The scope of the FundConfiguration to be deleted. (required)
@@ -213,7 +213,7 @@ class FundConfigurationApi:
 
     @validate_call
     def delete_fund_configuration_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-        """[EXPERIMENTAL] DeleteFundConfiguration: Delete a FundConfiguration.  # noqa: E501
+        """[EARLY ACCESS] DeleteFundConfiguration: Delete a FundConfiguration.  # noqa: E501
 
         Delete the given FundConfiguration.  # noqa: E501
         :param scope: The scope of the FundConfiguration to be deleted. (required)
@@ -319,7 +319,7 @@ class FundConfigurationApi:
 
     @validate_call
     def get_fund_configuration(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> FundConfiguration:
-        """[EXPERIMENTAL] GetFundConfiguration: Get FundConfiguration.  # noqa: E501
+        """[EARLY ACCESS] GetFundConfiguration: Get FundConfiguration.  # noqa: E501
 
         Retrieve the definition of a particular FundConfiguration.  # noqa: E501
         :param scope: The scope of the FundConfiguration. (required)
@@ -347,7 +347,7 @@ class FundConfigurationApi:
 
     @validate_call
     def get_fund_configuration_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[FundConfiguration]:
-        """[EXPERIMENTAL] GetFundConfiguration: Get FundConfiguration.  # noqa: E501
+        """[EARLY ACCESS] GetFundConfiguration: Get FundConfiguration.  # noqa: E501
 
         Retrieve the definition of a particular FundConfiguration.  # noqa: E501
         :param scope: The scope of the FundConfiguration. (required)
@@ -475,7 +475,7 @@ class FundConfigurationApi:
 
     @validate_call
     def list_fund_configurations(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfFundConfiguration:
-        """[EXPERIMENTAL] ListFundConfigurations: List FundConfiguration.  # noqa: E501
+        """[EARLY ACCESS] ListFundConfigurations: List FundConfiguration.  # noqa: E501
 
         List all the FundConfiguration matching particular criteria.  # noqa: E501
         :param effective_at: The effective datetime or cut label at which to list the TimeVariant properties for the FundConfiguration.              Defaults to the current LUSID system datetime if not specified.
@@ -507,7 +507,7 @@ class FundConfigurationApi:
 
     @validate_call
     def list_fund_configurations_with_http_info(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfFundConfiguration]:
-        """[EXPERIMENTAL] ListFundConfigurations: List FundConfiguration.  # noqa: E501
+        """[EARLY ACCESS] ListFundConfigurations: List FundConfiguration.  # noqa: E501
 
         List all the FundConfiguration matching particular criteria.  # noqa: E501
         :param effective_at: The effective datetime or cut label at which to list the TimeVariant properties for the FundConfiguration.              Defaults to the current LUSID system datetime if not specified.
@@ -648,7 +648,7 @@ class FundConfigurationApi:
 
     @validate_call
     def patch_fund_configuration(self, scope: StrictStr, code: StrictStr, operation: List[Operation], **kwargs) -> FundConfiguration:
-        """[EXPERIMENTAL] PatchFundConfiguration: Patch Fund Configuration.  # noqa: E501
+        """[EARLY ACCESS] PatchFundConfiguration: Patch Fund Configuration.  # noqa: E501
 
         Create or update certain fields for a particular FundConfiguration.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, DealingFilters, PnlFilters, BackOutFilters, ExternalFeeFilters, BucketSets, ApportionmentBucketSet, ApportionmentMethodProperty.  # noqa: E501
         :param scope: The scope of the FundConfiguration. (required)
@@ -672,7 +672,7 @@ class FundConfigurationApi:
 
     @validate_call
     def patch_fund_configuration_with_http_info(self, scope: StrictStr, code: StrictStr, operation: List[Operation], **kwargs) -> ApiResponse[FundConfiguration]:
-        """[EXPERIMENTAL] PatchFundConfiguration: Patch Fund Configuration.  # noqa: E501
+        """[EARLY ACCESS] PatchFundConfiguration: Patch Fund Configuration.  # noqa: E501
 
         Create or update certain fields for a particular FundConfiguration.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, DealingFilters, PnlFilters, BackOutFilters, ExternalFeeFilters, BucketSets, ApportionmentBucketSet, ApportionmentMethodProperty.  # noqa: E501
         :param scope: The scope of the FundConfiguration. (required)
@@ -791,7 +791,7 @@ class FundConfigurationApi:
 
     @validate_call
     def upsert_fund_configuration_properties(self, scope: StrictStr, code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> FundConfigurationProperties:
-        """[EXPERIMENTAL] UpsertFundConfigurationProperties: Upsert FundConfiguration properties  # noqa: E501
+        """[EARLY ACCESS] UpsertFundConfigurationProperties: Upsert FundConfiguration properties  # noqa: E501
 
         Update or insert one or more properties onto a single FundConfiguration. A property will be updated if it  already exists and inserted if it does not. All properties must be of the domain 'FundConfiguration'.                Upserting a property that exists for an FundConfiguration, with a null value, will delete the instance of the property for that group.                Properties have an <i>effectiveFrom</i> datetime for which the property is valid, and an <i>effectiveUntil</i>  datetime until which the property is valid. Not supplying an <i>effectiveUntil</i> datetime results in the property being  valid indefinitely, or until the next <i>effectiveFrom</i> datetime of the property.  # noqa: E501
         :param scope: The scope of the FundConfiguration to update or insert the properties onto. (required)
@@ -815,7 +815,7 @@ class FundConfigurationApi:
 
     @validate_call
     def upsert_fund_configuration_properties_with_http_info(self, scope: StrictStr, code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> ApiResponse[FundConfigurationProperties]:
-        """[EXPERIMENTAL] UpsertFundConfigurationProperties: Upsert FundConfiguration properties  # noqa: E501
+        """[EARLY ACCESS] UpsertFundConfigurationProperties: Upsert FundConfiguration properties  # noqa: E501
 
         Update or insert one or more properties onto a single FundConfiguration. A property will be updated if it  already exists and inserted if it does not. All properties must be of the domain 'FundConfiguration'.                Upserting a property that exists for an FundConfiguration, with a null value, will delete the instance of the property for that group.                Properties have an <i>effectiveFrom</i> datetime for which the property is valid, and an <i>effectiveUntil</i>  datetime until which the property is valid. Not supplying an <i>effectiveUntil</i> datetime results in the property being  valid indefinitely, or until the next <i>effectiveFrom</i> datetime of the property.  # noqa: E501
         :param scope: The scope of the FundConfiguration to update or insert the properties onto. (required)
@@ -938,7 +938,7 @@ class FundConfigurationApi:
 
     @validate_call
     async def create_fund_configuration_async(self, scope: StrictStr, fund_configuration_request: FundConfigurationRequest, **kwargs) -> FundConfiguration:
-            """[EXPERIMENTAL] CreateFundConfiguration: Create a FundConfiguration.  # noqa: E501
+            """[EARLY ACCESS] CreateFundConfiguration: Create a FundConfiguration.  # noqa: E501
             Create the given FundConfiguration.  # noqa: E501
             
             :param scope: The scope of the FundConfiguration. (required)
@@ -960,7 +960,7 @@ class FundConfigurationApi:
 
     @validate_call
     async def create_fund_configuration_with_http_info_async(self, scope: StrictStr, fund_configuration_request: FundConfigurationRequest, **kwargs) -> ApiResponse[FundConfiguration]:
-            """[EXPERIMENTAL] CreateFundConfiguration: Create a FundConfiguration.  # noqa: E501
+            """[EARLY ACCESS] CreateFundConfiguration: Create a FundConfiguration.  # noqa: E501
 
             Create the given FundConfiguration.  # noqa: E501
 
@@ -1074,7 +1074,7 @@ class FundConfigurationApi:
 
     @validate_call
     async def delete_fund_configuration_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> DeletedEntityResponse:
-            """[EXPERIMENTAL] DeleteFundConfiguration: Delete a FundConfiguration.  # noqa: E501
+            """[EARLY ACCESS] DeleteFundConfiguration: Delete a FundConfiguration.  # noqa: E501
             Delete the given FundConfiguration.  # noqa: E501
             
             :param scope: The scope of the FundConfiguration to be deleted. (required)
@@ -1096,7 +1096,7 @@ class FundConfigurationApi:
 
     @validate_call
     async def delete_fund_configuration_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-            """[EXPERIMENTAL] DeleteFundConfiguration: Delete a FundConfiguration.  # noqa: E501
+            """[EARLY ACCESS] DeleteFundConfiguration: Delete a FundConfiguration.  # noqa: E501
 
             Delete the given FundConfiguration.  # noqa: E501
 
@@ -1203,7 +1203,7 @@ class FundConfigurationApi:
 
     @validate_call
     async def get_fund_configuration_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> FundConfiguration:
-            """[EXPERIMENTAL] GetFundConfiguration: Get FundConfiguration.  # noqa: E501
+            """[EARLY ACCESS] GetFundConfiguration: Get FundConfiguration.  # noqa: E501
             Retrieve the definition of a particular FundConfiguration.  # noqa: E501
             
             :param scope: The scope of the FundConfiguration. (required)
@@ -1231,7 +1231,7 @@ class FundConfigurationApi:
 
     @validate_call
     async def get_fund_configuration_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[FundConfiguration]:
-            """[EXPERIMENTAL] GetFundConfiguration: Get FundConfiguration.  # noqa: E501
+            """[EARLY ACCESS] GetFundConfiguration: Get FundConfiguration.  # noqa: E501
 
             Retrieve the definition of a particular FundConfiguration.  # noqa: E501
 
@@ -1360,7 +1360,7 @@ class FundConfigurationApi:
 
     @validate_call
     async def list_fund_configurations_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfFundConfiguration:
-            """[EXPERIMENTAL] ListFundConfigurations: List FundConfiguration.  # noqa: E501
+            """[EARLY ACCESS] ListFundConfigurations: List FundConfiguration.  # noqa: E501
             List all the FundConfiguration matching particular criteria.  # noqa: E501
             
             :param effective_at: The effective datetime or cut label at which to list the TimeVariant properties for the FundConfiguration.              Defaults to the current LUSID system datetime if not specified.
@@ -1392,7 +1392,7 @@ class FundConfigurationApi:
 
     @validate_call
     async def list_fund_configurations_with_http_info_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfFundConfiguration]:
-            """[EXPERIMENTAL] ListFundConfigurations: List FundConfiguration.  # noqa: E501
+            """[EARLY ACCESS] ListFundConfigurations: List FundConfiguration.  # noqa: E501
 
             List all the FundConfiguration matching particular criteria.  # noqa: E501
 
@@ -1534,7 +1534,7 @@ class FundConfigurationApi:
 
     @validate_call
     async def patch_fund_configuration_async(self, scope: StrictStr, code: StrictStr, operation: List[Operation], **kwargs) -> FundConfiguration:
-            """[EXPERIMENTAL] PatchFundConfiguration: Patch Fund Configuration.  # noqa: E501
+            """[EARLY ACCESS] PatchFundConfiguration: Patch Fund Configuration.  # noqa: E501
             Create or update certain fields for a particular FundConfiguration.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, DealingFilters, PnlFilters, BackOutFilters, ExternalFeeFilters, BucketSets, ApportionmentBucketSet, ApportionmentMethodProperty.  # noqa: E501
             
             :param scope: The scope of the FundConfiguration. (required)
@@ -1558,7 +1558,7 @@ class FundConfigurationApi:
 
     @validate_call
     async def patch_fund_configuration_with_http_info_async(self, scope: StrictStr, code: StrictStr, operation: List[Operation], **kwargs) -> ApiResponse[FundConfiguration]:
-            """[EXPERIMENTAL] PatchFundConfiguration: Patch Fund Configuration.  # noqa: E501
+            """[EARLY ACCESS] PatchFundConfiguration: Patch Fund Configuration.  # noqa: E501
 
             Create or update certain fields for a particular FundConfiguration.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, DealingFilters, PnlFilters, BackOutFilters, ExternalFeeFilters, BucketSets, ApportionmentBucketSet, ApportionmentMethodProperty.  # noqa: E501
 
@@ -1678,7 +1678,7 @@ class FundConfigurationApi:
 
     @validate_call
     async def upsert_fund_configuration_properties_async(self, scope: StrictStr, code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> FundConfigurationProperties:
-            """[EXPERIMENTAL] UpsertFundConfigurationProperties: Upsert FundConfiguration properties  # noqa: E501
+            """[EARLY ACCESS] UpsertFundConfigurationProperties: Upsert FundConfiguration properties  # noqa: E501
             Update or insert one or more properties onto a single FundConfiguration. A property will be updated if it  already exists and inserted if it does not. All properties must be of the domain 'FundConfiguration'.                Upserting a property that exists for an FundConfiguration, with a null value, will delete the instance of the property for that group.                Properties have an <i>effectiveFrom</i> datetime for which the property is valid, and an <i>effectiveUntil</i>  datetime until which the property is valid. Not supplying an <i>effectiveUntil</i> datetime results in the property being  valid indefinitely, or until the next <i>effectiveFrom</i> datetime of the property.  # noqa: E501
             
             :param scope: The scope of the FundConfiguration to update or insert the properties onto. (required)
@@ -1702,7 +1702,7 @@ class FundConfigurationApi:
 
     @validate_call
     async def upsert_fund_configuration_properties_with_http_info_async(self, scope: StrictStr, code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> ApiResponse[FundConfigurationProperties]:
-            """[EXPERIMENTAL] UpsertFundConfigurationProperties: Upsert FundConfiguration properties  # noqa: E501
+            """[EARLY ACCESS] UpsertFundConfigurationProperties: Upsert FundConfiguration properties  # noqa: E501
 
             Update or insert one or more properties onto a single FundConfiguration. A property will be updated if it  already exists and inserted if it does not. All properties must be of the domain 'FundConfiguration'.                Upserting a property that exists for an FundConfiguration, with a null value, will delete the instance of the property for that group.                Properties have an <i>effectiveFrom</i> datetime for which the property is valid, and an <i>effectiveUntil</i>  datetime until which the property is valid. Not supplying an <i>effectiveUntil</i> datetime results in the property being  valid indefinitely, or until the next <i>effectiveFrom</i> datetime of the property.  # noqa: E501
 

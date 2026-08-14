@@ -79,7 +79,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def create_chart_of_accounts(self, scope: StrictStr, chart_of_accounts_request: ChartOfAccountsRequest, **kwargs) -> ChartOfAccounts:
-        """[EXPERIMENTAL] CreateChartOfAccounts: Create a Chart of Accounts  # noqa: E501
+        """[EARLY ACCESS] CreateChartOfAccounts: Create a Chart of Accounts  # noqa: E501
 
         Create the given Chart of Accounts.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -101,7 +101,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def create_chart_of_accounts_with_http_info(self, scope: StrictStr, chart_of_accounts_request: ChartOfAccountsRequest, **kwargs) -> ApiResponse[ChartOfAccounts]:
-        """[EXPERIMENTAL] CreateChartOfAccounts: Create a Chart of Accounts  # noqa: E501
+        """[EARLY ACCESS] CreateChartOfAccounts: Create a Chart of Accounts  # noqa: E501
 
         Create the given Chart of Accounts.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -214,7 +214,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def create_cleardown_module(self, scope: StrictStr, code: StrictStr, cleardown_module_request: CleardownModuleRequest, **kwargs) -> CleardownModuleResponse:
-        """[EXPERIMENTAL] CreateCleardownModule: Create a Cleardown Module  # noqa: E501
+        """[EARLY ACCESS] CreateCleardownModule: Create a Cleardown Module  # noqa: E501
 
         Create the given Cleardown Module.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -238,7 +238,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def create_cleardown_module_with_http_info(self, scope: StrictStr, code: StrictStr, cleardown_module_request: CleardownModuleRequest, **kwargs) -> ApiResponse[CleardownModuleResponse]:
-        """[EXPERIMENTAL] CreateCleardownModule: Create a Cleardown Module  # noqa: E501
+        """[EARLY ACCESS] CreateCleardownModule: Create a Cleardown Module  # noqa: E501
 
         Create the given Cleardown Module.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -357,7 +357,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def create_general_ledger_profile(self, scope: StrictStr, code: StrictStr, general_ledger_profile_request: GeneralLedgerProfileRequest, **kwargs) -> GeneralLedgerProfileResponse:
-        """[EXPERIMENTAL] CreateGeneralLedgerProfile: Create a General Ledger Profile.  # noqa: E501
+        """[EARLY ACCESS] CreateGeneralLedgerProfile: Create a General Ledger Profile.  # noqa: E501
 
         Create the given General Ledger profile.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -381,7 +381,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def create_general_ledger_profile_with_http_info(self, scope: StrictStr, code: StrictStr, general_ledger_profile_request: GeneralLedgerProfileRequest, **kwargs) -> ApiResponse[GeneralLedgerProfileResponse]:
-        """[EXPERIMENTAL] CreateGeneralLedgerProfile: Create a General Ledger Profile.  # noqa: E501
+        """[EARLY ACCESS] CreateGeneralLedgerProfile: Create a General Ledger Profile.  # noqa: E501
 
         Create the given General Ledger profile.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -500,7 +500,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def create_posting_module(self, scope: StrictStr, code: StrictStr, posting_module_request: PostingModuleRequest, **kwargs) -> PostingModuleResponse:
-        """[EXPERIMENTAL] CreatePostingModule: Create a Posting Module  # noqa: E501
+        """[EARLY ACCESS] CreatePostingModule: Create a Posting Module  # noqa: E501
 
         Create the given Posting Module.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -524,7 +524,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def create_posting_module_with_http_info(self, scope: StrictStr, code: StrictStr, posting_module_request: PostingModuleRequest, **kwargs) -> ApiResponse[PostingModuleResponse]:
-        """[EXPERIMENTAL] CreatePostingModule: Create a Posting Module  # noqa: E501
+        """[EARLY ACCESS] CreatePostingModule: Create a Posting Module  # noqa: E501
 
         Create the given Posting Module.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -643,7 +643,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def delete_accounts(self, scope: StrictStr, code: StrictStr, request_body: List[str], delete_mode: Optional[StrictStr] = None, **kwargs) -> DeleteAccountsResponse:
-        """[EXPERIMENTAL] DeleteAccounts: Soft or hard delete multiple accounts  # noqa: E501
+        """[EARLY ACCESS] DeleteAccounts: Soft or hard delete multiple accounts  # noqa: E501
 
         Delete one or more account from the Chart of Accounts. Soft deletion marks the account as inactive  While the Hard deletion is deleting the account.  The maximum number of accounts that this method can delete per request is 2,000.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -669,7 +669,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def delete_accounts_with_http_info(self, scope: StrictStr, code: StrictStr, request_body: List[str], delete_mode: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeleteAccountsResponse]:
-        """[EXPERIMENTAL] DeleteAccounts: Soft or hard delete multiple accounts  # noqa: E501
+        """[EARLY ACCESS] DeleteAccounts: Soft or hard delete multiple accounts  # noqa: E501
 
         Delete one or more account from the Chart of Accounts. Soft deletion marks the account as inactive  While the Hard deletion is deleting the account.  The maximum number of accounts that this method can delete per request is 2,000.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -794,7 +794,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def delete_chart_of_accounts(self, scope: StrictStr, code: StrictStr, **kwargs) -> DeletedEntityResponse:
-        """[EXPERIMENTAL] DeleteChartOfAccounts: Delete a Chart of Accounts  # noqa: E501
+        """[EARLY ACCESS] DeleteChartOfAccounts: Delete a Chart of Accounts  # noqa: E501
 
         Delete the given Chart of Accounts.  # noqa: E501
         :param scope: The scope of the Chart of Accounts to be deleted. (required)
@@ -816,7 +816,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def delete_chart_of_accounts_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-        """[EXPERIMENTAL] DeleteChartOfAccounts: Delete a Chart of Accounts  # noqa: E501
+        """[EARLY ACCESS] DeleteChartOfAccounts: Delete a Chart of Accounts  # noqa: E501
 
         Delete the given Chart of Accounts.  # noqa: E501
         :param scope: The scope of the Chart of Accounts to be deleted. (required)
@@ -922,7 +922,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def delete_cleardown_module(self, scope: StrictStr, code: StrictStr, cleardown_module_code: StrictStr, **kwargs) -> DeletedEntityResponse:
-        """[EXPERIMENTAL] DeleteCleardownModule: Delete a Cleardown Module.  # noqa: E501
+        """[EARLY ACCESS] DeleteCleardownModule: Delete a Cleardown Module.  # noqa: E501
 
         Delete the given Cleardown Module.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -946,7 +946,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def delete_cleardown_module_with_http_info(self, scope: StrictStr, code: StrictStr, cleardown_module_code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-        """[EXPERIMENTAL] DeleteCleardownModule: Delete a Cleardown Module.  # noqa: E501
+        """[EARLY ACCESS] DeleteCleardownModule: Delete a Cleardown Module.  # noqa: E501
 
         Delete the given Cleardown Module.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -1058,7 +1058,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def delete_general_ledger_profile(self, scope: StrictStr, code: StrictStr, general_ledger_profile_code: StrictStr, **kwargs) -> DeletedEntityResponse:
-        """[EXPERIMENTAL] DeleteGeneralLedgerProfile: Delete a General Ledger Profile.  # noqa: E501
+        """[EARLY ACCESS] DeleteGeneralLedgerProfile: Delete a General Ledger Profile.  # noqa: E501
 
         Delete the given General Ledger Profile.  # noqa: E501
         :param scope: The scope of the Chart of Accounts for the General Ledger Profile. (required)
@@ -1082,7 +1082,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def delete_general_ledger_profile_with_http_info(self, scope: StrictStr, code: StrictStr, general_ledger_profile_code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-        """[EXPERIMENTAL] DeleteGeneralLedgerProfile: Delete a General Ledger Profile.  # noqa: E501
+        """[EARLY ACCESS] DeleteGeneralLedgerProfile: Delete a General Ledger Profile.  # noqa: E501
 
         Delete the given General Ledger Profile.  # noqa: E501
         :param scope: The scope of the Chart of Accounts for the General Ledger Profile. (required)
@@ -1194,7 +1194,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def delete_posting_module(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, **kwargs) -> DeletedEntityResponse:
-        """[EXPERIMENTAL] DeletePostingModule: Delete a Posting Module.  # noqa: E501
+        """[EARLY ACCESS] DeletePostingModule: Delete a Posting Module.  # noqa: E501
 
         Delete the given Posting Module.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -1218,7 +1218,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def delete_posting_module_with_http_info(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-        """[EXPERIMENTAL] DeletePostingModule: Delete a Posting Module.  # noqa: E501
+        """[EARLY ACCESS] DeletePostingModule: Delete a Posting Module.  # noqa: E501
 
         Delete the given Posting Module.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -1330,7 +1330,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def get_account(self, scope: StrictStr, code: StrictStr, account_code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> Account:
-        """[EXPERIMENTAL] GetAccount: Get Account  # noqa: E501
+        """[EARLY ACCESS] GetAccount: Get Account  # noqa: E501
 
         Retrieve the definition of a particular Account which is part of a Chart of Accounts.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -1360,7 +1360,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def get_account_with_http_info(self, scope: StrictStr, code: StrictStr, account_code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[Account]:
-        """[EXPERIMENTAL] GetAccount: Get Account  # noqa: E501
+        """[EARLY ACCESS] GetAccount: Get Account  # noqa: E501
 
         Retrieve the definition of a particular Account which is part of a Chart of Accounts.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -1494,7 +1494,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def get_account_properties(self, scope: StrictStr, code: StrictStr, account_code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> AccountProperties:
-        """[EXPERIMENTAL] GetAccountProperties: Get Account properties  # noqa: E501
+        """[EARLY ACCESS] GetAccountProperties: Get Account properties  # noqa: E501
 
         Get all the properties of a single account.  # noqa: E501
         :param scope: The scope of the Chart of Accounts to update or insert the properties onto. (required)
@@ -1522,7 +1522,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def get_account_properties_with_http_info(self, scope: StrictStr, code: StrictStr, account_code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[AccountProperties]:
-        """[EXPERIMENTAL] GetAccountProperties: Get Account properties  # noqa: E501
+        """[EARLY ACCESS] GetAccountProperties: Get Account properties  # noqa: E501
 
         Get all the properties of a single account.  # noqa: E501
         :param scope: The scope of the Chart of Accounts to update or insert the properties onto. (required)
@@ -1649,7 +1649,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def get_chart_of_accounts(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ChartOfAccounts:
-        """[EXPERIMENTAL] GetChartOfAccounts: Get ChartOfAccounts  # noqa: E501
+        """[EARLY ACCESS] GetChartOfAccounts: Get ChartOfAccounts  # noqa: E501
 
         Retrieve the definition of a particular Chart of Accounts.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -1677,7 +1677,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def get_chart_of_accounts_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[ChartOfAccounts]:
-        """[EXPERIMENTAL] GetChartOfAccounts: Get ChartOfAccounts  # noqa: E501
+        """[EARLY ACCESS] GetChartOfAccounts: Get ChartOfAccounts  # noqa: E501
 
         Retrieve the definition of a particular Chart of Accounts.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -1805,7 +1805,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def get_chart_of_accounts_properties(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ChartOfAccountsProperties:
-        """[EXPERIMENTAL] GetChartOfAccountsProperties: Get chart of accounts properties  # noqa: E501
+        """[EARLY ACCESS] GetChartOfAccountsProperties: Get chart of accounts properties  # noqa: E501
 
         Get all the properties of a single chart of accounts.  # noqa: E501
         :param scope: The scope of the chart of accounts to list the properties for. (required)
@@ -1831,7 +1831,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def get_chart_of_accounts_properties_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ChartOfAccountsProperties]:
-        """[EXPERIMENTAL] GetChartOfAccountsProperties: Get chart of accounts properties  # noqa: E501
+        """[EARLY ACCESS] GetChartOfAccountsProperties: Get chart of accounts properties  # noqa: E501
 
         Get all the properties of a single chart of accounts.  # noqa: E501
         :param scope: The scope of the chart of accounts to list the properties for. (required)
@@ -1952,7 +1952,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def get_cleardown_module(self, scope: StrictStr, code: StrictStr, cleardown_module_code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> CleardownModuleResponse:
-        """[EXPERIMENTAL] GetCleardownModule: Get a Cleardown Module  # noqa: E501
+        """[EARLY ACCESS] GetCleardownModule: Get a Cleardown Module  # noqa: E501
 
         Retrieve the definition of a Cleardown Module complete with its rules.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -1978,7 +1978,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def get_cleardown_module_with_http_info(self, scope: StrictStr, code: StrictStr, cleardown_module_code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[CleardownModuleResponse]:
-        """[EXPERIMENTAL] GetCleardownModule: Get a Cleardown Module  # noqa: E501
+        """[EARLY ACCESS] GetCleardownModule: Get a Cleardown Module  # noqa: E501
 
         Retrieve the definition of a Cleardown Module complete with its rules.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -2099,7 +2099,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def get_general_ledger_profile(self, scope: StrictStr, code: StrictStr, general_ledger_profile_code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> GeneralLedgerProfileResponse:
-        """[EXPERIMENTAL] GetGeneralLedgerProfile: Get a General Ledger Profile.  # noqa: E501
+        """[EARLY ACCESS] GetGeneralLedgerProfile: Get a General Ledger Profile.  # noqa: E501
 
         Get the given General Ledger Profile.  # noqa: E501
         :param scope: The scope of the Chart of Accounts for the General Ledger Profile. (required)
@@ -2125,7 +2125,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def get_general_ledger_profile_with_http_info(self, scope: StrictStr, code: StrictStr, general_ledger_profile_code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[GeneralLedgerProfileResponse]:
-        """[EXPERIMENTAL] GetGeneralLedgerProfile: Get a General Ledger Profile.  # noqa: E501
+        """[EARLY ACCESS] GetGeneralLedgerProfile: Get a General Ledger Profile.  # noqa: E501
 
         Get the given General Ledger Profile.  # noqa: E501
         :param scope: The scope of the Chart of Accounts for the General Ledger Profile. (required)
@@ -2246,7 +2246,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def get_posting_module(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> PostingModuleResponse:
-        """[EXPERIMENTAL] GetPostingModule: Get a Posting Module  # noqa: E501
+        """[EARLY ACCESS] GetPostingModule: Get a Posting Module  # noqa: E501
 
         Retrieve the definition of a Posting Module complete with its rules.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -2272,7 +2272,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def get_posting_module_with_http_info(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[PostingModuleResponse]:
-        """[EXPERIMENTAL] GetPostingModule: Get a Posting Module  # noqa: E501
+        """[EARLY ACCESS] GetPostingModule: Get a Posting Module  # noqa: E501
 
         Retrieve the definition of a Posting Module complete with its rules.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -2393,7 +2393,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def list_accounts(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfAccount:
-        """[EXPERIMENTAL] ListAccounts: List Accounts  # noqa: E501
+        """[EARLY ACCESS] ListAccounts: List Accounts  # noqa: E501
 
         List the accounts in a Chart of Accounts  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -2427,7 +2427,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def list_accounts_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfAccount]:
-        """[EXPERIMENTAL] ListAccounts: List Accounts  # noqa: E501
+        """[EARLY ACCESS] ListAccounts: List Accounts  # noqa: E501
 
         List the accounts in a Chart of Accounts  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -2573,7 +2573,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def list_charts_of_accounts(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfChartOfAccounts:
-        """[EXPERIMENTAL] ListChartsOfAccounts: List Charts of Accounts  # noqa: E501
+        """[EARLY ACCESS] ListChartsOfAccounts: List Charts of Accounts  # noqa: E501
 
         List all the Charts of Accounts matching particular criteria.  # noqa: E501
         :param effective_at: The effective datetime or cut label at which to list the TimeVariant properties for the Chart Of Accounts. Defaults to the current LUSID              system datetime if not specified.
@@ -2605,7 +2605,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def list_charts_of_accounts_with_http_info(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfChartOfAccounts]:
-        """[EXPERIMENTAL] ListChartsOfAccounts: List Charts of Accounts  # noqa: E501
+        """[EARLY ACCESS] ListChartsOfAccounts: List Charts of Accounts  # noqa: E501
 
         List all the Charts of Accounts matching particular criteria.  # noqa: E501
         :param effective_at: The effective datetime or cut label at which to list the TimeVariant properties for the Chart Of Accounts. Defaults to the current LUSID              system datetime if not specified.
@@ -2746,7 +2746,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def list_cleardown_module_rules(self, scope: StrictStr, code: StrictStr, cleardown_module_code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfCleardownModuleRule:
-        """[EXPERIMENTAL] ListCleardownModuleRules: List Cleardown Module Rules  # noqa: E501
+        """[EARLY ACCESS] ListCleardownModuleRules: List Cleardown Module Rules  # noqa: E501
 
         List the Rules in a Cleardown Module  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -2778,7 +2778,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def list_cleardown_module_rules_with_http_info(self, scope: StrictStr, code: StrictStr, cleardown_module_code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfCleardownModuleRule]:
-        """[EXPERIMENTAL] ListCleardownModuleRules: List Cleardown Module Rules  # noqa: E501
+        """[EARLY ACCESS] ListCleardownModuleRules: List Cleardown Module Rules  # noqa: E501
 
         List the Rules in a Cleardown Module  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -2917,7 +2917,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def list_cleardown_modules(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfCleardownModuleResponse:
-        """[EXPERIMENTAL] ListCleardownModules: List Cleardown Modules  # noqa: E501
+        """[EARLY ACCESS] ListCleardownModules: List Cleardown Modules  # noqa: E501
 
         List all the Cleardown Modules matching particular criteria.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -2949,7 +2949,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def list_cleardown_modules_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfCleardownModuleResponse]:
-        """[EXPERIMENTAL] ListCleardownModules: List Cleardown Modules  # noqa: E501
+        """[EARLY ACCESS] ListCleardownModules: List Cleardown Modules  # noqa: E501
 
         List all the Cleardown Modules matching particular criteria.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -3089,7 +3089,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def list_general_ledger_profiles(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfGeneralLedgerProfileResponse:
-        """[EXPERIMENTAL] ListGeneralLedgerProfiles: List General Ledger Profiles.  # noqa: E501
+        """[EARLY ACCESS] ListGeneralLedgerProfiles: List General Ledger Profiles.  # noqa: E501
 
         List all the General Ledger profiles matching particular criteria.  # noqa: E501
         :param scope: The scope of the Chart of Accounts (required)
@@ -3121,7 +3121,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def list_general_ledger_profiles_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfGeneralLedgerProfileResponse]:
-        """[EXPERIMENTAL] ListGeneralLedgerProfiles: List General Ledger Profiles.  # noqa: E501
+        """[EARLY ACCESS] ListGeneralLedgerProfiles: List General Ledger Profiles.  # noqa: E501
 
         List all the General Ledger profiles matching particular criteria.  # noqa: E501
         :param scope: The scope of the Chart of Accounts (required)
@@ -3261,7 +3261,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def list_posting_module_rules(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfPostingModuleRule:
-        """[EXPERIMENTAL] ListPostingModuleRules: List Posting Module Rules  # noqa: E501
+        """[EARLY ACCESS] ListPostingModuleRules: List Posting Module Rules  # noqa: E501
 
         List the Rules in a Posting Module  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -3293,7 +3293,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def list_posting_module_rules_with_http_info(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfPostingModuleRule]:
-        """[EXPERIMENTAL] ListPostingModuleRules: List Posting Module Rules  # noqa: E501
+        """[EARLY ACCESS] ListPostingModuleRules: List Posting Module Rules  # noqa: E501
 
         List the Rules in a Posting Module  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -3432,7 +3432,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def list_posting_modules(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfPostingModuleResponse:
-        """[EXPERIMENTAL] ListPostingModules: List Posting Modules  # noqa: E501
+        """[EARLY ACCESS] ListPostingModules: List Posting Modules  # noqa: E501
 
         List all the Posting Modules matching particular criteria.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -3464,7 +3464,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def list_posting_modules_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfPostingModuleResponse]:
-        """[EXPERIMENTAL] ListPostingModules: List Posting Modules  # noqa: E501
+        """[EARLY ACCESS] ListPostingModules: List Posting Modules  # noqa: E501
 
         List all the Posting Modules matching particular criteria.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -3604,7 +3604,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def patch_chart_of_accounts(self, scope: StrictStr, code: StrictStr, operation: List[Operation], **kwargs) -> ChartOfAccounts:
-        """[EXPERIMENTAL] PatchChartOfAccounts: Patch a Chart of Accounts.  # noqa: E501
+        """[EARLY ACCESS] PatchChartOfAccounts: Patch a Chart of Accounts.  # noqa: E501
 
         Update fields on a Chart of Accounts.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -3628,7 +3628,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def patch_chart_of_accounts_with_http_info(self, scope: StrictStr, code: StrictStr, operation: List[Operation], **kwargs) -> ApiResponse[ChartOfAccounts]:
-        """[EXPERIMENTAL] PatchChartOfAccounts: Patch a Chart of Accounts.  # noqa: E501
+        """[EARLY ACCESS] PatchChartOfAccounts: Patch a Chart of Accounts.  # noqa: E501
 
         Update fields on a Chart of Accounts.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -3747,7 +3747,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def patch_cleardown_module(self, scope: StrictStr, code: StrictStr, cleardown_module_code: StrictStr, operation: List[Operation], **kwargs) -> CleardownModuleResponse:
-        """[EXPERIMENTAL] PatchCleardownModule: Patch a Cleardown Module  # noqa: E501
+        """[EARLY ACCESS] PatchCleardownModule: Patch a Cleardown Module  # noqa: E501
 
         Update fields on a Cleardown Module.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, Rules.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -3773,7 +3773,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def patch_cleardown_module_with_http_info(self, scope: StrictStr, code: StrictStr, cleardown_module_code: StrictStr, operation: List[Operation], **kwargs) -> ApiResponse[CleardownModuleResponse]:
-        """[EXPERIMENTAL] PatchCleardownModule: Patch a Cleardown Module  # noqa: E501
+        """[EARLY ACCESS] PatchCleardownModule: Patch a Cleardown Module  # noqa: E501
 
         Update fields on a Cleardown Module.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, Rules.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -3898,7 +3898,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def patch_posting_module(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, operation: List[Operation], **kwargs) -> PostingModuleResponse:
-        """[EXPERIMENTAL] PatchPostingModule: Patch a Posting Module  # noqa: E501
+        """[EARLY ACCESS] PatchPostingModule: Patch a Posting Module  # noqa: E501
 
         Update fields on a Posting Module.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, Rules.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -3924,7 +3924,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def patch_posting_module_with_http_info(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, operation: List[Operation], **kwargs) -> ApiResponse[PostingModuleResponse]:
-        """[EXPERIMENTAL] PatchPostingModule: Patch a Posting Module  # noqa: E501
+        """[EARLY ACCESS] PatchPostingModule: Patch a Posting Module  # noqa: E501
 
         Update fields on a Posting Module.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, Rules.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -4049,7 +4049,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def set_cleardown_module_details(self, scope: StrictStr, code: StrictStr, cleardown_module_code: StrictStr, cleardown_module_details: CleardownModuleDetails, **kwargs) -> CleardownModuleResponse:
-        """[EXPERIMENTAL] SetCleardownModuleDetails: Set the details of a Cleardown Module  # noqa: E501
+        """[EARLY ACCESS] SetCleardownModuleDetails: Set the details of a Cleardown Module  # noqa: E501
 
         Update the given Cleardown Module details.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -4075,7 +4075,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def set_cleardown_module_details_with_http_info(self, scope: StrictStr, code: StrictStr, cleardown_module_code: StrictStr, cleardown_module_details: CleardownModuleDetails, **kwargs) -> ApiResponse[CleardownModuleResponse]:
-        """[EXPERIMENTAL] SetCleardownModuleDetails: Set the details of a Cleardown Module  # noqa: E501
+        """[EARLY ACCESS] SetCleardownModuleDetails: Set the details of a Cleardown Module  # noqa: E501
 
         Update the given Cleardown Module details.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -4200,7 +4200,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def set_cleardown_module_rules(self, scope: StrictStr, code: StrictStr, cleardown_module_code: StrictStr, cleardown_module_rule: List[CleardownModuleRule], **kwargs) -> CleardownModuleRulesUpdatedResponse:
-        """[EXPERIMENTAL] SetCleardownModuleRules: Set the rules of a Cleardown Module  # noqa: E501
+        """[EARLY ACCESS] SetCleardownModuleRules: Set the rules of a Cleardown Module  # noqa: E501
 
         Set the given Cleardown Modules rules, this will replace the existing set of rules for the cleardown module.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -4226,7 +4226,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def set_cleardown_module_rules_with_http_info(self, scope: StrictStr, code: StrictStr, cleardown_module_code: StrictStr, cleardown_module_rule: List[CleardownModuleRule], **kwargs) -> ApiResponse[CleardownModuleRulesUpdatedResponse]:
-        """[EXPERIMENTAL] SetCleardownModuleRules: Set the rules of a Cleardown Module  # noqa: E501
+        """[EARLY ACCESS] SetCleardownModuleRules: Set the rules of a Cleardown Module  # noqa: E501
 
         Set the given Cleardown Modules rules, this will replace the existing set of rules for the cleardown module.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -4351,7 +4351,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def set_general_ledger_profile_mappings(self, scope: StrictStr, code: StrictStr, general_ledger_profile_code: StrictStr, general_ledger_profile_mapping: List[GeneralLedgerProfileMapping], **kwargs) -> GeneralLedgerProfileResponse:
-        """[EXPERIMENTAL] SetGeneralLedgerProfileMappings: Sets the General Ledger Profile Mappings.  # noqa: E501
+        """[EARLY ACCESS] SetGeneralLedgerProfileMappings: Sets the General Ledger Profile Mappings.  # noqa: E501
 
         Update the given General Ledger profile Mappings.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -4377,7 +4377,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def set_general_ledger_profile_mappings_with_http_info(self, scope: StrictStr, code: StrictStr, general_ledger_profile_code: StrictStr, general_ledger_profile_mapping: List[GeneralLedgerProfileMapping], **kwargs) -> ApiResponse[GeneralLedgerProfileResponse]:
-        """[EXPERIMENTAL] SetGeneralLedgerProfileMappings: Sets the General Ledger Profile Mappings.  # noqa: E501
+        """[EARLY ACCESS] SetGeneralLedgerProfileMappings: Sets the General Ledger Profile Mappings.  # noqa: E501
 
         Update the given General Ledger profile Mappings.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -4502,7 +4502,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def set_posting_module_details(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, posting_module_details: PostingModuleDetails, **kwargs) -> PostingModuleResponse:
-        """[EXPERIMENTAL] SetPostingModuleDetails: Set the details of a Posting Module  # noqa: E501
+        """[EARLY ACCESS] SetPostingModuleDetails: Set the details of a Posting Module  # noqa: E501
 
         Update the given Posting Module details.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -4528,7 +4528,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def set_posting_module_details_with_http_info(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, posting_module_details: PostingModuleDetails, **kwargs) -> ApiResponse[PostingModuleResponse]:
-        """[EXPERIMENTAL] SetPostingModuleDetails: Set the details of a Posting Module  # noqa: E501
+        """[EARLY ACCESS] SetPostingModuleDetails: Set the details of a Posting Module  # noqa: E501
 
         Update the given Posting Module details.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -4653,7 +4653,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def set_posting_module_rules(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, posting_module_rule: List[PostingModuleRule], **kwargs) -> PostingModuleRulesUpdatedResponse:
-        """[EXPERIMENTAL] SetPostingModuleRules: Set the rules of a Posting Module  # noqa: E501
+        """[EARLY ACCESS] SetPostingModuleRules: Set the rules of a Posting Module  # noqa: E501
 
         Set the given Posting Modules rules, this will replace the existing set of rules for the posting module.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -4679,7 +4679,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def set_posting_module_rules_with_http_info(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, posting_module_rule: List[PostingModuleRule], **kwargs) -> ApiResponse[PostingModuleRulesUpdatedResponse]:
-        """[EXPERIMENTAL] SetPostingModuleRules: Set the rules of a Posting Module  # noqa: E501
+        """[EARLY ACCESS] SetPostingModuleRules: Set the rules of a Posting Module  # noqa: E501
 
         Set the given Posting Modules rules, this will replace the existing set of rules for the posting module.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -4804,7 +4804,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def upsert_account_properties(self, scope: StrictStr, code: StrictStr, account_code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> AccountProperties:
-        """[EXPERIMENTAL] UpsertAccountProperties: Upsert account properties  # noqa: E501
+        """[EARLY ACCESS] UpsertAccountProperties: Upsert account properties  # noqa: E501
 
         Update or insert one or more properties onto a single account. A property will be updated if it  already exists and inserted if it does not. All properties must be of the domain 'Account'.                Upserting a property that exists for an account, with a null value, will delete the instance of the property for that group.                Properties have an <i>effectiveFrom</i> datetime for which the property is valid, and an <i>effectiveUntil</i>  datetime until which the property is valid. Not supplying an <i>effectiveUntil</i> datetime results in the property being  valid indefinitely, or until the next <i>effectiveFrom</i> datetime of the property.  # noqa: E501
         :param scope: The scope of the Chart of Accounts to update or insert the properties onto. (required)
@@ -4830,7 +4830,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def upsert_account_properties_with_http_info(self, scope: StrictStr, code: StrictStr, account_code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> ApiResponse[AccountProperties]:
-        """[EXPERIMENTAL] UpsertAccountProperties: Upsert account properties  # noqa: E501
+        """[EARLY ACCESS] UpsertAccountProperties: Upsert account properties  # noqa: E501
 
         Update or insert one or more properties onto a single account. A property will be updated if it  already exists and inserted if it does not. All properties must be of the domain 'Account'.                Upserting a property that exists for an account, with a null value, will delete the instance of the property for that group.                Properties have an <i>effectiveFrom</i> datetime for which the property is valid, and an <i>effectiveUntil</i>  datetime until which the property is valid. Not supplying an <i>effectiveUntil</i> datetime results in the property being  valid indefinitely, or until the next <i>effectiveFrom</i> datetime of the property.  # noqa: E501
         :param scope: The scope of the Chart of Accounts to update or insert the properties onto. (required)
@@ -4955,7 +4955,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def upsert_accounts(self, scope: StrictStr, code: StrictStr, account: List[Account], **kwargs) -> AccountsUpsertResponse:
-        """[EXPERIMENTAL] UpsertAccounts: Upsert Accounts  # noqa: E501
+        """[EARLY ACCESS] UpsertAccounts: Upsert Accounts  # noqa: E501
 
         Create or update accounts in the Chart of Accounts. An account will be updated  if it already exists and created if it does not.  The maximum number of accounts that this method can upsert per request is 2,000.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -4979,7 +4979,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def upsert_accounts_with_http_info(self, scope: StrictStr, code: StrictStr, account: List[Account], **kwargs) -> ApiResponse[AccountsUpsertResponse]:
-        """[EXPERIMENTAL] UpsertAccounts: Upsert Accounts  # noqa: E501
+        """[EARLY ACCESS] UpsertAccounts: Upsert Accounts  # noqa: E501
 
         Create or update accounts in the Chart of Accounts. An account will be updated  if it already exists and created if it does not.  The maximum number of accounts that this method can upsert per request is 2,000.  # noqa: E501
         :param scope: The scope of the Chart of Accounts. (required)
@@ -5098,7 +5098,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def upsert_chart_of_accounts_properties(self, scope: StrictStr, code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> ChartOfAccountsProperties:
-        """[EXPERIMENTAL] UpsertChartOfAccountsProperties: Upsert Chart of Accounts properties  # noqa: E501
+        """[EARLY ACCESS] UpsertChartOfAccountsProperties: Upsert Chart of Accounts properties  # noqa: E501
 
         Update or insert one or more properties onto a single Chart of Accounts. A property will be updated if it  already exists and inserted if it does not. All properties must be of the domain 'ChartOfAccounts'.                Upserting a property that exists for a Chart of Accounts, with a null value, will delete the instance of the property for that group.                Properties have an <i>effectiveFrom</i> datetime for which the property is valid, and an <i>effectiveUntil</i>  datetime until which the property is valid. Not supplying an <i>effectiveUntil</i> datetime results in the property being  valid indefinitely, or until the next <i>effectiveFrom</i> datetime of the property.  # noqa: E501
         :param scope: The scope of the Chart of Accounts to update or insert the properties onto. (required)
@@ -5122,7 +5122,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     def upsert_chart_of_accounts_properties_with_http_info(self, scope: StrictStr, code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> ApiResponse[ChartOfAccountsProperties]:
-        """[EXPERIMENTAL] UpsertChartOfAccountsProperties: Upsert Chart of Accounts properties  # noqa: E501
+        """[EARLY ACCESS] UpsertChartOfAccountsProperties: Upsert Chart of Accounts properties  # noqa: E501
 
         Update or insert one or more properties onto a single Chart of Accounts. A property will be updated if it  already exists and inserted if it does not. All properties must be of the domain 'ChartOfAccounts'.                Upserting a property that exists for a Chart of Accounts, with a null value, will delete the instance of the property for that group.                Properties have an <i>effectiveFrom</i> datetime for which the property is valid, and an <i>effectiveUntil</i>  datetime until which the property is valid. Not supplying an <i>effectiveUntil</i> datetime results in the property being  valid indefinitely, or until the next <i>effectiveFrom</i> datetime of the property.  # noqa: E501
         :param scope: The scope of the Chart of Accounts to update or insert the properties onto. (required)
@@ -5245,7 +5245,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def create_chart_of_accounts_async(self, scope: StrictStr, chart_of_accounts_request: ChartOfAccountsRequest, **kwargs) -> ChartOfAccounts:
-            """[EXPERIMENTAL] CreateChartOfAccounts: Create a Chart of Accounts  # noqa: E501
+            """[EARLY ACCESS] CreateChartOfAccounts: Create a Chart of Accounts  # noqa: E501
             Create the given Chart of Accounts.  # noqa: E501
             
             :param scope: The scope of the Chart of Accounts. (required)
@@ -5267,7 +5267,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def create_chart_of_accounts_with_http_info_async(self, scope: StrictStr, chart_of_accounts_request: ChartOfAccountsRequest, **kwargs) -> ApiResponse[ChartOfAccounts]:
-            """[EXPERIMENTAL] CreateChartOfAccounts: Create a Chart of Accounts  # noqa: E501
+            """[EARLY ACCESS] CreateChartOfAccounts: Create a Chart of Accounts  # noqa: E501
 
             Create the given Chart of Accounts.  # noqa: E501
 
@@ -5381,7 +5381,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def create_cleardown_module_async(self, scope: StrictStr, code: StrictStr, cleardown_module_request: CleardownModuleRequest, **kwargs) -> CleardownModuleResponse:
-            """[EXPERIMENTAL] CreateCleardownModule: Create a Cleardown Module  # noqa: E501
+            """[EARLY ACCESS] CreateCleardownModule: Create a Cleardown Module  # noqa: E501
             Create the given Cleardown Module.  # noqa: E501
             
             :param scope: The scope of the Chart of Accounts. (required)
@@ -5405,7 +5405,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def create_cleardown_module_with_http_info_async(self, scope: StrictStr, code: StrictStr, cleardown_module_request: CleardownModuleRequest, **kwargs) -> ApiResponse[CleardownModuleResponse]:
-            """[EXPERIMENTAL] CreateCleardownModule: Create a Cleardown Module  # noqa: E501
+            """[EARLY ACCESS] CreateCleardownModule: Create a Cleardown Module  # noqa: E501
 
             Create the given Cleardown Module.  # noqa: E501
 
@@ -5525,7 +5525,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def create_general_ledger_profile_async(self, scope: StrictStr, code: StrictStr, general_ledger_profile_request: GeneralLedgerProfileRequest, **kwargs) -> GeneralLedgerProfileResponse:
-            """[EXPERIMENTAL] CreateGeneralLedgerProfile: Create a General Ledger Profile.  # noqa: E501
+            """[EARLY ACCESS] CreateGeneralLedgerProfile: Create a General Ledger Profile.  # noqa: E501
             Create the given General Ledger profile.  # noqa: E501
             
             :param scope: The scope of the Chart of Accounts. (required)
@@ -5549,7 +5549,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def create_general_ledger_profile_with_http_info_async(self, scope: StrictStr, code: StrictStr, general_ledger_profile_request: GeneralLedgerProfileRequest, **kwargs) -> ApiResponse[GeneralLedgerProfileResponse]:
-            """[EXPERIMENTAL] CreateGeneralLedgerProfile: Create a General Ledger Profile.  # noqa: E501
+            """[EARLY ACCESS] CreateGeneralLedgerProfile: Create a General Ledger Profile.  # noqa: E501
 
             Create the given General Ledger profile.  # noqa: E501
 
@@ -5669,7 +5669,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def create_posting_module_async(self, scope: StrictStr, code: StrictStr, posting_module_request: PostingModuleRequest, **kwargs) -> PostingModuleResponse:
-            """[EXPERIMENTAL] CreatePostingModule: Create a Posting Module  # noqa: E501
+            """[EARLY ACCESS] CreatePostingModule: Create a Posting Module  # noqa: E501
             Create the given Posting Module.  # noqa: E501
             
             :param scope: The scope of the Chart of Accounts. (required)
@@ -5693,7 +5693,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def create_posting_module_with_http_info_async(self, scope: StrictStr, code: StrictStr, posting_module_request: PostingModuleRequest, **kwargs) -> ApiResponse[PostingModuleResponse]:
-            """[EXPERIMENTAL] CreatePostingModule: Create a Posting Module  # noqa: E501
+            """[EARLY ACCESS] CreatePostingModule: Create a Posting Module  # noqa: E501
 
             Create the given Posting Module.  # noqa: E501
 
@@ -5813,7 +5813,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def delete_accounts_async(self, scope: StrictStr, code: StrictStr, request_body: List[str], delete_mode: Optional[StrictStr] = None, **kwargs) -> DeleteAccountsResponse:
-            """[EXPERIMENTAL] DeleteAccounts: Soft or hard delete multiple accounts  # noqa: E501
+            """[EARLY ACCESS] DeleteAccounts: Soft or hard delete multiple accounts  # noqa: E501
             Delete one or more account from the Chart of Accounts. Soft deletion marks the account as inactive  While the Hard deletion is deleting the account.  The maximum number of accounts that this method can delete per request is 2,000.  # noqa: E501
             
             :param scope: The scope of the Chart of Accounts. (required)
@@ -5839,7 +5839,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def delete_accounts_with_http_info_async(self, scope: StrictStr, code: StrictStr, request_body: List[str], delete_mode: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeleteAccountsResponse]:
-            """[EXPERIMENTAL] DeleteAccounts: Soft or hard delete multiple accounts  # noqa: E501
+            """[EARLY ACCESS] DeleteAccounts: Soft or hard delete multiple accounts  # noqa: E501
 
             Delete one or more account from the Chart of Accounts. Soft deletion marks the account as inactive  While the Hard deletion is deleting the account.  The maximum number of accounts that this method can delete per request is 2,000.  # noqa: E501
 
@@ -5965,7 +5965,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def delete_chart_of_accounts_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> DeletedEntityResponse:
-            """[EXPERIMENTAL] DeleteChartOfAccounts: Delete a Chart of Accounts  # noqa: E501
+            """[EARLY ACCESS] DeleteChartOfAccounts: Delete a Chart of Accounts  # noqa: E501
             Delete the given Chart of Accounts.  # noqa: E501
             
             :param scope: The scope of the Chart of Accounts to be deleted. (required)
@@ -5987,7 +5987,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def delete_chart_of_accounts_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-            """[EXPERIMENTAL] DeleteChartOfAccounts: Delete a Chart of Accounts  # noqa: E501
+            """[EARLY ACCESS] DeleteChartOfAccounts: Delete a Chart of Accounts  # noqa: E501
 
             Delete the given Chart of Accounts.  # noqa: E501
 
@@ -6094,7 +6094,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def delete_cleardown_module_async(self, scope: StrictStr, code: StrictStr, cleardown_module_code: StrictStr, **kwargs) -> DeletedEntityResponse:
-            """[EXPERIMENTAL] DeleteCleardownModule: Delete a Cleardown Module.  # noqa: E501
+            """[EARLY ACCESS] DeleteCleardownModule: Delete a Cleardown Module.  # noqa: E501
             Delete the given Cleardown Module.  # noqa: E501
             
             :param scope: The scope of the Chart of Accounts. (required)
@@ -6118,7 +6118,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def delete_cleardown_module_with_http_info_async(self, scope: StrictStr, code: StrictStr, cleardown_module_code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-            """[EXPERIMENTAL] DeleteCleardownModule: Delete a Cleardown Module.  # noqa: E501
+            """[EARLY ACCESS] DeleteCleardownModule: Delete a Cleardown Module.  # noqa: E501
 
             Delete the given Cleardown Module.  # noqa: E501
 
@@ -6231,7 +6231,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def delete_general_ledger_profile_async(self, scope: StrictStr, code: StrictStr, general_ledger_profile_code: StrictStr, **kwargs) -> DeletedEntityResponse:
-            """[EXPERIMENTAL] DeleteGeneralLedgerProfile: Delete a General Ledger Profile.  # noqa: E501
+            """[EARLY ACCESS] DeleteGeneralLedgerProfile: Delete a General Ledger Profile.  # noqa: E501
             Delete the given General Ledger Profile.  # noqa: E501
             
             :param scope: The scope of the Chart of Accounts for the General Ledger Profile. (required)
@@ -6255,7 +6255,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def delete_general_ledger_profile_with_http_info_async(self, scope: StrictStr, code: StrictStr, general_ledger_profile_code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-            """[EXPERIMENTAL] DeleteGeneralLedgerProfile: Delete a General Ledger Profile.  # noqa: E501
+            """[EARLY ACCESS] DeleteGeneralLedgerProfile: Delete a General Ledger Profile.  # noqa: E501
 
             Delete the given General Ledger Profile.  # noqa: E501
 
@@ -6368,7 +6368,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def delete_posting_module_async(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, **kwargs) -> DeletedEntityResponse:
-            """[EXPERIMENTAL] DeletePostingModule: Delete a Posting Module.  # noqa: E501
+            """[EARLY ACCESS] DeletePostingModule: Delete a Posting Module.  # noqa: E501
             Delete the given Posting Module.  # noqa: E501
             
             :param scope: The scope of the Chart of Accounts. (required)
@@ -6392,7 +6392,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def delete_posting_module_with_http_info_async(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-            """[EXPERIMENTAL] DeletePostingModule: Delete a Posting Module.  # noqa: E501
+            """[EARLY ACCESS] DeletePostingModule: Delete a Posting Module.  # noqa: E501
 
             Delete the given Posting Module.  # noqa: E501
 
@@ -6505,7 +6505,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def get_account_async(self, scope: StrictStr, code: StrictStr, account_code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> Account:
-            """[EXPERIMENTAL] GetAccount: Get Account  # noqa: E501
+            """[EARLY ACCESS] GetAccount: Get Account  # noqa: E501
             Retrieve the definition of a particular Account which is part of a Chart of Accounts.  # noqa: E501
             
             :param scope: The scope of the Chart of Accounts. (required)
@@ -6535,7 +6535,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def get_account_with_http_info_async(self, scope: StrictStr, code: StrictStr, account_code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[Account]:
-            """[EXPERIMENTAL] GetAccount: Get Account  # noqa: E501
+            """[EARLY ACCESS] GetAccount: Get Account  # noqa: E501
 
             Retrieve the definition of a particular Account which is part of a Chart of Accounts.  # noqa: E501
 
@@ -6670,7 +6670,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def get_account_properties_async(self, scope: StrictStr, code: StrictStr, account_code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> AccountProperties:
-            """[EXPERIMENTAL] GetAccountProperties: Get Account properties  # noqa: E501
+            """[EARLY ACCESS] GetAccountProperties: Get Account properties  # noqa: E501
             Get all the properties of a single account.  # noqa: E501
             
             :param scope: The scope of the Chart of Accounts to update or insert the properties onto. (required)
@@ -6698,7 +6698,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def get_account_properties_with_http_info_async(self, scope: StrictStr, code: StrictStr, account_code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[AccountProperties]:
-            """[EXPERIMENTAL] GetAccountProperties: Get Account properties  # noqa: E501
+            """[EARLY ACCESS] GetAccountProperties: Get Account properties  # noqa: E501
 
             Get all the properties of a single account.  # noqa: E501
 
@@ -6826,7 +6826,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def get_chart_of_accounts_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ChartOfAccounts:
-            """[EXPERIMENTAL] GetChartOfAccounts: Get ChartOfAccounts  # noqa: E501
+            """[EARLY ACCESS] GetChartOfAccounts: Get ChartOfAccounts  # noqa: E501
             Retrieve the definition of a particular Chart of Accounts.  # noqa: E501
             
             :param scope: The scope of the Chart of Accounts. (required)
@@ -6854,7 +6854,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def get_chart_of_accounts_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[ChartOfAccounts]:
-            """[EXPERIMENTAL] GetChartOfAccounts: Get ChartOfAccounts  # noqa: E501
+            """[EARLY ACCESS] GetChartOfAccounts: Get ChartOfAccounts  # noqa: E501
 
             Retrieve the definition of a particular Chart of Accounts.  # noqa: E501
 
@@ -6983,7 +6983,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def get_chart_of_accounts_properties_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ChartOfAccountsProperties:
-            """[EXPERIMENTAL] GetChartOfAccountsProperties: Get chart of accounts properties  # noqa: E501
+            """[EARLY ACCESS] GetChartOfAccountsProperties: Get chart of accounts properties  # noqa: E501
             Get all the properties of a single chart of accounts.  # noqa: E501
             
             :param scope: The scope of the chart of accounts to list the properties for. (required)
@@ -7009,7 +7009,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def get_chart_of_accounts_properties_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ChartOfAccountsProperties]:
-            """[EXPERIMENTAL] GetChartOfAccountsProperties: Get chart of accounts properties  # noqa: E501
+            """[EARLY ACCESS] GetChartOfAccountsProperties: Get chart of accounts properties  # noqa: E501
 
             Get all the properties of a single chart of accounts.  # noqa: E501
 
@@ -7131,7 +7131,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def get_cleardown_module_async(self, scope: StrictStr, code: StrictStr, cleardown_module_code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> CleardownModuleResponse:
-            """[EXPERIMENTAL] GetCleardownModule: Get a Cleardown Module  # noqa: E501
+            """[EARLY ACCESS] GetCleardownModule: Get a Cleardown Module  # noqa: E501
             Retrieve the definition of a Cleardown Module complete with its rules.  # noqa: E501
             
             :param scope: The scope of the Chart of Accounts. (required)
@@ -7157,7 +7157,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def get_cleardown_module_with_http_info_async(self, scope: StrictStr, code: StrictStr, cleardown_module_code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[CleardownModuleResponse]:
-            """[EXPERIMENTAL] GetCleardownModule: Get a Cleardown Module  # noqa: E501
+            """[EARLY ACCESS] GetCleardownModule: Get a Cleardown Module  # noqa: E501
 
             Retrieve the definition of a Cleardown Module complete with its rules.  # noqa: E501
 
@@ -7279,7 +7279,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def get_general_ledger_profile_async(self, scope: StrictStr, code: StrictStr, general_ledger_profile_code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> GeneralLedgerProfileResponse:
-            """[EXPERIMENTAL] GetGeneralLedgerProfile: Get a General Ledger Profile.  # noqa: E501
+            """[EARLY ACCESS] GetGeneralLedgerProfile: Get a General Ledger Profile.  # noqa: E501
             Get the given General Ledger Profile.  # noqa: E501
             
             :param scope: The scope of the Chart of Accounts for the General Ledger Profile. (required)
@@ -7305,7 +7305,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def get_general_ledger_profile_with_http_info_async(self, scope: StrictStr, code: StrictStr, general_ledger_profile_code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[GeneralLedgerProfileResponse]:
-            """[EXPERIMENTAL] GetGeneralLedgerProfile: Get a General Ledger Profile.  # noqa: E501
+            """[EARLY ACCESS] GetGeneralLedgerProfile: Get a General Ledger Profile.  # noqa: E501
 
             Get the given General Ledger Profile.  # noqa: E501
 
@@ -7427,7 +7427,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def get_posting_module_async(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> PostingModuleResponse:
-            """[EXPERIMENTAL] GetPostingModule: Get a Posting Module  # noqa: E501
+            """[EARLY ACCESS] GetPostingModule: Get a Posting Module  # noqa: E501
             Retrieve the definition of a Posting Module complete with its rules.  # noqa: E501
             
             :param scope: The scope of the Chart of Accounts. (required)
@@ -7453,7 +7453,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def get_posting_module_with_http_info_async(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[PostingModuleResponse]:
-            """[EXPERIMENTAL] GetPostingModule: Get a Posting Module  # noqa: E501
+            """[EARLY ACCESS] GetPostingModule: Get a Posting Module  # noqa: E501
 
             Retrieve the definition of a Posting Module complete with its rules.  # noqa: E501
 
@@ -7575,7 +7575,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def list_accounts_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfAccount:
-            """[EXPERIMENTAL] ListAccounts: List Accounts  # noqa: E501
+            """[EARLY ACCESS] ListAccounts: List Accounts  # noqa: E501
             List the accounts in a Chart of Accounts  # noqa: E501
             
             :param scope: The scope of the Chart of Accounts. (required)
@@ -7609,7 +7609,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def list_accounts_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfAccount]:
-            """[EXPERIMENTAL] ListAccounts: List Accounts  # noqa: E501
+            """[EARLY ACCESS] ListAccounts: List Accounts  # noqa: E501
 
             List the accounts in a Chart of Accounts  # noqa: E501
 
@@ -7756,7 +7756,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def list_charts_of_accounts_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfChartOfAccounts:
-            """[EXPERIMENTAL] ListChartsOfAccounts: List Charts of Accounts  # noqa: E501
+            """[EARLY ACCESS] ListChartsOfAccounts: List Charts of Accounts  # noqa: E501
             List all the Charts of Accounts matching particular criteria.  # noqa: E501
             
             :param effective_at: The effective datetime or cut label at which to list the TimeVariant properties for the Chart Of Accounts. Defaults to the current LUSID              system datetime if not specified.
@@ -7788,7 +7788,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def list_charts_of_accounts_with_http_info_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfChartOfAccounts]:
-            """[EXPERIMENTAL] ListChartsOfAccounts: List Charts of Accounts  # noqa: E501
+            """[EARLY ACCESS] ListChartsOfAccounts: List Charts of Accounts  # noqa: E501
 
             List all the Charts of Accounts matching particular criteria.  # noqa: E501
 
@@ -7930,7 +7930,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def list_cleardown_module_rules_async(self, scope: StrictStr, code: StrictStr, cleardown_module_code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfCleardownModuleRule:
-            """[EXPERIMENTAL] ListCleardownModuleRules: List Cleardown Module Rules  # noqa: E501
+            """[EARLY ACCESS] ListCleardownModuleRules: List Cleardown Module Rules  # noqa: E501
             List the Rules in a Cleardown Module  # noqa: E501
             
             :param scope: The scope of the Chart of Accounts. (required)
@@ -7962,7 +7962,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def list_cleardown_module_rules_with_http_info_async(self, scope: StrictStr, code: StrictStr, cleardown_module_code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfCleardownModuleRule]:
-            """[EXPERIMENTAL] ListCleardownModuleRules: List Cleardown Module Rules  # noqa: E501
+            """[EARLY ACCESS] ListCleardownModuleRules: List Cleardown Module Rules  # noqa: E501
 
             List the Rules in a Cleardown Module  # noqa: E501
 
@@ -8102,7 +8102,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def list_cleardown_modules_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfCleardownModuleResponse:
-            """[EXPERIMENTAL] ListCleardownModules: List Cleardown Modules  # noqa: E501
+            """[EARLY ACCESS] ListCleardownModules: List Cleardown Modules  # noqa: E501
             List all the Cleardown Modules matching particular criteria.  # noqa: E501
             
             :param scope: The scope of the Chart of Accounts. (required)
@@ -8134,7 +8134,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def list_cleardown_modules_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfCleardownModuleResponse]:
-            """[EXPERIMENTAL] ListCleardownModules: List Cleardown Modules  # noqa: E501
+            """[EARLY ACCESS] ListCleardownModules: List Cleardown Modules  # noqa: E501
 
             List all the Cleardown Modules matching particular criteria.  # noqa: E501
 
@@ -8275,7 +8275,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def list_general_ledger_profiles_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfGeneralLedgerProfileResponse:
-            """[EXPERIMENTAL] ListGeneralLedgerProfiles: List General Ledger Profiles.  # noqa: E501
+            """[EARLY ACCESS] ListGeneralLedgerProfiles: List General Ledger Profiles.  # noqa: E501
             List all the General Ledger profiles matching particular criteria.  # noqa: E501
             
             :param scope: The scope of the Chart of Accounts (required)
@@ -8307,7 +8307,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def list_general_ledger_profiles_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfGeneralLedgerProfileResponse]:
-            """[EXPERIMENTAL] ListGeneralLedgerProfiles: List General Ledger Profiles.  # noqa: E501
+            """[EARLY ACCESS] ListGeneralLedgerProfiles: List General Ledger Profiles.  # noqa: E501
 
             List all the General Ledger profiles matching particular criteria.  # noqa: E501
 
@@ -8448,7 +8448,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def list_posting_module_rules_async(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfPostingModuleRule:
-            """[EXPERIMENTAL] ListPostingModuleRules: List Posting Module Rules  # noqa: E501
+            """[EARLY ACCESS] ListPostingModuleRules: List Posting Module Rules  # noqa: E501
             List the Rules in a Posting Module  # noqa: E501
             
             :param scope: The scope of the Chart of Accounts. (required)
@@ -8480,7 +8480,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def list_posting_module_rules_with_http_info_async(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfPostingModuleRule]:
-            """[EXPERIMENTAL] ListPostingModuleRules: List Posting Module Rules  # noqa: E501
+            """[EARLY ACCESS] ListPostingModuleRules: List Posting Module Rules  # noqa: E501
 
             List the Rules in a Posting Module  # noqa: E501
 
@@ -8620,7 +8620,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def list_posting_modules_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfPostingModuleResponse:
-            """[EXPERIMENTAL] ListPostingModules: List Posting Modules  # noqa: E501
+            """[EARLY ACCESS] ListPostingModules: List Posting Modules  # noqa: E501
             List all the Posting Modules matching particular criteria.  # noqa: E501
             
             :param scope: The scope of the Chart of Accounts. (required)
@@ -8652,7 +8652,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def list_posting_modules_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfPostingModuleResponse]:
-            """[EXPERIMENTAL] ListPostingModules: List Posting Modules  # noqa: E501
+            """[EARLY ACCESS] ListPostingModules: List Posting Modules  # noqa: E501
 
             List all the Posting Modules matching particular criteria.  # noqa: E501
 
@@ -8793,7 +8793,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def patch_chart_of_accounts_async(self, scope: StrictStr, code: StrictStr, operation: List[Operation], **kwargs) -> ChartOfAccounts:
-            """[EXPERIMENTAL] PatchChartOfAccounts: Patch a Chart of Accounts.  # noqa: E501
+            """[EARLY ACCESS] PatchChartOfAccounts: Patch a Chart of Accounts.  # noqa: E501
             Update fields on a Chart of Accounts.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description.  # noqa: E501
             
             :param scope: The scope of the Chart of Accounts. (required)
@@ -8817,7 +8817,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def patch_chart_of_accounts_with_http_info_async(self, scope: StrictStr, code: StrictStr, operation: List[Operation], **kwargs) -> ApiResponse[ChartOfAccounts]:
-            """[EXPERIMENTAL] PatchChartOfAccounts: Patch a Chart of Accounts.  # noqa: E501
+            """[EARLY ACCESS] PatchChartOfAccounts: Patch a Chart of Accounts.  # noqa: E501
 
             Update fields on a Chart of Accounts.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description.  # noqa: E501
 
@@ -8937,7 +8937,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def patch_cleardown_module_async(self, scope: StrictStr, code: StrictStr, cleardown_module_code: StrictStr, operation: List[Operation], **kwargs) -> CleardownModuleResponse:
-            """[EXPERIMENTAL] PatchCleardownModule: Patch a Cleardown Module  # noqa: E501
+            """[EARLY ACCESS] PatchCleardownModule: Patch a Cleardown Module  # noqa: E501
             Update fields on a Cleardown Module.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, Rules.  # noqa: E501
             
             :param scope: The scope of the Chart of Accounts. (required)
@@ -8963,7 +8963,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def patch_cleardown_module_with_http_info_async(self, scope: StrictStr, code: StrictStr, cleardown_module_code: StrictStr, operation: List[Operation], **kwargs) -> ApiResponse[CleardownModuleResponse]:
-            """[EXPERIMENTAL] PatchCleardownModule: Patch a Cleardown Module  # noqa: E501
+            """[EARLY ACCESS] PatchCleardownModule: Patch a Cleardown Module  # noqa: E501
 
             Update fields on a Cleardown Module.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, Rules.  # noqa: E501
 
@@ -9089,7 +9089,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def patch_posting_module_async(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, operation: List[Operation], **kwargs) -> PostingModuleResponse:
-            """[EXPERIMENTAL] PatchPostingModule: Patch a Posting Module  # noqa: E501
+            """[EARLY ACCESS] PatchPostingModule: Patch a Posting Module  # noqa: E501
             Update fields on a Posting Module.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, Rules.  # noqa: E501
             
             :param scope: The scope of the Chart of Accounts. (required)
@@ -9115,7 +9115,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def patch_posting_module_with_http_info_async(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, operation: List[Operation], **kwargs) -> ApiResponse[PostingModuleResponse]:
-            """[EXPERIMENTAL] PatchPostingModule: Patch a Posting Module  # noqa: E501
+            """[EARLY ACCESS] PatchPostingModule: Patch a Posting Module  # noqa: E501
 
             Update fields on a Posting Module.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, Rules.  # noqa: E501
 
@@ -9241,7 +9241,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def set_cleardown_module_details_async(self, scope: StrictStr, code: StrictStr, cleardown_module_code: StrictStr, cleardown_module_details: CleardownModuleDetails, **kwargs) -> CleardownModuleResponse:
-            """[EXPERIMENTAL] SetCleardownModuleDetails: Set the details of a Cleardown Module  # noqa: E501
+            """[EARLY ACCESS] SetCleardownModuleDetails: Set the details of a Cleardown Module  # noqa: E501
             Update the given Cleardown Module details.  # noqa: E501
             
             :param scope: The scope of the Chart of Accounts. (required)
@@ -9267,7 +9267,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def set_cleardown_module_details_with_http_info_async(self, scope: StrictStr, code: StrictStr, cleardown_module_code: StrictStr, cleardown_module_details: CleardownModuleDetails, **kwargs) -> ApiResponse[CleardownModuleResponse]:
-            """[EXPERIMENTAL] SetCleardownModuleDetails: Set the details of a Cleardown Module  # noqa: E501
+            """[EARLY ACCESS] SetCleardownModuleDetails: Set the details of a Cleardown Module  # noqa: E501
 
             Update the given Cleardown Module details.  # noqa: E501
 
@@ -9393,7 +9393,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def set_cleardown_module_rules_async(self, scope: StrictStr, code: StrictStr, cleardown_module_code: StrictStr, cleardown_module_rule: List[CleardownModuleRule], **kwargs) -> CleardownModuleRulesUpdatedResponse:
-            """[EXPERIMENTAL] SetCleardownModuleRules: Set the rules of a Cleardown Module  # noqa: E501
+            """[EARLY ACCESS] SetCleardownModuleRules: Set the rules of a Cleardown Module  # noqa: E501
             Set the given Cleardown Modules rules, this will replace the existing set of rules for the cleardown module.  # noqa: E501
             
             :param scope: The scope of the Chart of Accounts. (required)
@@ -9419,7 +9419,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def set_cleardown_module_rules_with_http_info_async(self, scope: StrictStr, code: StrictStr, cleardown_module_code: StrictStr, cleardown_module_rule: List[CleardownModuleRule], **kwargs) -> ApiResponse[CleardownModuleRulesUpdatedResponse]:
-            """[EXPERIMENTAL] SetCleardownModuleRules: Set the rules of a Cleardown Module  # noqa: E501
+            """[EARLY ACCESS] SetCleardownModuleRules: Set the rules of a Cleardown Module  # noqa: E501
 
             Set the given Cleardown Modules rules, this will replace the existing set of rules for the cleardown module.  # noqa: E501
 
@@ -9545,7 +9545,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def set_general_ledger_profile_mappings_async(self, scope: StrictStr, code: StrictStr, general_ledger_profile_code: StrictStr, general_ledger_profile_mapping: List[GeneralLedgerProfileMapping], **kwargs) -> GeneralLedgerProfileResponse:
-            """[EXPERIMENTAL] SetGeneralLedgerProfileMappings: Sets the General Ledger Profile Mappings.  # noqa: E501
+            """[EARLY ACCESS] SetGeneralLedgerProfileMappings: Sets the General Ledger Profile Mappings.  # noqa: E501
             Update the given General Ledger profile Mappings.  # noqa: E501
             
             :param scope: The scope of the Chart of Accounts. (required)
@@ -9571,7 +9571,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def set_general_ledger_profile_mappings_with_http_info_async(self, scope: StrictStr, code: StrictStr, general_ledger_profile_code: StrictStr, general_ledger_profile_mapping: List[GeneralLedgerProfileMapping], **kwargs) -> ApiResponse[GeneralLedgerProfileResponse]:
-            """[EXPERIMENTAL] SetGeneralLedgerProfileMappings: Sets the General Ledger Profile Mappings.  # noqa: E501
+            """[EARLY ACCESS] SetGeneralLedgerProfileMappings: Sets the General Ledger Profile Mappings.  # noqa: E501
 
             Update the given General Ledger profile Mappings.  # noqa: E501
 
@@ -9697,7 +9697,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def set_posting_module_details_async(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, posting_module_details: PostingModuleDetails, **kwargs) -> PostingModuleResponse:
-            """[EXPERIMENTAL] SetPostingModuleDetails: Set the details of a Posting Module  # noqa: E501
+            """[EARLY ACCESS] SetPostingModuleDetails: Set the details of a Posting Module  # noqa: E501
             Update the given Posting Module details.  # noqa: E501
             
             :param scope: The scope of the Chart of Accounts. (required)
@@ -9723,7 +9723,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def set_posting_module_details_with_http_info_async(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, posting_module_details: PostingModuleDetails, **kwargs) -> ApiResponse[PostingModuleResponse]:
-            """[EXPERIMENTAL] SetPostingModuleDetails: Set the details of a Posting Module  # noqa: E501
+            """[EARLY ACCESS] SetPostingModuleDetails: Set the details of a Posting Module  # noqa: E501
 
             Update the given Posting Module details.  # noqa: E501
 
@@ -9849,7 +9849,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def set_posting_module_rules_async(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, posting_module_rule: List[PostingModuleRule], **kwargs) -> PostingModuleRulesUpdatedResponse:
-            """[EXPERIMENTAL] SetPostingModuleRules: Set the rules of a Posting Module  # noqa: E501
+            """[EARLY ACCESS] SetPostingModuleRules: Set the rules of a Posting Module  # noqa: E501
             Set the given Posting Modules rules, this will replace the existing set of rules for the posting module.  # noqa: E501
             
             :param scope: The scope of the Chart of Accounts. (required)
@@ -9875,7 +9875,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def set_posting_module_rules_with_http_info_async(self, scope: StrictStr, code: StrictStr, posting_module_code: StrictStr, posting_module_rule: List[PostingModuleRule], **kwargs) -> ApiResponse[PostingModuleRulesUpdatedResponse]:
-            """[EXPERIMENTAL] SetPostingModuleRules: Set the rules of a Posting Module  # noqa: E501
+            """[EARLY ACCESS] SetPostingModuleRules: Set the rules of a Posting Module  # noqa: E501
 
             Set the given Posting Modules rules, this will replace the existing set of rules for the posting module.  # noqa: E501
 
@@ -10001,7 +10001,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def upsert_account_properties_async(self, scope: StrictStr, code: StrictStr, account_code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> AccountProperties:
-            """[EXPERIMENTAL] UpsertAccountProperties: Upsert account properties  # noqa: E501
+            """[EARLY ACCESS] UpsertAccountProperties: Upsert account properties  # noqa: E501
             Update or insert one or more properties onto a single account. A property will be updated if it  already exists and inserted if it does not. All properties must be of the domain 'Account'.                Upserting a property that exists for an account, with a null value, will delete the instance of the property for that group.                Properties have an <i>effectiveFrom</i> datetime for which the property is valid, and an <i>effectiveUntil</i>  datetime until which the property is valid. Not supplying an <i>effectiveUntil</i> datetime results in the property being  valid indefinitely, or until the next <i>effectiveFrom</i> datetime of the property.  # noqa: E501
             
             :param scope: The scope of the Chart of Accounts to update or insert the properties onto. (required)
@@ -10027,7 +10027,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def upsert_account_properties_with_http_info_async(self, scope: StrictStr, code: StrictStr, account_code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> ApiResponse[AccountProperties]:
-            """[EXPERIMENTAL] UpsertAccountProperties: Upsert account properties  # noqa: E501
+            """[EARLY ACCESS] UpsertAccountProperties: Upsert account properties  # noqa: E501
 
             Update or insert one or more properties onto a single account. A property will be updated if it  already exists and inserted if it does not. All properties must be of the domain 'Account'.                Upserting a property that exists for an account, with a null value, will delete the instance of the property for that group.                Properties have an <i>effectiveFrom</i> datetime for which the property is valid, and an <i>effectiveUntil</i>  datetime until which the property is valid. Not supplying an <i>effectiveUntil</i> datetime results in the property being  valid indefinitely, or until the next <i>effectiveFrom</i> datetime of the property.  # noqa: E501
 
@@ -10153,7 +10153,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def upsert_accounts_async(self, scope: StrictStr, code: StrictStr, account: List[Account], **kwargs) -> AccountsUpsertResponse:
-            """[EXPERIMENTAL] UpsertAccounts: Upsert Accounts  # noqa: E501
+            """[EARLY ACCESS] UpsertAccounts: Upsert Accounts  # noqa: E501
             Create or update accounts in the Chart of Accounts. An account will be updated  if it already exists and created if it does not.  The maximum number of accounts that this method can upsert per request is 2,000.  # noqa: E501
             
             :param scope: The scope of the Chart of Accounts. (required)
@@ -10177,7 +10177,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def upsert_accounts_with_http_info_async(self, scope: StrictStr, code: StrictStr, account: List[Account], **kwargs) -> ApiResponse[AccountsUpsertResponse]:
-            """[EXPERIMENTAL] UpsertAccounts: Upsert Accounts  # noqa: E501
+            """[EARLY ACCESS] UpsertAccounts: Upsert Accounts  # noqa: E501
 
             Create or update accounts in the Chart of Accounts. An account will be updated  if it already exists and created if it does not.  The maximum number of accounts that this method can upsert per request is 2,000.  # noqa: E501
 
@@ -10297,7 +10297,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def upsert_chart_of_accounts_properties_async(self, scope: StrictStr, code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> ChartOfAccountsProperties:
-            """[EXPERIMENTAL] UpsertChartOfAccountsProperties: Upsert Chart of Accounts properties  # noqa: E501
+            """[EARLY ACCESS] UpsertChartOfAccountsProperties: Upsert Chart of Accounts properties  # noqa: E501
             Update or insert one or more properties onto a single Chart of Accounts. A property will be updated if it  already exists and inserted if it does not. All properties must be of the domain 'ChartOfAccounts'.                Upserting a property that exists for a Chart of Accounts, with a null value, will delete the instance of the property for that group.                Properties have an <i>effectiveFrom</i> datetime for which the property is valid, and an <i>effectiveUntil</i>  datetime until which the property is valid. Not supplying an <i>effectiveUntil</i> datetime results in the property being  valid indefinitely, or until the next <i>effectiveFrom</i> datetime of the property.  # noqa: E501
             
             :param scope: The scope of the Chart of Accounts to update or insert the properties onto. (required)
@@ -10321,7 +10321,7 @@ class ChartOfAccountsApi:
 
     @validate_call
     async def upsert_chart_of_accounts_properties_with_http_info_async(self, scope: StrictStr, code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> ApiResponse[ChartOfAccountsProperties]:
-            """[EXPERIMENTAL] UpsertChartOfAccountsProperties: Upsert Chart of Accounts properties  # noqa: E501
+            """[EARLY ACCESS] UpsertChartOfAccountsProperties: Upsert Chart of Accounts properties  # noqa: E501
 
             Update or insert one or more properties onto a single Chart of Accounts. A property will be updated if it  already exists and inserted if it does not. All properties must be of the domain 'ChartOfAccounts'.                Upserting a property that exists for a Chart of Accounts, with a null value, will delete the instance of the property for that group.                Properties have an <i>effectiveFrom</i> datetime for which the property is valid, and an <i>effectiveUntil</i>  datetime until which the property is valid. Not supplying an <i>effectiveUntil</i> datetime results in the property being  valid indefinitely, or until the next <i>effectiveFrom</i> datetime of the property.  # noqa: E501
 

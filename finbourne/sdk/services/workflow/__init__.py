@@ -70,6 +70,8 @@ from finbourne.sdk.services.workflow.models.group_reconciliation import GroupRec
 from finbourne.sdk.services.workflow.models.group_reconciliation_response import GroupReconciliationResponse
 from finbourne.sdk.services.workflow.models.health_check import HealthCheck
 from finbourne.sdk.services.workflow.models.health_check_response import HealthCheckResponse
+from finbourne.sdk.services.workflow.models.horizon_integration import HorizonIntegration
+from finbourne.sdk.services.workflow.models.horizon_integration_response import HorizonIntegrationResponse
 from finbourne.sdk.services.workflow.models.id_selector_definition import IdSelectorDefinition
 from finbourne.sdk.services.workflow.models.identifier_part_schema import IdentifierPartSchema
 from finbourne.sdk.services.workflow.models.initial_state import InitialState
@@ -213,6 +215,8 @@ __all__ = [
     "GroupReconciliationResponse",
     "HealthCheck",
     "HealthCheckResponse",
+    "HorizonIntegration",
+    "HorizonIntegrationResponse",
     "IdSelectorDefinition",
     "IdentifierPartSchema",
     "InitialState",

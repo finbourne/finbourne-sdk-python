@@ -14,7 +14,7 @@ Query for the individual cashflows inside a single cashflow bucket, with their s
 | **effective_at** | **datetime** | Required | The valuation (pricing) effective datetime or cut label (inclusive) at which to evaluate the cashflows.  This determines whether cashflows are evaluated in a historic or forward looking context and will, for certain models, affect where data is looked up. |
 | **recipe_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **report_currency** | **str** | Required | Three letter ISO currency string indicating what currency to report in for ReportCurrency denominated queries. |
-| **exclude_unsettled_trades** | **bool** | Optional | If set to true, unsettled trades are excluded from the result set. Set this to match the value used on the bucketed cash flow query being drilled into, so the individual cash flows reconcile with the bucket. |
+| **exclude_unsettled_trades** | **bool** | Optional | If set to true, unsettled trades are excluded from the result set. Set this to match the value used on the bucketed cash flow query being drilled into, so the individual cash flows reconcile with the bucket. Note that the drill-down returns the complete resolved stream including transaction-sourced cashflows; if the bucketed query used the (default) InstrumentCashFlow representation, also exclude rows with a sourceType of &#39;Transaction&#39; when reconciling. |
 | **haircut_rules** | [List[CashFlowHaircutRule]](CashFlowHaircutRule.md) | Optional | Optional ordered haircut rules applied to cashflow inflows; the first matching rule wins and a rule with no criteria acts as a catch-all. When supplied, each returned cashflow carries its gross amount, haircut fraction, net amount and the rule that was applied; with no rules those fields are omitted and the results are unchanged. |
 
 
@@ -35,7 +35,7 @@ instance = QueryBucketCashFlowDrillDownRequest(
     effective_at=datetime.now(),  # required — The valuation (pricing) effective datetime or cut label (inclusive) at which to evaluate the cashflows.  This determines whether cashflows are evaluated in a historic or forward looking context and will, for certain models, affect where data is looked up.
     recipe_id=ResourceId(...),  # required
     report_currency="...",  # required — Three letter ISO currency string indicating what currency to report in for ReportCurrency denominated queries.
-    exclude_unsettled_trades=True,  # optional — If set to true, unsettled trades are excluded from the result set. Set this to match the value used on the bucketed cash flow query being drilled into, so the individual cash flows reconcile with the bucket.
+    exclude_unsettled_trades=True,  # optional — If set to true, unsettled trades are excluded from the result set. Set this to match the value used on the bucketed cash flow query being drilled into, so the individual cash flows reconcile with the bucket. Note that the drill-down returns the complete resolved stream including transaction-sourced cashflows; if the bucketed query used the (default) InstrumentCashFlow representation, also exclude rows with a sourceType of &#39;Transaction&#39; when reconciling.
     haircut_rules=[]  # optional — Optional ordered haircut rules applied to cashflow inflows; the first matching rule wins and a rule with no criteria acts as a catch-all. When supplied, each returned cashflow carries its gross amount, haircut fraction, net amount and the rule that was applied; with no rules those fields are omitted and the results are unchanged.
 )
 ```

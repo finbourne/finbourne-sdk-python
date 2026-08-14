@@ -4,12 +4,12 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_fee_type**](FeeTypesApi.md#create_fee_type) | **POST** /api/api/feetypes/{scope} | [EXPERIMENTAL] CreateFeeType: Create a FeeType.
-[**delete_fee_type**](FeeTypesApi.md#delete_fee_type) | **DELETE** /api/api/feetypes/{scope}/{code} | [EXPERIMENTAL] DeleteFeeType: Delete a FeeType.
-[**get_fee_template_specifications**](FeeTypesApi.md#get_fee_template_specifications) | **GET** /api/api/feetypes/feetransactiontemplatespecification | [EXPERIMENTAL] GetFeeTemplateSpecifications: Get FeeTemplateSpecifications used in the FeeType.
-[**get_fee_type**](FeeTypesApi.md#get_fee_type) | **GET** /api/api/feetypes/{scope}/{code} | [EXPERIMENTAL] GetFeeType: Get a FeeType
-[**list_fee_types**](FeeTypesApi.md#list_fee_types) | **GET** /api/api/feetypes | [EXPERIMENTAL] ListFeeTypes: List FeeTypes
-[**update_fee_type**](FeeTypesApi.md#update_fee_type) | **PUT** /api/api/feetypes/{scope}/{code} | [EXPERIMENTAL] UpdateFeeType: Update a FeeType.
+[**create_fee_type**](FeeTypesApi.md#create_fee_type) | **POST** /api/api/feetypes/{scope} | [EARLY ACCESS] CreateFeeType: Create a FeeType.
+[**delete_fee_type**](FeeTypesApi.md#delete_fee_type) | **DELETE** /api/api/feetypes/{scope}/{code} | [EARLY ACCESS] DeleteFeeType: Delete a FeeType.
+[**get_fee_template_specifications**](FeeTypesApi.md#get_fee_template_specifications) | **GET** /api/api/feetypes/feetransactiontemplatespecification | [EARLY ACCESS] GetFeeTemplateSpecifications: Get FeeTemplateSpecifications used in the FeeType.
+[**get_fee_type**](FeeTypesApi.md#get_fee_type) | **GET** /api/api/feetypes/{scope}/{code} | [EARLY ACCESS] GetFeeType: Get a FeeType
+[**list_fee_types**](FeeTypesApi.md#list_fee_types) | **GET** /api/api/feetypes | [EARLY ACCESS] ListFeeTypes: List FeeTypes
+[**update_fee_type**](FeeTypesApi.md#update_fee_type) | **PUT** /api/api/feetypes/{scope}/{code} | [EARLY ACCESS] UpdateFeeType: Update a FeeType.
 
 
 ### Example
@@ -40,7 +40,7 @@ api_instance = api_client_factory.build(FeeTypesApi)
 # **create_fee_type**
 > FeeType createFeeType = create_fee_type(scope, fee_type_request)
 
-[EXPERIMENTAL] CreateFeeType: Create a FeeType.
+[EARLY ACCESS] CreateFeeType: Create a FeeType.
 
 Create a FeeType that contains templates used to create fee transactions.
 
@@ -84,7 +84,7 @@ Name | Type | Description  | Notes
 # **delete_fee_type**
 > DeletedEntityResponse deleteFeeType = delete_fee_type(scope, code)
 
-[EXPERIMENTAL] DeleteFeeType: Delete a FeeType.
+[EARLY ACCESS] DeleteFeeType: Delete a FeeType.
 
 Delete a FeeType that contains templates used to create fee transactions.
 
@@ -128,7 +128,7 @@ Name | Type | Description  | Notes
 # **get_fee_template_specifications**
 > FeeTransactionTemplateSpecification getFeeTemplateSpecifications = get_fee_template_specifications()
 
-[EXPERIMENTAL] GetFeeTemplateSpecifications: Get FeeTemplateSpecifications used in the FeeType.
+[EARLY ACCESS] GetFeeTemplateSpecifications: Get FeeTemplateSpecifications used in the FeeType.
 
 Get FeeTemplateSpecifications used in the FeeType.
 
@@ -165,7 +165,7 @@ This endpoint does not need any parameter.
 # **get_fee_type**
 > FeeType getFeeType = get_fee_type(scope, code, as_at=as_at)
 
-[EXPERIMENTAL] GetFeeType: Get a FeeType
+[EARLY ACCESS] GetFeeType: Get a FeeType
 
 Get a FeeType that contains templates used to create fee transactions.
 
@@ -211,7 +211,7 @@ Name | Type | Description  | Notes
 # **list_fee_types**
 > PagedResourceListOfFeeType listFeeTypes = list_fee_types(as_at=as_at, page=page, limit=limit, filter=filter, sort_by=sort_by)
 
-[EXPERIMENTAL] ListFeeTypes: List FeeTypes
+[EARLY ACCESS] ListFeeTypes: List FeeTypes
 
 List FeeTypes that contain templates used to create fee transactions.
 
@@ -261,7 +261,7 @@ Name | Type | Description  | Notes
 # **update_fee_type**
 > FeeType updateFeeType = update_fee_type(scope, code, update_fee_type_request)
 
-[EXPERIMENTAL] UpdateFeeType: Update a FeeType.
+[EARLY ACCESS] UpdateFeeType: Update a FeeType.
 
 Update a FeeType that contains templates used to create fee transactions.
 

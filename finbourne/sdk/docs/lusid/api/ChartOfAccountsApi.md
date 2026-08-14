@@ -4,40 +4,40 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_chart_of_accounts**](ChartOfAccountsApi.md#create_chart_of_accounts) | **POST** /api/api/chartofaccounts/{scope} | [EXPERIMENTAL] CreateChartOfAccounts: Create a Chart of Accounts
-[**create_cleardown_module**](ChartOfAccountsApi.md#create_cleardown_module) | **POST** /api/api/chartofaccounts/{scope}/{code}/cleardownmodules | [EXPERIMENTAL] CreateCleardownModule: Create a Cleardown Module
-[**create_general_ledger_profile**](ChartOfAccountsApi.md#create_general_ledger_profile) | **POST** /api/api/chartofaccounts/{scope}/{code}/generalledgerprofile | [EXPERIMENTAL] CreateGeneralLedgerProfile: Create a General Ledger Profile.
-[**create_posting_module**](ChartOfAccountsApi.md#create_posting_module) | **POST** /api/api/chartofaccounts/{scope}/{code}/postingmodules | [EXPERIMENTAL] CreatePostingModule: Create a Posting Module
-[**delete_accounts**](ChartOfAccountsApi.md#delete_accounts) | **POST** /api/api/chartofaccounts/{scope}/{code}/accounts/$delete | [EXPERIMENTAL] DeleteAccounts: Soft or hard delete multiple accounts
-[**delete_chart_of_accounts**](ChartOfAccountsApi.md#delete_chart_of_accounts) | **DELETE** /api/api/chartofaccounts/{scope}/{code} | [EXPERIMENTAL] DeleteChartOfAccounts: Delete a Chart of Accounts
-[**delete_cleardown_module**](ChartOfAccountsApi.md#delete_cleardown_module) | **DELETE** /api/api/chartofaccounts/{scope}/{code}/cleardownmodules/{cleardownModuleCode} | [EXPERIMENTAL] DeleteCleardownModule: Delete a Cleardown Module.
-[**delete_general_ledger_profile**](ChartOfAccountsApi.md#delete_general_ledger_profile) | **DELETE** /api/api/chartofaccounts/{scope}/{code}/generalledgerprofile/{generalLedgerProfileCode} | [EXPERIMENTAL] DeleteGeneralLedgerProfile: Delete a General Ledger Profile.
-[**delete_posting_module**](ChartOfAccountsApi.md#delete_posting_module) | **DELETE** /api/api/chartofaccounts/{scope}/{code}/postingmodules/{postingModuleCode} | [EXPERIMENTAL] DeletePostingModule: Delete a Posting Module.
-[**get_account**](ChartOfAccountsApi.md#get_account) | **GET** /api/api/chartofaccounts/{scope}/{code}/accounts/{accountCode} | [EXPERIMENTAL] GetAccount: Get Account
-[**get_account_properties**](ChartOfAccountsApi.md#get_account_properties) | **GET** /api/api/chartofaccounts/{scope}/{code}/accounts/{accountCode}/properties | [EXPERIMENTAL] GetAccountProperties: Get Account properties
-[**get_chart_of_accounts**](ChartOfAccountsApi.md#get_chart_of_accounts) | **GET** /api/api/chartofaccounts/{scope}/{code} | [EXPERIMENTAL] GetChartOfAccounts: Get ChartOfAccounts
-[**get_chart_of_accounts_properties**](ChartOfAccountsApi.md#get_chart_of_accounts_properties) | **GET** /api/api/chartofaccounts/{scope}/{code}/properties | [EXPERIMENTAL] GetChartOfAccountsProperties: Get chart of accounts properties
-[**get_cleardown_module**](ChartOfAccountsApi.md#get_cleardown_module) | **GET** /api/api/chartofaccounts/{scope}/{code}/cleardownmodules/{cleardownModuleCode} | [EXPERIMENTAL] GetCleardownModule: Get a Cleardown Module
-[**get_general_ledger_profile**](ChartOfAccountsApi.md#get_general_ledger_profile) | **GET** /api/api/chartofaccounts/{scope}/{code}/generalledgerprofile/{generalLedgerProfileCode} | [EXPERIMENTAL] GetGeneralLedgerProfile: Get a General Ledger Profile.
-[**get_posting_module**](ChartOfAccountsApi.md#get_posting_module) | **GET** /api/api/chartofaccounts/{scope}/{code}/postingmodules/{postingModuleCode} | [EXPERIMENTAL] GetPostingModule: Get a Posting Module
-[**list_accounts**](ChartOfAccountsApi.md#list_accounts) | **GET** /api/api/chartofaccounts/{scope}/{code}/accounts | [EXPERIMENTAL] ListAccounts: List Accounts
-[**list_charts_of_accounts**](ChartOfAccountsApi.md#list_charts_of_accounts) | **GET** /api/api/chartofaccounts | [EXPERIMENTAL] ListChartsOfAccounts: List Charts of Accounts
-[**list_cleardown_module_rules**](ChartOfAccountsApi.md#list_cleardown_module_rules) | **GET** /api/api/chartofaccounts/{scope}/{code}/cleardownmodules/{cleardownModuleCode}/cleardownrules | [EXPERIMENTAL] ListCleardownModuleRules: List Cleardown Module Rules
-[**list_cleardown_modules**](ChartOfAccountsApi.md#list_cleardown_modules) | **GET** /api/api/chartofaccounts/{scope}/{code}/cleardownmodules | [EXPERIMENTAL] ListCleardownModules: List Cleardown Modules
-[**list_general_ledger_profiles**](ChartOfAccountsApi.md#list_general_ledger_profiles) | **GET** /api/api/chartofaccounts/{scope}/{code}/generalledgerprofile | [EXPERIMENTAL] ListGeneralLedgerProfiles: List General Ledger Profiles.
-[**list_posting_module_rules**](ChartOfAccountsApi.md#list_posting_module_rules) | **GET** /api/api/chartofaccounts/{scope}/{code}/postingmodules/{postingModuleCode}/postingrules | [EXPERIMENTAL] ListPostingModuleRules: List Posting Module Rules
-[**list_posting_modules**](ChartOfAccountsApi.md#list_posting_modules) | **GET** /api/api/chartofaccounts/{scope}/{code}/postingmodules | [EXPERIMENTAL] ListPostingModules: List Posting Modules
-[**patch_chart_of_accounts**](ChartOfAccountsApi.md#patch_chart_of_accounts) | **PATCH** /api/api/chartofaccounts/{scope}/{code} | [EXPERIMENTAL] PatchChartOfAccounts: Patch a Chart of Accounts.
-[**patch_cleardown_module**](ChartOfAccountsApi.md#patch_cleardown_module) | **PATCH** /api/api/chartofaccounts/{scope}/{code}/cleardownmodules/{cleardownModuleCode} | [EXPERIMENTAL] PatchCleardownModule: Patch a Cleardown Module
-[**patch_posting_module**](ChartOfAccountsApi.md#patch_posting_module) | **PATCH** /api/api/chartofaccounts/{scope}/{code}/postingmodules/{postingModuleCode} | [EXPERIMENTAL] PatchPostingModule: Patch a Posting Module
-[**set_cleardown_module_details**](ChartOfAccountsApi.md#set_cleardown_module_details) | **PUT** /api/api/chartofaccounts/{scope}/{code}/cleardownmodules/{cleardownModuleCode} | [EXPERIMENTAL] SetCleardownModuleDetails: Set the details of a Cleardown Module
-[**set_cleardown_module_rules**](ChartOfAccountsApi.md#set_cleardown_module_rules) | **PUT** /api/api/chartofaccounts/{scope}/{code}/cleardownmodules/{cleardownModuleCode}/cleardownrules | [EXPERIMENTAL] SetCleardownModuleRules: Set the rules of a Cleardown Module
-[**set_general_ledger_profile_mappings**](ChartOfAccountsApi.md#set_general_ledger_profile_mappings) | **PUT** /api/api/chartofaccounts/{scope}/{code}/generalledgerprofile/{generalLedgerProfileCode}/mappings | [EXPERIMENTAL] SetGeneralLedgerProfileMappings: Sets the General Ledger Profile Mappings.
-[**set_posting_module_details**](ChartOfAccountsApi.md#set_posting_module_details) | **PUT** /api/api/chartofaccounts/{scope}/{code}/postingmodules/{postingModuleCode} | [EXPERIMENTAL] SetPostingModuleDetails: Set the details of a Posting Module
-[**set_posting_module_rules**](ChartOfAccountsApi.md#set_posting_module_rules) | **PUT** /api/api/chartofaccounts/{scope}/{code}/postingmodules/{postingModuleCode}/postingrules | [EXPERIMENTAL] SetPostingModuleRules: Set the rules of a Posting Module
-[**upsert_account_properties**](ChartOfAccountsApi.md#upsert_account_properties) | **POST** /api/api/chartofaccounts/{scope}/{code}/accounts/{accountCode}/properties/$upsert | [EXPERIMENTAL] UpsertAccountProperties: Upsert account properties
-[**upsert_accounts**](ChartOfAccountsApi.md#upsert_accounts) | **POST** /api/api/chartofaccounts/{scope}/{code}/accounts | [EXPERIMENTAL] UpsertAccounts: Upsert Accounts
-[**upsert_chart_of_accounts_properties**](ChartOfAccountsApi.md#upsert_chart_of_accounts_properties) | **POST** /api/api/chartofaccounts/{scope}/{code}/properties/$upsert | [EXPERIMENTAL] UpsertChartOfAccountsProperties: Upsert Chart of Accounts properties
+[**create_chart_of_accounts**](ChartOfAccountsApi.md#create_chart_of_accounts) | **POST** /api/api/chartofaccounts/{scope} | [EARLY ACCESS] CreateChartOfAccounts: Create a Chart of Accounts
+[**create_cleardown_module**](ChartOfAccountsApi.md#create_cleardown_module) | **POST** /api/api/chartofaccounts/{scope}/{code}/cleardownmodules | [EARLY ACCESS] CreateCleardownModule: Create a Cleardown Module
+[**create_general_ledger_profile**](ChartOfAccountsApi.md#create_general_ledger_profile) | **POST** /api/api/chartofaccounts/{scope}/{code}/generalledgerprofile | [EARLY ACCESS] CreateGeneralLedgerProfile: Create a General Ledger Profile.
+[**create_posting_module**](ChartOfAccountsApi.md#create_posting_module) | **POST** /api/api/chartofaccounts/{scope}/{code}/postingmodules | [EARLY ACCESS] CreatePostingModule: Create a Posting Module
+[**delete_accounts**](ChartOfAccountsApi.md#delete_accounts) | **POST** /api/api/chartofaccounts/{scope}/{code}/accounts/$delete | [EARLY ACCESS] DeleteAccounts: Soft or hard delete multiple accounts
+[**delete_chart_of_accounts**](ChartOfAccountsApi.md#delete_chart_of_accounts) | **DELETE** /api/api/chartofaccounts/{scope}/{code} | [EARLY ACCESS] DeleteChartOfAccounts: Delete a Chart of Accounts
+[**delete_cleardown_module**](ChartOfAccountsApi.md#delete_cleardown_module) | **DELETE** /api/api/chartofaccounts/{scope}/{code}/cleardownmodules/{cleardownModuleCode} | [EARLY ACCESS] DeleteCleardownModule: Delete a Cleardown Module.
+[**delete_general_ledger_profile**](ChartOfAccountsApi.md#delete_general_ledger_profile) | **DELETE** /api/api/chartofaccounts/{scope}/{code}/generalledgerprofile/{generalLedgerProfileCode} | [EARLY ACCESS] DeleteGeneralLedgerProfile: Delete a General Ledger Profile.
+[**delete_posting_module**](ChartOfAccountsApi.md#delete_posting_module) | **DELETE** /api/api/chartofaccounts/{scope}/{code}/postingmodules/{postingModuleCode} | [EARLY ACCESS] DeletePostingModule: Delete a Posting Module.
+[**get_account**](ChartOfAccountsApi.md#get_account) | **GET** /api/api/chartofaccounts/{scope}/{code}/accounts/{accountCode} | [EARLY ACCESS] GetAccount: Get Account
+[**get_account_properties**](ChartOfAccountsApi.md#get_account_properties) | **GET** /api/api/chartofaccounts/{scope}/{code}/accounts/{accountCode}/properties | [EARLY ACCESS] GetAccountProperties: Get Account properties
+[**get_chart_of_accounts**](ChartOfAccountsApi.md#get_chart_of_accounts) | **GET** /api/api/chartofaccounts/{scope}/{code} | [EARLY ACCESS] GetChartOfAccounts: Get ChartOfAccounts
+[**get_chart_of_accounts_properties**](ChartOfAccountsApi.md#get_chart_of_accounts_properties) | **GET** /api/api/chartofaccounts/{scope}/{code}/properties | [EARLY ACCESS] GetChartOfAccountsProperties: Get chart of accounts properties
+[**get_cleardown_module**](ChartOfAccountsApi.md#get_cleardown_module) | **GET** /api/api/chartofaccounts/{scope}/{code}/cleardownmodules/{cleardownModuleCode} | [EARLY ACCESS] GetCleardownModule: Get a Cleardown Module
+[**get_general_ledger_profile**](ChartOfAccountsApi.md#get_general_ledger_profile) | **GET** /api/api/chartofaccounts/{scope}/{code}/generalledgerprofile/{generalLedgerProfileCode} | [EARLY ACCESS] GetGeneralLedgerProfile: Get a General Ledger Profile.
+[**get_posting_module**](ChartOfAccountsApi.md#get_posting_module) | **GET** /api/api/chartofaccounts/{scope}/{code}/postingmodules/{postingModuleCode} | [EARLY ACCESS] GetPostingModule: Get a Posting Module
+[**list_accounts**](ChartOfAccountsApi.md#list_accounts) | **GET** /api/api/chartofaccounts/{scope}/{code}/accounts | [EARLY ACCESS] ListAccounts: List Accounts
+[**list_charts_of_accounts**](ChartOfAccountsApi.md#list_charts_of_accounts) | **GET** /api/api/chartofaccounts | [EARLY ACCESS] ListChartsOfAccounts: List Charts of Accounts
+[**list_cleardown_module_rules**](ChartOfAccountsApi.md#list_cleardown_module_rules) | **GET** /api/api/chartofaccounts/{scope}/{code}/cleardownmodules/{cleardownModuleCode}/cleardownrules | [EARLY ACCESS] ListCleardownModuleRules: List Cleardown Module Rules
+[**list_cleardown_modules**](ChartOfAccountsApi.md#list_cleardown_modules) | **GET** /api/api/chartofaccounts/{scope}/{code}/cleardownmodules | [EARLY ACCESS] ListCleardownModules: List Cleardown Modules
+[**list_general_ledger_profiles**](ChartOfAccountsApi.md#list_general_ledger_profiles) | **GET** /api/api/chartofaccounts/{scope}/{code}/generalledgerprofile | [EARLY ACCESS] ListGeneralLedgerProfiles: List General Ledger Profiles.
+[**list_posting_module_rules**](ChartOfAccountsApi.md#list_posting_module_rules) | **GET** /api/api/chartofaccounts/{scope}/{code}/postingmodules/{postingModuleCode}/postingrules | [EARLY ACCESS] ListPostingModuleRules: List Posting Module Rules
+[**list_posting_modules**](ChartOfAccountsApi.md#list_posting_modules) | **GET** /api/api/chartofaccounts/{scope}/{code}/postingmodules | [EARLY ACCESS] ListPostingModules: List Posting Modules
+[**patch_chart_of_accounts**](ChartOfAccountsApi.md#patch_chart_of_accounts) | **PATCH** /api/api/chartofaccounts/{scope}/{code} | [EARLY ACCESS] PatchChartOfAccounts: Patch a Chart of Accounts.
+[**patch_cleardown_module**](ChartOfAccountsApi.md#patch_cleardown_module) | **PATCH** /api/api/chartofaccounts/{scope}/{code}/cleardownmodules/{cleardownModuleCode} | [EARLY ACCESS] PatchCleardownModule: Patch a Cleardown Module
+[**patch_posting_module**](ChartOfAccountsApi.md#patch_posting_module) | **PATCH** /api/api/chartofaccounts/{scope}/{code}/postingmodules/{postingModuleCode} | [EARLY ACCESS] PatchPostingModule: Patch a Posting Module
+[**set_cleardown_module_details**](ChartOfAccountsApi.md#set_cleardown_module_details) | **PUT** /api/api/chartofaccounts/{scope}/{code}/cleardownmodules/{cleardownModuleCode} | [EARLY ACCESS] SetCleardownModuleDetails: Set the details of a Cleardown Module
+[**set_cleardown_module_rules**](ChartOfAccountsApi.md#set_cleardown_module_rules) | **PUT** /api/api/chartofaccounts/{scope}/{code}/cleardownmodules/{cleardownModuleCode}/cleardownrules | [EARLY ACCESS] SetCleardownModuleRules: Set the rules of a Cleardown Module
+[**set_general_ledger_profile_mappings**](ChartOfAccountsApi.md#set_general_ledger_profile_mappings) | **PUT** /api/api/chartofaccounts/{scope}/{code}/generalledgerprofile/{generalLedgerProfileCode}/mappings | [EARLY ACCESS] SetGeneralLedgerProfileMappings: Sets the General Ledger Profile Mappings.
+[**set_posting_module_details**](ChartOfAccountsApi.md#set_posting_module_details) | **PUT** /api/api/chartofaccounts/{scope}/{code}/postingmodules/{postingModuleCode} | [EARLY ACCESS] SetPostingModuleDetails: Set the details of a Posting Module
+[**set_posting_module_rules**](ChartOfAccountsApi.md#set_posting_module_rules) | **PUT** /api/api/chartofaccounts/{scope}/{code}/postingmodules/{postingModuleCode}/postingrules | [EARLY ACCESS] SetPostingModuleRules: Set the rules of a Posting Module
+[**upsert_account_properties**](ChartOfAccountsApi.md#upsert_account_properties) | **POST** /api/api/chartofaccounts/{scope}/{code}/accounts/{accountCode}/properties/$upsert | [EARLY ACCESS] UpsertAccountProperties: Upsert account properties
+[**upsert_accounts**](ChartOfAccountsApi.md#upsert_accounts) | **POST** /api/api/chartofaccounts/{scope}/{code}/accounts | [EARLY ACCESS] UpsertAccounts: Upsert Accounts
+[**upsert_chart_of_accounts_properties**](ChartOfAccountsApi.md#upsert_chart_of_accounts_properties) | **POST** /api/api/chartofaccounts/{scope}/{code}/properties/$upsert | [EARLY ACCESS] UpsertChartOfAccountsProperties: Upsert Chart of Accounts properties
 
 
 ### Example
@@ -68,7 +68,7 @@ api_instance = api_client_factory.build(ChartOfAccountsApi)
 # **create_chart_of_accounts**
 > ChartOfAccounts createChartOfAccounts = create_chart_of_accounts(scope, chart_of_accounts_request)
 
-[EXPERIMENTAL] CreateChartOfAccounts: Create a Chart of Accounts
+[EARLY ACCESS] CreateChartOfAccounts: Create a Chart of Accounts
 
 Create the given Chart of Accounts.
 
@@ -112,7 +112,7 @@ Name | Type | Description  | Notes
 # **create_cleardown_module**
 > CleardownModuleResponse createCleardownModule = create_cleardown_module(scope, code, cleardown_module_request)
 
-[EXPERIMENTAL] CreateCleardownModule: Create a Cleardown Module
+[EARLY ACCESS] CreateCleardownModule: Create a Cleardown Module
 
 Create the given Cleardown Module.
 
@@ -158,7 +158,7 @@ Name | Type | Description  | Notes
 # **create_general_ledger_profile**
 > GeneralLedgerProfileResponse createGeneralLedgerProfile = create_general_ledger_profile(scope, code, general_ledger_profile_request)
 
-[EXPERIMENTAL] CreateGeneralLedgerProfile: Create a General Ledger Profile.
+[EARLY ACCESS] CreateGeneralLedgerProfile: Create a General Ledger Profile.
 
 Create the given General Ledger profile.
 
@@ -204,7 +204,7 @@ Name | Type | Description  | Notes
 # **create_posting_module**
 > PostingModuleResponse createPostingModule = create_posting_module(scope, code, posting_module_request)
 
-[EXPERIMENTAL] CreatePostingModule: Create a Posting Module
+[EARLY ACCESS] CreatePostingModule: Create a Posting Module
 
 Create the given Posting Module.
 
@@ -250,7 +250,7 @@ Name | Type | Description  | Notes
 # **delete_accounts**
 > DeleteAccountsResponse deleteAccounts = delete_accounts(scope, code, request_body, delete_mode=delete_mode)
 
-[EXPERIMENTAL] DeleteAccounts: Soft or hard delete multiple accounts
+[EARLY ACCESS] DeleteAccounts: Soft or hard delete multiple accounts
 
 Delete one or more account from the Chart of Accounts. Soft deletion marks the account as inactive  While the Hard deletion is deleting the account.  The maximum number of accounts that this method can delete per request is 2,000.
 
@@ -298,7 +298,7 @@ Name | Type | Description  | Notes
 # **delete_chart_of_accounts**
 > DeletedEntityResponse deleteChartOfAccounts = delete_chart_of_accounts(scope, code)
 
-[EXPERIMENTAL] DeleteChartOfAccounts: Delete a Chart of Accounts
+[EARLY ACCESS] DeleteChartOfAccounts: Delete a Chart of Accounts
 
 Delete the given Chart of Accounts.
 
@@ -342,7 +342,7 @@ Name | Type | Description  | Notes
 # **delete_cleardown_module**
 > DeletedEntityResponse deleteCleardownModule = delete_cleardown_module(scope, code, cleardown_module_code)
 
-[EXPERIMENTAL] DeleteCleardownModule: Delete a Cleardown Module.
+[EARLY ACCESS] DeleteCleardownModule: Delete a Cleardown Module.
 
 Delete the given Cleardown Module.
 
@@ -388,7 +388,7 @@ Name | Type | Description  | Notes
 # **delete_general_ledger_profile**
 > DeletedEntityResponse deleteGeneralLedgerProfile = delete_general_ledger_profile(scope, code, general_ledger_profile_code)
 
-[EXPERIMENTAL] DeleteGeneralLedgerProfile: Delete a General Ledger Profile.
+[EARLY ACCESS] DeleteGeneralLedgerProfile: Delete a General Ledger Profile.
 
 Delete the given General Ledger Profile.
 
@@ -434,7 +434,7 @@ Name | Type | Description  | Notes
 # **delete_posting_module**
 > DeletedEntityResponse deletePostingModule = delete_posting_module(scope, code, posting_module_code)
 
-[EXPERIMENTAL] DeletePostingModule: Delete a Posting Module.
+[EARLY ACCESS] DeletePostingModule: Delete a Posting Module.
 
 Delete the given Posting Module.
 
@@ -480,7 +480,7 @@ Name | Type | Description  | Notes
 # **get_account**
 > Account getAccount = get_account(scope, code, account_code, effective_at=effective_at, as_at=as_at, property_keys=property_keys)
 
-[EXPERIMENTAL] GetAccount: Get Account
+[EARLY ACCESS] GetAccount: Get Account
 
 Retrieve the definition of a particular Account which is part of a Chart of Accounts.
 
@@ -532,7 +532,7 @@ Name | Type | Description  | Notes
 # **get_account_properties**
 > AccountProperties getAccountProperties = get_account_properties(scope, code, account_code, effective_at=effective_at, as_at=as_at)
 
-[EXPERIMENTAL] GetAccountProperties: Get Account properties
+[EARLY ACCESS] GetAccountProperties: Get Account properties
 
 Get all the properties of a single account.
 
@@ -582,7 +582,7 @@ Name | Type | Description  | Notes
 # **get_chart_of_accounts**
 > ChartOfAccounts getChartOfAccounts = get_chart_of_accounts(scope, code, effective_at=effective_at, as_at=as_at, property_keys=property_keys)
 
-[EXPERIMENTAL] GetChartOfAccounts: Get ChartOfAccounts
+[EARLY ACCESS] GetChartOfAccounts: Get ChartOfAccounts
 
 Retrieve the definition of a particular Chart of Accounts.
 
@@ -632,7 +632,7 @@ Name | Type | Description  | Notes
 # **get_chart_of_accounts_properties**
 > ChartOfAccountsProperties getChartOfAccountsProperties = get_chart_of_accounts_properties(scope, code, effective_at=effective_at, as_at=as_at)
 
-[EXPERIMENTAL] GetChartOfAccountsProperties: Get chart of accounts properties
+[EARLY ACCESS] GetChartOfAccountsProperties: Get chart of accounts properties
 
 Get all the properties of a single chart of accounts.
 
@@ -680,7 +680,7 @@ Name | Type | Description  | Notes
 # **get_cleardown_module**
 > CleardownModuleResponse getCleardownModule = get_cleardown_module(scope, code, cleardown_module_code, as_at=as_at)
 
-[EXPERIMENTAL] GetCleardownModule: Get a Cleardown Module
+[EARLY ACCESS] GetCleardownModule: Get a Cleardown Module
 
 Retrieve the definition of a Cleardown Module complete with its rules.
 
@@ -728,7 +728,7 @@ Name | Type | Description  | Notes
 # **get_general_ledger_profile**
 > GeneralLedgerProfileResponse getGeneralLedgerProfile = get_general_ledger_profile(scope, code, general_ledger_profile_code, as_at=as_at)
 
-[EXPERIMENTAL] GetGeneralLedgerProfile: Get a General Ledger Profile.
+[EARLY ACCESS] GetGeneralLedgerProfile: Get a General Ledger Profile.
 
 Get the given General Ledger Profile.
 
@@ -776,7 +776,7 @@ Name | Type | Description  | Notes
 # **get_posting_module**
 > PostingModuleResponse getPostingModule = get_posting_module(scope, code, posting_module_code, as_at=as_at)
 
-[EXPERIMENTAL] GetPostingModule: Get a Posting Module
+[EARLY ACCESS] GetPostingModule: Get a Posting Module
 
 Retrieve the definition of a Posting Module complete with its rules.
 
@@ -824,7 +824,7 @@ Name | Type | Description  | Notes
 # **list_accounts**
 > PagedResourceListOfAccount listAccounts = list_accounts(scope, code, effective_at=effective_at, as_at=as_at, page=page, limit=limit, filter=filter, property_keys=property_keys)
 
-[EXPERIMENTAL] ListAccounts: List Accounts
+[EARLY ACCESS] ListAccounts: List Accounts
 
 List the accounts in a Chart of Accounts
 
@@ -880,7 +880,7 @@ Name | Type | Description  | Notes
 # **list_charts_of_accounts**
 > PagedResourceListOfChartOfAccounts listChartsOfAccounts = list_charts_of_accounts(effective_at=effective_at, as_at=as_at, page=page, limit=limit, filter=filter, sort_by=sort_by, property_keys=property_keys)
 
-[EXPERIMENTAL] ListChartsOfAccounts: List Charts of Accounts
+[EARLY ACCESS] ListChartsOfAccounts: List Charts of Accounts
 
 List all the Charts of Accounts matching particular criteria.
 
@@ -934,7 +934,7 @@ Name | Type | Description  | Notes
 # **list_cleardown_module_rules**
 > PagedResourceListOfCleardownModuleRule listCleardownModuleRules = list_cleardown_module_rules(scope, code, cleardown_module_code, as_at=as_at, page=page, limit=limit, filter=filter)
 
-[EXPERIMENTAL] ListCleardownModuleRules: List Cleardown Module Rules
+[EARLY ACCESS] ListCleardownModuleRules: List Cleardown Module Rules
 
 List the Rules in a Cleardown Module
 
@@ -988,7 +988,7 @@ Name | Type | Description  | Notes
 # **list_cleardown_modules**
 > PagedResourceListOfCleardownModuleResponse listCleardownModules = list_cleardown_modules(scope, code, as_at=as_at, page=page, limit=limit, filter=filter, sort_by=sort_by)
 
-[EXPERIMENTAL] ListCleardownModules: List Cleardown Modules
+[EARLY ACCESS] ListCleardownModules: List Cleardown Modules
 
 List all the Cleardown Modules matching particular criteria.
 
@@ -1042,7 +1042,7 @@ Name | Type | Description  | Notes
 # **list_general_ledger_profiles**
 > PagedResourceListOfGeneralLedgerProfileResponse listGeneralLedgerProfiles = list_general_ledger_profiles(scope, code, as_at=as_at, page=page, limit=limit, filter=filter, sort_by=sort_by)
 
-[EXPERIMENTAL] ListGeneralLedgerProfiles: List General Ledger Profiles.
+[EARLY ACCESS] ListGeneralLedgerProfiles: List General Ledger Profiles.
 
 List all the General Ledger profiles matching particular criteria.
 
@@ -1096,7 +1096,7 @@ Name | Type | Description  | Notes
 # **list_posting_module_rules**
 > PagedResourceListOfPostingModuleRule listPostingModuleRules = list_posting_module_rules(scope, code, posting_module_code, as_at=as_at, page=page, limit=limit, filter=filter)
 
-[EXPERIMENTAL] ListPostingModuleRules: List Posting Module Rules
+[EARLY ACCESS] ListPostingModuleRules: List Posting Module Rules
 
 List the Rules in a Posting Module
 
@@ -1150,7 +1150,7 @@ Name | Type | Description  | Notes
 # **list_posting_modules**
 > PagedResourceListOfPostingModuleResponse listPostingModules = list_posting_modules(scope, code, as_at=as_at, page=page, limit=limit, filter=filter, sort_by=sort_by)
 
-[EXPERIMENTAL] ListPostingModules: List Posting Modules
+[EARLY ACCESS] ListPostingModules: List Posting Modules
 
 List all the Posting Modules matching particular criteria.
 
@@ -1204,7 +1204,7 @@ Name | Type | Description  | Notes
 # **patch_chart_of_accounts**
 > ChartOfAccounts patchChartOfAccounts = patch_chart_of_accounts(scope, code, operation)
 
-[EXPERIMENTAL] PatchChartOfAccounts: Patch a Chart of Accounts.
+[EARLY ACCESS] PatchChartOfAccounts: Patch a Chart of Accounts.
 
 Update fields on a Chart of Accounts.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description.
 
@@ -1250,7 +1250,7 @@ Name | Type | Description  | Notes
 # **patch_cleardown_module**
 > CleardownModuleResponse patchCleardownModule = patch_cleardown_module(scope, code, cleardown_module_code, operation)
 
-[EXPERIMENTAL] PatchCleardownModule: Patch a Cleardown Module
+[EARLY ACCESS] PatchCleardownModule: Patch a Cleardown Module
 
 Update fields on a Cleardown Module.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, Rules.
 
@@ -1298,7 +1298,7 @@ Name | Type | Description  | Notes
 # **patch_posting_module**
 > PostingModuleResponse patchPostingModule = patch_posting_module(scope, code, posting_module_code, operation)
 
-[EXPERIMENTAL] PatchPostingModule: Patch a Posting Module
+[EARLY ACCESS] PatchPostingModule: Patch a Posting Module
 
 Update fields on a Posting Module.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, Rules.
 
@@ -1346,7 +1346,7 @@ Name | Type | Description  | Notes
 # **set_cleardown_module_details**
 > CleardownModuleResponse setCleardownModuleDetails = set_cleardown_module_details(scope, code, cleardown_module_code, cleardown_module_details)
 
-[EXPERIMENTAL] SetCleardownModuleDetails: Set the details of a Cleardown Module
+[EARLY ACCESS] SetCleardownModuleDetails: Set the details of a Cleardown Module
 
 Update the given Cleardown Module details.
 
@@ -1394,7 +1394,7 @@ Name | Type | Description  | Notes
 # **set_cleardown_module_rules**
 > CleardownModuleRulesUpdatedResponse setCleardownModuleRules = set_cleardown_module_rules(scope, code, cleardown_module_code, cleardown_module_rule)
 
-[EXPERIMENTAL] SetCleardownModuleRules: Set the rules of a Cleardown Module
+[EARLY ACCESS] SetCleardownModuleRules: Set the rules of a Cleardown Module
 
 Set the given Cleardown Modules rules, this will replace the existing set of rules for the cleardown module.
 
@@ -1442,7 +1442,7 @@ Name | Type | Description  | Notes
 # **set_general_ledger_profile_mappings**
 > GeneralLedgerProfileResponse setGeneralLedgerProfileMappings = set_general_ledger_profile_mappings(scope, code, general_ledger_profile_code, general_ledger_profile_mapping)
 
-[EXPERIMENTAL] SetGeneralLedgerProfileMappings: Sets the General Ledger Profile Mappings.
+[EARLY ACCESS] SetGeneralLedgerProfileMappings: Sets the General Ledger Profile Mappings.
 
 Update the given General Ledger profile Mappings.
 
@@ -1490,7 +1490,7 @@ Name | Type | Description  | Notes
 # **set_posting_module_details**
 > PostingModuleResponse setPostingModuleDetails = set_posting_module_details(scope, code, posting_module_code, posting_module_details)
 
-[EXPERIMENTAL] SetPostingModuleDetails: Set the details of a Posting Module
+[EARLY ACCESS] SetPostingModuleDetails: Set the details of a Posting Module
 
 Update the given Posting Module details.
 
@@ -1538,7 +1538,7 @@ Name | Type | Description  | Notes
 # **set_posting_module_rules**
 > PostingModuleRulesUpdatedResponse setPostingModuleRules = set_posting_module_rules(scope, code, posting_module_code, posting_module_rule)
 
-[EXPERIMENTAL] SetPostingModuleRules: Set the rules of a Posting Module
+[EARLY ACCESS] SetPostingModuleRules: Set the rules of a Posting Module
 
 Set the given Posting Modules rules, this will replace the existing set of rules for the posting module.
 
@@ -1586,7 +1586,7 @@ Name | Type | Description  | Notes
 # **upsert_account_properties**
 > AccountProperties upsertAccountProperties = upsert_account_properties(scope, code, account_code, request_body=request_body)
 
-[EXPERIMENTAL] UpsertAccountProperties: Upsert account properties
+[EARLY ACCESS] UpsertAccountProperties: Upsert account properties
 
 Update or insert one or more properties onto a single account. A property will be updated if it  already exists and inserted if it does not. All properties must be of the domain 'Account'.                Upserting a property that exists for an account, with a null value, will delete the instance of the property for that group.                Properties have an <i>effectiveFrom</i> datetime for which the property is valid, and an <i>effectiveUntil</i>  datetime until which the property is valid. Not supplying an <i>effectiveUntil</i> datetime results in the property being  valid indefinitely, or until the next <i>effectiveFrom</i> datetime of the property.
 
@@ -1634,7 +1634,7 @@ Name | Type | Description  | Notes
 # **upsert_accounts**
 > AccountsUpsertResponse upsertAccounts = upsert_accounts(scope, code, account)
 
-[EXPERIMENTAL] UpsertAccounts: Upsert Accounts
+[EARLY ACCESS] UpsertAccounts: Upsert Accounts
 
 Create or update accounts in the Chart of Accounts. An account will be updated  if it already exists and created if it does not.  The maximum number of accounts that this method can upsert per request is 2,000.
 
@@ -1680,7 +1680,7 @@ Name | Type | Description  | Notes
 # **upsert_chart_of_accounts_properties**
 > ChartOfAccountsProperties upsertChartOfAccountsProperties = upsert_chart_of_accounts_properties(scope, code, request_body=request_body)
 
-[EXPERIMENTAL] UpsertChartOfAccountsProperties: Upsert Chart of Accounts properties
+[EARLY ACCESS] UpsertChartOfAccountsProperties: Upsert Chart of Accounts properties
 
 Update or insert one or more properties onto a single Chart of Accounts. A property will be updated if it  already exists and inserted if it does not. All properties must be of the domain 'ChartOfAccounts'.                Upserting a property that exists for a Chart of Accounts, with a null value, will delete the instance of the property for that group.                Properties have an <i>effectiveFrom</i> datetime for which the property is valid, and an <i>effectiveUntil</i>  datetime until which the property is valid. Not supplying an <i>effectiveUntil</i> datetime results in the property being  valid indefinitely, or until the next <i>effectiveFrom</i> datetime of the property.
 

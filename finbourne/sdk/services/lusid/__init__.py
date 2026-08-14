@@ -147,7 +147,9 @@ from finbourne.sdk.services.lusid.models.adjust_global_commitment_event import A
 from finbourne.sdk.services.lusid.models.adjust_holding import AdjustHolding
 from finbourne.sdk.services.lusid.models.adjust_holding_for_date_request import AdjustHoldingForDateRequest
 from finbourne.sdk.services.lusid.models.adjust_holding_request import AdjustHoldingRequest
+from finbourne.sdk.services.lusid.models.aggregate_rule_values import AggregateRuleValues
 from finbourne.sdk.services.lusid.models.aggregate_spec import AggregateSpec
+from finbourne.sdk.services.lusid.models.aggregate_tolerance_base import AggregateToleranceBase
 from finbourne.sdk.services.lusid.models.aggregated_return import AggregatedReturn
 from finbourne.sdk.services.lusid.models.aggregated_returns_dispersion_request import AggregatedReturnsDispersionRequest
 from finbourne.sdk.services.lusid.models.aggregated_returns_entity_id import AggregatedReturnsEntityId
@@ -202,6 +204,11 @@ from finbourne.sdk.services.lusid.models.batch_adjust_holdings_response import B
 from finbourne.sdk.services.lusid.models.batch_amend_custom_data_model_membership_response import BatchAmendCustomDataModelMembershipResponse
 from finbourne.sdk.services.lusid.models.batch_amend_transaction_settlement_instruction_response import BatchAmendTransactionSettlementInstructionResponse
 from finbourne.sdk.services.lusid.models.batch_delete_relational_data_response import BatchDeleteRelationalDataResponse
+from finbourne.sdk.services.lusid.models.batch_manage_comment_request import BatchManageCommentRequest
+from finbourne.sdk.services.lusid.models.batch_manage_comment_response import BatchManageCommentResponse
+from finbourne.sdk.services.lusid.models.batch_review_rec_result_item_result import BatchReviewRecResultItemResult
+from finbourne.sdk.services.lusid.models.batch_review_rec_result_request import BatchReviewRecResultRequest
+from finbourne.sdk.services.lusid.models.batch_review_rec_result_response import BatchReviewRecResultResponse
 from finbourne.sdk.services.lusid.models.batch_update_user_review_for_comparison_result_request import BatchUpdateUserReviewForComparisonResultRequest
 from finbourne.sdk.services.lusid.models.batch_update_user_review_for_comparison_result_response import BatchUpdateUserReviewForComparisonResultResponse
 from finbourne.sdk.services.lusid.models.batch_upsert_dates_for_calendar_response import BatchUpsertDatesForCalendarResponse
@@ -226,6 +233,7 @@ from finbourne.sdk.services.lusid.models.bond_conversion_entry import BondConver
 from finbourne.sdk.services.lusid.models.bond_conversion_schedule import BondConversionSchedule
 from finbourne.sdk.services.lusid.models.bond_coupon_event import BondCouponEvent
 from finbourne.sdk.services.lusid.models.bond_default_event import BondDefaultEvent
+from finbourne.sdk.services.lusid.models.bond_option import BondOption
 from finbourne.sdk.services.lusid.models.bond_principal_event import BondPrincipalEvent
 from finbourne.sdk.services.lusid.models.bonus_issue_event import BonusIssueEvent
 from finbourne.sdk.services.lusid.models.book_transactions_request import BookTransactionsRequest
@@ -258,6 +266,7 @@ from finbourne.sdk.services.lusid.models.cancel_orders_and_move_remaining_reques
 from finbourne.sdk.services.lusid.models.cancel_orders_and_move_remaining_response import CancelOrdersAndMoveRemainingResponse
 from finbourne.sdk.services.lusid.models.cancel_orders_response import CancelOrdersResponse
 from finbourne.sdk.services.lusid.models.cancel_placements_response import CancelPlacementsResponse
+from finbourne.sdk.services.lusid.models.cancel_schedule import CancelSchedule
 from finbourne.sdk.services.lusid.models.cancel_single_holding_adjustment_request import CancelSingleHoldingAdjustmentRequest
 from finbourne.sdk.services.lusid.models.cancelled_order_result import CancelledOrderResult
 from finbourne.sdk.services.lusid.models.cancelled_placement_result import CancelledPlacementResult
@@ -372,6 +381,8 @@ from finbourne.sdk.services.lusid.models.contract_for_difference import Contract
 from finbourne.sdk.services.lusid.models.contract_initialisation_event import ContractInitialisationEvent
 from finbourne.sdk.services.lusid.models.contribution_to_non_passing_rule_detail import ContributionToNonPassingRuleDetail
 from finbourne.sdk.services.lusid.models.conversion_event import ConversionEvent
+from finbourne.sdk.services.lusid.models.core_rule_values import CoreRuleValues
+from finbourne.sdk.services.lusid.models.core_tolerance_base import CoreToleranceBase
 from finbourne.sdk.services.lusid.models.corporate_action import CorporateAction
 from finbourne.sdk.services.lusid.models.corporate_action_source import CorporateActionSource
 from finbourne.sdk.services.lusid.models.corporate_action_transition import CorporateActionTransition
@@ -868,6 +879,7 @@ from finbourne.sdk.services.lusid.models.nav_type import NavType
 from finbourne.sdk.services.lusid.models.nav_type_definition import NavTypeDefinition
 from finbourne.sdk.services.lusid.models.new_instrument import NewInstrument
 from finbourne.sdk.services.lusid.models.next_value_in_sequence_response import NextValueInSequenceResponse
+from finbourne.sdk.services.lusid.models.notice_convention import NoticeConvention
 from finbourne.sdk.services.lusid.models.numeric_comparison_type import NumericComparisonType
 from finbourne.sdk.services.lusid.models.opaque_dependency import OpaqueDependency
 from finbourne.sdk.services.lusid.models.opaque_market_data import OpaqueMarketData
@@ -983,6 +995,7 @@ from finbourne.sdk.services.lusid.models.paged_resource_list_of_posting_module_r
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_property_definition import PagedResourceListOfPropertyDefinition
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_property_definition_search_result import PagedResourceListOfPropertyDefinitionSearchResult
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_rec_instance import PagedResourceListOfRecInstance
+from finbourne.sdk.services.lusid.models.paged_resource_list_of_rec_result import PagedResourceListOfRecResult
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_rec_result_set import PagedResourceListOfRecResultSet
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_reconciliation import PagedResourceListOfReconciliation
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_reference_list_response import PagedResourceListOfReferenceListResponse
@@ -1014,6 +1027,7 @@ from finbourne.sdk.services.lusid.models.payment_details_applicable_entity impor
 from finbourne.sdk.services.lusid.models.payment_details_reference import PaymentDetailsReference
 from finbourne.sdk.services.lusid.models.payment_details_reference_response import PaymentDetailsReferenceResponse
 from finbourne.sdk.services.lusid.models.payment_details_series_identifiers import PaymentDetailsSeriesIdentifiers
+from finbourne.sdk.services.lusid.models.payment_in_kind_event import PaymentInKindEvent
 from finbourne.sdk.services.lusid.models.payment_instruction import PaymentInstruction
 from finbourne.sdk.services.lusid.models.payment_instruction_request import PaymentInstructionRequest
 from finbourne.sdk.services.lusid.models.payment_instruction_status import PaymentInstructionStatus
@@ -1160,14 +1174,23 @@ from finbourne.sdk.services.lusid.models.rec_match_counts import RecMatchCounts
 from finbourne.sdk.services.lusid.models.rec_open_exception_counts import RecOpenExceptionCounts
 from finbourne.sdk.services.lusid.models.rec_requested_result_revision import RecRequestedResultRevision
 from finbourne.sdk.services.lusid.models.rec_required_approval import RecRequiredApproval
+from finbourne.sdk.services.lusid.models.rec_result import RecResult
+from finbourne.sdk.services.lusid.models.rec_result_assignment_update import RecResultAssignmentUpdate
 from finbourne.sdk.services.lusid.models.rec_result_count_by_review_status import RecResultCountByReviewStatus
 from finbourne.sdk.services.lusid.models.rec_result_counts import RecResultCounts
+from finbourne.sdk.services.lusid.models.rec_result_decision_group import RecResultDecisionGroup
+from finbourne.sdk.services.lusid.models.rec_result_decision_update import RecResultDecisionUpdate
+from finbourne.sdk.services.lusid.models.rec_result_exception import RecResultException
+from finbourne.sdk.services.lusid.models.rec_result_item import RecResultItem
+from finbourne.sdk.services.lusid.models.rec_result_item_details import RecResultItemDetails
+from finbourne.sdk.services.lusid.models.rec_result_review import RecResultReview
 from finbourne.sdk.services.lusid.models.rec_result_set import RecResultSet
 from finbourne.sdk.services.lusid.models.rec_result_set_approval_decision_request import RecResultSetApprovalDecisionRequest
 from finbourne.sdk.services.lusid.models.rec_review import RecReview
 from finbourne.sdk.services.lusid.models.rec_run_log_entry import RecRunLogEntry
 from finbourne.sdk.services.lusid.models.rec_submission import RecSubmission
 from finbourne.sdk.services.lusid.models.rec_superseded_run import RecSupersededRun
+from finbourne.sdk.services.lusid.models.rec_user_comment import RecUserComment
 from finbourne.sdk.services.lusid.models.rec_workflow_task import RecWorkflowTask
 from finbourne.sdk.services.lusid.models.recipe_block import RecipeBlock
 from finbourne.sdk.services.lusid.models.recipe_composer import RecipeComposer
@@ -1219,6 +1242,7 @@ from finbourne.sdk.services.lusid.models.repo_partial_closure_event import RepoP
 from finbourne.sdk.services.lusid.models.repurchase_offer_event import RepurchaseOfferEvent
 from finbourne.sdk.services.lusid.models.requested_changes import RequestedChanges
 from finbourne.sdk.services.lusid.models.reset_event import ResetEvent
+from finbourne.sdk.services.lusid.models.reset_schedule import ResetSchedule
 from finbourne.sdk.services.lusid.models.resolve_tenors_request import ResolveTenorsRequest
 from finbourne.sdk.services.lusid.models.resolve_tenors_response import ResolveTenorsResponse
 from finbourne.sdk.services.lusid.models.resolved_custodian_account import ResolvedCustodianAccount
@@ -1419,6 +1443,7 @@ from finbourne.sdk.services.lusid.models.sub_holding_key_value_equals import Sub
 from finbourne.sdk.services.lusid.models.submit_rec_result_set_review_request import SubmitRecResultSetReviewRequest
 from finbourne.sdk.services.lusid.models.subscribe_election import SubscribeElection
 from finbourne.sdk.services.lusid.models.subscription_definition import SubscriptionDefinition
+from finbourne.sdk.services.lusid.models.supplemental_attribute_values import SupplementalAttributeValues
 from finbourne.sdk.services.lusid.models.swap_cash_flow_event import SwapCashFlowEvent
 from finbourne.sdk.services.lusid.models.swap_principal_event import SwapPrincipalEvent
 from finbourne.sdk.services.lusid.models.sweep_blocks_request import SweepBlocksRequest
@@ -1803,7 +1828,9 @@ __all__ = [
     "AdjustHolding",
     "AdjustHoldingForDateRequest",
     "AdjustHoldingRequest",
+    "AggregateRuleValues",
     "AggregateSpec",
+    "AggregateToleranceBase",
     "AggregatedReturn",
     "AggregatedReturnsDispersionRequest",
     "AggregatedReturnsEntityId",
@@ -1858,6 +1885,11 @@ __all__ = [
     "BatchAmendCustomDataModelMembershipResponse",
     "BatchAmendTransactionSettlementInstructionResponse",
     "BatchDeleteRelationalDataResponse",
+    "BatchManageCommentRequest",
+    "BatchManageCommentResponse",
+    "BatchReviewRecResultItemResult",
+    "BatchReviewRecResultRequest",
+    "BatchReviewRecResultResponse",
     "BatchUpdateUserReviewForComparisonResultRequest",
     "BatchUpdateUserReviewForComparisonResultResponse",
     "BatchUpsertDatesForCalendarResponse",
@@ -1882,6 +1914,7 @@ __all__ = [
     "BondConversionSchedule",
     "BondCouponEvent",
     "BondDefaultEvent",
+    "BondOption",
     "BondPrincipalEvent",
     "BonusIssueEvent",
     "BookTransactionsRequest",
@@ -1914,6 +1947,7 @@ __all__ = [
     "CancelOrdersAndMoveRemainingResponse",
     "CancelOrdersResponse",
     "CancelPlacementsResponse",
+    "CancelSchedule",
     "CancelSingleHoldingAdjustmentRequest",
     "CancelledOrderResult",
     "CancelledPlacementResult",
@@ -2028,6 +2062,8 @@ __all__ = [
     "ContractInitialisationEvent",
     "ContributionToNonPassingRuleDetail",
     "ConversionEvent",
+    "CoreRuleValues",
+    "CoreToleranceBase",
     "CorporateAction",
     "CorporateActionSource",
     "CorporateActionTransition",
@@ -2524,6 +2560,7 @@ __all__ = [
     "NavTypeDefinition",
     "NewInstrument",
     "NextValueInSequenceResponse",
+    "NoticeConvention",
     "NumericComparisonType",
     "OpaqueDependency",
     "OpaqueMarketData",
@@ -2639,6 +2676,7 @@ __all__ = [
     "PagedResourceListOfPropertyDefinition",
     "PagedResourceListOfPropertyDefinitionSearchResult",
     "PagedResourceListOfRecInstance",
+    "PagedResourceListOfRecResult",
     "PagedResourceListOfRecResultSet",
     "PagedResourceListOfReconciliation",
     "PagedResourceListOfReferenceListResponse",
@@ -2670,6 +2708,7 @@ __all__ = [
     "PaymentDetailsReference",
     "PaymentDetailsReferenceResponse",
     "PaymentDetailsSeriesIdentifiers",
+    "PaymentInKindEvent",
     "PaymentInstruction",
     "PaymentInstructionRequest",
     "PaymentInstructionStatus",
@@ -2816,14 +2855,23 @@ __all__ = [
     "RecOpenExceptionCounts",
     "RecRequestedResultRevision",
     "RecRequiredApproval",
+    "RecResult",
+    "RecResultAssignmentUpdate",
     "RecResultCountByReviewStatus",
     "RecResultCounts",
+    "RecResultDecisionGroup",
+    "RecResultDecisionUpdate",
+    "RecResultException",
+    "RecResultItem",
+    "RecResultItemDetails",
+    "RecResultReview",
     "RecResultSet",
     "RecResultSetApprovalDecisionRequest",
     "RecReview",
     "RecRunLogEntry",
     "RecSubmission",
     "RecSupersededRun",
+    "RecUserComment",
     "RecWorkflowTask",
     "RecipeBlock",
     "RecipeComposer",
@@ -2875,6 +2923,7 @@ __all__ = [
     "RepurchaseOfferEvent",
     "RequestedChanges",
     "ResetEvent",
+    "ResetSchedule",
     "ResolveTenorsRequest",
     "ResolveTenorsResponse",
     "ResolvedCustodianAccount",
@@ -3075,6 +3124,7 @@ __all__ = [
     "SubmitRecResultSetReviewRequest",
     "SubscribeElection",
     "SubscriptionDefinition",
+    "SupplementalAttributeValues",
     "SwapCashFlowEvent",
     "SwapPrincipalEvent",
     "SweepBlocksRequest",

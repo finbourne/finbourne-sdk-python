@@ -56,7 +56,7 @@ class AborConfigurationApi:
 
     @validate_call
     def create_abor_configuration(self, scope: StrictStr, abor_configuration_request: AborConfigurationRequest, **kwargs) -> AborConfiguration:
-        """[EXPERIMENTAL] CreateAborConfiguration: Create an AborConfiguration.  # noqa: E501
+        """[EARLY ACCESS] CreateAborConfiguration: Create an AborConfiguration.  # noqa: E501
 
         Create the given AborConfiguration.  # noqa: E501
         :param scope: The scope of the AborConfiguration. (required)
@@ -78,7 +78,7 @@ class AborConfigurationApi:
 
     @validate_call
     def create_abor_configuration_with_http_info(self, scope: StrictStr, abor_configuration_request: AborConfigurationRequest, **kwargs) -> ApiResponse[AborConfiguration]:
-        """[EXPERIMENTAL] CreateAborConfiguration: Create an AborConfiguration.  # noqa: E501
+        """[EARLY ACCESS] CreateAborConfiguration: Create an AborConfiguration.  # noqa: E501
 
         Create the given AborConfiguration.  # noqa: E501
         :param scope: The scope of the AborConfiguration. (required)
@@ -191,7 +191,7 @@ class AborConfigurationApi:
 
     @validate_call
     def delete_abor_configuration(self, scope: StrictStr, code: StrictStr, **kwargs) -> DeletedEntityResponse:
-        """[EXPERIMENTAL] DeleteAborConfiguration: Delete an AborConfiguration.  # noqa: E501
+        """[EARLY ACCESS] DeleteAborConfiguration: Delete an AborConfiguration.  # noqa: E501
 
         Delete the given AborConfiguration.  # noqa: E501
         :param scope: The scope of the AborConfiguration to be deleted. (required)
@@ -213,7 +213,7 @@ class AborConfigurationApi:
 
     @validate_call
     def delete_abor_configuration_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-        """[EXPERIMENTAL] DeleteAborConfiguration: Delete an AborConfiguration.  # noqa: E501
+        """[EARLY ACCESS] DeleteAborConfiguration: Delete an AborConfiguration.  # noqa: E501
 
         Delete the given AborConfiguration.  # noqa: E501
         :param scope: The scope of the AborConfiguration to be deleted. (required)
@@ -319,7 +319,7 @@ class AborConfigurationApi:
 
     @validate_call
     def get_abor_configuration(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> AborConfiguration:
-        """[EXPERIMENTAL] GetAborConfiguration: Get AborConfiguration.  # noqa: E501
+        """[EARLY ACCESS] GetAborConfiguration: Get AborConfiguration.  # noqa: E501
 
         Retrieve the definition of a particular AborConfiguration.  # noqa: E501
         :param scope: The scope of the AborConfiguration. (required)
@@ -347,7 +347,7 @@ class AborConfigurationApi:
 
     @validate_call
     def get_abor_configuration_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[AborConfiguration]:
-        """[EXPERIMENTAL] GetAborConfiguration: Get AborConfiguration.  # noqa: E501
+        """[EARLY ACCESS] GetAborConfiguration: Get AborConfiguration.  # noqa: E501
 
         Retrieve the definition of a particular AborConfiguration.  # noqa: E501
         :param scope: The scope of the AborConfiguration. (required)
@@ -475,7 +475,7 @@ class AborConfigurationApi:
 
     @validate_call
     def get_abor_configuration_properties(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> AborConfigurationProperties:
-        """[EXPERIMENTAL] GetAborConfigurationProperties: Get Abor Configuration properties  # noqa: E501
+        """[EARLY ACCESS] GetAborConfigurationProperties: Get Abor Configuration properties  # noqa: E501
 
         Get all the properties of a single abor Configuration.  # noqa: E501
         :param scope: The scope of the Abor Configuration to list the properties for. (required)
@@ -501,7 +501,7 @@ class AborConfigurationApi:
 
     @validate_call
     def get_abor_configuration_properties_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[AborConfigurationProperties]:
-        """[EXPERIMENTAL] GetAborConfigurationProperties: Get Abor Configuration properties  # noqa: E501
+        """[EARLY ACCESS] GetAborConfigurationProperties: Get Abor Configuration properties  # noqa: E501
 
         Get all the properties of a single abor Configuration.  # noqa: E501
         :param scope: The scope of the Abor Configuration to list the properties for. (required)
@@ -622,7 +622,7 @@ class AborConfigurationApi:
 
     @validate_call
     def list_abor_configurations(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfAborConfiguration:
-        """[EXPERIMENTAL] ListAborConfigurations: List AborConfiguration.  # noqa: E501
+        """[EARLY ACCESS] ListAborConfigurations: List AborConfiguration.  # noqa: E501
 
         List all the AborConfiguration matching particular criteria.  # noqa: E501
         :param effective_at: The effective datetime or cut label at which to list the TimeVariant properties for the AborConfiguration. Defaults to the current LUSID              system datetime if not specified.
@@ -654,7 +654,7 @@ class AborConfigurationApi:
 
     @validate_call
     def list_abor_configurations_with_http_info(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfAborConfiguration]:
-        """[EXPERIMENTAL] ListAborConfigurations: List AborConfiguration.  # noqa: E501
+        """[EARLY ACCESS] ListAborConfigurations: List AborConfiguration.  # noqa: E501
 
         List all the AborConfiguration matching particular criteria.  # noqa: E501
         :param effective_at: The effective datetime or cut label at which to list the TimeVariant properties for the AborConfiguration. Defaults to the current LUSID              system datetime if not specified.
@@ -795,7 +795,7 @@ class AborConfigurationApi:
 
     @validate_call
     def patch_abor_configuration(self, scope: StrictStr, code: StrictStr, operation: List[Operation], **kwargs) -> AborConfiguration:
-        """[EXPERIMENTAL] PatchAborConfiguration: Patch Abor Configuration.  # noqa: E501
+        """[EARLY ACCESS] PatchAborConfiguration: Patch Abor Configuration.  # noqa: E501
 
         Create or update certain fields for a particular AborConfiguration.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, PostingModuleCodes, CleardownModuleCodes.  # noqa: E501
         :param scope: The scope of the AborConfiguration. (required)
@@ -819,7 +819,7 @@ class AborConfigurationApi:
 
     @validate_call
     def patch_abor_configuration_with_http_info(self, scope: StrictStr, code: StrictStr, operation: List[Operation], **kwargs) -> ApiResponse[AborConfiguration]:
-        """[EXPERIMENTAL] PatchAborConfiguration: Patch Abor Configuration.  # noqa: E501
+        """[EARLY ACCESS] PatchAborConfiguration: Patch Abor Configuration.  # noqa: E501
 
         Create or update certain fields for a particular AborConfiguration.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, PostingModuleCodes, CleardownModuleCodes.  # noqa: E501
         :param scope: The scope of the AborConfiguration. (required)
@@ -938,7 +938,7 @@ class AborConfigurationApi:
 
     @validate_call
     def upsert_abor_configuration_properties(self, scope: StrictStr, code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> AborConfigurationProperties:
-        """[EXPERIMENTAL] UpsertAborConfigurationProperties: Upsert AborConfiguration properties  # noqa: E501
+        """[EARLY ACCESS] UpsertAborConfigurationProperties: Upsert AborConfiguration properties  # noqa: E501
 
         Update or insert one or more properties onto a single AborConfiguration. A property will be updated if it  already exists and inserted if it does not. All properties must be of the domain 'AborConfiguration'.                Upserting a property that exists for an AborConfiguration, with a null value, will delete the instance of the property for that group.                Properties have an <i>effectiveFrom</i> datetime for which the property is valid, and an <i>effectiveUntil</i>  datetime until which the property is valid. Not supplying an <i>effectiveUntil</i> datetime results in the property being  valid indefinitely, or until the next <i>effectiveFrom</i> datetime of the property.  # noqa: E501
         :param scope: The scope of the AborConfiguration to update or insert the properties onto. (required)
@@ -962,7 +962,7 @@ class AborConfigurationApi:
 
     @validate_call
     def upsert_abor_configuration_properties_with_http_info(self, scope: StrictStr, code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> ApiResponse[AborConfigurationProperties]:
-        """[EXPERIMENTAL] UpsertAborConfigurationProperties: Upsert AborConfiguration properties  # noqa: E501
+        """[EARLY ACCESS] UpsertAborConfigurationProperties: Upsert AborConfiguration properties  # noqa: E501
 
         Update or insert one or more properties onto a single AborConfiguration. A property will be updated if it  already exists and inserted if it does not. All properties must be of the domain 'AborConfiguration'.                Upserting a property that exists for an AborConfiguration, with a null value, will delete the instance of the property for that group.                Properties have an <i>effectiveFrom</i> datetime for which the property is valid, and an <i>effectiveUntil</i>  datetime until which the property is valid. Not supplying an <i>effectiveUntil</i> datetime results in the property being  valid indefinitely, or until the next <i>effectiveFrom</i> datetime of the property.  # noqa: E501
         :param scope: The scope of the AborConfiguration to update or insert the properties onto. (required)
@@ -1085,7 +1085,7 @@ class AborConfigurationApi:
 
     @validate_call
     async def create_abor_configuration_async(self, scope: StrictStr, abor_configuration_request: AborConfigurationRequest, **kwargs) -> AborConfiguration:
-            """[EXPERIMENTAL] CreateAborConfiguration: Create an AborConfiguration.  # noqa: E501
+            """[EARLY ACCESS] CreateAborConfiguration: Create an AborConfiguration.  # noqa: E501
             Create the given AborConfiguration.  # noqa: E501
             
             :param scope: The scope of the AborConfiguration. (required)
@@ -1107,7 +1107,7 @@ class AborConfigurationApi:
 
     @validate_call
     async def create_abor_configuration_with_http_info_async(self, scope: StrictStr, abor_configuration_request: AborConfigurationRequest, **kwargs) -> ApiResponse[AborConfiguration]:
-            """[EXPERIMENTAL] CreateAborConfiguration: Create an AborConfiguration.  # noqa: E501
+            """[EARLY ACCESS] CreateAborConfiguration: Create an AborConfiguration.  # noqa: E501
 
             Create the given AborConfiguration.  # noqa: E501
 
@@ -1221,7 +1221,7 @@ class AborConfigurationApi:
 
     @validate_call
     async def delete_abor_configuration_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> DeletedEntityResponse:
-            """[EXPERIMENTAL] DeleteAborConfiguration: Delete an AborConfiguration.  # noqa: E501
+            """[EARLY ACCESS] DeleteAborConfiguration: Delete an AborConfiguration.  # noqa: E501
             Delete the given AborConfiguration.  # noqa: E501
             
             :param scope: The scope of the AborConfiguration to be deleted. (required)
@@ -1243,7 +1243,7 @@ class AborConfigurationApi:
 
     @validate_call
     async def delete_abor_configuration_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-            """[EXPERIMENTAL] DeleteAborConfiguration: Delete an AborConfiguration.  # noqa: E501
+            """[EARLY ACCESS] DeleteAborConfiguration: Delete an AborConfiguration.  # noqa: E501
 
             Delete the given AborConfiguration.  # noqa: E501
 
@@ -1350,7 +1350,7 @@ class AborConfigurationApi:
 
     @validate_call
     async def get_abor_configuration_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> AborConfiguration:
-            """[EXPERIMENTAL] GetAborConfiguration: Get AborConfiguration.  # noqa: E501
+            """[EARLY ACCESS] GetAborConfiguration: Get AborConfiguration.  # noqa: E501
             Retrieve the definition of a particular AborConfiguration.  # noqa: E501
             
             :param scope: The scope of the AborConfiguration. (required)
@@ -1378,7 +1378,7 @@ class AborConfigurationApi:
 
     @validate_call
     async def get_abor_configuration_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[AborConfiguration]:
-            """[EXPERIMENTAL] GetAborConfiguration: Get AborConfiguration.  # noqa: E501
+            """[EARLY ACCESS] GetAborConfiguration: Get AborConfiguration.  # noqa: E501
 
             Retrieve the definition of a particular AborConfiguration.  # noqa: E501
 
@@ -1507,7 +1507,7 @@ class AborConfigurationApi:
 
     @validate_call
     async def get_abor_configuration_properties_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> AborConfigurationProperties:
-            """[EXPERIMENTAL] GetAborConfigurationProperties: Get Abor Configuration properties  # noqa: E501
+            """[EARLY ACCESS] GetAborConfigurationProperties: Get Abor Configuration properties  # noqa: E501
             Get all the properties of a single abor Configuration.  # noqa: E501
             
             :param scope: The scope of the Abor Configuration to list the properties for. (required)
@@ -1533,7 +1533,7 @@ class AborConfigurationApi:
 
     @validate_call
     async def get_abor_configuration_properties_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[AborConfigurationProperties]:
-            """[EXPERIMENTAL] GetAborConfigurationProperties: Get Abor Configuration properties  # noqa: E501
+            """[EARLY ACCESS] GetAborConfigurationProperties: Get Abor Configuration properties  # noqa: E501
 
             Get all the properties of a single abor Configuration.  # noqa: E501
 
@@ -1655,7 +1655,7 @@ class AborConfigurationApi:
 
     @validate_call
     async def list_abor_configurations_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfAborConfiguration:
-            """[EXPERIMENTAL] ListAborConfigurations: List AborConfiguration.  # noqa: E501
+            """[EARLY ACCESS] ListAborConfigurations: List AborConfiguration.  # noqa: E501
             List all the AborConfiguration matching particular criteria.  # noqa: E501
             
             :param effective_at: The effective datetime or cut label at which to list the TimeVariant properties for the AborConfiguration. Defaults to the current LUSID              system datetime if not specified.
@@ -1687,7 +1687,7 @@ class AborConfigurationApi:
 
     @validate_call
     async def list_abor_configurations_with_http_info_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfAborConfiguration]:
-            """[EXPERIMENTAL] ListAborConfigurations: List AborConfiguration.  # noqa: E501
+            """[EARLY ACCESS] ListAborConfigurations: List AborConfiguration.  # noqa: E501
 
             List all the AborConfiguration matching particular criteria.  # noqa: E501
 
@@ -1829,7 +1829,7 @@ class AborConfigurationApi:
 
     @validate_call
     async def patch_abor_configuration_async(self, scope: StrictStr, code: StrictStr, operation: List[Operation], **kwargs) -> AborConfiguration:
-            """[EXPERIMENTAL] PatchAborConfiguration: Patch Abor Configuration.  # noqa: E501
+            """[EARLY ACCESS] PatchAborConfiguration: Patch Abor Configuration.  # noqa: E501
             Create or update certain fields for a particular AborConfiguration.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, PostingModuleCodes, CleardownModuleCodes.  # noqa: E501
             
             :param scope: The scope of the AborConfiguration. (required)
@@ -1853,7 +1853,7 @@ class AborConfigurationApi:
 
     @validate_call
     async def patch_abor_configuration_with_http_info_async(self, scope: StrictStr, code: StrictStr, operation: List[Operation], **kwargs) -> ApiResponse[AborConfiguration]:
-            """[EXPERIMENTAL] PatchAborConfiguration: Patch Abor Configuration.  # noqa: E501
+            """[EARLY ACCESS] PatchAborConfiguration: Patch Abor Configuration.  # noqa: E501
 
             Create or update certain fields for a particular AborConfiguration.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, PostingModuleCodes, CleardownModuleCodes.  # noqa: E501
 
@@ -1973,7 +1973,7 @@ class AborConfigurationApi:
 
     @validate_call
     async def upsert_abor_configuration_properties_async(self, scope: StrictStr, code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> AborConfigurationProperties:
-            """[EXPERIMENTAL] UpsertAborConfigurationProperties: Upsert AborConfiguration properties  # noqa: E501
+            """[EARLY ACCESS] UpsertAborConfigurationProperties: Upsert AborConfiguration properties  # noqa: E501
             Update or insert one or more properties onto a single AborConfiguration. A property will be updated if it  already exists and inserted if it does not. All properties must be of the domain 'AborConfiguration'.                Upserting a property that exists for an AborConfiguration, with a null value, will delete the instance of the property for that group.                Properties have an <i>effectiveFrom</i> datetime for which the property is valid, and an <i>effectiveUntil</i>  datetime until which the property is valid. Not supplying an <i>effectiveUntil</i> datetime results in the property being  valid indefinitely, or until the next <i>effectiveFrom</i> datetime of the property.  # noqa: E501
             
             :param scope: The scope of the AborConfiguration to update or insert the properties onto. (required)
@@ -1997,7 +1997,7 @@ class AborConfigurationApi:
 
     @validate_call
     async def upsert_abor_configuration_properties_with_http_info_async(self, scope: StrictStr, code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> ApiResponse[AborConfigurationProperties]:
-            """[EXPERIMENTAL] UpsertAborConfigurationProperties: Upsert AborConfiguration properties  # noqa: E501
+            """[EARLY ACCESS] UpsertAborConfigurationProperties: Upsert AborConfiguration properties  # noqa: E501
 
             Update or insert one or more properties onto a single AborConfiguration. A property will be updated if it  already exists and inserted if it does not. All properties must be of the domain 'AborConfiguration'.                Upserting a property that exists for an AborConfiguration, with a null value, will delete the instance of the property for that group.                Properties have an <i>effectiveFrom</i> datetime for which the property is valid, and an <i>effectiveUntil</i>  datetime until which the property is valid. Not supplying an <i>effectiveUntil</i> datetime results in the property being  valid indefinitely, or until the next <i>effectiveFrom</i> datetime of the property.  # noqa: E501
 

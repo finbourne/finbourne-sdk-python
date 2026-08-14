@@ -4,56 +4,56 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**accept_estimate_valuation_point**](FundsApi.md#accept_estimate_valuation_point) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/$acceptestimate | [EXPERIMENTAL] AcceptEstimateValuationPoint: Accepts an Estimate Valuation Point.
-[**add_allocation_groups**](FundsApi.md#add_allocation_groups) | **POST** /api/api/funds/{scope}/{code}/allocationgroups | [EXPERIMENTAL] AddAllocationGroups: Add Allocation Groups to a Fund.
-[**add_series**](FundsApi.md#add_series) | **POST** /api/api/funds/{scope}/{code}/series | [EXPERIMENTAL] AddSeries: Add Series to a Fund.
-[**create_fee**](FundsApi.md#create_fee) | **POST** /api/api/funds/{scope}/{code}/fees | [EXPERIMENTAL] CreateFee: Create a Fee.
-[**create_fund**](FundsApi.md#create_fund) | **POST** /api/api/funds/{scope} | [EXPERIMENTAL] CreateFund: Create a Fund.
-[**create_fund_v2**](FundsApi.md#create_fund_v2) | **POST** /api/api/funds/v2/{scope} | [EXPERIMENTAL] CreateFundV2: Create a Fund V2 (Preview).
-[**create_valuation_point**](FundsApi.md#create_valuation_point) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/$create | [EXPERIMENTAL] CreateValuationPoint: Create a Valuation Point.
-[**deactivate_nav_types**](FundsApi.md#deactivate_nav_types) | **POST** /api/api/funds/{scope}/{code}/deactivateNavTypes | [EXPERIMENTAL] DeactivateNavTypes: Deactivate NAV types on a Fund.
-[**delete_bookmark**](FundsApi.md#delete_bookmark) | **DELETE** /api/api/funds/{scope}/{code}/bookmarks/{bookmarkCode} | [EXPERIMENTAL] DeleteBookmark: Delete a Bookmark.
-[**delete_fee**](FundsApi.md#delete_fee) | **DELETE** /api/api/funds/{scope}/{code}/fees/{feeCode} | [EXPERIMENTAL] DeleteFee: Delete a Fee.
-[**delete_fund**](FundsApi.md#delete_fund) | **DELETE** /api/api/funds/{scope}/{code} | [EXPERIMENTAL] DeleteFund: Delete a Fund.
-[**delete_nav_activity_adjustments**](FundsApi.md#delete_nav_activity_adjustments) | **POST** /api/api/funds/{scope}/{code}/navAdjustment/$delete | [EXPERIMENTAL] DeleteNavActivityAdjustments: Delete Nav activity adjustments.
-[**delete_valuation_point**](FundsApi.md#delete_valuation_point) | **DELETE** /api/api/funds/{scope}/{code}/valuationpoints/{diaryEntryCode} | [EXPERIMENTAL] DeleteValuationPoint: Delete a Valuation Point.
-[**finalise_candidate_valuation_point**](FundsApi.md#finalise_candidate_valuation_point) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/$finalisecandidate | [EXPERIMENTAL] FinaliseCandidateValuationPoint: Finalise a Candidate Valuation Point.
-[**get_a2_b_data_for_fund**](FundsApi.md#get_a2_b_data_for_fund) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/a2b/$query | [EXPERIMENTAL] GetA2BDataForFund: Get A2B data for a Fund.
-[**get_a2_b_movements_for_fund**](FundsApi.md#get_a2_b_movements_for_fund) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/a2bmovements/$query | [EXPERIMENTAL] GetA2BMovementsForFund: Get A2B movements for transaction portfolios in a Fund.
-[**get_fee**](FundsApi.md#get_fee) | **GET** /api/api/funds/{scope}/{code}/fees/{feeCode} | [EXPERIMENTAL] GetFee: Get a Fee for a specified Fund.
-[**get_fee_properties**](FundsApi.md#get_fee_properties) | **GET** /api/api/funds/{scope}/{code}/fees/{feeCode}/properties | [EXPERIMENTAL] GetFeeProperties: Get Fee properties.
-[**get_fund**](FundsApi.md#get_fund) | **GET** /api/api/funds/{scope}/{code} | [EXPERIMENTAL] GetFund: Get a Fund.
-[**get_fund_properties**](FundsApi.md#get_fund_properties) | **GET** /api/api/funds/{scope}/{code}/properties | [EXPERIMENTAL] GetFundProperties: Get Fund properties.
-[**get_holding_contributors_for_fund**](FundsApi.md#get_holding_contributors_for_fund) | **POST** /api/api/funds/{scope}/{code}/holdings/{holdingId}/contributors | [EXPERIMENTAL] GetHoldingContributorsForFund: Get holdings contributors for transaction portfolios in a Fund.
-[**get_holdings_for_fund**](FundsApi.md#get_holdings_for_fund) | **POST** /api/api/funds/{scope}/{code}/$holdings | [EXPERIMENTAL] GetHoldingsForFund: Get holdings for transaction portfolios in a Fund.
-[**get_valuation_for_fund**](FundsApi.md#get_valuation_for_fund) | **POST** /api/api/funds/{scope}/{code}/$valuation | [EXPERIMENTAL] GetValuationForFund: Perform valuation for a Fund.
-[**get_valuation_point_data**](FundsApi.md#get_valuation_point_data) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/$query | [EXPERIMENTAL] GetValuationPointData: Get Valuation Point Data for a Fund.
-[**get_valuation_point_journal_entry_lines**](FundsApi.md#get_valuation_point_journal_entry_lines) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/journalentrylines/$query | [EXPERIMENTAL] GetValuationPointJournalEntryLines: Get the Journal Entry Lines for the given Fund.
-[**get_valuation_point_pnl_summary**](FundsApi.md#get_valuation_point_pnl_summary) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/pnlsummary/$query | [EXPERIMENTAL] GetValuationPointPnlSummary: Get a PnL summary for the given Valuation Point in the Fund.
-[**get_valuation_point_quotes**](FundsApi.md#get_valuation_point_quotes) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/quotes/$query | [EXPERIMENTAL] GetValuationPointQuotes: Get the Quotes for the given Fund and Valuation Point.
-[**get_valuation_point_transactions**](FundsApi.md#get_valuation_point_transactions) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/transactions/$query | [EXPERIMENTAL] GetValuationPointTransactions: Get the Transactions for the given Fund.
-[**get_valuation_point_trial_balance**](FundsApi.md#get_valuation_point_trial_balance) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/trialbalance/$query | [EXPERIMENTAL] GetValuationPointTrialBalance: Get Trial Balance for the given Fund.
-[**get_valuation_point_unsettled_transactions**](FundsApi.md#get_valuation_point_unsettled_transactions) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/unsettledtransactions/$query | [EXPERIMENTAL] GetValuationPointUnsettledTransactions: Get Unsettled Transactions for the given Fund.
-[**list_fees**](FundsApi.md#list_fees) | **GET** /api/api/funds/{scope}/{code}/fees | [EXPERIMENTAL] ListFees: List Fees for a specified Fund.
-[**list_fund_calendar**](FundsApi.md#list_fund_calendar) | **GET** /api/api/funds/{scope}/{code}/calendar | [EXPERIMENTAL] ListFundCalendar: List Fund Calendar.
-[**list_fund_calendar_entries**](FundsApi.md#list_fund_calendar_entries) | **GET** /api/api/funds/{scope}/{code}/calendars | [EXPERIMENTAL] ListFundCalendarEntries: List Fund Calendar Entries.
-[**list_funds**](FundsApi.md#list_funds) | **GET** /api/api/funds | [EXPERIMENTAL] ListFunds: List Funds.
-[**list_nav_activity_adjustments**](FundsApi.md#list_nav_activity_adjustments) | **GET** /api/api/funds/{scope}/{code}/navAdjustment | [EXPERIMENTAL] ListNavActivityAdjustments: List NAV adjustment activities applied to a valuation point
-[**list_valuation_point_complex_market_data**](FundsApi.md#list_valuation_point_complex_market_data) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/complexmarketdata/$query | [EXPERIMENTAL] ListValuationPointComplexMarketData: List the Complex Market Data for the given Fund and Valuation Point.
-[**list_valuation_point_instruments**](FundsApi.md#list_valuation_point_instruments) | **GET** /api/api/funds/{scope}/{code}/valuationpoints/instruments/$query | [EXPERIMENTAL] ListValuationPointInstruments: List Instruments inside a valuation point
-[**list_valuation_point_overview**](FundsApi.md#list_valuation_point_overview) | **GET** /api/api/funds/{scope}/{code}/valuationPointOverview | [EXPERIMENTAL] ListValuationPointOverview: List Valuation Points Overview for a given Fund.
-[**patch_fee**](FundsApi.md#patch_fee) | **PATCH** /api/api/funds/{scope}/{code}/fees/{feeCode} | [EXPERIMENTAL] PatchFee: Patch Fee.
-[**patch_fund**](FundsApi.md#patch_fund) | **PATCH** /api/api/funds/{scope}/{code} | [EXPERIMENTAL] PatchFund: Patch a Fund.
+[**accept_estimate_valuation_point**](FundsApi.md#accept_estimate_valuation_point) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/$acceptestimate | [EARLY ACCESS] AcceptEstimateValuationPoint: Accepts an Estimate Valuation Point.
+[**add_allocation_groups**](FundsApi.md#add_allocation_groups) | **POST** /api/api/funds/{scope}/{code}/allocationgroups | [EARLY ACCESS] AddAllocationGroups: Add Allocation Groups to a Fund.
+[**add_series**](FundsApi.md#add_series) | **POST** /api/api/funds/{scope}/{code}/series | [EARLY ACCESS] AddSeries: Add Series to a Fund.
+[**create_fee**](FundsApi.md#create_fee) | **POST** /api/api/funds/{scope}/{code}/fees | [EARLY ACCESS] CreateFee: Create a Fee.
+[**create_fund**](FundsApi.md#create_fund) | **POST** /api/api/funds/{scope} | [EARLY ACCESS] CreateFund: Create a Fund.
+[**create_fund_v2**](FundsApi.md#create_fund_v2) | **POST** /api/api/funds/v2/{scope} | [EARLY ACCESS] CreateFundV2: Create a Fund V2 (Preview).
+[**create_valuation_point**](FundsApi.md#create_valuation_point) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/$create | [EARLY ACCESS] CreateValuationPoint: Create a Valuation Point.
+[**deactivate_nav_types**](FundsApi.md#deactivate_nav_types) | **POST** /api/api/funds/{scope}/{code}/deactivateNavTypes | [EARLY ACCESS] DeactivateNavTypes: Deactivate NAV types on a Fund.
+[**delete_bookmark**](FundsApi.md#delete_bookmark) | **DELETE** /api/api/funds/{scope}/{code}/bookmarks/{bookmarkCode} | [EARLY ACCESS] DeleteBookmark: Delete a Bookmark.
+[**delete_fee**](FundsApi.md#delete_fee) | **DELETE** /api/api/funds/{scope}/{code}/fees/{feeCode} | [EARLY ACCESS] DeleteFee: Delete a Fee.
+[**delete_fund**](FundsApi.md#delete_fund) | **DELETE** /api/api/funds/{scope}/{code} | [EARLY ACCESS] DeleteFund: Delete a Fund.
+[**delete_nav_activity_adjustments**](FundsApi.md#delete_nav_activity_adjustments) | **POST** /api/api/funds/{scope}/{code}/navAdjustment/$delete | [EARLY ACCESS] DeleteNavActivityAdjustments: Delete Nav activity adjustments.
+[**delete_valuation_point**](FundsApi.md#delete_valuation_point) | **DELETE** /api/api/funds/{scope}/{code}/valuationpoints/{diaryEntryCode} | [EARLY ACCESS] DeleteValuationPoint: Delete a Valuation Point.
+[**finalise_candidate_valuation_point**](FundsApi.md#finalise_candidate_valuation_point) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/$finalisecandidate | [EARLY ACCESS] FinaliseCandidateValuationPoint: Finalise a Candidate Valuation Point.
+[**get_a2_b_data_for_fund**](FundsApi.md#get_a2_b_data_for_fund) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/a2b/$query | [EARLY ACCESS] GetA2BDataForFund: Get A2B data for a Fund.
+[**get_a2_b_movements_for_fund**](FundsApi.md#get_a2_b_movements_for_fund) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/a2bmovements/$query | [EARLY ACCESS] GetA2BMovementsForFund: Get A2B movements for transaction portfolios in a Fund.
+[**get_fee**](FundsApi.md#get_fee) | **GET** /api/api/funds/{scope}/{code}/fees/{feeCode} | [EARLY ACCESS] GetFee: Get a Fee for a specified Fund.
+[**get_fee_properties**](FundsApi.md#get_fee_properties) | **GET** /api/api/funds/{scope}/{code}/fees/{feeCode}/properties | [EARLY ACCESS] GetFeeProperties: Get Fee properties.
+[**get_fund**](FundsApi.md#get_fund) | **GET** /api/api/funds/{scope}/{code} | [EARLY ACCESS] GetFund: Get a Fund.
+[**get_fund_properties**](FundsApi.md#get_fund_properties) | **GET** /api/api/funds/{scope}/{code}/properties | [EARLY ACCESS] GetFundProperties: Get Fund properties.
+[**get_holding_contributors_for_fund**](FundsApi.md#get_holding_contributors_for_fund) | **POST** /api/api/funds/{scope}/{code}/holdings/{holdingId}/contributors | [EARLY ACCESS] GetHoldingContributorsForFund: Get holdings contributors for transaction portfolios in a Fund.
+[**get_holdings_for_fund**](FundsApi.md#get_holdings_for_fund) | **POST** /api/api/funds/{scope}/{code}/$holdings | [EARLY ACCESS] GetHoldingsForFund: Get holdings for transaction portfolios in a Fund.
+[**get_valuation_for_fund**](FundsApi.md#get_valuation_for_fund) | **POST** /api/api/funds/{scope}/{code}/$valuation | [EARLY ACCESS] GetValuationForFund: Perform valuation for a Fund.
+[**get_valuation_point_data**](FundsApi.md#get_valuation_point_data) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/$query | [EARLY ACCESS] GetValuationPointData: Get Valuation Point Data for a Fund.
+[**get_valuation_point_journal_entry_lines**](FundsApi.md#get_valuation_point_journal_entry_lines) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/journalentrylines/$query | [EARLY ACCESS] GetValuationPointJournalEntryLines: Get the Journal Entry Lines for the given Fund.
+[**get_valuation_point_pnl_summary**](FundsApi.md#get_valuation_point_pnl_summary) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/pnlsummary/$query | [EARLY ACCESS] GetValuationPointPnlSummary: Get a PnL summary for the given Valuation Point in the Fund.
+[**get_valuation_point_quotes**](FundsApi.md#get_valuation_point_quotes) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/quotes/$query | [EARLY ACCESS] GetValuationPointQuotes: Get the Quotes for the given Fund and Valuation Point.
+[**get_valuation_point_transactions**](FundsApi.md#get_valuation_point_transactions) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/transactions/$query | [EARLY ACCESS] GetValuationPointTransactions: Get the Transactions for the given Fund.
+[**get_valuation_point_trial_balance**](FundsApi.md#get_valuation_point_trial_balance) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/trialbalance/$query | [EARLY ACCESS] GetValuationPointTrialBalance: Get Trial Balance for the given Fund.
+[**get_valuation_point_unsettled_transactions**](FundsApi.md#get_valuation_point_unsettled_transactions) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/unsettledtransactions/$query | [EARLY ACCESS] GetValuationPointUnsettledTransactions: Get Unsettled Transactions for the given Fund.
+[**list_fees**](FundsApi.md#list_fees) | **GET** /api/api/funds/{scope}/{code}/fees | [EARLY ACCESS] ListFees: List Fees for a specified Fund.
+[**list_fund_calendar**](FundsApi.md#list_fund_calendar) | **GET** /api/api/funds/{scope}/{code}/calendar | [EARLY ACCESS] ListFundCalendar: List Fund Calendar.
+[**list_fund_calendar_entries**](FundsApi.md#list_fund_calendar_entries) | **GET** /api/api/funds/{scope}/{code}/calendars | [EARLY ACCESS] ListFundCalendarEntries: List Fund Calendar Entries.
+[**list_funds**](FundsApi.md#list_funds) | **GET** /api/api/funds | [EARLY ACCESS] ListFunds: List Funds.
+[**list_nav_activity_adjustments**](FundsApi.md#list_nav_activity_adjustments) | **GET** /api/api/funds/{scope}/{code}/navAdjustment | [EARLY ACCESS] ListNavActivityAdjustments: List NAV adjustment activities applied to a valuation point
+[**list_valuation_point_complex_market_data**](FundsApi.md#list_valuation_point_complex_market_data) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/complexmarketdata/$query | [EARLY ACCESS] ListValuationPointComplexMarketData: List the Complex Market Data for the given Fund and Valuation Point.
+[**list_valuation_point_instruments**](FundsApi.md#list_valuation_point_instruments) | **GET** /api/api/funds/{scope}/{code}/valuationpoints/instruments/$query | [EARLY ACCESS] ListValuationPointInstruments: List Instruments inside a valuation point
+[**list_valuation_point_overview**](FundsApi.md#list_valuation_point_overview) | **GET** /api/api/funds/{scope}/{code}/valuationPointOverview | [EARLY ACCESS] ListValuationPointOverview: List Valuation Points Overview for a given Fund.
+[**patch_fee**](FundsApi.md#patch_fee) | **PATCH** /api/api/funds/{scope}/{code}/fees/{feeCode} | [EARLY ACCESS] PatchFee: Patch Fee.
+[**patch_fund**](FundsApi.md#patch_fund) | **PATCH** /api/api/funds/{scope}/{code} | [EARLY ACCESS] PatchFund: Patch a Fund.
 [**query_cash_statement**](FundsApi.md#query_cash_statement) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/cashstatement/$query | [DEPRECATED] QueryCashStatement: [DEPRECATED] QueryCashStatement: Query cash statement for a Fund valuation point.
-[**query_cash_statement_local_currency**](FundsApi.md#query_cash_statement_local_currency) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/cashstatementlocalcurrency/$query | [EXPERIMENTAL] QueryCashStatementLocalCurrency: [EXPERIMENTAL] QueryCashStatementLocalCurrency: Query the local-currency cash statement for a Fund valuation point.
-[**revert_valuation_point_to_estimate**](FundsApi.md#revert_valuation_point_to_estimate) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/$reverttoestimate | [EXPERIMENTAL] RevertValuationPointToEstimate: Reverts a Final Valuation Point to Estimate.
-[**set_share_class_instruments**](FundsApi.md#set_share_class_instruments) | **PUT** /api/api/funds/{scope}/{code}/shareclasses | [EXPERIMENTAL] SetShareClassInstruments: Set the ShareClass Instruments on a Fund.
-[**update_valuation_point**](FundsApi.md#update_valuation_point) | **PUT** /api/api/funds/{scope}/{code}/valuationpoints | [EXPERIMENTAL] UpdateValuationPoint: Update a Valuation Point.
-[**upsert_bookmark**](FundsApi.md#upsert_bookmark) | **POST** /api/api/funds/{scope}/{code}/bookmarks | [EXPERIMENTAL] UpsertBookmark: Upsert a bookmark.
-[**upsert_diary_entry_type_valuation_point**](FundsApi.md#upsert_diary_entry_type_valuation_point) | **POST** /api/api/funds/{scope}/{code}/valuationpoints | [EXPERIMENTAL] UpsertDiaryEntryTypeValuationPoint: Upsert a Valuation Point.
-[**upsert_fee_properties**](FundsApi.md#upsert_fee_properties) | **POST** /api/api/funds/{scope}/{code}/fees/{feeCode}/properties/$upsert | [EXPERIMENTAL] UpsertFeeProperties: Upsert Fee properties.
-[**upsert_fund_properties**](FundsApi.md#upsert_fund_properties) | **POST** /api/api/funds/{scope}/{code}/properties/$upsert | [EXPERIMENTAL] UpsertFundProperties: Upsert Fund properties.
-[**upsert_nav_activity_adjustments**](FundsApi.md#upsert_nav_activity_adjustments) | **POST** /api/api/funds/{scope}/{code}/navAdjustment | [EXPERIMENTAL] UpsertNavActivityAdjustments: Upsert NAV adjustment activities to a valuation point
+[**query_cash_statement_local_currency**](FundsApi.md#query_cash_statement_local_currency) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/cashstatementlocalcurrency/$query | [EARLY ACCESS] QueryCashStatementLocalCurrency: [EXPERIMENTAL] QueryCashStatementLocalCurrency: Query the local-currency cash statement for a Fund valuation point.
+[**revert_valuation_point_to_estimate**](FundsApi.md#revert_valuation_point_to_estimate) | **POST** /api/api/funds/{scope}/{code}/valuationpoints/$reverttoestimate | [EARLY ACCESS] RevertValuationPointToEstimate: Reverts a Final Valuation Point to Estimate.
+[**set_share_class_instruments**](FundsApi.md#set_share_class_instruments) | **PUT** /api/api/funds/{scope}/{code}/shareclasses | [EARLY ACCESS] SetShareClassInstruments: Set the ShareClass Instruments on a Fund.
+[**update_valuation_point**](FundsApi.md#update_valuation_point) | **PUT** /api/api/funds/{scope}/{code}/valuationpoints | [EARLY ACCESS] UpdateValuationPoint: Update a Valuation Point.
+[**upsert_bookmark**](FundsApi.md#upsert_bookmark) | **POST** /api/api/funds/{scope}/{code}/bookmarks | [EARLY ACCESS] UpsertBookmark: Upsert a bookmark.
+[**upsert_diary_entry_type_valuation_point**](FundsApi.md#upsert_diary_entry_type_valuation_point) | **POST** /api/api/funds/{scope}/{code}/valuationpoints | [EARLY ACCESS] UpsertDiaryEntryTypeValuationPoint: Upsert a Valuation Point.
+[**upsert_fee_properties**](FundsApi.md#upsert_fee_properties) | **POST** /api/api/funds/{scope}/{code}/fees/{feeCode}/properties/$upsert | [EARLY ACCESS] UpsertFeeProperties: Upsert Fee properties.
+[**upsert_fund_properties**](FundsApi.md#upsert_fund_properties) | **POST** /api/api/funds/{scope}/{code}/properties/$upsert | [EARLY ACCESS] UpsertFundProperties: Upsert Fund properties.
+[**upsert_nav_activity_adjustments**](FundsApi.md#upsert_nav_activity_adjustments) | **POST** /api/api/funds/{scope}/{code}/navAdjustment | [EARLY ACCESS] UpsertNavActivityAdjustments: Upsert NAV adjustment activities to a valuation point
 
 
 ### Example
@@ -84,7 +84,7 @@ api_instance = api_client_factory.build(FundsApi)
 # **accept_estimate_valuation_point**
 > AcceptEstimateValuationPointResponse acceptEstimateValuationPoint = accept_estimate_valuation_point(scope, code, valuation_point_data_request, nav_type_code=nav_type_code)
 
-[EXPERIMENTAL] AcceptEstimateValuationPoint: Accepts an Estimate Valuation Point.
+[EARLY ACCESS] AcceptEstimateValuationPoint: Accepts an Estimate Valuation Point.
 
 Accepts the specified estimate Valuation Point.  Should the Valuation Point differ since the Valuation Point was last run, both Valuation Points will be returned and status will be marked as 'Candidate',  otherwise it will be marked as 'Final'.
 
@@ -132,7 +132,7 @@ Name | Type | Description  | Notes
 # **add_allocation_groups**
 > Fund addAllocationGroups = add_allocation_groups(scope, code, allocation_group_definition)
 
-[EXPERIMENTAL] AddAllocationGroups: Add Allocation Groups to a Fund.
+[EARLY ACCESS] AddAllocationGroups: Add Allocation Groups to a Fund.
 
 Add the given Allocation Group definitions to the Fund.
 
@@ -178,7 +178,7 @@ Name | Type | Description  | Notes
 # **add_series**
 > Fund addSeries = add_series(scope, code, series_definition_request)
 
-[EXPERIMENTAL] AddSeries: Add Series to a Fund.
+[EARLY ACCESS] AddSeries: Add Series to a Fund.
 
 Add the given Series definitions to the specified Share Classes of the Fund.
 
@@ -224,7 +224,7 @@ Name | Type | Description  | Notes
 # **create_fee**
 > Fee createFee = create_fee(scope, code, fee_request, nav_type_code=nav_type_code)
 
-[EXPERIMENTAL] CreateFee: Create a Fee.
+[EARLY ACCESS] CreateFee: Create a Fee.
 
 Create the given Fee.
 
@@ -272,7 +272,7 @@ Name | Type | Description  | Notes
 # **create_fund**
 > Fund createFund = create_fund(scope, fund_request)
 
-[EXPERIMENTAL] CreateFund: Create a Fund.
+[EARLY ACCESS] CreateFund: Create a Fund.
 
 Create the given Fund.
 
@@ -316,7 +316,7 @@ Name | Type | Description  | Notes
 # **create_fund_v2**
 > Fund createFundV2 = create_fund_v2(scope, fund_definition_request)
 
-[EXPERIMENTAL] CreateFundV2: Create a Fund V2 (Preview).
+[EARLY ACCESS] CreateFundV2: Create a Fund V2 (Preview).
 
 Create the given V2 Fund.
 
@@ -360,7 +360,7 @@ Name | Type | Description  | Notes
 # **create_valuation_point**
 > ValuationPoint createValuationPoint = create_valuation_point(scope, code, create_valuation_point_request, nav_type_code=nav_type_code)
 
-[EXPERIMENTAL] CreateValuationPoint: Create a Valuation Point.
+[EARLY ACCESS] CreateValuationPoint: Create a Valuation Point.
 
 Insert the estimate Valuation Point.
 
@@ -408,7 +408,7 @@ Name | Type | Description  | Notes
 # **deactivate_nav_types**
 > Fund deactivateNavTypes = deactivate_nav_types(scope, code, request_body, delete_mode=delete_mode)
 
-[EXPERIMENTAL] DeactivateNavTypes: Deactivate NAV types on a Fund.
+[EARLY ACCESS] DeactivateNavTypes: Deactivate NAV types on a Fund.
 
 Deactivate the given NAV types on the Fund.
 
@@ -456,7 +456,7 @@ Name | Type | Description  | Notes
 # **delete_bookmark**
 > DeletedEntityResponse deleteBookmark = delete_bookmark(scope, code, bookmark_code, nav_type_code=nav_type_code)
 
-[EXPERIMENTAL] DeleteBookmark: Delete a Bookmark.
+[EARLY ACCESS] DeleteBookmark: Delete a Bookmark.
 
 Deletes the given Bookmark.
 
@@ -504,7 +504,7 @@ Name | Type | Description  | Notes
 # **delete_fee**
 > DeletedEntityResponse deleteFee = delete_fee(scope, code, fee_code)
 
-[EXPERIMENTAL] DeleteFee: Delete a Fee.
+[EARLY ACCESS] DeleteFee: Delete a Fee.
 
 Delete the given Fee.
 
@@ -550,7 +550,7 @@ Name | Type | Description  | Notes
 # **delete_fund**
 > DeletedEntityResponse deleteFund = delete_fund(scope, code)
 
-[EXPERIMENTAL] DeleteFund: Delete a Fund.
+[EARLY ACCESS] DeleteFund: Delete a Fund.
 
 Delete the given Fund.
 
@@ -594,7 +594,7 @@ Name | Type | Description  | Notes
 # **delete_nav_activity_adjustments**
 > DeletedEntityResponse deleteNavActivityAdjustments = delete_nav_activity_adjustments(scope, code, valuation_point_code, nav_activity_adjustment_response, nav_type_code=nav_type_code, valuation_point_code_variant=valuation_point_code_variant)
 
-[EXPERIMENTAL] DeleteNavActivityAdjustments: Delete Nav activity adjustments.
+[EARLY ACCESS] DeleteNavActivityAdjustments: Delete Nav activity adjustments.
 
 Delete Nav activity adjustments on a Valuation Point.
 
@@ -646,7 +646,7 @@ Name | Type | Description  | Notes
 # **delete_valuation_point**
 > DeletedEntityResponse deleteValuationPoint = delete_valuation_point(scope, code, diary_entry_code, diary_entry_code_variant=diary_entry_code_variant, nav_type_code=nav_type_code)
 
-[EXPERIMENTAL] DeleteValuationPoint: Delete a Valuation Point.
+[EARLY ACCESS] DeleteValuationPoint: Delete a Valuation Point.
 
 Deletes the given Valuation Point.
 
@@ -696,7 +696,7 @@ Name | Type | Description  | Notes
 # **finalise_candidate_valuation_point**
 > ValuationPointDataResponse finaliseCandidateValuationPoint = finalise_candidate_valuation_point(scope, code, valuation_point_data_request, nav_type_code=nav_type_code)
 
-[EXPERIMENTAL] FinaliseCandidateValuationPoint: Finalise a Candidate Valuation Point.
+[EARLY ACCESS] FinaliseCandidateValuationPoint: Finalise a Candidate Valuation Point.
 
 Moves a 'Candidate' status Valuation Point to status 'Final'.
 
@@ -744,7 +744,7 @@ Name | Type | Description  | Notes
 # **get_a2_b_data_for_fund**
 > VersionedResourceListOfFundA2BDataRecord getA2BDataForFund = get_a2_b_data_for_fund(scope, code, valuation_point_data_query_parameters, nav_type_code=nav_type_code, as_at=as_at, filter=filter, property_keys=property_keys)
 
-[EXPERIMENTAL] GetA2BDataForFund: Get A2B data for a Fund.
+[EARLY ACCESS] GetA2BDataForFund: Get A2B data for a Fund.
 
 Get the A2B data for transaction portfolios in a specified Fund.
 
@@ -798,7 +798,7 @@ Name | Type | Description  | Notes
 # **get_a2_b_movements_for_fund**
 > VersionedResourceListOfFundA2BMovementRecord getA2BMovementsForFund = get_a2_b_movements_for_fund(scope, code, valuation_point_data_query_parameters, nav_type_code=nav_type_code, as_at=as_at, filter=filter, property_keys=property_keys)
 
-[EXPERIMENTAL] GetA2BMovementsForFund: Get A2B movements for transaction portfolios in a Fund.
+[EARLY ACCESS] GetA2BMovementsForFund: Get A2B movements for transaction portfolios in a Fund.
 
 Get the A2B movement records of transaction portfolios in a specified Fund.
 
@@ -852,7 +852,7 @@ Name | Type | Description  | Notes
 # **get_fee**
 > Fee getFee = get_fee(scope, code, fee_code, effective_at=effective_at, as_at=as_at, property_keys=property_keys)
 
-[EXPERIMENTAL] GetFee: Get a Fee for a specified Fund.
+[EARLY ACCESS] GetFee: Get a Fee for a specified Fund.
 
 Retrieve a fee for a specified Fund.
 
@@ -904,7 +904,7 @@ Name | Type | Description  | Notes
 # **get_fee_properties**
 > FeeProperties getFeeProperties = get_fee_properties(scope, code, fee_code, effective_at=effective_at, as_at=as_at)
 
-[EXPERIMENTAL] GetFeeProperties: Get Fee properties.
+[EARLY ACCESS] GetFeeProperties: Get Fee properties.
 
 Get all the properties of a single fee.
 
@@ -954,7 +954,7 @@ Name | Type | Description  | Notes
 # **get_fund**
 > Fund getFund = get_fund(scope, code, effective_at=effective_at, as_at=as_at, property_keys=property_keys)
 
-[EXPERIMENTAL] GetFund: Get a Fund.
+[EARLY ACCESS] GetFund: Get a Fund.
 
 Retrieve the definition of a particular Fund.
 
@@ -1004,7 +1004,7 @@ Name | Type | Description  | Notes
 # **get_fund_properties**
 > FundProperties getFundProperties = get_fund_properties(scope, code, effective_at=effective_at, as_at=as_at)
 
-[EXPERIMENTAL] GetFundProperties: Get Fund properties.
+[EARLY ACCESS] GetFundProperties: Get Fund properties.
 
 Get all the properties of a single fund.
 
@@ -1052,7 +1052,7 @@ Name | Type | Description  | Notes
 # **get_holding_contributors_for_fund**
 > VersionedResourceListOfHoldingContributor getHoldingContributorsForFund = get_holding_contributors_for_fund(scope, code, holding_id, valuation_point_data_query_parameters, nav_type_code=nav_type_code, include_historic=include_historic, tax_lot_id=tax_lot_id, include_unsettled_movements=include_unsettled_movements, limit=limit, as_at=as_at, page=page)
 
-[EXPERIMENTAL] GetHoldingContributorsForFund: Get holdings contributors for transaction portfolios in a Fund.
+[EARLY ACCESS] GetHoldingContributorsForFund: Get holdings contributors for transaction portfolios in a Fund.
 
 Get the holdings of transaction portfolios in a specified Fund.
 
@@ -1114,7 +1114,7 @@ Name | Type | Description  | Notes
 # **get_holdings_for_fund**
 > VersionedResourceListOfPortfolioHolding getHoldingsForFund = get_holdings_for_fund(scope, code, single_valuation_point_query_parameters, nav_type_code=nav_type_code, as_at=as_at, filter=filter, property_keys=property_keys, by_taxlots=by_taxlots, include_settlement_events_after_days=include_settlement_events_after_days)
 
-[EXPERIMENTAL] GetHoldingsForFund: Get holdings for transaction portfolios in a Fund.
+[EARLY ACCESS] GetHoldingsForFund: Get holdings for transaction portfolios in a Fund.
 
 Get the holdings of transaction portfolios in a specified Fund.
 
@@ -1172,7 +1172,7 @@ Name | Type | Description  | Notes
 # **get_valuation_for_fund**
 > ListAggregationResponse getValuationForFund = get_valuation_for_fund(scope, code, nav_type_code=nav_type_code, fund_valuation_request=fund_valuation_request)
 
-[EXPERIMENTAL] GetValuationForFund: Perform valuation for a Fund.
+[EARLY ACCESS] GetValuationForFund: Perform valuation for a Fund.
 
 Perform valuation on a specified Fund.
 
@@ -1220,7 +1220,7 @@ Name | Type | Description  | Notes
 # **get_valuation_point_data**
 > ValuationPointDataResponse getValuationPointData = get_valuation_point_data(scope, code, valuation_point_data_query_parameters, as_at=as_at, nav_type_code=nav_type_code)
 
-[EXPERIMENTAL] GetValuationPointData: Get Valuation Point Data for a Fund.
+[EARLY ACCESS] GetValuationPointData: Get Valuation Point Data for a Fund.
 
 Retrieves the Valuation Point data between given dates or Valuation Point codes.  The endpoint will internally extract all 'Assets' and 'Liabilities' from the Fund's Trial balance to produce a GAV.  Start date will be assumed from the last 'official' ValuationPoint and EndDate will be as provided.
 
@@ -1270,7 +1270,7 @@ Name | Type | Description  | Notes
 # **get_valuation_point_journal_entry_lines**
 > ValuationPointResourceListOfFundJournalEntryLine getValuationPointJournalEntryLines = get_valuation_point_journal_entry_lines(scope, code, valuation_point_data_query_parameters, general_ledger_profile_code=general_ledger_profile_code, as_at=as_at, filter=filter, limit=limit, page=page, property_keys=property_keys, nav_type_code=nav_type_code)
 
-[EXPERIMENTAL] GetValuationPointJournalEntryLines: Get the Journal Entry Lines for the given Fund.
+[EARLY ACCESS] GetValuationPointJournalEntryLines: Get the Journal Entry Lines for the given Fund.
 
 Gets the Journal Entry Lines for the given Valuation Point for a Fund.                The Journal Entry Lines have been generated from transactions, translated via posting rules and used in the valuation point.
 
@@ -1330,7 +1330,7 @@ Name | Type | Description  | Notes
 # **get_valuation_point_pnl_summary**
 > ValuationPointResourceListOfPnlJournalEntryLine getValuationPointPnlSummary = get_valuation_point_pnl_summary(scope, code, valuation_point_data_query_parameters, general_ledger_profile_code=general_ledger_profile_code, as_at=as_at, filter=filter, limit=limit, page=page, nav_type_code=nav_type_code)
 
-[EXPERIMENTAL] GetValuationPointPnlSummary: Get a PnL summary for the given Valuation Point in the Fund.
+[EARLY ACCESS] GetValuationPointPnlSummary: Get a PnL summary for the given Valuation Point in the Fund.
 
 Gets the PnL Summary lines from the Journal Entry Lines produced when calculating the Valuation Point.
 
@@ -1388,7 +1388,7 @@ Name | Type | Description  | Notes
 # **get_valuation_point_quotes**
 > ValuationPointResourceListOfAccountedQuote getValuationPointQuotes = get_valuation_point_quotes(scope, code, valuation_point_data_query_parameters, as_at=as_at, limit=limit, page=page, nav_type_code=nav_type_code)
 
-[EXPERIMENTAL] GetValuationPointQuotes: Get the Quotes for the given Fund and Valuation Point.
+[EARLY ACCESS] GetValuationPointQuotes: Get the Quotes for the given Fund and Valuation Point.
 
 Gets all quotes within the effective date range of the specified Valuation Point for a Fund,  including any quotes added via a Complex Close (Post-Close Activity).
 
@@ -1442,7 +1442,7 @@ Name | Type | Description  | Notes
 # **get_valuation_point_transactions**
 > ValuationPointResourceListOfAccountedTransaction getValuationPointTransactions = get_valuation_point_transactions(scope, code, valuation_point_data_query_parameters, as_at=as_at, filter=filter, limit=limit, page=page, property_keys=property_keys, nav_type_code=nav_type_code, data_model_scope=data_model_scope, data_model_code=data_model_code, show_cancelled_transactions=show_cancelled_transactions, membership_type=membership_type)
 
-[EXPERIMENTAL] GetValuationPointTransactions: Get the Transactions for the given Fund.
+[EARLY ACCESS] GetValuationPointTransactions: Get the Transactions for the given Fund.
 
 Gets the Transactions for the given Valuation Point for a Fund.
 
@@ -1508,9 +1508,9 @@ Name | Type | Description  | Notes
 # **get_valuation_point_trial_balance**
 > ValuationPointResourceListOfTrialBalance getValuationPointTrialBalance = get_valuation_point_trial_balance(scope, code, valuation_point_data_query_parameters, general_ledger_profile_code=general_ledger_profile_code, as_at=as_at, filter=filter, limit=limit, page=page, property_keys=property_keys, nav_type_code=nav_type_code, exclude_cleardown_module=exclude_cleardown_module)
 
-[EXPERIMENTAL] GetValuationPointTrialBalance: Get Trial Balance for the given Fund.
+[EARLY ACCESS] GetValuationPointTrialBalance: Get Trial Balance for the given Fund.
 
-Gets the Trial Balance for the given Valuation Point for a Fund.                The Trial Balance has been generated from transactions, translated via Posting Rules  and aggregated based on a General Ledger Profile (where specified).
+Gets the Trial Balance for the given Valuation Point for a Fund.                The Trial Balance has been generated from transactions, translated via Posting Rules  and aggregated based on a General Ledger Profile (where specified).                Supplying the X-LUSID-SuppressImbalanceValidation header suppresses the imbalance check.  Any caller with access to this endpoint may use it; it is not role-restricted.
 
 ### Example
 
@@ -1570,7 +1570,7 @@ Name | Type | Description  | Notes
 # **get_valuation_point_unsettled_transactions**
 > ValuationPointResourceListOfUnsettledTransaction getValuationPointUnsettledTransactions = get_valuation_point_unsettled_transactions(scope, code, valuation_point_data_query_parameters, as_at=as_at, limit=limit, page=page, property_keys=property_keys, nav_type_code=nav_type_code)
 
-[EXPERIMENTAL] GetValuationPointUnsettledTransactions: Get Unsettled Transactions for the given Fund.
+[EARLY ACCESS] GetValuationPointUnsettledTransactions: Get Unsettled Transactions for the given Fund.
 
 Gets all transactions that remain unsettled as at the specified Valuation Point for a Fund,  looking back from inception. Settlement status is point-in-time: post-cutoff settlement  activity does not alter the result.
 
@@ -1626,7 +1626,7 @@ Name | Type | Description  | Notes
 # **list_fees**
 > PagedResourceListOfFee listFees = list_fees(scope, code, effective_at=effective_at, as_at=as_at, page=page, limit=limit, filter=filter, sort_by=sort_by, property_keys=property_keys)
 
-[EXPERIMENTAL] ListFees: List Fees for a specified Fund.
+[EARLY ACCESS] ListFees: List Fees for a specified Fund.
 
 List all the Fees matching a particular criteria.
 
@@ -1684,7 +1684,7 @@ Name | Type | Description  | Notes
 # **list_fund_calendar**
 > PagedResourceListOfFundCalendarEntry listFundCalendar = list_fund_calendar(scope, code, as_at=as_at, page=page, limit=limit, filter=filter, sort_by=sort_by, property_keys=property_keys)
 
-[EXPERIMENTAL] ListFundCalendar: List Fund Calendar.
+[EARLY ACCESS] ListFundCalendar: List Fund Calendar.
 
 List all the Calendar Entries associated with the Fund.
 
@@ -1740,7 +1740,7 @@ Name | Type | Description  | Notes
 # **list_fund_calendar_entries**
 > PagedResourceListOfFundCalendarEntries listFundCalendarEntries = list_fund_calendar_entries(scope, code, as_at=as_at, page=page, limit=limit, filter=filter, sort_by=sort_by, property_keys=property_keys)
 
-[EXPERIMENTAL] ListFundCalendarEntries: List Fund Calendar Entries.
+[EARLY ACCESS] ListFundCalendarEntries: List Fund Calendar Entries.
 
 List all the Calendar Entries associated with the Fund.
 
@@ -1796,7 +1796,7 @@ Name | Type | Description  | Notes
 # **list_funds**
 > PagedResourceListOfFund listFunds = list_funds(effective_at=effective_at, as_at=as_at, page=page, limit=limit, filter=filter, sort_by=sort_by, property_keys=property_keys)
 
-[EXPERIMENTAL] ListFunds: List Funds.
+[EARLY ACCESS] ListFunds: List Funds.
 
 List all the Funds matching particular criteria.
 
@@ -1850,7 +1850,7 @@ Name | Type | Description  | Notes
 # **list_nav_activity_adjustments**
 > ResourceListOfNavActivityAdjustmentResponse listNavActivityAdjustments = list_nav_activity_adjustments(scope, code, valuation_point_code, nav_type_code=nav_type_code, as_at=as_at, page=page, limit=limit, filter=filter, valuation_point_code_variant=valuation_point_code_variant)
 
-[EXPERIMENTAL] ListNavActivityAdjustments: List NAV adjustment activities applied to a valuation point
+[EARLY ACCESS] ListNavActivityAdjustments: List NAV adjustment activities applied to a valuation point
 
 Lists the NAV adjustment activities applied to the specified valuation point for a Fund.
 
@@ -1908,7 +1908,7 @@ Name | Type | Description  | Notes
 # **list_valuation_point_complex_market_data**
 > ValuationPointResourceListOfAccountedComplexMarketData listValuationPointComplexMarketData = list_valuation_point_complex_market_data(scope, code, valuation_point_data_query_parameters, as_at=as_at, limit=limit, page=page, nav_type_code=nav_type_code)
 
-[EXPERIMENTAL] ListValuationPointComplexMarketData: List the Complex Market Data for the given Fund and Valuation Point.
+[EARLY ACCESS] ListValuationPointComplexMarketData: List the Complex Market Data for the given Fund and Valuation Point.
 
 Lists all complex market data within the effective date range of the specified Valuation Point for a Fund,  including any items added via a Complex Close (Post-Close Activity).
 
@@ -1962,7 +1962,7 @@ Name | Type | Description  | Notes
 # **list_valuation_point_instruments**
 > PagedResourceListOfValuationPointInstrument listValuationPointInstruments = list_valuation_point_instruments(scope, code, valuation_point_code, nav_type_code=nav_type_code, as_at=as_at, page=page, limit=limit, filter=filter, sort_by=sort_by, instrument_property_keys=instrument_property_keys, valuation_point_code_variant=valuation_point_code_variant)
 
-[EXPERIMENTAL] ListValuationPointInstruments: List Instruments inside a valuation point
+[EARLY ACCESS] ListValuationPointInstruments: List Instruments inside a valuation point
 
 Lists the Instruments linked to Transactions within a Valuation Point for a Fund.
 
@@ -2024,7 +2024,7 @@ Name | Type | Description  | Notes
 # **list_valuation_point_overview**
 > PagedResourceListOfValuationPointOverview listValuationPointOverview = list_valuation_point_overview(scope, code, effective_at=effective_at, as_at=as_at, page=page, limit=limit, filter=filter, property_keys=property_keys, nav_type_code=nav_type_code)
 
-[EXPERIMENTAL] ListValuationPointOverview: List Valuation Points Overview for a given Fund.
+[EARLY ACCESS] ListValuationPointOverview: List Valuation Points Overview for a given Fund.
 
 List the overview of all the Valuation Points that match the given criteria for a given Fund.
 
@@ -2082,7 +2082,7 @@ Name | Type | Description  | Notes
 # **patch_fee**
 > Fee patchFee = patch_fee(scope, code, fee_code, operation)
 
-[EXPERIMENTAL] PatchFee: Patch Fee.
+[EARLY ACCESS] PatchFee: Patch Fee.
 
 Create or update certain fields for a particular Fee.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: EndDate, ShareClasses.
 
@@ -2130,7 +2130,7 @@ Name | Type | Description  | Notes
 # **patch_fund**
 > Fund patchFund = patch_fund(scope, code, operation)
 
-[EXPERIMENTAL] PatchFund: Patch a Fund.
+[EARLY ACCESS] PatchFund: Patch a Fund.
 
 Update fields on a Fund.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, BaseCurrency, PortfolioIds, FundConfigurationId, ShareClassInstruments, Type, InceptionDate, DecimalPlaces, PrimaryNavType, AdditionalNavTypes, AborId, YearEndDate.
 
@@ -2234,7 +2234,7 @@ Name | Type | Description  | Notes
 # **query_cash_statement_local_currency**
 > ValuationPointResourceListOfFundCashStatementLocalCurrency queryCashStatementLocalCurrency = query_cash_statement_local_currency(scope, code, query_fund_cash_statement_parameters, as_at=as_at, filter=filter, limit=limit, page=page, property_keys=property_keys, nav_type_code=nav_type_code)
 
-[EXPERIMENTAL] QueryCashStatementLocalCurrency: [EXPERIMENTAL] QueryCashStatementLocalCurrency: Query the local-currency cash statement for a Fund valuation point.
+[EARLY ACCESS] QueryCashStatementLocalCurrency: [EXPERIMENTAL] QueryCashStatementLocalCurrency: Query the local-currency cash statement for a Fund valuation point.
 
 Returns settled cash movements with a running balance in local currency for the specified Fund  valuation point period. The cash statement is derived from Journal Entry Lines filtered to  settled cash (HoldType='B', SourceType=LusidTransaction). Use the DisplayMode parameter on the  request body to choose between ShowReversal (full reversal/TrueUp detail) and Consolidated  (collapses system-generated zero-net reversal/TrueUp pairs into SystemCorrection rows). Base  currency columns are out of scope for this variant and are not returned.
 
@@ -2292,7 +2292,7 @@ Name | Type | Description  | Notes
 # **revert_valuation_point_to_estimate**
 > ValuationPointDataResponse revertValuationPointToEstimate = revert_valuation_point_to_estimate(scope, code, revert_valuation_point_data_request, nav_type_code=nav_type_code)
 
-[EXPERIMENTAL] RevertValuationPointToEstimate: Reverts a Final Valuation Point to Estimate.
+[EARLY ACCESS] RevertValuationPointToEstimate: Reverts a Final Valuation Point to Estimate.
 
 Moves a 'Final' status Valuation Point to status 'Estimate'.
 
@@ -2340,7 +2340,7 @@ Name | Type | Description  | Notes
 # **set_share_class_instruments**
 > Fund setShareClassInstruments = set_share_class_instruments(scope, code, set_share_class_instruments_request)
 
-[EXPERIMENTAL] SetShareClassInstruments: Set the ShareClass Instruments on a Fund.
+[EARLY ACCESS] SetShareClassInstruments: Set the ShareClass Instruments on a Fund.
 
 Update the ShareClass Instruments on an existing Fund with the set of instruments provided.
 
@@ -2386,7 +2386,7 @@ Name | Type | Description  | Notes
 # **update_valuation_point**
 > ValuationPoint updateValuationPoint = update_valuation_point(scope, code, update_valuation_point_request, nav_type_code=nav_type_code)
 
-[EXPERIMENTAL] UpdateValuationPoint: Update a Valuation Point.
+[EARLY ACCESS] UpdateValuationPoint: Update a Valuation Point.
 
 Updates an existing Valuation Point.
 
@@ -2435,7 +2435,7 @@ Name | Type | Description  | Notes
 # **upsert_bookmark**
 > FundCalendarEntry upsertBookmark = upsert_bookmark(scope, code, upsert_fund_bookmark_request, nav_type_code=nav_type_code)
 
-[EXPERIMENTAL] UpsertBookmark: Upsert a bookmark.
+[EARLY ACCESS] UpsertBookmark: Upsert a bookmark.
 
 This method will update or upsert a Bookmark for the Fund.
 
@@ -2483,7 +2483,7 @@ Name | Type | Description  | Notes
 # **upsert_diary_entry_type_valuation_point**
 > DiaryEntry upsertDiaryEntryTypeValuationPoint = upsert_diary_entry_type_valuation_point(scope, code, upsert_valuation_point_request, nav_type_code=nav_type_code)
 
-[EXPERIMENTAL] UpsertDiaryEntryTypeValuationPoint: Upsert a Valuation Point.
+[EARLY ACCESS] UpsertDiaryEntryTypeValuationPoint: Upsert a Valuation Point.
 
 Insert the estimate Valuation Point.                If the Valuation Point does not exist, this method will create it in estimate state.
 
@@ -2531,7 +2531,7 @@ Name | Type | Description  | Notes
 # **upsert_fee_properties**
 > FeeProperties upsertFeeProperties = upsert_fee_properties(scope, code, fee_code, request_body=request_body)
 
-[EXPERIMENTAL] UpsertFeeProperties: Upsert Fee properties.
+[EARLY ACCESS] UpsertFeeProperties: Upsert Fee properties.
 
 Update or insert one or more properties onto a single Fee. A property will be updated if it  already exists and inserted if it does not. All properties must be of the domain 'Fee'.                Upserting a property that exists for an Fee, with a null value, will delete the instance of the property for that group.                Properties have an <i>effectiveFrom</i> datetime for which the property is valid, and an <i>effectiveUntil</i>  datetime until which the property is valid. Not supplying an <i>effectiveUntil</i> datetime results in the property being  valid indefinitely, or until the next <i>effectiveFrom</i> datetime of the property.
 
@@ -2579,7 +2579,7 @@ Name | Type | Description  | Notes
 # **upsert_fund_properties**
 > FundProperties upsertFundProperties = upsert_fund_properties(scope, code, request_body=request_body)
 
-[EXPERIMENTAL] UpsertFundProperties: Upsert Fund properties.
+[EARLY ACCESS] UpsertFundProperties: Upsert Fund properties.
 
 Update or insert one or more properties onto a single Fund. A property will be updated if it  already exists and inserted if it does not. All properties must be of the domain 'Fund'.                Upserting a property that exists for an Fund, with a null value, will delete the instance of the property for that group.                Properties have an <i>effectiveFrom</i> datetime for which the property is valid, and an <i>effectiveUntil</i>  datetime until which the property is valid. Not supplying an <i>effectiveUntil</i> datetime results in the property being  valid indefinitely, or until the next <i>effectiveFrom</i> datetime of the property.
 
@@ -2625,7 +2625,7 @@ Name | Type | Description  | Notes
 # **upsert_nav_activity_adjustments**
 > datetime upsertNavActivityAdjustments = upsert_nav_activity_adjustments(scope, code, valuation_point_code, nav_activity_adjustment, nav_type_code=nav_type_code, valuation_point_code_variant=valuation_point_code_variant)
 
-[EXPERIMENTAL] UpsertNavActivityAdjustments: Upsert NAV adjustment activities to a valuation point
+[EARLY ACCESS] UpsertNavActivityAdjustments: Upsert NAV adjustment activities to a valuation point
 
 Upserts the NAV adjustment activities to the specified valuation point for a Fund.
 

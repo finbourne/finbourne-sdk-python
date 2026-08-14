@@ -18,6 +18,7 @@ An individual cashflow inside a cashflow bucket, annotated with the source that 
 | **haircut_fraction** | **float** | Optional | The fraction of the gross amount removed by the haircut, in the range [0, 1]. Zero for outflows and for cashflows no rule matched. Only populated when haircut rules were supplied on the request. |
 | **net_amount** | **float** | Optional | The signed amount of the cashflow net of the haircut. Only populated when haircut rules were supplied on the request. |
 | **haircut_rule_applied** | **str** | Optional | The identifier of the haircut rule that was applied to the cashflow, or not present when no rule matched or no haircut rules were supplied on the request. |
+| **error** | **str** | Optional | Only present when the cashflow could not be valued, for example because of missing market data: the valuation error, matching the CashflowError diagnostic reported by the QueryCashFlows endpoint. When set, the amount is null rather than zero. |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
@@ -42,6 +43,7 @@ instance = CashFlowDetail(
     haircut_fraction=0.0,  # optional — The fraction of the gross amount removed by the haircut, in the range [0, 1]. Zero for outflows and for cashflows no rule matched. Only populated when haircut rules were supplied on the request.
     net_amount=0.0,  # optional — The signed amount of the cashflow net of the haircut. Only populated when haircut rules were supplied on the request.
     haircut_rule_applied="...",  # optional — The identifier of the haircut rule that was applied to the cashflow, or not present when no rule matched or no haircut rules were supplied on the request.
+    error="...",  # optional — Only present when the cashflow could not be valued, for example because of missing market data: the valuation error, matching the CashflowError diagnostic reported by the QueryCashFlows endpoint. When set, the amount is null rather than zero.
     links=[]  # optional
 )
 ```

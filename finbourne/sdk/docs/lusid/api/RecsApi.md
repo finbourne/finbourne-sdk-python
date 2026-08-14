@@ -5,11 +5,15 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**add_rec_result_set_approval_decision**](RecsApi.md#add_rec_result_set_approval_decision) | **POST** /api/api/recs/resultsets/{entityUniqueId}/$decide | [EXPERIMENTAL] AddRecResultSetApprovalDecision: AddRecResultSetApprovalDecision
+[**batch_manage_rec_result_comments**](RecsApi.md#batch_manage_rec_result_comments) | **POST** /api/api/recs/results/$batchManageComments | [EXPERIMENTAL] BatchManageRecResultComments: BatchManageRecResultComments
+[**batch_review_rec_results**](RecsApi.md#batch_review_rec_results) | **POST** /api/api/recs/results/$batchReview | [EXPERIMENTAL] BatchReviewRecResults: BatchReviewRecResults
 [**get_rec_instance**](RecsApi.md#get_rec_instance) | **GET** /api/api/recs/instances/{instanceIdType}/{instanceIdValue} | [EXPERIMENTAL] GetRecInstance: GetRecInstance
+[**get_rec_result**](RecsApi.md#get_rec_result) | **GET** /api/api/recs/results/{id} | [EXPERIMENTAL] GetRecResult: GetRecResult
 [**get_rec_result_set**](RecsApi.md#get_rec_result_set) | **GET** /api/api/recs/resultsets/{entityUniqueId} | [EXPERIMENTAL] GetRecResultSet: GetRecResultSet
 [**instantiate_rec**](RecsApi.md#instantiate_rec) | **POST** /api/api/recs/instances | [EXPERIMENTAL] InstantiateRec: InstantiateRec
 [**list_rec_instances**](RecsApi.md#list_rec_instances) | **GET** /api/api/recs/instances | [EXPERIMENTAL] ListRecInstances: ListRecInstances
 [**list_rec_result_sets**](RecsApi.md#list_rec_result_sets) | **GET** /api/api/recs/resultsets | [EXPERIMENTAL] ListRecResultSets: ListRecResultSets
+[**list_rec_results**](RecsApi.md#list_rec_results) | **GET** /api/api/recs/results | [EXPERIMENTAL] ListRecResults: ListRecResults
 [**submit_rec_result_set_review**](RecsApi.md#submit_rec_result_set_review) | **POST** /api/api/recs/resultsets/{entityUniqueId}/$submit | [EXPERIMENTAL] SubmitRecResultSetReview: Submit a rec result set review for approval, or resubmit after addressing requested revisions.
 [**transition_rec_instance**](RecsApi.md#transition_rec_instance) | **POST** /api/api/recs/instances/{instanceIdType}/{instanceIdValue}/$transition | [EXPERIMENTAL] TransitionRecInstance: TransitionRecInstance
 
@@ -83,6 +87,94 @@ Name | Type | Description  | Notes
 
 ---
 
+# **batch_manage_rec_result_comments**
+> BatchManageCommentResponse batchManageRecResultComments = batch_manage_rec_result_comments(request_body, success_mode=success_mode)
+
+[EXPERIMENTAL] BatchManageRecResultComments: BatchManageRecResultComments
+
+Add, edit or delete comments on rec results in a batch.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(RecsApi)
+request_body = {"add-a-comment":{"recResultId":"rec-result-1","commentText":"Investigating this break."},"delete-a-comment":{"recResultId":"rec-result-1","commentId":"00000000-0000-0000-0000-000000000009"}} # Dict[str, BatchManageCommentRequest]
+success_mode = 'Partial' # str (optional)
+api_response = api_instance.batch_manage_rec_result_comments(request_body, success_mode=success_mode)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request_body** | [**Dict[str, BatchManageCommentRequest]**](../model/BatchManageCommentRequest.md)| The batch of comment operations, keyed by a client-supplied correlation key. | [required] 
+ **success_mode** | **str**| Whether the batch fails Atomically or in a Partial fashion. Allowed values: Atomic, Partial. | [optional] [default to &#39;Partial&#39;]
+
+### Return type
+
+[**BatchManageCommentResponse**](../model/BatchManageCommentResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The updated rec results, keyed by batch item key. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **batch_review_rec_results**
+> BatchReviewRecResultResponse batchReviewRecResults = batch_review_rec_results(request_body, success_mode=success_mode)
+
+[EXPERIMENTAL] BatchReviewRecResults: BatchReviewRecResults
+
+Apply a batch of review actions (decisions, assignments, comments, properties) to rec results.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(RecsApi)
+request_body = {"accept-a-break":{"recResultIds":["rec-result-1"],"decision":{"value":"Accept","affirm":false}},"force-match-two":{"recResultIds":["rec-result-2","rec-result-3"],"decision":{"value":"ForceMatch","affirm":false,"coreRulesExcused":["Broker Name"]}}} # Dict[str, BatchReviewRecResultRequest]
+success_mode = 'Partial' # str (optional)
+api_response = api_instance.batch_review_rec_results(request_body, success_mode=success_mode)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request_body** | [**Dict[str, BatchReviewRecResultRequest]**](../model/BatchReviewRecResultRequest.md)| The batch of review items, keyed by a client-supplied correlation key. | [required] 
+ **success_mode** | **str**| Whether the batch fails Atomically or in a Partial fashion. Allowed values: Atomic, Partial. | [optional] [default to &#39;Partial&#39;]
+
+### Return type
+
+[**BatchReviewRecResultResponse**](../model/BatchReviewRecResultResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The results affected by each batch item. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
 # **get_rec_instance**
 > RecInstance getRecInstance = get_rec_instance(instance_id_type, instance_id_value, as_at=as_at)
 
@@ -122,6 +214,52 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The requested rec instance. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_rec_result**
+> RecResult getRecResult = get_rec_result(id, as_at=as_at, property_keys=property_keys)
+
+[EXPERIMENTAL] GetRecResult: GetRecResult
+
+Retrieve a single rec result by its id.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(RecsApi)
+id = 'id_example' # str
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+property_keys = ['property_keys_example'] # List[str] (optional)
+api_response = api_instance.get_rec_result(id, as_at=as_at, property_keys=property_keys)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The system-generated id of the rec result. | [required] 
+ **as_at** | **datetime**| The asAt datetime at which to retrieve the result. Defaults to latest if not specified. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| The property keys to decorate onto the result. | [optional] 
+
+### Return type
+
+[**RecResult**](../model/RecResult.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The requested rec result. |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 
@@ -312,6 +450,58 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The rec result sets. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **list_rec_results**
+> PagedResourceListOfRecResult listRecResults = list_rec_results(as_at=as_at, page=page, limit=limit, filter=filter, sort_by=sort_by, property_keys=property_keys)
+
+[EXPERIMENTAL] ListRecResults: ListRecResults
+
+List rec results.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(RecsApi)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+page = 'page_example' # str (optional)
+limit = 56 # int (optional)
+filter = 'filter_example' # str (optional)
+sort_by = ['sort_by_example'] # List[str] (optional)
+property_keys = ['property_keys_example'] # List[str] (optional)
+api_response = api_instance.list_rec_results(as_at=as_at, page=page, limit=limit, filter=filter, sort_by=sort_by, property_keys=property_keys)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **as_at** | **datetime**| The asAt datetime at which to list results. Defaults to latest if not specified. | [optional] 
+ **page** | **str**| The pagination token to use to continue listing results from a previous call. If a pagination token is provided the filter and asAt fields must not have changed since the original request. | [optional] 
+ **limit** | **int**| When paginating, limit the number of returned results to this many. Defaults to 100 if not specified. | [optional] 
+ **filter** | **str**| Expression to filter the result set. Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid. | [optional] 
+ **sort_by** | [**List[str]**](../model/str.md)| A list of field names suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| The property keys to decorate onto each result. | [optional] 
+
+### Return type
+
+[**PagedResourceListOfRecResult**](../model/PagedResourceListOfRecResult.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The rec results. |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 

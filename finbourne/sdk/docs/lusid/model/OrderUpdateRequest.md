@@ -7,6 +7,7 @@ A request to create or update a Order.
 |------|------|----------|-------------|
 | **id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **quantity** | **float** | Optional | The quantity of the given instrument ordered. |
+| **amount** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
 | **portfolio_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | Client-defined properties associated with this order. |
 | **price** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
@@ -26,6 +27,7 @@ from finbourne.sdk.services.lusid.models.OrderUpdateRequest import OrderUpdateRe
 instance = OrderUpdateRequest(
     id=ResourceId(...),  # required
     quantity=0.0,  # optional — The quantity of the given instrument ordered.
+    amount=CurrencyAndAmount(...),  # optional
     portfolio_id=ResourceId(...),  # optional
     properties=PerpetualProperty(...),  # optional — Client-defined properties associated with this order.
     price=CurrencyAndAmount(...),  # optional
@@ -40,6 +42,7 @@ instance = OrderUpdateRequest(
 ## Related Models
 
 - [ResourceId](ResourceId.md)
+- [CurrencyAndAmount](CurrencyAndAmount.md)
 - [ResourceId](ResourceId.md)
 - [PerpetualProperty](PerpetualProperty.md) — used in `properties`
 - [CurrencyAndAmount](CurrencyAndAmount.md)

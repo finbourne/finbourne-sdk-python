@@ -76,6 +76,7 @@ class InstrumentType(str, Enum):  # type: ignore[misc]
     VOLATILITYSWAP = 'VolatilitySwap'
     TOBEANNOUNCEDOPTION = 'ToBeAnnouncedOption'
     COMMODITYFORWARD = 'CommodityForward'
+    BONDOPTION = 'BondOption'
 
     @classmethod
     def from_json(cls, json_str: str) -> InstrumentType:

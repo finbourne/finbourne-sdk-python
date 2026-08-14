@@ -21,12 +21,18 @@ from typing_extensions import Annotated
 import finbourne.sdk.services.lusid.models as packageModels
 from datetime import datetime
 from pydantic import Field, StrictBool, StrictInt, StrictStr, field_validator
-from typing import List, Optional
+from typing import Dict, List, Optional
 from typing_extensions import Annotated
+from finbourne.sdk.services.lusid.models.batch_manage_comment_request import BatchManageCommentRequest
+from finbourne.sdk.services.lusid.models.batch_manage_comment_response import BatchManageCommentResponse
+from finbourne.sdk.services.lusid.models.batch_review_rec_result_request import BatchReviewRecResultRequest
+from finbourne.sdk.services.lusid.models.batch_review_rec_result_response import BatchReviewRecResultResponse
 from finbourne.sdk.services.lusid.models.instantiate_rec_request import InstantiateRecRequest
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_rec_instance import PagedResourceListOfRecInstance
+from finbourne.sdk.services.lusid.models.paged_resource_list_of_rec_result import PagedResourceListOfRecResult
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_rec_result_set import PagedResourceListOfRecResultSet
 from finbourne.sdk.services.lusid.models.rec_instance import RecInstance
+from finbourne.sdk.services.lusid.models.rec_result import RecResult
 from finbourne.sdk.services.lusid.models.rec_result_set import RecResultSet
 from finbourne.sdk.services.lusid.models.rec_result_set_approval_decision_request import RecResultSetApprovalDecisionRequest
 from finbourne.sdk.services.lusid.models.submit_rec_result_set_review_request import SubmitRecResultSetReviewRequest
@@ -191,6 +197,276 @@ class RecsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    def batch_manage_rec_result_comments(self, request_body: Dict[str, BatchManageCommentRequest], success_mode: Optional[StrictStr] = None, **kwargs) -> BatchManageCommentResponse:
+        """[EXPERIMENTAL] BatchManageRecResultComments: BatchManageRecResultComments  # noqa: E501
+
+        Add, edit or delete comments on rec results in a batch.  # noqa: E501
+        :param request_body: The batch of comment operations, keyed by a client-supplied correlation key. (required)
+        :type request_body: Dict[str, BatchManageCommentRequest]
+        :param success_mode: Whether the batch fails Atomically or in a Partial fashion. Allowed values: Atomic, Partial.
+        :type success_mode: str
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: BatchManageCommentResponse
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the batch_manage_rec_result_comments_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.batch_manage_rec_result_comments_with_http_info(request_body, success_mode, **kwargs)
+        return response.data
+
+    @validate_call
+    def batch_manage_rec_result_comments_with_http_info(self, request_body: Dict[str, BatchManageCommentRequest], success_mode: Optional[StrictStr] = None, **kwargs) -> ApiResponse[BatchManageCommentResponse]:
+        """[EXPERIMENTAL] BatchManageRecResultComments: BatchManageRecResultComments  # noqa: E501
+
+        Add, edit or delete comments on rec results in a batch.  # noqa: E501
+        :param request_body: The batch of comment operations, keyed by a client-supplied correlation key. (required)
+        :type request_body: Dict[str, BatchManageCommentRequest]
+        :param success_mode: Whether the batch fails Atomically or in a Partial fashion. Allowed values: Atomic, Partial.
+        :type success_mode: str
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(BatchManageCommentResponse, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'request_body',
+            'success_mode'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method batch_manage_rec_result_comments" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('success_mode') is not None:  # noqa: E501
+            _query_params.append(('successMode', _params['success_mode']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['request_body'] is not None:
+            _body_params = _params['request_body']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.sync_api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "BatchManageCommentResponse",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/recs/results/$batchManageComments', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    def batch_review_rec_results(self, request_body: Dict[str, BatchReviewRecResultRequest], success_mode: Optional[StrictStr] = None, **kwargs) -> BatchReviewRecResultResponse:
+        """[EXPERIMENTAL] BatchReviewRecResults: BatchReviewRecResults  # noqa: E501
+
+        Apply a batch of review actions (decisions, assignments, comments, properties) to rec results.  # noqa: E501
+        :param request_body: The batch of review items, keyed by a client-supplied correlation key. (required)
+        :type request_body: Dict[str, BatchReviewRecResultRequest]
+        :param success_mode: Whether the batch fails Atomically or in a Partial fashion. Allowed values: Atomic, Partial.
+        :type success_mode: str
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: BatchReviewRecResultResponse
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the batch_review_rec_results_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.batch_review_rec_results_with_http_info(request_body, success_mode, **kwargs)
+        return response.data
+
+    @validate_call
+    def batch_review_rec_results_with_http_info(self, request_body: Dict[str, BatchReviewRecResultRequest], success_mode: Optional[StrictStr] = None, **kwargs) -> ApiResponse[BatchReviewRecResultResponse]:
+        """[EXPERIMENTAL] BatchReviewRecResults: BatchReviewRecResults  # noqa: E501
+
+        Apply a batch of review actions (decisions, assignments, comments, properties) to rec results.  # noqa: E501
+        :param request_body: The batch of review items, keyed by a client-supplied correlation key. (required)
+        :type request_body: Dict[str, BatchReviewRecResultRequest]
+        :param success_mode: Whether the batch fails Atomically or in a Partial fashion. Allowed values: Atomic, Partial.
+        :type success_mode: str
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(BatchReviewRecResultResponse, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'request_body',
+            'success_mode'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method batch_review_rec_results" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('success_mode') is not None:  # noqa: E501
+            _query_params.append(('successMode', _params['success_mode']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['request_body'] is not None:
+            _body_params = _params['request_body']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.sync_api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "BatchReviewRecResultResponse",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/recs/results/$batchReview', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     def get_rec_instance(self, instance_id_type: StrictStr, instance_id_value: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> RecInstance:
         """[EXPERIMENTAL] GetRecInstance: GetRecInstance  # noqa: E501
 
@@ -314,6 +590,146 @@ class RecsApi:
 
         return self.sync_api_client.call_api(
             '/api/api/recs/instances/{instanceIdType}/{instanceIdValue}', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    def get_rec_result(self, id: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> RecResult:
+        """[EXPERIMENTAL] GetRecResult: GetRecResult  # noqa: E501
+
+        Retrieve a single rec result by its id.  # noqa: E501
+        :param id: The system-generated id of the rec result. (required)
+        :type id: str
+        :param as_at: The asAt datetime at which to retrieve the result. Defaults to latest if not specified.
+        :type as_at: datetime
+        :param property_keys: The property keys to decorate onto the result.
+        :type property_keys: List[str]
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: RecResult
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_rec_result_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.get_rec_result_with_http_info(id, as_at, property_keys, **kwargs)
+        return response.data
+
+    @validate_call
+    def get_rec_result_with_http_info(self, id: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[RecResult]:
+        """[EXPERIMENTAL] GetRecResult: GetRecResult  # noqa: E501
+
+        Retrieve a single rec result by its id.  # noqa: E501
+        :param id: The system-generated id of the rec result. (required)
+        :type id: str
+        :param as_at: The asAt datetime at which to retrieve the result. Defaults to latest if not specified.
+        :type as_at: datetime
+        :param property_keys: The property keys to decorate onto the result.
+        :type property_keys: List[str]
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(RecResult, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'id',
+            'as_at',
+            'property_keys'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_rec_result" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['id'] is not None:
+            _path_params['id'] = _params['id']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('as_at') is not None:  # noqa: E501
+            if isinstance(_params['as_at'], datetime):
+                _query_params.append(('asAt', _params['as_at'].strftime(self.sync_api_client.configuration.datetime_format)))
+            else:
+                _query_params.append(('asAt', _params['as_at']))
+
+        if _params.get('property_keys') is not None:  # noqa: E501
+            _query_params.append(('propertyKeys', _params['property_keys']))
+            _collection_formats['propertyKeys'] = 'multi'
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "RecResult",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/recs/results/{id}', 'GET',
             _path_params,
             _query_params,
             _header_params,
@@ -916,6 +1332,171 @@ class RecsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    def list_rec_results(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfRecResult:
+        """[EXPERIMENTAL] ListRecResults: ListRecResults  # noqa: E501
+
+        List rec results.  # noqa: E501
+        :param as_at: The asAt datetime at which to list results. Defaults to latest if not specified.
+        :type as_at: datetime
+        :param page: The pagination token to use to continue listing results from a previous call. If a pagination token is provided the filter and asAt fields must not have changed since the original request.
+        :type page: str
+        :param limit: When paginating, limit the number of returned results to this many. Defaults to 100 if not specified.
+        :type limit: int
+        :param filter: Expression to filter the result set. Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid.
+        :type filter: str
+        :param sort_by: A list of field names suffixed by \" ASC\" or \" DESC\".
+        :type sort_by: List[str]
+        :param property_keys: The property keys to decorate onto each result.
+        :type property_keys: List[str]
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: PagedResourceListOfRecResult
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the list_rec_results_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.list_rec_results_with_http_info(as_at, page, limit, filter, sort_by, property_keys, **kwargs)
+        return response.data
+
+    @validate_call
+    def list_rec_results_with_http_info(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfRecResult]:
+        """[EXPERIMENTAL] ListRecResults: ListRecResults  # noqa: E501
+
+        List rec results.  # noqa: E501
+        :param as_at: The asAt datetime at which to list results. Defaults to latest if not specified.
+        :type as_at: datetime
+        :param page: The pagination token to use to continue listing results from a previous call. If a pagination token is provided the filter and asAt fields must not have changed since the original request.
+        :type page: str
+        :param limit: When paginating, limit the number of returned results to this many. Defaults to 100 if not specified.
+        :type limit: int
+        :param filter: Expression to filter the result set. Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid.
+        :type filter: str
+        :param sort_by: A list of field names suffixed by \" ASC\" or \" DESC\".
+        :type sort_by: List[str]
+        :param property_keys: The property keys to decorate onto each result.
+        :type property_keys: List[str]
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(PagedResourceListOfRecResult, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'as_at',
+            'page',
+            'limit',
+            'filter',
+            'sort_by',
+            'property_keys'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method list_rec_results" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('as_at') is not None:  # noqa: E501
+            if isinstance(_params['as_at'], datetime):
+                _query_params.append(('asAt', _params['as_at'].strftime(self.sync_api_client.configuration.datetime_format)))
+            else:
+                _query_params.append(('asAt', _params['as_at']))
+
+        if _params.get('page') is not None:  # noqa: E501
+            _query_params.append(('page', _params['page']))
+
+        if _params.get('limit') is not None:  # noqa: E501
+            _query_params.append(('limit', _params['limit']))
+
+        if _params.get('filter') is not None:  # noqa: E501
+            _query_params.append(('filter', _params['filter']))
+
+        if _params.get('sort_by') is not None:  # noqa: E501
+            _query_params.append(('sortBy', _params['sort_by']))
+            _collection_formats['sortBy'] = 'multi'
+
+        if _params.get('property_keys') is not None:  # noqa: E501
+            _query_params.append(('propertyKeys', _params['property_keys']))
+            _collection_formats['propertyKeys'] = 'multi'
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "PagedResourceListOfRecResult",
+            '400': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/recs/results', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     def submit_rec_result_set_review(self, entity_unique_id: StrictStr, submit_rec_result_set_review_request: SubmitRecResultSetReviewRequest, **kwargs) -> RecResultSet:
         """[EXPERIMENTAL] SubmitRecResultSetReview: Submit a rec result set review for approval, or resubmit after addressing requested revisions.  # noqa: E501
 
@@ -1334,6 +1915,278 @@ class RecsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
+    async def batch_manage_rec_result_comments_async(self, request_body: Dict[str, BatchManageCommentRequest], success_mode: Optional[StrictStr] = None, **kwargs) -> BatchManageCommentResponse:
+            """[EXPERIMENTAL] BatchManageRecResultComments: BatchManageRecResultComments  # noqa: E501
+            Add, edit or delete comments on rec results in a batch.  # noqa: E501
+            
+            :param request_body: The batch of comment operations, keyed by a client-supplied correlation key. (required)
+            :type request_body: Dict[str, BatchManageCommentRequest]
+            :param success_mode: Whether the batch fails Atomically or in a Partial fashion. Allowed values: Atomic, Partial.
+            :type success_mode: str
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: BatchManageCommentResponse
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the batch_manage_rec_result_comments_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.batch_manage_rec_result_comments_with_http_info_async(request_body, success_mode, **kwargs)
+            return response.data
+
+    @validate_call
+    async def batch_manage_rec_result_comments_with_http_info_async(self, request_body: Dict[str, BatchManageCommentRequest], success_mode: Optional[StrictStr] = None, **kwargs) -> ApiResponse[BatchManageCommentResponse]:
+            """[EXPERIMENTAL] BatchManageRecResultComments: BatchManageRecResultComments  # noqa: E501
+
+            Add, edit or delete comments on rec results in a batch.  # noqa: E501
+
+            :param request_body: The batch of comment operations, keyed by a client-supplied correlation key. (required)
+            :type request_body: Dict[str, BatchManageCommentRequest]
+            :param success_mode: Whether the batch fails Atomically or in a Partial fashion. Allowed values: Atomic, Partial.
+            :type success_mode: str
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(BatchManageCommentResponse, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'request_body',
+                'success_mode'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method batch_manage_rec_result_comments" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('success_mode') is not None:  # noqa: E501
+                _query_params.append(('successMode', _params['success_mode']))
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            if _params['request_body'] is not None:
+                _body_params = _params['request_body']
+
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # set the HTTP header `Content-Type`
+            _content_types_list = _params.get('_content_type',
+                self.api_client.select_header_content_type(
+                    ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+            if _content_types_list:
+                    _header_params['Content-Type'] = _content_types_list
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "BatchManageCommentResponse",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/recs/results/$batchManageComments', 'POST',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def batch_review_rec_results_async(self, request_body: Dict[str, BatchReviewRecResultRequest], success_mode: Optional[StrictStr] = None, **kwargs) -> BatchReviewRecResultResponse:
+            """[EXPERIMENTAL] BatchReviewRecResults: BatchReviewRecResults  # noqa: E501
+            Apply a batch of review actions (decisions, assignments, comments, properties) to rec results.  # noqa: E501
+            
+            :param request_body: The batch of review items, keyed by a client-supplied correlation key. (required)
+            :type request_body: Dict[str, BatchReviewRecResultRequest]
+            :param success_mode: Whether the batch fails Atomically or in a Partial fashion. Allowed values: Atomic, Partial.
+            :type success_mode: str
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: BatchReviewRecResultResponse
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the batch_review_rec_results_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.batch_review_rec_results_with_http_info_async(request_body, success_mode, **kwargs)
+            return response.data
+
+    @validate_call
+    async def batch_review_rec_results_with_http_info_async(self, request_body: Dict[str, BatchReviewRecResultRequest], success_mode: Optional[StrictStr] = None, **kwargs) -> ApiResponse[BatchReviewRecResultResponse]:
+            """[EXPERIMENTAL] BatchReviewRecResults: BatchReviewRecResults  # noqa: E501
+
+            Apply a batch of review actions (decisions, assignments, comments, properties) to rec results.  # noqa: E501
+
+            :param request_body: The batch of review items, keyed by a client-supplied correlation key. (required)
+            :type request_body: Dict[str, BatchReviewRecResultRequest]
+            :param success_mode: Whether the batch fails Atomically or in a Partial fashion. Allowed values: Atomic, Partial.
+            :type success_mode: str
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(BatchReviewRecResultResponse, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'request_body',
+                'success_mode'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method batch_review_rec_results" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('success_mode') is not None:  # noqa: E501
+                _query_params.append(('successMode', _params['success_mode']))
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            if _params['request_body'] is not None:
+                _body_params = _params['request_body']
+
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # set the HTTP header `Content-Type`
+            _content_types_list = _params.get('_content_type',
+                self.api_client.select_header_content_type(
+                    ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+            if _content_types_list:
+                    _header_params['Content-Type'] = _content_types_list
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "BatchReviewRecResultResponse",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/recs/results/$batchReview', 'POST',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
     async def get_rec_instance_async(self, instance_id_type: StrictStr, instance_id_value: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> RecInstance:
             """[EXPERIMENTAL] GetRecInstance: GetRecInstance  # noqa: E501
             Retrieve a single rec instance by its identifier.  # noqa: E501
@@ -1458,6 +2311,147 @@ class RecsApi:
 
             return await self.api_client.call_api_async(
                 '/api/api/recs/instances/{instanceIdType}/{instanceIdValue}', 'GET',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def get_rec_result_async(self, id: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> RecResult:
+            """[EXPERIMENTAL] GetRecResult: GetRecResult  # noqa: E501
+            Retrieve a single rec result by its id.  # noqa: E501
+            
+            :param id: The system-generated id of the rec result. (required)
+            :type id: str
+            :param as_at: The asAt datetime at which to retrieve the result. Defaults to latest if not specified.
+            :type as_at: datetime
+            :param property_keys: The property keys to decorate onto the result.
+            :type property_keys: List[str]
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: RecResult
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the get_rec_result_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.get_rec_result_with_http_info_async(id, as_at, property_keys, **kwargs)
+            return response.data
+
+    @validate_call
+    async def get_rec_result_with_http_info_async(self, id: StrictStr, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[RecResult]:
+            """[EXPERIMENTAL] GetRecResult: GetRecResult  # noqa: E501
+
+            Retrieve a single rec result by its id.  # noqa: E501
+
+            :param id: The system-generated id of the rec result. (required)
+            :type id: str
+            :param as_at: The asAt datetime at which to retrieve the result. Defaults to latest if not specified.
+            :type as_at: datetime
+            :param property_keys: The property keys to decorate onto the result.
+            :type property_keys: List[str]
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(RecResult, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'id',
+                'as_at',
+                'property_keys'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method get_rec_result" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['id'] is not None:
+                _path_params['id'] = _params['id']
+
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('as_at') is not None:  # noqa: E501
+                if isinstance(_params['as_at'], datetime):
+                    _query_params.append(('asAt', _params['as_at'].strftime(self.api_client.configuration.datetime_format)))
+                else:
+                    _query_params.append(('asAt', _params['as_at']))
+
+            if _params.get('property_keys') is not None:  # noqa: E501
+                _query_params.append(('propertyKeys', _params['property_keys']))
+                _collection_formats['propertyKeys'] = 'multi'
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "RecResult",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/recs/results/{id}', 'GET',
                 _path_params,
                 _query_params,
                 _header_params,
@@ -2048,6 +3042,172 @@ class RecsApi:
 
             return await self.api_client.call_api_async(
                 '/api/api/recs/resultsets', 'GET',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def list_rec_results_async(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfRecResult:
+            """[EXPERIMENTAL] ListRecResults: ListRecResults  # noqa: E501
+            List rec results.  # noqa: E501
+            
+            :param as_at: The asAt datetime at which to list results. Defaults to latest if not specified.
+            :type as_at: datetime
+            :param page: The pagination token to use to continue listing results from a previous call. If a pagination token is provided the filter and asAt fields must not have changed since the original request.
+            :type page: str
+            :param limit: When paginating, limit the number of returned results to this many. Defaults to 100 if not specified.
+            :type limit: int
+            :param filter: Expression to filter the result set. Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid.
+            :type filter: str
+            :param sort_by: A list of field names suffixed by \" ASC\" or \" DESC\".
+            :type sort_by: List[str]
+            :param property_keys: The property keys to decorate onto each result.
+            :type property_keys: List[str]
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: PagedResourceListOfRecResult
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the list_rec_results_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.list_rec_results_with_http_info_async(as_at, page, limit, filter, sort_by, property_keys, **kwargs)
+            return response.data
+
+    @validate_call
+    async def list_rec_results_with_http_info_async(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfRecResult]:
+            """[EXPERIMENTAL] ListRecResults: ListRecResults  # noqa: E501
+
+            List rec results.  # noqa: E501
+
+            :param as_at: The asAt datetime at which to list results. Defaults to latest if not specified.
+            :type as_at: datetime
+            :param page: The pagination token to use to continue listing results from a previous call. If a pagination token is provided the filter and asAt fields must not have changed since the original request.
+            :type page: str
+            :param limit: When paginating, limit the number of returned results to this many. Defaults to 100 if not specified.
+            :type limit: int
+            :param filter: Expression to filter the result set. Read more about filtering results from LUSID here https://support.lusid.com/filtering-results-from-lusid.
+            :type filter: str
+            :param sort_by: A list of field names suffixed by \" ASC\" or \" DESC\".
+            :type sort_by: List[str]
+            :param property_keys: The property keys to decorate onto each result.
+            :type property_keys: List[str]
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(PagedResourceListOfRecResult, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'as_at',
+                'page',
+                'limit',
+                'filter',
+                'sort_by',
+                'property_keys'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method list_rec_results" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('as_at') is not None:  # noqa: E501
+                if isinstance(_params['as_at'], datetime):
+                    _query_params.append(('asAt', _params['as_at'].strftime(self.api_client.configuration.datetime_format)))
+                else:
+                    _query_params.append(('asAt', _params['as_at']))
+
+            if _params.get('page') is not None:  # noqa: E501
+                _query_params.append(('page', _params['page']))
+
+            if _params.get('limit') is not None:  # noqa: E501
+                _query_params.append(('limit', _params['limit']))
+
+            if _params.get('filter') is not None:  # noqa: E501
+                _query_params.append(('filter', _params['filter']))
+
+            if _params.get('sort_by') is not None:  # noqa: E501
+                _query_params.append(('sortBy', _params['sort_by']))
+                _collection_formats['sortBy'] = 'multi'
+
+            if _params.get('property_keys') is not None:  # noqa: E501
+                _query_params.append(('propertyKeys', _params['property_keys']))
+                _collection_formats['propertyKeys'] = 'multi'
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "PagedResourceListOfRecResult",
+                '400': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/recs/results', 'GET',
                 _path_params,
                 _query_params,
                 _header_params,

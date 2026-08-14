@@ -55,7 +55,7 @@ class FeeTypesApi:
 
     @validate_call
     def create_fee_type(self, scope: StrictStr, fee_type_request: FeeTypeRequest, **kwargs) -> FeeType:
-        """[EXPERIMENTAL] CreateFeeType: Create a FeeType.  # noqa: E501
+        """[EARLY ACCESS] CreateFeeType: Create a FeeType.  # noqa: E501
 
         Create a FeeType that contains templates used to create fee transactions.  # noqa: E501
         :param scope: The scope of the FeeType. (required)
@@ -77,7 +77,7 @@ class FeeTypesApi:
 
     @validate_call
     def create_fee_type_with_http_info(self, scope: StrictStr, fee_type_request: FeeTypeRequest, **kwargs) -> ApiResponse[FeeType]:
-        """[EXPERIMENTAL] CreateFeeType: Create a FeeType.  # noqa: E501
+        """[EARLY ACCESS] CreateFeeType: Create a FeeType.  # noqa: E501
 
         Create a FeeType that contains templates used to create fee transactions.  # noqa: E501
         :param scope: The scope of the FeeType. (required)
@@ -190,7 +190,7 @@ class FeeTypesApi:
 
     @validate_call
     def delete_fee_type(self, scope: StrictStr, code: StrictStr, **kwargs) -> DeletedEntityResponse:
-        """[EXPERIMENTAL] DeleteFeeType: Delete a FeeType.  # noqa: E501
+        """[EARLY ACCESS] DeleteFeeType: Delete a FeeType.  # noqa: E501
 
         Delete a FeeType that contains templates used to create fee transactions.  # noqa: E501
         :param scope: The scope of the FeeType. (required)
@@ -212,7 +212,7 @@ class FeeTypesApi:
 
     @validate_call
     def delete_fee_type_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-        """[EXPERIMENTAL] DeleteFeeType: Delete a FeeType.  # noqa: E501
+        """[EARLY ACCESS] DeleteFeeType: Delete a FeeType.  # noqa: E501
 
         Delete a FeeType that contains templates used to create fee transactions.  # noqa: E501
         :param scope: The scope of the FeeType. (required)
@@ -318,7 +318,7 @@ class FeeTypesApi:
 
     @validate_call
     def get_fee_template_specifications(self, **kwargs) -> FeeTransactionTemplateSpecification:
-        """[EXPERIMENTAL] GetFeeTemplateSpecifications: Get FeeTemplateSpecifications used in the FeeType.  # noqa: E501
+        """[EARLY ACCESS] GetFeeTemplateSpecifications: Get FeeTemplateSpecifications used in the FeeType.  # noqa: E501
 
         Get FeeTemplateSpecifications used in the FeeType.  # noqa: E501
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
@@ -336,7 +336,7 @@ class FeeTypesApi:
 
     @validate_call
     def get_fee_template_specifications_with_http_info(self, **kwargs) -> ApiResponse[FeeTransactionTemplateSpecification]:
-        """[EXPERIMENTAL] GetFeeTemplateSpecifications: Get FeeTemplateSpecifications used in the FeeType.  # noqa: E501
+        """[EARLY ACCESS] GetFeeTemplateSpecifications: Get FeeTemplateSpecifications used in the FeeType.  # noqa: E501
 
         Get FeeTemplateSpecifications used in the FeeType.  # noqa: E501
         :param _preload_content: if False, the ApiResponse.data will
@@ -429,7 +429,7 @@ class FeeTypesApi:
 
     @validate_call
     def get_fee_type(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> FeeType:
-        """[EXPERIMENTAL] GetFeeType: Get a FeeType  # noqa: E501
+        """[EARLY ACCESS] GetFeeType: Get a FeeType  # noqa: E501
 
         Get a FeeType that contains templates used to create fee transactions.  # noqa: E501
         :param scope: The scope of the FeeType (required)
@@ -453,7 +453,7 @@ class FeeTypesApi:
 
     @validate_call
     def get_fee_type_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[FeeType]:
-        """[EXPERIMENTAL] GetFeeType: Get a FeeType  # noqa: E501
+        """[EARLY ACCESS] GetFeeType: Get a FeeType  # noqa: E501
 
         Get a FeeType that contains templates used to create fee transactions.  # noqa: E501
         :param scope: The scope of the FeeType (required)
@@ -568,7 +568,7 @@ class FeeTypesApi:
 
     @validate_call
     def list_fee_types(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfFeeType:
-        """[EXPERIMENTAL] ListFeeTypes: List FeeTypes  # noqa: E501
+        """[EARLY ACCESS] ListFeeTypes: List FeeTypes  # noqa: E501
 
         List FeeTypes that contain templates used to create fee transactions.  # noqa: E501
         :param as_at: The asAt datetime at which to list the FeeTypes. Defaults to returning the latest version of each FeeType if not specified.
@@ -596,7 +596,7 @@ class FeeTypesApi:
 
     @validate_call
     def list_fee_types_with_http_info(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfFeeType]:
-        """[EXPERIMENTAL] ListFeeTypes: List FeeTypes  # noqa: E501
+        """[EARLY ACCESS] ListFeeTypes: List FeeTypes  # noqa: E501
 
         List FeeTypes that contain templates used to create fee transactions.  # noqa: E501
         :param as_at: The asAt datetime at which to list the FeeTypes. Defaults to returning the latest version of each FeeType if not specified.
@@ -724,7 +724,7 @@ class FeeTypesApi:
 
     @validate_call
     def update_fee_type(self, scope: StrictStr, code: StrictStr, update_fee_type_request: UpdateFeeTypeRequest, **kwargs) -> FeeType:
-        """[EXPERIMENTAL] UpdateFeeType: Update a FeeType.  # noqa: E501
+        """[EARLY ACCESS] UpdateFeeType: Update a FeeType.  # noqa: E501
 
         Update a FeeType that contains templates used to create fee transactions.  # noqa: E501
         :param scope: The scope of the FeeType. (required)
@@ -748,7 +748,7 @@ class FeeTypesApi:
 
     @validate_call
     def update_fee_type_with_http_info(self, scope: StrictStr, code: StrictStr, update_fee_type_request: UpdateFeeTypeRequest, **kwargs) -> ApiResponse[FeeType]:
-        """[EXPERIMENTAL] UpdateFeeType: Update a FeeType.  # noqa: E501
+        """[EARLY ACCESS] UpdateFeeType: Update a FeeType.  # noqa: E501
 
         Update a FeeType that contains templates used to create fee transactions.  # noqa: E501
         :param scope: The scope of the FeeType. (required)
@@ -871,7 +871,7 @@ class FeeTypesApi:
 
     @validate_call
     async def create_fee_type_async(self, scope: StrictStr, fee_type_request: FeeTypeRequest, **kwargs) -> FeeType:
-            """[EXPERIMENTAL] CreateFeeType: Create a FeeType.  # noqa: E501
+            """[EARLY ACCESS] CreateFeeType: Create a FeeType.  # noqa: E501
             Create a FeeType that contains templates used to create fee transactions.  # noqa: E501
             
             :param scope: The scope of the FeeType. (required)
@@ -893,7 +893,7 @@ class FeeTypesApi:
 
     @validate_call
     async def create_fee_type_with_http_info_async(self, scope: StrictStr, fee_type_request: FeeTypeRequest, **kwargs) -> ApiResponse[FeeType]:
-            """[EXPERIMENTAL] CreateFeeType: Create a FeeType.  # noqa: E501
+            """[EARLY ACCESS] CreateFeeType: Create a FeeType.  # noqa: E501
 
             Create a FeeType that contains templates used to create fee transactions.  # noqa: E501
 
@@ -1007,7 +1007,7 @@ class FeeTypesApi:
 
     @validate_call
     async def delete_fee_type_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> DeletedEntityResponse:
-            """[EXPERIMENTAL] DeleteFeeType: Delete a FeeType.  # noqa: E501
+            """[EARLY ACCESS] DeleteFeeType: Delete a FeeType.  # noqa: E501
             Delete a FeeType that contains templates used to create fee transactions.  # noqa: E501
             
             :param scope: The scope of the FeeType. (required)
@@ -1029,7 +1029,7 @@ class FeeTypesApi:
 
     @validate_call
     async def delete_fee_type_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-            """[EXPERIMENTAL] DeleteFeeType: Delete a FeeType.  # noqa: E501
+            """[EARLY ACCESS] DeleteFeeType: Delete a FeeType.  # noqa: E501
 
             Delete a FeeType that contains templates used to create fee transactions.  # noqa: E501
 
@@ -1136,7 +1136,7 @@ class FeeTypesApi:
 
     @validate_call
     async def get_fee_template_specifications_async(self, **kwargs) -> FeeTransactionTemplateSpecification:
-            """[EXPERIMENTAL] GetFeeTemplateSpecifications: Get FeeTemplateSpecifications used in the FeeType.  # noqa: E501
+            """[EARLY ACCESS] GetFeeTemplateSpecifications: Get FeeTemplateSpecifications used in the FeeType.  # noqa: E501
             Get FeeTemplateSpecifications used in the FeeType.  # noqa: E501
             
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
@@ -1154,7 +1154,7 @@ class FeeTypesApi:
 
     @validate_call
     async def get_fee_template_specifications_with_http_info_async(self, **kwargs) -> ApiResponse[FeeTransactionTemplateSpecification]:
-            """[EXPERIMENTAL] GetFeeTemplateSpecifications: Get FeeTemplateSpecifications used in the FeeType.  # noqa: E501
+            """[EARLY ACCESS] GetFeeTemplateSpecifications: Get FeeTemplateSpecifications used in the FeeType.  # noqa: E501
 
             Get FeeTemplateSpecifications used in the FeeType.  # noqa: E501
 
@@ -1248,7 +1248,7 @@ class FeeTypesApi:
 
     @validate_call
     async def get_fee_type_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> FeeType:
-            """[EXPERIMENTAL] GetFeeType: Get a FeeType  # noqa: E501
+            """[EARLY ACCESS] GetFeeType: Get a FeeType  # noqa: E501
             Get a FeeType that contains templates used to create fee transactions.  # noqa: E501
             
             :param scope: The scope of the FeeType (required)
@@ -1272,7 +1272,7 @@ class FeeTypesApi:
 
     @validate_call
     async def get_fee_type_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[FeeType]:
-            """[EXPERIMENTAL] GetFeeType: Get a FeeType  # noqa: E501
+            """[EARLY ACCESS] GetFeeType: Get a FeeType  # noqa: E501
 
             Get a FeeType that contains templates used to create fee transactions.  # noqa: E501
 
@@ -1388,7 +1388,7 @@ class FeeTypesApi:
 
     @validate_call
     async def list_fee_types_async(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfFeeType:
-            """[EXPERIMENTAL] ListFeeTypes: List FeeTypes  # noqa: E501
+            """[EARLY ACCESS] ListFeeTypes: List FeeTypes  # noqa: E501
             List FeeTypes that contain templates used to create fee transactions.  # noqa: E501
             
             :param as_at: The asAt datetime at which to list the FeeTypes. Defaults to returning the latest version of each FeeType if not specified.
@@ -1416,7 +1416,7 @@ class FeeTypesApi:
 
     @validate_call
     async def list_fee_types_with_http_info_async(self, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfFeeType]:
-            """[EXPERIMENTAL] ListFeeTypes: List FeeTypes  # noqa: E501
+            """[EARLY ACCESS] ListFeeTypes: List FeeTypes  # noqa: E501
 
             List FeeTypes that contain templates used to create fee transactions.  # noqa: E501
 
@@ -1545,7 +1545,7 @@ class FeeTypesApi:
 
     @validate_call
     async def update_fee_type_async(self, scope: StrictStr, code: StrictStr, update_fee_type_request: UpdateFeeTypeRequest, **kwargs) -> FeeType:
-            """[EXPERIMENTAL] UpdateFeeType: Update a FeeType.  # noqa: E501
+            """[EARLY ACCESS] UpdateFeeType: Update a FeeType.  # noqa: E501
             Update a FeeType that contains templates used to create fee transactions.  # noqa: E501
             
             :param scope: The scope of the FeeType. (required)
@@ -1569,7 +1569,7 @@ class FeeTypesApi:
 
     @validate_call
     async def update_fee_type_with_http_info_async(self, scope: StrictStr, code: StrictStr, update_fee_type_request: UpdateFeeTypeRequest, **kwargs) -> ApiResponse[FeeType]:
-            """[EXPERIMENTAL] UpdateFeeType: Update a FeeType.  # noqa: E501
+            """[EARLY ACCESS] UpdateFeeType: Update a FeeType.  # noqa: E501
 
             Update a FeeType that contains templates used to create fee transactions.  # noqa: E501
 

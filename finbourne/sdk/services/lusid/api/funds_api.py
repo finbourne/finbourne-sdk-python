@@ -100,7 +100,7 @@ class FundsApi:
 
     @validate_call
     def accept_estimate_valuation_point(self, scope: StrictStr, code: StrictStr, valuation_point_data_request: ValuationPointDataRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> AcceptEstimateValuationPointResponse:
-        """[EXPERIMENTAL] AcceptEstimateValuationPoint: Accepts an Estimate Valuation Point.  # noqa: E501
+        """[EARLY ACCESS] AcceptEstimateValuationPoint: Accepts an Estimate Valuation Point.  # noqa: E501
 
         Accepts the specified estimate Valuation Point.  Should the Valuation Point differ since the Valuation Point was last run, both Valuation Points will be returned and status will be marked as 'Candidate',  otherwise it will be marked as 'Final'.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -126,7 +126,7 @@ class FundsApi:
 
     @validate_call
     def accept_estimate_valuation_point_with_http_info(self, scope: StrictStr, code: StrictStr, valuation_point_data_request: ValuationPointDataRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AcceptEstimateValuationPointResponse]:
-        """[EXPERIMENTAL] AcceptEstimateValuationPoint: Accepts an Estimate Valuation Point.  # noqa: E501
+        """[EARLY ACCESS] AcceptEstimateValuationPoint: Accepts an Estimate Valuation Point.  # noqa: E501
 
         Accepts the specified estimate Valuation Point.  Should the Valuation Point differ since the Valuation Point was last run, both Valuation Points will be returned and status will be marked as 'Candidate',  otherwise it will be marked as 'Final'.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -251,7 +251,7 @@ class FundsApi:
 
     @validate_call
     def add_allocation_groups(self, scope: StrictStr, code: StrictStr, allocation_group_definition: List[AllocationGroupDefinition], **kwargs) -> Fund:
-        """[EXPERIMENTAL] AddAllocationGroups: Add Allocation Groups to a Fund.  # noqa: E501
+        """[EARLY ACCESS] AddAllocationGroups: Add Allocation Groups to a Fund.  # noqa: E501
 
         Add the given Allocation Group definitions to the Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -275,7 +275,7 @@ class FundsApi:
 
     @validate_call
     def add_allocation_groups_with_http_info(self, scope: StrictStr, code: StrictStr, allocation_group_definition: List[AllocationGroupDefinition], **kwargs) -> ApiResponse[Fund]:
-        """[EXPERIMENTAL] AddAllocationGroups: Add Allocation Groups to a Fund.  # noqa: E501
+        """[EARLY ACCESS] AddAllocationGroups: Add Allocation Groups to a Fund.  # noqa: E501
 
         Add the given Allocation Group definitions to the Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -394,7 +394,7 @@ class FundsApi:
 
     @validate_call
     def add_series(self, scope: StrictStr, code: StrictStr, series_definition_request: List[SeriesDefinitionRequest], **kwargs) -> Fund:
-        """[EXPERIMENTAL] AddSeries: Add Series to a Fund.  # noqa: E501
+        """[EARLY ACCESS] AddSeries: Add Series to a Fund.  # noqa: E501
 
         Add the given Series definitions to the specified Share Classes of the Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -418,7 +418,7 @@ class FundsApi:
 
     @validate_call
     def add_series_with_http_info(self, scope: StrictStr, code: StrictStr, series_definition_request: List[SeriesDefinitionRequest], **kwargs) -> ApiResponse[Fund]:
-        """[EXPERIMENTAL] AddSeries: Add Series to a Fund.  # noqa: E501
+        """[EARLY ACCESS] AddSeries: Add Series to a Fund.  # noqa: E501
 
         Add the given Series definitions to the specified Share Classes of the Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -537,7 +537,7 @@ class FundsApi:
 
     @validate_call
     def create_fee(self, scope: StrictStr, code: StrictStr, fee_request: FeeRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> Fee:
-        """[EXPERIMENTAL] CreateFee: Create a Fee.  # noqa: E501
+        """[EARLY ACCESS] CreateFee: Create a Fee.  # noqa: E501
 
         Create the given Fee.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -563,7 +563,7 @@ class FundsApi:
 
     @validate_call
     def create_fee_with_http_info(self, scope: StrictStr, code: StrictStr, fee_request: FeeRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[Fee]:
-        """[EXPERIMENTAL] CreateFee: Create a Fee.  # noqa: E501
+        """[EARLY ACCESS] CreateFee: Create a Fee.  # noqa: E501
 
         Create the given Fee.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -688,7 +688,7 @@ class FundsApi:
 
     @validate_call
     def create_fund(self, scope: StrictStr, fund_request: FundRequest, **kwargs) -> Fund:
-        """[EXPERIMENTAL] CreateFund: Create a Fund.  # noqa: E501
+        """[EARLY ACCESS] CreateFund: Create a Fund.  # noqa: E501
 
         Create the given Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -710,7 +710,7 @@ class FundsApi:
 
     @validate_call
     def create_fund_with_http_info(self, scope: StrictStr, fund_request: FundRequest, **kwargs) -> ApiResponse[Fund]:
-        """[EXPERIMENTAL] CreateFund: Create a Fund.  # noqa: E501
+        """[EARLY ACCESS] CreateFund: Create a Fund.  # noqa: E501
 
         Create the given Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -823,7 +823,7 @@ class FundsApi:
 
     @validate_call
     def create_fund_v2(self, scope: StrictStr, fund_definition_request: FundDefinitionRequest, **kwargs) -> Fund:
-        """[EXPERIMENTAL] CreateFundV2: Create a Fund V2 (Preview).  # noqa: E501
+        """[EARLY ACCESS] CreateFundV2: Create a Fund V2 (Preview).  # noqa: E501
 
         Create the given V2 Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -845,7 +845,7 @@ class FundsApi:
 
     @validate_call
     def create_fund_v2_with_http_info(self, scope: StrictStr, fund_definition_request: FundDefinitionRequest, **kwargs) -> ApiResponse[Fund]:
-        """[EXPERIMENTAL] CreateFundV2: Create a Fund V2 (Preview).  # noqa: E501
+        """[EARLY ACCESS] CreateFundV2: Create a Fund V2 (Preview).  # noqa: E501
 
         Create the given V2 Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -958,7 +958,7 @@ class FundsApi:
 
     @validate_call
     def create_valuation_point(self, scope: StrictStr, code: StrictStr, create_valuation_point_request: CreateValuationPointRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ValuationPoint:
-        """[EXPERIMENTAL] CreateValuationPoint: Create a Valuation Point.  # noqa: E501
+        """[EARLY ACCESS] CreateValuationPoint: Create a Valuation Point.  # noqa: E501
 
         Insert the estimate Valuation Point.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -984,7 +984,7 @@ class FundsApi:
 
     @validate_call
     def create_valuation_point_with_http_info(self, scope: StrictStr, code: StrictStr, create_valuation_point_request: CreateValuationPointRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPoint]:
-        """[EXPERIMENTAL] CreateValuationPoint: Create a Valuation Point.  # noqa: E501
+        """[EARLY ACCESS] CreateValuationPoint: Create a Valuation Point.  # noqa: E501
 
         Insert the estimate Valuation Point.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -1109,7 +1109,7 @@ class FundsApi:
 
     @validate_call
     def deactivate_nav_types(self, scope: StrictStr, code: StrictStr, request_body: List[str], delete_mode: Optional[StrictStr] = None, **kwargs) -> Fund:
-        """[EXPERIMENTAL] DeactivateNavTypes: Deactivate NAV types on a Fund.  # noqa: E501
+        """[EARLY ACCESS] DeactivateNavTypes: Deactivate NAV types on a Fund.  # noqa: E501
 
         Deactivate the given NAV types on the Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -1135,7 +1135,7 @@ class FundsApi:
 
     @validate_call
     def deactivate_nav_types_with_http_info(self, scope: StrictStr, code: StrictStr, request_body: List[str], delete_mode: Optional[StrictStr] = None, **kwargs) -> ApiResponse[Fund]:
-        """[EXPERIMENTAL] DeactivateNavTypes: Deactivate NAV types on a Fund.  # noqa: E501
+        """[EARLY ACCESS] DeactivateNavTypes: Deactivate NAV types on a Fund.  # noqa: E501
 
         Deactivate the given NAV types on the Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -1260,7 +1260,7 @@ class FundsApi:
 
     @validate_call
     def delete_bookmark(self, scope: StrictStr, code: StrictStr, bookmark_code: StrictStr, nav_type_code: Optional[StrictStr] = None, **kwargs) -> DeletedEntityResponse:
-        """[EXPERIMENTAL] DeleteBookmark: Delete a Bookmark.  # noqa: E501
+        """[EARLY ACCESS] DeleteBookmark: Delete a Bookmark.  # noqa: E501
 
         Deletes the given Bookmark.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -1286,7 +1286,7 @@ class FundsApi:
 
     @validate_call
     def delete_bookmark_with_http_info(self, scope: StrictStr, code: StrictStr, bookmark_code: StrictStr, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-        """[EXPERIMENTAL] DeleteBookmark: Delete a Bookmark.  # noqa: E501
+        """[EARLY ACCESS] DeleteBookmark: Delete a Bookmark.  # noqa: E501
 
         Deletes the given Bookmark.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -1404,7 +1404,7 @@ class FundsApi:
 
     @validate_call
     def delete_fee(self, scope: StrictStr, code: StrictStr, fee_code: StrictStr, **kwargs) -> DeletedEntityResponse:
-        """[EXPERIMENTAL] DeleteFee: Delete a Fee.  # noqa: E501
+        """[EARLY ACCESS] DeleteFee: Delete a Fee.  # noqa: E501
 
         Delete the given Fee.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -1428,7 +1428,7 @@ class FundsApi:
 
     @validate_call
     def delete_fee_with_http_info(self, scope: StrictStr, code: StrictStr, fee_code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-        """[EXPERIMENTAL] DeleteFee: Delete a Fee.  # noqa: E501
+        """[EARLY ACCESS] DeleteFee: Delete a Fee.  # noqa: E501
 
         Delete the given Fee.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -1540,7 +1540,7 @@ class FundsApi:
 
     @validate_call
     def delete_fund(self, scope: StrictStr, code: StrictStr, **kwargs) -> DeletedEntityResponse:
-        """[EXPERIMENTAL] DeleteFund: Delete a Fund.  # noqa: E501
+        """[EARLY ACCESS] DeleteFund: Delete a Fund.  # noqa: E501
 
         Delete the given Fund.  # noqa: E501
         :param scope: The scope of the Fund to be deleted. (required)
@@ -1562,7 +1562,7 @@ class FundsApi:
 
     @validate_call
     def delete_fund_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-        """[EXPERIMENTAL] DeleteFund: Delete a Fund.  # noqa: E501
+        """[EARLY ACCESS] DeleteFund: Delete a Fund.  # noqa: E501
 
         Delete the given Fund.  # noqa: E501
         :param scope: The scope of the Fund to be deleted. (required)
@@ -1668,7 +1668,7 @@ class FundsApi:
 
     @validate_call
     def delete_nav_activity_adjustments(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_activity_adjustment_response: List[NavActivityAdjustmentResponse], nav_type_code: Optional[StrictStr] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> DeletedEntityResponse:
-        """[EXPERIMENTAL] DeleteNavActivityAdjustments: Delete Nav activity adjustments.  # noqa: E501
+        """[EARLY ACCESS] DeleteNavActivityAdjustments: Delete Nav activity adjustments.  # noqa: E501
 
         Delete Nav activity adjustments on a Valuation Point.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -1698,7 +1698,7 @@ class FundsApi:
 
     @validate_call
     def delete_nav_activity_adjustments_with_http_info(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_activity_adjustment_response: List[NavActivityAdjustmentResponse], nav_type_code: Optional[StrictStr] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-        """[EXPERIMENTAL] DeleteNavActivityAdjustments: Delete Nav activity adjustments.  # noqa: E501
+        """[EARLY ACCESS] DeleteNavActivityAdjustments: Delete Nav activity adjustments.  # noqa: E501
 
         Delete Nav activity adjustments on a Valuation Point.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -1835,7 +1835,7 @@ class FundsApi:
 
     @validate_call
     def delete_valuation_point(self, scope: StrictStr, code: StrictStr, diary_entry_code: StrictStr, diary_entry_code_variant: Optional[StrictStr] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> DeletedEntityResponse:
-        """[EXPERIMENTAL] DeleteValuationPoint: Delete a Valuation Point.  # noqa: E501
+        """[EARLY ACCESS] DeleteValuationPoint: Delete a Valuation Point.  # noqa: E501
 
         Deletes the given Valuation Point.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -1863,7 +1863,7 @@ class FundsApi:
 
     @validate_call
     def delete_valuation_point_with_http_info(self, scope: StrictStr, code: StrictStr, diary_entry_code: StrictStr, diary_entry_code_variant: Optional[StrictStr] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-        """[EXPERIMENTAL] DeleteValuationPoint: Delete a Valuation Point.  # noqa: E501
+        """[EARLY ACCESS] DeleteValuationPoint: Delete a Valuation Point.  # noqa: E501
 
         Deletes the given Valuation Point.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -1987,7 +1987,7 @@ class FundsApi:
 
     @validate_call
     def finalise_candidate_valuation_point(self, scope: StrictStr, code: StrictStr, valuation_point_data_request: ValuationPointDataRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ValuationPointDataResponse:
-        """[EXPERIMENTAL] FinaliseCandidateValuationPoint: Finalise a Candidate Valuation Point.  # noqa: E501
+        """[EARLY ACCESS] FinaliseCandidateValuationPoint: Finalise a Candidate Valuation Point.  # noqa: E501
 
         Moves a 'Candidate' status Valuation Point to status 'Final'.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -2013,7 +2013,7 @@ class FundsApi:
 
     @validate_call
     def finalise_candidate_valuation_point_with_http_info(self, scope: StrictStr, code: StrictStr, valuation_point_data_request: ValuationPointDataRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointDataResponse]:
-        """[EXPERIMENTAL] FinaliseCandidateValuationPoint: Finalise a Candidate Valuation Point.  # noqa: E501
+        """[EARLY ACCESS] FinaliseCandidateValuationPoint: Finalise a Candidate Valuation Point.  # noqa: E501
 
         Moves a 'Candidate' status Valuation Point to status 'Final'.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -2138,7 +2138,7 @@ class FundsApi:
 
     @validate_call
     def get_a2_b_data_for_fund(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> VersionedResourceListOfFundA2BDataRecord:
-        """[EXPERIMENTAL] GetA2BDataForFund: Get A2B data for a Fund.  # noqa: E501
+        """[EARLY ACCESS] GetA2BDataForFund: Get A2B data for a Fund.  # noqa: E501
 
         Get the A2B data for transaction portfolios in a specified Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -2170,7 +2170,7 @@ class FundsApi:
 
     @validate_call
     def get_a2_b_data_for_fund_with_http_info(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[VersionedResourceListOfFundA2BDataRecord]:
-        """[EXPERIMENTAL] GetA2BDataForFund: Get A2B data for a Fund.  # noqa: E501
+        """[EARLY ACCESS] GetA2BDataForFund: Get A2B data for a Fund.  # noqa: E501
 
         Get the A2B data for transaction portfolios in a specified Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -2317,7 +2317,7 @@ class FundsApi:
 
     @validate_call
     def get_a2_b_movements_for_fund(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> VersionedResourceListOfFundA2BMovementRecord:
-        """[EXPERIMENTAL] GetA2BMovementsForFund: Get A2B movements for transaction portfolios in a Fund.  # noqa: E501
+        """[EARLY ACCESS] GetA2BMovementsForFund: Get A2B movements for transaction portfolios in a Fund.  # noqa: E501
 
         Get the A2B movement records of transaction portfolios in a specified Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -2349,7 +2349,7 @@ class FundsApi:
 
     @validate_call
     def get_a2_b_movements_for_fund_with_http_info(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[VersionedResourceListOfFundA2BMovementRecord]:
-        """[EXPERIMENTAL] GetA2BMovementsForFund: Get A2B movements for transaction portfolios in a Fund.  # noqa: E501
+        """[EARLY ACCESS] GetA2BMovementsForFund: Get A2B movements for transaction portfolios in a Fund.  # noqa: E501
 
         Get the A2B movement records of transaction portfolios in a specified Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -2496,7 +2496,7 @@ class FundsApi:
 
     @validate_call
     def get_fee(self, scope: StrictStr, code: StrictStr, fee_code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> Fee:
-        """[EXPERIMENTAL] GetFee: Get a Fee for a specified Fund.  # noqa: E501
+        """[EARLY ACCESS] GetFee: Get a Fee for a specified Fund.  # noqa: E501
 
         Retrieve a fee for a specified Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -2526,7 +2526,7 @@ class FundsApi:
 
     @validate_call
     def get_fee_with_http_info(self, scope: StrictStr, code: StrictStr, fee_code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[Fee]:
-        """[EXPERIMENTAL] GetFee: Get a Fee for a specified Fund.  # noqa: E501
+        """[EARLY ACCESS] GetFee: Get a Fee for a specified Fund.  # noqa: E501
 
         Retrieve a fee for a specified Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -2660,7 +2660,7 @@ class FundsApi:
 
     @validate_call
     def get_fee_properties(self, scope: StrictStr, code: StrictStr, fee_code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> FeeProperties:
-        """[EXPERIMENTAL] GetFeeProperties: Get Fee properties.  # noqa: E501
+        """[EARLY ACCESS] GetFeeProperties: Get Fee properties.  # noqa: E501
 
         Get all the properties of a single fee.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -2688,7 +2688,7 @@ class FundsApi:
 
     @validate_call
     def get_fee_properties_with_http_info(self, scope: StrictStr, code: StrictStr, fee_code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[FeeProperties]:
-        """[EXPERIMENTAL] GetFeeProperties: Get Fee properties.  # noqa: E501
+        """[EARLY ACCESS] GetFeeProperties: Get Fee properties.  # noqa: E501
 
         Get all the properties of a single fee.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -2815,7 +2815,7 @@ class FundsApi:
 
     @validate_call
     def get_fund(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> Fund:
-        """[EXPERIMENTAL] GetFund: Get a Fund.  # noqa: E501
+        """[EARLY ACCESS] GetFund: Get a Fund.  # noqa: E501
 
         Retrieve the definition of a particular Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -2843,7 +2843,7 @@ class FundsApi:
 
     @validate_call
     def get_fund_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[Fund]:
-        """[EXPERIMENTAL] GetFund: Get a Fund.  # noqa: E501
+        """[EARLY ACCESS] GetFund: Get a Fund.  # noqa: E501
 
         Retrieve the definition of a particular Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -2971,7 +2971,7 @@ class FundsApi:
 
     @validate_call
     def get_fund_properties(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> FundProperties:
-        """[EXPERIMENTAL] GetFundProperties: Get Fund properties.  # noqa: E501
+        """[EARLY ACCESS] GetFundProperties: Get Fund properties.  # noqa: E501
 
         Get all the properties of a single fund.  # noqa: E501
         :param scope: The scope of the Fund to list the properties for. (required)
@@ -2997,7 +2997,7 @@ class FundsApi:
 
     @validate_call
     def get_fund_properties_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[FundProperties]:
-        """[EXPERIMENTAL] GetFundProperties: Get Fund properties.  # noqa: E501
+        """[EARLY ACCESS] GetFundProperties: Get Fund properties.  # noqa: E501
 
         Get all the properties of a single fund.  # noqa: E501
         :param scope: The scope of the Fund to list the properties for. (required)
@@ -3118,7 +3118,7 @@ class FundsApi:
 
     @validate_call
     def get_holding_contributors_for_fund(self, scope: StrictStr, code: StrictStr, holding_id: int, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, nav_type_code: Optional[StrictStr] = None, include_historic: Optional[bool] = None, tax_lot_id: Optional[StrictStr] = None, include_unsettled_movements: Optional[bool] = None, limit: Optional[int] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, **kwargs) -> VersionedResourceListOfHoldingContributor:
-        """[EXPERIMENTAL] GetHoldingContributorsForFund: Get holdings contributors for transaction portfolios in a Fund.  # noqa: E501
+        """[EARLY ACCESS] GetHoldingContributorsForFund: Get holdings contributors for transaction portfolios in a Fund.  # noqa: E501
 
         Get the holdings of transaction portfolios in a specified Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -3158,7 +3158,7 @@ class FundsApi:
 
     @validate_call
     def get_holding_contributors_for_fund_with_http_info(self, scope: StrictStr, code: StrictStr, holding_id: int, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, nav_type_code: Optional[StrictStr] = None, include_historic: Optional[bool] = None, tax_lot_id: Optional[StrictStr] = None, include_unsettled_movements: Optional[bool] = None, limit: Optional[int] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfHoldingContributor]:
-        """[EXPERIMENTAL] GetHoldingContributorsForFund: Get holdings contributors for transaction portfolios in a Fund.  # noqa: E501
+        """[EARLY ACCESS] GetHoldingContributorsForFund: Get holdings contributors for transaction portfolios in a Fund.  # noqa: E501
 
         Get the holdings of transaction portfolios in a specified Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -3328,7 +3328,7 @@ class FundsApi:
 
     @validate_call
     def get_holdings_for_fund(self, scope: StrictStr, code: StrictStr, single_valuation_point_query_parameters: SingleValuationPointQueryParameters, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, by_taxlots: Optional[bool] = None, include_settlement_events_after_days: Optional[int] = None, **kwargs) -> VersionedResourceListOfPortfolioHolding:
-        """[EXPERIMENTAL] GetHoldingsForFund: Get holdings for transaction portfolios in a Fund.  # noqa: E501
+        """[EARLY ACCESS] GetHoldingsForFund: Get holdings for transaction portfolios in a Fund.  # noqa: E501
 
         Get the holdings of transaction portfolios in a specified Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -3364,7 +3364,7 @@ class FundsApi:
 
     @validate_call
     def get_holdings_for_fund_with_http_info(self, scope: StrictStr, code: StrictStr, single_valuation_point_query_parameters: SingleValuationPointQueryParameters, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, by_taxlots: Optional[bool] = None, include_settlement_events_after_days: Optional[int] = None, **kwargs) -> ApiResponse[VersionedResourceListOfPortfolioHolding]:
-        """[EXPERIMENTAL] GetHoldingsForFund: Get holdings for transaction portfolios in a Fund.  # noqa: E501
+        """[EARLY ACCESS] GetHoldingsForFund: Get holdings for transaction portfolios in a Fund.  # noqa: E501
 
         Get the holdings of transaction portfolios in a specified Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -3523,7 +3523,7 @@ class FundsApi:
 
     @validate_call
     def get_valuation_for_fund(self, scope: StrictStr, code: StrictStr, nav_type_code: Optional[StrictStr] = None, fund_valuation_request: Optional[FundValuationRequest] = None, **kwargs) -> ListAggregationResponse:
-        """[EXPERIMENTAL] GetValuationForFund: Perform valuation for a Fund.  # noqa: E501
+        """[EARLY ACCESS] GetValuationForFund: Perform valuation for a Fund.  # noqa: E501
 
         Perform valuation on a specified Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -3549,7 +3549,7 @@ class FundsApi:
 
     @validate_call
     def get_valuation_for_fund_with_http_info(self, scope: StrictStr, code: StrictStr, nav_type_code: Optional[StrictStr] = None, fund_valuation_request: Optional[FundValuationRequest] = None, **kwargs) -> ApiResponse[ListAggregationResponse]:
-        """[EXPERIMENTAL] GetValuationForFund: Perform valuation for a Fund.  # noqa: E501
+        """[EARLY ACCESS] GetValuationForFund: Perform valuation for a Fund.  # noqa: E501
 
         Perform valuation on a specified Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -3674,7 +3674,7 @@ class FundsApi:
 
     @validate_call
     def get_valuation_point_data(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, as_at: Optional[datetime] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ValuationPointDataResponse:
-        """[EXPERIMENTAL] GetValuationPointData: Get Valuation Point Data for a Fund.  # noqa: E501
+        """[EARLY ACCESS] GetValuationPointData: Get Valuation Point Data for a Fund.  # noqa: E501
 
         Retrieves the Valuation Point data between given dates or Valuation Point codes.  The endpoint will internally extract all 'Assets' and 'Liabilities' from the Fund's Trial balance to produce a GAV.  Start date will be assumed from the last 'official' ValuationPoint and EndDate will be as provided.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -3702,7 +3702,7 @@ class FundsApi:
 
     @validate_call
     def get_valuation_point_data_with_http_info(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, as_at: Optional[datetime] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointDataResponse]:
-        """[EXPERIMENTAL] GetValuationPointData: Get Valuation Point Data for a Fund.  # noqa: E501
+        """[EARLY ACCESS] GetValuationPointData: Get Valuation Point Data for a Fund.  # noqa: E501
 
         Retrieves the Valuation Point data between given dates or Valuation Point codes.  The endpoint will internally extract all 'Assets' and 'Liabilities' from the Fund's Trial balance to produce a GAV.  Start date will be assumed from the last 'official' ValuationPoint and EndDate will be as provided.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -3836,7 +3836,7 @@ class FundsApi:
 
     @validate_call
     def get_valuation_point_journal_entry_lines(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, general_ledger_profile_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ValuationPointResourceListOfFundJournalEntryLine:
-        """[EXPERIMENTAL] GetValuationPointJournalEntryLines: Get the Journal Entry Lines for the given Fund.  # noqa: E501
+        """[EARLY ACCESS] GetValuationPointJournalEntryLines: Get the Journal Entry Lines for the given Fund.  # noqa: E501
 
         Gets the Journal Entry Lines for the given Valuation Point for a Fund.                The Journal Entry Lines have been generated from transactions, translated via posting rules and used in the valuation point.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -3874,7 +3874,7 @@ class FundsApi:
 
     @validate_call
     def get_valuation_point_journal_entry_lines_with_http_info(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, general_ledger_profile_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfFundJournalEntryLine]:
-        """[EXPERIMENTAL] GetValuationPointJournalEntryLines: Get the Journal Entry Lines for the given Fund.  # noqa: E501
+        """[EARLY ACCESS] GetValuationPointJournalEntryLines: Get the Journal Entry Lines for the given Fund.  # noqa: E501
 
         Gets the Journal Entry Lines for the given Valuation Point for a Fund.                The Journal Entry Lines have been generated from transactions, translated via posting rules and used in the valuation point.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -4039,7 +4039,7 @@ class FundsApi:
 
     @validate_call
     def get_valuation_point_pnl_summary(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, general_ledger_profile_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ValuationPointResourceListOfPnlJournalEntryLine:
-        """[EXPERIMENTAL] GetValuationPointPnlSummary: Get a PnL summary for the given Valuation Point in the Fund.  # noqa: E501
+        """[EARLY ACCESS] GetValuationPointPnlSummary: Get a PnL summary for the given Valuation Point in the Fund.  # noqa: E501
 
         Gets the PnL Summary lines from the Journal Entry Lines produced when calculating the Valuation Point.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -4075,7 +4075,7 @@ class FundsApi:
 
     @validate_call
     def get_valuation_point_pnl_summary_with_http_info(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, general_ledger_profile_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfPnlJournalEntryLine]:
-        """[EXPERIMENTAL] GetValuationPointPnlSummary: Get a PnL summary for the given Valuation Point in the Fund.  # noqa: E501
+        """[EARLY ACCESS] GetValuationPointPnlSummary: Get a PnL summary for the given Valuation Point in the Fund.  # noqa: E501
 
         Gets the PnL Summary lines from the Journal Entry Lines produced when calculating the Valuation Point.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -4233,7 +4233,7 @@ class FundsApi:
 
     @validate_call
     def get_valuation_point_quotes(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ValuationPointResourceListOfAccountedQuote:
-        """[EXPERIMENTAL] GetValuationPointQuotes: Get the Quotes for the given Fund and Valuation Point.  # noqa: E501
+        """[EARLY ACCESS] GetValuationPointQuotes: Get the Quotes for the given Fund and Valuation Point.  # noqa: E501
 
         Gets all quotes within the effective date range of the specified Valuation Point for a Fund,  including any quotes added via a Complex Close (Post-Close Activity).  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -4265,7 +4265,7 @@ class FundsApi:
 
     @validate_call
     def get_valuation_point_quotes_with_http_info(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfAccountedQuote]:
-        """[EXPERIMENTAL] GetValuationPointQuotes: Get the Quotes for the given Fund and Valuation Point.  # noqa: E501
+        """[EARLY ACCESS] GetValuationPointQuotes: Get the Quotes for the given Fund and Valuation Point.  # noqa: E501
 
         Gets all quotes within the effective date range of the specified Valuation Point for a Fund,  including any quotes added via a Complex Close (Post-Close Activity).  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -4411,7 +4411,7 @@ class FundsApi:
 
     @validate_call
     def get_valuation_point_transactions(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, show_cancelled_transactions: Optional[bool] = None, membership_type: Optional[StrictStr] = None, **kwargs) -> ValuationPointResourceListOfAccountedTransaction:
-        """[EXPERIMENTAL] GetValuationPointTransactions: Get the Transactions for the given Fund.  # noqa: E501
+        """[EARLY ACCESS] GetValuationPointTransactions: Get the Transactions for the given Fund.  # noqa: E501
 
         Gets the Transactions for the given Valuation Point for a Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -4455,7 +4455,7 @@ class FundsApi:
 
     @validate_call
     def get_valuation_point_transactions_with_http_info(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, show_cancelled_transactions: Optional[bool] = None, membership_type: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfAccountedTransaction]:
-        """[EXPERIMENTAL] GetValuationPointTransactions: Get the Transactions for the given Fund.  # noqa: E501
+        """[EARLY ACCESS] GetValuationPointTransactions: Get the Transactions for the given Fund.  # noqa: E501
 
         Gets the Transactions for the given Valuation Point for a Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -4638,9 +4638,9 @@ class FundsApi:
 
     @validate_call
     def get_valuation_point_trial_balance(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, general_ledger_profile_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, exclude_cleardown_module: Optional[bool] = None, **kwargs) -> ValuationPointResourceListOfTrialBalance:
-        """[EXPERIMENTAL] GetValuationPointTrialBalance: Get Trial Balance for the given Fund.  # noqa: E501
+        """[EARLY ACCESS] GetValuationPointTrialBalance: Get Trial Balance for the given Fund.  # noqa: E501
 
-        Gets the Trial Balance for the given Valuation Point for a Fund.                The Trial Balance has been generated from transactions, translated via Posting Rules  and aggregated based on a General Ledger Profile (where specified).  # noqa: E501
+        Gets the Trial Balance for the given Valuation Point for a Fund.                The Trial Balance has been generated from transactions, translated via Posting Rules  and aggregated based on a General Ledger Profile (where specified).                Supplying the X-LUSID-SuppressImbalanceValidation header suppresses the imbalance check.  Any caller with access to this endpoint may use it; it is not role-restricted.  # noqa: E501
         :param scope: The scope of the Fund. (required)
         :type scope: str
         :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
@@ -4678,9 +4678,9 @@ class FundsApi:
 
     @validate_call
     def get_valuation_point_trial_balance_with_http_info(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, general_ledger_profile_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, exclude_cleardown_module: Optional[bool] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfTrialBalance]:
-        """[EXPERIMENTAL] GetValuationPointTrialBalance: Get Trial Balance for the given Fund.  # noqa: E501
+        """[EARLY ACCESS] GetValuationPointTrialBalance: Get Trial Balance for the given Fund.  # noqa: E501
 
-        Gets the Trial Balance for the given Valuation Point for a Fund.                The Trial Balance has been generated from transactions, translated via Posting Rules  and aggregated based on a General Ledger Profile (where specified).  # noqa: E501
+        Gets the Trial Balance for the given Valuation Point for a Fund.                The Trial Balance has been generated from transactions, translated via Posting Rules  and aggregated based on a General Ledger Profile (where specified).                Supplying the X-LUSID-SuppressImbalanceValidation header suppresses the imbalance check.  Any caller with access to this endpoint may use it; it is not role-restricted.  # noqa: E501
         :param scope: The scope of the Fund. (required)
         :type scope: str
         :param code: The code of the Fund. Together with the scope this uniquely identifies the Fund. (required)
@@ -4849,7 +4849,7 @@ class FundsApi:
 
     @validate_call
     def get_valuation_point_unsettled_transactions(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ValuationPointResourceListOfUnsettledTransaction:
-        """[EXPERIMENTAL] GetValuationPointUnsettledTransactions: Get Unsettled Transactions for the given Fund.  # noqa: E501
+        """[EARLY ACCESS] GetValuationPointUnsettledTransactions: Get Unsettled Transactions for the given Fund.  # noqa: E501
 
         Gets all transactions that remain unsettled as at the specified Valuation Point for a Fund,  looking back from inception. Settlement status is point-in-time: post-cutoff settlement  activity does not alter the result.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -4883,7 +4883,7 @@ class FundsApi:
 
     @validate_call
     def get_valuation_point_unsettled_transactions_with_http_info(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfUnsettledTransaction]:
-        """[EXPERIMENTAL] GetValuationPointUnsettledTransactions: Get Unsettled Transactions for the given Fund.  # noqa: E501
+        """[EARLY ACCESS] GetValuationPointUnsettledTransactions: Get Unsettled Transactions for the given Fund.  # noqa: E501
 
         Gets all transactions that remain unsettled as at the specified Valuation Point for a Fund,  looking back from inception. Settlement status is point-in-time: post-cutoff settlement  activity does not alter the result.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -5036,7 +5036,7 @@ class FundsApi:
 
     @validate_call
     def list_fees(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfFee:
-        """[EXPERIMENTAL] ListFees: List Fees for a specified Fund.  # noqa: E501
+        """[EARLY ACCESS] ListFees: List Fees for a specified Fund.  # noqa: E501
 
         List all the Fees matching a particular criteria.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -5072,7 +5072,7 @@ class FundsApi:
 
     @validate_call
     def list_fees_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfFee]:
-        """[EXPERIMENTAL] ListFees: List Fees for a specified Fund.  # noqa: E501
+        """[EARLY ACCESS] ListFees: List Fees for a specified Fund.  # noqa: E501
 
         List all the Fees matching a particular criteria.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -5225,7 +5225,7 @@ class FundsApi:
 
     @validate_call
     def list_fund_calendar(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfFundCalendarEntry:
-        """[EXPERIMENTAL] ListFundCalendar: List Fund Calendar.  # noqa: E501
+        """[EARLY ACCESS] ListFundCalendar: List Fund Calendar.  # noqa: E501
 
         List all the Calendar Entries associated with the Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -5259,7 +5259,7 @@ class FundsApi:
 
     @validate_call
     def list_fund_calendar_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfFundCalendarEntry]:
-        """[EXPERIMENTAL] ListFundCalendar: List Fund Calendar.  # noqa: E501
+        """[EARLY ACCESS] ListFundCalendar: List Fund Calendar.  # noqa: E501
 
         List all the Calendar Entries associated with the Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -5406,7 +5406,7 @@ class FundsApi:
 
     @validate_call
     def list_fund_calendar_entries(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfFundCalendarEntries:
-        """[EXPERIMENTAL] ListFundCalendarEntries: List Fund Calendar Entries.  # noqa: E501
+        """[EARLY ACCESS] ListFundCalendarEntries: List Fund Calendar Entries.  # noqa: E501
 
         List all the Calendar Entries associated with the Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -5440,7 +5440,7 @@ class FundsApi:
 
     @validate_call
     def list_fund_calendar_entries_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfFundCalendarEntries]:
-        """[EXPERIMENTAL] ListFundCalendarEntries: List Fund Calendar Entries.  # noqa: E501
+        """[EARLY ACCESS] ListFundCalendarEntries: List Fund Calendar Entries.  # noqa: E501
 
         List all the Calendar Entries associated with the Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -5587,7 +5587,7 @@ class FundsApi:
 
     @validate_call
     def list_funds(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfFund:
-        """[EXPERIMENTAL] ListFunds: List Funds.  # noqa: E501
+        """[EARLY ACCESS] ListFunds: List Funds.  # noqa: E501
 
         List all the Funds matching particular criteria.  # noqa: E501
         :param effective_at: The effective datetime or cut label at which to list the TimeVariant properties for the Funds. Defaults to the current LUSID              system datetime if not specified.
@@ -5619,7 +5619,7 @@ class FundsApi:
 
     @validate_call
     def list_funds_with_http_info(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfFund]:
-        """[EXPERIMENTAL] ListFunds: List Funds.  # noqa: E501
+        """[EARLY ACCESS] ListFunds: List Funds.  # noqa: E501
 
         List all the Funds matching particular criteria.  # noqa: E501
         :param effective_at: The effective datetime or cut label at which to list the TimeVariant properties for the Funds. Defaults to the current LUSID              system datetime if not specified.
@@ -5760,7 +5760,7 @@ class FundsApi:
 
     @validate_call
     def list_nav_activity_adjustments(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> ResourceListOfNavActivityAdjustmentResponse:
-        """[EXPERIMENTAL] ListNavActivityAdjustments: List NAV adjustment activities applied to a valuation point  # noqa: E501
+        """[EARLY ACCESS] ListNavActivityAdjustments: List NAV adjustment activities applied to a valuation point  # noqa: E501
 
         Lists the NAV adjustment activities applied to the specified valuation point for a Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -5796,7 +5796,7 @@ class FundsApi:
 
     @validate_call
     def list_nav_activity_adjustments_with_http_info(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfNavActivityAdjustmentResponse]:
-        """[EXPERIMENTAL] ListNavActivityAdjustments: List NAV adjustment activities applied to a valuation point  # noqa: E501
+        """[EARLY ACCESS] ListNavActivityAdjustments: List NAV adjustment activities applied to a valuation point  # noqa: E501
 
         Lists the NAV adjustment activities applied to the specified valuation point for a Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -5947,7 +5947,7 @@ class FundsApi:
 
     @validate_call
     def list_valuation_point_complex_market_data(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ValuationPointResourceListOfAccountedComplexMarketData:
-        """[EXPERIMENTAL] ListValuationPointComplexMarketData: List the Complex Market Data for the given Fund and Valuation Point.  # noqa: E501
+        """[EARLY ACCESS] ListValuationPointComplexMarketData: List the Complex Market Data for the given Fund and Valuation Point.  # noqa: E501
 
         Lists all complex market data within the effective date range of the specified Valuation Point for a Fund,  including any items added via a Complex Close (Post-Close Activity).  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -5979,7 +5979,7 @@ class FundsApi:
 
     @validate_call
     def list_valuation_point_complex_market_data_with_http_info(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfAccountedComplexMarketData]:
-        """[EXPERIMENTAL] ListValuationPointComplexMarketData: List the Complex Market Data for the given Fund and Valuation Point.  # noqa: E501
+        """[EARLY ACCESS] ListValuationPointComplexMarketData: List the Complex Market Data for the given Fund and Valuation Point.  # noqa: E501
 
         Lists all complex market data within the effective date range of the specified Valuation Point for a Fund,  including any items added via a Complex Close (Post-Close Activity).  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -6125,7 +6125,7 @@ class FundsApi:
 
     @validate_call
     def list_valuation_point_instruments(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, instrument_property_keys: Optional[List[str]] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfValuationPointInstrument:
-        """[EXPERIMENTAL] ListValuationPointInstruments: List Instruments inside a valuation point  # noqa: E501
+        """[EARLY ACCESS] ListValuationPointInstruments: List Instruments inside a valuation point  # noqa: E501
 
         Lists the Instruments linked to Transactions within a Valuation Point for a Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -6165,7 +6165,7 @@ class FundsApi:
 
     @validate_call
     def list_valuation_point_instruments_with_http_info(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, instrument_property_keys: Optional[List[str]] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfValuationPointInstrument]:
-        """[EXPERIMENTAL] ListValuationPointInstruments: List Instruments inside a valuation point  # noqa: E501
+        """[EARLY ACCESS] ListValuationPointInstruments: List Instruments inside a valuation point  # noqa: E501
 
         Lists the Instruments linked to Transactions within a Valuation Point for a Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -6330,7 +6330,7 @@ class FundsApi:
 
     @validate_call
     def list_valuation_point_overview(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfValuationPointOverview:
-        """[EXPERIMENTAL] ListValuationPointOverview: List Valuation Points Overview for a given Fund.  # noqa: E501
+        """[EARLY ACCESS] ListValuationPointOverview: List Valuation Points Overview for a given Fund.  # noqa: E501
 
         List the overview of all the Valuation Points that match the given criteria for a given Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -6366,7 +6366,7 @@ class FundsApi:
 
     @validate_call
     def list_valuation_point_overview_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfValuationPointOverview]:
-        """[EXPERIMENTAL] ListValuationPointOverview: List Valuation Points Overview for a given Fund.  # noqa: E501
+        """[EARLY ACCESS] ListValuationPointOverview: List Valuation Points Overview for a given Fund.  # noqa: E501
 
         List the overview of all the Valuation Points that match the given criteria for a given Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -6518,7 +6518,7 @@ class FundsApi:
 
     @validate_call
     def patch_fee(self, scope: StrictStr, code: StrictStr, fee_code: StrictStr, operation: List[Operation], **kwargs) -> Fee:
-        """[EXPERIMENTAL] PatchFee: Patch Fee.  # noqa: E501
+        """[EARLY ACCESS] PatchFee: Patch Fee.  # noqa: E501
 
         Create or update certain fields for a particular Fee.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: EndDate, ShareClasses.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -6544,7 +6544,7 @@ class FundsApi:
 
     @validate_call
     def patch_fee_with_http_info(self, scope: StrictStr, code: StrictStr, fee_code: StrictStr, operation: List[Operation], **kwargs) -> ApiResponse[Fee]:
-        """[EXPERIMENTAL] PatchFee: Patch Fee.  # noqa: E501
+        """[EARLY ACCESS] PatchFee: Patch Fee.  # noqa: E501
 
         Create or update certain fields for a particular Fee.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: EndDate, ShareClasses.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -6669,7 +6669,7 @@ class FundsApi:
 
     @validate_call
     def patch_fund(self, scope: StrictStr, code: StrictStr, operation: List[Operation], **kwargs) -> Fund:
-        """[EXPERIMENTAL] PatchFund: Patch a Fund.  # noqa: E501
+        """[EARLY ACCESS] PatchFund: Patch a Fund.  # noqa: E501
 
         Update fields on a Fund.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, BaseCurrency, PortfolioIds, FundConfigurationId, ShareClassInstruments, Type, InceptionDate, DecimalPlaces, PrimaryNavType, AdditionalNavTypes, AborId, YearEndDate.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -6693,7 +6693,7 @@ class FundsApi:
 
     @validate_call
     def patch_fund_with_http_info(self, scope: StrictStr, code: StrictStr, operation: List[Operation], **kwargs) -> ApiResponse[Fund]:
-        """[EXPERIMENTAL] PatchFund: Patch a Fund.  # noqa: E501
+        """[EARLY ACCESS] PatchFund: Patch a Fund.  # noqa: E501
 
         Update fields on a Fund.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, BaseCurrency, PortfolioIds, FundConfigurationId, ShareClassInstruments, Type, InceptionDate, DecimalPlaces, PrimaryNavType, AdditionalNavTypes, AborId, YearEndDate.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -7007,7 +7007,7 @@ class FundsApi:
 
     @validate_call
     def query_cash_statement_local_currency(self, scope: StrictStr, code: StrictStr, query_fund_cash_statement_parameters: QueryFundCashStatementParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ValuationPointResourceListOfFundCashStatementLocalCurrency:
-        """[EXPERIMENTAL] QueryCashStatementLocalCurrency: [EXPERIMENTAL] QueryCashStatementLocalCurrency: Query the local-currency cash statement for a Fund valuation point.  # noqa: E501
+        """[EARLY ACCESS] QueryCashStatementLocalCurrency: [EXPERIMENTAL] QueryCashStatementLocalCurrency: Query the local-currency cash statement for a Fund valuation point.  # noqa: E501
 
         Returns settled cash movements with a running balance in local currency for the specified Fund  valuation point period. The cash statement is derived from Journal Entry Lines filtered to  settled cash (HoldType='B', SourceType=LusidTransaction). Use the DisplayMode parameter on the  request body to choose between ShowReversal (full reversal/TrueUp detail) and Consolidated  (collapses system-generated zero-net reversal/TrueUp pairs into SystemCorrection rows). Base  currency columns are out of scope for this variant and are not returned.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -7043,7 +7043,7 @@ class FundsApi:
 
     @validate_call
     def query_cash_statement_local_currency_with_http_info(self, scope: StrictStr, code: StrictStr, query_fund_cash_statement_parameters: QueryFundCashStatementParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfFundCashStatementLocalCurrency]:
-        """[EXPERIMENTAL] QueryCashStatementLocalCurrency: [EXPERIMENTAL] QueryCashStatementLocalCurrency: Query the local-currency cash statement for a Fund valuation point.  # noqa: E501
+        """[EARLY ACCESS] QueryCashStatementLocalCurrency: [EXPERIMENTAL] QueryCashStatementLocalCurrency: Query the local-currency cash statement for a Fund valuation point.  # noqa: E501
 
         Returns settled cash movements with a running balance in local currency for the specified Fund  valuation point period. The cash statement is derived from Journal Entry Lines filtered to  settled cash (HoldType='B', SourceType=LusidTransaction). Use the DisplayMode parameter on the  request body to choose between ShowReversal (full reversal/TrueUp detail) and Consolidated  (collapses system-generated zero-net reversal/TrueUp pairs into SystemCorrection rows). Base  currency columns are out of scope for this variant and are not returned.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -7202,7 +7202,7 @@ class FundsApi:
 
     @validate_call
     def revert_valuation_point_to_estimate(self, scope: StrictStr, code: StrictStr, revert_valuation_point_data_request: RevertValuationPointDataRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ValuationPointDataResponse:
-        """[EXPERIMENTAL] RevertValuationPointToEstimate: Reverts a Final Valuation Point to Estimate.  # noqa: E501
+        """[EARLY ACCESS] RevertValuationPointToEstimate: Reverts a Final Valuation Point to Estimate.  # noqa: E501
 
         Moves a 'Final' status Valuation Point to status 'Estimate'.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -7228,7 +7228,7 @@ class FundsApi:
 
     @validate_call
     def revert_valuation_point_to_estimate_with_http_info(self, scope: StrictStr, code: StrictStr, revert_valuation_point_data_request: RevertValuationPointDataRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointDataResponse]:
-        """[EXPERIMENTAL] RevertValuationPointToEstimate: Reverts a Final Valuation Point to Estimate.  # noqa: E501
+        """[EARLY ACCESS] RevertValuationPointToEstimate: Reverts a Final Valuation Point to Estimate.  # noqa: E501
 
         Moves a 'Final' status Valuation Point to status 'Estimate'.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -7353,7 +7353,7 @@ class FundsApi:
 
     @validate_call
     def set_share_class_instruments(self, scope: StrictStr, code: StrictStr, set_share_class_instruments_request: SetShareClassInstrumentsRequest, **kwargs) -> Fund:
-        """[EXPERIMENTAL] SetShareClassInstruments: Set the ShareClass Instruments on a Fund.  # noqa: E501
+        """[EARLY ACCESS] SetShareClassInstruments: Set the ShareClass Instruments on a Fund.  # noqa: E501
 
         Update the ShareClass Instruments on an existing Fund with the set of instruments provided.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -7377,7 +7377,7 @@ class FundsApi:
 
     @validate_call
     def set_share_class_instruments_with_http_info(self, scope: StrictStr, code: StrictStr, set_share_class_instruments_request: SetShareClassInstrumentsRequest, **kwargs) -> ApiResponse[Fund]:
-        """[EXPERIMENTAL] SetShareClassInstruments: Set the ShareClass Instruments on a Fund.  # noqa: E501
+        """[EARLY ACCESS] SetShareClassInstruments: Set the ShareClass Instruments on a Fund.  # noqa: E501
 
         Update the ShareClass Instruments on an existing Fund with the set of instruments provided.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -7496,7 +7496,7 @@ class FundsApi:
 
     @validate_call
     def update_valuation_point(self, scope: StrictStr, code: StrictStr, update_valuation_point_request: UpdateValuationPointRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ValuationPoint:
-        """[EXPERIMENTAL] UpdateValuationPoint: Update a Valuation Point.  # noqa: E501
+        """[EARLY ACCESS] UpdateValuationPoint: Update a Valuation Point.  # noqa: E501
 
         Updates an existing Valuation Point.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -7522,7 +7522,7 @@ class FundsApi:
 
     @validate_call
     def update_valuation_point_with_http_info(self, scope: StrictStr, code: StrictStr, update_valuation_point_request: UpdateValuationPointRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPoint]:
-        """[EXPERIMENTAL] UpdateValuationPoint: Update a Valuation Point.  # noqa: E501
+        """[EARLY ACCESS] UpdateValuationPoint: Update a Valuation Point.  # noqa: E501
 
         Updates an existing Valuation Point.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -7648,7 +7648,7 @@ class FundsApi:
 
     @validate_call
     def upsert_bookmark(self, scope: StrictStr, code: StrictStr, upsert_fund_bookmark_request: UpsertFundBookmarkRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> FundCalendarEntry:
-        """[EXPERIMENTAL] UpsertBookmark: Upsert a bookmark.  # noqa: E501
+        """[EARLY ACCESS] UpsertBookmark: Upsert a bookmark.  # noqa: E501
 
         This method will update or upsert a Bookmark for the Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -7674,7 +7674,7 @@ class FundsApi:
 
     @validate_call
     def upsert_bookmark_with_http_info(self, scope: StrictStr, code: StrictStr, upsert_fund_bookmark_request: UpsertFundBookmarkRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[FundCalendarEntry]:
-        """[EXPERIMENTAL] UpsertBookmark: Upsert a bookmark.  # noqa: E501
+        """[EARLY ACCESS] UpsertBookmark: Upsert a bookmark.  # noqa: E501
 
         This method will update or upsert a Bookmark for the Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -7799,7 +7799,7 @@ class FundsApi:
 
     @validate_call
     def upsert_diary_entry_type_valuation_point(self, scope: StrictStr, code: StrictStr, upsert_valuation_point_request: UpsertValuationPointRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> DiaryEntry:
-        """[EXPERIMENTAL] UpsertDiaryEntryTypeValuationPoint: Upsert a Valuation Point.  # noqa: E501
+        """[EARLY ACCESS] UpsertDiaryEntryTypeValuationPoint: Upsert a Valuation Point.  # noqa: E501
 
         Insert the estimate Valuation Point.                If the Valuation Point does not exist, this method will create it in estimate state.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -7825,7 +7825,7 @@ class FundsApi:
 
     @validate_call
     def upsert_diary_entry_type_valuation_point_with_http_info(self, scope: StrictStr, code: StrictStr, upsert_valuation_point_request: UpsertValuationPointRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DiaryEntry]:
-        """[EXPERIMENTAL] UpsertDiaryEntryTypeValuationPoint: Upsert a Valuation Point.  # noqa: E501
+        """[EARLY ACCESS] UpsertDiaryEntryTypeValuationPoint: Upsert a Valuation Point.  # noqa: E501
 
         Insert the estimate Valuation Point.                If the Valuation Point does not exist, this method will create it in estimate state.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -7950,7 +7950,7 @@ class FundsApi:
 
     @validate_call
     def upsert_fee_properties(self, scope: StrictStr, code: StrictStr, fee_code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> FeeProperties:
-        """[EXPERIMENTAL] UpsertFeeProperties: Upsert Fee properties.  # noqa: E501
+        """[EARLY ACCESS] UpsertFeeProperties: Upsert Fee properties.  # noqa: E501
 
         Update or insert one or more properties onto a single Fee. A property will be updated if it  already exists and inserted if it does not. All properties must be of the domain 'Fee'.                Upserting a property that exists for an Fee, with a null value, will delete the instance of the property for that group.                Properties have an <i>effectiveFrom</i> datetime for which the property is valid, and an <i>effectiveUntil</i>  datetime until which the property is valid. Not supplying an <i>effectiveUntil</i> datetime results in the property being  valid indefinitely, or until the next <i>effectiveFrom</i> datetime of the property.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -7976,7 +7976,7 @@ class FundsApi:
 
     @validate_call
     def upsert_fee_properties_with_http_info(self, scope: StrictStr, code: StrictStr, fee_code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> ApiResponse[FeeProperties]:
-        """[EXPERIMENTAL] UpsertFeeProperties: Upsert Fee properties.  # noqa: E501
+        """[EARLY ACCESS] UpsertFeeProperties: Upsert Fee properties.  # noqa: E501
 
         Update or insert one or more properties onto a single Fee. A property will be updated if it  already exists and inserted if it does not. All properties must be of the domain 'Fee'.                Upserting a property that exists for an Fee, with a null value, will delete the instance of the property for that group.                Properties have an <i>effectiveFrom</i> datetime for which the property is valid, and an <i>effectiveUntil</i>  datetime until which the property is valid. Not supplying an <i>effectiveUntil</i> datetime results in the property being  valid indefinitely, or until the next <i>effectiveFrom</i> datetime of the property.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -8101,7 +8101,7 @@ class FundsApi:
 
     @validate_call
     def upsert_fund_properties(self, scope: StrictStr, code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> FundProperties:
-        """[EXPERIMENTAL] UpsertFundProperties: Upsert Fund properties.  # noqa: E501
+        """[EARLY ACCESS] UpsertFundProperties: Upsert Fund properties.  # noqa: E501
 
         Update or insert one or more properties onto a single Fund. A property will be updated if it  already exists and inserted if it does not. All properties must be of the domain 'Fund'.                Upserting a property that exists for an Fund, with a null value, will delete the instance of the property for that group.                Properties have an <i>effectiveFrom</i> datetime for which the property is valid, and an <i>effectiveUntil</i>  datetime until which the property is valid. Not supplying an <i>effectiveUntil</i> datetime results in the property being  valid indefinitely, or until the next <i>effectiveFrom</i> datetime of the property.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -8125,7 +8125,7 @@ class FundsApi:
 
     @validate_call
     def upsert_fund_properties_with_http_info(self, scope: StrictStr, code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> ApiResponse[FundProperties]:
-        """[EXPERIMENTAL] UpsertFundProperties: Upsert Fund properties.  # noqa: E501
+        """[EARLY ACCESS] UpsertFundProperties: Upsert Fund properties.  # noqa: E501
 
         Update or insert one or more properties onto a single Fund. A property will be updated if it  already exists and inserted if it does not. All properties must be of the domain 'Fund'.                Upserting a property that exists for an Fund, with a null value, will delete the instance of the property for that group.                Properties have an <i>effectiveFrom</i> datetime for which the property is valid, and an <i>effectiveUntil</i>  datetime until which the property is valid. Not supplying an <i>effectiveUntil</i> datetime results in the property being  valid indefinitely, or until the next <i>effectiveFrom</i> datetime of the property.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -8244,7 +8244,7 @@ class FundsApi:
 
     @validate_call
     def upsert_nav_activity_adjustments(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_activity_adjustment: List[NavActivityAdjustment], nav_type_code: Optional[StrictStr] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> datetime:
-        """[EXPERIMENTAL] UpsertNavActivityAdjustments: Upsert NAV adjustment activities to a valuation point  # noqa: E501
+        """[EARLY ACCESS] UpsertNavActivityAdjustments: Upsert NAV adjustment activities to a valuation point  # noqa: E501
 
         Upserts the NAV adjustment activities to the specified valuation point for a Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -8274,7 +8274,7 @@ class FundsApi:
 
     @validate_call
     def upsert_nav_activity_adjustments_with_http_info(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_activity_adjustment: List[NavActivityAdjustment], nav_type_code: Optional[StrictStr] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> ApiResponse[datetime]:
-        """[EXPERIMENTAL] UpsertNavActivityAdjustments: Upsert NAV adjustment activities to a valuation point  # noqa: E501
+        """[EARLY ACCESS] UpsertNavActivityAdjustments: Upsert NAV adjustment activities to a valuation point  # noqa: E501
 
         Upserts the NAV adjustment activities to the specified valuation point for a Fund.  # noqa: E501
         :param scope: The scope of the Fund. (required)
@@ -8415,7 +8415,7 @@ class FundsApi:
 
     @validate_call
     async def accept_estimate_valuation_point_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_request: ValuationPointDataRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> AcceptEstimateValuationPointResponse:
-            """[EXPERIMENTAL] AcceptEstimateValuationPoint: Accepts an Estimate Valuation Point.  # noqa: E501
+            """[EARLY ACCESS] AcceptEstimateValuationPoint: Accepts an Estimate Valuation Point.  # noqa: E501
             Accepts the specified estimate Valuation Point.  Should the Valuation Point differ since the Valuation Point was last run, both Valuation Points will be returned and status will be marked as 'Candidate',  otherwise it will be marked as 'Final'.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -8441,7 +8441,7 @@ class FundsApi:
 
     @validate_call
     async def accept_estimate_valuation_point_with_http_info_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_request: ValuationPointDataRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[AcceptEstimateValuationPointResponse]:
-            """[EXPERIMENTAL] AcceptEstimateValuationPoint: Accepts an Estimate Valuation Point.  # noqa: E501
+            """[EARLY ACCESS] AcceptEstimateValuationPoint: Accepts an Estimate Valuation Point.  # noqa: E501
 
             Accepts the specified estimate Valuation Point.  Should the Valuation Point differ since the Valuation Point was last run, both Valuation Points will be returned and status will be marked as 'Candidate',  otherwise it will be marked as 'Final'.  # noqa: E501
 
@@ -8567,7 +8567,7 @@ class FundsApi:
 
     @validate_call
     async def add_allocation_groups_async(self, scope: StrictStr, code: StrictStr, allocation_group_definition: List[AllocationGroupDefinition], **kwargs) -> Fund:
-            """[EXPERIMENTAL] AddAllocationGroups: Add Allocation Groups to a Fund.  # noqa: E501
+            """[EARLY ACCESS] AddAllocationGroups: Add Allocation Groups to a Fund.  # noqa: E501
             Add the given Allocation Group definitions to the Fund.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -8591,7 +8591,7 @@ class FundsApi:
 
     @validate_call
     async def add_allocation_groups_with_http_info_async(self, scope: StrictStr, code: StrictStr, allocation_group_definition: List[AllocationGroupDefinition], **kwargs) -> ApiResponse[Fund]:
-            """[EXPERIMENTAL] AddAllocationGroups: Add Allocation Groups to a Fund.  # noqa: E501
+            """[EARLY ACCESS] AddAllocationGroups: Add Allocation Groups to a Fund.  # noqa: E501
 
             Add the given Allocation Group definitions to the Fund.  # noqa: E501
 
@@ -8711,7 +8711,7 @@ class FundsApi:
 
     @validate_call
     async def add_series_async(self, scope: StrictStr, code: StrictStr, series_definition_request: List[SeriesDefinitionRequest], **kwargs) -> Fund:
-            """[EXPERIMENTAL] AddSeries: Add Series to a Fund.  # noqa: E501
+            """[EARLY ACCESS] AddSeries: Add Series to a Fund.  # noqa: E501
             Add the given Series definitions to the specified Share Classes of the Fund.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -8735,7 +8735,7 @@ class FundsApi:
 
     @validate_call
     async def add_series_with_http_info_async(self, scope: StrictStr, code: StrictStr, series_definition_request: List[SeriesDefinitionRequest], **kwargs) -> ApiResponse[Fund]:
-            """[EXPERIMENTAL] AddSeries: Add Series to a Fund.  # noqa: E501
+            """[EARLY ACCESS] AddSeries: Add Series to a Fund.  # noqa: E501
 
             Add the given Series definitions to the specified Share Classes of the Fund.  # noqa: E501
 
@@ -8855,7 +8855,7 @@ class FundsApi:
 
     @validate_call
     async def create_fee_async(self, scope: StrictStr, code: StrictStr, fee_request: FeeRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> Fee:
-            """[EXPERIMENTAL] CreateFee: Create a Fee.  # noqa: E501
+            """[EARLY ACCESS] CreateFee: Create a Fee.  # noqa: E501
             Create the given Fee.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -8881,7 +8881,7 @@ class FundsApi:
 
     @validate_call
     async def create_fee_with_http_info_async(self, scope: StrictStr, code: StrictStr, fee_request: FeeRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[Fee]:
-            """[EXPERIMENTAL] CreateFee: Create a Fee.  # noqa: E501
+            """[EARLY ACCESS] CreateFee: Create a Fee.  # noqa: E501
 
             Create the given Fee.  # noqa: E501
 
@@ -9007,7 +9007,7 @@ class FundsApi:
 
     @validate_call
     async def create_fund_async(self, scope: StrictStr, fund_request: FundRequest, **kwargs) -> Fund:
-            """[EXPERIMENTAL] CreateFund: Create a Fund.  # noqa: E501
+            """[EARLY ACCESS] CreateFund: Create a Fund.  # noqa: E501
             Create the given Fund.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -9029,7 +9029,7 @@ class FundsApi:
 
     @validate_call
     async def create_fund_with_http_info_async(self, scope: StrictStr, fund_request: FundRequest, **kwargs) -> ApiResponse[Fund]:
-            """[EXPERIMENTAL] CreateFund: Create a Fund.  # noqa: E501
+            """[EARLY ACCESS] CreateFund: Create a Fund.  # noqa: E501
 
             Create the given Fund.  # noqa: E501
 
@@ -9143,7 +9143,7 @@ class FundsApi:
 
     @validate_call
     async def create_fund_v2_async(self, scope: StrictStr, fund_definition_request: FundDefinitionRequest, **kwargs) -> Fund:
-            """[EXPERIMENTAL] CreateFundV2: Create a Fund V2 (Preview).  # noqa: E501
+            """[EARLY ACCESS] CreateFundV2: Create a Fund V2 (Preview).  # noqa: E501
             Create the given V2 Fund.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -9165,7 +9165,7 @@ class FundsApi:
 
     @validate_call
     async def create_fund_v2_with_http_info_async(self, scope: StrictStr, fund_definition_request: FundDefinitionRequest, **kwargs) -> ApiResponse[Fund]:
-            """[EXPERIMENTAL] CreateFundV2: Create a Fund V2 (Preview).  # noqa: E501
+            """[EARLY ACCESS] CreateFundV2: Create a Fund V2 (Preview).  # noqa: E501
 
             Create the given V2 Fund.  # noqa: E501
 
@@ -9279,7 +9279,7 @@ class FundsApi:
 
     @validate_call
     async def create_valuation_point_async(self, scope: StrictStr, code: StrictStr, create_valuation_point_request: CreateValuationPointRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ValuationPoint:
-            """[EXPERIMENTAL] CreateValuationPoint: Create a Valuation Point.  # noqa: E501
+            """[EARLY ACCESS] CreateValuationPoint: Create a Valuation Point.  # noqa: E501
             Insert the estimate Valuation Point.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -9305,7 +9305,7 @@ class FundsApi:
 
     @validate_call
     async def create_valuation_point_with_http_info_async(self, scope: StrictStr, code: StrictStr, create_valuation_point_request: CreateValuationPointRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPoint]:
-            """[EXPERIMENTAL] CreateValuationPoint: Create a Valuation Point.  # noqa: E501
+            """[EARLY ACCESS] CreateValuationPoint: Create a Valuation Point.  # noqa: E501
 
             Insert the estimate Valuation Point.  # noqa: E501
 
@@ -9431,7 +9431,7 @@ class FundsApi:
 
     @validate_call
     async def deactivate_nav_types_async(self, scope: StrictStr, code: StrictStr, request_body: List[str], delete_mode: Optional[StrictStr] = None, **kwargs) -> Fund:
-            """[EXPERIMENTAL] DeactivateNavTypes: Deactivate NAV types on a Fund.  # noqa: E501
+            """[EARLY ACCESS] DeactivateNavTypes: Deactivate NAV types on a Fund.  # noqa: E501
             Deactivate the given NAV types on the Fund.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -9457,7 +9457,7 @@ class FundsApi:
 
     @validate_call
     async def deactivate_nav_types_with_http_info_async(self, scope: StrictStr, code: StrictStr, request_body: List[str], delete_mode: Optional[StrictStr] = None, **kwargs) -> ApiResponse[Fund]:
-            """[EXPERIMENTAL] DeactivateNavTypes: Deactivate NAV types on a Fund.  # noqa: E501
+            """[EARLY ACCESS] DeactivateNavTypes: Deactivate NAV types on a Fund.  # noqa: E501
 
             Deactivate the given NAV types on the Fund.  # noqa: E501
 
@@ -9583,7 +9583,7 @@ class FundsApi:
 
     @validate_call
     async def delete_bookmark_async(self, scope: StrictStr, code: StrictStr, bookmark_code: StrictStr, nav_type_code: Optional[StrictStr] = None, **kwargs) -> DeletedEntityResponse:
-            """[EXPERIMENTAL] DeleteBookmark: Delete a Bookmark.  # noqa: E501
+            """[EARLY ACCESS] DeleteBookmark: Delete a Bookmark.  # noqa: E501
             Deletes the given Bookmark.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -9609,7 +9609,7 @@ class FundsApi:
 
     @validate_call
     async def delete_bookmark_with_http_info_async(self, scope: StrictStr, code: StrictStr, bookmark_code: StrictStr, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-            """[EXPERIMENTAL] DeleteBookmark: Delete a Bookmark.  # noqa: E501
+            """[EARLY ACCESS] DeleteBookmark: Delete a Bookmark.  # noqa: E501
 
             Deletes the given Bookmark.  # noqa: E501
 
@@ -9728,7 +9728,7 @@ class FundsApi:
 
     @validate_call
     async def delete_fee_async(self, scope: StrictStr, code: StrictStr, fee_code: StrictStr, **kwargs) -> DeletedEntityResponse:
-            """[EXPERIMENTAL] DeleteFee: Delete a Fee.  # noqa: E501
+            """[EARLY ACCESS] DeleteFee: Delete a Fee.  # noqa: E501
             Delete the given Fee.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -9752,7 +9752,7 @@ class FundsApi:
 
     @validate_call
     async def delete_fee_with_http_info_async(self, scope: StrictStr, code: StrictStr, fee_code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-            """[EXPERIMENTAL] DeleteFee: Delete a Fee.  # noqa: E501
+            """[EARLY ACCESS] DeleteFee: Delete a Fee.  # noqa: E501
 
             Delete the given Fee.  # noqa: E501
 
@@ -9865,7 +9865,7 @@ class FundsApi:
 
     @validate_call
     async def delete_fund_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> DeletedEntityResponse:
-            """[EXPERIMENTAL] DeleteFund: Delete a Fund.  # noqa: E501
+            """[EARLY ACCESS] DeleteFund: Delete a Fund.  # noqa: E501
             Delete the given Fund.  # noqa: E501
             
             :param scope: The scope of the Fund to be deleted. (required)
@@ -9887,7 +9887,7 @@ class FundsApi:
 
     @validate_call
     async def delete_fund_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-            """[EXPERIMENTAL] DeleteFund: Delete a Fund.  # noqa: E501
+            """[EARLY ACCESS] DeleteFund: Delete a Fund.  # noqa: E501
 
             Delete the given Fund.  # noqa: E501
 
@@ -9994,7 +9994,7 @@ class FundsApi:
 
     @validate_call
     async def delete_nav_activity_adjustments_async(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_activity_adjustment_response: List[NavActivityAdjustmentResponse], nav_type_code: Optional[StrictStr] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> DeletedEntityResponse:
-            """[EXPERIMENTAL] DeleteNavActivityAdjustments: Delete Nav activity adjustments.  # noqa: E501
+            """[EARLY ACCESS] DeleteNavActivityAdjustments: Delete Nav activity adjustments.  # noqa: E501
             Delete Nav activity adjustments on a Valuation Point.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -10024,7 +10024,7 @@ class FundsApi:
 
     @validate_call
     async def delete_nav_activity_adjustments_with_http_info_async(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_activity_adjustment_response: List[NavActivityAdjustmentResponse], nav_type_code: Optional[StrictStr] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-            """[EXPERIMENTAL] DeleteNavActivityAdjustments: Delete Nav activity adjustments.  # noqa: E501
+            """[EARLY ACCESS] DeleteNavActivityAdjustments: Delete Nav activity adjustments.  # noqa: E501
 
             Delete Nav activity adjustments on a Valuation Point.  # noqa: E501
 
@@ -10162,7 +10162,7 @@ class FundsApi:
 
     @validate_call
     async def delete_valuation_point_async(self, scope: StrictStr, code: StrictStr, diary_entry_code: StrictStr, diary_entry_code_variant: Optional[StrictStr] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> DeletedEntityResponse:
-            """[EXPERIMENTAL] DeleteValuationPoint: Delete a Valuation Point.  # noqa: E501
+            """[EARLY ACCESS] DeleteValuationPoint: Delete a Valuation Point.  # noqa: E501
             Deletes the given Valuation Point.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -10190,7 +10190,7 @@ class FundsApi:
 
     @validate_call
     async def delete_valuation_point_with_http_info_async(self, scope: StrictStr, code: StrictStr, diary_entry_code: StrictStr, diary_entry_code_variant: Optional[StrictStr] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DeletedEntityResponse]:
-            """[EXPERIMENTAL] DeleteValuationPoint: Delete a Valuation Point.  # noqa: E501
+            """[EARLY ACCESS] DeleteValuationPoint: Delete a Valuation Point.  # noqa: E501
 
             Deletes the given Valuation Point.  # noqa: E501
 
@@ -10315,7 +10315,7 @@ class FundsApi:
 
     @validate_call
     async def finalise_candidate_valuation_point_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_request: ValuationPointDataRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ValuationPointDataResponse:
-            """[EXPERIMENTAL] FinaliseCandidateValuationPoint: Finalise a Candidate Valuation Point.  # noqa: E501
+            """[EARLY ACCESS] FinaliseCandidateValuationPoint: Finalise a Candidate Valuation Point.  # noqa: E501
             Moves a 'Candidate' status Valuation Point to status 'Final'.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -10341,7 +10341,7 @@ class FundsApi:
 
     @validate_call
     async def finalise_candidate_valuation_point_with_http_info_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_request: ValuationPointDataRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointDataResponse]:
-            """[EXPERIMENTAL] FinaliseCandidateValuationPoint: Finalise a Candidate Valuation Point.  # noqa: E501
+            """[EARLY ACCESS] FinaliseCandidateValuationPoint: Finalise a Candidate Valuation Point.  # noqa: E501
 
             Moves a 'Candidate' status Valuation Point to status 'Final'.  # noqa: E501
 
@@ -10467,7 +10467,7 @@ class FundsApi:
 
     @validate_call
     async def get_a2_b_data_for_fund_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> VersionedResourceListOfFundA2BDataRecord:
-            """[EXPERIMENTAL] GetA2BDataForFund: Get A2B data for a Fund.  # noqa: E501
+            """[EARLY ACCESS] GetA2BDataForFund: Get A2B data for a Fund.  # noqa: E501
             Get the A2B data for transaction portfolios in a specified Fund.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -10499,7 +10499,7 @@ class FundsApi:
 
     @validate_call
     async def get_a2_b_data_for_fund_with_http_info_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[VersionedResourceListOfFundA2BDataRecord]:
-            """[EXPERIMENTAL] GetA2BDataForFund: Get A2B data for a Fund.  # noqa: E501
+            """[EARLY ACCESS] GetA2BDataForFund: Get A2B data for a Fund.  # noqa: E501
 
             Get the A2B data for transaction portfolios in a specified Fund.  # noqa: E501
 
@@ -10647,7 +10647,7 @@ class FundsApi:
 
     @validate_call
     async def get_a2_b_movements_for_fund_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> VersionedResourceListOfFundA2BMovementRecord:
-            """[EXPERIMENTAL] GetA2BMovementsForFund: Get A2B movements for transaction portfolios in a Fund.  # noqa: E501
+            """[EARLY ACCESS] GetA2BMovementsForFund: Get A2B movements for transaction portfolios in a Fund.  # noqa: E501
             Get the A2B movement records of transaction portfolios in a specified Fund.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -10679,7 +10679,7 @@ class FundsApi:
 
     @validate_call
     async def get_a2_b_movements_for_fund_with_http_info_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[VersionedResourceListOfFundA2BMovementRecord]:
-            """[EXPERIMENTAL] GetA2BMovementsForFund: Get A2B movements for transaction portfolios in a Fund.  # noqa: E501
+            """[EARLY ACCESS] GetA2BMovementsForFund: Get A2B movements for transaction portfolios in a Fund.  # noqa: E501
 
             Get the A2B movement records of transaction portfolios in a specified Fund.  # noqa: E501
 
@@ -10827,7 +10827,7 @@ class FundsApi:
 
     @validate_call
     async def get_fee_async(self, scope: StrictStr, code: StrictStr, fee_code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> Fee:
-            """[EXPERIMENTAL] GetFee: Get a Fee for a specified Fund.  # noqa: E501
+            """[EARLY ACCESS] GetFee: Get a Fee for a specified Fund.  # noqa: E501
             Retrieve a fee for a specified Fund.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -10857,7 +10857,7 @@ class FundsApi:
 
     @validate_call
     async def get_fee_with_http_info_async(self, scope: StrictStr, code: StrictStr, fee_code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[Fee]:
-            """[EXPERIMENTAL] GetFee: Get a Fee for a specified Fund.  # noqa: E501
+            """[EARLY ACCESS] GetFee: Get a Fee for a specified Fund.  # noqa: E501
 
             Retrieve a fee for a specified Fund.  # noqa: E501
 
@@ -10992,7 +10992,7 @@ class FundsApi:
 
     @validate_call
     async def get_fee_properties_async(self, scope: StrictStr, code: StrictStr, fee_code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> FeeProperties:
-            """[EXPERIMENTAL] GetFeeProperties: Get Fee properties.  # noqa: E501
+            """[EARLY ACCESS] GetFeeProperties: Get Fee properties.  # noqa: E501
             Get all the properties of a single fee.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -11020,7 +11020,7 @@ class FundsApi:
 
     @validate_call
     async def get_fee_properties_with_http_info_async(self, scope: StrictStr, code: StrictStr, fee_code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[FeeProperties]:
-            """[EXPERIMENTAL] GetFeeProperties: Get Fee properties.  # noqa: E501
+            """[EARLY ACCESS] GetFeeProperties: Get Fee properties.  # noqa: E501
 
             Get all the properties of a single fee.  # noqa: E501
 
@@ -11148,7 +11148,7 @@ class FundsApi:
 
     @validate_call
     async def get_fund_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> Fund:
-            """[EXPERIMENTAL] GetFund: Get a Fund.  # noqa: E501
+            """[EARLY ACCESS] GetFund: Get a Fund.  # noqa: E501
             Retrieve the definition of a particular Fund.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -11176,7 +11176,7 @@ class FundsApi:
 
     @validate_call
     async def get_fund_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[Fund]:
-            """[EXPERIMENTAL] GetFund: Get a Fund.  # noqa: E501
+            """[EARLY ACCESS] GetFund: Get a Fund.  # noqa: E501
 
             Retrieve the definition of a particular Fund.  # noqa: E501
 
@@ -11305,7 +11305,7 @@ class FundsApi:
 
     @validate_call
     async def get_fund_properties_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> FundProperties:
-            """[EXPERIMENTAL] GetFundProperties: Get Fund properties.  # noqa: E501
+            """[EARLY ACCESS] GetFundProperties: Get Fund properties.  # noqa: E501
             Get all the properties of a single fund.  # noqa: E501
             
             :param scope: The scope of the Fund to list the properties for. (required)
@@ -11331,7 +11331,7 @@ class FundsApi:
 
     @validate_call
     async def get_fund_properties_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[FundProperties]:
-            """[EXPERIMENTAL] GetFundProperties: Get Fund properties.  # noqa: E501
+            """[EARLY ACCESS] GetFundProperties: Get Fund properties.  # noqa: E501
 
             Get all the properties of a single fund.  # noqa: E501
 
@@ -11453,7 +11453,7 @@ class FundsApi:
 
     @validate_call
     async def get_holding_contributors_for_fund_async(self, scope: StrictStr, code: StrictStr, holding_id: int, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, nav_type_code: Optional[StrictStr] = None, include_historic: Optional[bool] = None, tax_lot_id: Optional[StrictStr] = None, include_unsettled_movements: Optional[bool] = None, limit: Optional[int] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, **kwargs) -> VersionedResourceListOfHoldingContributor:
-            """[EXPERIMENTAL] GetHoldingContributorsForFund: Get holdings contributors for transaction portfolios in a Fund.  # noqa: E501
+            """[EARLY ACCESS] GetHoldingContributorsForFund: Get holdings contributors for transaction portfolios in a Fund.  # noqa: E501
             Get the holdings of transaction portfolios in a specified Fund.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -11493,7 +11493,7 @@ class FundsApi:
 
     @validate_call
     async def get_holding_contributors_for_fund_with_http_info_async(self, scope: StrictStr, code: StrictStr, holding_id: int, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, nav_type_code: Optional[StrictStr] = None, include_historic: Optional[bool] = None, tax_lot_id: Optional[StrictStr] = None, include_unsettled_movements: Optional[bool] = None, limit: Optional[int] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[VersionedResourceListOfHoldingContributor]:
-            """[EXPERIMENTAL] GetHoldingContributorsForFund: Get holdings contributors for transaction portfolios in a Fund.  # noqa: E501
+            """[EARLY ACCESS] GetHoldingContributorsForFund: Get holdings contributors for transaction portfolios in a Fund.  # noqa: E501
 
             Get the holdings of transaction portfolios in a specified Fund.  # noqa: E501
 
@@ -11664,7 +11664,7 @@ class FundsApi:
 
     @validate_call
     async def get_holdings_for_fund_async(self, scope: StrictStr, code: StrictStr, single_valuation_point_query_parameters: SingleValuationPointQueryParameters, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, by_taxlots: Optional[bool] = None, include_settlement_events_after_days: Optional[int] = None, **kwargs) -> VersionedResourceListOfPortfolioHolding:
-            """[EXPERIMENTAL] GetHoldingsForFund: Get holdings for transaction portfolios in a Fund.  # noqa: E501
+            """[EARLY ACCESS] GetHoldingsForFund: Get holdings for transaction portfolios in a Fund.  # noqa: E501
             Get the holdings of transaction portfolios in a specified Fund.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -11700,7 +11700,7 @@ class FundsApi:
 
     @validate_call
     async def get_holdings_for_fund_with_http_info_async(self, scope: StrictStr, code: StrictStr, single_valuation_point_query_parameters: SingleValuationPointQueryParameters, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, by_taxlots: Optional[bool] = None, include_settlement_events_after_days: Optional[int] = None, **kwargs) -> ApiResponse[VersionedResourceListOfPortfolioHolding]:
-            """[EXPERIMENTAL] GetHoldingsForFund: Get holdings for transaction portfolios in a Fund.  # noqa: E501
+            """[EARLY ACCESS] GetHoldingsForFund: Get holdings for transaction portfolios in a Fund.  # noqa: E501
 
             Get the holdings of transaction portfolios in a specified Fund.  # noqa: E501
 
@@ -11860,7 +11860,7 @@ class FundsApi:
 
     @validate_call
     async def get_valuation_for_fund_async(self, scope: StrictStr, code: StrictStr, nav_type_code: Optional[StrictStr] = None, fund_valuation_request: Optional[FundValuationRequest] = None, **kwargs) -> ListAggregationResponse:
-            """[EXPERIMENTAL] GetValuationForFund: Perform valuation for a Fund.  # noqa: E501
+            """[EARLY ACCESS] GetValuationForFund: Perform valuation for a Fund.  # noqa: E501
             Perform valuation on a specified Fund.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -11886,7 +11886,7 @@ class FundsApi:
 
     @validate_call
     async def get_valuation_for_fund_with_http_info_async(self, scope: StrictStr, code: StrictStr, nav_type_code: Optional[StrictStr] = None, fund_valuation_request: Optional[FundValuationRequest] = None, **kwargs) -> ApiResponse[ListAggregationResponse]:
-            """[EXPERIMENTAL] GetValuationForFund: Perform valuation for a Fund.  # noqa: E501
+            """[EARLY ACCESS] GetValuationForFund: Perform valuation for a Fund.  # noqa: E501
 
             Perform valuation on a specified Fund.  # noqa: E501
 
@@ -12012,7 +12012,7 @@ class FundsApi:
 
     @validate_call
     async def get_valuation_point_data_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, as_at: Optional[datetime] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ValuationPointDataResponse:
-            """[EXPERIMENTAL] GetValuationPointData: Get Valuation Point Data for a Fund.  # noqa: E501
+            """[EARLY ACCESS] GetValuationPointData: Get Valuation Point Data for a Fund.  # noqa: E501
             Retrieves the Valuation Point data between given dates or Valuation Point codes.  The endpoint will internally extract all 'Assets' and 'Liabilities' from the Fund's Trial balance to produce a GAV.  Start date will be assumed from the last 'official' ValuationPoint and EndDate will be as provided.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -12040,7 +12040,7 @@ class FundsApi:
 
     @validate_call
     async def get_valuation_point_data_with_http_info_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, as_at: Optional[datetime] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointDataResponse]:
-            """[EXPERIMENTAL] GetValuationPointData: Get Valuation Point Data for a Fund.  # noqa: E501
+            """[EARLY ACCESS] GetValuationPointData: Get Valuation Point Data for a Fund.  # noqa: E501
 
             Retrieves the Valuation Point data between given dates or Valuation Point codes.  The endpoint will internally extract all 'Assets' and 'Liabilities' from the Fund's Trial balance to produce a GAV.  Start date will be assumed from the last 'official' ValuationPoint and EndDate will be as provided.  # noqa: E501
 
@@ -12175,7 +12175,7 @@ class FundsApi:
 
     @validate_call
     async def get_valuation_point_journal_entry_lines_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, general_ledger_profile_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ValuationPointResourceListOfFundJournalEntryLine:
-            """[EXPERIMENTAL] GetValuationPointJournalEntryLines: Get the Journal Entry Lines for the given Fund.  # noqa: E501
+            """[EARLY ACCESS] GetValuationPointJournalEntryLines: Get the Journal Entry Lines for the given Fund.  # noqa: E501
             Gets the Journal Entry Lines for the given Valuation Point for a Fund.                The Journal Entry Lines have been generated from transactions, translated via posting rules and used in the valuation point.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -12213,7 +12213,7 @@ class FundsApi:
 
     @validate_call
     async def get_valuation_point_journal_entry_lines_with_http_info_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, general_ledger_profile_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfFundJournalEntryLine]:
-            """[EXPERIMENTAL] GetValuationPointJournalEntryLines: Get the Journal Entry Lines for the given Fund.  # noqa: E501
+            """[EARLY ACCESS] GetValuationPointJournalEntryLines: Get the Journal Entry Lines for the given Fund.  # noqa: E501
 
             Gets the Journal Entry Lines for the given Valuation Point for a Fund.                The Journal Entry Lines have been generated from transactions, translated via posting rules and used in the valuation point.  # noqa: E501
 
@@ -12379,7 +12379,7 @@ class FundsApi:
 
     @validate_call
     async def get_valuation_point_pnl_summary_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, general_ledger_profile_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ValuationPointResourceListOfPnlJournalEntryLine:
-            """[EXPERIMENTAL] GetValuationPointPnlSummary: Get a PnL summary for the given Valuation Point in the Fund.  # noqa: E501
+            """[EARLY ACCESS] GetValuationPointPnlSummary: Get a PnL summary for the given Valuation Point in the Fund.  # noqa: E501
             Gets the PnL Summary lines from the Journal Entry Lines produced when calculating the Valuation Point.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -12415,7 +12415,7 @@ class FundsApi:
 
     @validate_call
     async def get_valuation_point_pnl_summary_with_http_info_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, general_ledger_profile_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfPnlJournalEntryLine]:
-            """[EXPERIMENTAL] GetValuationPointPnlSummary: Get a PnL summary for the given Valuation Point in the Fund.  # noqa: E501
+            """[EARLY ACCESS] GetValuationPointPnlSummary: Get a PnL summary for the given Valuation Point in the Fund.  # noqa: E501
 
             Gets the PnL Summary lines from the Journal Entry Lines produced when calculating the Valuation Point.  # noqa: E501
 
@@ -12574,7 +12574,7 @@ class FundsApi:
 
     @validate_call
     async def get_valuation_point_quotes_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ValuationPointResourceListOfAccountedQuote:
-            """[EXPERIMENTAL] GetValuationPointQuotes: Get the Quotes for the given Fund and Valuation Point.  # noqa: E501
+            """[EARLY ACCESS] GetValuationPointQuotes: Get the Quotes for the given Fund and Valuation Point.  # noqa: E501
             Gets all quotes within the effective date range of the specified Valuation Point for a Fund,  including any quotes added via a Complex Close (Post-Close Activity).  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -12606,7 +12606,7 @@ class FundsApi:
 
     @validate_call
     async def get_valuation_point_quotes_with_http_info_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfAccountedQuote]:
-            """[EXPERIMENTAL] GetValuationPointQuotes: Get the Quotes for the given Fund and Valuation Point.  # noqa: E501
+            """[EARLY ACCESS] GetValuationPointQuotes: Get the Quotes for the given Fund and Valuation Point.  # noqa: E501
 
             Gets all quotes within the effective date range of the specified Valuation Point for a Fund,  including any quotes added via a Complex Close (Post-Close Activity).  # noqa: E501
 
@@ -12753,7 +12753,7 @@ class FundsApi:
 
     @validate_call
     async def get_valuation_point_transactions_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, show_cancelled_transactions: Optional[bool] = None, membership_type: Optional[StrictStr] = None, **kwargs) -> ValuationPointResourceListOfAccountedTransaction:
-            """[EXPERIMENTAL] GetValuationPointTransactions: Get the Transactions for the given Fund.  # noqa: E501
+            """[EARLY ACCESS] GetValuationPointTransactions: Get the Transactions for the given Fund.  # noqa: E501
             Gets the Transactions for the given Valuation Point for a Fund.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -12797,7 +12797,7 @@ class FundsApi:
 
     @validate_call
     async def get_valuation_point_transactions_with_http_info_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, show_cancelled_transactions: Optional[bool] = None, membership_type: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfAccountedTransaction]:
-            """[EXPERIMENTAL] GetValuationPointTransactions: Get the Transactions for the given Fund.  # noqa: E501
+            """[EARLY ACCESS] GetValuationPointTransactions: Get the Transactions for the given Fund.  # noqa: E501
 
             Gets the Transactions for the given Valuation Point for a Fund.  # noqa: E501
 
@@ -12981,8 +12981,8 @@ class FundsApi:
 
     @validate_call
     async def get_valuation_point_trial_balance_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, general_ledger_profile_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, exclude_cleardown_module: Optional[bool] = None, **kwargs) -> ValuationPointResourceListOfTrialBalance:
-            """[EXPERIMENTAL] GetValuationPointTrialBalance: Get Trial Balance for the given Fund.  # noqa: E501
-            Gets the Trial Balance for the given Valuation Point for a Fund.                The Trial Balance has been generated from transactions, translated via Posting Rules  and aggregated based on a General Ledger Profile (where specified).  # noqa: E501
+            """[EARLY ACCESS] GetValuationPointTrialBalance: Get Trial Balance for the given Fund.  # noqa: E501
+            Gets the Trial Balance for the given Valuation Point for a Fund.                The Trial Balance has been generated from transactions, translated via Posting Rules  and aggregated based on a General Ledger Profile (where specified).                Supplying the X-LUSID-SuppressImbalanceValidation header suppresses the imbalance check.  Any caller with access to this endpoint may use it; it is not role-restricted.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
             :type scope: str
@@ -13021,9 +13021,9 @@ class FundsApi:
 
     @validate_call
     async def get_valuation_point_trial_balance_with_http_info_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, general_ledger_profile_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, exclude_cleardown_module: Optional[bool] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfTrialBalance]:
-            """[EXPERIMENTAL] GetValuationPointTrialBalance: Get Trial Balance for the given Fund.  # noqa: E501
+            """[EARLY ACCESS] GetValuationPointTrialBalance: Get Trial Balance for the given Fund.  # noqa: E501
 
-            Gets the Trial Balance for the given Valuation Point for a Fund.                The Trial Balance has been generated from transactions, translated via Posting Rules  and aggregated based on a General Ledger Profile (where specified).  # noqa: E501
+            Gets the Trial Balance for the given Valuation Point for a Fund.                The Trial Balance has been generated from transactions, translated via Posting Rules  and aggregated based on a General Ledger Profile (where specified).                Supplying the X-LUSID-SuppressImbalanceValidation header suppresses the imbalance check.  Any caller with access to this endpoint may use it; it is not role-restricted.  # noqa: E501
 
             :param scope: The scope of the Fund. (required)
             :type scope: str
@@ -13193,7 +13193,7 @@ class FundsApi:
 
     @validate_call
     async def get_valuation_point_unsettled_transactions_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ValuationPointResourceListOfUnsettledTransaction:
-            """[EXPERIMENTAL] GetValuationPointUnsettledTransactions: Get Unsettled Transactions for the given Fund.  # noqa: E501
+            """[EARLY ACCESS] GetValuationPointUnsettledTransactions: Get Unsettled Transactions for the given Fund.  # noqa: E501
             Gets all transactions that remain unsettled as at the specified Valuation Point for a Fund,  looking back from inception. Settlement status is point-in-time: post-cutoff settlement  activity does not alter the result.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -13227,7 +13227,7 @@ class FundsApi:
 
     @validate_call
     async def get_valuation_point_unsettled_transactions_with_http_info_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfUnsettledTransaction]:
-            """[EXPERIMENTAL] GetValuationPointUnsettledTransactions: Get Unsettled Transactions for the given Fund.  # noqa: E501
+            """[EARLY ACCESS] GetValuationPointUnsettledTransactions: Get Unsettled Transactions for the given Fund.  # noqa: E501
 
             Gets all transactions that remain unsettled as at the specified Valuation Point for a Fund,  looking back from inception. Settlement status is point-in-time: post-cutoff settlement  activity does not alter the result.  # noqa: E501
 
@@ -13381,7 +13381,7 @@ class FundsApi:
 
     @validate_call
     async def list_fees_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfFee:
-            """[EXPERIMENTAL] ListFees: List Fees for a specified Fund.  # noqa: E501
+            """[EARLY ACCESS] ListFees: List Fees for a specified Fund.  # noqa: E501
             List all the Fees matching a particular criteria.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -13417,7 +13417,7 @@ class FundsApi:
 
     @validate_call
     async def list_fees_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfFee]:
-            """[EXPERIMENTAL] ListFees: List Fees for a specified Fund.  # noqa: E501
+            """[EARLY ACCESS] ListFees: List Fees for a specified Fund.  # noqa: E501
 
             List all the Fees matching a particular criteria.  # noqa: E501
 
@@ -13571,7 +13571,7 @@ class FundsApi:
 
     @validate_call
     async def list_fund_calendar_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfFundCalendarEntry:
-            """[EXPERIMENTAL] ListFundCalendar: List Fund Calendar.  # noqa: E501
+            """[EARLY ACCESS] ListFundCalendar: List Fund Calendar.  # noqa: E501
             List all the Calendar Entries associated with the Fund.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -13605,7 +13605,7 @@ class FundsApi:
 
     @validate_call
     async def list_fund_calendar_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfFundCalendarEntry]:
-            """[EXPERIMENTAL] ListFundCalendar: List Fund Calendar.  # noqa: E501
+            """[EARLY ACCESS] ListFundCalendar: List Fund Calendar.  # noqa: E501
 
             List all the Calendar Entries associated with the Fund.  # noqa: E501
 
@@ -13753,7 +13753,7 @@ class FundsApi:
 
     @validate_call
     async def list_fund_calendar_entries_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfFundCalendarEntries:
-            """[EXPERIMENTAL] ListFundCalendarEntries: List Fund Calendar Entries.  # noqa: E501
+            """[EARLY ACCESS] ListFundCalendarEntries: List Fund Calendar Entries.  # noqa: E501
             List all the Calendar Entries associated with the Fund.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -13787,7 +13787,7 @@ class FundsApi:
 
     @validate_call
     async def list_fund_calendar_entries_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfFundCalendarEntries]:
-            """[EXPERIMENTAL] ListFundCalendarEntries: List Fund Calendar Entries.  # noqa: E501
+            """[EARLY ACCESS] ListFundCalendarEntries: List Fund Calendar Entries.  # noqa: E501
 
             List all the Calendar Entries associated with the Fund.  # noqa: E501
 
@@ -13935,7 +13935,7 @@ class FundsApi:
 
     @validate_call
     async def list_funds_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> PagedResourceListOfFund:
-            """[EXPERIMENTAL] ListFunds: List Funds.  # noqa: E501
+            """[EARLY ACCESS] ListFunds: List Funds.  # noqa: E501
             List all the Funds matching particular criteria.  # noqa: E501
             
             :param effective_at: The effective datetime or cut label at which to list the TimeVariant properties for the Funds. Defaults to the current LUSID              system datetime if not specified.
@@ -13967,7 +13967,7 @@ class FundsApi:
 
     @validate_call
     async def list_funds_with_http_info_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[PagedResourceListOfFund]:
-            """[EXPERIMENTAL] ListFunds: List Funds.  # noqa: E501
+            """[EARLY ACCESS] ListFunds: List Funds.  # noqa: E501
 
             List all the Funds matching particular criteria.  # noqa: E501
 
@@ -14109,7 +14109,7 @@ class FundsApi:
 
     @validate_call
     async def list_nav_activity_adjustments_async(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> ResourceListOfNavActivityAdjustmentResponse:
-            """[EXPERIMENTAL] ListNavActivityAdjustments: List NAV adjustment activities applied to a valuation point  # noqa: E501
+            """[EARLY ACCESS] ListNavActivityAdjustments: List NAV adjustment activities applied to a valuation point  # noqa: E501
             Lists the NAV adjustment activities applied to the specified valuation point for a Fund.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -14145,7 +14145,7 @@ class FundsApi:
 
     @validate_call
     async def list_nav_activity_adjustments_with_http_info_async(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfNavActivityAdjustmentResponse]:
-            """[EXPERIMENTAL] ListNavActivityAdjustments: List NAV adjustment activities applied to a valuation point  # noqa: E501
+            """[EARLY ACCESS] ListNavActivityAdjustments: List NAV adjustment activities applied to a valuation point  # noqa: E501
 
             Lists the NAV adjustment activities applied to the specified valuation point for a Fund.  # noqa: E501
 
@@ -14297,7 +14297,7 @@ class FundsApi:
 
     @validate_call
     async def list_valuation_point_complex_market_data_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ValuationPointResourceListOfAccountedComplexMarketData:
-            """[EXPERIMENTAL] ListValuationPointComplexMarketData: List the Complex Market Data for the given Fund and Valuation Point.  # noqa: E501
+            """[EARLY ACCESS] ListValuationPointComplexMarketData: List the Complex Market Data for the given Fund and Valuation Point.  # noqa: E501
             Lists all complex market data within the effective date range of the specified Valuation Point for a Fund,  including any items added via a Complex Close (Post-Close Activity).  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -14329,7 +14329,7 @@ class FundsApi:
 
     @validate_call
     async def list_valuation_point_complex_market_data_with_http_info_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfAccountedComplexMarketData]:
-            """[EXPERIMENTAL] ListValuationPointComplexMarketData: List the Complex Market Data for the given Fund and Valuation Point.  # noqa: E501
+            """[EARLY ACCESS] ListValuationPointComplexMarketData: List the Complex Market Data for the given Fund and Valuation Point.  # noqa: E501
 
             Lists all complex market data within the effective date range of the specified Valuation Point for a Fund,  including any items added via a Complex Close (Post-Close Activity).  # noqa: E501
 
@@ -14476,7 +14476,7 @@ class FundsApi:
 
     @validate_call
     async def list_valuation_point_instruments_async(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, instrument_property_keys: Optional[List[str]] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfValuationPointInstrument:
-            """[EXPERIMENTAL] ListValuationPointInstruments: List Instruments inside a valuation point  # noqa: E501
+            """[EARLY ACCESS] ListValuationPointInstruments: List Instruments inside a valuation point  # noqa: E501
             Lists the Instruments linked to Transactions within a Valuation Point for a Fund.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -14516,7 +14516,7 @@ class FundsApi:
 
     @validate_call
     async def list_valuation_point_instruments_with_http_info_async(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_type_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, sort_by: Optional[List[str]] = None, instrument_property_keys: Optional[List[str]] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfValuationPointInstrument]:
-            """[EXPERIMENTAL] ListValuationPointInstruments: List Instruments inside a valuation point  # noqa: E501
+            """[EARLY ACCESS] ListValuationPointInstruments: List Instruments inside a valuation point  # noqa: E501
 
             Lists the Instruments linked to Transactions within a Valuation Point for a Fund.  # noqa: E501
 
@@ -14682,7 +14682,7 @@ class FundsApi:
 
     @validate_call
     async def list_valuation_point_overview_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> PagedResourceListOfValuationPointOverview:
-            """[EXPERIMENTAL] ListValuationPointOverview: List Valuation Points Overview for a given Fund.  # noqa: E501
+            """[EARLY ACCESS] ListValuationPointOverview: List Valuation Points Overview for a given Fund.  # noqa: E501
             List the overview of all the Valuation Points that match the given criteria for a given Fund.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -14718,7 +14718,7 @@ class FundsApi:
 
     @validate_call
     async def list_valuation_point_overview_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PagedResourceListOfValuationPointOverview]:
-            """[EXPERIMENTAL] ListValuationPointOverview: List Valuation Points Overview for a given Fund.  # noqa: E501
+            """[EARLY ACCESS] ListValuationPointOverview: List Valuation Points Overview for a given Fund.  # noqa: E501
 
             List the overview of all the Valuation Points that match the given criteria for a given Fund.  # noqa: E501
 
@@ -14871,7 +14871,7 @@ class FundsApi:
 
     @validate_call
     async def patch_fee_async(self, scope: StrictStr, code: StrictStr, fee_code: StrictStr, operation: List[Operation], **kwargs) -> Fee:
-            """[EXPERIMENTAL] PatchFee: Patch Fee.  # noqa: E501
+            """[EARLY ACCESS] PatchFee: Patch Fee.  # noqa: E501
             Create or update certain fields for a particular Fee.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: EndDate, ShareClasses.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -14897,7 +14897,7 @@ class FundsApi:
 
     @validate_call
     async def patch_fee_with_http_info_async(self, scope: StrictStr, code: StrictStr, fee_code: StrictStr, operation: List[Operation], **kwargs) -> ApiResponse[Fee]:
-            """[EXPERIMENTAL] PatchFee: Patch Fee.  # noqa: E501
+            """[EARLY ACCESS] PatchFee: Patch Fee.  # noqa: E501
 
             Create or update certain fields for a particular Fee.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: EndDate, ShareClasses.  # noqa: E501
 
@@ -15023,7 +15023,7 @@ class FundsApi:
 
     @validate_call
     async def patch_fund_async(self, scope: StrictStr, code: StrictStr, operation: List[Operation], **kwargs) -> Fund:
-            """[EXPERIMENTAL] PatchFund: Patch a Fund.  # noqa: E501
+            """[EARLY ACCESS] PatchFund: Patch a Fund.  # noqa: E501
             Update fields on a Fund.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, BaseCurrency, PortfolioIds, FundConfigurationId, ShareClassInstruments, Type, InceptionDate, DecimalPlaces, PrimaryNavType, AdditionalNavTypes, AborId, YearEndDate.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -15047,7 +15047,7 @@ class FundsApi:
 
     @validate_call
     async def patch_fund_with_http_info_async(self, scope: StrictStr, code: StrictStr, operation: List[Operation], **kwargs) -> ApiResponse[Fund]:
-            """[EXPERIMENTAL] PatchFund: Patch a Fund.  # noqa: E501
+            """[EARLY ACCESS] PatchFund: Patch a Fund.  # noqa: E501
 
             Update fields on a Fund.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: DisplayName, Description, BaseCurrency, PortfolioIds, FundConfigurationId, ShareClassInstruments, Type, InceptionDate, DecimalPlaces, PrimaryNavType, AdditionalNavTypes, AborId, YearEndDate.  # noqa: E501
 
@@ -15363,7 +15363,7 @@ class FundsApi:
 
     @validate_call
     async def query_cash_statement_local_currency_async(self, scope: StrictStr, code: StrictStr, query_fund_cash_statement_parameters: QueryFundCashStatementParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ValuationPointResourceListOfFundCashStatementLocalCurrency:
-            """[EXPERIMENTAL] QueryCashStatementLocalCurrency: [EXPERIMENTAL] QueryCashStatementLocalCurrency: Query the local-currency cash statement for a Fund valuation point.  # noqa: E501
+            """[EARLY ACCESS] QueryCashStatementLocalCurrency: [EXPERIMENTAL] QueryCashStatementLocalCurrency: Query the local-currency cash statement for a Fund valuation point.  # noqa: E501
             Returns settled cash movements with a running balance in local currency for the specified Fund  valuation point period. The cash statement is derived from Journal Entry Lines filtered to  settled cash (HoldType='B', SourceType=LusidTransaction). Use the DisplayMode parameter on the  request body to choose between ShowReversal (full reversal/TrueUp detail) and Consolidated  (collapses system-generated zero-net reversal/TrueUp pairs into SystemCorrection rows). Base  currency columns are out of scope for this variant and are not returned.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -15399,7 +15399,7 @@ class FundsApi:
 
     @validate_call
     async def query_cash_statement_local_currency_with_http_info_async(self, scope: StrictStr, code: StrictStr, query_fund_cash_statement_parameters: QueryFundCashStatementParameters, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfFundCashStatementLocalCurrency]:
-            """[EXPERIMENTAL] QueryCashStatementLocalCurrency: [EXPERIMENTAL] QueryCashStatementLocalCurrency: Query the local-currency cash statement for a Fund valuation point.  # noqa: E501
+            """[EARLY ACCESS] QueryCashStatementLocalCurrency: [EXPERIMENTAL] QueryCashStatementLocalCurrency: Query the local-currency cash statement for a Fund valuation point.  # noqa: E501
 
             Returns settled cash movements with a running balance in local currency for the specified Fund  valuation point period. The cash statement is derived from Journal Entry Lines filtered to  settled cash (HoldType='B', SourceType=LusidTransaction). Use the DisplayMode parameter on the  request body to choose between ShowReversal (full reversal/TrueUp detail) and Consolidated  (collapses system-generated zero-net reversal/TrueUp pairs into SystemCorrection rows). Base  currency columns are out of scope for this variant and are not returned.  # noqa: E501
 
@@ -15559,7 +15559,7 @@ class FundsApi:
 
     @validate_call
     async def revert_valuation_point_to_estimate_async(self, scope: StrictStr, code: StrictStr, revert_valuation_point_data_request: RevertValuationPointDataRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ValuationPointDataResponse:
-            """[EXPERIMENTAL] RevertValuationPointToEstimate: Reverts a Final Valuation Point to Estimate.  # noqa: E501
+            """[EARLY ACCESS] RevertValuationPointToEstimate: Reverts a Final Valuation Point to Estimate.  # noqa: E501
             Moves a 'Final' status Valuation Point to status 'Estimate'.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -15585,7 +15585,7 @@ class FundsApi:
 
     @validate_call
     async def revert_valuation_point_to_estimate_with_http_info_async(self, scope: StrictStr, code: StrictStr, revert_valuation_point_data_request: RevertValuationPointDataRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointDataResponse]:
-            """[EXPERIMENTAL] RevertValuationPointToEstimate: Reverts a Final Valuation Point to Estimate.  # noqa: E501
+            """[EARLY ACCESS] RevertValuationPointToEstimate: Reverts a Final Valuation Point to Estimate.  # noqa: E501
 
             Moves a 'Final' status Valuation Point to status 'Estimate'.  # noqa: E501
 
@@ -15711,7 +15711,7 @@ class FundsApi:
 
     @validate_call
     async def set_share_class_instruments_async(self, scope: StrictStr, code: StrictStr, set_share_class_instruments_request: SetShareClassInstrumentsRequest, **kwargs) -> Fund:
-            """[EXPERIMENTAL] SetShareClassInstruments: Set the ShareClass Instruments on a Fund.  # noqa: E501
+            """[EARLY ACCESS] SetShareClassInstruments: Set the ShareClass Instruments on a Fund.  # noqa: E501
             Update the ShareClass Instruments on an existing Fund with the set of instruments provided.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -15735,7 +15735,7 @@ class FundsApi:
 
     @validate_call
     async def set_share_class_instruments_with_http_info_async(self, scope: StrictStr, code: StrictStr, set_share_class_instruments_request: SetShareClassInstrumentsRequest, **kwargs) -> ApiResponse[Fund]:
-            """[EXPERIMENTAL] SetShareClassInstruments: Set the ShareClass Instruments on a Fund.  # noqa: E501
+            """[EARLY ACCESS] SetShareClassInstruments: Set the ShareClass Instruments on a Fund.  # noqa: E501
 
             Update the ShareClass Instruments on an existing Fund with the set of instruments provided.  # noqa: E501
 
@@ -15855,7 +15855,7 @@ class FundsApi:
 
     @validate_call
     async def update_valuation_point_async(self, scope: StrictStr, code: StrictStr, update_valuation_point_request: UpdateValuationPointRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ValuationPoint:
-            """[EXPERIMENTAL] UpdateValuationPoint: Update a Valuation Point.  # noqa: E501
+            """[EARLY ACCESS] UpdateValuationPoint: Update a Valuation Point.  # noqa: E501
             Updates an existing Valuation Point.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -15881,7 +15881,7 @@ class FundsApi:
 
     @validate_call
     async def update_valuation_point_with_http_info_async(self, scope: StrictStr, code: StrictStr, update_valuation_point_request: UpdateValuationPointRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPoint]:
-            """[EXPERIMENTAL] UpdateValuationPoint: Update a Valuation Point.  # noqa: E501
+            """[EARLY ACCESS] UpdateValuationPoint: Update a Valuation Point.  # noqa: E501
 
             Updates an existing Valuation Point.  # noqa: E501
 
@@ -16008,7 +16008,7 @@ class FundsApi:
 
     @validate_call
     async def upsert_bookmark_async(self, scope: StrictStr, code: StrictStr, upsert_fund_bookmark_request: UpsertFundBookmarkRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> FundCalendarEntry:
-            """[EXPERIMENTAL] UpsertBookmark: Upsert a bookmark.  # noqa: E501
+            """[EARLY ACCESS] UpsertBookmark: Upsert a bookmark.  # noqa: E501
             This method will update or upsert a Bookmark for the Fund.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -16034,7 +16034,7 @@ class FundsApi:
 
     @validate_call
     async def upsert_bookmark_with_http_info_async(self, scope: StrictStr, code: StrictStr, upsert_fund_bookmark_request: UpsertFundBookmarkRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[FundCalendarEntry]:
-            """[EXPERIMENTAL] UpsertBookmark: Upsert a bookmark.  # noqa: E501
+            """[EARLY ACCESS] UpsertBookmark: Upsert a bookmark.  # noqa: E501
 
             This method will update or upsert a Bookmark for the Fund.  # noqa: E501
 
@@ -16160,7 +16160,7 @@ class FundsApi:
 
     @validate_call
     async def upsert_diary_entry_type_valuation_point_async(self, scope: StrictStr, code: StrictStr, upsert_valuation_point_request: UpsertValuationPointRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> DiaryEntry:
-            """[EXPERIMENTAL] UpsertDiaryEntryTypeValuationPoint: Upsert a Valuation Point.  # noqa: E501
+            """[EARLY ACCESS] UpsertDiaryEntryTypeValuationPoint: Upsert a Valuation Point.  # noqa: E501
             Insert the estimate Valuation Point.                If the Valuation Point does not exist, this method will create it in estimate state.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -16186,7 +16186,7 @@ class FundsApi:
 
     @validate_call
     async def upsert_diary_entry_type_valuation_point_with_http_info_async(self, scope: StrictStr, code: StrictStr, upsert_valuation_point_request: UpsertValuationPointRequest, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[DiaryEntry]:
-            """[EXPERIMENTAL] UpsertDiaryEntryTypeValuationPoint: Upsert a Valuation Point.  # noqa: E501
+            """[EARLY ACCESS] UpsertDiaryEntryTypeValuationPoint: Upsert a Valuation Point.  # noqa: E501
 
             Insert the estimate Valuation Point.                If the Valuation Point does not exist, this method will create it in estimate state.  # noqa: E501
 
@@ -16312,7 +16312,7 @@ class FundsApi:
 
     @validate_call
     async def upsert_fee_properties_async(self, scope: StrictStr, code: StrictStr, fee_code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> FeeProperties:
-            """[EXPERIMENTAL] UpsertFeeProperties: Upsert Fee properties.  # noqa: E501
+            """[EARLY ACCESS] UpsertFeeProperties: Upsert Fee properties.  # noqa: E501
             Update or insert one or more properties onto a single Fee. A property will be updated if it  already exists and inserted if it does not. All properties must be of the domain 'Fee'.                Upserting a property that exists for an Fee, with a null value, will delete the instance of the property for that group.                Properties have an <i>effectiveFrom</i> datetime for which the property is valid, and an <i>effectiveUntil</i>  datetime until which the property is valid. Not supplying an <i>effectiveUntil</i> datetime results in the property being  valid indefinitely, or until the next <i>effectiveFrom</i> datetime of the property.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -16338,7 +16338,7 @@ class FundsApi:
 
     @validate_call
     async def upsert_fee_properties_with_http_info_async(self, scope: StrictStr, code: StrictStr, fee_code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> ApiResponse[FeeProperties]:
-            """[EXPERIMENTAL] UpsertFeeProperties: Upsert Fee properties.  # noqa: E501
+            """[EARLY ACCESS] UpsertFeeProperties: Upsert Fee properties.  # noqa: E501
 
             Update or insert one or more properties onto a single Fee. A property will be updated if it  already exists and inserted if it does not. All properties must be of the domain 'Fee'.                Upserting a property that exists for an Fee, with a null value, will delete the instance of the property for that group.                Properties have an <i>effectiveFrom</i> datetime for which the property is valid, and an <i>effectiveUntil</i>  datetime until which the property is valid. Not supplying an <i>effectiveUntil</i> datetime results in the property being  valid indefinitely, or until the next <i>effectiveFrom</i> datetime of the property.  # noqa: E501
 
@@ -16464,7 +16464,7 @@ class FundsApi:
 
     @validate_call
     async def upsert_fund_properties_async(self, scope: StrictStr, code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> FundProperties:
-            """[EXPERIMENTAL] UpsertFundProperties: Upsert Fund properties.  # noqa: E501
+            """[EARLY ACCESS] UpsertFundProperties: Upsert Fund properties.  # noqa: E501
             Update or insert one or more properties onto a single Fund. A property will be updated if it  already exists and inserted if it does not. All properties must be of the domain 'Fund'.                Upserting a property that exists for an Fund, with a null value, will delete the instance of the property for that group.                Properties have an <i>effectiveFrom</i> datetime for which the property is valid, and an <i>effectiveUntil</i>  datetime until which the property is valid. Not supplying an <i>effectiveUntil</i> datetime results in the property being  valid indefinitely, or until the next <i>effectiveFrom</i> datetime of the property.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -16488,7 +16488,7 @@ class FundsApi:
 
     @validate_call
     async def upsert_fund_properties_with_http_info_async(self, scope: StrictStr, code: StrictStr, request_body: Optional[Dict[str, ModelProperty]] = None, **kwargs) -> ApiResponse[FundProperties]:
-            """[EXPERIMENTAL] UpsertFundProperties: Upsert Fund properties.  # noqa: E501
+            """[EARLY ACCESS] UpsertFundProperties: Upsert Fund properties.  # noqa: E501
 
             Update or insert one or more properties onto a single Fund. A property will be updated if it  already exists and inserted if it does not. All properties must be of the domain 'Fund'.                Upserting a property that exists for an Fund, with a null value, will delete the instance of the property for that group.                Properties have an <i>effectiveFrom</i> datetime for which the property is valid, and an <i>effectiveUntil</i>  datetime until which the property is valid. Not supplying an <i>effectiveUntil</i> datetime results in the property being  valid indefinitely, or until the next <i>effectiveFrom</i> datetime of the property.  # noqa: E501
 
@@ -16608,7 +16608,7 @@ class FundsApi:
 
     @validate_call
     async def upsert_nav_activity_adjustments_async(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_activity_adjustment: List[NavActivityAdjustment], nav_type_code: Optional[StrictStr] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> datetime:
-            """[EXPERIMENTAL] UpsertNavActivityAdjustments: Upsert NAV adjustment activities to a valuation point  # noqa: E501
+            """[EARLY ACCESS] UpsertNavActivityAdjustments: Upsert NAV adjustment activities to a valuation point  # noqa: E501
             Upserts the NAV adjustment activities to the specified valuation point for a Fund.  # noqa: E501
             
             :param scope: The scope of the Fund. (required)
@@ -16638,7 +16638,7 @@ class FundsApi:
 
     @validate_call
     async def upsert_nav_activity_adjustments_with_http_info_async(self, scope: StrictStr, code: StrictStr, valuation_point_code: StrictStr, nav_activity_adjustment: List[NavActivityAdjustment], nav_type_code: Optional[StrictStr] = None, valuation_point_code_variant: Optional[StrictStr] = None, **kwargs) -> ApiResponse[datetime]:
-            """[EXPERIMENTAL] UpsertNavActivityAdjustments: Upsert NAV adjustment activities to a valuation point  # noqa: E501
+            """[EARLY ACCESS] UpsertNavActivityAdjustments: Upsert NAV adjustment activities to a valuation point  # noqa: E501
 
             Upserts the NAV adjustment activities to the specified valuation point for a Fund.  # noqa: E501
 
