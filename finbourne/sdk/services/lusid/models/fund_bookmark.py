@@ -25,6 +25,7 @@ from finbourne.sdk.services.lusid.models.fund_calendar_entries import FundCalend
 from finbourne.sdk.services.lusid.models.model_property import ModelProperty
 from finbourne.sdk.services.lusid.models.previous_fund_calendar_entry import PreviousFundCalendarEntry
 from finbourne.sdk.services.lusid.models.resource_id import ResourceId
+from finbourne.sdk.services.lusid.models.staged_modifications_info import StagedModificationsInfo
 from finbourne.sdk.services.lusid.models.version import Version
 
 
@@ -49,9 +50,10 @@ class FundBookmark(FundCalendarEntries):
     version: Version
     href:  Optional[StrictStr] = Field(default=None,alias="href", description="The specific Uniform Resource Identifier (URI) for this resource at the requested asAt datetime.") 
     leader_nav_type_code:  Optional[StrictStr] = Field(default=None,alias="leaderNavTypeCode", description="The code of the Nav Type that this Nav Type will follow when set.") 
+    staged_modifications: Optional[StagedModificationsInfo] = Field(default=None, alias="stagedModifications")
     fund_calendar_entries_type:  StrictStr = Field(...,alias="fundCalendarEntriesType", description="The type of the Calendar Entry. Available values: FinalisedValuationPoint, FundEstimateValuationPoint, FundBookmark.") 
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["fundCalendarEntriesType", "code", "displayName", "description", "navTypeCode", "timelineId", "previousEntry", "effectiveAt", "asAt", "entryType", "status", "applyClearDown", "holdingsAsAtOverride", "valuationsAsAtOverride", "properties", "version", "href", "leaderNavTypeCode"]
+    __properties: ClassVar[List[str]] = ["fundCalendarEntriesType", "code", "displayName", "description", "navTypeCode", "timelineId", "previousEntry", "effectiveAt", "asAt", "entryType", "status", "applyClearDown", "holdingsAsAtOverride", "valuationsAsAtOverride", "properties", "version", "href", "leaderNavTypeCode", "stagedModifications"]
 
     @field_validator('entry_type')
     def entry_type_validate_enum(cls, value):
@@ -144,6 +146,9 @@ class FundBookmark(FundCalendarEntries):
         # override the default output from pydantic by calling `to_dict()` of version
         if self.version:
             _dict['version'] = self.version.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of staged_modifications
+        if self.staged_modifications:
+            _dict['stagedModifications'] = self.staged_modifications.to_dict(by_alias=by_alias)
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -218,7 +223,8 @@ class FundBookmark(FundCalendarEntries):
             else None,
             "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
             "href": obj.get("href"),
-            "leader_nav_type_code": obj.get("leaderNavTypeCode")
+            "leader_nav_type_code": obj.get("leaderNavTypeCode"),
+            "staged_modifications": StagedModificationsInfo.from_dict(_v) if (_v := obj.get("stagedModifications")) is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

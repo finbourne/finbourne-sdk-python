@@ -201,6 +201,7 @@ from finbourne.sdk.services.lusid.models.cds_credit_event import CdsCreditEvent
 from finbourne.sdk.services.lusid.models.cds_flow_conventions import CdsFlowConventions
 from finbourne.sdk.services.lusid.models.cds_index import CdsIndex
 from finbourne.sdk.services.lusid.models.cds_model_options import CdsModelOptions
+from finbourne.sdk.services.lusid.models.cds_option import CdsOption
 from finbourne.sdk.services.lusid.models.cds_protection_detail_specification import CdsProtectionDetailSpecification
 from finbourne.sdk.services.lusid.models.cdx_credit_event import CdxCreditEvent
 from finbourne.sdk.services.lusid.models.change import Change
@@ -231,8 +232,11 @@ from finbourne.sdk.services.lusid.models.close_period_diary_entry_request import
 from finbourne.sdk.services.lusid.models.closed_period import ClosedPeriod
 from finbourne.sdk.services.lusid.models.collateral import Collateral
 from finbourne.sdk.services.lusid.models.collateral_instrument import CollateralInstrument
+from finbourne.sdk.services.lusid.models.commodity_calendar_schedule import CommodityCalendarSchedule
+from finbourne.sdk.services.lusid.models.commodity_calendar_swap import CommodityCalendarSwap
 from finbourne.sdk.services.lusid.models.commodity_forward import CommodityForward
 from finbourne.sdk.services.lusid.models.commodity_forward_cash_settlement_event import CommodityForwardCashSettlementEvent
+from finbourne.sdk.services.lusid.models.commodity_forward_physical_settlement_event import CommodityForwardPhysicalSettlementEvent
 from finbourne.sdk.services.lusid.models.comparison_attribute_value_pair import ComparisonAttributeValuePair
 from finbourne.sdk.services.lusid.models.complete_portfolio import CompletePortfolio
 from finbourne.sdk.services.lusid.models.complete_relation import CompleteRelation
@@ -1792,6 +1796,7 @@ __all__ = [
     "CdsFlowConventions",
     "CdsIndex",
     "CdsModelOptions",
+    "CdsOption",
     "CdsProtectionDetailSpecification",
     "CdxCreditEvent",
     "Change",
@@ -1822,8 +1827,11 @@ __all__ = [
     "ClosedPeriod",
     "Collateral",
     "CollateralInstrument",
+    "CommodityCalendarSchedule",
+    "CommodityCalendarSwap",
     "CommodityForward",
     "CommodityForwardCashSettlementEvent",
+    "CommodityForwardPhysicalSettlementEvent",
     "ComparisonAttributeValuePair",
     "CompletePortfolio",
     "CompleteRelation",

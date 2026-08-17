@@ -26,6 +26,8 @@ from typing_extensions import Annotated
 from finbourne.sdk.services.luminesce.models.background_query_cancel_response import BackgroundQueryCancelResponse
 from finbourne.sdk.services.luminesce.models.background_query_progress_response import BackgroundQueryProgressResponse
 from finbourne.sdk.services.luminesce.models.background_query_response import BackgroundQueryResponse
+from finbourne.sdk.services.luminesce.models.export_type import ExportType
+from finbourne.sdk.services.luminesce.models.external_query_source import ExternalQuerySource
 from finbourne.sdk.services.luminesce.models.sql_execution_flags import SqlExecutionFlags
 from finbourne.sdk.api_client import ApiClient
 from finbourne.sdk.api_response import ApiResponse
@@ -2316,7 +2318,224 @@ class SqlBackgroundExecutionApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def start_query(self, body: StrictStr, execution_id: Optional[StrictStr] = None, scalar_parameters: Optional[Dict[str, str]] = None, query_name: Optional[StrictStr] = None, timeout_seconds: Optional[int] = None, keep_for_seconds: Optional[int] = None, execution_flags: Optional[str] = None, **kwargs) -> BackgroundQueryResponse:
+    def save_query_result_to_drive(self, execution_id: StrictStr, drive_location_and_file_name: StrictStr, may_overwrite: Optional[bool] = None, format: Optional[str] = None, drive_template_location: Optional[StrictStr] = None, table_name_reference: Optional[StrictStr] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, date_time_format: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> str:
+        """[EXPERIMENTAL] SaveQueryResultToDrive: Saves the query results directly to Drive  # noqa: E501
+
+        Saves the results directly to Drive.  This can be useful for sharing results with others, keeping persistent reports, etc.      Of course always consider data visibility and security as who can see these depends on users' permissions to the chosen location within Drive.  Template support is provided, for the export types that allow this, but unlike using the `Drive.SaveAs` provider within the SQL itself, only one data set can be be saved  (the full query result set, optionally manipulated with the various parameters to this method).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query or drive parameters were incorrect in some way - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
+        :param execution_id: ExecutionId returned when starting the query (required)
+        :type execution_id: str
+        :param drive_location_and_file_name: Location and file name within drive where this should be saved to. Missing paths will be created, and extension (if given) will be ignored and inferred from the chosen format (required)
+        :type drive_location_and_file_name: str
+        :param may_overwrite: If there is an existing file at the requested location with the same name should this be overridden, or an error returned?
+        :type may_overwrite: bool
+        :param format: Format to save in.
+        :type format: ExportType
+        :param drive_template_location: Drive path and full file name including extension to be used for the export. Only some export types support templates, such as Excel and Pdf, and this will need to match the format type, if given.
+        :type drive_template_location: str
+        :param table_name_reference: What should the 'exported table name' be.  Defaults to 'Results'. This has different meaning for different export types.
+        :type table_name_reference: str
+        :param sort_by: Order the results by these fields.             Use the `-` sign to denote descending order, e.g. `-MyFieldName`.  Numeric indexes may be used also, e.g. `2,-3`.             Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.             Default is null, the sort order specified in the query itself.
+        :type sort_by: str
+        :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - may be combined with `sqlFilter`.
+        :type filter: str
+        :param sql_filter: Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'` - may be combined with `filter` while supporting additional syntax that cannot.
+        :type sql_filter: str
+        :param select: Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - `MyField` - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name) - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but  it works) - `count(distinct x) as numOfXs` If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
+        :type select: str
+        :param group_by: Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. `2,3`, `myColumn`.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.             Only specify this if you are selecting aggregations in the \"select\" parameter.
+        :type group_by: str
+        :param date_time_format: Format to apply for DateTime data, leaving blank gives the Luminesce Exporter default, currently `yyyy-MM-dd HH:mm:ss.fff`
+        :type date_time_format: str
+        :param load_wait_milliseconds: Optional maximum additional wait period for post execution platform processing.
+        :type load_wait_milliseconds: int
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: str
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the save_query_result_to_drive_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.save_query_result_to_drive_with_http_info(execution_id, drive_location_and_file_name, may_overwrite, format, drive_template_location, table_name_reference, sort_by, filter, sql_filter, select, group_by, date_time_format, load_wait_milliseconds, **kwargs)
+        return response.data
+
+    @validate_call
+    def save_query_result_to_drive_with_http_info(self, execution_id: StrictStr, drive_location_and_file_name: StrictStr, may_overwrite: Optional[bool] = None, format: Optional[str] = None, drive_template_location: Optional[StrictStr] = None, table_name_reference: Optional[StrictStr] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, date_time_format: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
+        """[EXPERIMENTAL] SaveQueryResultToDrive: Saves the query results directly to Drive  # noqa: E501
+
+        Saves the results directly to Drive.  This can be useful for sharing results with others, keeping persistent reports, etc.      Of course always consider data visibility and security as who can see these depends on users' permissions to the chosen location within Drive.  Template support is provided, for the export types that allow this, but unlike using the `Drive.SaveAs` provider within the SQL itself, only one data set can be be saved  (the full query result set, optionally manipulated with the various parameters to this method).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query or drive parameters were incorrect in some way - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
+        :param execution_id: ExecutionId returned when starting the query (required)
+        :type execution_id: str
+        :param drive_location_and_file_name: Location and file name within drive where this should be saved to. Missing paths will be created, and extension (if given) will be ignored and inferred from the chosen format (required)
+        :type drive_location_and_file_name: str
+        :param may_overwrite: If there is an existing file at the requested location with the same name should this be overridden, or an error returned?
+        :type may_overwrite: bool
+        :param format: Format to save in.
+        :type format: ExportType
+        :param drive_template_location: Drive path and full file name including extension to be used for the export. Only some export types support templates, such as Excel and Pdf, and this will need to match the format type, if given.
+        :type drive_template_location: str
+        :param table_name_reference: What should the 'exported table name' be.  Defaults to 'Results'. This has different meaning for different export types.
+        :type table_name_reference: str
+        :param sort_by: Order the results by these fields.             Use the `-` sign to denote descending order, e.g. `-MyFieldName`.  Numeric indexes may be used also, e.g. `2,-3`.             Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.             Default is null, the sort order specified in the query itself.
+        :type sort_by: str
+        :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - may be combined with `sqlFilter`.
+        :type filter: str
+        :param sql_filter: Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'` - may be combined with `filter` while supporting additional syntax that cannot.
+        :type sql_filter: str
+        :param select: Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - `MyField` - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name) - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but  it works) - `count(distinct x) as numOfXs` If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
+        :type select: str
+        :param group_by: Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. `2,3`, `myColumn`.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.             Only specify this if you are selecting aggregations in the \"select\" parameter.
+        :type group_by: str
+        :param date_time_format: Format to apply for DateTime data, leaving blank gives the Luminesce Exporter default, currently `yyyy-MM-dd HH:mm:ss.fff`
+        :type date_time_format: str
+        :param load_wait_milliseconds: Optional maximum additional wait period for post execution platform processing.
+        :type load_wait_milliseconds: int
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'execution_id',
+            'drive_location_and_file_name',
+            'may_overwrite',
+            'format',
+            'drive_template_location',
+            'table_name_reference',
+            'sort_by',
+            'filter',
+            'sql_filter',
+            'select',
+            'group_by',
+            'date_time_format',
+            'load_wait_milliseconds'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method save_query_result_to_drive" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['execution_id'] is not None:
+            _path_params['executionId'] = _params['execution_id']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('drive_location_and_file_name') is not None:  # noqa: E501
+            _query_params.append(('driveLocationAndFileName', _params['drive_location_and_file_name']))
+
+        if _params.get('may_overwrite') is not None:  # noqa: E501
+            _query_params.append(('mayOverwrite', _params['may_overwrite']))
+
+        if _params.get('format') is not None:  # noqa: E501
+            _query_params.append(('format', _params['format']))
+
+        if _params.get('drive_template_location') is not None:  # noqa: E501
+            _query_params.append(('driveTemplateLocation', _params['drive_template_location']))
+
+        if _params.get('table_name_reference') is not None:  # noqa: E501
+            _query_params.append(('tableNameReference', _params['table_name_reference']))
+
+        if _params.get('sort_by') is not None:  # noqa: E501
+            _query_params.append(('sortBy', _params['sort_by']))
+
+        if _params.get('filter') is not None:  # noqa: E501
+            _query_params.append(('filter', _params['filter']))
+
+        if _params.get('sql_filter') is not None:  # noqa: E501
+            _query_params.append(('sqlFilter', _params['sql_filter']))
+
+        if _params.get('select') is not None:  # noqa: E501
+            _query_params.append(('select', _params['select']))
+
+        if _params.get('group_by') is not None:  # noqa: E501
+            _query_params.append(('groupBy', _params['group_by']))
+
+        if _params.get('date_time_format') is not None:  # noqa: E501
+            _query_params.append(('dateTimeFormat', _params['date_time_format']))
+
+        if _params.get('load_wait_milliseconds') is not None:  # noqa: E501
+            _query_params.append(('loadWaitMilliseconds', _params['load_wait_milliseconds']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "str",
+            '400': "LusidProblemDetails",
+            '403': "LusidProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/honeycomb/api/SqlBackground/{executionId}/drive', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    def start_query(self, body: StrictStr, execution_id: Optional[StrictStr] = None, scalar_parameters: Optional[Dict[str, str]] = None, query_name: Optional[StrictStr] = None, timeout_seconds: Optional[int] = None, keep_for_seconds: Optional[int] = None, execution_flags: Optional[str] = None, external_query_source: Optional[str] = None, **kwargs) -> BackgroundQueryResponse:
         """StartQuery: Start to Execute Sql in the background  # noqa: E501
 
          Allow for starting a potentially long running query and getting back an immediate response with how to  - fetch the data in various formats (if available, or if not simply being informed it is not yet ready) - view progress information (up until this point) - cancel the query (if still running) / clear the data (if already returned)  This can still error on things like an outright syntax error, but more runtime errors (e.g. from providers) will not cause this to error (that will happen when attempting to fetch data)  Here is an example that intentionally takes one minute to run:  ```sql select Str, Takes500Ms from Testing1K where UseLinq = true and [Int] <= 120 ```  This is the only place in the Luminesce WebAPI where the following is supported. This will allow for the same user running a character-identical query not kick off a new query but simply be returned a reference  to the already running one for up to `N` seconds (where `N` should be `<=` `keepForSeconds`).  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - there was something wrong with your query syntax (the issue was detected at parse-time) - 401 Unauthorized - 403 Forbidden   # noqa: E501
@@ -2334,6 +2553,8 @@ class SqlBackgroundExecutionApi:
         :type keep_for_seconds: int
         :param execution_flags: Optional request flags for the execution.  Currently limited by may grow in time: - ProvideLineage : Should Lineage be requested when running the query?  This must be set in order to later retrieve Lineage.
         :type execution_flags: SqlExecutionFlags
+        :param external_query_source: Optional request to load the query from an external SQL-store. The payload is then a key that means something to the chosen source Currently limited by may grow in time: - SavedQuery : Load from Saved Queries (within the Workspaces API),   Query/Body examples: `personal/YourUserId/items/queries/SomeQuery` or `shared/SomeWorkspace/items/queries/SomeQuery`.
+        :type external_query_source: ExternalQuerySource
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -2344,11 +2565,11 @@ class SqlBackgroundExecutionApi:
             message = "Error! Please call the start_query_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.start_query_with_http_info(body, execution_id, scalar_parameters, query_name, timeout_seconds, keep_for_seconds, execution_flags, **kwargs)
+        response = self.start_query_with_http_info(body, execution_id, scalar_parameters, query_name, timeout_seconds, keep_for_seconds, execution_flags, external_query_source, **kwargs)
         return response.data
 
     @validate_call
-    def start_query_with_http_info(self, body: StrictStr, execution_id: Optional[StrictStr] = None, scalar_parameters: Optional[Dict[str, str]] = None, query_name: Optional[StrictStr] = None, timeout_seconds: Optional[int] = None, keep_for_seconds: Optional[int] = None, execution_flags: Optional[str] = None, **kwargs) -> ApiResponse[BackgroundQueryResponse]:
+    def start_query_with_http_info(self, body: StrictStr, execution_id: Optional[StrictStr] = None, scalar_parameters: Optional[Dict[str, str]] = None, query_name: Optional[StrictStr] = None, timeout_seconds: Optional[int] = None, keep_for_seconds: Optional[int] = None, execution_flags: Optional[str] = None, external_query_source: Optional[str] = None, **kwargs) -> ApiResponse[BackgroundQueryResponse]:
         """StartQuery: Start to Execute Sql in the background  # noqa: E501
 
          Allow for starting a potentially long running query and getting back an immediate response with how to  - fetch the data in various formats (if available, or if not simply being informed it is not yet ready) - view progress information (up until this point) - cancel the query (if still running) / clear the data (if already returned)  This can still error on things like an outright syntax error, but more runtime errors (e.g. from providers) will not cause this to error (that will happen when attempting to fetch data)  Here is an example that intentionally takes one minute to run:  ```sql select Str, Takes500Ms from Testing1K where UseLinq = true and [Int] <= 120 ```  This is the only place in the Luminesce WebAPI where the following is supported. This will allow for the same user running a character-identical query not kick off a new query but simply be returned a reference  to the already running one for up to `N` seconds (where `N` should be `<=` `keepForSeconds`).  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - there was something wrong with your query syntax (the issue was detected at parse-time) - 401 Unauthorized - 403 Forbidden   # noqa: E501
@@ -2366,6 +2587,8 @@ class SqlBackgroundExecutionApi:
         :type keep_for_seconds: int
         :param execution_flags: Optional request flags for the execution.  Currently limited by may grow in time: - ProvideLineage : Should Lineage be requested when running the query?  This must be set in order to later retrieve Lineage.
         :type execution_flags: SqlExecutionFlags
+        :param external_query_source: Optional request to load the query from an external SQL-store. The payload is then a key that means something to the chosen source Currently limited by may grow in time: - SavedQuery : Load from Saved Queries (within the Workspaces API),   Query/Body examples: `personal/YourUserId/items/queries/SomeQuery` or `shared/SomeWorkspace/items/queries/SomeQuery`.
+        :type external_query_source: ExternalQuerySource
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -2395,7 +2618,8 @@ class SqlBackgroundExecutionApi:
             'query_name',
             'timeout_seconds',
             'keep_for_seconds',
-            'execution_flags'
+            'execution_flags',
+            'external_query_source'
         ]
         _all_params.extend(
             [
@@ -2444,6 +2668,9 @@ class SqlBackgroundExecutionApi:
 
         if _params.get('execution_flags') is not None:  # noqa: E501
             _query_params.append(('executionFlags', _params['execution_flags']))
+
+        if _params.get('external_query_source') is not None:  # noqa: E501
+            _query_params.append(('externalQuerySource', _params['external_query_source']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -4774,7 +5001,225 @@ class SqlBackgroundExecutionApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def start_query_async(self, body: StrictStr, execution_id: Optional[StrictStr] = None, scalar_parameters: Optional[Dict[str, str]] = None, query_name: Optional[StrictStr] = None, timeout_seconds: Optional[int] = None, keep_for_seconds: Optional[int] = None, execution_flags: Optional[str] = None, **kwargs) -> BackgroundQueryResponse:
+    async def save_query_result_to_drive_async(self, execution_id: StrictStr, drive_location_and_file_name: StrictStr, may_overwrite: Optional[bool] = None, format: Optional[str] = None, drive_template_location: Optional[StrictStr] = None, table_name_reference: Optional[StrictStr] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, date_time_format: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> str:
+            """[EXPERIMENTAL] SaveQueryResultToDrive: Saves the query results directly to Drive  # noqa: E501
+            Saves the results directly to Drive.  This can be useful for sharing results with others, keeping persistent reports, etc.      Of course always consider data visibility and security as who can see these depends on users' permissions to the chosen location within Drive.  Template support is provided, for the export types that allow this, but unlike using the `Drive.SaveAs` provider within the SQL itself, only one data set can be be saved  (the full query result set, optionally manipulated with the various parameters to this method).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query or drive parameters were incorrect in some way - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
+            
+            :param execution_id: ExecutionId returned when starting the query (required)
+            :type execution_id: str
+            :param drive_location_and_file_name: Location and file name within drive where this should be saved to. Missing paths will be created, and extension (if given) will be ignored and inferred from the chosen format (required)
+            :type drive_location_and_file_name: str
+            :param may_overwrite: If there is an existing file at the requested location with the same name should this be overridden, or an error returned?
+            :type may_overwrite: bool
+            :param format: Format to save in.
+            :type format: ExportType
+            :param drive_template_location: Drive path and full file name including extension to be used for the export. Only some export types support templates, such as Excel and Pdf, and this will need to match the format type, if given.
+            :type drive_template_location: str
+            :param table_name_reference: What should the 'exported table name' be.  Defaults to 'Results'. This has different meaning for different export types.
+            :type table_name_reference: str
+            :param sort_by: Order the results by these fields.             Use the `-` sign to denote descending order, e.g. `-MyFieldName`.  Numeric indexes may be used also, e.g. `2,-3`.             Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.             Default is null, the sort order specified in the query itself.
+            :type sort_by: str
+            :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - may be combined with `sqlFilter`.
+            :type filter: str
+            :param sql_filter: Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'` - may be combined with `filter` while supporting additional syntax that cannot.
+            :type sql_filter: str
+            :param select: Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - `MyField` - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name) - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but  it works) - `count(distinct x) as numOfXs` If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
+            :type select: str
+            :param group_by: Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. `2,3`, `myColumn`.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.             Only specify this if you are selecting aggregations in the \"select\" parameter.
+            :type group_by: str
+            :param date_time_format: Format to apply for DateTime data, leaving blank gives the Luminesce Exporter default, currently `yyyy-MM-dd HH:mm:ss.fff`
+            :type date_time_format: str
+            :param load_wait_milliseconds: Optional maximum additional wait period for post execution platform processing.
+            :type load_wait_milliseconds: int
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: str
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the save_query_result_to_drive_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.save_query_result_to_drive_with_http_info_async(execution_id, drive_location_and_file_name, may_overwrite, format, drive_template_location, table_name_reference, sort_by, filter, sql_filter, select, group_by, date_time_format, load_wait_milliseconds, **kwargs)
+            return response.data
+
+    @validate_call
+    async def save_query_result_to_drive_with_http_info_async(self, execution_id: StrictStr, drive_location_and_file_name: StrictStr, may_overwrite: Optional[bool] = None, format: Optional[str] = None, drive_template_location: Optional[StrictStr] = None, table_name_reference: Optional[StrictStr] = None, sort_by: Optional[StrictStr] = None, filter: Optional[StrictStr] = None, sql_filter: Optional[StrictStr] = None, select: Optional[StrictStr] = None, group_by: Optional[StrictStr] = None, date_time_format: Optional[StrictStr] = None, load_wait_milliseconds: Optional[int] = None, **kwargs) -> ApiResponse[str]:
+            """[EXPERIMENTAL] SaveQueryResultToDrive: Saves the query results directly to Drive  # noqa: E501
+
+            Saves the results directly to Drive.  This can be useful for sharing results with others, keeping persistent reports, etc.      Of course always consider data visibility and security as who can see these depends on users' permissions to the chosen location within Drive.  Template support is provided, for the export types that allow this, but unlike using the `Drive.SaveAs` provider within the SQL itself, only one data set can be be saved  (the full query result set, optionally manipulated with the various parameters to this method).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query or drive parameters were incorrect in some way - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.  # noqa: E501
+
+            :param execution_id: ExecutionId returned when starting the query (required)
+            :type execution_id: str
+            :param drive_location_and_file_name: Location and file name within drive where this should be saved to. Missing paths will be created, and extension (if given) will be ignored and inferred from the chosen format (required)
+            :type drive_location_and_file_name: str
+            :param may_overwrite: If there is an existing file at the requested location with the same name should this be overridden, or an error returned?
+            :type may_overwrite: bool
+            :param format: Format to save in.
+            :type format: ExportType
+            :param drive_template_location: Drive path and full file name including extension to be used for the export. Only some export types support templates, such as Excel and Pdf, and this will need to match the format type, if given.
+            :type drive_template_location: str
+            :param table_name_reference: What should the 'exported table name' be.  Defaults to 'Results'. This has different meaning for different export types.
+            :type table_name_reference: str
+            :param sort_by: Order the results by these fields.             Use the `-` sign to denote descending order, e.g. `-MyFieldName`.  Numeric indexes may be used also, e.g. `2,-3`.             Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.             Default is null, the sort order specified in the query itself.
+            :type sort_by: str
+            :param filter: Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - may be combined with `sqlFilter`.
+            :type filter: str
+            :param sql_filter: Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'` - may be combined with `filter` while supporting additional syntax that cannot.
+            :type sql_filter: str
+            :param select: Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - `MyField` - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name) - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but  it works) - `count(distinct x) as numOfXs` If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
+            :type select: str
+            :param group_by: Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. `2,3`, `myColumn`.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.             Only specify this if you are selecting aggregations in the \"select\" parameter.
+            :type group_by: str
+            :param date_time_format: Format to apply for DateTime data, leaving blank gives the Luminesce Exporter default, currently `yyyy-MM-dd HH:mm:ss.fff`
+            :type date_time_format: str
+            :param load_wait_milliseconds: Optional maximum additional wait period for post execution platform processing.
+            :type load_wait_milliseconds: int
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'execution_id',
+                'drive_location_and_file_name',
+                'may_overwrite',
+                'format',
+                'drive_template_location',
+                'table_name_reference',
+                'sort_by',
+                'filter',
+                'sql_filter',
+                'select',
+                'group_by',
+                'date_time_format',
+                'load_wait_milliseconds'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method save_query_result_to_drive" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+            if _params['execution_id'] is not None:
+                _path_params['executionId'] = _params['execution_id']
+
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('drive_location_and_file_name') is not None:  # noqa: E501
+                _query_params.append(('driveLocationAndFileName', _params['drive_location_and_file_name']))
+
+            if _params.get('may_overwrite') is not None:  # noqa: E501
+                _query_params.append(('mayOverwrite', _params['may_overwrite']))
+
+            if _params.get('format') is not None:  # noqa: E501
+                _query_params.append(('format', _params['format']))
+
+            if _params.get('drive_template_location') is not None:  # noqa: E501
+                _query_params.append(('driveTemplateLocation', _params['drive_template_location']))
+
+            if _params.get('table_name_reference') is not None:  # noqa: E501
+                _query_params.append(('tableNameReference', _params['table_name_reference']))
+
+            if _params.get('sort_by') is not None:  # noqa: E501
+                _query_params.append(('sortBy', _params['sort_by']))
+
+            if _params.get('filter') is not None:  # noqa: E501
+                _query_params.append(('filter', _params['filter']))
+
+            if _params.get('sql_filter') is not None:  # noqa: E501
+                _query_params.append(('sqlFilter', _params['sql_filter']))
+
+            if _params.get('select') is not None:  # noqa: E501
+                _query_params.append(('select', _params['select']))
+
+            if _params.get('group_by') is not None:  # noqa: E501
+                _query_params.append(('groupBy', _params['group_by']))
+
+            if _params.get('date_time_format') is not None:  # noqa: E501
+                _query_params.append(('dateTimeFormat', _params['date_time_format']))
+
+            if _params.get('load_wait_milliseconds') is not None:  # noqa: E501
+                _query_params.append(('loadWaitMilliseconds', _params['load_wait_milliseconds']))
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "str",
+                '400': "LusidProblemDetails",
+                '403': "LusidProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/honeycomb/api/SqlBackground/{executionId}/drive', 'GET',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def start_query_async(self, body: StrictStr, execution_id: Optional[StrictStr] = None, scalar_parameters: Optional[Dict[str, str]] = None, query_name: Optional[StrictStr] = None, timeout_seconds: Optional[int] = None, keep_for_seconds: Optional[int] = None, execution_flags: Optional[str] = None, external_query_source: Optional[str] = None, **kwargs) -> BackgroundQueryResponse:
             """StartQuery: Start to Execute Sql in the background  # noqa: E501
              Allow for starting a potentially long running query and getting back an immediate response with how to  - fetch the data in various formats (if available, or if not simply being informed it is not yet ready) - view progress information (up until this point) - cancel the query (if still running) / clear the data (if already returned)  This can still error on things like an outright syntax error, but more runtime errors (e.g. from providers) will not cause this to error (that will happen when attempting to fetch data)  Here is an example that intentionally takes one minute to run:  ```sql select Str, Takes500Ms from Testing1K where UseLinq = true and [Int] <= 120 ```  This is the only place in the Luminesce WebAPI where the following is supported. This will allow for the same user running a character-identical query not kick off a new query but simply be returned a reference  to the already running one for up to `N` seconds (where `N` should be `<=` `keepForSeconds`).  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - there was something wrong with your query syntax (the issue was detected at parse-time) - 401 Unauthorized - 403 Forbidden   # noqa: E501
             
@@ -4792,6 +5237,8 @@ class SqlBackgroundExecutionApi:
             :type keep_for_seconds: int
             :param execution_flags: Optional request flags for the execution.  Currently limited by may grow in time: - ProvideLineage : Should Lineage be requested when running the query?  This must be set in order to later retrieve Lineage.
             :type execution_flags: SqlExecutionFlags
+            :param external_query_source: Optional request to load the query from an external SQL-store. The payload is then a key that means something to the chosen source Currently limited by may grow in time: - SavedQuery : Load from Saved Queries (within the Workspaces API),   Query/Body examples: `personal/YourUserId/items/queries/SomeQuery` or `shared/SomeWorkspace/items/queries/SomeQuery`.
+            :type external_query_source: ExternalQuerySource
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -4802,11 +5249,11 @@ class SqlBackgroundExecutionApi:
                 message = "Error! Please call the start_query_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.start_query_with_http_info_async(body, execution_id, scalar_parameters, query_name, timeout_seconds, keep_for_seconds, execution_flags, **kwargs)
+            response = await self.start_query_with_http_info_async(body, execution_id, scalar_parameters, query_name, timeout_seconds, keep_for_seconds, execution_flags, external_query_source, **kwargs)
             return response.data
 
     @validate_call
-    async def start_query_with_http_info_async(self, body: StrictStr, execution_id: Optional[StrictStr] = None, scalar_parameters: Optional[Dict[str, str]] = None, query_name: Optional[StrictStr] = None, timeout_seconds: Optional[int] = None, keep_for_seconds: Optional[int] = None, execution_flags: Optional[str] = None, **kwargs) -> ApiResponse[BackgroundQueryResponse]:
+    async def start_query_with_http_info_async(self, body: StrictStr, execution_id: Optional[StrictStr] = None, scalar_parameters: Optional[Dict[str, str]] = None, query_name: Optional[StrictStr] = None, timeout_seconds: Optional[int] = None, keep_for_seconds: Optional[int] = None, execution_flags: Optional[str] = None, external_query_source: Optional[str] = None, **kwargs) -> ApiResponse[BackgroundQueryResponse]:
             """StartQuery: Start to Execute Sql in the background  # noqa: E501
 
              Allow for starting a potentially long running query and getting back an immediate response with how to  - fetch the data in various formats (if available, or if not simply being informed it is not yet ready) - view progress information (up until this point) - cancel the query (if still running) / clear the data (if already returned)  This can still error on things like an outright syntax error, but more runtime errors (e.g. from providers) will not cause this to error (that will happen when attempting to fetch data)  Here is an example that intentionally takes one minute to run:  ```sql select Str, Takes500Ms from Testing1K where UseLinq = true and [Int] <= 120 ```  This is the only place in the Luminesce WebAPI where the following is supported. This will allow for the same user running a character-identical query not kick off a new query but simply be returned a reference  to the already running one for up to `N` seconds (where `N` should be `<=` `keepForSeconds`).  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - there was something wrong with your query syntax (the issue was detected at parse-time) - 401 Unauthorized - 403 Forbidden   # noqa: E501
@@ -4825,6 +5272,8 @@ class SqlBackgroundExecutionApi:
             :type keep_for_seconds: int
             :param execution_flags: Optional request flags for the execution.  Currently limited by may grow in time: - ProvideLineage : Should Lineage be requested when running the query?  This must be set in order to later retrieve Lineage.
             :type execution_flags: SqlExecutionFlags
+            :param external_query_source: Optional request to load the query from an external SQL-store. The payload is then a key that means something to the chosen source Currently limited by may grow in time: - SavedQuery : Load from Saved Queries (within the Workspaces API),   Query/Body examples: `personal/YourUserId/items/queries/SomeQuery` or `shared/SomeWorkspace/items/queries/SomeQuery`.
+            :type external_query_source: ExternalQuerySource
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -4854,7 +5303,8 @@ class SqlBackgroundExecutionApi:
                 'query_name',
                 'timeout_seconds',
                 'keep_for_seconds',
-                'execution_flags'
+                'execution_flags',
+                'external_query_source'
             ]
             _all_params.extend(
                 [
@@ -4902,6 +5352,9 @@ class SqlBackgroundExecutionApi:
 
             if _params.get('execution_flags') is not None:  # noqa: E501
                 _query_params.append(('executionFlags', _params['execution_flags']))
+
+            if _params.get('external_query_source') is not None:  # noqa: E501
+                _query_params.append(('externalQuerySource', _params['external_query_source']))
 
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))

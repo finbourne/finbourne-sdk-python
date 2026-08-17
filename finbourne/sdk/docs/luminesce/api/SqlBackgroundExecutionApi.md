@@ -17,6 +17,7 @@ Method | HTTP request | Description
 [**fetch_query_result_xml**](SqlBackgroundExecutionApi.md#fetch_query_result_xml) | **GET** /honeycomb/api/SqlBackground/{executionId}/xml | FetchQueryResultXml: Fetch the result of a query as XML
 [**get_historical_feedback**](SqlBackgroundExecutionApi.md#get_historical_feedback) | **GET** /honeycomb/api/SqlBackground/{executionId}/historicalFeedback | GetHistoricalFeedback: View historical query progress (for older queries)
 [**get_progress_of**](SqlBackgroundExecutionApi.md#get_progress_of) | **GET** /honeycomb/api/SqlBackground/{executionId} | GetProgressOf: View query progress up to this point.
+[**save_query_result_to_drive**](SqlBackgroundExecutionApi.md#save_query_result_to_drive) | **GET** /honeycomb/api/SqlBackground/{executionId}/drive | [EXPERIMENTAL] SaveQueryResultToDrive: Saves the query results directly to Drive
 [**start_query**](SqlBackgroundExecutionApi.md#start_query) | **PUT** /honeycomb/api/SqlBackground | StartQuery: Start to Execute Sql in the background
 
 
@@ -757,8 +758,74 @@ Name | Type | Description  | Notes
 
 ---
 
+# **save_query_result_to_drive**
+> str saveQueryResultToDrive = save_query_result_to_drive(execution_id, drive_location_and_file_name, may_overwrite=may_overwrite, format=format, drive_template_location=drive_template_location, table_name_reference=table_name_reference, sort_by=sort_by, filter=filter, sql_filter=sql_filter, select=select, group_by=group_by, date_time_format=date_time_format, load_wait_milliseconds=load_wait_milliseconds)
+
+[EXPERIMENTAL] SaveQueryResultToDrive: Saves the query results directly to Drive
+
+Saves the results directly to Drive.  This can be useful for sharing results with others, keeping persistent reports, etc.      Of course always consider data visibility and security as who can see these depends on users' permissions to the chosen location within Drive.  Template support is provided, for the export types that allow this, but unlike using the `Drive.SaveAs` provider within the SQL itself, only one data set can be be saved  (the full query result set, optionally manipulated with the various parameters to this method).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query or drive parameters were incorrect in some way - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon   1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.   1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.   1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(SqlBackgroundExecutionApi)
+execution_id = 'execution_id_example' # str
+drive_location_and_file_name = 'drive_location_and_file_name_example' # str
+may_overwrite = False # bool (optional)
+format = luminesce.ExportType() # ExportType (optional)
+drive_template_location = 'drive_template_location_example' # str (optional)
+table_name_reference = 'table_name_reference_example' # str (optional)
+sort_by = 'sort_by_example' # str (optional)
+filter = 'filter_example' # str (optional)
+sql_filter = 'sql_filter_example' # str (optional)
+select = 'select_example' # str (optional)
+group_by = 'group_by_example' # str (optional)
+date_time_format = 'date_time_format_example' # str (optional)
+load_wait_milliseconds = 0 # int (optional)
+api_response = api_instance.save_query_result_to_drive(execution_id, drive_location_and_file_name, may_overwrite=may_overwrite, format=format, drive_template_location=drive_template_location, table_name_reference=table_name_reference, sort_by=sort_by, filter=filter, sql_filter=sql_filter, select=select, group_by=group_by, date_time_format=date_time_format, load_wait_milliseconds=load_wait_milliseconds)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **execution_id** | **str**| ExecutionId returned when starting the query | [required] 
+ **drive_location_and_file_name** | **str**| Location and file name within drive where this should be saved to. Missing paths will be created, and extension (if given) will be ignored and inferred from the chosen format | [required] 
+ **may_overwrite** | **bool**| If there is an existing file at the requested location with the same name should this be overridden, or an error returned? | [optional] [default to False]
+ **format** | [**ExportType**](../model/.md)| Format to save in. | [optional] 
+ **drive_template_location** | **str**| Drive path and full file name including extension to be used for the export. Only some export types support templates, such as Excel and Pdf, and this will need to match the format type, if given. | [optional] 
+ **table_name_reference** | **str**| What should the &#39;exported table name&#39; be.  Defaults to &#39;Results&#39;. This has different meaning for different export types. | [optional] 
+ **sort_by** | **str**| Order the results by these fields.             Use the &#x60;-&#x60; sign to denote descending order, e.g. &#x60;-MyFieldName&#x60;.  Numeric indexes may be used also, e.g. &#x60;2,-3&#x60;.             Multiple fields can be denoted by a comma e.g. &#x60;-MyFieldName,AnotherFieldName,-AFurtherFieldName&#x60;.             Default is null, the sort order specified in the query itself. | [optional] 
+ **filter** | **str**| Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. &#x60;SomeField eq &#39;Hello&#39;&#x60; - may be combined with &#x60;sqlFilter&#x60;. | [optional] 
+ **sql_filter** | **str**| Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. &#x60;strftime(&#39;%Y-%m&#39;, SomeDateField) &#x3D; &#39;2026-06&#39;&#x60; - may be combined with &#x60;filter&#x60; while supporting additional syntax that cannot. | [optional] 
+ **select** | **str**| Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - &#x60;MyField&#x60; - &#x60;Max(x) FILTER (WHERE y &gt; 12) as ABC&#x60; (max of a field, if another field lets it qualify, with a nice column name) - &#x60;count(*)&#x60; (count the rows for the given group, that would produce a rather ugly column name, but  it works) - &#x60;count(distinct x) as numOfXs&#x60; If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - &#x60;some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name&#x60;   where you would likely want to pass &#x60;1&#x60; as the &#x60;groupBy&#x60; also. | [optional] 
+ **group_by** | **str**| Groups by the specified fields.             A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).             e.g. &#x60;2,3&#x60;, &#x60;myColumn&#x60;.             Default is null (meaning no grouping will be performed on the selected columns).             This applies only over the result set being requested here, meaning indexes into the \&quot;select\&quot; parameter fields.             Only specify this if you are selecting aggregations in the \&quot;select\&quot; parameter. | [optional] 
+ **date_time_format** | **str**| Format to apply for DateTime data, leaving blank gives the Luminesce Exporter default, currently &#x60;yyyy-MM-dd HH:mm:ss.fff&#x60; | [optional] 
+ **load_wait_milliseconds** | **int**| Optional maximum additional wait period for post execution platform processing. | [optional] [default to 0]
+
+### Return type
+
+**str**
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**403** | Forbidden |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
 # **start_query**
-> BackgroundQueryResponse startQuery = start_query(body, execution_id=execution_id, scalar_parameters=scalar_parameters, query_name=query_name, timeout_seconds=timeout_seconds, keep_for_seconds=keep_for_seconds, execution_flags=execution_flags)
+> BackgroundQueryResponse startQuery = start_query(body, execution_id=execution_id, scalar_parameters=scalar_parameters, query_name=query_name, timeout_seconds=timeout_seconds, keep_for_seconds=keep_for_seconds, execution_flags=execution_flags, external_query_source=external_query_source)
 
 StartQuery: Start to Execute Sql in the background
 
@@ -775,7 +842,8 @@ query_name = 'Intentionally slow test query' # str (optional)
 timeout_seconds = 0 # int (optional)
 keep_for_seconds = 0 # int (optional)
 execution_flags = luminesce.SqlExecutionFlags() # SqlExecutionFlags (optional)
-api_response = api_instance.start_query(body, execution_id=execution_id, scalar_parameters=scalar_parameters, query_name=query_name, timeout_seconds=timeout_seconds, keep_for_seconds=keep_for_seconds, execution_flags=execution_flags)
+external_query_source = luminesce.ExternalQuerySource() # ExternalQuerySource (optional)
+api_response = api_instance.start_query(body, execution_id=execution_id, scalar_parameters=scalar_parameters, query_name=query_name, timeout_seconds=timeout_seconds, keep_for_seconds=keep_for_seconds, execution_flags=execution_flags, external_query_source=external_query_source)
 pprint(api_response)
 ```
 
@@ -790,6 +858,7 @@ Name | Type | Description  | Notes
  **timeout_seconds** | **int**| Maximum time the query may run for, in seconds: &lt;0 → ∞, 0 → 7200 (2h) | [optional] [default to 0]
  **keep_for_seconds** | **int**| Maximum time the result may be kept for, in seconds: &lt;0 → 1200 (20m), 0 → 28800 (8h), max &#x3D; 2,678,400 (31d) | [optional] [default to 0]
  **execution_flags** | [**SqlExecutionFlags**](../model/.md)| Optional request flags for the execution.  Currently limited by may grow in time: - ProvideLineage : Should Lineage be requested when running the query?  This must be set in order to later retrieve Lineage. | [optional] 
+ **external_query_source** | [**ExternalQuerySource**](../model/.md)| Optional request to load the query from an external SQL-store. The payload is then a key that means something to the chosen source Currently limited by may grow in time: - SavedQuery : Load from Saved Queries (within the Workspaces API),   Query/Body examples: &#x60;personal/YourUserId/items/queries/SomeQuery&#x60; or &#x60;shared/SomeWorkspace/items/queries/SomeQuery&#x60;. | [optional] 
 
 ### Return type
 

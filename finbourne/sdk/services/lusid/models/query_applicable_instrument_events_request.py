@@ -31,10 +31,13 @@ class QueryApplicableInstrumentEventsRequest(BaseModel):
     """
     window_start: datetime = Field(description="The start date of the window.", alias="windowStart")
     window_end: datetime = Field(description="The end date of the window.", alias="windowEnd")
-    effective_at: datetime = Field(description="The Effective date that splits query window into two parts: factual period and forecast period", alias="effectiveAt")
+    effective_at: Optional[datetime] = Field(default=None, description="The Effective date that splits query window into two parts: factual period and forecast period. Optional - a timeline (with an optional closed period) may be supplied instead to derive the effective date.", alias="effectiveAt")
     portfolio_entity_ids: List[PortfolioEntityId] = Field(description="The set of portfolios and portfolio groups to which the instrument events must belong.", alias="portfolioEntityIds")
     forecasting_recipe_id: ResourceId = Field(alias="forecastingRecipeId")
-    __properties: ClassVar[List[str]] = ["windowStart", "windowEnd", "effectiveAt", "portfolioEntityIds", "forecastingRecipeId"]
+    timeline_scope:  Optional[StrictStr] = Field(default=None,alias="timelineScope", description="The scope of the timeline to be used when building the instrument events.") 
+    timeline_code:  Optional[StrictStr] = Field(default=None,alias="timelineCode", description="The code of the timeline to be used when building the instrument events. This can optionally include a colon, followed by the Closed Period Id to use at the head of the timeline, for a timeline with unconfirmed periods.") 
+    closed_period_id:  Optional[StrictStr] = Field(default=None,alias="closedPeriodId", description="The id of the closed period, on the given timeline, to be used when building the instrument events.") 
+    __properties: ClassVar[List[str]] = ["windowStart", "windowEnd", "effectiveAt", "portfolioEntityIds", "forecastingRecipeId", "timelineScope", "timelineCode", "closedPeriodId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,6 +83,26 @@ class QueryApplicableInstrumentEventsRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of forecasting_recipe_id
         if self.forecasting_recipe_id:
             _dict['forecastingRecipeId'] = self.forecasting_recipe_id.to_dict(by_alias=by_alias)
+        # set to None if effective_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.effective_at is None and "effective_at" in self.model_fields_set:
+            _dict['effectiveAt'] = None
+
+        # set to None if timeline_scope (nullable) is None
+        # and model_fields_set contains the field
+        if self.timeline_scope is None and "timeline_scope" in self.model_fields_set:
+            _dict['timelineScope'] = None
+
+        # set to None if timeline_code (nullable) is None
+        # and model_fields_set contains the field
+        if self.timeline_code is None and "timeline_code" in self.model_fields_set:
+            _dict['timelineCode'] = None
+
+        # set to None if closed_period_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.closed_period_id is None and "closed_period_id" in self.model_fields_set:
+            _dict['closedPeriodId'] = None
+
         return _dict
 
     @classmethod
@@ -96,7 +119,10 @@ class QueryApplicableInstrumentEventsRequest(BaseModel):
             "window_end": obj.get("windowEnd"),
             "effective_at": obj.get("effectiveAt"),
             "portfolio_entity_ids": [PortfolioEntityId.from_dict(_item) for _item in _v] if (_v := obj.get("portfolioEntityIds")) is not None else None,
-            "forecasting_recipe_id": ResourceId.from_dict(_v) if (_v := obj.get("forecastingRecipeId")) is not None else None
+            "forecasting_recipe_id": ResourceId.from_dict(_v) if (_v := obj.get("forecastingRecipeId")) is not None else None,
+            "timeline_scope": obj.get("timelineScope"),
+            "timeline_code": obj.get("timelineCode"),
+            "closed_period_id": obj.get("closedPeriodId")
         })
         return _obj
 

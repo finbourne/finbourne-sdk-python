@@ -37,6 +37,7 @@ class ScheduleType(str, Enum):  # type: ignore[misc]
     FXLINKEDNOTIONALSCHEDULE = 'FxLinkedNotionalSchedule'
     BONDCONVERSIONSCHEDULE = 'BondConversionSchedule'
     PIKSCHEDULE = 'PikSchedule'
+    COMMODITYCALENDARSCHEDULE = 'CommodityCalendarSchedule'
     INVALID = 'Invalid'
     CANCELSCHEDULE = 'CancelSchedule'
 

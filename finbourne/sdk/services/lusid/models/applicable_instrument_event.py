@@ -48,7 +48,9 @@ class ApplicableInstrumentEvent(BaseModel):
     transaction_diagnostics: Optional[TransactionDiagnostics] = Field(default=None, alias="transactionDiagnostics")
     applied_instrument_event_instruction: Optional[InstrumentEventInstruction] = Field(default=None, alias="appliedInstrumentEventInstruction")
     eligible_balance: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="eligibleBalance")
-    __properties: ClassVar[List[str]] = ["portfolioId", "holdingId", "lusidInstrumentId", "instrumentScope", "instrumentType", "instrumentEventType", "instrumentEventId", "generatedEvent", "generatedEventDiagnostics", "loadedEvent", "appliedInstrumentEventInstructionId", "transactions", "transactionDiagnostics", "appliedInstrumentEventInstruction", "eligibleBalance"]
+    instrument_event_status:  Optional[StrictStr] = Field(default=None,alias="instrumentEventStatus", description="Available values: Active, ActiveReversal, ActiveTrueUp.") 
+    accounting_date: Optional[datetime] = Field(default=None, alias="accountingDate")
+    __properties: ClassVar[List[str]] = ["portfolioId", "holdingId", "lusidInstrumentId", "instrumentScope", "instrumentType", "instrumentEventType", "instrumentEventId", "generatedEvent", "generatedEventDiagnostics", "loadedEvent", "appliedInstrumentEventInstructionId", "transactions", "transactionDiagnostics", "appliedInstrumentEventInstruction", "eligibleBalance", "instrumentEventStatus", "accountingDate"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -124,6 +126,16 @@ class ApplicableInstrumentEvent(BaseModel):
         if self.eligible_balance is None and "eligible_balance" in self.model_fields_set:
             _dict['eligibleBalance'] = None
 
+        # set to None if instrument_event_status (nullable) is None
+        # and model_fields_set contains the field
+        if self.instrument_event_status is None and "instrument_event_status" in self.model_fields_set:
+            _dict['instrumentEventStatus'] = None
+
+        # set to None if accounting_date (nullable) is None
+        # and model_fields_set contains the field
+        if self.accounting_date is None and "accounting_date" in self.model_fields_set:
+            _dict['accountingDate'] = None
+
         return _dict
 
     @classmethod
@@ -150,7 +162,9 @@ class ApplicableInstrumentEvent(BaseModel):
             "transactions": [Transaction.from_dict(_item) for _item in _v] if (_v := obj.get("transactions")) is not None else None,
             "transaction_diagnostics": TransactionDiagnostics.from_dict(_v) if (_v := obj.get("transactionDiagnostics")) is not None else None,
             "applied_instrument_event_instruction": InstrumentEventInstruction.from_dict(_v) if (_v := obj.get("appliedInstrumentEventInstruction")) is not None else None,
-            "eligible_balance": obj.get("eligibleBalance")
+            "eligible_balance": obj.get("eligibleBalance"),
+            "instrument_event_status": obj.get("instrumentEventStatus"),
+            "accounting_date": obj.get("accountingDate")
         })
         return _obj
 

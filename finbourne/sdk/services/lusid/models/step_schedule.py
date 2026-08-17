@@ -32,7 +32,7 @@ class StepSchedule(Schedule):
     level_type:  StrictStr = Field(...,alias="levelType", description="The type of shift or adjustment that the quantity represents.    Supported string (enumeration) values are: [Absolute, AbsoluteShift, Percentage, AbsolutePercentage].") 
     step_schedule_type:  StrictStr = Field(...,alias="stepScheduleType", description="The type of step that this schedule is for.  Supported string (enumeration) values are: [Coupon, Notional, Spread].") 
     steps: List[LevelStep] = Field(description="The level steps which are applied.")
-    schedule_type:  StrictStr = Field(...,alias="scheduleType", description="Available values: FixedSchedule, FloatSchedule, OptionalitySchedule, StepSchedule, Exercise, FxRateSchedule, FxLinkedNotionalSchedule, BondConversionSchedule, PikSchedule, Invalid, CancelSchedule.") 
+    schedule_type:  StrictStr = Field(...,alias="scheduleType", description="Available values: FixedSchedule, FloatSchedule, OptionalitySchedule, StepSchedule, Exercise, FxRateSchedule, FxLinkedNotionalSchedule, BondConversionSchedule, PikSchedule, CommodityCalendarSchedule, Invalid, CancelSchedule.") 
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["scheduleType", "levelType", "stepScheduleType", "steps"]
 
@@ -49,7 +49,7 @@ class StepSchedule(Schedule):
         if "schedule_type" != "type":
             return value
 
-        _allowed = ['FixedSchedule', 'FloatSchedule', 'OptionalitySchedule', 'StepSchedule', 'Exercise', 'FxRateSchedule', 'FxLinkedNotionalSchedule', 'BondConversionSchedule', 'PikSchedule', 'Invalid', 'CancelSchedule']
+        _allowed = ['FixedSchedule', 'FloatSchedule', 'OptionalitySchedule', 'StepSchedule', 'Exercise', 'FxRateSchedule', 'FxLinkedNotionalSchedule', 'BondConversionSchedule', 'PikSchedule', 'CommodityCalendarSchedule', 'Invalid', 'CancelSchedule']
         if len(_allowed) != 1:
             return value
         if value not in _allowed:

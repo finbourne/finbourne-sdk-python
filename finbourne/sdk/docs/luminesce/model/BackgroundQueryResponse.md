@@ -18,6 +18,7 @@ Response for Background Query Start requests
 | **fetch_excel** | [Link](Link.md) | Optional | *No description available.* |
 | **fetch_sqlite** | [Link](Link.md) | Optional | *No description available.* |
 | **histogram** | [Link](Link.md) | Optional | *No description available.* |
+| **save_to_drive** | [Link](Link.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -40,10 +41,12 @@ instance = BackgroundQueryResponse(
     fetch_pipe=Link(...),  # optional
     fetch_excel=Link(...),  # optional
     fetch_sqlite=Link(...),  # optional
-    histogram=Link(...)  # optional
+    histogram=Link(...),  # optional
+    save_to_drive=Link(...)  # optional
 )
 ```
 
+- [Link](Link.md)
 - [Link](Link.md)
 - [Link](Link.md)
 - [Link](Link.md)

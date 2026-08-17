@@ -25,6 +25,7 @@ from finbourne.sdk.services.lusid.models.interest_rate_swap import InterestRateS
 from finbourne.sdk.services.lusid.models.lusid_instrument import LusidInstrument
 from finbourne.sdk.services.lusid.models.premium import Premium
 from finbourne.sdk.services.lusid.models.time_zone_conventions import TimeZoneConventions
+from finbourne.sdk.services.lusid.models.trading_conventions import TradingConventions
 
 
 class InterestRateSwaption(LusidInstrument):
@@ -41,9 +42,14 @@ class InterestRateSwaption(LusidInstrument):
     delivery_days: Optional[StrictInt] = Field(default=None, description="Number of business days between exercise date and settlement of the option payoff or underlying.                Defaults to 0.", alias="deliveryDays")
     business_day_convention:  Optional[StrictStr] = Field(default=None,alias="businessDayConvention", description="Business day convention for option exercise date to settlement date calculation.  Default value: F. Available values: NoAdjustment, None, Previous, P, Following, F, ModifiedPrevious, MP, ModifiedFollowing, MF, HalfMonthModifiedFollowing, Nearest, Invalid.") 
     settlement_calendars: Optional[List[StrictStr]] = Field(default=None, description="Holiday calendars for option exercise date to settlement date calculation.", alias="settlementCalendars")
-    instrument_type:  StrictStr = Field(...,alias="instrumentType", description="Available values: QuotedSecurity, InterestRateSwap, FxForward, Future, ExoticInstrument, FxOption, CreditDefaultSwap, InterestRateSwaption, Bond, EquityOption, FixedLeg, FloatingLeg, BespokeCashFlowsLeg, Unknown, TermDeposit, ContractForDifference, EquitySwap, CashPerpetual, CapFloor, CashSettled, CdsIndex, Basket, FundingLeg, FxSwap, ForwardRateAgreement, SimpleInstrument, Repo, Equity, ExchangeTradedOption, ReferenceInstrument, ComplexBond, InflationLinkedBond, InflationSwap, SimpleCashFlowLoan, TotalReturnSwap, InflationLeg, FundShareClass, FlexibleLoan, UnsettledCash, Cash, MasteredInstrument, LoanFacility, FlexibleDeposit, FlexibleRepo, ToBeAnnounced, VolatilitySwap, ToBeAnnouncedOption, CommodityForward, BondOption.") 
+    dom_ccy:  Optional[StrictStr] = Field(default=None,alias="domCcy", description="The currency the option settles in.                If not specified, the currency of the underlying swap is used. When specified it must be one of  the currencies of the underlying swap.") 
+    exercise_date: Optional[datetime] = Field(default=None, description="The date the option expires, and for European exercise the date it is exercised.                If not specified, the start date of the underlying swap is used.", alias="exerciseDate")
+    exercise_type:  Optional[StrictStr] = Field(default=None,alias="exerciseType", description="Type of optionality that is present; European, American.                Supported string (enumeration) values are: [European, American].  Defaults to \"European\" if not set.                A European option is exercised on its exercise date, so its exercise event is generated with  that date already set. An American option may be exercised at any point in its life, so it  carries no scheduled date and the exercise date is supplied on the exercise event instead.                The swap delivered on exercise keeps the start date it was defined with, so exercising early  or late leaves it aged or forward-starting relative to the exercise. Keeping that swap  correct for the intended exercise is the responsibility of whoever defines it.") 
+    strike: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The rate the option strikes against.                May only be specified when the underlying swap has no single fixed leg, as otherwise that leg's  fixed rate is the strike. It must be specified when the underlying swap has two fixed legs, as  there is then no single rate to strike against.")
+    trading_conventions: Optional[TradingConventions] = Field(default=None, alias="tradingConventions")
+    instrument_type:  StrictStr = Field(...,alias="instrumentType", description="Available values: QuotedSecurity, InterestRateSwap, FxForward, Future, ExoticInstrument, FxOption, CreditDefaultSwap, InterestRateSwaption, Bond, EquityOption, FixedLeg, FloatingLeg, BespokeCashFlowsLeg, Unknown, TermDeposit, ContractForDifference, EquitySwap, CashPerpetual, CapFloor, CashSettled, CdsIndex, Basket, FundingLeg, FxSwap, ForwardRateAgreement, SimpleInstrument, Repo, Equity, ExchangeTradedOption, ReferenceInstrument, ComplexBond, InflationLinkedBond, InflationSwap, SimpleCashFlowLoan, TotalReturnSwap, InflationLeg, FundShareClass, FlexibleLoan, UnsettledCash, Cash, MasteredInstrument, LoanFacility, FlexibleDeposit, FlexibleRepo, ToBeAnnounced, VolatilitySwap, ToBeAnnouncedOption, CommodityForward, BondOption, CdsOption, CommodityCalendarSwap.") 
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["instrumentType", "startDate", "payOrReceiveFixed", "premium", "deliveryMethod", "swap", "timeZoneConventions", "underlying", "deliveryDays", "businessDayConvention", "settlementCalendars"]
+    __properties: ClassVar[List[str]] = ["instrumentType", "startDate", "payOrReceiveFixed", "premium", "deliveryMethod", "swap", "timeZoneConventions", "underlying", "deliveryDays", "businessDayConvention", "settlementCalendars", "domCcy", "exerciseDate", "exerciseType", "strike", "tradingConventions"]
 
     @field_validator('instrument_type')
     def instrument_type_validate_enum(cls, value):
@@ -58,7 +64,7 @@ class InterestRateSwaption(LusidInstrument):
         if "instrument_type" != "type":
             return value
 
-        _allowed = ['QuotedSecurity', 'InterestRateSwap', 'FxForward', 'Future', 'ExoticInstrument', 'FxOption', 'CreditDefaultSwap', 'InterestRateSwaption', 'Bond', 'EquityOption', 'FixedLeg', 'FloatingLeg', 'BespokeCashFlowsLeg', 'Unknown', 'TermDeposit', 'ContractForDifference', 'EquitySwap', 'CashPerpetual', 'CapFloor', 'CashSettled', 'CdsIndex', 'Basket', 'FundingLeg', 'FxSwap', 'ForwardRateAgreement', 'SimpleInstrument', 'Repo', 'Equity', 'ExchangeTradedOption', 'ReferenceInstrument', 'ComplexBond', 'InflationLinkedBond', 'InflationSwap', 'SimpleCashFlowLoan', 'TotalReturnSwap', 'InflationLeg', 'FundShareClass', 'FlexibleLoan', 'UnsettledCash', 'Cash', 'MasteredInstrument', 'LoanFacility', 'FlexibleDeposit', 'FlexibleRepo', 'ToBeAnnounced', 'VolatilitySwap', 'ToBeAnnouncedOption', 'CommodityForward', 'BondOption']
+        _allowed = ['QuotedSecurity', 'InterestRateSwap', 'FxForward', 'Future', 'ExoticInstrument', 'FxOption', 'CreditDefaultSwap', 'InterestRateSwaption', 'Bond', 'EquityOption', 'FixedLeg', 'FloatingLeg', 'BespokeCashFlowsLeg', 'Unknown', 'TermDeposit', 'ContractForDifference', 'EquitySwap', 'CashPerpetual', 'CapFloor', 'CashSettled', 'CdsIndex', 'Basket', 'FundingLeg', 'FxSwap', 'ForwardRateAgreement', 'SimpleInstrument', 'Repo', 'Equity', 'ExchangeTradedOption', 'ReferenceInstrument', 'ComplexBond', 'InflationLinkedBond', 'InflationSwap', 'SimpleCashFlowLoan', 'TotalReturnSwap', 'InflationLeg', 'FundShareClass', 'FlexibleLoan', 'UnsettledCash', 'Cash', 'MasteredInstrument', 'LoanFacility', 'FlexibleDeposit', 'FlexibleRepo', 'ToBeAnnounced', 'VolatilitySwap', 'ToBeAnnouncedOption', 'CommodityForward', 'BondOption', 'CdsOption', 'CommodityCalendarSwap']
         if len(_allowed) != 1:
             return value
         if value not in _allowed:
@@ -112,6 +118,9 @@ class InterestRateSwaption(LusidInstrument):
         # override the default output from pydantic by calling `to_dict()` of underlying
         if self.underlying:
             _dict['underlying'] = self.underlying.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of trading_conventions
+        if self.trading_conventions:
+            _dict['tradingConventions'] = self.trading_conventions.to_dict(by_alias=by_alias)
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -126,6 +135,26 @@ class InterestRateSwaption(LusidInstrument):
         # and model_fields_set contains the field
         if self.settlement_calendars is None and "settlement_calendars" in self.model_fields_set:
             _dict['settlementCalendars'] = None
+
+        # set to None if dom_ccy (nullable) is None
+        # and model_fields_set contains the field
+        if self.dom_ccy is None and "dom_ccy" in self.model_fields_set:
+            _dict['domCcy'] = None
+
+        # set to None if exercise_date (nullable) is None
+        # and model_fields_set contains the field
+        if self.exercise_date is None and "exercise_date" in self.model_fields_set:
+            _dict['exerciseDate'] = None
+
+        # set to None if exercise_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.exercise_type is None and "exercise_type" in self.model_fields_set:
+            _dict['exerciseType'] = None
+
+        # set to None if strike (nullable) is None
+        # and model_fields_set contains the field
+        if self.strike is None and "strike" in self.model_fields_set:
+            _dict['strike'] = None
 
         return _dict
 
@@ -149,7 +178,12 @@ class InterestRateSwaption(LusidInstrument):
             "underlying": LusidInstrument.from_dict(_v) if (_v := obj.get("underlying")) is not None else None,
             "delivery_days": obj.get("deliveryDays"),
             "business_day_convention": obj.get("businessDayConvention"),
-            "settlement_calendars": obj.get("settlementCalendars")
+            "settlement_calendars": obj.get("settlementCalendars"),
+            "dom_ccy": obj.get("domCcy"),
+            "exercise_date": obj.get("exerciseDate"),
+            "exercise_type": obj.get("exerciseType"),
+            "strike": obj.get("strike"),
+            "trading_conventions": TradingConventions.from_dict(_v) if (_v := obj.get("tradingConventions")) is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

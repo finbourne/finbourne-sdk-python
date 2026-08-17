@@ -6,9 +6,12 @@
 |------|------|----------|-------------|
 | **window_start** | **datetime** | Required | The start date of the window. |
 | **window_end** | **datetime** | Required | The end date of the window. |
-| **effective_at** | **datetime** | Required | The Effective date that splits query window into two parts: factual period and forecast period |
+| **effective_at** | **datetime** | Optional | The Effective date that splits query window into two parts: factual period and forecast period. Optional - a timeline (with an optional closed period) may be supplied instead to derive the effective date. |
 | **portfolio_entity_ids** | [List[PortfolioEntityId]](PortfolioEntityId.md) | Required | The set of portfolios and portfolio groups to which the instrument events must belong. |
 | **forecasting_recipe_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **timeline_scope** | **str** | Optional | The scope of the timeline to be used when building the instrument events. |
+| **timeline_code** | **str** | Optional | The code of the timeline to be used when building the instrument events. This can optionally include a colon, followed by the Closed Period Id to use at the head of the timeline, for a timeline with unconfirmed periods. |
+| **closed_period_id** | **str** | Optional | The id of the closed period, on the given timeline, to be used when building the instrument events. |
 
 
 ## Usage
@@ -21,9 +24,12 @@ from finbourne.sdk.services.lusid.models.QueryApplicableInstrumentEventsRequest 
 instance = QueryApplicableInstrumentEventsRequest(
     window_start=datetime.now(),  # required — The start date of the window.
     window_end=datetime.now(),  # required — The end date of the window.
-    effective_at=datetime.now(),  # required — The Effective date that splits query window into two parts: factual period and forecast period
+    effective_at=datetime.now(),  # optional — The Effective date that splits query window into two parts: factual period and forecast period. Optional - a timeline (with an optional closed period) may be supplied instead to derive the effective date.
     portfolio_entity_ids=[],  # required — The set of portfolios and portfolio groups to which the instrument events must belong.
-    forecasting_recipe_id=ResourceId(...)  # required
+    forecasting_recipe_id=ResourceId(...),  # required
+    timeline_scope="...",  # optional — The scope of the timeline to be used when building the instrument events.
+    timeline_code="...",  # optional — The code of the timeline to be used when building the instrument events. This can optionally include a colon, followed by the Closed Period Id to use at the head of the timeline, for a timeline with unconfirmed periods.
+    closed_period_id="..."  # optional — The id of the closed period, on the given timeline, to be used when building the instrument events.
 )
 ```
 

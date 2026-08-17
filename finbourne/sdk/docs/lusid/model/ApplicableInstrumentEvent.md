@@ -20,6 +20,8 @@ Represents applicable instrument event.
 | **transaction_diagnostics** | [TransactionDiagnostics](TransactionDiagnostics.md) | Optional | *No description available.* |
 | **applied_instrument_event_instruction** | [InstrumentEventInstruction](InstrumentEventInstruction.md) | Optional | *No description available.* |
 | **eligible_balance** | **float** | Optional | *No description available.* |
+| **instrument_event_status** | **str** | Optional | Available values: Active, ActiveReversal, ActiveTrueUp. |
+| **accounting_date** | **datetime** | Optional | *No description available.* |
 
 
 ## Usage
@@ -44,7 +46,9 @@ instance = ApplicableInstrumentEvent(
     transactions=[],  # optional
     transaction_diagnostics=TransactionDiagnostics(...),  # optional
     applied_instrument_event_instruction=InstrumentEventInstruction(...),  # optional
-    eligible_balance=0.0  # optional
+    eligible_balance=0.0,  # optional
+    instrument_event_status="...",  # optional — Available values: Active, ActiveReversal, ActiveTrueUp.
+    accounting_date=datetime.now()  # optional
 )
 ```
 

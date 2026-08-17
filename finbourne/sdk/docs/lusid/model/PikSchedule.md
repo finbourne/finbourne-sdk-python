@@ -12,7 +12,7 @@ A PikSchedule represents Payment-in-Kind features for a ComplexBond.  It works i
 | **pik_payment_type** | **str** | Optional | The type of PIK payment to be used for the duration of this schedule.  InterestCapitalisation adds the paid-in-kind portion to the bond&#39;s current face;  AdditionalSecurities settles it by delivering units of another instrument, named on each  period&#39;s PikBondInterestEvent; Electable leaves the choice to a per-period election.                Supported string (enumeration) values are: [Electable, InterestCapitalisation, AdditionalSecurities]. |
 | **pik_rate** | **float** | Optional | The PIK interest rate. Must be greater than or equal to zero.  null indicates no override PIK interest rate. |
 | **pik_spread** | **float** | Optional | The PIK spread to be added to the base rate for the final PIK rate.  null indicates no spread on base rate. |
-| **schedule_type** | **str** | Required | Available values: FixedSchedule, FloatSchedule, OptionalitySchedule, StepSchedule, Exercise, FxRateSchedule, FxLinkedNotionalSchedule, BondConversionSchedule, PikSchedule, Invalid, CancelSchedule. |
+| **schedule_type** | **str** | Required | Available values: FixedSchedule, FloatSchedule, OptionalitySchedule, StepSchedule, Exercise, FxRateSchedule, FxLinkedNotionalSchedule, BondConversionSchedule, PikSchedule, CommodityCalendarSchedule, Invalid, CancelSchedule. |
 
 
 ## Usage
@@ -30,7 +30,7 @@ instance = PikSchedule(
     pik_payment_type="...",  # optional — The type of PIK payment to be used for the duration of this schedule.  InterestCapitalisation adds the paid-in-kind portion to the bond&#39;s current face;  AdditionalSecurities settles it by delivering units of another instrument, named on each  period&#39;s PikBondInterestEvent; Electable leaves the choice to a per-period election.                Supported string (enumeration) values are: [Electable, InterestCapitalisation, AdditionalSecurities].
     pik_rate=0.0,  # optional — The PIK interest rate. Must be greater than or equal to zero.  null indicates no override PIK interest rate.
     pik_spread=0.0,  # optional — The PIK spread to be added to the base rate for the final PIK rate.  null indicates no spread on base rate.
-    schedule_type="..."  # required — Available values: FixedSchedule, FloatSchedule, OptionalitySchedule, StepSchedule, Exercise, FxRateSchedule, FxLinkedNotionalSchedule, BondConversionSchedule, PikSchedule, Invalid, CancelSchedule.
+    schedule_type="..."  # required — Available values: FixedSchedule, FloatSchedule, OptionalitySchedule, StepSchedule, Exercise, FxRateSchedule, FxLinkedNotionalSchedule, BondConversionSchedule, PikSchedule, CommodityCalendarSchedule, Invalid, CancelSchedule.
 )
 ```
 

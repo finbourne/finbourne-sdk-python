@@ -47,7 +47,9 @@ from finbourne.sdk.services.luminesce.models.design_join_type import DesignJoinT
 from finbourne.sdk.services.luminesce.models.error_highlight_item import ErrorHighlightItem
 from finbourne.sdk.services.luminesce.models.error_highlight_request import ErrorHighlightRequest
 from finbourne.sdk.services.luminesce.models.error_highlight_response import ErrorHighlightResponse
+from finbourne.sdk.services.luminesce.models.export_type import ExportType
 from finbourne.sdk.services.luminesce.models.expression_with_alias import ExpressionWithAlias
+from finbourne.sdk.services.luminesce.models.external_query_source import ExternalQuerySource
 from finbourne.sdk.services.luminesce.models.feedback_event_args import FeedbackEventArgs
 from finbourne.sdk.services.luminesce.models.feedback_level import FeedbackLevel
 from finbourne.sdk.services.luminesce.models.field_design import FieldDesign
@@ -137,7 +139,9 @@ __all__ = [
     "ErrorHighlightItem",
     "ErrorHighlightRequest",
     "ErrorHighlightResponse",
+    "ExportType",
     "ExpressionWithAlias",
+    "ExternalQuerySource",
     "FeedbackEventArgs",
     "FeedbackLevel",
     "FieldDesign",

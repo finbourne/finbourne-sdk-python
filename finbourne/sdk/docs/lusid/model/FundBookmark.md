@@ -21,6 +21,7 @@
 | **version** | [Version](Version.md) | Required | *No description available.* |
 | **href** | **str** | Optional | The specific Uniform Resource Identifier (URI) for this resource at the requested asAt datetime. |
 | **leader_nav_type_code** | **str** | Optional | The code of the Nav Type that this Nav Type will follow when set. |
+| **staged_modifications** | [StagedModificationsInfo](StagedModificationsInfo.md) | Optional | *No description available.* |
 | **fund_calendar_entries_type** | **str** | Required | The type of the Calendar Entry. Available values: FinalisedValuationPoint, FundEstimateValuationPoint, FundBookmark. |
 
 
@@ -49,6 +50,7 @@ instance = FundBookmark(
     version=Version(...),  # required
     href="...",  # optional — The specific Uniform Resource Identifier (URI) for this resource at the requested asAt datetime.
     leader_nav_type_code="...",  # optional — The code of the Nav Type that this Nav Type will follow when set.
+    staged_modifications=StagedModificationsInfo(...),  # optional
     fund_calendar_entries_type="..."  # required — The type of the Calendar Entry. Available values: FinalisedValuationPoint, FundEstimateValuationPoint, FundBookmark.
 )
 ```
@@ -57,6 +59,7 @@ instance = FundBookmark(
 - [PreviousFundCalendarEntry](PreviousFundCalendarEntry.md)
 - [ModelProperty](ModelProperty.md) — used in `properties`
 - [Version](Version.md)
+- [StagedModificationsInfo](StagedModificationsInfo.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)
