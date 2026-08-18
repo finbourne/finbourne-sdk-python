@@ -234,6 +234,7 @@ from finbourne.sdk.services.lusid.models.bond_conversion_schedule import BondCon
 from finbourne.sdk.services.lusid.models.bond_coupon_event import BondCouponEvent
 from finbourne.sdk.services.lusid.models.bond_default_event import BondDefaultEvent
 from finbourne.sdk.services.lusid.models.bond_option import BondOption
+from finbourne.sdk.services.lusid.models.bond_option_termination_event import BondOptionTerminationEvent
 from finbourne.sdk.services.lusid.models.bond_principal_event import BondPrincipalEvent
 from finbourne.sdk.services.lusid.models.bonus_issue_event import BonusIssueEvent
 from finbourne.sdk.services.lusid.models.book_transactions_request import BookTransactionsRequest
@@ -268,6 +269,7 @@ from finbourne.sdk.services.lusid.models.cancel_orders_response import CancelOrd
 from finbourne.sdk.services.lusid.models.cancel_placements_response import CancelPlacementsResponse
 from finbourne.sdk.services.lusid.models.cancel_schedule import CancelSchedule
 from finbourne.sdk.services.lusid.models.cancel_single_holding_adjustment_request import CancelSingleHoldingAdjustmentRequest
+from finbourne.sdk.services.lusid.models.cancel_swap_event import CancelSwapEvent
 from finbourne.sdk.services.lusid.models.cancelled_order_result import CancelledOrderResult
 from finbourne.sdk.services.lusid.models.cancelled_placement_result import CancelledPlacementResult
 from finbourne.sdk.services.lusid.models.cap_floor import CapFloor
@@ -738,6 +740,7 @@ from finbourne.sdk.services.lusid.models.index_convention import IndexConvention
 from finbourne.sdk.services.lusid.models.index_model_options import IndexModelOptions
 from finbourne.sdk.services.lusid.models.index_projection_dependency import IndexProjectionDependency
 from finbourne.sdk.services.lusid.models.industry_classifier import IndustryClassifier
+from finbourne.sdk.services.lusid.models.inflation_curve_data import InflationCurveData
 from finbourne.sdk.services.lusid.models.inflation_fixing_dependency import InflationFixingDependency
 from finbourne.sdk.services.lusid.models.inflation_index_conventions import InflationIndexConventions
 from finbourne.sdk.services.lusid.models.inflation_leg import InflationLeg
@@ -1919,6 +1922,7 @@ __all__ = [
     "BondCouponEvent",
     "BondDefaultEvent",
     "BondOption",
+    "BondOptionTerminationEvent",
     "BondPrincipalEvent",
     "BonusIssueEvent",
     "BookTransactionsRequest",
@@ -1953,6 +1957,7 @@ __all__ = [
     "CancelPlacementsResponse",
     "CancelSchedule",
     "CancelSingleHoldingAdjustmentRequest",
+    "CancelSwapEvent",
     "CancelledOrderResult",
     "CancelledPlacementResult",
     "CapFloor",
@@ -2423,6 +2428,7 @@ __all__ = [
     "IndexModelOptions",
     "IndexProjectionDependency",
     "IndustryClassifier",
+    "InflationCurveData",
     "InflationFixingDependency",
     "InflationIndexConventions",
     "InflationLeg",

@@ -36,7 +36,7 @@ class DiscountFactorCurveData(ComplexMarketData):
     lineage:  Optional[StrictStr] = Field(default=None,alias="lineage", description="Description of the complex market data's lineage e.g. 'FundAccountant_GreenQuality'.") 
     market_data_options: Optional[MarketDataOptions] = Field(default=None, alias="marketDataOptions")
     version: Optional[Version] = None
-    market_data_type:  StrictStr = Field(...,alias="marketDataType", description="Available values: DiscountFactorCurveData, EquityVolSurfaceData, FxVolSurfaceData, IrVolCubeData, OpaqueMarketData, YieldCurveData, FxForwardCurveData, FxForwardPipsCurveData, FxForwardTenorCurveData, FxForwardTenorPipsCurveData, FxForwardCurveByQuoteReference, CreditSpreadCurveData, EquityCurveByPricesData, ConstantVolatilitySurface.") 
+    market_data_type:  StrictStr = Field(...,alias="marketDataType", description="Available values: DiscountFactorCurveData, EquityVolSurfaceData, FxVolSurfaceData, IrVolCubeData, OpaqueMarketData, YieldCurveData, FxForwardCurveData, FxForwardPipsCurveData, FxForwardTenorCurveData, FxForwardTenorPipsCurveData, FxForwardCurveByQuoteReference, CreditSpreadCurveData, EquityCurveByPricesData, ConstantVolatilitySurface, InflationCurveData.") 
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["marketDataType", "baseDate", "dates", "discountFactors", "lineage", "marketDataOptions", "version"]
 
@@ -53,7 +53,7 @@ class DiscountFactorCurveData(ComplexMarketData):
         if "market_data_type" != "type":
             return value
 
-        _allowed = ['DiscountFactorCurveData', 'EquityVolSurfaceData', 'FxVolSurfaceData', 'IrVolCubeData', 'OpaqueMarketData', 'YieldCurveData', 'FxForwardCurveData', 'FxForwardPipsCurveData', 'FxForwardTenorCurveData', 'FxForwardTenorPipsCurveData', 'FxForwardCurveByQuoteReference', 'CreditSpreadCurveData', 'EquityCurveByPricesData', 'ConstantVolatilitySurface']
+        _allowed = ['DiscountFactorCurveData', 'EquityVolSurfaceData', 'FxVolSurfaceData', 'IrVolCubeData', 'OpaqueMarketData', 'YieldCurveData', 'FxForwardCurveData', 'FxForwardPipsCurveData', 'FxForwardTenorCurveData', 'FxForwardTenorPipsCurveData', 'FxForwardCurveByQuoteReference', 'CreditSpreadCurveData', 'EquityCurveByPricesData', 'ConstantVolatilitySurface', 'InflationCurveData']
         if len(_allowed) != 1:
             return value
         if value not in _allowed:

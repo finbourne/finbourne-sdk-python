@@ -41,7 +41,7 @@ class FxForwardTenorPipsCurveData(ComplexMarketData):
     calendars: Optional[List[FxTenorConvention]] = Field(default=None, description="The list of conventions that should be used when interpreting tenors as dates.")
     spot_days_calculation_type:  Optional[StrictStr] = Field(default=None,alias="spotDaysCalculationType", description="Configures how to calculate the spot date from the build date using the Calendars provided. Available values: SingleCalendar, UnionCalendars.") 
     version: Optional[Version] = None
-    market_data_type:  StrictStr = Field(...,alias="marketDataType", description="Available values: DiscountFactorCurveData, EquityVolSurfaceData, FxVolSurfaceData, IrVolCubeData, OpaqueMarketData, YieldCurveData, FxForwardCurveData, FxForwardPipsCurveData, FxForwardTenorCurveData, FxForwardTenorPipsCurveData, FxForwardCurveByQuoteReference, CreditSpreadCurveData, EquityCurveByPricesData, ConstantVolatilitySurface.") 
+    market_data_type:  StrictStr = Field(...,alias="marketDataType", description="Available values: DiscountFactorCurveData, EquityVolSurfaceData, FxVolSurfaceData, IrVolCubeData, OpaqueMarketData, YieldCurveData, FxForwardCurveData, FxForwardPipsCurveData, FxForwardTenorCurveData, FxForwardTenorPipsCurveData, FxForwardCurveByQuoteReference, CreditSpreadCurveData, EquityCurveByPricesData, ConstantVolatilitySurface, InflationCurveData.") 
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["marketDataType", "baseDate", "domCcy", "fgnCcy", "tenors", "pipRates", "lineage", "marketDataOptions", "calendars", "spotDaysCalculationType", "version"]
 
@@ -58,7 +58,7 @@ class FxForwardTenorPipsCurveData(ComplexMarketData):
         if "market_data_type" != "type":
             return value
 
-        _allowed = ['DiscountFactorCurveData', 'EquityVolSurfaceData', 'FxVolSurfaceData', 'IrVolCubeData', 'OpaqueMarketData', 'YieldCurveData', 'FxForwardCurveData', 'FxForwardPipsCurveData', 'FxForwardTenorCurveData', 'FxForwardTenorPipsCurveData', 'FxForwardCurveByQuoteReference', 'CreditSpreadCurveData', 'EquityCurveByPricesData', 'ConstantVolatilitySurface']
+        _allowed = ['DiscountFactorCurveData', 'EquityVolSurfaceData', 'FxVolSurfaceData', 'IrVolCubeData', 'OpaqueMarketData', 'YieldCurveData', 'FxForwardCurveData', 'FxForwardPipsCurveData', 'FxForwardTenorCurveData', 'FxForwardTenorPipsCurveData', 'FxForwardCurveByQuoteReference', 'CreditSpreadCurveData', 'EquityCurveByPricesData', 'ConstantVolatilitySurface', 'InflationCurveData']
         if len(_allowed) != 1:
             return value
         if value not in _allowed:
