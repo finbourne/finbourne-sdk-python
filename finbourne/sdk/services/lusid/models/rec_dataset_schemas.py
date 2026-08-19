@@ -21,15 +21,16 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
+from finbourne.sdk.services.lusid.models.rec_dataset_schema import RecDatasetSchema
 
 
-class CoreToleranceBase(BaseModel):
+class RecDatasetSchemas(BaseModel):
     """
-    Abstract base for tolerances that apply to core matching rules. Distinguishes core tolerances from  aggregate tolerances at the type level (both share a common tolerance base).  # noqa: E501
+    RecDatasetSchemas
     """
-    tolerance_type:  StrictStr = Field(...,alias="toleranceType", description="Polymorphic discriminator. Supported types: CoreStringCross, CoreAttributeOptionality, CoreDateTolerance, Numeric. Available values: CoreStringCross, CoreAttributeOptionality, CoreDateTolerance, Numeric.") 
-    rule_name:  StrictStr = Field(...,alias="ruleName", description="The reference name of the rule that this tolerance relaxes.") 
-    __properties: ClassVar[List[str]] = ["toleranceType", "ruleName"]
+    left: Optional[RecDatasetSchema] = None
+    right: Optional[RecDatasetSchema] = None
+    __properties: ClassVar[List[str]] = ["left", "right"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -54,8 +55,8 @@ class CoreToleranceBase(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> CoreToleranceBase:
-        """Create an instance of CoreToleranceBase from a JSON string"""
+    def from_json(cls, json_str: str) -> RecDatasetSchemas:
+        """Create an instance of RecDatasetSchemas from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self, by_alias=True):
@@ -65,22 +66,28 @@ class CoreToleranceBase(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of left
+        if self.left:
+            _dict['left'] = self.left.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of right
+        if self.right:
+            _dict['right'] = self.right.to_dict(by_alias=by_alias)
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> CoreToleranceBase:
-        """Create an instance of CoreToleranceBase from a dict"""
+    def from_dict(cls, obj: dict) -> RecDatasetSchemas:
+        """Create an instance of RecDatasetSchemas from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return CoreToleranceBase.model_validate(obj)
+            return RecDatasetSchemas.model_validate(obj)
 
-        _obj = CoreToleranceBase.model_validate({
-            "tolerance_type": obj.get("toleranceType"),
-            "rule_name": obj.get("ruleName")
+        _obj = RecDatasetSchemas.model_validate({
+            "left": RecDatasetSchema.from_dict(_v) if (_v := obj.get("left")) is not None else None,
+            "right": RecDatasetSchema.from_dict(_v) if (_v := obj.get("right")) is not None else None
         })
         return _obj
 
-CoreToleranceBase.model_rebuild()
+RecDatasetSchemas.model_rebuild()
 

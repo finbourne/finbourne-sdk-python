@@ -5,6 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **quantity** | **float** | Required | Total number of units allocated. |
+| **amount** | **float** | Optional | Total monetary value allocated, derived from the quantity and price of each allocation. |
 | **details** | [List[OrderGraphBlockAllocationDetail]](OrderGraphBlockAllocationDetail.md) | Required | Identifiers for each allocation in this block. |
 
 
@@ -17,6 +18,7 @@ from finbourne.sdk.services.lusid.models.OrderGraphBlockAllocationSynopsis impor
 
 instance = OrderGraphBlockAllocationSynopsis(
     quantity=0.0,  # required — Total number of units allocated.
+    amount=0.0,  # optional — Total monetary value allocated, derived from the quantity and price of each allocation.
     details=[]  # required — Identifiers for each allocation in this block.
 )
 ```

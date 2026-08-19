@@ -21,7 +21,7 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
-from finbourne.sdk.services.lusid.models.core_tolerance_base import CoreToleranceBase
+from finbourne.sdk.services.lusid.models.tolerance_base import ToleranceBase
 
 
 class CoreRuleValues(BaseModel):
@@ -31,7 +31,7 @@ class CoreRuleValues(BaseModel):
     rule_name:  StrictStr = Field(...,alias="ruleName", description="The name of the rule.") 
     left_value:  Optional[StrictStr] = Field(default=None,alias="leftValue", description="The left-side value.") 
     right_value:  Optional[StrictStr] = Field(default=None,alias="rightValue", description="The right-side value.") 
-    applied_tolerance: Optional[CoreToleranceBase] = Field(default=None, alias="appliedTolerance")
+    applied_tolerance: Optional[ToleranceBase] = Field(default=None, alias="appliedTolerance")
     __properties: ClassVar[List[str]] = ["ruleName", "leftValue", "rightValue", "appliedTolerance"]
 
     model_config = ConfigDict(
@@ -96,7 +96,7 @@ class CoreRuleValues(BaseModel):
             "rule_name": obj.get("ruleName"),
             "left_value": obj.get("leftValue"),
             "right_value": obj.get("rightValue"),
-            "applied_tolerance": CoreToleranceBase.from_dict(_v) if (_v := obj.get("appliedTolerance")) is not None else None
+            "applied_tolerance": ToleranceBase.from_dict(_v) if (_v := obj.get("appliedTolerance")) is not None else None
         })
         return _obj
 

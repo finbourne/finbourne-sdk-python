@@ -29,8 +29,9 @@ class OrderGraphPlacementAllocationSynopsis(BaseModel):
     OrderGraphPlacementAllocationSynopsis
     """
     quantity: Union[StrictFloat, StrictInt] = Field(description="Total number of units allocated.")
+    amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total monetary value allocated, derived from the quantity and price of each allocation, in the placement's amount currency. Null where the placement has no amount, or where an allocation cannot be expressed in that currency.")
     details: List[OrderGraphPlacementAllocationDetail] = Field(description="Identifiers for each allocation in this placement.")
-    __properties: ClassVar[List[str]] = ["quantity", "details"]
+    __properties: ClassVar[List[str]] = ["quantity", "amount", "details"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -73,6 +74,11 @@ class OrderGraphPlacementAllocationSynopsis(BaseModel):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['details'] = _items
+        # set to None if amount (nullable) is None
+        # and model_fields_set contains the field
+        if self.amount is None and "amount" in self.model_fields_set:
+            _dict['amount'] = None
+
         return _dict
 
     @classmethod
@@ -86,6 +92,7 @@ class OrderGraphPlacementAllocationSynopsis(BaseModel):
 
         _obj = OrderGraphPlacementAllocationSynopsis.model_validate({
             "quantity": obj.get("quantity"),
+            "amount": obj.get("amount"),
             "details": [OrderGraphPlacementAllocationDetail.from_dict(_item) for _item in _v] if (_v := obj.get("details")) is not None else None
         })
         return _obj

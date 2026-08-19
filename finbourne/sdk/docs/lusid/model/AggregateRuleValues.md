@@ -9,7 +9,7 @@ An aggregate matching rule and its values. The difference is the measured magnit
 | **left_value** | **str** | Optional | The left-side value. |
 | **right_value** | **str** | Optional | The right-side value. |
 | **difference** | **str** | Required | The measured magnitude of the difference, ToString(ABS(leftValue - rightValue)). |
-| **applied_tolerance** | [AggregateToleranceBase](AggregateToleranceBase.md) | Optional | *No description available.* |
+| **applied_tolerance** | [ToleranceBase](ToleranceBase.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -24,11 +24,11 @@ instance = AggregateRuleValues(
     left_value="...",  # optional — The left-side value.
     right_value="...",  # optional — The right-side value.
     difference="...",  # required — The measured magnitude of the difference, ToString(ABS(leftValue - rightValue)).
-    applied_tolerance=AggregateToleranceBase(...)  # optional
+    applied_tolerance=ToleranceBase(...)  # optional
 )
 ```
 
-- [AggregateToleranceBase](AggregateToleranceBase.md)
+- [ToleranceBase](ToleranceBase.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

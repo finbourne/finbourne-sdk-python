@@ -5,6 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **quantity** | **float** | Required | Total number of units executed. |
+| **amount** | **float** | Optional | Total monetary value executed, derived from the quantity and price of each execution. |
 | **details** | [List[OrderGraphBlockExecutionDetail]](OrderGraphBlockExecutionDetail.md) | Required | Identifiers for each execution in this block. |
 
 
@@ -17,6 +18,7 @@ from finbourne.sdk.services.lusid.models.OrderGraphBlockExecutionSynopsis import
 
 instance = OrderGraphBlockExecutionSynopsis(
     quantity=0.0,  # required — Total number of units executed.
+    amount=0.0,  # optional — Total monetary value executed, derived from the quantity and price of each execution.
     details=[]  # required — Identifiers for each execution in this block.
 )
 ```

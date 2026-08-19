@@ -5,6 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **quantity** | **float** | Required | Total number of units booked. |
+| **amount** | **float** | Optional | Total consideration booked, in the block currency. |
 | **details** | [List[OrderGraphBlockTransactionDetail]](OrderGraphBlockTransactionDetail.md) | Required | Identifiers for each transaction in this block. |
 
 
@@ -17,6 +18,7 @@ from finbourne.sdk.services.lusid.models.OrderGraphBlockTransactionSynopsis impo
 
 instance = OrderGraphBlockTransactionSynopsis(
     quantity=0.0,  # required — Total number of units booked.
+    amount=0.0,  # optional — Total consideration booked, in the block currency.
     details=[]  # required — Identifiers for each transaction in this block.
 )
 ```

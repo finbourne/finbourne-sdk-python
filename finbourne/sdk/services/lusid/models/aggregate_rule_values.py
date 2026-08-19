@@ -21,7 +21,7 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
-from finbourne.sdk.services.lusid.models.aggregate_tolerance_base import AggregateToleranceBase
+from finbourne.sdk.services.lusid.models.tolerance_base import ToleranceBase
 
 
 class AggregateRuleValues(BaseModel):
@@ -32,7 +32,7 @@ class AggregateRuleValues(BaseModel):
     left_value:  Optional[StrictStr] = Field(default=None,alias="leftValue", description="The left-side value.") 
     right_value:  Optional[StrictStr] = Field(default=None,alias="rightValue", description="The right-side value.") 
     difference:  StrictStr = Field(...,alias="difference", description="The measured magnitude of the difference, ToString(ABS(leftValue - rightValue)).") 
-    applied_tolerance: Optional[AggregateToleranceBase] = Field(default=None, alias="appliedTolerance")
+    applied_tolerance: Optional[ToleranceBase] = Field(default=None, alias="appliedTolerance")
     __properties: ClassVar[List[str]] = ["ruleName", "leftValue", "rightValue", "difference", "appliedTolerance"]
 
     model_config = ConfigDict(
@@ -98,7 +98,7 @@ class AggregateRuleValues(BaseModel):
             "left_value": obj.get("leftValue"),
             "right_value": obj.get("rightValue"),
             "difference": obj.get("difference"),
-            "applied_tolerance": AggregateToleranceBase.from_dict(_v) if (_v := obj.get("appliedTolerance")) is not None else None
+            "applied_tolerance": ToleranceBase.from_dict(_v) if (_v := obj.get("appliedTolerance")) is not None else None
         })
         return _obj
 

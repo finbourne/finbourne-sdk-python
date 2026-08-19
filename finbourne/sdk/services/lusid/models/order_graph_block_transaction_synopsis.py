@@ -29,8 +29,9 @@ class OrderGraphBlockTransactionSynopsis(BaseModel):
     OrderGraphBlockTransactionSynopsis
     """
     quantity: Union[StrictFloat, StrictInt] = Field(description="Total number of units booked.")
+    amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total consideration booked, in the block currency.")
     details: List[OrderGraphBlockTransactionDetail] = Field(description="Identifiers for each transaction in this block.")
-    __properties: ClassVar[List[str]] = ["quantity", "details"]
+    __properties: ClassVar[List[str]] = ["quantity", "amount", "details"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -73,6 +74,11 @@ class OrderGraphBlockTransactionSynopsis(BaseModel):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['details'] = _items
+        # set to None if amount (nullable) is None
+        # and model_fields_set contains the field
+        if self.amount is None and "amount" in self.model_fields_set:
+            _dict['amount'] = None
+
         return _dict
 
     @classmethod
@@ -86,6 +92,7 @@ class OrderGraphBlockTransactionSynopsis(BaseModel):
 
         _obj = OrderGraphBlockTransactionSynopsis.model_validate({
             "quantity": obj.get("quantity"),
+            "amount": obj.get("amount"),
             "details": [OrderGraphBlockTransactionDetail.from_dict(_item) for _item in _v] if (_v := obj.get("details")) is not None else None
         })
         return _obj

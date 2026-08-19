@@ -1,6 +1,6 @@
-# CoreToleranceBase
+# ToleranceBase
 
-Abstract base for tolerances that apply to core matching rules. Distinguishes core tolerances from  aggregate tolerances at the type level (both share a common tolerance base).
+Base class for the tolerances that relax how strictly a matching rule compares its two sides. Polymorphic  by ToleranceType; each supported type has a corresponding inherited class.
 ## Properties
 
 | Name | Type | Required | Description |
@@ -14,9 +14,9 @@ Abstract base for tolerances that apply to core matching rules. Distinguishes co
 ### Creating from keyword arguments
 
 ```python
-from finbourne.sdk.services.lusid.models.CoreToleranceBase import CoreToleranceBase
+from finbourne.sdk.services.lusid.models.ToleranceBase import ToleranceBase
 
-instance = CoreToleranceBase(
+instance = ToleranceBase(
     tolerance_type="...",  # required — Polymorphic discriminator. Supported types: CoreStringCross, CoreAttributeOptionality, CoreDateTolerance, Numeric. Available values: CoreStringCross, CoreAttributeOptionality, CoreDateTolerance, Numeric.
     rule_name="..."  # required — The reference name of the rule that this tolerance relaxes.
 )

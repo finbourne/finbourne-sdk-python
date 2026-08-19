@@ -8,7 +8,7 @@ A core matching rule and the values that pin a rec result to its reconciled posi
 | **rule_name** | **str** | Required | The name of the rule. |
 | **left_value** | **str** | Optional | The left-side value. |
 | **right_value** | **str** | Optional | The right-side value. |
-| **applied_tolerance** | [CoreToleranceBase](CoreToleranceBase.md) | Optional | *No description available.* |
+| **applied_tolerance** | [ToleranceBase](ToleranceBase.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -22,11 +22,11 @@ instance = CoreRuleValues(
     rule_name="...",  # required — The name of the rule.
     left_value="...",  # optional — The left-side value.
     right_value="...",  # optional — The right-side value.
-    applied_tolerance=CoreToleranceBase(...)  # optional
+    applied_tolerance=ToleranceBase(...)  # optional
 )
 ```
 
-- [CoreToleranceBase](CoreToleranceBase.md)
+- [ToleranceBase](ToleranceBase.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

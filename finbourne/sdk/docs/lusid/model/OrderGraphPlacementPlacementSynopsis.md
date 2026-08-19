@@ -5,8 +5,8 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **details** | [List[OrderGraphPlacementChildPlacementDetail]](OrderGraphPlacementChildPlacementDetail.md) | Required | Identifiers for each child placement for this placement. |
-| **quantity** | **float** | Optional | Total number of units placed. |
-| **amount** | **float** | Optional | Total monetary value placed, in the block currency. |
+| **quantity** | **float** | Optional | Total number of units placed. Null where the placement is sized by amount. |
+| **amount** | **float** | Optional | Total monetary value placed, in the block currency. Null where the placement has no amount. |
 
 
 ## Usage
@@ -18,8 +18,8 @@ from finbourne.sdk.services.lusid.models.OrderGraphPlacementPlacementSynopsis im
 
 instance = OrderGraphPlacementPlacementSynopsis(
     details=[],  # required — Identifiers for each child placement for this placement.
-    quantity=0.0,  # optional — Total number of units placed.
-    amount=0.0  # optional — Total monetary value placed, in the block currency.
+    quantity=0.0,  # optional — Total number of units placed. Null where the placement is sized by amount.
+    amount=0.0  # optional — Total monetary value placed, in the block currency. Null where the placement has no amount.
 )
 ```
 

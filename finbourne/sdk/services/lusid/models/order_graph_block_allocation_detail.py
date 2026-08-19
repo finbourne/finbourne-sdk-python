@@ -31,7 +31,8 @@ class OrderGraphBlockAllocationDetail(BaseModel):
     id: ResourceId
     allocated_order_id: Optional[ResourceId] = Field(default=None, alias="allocatedOrderId")
     quantity: Union[StrictFloat, StrictInt] = Field(description="The quantity of this allocation, with direction relative to the containing block.")
-    __properties: ClassVar[List[str]] = ["id", "allocatedOrderId", "quantity"]
+    amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The amount of this allocation, derived from the quantity and price of the allocation.")
+    __properties: ClassVar[List[str]] = ["id", "allocatedOrderId", "quantity", "amount"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -73,6 +74,11 @@ class OrderGraphBlockAllocationDetail(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of allocated_order_id
         if self.allocated_order_id:
             _dict['allocatedOrderId'] = self.allocated_order_id.to_dict(by_alias=by_alias)
+        # set to None if amount (nullable) is None
+        # and model_fields_set contains the field
+        if self.amount is None and "amount" in self.model_fields_set:
+            _dict['amount'] = None
+
         return _dict
 
     @classmethod
@@ -87,7 +93,8 @@ class OrderGraphBlockAllocationDetail(BaseModel):
         _obj = OrderGraphBlockAllocationDetail.model_validate({
             "id": ResourceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
             "allocated_order_id": ResourceId.from_dict(_v) if (_v := obj.get("allocatedOrderId")) is not None else None,
-            "quantity": obj.get("quantity")
+            "quantity": obj.get("quantity"),
+            "amount": obj.get("amount")
         })
         return _obj
 

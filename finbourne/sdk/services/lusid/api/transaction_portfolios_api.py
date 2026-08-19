@@ -3607,7 +3607,7 @@ class TransactionPortfoliosApi:
         :type effective_at: str
         :param as_at: The asAt datetime at which to retrieve the Custodian Account definition. Defaults to returning the latest version of the Custodian Account definition if not specified.
         :type as_at: datetime
-        :param property_keys: A list of property keys from the 'CustodianAccount' domain to decorate onto the Custodian Account.              These must take the format {domain}/{scope}/{code}, for example 'CustodianAccount/Manager/Id'. If no properties are specified, then no properties will be returned.
+        :param property_keys: A list of property keys from the 'CustodianAccount' domain to decorate onto the Custodian Account.              These must take the format {domain}/{scope}/{code}, for example 'CustodianAccount/system/Name'.              If no property keys are specified, it will return 'IsDefault' and 'RelatedAccounts' properties, if they exist.
         :type property_keys: List[str]
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -3639,7 +3639,7 @@ class TransactionPortfoliosApi:
         :type effective_at: str
         :param as_at: The asAt datetime at which to retrieve the Custodian Account definition. Defaults to returning the latest version of the Custodian Account definition if not specified.
         :type as_at: datetime
-        :param property_keys: A list of property keys from the 'CustodianAccount' domain to decorate onto the Custodian Account.              These must take the format {domain}/{scope}/{code}, for example 'CustodianAccount/Manager/Id'. If no properties are specified, then no properties will be returned.
+        :param property_keys: A list of property keys from the 'CustodianAccount' domain to decorate onto the Custodian Account.              These must take the format {domain}/{scope}/{code}, for example 'CustodianAccount/system/Name'.              If no property keys are specified, it will return 'IsDefault' and 'RelatedAccounts' properties, if they exist.
         :type property_keys: List[str]
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -6306,7 +6306,7 @@ class TransactionPortfoliosApi:
         :type limit: int
         :param filter: Expression to filter the results.              For example, to filter on the Custodian Account type, specify \"code eq '001'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
         :type filter: str
-        :param property_keys: A list of property keys from the 'CustodianAccount' domain to decorate onto the Custodian Account.              These must have the format {domain}/{scope}/{code}, for example 'CustodianAccount/system/Name'.
+        :param property_keys: A list of property keys from the 'CustodianAccount' domain to decorate onto the Custodian Account.              These must have the format {domain}/{scope}/{code}, for example 'CustodianAccount/system/Name'.              If no property keys are specified, it will return 'IsDefault' and 'RelatedAccounts' properties, if they exist.
         :type property_keys: List[str]
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -6340,7 +6340,7 @@ class TransactionPortfoliosApi:
         :type limit: int
         :param filter: Expression to filter the results.              For example, to filter on the Custodian Account type, specify \"code eq '001'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
         :type filter: str
-        :param property_keys: A list of property keys from the 'CustodianAccount' domain to decorate onto the Custodian Account.              These must have the format {domain}/{scope}/{code}, for example 'CustodianAccount/system/Name'.
+        :param property_keys: A list of property keys from the 'CustodianAccount' domain to decorate onto the Custodian Account.              These must have the format {domain}/{scope}/{code}, for example 'CustodianAccount/system/Name'.              If no property keys are specified, it will return 'IsDefault' and 'RelatedAccounts' properties, if they exist.
         :type property_keys: List[str]
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -12156,7 +12156,7 @@ class TransactionPortfoliosApi:
             :type effective_at: str
             :param as_at: The asAt datetime at which to retrieve the Custodian Account definition. Defaults to returning the latest version of the Custodian Account definition if not specified.
             :type as_at: datetime
-            :param property_keys: A list of property keys from the 'CustodianAccount' domain to decorate onto the Custodian Account.              These must take the format {domain}/{scope}/{code}, for example 'CustodianAccount/Manager/Id'. If no properties are specified, then no properties will be returned.
+            :param property_keys: A list of property keys from the 'CustodianAccount' domain to decorate onto the Custodian Account.              These must take the format {domain}/{scope}/{code}, for example 'CustodianAccount/system/Name'.              If no property keys are specified, it will return 'IsDefault' and 'RelatedAccounts' properties, if they exist.
             :type property_keys: List[str]
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -12189,7 +12189,7 @@ class TransactionPortfoliosApi:
             :type effective_at: str
             :param as_at: The asAt datetime at which to retrieve the Custodian Account definition. Defaults to returning the latest version of the Custodian Account definition if not specified.
             :type as_at: datetime
-            :param property_keys: A list of property keys from the 'CustodianAccount' domain to decorate onto the Custodian Account.              These must take the format {domain}/{scope}/{code}, for example 'CustodianAccount/Manager/Id'. If no properties are specified, then no properties will be returned.
+            :param property_keys: A list of property keys from the 'CustodianAccount' domain to decorate onto the Custodian Account.              These must take the format {domain}/{scope}/{code}, for example 'CustodianAccount/system/Name'.              If no property keys are specified, it will return 'IsDefault' and 'RelatedAccounts' properties, if they exist.
             :type property_keys: List[str]
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
@@ -14869,7 +14869,7 @@ class TransactionPortfoliosApi:
             :type limit: int
             :param filter: Expression to filter the results.              For example, to filter on the Custodian Account type, specify \"code eq '001'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
             :type filter: str
-            :param property_keys: A list of property keys from the 'CustodianAccount' domain to decorate onto the Custodian Account.              These must have the format {domain}/{scope}/{code}, for example 'CustodianAccount/system/Name'.
+            :param property_keys: A list of property keys from the 'CustodianAccount' domain to decorate onto the Custodian Account.              These must have the format {domain}/{scope}/{code}, for example 'CustodianAccount/system/Name'.              If no property keys are specified, it will return 'IsDefault' and 'RelatedAccounts' properties, if they exist.
             :type property_keys: List[str]
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -14904,7 +14904,7 @@ class TransactionPortfoliosApi:
             :type limit: int
             :param filter: Expression to filter the results.              For example, to filter on the Custodian Account type, specify \"code eq '001'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
             :type filter: str
-            :param property_keys: A list of property keys from the 'CustodianAccount' domain to decorate onto the Custodian Account.              These must have the format {domain}/{scope}/{code}, for example 'CustodianAccount/system/Name'.
+            :param property_keys: A list of property keys from the 'CustodianAccount' domain to decorate onto the Custodian Account.              These must have the format {domain}/{scope}/{code}, for example 'CustodianAccount/system/Name'.              If no property keys are specified, it will return 'IsDefault' and 'RelatedAccounts' properties, if they exist.
             :type property_keys: List[str]
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the

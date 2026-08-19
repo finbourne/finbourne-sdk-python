@@ -23,13 +23,13 @@ from uuid import UUID
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 
 
-class AggregateToleranceBase(BaseModel):
+class RecDefSideNames(BaseModel):
     """
-    Abstract base for tolerances that apply to aggregate matching rules. Distinguishes aggregate  tolerances from core tolerances at the type level (both share a common tolerance base).  # noqa: E501
+    RecDefSideNames
     """
-    tolerance_type:  StrictStr = Field(...,alias="toleranceType", description="Polymorphic discriminator. Supported types: CoreStringCross, CoreAttributeOptionality, CoreDateTolerance, Numeric. Available values: CoreStringCross, CoreAttributeOptionality, CoreDateTolerance, Numeric.") 
-    rule_name:  StrictStr = Field(...,alias="ruleName", description="The reference name of the rule that this tolerance relaxes.") 
-    __properties: ClassVar[List[str]] = ["toleranceType", "ruleName"]
+    left:  StrictStr = Field(...,alias="left", description="The label for the left side of the reconciliation.") 
+    right:  StrictStr = Field(...,alias="right", description="The label for the right side of the reconciliation.") 
+    __properties: ClassVar[List[str]] = ["left", "right"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -54,8 +54,8 @@ class AggregateToleranceBase(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> AggregateToleranceBase:
-        """Create an instance of AggregateToleranceBase from a JSON string"""
+    def from_json(cls, json_str: str) -> RecDefSideNames:
+        """Create an instance of RecDefSideNames from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self, by_alias=True):
@@ -68,19 +68,19 @@ class AggregateToleranceBase(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> AggregateToleranceBase:
-        """Create an instance of AggregateToleranceBase from a dict"""
+    def from_dict(cls, obj: dict) -> RecDefSideNames:
+        """Create an instance of RecDefSideNames from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return AggregateToleranceBase.model_validate(obj)
+            return RecDefSideNames.model_validate(obj)
 
-        _obj = AggregateToleranceBase.model_validate({
-            "tolerance_type": obj.get("toleranceType"),
-            "rule_name": obj.get("ruleName")
+        _obj = RecDefSideNames.model_validate({
+            "left": obj.get("left"),
+            "right": obj.get("right")
         })
         return _obj
 
-AggregateToleranceBase.model_rebuild()
+RecDefSideNames.model_rebuild()
 
