@@ -22,28 +22,24 @@ from uuid import UUID
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 from finbourne.sdk.services.lusid.models.instrument_event import InstrumentEvent
-from finbourne.sdk.services.lusid.models.new_instrument import NewInstrument
-from finbourne.sdk.services.lusid.models.units_ratio import UnitsRatio
 
 
-class IntermediateSecuritiesDistributionEvent(InstrumentEvent):
+class TerminationEvent(InstrumentEvent):
     """
-    IntermediateSecuritiesDistribution event (RHDI), representing the distribution of securities.  # noqa: E501
+    Termination of a derivative at fair settlement value before or at its own maturity, triggered by the  economic life of a referenced underlying ending first (redemption, tender, repurchase offer, spin-off,  conversion, exchange offer), or by the derivative maturing while the underlying still has remaining  value. Synthesised by the instrument itself; the settlement amounts are painted on by post-processing  and the resulting transaction closes the holding and settles the net amount.  # noqa: E501
     """
-    announcement_date: Optional[datetime] = Field(default=None, description="Optional.  The date the spin-off is announced.", alias="announcementDate")
-    ex_date: Optional[datetime] = Field(default=None, description="The first date on which the holder of record has entitled ownership of the new shares.", alias="exDate")
-    record_date: Optional[datetime] = Field(default=None, description="Optional.  Date you have to be the holder of record in order to receive the additional shares.", alias="recordDate")
-    payment_date: Optional[datetime] = Field(default=None, description="Date on which the distribution of shares takes place.", alias="paymentDate")
-    new_instrument: NewInstrument = Field(alias="newInstrument")
-    units_ratio: UnitsRatio = Field(alias="unitsRatio")
-    cost_factor: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Optional. The fraction of cost that is transferred from the existing shares to the new shares.", alias="costFactor")
-    fractional_units_cash_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Optional. Used in calculating cash-in-lieu of fractional shares.", alias="fractionalUnitsCashPrice")
-    fractional_units_cash_currency:  Optional[StrictStr] = Field(default=None,alias="fractionalUnitsCashCurrency", description="Optional. Used in calculating cash-in-lieu of fractional shares.") 
-    fractional_units_rounding_convention:  Optional[StrictStr] = Field(default=None,alias="fractionalUnitsRoundingConvention", description="The convention used to round the fractional units entitlement. Defaults to Floor. Available values: Floor, Ceiling, RoundHalfUp, RoundHalfDown, RoundToDecimalPlaces, BuyUp, BankerRounding.") 
-    fractional_units_decimal_places: Optional[StrictInt] = Field(default=None, description="The number of decimal places to round to when FractionalUnitsRoundingConvention is RoundToDecimalPlaces.", alias="fractionalUnitsDecimalPlaces")
+    effective_date: Optional[datetime] = Field(default=None, description="The date the termination takes effect: the triggering event's own effective/exchange date, or the  instrument's own maturity date for a maturity-triggered termination. Required.", alias="effectiveDate")
+    settlement_date: Optional[datetime] = Field(default=None, description="The date the net termination amount settles. Required.", alias="settlementDate")
+    settlement_currency:  StrictStr = Field(...,alias="settlementCurrency", description="The currency the net termination amount settles in. Required.") 
+    triggering_event_type:  StrictStr = Field(...,alias="triggeringEventType", description="The type of the event on the underlying that triggered the termination, for provenance. Required.  A maturity-triggered termination is marked with the MaturityEvent type. Available values: Unknown, CashDividendEvent, StockSplitEvent, BondDefaultEvent, Exercise, Trigger, Default, Reset, Coupon, Amortisation, Principal, Start, EarlyClose, Maturity, CloseEvent, OpenEvent, CorporateAction, Premium, CashSettlement, BondCouponEvent, DividendReinvestmentEvent, AccumulationEvent, BondPrincipalEvent, DividendOptionEvent, MaturityEvent, FxForwardSettlementEvent, ExpiryEvent, ScripDividendEvent, StockDividendEvent, ReverseStockSplitEvent, CapitalDistributionEvent, SpinOffEvent, MergerEvent, FutureExpiryEvent, SwapCashFlowEvent, SwapPrincipalEvent, CreditPremiumCashFlowEvent, CdsCreditEvent, CdxCreditEvent, OptionExercisePhysicalEvent, OptionExerciseCashEvent, MbsCouponEvent, MbsPrincipalEvent, BonusIssueEvent, MbsPrincipalWriteOffEvent, TenderEvent, IntermediateSecuritiesDistributionEvent, MbsInterestDeferralEvent, MbsInterestShortfallEvent, CallOnIntermediateSecuritiesEvent, ProtectionPayoutCashFlowEvent, TermDepositInterestEvent, TermDepositPrincipalEvent, EarlyRedemptionEvent, FutureMarkToMarketEvent, AdjustGlobalCommitmentEvent, ContractInitialisationEvent, DrawdownEvent, LoanInterestRepaymentEvent, UpdateDepositAmountEvent, LoanPrincipalRepaymentEvent, DepositInterestPaymentEvent, DepositCloseEvent, LoanFacilityContractRolloverEvent, RepurchaseOfferEvent, RepoPartialClosureEvent, RepoCashFlowEvent, FlexibleRepoCashFlowEvent, FlexibleRepoCollateralEvent, FlexibleRepoInterestPaymentEvent, FlexibleRepoPartialClosureEvent, ConversionEvent, FlexibleRepoFullClosureEvent, CapletFloorletCashFlowEvent, DepositRollEvent, EarlyCloseOutEvent, ConsentEvent, DrawingEvent, CapitalGainsDistributionEvent, ExchangeOfferEvent, DutchAuctionEvent, WorthlessEvent, PutRedemptionEvent, LoanFacilityDelayedCompensationPaymentEvent, InterestPaymentEvent, PriorityIssueEvent, ClassActionEvent, BankruptcyEvent, LiquidationPaymentEvent, PartialDefeasanceEvent, SecurityWriteOffEvent, WarrantsExerciseEvent, PariPassuEvent, PikBondCouponEvent, PikBondCashCouponEvent, PikBondInterestCapitalisationEvent, PikBondPrincipalEvent, ChangeEvent, DelistingEvent, PikBondInterestEvent, CommodityForwardCashSettlementEvent, PaymentInKindEvent, CommodityForwardPhysicalSettlementEvent, CancelSwapEvent, BondOptionTerminationEvent, TerminationEvent.") 
+    triggering_event_id:  Optional[StrictStr] = Field(default=None,alias="triggeringEventId", description="The event id of the triggering event on the underlying, for provenance and diagnostics. Optional.") 
+    settlement_method:  StrictStr = Field(...,alias="settlementMethod", description="The basis on which the asset-side settlement amount is computed, determined by the trigger. Required.                Supported string (enumeration) values are: [CurrentNotionalPlusAccrued, CashOfferPlusAccrued, CashOfferPlusRealAccrued, FairValue, CashOffer]. Available values: CurrentNotionalPlusAccrued, CashOfferPlusAccrued, CashOfferPlusRealAccrued, FairValue, CashOffer.") 
+    asset_settlement_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The asset-side settlement value per the settlement method, unsigned by leg direction.  Optional — populated by post-processing from market data; absent until enriched.", alias="assetSettlementAmount")
+    funding_accrued_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The funding leg's financing accrued to the effective date, signed by the funding leg's own  direction. Optional — populated by post-processing from market data; absent until enriched.", alias="fundingAccruedAmount")
+    termination_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The net amount settled on termination: the asset settlement amount signed by the asset leg's  direction, netted with the funding accrued. Optional — populated by post-processing; absent  until enriched.", alias="terminationAmount")
     instrument_event_type:  StrictStr = Field(...,alias="instrumentEventType", description="The Type of Event. Available values: TransitionEvent, InformationalEvent, OpenEvent, CloseEvent, StockSplitEvent, BondDefaultEvent, CashDividendEvent, AmortisationEvent, CashFlowEvent, ExerciseEvent, ResetEvent, TriggerEvent, RawVendorEvent, InformationalErrorEvent, BondCouponEvent, DividendReinvestmentEvent, AccumulationEvent, BondPrincipalEvent, DividendOptionEvent, MaturityEvent, FxForwardSettlementEvent, ExpiryEvent, ScripDividendEvent, StockDividendEvent, ReverseStockSplitEvent, CapitalDistributionEvent, SpinOffEvent, MergerEvent, FutureExpiryEvent, SwapCashFlowEvent, SwapPrincipalEvent, CreditPremiumCashFlowEvent, CdsCreditEvent, CdxCreditEvent, MbsCouponEvent, MbsPrincipalEvent, BonusIssueEvent, MbsPrincipalWriteOffEvent, MbsInterestDeferralEvent, MbsInterestShortfallEvent, TenderEvent, CallOnIntermediateSecuritiesEvent, IntermediateSecuritiesDistributionEvent, OptionExercisePhysicalEvent, OptionExerciseCashEvent, ProtectionPayoutCashFlowEvent, TermDepositInterestEvent, TermDepositPrincipalEvent, EarlyRedemptionEvent, FutureMarkToMarketEvent, AdjustGlobalCommitmentEvent, ContractInitialisationEvent, DrawdownEvent, LoanInterestRepaymentEvent, UpdateDepositAmountEvent, LoanPrincipalRepaymentEvent, DepositInterestPaymentEvent, DepositCloseEvent, LoanFacilityContractRolloverEvent, RepurchaseOfferEvent, RepoPartialClosureEvent, RepoCashFlowEvent, FlexibleRepoInterestPaymentEvent, FlexibleRepoCashFlowEvent, FlexibleRepoCollateralEvent, ConversionEvent, FlexibleRepoPartialClosureEvent, FlexibleRepoFullClosureEvent, CapletFloorletCashFlowEvent, EarlyCloseOutEvent, DepositRollEvent, ConsentEvent, DrawingEvent, CapitalGainsDistributionEvent, ExchangeOfferEvent, DutchAuctionEvent, WorthlessEvent, PutRedemptionEvent, LoanFacilityDelayedCompensationPaymentEvent, InterestPaymentEvent, PriorityIssueEvent, ClassActionEvent, BankruptcyEvent, LiquidationPaymentEvent, PartialDefeasanceEvent, SecurityWriteOffEvent, WarrantsExerciseEvent, PariPassuEvent, ChangeEvent, PikBondCouponEvent, PikBondCashCouponEvent, PikBondInterestCapitalisationEvent, PikBondPrincipalEvent, DelistingEvent, PikBondInterestEvent, CommodityForwardCashSettlementEvent, PaymentInKindEvent, CommodityForwardPhysicalSettlementEvent, CancelSwapEvent, BondOptionTerminationEvent, TerminationEvent.") 
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["instrumentEventType", "announcementDate", "exDate", "recordDate", "paymentDate", "newInstrument", "unitsRatio", "costFactor", "fractionalUnitsCashPrice", "fractionalUnitsCashCurrency", "fractionalUnitsRoundingConvention", "fractionalUnitsDecimalPlaces"]
+    __properties: ClassVar[List[str]] = ["instrumentEventType", "effectiveDate", "settlementDate", "settlementCurrency", "triggeringEventType", "triggeringEventId", "settlementMethod", "assetSettlementAmount", "fundingAccruedAmount", "terminationAmount"]
 
     @field_validator('instrument_event_type')
     def instrument_event_type_validate_enum(cls, value):
@@ -88,8 +84,8 @@ class IntermediateSecuritiesDistributionEvent(InstrumentEvent):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> IntermediateSecuritiesDistributionEvent:
-        """Create an instance of IntermediateSecuritiesDistributionEvent from a JSON string"""
+    def from_json(cls, json_str: str) -> TerminationEvent:
+        """Create an instance of TerminationEvent from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self, by_alias=True):
@@ -100,76 +96,53 @@ class IntermediateSecuritiesDistributionEvent(InstrumentEvent):
                             "additional_properties"
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of new_instrument
-        if self.new_instrument:
-            _dict['newInstrument'] = self.new_instrument.to_dict(by_alias=by_alias)
-        # override the default output from pydantic by calling `to_dict()` of units_ratio
-        if self.units_ratio:
-            _dict['unitsRatio'] = self.units_ratio.to_dict(by_alias=by_alias)
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
                 _dict[_key] = _value
 
-        # set to None if announcement_date (nullable) is None
+        # set to None if triggering_event_id (nullable) is None
         # and model_fields_set contains the field
-        if self.announcement_date is None and "announcement_date" in self.model_fields_set:
-            _dict['announcementDate'] = None
+        if self.triggering_event_id is None and "triggering_event_id" in self.model_fields_set:
+            _dict['triggeringEventId'] = None
 
-        # set to None if record_date (nullable) is None
+        # set to None if asset_settlement_amount (nullable) is None
         # and model_fields_set contains the field
-        if self.record_date is None and "record_date" in self.model_fields_set:
-            _dict['recordDate'] = None
+        if self.asset_settlement_amount is None and "asset_settlement_amount" in self.model_fields_set:
+            _dict['assetSettlementAmount'] = None
 
-        # set to None if cost_factor (nullable) is None
+        # set to None if funding_accrued_amount (nullable) is None
         # and model_fields_set contains the field
-        if self.cost_factor is None and "cost_factor" in self.model_fields_set:
-            _dict['costFactor'] = None
+        if self.funding_accrued_amount is None and "funding_accrued_amount" in self.model_fields_set:
+            _dict['fundingAccruedAmount'] = None
 
-        # set to None if fractional_units_cash_price (nullable) is None
+        # set to None if termination_amount (nullable) is None
         # and model_fields_set contains the field
-        if self.fractional_units_cash_price is None and "fractional_units_cash_price" in self.model_fields_set:
-            _dict['fractionalUnitsCashPrice'] = None
-
-        # set to None if fractional_units_cash_currency (nullable) is None
-        # and model_fields_set contains the field
-        if self.fractional_units_cash_currency is None and "fractional_units_cash_currency" in self.model_fields_set:
-            _dict['fractionalUnitsCashCurrency'] = None
-
-        # set to None if fractional_units_rounding_convention (nullable) is None
-        # and model_fields_set contains the field
-        if self.fractional_units_rounding_convention is None and "fractional_units_rounding_convention" in self.model_fields_set:
-            _dict['fractionalUnitsRoundingConvention'] = None
-
-        # set to None if fractional_units_decimal_places (nullable) is None
-        # and model_fields_set contains the field
-        if self.fractional_units_decimal_places is None and "fractional_units_decimal_places" in self.model_fields_set:
-            _dict['fractionalUnitsDecimalPlaces'] = None
+        if self.termination_amount is None and "termination_amount" in self.model_fields_set:
+            _dict['terminationAmount'] = None
 
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> IntermediateSecuritiesDistributionEvent:
-        """Create an instance of IntermediateSecuritiesDistributionEvent from a dict"""
+    def from_dict(cls, obj: dict) -> TerminationEvent:
+        """Create an instance of TerminationEvent from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return IntermediateSecuritiesDistributionEvent.model_validate(obj)
+            return TerminationEvent.model_validate(obj)
 
-        _obj = IntermediateSecuritiesDistributionEvent.model_validate({
+        _obj = TerminationEvent.model_validate({
             "instrument_event_type": obj.get("instrumentEventType"),
-            "announcement_date": obj.get("announcementDate"),
-            "ex_date": obj.get("exDate"),
-            "record_date": obj.get("recordDate"),
-            "payment_date": obj.get("paymentDate"),
-            "new_instrument": NewInstrument.from_dict(_v) if (_v := obj.get("newInstrument")) is not None else None,
-            "units_ratio": UnitsRatio.from_dict(_v) if (_v := obj.get("unitsRatio")) is not None else None,
-            "cost_factor": obj.get("costFactor"),
-            "fractional_units_cash_price": obj.get("fractionalUnitsCashPrice"),
-            "fractional_units_cash_currency": obj.get("fractionalUnitsCashCurrency"),
-            "fractional_units_rounding_convention": obj.get("fractionalUnitsRoundingConvention"),
-            "fractional_units_decimal_places": obj.get("fractionalUnitsDecimalPlaces")
+            "effective_date": obj.get("effectiveDate"),
+            "settlement_date": obj.get("settlementDate"),
+            "settlement_currency": obj.get("settlementCurrency"),
+            "triggering_event_type": obj.get("triggeringEventType"),
+            "triggering_event_id": obj.get("triggeringEventId"),
+            "settlement_method": obj.get("settlementMethod"),
+            "asset_settlement_amount": obj.get("assetSettlementAmount"),
+            "funding_accrued_amount": obj.get("fundingAccruedAmount"),
+            "termination_amount": obj.get("terminationAmount")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
@@ -178,5 +151,5 @@ class IntermediateSecuritiesDistributionEvent(InstrumentEvent):
 
         return _obj
 
-IntermediateSecuritiesDistributionEvent.model_rebuild()
+TerminationEvent.model_rebuild()
 

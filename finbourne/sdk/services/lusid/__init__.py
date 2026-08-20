@@ -1479,6 +1479,7 @@ from finbourne.sdk.services.lusid.models.tender_offer_election import TenderOffe
 from finbourne.sdk.services.lusid.models.term_deposit import TermDeposit
 from finbourne.sdk.services.lusid.models.term_deposit_interest_event import TermDepositInterestEvent
 from finbourne.sdk.services.lusid.models.term_deposit_principal_event import TermDepositPrincipalEvent
+from finbourne.sdk.services.lusid.models.termination_event import TerminationEvent
 from finbourne.sdk.services.lusid.models.time_zone_conventions import TimeZoneConventions
 from finbourne.sdk.services.lusid.models.timeline import Timeline
 from finbourne.sdk.services.lusid.models.to_be_announced import ToBeAnnounced
@@ -3184,6 +3185,7 @@ __all__ = [
     "TermDeposit",
     "TermDepositInterestEvent",
     "TermDepositPrincipalEvent",
+    "TerminationEvent",
     "TimeZoneConventions",
     "Timeline",
     "ToBeAnnounced",

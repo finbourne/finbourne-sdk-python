@@ -19,7 +19,7 @@ Method | HTTP request | Description
 [**get_portfolio_commands**](PortfoliosApi.md#get_portfolio_commands) | **GET** /api/api/portfolios/{scope}/{code}/commands | GetPortfolioCommands: Get portfolio commands
 [**get_portfolio_metadata**](PortfoliosApi.md#get_portfolio_metadata) | **GET** /api/api/portfolios/{scope}/{code}/metadata | GetPortfolioMetadata: Get access metadata rules for a portfolio
 [**get_portfolio_properties**](PortfoliosApi.md#get_portfolio_properties) | **GET** /api/api/portfolios/{scope}/{code}/properties | GetPortfolioProperties: Get portfolio properties
-[**get_portfolio_properties_time_series**](PortfoliosApi.md#get_portfolio_properties_time_series) | **GET** /api/api/portfolios/{scope}/{code}/properties/time-series/batch | [BETA] GetPortfolioPropertiesTimeSeries: Get portfolio properties time series
+[**get_portfolio_properties_time_series**](PortfoliosApi.md#get_portfolio_properties_time_series) | **GET** /api/api/portfolios/{scope}/{code}/properties/time-series/batch | GetPortfolioPropertiesTimeSeries: Get portfolio properties time series
 [**get_portfolio_property_time_series**](PortfoliosApi.md#get_portfolio_property_time_series) | **GET** /api/api/portfolios/{scope}/{code}/properties/time-series | GetPortfolioPropertyTimeSeries: Get portfolio property time series
 [**get_portfolio_relations**](PortfoliosApi.md#get_portfolio_relations) | **GET** /api/api/portfolios/{scope}/{code}/relations | [EXPERIMENTAL] GetPortfolioRelations: Get portfolio relations
 [**get_portfolio_relationships**](PortfoliosApi.md#get_portfolio_relationships) | **GET** /api/api/portfolios/{scope}/{code}/relationships | GetPortfolioRelationships: Get portfolio relationships
@@ -834,7 +834,7 @@ Name | Type | Description  | Notes
 # **get_portfolio_properties_time_series**
 > ResourceListOfPropertyIntervalTimeSeries getPortfolioPropertiesTimeSeries = get_portfolio_properties_time_series(scope, code, property_keys, portfolio_effective_at=portfolio_effective_at, as_at=as_at, filter=filter, page=page, limit=limit)
 
-[BETA] GetPortfolioPropertiesTimeSeries: Get portfolio properties time series
+GetPortfolioPropertiesTimeSeries: Get portfolio properties time series
 
 Show the complete time series (history) for multiple portfolio properties at once, grouped by property key.
 

@@ -10,6 +10,7 @@
 | **support** | [SupportAccessExpiry](SupportAccessExpiry.md) | Optional | *No description available.* |
 | **support_access_expiry_with_role** | [List[SupportAccessExpiryWithRole]](SupportAccessExpiryWithRole.md) | Optional | *No description available.* |
 | **status** | **bool** | Optional | *No description available.* |
+| **code** | **int** | Optional | Internal provisioning code. |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
@@ -27,6 +28,7 @@ instance = AuthenticationInformation(
     support=SupportAccessExpiry(...),  # optional
     support_access_expiry_with_role=[],  # optional
     status=True,  # optional
+    code=0,  # optional — Internal provisioning code.
     links=[]  # optional
 )
 ```

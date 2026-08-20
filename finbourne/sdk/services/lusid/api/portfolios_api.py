@@ -2499,7 +2499,7 @@ class PortfoliosApi:
 
     @validate_call
     def get_portfolio_properties_time_series(self, scope: StrictStr, code: StrictStr, property_keys: List[str], portfolio_effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, **kwargs) -> ResourceListOfPropertyIntervalTimeSeries:
-        """[BETA] GetPortfolioPropertiesTimeSeries: Get portfolio properties time series  # noqa: E501
+        """GetPortfolioPropertiesTimeSeries: Get portfolio properties time series  # noqa: E501
 
         Show the complete time series (history) for multiple portfolio properties at once, grouped by property key.  # noqa: E501
         :param scope: The scope of the portfolio. (required)
@@ -2533,7 +2533,7 @@ class PortfoliosApi:
 
     @validate_call
     def get_portfolio_properties_time_series_with_http_info(self, scope: StrictStr, code: StrictStr, property_keys: List[str], portfolio_effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, **kwargs) -> ApiResponse[ResourceListOfPropertyIntervalTimeSeries]:
-        """[BETA] GetPortfolioPropertiesTimeSeries: Get portfolio properties time series  # noqa: E501
+        """GetPortfolioPropertiesTimeSeries: Get portfolio properties time series  # noqa: E501
 
         Show the complete time series (history) for multiple portfolio properties at once, grouped by property key.  # noqa: E501
         :param scope: The scope of the portfolio. (required)
@@ -7790,7 +7790,7 @@ class PortfoliosApi:
 
     @validate_call
     async def get_portfolio_properties_time_series_async(self, scope: StrictStr, code: StrictStr, property_keys: List[str], portfolio_effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, **kwargs) -> ResourceListOfPropertyIntervalTimeSeries:
-            """[BETA] GetPortfolioPropertiesTimeSeries: Get portfolio properties time series  # noqa: E501
+            """GetPortfolioPropertiesTimeSeries: Get portfolio properties time series  # noqa: E501
             Show the complete time series (history) for multiple portfolio properties at once, grouped by property key.  # noqa: E501
             
             :param scope: The scope of the portfolio. (required)
@@ -7824,7 +7824,7 @@ class PortfoliosApi:
 
     @validate_call
     async def get_portfolio_properties_time_series_with_http_info_async(self, scope: StrictStr, code: StrictStr, property_keys: List[str], portfolio_effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, **kwargs) -> ApiResponse[ResourceListOfPropertyIntervalTimeSeries]:
-            """[BETA] GetPortfolioPropertiesTimeSeries: Get portfolio properties time series  # noqa: E501
+            """GetPortfolioPropertiesTimeSeries: Get portfolio properties time series  # noqa: E501
 
             Show the complete time series (history) for multiple portfolio properties at once, grouped by property key.  # noqa: E501
 

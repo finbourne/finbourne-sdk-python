@@ -1837,6 +1837,7 @@
 * [TermDeposit](lusid/model/TermDeposit.md)
 * [TermDepositInterestEvent](lusid/model/TermDepositInterestEvent.md)
 * [TermDepositPrincipalEvent](lusid/model/TermDepositPrincipalEvent.md)
+* [TerminationEvent](lusid/model/TerminationEvent.md)
 * [TimeZoneConventions](lusid/model/TimeZoneConventions.md)
 * [Timeline](lusid/model/Timeline.md)
 * [ToBeAnnounced](lusid/model/ToBeAnnounced.md)

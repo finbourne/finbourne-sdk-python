@@ -21,7 +21,6 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
-from finbourne.sdk.services.lusid.models.resource_id import ResourceId
 
 
 class RecResultItem(BaseModel):
@@ -29,9 +28,8 @@ class RecResultItem(BaseModel):
     An individual item that makes up (one side of) a rec result. Polymorphic by rec type / item type.  # noqa: E501
     """
     item_type:  StrictStr = Field(...,alias="itemType", description="The polymorphic item-type discriminator (e.g. SettlementActivity, Holding, Transaction). Available values: SettlementActivity, Holding, Transaction.") 
-    portfolio_id: ResourceId = Field(alias="portfolioId")
     rule_and_attribute_values: Optional[Dict[str, Optional[StrictStr]]] = Field(default=None, description="The core rule, aggregate rule and supplemental attribute values for the item, keyed by name.", alias="ruleAndAttributeValues")
-    __properties: ClassVar[List[str]] = ["itemType", "portfolioId", "ruleAndAttributeValues"]
+    __properties: ClassVar[List[str]] = ["itemType", "ruleAndAttributeValues"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -68,9 +66,6 @@ class RecResultItem(BaseModel):
                             "rule_and_attribute_values",
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of portfolio_id
-        if self.portfolio_id:
-            _dict['portfolioId'] = self.portfolio_id.to_dict(by_alias=by_alias)
         # set to None if rule_and_attribute_values (nullable) is None
         # and model_fields_set contains the field
         if self.rule_and_attribute_values is None and "rule_and_attribute_values" in self.model_fields_set:
@@ -89,7 +84,6 @@ class RecResultItem(BaseModel):
 
         _obj = RecResultItem.model_validate({
             "item_type": obj.get("itemType"),
-            "portfolio_id": ResourceId.from_dict(_v) if (_v := obj.get("portfolioId")) is not None else None,
             "rule_and_attribute_values": obj.get("ruleAndAttributeValues")
         })
         return _obj
