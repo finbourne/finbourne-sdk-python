@@ -48,7 +48,8 @@ class OrderRequest(BaseModel):
     package: Optional[ResourceId] = None
     weight: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The proportion of the total portfolio value ordered for the given instrument ordered.")
     amount: Optional[CurrencyAndAmount] = None
-    __properties: ClassVar[List[str]] = ["properties", "instrumentIdentifiers", "quantity", "side", "orderBookId", "portfolioId", "id", "state", "type", "timeInForce", "date", "price", "limitPrice", "stopPrice", "orderInstruction", "package", "weight", "amount"]
+    custodian_account_id: Optional[ResourceId] = Field(default=None, alias="custodianAccountId")
+    __properties: ClassVar[List[str]] = ["properties", "instrumentIdentifiers", "quantity", "side", "orderBookId", "portfolioId", "id", "state", "type", "timeInForce", "date", "price", "limitPrice", "stopPrice", "orderInstruction", "package", "weight", "amount", "custodianAccountId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -118,6 +119,9 @@ class OrderRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of amount
         if self.amount:
             _dict['amount'] = self.amount.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of custodian_account_id
+        if self.custodian_account_id:
+            _dict['custodianAccountId'] = self.custodian_account_id.to_dict(by_alias=by_alias)
         # set to None if properties (nullable) is None
         # and model_fields_set contains the field
         if self.properties is None and "properties" in self.model_fields_set:
@@ -182,7 +186,8 @@ class OrderRequest(BaseModel):
             "order_instruction": ResourceId.from_dict(_v) if (_v := obj.get("orderInstruction")) is not None else None,
             "package": ResourceId.from_dict(_v) if (_v := obj.get("package")) is not None else None,
             "weight": obj.get("weight"),
-            "amount": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("amount")) is not None else None
+            "amount": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("amount")) is not None else None,
+            "custodian_account_id": ResourceId.from_dict(_v) if (_v := obj.get("custodianAccountId")) is not None else None
         })
         return _obj
 

@@ -42,7 +42,8 @@ class BlockedOrderRequest(BaseModel):
     order_instruction: Optional[ResourceId] = Field(default=None, alias="orderInstruction")
     package: Optional[ResourceId] = None
     side:  Optional[StrictStr] = Field(default=None,alias="side", description="The client's representation of the order's side (buy, sell, short, etc)") 
-    __properties: ClassVar[List[str]] = ["properties", "quantity", "amount", "orderBookId", "portfolioId", "id", "state", "date", "price", "orderInstruction", "package", "side"]
+    custodian_account_id: Optional[ResourceId] = Field(default=None, alias="custodianAccountId")
+    __properties: ClassVar[List[str]] = ["properties", "quantity", "amount", "orderBookId", "portfolioId", "id", "state", "date", "price", "orderInstruction", "package", "side", "custodianAccountId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -106,6 +107,9 @@ class BlockedOrderRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of package
         if self.package:
             _dict['package'] = self.package.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of custodian_account_id
+        if self.custodian_account_id:
+            _dict['custodianAccountId'] = self.custodian_account_id.to_dict(by_alias=by_alias)
         # set to None if properties (nullable) is None
         # and model_fields_set contains the field
         if self.properties is None and "properties" in self.model_fields_set:
@@ -154,7 +158,8 @@ class BlockedOrderRequest(BaseModel):
             "price": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("price")) is not None else None,
             "order_instruction": ResourceId.from_dict(_v) if (_v := obj.get("orderInstruction")) is not None else None,
             "package": ResourceId.from_dict(_v) if (_v := obj.get("package")) is not None else None,
-            "side": obj.get("side")
+            "side": obj.get("side"),
+            "custodian_account_id": ResourceId.from_dict(_v) if (_v := obj.get("custodianAccountId")) is not None else None
         })
         return _obj
 

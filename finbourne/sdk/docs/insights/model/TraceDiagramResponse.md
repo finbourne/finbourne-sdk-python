@@ -7,6 +7,7 @@ Represents a trace diagram composed of nodes and edges.
 |------|------|----------|-------------|
 | **nodes** | [List[TraceDiagramNode]](TraceDiagramNode.md) | Optional | The nodes that make up the diagram. |
 | **edges** | [List[TraceDiagramEdge]](TraceDiagramEdge.md) | Optional | The edges that connect the nodes in the diagram. |
+| **is_possibly_incomplete** | **bool** | Optional | Whether detected retrieval or diagram degradation means some events may not be shown. |
 
 
 ## Usage
@@ -18,7 +19,8 @@ from finbourne.sdk.services.insights.models.TraceDiagramResponse import TraceDia
 
 instance = TraceDiagramResponse(
     nodes=[],  # optional — The nodes that make up the diagram.
-    edges=[]  # optional — The edges that connect the nodes in the diagram.
+    edges=[],  # optional — The edges that connect the nodes in the diagram.
+    is_possibly_incomplete=True  # optional — Whether detected retrieval or diagram degradation means some events may not be shown.
 )
 ```
 

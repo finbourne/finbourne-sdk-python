@@ -26,6 +26,7 @@ An Order for a certain quantity of a specific instrument
 | **package_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **weight** | **float** | Optional | The proportion of the total portfolio value ordered for the given instrument ordered. |
 | **amount** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
+| **custodian_account_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **data_model_membership** | [DataModelMembership](DataModelMembership.md) | Optional | *No description available.* |
 | **derived_compliance_state** | **str** | Optional | The compliance state of the order, derived from pre-trade compliance runs. |
 | **derived_approval_state** | **str** | Optional | The approval state of the order. |
@@ -61,6 +62,7 @@ instance = Order(
     package_id=ResourceId(...),  # optional
     weight=0.0,  # optional — The proportion of the total portfolio value ordered for the given instrument ordered.
     amount=CurrencyAndAmount(...),  # optional
+    custodian_account_id=ResourceId(...),  # optional
     data_model_membership=DataModelMembership(...),  # optional
     derived_compliance_state="...",  # optional — The compliance state of the order, derived from pre-trade compliance runs.
     derived_approval_state="...",  # optional — The approval state of the order.
@@ -82,6 +84,7 @@ instance = Order(
 - [ResourceId](ResourceId.md)
 - [ResourceId](ResourceId.md)
 - [CurrencyAndAmount](CurrencyAndAmount.md)
+- [ResourceId](ResourceId.md)
 - [DataModelMembership](DataModelMembership.md)
 - [Link](Link.md)
 

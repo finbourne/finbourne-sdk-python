@@ -38,7 +38,8 @@ class TpfFileDeliveryResponse(BaseModel):
     destination_status:  StrictStr = Field(...,alias="destinationStatus") 
     destination_error:  Optional[StrictStr] = Field(default=None,alias="destinationError") 
     destination_name:  Optional[StrictStr] = Field(default=None,alias="destinationName") 
-    __properties: ClassVar[List[str]] = ["runId", "runStartTime", "fileName", "generatedAt", "rowCount", "fileHash", "destinationType", "destinationPath", "destinationStatus", "destinationError", "destinationName"]
+    file_uuid:  StrictStr = Field(...,alias="fileUuid") 
+    __properties: ClassVar[List[str]] = ["runId", "runStartTime", "fileName", "generatedAt", "rowCount", "fileHash", "destinationType", "destinationPath", "destinationStatus", "destinationError", "destinationName", "fileUuid"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -126,7 +127,8 @@ class TpfFileDeliveryResponse(BaseModel):
             "destination_path": obj.get("destinationPath"),
             "destination_status": obj.get("destinationStatus"),
             "destination_error": obj.get("destinationError"),
-            "destination_name": obj.get("destinationName")
+            "destination_name": obj.get("destinationName"),
+            "file_uuid": obj.get("fileUuid")
         })
         return _obj
 

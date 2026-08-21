@@ -38,8 +38,9 @@ class TraceEventLog(BaseModel):
     agent_code:  StrictStr = Field(...,alias="agentCode", description="The code identifier of the agent currently being interacted with") 
     agent_version: StrictInt = Field(description="The version of the circuit in which the trace event occurred.", alias="agentVersion")
     node_id:  StrictStr = Field(...,alias="nodeId", description="The ID of the circuit's node at which the trace event occured.") 
+    row_id:  Optional[StrictStr] = Field(default=None,alias="rowId", description="An opaque identifier for comparing complete trace event rows.") 
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["traceEventId", "traceId", "createdAt", "eventType", "origin", "content", "agentScope", "agentCode", "agentVersion", "nodeId", "links"]
+    __properties: ClassVar[List[str]] = ["traceEventId", "traceId", "createdAt", "eventType", "origin", "content", "agentScope", "agentCode", "agentVersion", "nodeId", "rowId", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -82,6 +83,11 @@ class TraceEventLog(BaseModel):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['links'] = _items
+        # set to None if row_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.row_id is None and "row_id" in self.model_fields_set:
+            _dict['rowId'] = None
+
         # set to None if links (nullable) is None
         # and model_fields_set contains the field
         if self.links is None and "links" in self.model_fields_set:
@@ -109,6 +115,7 @@ class TraceEventLog(BaseModel):
             "agent_code": obj.get("agentCode"),
             "agent_version": obj.get("agentVersion"),
             "node_id": obj.get("nodeId"),
+            "row_id": obj.get("rowId"),
             "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj

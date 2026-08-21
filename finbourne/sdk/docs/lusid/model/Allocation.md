@@ -25,6 +25,7 @@ An Allocation of a certain quantity of a specific instrument against an originat
 | **settlement_currency_fx_rate** | **float** | Optional | The settlement currency to allocation currency FX rate. |
 | **counterparty** | **str** | Optional | The counterparty for this allocation. |
 | **execution_ids** | [List[ResourceId]](ResourceId.md) | Optional | The executions associated with this allocation |
+| **custodian_account_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **data_model_membership** | [DataModelMembership](DataModelMembership.md) | Optional | *No description available.* |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
@@ -57,6 +58,7 @@ instance = Allocation(
     settlement_currency_fx_rate=0.0,  # optional — The settlement currency to allocation currency FX rate.
     counterparty="...",  # optional — The counterparty for this allocation.
     execution_ids=[],  # optional — The executions associated with this allocation
+    custodian_account_id=ResourceId(...),  # optional
     data_model_membership=DataModelMembership(...),  # optional
     links=[]  # optional
 )
@@ -73,6 +75,7 @@ instance = Allocation(
 - [ResourceId](ResourceId.md) — used in `placement_ids`
 - [CurrencyAndAmount](CurrencyAndAmount.md)
 - [ResourceId](ResourceId.md) — used in `execution_ids`
+- [ResourceId](ResourceId.md)
 - [DataModelMembership](DataModelMembership.md)
 - [Link](Link.md)
 

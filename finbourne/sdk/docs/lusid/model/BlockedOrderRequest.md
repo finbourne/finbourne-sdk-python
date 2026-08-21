@@ -16,6 +16,7 @@
 | **order_instruction** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **package** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **side** | **str** | Optional | The client&#39;s representation of the order&#39;s side (buy, sell, short, etc) |
+| **custodian_account_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -37,7 +38,8 @@ instance = BlockedOrderRequest(
     price=CurrencyAndAmount(...),  # optional
     order_instruction=ResourceId(...),  # optional
     package=ResourceId(...),  # optional
-    side="..."  # optional — The client&#39;s representation of the order&#39;s side (buy, sell, short, etc)
+    side="...",  # optional — The client&#39;s representation of the order&#39;s side (buy, sell, short, etc)
+    custodian_account_id=ResourceId(...)  # optional
 )
 ```
 
@@ -50,6 +52,7 @@ instance = BlockedOrderRequest(
 - [ResourceId](ResourceId.md)
 - [ResourceId](ResourceId.md)
 - [CurrencyAndAmount](CurrencyAndAmount.md)
+- [ResourceId](ResourceId.md)
 - [ResourceId](ResourceId.md)
 - [ResourceId](ResourceId.md)
 

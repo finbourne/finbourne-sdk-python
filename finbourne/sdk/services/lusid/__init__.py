@@ -1347,6 +1347,7 @@ from finbourne.sdk.services.lusid.models.resource_list_of_value_type import Reso
 from finbourne.sdk.services.lusid.models.resource_list_with_post_bodies_of_settlement_activity_to_settlement_activity_query import ResourceListWithPostBodiesOfSettlementActivityToSettlementActivityQuery
 from finbourne.sdk.services.lusid.models.resource_record import ResourceRecord
 from finbourne.sdk.services.lusid.models.response_meta_data import ResponseMetaData
+from finbourne.sdk.services.lusid.models.result_axis_definition import ResultAxisDefinition
 from finbourne.sdk.services.lusid.models.result_data_key_rule import ResultDataKeyRule
 from finbourne.sdk.services.lusid.models.result_data_schema import ResultDataSchema
 from finbourne.sdk.services.lusid.models.result_key_rule import ResultKeyRule
@@ -3053,6 +3054,7 @@ __all__ = [
     "ResourceListWithPostBodiesOfSettlementActivityToSettlementActivityQuery",
     "ResourceRecord",
     "ResponseMetaData",
+    "ResultAxisDefinition",
     "ResultDataKeyRule",
     "ResultDataSchema",
     "ResultKeyRule",

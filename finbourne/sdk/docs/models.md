@@ -230,6 +230,9 @@
 * [VendorProduct](horizon/model/VendorProduct.md)
 * [VersionedConfigurationResponse](horizon/model/VersionedConfigurationResponse.md)
 * [VersionedConfigurationTypeResponse](horizon/model/VersionedConfigurationTypeResponse.md)
+* [WorkflowResultFieldResponse](horizon/model/WorkflowResultFieldResponse.md)
+* [WorkflowResultFieldsResponse](horizon/model/WorkflowResultFieldsResponse.md)
+* [WorkflowResultFieldsTaskResponse](horizon/model/WorkflowResultFieldsTaskResponse.md)
 ## Identity
 * [AccessControlledAction](identity/model/AccessControlledAction.md)
 * [AccessControlledResource](identity/model/AccessControlledResource.md)
@@ -1705,6 +1708,7 @@
 * [ResourceListWithPostBodiesOfSettlementActivityToSettlementActivityQuery](lusid/model/ResourceListWithPostBodiesOfSettlementActivityToSettlementActivityQuery.md)
 * [ResourceRecord](lusid/model/ResourceRecord.md)
 * [ResponseMetaData](lusid/model/ResponseMetaData.md)
+* [ResultAxisDefinition](lusid/model/ResultAxisDefinition.md)
 * [ResultDataKeyRule](lusid/model/ResultDataKeyRule.md)
 * [ResultDataSchema](lusid/model/ResultDataSchema.md)
 * [ResultKeyRule](lusid/model/ResultKeyRule.md)

@@ -16,6 +16,7 @@ Method | HTTP request | Description
 [**get_integration_configuration_fields**](IntegrationsApi.md#get_integration_configuration_fields) | **GET** /horizon/api/integrations/configuration/{integration}/fields | [EXPERIMENTAL] GetIntegrationConfigurationFields: Get the Field Mapping configuration for a given integration
 [**get_integration_configuration_properties**](IntegrationsApi.md#get_integration_configuration_properties) | **GET** /horizon/api/integrations/configuration/{integration}/properties | [EXPERIMENTAL] GetIntegrationConfigurationProperties: Get the Property Mapping configuration for a given integration
 [**get_schema**](IntegrationsApi.md#get_schema) | **GET** /horizon/api/integrations/schema/{integration} | [EXPERIMENTAL] GetSchema: Get the JSON schema for the details section of an integration instance.
+[**get_workflow_result_fields**](IntegrationsApi.md#get_workflow_result_fields) | **GET** /horizon/api/integrations/instances/{instanceId}/workflow/resultfields | [EXPERIMENTAL] GetWorkflowResultFields: Get the Workflow result fields an integration instance returns
 [**list_dataflow_processors**](IntegrationsApi.md#list_dataflow_processors) | **GET** /horizon/api/integrations/dataflow/processors | [EXPERIMENTAL] ListDataflowProcessors: List processor types.
 [**list_instances**](IntegrationsApi.md#list_instances) | **GET** /horizon/api/integrations/instances | [EXPERIMENTAL] ListInstances: List instances across all integrations.
 [**list_integrations**](IntegrationsApi.md#list_integrations) | **GET** /horizon/api/integrations | [EXPERIMENTAL] ListIntegrations: List available integrations.
@@ -577,6 +578,49 @@ Name | Type | Description  | Notes
 **200** | The system defined JSON schema for the details of a specified integration. |  -  |
 **400** | The details of the input related failure |  -  |
 **404** | The integration type does not exist or is not enabled. |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_workflow_result_fields**
+> WorkflowResultFieldsResponse getWorkflowResultFields = get_workflow_result_fields(instance_id)
+
+[EXPERIMENTAL] GetWorkflowResultFields: Get the Workflow result fields an integration instance returns
+
+Returns the result fields this instance's `RunWorkflow` post-process tasks declare, so a caller can discover what a run will report back before starting one. An instance with no enabled `RunWorkflow` post-process task is not an error: the response has `reportsToWorkflow` false and no fields. Note that such an instance will not report back at all, even when a Workflow task starts the run — configuring a `RunWorkflow` post-process task is what closes that loop. The user must be authenticated, entitled to call this method, and the user's domain must be licensed for the integration.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(IntegrationsApi)
+instance_id = 'instance_id_example' # str
+api_response = api_instance.get_workflow_result_fields(instance_id)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **instance_id** | **str**| Instance identifier e.g. \&quot;b64135e7-98a0-41af-a845-d86167d54cc7\&quot;. | [required] 
+
+### Return type
+
+[**WorkflowResultFieldsResponse**](../model/WorkflowResultFieldsResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The declared result fields |  -  |
+**400** | The details of the input related failure |  -  |
+**404** | The integration instance does not exist |  -  |
 **0** | Error response |  -  |
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)

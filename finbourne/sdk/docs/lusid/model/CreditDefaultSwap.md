@@ -12,6 +12,7 @@ LUSID representation of a Credit Default Swap (CDS).                This instrum
 | **coupon_rate** | **float** | Required | The coupon rate paid on each payment date of the premium leg as a fraction of 100 percent, e.g. \&quot;0.05\&quot; meaning 500 basis points or 5%.  For a standard corporate CDS (North American) this must be either 100bps or 500bps. |
 | **convention_name** | [FlowConventionName](FlowConventionName.md) | Optional | *No description available.* |
 | **notional** | **float** | Optional | The notional protected by the Credit Default Swap |
+| **is_non_standard** | **bool** | Optional | By default IsNonStandard is false, and the contract follows the IMM convention: the roll and payment  frequencies must be 3M or 6M, and the start and maturity dates are rolled onto IMM dates  (the 20th of March, June, September or December).  If IsNonStandard&#x3D;true, the premium schedule uses the stated start and maturity dates and any payment  frequency is accepted. The payment dates roll back from the maturity, so a term that is not a whole  number of payment periods has a short first period. |
 | **protection_detail_specification** | [CdsProtectionDetailSpecification](CdsProtectionDetailSpecification.md) | Optional | *No description available.* |
 | **additional_payments** | [List[AdditionalPayment]](AdditionalPayment.md) | Optional | Optional additional payments at a given date e.g. to level off an uneven swap.  The dates must be distinct and either all payments are Pay or all payments are Receive. |
 | **time_zone_conventions** | [TimeZoneConventions](TimeZoneConventions.md) | Optional | *No description available.* |
@@ -33,6 +34,7 @@ instance = CreditDefaultSwap(
     coupon_rate=0.0,  # required — The coupon rate paid on each payment date of the premium leg as a fraction of 100 percent, e.g. \&quot;0.05\&quot; meaning 500 basis points or 5%.  For a standard corporate CDS (North American) this must be either 100bps or 500bps.
     convention_name=FlowConventionName(...),  # optional
     notional=0.0,  # optional — The notional protected by the Credit Default Swap
+    is_non_standard=True,  # optional — By default IsNonStandard is false, and the contract follows the IMM convention: the roll and payment  frequencies must be 3M or 6M, and the start and maturity dates are rolled onto IMM dates  (the 20th of March, June, September or December).  If IsNonStandard&#x3D;true, the premium schedule uses the stated start and maturity dates and any payment  frequency is accepted. The payment dates roll back from the maturity, so a term that is not a whole  number of payment periods has a short first period.
     protection_detail_specification=CdsProtectionDetailSpecification(...),  # optional
     additional_payments=[],  # optional — Optional additional payments at a given date e.g. to level off an uneven swap.  The dates must be distinct and either all payments are Pay or all payments are Receive.
     time_zone_conventions=TimeZoneConventions(...),  # optional

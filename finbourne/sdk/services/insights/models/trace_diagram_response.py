@@ -31,7 +31,8 @@ class TraceDiagramResponse(BaseModel):
     """
     nodes: Optional[List[TraceDiagramNode]] = Field(default=None, description="The nodes that make up the diagram.")
     edges: Optional[List[TraceDiagramEdge]] = Field(default=None, description="The edges that connect the nodes in the diagram.")
-    __properties: ClassVar[List[str]] = ["nodes", "edges"]
+    is_possibly_incomplete: Optional[StrictBool] = Field(default=None, description="Whether detected retrieval or diagram degradation means some events may not be shown.", alias="isPossiblyIncomplete")
+    __properties: ClassVar[List[str]] = ["nodes", "edges", "isPossiblyIncomplete"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -104,7 +105,8 @@ class TraceDiagramResponse(BaseModel):
 
         _obj = TraceDiagramResponse.model_validate({
             "nodes": [TraceDiagramNode.from_dict(_item) for _item in _v] if (_v := obj.get("nodes")) is not None else None,
-            "edges": [TraceDiagramEdge.from_dict(_item) for _item in _v] if (_v := obj.get("edges")) is not None else None
+            "edges": [TraceDiagramEdge.from_dict(_item) for _item in _v] if (_v := obj.get("edges")) is not None else None,
+            "is_possibly_incomplete": obj.get("isPossiblyIncomplete")
         })
         return _obj
 

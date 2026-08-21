@@ -12,6 +12,8 @@ record containing details of a single file for a run.
 | **encrypted** | **bool** | Required | *No description available.* |
 | **destinations** | [List[FileDestinationResponse]](FileDestinationResponse.md) | Required | *No description available.* |
 | **transaction_ids** | **List[UUID]** | Required | *No description available.* |
+| **file_uuid** | **UUID** | Required | *No description available.* |
+| **failed_transaction_ids** | **List[UUID]** | Required | *No description available.* |
 
 
 ## Usage
@@ -28,7 +30,9 @@ instance = RunFileResponse(
     file_hash="...",  # required
     encrypted=True,  # required
     destinations=[],  # required
-    transaction_ids=  # required
+    transaction_ids=,  # required
+    file_uuid="...",  # required
+    failed_transaction_ids=  # required
 )
 ```
 

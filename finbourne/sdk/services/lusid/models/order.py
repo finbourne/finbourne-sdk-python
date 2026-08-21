@@ -54,11 +54,12 @@ class Order(BaseModel):
     package_id: Optional[ResourceId] = Field(default=None, alias="packageId")
     weight: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The proportion of the total portfolio value ordered for the given instrument ordered.")
     amount: Optional[CurrencyAndAmount] = None
+    custodian_account_id: Optional[ResourceId] = Field(default=None, alias="custodianAccountId")
     data_model_membership: Optional[DataModelMembership] = Field(default=None, alias="dataModelMembership")
     derived_compliance_state:  Optional[StrictStr] = Field(default=None,alias="derivedComplianceState", description="The compliance state of the order, derived from pre-trade compliance runs.") 
     derived_approval_state:  Optional[StrictStr] = Field(default=None,alias="derivedApprovalState", description="The approval state of the order.") 
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["properties", "version", "instrumentIdentifiers", "quantity", "side", "orderBookId", "portfolioId", "id", "instrumentScope", "lusidInstrumentId", "state", "type", "timeInForce", "date", "price", "limitPrice", "stopPrice", "orderInstructionId", "packageId", "weight", "amount", "dataModelMembership", "derivedComplianceState", "derivedApprovalState", "links"]
+    __properties: ClassVar[List[str]] = ["properties", "version", "instrumentIdentifiers", "quantity", "side", "orderBookId", "portfolioId", "id", "instrumentScope", "lusidInstrumentId", "state", "type", "timeInForce", "date", "price", "limitPrice", "stopPrice", "orderInstructionId", "packageId", "weight", "amount", "custodianAccountId", "dataModelMembership", "derivedComplianceState", "derivedApprovalState", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -131,6 +132,9 @@ class Order(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of amount
         if self.amount:
             _dict['amount'] = self.amount.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of custodian_account_id
+        if self.custodian_account_id:
+            _dict['custodianAccountId'] = self.custodian_account_id.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of data_model_membership
         if self.data_model_membership:
             _dict['dataModelMembership'] = self.data_model_membership.to_dict(by_alias=by_alias)
@@ -229,6 +233,7 @@ class Order(BaseModel):
             "package_id": ResourceId.from_dict(_v) if (_v := obj.get("packageId")) is not None else None,
             "weight": obj.get("weight"),
             "amount": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("amount")) is not None else None,
+            "custodian_account_id": ResourceId.from_dict(_v) if (_v := obj.get("custodianAccountId")) is not None else None,
             "data_model_membership": DataModelMembership.from_dict(_v) if (_v := obj.get("dataModelMembership")) is not None else None,
             "derived_compliance_state": obj.get("derivedComplianceState"),
             "derived_approval_state": obj.get("derivedApprovalState"),

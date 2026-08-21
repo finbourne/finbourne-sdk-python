@@ -23,6 +23,7 @@ A request to create or update an Order.
 | **package** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **weight** | **float** | Optional | The proportion of the total portfolio value ordered for the given instrument ordered. |
 | **amount** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
+| **custodian_account_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -50,7 +51,8 @@ instance = OrderRequest(
     order_instruction=ResourceId(...),  # optional
     package=ResourceId(...),  # optional
     weight=0.0,  # optional — The proportion of the total portfolio value ordered for the given instrument ordered.
-    amount=CurrencyAndAmount(...)  # optional
+    amount=CurrencyAndAmount(...),  # optional
+    custodian_account_id=ResourceId(...)  # optional
 )
 ```
 
@@ -67,6 +69,7 @@ instance = OrderRequest(
 - [ResourceId](ResourceId.md)
 - [ResourceId](ResourceId.md)
 - [CurrencyAndAmount](CurrencyAndAmount.md)
+- [ResourceId](ResourceId.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

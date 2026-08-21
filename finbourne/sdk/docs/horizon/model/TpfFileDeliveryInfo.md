@@ -5,7 +5,7 @@ Information about a file delivery
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **id** | **int** | Required | File delivery ID |
+| **file_uuid** | **UUID** | Required | File delivery UUID — the identifier the retry endpoint accepts |
 | **file_name** | **str** | Required | File name |
 | **file_hash** | **str** | Required | SHA-256 hash of the file content |
 | **destination_path** | **str** | Required | SFTP destination path |
@@ -21,7 +21,7 @@ Information about a file delivery
 from finbourne.sdk.services.horizon.models.TpfFileDeliveryInfo import TpfFileDeliveryInfo
 
 instance = TpfFileDeliveryInfo(
-    id=0,  # required — File delivery ID
+    file_uuid="...",  # required — File delivery UUID — the identifier the retry endpoint accepts
     file_name="...",  # required — File name
     file_hash="...",  # required — SHA-256 hash of the file content
     destination_path="...",  # required — SFTP destination path

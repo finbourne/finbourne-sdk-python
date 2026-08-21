@@ -15,7 +15,7 @@ Method | HTTP request | Description
 [**replay_transactions**](TradePublicationFrameworkApi.md#replay_transactions) | **POST** /horizon/api/trade-publication-framework/instances/{instanceId}/replay | [EXPERIMENTAL] ReplayTransactions: Replay one or more transactions through a TPF instance
 [**resolve_failed_delivery**](TradePublicationFrameworkApi.md#resolve_failed_delivery) | **PUT** /horizon/api/trade-publication-framework/instances/{instanceId}/failed/{batchReferenceId}/resolve | [EXPERIMENTAL] ResolveFailedDelivery: Resolve a failed delivery without retry
 [**retry_failed_delivery**](TradePublicationFrameworkApi.md#retry_failed_delivery) | **POST** /horizon/api/trade-publication-framework/instances/{instanceId}/failed/retry | [EXPERIMENTAL] RetryFailedDelivery: Retry failed deliveries for Trade Publication Framework
-[**retry_tpf_sftp_delivery**](TradePublicationFrameworkApi.md#retry_tpf_sftp_delivery) | **POST** /horizon/api/trade-publication-framework/instances/{instanceId}/files/{fileId}/retry-sftp | [EXPERIMENTAL] RetryTpfSftpDelivery: Retry SFTP delivery for a previously sent TPF file
+[**retry_tpf_sftp_delivery**](TradePublicationFrameworkApi.md#retry_tpf_sftp_delivery) | **POST** /horizon/api/trade-publication-framework/instances/{instanceId}/files/{fileUuid}/retry-sftp | [EXPERIMENTAL] RetryTpfSftpDelivery: Retry SFTP delivery for a previously sent TPF file
 
 
 ### Example
@@ -541,7 +541,7 @@ Name | Type | Description  | Notes
 ---
 
 # **retry_tpf_sftp_delivery**
-> TpfRetrySftpResponse retryTpfSftpDelivery = retry_tpf_sftp_delivery(instance_id, file_id)
+> TpfRetrySftpResponse retryTpfSftpDelivery = retry_tpf_sftp_delivery(instance_id, file_uuid)
 
 [EXPERIMENTAL] RetryTpfSftpDelivery: Retry SFTP delivery for a previously sent TPF file
 
@@ -550,8 +550,8 @@ Name | Type | Description  | Notes
 ```python
 api_instance = api_client_factory.build(TradePublicationFrameworkApi)
 instance_id = 'instance_id_example' # str
-file_id = 56 # int
-api_response = api_instance.retry_tpf_sftp_delivery(instance_id, file_id)
+file_uuid = 'file_uuid_example' # str
+api_response = api_instance.retry_tpf_sftp_delivery(instance_id, file_uuid)
 pprint(api_response)
 ```
 
@@ -560,7 +560,7 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **instance_id** | **str**| Integration instance ID | [required] 
- **file_id** | **int**| File delivery ID to retry | [required] 
+ **file_uuid** | **str**| File delivery UUID to retry, as returned by the run-files and file-deliveries listings | [required] 
 
 ### Return type
 

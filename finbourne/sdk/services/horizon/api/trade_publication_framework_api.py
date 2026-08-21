@@ -1600,13 +1600,13 @@ class TradePublicationFrameworkApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def retry_tpf_sftp_delivery(self, instance_id: StrictStr, file_id: int, **kwargs) -> TpfRetrySftpResponse:
+    def retry_tpf_sftp_delivery(self, instance_id: StrictStr, file_uuid: StrictStr, **kwargs) -> TpfRetrySftpResponse:
         """[EXPERIMENTAL] RetryTpfSftpDelivery: Retry SFTP delivery for a previously sent TPF file  # noqa: E501
 
         :param instance_id: Integration instance ID (required)
         :type instance_id: str
-        :param file_id: File delivery ID to retry (required)
-        :type file_id: int
+        :param file_uuid: File delivery UUID to retry, as returned by the run-files and file-deliveries listings (required)
+        :type file_uuid: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -1617,17 +1617,17 @@ class TradePublicationFrameworkApi:
             message = "Error! Please call the retry_tpf_sftp_delivery_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.retry_tpf_sftp_delivery_with_http_info(instance_id, file_id, **kwargs)
+        response = self.retry_tpf_sftp_delivery_with_http_info(instance_id, file_uuid, **kwargs)
         return response.data
 
     @validate_call
-    def retry_tpf_sftp_delivery_with_http_info(self, instance_id: StrictStr, file_id: int, **kwargs) -> ApiResponse[TpfRetrySftpResponse]:
+    def retry_tpf_sftp_delivery_with_http_info(self, instance_id: StrictStr, file_uuid: StrictStr, **kwargs) -> ApiResponse[TpfRetrySftpResponse]:
         """[EXPERIMENTAL] RetryTpfSftpDelivery: Retry SFTP delivery for a previously sent TPF file  # noqa: E501
 
         :param instance_id: Integration instance ID (required)
         :type instance_id: str
-        :param file_id: File delivery ID to retry (required)
-        :type file_id: int
+        :param file_uuid: File delivery UUID to retry, as returned by the run-files and file-deliveries listings (required)
+        :type file_uuid: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1652,7 +1652,7 @@ class TradePublicationFrameworkApi:
 
         _all_params = [
             'instance_id',
-            'file_id'
+            'file_uuid'
         ]
         _all_params.extend(
             [
@@ -1683,8 +1683,8 @@ class TradePublicationFrameworkApi:
         if _params['instance_id'] is not None:
             _path_params['instanceId'] = _params['instance_id']
 
-        if _params['file_id'] is not None:
-            _path_params['fileId'] = _params['file_id']
+        if _params['file_uuid'] is not None:
+            _path_params['fileUuid'] = _params['file_uuid']
 
 
         # process the query parameters
@@ -1711,7 +1711,7 @@ class TradePublicationFrameworkApi:
         }
 
         return self.sync_api_client.call_api(
-            '/horizon/api/trade-publication-framework/instances/{instanceId}/files/{fileId}/retry-sftp', 'POST',
+            '/horizon/api/trade-publication-framework/instances/{instanceId}/files/{fileUuid}/retry-sftp', 'POST',
             _path_params,
             _query_params,
             _header_params,
@@ -3278,13 +3278,13 @@ class TradePublicationFrameworkApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def retry_tpf_sftp_delivery_async(self, instance_id: StrictStr, file_id: int, **kwargs) -> TpfRetrySftpResponse:
+    async def retry_tpf_sftp_delivery_async(self, instance_id: StrictStr, file_uuid: StrictStr, **kwargs) -> TpfRetrySftpResponse:
             """[EXPERIMENTAL] RetryTpfSftpDelivery: Retry SFTP delivery for a previously sent TPF file  # noqa: E501
             
             :param instance_id: Integration instance ID (required)
             :type instance_id: str
-            :param file_id: File delivery ID to retry (required)
-            :type file_id: int
+            :param file_uuid: File delivery UUID to retry, as returned by the run-files and file-deliveries listings (required)
+            :type file_uuid: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -3295,18 +3295,18 @@ class TradePublicationFrameworkApi:
                 message = "Error! Please call the retry_tpf_sftp_delivery_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.retry_tpf_sftp_delivery_with_http_info_async(instance_id, file_id, **kwargs)
+            response = await self.retry_tpf_sftp_delivery_with_http_info_async(instance_id, file_uuid, **kwargs)
             return response.data
 
     @validate_call
-    async def retry_tpf_sftp_delivery_with_http_info_async(self, instance_id: StrictStr, file_id: int, **kwargs) -> ApiResponse[TpfRetrySftpResponse]:
+    async def retry_tpf_sftp_delivery_with_http_info_async(self, instance_id: StrictStr, file_uuid: StrictStr, **kwargs) -> ApiResponse[TpfRetrySftpResponse]:
             """[EXPERIMENTAL] RetryTpfSftpDelivery: Retry SFTP delivery for a previously sent TPF file  # noqa: E501
 
 
             :param instance_id: Integration instance ID (required)
             :type instance_id: str
-            :param file_id: File delivery ID to retry (required)
-            :type file_id: int
+            :param file_uuid: File delivery UUID to retry, as returned by the run-files and file-deliveries listings (required)
+            :type file_uuid: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -3331,7 +3331,7 @@ class TradePublicationFrameworkApi:
 
             _all_params = [
                 'instance_id',
-                'file_id'
+                'file_uuid'
             ]
             _all_params.extend(
                 [
@@ -3362,8 +3362,8 @@ class TradePublicationFrameworkApi:
             if _params['instance_id'] is not None:
                 _path_params['instanceId'] = _params['instance_id']
 
-            if _params['file_id'] is not None:
-                _path_params['fileId'] = _params['file_id']
+            if _params['file_uuid'] is not None:
+                _path_params['fileUuid'] = _params['file_uuid']
 
 
             # process the query parameters
@@ -3390,7 +3390,7 @@ class TradePublicationFrameworkApi:
             }
 
             return await self.api_client.call_api_async(
-                '/horizon/api/trade-publication-framework/instances/{instanceId}/files/{fileId}/retry-sftp', 'POST',
+                '/horizon/api/trade-publication-framework/instances/{instanceId}/files/{fileUuid}/retry-sftp', 'POST',
                 _path_params,
                 _query_params,
                 _header_params,

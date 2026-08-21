@@ -16,6 +16,7 @@ Response model for TPF file delivery search results
 | **destination_status** | **str** | Required | *No description available.* |
 | **destination_error** | **str** | Optional | *No description available.* |
 | **destination_name** | **str** | Optional | *No description available.* |
+| **file_uuid** | **UUID** | Required | *No description available.* |
 
 
 ## Usage
@@ -36,7 +37,8 @@ instance = TpfFileDeliveryResponse(
     destination_path="...",  # optional
     destination_status="...",  # required
     destination_error="...",  # optional
-    destination_name="..."  # optional
+    destination_name="...",  # optional
+    file_uuid="..."  # required
 )
 ```
 

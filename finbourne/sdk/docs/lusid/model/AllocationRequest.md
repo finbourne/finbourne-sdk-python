@@ -22,6 +22,7 @@ A request to create or update an Allocation.
 | **settlement_currency_fx_rate** | **float** | Optional | The settlement currency to allocation currency FX rate. |
 | **counterparty** | **str** | Optional | The counterparty for this allocation. |
 | **execution_ids** | [List[ResourceId]](ResourceId.md) | Optional | The executions associated with this allocation |
+| **custodian_account_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -48,7 +49,8 @@ instance = AllocationRequest(
     settlement_currency="...",  # optional — The settlement currency of this allocation.
     settlement_currency_fx_rate=0.0,  # optional — The settlement currency to allocation currency FX rate.
     counterparty="...",  # optional — The counterparty for this allocation.
-    execution_ids=[]  # optional — The executions associated with this allocation
+    execution_ids=[],  # optional — The executions associated with this allocation
+    custodian_account_id=ResourceId(...)  # optional
 )
 ```
 
@@ -62,6 +64,7 @@ instance = AllocationRequest(
 - [ResourceId](ResourceId.md) — used in `placement_ids`
 - [CurrencyAndAmount](CurrencyAndAmount.md)
 - [ResourceId](ResourceId.md) — used in `execution_ids`
+- [ResourceId](ResourceId.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

@@ -30,11 +30,11 @@ class TpfRetrySftpResponse(BaseModel):
     """
     success: StrictBool = Field(description="Whether the retry was successful")
     message:  StrictStr = Field(...,alias="message", description="Status message describing the result") 
-    new_file_delivery_id: Optional[StrictInt] = Field(default=None, description="ID of the new file delivery record created for this retry (if successful)", alias="newFileDeliveryId")
+    new_file_delivery_uuid:  Optional[StrictStr] = Field(default=None,alias="newFileDeliveryUuid", description="UUID of the new file delivery record created for this retry (if successful)") 
     retried_at: Optional[datetime] = Field(default=None, description="Timestamp when the retry was executed", alias="retriedAt")
     original_file: Optional[TpfFileDeliveryInfo] = Field(default=None, alias="originalFile")
     duplicate_file: Optional[TpfFileDeliveryInfo] = Field(default=None, alias="duplicateFile")
-    __properties: ClassVar[List[str]] = ["success", "message", "newFileDeliveryId", "retriedAt", "originalFile", "duplicateFile"]
+    __properties: ClassVar[List[str]] = ["success", "message", "newFileDeliveryUuid", "retriedAt", "originalFile", "duplicateFile"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -76,10 +76,10 @@ class TpfRetrySftpResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of duplicate_file
         if self.duplicate_file:
             _dict['duplicateFile'] = self.duplicate_file.to_dict(by_alias=by_alias)
-        # set to None if new_file_delivery_id (nullable) is None
+        # set to None if new_file_delivery_uuid (nullable) is None
         # and model_fields_set contains the field
-        if self.new_file_delivery_id is None and "new_file_delivery_id" in self.model_fields_set:
-            _dict['newFileDeliveryId'] = None
+        if self.new_file_delivery_uuid is None and "new_file_delivery_uuid" in self.model_fields_set:
+            _dict['newFileDeliveryUuid'] = None
 
         # set to None if retried_at (nullable) is None
         # and model_fields_set contains the field
@@ -100,7 +100,7 @@ class TpfRetrySftpResponse(BaseModel):
         _obj = TpfRetrySftpResponse.model_validate({
             "success": obj.get("success"),
             "message": obj.get("message"),
-            "new_file_delivery_id": obj.get("newFileDeliveryId"),
+            "new_file_delivery_uuid": obj.get("newFileDeliveryUuid"),
             "retried_at": obj.get("retriedAt"),
             "original_file": TpfFileDeliveryInfo.from_dict(_v) if (_v := obj.get("originalFile")) is not None else None,
             "duplicate_file": TpfFileDeliveryInfo.from_dict(_v) if (_v := obj.get("duplicateFile")) is not None else None

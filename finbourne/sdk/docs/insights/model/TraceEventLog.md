@@ -15,6 +15,7 @@ Holds information about a trace event.
 | **agent_code** | **str** | Required | The code identifier of the agent currently being interacted with |
 | **agent_version** | **int** | Required | The version of the circuit in which the trace event occurred. |
 | **node_id** | **str** | Required | The ID of the circuit&#39;s node at which the trace event occured. |
+| **row_id** | **str** | Optional | An opaque identifier for comparing complete trace event rows. |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
@@ -36,6 +37,7 @@ instance = TraceEventLog(
     agent_code="...",  # required — The code identifier of the agent currently being interacted with
     agent_version=0,  # required — The version of the circuit in which the trace event occurred.
     node_id="...",  # required — The ID of the circuit&#39;s node at which the trace event occured.
+    row_id="...",  # optional — An opaque identifier for comparing complete trace event rows.
     links=[]  # optional
 )
 ```

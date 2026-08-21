@@ -35,7 +35,9 @@ class RunFileResponse(BaseModel):
     encrypted: StrictBool
     destinations: List[FileDestinationResponse]
     transaction_ids: List[UUID] = Field(alias="transactionIds")
-    __properties: ClassVar[List[str]] = ["fileName", "generatedAt", "rowCount", "fileHash", "encrypted", "destinations", "transactionIds"]
+    file_uuid:  StrictStr = Field(...,alias="fileUuid") 
+    failed_transaction_ids: List[UUID] = Field(alias="failedTransactionIds")
+    __properties: ClassVar[List[str]] = ["fileName", "generatedAt", "rowCount", "fileHash", "encrypted", "destinations", "transactionIds", "fileUuid", "failedTransactionIds"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -96,7 +98,9 @@ class RunFileResponse(BaseModel):
             "file_hash": obj.get("fileHash"),
             "encrypted": obj.get("encrypted"),
             "destinations": [FileDestinationResponse.from_dict(_item) for _item in _v] if (_v := obj.get("destinations")) is not None else None,
-            "transaction_ids": obj.get("transactionIds")
+            "transaction_ids": obj.get("transactionIds"),
+            "file_uuid": obj.get("fileUuid"),
+            "failed_transaction_ids": obj.get("failedTransactionIds")
         })
         return _obj
 

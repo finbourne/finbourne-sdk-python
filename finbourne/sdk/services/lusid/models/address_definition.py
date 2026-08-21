@@ -21,6 +21,7 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
+from finbourne.sdk.services.lusid.models.result_axis_definition import ResultAxisDefinition
 
 
 class AddressDefinition(BaseModel):
@@ -33,7 +34,8 @@ class AddressDefinition(BaseModel):
     life_cycle_status:  Optional[StrictStr] = Field(default=None,alias="lifeCycleStatus", description="What is the status of the address path. If it is not Production then it might be removed at some point in the future.  See the removal date for the likely timing of that if any.") 
     removal_date: Optional[datetime] = Field(default=None, description="If the life-cycle status of the address is Deprecated then this is the date at which support of the address will be suspended.  After that date it will be removed at the earliest possible point subject to any specific contractual support and development constraints.", alias="removalDate")
     documentation_link:  Optional[StrictStr] = Field(default=None,alias="documentationLink", description="Contains a link to the documentation for this AddressDefinition in KnowledgeBase.") 
-    __properties: ClassVar[List[str]] = ["displayName", "type", "description", "lifeCycleStatus", "removalDate", "documentationLink"]
+    axes: Optional[List[ResultAxisDefinition]] = Field(default=None, description="For keys whose type is a labelled vector or matrix (Result1D/Result2D), describes what the  labels on each axis mean. Null for scalar results and for shaped results whose axes have  not been described.")
+    __properties: ClassVar[List[str]] = ["displayName", "type", "description", "lifeCycleStatus", "removalDate", "documentationLink", "axes"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -92,6 +94,13 @@ class AddressDefinition(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of each item in axes (list)
+        _items = []
+        if self.axes:
+            for _item in self.axes:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['axes'] = _items
         # set to None if display_name (nullable) is None
         # and model_fields_set contains the field
         if self.display_name is None and "display_name" in self.model_fields_set:
@@ -117,6 +126,11 @@ class AddressDefinition(BaseModel):
         if self.documentation_link is None and "documentation_link" in self.model_fields_set:
             _dict['documentationLink'] = None
 
+        # set to None if axes (nullable) is None
+        # and model_fields_set contains the field
+        if self.axes is None and "axes" in self.model_fields_set:
+            _dict['axes'] = None
+
         return _dict
 
     @classmethod
@@ -134,7 +148,8 @@ class AddressDefinition(BaseModel):
             "description": obj.get("description"),
             "life_cycle_status": obj.get("lifeCycleStatus"),
             "removal_date": obj.get("removalDate"),
-            "documentation_link": obj.get("documentationLink")
+            "documentation_link": obj.get("documentationLink"),
+            "axes": [ResultAxisDefinition.from_dict(_item) for _item in _v] if (_v := obj.get("axes")) is not None else None
         })
         return _obj
 
