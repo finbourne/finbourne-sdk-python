@@ -21,6 +21,7 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
+from finbourne.sdk.services.lusid.models.movement_condition_match import MovementConditionMatch
 
 
 class TransactionTypeDetails(BaseModel):
@@ -30,7 +31,8 @@ class TransactionTypeDetails(BaseModel):
     scope:  StrictStr = Field(...,alias="scope", description="The scope in which the TransactionType was resolved. If the portfolio has a TransactionTypeScope, this will have been used. Otherwise the default scope will have been used.") 
     source:  StrictStr = Field(...,alias="source", description="The source in which the TransactionType was resolved.") 
     type:  StrictStr = Field(...,alias="type", description="The resolved TransactionType. More information on TransactionType resolution can be found at https://support.lusid.com/docs/how-does-lusid-resolve-transactions-to-transaction-types") 
-    __properties: ClassVar[List[str]] = ["scope", "source", "type"]
+    movement_condition_matches: Optional[List[MovementConditionMatch]] = Field(default=None, description="One entry for each movement on the resolved TransactionType, in the order the movements are configured, recording whether that movement's condition was satisfied by this transaction. Empty for transaction versions that generate no movements, such as cancelled and amended versions.", alias="movementConditionMatches")
+    __properties: ClassVar[List[str]] = ["scope", "source", "type", "movementConditionMatches"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -66,6 +68,18 @@ class TransactionTypeDetails(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of each item in movement_condition_matches (list)
+        _items = []
+        if self.movement_condition_matches:
+            for _item in self.movement_condition_matches:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['movementConditionMatches'] = _items
+        # set to None if movement_condition_matches (nullable) is None
+        # and model_fields_set contains the field
+        if self.movement_condition_matches is None and "movement_condition_matches" in self.model_fields_set:
+            _dict['movementConditionMatches'] = None
+
         return _dict
 
     @classmethod
@@ -80,7 +94,8 @@ class TransactionTypeDetails(BaseModel):
         _obj = TransactionTypeDetails.model_validate({
             "scope": obj.get("scope"),
             "source": obj.get("source"),
-            "type": obj.get("type")
+            "type": obj.get("type"),
+            "movement_condition_matches": [MovementConditionMatch.from_dict(_item) for _item in _v] if (_v := obj.get("movementConditionMatches")) is not None else None
         })
         return _obj
 

@@ -63,8 +63,10 @@ class FundJournalEntryLine(BaseModel):
     ledger_column:  Optional[StrictStr] = Field(default=None,alias="ledgerColumn", description="Indicates if the Journal Entry Line is credit or debit. Available values: Debit, Credit.") 
     journal_entry_line_type:  Optional[StrictStr] = Field(default=None,alias="journalEntryLineType", description="Indicates the Journal Entry Line type. Available values: Default, Reversal, TrueUp.") 
     share_class_breakdowns: Optional[List[JournalEntryLineShareClassBreakdown]] = Field(default=None, description="Share Class breakdown data for this Journal Entry Line.", alias="shareClassBreakdowns")
+    custodian_account_id: Optional[ResourceId] = Field(default=None, alias="custodianAccountId")
+    custodian_account_type:  Optional[StrictStr] = Field(default=None,alias="custodianAccountType", description="Indicates the Account Type of the resolved Custodian Account for this Journal Entry Line.") 
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["accountingDate", "activityDate", "portfolioId", "instrumentId", "instrumentScope", "subHoldingKeys", "taxLotId", "generalLedgerAccountCode", "local", "base", "units", "postingModuleCode", "postingRule", "asAtDate", "activitiesDescription", "sourceType", "sourceId", "properties", "movementName", "holdingType", "economicBucket", "economicBucketComponent", "economicBucketVariant", "levels", "sourceLevels", "movementSign", "holdingSign", "ledgerColumn", "journalEntryLineType", "shareClassBreakdowns", "links"]
+    __properties: ClassVar[List[str]] = ["accountingDate", "activityDate", "portfolioId", "instrumentId", "instrumentScope", "subHoldingKeys", "taxLotId", "generalLedgerAccountCode", "local", "base", "units", "postingModuleCode", "postingRule", "asAtDate", "activitiesDescription", "sourceType", "sourceId", "properties", "movementName", "holdingType", "economicBucket", "economicBucketComponent", "economicBucketVariant", "levels", "sourceLevels", "movementSign", "holdingSign", "ledgerColumn", "journalEntryLineType", "shareClassBreakdowns", "custodianAccountId", "custodianAccountType", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -130,6 +132,9 @@ class FundJournalEntryLine(BaseModel):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['shareClassBreakdowns'] = _items
+        # override the default output from pydantic by calling `to_dict()` of custodian_account_id
+        if self.custodian_account_id:
+            _dict['custodianAccountId'] = self.custodian_account_id.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each item in links (list)
         _items = []
         if self.links:
@@ -212,6 +217,11 @@ class FundJournalEntryLine(BaseModel):
         if self.share_class_breakdowns is None and "share_class_breakdowns" in self.model_fields_set:
             _dict['shareClassBreakdowns'] = None
 
+        # set to None if custodian_account_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.custodian_account_type is None and "custodian_account_type" in self.model_fields_set:
+            _dict['custodianAccountType'] = None
+
         # set to None if links (nullable) is None
         # and model_fields_set contains the field
         if self.links is None and "links" in self.model_fields_set:
@@ -269,6 +279,8 @@ class FundJournalEntryLine(BaseModel):
             "ledger_column": obj.get("ledgerColumn"),
             "journal_entry_line_type": obj.get("journalEntryLineType"),
             "share_class_breakdowns": [JournalEntryLineShareClassBreakdown.from_dict(_item) for _item in _v] if (_v := obj.get("shareClassBreakdowns")) is not None else None,
+            "custodian_account_id": ResourceId.from_dict(_v) if (_v := obj.get("custodianAccountId")) is not None else None,
+            "custodian_account_type": obj.get("custodianAccountType"),
             "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj

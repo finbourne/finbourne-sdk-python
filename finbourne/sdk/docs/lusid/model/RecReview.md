@@ -8,7 +8,7 @@ A summary of the per-result review state across the result set.
 | **count_reviewed** | **int** | Required | The number of results with review status Reviewed. |
 | **count_required** | **int** | Required | The number of results with review status Required. |
 | **count_not_required** | **int** | Required | The number of results with review status Not Required. |
-| **completion_ratio** | **float** | Required | Reviewed / (Reviewed + Required). Is 1.0 when the denominator is zero, and null when execution failed. |
+| **completion_ratio** | **float** | Optional | Reviewed / (Reviewed + Required). Is 1.0 when the denominator is zero, and null when execution failed. |
 
 
 ## Usage
@@ -22,7 +22,7 @@ instance = RecReview(
     count_reviewed=0,  # required — The number of results with review status Reviewed.
     count_required=0,  # required — The number of results with review status Required.
     count_not_required=0,  # required — The number of results with review status Not Required.
-    completion_ratio=0.0  # required — Reviewed / (Reviewed + Required). Is 1.0 when the denominator is zero, and null when execution failed.
+    completion_ratio=0.0  # optional — Reviewed / (Reviewed + Required). Is 1.0 when the denominator is zero, and null when execution failed.
 )
 ```
 

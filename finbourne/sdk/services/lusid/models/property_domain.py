@@ -66,6 +66,7 @@ class PropertyDomain(str, Enum):  # type: ignore[misc]
     ABORCONFIGURATION = 'AborConfiguration'
     FUND = 'Fund'
     FUNDCONFIGURATION = 'FundConfiguration'
+    FUNDSTRUCTURE = 'FundStructure'
     FEE = 'Fee'
     RECONCILIATION = 'Reconciliation'
     PROPERTYDEFINITION = 'PropertyDefinition'

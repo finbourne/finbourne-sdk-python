@@ -35,6 +35,8 @@ A Journal Entry line entity specifically for fund valuation point lines.
 | **ledger_column** | **str** | Optional | Indicates if the Journal Entry Line is credit or debit. Available values: Debit, Credit. |
 | **journal_entry_line_type** | **str** | Optional | Indicates the Journal Entry Line type. Available values: Default, Reversal, TrueUp. |
 | **share_class_breakdowns** | [List[JournalEntryLineShareClassBreakdown]](JournalEntryLineShareClassBreakdown.md) | Optional | Share Class breakdown data for this Journal Entry Line. |
+| **custodian_account_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **custodian_account_type** | **str** | Optional | Indicates the Account Type of the resolved Custodian Account for this Journal Entry Line. |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
@@ -76,6 +78,8 @@ instance = FundJournalEntryLine(
     ledger_column="...",  # optional — Indicates if the Journal Entry Line is credit or debit. Available values: Debit, Credit.
     journal_entry_line_type="...",  # optional — Indicates the Journal Entry Line type. Available values: Default, Reversal, TrueUp.
     share_class_breakdowns=[],  # optional — Share Class breakdown data for this Journal Entry Line.
+    custodian_account_id=ResourceId(...),  # optional
+    custodian_account_type="...",  # optional — Indicates the Account Type of the resolved Custodian Account for this Journal Entry Line.
     links=[]  # optional
 )
 ```
@@ -86,6 +90,7 @@ instance = FundJournalEntryLine(
 - [CurrencyAndAmount](CurrencyAndAmount.md)
 - [ModelProperty](ModelProperty.md) — used in `properties`
 - [JournalEntryLineShareClassBreakdown](JournalEntryLineShareClassBreakdown.md) — used in `share_class_breakdowns`
+- [ResourceId](ResourceId.md)
 - [Link](Link.md)
 
 

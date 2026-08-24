@@ -876,6 +876,7 @@ from finbourne.sdk.services.lusid.models.model_schema import ModelSchema
 from finbourne.sdk.services.lusid.models.model_selection import ModelSelection
 from finbourne.sdk.services.lusid.models.move_orders_to_different_blocks_request import MoveOrdersToDifferentBlocksRequest
 from finbourne.sdk.services.lusid.models.moved_order_to_different_block_response import MovedOrderToDifferentBlockResponse
+from finbourne.sdk.services.lusid.models.movement_condition_match import MovementConditionMatch
 from finbourne.sdk.services.lusid.models.movement_settlement_summary import MovementSettlementSummary
 from finbourne.sdk.services.lusid.models.movement_type import MovementType
 from finbourne.sdk.services.lusid.models.multi_currency_amounts import MultiCurrencyAmounts
@@ -1211,7 +1212,6 @@ from finbourne.sdk.services.lusid.models.rec_run_log_entry import RecRunLogEntry
 from finbourne.sdk.services.lusid.models.rec_submission import RecSubmission
 from finbourne.sdk.services.lusid.models.rec_superseded_run import RecSupersededRun
 from finbourne.sdk.services.lusid.models.rec_user_comment import RecUserComment
-from finbourne.sdk.services.lusid.models.rec_workflow_task import RecWorkflowTask
 from finbourne.sdk.services.lusid.models.recipe_block import RecipeBlock
 from finbourne.sdk.services.lusid.models.recipe_composer import RecipeComposer
 from finbourne.sdk.services.lusid.models.recipe_value import RecipeValue
@@ -2583,6 +2583,7 @@ __all__ = [
     "ModelSelection",
     "MoveOrdersToDifferentBlocksRequest",
     "MovedOrderToDifferentBlockResponse",
+    "MovementConditionMatch",
     "MovementSettlementSummary",
     "MovementType",
     "MultiCurrencyAmounts",
@@ -2918,7 +2919,6 @@ __all__ = [
     "RecSubmission",
     "RecSupersededRun",
     "RecUserComment",
-    "RecWorkflowTask",
     "RecipeBlock",
     "RecipeComposer",
     "RecipeValue",

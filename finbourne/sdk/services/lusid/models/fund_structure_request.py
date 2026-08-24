@@ -25,6 +25,7 @@ from finbourne.sdk.services.lusid.models.allocation_group import AllocationGroup
 from finbourne.sdk.services.lusid.models.fund_definition_request import FundDefinitionRequest
 from finbourne.sdk.services.lusid.models.fund_structure_edge import FundStructureEdge
 from finbourne.sdk.services.lusid.models.fund_structure_node import FundStructureNode
+from finbourne.sdk.services.lusid.models.model_property import ModelProperty
 from finbourne.sdk.services.lusid.models.resource_id import ResourceId
 
 
@@ -40,7 +41,8 @@ class FundStructureRequest(BaseModel):
     allocation_groups: Optional[List[AllocationGroup]] = Field(default=None, description="An optional list of Allocation Groups that can apply across a Fund Structure. Only classes and feeder funds linked to the master fund specified are allowed.", alias="allocationGroups")
     nodes: List[FundStructureNode] = Field(description="The list of nodes that make up the Fund Structure, each referencing a Fund and defining its role.")
     edges: List[FundStructureEdge] = Field(description="The list of edges that define the relationships between feeder and master nodes in the structure.")
-    __properties: ClassVar[List[str]] = ["code", "name", "description", "existingFunds", "newFunds", "allocationGroups", "nodes", "edges"]
+    properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="A set of properties to decorate onto the Fund Structure.")
+    __properties: ClassVar[List[str]] = ["code", "name", "description", "existingFunds", "newFunds", "allocationGroups", "nodes", "edges", "properties"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -111,6 +113,13 @@ class FundStructureRequest(BaseModel):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['edges'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each value in properties (dict)
+        _field_dict = {}
+        if self.properties:
+            for _key in self.properties:
+                if self.properties[_key]:
+                    _field_dict[_key] = self.properties[_key].to_dict(by_alias=by_alias)
+            _dict['properties'] = _field_dict
         # set to None if description (nullable) is None
         # and model_fields_set contains the field
         if self.description is None and "description" in self.model_fields_set:
@@ -131,6 +140,11 @@ class FundStructureRequest(BaseModel):
         if self.allocation_groups is None and "allocation_groups" in self.model_fields_set:
             _dict['allocationGroups'] = None
 
+        # set to None if properties (nullable) is None
+        # and model_fields_set contains the field
+        if self.properties is None and "properties" in self.model_fields_set:
+            _dict['properties'] = None
+
         return _dict
 
     @classmethod
@@ -150,7 +164,13 @@ class FundStructureRequest(BaseModel):
             "new_funds": [FundDefinitionRequest.from_dict(_item) for _item in _v] if (_v := obj.get("newFunds")) is not None else None,
             "allocation_groups": [AllocationGroup.from_dict(_item) for _item in _v] if (_v := obj.get("allocationGroups")) is not None else None,
             "nodes": [FundStructureNode.from_dict(_item) for _item in _v] if (_v := obj.get("nodes")) is not None else None,
-            "edges": [FundStructureEdge.from_dict(_item) for _item in _v] if (_v := obj.get("edges")) is not None else None
+            "edges": [FundStructureEdge.from_dict(_item) for _item in _v] if (_v := obj.get("edges")) is not None else None,
+            "properties": dict(
+                (_k, ModelProperty.from_dict(_v))
+                for _k, _v in _val.items()
+            )
+            if (_val := obj.get("properties")) is not None
+            else None
         })
         return _obj
 

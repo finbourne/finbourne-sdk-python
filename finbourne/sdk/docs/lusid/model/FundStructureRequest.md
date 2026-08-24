@@ -13,6 +13,7 @@ The request used to create a Fund Structure.
 | **allocation_groups** | [List[AllocationGroup]](AllocationGroup.md) | Optional | An optional list of Allocation Groups that can apply across a Fund Structure. Only classes and feeder funds linked to the master fund specified are allowed. |
 | **nodes** | [List[FundStructureNode]](FundStructureNode.md) | Required | The list of nodes that make up the Fund Structure, each referencing a Fund and defining its role. |
 | **edges** | [List[FundStructureEdge]](FundStructureEdge.md) | Required | The list of edges that define the relationships between feeder and master nodes in the structure. |
+| **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties to decorate onto the Fund Structure. |
 
 
 ## Usage
@@ -30,7 +31,8 @@ instance = FundStructureRequest(
     new_funds=[],  # optional — An optional list of Fund definitions to be created inline as part of the structure.
     allocation_groups=[],  # optional — An optional list of Allocation Groups that can apply across a Fund Structure. Only classes and feeder funds linked to the master fund specified are allowed.
     nodes=[],  # required — The list of nodes that make up the Fund Structure, each referencing a Fund and defining its role.
-    edges=[]  # required — The list of edges that define the relationships between feeder and master nodes in the structure.
+    edges=[],  # required — The list of edges that define the relationships between feeder and master nodes in the structure.
+    properties=ModelProperty(...)  # optional — A set of properties to decorate onto the Fund Structure.
 )
 ```
 
@@ -39,6 +41,7 @@ instance = FundStructureRequest(
 - [AllocationGroup](AllocationGroup.md) — used in `allocation_groups`
 - [FundStructureNode](FundStructureNode.md) — used in `nodes`
 - [FundStructureEdge](FundStructureEdge.md) — used in `edges`
+- [ModelProperty](ModelProperty.md) — used in `properties`
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

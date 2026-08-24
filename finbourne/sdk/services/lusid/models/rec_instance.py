@@ -36,6 +36,7 @@ class RecInstance(BaseModel):
     """
     id: RecInstanceId
     rec_definition_id: ResourceId = Field(alias="recDefinitionId")
+    rec_definition_display_name:  StrictStr = Field(...,alias="recDefinitionDisplayName", description="The display name of the rec definition the rec was instantiated for, as it stood as-at instantiation. Not re-synchronised if the definition is later renamed.") 
     as_at_instantiated: datetime = Field(description="The asAt datetime at which the instance was first created.", alias="asAtInstantiated")
     status:  StrictStr = Field(...,alias="status", description="The instance-level lifecycle rollup. Available values: Running, Failures, ReviewAndApproval, AllApproved, Locked.") 
     as_at_locked: Optional[datetime] = Field(default=None, description="The wall-clock time the lock action was performed. Null when the instance has not been locked.", alias="asAtLocked")
@@ -45,7 +46,7 @@ class RecInstance(BaseModel):
     href:  Optional[StrictStr] = Field(default=None,alias="href", description="The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime.") 
     version: Optional[Version] = None
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["id", "recDefinitionId", "asAtInstantiated", "status", "asAtLocked", "datesLocked", "closedPeriods", "runLog", "href", "version", "links"]
+    __properties: ClassVar[List[str]] = ["id", "recDefinitionId", "recDefinitionDisplayName", "asAtInstantiated", "status", "asAtLocked", "datesLocked", "closedPeriods", "runLog", "href", "version", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -139,6 +140,7 @@ class RecInstance(BaseModel):
         _obj = RecInstance.model_validate({
             "id": RecInstanceId.from_dict(_v) if (_v := obj.get("id")) is not None else None,
             "rec_definition_id": ResourceId.from_dict(_v) if (_v := obj.get("recDefinitionId")) is not None else None,
+            "rec_definition_display_name": obj.get("recDefinitionDisplayName"),
             "as_at_instantiated": obj.get("asAtInstantiated"),
             "status": obj.get("status"),
             "as_at_locked": obj.get("asAtLocked"),

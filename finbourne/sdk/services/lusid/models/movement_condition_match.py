@@ -21,17 +21,16 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
-from finbourne.sdk.services.lusid.models.resource_id import ResourceId
 
 
-class RecWorkflowTask(BaseModel):
+class MovementConditionMatch(BaseModel):
     """
-    The workflow service task that instantiated a rec instance.  Minimal placeholder until the full workflow service task DTO is available.  # noqa: E501
+    The outcome of one movement's condition for a transaction. Reported per movement rather than keyed by  movement, because a transaction type may configure several movements that share a side and have no name.  # noqa: E501
     """
-    id:  Optional[StrictStr] = Field(default=None,alias="id", description="The identifier of the workflow service task.") 
-    task_definition_id: Optional[ResourceId] = Field(default=None, alias="taskDefinitionId")
-    state:  Optional[StrictStr] = Field(default=None,alias="state", description="The current state of the workflow service task.") 
-    __properties: ClassVar[List[str]] = ["id", "taskDefinitionId", "state"]
+    movement_name:  Optional[StrictStr] = Field(default=None,alias="movementName", description="The name of the movement, or null if the movement is unnamed.") 
+    side:  StrictStr = Field(...,alias="side", description="The side the movement is configured against.") 
+    condition_matched: Optional[StrictBool] = Field(default=None, description="Whether the movement's condition was satisfied by this transaction. A movement with no condition always matches.", alias="conditionMatched")
+    __properties: ClassVar[List[str]] = ["movementName", "side", "conditionMatched"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -56,8 +55,8 @@ class RecWorkflowTask(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> RecWorkflowTask:
-        """Create an instance of RecWorkflowTask from a JSON string"""
+    def from_json(cls, json_str: str) -> MovementConditionMatch:
+        """Create an instance of MovementConditionMatch from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self, by_alias=True):
@@ -67,36 +66,28 @@ class RecWorkflowTask(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of task_definition_id
-        if self.task_definition_id:
-            _dict['taskDefinitionId'] = self.task_definition_id.to_dict(by_alias=by_alias)
-        # set to None if id (nullable) is None
+        # set to None if movement_name (nullable) is None
         # and model_fields_set contains the field
-        if self.id is None and "id" in self.model_fields_set:
-            _dict['id'] = None
-
-        # set to None if state (nullable) is None
-        # and model_fields_set contains the field
-        if self.state is None and "state" in self.model_fields_set:
-            _dict['state'] = None
+        if self.movement_name is None and "movement_name" in self.model_fields_set:
+            _dict['movementName'] = None
 
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> RecWorkflowTask:
-        """Create an instance of RecWorkflowTask from a dict"""
+    def from_dict(cls, obj: dict) -> MovementConditionMatch:
+        """Create an instance of MovementConditionMatch from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return RecWorkflowTask.model_validate(obj)
+            return MovementConditionMatch.model_validate(obj)
 
-        _obj = RecWorkflowTask.model_validate({
-            "id": obj.get("id"),
-            "task_definition_id": ResourceId.from_dict(_v) if (_v := obj.get("taskDefinitionId")) is not None else None,
-            "state": obj.get("state")
+        _obj = MovementConditionMatch.model_validate({
+            "movement_name": obj.get("movementName"),
+            "side": obj.get("side"),
+            "condition_matched": obj.get("conditionMatched")
         })
         return _obj
 
-RecWorkflowTask.model_rebuild()
+MovementConditionMatch.model_rebuild()
 

@@ -7,6 +7,7 @@ The expanded view of a rec instance: its identity, lifecycle status, lock state,
 |------|------|----------|-------------|
 | **id** | [RecInstanceId](RecInstanceId.md) | Required | *No description available.* |
 | **rec_definition_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
+| **rec_definition_display_name** | **str** | Required | The display name of the rec definition the rec was instantiated for, as it stood as-at instantiation. Not re-synchronised if the definition is later renamed. |
 | **as_at_instantiated** | **datetime** | Required | The asAt datetime at which the instance was first created. |
 | **status** | **str** | Required | The instance-level lifecycle rollup. Available values: Running, Failures, ReviewAndApproval, AllApproved, Locked. |
 | **as_at_locked** | **datetime** | Optional | The wall-clock time the lock action was performed. Null when the instance has not been locked. |
@@ -28,6 +29,7 @@ from finbourne.sdk.services.lusid.models.RecInstance import RecInstance
 instance = RecInstance(
     id=RecInstanceId(...),  # required
     rec_definition_id=ResourceId(...),  # required
+    rec_definition_display_name="...",  # required — The display name of the rec definition the rec was instantiated for, as it stood as-at instantiation. Not re-synchronised if the definition is later renamed.
     as_at_instantiated=datetime.now(),  # required — The asAt datetime at which the instance was first created.
     status="...",  # required — The instance-level lifecycle rollup. Available values: Running, Failures, ReviewAndApproval, AllApproved, Locked.
     as_at_locked=datetime.now(),  # optional — The wall-clock time the lock action was performed. Null when the instance has not been locked.
