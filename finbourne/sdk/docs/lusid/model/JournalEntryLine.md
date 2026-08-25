@@ -34,6 +34,8 @@ A Journal Entry line entity.
 | **holding_sign** | **str** | Optional | Indicates if the Journal Entry Line is operating against a Long or Short holding. Available values: NA, Long, Short. |
 | **ledger_column** | **str** | Optional | Indicates if the Journal Entry Line is credit or debit. Available values: Debit, Credit. |
 | **journal_entry_line_type** | **str** | Optional | Indicates the Journal Entry Line type. Available values: Default, Reversal, TrueUp. |
+| **custodian_account_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **custodian_account_type** | **str** | Optional | Indicates the Account Type of the resolved Custodian Account for this Journal Entry Line. |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
@@ -74,6 +76,8 @@ instance = JournalEntryLine(
     holding_sign="...",  # optional — Indicates if the Journal Entry Line is operating against a Long or Short holding. Available values: NA, Long, Short.
     ledger_column="...",  # optional — Indicates if the Journal Entry Line is credit or debit. Available values: Debit, Credit.
     journal_entry_line_type="...",  # optional — Indicates the Journal Entry Line type. Available values: Default, Reversal, TrueUp.
+    custodian_account_id=ResourceId(...),  # optional
+    custodian_account_type="...",  # optional — Indicates the Account Type of the resolved Custodian Account for this Journal Entry Line.
     links=[]  # optional
 )
 ```
@@ -83,6 +87,7 @@ instance = JournalEntryLine(
 - [CurrencyAndAmount](CurrencyAndAmount.md)
 - [CurrencyAndAmount](CurrencyAndAmount.md)
 - [ModelProperty](ModelProperty.md) — used in `properties`
+- [ResourceId](ResourceId.md)
 - [Link](Link.md)
 
 

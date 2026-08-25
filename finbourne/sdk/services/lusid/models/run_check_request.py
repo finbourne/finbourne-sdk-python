@@ -22,6 +22,7 @@ from uuid import UUID
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 from finbourne.sdk.services.lusid.models.lusid_entity_dataset import LusidEntityDataset
+from finbourne.sdk.services.lusid.models.portfolio_holding_dataset import PortfolioHoldingDataset
 
 
 class RunCheckRequest(BaseModel):
@@ -30,7 +31,8 @@ class RunCheckRequest(BaseModel):
     """
     lusid_entity_dataset: Optional[LusidEntityDataset] = Field(default=None, alias="lusidEntityDataset")
     limit_individual_breaches_per_rule: Optional[StrictInt] = Field(default=None, description="The maximum number of individual breaches to return per rule. Defaults to 100 if not specified.", alias="limitIndividualBreachesPerRule")
-    __properties: ClassVar[List[str]] = ["lusidEntityDataset", "limitIndividualBreachesPerRule"]
+    portfolio_holding_dataset: Optional[PortfolioHoldingDataset] = Field(default=None, alias="portfolioHoldingDataset")
+    __properties: ClassVar[List[str]] = ["lusidEntityDataset", "limitIndividualBreachesPerRule", "portfolioHoldingDataset"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -69,6 +71,9 @@ class RunCheckRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of lusid_entity_dataset
         if self.lusid_entity_dataset:
             _dict['lusidEntityDataset'] = self.lusid_entity_dataset.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of portfolio_holding_dataset
+        if self.portfolio_holding_dataset:
+            _dict['portfolioHoldingDataset'] = self.portfolio_holding_dataset.to_dict(by_alias=by_alias)
         return _dict
 
     @classmethod
@@ -82,7 +87,8 @@ class RunCheckRequest(BaseModel):
 
         _obj = RunCheckRequest.model_validate({
             "lusid_entity_dataset": LusidEntityDataset.from_dict(_v) if (_v := obj.get("lusidEntityDataset")) is not None else None,
-            "limit_individual_breaches_per_rule": obj.get("limitIndividualBreachesPerRule")
+            "limit_individual_breaches_per_rule": obj.get("limitIndividualBreachesPerRule"),
+            "portfolio_holding_dataset": PortfolioHoldingDataset.from_dict(_v) if (_v := obj.get("portfolioHoldingDataset")) is not None else None
         })
         return _obj
 

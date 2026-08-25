@@ -28,6 +28,7 @@ A list of holdings.
 | **custodian_account_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **unsettled_units** | **float** | Optional | The number of unsettled units for the holding. |
 | **overdue_units** | **float** | Optional | The number of unsettled units for the holding that are beyond their contractual settlement date. |
+| **custodian_account** | [CustodianAccount](CustodianAccount.md) | Optional | *No description available.* |
 | **resolved_custodian_account** | [ResolvedCustodianAccount](ResolvedCustodianAccount.md) | Optional | *No description available.* |
 
 
@@ -62,6 +63,7 @@ instance = PortfolioHolding(
     custodian_account_id=ResourceId(...),  # optional
     unsettled_units=0.0,  # optional — The number of unsettled units for the holding.
     overdue_units=0.0,  # optional — The number of unsettled units for the holding that are beyond their contractual settlement date.
+    custodian_account=CustodianAccount(...),  # optional
     resolved_custodian_account=ResolvedCustodianAccount(...)  # optional
 )
 ```
@@ -78,6 +80,7 @@ instance = PortfolioHolding(
 - [CurrencyAndAmount](CurrencyAndAmount.md)
 - [SettlementSchedule](SettlementSchedule.md) — used in `settlement_schedule`
 - [ResourceId](ResourceId.md)
+- [CustodianAccount](CustodianAccount.md)
 - [ResolvedCustodianAccount](ResolvedCustodianAccount.md)
 
 

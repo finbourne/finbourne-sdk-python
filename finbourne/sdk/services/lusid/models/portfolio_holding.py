@@ -22,6 +22,7 @@ from uuid import UUID
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 from finbourne.sdk.services.lusid.models.currency_and_amount import CurrencyAndAmount
+from finbourne.sdk.services.lusid.models.custodian_account import CustodianAccount
 from finbourne.sdk.services.lusid.models.model_property import ModelProperty
 from finbourne.sdk.services.lusid.models.perpetual_property import PerpetualProperty
 from finbourne.sdk.services.lusid.models.resolved_custodian_account import ResolvedCustodianAccount
@@ -57,8 +58,9 @@ class PortfolioHolding(BaseModel):
     custodian_account_id: Optional[ResourceId] = Field(default=None, alias="custodianAccountId")
     unsettled_units: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The number of unsettled units for the holding.", alias="unsettledUnits")
     overdue_units: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The number of unsettled units for the holding that are beyond their contractual settlement date.", alias="overdueUnits")
+    custodian_account: Optional[CustodianAccount] = Field(default=None, alias="custodianAccount")
     resolved_custodian_account: Optional[ResolvedCustodianAccount] = Field(default=None, alias="resolvedCustodianAccount")
-    __properties: ClassVar[List[str]] = ["instrumentScope", "instrumentUid", "subHoldingKeys", "properties", "holdingType", "units", "settledUnits", "cost", "costPortfolioCcy", "transaction", "currency", "holdingTypeName", "holdingId", "notionalCost", "amortisedCost", "amortisedCostPortfolioCcy", "variationMargin", "variationMarginPortfolioCcy", "settlementSchedule", "currentFace", "custodianAccountId", "unsettledUnits", "overdueUnits", "resolvedCustodianAccount"]
+    __properties: ClassVar[List[str]] = ["instrumentScope", "instrumentUid", "subHoldingKeys", "properties", "holdingType", "units", "settledUnits", "cost", "costPortfolioCcy", "transaction", "currency", "holdingTypeName", "holdingId", "notionalCost", "amortisedCost", "amortisedCostPortfolioCcy", "variationMargin", "variationMarginPortfolioCcy", "settlementSchedule", "currentFace", "custodianAccountId", "unsettledUnits", "overdueUnits", "custodianAccount", "resolvedCustodianAccount"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -142,6 +144,9 @@ class PortfolioHolding(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of custodian_account_id
         if self.custodian_account_id:
             _dict['custodianAccountId'] = self.custodian_account_id.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of custodian_account
+        if self.custodian_account:
+            _dict['custodianAccount'] = self.custodian_account.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of resolved_custodian_account
         if self.resolved_custodian_account:
             _dict['resolvedCustodianAccount'] = self.resolved_custodian_account.to_dict(by_alias=by_alias)
@@ -230,6 +235,7 @@ class PortfolioHolding(BaseModel):
             "custodian_account_id": ResourceId.from_dict(_v) if (_v := obj.get("custodianAccountId")) is not None else None,
             "unsettled_units": obj.get("unsettledUnits"),
             "overdue_units": obj.get("overdueUnits"),
+            "custodian_account": CustodianAccount.from_dict(_v) if (_v := obj.get("custodianAccount")) is not None else None,
             "resolved_custodian_account": ResolvedCustodianAccount.from_dict(_v) if (_v := obj.get("resolvedCustodianAccount")) is not None else None
         })
         return _obj

@@ -43,6 +43,7 @@
 * [AuditingApi](insights/api/AuditingApi.md)
 * [CandelaTracesApi](insights/api/CandelaTracesApi.md)
 * [LogMetadataApi](insights/api/LogMetadataApi.md)
+* [MetricsApi](insights/api/MetricsApi.md)
 * [RequestsApi](insights/api/RequestsApi.md)
 * [VendorLogsApi](insights/api/VendorLogsApi.md)
 ## Luminesce

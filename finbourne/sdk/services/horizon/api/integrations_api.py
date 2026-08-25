@@ -567,6 +567,7 @@ class IntegrationsApi:
     def get_dataflow_processor_schema(self, processor_type: StrictStr, **kwargs) -> ProcessorSchemaResponse:
         """[EXPERIMENTAL] GetDataflowProcessorSchema: Returns processor configuration schema for a given processor type. This is used by the UI to render the configuration form for a processortype.  # noqa: E501
 
+        The user must be authenticated and the user's domain must be licensed for integration dataflow to call this method.  # noqa: E501
         :param processor_type:  (required)
         :type processor_type: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
@@ -586,6 +587,7 @@ class IntegrationsApi:
     def get_dataflow_processor_schema_with_http_info(self, processor_type: StrictStr, **kwargs) -> ApiResponse[ProcessorSchemaResponse]:
         """[EXPERIMENTAL] GetDataflowProcessorSchema: Returns processor configuration schema for a given processor type. This is used by the UI to render the configuration form for a processortype.  # noqa: E501
 
+        The user must be authenticated and the user's domain must be licensed for integration dataflow to call this method.  # noqa: E501
         :param processor_type:  (required)
         :type processor_type: str
         :param _preload_content: if False, the ApiResponse.data will
@@ -1736,7 +1738,7 @@ class IntegrationsApi:
     def list_dataflow_processors(self, **kwargs) -> List[ProcessorDescription]:
         """[EXPERIMENTAL] ListDataflowProcessors: List processor types.  # noqa: E501
 
-        The user must be authenticated to call this method.  # noqa: E501
+        The user must be authenticated and the user's domain must be licensed for integration dataflow to call this method.  # noqa: E501
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -1754,7 +1756,7 @@ class IntegrationsApi:
     def list_dataflow_processors_with_http_info(self, **kwargs) -> ApiResponse[List[ProcessorDescription]]:
         """[EXPERIMENTAL] ListDataflowProcessors: List processor types.  # noqa: E501
 
-        The user must be authenticated to call this method.  # noqa: E501
+        The user must be authenticated and the user's domain must be licensed for integration dataflow to call this method.  # noqa: E501
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -2856,6 +2858,7 @@ class IntegrationsApi:
     @validate_call
     async def get_dataflow_processor_schema_async(self, processor_type: StrictStr, **kwargs) -> ProcessorSchemaResponse:
             """[EXPERIMENTAL] GetDataflowProcessorSchema: Returns processor configuration schema for a given processor type. This is used by the UI to render the configuration form for a processortype.  # noqa: E501
+            The user must be authenticated and the user's domain must be licensed for integration dataflow to call this method.  # noqa: E501
             
             :param processor_type:  (required)
             :type processor_type: str
@@ -2876,6 +2879,7 @@ class IntegrationsApi:
     async def get_dataflow_processor_schema_with_http_info_async(self, processor_type: StrictStr, **kwargs) -> ApiResponse[ProcessorSchemaResponse]:
             """[EXPERIMENTAL] GetDataflowProcessorSchema: Returns processor configuration schema for a given processor type. This is used by the UI to render the configuration form for a processortype.  # noqa: E501
 
+            The user must be authenticated and the user's domain must be licensed for integration dataflow to call this method.  # noqa: E501
 
             :param processor_type:  (required)
             :type processor_type: str
@@ -4034,7 +4038,7 @@ class IntegrationsApi:
     @validate_call
     async def list_dataflow_processors_async(self, **kwargs) -> List[ProcessorDescription]:
             """[EXPERIMENTAL] ListDataflowProcessors: List processor types.  # noqa: E501
-            The user must be authenticated to call this method.  # noqa: E501
+            The user must be authenticated and the user's domain must be licensed for integration dataflow to call this method.  # noqa: E501
             
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -4053,7 +4057,7 @@ class IntegrationsApi:
     async def list_dataflow_processors_with_http_info_async(self, **kwargs) -> ApiResponse[List[ProcessorDescription]]:
             """[EXPERIMENTAL] ListDataflowProcessors: List processor types.  # noqa: E501
 
-            The user must be authenticated to call this method.  # noqa: E501
+            The user must be authenticated and the user's domain must be licensed for integration dataflow to call this method.  # noqa: E501
 
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the

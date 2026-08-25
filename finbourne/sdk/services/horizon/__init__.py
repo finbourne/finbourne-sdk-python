@@ -139,6 +139,8 @@ from finbourne.sdk.services.horizon.models.versioned_configuration_type_response
 from finbourne.sdk.services.horizon.models.workflow_result_field_response import WorkflowResultFieldResponse
 from finbourne.sdk.services.horizon.models.workflow_result_fields_response import WorkflowResultFieldsResponse
 from finbourne.sdk.services.horizon.models.workflow_result_fields_task_response import WorkflowResultFieldsTaskResponse
+from finbourne.sdk.services.horizon.models.workflow_run_result_response import WorkflowRunResultResponse
+from finbourne.sdk.services.horizon.models.workflow_run_results_response import WorkflowRunResultsResponse
 
 
 
@@ -265,5 +267,7 @@ __all__ = [
     "WorkflowResultFieldResponse",
     "WorkflowResultFieldsResponse",
     "WorkflowResultFieldsTaskResponse",
+    "WorkflowRunResultResponse",
+    "WorkflowRunResultsResponse",
     
 ]

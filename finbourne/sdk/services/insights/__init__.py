@@ -20,6 +20,7 @@ from finbourne.sdk.services.insights.api.application_metadata_api import Applica
 from finbourne.sdk.services.insights.api.auditing_api import AuditingApi
 from finbourne.sdk.services.insights.api.candela_traces_api import CandelaTracesApi
 from finbourne.sdk.services.insights.api.log_metadata_api import LogMetadataApi
+from finbourne.sdk.services.insights.api.metrics_api import MetricsApi
 from finbourne.sdk.services.insights.api.requests_api import RequestsApi
 from finbourne.sdk.services.insights.api.vendor_logs_api import VendorLogsApi
 
@@ -41,10 +42,13 @@ from finbourne.sdk.services.insights.models.date_comparator import DateComparato
 from finbourne.sdk.services.insights.models.histogram import Histogram
 from finbourne.sdk.services.insights.models.id_selector_definition import IdSelectorDefinition
 from finbourne.sdk.services.insights.models.identifier_part_schema import IdentifierPartSchema
+from finbourne.sdk.services.insights.models.identity_metrics_data_set import IdentityMetricsDataSet
 from finbourne.sdk.services.insights.models.insights_filter import InsightsFilter
 from finbourne.sdk.services.insights.models.link import Link
 from finbourne.sdk.services.insights.models.lusid_problem_details import LusidProblemDetails
 from finbourne.sdk.services.insights.models.lusid_validation_problem_details import LusidValidationProblemDetails
+from finbourne.sdk.services.insights.models.metric_data_set_failure import MetricDataSetFailure
+from finbourne.sdk.services.insights.models.metrics_response import MetricsResponse
 from finbourne.sdk.services.insights.models.numeric_comparator import NumericComparator
 from finbourne.sdk.services.insights.models.problem_details import ProblemDetails
 from finbourne.sdk.services.insights.models.queried_request_log import QueriedRequestLog
@@ -55,6 +59,8 @@ from finbourne.sdk.services.insights.models.relative_boundary import RelativeBou
 from finbourne.sdk.services.insights.models.relative_offset import RelativeOffset
 from finbourne.sdk.services.insights.models.request import Request
 from finbourne.sdk.services.insights.models.request_log import RequestLog
+from finbourne.sdk.services.insights.models.requests_per_minute_bucket import RequestsPerMinuteBucket
+from finbourne.sdk.services.insights.models.requests_per_minute_data_set import RequestsPerMinuteDataSet
 from finbourne.sdk.services.insights.models.resource import Resource
 from finbourne.sdk.services.insights.models.resource_list_of_access_controlled_resource import ResourceListOfAccessControlledResource
 from finbourne.sdk.services.insights.models.resource_list_of_audit_process_summary import ResourceListOfAuditProcessSummary
@@ -67,6 +73,10 @@ from finbourne.sdk.services.insights.models.resource_list_with_histogram_of_requ
 from finbourne.sdk.services.insights.models.resource_list_with_histogram_of_vendor_log import ResourceListWithHistogramOfVendorLog
 from finbourne.sdk.services.insights.models.response import Response
 from finbourne.sdk.services.insights.models.scrollable_collection_of_audit_entry import ScrollableCollectionOfAuditEntry
+from finbourne.sdk.services.insights.models.service_endpoint_duration import ServiceEndpointDuration
+from finbourne.sdk.services.insights.models.service_endpoint_durations24h_data_set import ServiceEndpointDurations24hDataSet
+from finbourne.sdk.services.insights.models.service_requests import ServiceRequests
+from finbourne.sdk.services.insights.models.service_requests24h_data_set import ServiceRequests24hDataSet
 from finbourne.sdk.services.insights.models.text_comparator import TextComparator
 from finbourne.sdk.services.insights.models.time_range import TimeRange
 from finbourne.sdk.services.insights.models.trace_diagram_edge import TraceDiagramEdge
@@ -86,6 +96,7 @@ __all__ = [
     "AuditingApi",
     "CandelaTracesApi",
     "LogMetadataApi",
+    "MetricsApi",
     "RequestsApi",
     "VendorLogsApi",
     "AccessControlledAction",
@@ -105,10 +116,13 @@ __all__ = [
     "Histogram",
     "IdSelectorDefinition",
     "IdentifierPartSchema",
+    "IdentityMetricsDataSet",
     "InsightsFilter",
     "Link",
     "LusidProblemDetails",
     "LusidValidationProblemDetails",
+    "MetricDataSetFailure",
+    "MetricsResponse",
     "NumericComparator",
     "ProblemDetails",
     "QueriedRequestLog",
@@ -119,6 +133,8 @@ __all__ = [
     "RelativeOffset",
     "Request",
     "RequestLog",
+    "RequestsPerMinuteBucket",
+    "RequestsPerMinuteDataSet",
     "Resource",
     "ResourceListOfAccessControlledResource",
     "ResourceListOfAuditProcessSummary",
@@ -131,6 +147,10 @@ __all__ = [
     "ResourceListWithHistogramOfVendorLog",
     "Response",
     "ScrollableCollectionOfAuditEntry",
+    "ServiceEndpointDuration",
+    "ServiceEndpointDurations24hDataSet",
+    "ServiceRequests",
+    "ServiceRequests24hDataSet",
     "TextComparator",
     "TimeRange",
     "TraceDiagramEdge",

@@ -988,6 +988,8 @@ from finbourne.sdk.services.lusid.models.portfolio_group_id_list_compliance_para
 from finbourne.sdk.services.lusid.models.portfolio_group_properties import PortfolioGroupProperties
 from finbourne.sdk.services.lusid.models.portfolio_group_search_result import PortfolioGroupSearchResult
 from finbourne.sdk.services.lusid.models.portfolio_holding import PortfolioHolding
+from finbourne.sdk.services.lusid.models.portfolio_holding_dataset import PortfolioHoldingDataset
+from finbourne.sdk.services.lusid.models.portfolio_holding_result import PortfolioHoldingResult
 from finbourne.sdk.services.lusid.models.portfolio_id import PortfolioId
 from finbourne.sdk.services.lusid.models.portfolio_id_compliance_parameter import PortfolioIdComplianceParameter
 from finbourne.sdk.services.lusid.models.portfolio_id_list import PortfolioIdList
@@ -2605,6 +2607,8 @@ __all__ = [
     "PortfolioGroupProperties",
     "PortfolioGroupSearchResult",
     "PortfolioHolding",
+    "PortfolioHoldingDataset",
+    "PortfolioHoldingResult",
     "PortfolioId",
     "PortfolioIdComplianceParameter",
     "PortfolioIdList",

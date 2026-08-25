@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**cancel_instance**](RunsApi.md#cancel_instance) | **PUT** /horizon/api/runs/cancel | [EXPERIMENTAL] CancelInstance: Cancels multiple instance executions.
 [**get_run_results**](RunsApi.md#get_run_results) | **GET** /horizon/api/runs | [EXPERIMENTAL] GetRunResults: Get run results
+[**get_workflow_run_results**](RunsApi.md#get_workflow_run_results) | **GET** /horizon/api/runs/{runId}/workflow/results | [EXPERIMENTAL] GetWorkflowRunResults: Get the status and published result values of an integration run
 [**rerun_instance**](RunsApi.md#rerun_instance) | **PUT** /horizon/api/runs/{runId}/rerun | [EXPERIMENTAL] RerunInstance: Reruns a single instance execution.
 [**stop_instance_execution**](RunsApi.md#stop_instance_execution) | **PUT** /horizon/api/runs/{instanceId}/{runId}/stop | [EXPERIMENTAL] StopInstanceExecution: Stops a single instance execution.
 
@@ -121,6 +122,49 @@ Name | Type | Description  | Notes
 **200** | OK |  -  |
 **400** | The details of the input related failure |  -  |
 **404** | Not Found |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_workflow_run_results**
+> WorkflowRunResultsResponse getWorkflowRunResults = get_workflow_run_results(run_id)
+
+[EXPERIMENTAL] GetWorkflowRunResults: Get the status and published result values of an integration run
+
+Returns the run's status alongside the result values the run published, so a caller waiting on an integration it started can poll one route rather than combining a status call with a results call. The response carries one entry per field the instance declares, matching the shape the instance reported when the caller discovered it, and a declared field the run published nothing for carries a null value. The user must be authenticated, entitled to call this method, and the user's domain must be licensed for the integration.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(RunsApi)
+run_id = 'run_id_example' # str
+api_response = api_instance.get_workflow_run_results(run_id)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **run_id** | **str**| Run identifier e.g. \&quot;b64135e7-98a0-41af-a845-d86167d54cc7\&quot;. | [required] 
+
+### Return type
+
+[**WorkflowRunResultsResponse**](../model/WorkflowRunResultsResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The run status and its published result values. |  -  |
+**400** | The details of the input related failure |  -  |
+**404** | The run does not exist. |  -  |
 **0** | Error response |  -  |
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)

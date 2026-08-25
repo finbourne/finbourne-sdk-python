@@ -6,6 +6,7 @@ from finbourne.sdk.services.insights.api.application_metadata_api import Applica
 from finbourne.sdk.services.insights.api.auditing_api import AuditingApi
 from finbourne.sdk.services.insights.api.candela_traces_api import CandelaTracesApi
 from finbourne.sdk.services.insights.api.log_metadata_api import LogMetadataApi
+from finbourne.sdk.services.insights.api.metrics_api import MetricsApi
 from finbourne.sdk.services.insights.api.requests_api import RequestsApi
 from finbourne.sdk.services.insights.api.vendor_logs_api import VendorLogsApi
 
@@ -16,6 +17,7 @@ __all__ = [
     "AuditingApi",
     "CandelaTracesApi",
     "LogMetadataApi",
+    "MetricsApi",
     "RequestsApi",
     "VendorLogsApi"
 ]
