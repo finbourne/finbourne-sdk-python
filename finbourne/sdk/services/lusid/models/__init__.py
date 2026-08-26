@@ -236,6 +236,7 @@ from finbourne.sdk.services.lusid.models.collateral import Collateral
 from finbourne.sdk.services.lusid.models.collateral_instrument import CollateralInstrument
 from finbourne.sdk.services.lusid.models.commodity_calendar_schedule import CommodityCalendarSchedule
 from finbourne.sdk.services.lusid.models.commodity_calendar_swap import CommodityCalendarSwap
+from finbourne.sdk.services.lusid.models.commodity_calendar_swap_cash_flow_event import CommodityCalendarSwapCashFlowEvent
 from finbourne.sdk.services.lusid.models.commodity_forward import CommodityForward
 from finbourne.sdk.services.lusid.models.commodity_forward_cash_settlement_event import CommodityForwardCashSettlementEvent
 from finbourne.sdk.services.lusid.models.commodity_forward_physical_settlement_event import CommodityForwardPhysicalSettlementEvent
@@ -414,6 +415,9 @@ from finbourne.sdk.services.lusid.models.delete_modes import DeleteModes
 from finbourne.sdk.services.lusid.models.delete_relation_request import DeleteRelationRequest
 from finbourne.sdk.services.lusid.models.delete_relational_data_point_request import DeleteRelationalDataPointRequest
 from finbourne.sdk.services.lusid.models.delete_relationship_request import DeleteRelationshipRequest
+from finbourne.sdk.services.lusid.models.delete_transfer_agency_order_request import DeleteTransferAgencyOrderRequest
+from finbourne.sdk.services.lusid.models.delete_transfer_agency_order_result import DeleteTransferAgencyOrderResult
+from finbourne.sdk.services.lusid.models.delete_transfer_agency_orders_response import DeleteTransferAgencyOrdersResponse
 from finbourne.sdk.services.lusid.models.deleted_entity_response import DeletedEntityResponse
 from finbourne.sdk.services.lusid.models.delisting_event import DelistingEvent
 from finbourne.sdk.services.lusid.models.dependency_source_filter import DependencySourceFilter
@@ -1855,6 +1859,7 @@ __all__ = [
     "CollateralInstrument",
     "CommodityCalendarSchedule",
     "CommodityCalendarSwap",
+    "CommodityCalendarSwapCashFlowEvent",
     "CommodityForward",
     "CommodityForwardCashSettlementEvent",
     "CommodityForwardPhysicalSettlementEvent",
@@ -2033,6 +2038,9 @@ __all__ = [
     "DeleteRelationRequest",
     "DeleteRelationalDataPointRequest",
     "DeleteRelationshipRequest",
+    "DeleteTransferAgencyOrderRequest",
+    "DeleteTransferAgencyOrderResult",
+    "DeleteTransferAgencyOrdersResponse",
     "DeletedEntityResponse",
     "DelistingEvent",
     "DependencySourceFilter",

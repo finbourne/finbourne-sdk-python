@@ -28,7 +28,8 @@ class HorizonIntegration(BaseModel):
     Configuration for a Worker that executes a Horizon integration instance  # noqa: E501
     """
     type:  StrictStr = Field(...,alias="type", description="The type of worker") 
-    __properties: ClassVar[List[str]] = ["type"]
+    integration_instance_id:  StrictStr = Field(...,alias="integrationInstanceId", description="The id of the Horizon integration instance the worker executes.") 
+    __properties: ClassVar[List[str]] = ["type", "integrationInstanceId"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -96,7 +97,8 @@ class HorizonIntegration(BaseModel):
             return HorizonIntegration.model_validate(obj)
 
         _obj = HorizonIntegration.model_validate({
-            "type": obj.get("type")
+            "type": obj.get("type"),
+            "integration_instance_id": obj.get("integrationInstanceId")
         })
         return _obj
 

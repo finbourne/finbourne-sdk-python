@@ -39,7 +39,7 @@ class ShareClass(BaseModel):
     launch_date: Optional[datetime] = Field(default=None, description="The launch date set when a shareclass is added to the fund. Defaults to Fund Inception Date.", alias="launchDate")
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="An optional set of properties to attach to the auto-created Instrument. Only applied when createInstrument is true.")
     fund_share_class_type:  StrictStr = Field(...,alias="fundShareClassType", description="The Type of Share Class. Available values: Unitised, Inactive, Series, PrivateEquity, Partnership.") 
-    distribution_type:  StrictStr = Field(...,alias="distributionType", description="The type of distribution the ShareClass will calculate. Available values: Income, Accumulation.") 
+    distribution_type:  Optional[StrictStr] = Field(default=None,alias="distributionType", description="The type of distribution the ShareClass will calculate. Available values: Income, Accumulation.") 
     dom_ccy:  StrictStr = Field(...,alias="domCcy", description="The domestic currency of the ShareClass instrument.") 
     trading_conventions: Optional[TradingConventions] = Field(default=None, alias="tradingConventions")
     units_precision: Optional[StrictInt] = Field(default=None, description="Decimal places for the share class units.", alias="unitsPrecision")
@@ -48,7 +48,7 @@ class ShareClass(BaseModel):
     rounding_conventions_units: Optional[List[SimpleRoundingConvention]] = Field(default=None, description="Rounding conventions used for the ShareClass units.", alias="roundingConventionsUnits")
     time_zone_conventions: Optional[TimeZoneConventions] = Field(default=None, alias="timeZoneConventions")
     distribution_payment_type:  Optional[StrictStr] = Field(default=None,alias="distributionPaymentType", description="The tax treatment applied to distributions. Available values: Invalid, Gross, Net.") 
-    hedging:  StrictStr = Field(...,alias="hedging", description="Indicates whether the ShareClass applies currency hedging. Available values: Invalid, None, ApplyHedging.") 
+    hedging:  Optional[StrictStr] = Field(default=None,alias="hedging", description="Indicates whether the ShareClass applies currency hedging. Available values: Invalid, None, ApplyHedging.") 
     __properties: ClassVar[List[str]] = ["instrumentIdentifiers", "name", "description", "shareClassShortCode", "launchPrice", "launchDate", "properties", "fundShareClassType", "distributionType", "domCcy", "tradingConventions", "unitsPrecision", "pricePrecision", "roundingConventions", "roundingConventionsUnits", "timeZoneConventions", "distributionPaymentType", "hedging"]
 
     model_config = ConfigDict(
@@ -137,6 +137,11 @@ class ShareClass(BaseModel):
         if self.properties is None and "properties" in self.model_fields_set:
             _dict['properties'] = None
 
+        # set to None if distribution_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.distribution_type is None and "distribution_type" in self.model_fields_set:
+            _dict['distributionType'] = None
+
         # set to None if units_precision (nullable) is None
         # and model_fields_set contains the field
         if self.units_precision is None and "units_precision" in self.model_fields_set:
@@ -161,6 +166,11 @@ class ShareClass(BaseModel):
         # and model_fields_set contains the field
         if self.distribution_payment_type is None and "distribution_payment_type" in self.model_fields_set:
             _dict['distributionPaymentType'] = None
+
+        # set to None if hedging (nullable) is None
+        # and model_fields_set contains the field
+        if self.hedging is None and "hedging" in self.model_fields_set:
+            _dict['hedging'] = None
 
         return _dict
 

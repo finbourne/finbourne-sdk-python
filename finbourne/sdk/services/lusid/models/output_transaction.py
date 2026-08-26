@@ -84,8 +84,9 @@ class OutputTransaction(BaseModel):
     staged_modifications: Optional[StagedModificationsInfo] = Field(default=None, alias="stagedModifications")
     custodian_entries: Optional[List[CustodianEntry]] = Field(default=None, description="Set of of Custodian Entries associated with the transaction.", alias="custodianEntries")
     resolved_custodian_accounts: Optional[List[ResolvedCustodianAccount]] = Field(default=None, description="Set of Custodian Accounts resolved from each movement on the Transaction.", alias="resolvedCustodianAccounts")
+    unresolved_custodian_accounts: Optional[List[CustodianEntry]] = Field(default=None, description="Set of Custodian Entries on the Transaction that no movement was booked against, i.e. those which did not match a movement's account type and selector.", alias="unresolvedCustodianAccounts")
     is_excluded: Optional[StrictBool] = Field(default=None, description="Whether the transaction was excluded from the portfolio's holdings by the portfolio's transaction exclusion filter.", alias="isExcluded")
-    __properties: ClassVar[List[str]] = ["transactionId", "type", "description", "instrumentIdentifiers", "instrumentScope", "instrumentUid", "transactionDate", "settlementDate", "units", "transactionAmount", "transactionPrice", "totalConsideration", "exchangeRate", "transactionToPortfolioRate", "transactionCurrency", "properties", "counterpartyId", "source", "transactionStatus", "entryDateTime", "cancelDateTime", "realisedGainLoss", "holdingIds", "sourceType", "sourceInstrumentEventId", "custodianAccount", "transactionGroupId", "resolvedTransactionTypeDetails", "grossTransactionAmount", "otcConfirmation", "orderId", "allocationId", "accountingDate", "economics", "dataModelMembership", "sequence", "sequencePriority", "settlementSummary", "version", "stagedModifications", "custodianEntries", "resolvedCustodianAccounts", "isExcluded"]
+    __properties: ClassVar[List[str]] = ["transactionId", "type", "description", "instrumentIdentifiers", "instrumentScope", "instrumentUid", "transactionDate", "settlementDate", "units", "transactionAmount", "transactionPrice", "totalConsideration", "exchangeRate", "transactionToPortfolioRate", "transactionCurrency", "properties", "counterpartyId", "source", "transactionStatus", "entryDateTime", "cancelDateTime", "realisedGainLoss", "holdingIds", "sourceType", "sourceInstrumentEventId", "custodianAccount", "transactionGroupId", "resolvedTransactionTypeDetails", "grossTransactionAmount", "otcConfirmation", "orderId", "allocationId", "accountingDate", "economics", "dataModelMembership", "sequence", "sequencePriority", "settlementSummary", "version", "stagedModifications", "custodianEntries", "resolvedCustodianAccounts", "unresolvedCustodianAccounts", "isExcluded"]
 
     @field_validator('transaction_status')
     def transaction_status_validate_enum(cls, value):
@@ -212,6 +213,13 @@ class OutputTransaction(BaseModel):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['resolvedCustodianAccounts'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in unresolved_custodian_accounts (list)
+        _items = []
+        if self.unresolved_custodian_accounts:
+            for _item in self.unresolved_custodian_accounts:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['unresolvedCustodianAccounts'] = _items
         # set to None if description (nullable) is None
         # and model_fields_set contains the field
         if self.description is None and "description" in self.model_fields_set:
@@ -312,6 +320,11 @@ class OutputTransaction(BaseModel):
         if self.resolved_custodian_accounts is None and "resolved_custodian_accounts" in self.model_fields_set:
             _dict['resolvedCustodianAccounts'] = None
 
+        # set to None if unresolved_custodian_accounts (nullable) is None
+        # and model_fields_set contains the field
+        if self.unresolved_custodian_accounts is None and "unresolved_custodian_accounts" in self.model_fields_set:
+            _dict['unresolvedCustodianAccounts'] = None
+
         return _dict
 
     @classmethod
@@ -371,6 +384,7 @@ class OutputTransaction(BaseModel):
             "staged_modifications": StagedModificationsInfo.from_dict(_v) if (_v := obj.get("stagedModifications")) is not None else None,
             "custodian_entries": [CustodianEntry.from_dict(_item) for _item in _v] if (_v := obj.get("custodianEntries")) is not None else None,
             "resolved_custodian_accounts": [ResolvedCustodianAccount.from_dict(_item) for _item in _v] if (_v := obj.get("resolvedCustodianAccounts")) is not None else None,
+            "unresolved_custodian_accounts": [CustodianEntry.from_dict(_item) for _item in _v] if (_v := obj.get("unresolvedCustodianAccounts")) is not None else None,
             "is_excluded": obj.get("isExcluded")
         })
         return _obj

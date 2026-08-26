@@ -17,6 +17,7 @@
 | **previous** | [PreviousValuationPoint](PreviousValuationPoint.md) | Optional | *No description available.* |
 | **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | The Valuation Point properties. These are from the &#39;DiaryEntry&#39; domain. |
 | **version** | [Version](Version.md) | Optional | *No description available.* |
+| **staged_modifications** | [StagedModificationsInfo](StagedModificationsInfo.md) | Optional | *No description available.* |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
@@ -41,6 +42,7 @@ instance = ValuationPoint(
     previous=PreviousValuationPoint(...),  # optional
     properties=ModelProperty(...),  # optional — The Valuation Point properties. These are from the &#39;DiaryEntry&#39; domain.
     version=Version(...),  # optional
+    staged_modifications=StagedModificationsInfo(...),  # optional
     links=[]  # optional
 )
 ```
@@ -48,6 +50,7 @@ instance = ValuationPoint(
 - [PreviousValuationPoint](PreviousValuationPoint.md)
 - [ModelProperty](ModelProperty.md) — used in `properties`
 - [Version](Version.md)
+- [StagedModificationsInfo](StagedModificationsInfo.md)
 - [Link](Link.md)
 
 

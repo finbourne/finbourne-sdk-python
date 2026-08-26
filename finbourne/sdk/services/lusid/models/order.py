@@ -54,12 +54,13 @@ class Order(BaseModel):
     package_id: Optional[ResourceId] = Field(default=None, alias="packageId")
     weight: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The proportion of the total portfolio value ordered for the given instrument ordered.")
     amount: Optional[CurrencyAndAmount] = None
+    basis:  Optional[StrictStr] = Field(default=None,alias="basis", description="The measure in which the order was instructed. Expected values are 'Quantity', 'Amount' or 'Weight'; null when the order carries no size measure. Read-only; derived from the populated size measures, taking quantity first, then amount, then weight.") 
     custodian_account_id: Optional[ResourceId] = Field(default=None, alias="custodianAccountId")
     data_model_membership: Optional[DataModelMembership] = Field(default=None, alias="dataModelMembership")
     derived_compliance_state:  Optional[StrictStr] = Field(default=None,alias="derivedComplianceState", description="The compliance state of the order, derived from pre-trade compliance runs.") 
     derived_approval_state:  Optional[StrictStr] = Field(default=None,alias="derivedApprovalState", description="The approval state of the order.") 
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["properties", "version", "instrumentIdentifiers", "quantity", "side", "orderBookId", "portfolioId", "id", "instrumentScope", "lusidInstrumentId", "state", "type", "timeInForce", "date", "price", "limitPrice", "stopPrice", "orderInstructionId", "packageId", "weight", "amount", "custodianAccountId", "dataModelMembership", "derivedComplianceState", "derivedApprovalState", "links"]
+    __properties: ClassVar[List[str]] = ["properties", "version", "instrumentIdentifiers", "quantity", "side", "orderBookId", "portfolioId", "id", "instrumentScope", "lusidInstrumentId", "state", "type", "timeInForce", "date", "price", "limitPrice", "stopPrice", "orderInstructionId", "packageId", "weight", "amount", "basis", "custodianAccountId", "dataModelMembership", "derivedComplianceState", "derivedApprovalState", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -93,6 +94,7 @@ class Order(BaseModel):
         _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
+                            "basis",
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of each value in properties (dict)
@@ -180,6 +182,11 @@ class Order(BaseModel):
         if self.weight is None and "weight" in self.model_fields_set:
             _dict['weight'] = None
 
+        # set to None if basis (nullable) is None
+        # and model_fields_set contains the field
+        if self.basis is None and "basis" in self.model_fields_set:
+            _dict['basis'] = None
+
         # set to None if derived_compliance_state (nullable) is None
         # and model_fields_set contains the field
         if self.derived_compliance_state is None and "derived_compliance_state" in self.model_fields_set:
@@ -233,6 +240,7 @@ class Order(BaseModel):
             "package_id": ResourceId.from_dict(_v) if (_v := obj.get("packageId")) is not None else None,
             "weight": obj.get("weight"),
             "amount": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("amount")) is not None else None,
+            "basis": obj.get("basis"),
             "custodian_account_id": ResourceId.from_dict(_v) if (_v := obj.get("custodianAccountId")) is not None else None,
             "data_model_membership": DataModelMembership.from_dict(_v) if (_v := obj.get("dataModelMembership")) is not None else None,
             "derived_compliance_state": obj.get("derivedComplianceState"),

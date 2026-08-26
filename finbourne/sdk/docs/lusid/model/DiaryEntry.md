@@ -16,6 +16,7 @@
 | **previous_entry_time** | **datetime** | Optional | The entry time of the previous diary entry. |
 | **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | A set of properties for the diary entry. |
 | **version** | [Version](Version.md) | Optional | *No description available.* |
+| **staged_modifications** | [StagedModificationsInfo](StagedModificationsInfo.md) | Optional | *No description available.* |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
@@ -39,6 +40,7 @@ instance = DiaryEntry(
     previous_entry_time=datetime.now(),  # optional — The entry time of the previous diary entry.
     properties=ModelProperty(...),  # optional — A set of properties for the diary entry.
     version=Version(...),  # optional
+    staged_modifications=StagedModificationsInfo(...),  # optional
     links=[]  # optional
 )
 ```
@@ -46,6 +48,7 @@ instance = DiaryEntry(
 - [ResourceId](ResourceId.md)
 - [ModelProperty](ModelProperty.md) — used in `properties`
 - [Version](Version.md)
+- [StagedModificationsInfo](StagedModificationsInfo.md)
 - [Link](Link.md)
 
 

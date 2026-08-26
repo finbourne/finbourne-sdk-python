@@ -28,7 +28,8 @@ class HorizonIntegrationResponse(BaseModel):
     Readonly configuration for the Horizon Integration Worker  # noqa: E501
     """
     type:  Optional[StrictStr] = Field(default=None,alias="type", description="The type of worker") 
-    __properties: ClassVar[List[str]] = ["type"]
+    integration_instance_id:  Optional[StrictStr] = Field(default=None,alias="integrationInstanceId", description="The id of the Horizon integration instance the worker executes. Null on the library worker.") 
+    __properties: ClassVar[List[str]] = ["type", "integrationInstanceId"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -92,6 +93,11 @@ class HorizonIntegrationResponse(BaseModel):
         if self.type is None and "type" in self.model_fields_set:
             _dict['type'] = None
 
+        # set to None if integration_instance_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.integration_instance_id is None and "integration_instance_id" in self.model_fields_set:
+            _dict['integrationInstanceId'] = None
+
         return _dict
 
     @classmethod
@@ -104,7 +110,8 @@ class HorizonIntegrationResponse(BaseModel):
             return HorizonIntegrationResponse.model_validate(obj)
 
         _obj = HorizonIntegrationResponse.model_validate({
-            "type": obj.get("type")
+            "type": obj.get("type"),
+            "integration_instance_id": obj.get("integrationInstanceId")
         })
         return _obj
 

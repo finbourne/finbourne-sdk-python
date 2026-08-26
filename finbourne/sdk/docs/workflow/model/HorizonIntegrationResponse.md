@@ -6,6 +6,7 @@ Readonly configuration for the Horizon Integration Worker
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **type** | **str** | Optional | The type of worker |
+| **integration_instance_id** | **str** | Optional | The id of the Horizon integration instance the worker executes. Null on the library worker. |
 
 
 ## Usage
@@ -16,7 +17,8 @@ Readonly configuration for the Horizon Integration Worker
 from finbourne.sdk.services.workflow.models.HorizonIntegrationResponse import HorizonIntegrationResponse
 
 instance = HorizonIntegrationResponse(
-    type="..."  # optional — The type of worker
+    type="...",  # optional — The type of worker
+    integration_instance_id="..."  # optional — The id of the Horizon integration instance the worker executes. Null on the library worker.
 )
 ```
 

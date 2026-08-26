@@ -26,6 +26,7 @@ An Order for a certain quantity of a specific instrument
 | **package_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **weight** | **float** | Optional | The proportion of the total portfolio value ordered for the given instrument ordered. |
 | **amount** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
+| **basis** | **str** | Optional | The measure in which the order was instructed. Expected values are &#39;Quantity&#39;, &#39;Amount&#39; or &#39;Weight&#39;; null when the order carries no size measure. Read-only; derived from the populated size measures, taking quantity first, then amount, then weight. *(read-only)* |
 | **custodian_account_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **data_model_membership** | [DataModelMembership](DataModelMembership.md) | Optional | *No description available.* |
 | **derived_compliance_state** | **str** | Optional | The compliance state of the order, derived from pre-trade compliance runs. |
@@ -62,6 +63,7 @@ instance = Order(
     package_id=ResourceId(...),  # optional
     weight=0.0,  # optional — The proportion of the total portfolio value ordered for the given instrument ordered.
     amount=CurrencyAndAmount(...),  # optional
+    basis="...",  # optional — The measure in which the order was instructed. Expected values are &#39;Quantity&#39;, &#39;Amount&#39; or &#39;Weight&#39;; null when the order carries no size measure. Read-only; derived from the populated size measures, taking quantity first, then amount, then weight.
     custodian_account_id=ResourceId(...),  # optional
     data_model_membership=DataModelMembership(...),  # optional
     derived_compliance_state="...",  # optional — The compliance state of the order, derived from pre-trade compliance runs.

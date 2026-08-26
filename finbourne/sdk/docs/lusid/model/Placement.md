@@ -13,6 +13,7 @@ A street order for a quantity of a single instrument placed with a single market
 | **lusid_instrument_id** | **str** | Required | The LUSID instrument id for the instrument placement. |
 | **quantity** | **float** | Optional | The quantity of given instrument ordered. |
 | **amount** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
+| **basis** | **str** | Optional | The measure in which the placement was instructed. Expected values are &#39;Quantity&#39; or &#39;Amount&#39;; null when the placement carries no size measure. Read-only; derived from the populated size measures, taking quantity first, then amount. *(read-only)* |
 | **state** | **str** | Required | The state of this placement (typically a FIX state; Open, Filled, etc). |
 | **side** | **str** | Required | The side (Buy, Sell, ...) of this placement. |
 | **time_in_force** | **str** | Required | The time in force applicable to this placement (GTC, FOK, Day, etc) |
@@ -44,6 +45,7 @@ instance = Placement(
     lusid_instrument_id="...",  # required — The LUSID instrument id for the instrument placement.
     quantity=0.0,  # optional — The quantity of given instrument ordered.
     amount=CurrencyAndAmount(...),  # optional
+    basis="...",  # optional — The measure in which the placement was instructed. Expected values are &#39;Quantity&#39; or &#39;Amount&#39;; null when the placement carries no size measure. Read-only; derived from the populated size measures, taking quantity first, then amount.
     state="...",  # required — The state of this placement (typically a FIX state; Open, Filled, etc).
     side="...",  # required — The side (Buy, Sell, ...) of this placement.
     time_in_force="...",  # required — The time in force applicable to this placement (GTC, FOK, Day, etc)

@@ -12,6 +12,7 @@ A block of orders for the same instrument, intended to record for example a trad
 | **lusid_instrument_id** | **str** | Required | The LUSID instrument id for the instrument ordered. |
 | **quantity** | **float** | Optional | The total quantity of given instrument ordered. |
 | **amount** | [CurrencyAndAmount](CurrencyAndAmount.md) | Optional | *No description available.* |
+| **basis** | **str** | Optional | The measure in which the block was instructed. Expected values are &#39;Quantity&#39; or &#39;Amount&#39;; null when the block carries no size measure. Read-only; derived from the populated size measures, taking quantity first, then amount. *(read-only)* |
 | **side** | **str** | Required | The client&#39;s representation of the block&#39;s side (buy, sell, short, etc) |
 | **type** | **str** | Optional | The block order&#39;s type (examples: Limit, Market, ...) |
 | **time_in_force** | **str** | Optional | The block orders&#39; time in force (examples: Day, GoodTilCancel, ...) |
@@ -39,6 +40,7 @@ instance = Block(
     lusid_instrument_id="...",  # required — The LUSID instrument id for the instrument ordered.
     quantity=0.0,  # optional — The total quantity of given instrument ordered.
     amount=CurrencyAndAmount(...),  # optional
+    basis="...",  # optional — The measure in which the block was instructed. Expected values are &#39;Quantity&#39; or &#39;Amount&#39;; null when the block carries no size measure. Read-only; derived from the populated size measures, taking quantity first, then amount.
     side="...",  # required — The client&#39;s representation of the block&#39;s side (buy, sell, short, etc)
     type="...",  # optional — The block order&#39;s type (examples: Limit, Market, ...)
     time_in_force="...",  # optional — The block orders&#39; time in force (examples: Day, GoodTilCancel, ...)

@@ -41,6 +41,7 @@ class Placement(BaseModel):
     lusid_instrument_id:  StrictStr = Field(...,alias="lusidInstrumentId", description="The LUSID instrument id for the instrument placement.") 
     quantity: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The quantity of given instrument ordered.")
     amount: Optional[CurrencyAndAmount] = None
+    basis:  Optional[StrictStr] = Field(default=None,alias="basis", description="The measure in which the placement was instructed. Expected values are 'Quantity' or 'Amount'; null when the placement carries no size measure. Read-only; derived from the populated size measures, taking quantity first, then amount.") 
     state:  StrictStr = Field(...,alias="state", description="The state of this placement (typically a FIX state; Open, Filled, etc).") 
     side:  StrictStr = Field(...,alias="side", description="The side (Buy, Sell, ...) of this placement.") 
     time_in_force:  StrictStr = Field(...,alias="timeInForce", description="The time in force applicable to this placement (GTC, FOK, Day, etc)") 
@@ -54,7 +55,7 @@ class Placement(BaseModel):
     version: Optional[Version] = None
     data_model_membership: Optional[DataModelMembership] = Field(default=None, alias="dataModelMembership")
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["id", "parentPlacementId", "blockIds", "properties", "instrumentIdentifiers", "lusidInstrumentId", "quantity", "amount", "state", "side", "timeInForce", "type", "createdDate", "limitPrice", "stopPrice", "counterparty", "executionSystem", "entryType", "version", "dataModelMembership", "links"]
+    __properties: ClassVar[List[str]] = ["id", "parentPlacementId", "blockIds", "properties", "instrumentIdentifiers", "lusidInstrumentId", "quantity", "amount", "basis", "state", "side", "timeInForce", "type", "createdDate", "limitPrice", "stopPrice", "counterparty", "executionSystem", "entryType", "version", "dataModelMembership", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,6 +89,7 @@ class Placement(BaseModel):
         _dict = self. model_dump(by_alias=by_alias,
                           mode='json',
                           exclude={
+                            "basis",
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of id
@@ -142,6 +144,11 @@ class Placement(BaseModel):
         if self.quantity is None and "quantity" in self.model_fields_set:
             _dict['quantity'] = None
 
+        # set to None if basis (nullable) is None
+        # and model_fields_set contains the field
+        if self.basis is None and "basis" in self.model_fields_set:
+            _dict['basis'] = None
+
         # set to None if counterparty (nullable) is None
         # and model_fields_set contains the field
         if self.counterparty is None and "counterparty" in self.model_fields_set:
@@ -187,6 +194,7 @@ class Placement(BaseModel):
             "lusid_instrument_id": obj.get("lusidInstrumentId"),
             "quantity": obj.get("quantity"),
             "amount": CurrencyAndAmount.from_dict(_v) if (_v := obj.get("amount")) is not None else None,
+            "basis": obj.get("basis"),
             "state": obj.get("state"),
             "side": obj.get("side"),
             "time_in_force": obj.get("timeInForce"),
