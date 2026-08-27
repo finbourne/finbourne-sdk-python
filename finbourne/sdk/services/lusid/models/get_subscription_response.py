@@ -21,20 +21,18 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
-from finbourne.sdk.services.lusid.models.error_detail import ErrorDetail
 from finbourne.sdk.services.lusid.models.link import Link
 from finbourne.sdk.services.lusid.models.subscription_definition import SubscriptionDefinition
 
 
 class GetSubscriptionResponse(BaseModel):
     """
-    GetSubscriptionResponse
+    The response to a singular subscription read. There is deliberately no failure block on this  type: every route returning it is a singular (or list-of-singular) read, never a batch keyed  lookup, so there is no per-key error to report - an invalid entity is rejected at upsert and  a failed read fails the whole request. The IGetResponse batch members below throw for the  same reason; do not reintroduce a Failed property when copying this shape.  # noqa: E501
     """
     href:  Optional[StrictStr] = Field(default=None,alias="href") 
     value: Optional[SubscriptionDefinition] = None
-    failed: Optional[ErrorDetail] = None
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["href", "value", "failed", "links"]
+    __properties: ClassVar[List[str]] = ["href", "value", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -73,9 +71,6 @@ class GetSubscriptionResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of value
         if self.value:
             _dict['value'] = self.value.to_dict(by_alias=by_alias)
-        # override the default output from pydantic by calling `to_dict()` of failed
-        if self.failed:
-            _dict['failed'] = self.failed.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each item in links (list)
         _items = []
         if self.links:
@@ -107,7 +102,6 @@ class GetSubscriptionResponse(BaseModel):
         _obj = GetSubscriptionResponse.model_validate({
             "href": obj.get("href"),
             "value": SubscriptionDefinition.from_dict(_v) if (_v := obj.get("value")) is not None else None,
-            "failed": ErrorDetail.from_dict(_v) if (_v := obj.get("failed")) is not None else None,
             "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj

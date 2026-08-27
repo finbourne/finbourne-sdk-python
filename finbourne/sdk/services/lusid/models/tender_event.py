@@ -24,6 +24,7 @@ from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictF
 from finbourne.sdk.services.lusid.models.cash_and_security_offer_election import CashAndSecurityOfferElection
 from finbourne.sdk.services.lusid.models.cash_offer_election import CashOfferElection
 from finbourne.sdk.services.lusid.models.instrument_event import InstrumentEvent
+from finbourne.sdk.services.lusid.models.mixed_lot_constituents_election import MixedLotConstituentsElection
 from finbourne.sdk.services.lusid.models.new_instrument import NewInstrument
 from finbourne.sdk.services.lusid.models.security_offer_election import SecurityOfferElection
 
@@ -44,6 +45,7 @@ class TenderEvent(InstrumentEvent):
     security_offer_elections: Optional[List[SecurityOfferElection]] = Field(default=None, description="List of possible SecurityOfferElections for this event.", alias="securityOfferElections")
     cash_and_security_offer_elections: Optional[List[CashAndSecurityOfferElection]] = Field(default=None, description="List of possible CashAndSecurityOfferElections for this event.", alias="cashAndSecurityOfferElections")
     cash_offer_elections: Optional[List[CashOfferElection]] = Field(default=None, description="List of possible CashOfferElections for this event.", alias="cashOfferElections")
+    mixed_lot_constituents_elections: Optional[List[MixedLotConstituentsElection]] = Field(default=None, description="List of possible mixed lot offers for this tender event, if any. Each election replaces the tendered  position with one or more distinct new securities and/or cash legs of its own, taking the place of the  single event-level NewInstrument that the other security-bearing elections resolve to.    A tender may carry more than one of these, describing mutually exclusive multi-destination options.", alias="mixedLotConstituentsElections")
     offer_type:  Optional[StrictStr] = Field(default=None,alias="offerType", description="Informational ISO 20022 OfferTp indicator (e.g. \"ACPR\"). Optional. No calculation impact.") 
     accrued_interest_per_unit: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Optional per-unit accrued interest on the tendered face, from the last coupon date up to  (but excluding) PaymentDate. Bond instrument types only. If left empty, analytics-core  resolves it at event time from the bond's coupon schedule and market data.", alias="accruedInterestPerUnit")
     min_piece_size: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Bond-specific minimum instructable face amount. Optional. Must be strictly positive when set.", alias="minPieceSize")
@@ -54,7 +56,7 @@ class TenderEvent(InstrumentEvent):
     early_response_deadline: Optional[datetime] = Field(default=None, description="Optional early-tender deadline. When set, must be on or before ResponseDeadlineDate.", alias="earlyResponseDeadline")
     instrument_event_type:  StrictStr = Field(...,alias="instrumentEventType", description="The Type of Event. Available values: TransitionEvent, InformationalEvent, OpenEvent, CloseEvent, StockSplitEvent, BondDefaultEvent, CashDividendEvent, AmortisationEvent, CashFlowEvent, ExerciseEvent, ResetEvent, TriggerEvent, RawVendorEvent, InformationalErrorEvent, BondCouponEvent, DividendReinvestmentEvent, AccumulationEvent, BondPrincipalEvent, DividendOptionEvent, MaturityEvent, FxForwardSettlementEvent, ExpiryEvent, ScripDividendEvent, StockDividendEvent, ReverseStockSplitEvent, CapitalDistributionEvent, SpinOffEvent, MergerEvent, FutureExpiryEvent, SwapCashFlowEvent, SwapPrincipalEvent, CreditPremiumCashFlowEvent, CdsCreditEvent, CdxCreditEvent, MbsCouponEvent, MbsPrincipalEvent, BonusIssueEvent, MbsPrincipalWriteOffEvent, MbsInterestDeferralEvent, MbsInterestShortfallEvent, TenderEvent, CallOnIntermediateSecuritiesEvent, IntermediateSecuritiesDistributionEvent, OptionExercisePhysicalEvent, OptionExerciseCashEvent, ProtectionPayoutCashFlowEvent, TermDepositInterestEvent, TermDepositPrincipalEvent, EarlyRedemptionEvent, FutureMarkToMarketEvent, AdjustGlobalCommitmentEvent, ContractInitialisationEvent, DrawdownEvent, LoanInterestRepaymentEvent, UpdateDepositAmountEvent, LoanPrincipalRepaymentEvent, DepositInterestPaymentEvent, DepositCloseEvent, LoanFacilityContractRolloverEvent, RepurchaseOfferEvent, RepoPartialClosureEvent, RepoCashFlowEvent, FlexibleRepoInterestPaymentEvent, FlexibleRepoCashFlowEvent, FlexibleRepoCollateralEvent, ConversionEvent, FlexibleRepoPartialClosureEvent, FlexibleRepoFullClosureEvent, CapletFloorletCashFlowEvent, EarlyCloseOutEvent, DepositRollEvent, ConsentEvent, DrawingEvent, CapitalGainsDistributionEvent, ExchangeOfferEvent, DutchAuctionEvent, WorthlessEvent, PutRedemptionEvent, LoanFacilityDelayedCompensationPaymentEvent, InterestPaymentEvent, PriorityIssueEvent, ClassActionEvent, BankruptcyEvent, LiquidationPaymentEvent, PartialDefeasanceEvent, SecurityWriteOffEvent, WarrantsExerciseEvent, PariPassuEvent, ChangeEvent, PikBondCouponEvent, PikBondCashCouponEvent, PikBondInterestCapitalisationEvent, PikBondPrincipalEvent, DelistingEvent, PikBondInterestEvent, CommodityForwardCashSettlementEvent, PaymentInKindEvent, CommodityForwardPhysicalSettlementEvent, CancelSwapEvent, BondOptionTerminationEvent, TerminationEvent, CommodityCalendarSwapCashFlowEvent.") 
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["instrumentEventType", "announcementDate", "exDate", "recordDate", "paymentDate", "newInstrument", "fractionalUnitsCashPrice", "fractionalUnitsCashCurrency", "fractionalUnitsRoundingConvention", "fractionalUnitsDecimalPlaces", "securityOfferElections", "cashAndSecurityOfferElections", "cashOfferElections", "offerType", "accruedInterestPerUnit", "minPieceSize", "minIncrement", "prorationRate", "responseDeadlineDate", "marketDeadlineDate", "earlyResponseDeadline"]
+    __properties: ClassVar[List[str]] = ["instrumentEventType", "announcementDate", "exDate", "recordDate", "paymentDate", "newInstrument", "fractionalUnitsCashPrice", "fractionalUnitsCashCurrency", "fractionalUnitsRoundingConvention", "fractionalUnitsDecimalPlaces", "securityOfferElections", "cashAndSecurityOfferElections", "cashOfferElections", "mixedLotConstituentsElections", "offerType", "accruedInterestPerUnit", "minPieceSize", "minIncrement", "prorationRate", "responseDeadlineDate", "marketDeadlineDate", "earlyResponseDeadline"]
 
     @field_validator('instrument_event_type')
     def instrument_event_type_validate_enum(cls, value):
@@ -135,6 +137,13 @@ class TenderEvent(InstrumentEvent):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['cashOfferElections'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in mixed_lot_constituents_elections (list)
+        _items = []
+        if self.mixed_lot_constituents_elections:
+            for _item in self.mixed_lot_constituents_elections:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['mixedLotConstituentsElections'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -184,6 +193,11 @@ class TenderEvent(InstrumentEvent):
         # and model_fields_set contains the field
         if self.cash_offer_elections is None and "cash_offer_elections" in self.model_fields_set:
             _dict['cashOfferElections'] = None
+
+        # set to None if mixed_lot_constituents_elections (nullable) is None
+        # and model_fields_set contains the field
+        if self.mixed_lot_constituents_elections is None and "mixed_lot_constituents_elections" in self.model_fields_set:
+            _dict['mixedLotConstituentsElections'] = None
 
         # set to None if offer_type (nullable) is None
         # and model_fields_set contains the field
@@ -245,6 +259,7 @@ class TenderEvent(InstrumentEvent):
             "security_offer_elections": [SecurityOfferElection.from_dict(_item) for _item in _v] if (_v := obj.get("securityOfferElections")) is not None else None,
             "cash_and_security_offer_elections": [CashAndSecurityOfferElection.from_dict(_item) for _item in _v] if (_v := obj.get("cashAndSecurityOfferElections")) is not None else None,
             "cash_offer_elections": [CashOfferElection.from_dict(_item) for _item in _v] if (_v := obj.get("cashOfferElections")) is not None else None,
+            "mixed_lot_constituents_elections": [MixedLotConstituentsElection.from_dict(_item) for _item in _v] if (_v := obj.get("mixedLotConstituentsElections")) is not None else None,
             "offer_type": obj.get("offerType"),
             "accrued_interest_per_unit": obj.get("accruedInterestPerUnit"),
             "min_piece_size": obj.get("minPieceSize"),

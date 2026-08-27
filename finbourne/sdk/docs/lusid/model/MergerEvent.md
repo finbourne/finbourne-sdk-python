@@ -8,6 +8,7 @@ Merger Event (MRGR).
 | **announcement_date** | **datetime** | Optional | The date the merger is announced. |
 | **cash_and_security_offer_elections** | [List[CashAndSecurityOfferElection]](CashAndSecurityOfferElection.md) | Optional | List of possible CashAndSecurityOfferElections for this merger event |
 | **cash_offer_elections** | [List[CashOfferElection]](CashOfferElection.md) | Optional | List of possible CashOfferElections for this merger event |
+| **mixed_lot_constituents_elections** | [List[MixedLotConstituentsElection]](MixedLotConstituentsElection.md) | Optional | List of possible mixed lot offers for this merger event, if any. Each election replaces the parent position  with one or more distinct new securities and/or cash legs of its own, taking the place of the single  event-level NewInstrument that the other security-bearing elections resolve to.    A merger may carry more than one of these, describing mutually exclusive multi-destination options. |
 | **ex_date** | **datetime** | Optional | The first date on which the holder of record of the original shares has entitled ownership of the new shares. |
 | **fractional_units_cash_currency** | **str** | Optional | Optional. Used in calculating cash-in-lieu of fractional shares. |
 | **fractional_units_cash_price** | **float** | Optional | Optional. Used in calculating cash-in-lieu of fractional shares. |
@@ -31,6 +32,7 @@ instance = MergerEvent(
     announcement_date=datetime.now(),  # optional — The date the merger is announced.
     cash_and_security_offer_elections=[],  # optional — List of possible CashAndSecurityOfferElections for this merger event
     cash_offer_elections=[],  # optional — List of possible CashOfferElections for this merger event
+    mixed_lot_constituents_elections=[],  # optional — List of possible mixed lot offers for this merger event, if any. Each election replaces the parent position  with one or more distinct new securities and/or cash legs of its own, taking the place of the single  event-level NewInstrument that the other security-bearing elections resolve to.    A merger may carry more than one of these, describing mutually exclusive multi-destination options.
     ex_date=datetime.now(),  # optional — The first date on which the holder of record of the original shares has entitled ownership of the new shares.
     fractional_units_cash_currency="...",  # optional — Optional. Used in calculating cash-in-lieu of fractional shares.
     fractional_units_cash_price=0.0,  # optional — Optional. Used in calculating cash-in-lieu of fractional shares.
@@ -46,6 +48,7 @@ instance = MergerEvent(
 
 - [CashAndSecurityOfferElection](CashAndSecurityOfferElection.md) — used in `cash_and_security_offer_elections`
 - [CashOfferElection](CashOfferElection.md) — used in `cash_offer_elections`
+- [MixedLotConstituentsElection](MixedLotConstituentsElection.md) — used in `mixed_lot_constituents_elections`
 - [NewInstrument](NewInstrument.md)
 - [SecurityOfferElection](SecurityOfferElection.md) — used in `security_offer_elections`
 

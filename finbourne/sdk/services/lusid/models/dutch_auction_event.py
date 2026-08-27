@@ -24,6 +24,7 @@ from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictF
 from finbourne.sdk.services.lusid.models.cash_and_security_offer_election import CashAndSecurityOfferElection
 from finbourne.sdk.services.lusid.models.instrument_event import InstrumentEvent
 from finbourne.sdk.services.lusid.models.lapse_election import LapseElection
+from finbourne.sdk.services.lusid.models.mixed_lot_constituents_election import MixedLotConstituentsElection
 from finbourne.sdk.services.lusid.models.new_instrument import NewInstrument
 from finbourne.sdk.services.lusid.models.security_offer_election import SecurityOfferElection
 from finbourne.sdk.services.lusid.models.tender_offer_election import TenderOfferElection
@@ -40,6 +41,7 @@ class DutchAuctionEvent(InstrumentEvent):
     security_offer_elections: Optional[List[SecurityOfferElection]] = Field(default=None, description="List of possible SecurityOfferElections for this event. Populated on the SECU path (Count == 1);  empty on the CASH and CASE paths.", alias="securityOfferElections")
     cash_and_security_offer_elections: Optional[List[CashAndSecurityOfferElection]] = Field(default=None, description="List of possible CashAndSecurityOfferElections for this event. Populated on the CASE path  (Count == 1); empty on the CASH and SECU paths.", alias="cashAndSecurityOfferElections")
     lapse_elections: Optional[List[LapseElection]] = Field(default=None, description="List of possible LapseElections for this event. Required on all three paths (Count == 1).  Allows the holder to opt out of the offer (NOAC).", alias="lapseElections")
+    mixed_lot_constituents_elections: Optional[List[MixedLotConstituentsElection]] = Field(default=None, description="List of possible MixedLotConstituentsElections for this event, if any. Each election settles into one or more  distinct new securities and/or cash legs of its own, in place of the single event-level NewInstrument the  SecurityOffer and CashAndSecurityOffer paths resolve to.    Several may be present: a Dutch Auction commonly offers a number of mutually exclusive destinations, and each  is described by its own election. Not applicable to the CASH path, which has no security leg to multiply.", alias="mixedLotConstituentsElections")
     response_deadline_date: Optional[datetime] = Field(default=None, description="Account-servicer response deadline. Defaults to MarketDeadlineDate when not supplied.  When provided, must be on or before MarketDeadlineDate.", alias="responseDeadlineDate")
     early_response_deadline: Optional[datetime] = Field(default=None, description="Early-participation deadline. When provided, must be on or before ResponseDeadlineDate.", alias="earlyResponseDeadline")
     ex_date: Optional[datetime] = Field(default=None, description="The ex date of the event. Optional; carried for cross-event consistency.", alias="exDate")
@@ -53,7 +55,7 @@ class DutchAuctionEvent(InstrumentEvent):
     bid_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Per-holder bid price submitted at instruction time. Audit-only; no calculation impact.", alias="bidPrice")
     instrument_event_type:  StrictStr = Field(...,alias="instrumentEventType", description="The Type of Event. Available values: TransitionEvent, InformationalEvent, OpenEvent, CloseEvent, StockSplitEvent, BondDefaultEvent, CashDividendEvent, AmortisationEvent, CashFlowEvent, ExerciseEvent, ResetEvent, TriggerEvent, RawVendorEvent, InformationalErrorEvent, BondCouponEvent, DividendReinvestmentEvent, AccumulationEvent, BondPrincipalEvent, DividendOptionEvent, MaturityEvent, FxForwardSettlementEvent, ExpiryEvent, ScripDividendEvent, StockDividendEvent, ReverseStockSplitEvent, CapitalDistributionEvent, SpinOffEvent, MergerEvent, FutureExpiryEvent, SwapCashFlowEvent, SwapPrincipalEvent, CreditPremiumCashFlowEvent, CdsCreditEvent, CdxCreditEvent, MbsCouponEvent, MbsPrincipalEvent, BonusIssueEvent, MbsPrincipalWriteOffEvent, MbsInterestDeferralEvent, MbsInterestShortfallEvent, TenderEvent, CallOnIntermediateSecuritiesEvent, IntermediateSecuritiesDistributionEvent, OptionExercisePhysicalEvent, OptionExerciseCashEvent, ProtectionPayoutCashFlowEvent, TermDepositInterestEvent, TermDepositPrincipalEvent, EarlyRedemptionEvent, FutureMarkToMarketEvent, AdjustGlobalCommitmentEvent, ContractInitialisationEvent, DrawdownEvent, LoanInterestRepaymentEvent, UpdateDepositAmountEvent, LoanPrincipalRepaymentEvent, DepositInterestPaymentEvent, DepositCloseEvent, LoanFacilityContractRolloverEvent, RepurchaseOfferEvent, RepoPartialClosureEvent, RepoCashFlowEvent, FlexibleRepoInterestPaymentEvent, FlexibleRepoCashFlowEvent, FlexibleRepoCollateralEvent, ConversionEvent, FlexibleRepoPartialClosureEvent, FlexibleRepoFullClosureEvent, CapletFloorletCashFlowEvent, EarlyCloseOutEvent, DepositRollEvent, ConsentEvent, DrawingEvent, CapitalGainsDistributionEvent, ExchangeOfferEvent, DutchAuctionEvent, WorthlessEvent, PutRedemptionEvent, LoanFacilityDelayedCompensationPaymentEvent, InterestPaymentEvent, PriorityIssueEvent, ClassActionEvent, BankruptcyEvent, LiquidationPaymentEvent, PartialDefeasanceEvent, SecurityWriteOffEvent, WarrantsExerciseEvent, PariPassuEvent, ChangeEvent, PikBondCouponEvent, PikBondCashCouponEvent, PikBondInterestCapitalisationEvent, PikBondPrincipalEvent, DelistingEvent, PikBondInterestEvent, CommodityForwardCashSettlementEvent, PaymentInKindEvent, CommodityForwardPhysicalSettlementEvent, CancelSwapEvent, BondOptionTerminationEvent, TerminationEvent, CommodityCalendarSwapCashFlowEvent.") 
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["instrumentEventType", "paymentDate", "marketDeadlineDate", "currency", "tenderOfferElections", "securityOfferElections", "cashAndSecurityOfferElections", "lapseElections", "responseDeadlineDate", "earlyResponseDeadline", "exDate", "recordDate", "announcementDate", "targetQuantity", "prorationRate", "newInstrument", "fractionalUnitsCashPrice", "fractionalUnitsCashCurrency", "bidPrice"]
+    __properties: ClassVar[List[str]] = ["instrumentEventType", "paymentDate", "marketDeadlineDate", "currency", "tenderOfferElections", "securityOfferElections", "cashAndSecurityOfferElections", "lapseElections", "mixedLotConstituentsElections", "responseDeadlineDate", "earlyResponseDeadline", "exDate", "recordDate", "announcementDate", "targetQuantity", "prorationRate", "newInstrument", "fractionalUnitsCashPrice", "fractionalUnitsCashCurrency", "bidPrice"]
 
     @field_validator('instrument_event_type')
     def instrument_event_type_validate_enum(cls, value):
@@ -138,6 +140,13 @@ class DutchAuctionEvent(InstrumentEvent):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['lapseElections'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in mixed_lot_constituents_elections (list)
+        _items = []
+        if self.mixed_lot_constituents_elections:
+            for _item in self.mixed_lot_constituents_elections:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['mixedLotConstituentsElections'] = _items
         # override the default output from pydantic by calling `to_dict()` of new_instrument
         if self.new_instrument:
             _dict['newInstrument'] = self.new_instrument.to_dict(by_alias=by_alias)
@@ -165,6 +174,11 @@ class DutchAuctionEvent(InstrumentEvent):
         # and model_fields_set contains the field
         if self.lapse_elections is None and "lapse_elections" in self.model_fields_set:
             _dict['lapseElections'] = None
+
+        # set to None if mixed_lot_constituents_elections (nullable) is None
+        # and model_fields_set contains the field
+        if self.mixed_lot_constituents_elections is None and "mixed_lot_constituents_elections" in self.model_fields_set:
+            _dict['mixedLotConstituentsElections'] = None
 
         # set to None if response_deadline_date (nullable) is None
         # and model_fields_set contains the field
@@ -231,6 +245,7 @@ class DutchAuctionEvent(InstrumentEvent):
             "security_offer_elections": [SecurityOfferElection.from_dict(_item) for _item in _v] if (_v := obj.get("securityOfferElections")) is not None else None,
             "cash_and_security_offer_elections": [CashAndSecurityOfferElection.from_dict(_item) for _item in _v] if (_v := obj.get("cashAndSecurityOfferElections")) is not None else None,
             "lapse_elections": [LapseElection.from_dict(_item) for _item in _v] if (_v := obj.get("lapseElections")) is not None else None,
+            "mixed_lot_constituents_elections": [MixedLotConstituentsElection.from_dict(_item) for _item in _v] if (_v := obj.get("mixedLotConstituentsElections")) is not None else None,
             "response_deadline_date": obj.get("responseDeadlineDate"),
             "early_response_deadline": obj.get("earlyResponseDeadline"),
             "ex_date": obj.get("exDate"),

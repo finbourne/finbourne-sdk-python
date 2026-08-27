@@ -8,7 +8,8 @@ Method | HTTP request | Description
 [**delete_scenario**](ScenariosApi.md#delete_scenario) | **DELETE** /api/api/scenarios/{scope}/{code} | [EARLY ACCESS] DeleteScenario: Delete a Scenario, assuming that it is present.
 [**get_scenario**](ScenariosApi.md#get_scenario) | **GET** /api/api/scenarios/{scope}/{code} | [EARLY ACCESS] GetScenario: Get Scenario
 [**list_scenario_versions**](ScenariosApi.md#list_scenario_versions) | **GET** /api/api/scenarios/{scope}/{code}/versions | [EARLY ACCESS] ListScenarioVersions: List the versions of a Scenario
-[**list_scenarios**](ScenariosApi.md#list_scenarios) | **GET** /api/api/scenarios/{scope} | [EARLY ACCESS] ListScenarios: List the set of Scenario definitions
+[**list_scenarios**](ScenariosApi.md#list_scenarios) | **GET** /api/api/scenarios | [EARLY ACCESS] ListScenarios: List Scenarios
+[**list_scenarios_for_scope**](ScenariosApi.md#list_scenarios_for_scope) | **GET** /api/api/scenarios/{scope} | [EARLY ACCESS] ListScenariosForScope: List Scenarios for a scope
 [**preview_scenario**](ScenariosApi.md#preview_scenario) | **POST** /api/api/scenarios/$preview | [EARLY ACCESS] PreviewScenario: Preview a Scenario
 [**upsert_scenario**](ScenariosApi.md#upsert_scenario) | **POST** /api/api/scenarios | [EARLY ACCESS] UpsertScenario: Upsert a Scenario. This creates or updates the scenario definition in LUSID.
 
@@ -164,7 +165,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The successfully retrieved Scenario or any failure |  -  |
+**200** | The successfully retrieved Scenario |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 
@@ -223,11 +224,59 @@ Name | Type | Description  | Notes
 ---
 
 # **list_scenarios**
-> PagedResourceListOfGetScenarioResponse listScenarios = list_scenarios(scope, as_at=as_at, filter=filter, limit=limit, page=page)
+> PagedResourceListOfGetScenarioResponse listScenarios = list_scenarios(as_at=as_at, filter=filter, limit=limit, page=page)
 
-[EARLY ACCESS] ListScenarios: List the set of Scenario definitions
+[EARLY ACCESS] ListScenarios: List Scenarios
 
-List the set of scenario definitions at the specified date/time and scope.
+List scenario definitions across all scopes at the specified date/time. Each item carries  its scope and code. Scenarios the caller is not entitled to read are omitted.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(ScenariosApi)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+filter = 'filter_example' # str (optional)
+limit = 56 # int (optional)
+page = 'page_example' # str (optional)
+api_response = api_instance.list_scenarios(as_at=as_at, filter=filter, limit=limit, page=page)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **as_at** | **datetime**| The asAt datetime at which to list the scenarios. Defaults to latest if not specified. | [optional] 
+ **filter** | **str**| Expression to filter the result set, e.g. \&quot;scope eq &#39;MyScope&#39;\&quot;. | [optional] 
+ **limit** | **int**| Maximum number of results to return. Defaults to 100. | [optional] 
+ **page** | **str**| Pagination token from a previous result to fetch the next page. | [optional] 
+
+### Return type
+
+[**PagedResourceListOfGetScenarioResponse**](../model/PagedResourceListOfGetScenarioResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The requested scenarios |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **list_scenarios_for_scope**
+> PagedResourceListOfGetScenarioResponse listScenariosForScope = list_scenarios_for_scope(scope, as_at=as_at, filter=filter, limit=limit, page=page)
+
+[EARLY ACCESS] ListScenariosForScope: List Scenarios for a scope
+
+List the set of scenario definitions in a single scope at the specified date/time.
 
 ### Example
 
@@ -238,7 +287,7 @@ as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
 filter = 'filter_example' # str (optional)
 limit = 56 # int (optional)
 page = 'page_example' # str (optional)
-api_response = api_instance.list_scenarios(scope, as_at=as_at, filter=filter, limit=limit, page=page)
+api_response = api_instance.list_scenarios_for_scope(scope, as_at=as_at, filter=filter, limit=limit, page=page)
 pprint(api_response)
 ```
 

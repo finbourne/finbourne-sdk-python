@@ -38,18 +38,16 @@ class ShareClass(BaseModel):
     launch_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The launch price set when a shareclass is added to the fund. Defaults to 1.", alias="launchPrice")
     launch_date: Optional[datetime] = Field(default=None, description="The launch date set when a shareclass is added to the fund. Defaults to Fund Inception Date.", alias="launchDate")
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="An optional set of properties to attach to the auto-created Instrument. Only applied when createInstrument is true.")
-    fund_share_class_type:  StrictStr = Field(...,alias="fundShareClassType", description="The Type of Share Class. Available values: Unitised, Inactive, Series, PrivateEquity, Partnership.") 
+    investor_type:  StrictStr = Field(...,alias="investorType", description="The Type of Share Class. Available values: Unitised.") 
     distribution_type:  Optional[StrictStr] = Field(default=None,alias="distributionType", description="The type of distribution the ShareClass will calculate. Available values: Income, Accumulation.") 
     dom_ccy:  StrictStr = Field(...,alias="domCcy", description="The domestic currency of the ShareClass instrument.") 
     trading_conventions: Optional[TradingConventions] = Field(default=None, alias="tradingConventions")
-    units_precision: Optional[StrictInt] = Field(default=None, description="Decimal places for the share class units.", alias="unitsPrecision")
-    price_precision: Optional[StrictInt] = Field(default=None, description="Decimal places for the share class price.", alias="pricePrecision")
-    rounding_conventions: Optional[List[SimpleRoundingConvention]] = Field(default=None, description="Rounding conventions used for the ShareClass quotes.", alias="roundingConventions")
+    rounding_conventions_price: Optional[List[SimpleRoundingConvention]] = Field(default=None, description="Rounding conventions used for the ShareClass quotes.", alias="roundingConventionsPrice")
     rounding_conventions_units: Optional[List[SimpleRoundingConvention]] = Field(default=None, description="Rounding conventions used for the ShareClass units.", alias="roundingConventionsUnits")
     time_zone_conventions: Optional[TimeZoneConventions] = Field(default=None, alias="timeZoneConventions")
     distribution_payment_type:  Optional[StrictStr] = Field(default=None,alias="distributionPaymentType", description="The tax treatment applied to distributions. Available values: Invalid, Gross, Net.") 
     hedging:  Optional[StrictStr] = Field(default=None,alias="hedging", description="Indicates whether the ShareClass applies currency hedging. Available values: Invalid, None, ApplyHedging.") 
-    __properties: ClassVar[List[str]] = ["instrumentIdentifiers", "name", "description", "shareClassShortCode", "launchPrice", "launchDate", "properties", "fundShareClassType", "distributionType", "domCcy", "tradingConventions", "unitsPrecision", "pricePrecision", "roundingConventions", "roundingConventionsUnits", "timeZoneConventions", "distributionPaymentType", "hedging"]
+    __properties: ClassVar[List[str]] = ["instrumentIdentifiers", "name", "description", "shareClassShortCode", "launchPrice", "launchDate", "properties", "investorType", "distributionType", "domCcy", "tradingConventions", "roundingConventionsPrice", "roundingConventionsUnits", "timeZoneConventions", "distributionPaymentType", "hedging"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -95,13 +93,13 @@ class ShareClass(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of trading_conventions
         if self.trading_conventions:
             _dict['tradingConventions'] = self.trading_conventions.to_dict(by_alias=by_alias)
-        # override the default output from pydantic by calling `to_dict()` of each item in rounding_conventions (list)
+        # override the default output from pydantic by calling `to_dict()` of each item in rounding_conventions_price (list)
         _items = []
-        if self.rounding_conventions:
-            for _item in self.rounding_conventions:
+        if self.rounding_conventions_price:
+            for _item in self.rounding_conventions_price:
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
-            _dict['roundingConventions'] = _items
+            _dict['roundingConventionsPrice'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in rounding_conventions_units (list)
         _items = []
         if self.rounding_conventions_units:
@@ -142,20 +140,10 @@ class ShareClass(BaseModel):
         if self.distribution_type is None and "distribution_type" in self.model_fields_set:
             _dict['distributionType'] = None
 
-        # set to None if units_precision (nullable) is None
+        # set to None if rounding_conventions_price (nullable) is None
         # and model_fields_set contains the field
-        if self.units_precision is None and "units_precision" in self.model_fields_set:
-            _dict['unitsPrecision'] = None
-
-        # set to None if price_precision (nullable) is None
-        # and model_fields_set contains the field
-        if self.price_precision is None and "price_precision" in self.model_fields_set:
-            _dict['pricePrecision'] = None
-
-        # set to None if rounding_conventions (nullable) is None
-        # and model_fields_set contains the field
-        if self.rounding_conventions is None and "rounding_conventions" in self.model_fields_set:
-            _dict['roundingConventions'] = None
+        if self.rounding_conventions_price is None and "rounding_conventions_price" in self.model_fields_set:
+            _dict['roundingConventionsPrice'] = None
 
         # set to None if rounding_conventions_units (nullable) is None
         # and model_fields_set contains the field
@@ -196,13 +184,11 @@ class ShareClass(BaseModel):
             )
             if (_val := obj.get("properties")) is not None
             else None,
-            "fund_share_class_type": obj.get("fundShareClassType"),
+            "investor_type": obj.get("investorType"),
             "distribution_type": obj.get("distributionType"),
             "dom_ccy": obj.get("domCcy"),
             "trading_conventions": TradingConventions.from_dict(_v) if (_v := obj.get("tradingConventions")) is not None else None,
-            "units_precision": obj.get("unitsPrecision"),
-            "price_precision": obj.get("pricePrecision"),
-            "rounding_conventions": [SimpleRoundingConvention.from_dict(_item) for _item in _v] if (_v := obj.get("roundingConventions")) is not None else None,
+            "rounding_conventions_price": [SimpleRoundingConvention.from_dict(_item) for _item in _v] if (_v := obj.get("roundingConventionsPrice")) is not None else None,
             "rounding_conventions_units": [SimpleRoundingConvention.from_dict(_item) for _item in _v] if (_v := obj.get("roundingConventionsUnits")) is not None else None,
             "time_zone_conventions": TimeZoneConventions.from_dict(_v) if (_v := obj.get("timeZoneConventions")) is not None else None,
             "distribution_payment_type": obj.get("distributionPaymentType"),

@@ -25,6 +25,7 @@ A Fund entity.
 | **create_instrument** | **bool** | Optional | Whether to create instruments for the Fund&#39;s share classes, series, or partner classes upon creation. Defaults to false. |
 | **allocation_groups** | [List[AllocationGroup]](AllocationGroup.md) | Optional | An optional list of Allocation Group definitions for the Fund. |
 | **share_classes** | [List[ShareClass]](ShareClass.md) | Optional | An optional list of Share Class definitions for the Fund. |
+| **fund_instrument** | [FundInstrument](FundInstrument.md) | Optional | *No description available.* |
 | **version** | [Version](Version.md) | Optional | *No description available.* |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
@@ -57,6 +58,7 @@ instance = Fund(
     create_instrument=True,  # optional — Whether to create instruments for the Fund&#39;s share classes, series, or partner classes upon creation. Defaults to false.
     allocation_groups=[],  # optional — An optional list of Allocation Group definitions for the Fund.
     share_classes=[],  # optional — An optional list of Share Class definitions for the Fund.
+    fund_instrument=FundInstrument(...),  # optional
     version=Version(...),  # optional
     links=[]  # optional
 )
@@ -73,6 +75,7 @@ instance = Fund(
 - [ModelProperty](ModelProperty.md) — used in `properties`
 - [AllocationGroup](AllocationGroup.md) — used in `allocation_groups`
 - [ShareClass](ShareClass.md) — used in `share_classes`
+- [FundInstrument](FundInstrument.md)
 - [Version](Version.md)
 - [Link](Link.md)
 

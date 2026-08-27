@@ -11,13 +11,11 @@
 | **launch_price** | **float** | Optional | The launch price set when a shareclass is added to the fund. Defaults to 1. |
 | **launch_date** | **datetime** | Optional | The launch date set when a shareclass is added to the fund. Defaults to Fund Inception Date. |
 | **properties** | [Dict[str, ModelProperty]](ModelProperty.md) | Optional | An optional set of properties to attach to the auto-created Instrument. Only applied when createInstrument is true. |
-| **fund_share_class_type** | **str** | Required | The Type of Share Class. Available values: Unitised, Inactive, Series, PrivateEquity, Partnership. |
+| **investor_type** | **str** | Required | The Type of Share Class. Available values: Unitised. |
 | **distribution_type** | **str** | Optional | The type of distribution the ShareClass will calculate. Available values: Income, Accumulation. |
 | **dom_ccy** | **str** | Required | The domestic currency of the ShareClass instrument. |
 | **trading_conventions** | [TradingConventions](TradingConventions.md) | Optional | *No description available.* |
-| **units_precision** | **int** | Optional | Decimal places for the share class units. |
-| **price_precision** | **int** | Optional | Decimal places for the share class price. |
-| **rounding_conventions** | [List[SimpleRoundingConvention]](SimpleRoundingConvention.md) | Optional | Rounding conventions used for the ShareClass quotes. |
+| **rounding_conventions_price** | [List[SimpleRoundingConvention]](SimpleRoundingConvention.md) | Optional | Rounding conventions used for the ShareClass quotes. |
 | **rounding_conventions_units** | [List[SimpleRoundingConvention]](SimpleRoundingConvention.md) | Optional | Rounding conventions used for the ShareClass units. |
 | **time_zone_conventions** | [TimeZoneConventions](TimeZoneConventions.md) | Optional | *No description available.* |
 | **distribution_payment_type** | **str** | Optional | The tax treatment applied to distributions. Available values: Invalid, Gross, Net. |
@@ -39,13 +37,11 @@ instance = ShareClass(
     launch_price=0.0,  # optional — The launch price set when a shareclass is added to the fund. Defaults to 1.
     launch_date=datetime.now(),  # optional — The launch date set when a shareclass is added to the fund. Defaults to Fund Inception Date.
     properties=ModelProperty(...),  # optional — An optional set of properties to attach to the auto-created Instrument. Only applied when createInstrument is true.
-    fund_share_class_type="...",  # required — The Type of Share Class. Available values: Unitised, Inactive, Series, PrivateEquity, Partnership.
+    investor_type="...",  # required — The Type of Share Class. Available values: Unitised.
     distribution_type="...",  # optional — The type of distribution the ShareClass will calculate. Available values: Income, Accumulation.
     dom_ccy="...",  # required — The domestic currency of the ShareClass instrument.
     trading_conventions=TradingConventions(...),  # optional
-    units_precision=0,  # optional — Decimal places for the share class units.
-    price_precision=0,  # optional — Decimal places for the share class price.
-    rounding_conventions=[],  # optional — Rounding conventions used for the ShareClass quotes.
+    rounding_conventions_price=[],  # optional — Rounding conventions used for the ShareClass quotes.
     rounding_conventions_units=[],  # optional — Rounding conventions used for the ShareClass units.
     time_zone_conventions=TimeZoneConventions(...),  # optional
     distribution_payment_type="...",  # optional — The tax treatment applied to distributions. Available values: Invalid, Gross, Net.
@@ -55,7 +51,7 @@ instance = ShareClass(
 
 - [ModelProperty](ModelProperty.md) — used in `properties`
 - [TradingConventions](TradingConventions.md)
-- [SimpleRoundingConvention](SimpleRoundingConvention.md) — used in `rounding_conventions`
+- [SimpleRoundingConvention](SimpleRoundingConvention.md) — used in `rounding_conventions_price`
 - [SimpleRoundingConvention](SimpleRoundingConvention.md) — used in `rounding_conventions_units`
 - [TimeZoneConventions](TimeZoneConventions.md)
 

@@ -12,6 +12,7 @@ Dutch Auction Event (DTCH) — a voluntary corporate action with price-discovery
 | **security_offer_elections** | [List[SecurityOfferElection]](SecurityOfferElection.md) | Optional | List of possible SecurityOfferElections for this event. Populated on the SECU path (Count &#x3D;&#x3D; 1);  empty on the CASH and CASE paths. |
 | **cash_and_security_offer_elections** | [List[CashAndSecurityOfferElection]](CashAndSecurityOfferElection.md) | Optional | List of possible CashAndSecurityOfferElections for this event. Populated on the CASE path  (Count &#x3D;&#x3D; 1); empty on the CASH and SECU paths. |
 | **lapse_elections** | [List[LapseElection]](LapseElection.md) | Optional | List of possible LapseElections for this event. Required on all three paths (Count &#x3D;&#x3D; 1).  Allows the holder to opt out of the offer (NOAC). |
+| **mixed_lot_constituents_elections** | [List[MixedLotConstituentsElection]](MixedLotConstituentsElection.md) | Optional | List of possible MixedLotConstituentsElections for this event, if any. Each election settles into one or more  distinct new securities and/or cash legs of its own, in place of the single event-level NewInstrument the  SecurityOffer and CashAndSecurityOffer paths resolve to.    Several may be present: a Dutch Auction commonly offers a number of mutually exclusive destinations, and each  is described by its own election. Not applicable to the CASH path, which has no security leg to multiply. |
 | **response_deadline_date** | **datetime** | Optional | Account-servicer response deadline. Defaults to MarketDeadlineDate when not supplied.  When provided, must be on or before MarketDeadlineDate. |
 | **early_response_deadline** | **datetime** | Optional | Early-participation deadline. When provided, must be on or before ResponseDeadlineDate. |
 | **ex_date** | **datetime** | Optional | The ex date of the event. Optional; carried for cross-event consistency. |
@@ -41,6 +42,7 @@ instance = DutchAuctionEvent(
     security_offer_elections=[],  # optional — List of possible SecurityOfferElections for this event. Populated on the SECU path (Count &#x3D;&#x3D; 1);  empty on the CASH and CASE paths.
     cash_and_security_offer_elections=[],  # optional — List of possible CashAndSecurityOfferElections for this event. Populated on the CASE path  (Count &#x3D;&#x3D; 1); empty on the CASH and SECU paths.
     lapse_elections=[],  # optional — List of possible LapseElections for this event. Required on all three paths (Count &#x3D;&#x3D; 1).  Allows the holder to opt out of the offer (NOAC).
+    mixed_lot_constituents_elections=[],  # optional — List of possible MixedLotConstituentsElections for this event, if any. Each election settles into one or more  distinct new securities and/or cash legs of its own, in place of the single event-level NewInstrument the  SecurityOffer and CashAndSecurityOffer paths resolve to.    Several may be present: a Dutch Auction commonly offers a number of mutually exclusive destinations, and each  is described by its own election. Not applicable to the CASH path, which has no security leg to multiply.
     response_deadline_date=datetime.now(),  # optional — Account-servicer response deadline. Defaults to MarketDeadlineDate when not supplied.  When provided, must be on or before MarketDeadlineDate.
     early_response_deadline=datetime.now(),  # optional — Early-participation deadline. When provided, must be on or before ResponseDeadlineDate.
     ex_date=datetime.now(),  # optional — The ex date of the event. Optional; carried for cross-event consistency.
@@ -60,6 +62,7 @@ instance = DutchAuctionEvent(
 - [SecurityOfferElection](SecurityOfferElection.md) — used in `security_offer_elections`
 - [CashAndSecurityOfferElection](CashAndSecurityOfferElection.md) — used in `cash_and_security_offer_elections`
 - [LapseElection](LapseElection.md) — used in `lapse_elections`
+- [MixedLotConstituentsElection](MixedLotConstituentsElection.md) — used in `mixed_lot_constituents_elections`
 - [NewInstrument](NewInstrument.md)
 
 

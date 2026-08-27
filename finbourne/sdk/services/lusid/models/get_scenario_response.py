@@ -21,7 +21,6 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
-from finbourne.sdk.services.lusid.models.error_detail import ErrorDetail
 from finbourne.sdk.services.lusid.models.link import Link
 from finbourne.sdk.services.lusid.models.scenario_definition import ScenarioDefinition
 from finbourne.sdk.services.lusid.models.version import Version
@@ -29,14 +28,13 @@ from finbourne.sdk.services.lusid.models.version import Version
 
 class GetScenarioResponse(BaseModel):
     """
-    GetScenarioResponse
+    The response to a singular scenario read. There is deliberately no failure block on this  type: every route returning it is a singular (or list-of-singular) read, never a batch keyed  lookup, so there is no per-key error to report - an invalid entity is rejected at upsert and  a failed read fails the whole request. The IGetResponse batch members below throw for the  same reason; do not reintroduce a Failed property when copying this shape.  # noqa: E501
     """
     href:  Optional[StrictStr] = Field(default=None,alias="href") 
     value: Optional[ScenarioDefinition] = None
     version: Optional[Version] = None
-    failed: Optional[ErrorDetail] = None
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["href", "value", "version", "failed", "links"]
+    __properties: ClassVar[List[str]] = ["href", "value", "version", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -78,9 +76,6 @@ class GetScenarioResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of version
         if self.version:
             _dict['version'] = self.version.to_dict(by_alias=by_alias)
-        # override the default output from pydantic by calling `to_dict()` of failed
-        if self.failed:
-            _dict['failed'] = self.failed.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each item in links (list)
         _items = []
         if self.links:
@@ -113,7 +108,6 @@ class GetScenarioResponse(BaseModel):
             "href": obj.get("href"),
             "value": ScenarioDefinition.from_dict(_v) if (_v := obj.get("value")) is not None else None,
             "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
-            "failed": ErrorDetail.from_dict(_v) if (_v := obj.get("failed")) is not None else None,
             "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj

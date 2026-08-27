@@ -17,6 +17,7 @@ Tender Event (TEND).
 | **security_offer_elections** | [List[SecurityOfferElection]](SecurityOfferElection.md) | Optional | List of possible SecurityOfferElections for this event. |
 | **cash_and_security_offer_elections** | [List[CashAndSecurityOfferElection]](CashAndSecurityOfferElection.md) | Optional | List of possible CashAndSecurityOfferElections for this event. |
 | **cash_offer_elections** | [List[CashOfferElection]](CashOfferElection.md) | Optional | List of possible CashOfferElections for this event. |
+| **mixed_lot_constituents_elections** | [List[MixedLotConstituentsElection]](MixedLotConstituentsElection.md) | Optional | List of possible mixed lot offers for this tender event, if any. Each election replaces the tendered  position with one or more distinct new securities and/or cash legs of its own, taking the place of the  single event-level NewInstrument that the other security-bearing elections resolve to.    A tender may carry more than one of these, describing mutually exclusive multi-destination options. |
 | **offer_type** | **str** | Optional | Informational ISO 20022 OfferTp indicator (e.g. \&quot;ACPR\&quot;). Optional. No calculation impact. |
 | **accrued_interest_per_unit** | **float** | Optional | Optional per-unit accrued interest on the tendered face, from the last coupon date up to  (but excluding) PaymentDate. Bond instrument types only. If left empty, analytics-core  resolves it at event time from the bond&#39;s coupon schedule and market data. |
 | **min_piece_size** | **float** | Optional | Bond-specific minimum instructable face amount. Optional. Must be strictly positive when set. |
@@ -48,6 +49,7 @@ instance = TenderEvent(
     security_offer_elections=[],  # optional — List of possible SecurityOfferElections for this event.
     cash_and_security_offer_elections=[],  # optional — List of possible CashAndSecurityOfferElections for this event.
     cash_offer_elections=[],  # optional — List of possible CashOfferElections for this event.
+    mixed_lot_constituents_elections=[],  # optional — List of possible mixed lot offers for this tender event, if any. Each election replaces the tendered  position with one or more distinct new securities and/or cash legs of its own, taking the place of the  single event-level NewInstrument that the other security-bearing elections resolve to.    A tender may carry more than one of these, describing mutually exclusive multi-destination options.
     offer_type="...",  # optional — Informational ISO 20022 OfferTp indicator (e.g. \&quot;ACPR\&quot;). Optional. No calculation impact.
     accrued_interest_per_unit=0.0,  # optional — Optional per-unit accrued interest on the tendered face, from the last coupon date up to  (but excluding) PaymentDate. Bond instrument types only. If left empty, analytics-core  resolves it at event time from the bond&#39;s coupon schedule and market data.
     min_piece_size=0.0,  # optional — Bond-specific minimum instructable face amount. Optional. Must be strictly positive when set.
@@ -64,6 +66,7 @@ instance = TenderEvent(
 - [SecurityOfferElection](SecurityOfferElection.md) — used in `security_offer_elections`
 - [CashAndSecurityOfferElection](CashAndSecurityOfferElection.md) — used in `cash_and_security_offer_elections`
 - [CashOfferElection](CashOfferElection.md) — used in `cash_offer_elections`
+- [MixedLotConstituentsElection](MixedLotConstituentsElection.md) — used in `mixed_lot_constituents_elections`
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

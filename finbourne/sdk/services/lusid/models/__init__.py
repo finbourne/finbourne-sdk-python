@@ -139,6 +139,7 @@ from finbourne.sdk.services.lusid.models.bond_conversion_entry import BondConver
 from finbourne.sdk.services.lusid.models.bond_conversion_schedule import BondConversionSchedule
 from finbourne.sdk.services.lusid.models.bond_coupon_event import BondCouponEvent
 from finbourne.sdk.services.lusid.models.bond_default_event import BondDefaultEvent
+from finbourne.sdk.services.lusid.models.bond_default_suppression_details import BondDefaultSuppressionDetails
 from finbourne.sdk.services.lusid.models.bond_option import BondOption
 from finbourne.sdk.services.lusid.models.bond_option_termination_event import BondOptionTerminationEvent
 from finbourne.sdk.services.lusid.models.bond_principal_event import BondPrincipalEvent
@@ -534,6 +535,7 @@ from finbourne.sdk.services.lusid.models.fund_definition_request import FundDefi
 from finbourne.sdk.services.lusid.models.fund_details import FundDetails
 from finbourne.sdk.services.lusid.models.fund_estimate_valuation_point import FundEstimateValuationPoint
 from finbourne.sdk.services.lusid.models.fund_id_list import FundIdList
+from finbourne.sdk.services.lusid.models.fund_instrument import FundInstrument
 from finbourne.sdk.services.lusid.models.fund_journal_entry_line import FundJournalEntryLine
 from finbourne.sdk.services.lusid.models.fund_pnl_breakdown import FundPnlBreakdown
 from finbourne.sdk.services.lusid.models.fund_previous_nav import FundPreviousNAV
@@ -1762,6 +1764,7 @@ __all__ = [
     "BondConversionSchedule",
     "BondCouponEvent",
     "BondDefaultEvent",
+    "BondDefaultSuppressionDetails",
     "BondOption",
     "BondOptionTerminationEvent",
     "BondPrincipalEvent",
@@ -2157,6 +2160,7 @@ __all__ = [
     "FundDetails",
     "FundEstimateValuationPoint",
     "FundIdList",
+    "FundInstrument",
     "FundJournalEntryLine",
     "FundPnlBreakdown",
     "FundPreviousNAV",
