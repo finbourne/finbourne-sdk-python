@@ -39,7 +39,8 @@ class CustodianAccountRequest(BaseModel):
     properties: Optional[Dict[str, ModelProperty]] = Field(default=None, description="Set of unique Custodian Account properties and associated values to store with the Custodian Account. Each property must be from the 'CustodianAccount' domain.")
     custodian_identifier: TypedResourceId = Field(alias="custodianIdentifier")
     account_type:  Optional[StrictStr] = Field(default=None,alias="accountType", description="The type of the Custodian Account. This is a free-text field that accepts any value. Optional, with no default.") 
-    __properties: ClassVar[List[str]] = ["scope", "code", "status", "accountNumber", "accountName", "accountingMethod", "currency", "properties", "custodianIdentifier", "accountType"]
+    tax_lot_selection_cost_basis:  Optional[StrictStr] = Field(default=None,alias="taxLotSelectionCostBasis", description="The cost figure that cost-referencing accounting methods evaluate when selecting tax lots for disposals from this account. This can be: Cost or AmortisedCost. If not specified, resolution falls through to the transaction type and then the portfolio's default. Available values: Cost, AmortisedCost.") 
+    __properties: ClassVar[List[str]] = ["scope", "code", "status", "accountNumber", "accountName", "accountingMethod", "currency", "properties", "custodianIdentifier", "accountType", "taxLotSelectionCostBasis"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -105,6 +106,11 @@ class CustodianAccountRequest(BaseModel):
         if self.account_type is None and "account_type" in self.model_fields_set:
             _dict['accountType'] = None
 
+        # set to None if tax_lot_selection_cost_basis (nullable) is None
+        # and model_fields_set contains the field
+        if self.tax_lot_selection_cost_basis is None and "tax_lot_selection_cost_basis" in self.model_fields_set:
+            _dict['taxLotSelectionCostBasis'] = None
+
         return _dict
 
     @classmethod
@@ -131,7 +137,8 @@ class CustodianAccountRequest(BaseModel):
             if (_val := obj.get("properties")) is not None
             else None,
             "custodian_identifier": TypedResourceId.from_dict(_v) if (_v := obj.get("custodianIdentifier")) is not None else None,
-            "account_type": obj.get("accountType")
+            "account_type": obj.get("accountType"),
+            "tax_lot_selection_cost_basis": obj.get("taxLotSelectionCostBasis")
         })
         return _obj
 

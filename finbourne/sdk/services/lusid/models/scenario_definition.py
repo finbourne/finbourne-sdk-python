@@ -32,8 +32,10 @@ class ScenarioDefinition(BaseModel):
     code:  StrictStr = Field(...,alias="code") 
     display_name:  Optional[StrictStr] = Field(default=None,alias="displayName") 
     description:  Optional[StrictStr] = Field(default=None,alias="description") 
+    short_code:  Optional[StrictStr] = Field(default=None,alias="shortCode", description="A short, memorable identifier for the scenario, for use in reporting. Optional on upsert:  when omitted, reads return a value inferred from the display name (falling back to the  code) rather than null; the inferred value is computed fresh on every read and is never  persisted. When supplied, the value is stored and returned verbatim. Independent of  scenarioType.") 
+    scenario_type:  StrictStr = Field(...,alias="scenarioType", description="Classifies the scenario. Required on upsert; supported string (enumeration) values are:  [Historical, Regulatory, Hypothetical]. Independent of shortCode. Available values: Historical, Regulatory, Hypothetical.") 
     shifts: Optional[List[ScenarioShiftDefinition]] = None
-    __properties: ClassVar[List[str]] = ["scope", "code", "displayName", "description", "shifts"]
+    __properties: ClassVar[List[str]] = ["scope", "code", "displayName", "description", "shortCode", "scenarioType", "shifts"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -86,6 +88,11 @@ class ScenarioDefinition(BaseModel):
         if self.description is None and "description" in self.model_fields_set:
             _dict['description'] = None
 
+        # set to None if short_code (nullable) is None
+        # and model_fields_set contains the field
+        if self.short_code is None and "short_code" in self.model_fields_set:
+            _dict['shortCode'] = None
+
         # set to None if shifts (nullable) is None
         # and model_fields_set contains the field
         if self.shifts is None and "shifts" in self.model_fields_set:
@@ -107,6 +114,8 @@ class ScenarioDefinition(BaseModel):
             "code": obj.get("code"),
             "display_name": obj.get("displayName"),
             "description": obj.get("description"),
+            "short_code": obj.get("shortCode"),
+            "scenario_type": obj.get("scenarioType"),
             "shifts": [ScenarioShiftDefinition.from_dict(_item) for _item in _v] if (_v := obj.get("shifts")) is not None else None
         })
         return _obj

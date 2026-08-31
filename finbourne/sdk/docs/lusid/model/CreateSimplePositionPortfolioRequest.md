@@ -20,6 +20,7 @@
 | **cash_gain_loss_calculation_date** | **str** | Optional | The option when the Cash Gain Loss to be calulated. Default value: SettlementDate. Available values: Default, SettlementDate, TransactionDate. |
 | **instrument_event_configuration** | [InstrumentEventConfiguration](InstrumentEventConfiguration.md) | Optional | *No description available.* |
 | **amortisation_rule_set_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
+| **tax_lot_selection_cost_basis** | **str** | Optional | The cost figure that cost-referencing accounting methods evaluate when selecting tax lots for a disposal. This can be: Cost or AmortisedCost. Defaults to Cost if not specified. Available values: Cost, AmortisedCost. |
 
 
 ## Usage
@@ -45,7 +46,8 @@ instance = CreateSimplePositionPortfolioRequest(
     transaction_type_scope="...",  # optional — The scope of the transaction types.
     cash_gain_loss_calculation_date="...",  # optional — The option when the Cash Gain Loss to be calulated. Default value: SettlementDate. Available values: Default, SettlementDate, TransactionDate.
     instrument_event_configuration=InstrumentEventConfiguration(...),  # optional
-    amortisation_rule_set_id=ResourceId(...)  # optional
+    amortisation_rule_set_id=ResourceId(...),  # optional
+    tax_lot_selection_cost_basis="..."  # optional — The cost figure that cost-referencing accounting methods evaluate when selecting tax lots for a disposal. This can be: Cost or AmortisedCost. Defaults to Cost if not specified. Available values: Cost, AmortisedCost.
 )
 ```
 

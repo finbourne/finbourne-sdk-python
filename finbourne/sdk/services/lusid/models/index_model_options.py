@@ -31,7 +31,7 @@ class IndexModelOptions(ModelOptions):
     """
     portfolio_scaling:  StrictStr = Field(...,alias="portfolioScaling", description="Available values: Sum, AbsoluteSum, Unity.") 
     lookthrough_portfolio_relationship_id: Optional[ResourceId] = Field(default=None, alias="lookthroughPortfolioRelationshipId")
-    model_options_type:  StrictStr = Field(...,alias="modelOptionsType", description="Available values: Invalid, OpaqueModelOptions, EmptyModelOptions, IndexModelOptions, FxForwardModelOptions, FundingLegModelOptions, EquityModelOptions, CdsModelOptions, FlexibleLoanPricerOptions.") 
+    model_options_type:  StrictStr = Field(...,alias="modelOptionsType", description="Available values: Invalid, OpaqueModelOptions, EmptyModelOptions, IndexModelOptions, FxForwardModelOptions, FundingLegModelOptions, EquityModelOptions, CdsModelOptions, FlexibleLoanPricerOptions, HullWhiteModelOptions, BondLookupModelOptions.") 
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["modelOptionsType", "portfolioScaling", "lookthroughPortfolioRelationshipId"]
 
@@ -68,7 +68,7 @@ class IndexModelOptions(ModelOptions):
         if "model_options_type" != "type":
             return value
 
-        _allowed = ['Invalid', 'OpaqueModelOptions', 'EmptyModelOptions', 'IndexModelOptions', 'FxForwardModelOptions', 'FundingLegModelOptions', 'EquityModelOptions', 'CdsModelOptions', 'FlexibleLoanPricerOptions']
+        _allowed = ['Invalid', 'OpaqueModelOptions', 'EmptyModelOptions', 'IndexModelOptions', 'FxForwardModelOptions', 'FundingLegModelOptions', 'EquityModelOptions', 'CdsModelOptions', 'FlexibleLoanPricerOptions', 'HullWhiteModelOptions', 'BondLookupModelOptions']
         if len(_allowed) != 1:
             return value
         if value not in _allowed:

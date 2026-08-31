@@ -46,7 +46,8 @@ class CreateSimplePositionPortfolioRequest(BaseModel):
     cash_gain_loss_calculation_date:  Optional[StrictStr] = Field(default=None,alias="cashGainLossCalculationDate", description="The option when the Cash Gain Loss to be calulated. Default value: SettlementDate. Available values: Default, SettlementDate, TransactionDate.") 
     instrument_event_configuration: Optional[InstrumentEventConfiguration] = Field(default=None, alias="instrumentEventConfiguration")
     amortisation_rule_set_id: Optional[ResourceId] = Field(default=None, alias="amortisationRuleSetId")
-    __properties: ClassVar[List[str]] = ["displayName", "description", "code", "created", "enablementDate", "baseCurrency", "corporateActionSourceId", "accountingMethod", "subHoldingKeys", "properties", "instrumentScopes", "amortisationMethod", "transactionTypeScope", "cashGainLossCalculationDate", "instrumentEventConfiguration", "amortisationRuleSetId"]
+    tax_lot_selection_cost_basis:  Optional[StrictStr] = Field(default=None,alias="taxLotSelectionCostBasis", description="The cost figure that cost-referencing accounting methods evaluate when selecting tax lots for a disposal. This can be: Cost or AmortisedCost. Defaults to Cost if not specified. Available values: Cost, AmortisedCost.") 
+    __properties: ClassVar[List[str]] = ["displayName", "description", "code", "created", "enablementDate", "baseCurrency", "corporateActionSourceId", "accountingMethod", "subHoldingKeys", "properties", "instrumentScopes", "amortisationMethod", "transactionTypeScope", "cashGainLossCalculationDate", "instrumentEventConfiguration", "amortisationRuleSetId", "taxLotSelectionCostBasis"]
 
     @field_validator('accounting_method')
     def accounting_method_validate_enum(cls, value):
@@ -166,6 +167,11 @@ class CreateSimplePositionPortfolioRequest(BaseModel):
         if self.cash_gain_loss_calculation_date is None and "cash_gain_loss_calculation_date" in self.model_fields_set:
             _dict['cashGainLossCalculationDate'] = None
 
+        # set to None if tax_lot_selection_cost_basis (nullable) is None
+        # and model_fields_set contains the field
+        if self.tax_lot_selection_cost_basis is None and "tax_lot_selection_cost_basis" in self.model_fields_set:
+            _dict['taxLotSelectionCostBasis'] = None
+
         return _dict
 
     @classmethod
@@ -198,7 +204,8 @@ class CreateSimplePositionPortfolioRequest(BaseModel):
             "transaction_type_scope": obj.get("transactionTypeScope"),
             "cash_gain_loss_calculation_date": obj.get("cashGainLossCalculationDate"),
             "instrument_event_configuration": InstrumentEventConfiguration.from_dict(_v) if (_v := obj.get("instrumentEventConfiguration")) is not None else None,
-            "amortisation_rule_set_id": ResourceId.from_dict(_v) if (_v := obj.get("amortisationRuleSetId")) is not None else None
+            "amortisation_rule_set_id": ResourceId.from_dict(_v) if (_v := obj.get("amortisationRuleSetId")) is not None else None,
+            "tax_lot_selection_cost_basis": obj.get("taxLotSelectionCostBasis")
         })
         return _obj
 

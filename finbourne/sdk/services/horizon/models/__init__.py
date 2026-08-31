@@ -57,6 +57,7 @@ from finbourne.sdk.services.horizon.models.integration_run_response import Integ
 from finbourne.sdk.services.horizon.models.integration_run_version import IntegrationRunVersion
 from finbourne.sdk.services.horizon.models.j_schema import JSchema
 from finbourne.sdk.services.horizon.models.j_schema_type import JSchemaType
+from finbourne.sdk.services.horizon.models.latest_runs_response import LatestRunsResponse
 from finbourne.sdk.services.horizon.models.link import Link
 from finbourne.sdk.services.horizon.models.lusid_entity import LusidEntity
 from finbourne.sdk.services.horizon.models.lusid_field import LusidField
@@ -105,6 +106,7 @@ from finbourne.sdk.services.horizon.models.resolve_failed_delivery_response impo
 from finbourne.sdk.services.horizon.models.resource_id import ResourceId
 from finbourne.sdk.services.horizon.models.row_details import RowDetails
 from finbourne.sdk.services.horizon.models.run_file_response import RunFileResponse
+from finbourne.sdk.services.horizon.models.run_status_count import RunStatusCount
 from finbourne.sdk.services.horizon.models.tpf_failed_delivery_response import TpfFailedDeliveryResponse
 from finbourne.sdk.services.horizon.models.tpf_file_delivery_info import TpfFileDeliveryInfo
 from finbourne.sdk.services.horizon.models.tpf_file_delivery_response import TpfFileDeliveryResponse
@@ -176,6 +178,7 @@ __all__ = [
     "IntegrationRunVersion",
     "JSchema",
     "JSchemaType",
+    "LatestRunsResponse",
     "Link",
     "LusidEntity",
     "LusidField",
@@ -224,6 +227,7 @@ __all__ = [
     "ResourceId",
     "RowDetails",
     "RunFileResponse",
+    "RunStatusCount",
     "TpfFailedDeliveryResponse",
     "TpfFileDeliveryInfo",
     "TpfFileDeliveryResponse",

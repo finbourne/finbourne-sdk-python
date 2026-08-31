@@ -9,6 +9,7 @@ The set of options that control miscellaneous and default market resolution beha
 | **default_instrument_code_type** | **str** | Optional | When instrument quotes are searched for, what identifier should be used by default |
 | **default_scope** | **str** | Optional | The scope in which to search for data when applying default rules. This is optional: if omitted, no default rules  are created and market data is resolved only via the explicitly specified market data key rules. |
 | **attempt_to_infer_missing_fx** | **bool** | Optional | if true will calculate a missing Fx pair (e.g. THBJPY) from the inverse JPYTHB or from standardised pairs against USD, e.g. THBUSD and JPYUSD |
+| **attempt_to_infer_missing_fx_on_fixings** | **bool** | Optional | If true, applies the same inference as AttemptToInferMissingFx to FX fixings (resets), e.g. the fixing of a  non-deliverable FX forward: a fixing quoted only in the reverse direction, or derivable by triangulation  through a standard base currency at the fixing date, is inferred rather than reported missing. This is a  separate, explicit opt-in because a fixing is a contractual historical print: with this off (the default),  a fixing must be present as the exact oriented currency pair to be used. |
 | **calendar_scope** | **str** | Optional | The scope in which holiday calendars stored |
 | **convention_scope** | **str** | Optional | The scope in which conventions stored |
 
@@ -25,6 +26,7 @@ instance = MarketOptions(
     default_instrument_code_type="...",  # optional — When instrument quotes are searched for, what identifier should be used by default
     default_scope="...",  # optional — The scope in which to search for data when applying default rules. This is optional: if omitted, no default rules  are created and market data is resolved only via the explicitly specified market data key rules.
     attempt_to_infer_missing_fx=True,  # optional — if true will calculate a missing Fx pair (e.g. THBJPY) from the inverse JPYTHB or from standardised pairs against USD, e.g. THBUSD and JPYUSD
+    attempt_to_infer_missing_fx_on_fixings=True,  # optional — If true, applies the same inference as AttemptToInferMissingFx to FX fixings (resets), e.g. the fixing of a  non-deliverable FX forward: a fixing quoted only in the reverse direction, or derivable by triangulation  through a standard base currency at the fixing date, is inferred rather than reported missing. This is a  separate, explicit opt-in because a fixing is a contractual historical print: with this off (the default),  a fixing must be present as the exact oriented currency pair to be used.
     calendar_scope="...",  # optional — The scope in which holiday calendars stored
     convention_scope="..."  # optional — The scope in which conventions stored
 )

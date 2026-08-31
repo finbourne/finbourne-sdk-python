@@ -88,6 +88,7 @@ from finbourne.sdk.services.lusid.api.transaction_fee_types_api import Transacti
 from finbourne.sdk.services.lusid.api.transaction_fees_api import TransactionFeesApi
 from finbourne.sdk.services.lusid.api.transaction_portfolios_api import TransactionPortfoliosApi
 from finbourne.sdk.services.lusid.api.transfer_agency_api import TransferAgencyApi
+from finbourne.sdk.services.lusid.api.transfers_api import TransfersApi
 from finbourne.sdk.services.lusid.api.translation_api import TranslationApi
 from finbourne.sdk.services.lusid.api.workspace_api import WorkspaceApi
 
@@ -180,6 +181,7 @@ __all__ = [
     "TransactionFeesApi",
     "TransactionPortfoliosApi",
     "TransferAgencyApi",
+    "TransfersApi",
     "TranslationApi",
     "WorkspaceApi"
 ]

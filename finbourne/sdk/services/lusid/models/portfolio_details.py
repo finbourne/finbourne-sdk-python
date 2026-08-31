@@ -50,8 +50,9 @@ class PortfolioDetails(BaseModel):
     settlement_configuration: Optional[PortfolioSettlementConfiguration] = Field(default=None, alias="settlementConfiguration")
     staged_modifications: Optional[StagedModificationsInfo] = Field(default=None, alias="stagedModifications")
     transaction_exclusion_filter:  Optional[StrictStr] = Field(default=None,alias="transactionExclusionFilter", description="A filter expression that identifies transactions to exclude when building the transaction portfolio's transactions and holdings. Transactions matching this filter are flagged as excluded.") 
+    tax_lot_selection_cost_basis:  Optional[StrictStr] = Field(default=None,alias="taxLotSelectionCostBasis", description="The cost figure that cost-referencing accounting methods evaluate when selecting tax lots for a disposal. This can be: Cost or AmortisedCost. Defaults to Cost if not specified. Available values: Cost, AmortisedCost.") 
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["href", "originPortfolioId", "version", "baseCurrency", "corporateActionSourceId", "subHoldingKeys", "instrumentScopes", "accountingMethod", "amortisationMethod", "transactionTypeScope", "cashGainLossCalculationDate", "instrumentEventConfiguration", "amortisationRuleSetId", "taxRuleSetScope", "settlementConfiguration", "stagedModifications", "transactionExclusionFilter", "links"]
+    __properties: ClassVar[List[str]] = ["href", "originPortfolioId", "version", "baseCurrency", "corporateActionSourceId", "subHoldingKeys", "instrumentScopes", "accountingMethod", "amortisationMethod", "transactionTypeScope", "cashGainLossCalculationDate", "instrumentEventConfiguration", "amortisationRuleSetId", "taxRuleSetScope", "settlementConfiguration", "stagedModifications", "transactionExclusionFilter", "taxLotSelectionCostBasis", "links"]
 
     @field_validator('accounting_method')
     def accounting_method_validate_enum(cls, value):
@@ -178,6 +179,11 @@ class PortfolioDetails(BaseModel):
         if self.transaction_exclusion_filter is None and "transaction_exclusion_filter" in self.model_fields_set:
             _dict['transactionExclusionFilter'] = None
 
+        # set to None if tax_lot_selection_cost_basis (nullable) is None
+        # and model_fields_set contains the field
+        if self.tax_lot_selection_cost_basis is None and "tax_lot_selection_cost_basis" in self.model_fields_set:
+            _dict['taxLotSelectionCostBasis'] = None
+
         # set to None if links (nullable) is None
         # and model_fields_set contains the field
         if self.links is None and "links" in self.model_fields_set:
@@ -212,6 +218,7 @@ class PortfolioDetails(BaseModel):
             "settlement_configuration": PortfolioSettlementConfiguration.from_dict(_v) if (_v := obj.get("settlementConfiguration")) is not None else None,
             "staged_modifications": StagedModificationsInfo.from_dict(_v) if (_v := obj.get("stagedModifications")) is not None else None,
             "transaction_exclusion_filter": obj.get("transactionExclusionFilter"),
+            "tax_lot_selection_cost_basis": obj.get("taxLotSelectionCostBasis"),
             "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None
         })
         return _obj

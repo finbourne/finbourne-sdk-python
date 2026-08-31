@@ -6846,7 +6846,7 @@ class TransactionPortfoliosApi:
     def patch_portfolio_details(self, scope: StrictStr, code: StrictStr, operation: List[Operation], effective_at: Optional[StrictStr] = None, **kwargs) -> PortfolioDetails:
         """PatchPortfolioDetails: Patch portfolio details  # noqa: E501
 
-        Create or update certain details for a particular transaction portfolio.  Note that not all elements of a transaction portfolio definition are  modifiable once it has been created due to the potential implications for data already stored.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: BaseCurrency, AccountingMethod, SubHoldingKeys, AmortisationMethod, TransactionTypeScope, CashGainLossCalculationDate, InstrumentEventConfiguration, AmortisationRuleSetId, TaxRuleSetScope, SettlementConfiguration, TransactionExclusionFilter.  # noqa: E501
+        Create or update certain details for a particular transaction portfolio.  Note that not all elements of a transaction portfolio definition are  modifiable once it has been created due to the potential implications for data already stored.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: BaseCurrency, AccountingMethod, SubHoldingKeys, AmortisationMethod, TransactionTypeScope, CashGainLossCalculationDate, InstrumentEventConfiguration, AmortisationRuleSetId, TaxRuleSetScope, SettlementConfiguration, TransactionExclusionFilter, TaxLotSelectionCostBasis.  # noqa: E501
         :param scope: The scope of the transaction portfolio. (required)
         :type scope: str
         :param code: The code of the transaction portfolio. Together with the              scope this uniquely identifies the transaction portfolio. (required)
@@ -6872,7 +6872,7 @@ class TransactionPortfoliosApi:
     def patch_portfolio_details_with_http_info(self, scope: StrictStr, code: StrictStr, operation: List[Operation], effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PortfolioDetails]:
         """PatchPortfolioDetails: Patch portfolio details  # noqa: E501
 
-        Create or update certain details for a particular transaction portfolio.  Note that not all elements of a transaction portfolio definition are  modifiable once it has been created due to the potential implications for data already stored.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: BaseCurrency, AccountingMethod, SubHoldingKeys, AmortisationMethod, TransactionTypeScope, CashGainLossCalculationDate, InstrumentEventConfiguration, AmortisationRuleSetId, TaxRuleSetScope, SettlementConfiguration, TransactionExclusionFilter.  # noqa: E501
+        Create or update certain details for a particular transaction portfolio.  Note that not all elements of a transaction portfolio definition are  modifiable once it has been created due to the potential implications for data already stored.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: BaseCurrency, AccountingMethod, SubHoldingKeys, AmortisationMethod, TransactionTypeScope, CashGainLossCalculationDate, InstrumentEventConfiguration, AmortisationRuleSetId, TaxRuleSetScope, SettlementConfiguration, TransactionExclusionFilter, TaxLotSelectionCostBasis.  # noqa: E501
         :param scope: The scope of the transaction portfolio. (required)
         :type scope: str
         :param code: The code of the transaction portfolio. Together with the              scope this uniquely identifies the transaction portfolio. (required)
@@ -15411,7 +15411,7 @@ class TransactionPortfoliosApi:
     @validate_call
     async def patch_portfolio_details_async(self, scope: StrictStr, code: StrictStr, operation: List[Operation], effective_at: Optional[StrictStr] = None, **kwargs) -> PortfolioDetails:
             """PatchPortfolioDetails: Patch portfolio details  # noqa: E501
-            Create or update certain details for a particular transaction portfolio.  Note that not all elements of a transaction portfolio definition are  modifiable once it has been created due to the potential implications for data already stored.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: BaseCurrency, AccountingMethod, SubHoldingKeys, AmortisationMethod, TransactionTypeScope, CashGainLossCalculationDate, InstrumentEventConfiguration, AmortisationRuleSetId, TaxRuleSetScope, SettlementConfiguration, TransactionExclusionFilter.  # noqa: E501
+            Create or update certain details for a particular transaction portfolio.  Note that not all elements of a transaction portfolio definition are  modifiable once it has been created due to the potential implications for data already stored.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: BaseCurrency, AccountingMethod, SubHoldingKeys, AmortisationMethod, TransactionTypeScope, CashGainLossCalculationDate, InstrumentEventConfiguration, AmortisationRuleSetId, TaxRuleSetScope, SettlementConfiguration, TransactionExclusionFilter, TaxLotSelectionCostBasis.  # noqa: E501
             
             :param scope: The scope of the transaction portfolio. (required)
             :type scope: str
@@ -15438,7 +15438,7 @@ class TransactionPortfoliosApi:
     async def patch_portfolio_details_with_http_info_async(self, scope: StrictStr, code: StrictStr, operation: List[Operation], effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[PortfolioDetails]:
             """PatchPortfolioDetails: Patch portfolio details  # noqa: E501
 
-            Create or update certain details for a particular transaction portfolio.  Note that not all elements of a transaction portfolio definition are  modifiable once it has been created due to the potential implications for data already stored.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: BaseCurrency, AccountingMethod, SubHoldingKeys, AmortisationMethod, TransactionTypeScope, CashGainLossCalculationDate, InstrumentEventConfiguration, AmortisationRuleSetId, TaxRuleSetScope, SettlementConfiguration, TransactionExclusionFilter.  # noqa: E501
+            Create or update certain details for a particular transaction portfolio.  Note that not all elements of a transaction portfolio definition are  modifiable once it has been created due to the potential implications for data already stored.  The behaviour is defined by the JSON Patch specification.    Currently supported fields are: BaseCurrency, AccountingMethod, SubHoldingKeys, AmortisationMethod, TransactionTypeScope, CashGainLossCalculationDate, InstrumentEventConfiguration, AmortisationRuleSetId, TaxRuleSetScope, SettlementConfiguration, TransactionExclusionFilter, TaxLotSelectionCostBasis.  # noqa: E501
 
             :param scope: The scope of the transaction portfolio. (required)
             :type scope: str

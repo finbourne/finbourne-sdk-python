@@ -109,6 +109,7 @@ from finbourne.sdk.services.lusid.models.basket_identifier import BasketIdentifi
 from finbourne.sdk.services.lusid.models.batch_adjust_holdings_response import BatchAdjustHoldingsResponse
 from finbourne.sdk.services.lusid.models.batch_amend_custom_data_model_membership_response import BatchAmendCustomDataModelMembershipResponse
 from finbourne.sdk.services.lusid.models.batch_amend_transaction_settlement_instruction_response import BatchAmendTransactionSettlementInstructionResponse
+from finbourne.sdk.services.lusid.models.batch_create_closed_periods_request import BatchCreateClosedPeriodsRequest
 from finbourne.sdk.services.lusid.models.batch_delete_relational_data_response import BatchDeleteRelationalDataResponse
 from finbourne.sdk.services.lusid.models.batch_manage_comment_request import BatchManageCommentRequest
 from finbourne.sdk.services.lusid.models.batch_manage_comment_response import BatchManageCommentResponse
@@ -140,6 +141,10 @@ from finbourne.sdk.services.lusid.models.bond_conversion_schedule import BondCon
 from finbourne.sdk.services.lusid.models.bond_coupon_event import BondCouponEvent
 from finbourne.sdk.services.lusid.models.bond_default_event import BondDefaultEvent
 from finbourne.sdk.services.lusid.models.bond_default_suppression_details import BondDefaultSuppressionDetails
+from finbourne.sdk.services.lusid.models.bond_forward import BondForward
+from finbourne.sdk.services.lusid.models.bond_forward_cash_settlement_event import BondForwardCashSettlementEvent
+from finbourne.sdk.services.lusid.models.bond_forward_termination_event import BondForwardTerminationEvent
+from finbourne.sdk.services.lusid.models.bond_lookup_model_options import BondLookupModelOptions
 from finbourne.sdk.services.lusid.models.bond_option import BondOption
 from finbourne.sdk.services.lusid.models.bond_option_termination_event import BondOptionTerminationEvent
 from finbourne.sdk.services.lusid.models.bond_principal_event import BondPrincipalEvent
@@ -347,6 +352,8 @@ from finbourne.sdk.services.lusid.models.create_timeline_request import CreateTi
 from finbourne.sdk.services.lusid.models.create_trade_tickets_response import CreateTradeTicketsResponse
 from finbourne.sdk.services.lusid.models.create_transaction_fee_type_request import CreateTransactionFeeTypeRequest
 from finbourne.sdk.services.lusid.models.create_transaction_portfolio_request import CreateTransactionPortfolioRequest
+from finbourne.sdk.services.lusid.models.create_transfer_request import CreateTransferRequest
+from finbourne.sdk.services.lusid.models.create_transfer_response import CreateTransferResponse
 from finbourne.sdk.services.lusid.models.create_unit_definition import CreateUnitDefinition
 from finbourne.sdk.services.lusid.models.create_valuation_point_request import CreateValuationPointRequest
 from finbourne.sdk.services.lusid.models.credit_default_swap import CreditDefaultSwap
@@ -425,6 +432,7 @@ from finbourne.sdk.services.lusid.models.dependency_source_filter import Depende
 from finbourne.sdk.services.lusid.models.deposit_close_event import DepositCloseEvent
 from finbourne.sdk.services.lusid.models.deposit_interest_payment_event import DepositInterestPaymentEvent
 from finbourne.sdk.services.lusid.models.deposit_roll_event import DepositRollEvent
+from finbourne.sdk.services.lusid.models.deposit_sweep_event import DepositSweepEvent
 from finbourne.sdk.services.lusid.models.derivation_formula_explain_request import DerivationFormulaExplainRequest
 from finbourne.sdk.services.lusid.models.derived_property_component import DerivedPropertyComponent
 from finbourne.sdk.services.lusid.models.described_address_key import DescribedAddressKey
@@ -646,6 +654,7 @@ from finbourne.sdk.services.lusid.models.holding_ids_request import HoldingIdsRe
 from finbourne.sdk.services.lusid.models.holding_pricing_info import HoldingPricingInfo
 from finbourne.sdk.services.lusid.models.holdings_adjustment import HoldingsAdjustment
 from finbourne.sdk.services.lusid.models.holdings_adjustment_header import HoldingsAdjustmentHeader
+from finbourne.sdk.services.lusid.models.hull_white_model_options import HullWhiteModelOptions
 from finbourne.sdk.services.lusid.models.i_unit_definition_dto import IUnitDefinitionDto
 from finbourne.sdk.services.lusid.models.id_selector_definition import IdSelectorDefinition
 from finbourne.sdk.services.lusid.models.identifier_definition import IdentifierDefinition
@@ -1196,6 +1205,7 @@ from finbourne.sdk.services.lusid.models.resource_list_of_change import Resource
 from finbourne.sdk.services.lusid.models.resource_list_of_change_history import ResourceListOfChangeHistory
 from finbourne.sdk.services.lusid.models.resource_list_of_change_interval import ResourceListOfChangeInterval
 from finbourne.sdk.services.lusid.models.resource_list_of_change_interval_with_order_management_detail import ResourceListOfChangeIntervalWithOrderManagementDetail
+from finbourne.sdk.services.lusid.models.resource_list_of_closed_period import ResourceListOfClosedPeriod
 from finbourne.sdk.services.lusid.models.resource_list_of_compliance_breached_order_info import ResourceListOfComplianceBreachedOrderInfo
 from finbourne.sdk.services.lusid.models.resource_list_of_compliance_rule import ResourceListOfComplianceRule
 from finbourne.sdk.services.lusid.models.resource_list_of_compliance_rule_result import ResourceListOfComplianceRuleResult
@@ -1415,6 +1425,7 @@ from finbourne.sdk.services.lusid.models.transaction_currency_and_amount import 
 from finbourne.sdk.services.lusid.models.transaction_date_windows import TransactionDateWindows
 from finbourne.sdk.services.lusid.models.transaction_diagnostics import TransactionDiagnostics
 from finbourne.sdk.services.lusid.models.transaction_entity import TransactionEntity
+from finbourne.sdk.services.lusid.models.transaction_entity_link import TransactionEntityLink
 from finbourne.sdk.services.lusid.models.transaction_fee_capitalisation import TransactionFeeCapitalisation
 from finbourne.sdk.services.lusid.models.transaction_fee_type import TransactionFeeType
 from finbourne.sdk.services.lusid.models.transaction_field_map import TransactionFieldMap
@@ -1471,6 +1482,7 @@ from finbourne.sdk.services.lusid.models.trial_balance import TrialBalance
 from finbourne.sdk.services.lusid.models.trial_balance_query_parameters import TrialBalanceQueryParameters
 from finbourne.sdk.services.lusid.models.trigger_event import TriggerEvent
 from finbourne.sdk.services.lusid.models.typed_resource_id import TypedResourceId
+from finbourne.sdk.services.lusid.models.unconfirm_closed_period_request import UnconfirmClosedPeriodRequest
 from finbourne.sdk.services.lusid.models.unit_schema import UnitSchema
 from finbourne.sdk.services.lusid.models.unitisation_data import UnitisationData
 from finbourne.sdk.services.lusid.models.units_ratio import UnitsRatio
@@ -1734,6 +1746,7 @@ __all__ = [
     "BatchAdjustHoldingsResponse",
     "BatchAmendCustomDataModelMembershipResponse",
     "BatchAmendTransactionSettlementInstructionResponse",
+    "BatchCreateClosedPeriodsRequest",
     "BatchDeleteRelationalDataResponse",
     "BatchManageCommentRequest",
     "BatchManageCommentResponse",
@@ -1765,6 +1778,10 @@ __all__ = [
     "BondCouponEvent",
     "BondDefaultEvent",
     "BondDefaultSuppressionDetails",
+    "BondForward",
+    "BondForwardCashSettlementEvent",
+    "BondForwardTerminationEvent",
+    "BondLookupModelOptions",
     "BondOption",
     "BondOptionTerminationEvent",
     "BondPrincipalEvent",
@@ -1972,6 +1989,8 @@ __all__ = [
     "CreateTradeTicketsResponse",
     "CreateTransactionFeeTypeRequest",
     "CreateTransactionPortfolioRequest",
+    "CreateTransferRequest",
+    "CreateTransferResponse",
     "CreateUnitDefinition",
     "CreateValuationPointRequest",
     "CreditDefaultSwap",
@@ -2050,6 +2069,7 @@ __all__ = [
     "DepositCloseEvent",
     "DepositInterestPaymentEvent",
     "DepositRollEvent",
+    "DepositSweepEvent",
     "DerivationFormulaExplainRequest",
     "DerivedPropertyComponent",
     "DescribedAddressKey",
@@ -2271,6 +2291,7 @@ __all__ = [
     "HoldingPricingInfo",
     "HoldingsAdjustment",
     "HoldingsAdjustmentHeader",
+    "HullWhiteModelOptions",
     "IUnitDefinitionDto",
     "IdSelectorDefinition",
     "IdentifierDefinition",
@@ -2821,6 +2842,7 @@ __all__ = [
     "ResourceListOfChangeHistory",
     "ResourceListOfChangeInterval",
     "ResourceListOfChangeIntervalWithOrderManagementDetail",
+    "ResourceListOfClosedPeriod",
     "ResourceListOfComplianceBreachedOrderInfo",
     "ResourceListOfComplianceRule",
     "ResourceListOfComplianceRuleResult",
@@ -3040,6 +3062,7 @@ __all__ = [
     "TransactionDateWindows",
     "TransactionDiagnostics",
     "TransactionEntity",
+    "TransactionEntityLink",
     "TransactionFeeCapitalisation",
     "TransactionFeeType",
     "TransactionFieldMap",
@@ -3096,6 +3119,7 @@ __all__ = [
     "TrialBalanceQueryParameters",
     "TriggerEvent",
     "TypedResourceId",
+    "UnconfirmClosedPeriodRequest",
     "UnitSchema",
     "UnitisationData",
     "UnitsRatio",

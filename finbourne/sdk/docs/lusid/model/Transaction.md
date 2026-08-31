@@ -34,6 +34,7 @@ A list of transactions.
 | **version** | [Version](Version.md) | Optional | *No description available.* |
 | **staged_modifications** | [StagedModificationsInfo](StagedModificationsInfo.md) | Optional | *No description available.* |
 | **custodian_entries** | [List[CustodianEntry]](CustodianEntry.md) | Optional | A list of Custodian Entries associated with the transaction. |
+| **entity_links** | [List[TransactionEntityLink]](TransactionEntityLink.md) | Optional | Links to the entities related to this transaction. |
 
 
 ## Usage
@@ -72,7 +73,8 @@ instance = Transaction(
     data_model_membership=DataModelMembership(...),  # optional
     version=Version(...),  # optional
     staged_modifications=StagedModificationsInfo(...),  # optional
-    custodian_entries=[]  # optional — A list of Custodian Entries associated with the transaction.
+    custodian_entries=[],  # optional — A list of Custodian Entries associated with the transaction.
+    entity_links=[]  # optional — Links to the entities related to this transaction.
 )
 ```
 
@@ -89,6 +91,7 @@ instance = Transaction(
 - [Version](Version.md)
 - [StagedModificationsInfo](StagedModificationsInfo.md)
 - [CustodianEntry](CustodianEntry.md) — used in `custodian_entries`
+- [TransactionEntityLink](TransactionEntityLink.md) — used in `entity_links`
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

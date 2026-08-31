@@ -6,7 +6,7 @@
 |------|------|----------|-------------|
 | **portfolio_scaling** | **str** | Required | Available values: Sum, AbsoluteSum, Unity. |
 | **lookthrough_portfolio_relationship_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
-| **model_options_type** | **str** | Required | Available values: Invalid, OpaqueModelOptions, EmptyModelOptions, IndexModelOptions, FxForwardModelOptions, FundingLegModelOptions, EquityModelOptions, CdsModelOptions, FlexibleLoanPricerOptions. |
+| **model_options_type** | **str** | Required | Available values: Invalid, OpaqueModelOptions, EmptyModelOptions, IndexModelOptions, FxForwardModelOptions, FundingLegModelOptions, EquityModelOptions, CdsModelOptions, FlexibleLoanPricerOptions, HullWhiteModelOptions, BondLookupModelOptions. |
 
 
 ## Usage
@@ -19,7 +19,7 @@ from finbourne.sdk.services.lusid.models.IndexModelOptions import IndexModelOpti
 instance = IndexModelOptions(
     portfolio_scaling="...",  # required — Available values: Sum, AbsoluteSum, Unity.
     lookthrough_portfolio_relationship_id=ResourceId(...),  # optional
-    model_options_type="..."  # required — Available values: Invalid, OpaqueModelOptions, EmptyModelOptions, IndexModelOptions, FxForwardModelOptions, FundingLegModelOptions, EquityModelOptions, CdsModelOptions, FlexibleLoanPricerOptions.
+    model_options_type="..."  # required — Available values: Invalid, OpaqueModelOptions, EmptyModelOptions, IndexModelOptions, FxForwardModelOptions, FundingLegModelOptions, EquityModelOptions, CdsModelOptions, FlexibleLoanPricerOptions, HullWhiteModelOptions, BondLookupModelOptions.
 )
 ```
 

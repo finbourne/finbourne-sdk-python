@@ -16,6 +16,7 @@
 | **status** | **str** | Required | The Status of the settlement bucket - &#39;Settled&#39;, &#39;Part Settled&#39; or &#39;Unsettled&#39;. Available values: Unsettled, PartSettled, Settled, None. |
 | **settlement_instructions** | [List[TransactionSettlementInstruction]](TransactionSettlementInstruction.md) | Optional | The settlement instructions received for this settlement bucket. |
 | **movements** | [List[TransactionSettlementMovement]](TransactionSettlementMovement.md) | Optional | The movements for the settlement bucket. |
+| **custodian_account_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -37,12 +38,14 @@ instance = TransactionSettlementBucket(
     configured_settlement="...",  # optional — The effective method of settlement for the settlement bucket. This reflects any transaction-level settlement method overrides, falling back to the portfolio&#39;s SettlementConfiguration if no override applies. Available values: Automatic, Instructed, NotApplicable.
     status="...",  # required — The Status of the settlement bucket - &#39;Settled&#39;, &#39;Part Settled&#39; or &#39;Unsettled&#39;. Available values: Unsettled, PartSettled, Settled, None.
     settlement_instructions=[],  # optional — The settlement instructions received for this settlement bucket.
-    movements=[]  # optional — The movements for the settlement bucket.
+    movements=[],  # optional — The movements for the settlement bucket.
+    custodian_account_id=ResourceId(...)  # optional
 )
 ```
 
 - [TransactionSettlementInstruction](TransactionSettlementInstruction.md) — used in `settlement_instructions`
 - [TransactionSettlementMovement](TransactionSettlementMovement.md) — used in `movements`
+- [ResourceId](ResourceId.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

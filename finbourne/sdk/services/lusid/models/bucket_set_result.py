@@ -28,9 +28,10 @@ class BucketSetResult(BaseModel):
     """
     A valuation point's results for one bucket set: whether the set is the apportionment set, and its per-node  (fund and share class) buckets and NAV. Allocation-group nodes are not included here - they are surfaced via  the apportionment results.  # noqa: E501
     """
+    bucket_set_code:  StrictStr = Field(...,alias="bucketSetCode", description="The code of the fund configuration's bucket set definition these results were produced from. Empty for a fund valued from component filters, which has no bucket set definition to name.") 
     is_apportionment: StrictBool = Field(description="Whether this bucket set is the apportionment set (apportioning non-class-specific P&L across share classes).", alias="isApportionment")
     nodes: List[BucketSetNode] = Field(description="The nodes making up the bucket set: the fund aggregate and one per share class.")
-    __properties: ClassVar[List[str]] = ["isApportionment", "nodes"]
+    __properties: ClassVar[List[str]] = ["bucketSetCode", "isApportionment", "nodes"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,6 +86,7 @@ class BucketSetResult(BaseModel):
             return BucketSetResult.model_validate(obj)
 
         _obj = BucketSetResult.model_validate({
+            "bucket_set_code": obj.get("bucketSetCode"),
             "is_apportionment": obj.get("isApportionment"),
             "nodes": [BucketSetNode.from_dict(_item) for _item in _v] if (_v := obj.get("nodes")) is not None else None
         })

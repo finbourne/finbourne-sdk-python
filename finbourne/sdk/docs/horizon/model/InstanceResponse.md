@@ -13,7 +13,7 @@ record containing details of a single instance.
 | **schedule_timezone** | **str** | Optional | *No description available.* |
 | **last_run_at** | **datetime** | Optional | *No description available.* |
 | **last_run_status** | **str** | Optional | *No description available.* |
-| **latest_runs_in24_hours** | **str** | Optional | *No description available.* |
+| **latest_runs_in24_hours** | [LatestRunsResponse](LatestRunsResponse.md) | Optional | *No description available.* |
 | **destinations** | [List[InstanceDestinations]](InstanceDestinations.md) | Required | *No description available.* |
 
 
@@ -33,12 +33,13 @@ instance = InstanceResponse(
     schedule_timezone="...",  # optional
     last_run_at=datetime.now(),  # optional
     last_run_status="...",  # optional
-    latest_runs_in24_hours="...",  # optional
+    latest_runs_in24_hours=LatestRunsResponse(...),  # optional
     destinations=[]  # required
 )
 ```
 
 - [TpfPortfolio](TpfPortfolio.md)
+- [LatestRunsResponse](LatestRunsResponse.md)
 - [InstanceDestinations](InstanceDestinations.md)
 
 

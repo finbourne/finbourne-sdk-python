@@ -1568,7 +1568,7 @@ Name | Type | Description  | Notes
 ---
 
 # **get_valuation_point_unsettled_transactions**
-> ValuationPointResourceListOfUnsettledTransaction getValuationPointUnsettledTransactions = get_valuation_point_unsettled_transactions(scope, code, as_at=as_at, limit=limit, page=page, property_keys=property_keys, nav_type_code=nav_type_code, var_date=var_date, diary_entry=diary_entry, valuation_point_data_query_parameters=valuation_point_data_query_parameters)
+> ValuationPointResourceListOfUnsettledTransaction getValuationPointUnsettledTransactions = get_valuation_point_unsettled_transactions(scope, code, as_at=as_at, limit=limit, page=page, property_keys=property_keys, nav_type_code=nav_type_code, var_date=var_date, diary_entry=diary_entry, variant=variant, valuation_point_data_query_parameters=valuation_point_data_query_parameters)
 
 [EARLY ACCESS] GetValuationPointUnsettledTransactions: Get Unsettled Transactions for the given Fund.
 
@@ -1587,8 +1587,9 @@ property_keys = ['property_keys_example'] # List[str] (optional)
 nav_type_code = 'nav_type_code_example' # str (optional)
 var_date = 'var_date_example' # str (optional)
 diary_entry = 'diary_entry_example' # str (optional)
+variant = 'variant_example' # str (optional)
 valuation_point_data_query_parameters = ValuationPointDataQueryParameters()
-api_response = api_instance.get_valuation_point_unsettled_transactions(scope, code, as_at=as_at, limit=limit, page=page, property_keys=property_keys, nav_type_code=nav_type_code, var_date=var_date, diary_entry=diary_entry, valuation_point_data_query_parameters=valuation_point_data_query_parameters)
+api_response = api_instance.get_valuation_point_unsettled_transactions(scope, code, as_at=as_at, limit=limit, page=page, property_keys=property_keys, nav_type_code=nav_type_code, var_date=var_date, diary_entry=diary_entry, variant=variant, valuation_point_data_query_parameters=valuation_point_data_query_parameters)
 pprint(api_response)
 ```
 
@@ -1605,6 +1606,7 @@ Name | Type | Description  | Notes
  **nav_type_code** | **str**| When provided, runs against the specified NAV Type, otherwise the Primary NAV Type will be used. | [optional] 
  **var_date** | **str**| The optional date of the Valuation Point to report against, as an alternative to supplying              it in the request body. Must not be supplied together with diaryEntry. | [optional] 
  **diary_entry** | **str**| The optional diary entry code of the Valuation Point to report against, as an              alternative to supplying it in the request body. Must not be supplied together with date. | [optional] 
+ **variant** | **str**| The optional variant code of the Valuation Point to report against, as an alternative to              supplying it in the request body. Only required when it is necessary to choose between scenarios with multiple              estimates. | [optional] 
  **valuation_point_data_query_parameters** | [**ValuationPointDataQueryParameters**](../model/ValuationPointDataQueryParameters.md)| The optional arguments to use for querying the unsettled transactions. Can be              omitted when the Valuation Point is identified by the date or diaryEntry query parameters. | [optional] 
 
 ### Return type

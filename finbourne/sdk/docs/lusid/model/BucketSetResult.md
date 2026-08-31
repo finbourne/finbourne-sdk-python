@@ -5,6 +5,7 @@ A valuation point's results for one bucket set: whether the set is the apportion
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
+| **bucket_set_code** | **str** | Required | The code of the fund configuration&#39;s bucket set definition these results were produced from. Empty for a fund valued from component filters, which has no bucket set definition to name. |
 | **is_apportionment** | **bool** | Required | Whether this bucket set is the apportionment set (apportioning non-class-specific P&amp;L across share classes). |
 | **nodes** | [List[BucketSetNode]](BucketSetNode.md) | Required | The nodes making up the bucket set: the fund aggregate and one per share class. |
 
@@ -17,6 +18,7 @@ A valuation point's results for one bucket set: whether the set is the apportion
 from finbourne.sdk.services.lusid.models.BucketSetResult import BucketSetResult
 
 instance = BucketSetResult(
+    bucket_set_code="...",  # required — The code of the fund configuration&#39;s bucket set definition these results were produced from. Empty for a fund valued from component filters, which has no bucket set definition to name.
     is_apportionment=True,  # required — Whether this bucket set is the apportionment set (apportioning non-class-specific P&amp;L across share classes).
     nodes=[]  # required — The nodes making up the bucket set: the fund aggregate and one per share class.
 )

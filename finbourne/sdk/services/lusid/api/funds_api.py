@@ -4848,7 +4848,7 @@ class FundsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def get_valuation_point_unsettled_transactions(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, var_date: Optional[StrictStr] = None, diary_entry: Optional[StrictStr] = None, valuation_point_data_query_parameters: Optional[ValuationPointDataQueryParameters] = None, **kwargs) -> ValuationPointResourceListOfUnsettledTransaction:
+    def get_valuation_point_unsettled_transactions(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, var_date: Optional[StrictStr] = None, diary_entry: Optional[StrictStr] = None, variant: Optional[StrictStr] = None, valuation_point_data_query_parameters: Optional[ValuationPointDataQueryParameters] = None, **kwargs) -> ValuationPointResourceListOfUnsettledTransaction:
         """[EARLY ACCESS] GetValuationPointUnsettledTransactions: Get Unsettled Transactions for the given Fund.  # noqa: E501
 
         Gets all transactions that remain unsettled as at the specified Valuation Point for a Fund,  looking back from inception. Settlement status is point-in-time: post-cutoff settlement  activity does not alter the result.  The Valuation Point must be identified either by the date or diaryEntry query parameters or by the 'End' parameter in the  request body; when both are supplied the query parameters are used.  # noqa: E501
@@ -4870,6 +4870,8 @@ class FundsApi:
         :type var_date: str
         :param diary_entry: The optional diary entry code of the Valuation Point to report against, as an              alternative to supplying it in the request body. Must not be supplied together with date.
         :type diary_entry: str
+        :param variant: The optional variant code of the Valuation Point to report against, as an alternative to              supplying it in the request body. Only required when it is necessary to choose between scenarios with multiple              estimates.
+        :type variant: str
         :param valuation_point_data_query_parameters: The optional arguments to use for querying the unsettled transactions. Can be              omitted when the Valuation Point is identified by the date or diaryEntry query parameters.
         :type valuation_point_data_query_parameters: ValuationPointDataQueryParameters
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
@@ -4882,11 +4884,11 @@ class FundsApi:
             message = "Error! Please call the get_valuation_point_unsettled_transactions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.get_valuation_point_unsettled_transactions_with_http_info(scope, code, as_at, limit, page, property_keys, nav_type_code, var_date, diary_entry, valuation_point_data_query_parameters, **kwargs)
+        response = self.get_valuation_point_unsettled_transactions_with_http_info(scope, code, as_at, limit, page, property_keys, nav_type_code, var_date, diary_entry, variant, valuation_point_data_query_parameters, **kwargs)
         return response.data
 
     @validate_call
-    def get_valuation_point_unsettled_transactions_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, var_date: Optional[StrictStr] = None, diary_entry: Optional[StrictStr] = None, valuation_point_data_query_parameters: Optional[ValuationPointDataQueryParameters] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfUnsettledTransaction]:
+    def get_valuation_point_unsettled_transactions_with_http_info(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, var_date: Optional[StrictStr] = None, diary_entry: Optional[StrictStr] = None, variant: Optional[StrictStr] = None, valuation_point_data_query_parameters: Optional[ValuationPointDataQueryParameters] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfUnsettledTransaction]:
         """[EARLY ACCESS] GetValuationPointUnsettledTransactions: Get Unsettled Transactions for the given Fund.  # noqa: E501
 
         Gets all transactions that remain unsettled as at the specified Valuation Point for a Fund,  looking back from inception. Settlement status is point-in-time: post-cutoff settlement  activity does not alter the result.  The Valuation Point must be identified either by the date or diaryEntry query parameters or by the 'End' parameter in the  request body; when both are supplied the query parameters are used.  # noqa: E501
@@ -4908,6 +4910,8 @@ class FundsApi:
         :type var_date: str
         :param diary_entry: The optional diary entry code of the Valuation Point to report against, as an              alternative to supplying it in the request body. Must not be supplied together with date.
         :type diary_entry: str
+        :param variant: The optional variant code of the Valuation Point to report against, as an alternative to              supplying it in the request body. Only required when it is necessary to choose between scenarios with multiple              estimates.
+        :type variant: str
         :param valuation_point_data_query_parameters: The optional arguments to use for querying the unsettled transactions. Can be              omitted when the Valuation Point is identified by the date or diaryEntry query parameters.
         :type valuation_point_data_query_parameters: ValuationPointDataQueryParameters
         :param _preload_content: if False, the ApiResponse.data will
@@ -4942,6 +4946,7 @@ class FundsApi:
             'nav_type_code',
             'var_date',
             'diary_entry',
+            'variant',
             'valuation_point_data_query_parameters'
         ]
         _all_params.extend(
@@ -5003,6 +5008,9 @@ class FundsApi:
 
         if _params.get('diary_entry') is not None:  # noqa: E501
             _query_params.append(('diaryEntry', _params['diary_entry']))
+
+        if _params.get('variant') is not None:  # noqa: E501
+            _query_params.append(('variant', _params['variant']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -13208,7 +13216,7 @@ class FundsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def get_valuation_point_unsettled_transactions_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, var_date: Optional[StrictStr] = None, diary_entry: Optional[StrictStr] = None, valuation_point_data_query_parameters: Optional[ValuationPointDataQueryParameters] = None, **kwargs) -> ValuationPointResourceListOfUnsettledTransaction:
+    async def get_valuation_point_unsettled_transactions_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, var_date: Optional[StrictStr] = None, diary_entry: Optional[StrictStr] = None, variant: Optional[StrictStr] = None, valuation_point_data_query_parameters: Optional[ValuationPointDataQueryParameters] = None, **kwargs) -> ValuationPointResourceListOfUnsettledTransaction:
             """[EARLY ACCESS] GetValuationPointUnsettledTransactions: Get Unsettled Transactions for the given Fund.  # noqa: E501
             Gets all transactions that remain unsettled as at the specified Valuation Point for a Fund,  looking back from inception. Settlement status is point-in-time: post-cutoff settlement  activity does not alter the result.  The Valuation Point must be identified either by the date or diaryEntry query parameters or by the 'End' parameter in the  request body; when both are supplied the query parameters are used.  # noqa: E501
             
@@ -13230,6 +13238,8 @@ class FundsApi:
             :type var_date: str
             :param diary_entry: The optional diary entry code of the Valuation Point to report against, as an              alternative to supplying it in the request body. Must not be supplied together with date.
             :type diary_entry: str
+            :param variant: The optional variant code of the Valuation Point to report against, as an alternative to              supplying it in the request body. Only required when it is necessary to choose between scenarios with multiple              estimates.
+            :type variant: str
             :param valuation_point_data_query_parameters: The optional arguments to use for querying the unsettled transactions. Can be              omitted when the Valuation Point is identified by the date or diaryEntry query parameters.
             :type valuation_point_data_query_parameters: ValuationPointDataQueryParameters
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
@@ -13242,11 +13252,11 @@ class FundsApi:
                 message = "Error! Please call the get_valuation_point_unsettled_transactions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.get_valuation_point_unsettled_transactions_with_http_info_async(scope, code, as_at, limit, page, property_keys, nav_type_code, var_date, diary_entry, valuation_point_data_query_parameters, **kwargs)
+            response = await self.get_valuation_point_unsettled_transactions_with_http_info_async(scope, code, as_at, limit, page, property_keys, nav_type_code, var_date, diary_entry, variant, valuation_point_data_query_parameters, **kwargs)
             return response.data
 
     @validate_call
-    async def get_valuation_point_unsettled_transactions_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, var_date: Optional[StrictStr] = None, diary_entry: Optional[StrictStr] = None, valuation_point_data_query_parameters: Optional[ValuationPointDataQueryParameters] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfUnsettledTransaction]:
+    async def get_valuation_point_unsettled_transactions_with_http_info_async(self, scope: StrictStr, code: StrictStr, as_at: Optional[datetime] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, var_date: Optional[StrictStr] = None, diary_entry: Optional[StrictStr] = None, variant: Optional[StrictStr] = None, valuation_point_data_query_parameters: Optional[ValuationPointDataQueryParameters] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfUnsettledTransaction]:
             """[EARLY ACCESS] GetValuationPointUnsettledTransactions: Get Unsettled Transactions for the given Fund.  # noqa: E501
 
             Gets all transactions that remain unsettled as at the specified Valuation Point for a Fund,  looking back from inception. Settlement status is point-in-time: post-cutoff settlement  activity does not alter the result.  The Valuation Point must be identified either by the date or diaryEntry query parameters or by the 'End' parameter in the  request body; when both are supplied the query parameters are used.  # noqa: E501
@@ -13269,6 +13279,8 @@ class FundsApi:
             :type var_date: str
             :param diary_entry: The optional diary entry code of the Valuation Point to report against, as an              alternative to supplying it in the request body. Must not be supplied together with date.
             :type diary_entry: str
+            :param variant: The optional variant code of the Valuation Point to report against, as an alternative to              supplying it in the request body. Only required when it is necessary to choose between scenarios with multiple              estimates.
+            :type variant: str
             :param valuation_point_data_query_parameters: The optional arguments to use for querying the unsettled transactions. Can be              omitted when the Valuation Point is identified by the date or diaryEntry query parameters.
             :type valuation_point_data_query_parameters: ValuationPointDataQueryParameters
             :param _preload_content: if False, the ApiResponse.data will
@@ -13303,6 +13315,7 @@ class FundsApi:
                 'nav_type_code',
                 'var_date',
                 'diary_entry',
+                'variant',
                 'valuation_point_data_query_parameters'
             ]
             _all_params.extend(
@@ -13364,6 +13377,9 @@ class FundsApi:
 
             if _params.get('diary_entry') is not None:  # noqa: E501
                 _query_params.append(('diaryEntry', _params['diary_entry']))
+
+            if _params.get('variant') is not None:  # noqa: E501
+                _query_params.append(('variant', _params['variant']))
 
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))

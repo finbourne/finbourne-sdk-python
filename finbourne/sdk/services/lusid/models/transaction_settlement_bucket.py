@@ -21,6 +21,7 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
+from finbourne.sdk.services.lusid.models.resource_id import ResourceId
 from finbourne.sdk.services.lusid.models.transaction_settlement_instruction import TransactionSettlementInstruction
 from finbourne.sdk.services.lusid.models.transaction_settlement_movement import TransactionSettlementMovement
 
@@ -41,7 +42,8 @@ class TransactionSettlementBucket(BaseModel):
     status:  StrictStr = Field(...,alias="status", description="The Status of the settlement bucket - 'Settled', 'Part Settled' or 'Unsettled'. Available values: Unsettled, PartSettled, Settled, None.") 
     settlement_instructions: Optional[List[TransactionSettlementInstruction]] = Field(default=None, description="The settlement instructions received for this settlement bucket.", alias="settlementInstructions")
     movements: Optional[List[TransactionSettlementMovement]] = Field(default=None, description="The movements for the settlement bucket.")
-    __properties: ClassVar[List[str]] = ["settlementCategory", "lusidInstrumentId", "instrumentScope", "contractualSettlementDate", "contractedUnits", "settledUnits", "unsettledUnits", "overdueUnits", "configuredSettlement", "status", "settlementInstructions", "movements"]
+    custodian_account_id: Optional[ResourceId] = Field(default=None, alias="custodianAccountId")
+    __properties: ClassVar[List[str]] = ["settlementCategory", "lusidInstrumentId", "instrumentScope", "contractualSettlementDate", "contractedUnits", "settledUnits", "unsettledUnits", "overdueUnits", "configuredSettlement", "status", "settlementInstructions", "movements", "custodianAccountId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,6 +93,9 @@ class TransactionSettlementBucket(BaseModel):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['movements'] = _items
+        # override the default output from pydantic by calling `to_dict()` of custodian_account_id
+        if self.custodian_account_id:
+            _dict['custodianAccountId'] = self.custodian_account_id.to_dict(by_alias=by_alias)
         # set to None if contractual_settlement_date (nullable) is None
         # and model_fields_set contains the field
         if self.contractual_settlement_date is None and "contractual_settlement_date" in self.model_fields_set:
@@ -134,7 +139,8 @@ class TransactionSettlementBucket(BaseModel):
             "configured_settlement": obj.get("configuredSettlement"),
             "status": obj.get("status"),
             "settlement_instructions": [TransactionSettlementInstruction.from_dict(_item) for _item in _v] if (_v := obj.get("settlementInstructions")) is not None else None,
-            "movements": [TransactionSettlementMovement.from_dict(_item) for _item in _v] if (_v := obj.get("movements")) is not None else None
+            "movements": [TransactionSettlementMovement.from_dict(_item) for _item in _v] if (_v := obj.get("movements")) is not None else None,
+            "custodian_account_id": ResourceId.from_dict(_v) if (_v := obj.get("custodianAccountId")) is not None else None
         })
         return _obj
 

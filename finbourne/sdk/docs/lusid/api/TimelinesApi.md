@@ -4,6 +4,8 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**batch_create_closed_period_candidates**](TimelinesApi.md#batch_create_closed_period_candidates) | **POST** /api/api/timelines/{scope}/{code}/closedperiods/candidate/$batchCreate | [EXPERIMENTAL] BatchCreateClosedPeriodCandidates: Atomically create an ordered series of confirmed closed period candidates against a timeline entity
+[**batch_create_closed_periods**](TimelinesApi.md#batch_create_closed_periods) | **POST** /api/api/timelines/{scope}/{code}/closedperiods/$batchCreate | [EXPERIMENTAL] BatchCreateClosedPeriods: Atomically create an ordered series of confirmed closed periods against a timeline entity
 [**confirm_closed_period**](TimelinesApi.md#confirm_closed_period) | **POST** /api/api/timelines/{scope}/{code}/closedperiods/{closedPeriodId}/$confirm | [EXPERIMENTAL] ConfirmClosedPeriod: Confirm a Closed Period against a Timeline Entity
 [**create_closed_period**](TimelinesApi.md#create_closed_period) | **POST** /api/api/timelines/{scope}/{code}/closedperiods | [EXPERIMENTAL] CreateClosedPeriod: Create a new closed period against a timeline entity
 [**create_closed_period_candidate**](TimelinesApi.md#create_closed_period_candidate) | **POST** /api/api/timelines/{scope}/{code}/closedperiods/candidate | [EXPERIMENTAL] CreateClosedPeriodCandidate: Create a new closed period candidate against a timeline entity
@@ -14,7 +16,7 @@ Method | HTTP request | Description
 [**list_closed_periods**](TimelinesApi.md#list_closed_periods) | **GET** /api/api/timelines/{scope}/{code}/closedperiods | [EXPERIMENTAL] ListClosedPeriods: List ClosedPeriods for a specified Timeline.
 [**list_timelines**](TimelinesApi.md#list_timelines) | **GET** /api/api/timelines | [EXPERIMENTAL] ListTimelines: List Timelines
 [**set_post_close_activity**](TimelinesApi.md#set_post_close_activity) | **POST** /api/api/timelines/{scope}/{code}/closedperiods/{closedPeriodId}/postcloseactivity | [EXPERIMENTAL] SetPostCloseActivity: Sets post-close activities to a Closed Period.
-[**unconfirm_closed_period**](TimelinesApi.md#unconfirm_closed_period) | **POST** /api/api/timelines/{scope}/{code}/closedperiods/{closedPeriodId}/$unconfirm | [EXPERIMENTAL] UnconfirmClosedPeriod: Unconfirm the last confirmed Closed Period against a Timeline Entity
+[**unconfirm_closed_period**](TimelinesApi.md#unconfirm_closed_period) | **POST** /api/api/timelines/{scope}/{code}/closedperiods/{closedPeriodId}/$unconfirm | [EXPERIMENTAL] UnconfirmClosedPeriod: Unconfirm a confirmed Closed Period against a Timeline Entity
 [**update_timeline**](TimelinesApi.md#update_timeline) | **PUT** /api/api/timelines/{scope}/{code} | [EXPERIMENTAL] UpdateTimeline: Update Timeline defined by scope and code
 
 
@@ -40,6 +42,98 @@ from finbourne.sdk.services.lusid.api.timelines_api import TimelinesApi
 api_client_factory = SyncApiClientFactory()
 api_instance = api_client_factory.build(TimelinesApi)
 ```
+
+---
+
+# **batch_create_closed_period_candidates**
+> ResourceListOfClosedPeriod batchCreateClosedPeriodCandidates = batch_create_closed_period_candidates(scope, code, batch_create_closed_periods_request=batch_create_closed_periods_request)
+
+[EXPERIMENTAL] BatchCreateClosedPeriodCandidates: Atomically create an ordered series of confirmed closed period candidates against a timeline entity
+
+Creates an ordered series of closed period candidates against a timeline entity in a single transaction.  AsAtClosed is required on every item; unlike the single closed period endpoints it is not defaulted.  Any failure rolls back the whole batch - either every closed period is created, or none are.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(TimelinesApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+batch_create_closed_periods_request = BatchCreateClosedPeriodsRequest()
+api_response = api_instance.batch_create_closed_period_candidates(scope, code, batch_create_closed_periods_request=batch_create_closed_periods_request)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the specified Timeline. | [required] 
+ **code** | **str**| The code of the specified Timeline. Together with the scope this uniquely identifies the Timeline. | [required] 
+ **batch_create_closed_periods_request** | [**BatchCreateClosedPeriodsRequest**](../model/BatchCreateClosedPeriodsRequest.md)| The ordered set of Closed Periods to create | [optional] 
+
+### Return type
+
+[**ResourceListOfClosedPeriod**](../model/ResourceListOfClosedPeriod.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | The created closed periods |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **batch_create_closed_periods**
+> ResourceListOfClosedPeriod batchCreateClosedPeriods = batch_create_closed_periods(scope, code, batch_create_closed_periods_request=batch_create_closed_periods_request)
+
+[EXPERIMENTAL] BatchCreateClosedPeriods: Atomically create an ordered series of confirmed closed periods against a timeline entity
+
+Creates an ordered series of confirmed closed periods against a timeline entity in a single transaction.  Each closed period's EffectiveStart is derived from the previous closed period's EffectiveEnd (or the  current chain tail for the first item), so EffectiveEnd must be strictly increasing across the batch.  AsAtClosed is required on every item and must be strictly increasing across the batch too; unlike the  single closed period endpoints it is not defaulted, since defaulting it per item would leave the  batch's AsAtClosed ordering to the wall clock rather than to the request.  Any failure rolls back the whole batch - either every closed period is created, or none are.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(TimelinesApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+batch_create_closed_periods_request = BatchCreateClosedPeriodsRequest()
+api_response = api_instance.batch_create_closed_periods(scope, code, batch_create_closed_periods_request=batch_create_closed_periods_request)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the specified Timeline. | [required] 
+ **code** | **str**| The code of the specified Timeline. Together with the domain and scope this uniquely identifies the Timeline. | [required] 
+ **batch_create_closed_periods_request** | [**BatchCreateClosedPeriodsRequest**](../model/BatchCreateClosedPeriodsRequest.md)| The ordered set of Closed Periods to create | [optional] 
+
+### Return type
+
+[**ResourceListOfClosedPeriod**](../model/ResourceListOfClosedPeriod.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | The created closed periods |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
 
 ---
 
@@ -528,11 +622,11 @@ Name | Type | Description  | Notes
 ---
 
 # **unconfirm_closed_period**
-> ClosedPeriod unconfirmClosedPeriod = unconfirm_closed_period(scope, code, closed_period_id, body=body)
+> ClosedPeriod unconfirmClosedPeriod = unconfirm_closed_period(scope, code, closed_period_id, unconfirm_closed_period_request=unconfirm_closed_period_request)
 
-[EXPERIMENTAL] UnconfirmClosedPeriod: Unconfirm the last confirmed Closed Period against a Timeline Entity
+[EXPERIMENTAL] UnconfirmClosedPeriod: Unconfirm a confirmed Closed Period against a Timeline Entity
 
-Unconfirm the last confirmed Closed Period against a Timeline Entity
+Unconfirm a confirmed Closed Period against a Timeline Entity. By default only the latest confirmed  Closed Period may be unconfirmed. Setting deleteSubsequentPeriods on the request body allows any  confirmed Closed Period to be unconfirmed, deleting every Closed Period after it on the Timeline.
 
 ### Example
 
@@ -541,8 +635,8 @@ api_instance = api_client_factory.build(TimelinesApi)
 scope = 'scope_example' # str
 code = 'code_example' # str
 closed_period_id = 'closed_period_id_example' # str
-body = {} # object (optional)
-api_response = api_instance.unconfirm_closed_period(scope, code, closed_period_id, body=body)
+unconfirm_closed_period_request = UnconfirmClosedPeriodRequest()
+api_response = api_instance.unconfirm_closed_period(scope, code, closed_period_id, unconfirm_closed_period_request=unconfirm_closed_period_request)
 pprint(api_response)
 ```
 
@@ -552,8 +646,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The scope of the specified Timeline. | [required] 
  **code** | **str**| The code of the specified Timeline. Together with the scope this uniquely identifies the Timeline. | [required] 
- **closed_period_id** | **str**| The id of the Closed Period. Together with the scope and code of the Timeline,              this uniquely identifies the ClosedPeriod. The closed period must be the last closed period on the Timeline. | [required] 
- **body** | **object**| Not in use at the moment | [optional] 
+ **closed_period_id** | **str**| The id of the Closed Period. Together with the scope and code of the Timeline,              this uniquely identifies the ClosedPeriod. Must be the latest confirmed Closed Period unless              deleteSubsequentPeriods is set on the request body. | [required] 
+ **unconfirm_closed_period_request** | [**UnconfirmClosedPeriodRequest**](../model/UnconfirmClosedPeriodRequest.md)| Controls whether a non-latest confirmed Closed Period may be unconfirmed. | [optional] 
 
 ### Return type
 

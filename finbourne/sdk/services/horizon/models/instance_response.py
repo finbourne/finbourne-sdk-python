@@ -22,6 +22,7 @@ from uuid import UUID
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 from finbourne.sdk.services.horizon.models.instance_destinations import InstanceDestinations
+from finbourne.sdk.services.horizon.models.latest_runs_response import LatestRunsResponse
 from finbourne.sdk.services.horizon.models.tpf_portfolio import TpfPortfolio
 
 
@@ -37,7 +38,7 @@ class InstanceResponse(BaseModel):
     schedule_timezone:  Optional[StrictStr] = Field(default=None,alias="scheduleTimezone") 
     last_run_at: Optional[datetime] = Field(default=None, alias="lastRunAt")
     last_run_status:  Optional[StrictStr] = Field(default=None,alias="lastRunStatus") 
-    latest_runs_in24_hours:  Optional[StrictStr] = Field(default=None,alias="latestRunsIn24Hours") 
+    latest_runs_in24_hours: Optional[LatestRunsResponse] = Field(default=None, alias="latestRunsIn24Hours")
     destinations: List[InstanceDestinations]
     __properties: ClassVar[List[str]] = ["id", "name", "enabled", "portfolios", "schedule", "scheduleTimezone", "lastRunAt", "lastRunStatus", "latestRunsIn24Hours", "destinations"]
 
@@ -82,6 +83,9 @@ class InstanceResponse(BaseModel):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['portfolios'] = _items
+        # override the default output from pydantic by calling `to_dict()` of latest_runs_in24_hours
+        if self.latest_runs_in24_hours:
+            _dict['latestRunsIn24Hours'] = self.latest_runs_in24_hours.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of each item in destinations (list)
         _items = []
         if self.destinations:
@@ -109,11 +113,6 @@ class InstanceResponse(BaseModel):
         if self.last_run_status is None and "last_run_status" in self.model_fields_set:
             _dict['lastRunStatus'] = None
 
-        # set to None if latest_runs_in24_hours (nullable) is None
-        # and model_fields_set contains the field
-        if self.latest_runs_in24_hours is None and "latest_runs_in24_hours" in self.model_fields_set:
-            _dict['latestRunsIn24Hours'] = None
-
         return _dict
 
     @classmethod
@@ -134,7 +133,7 @@ class InstanceResponse(BaseModel):
             "schedule_timezone": obj.get("scheduleTimezone"),
             "last_run_at": obj.get("lastRunAt"),
             "last_run_status": obj.get("lastRunStatus"),
-            "latest_runs_in24_hours": obj.get("latestRunsIn24Hours"),
+            "latest_runs_in24_hours": LatestRunsResponse.from_dict(_v) if (_v := obj.get("latestRunsIn24Hours")) is not None else None,
             "destinations": [InstanceDestinations.from_dict(_item) for _item in _v] if (_v := obj.get("destinations")) is not None else None
         })
         return _obj
