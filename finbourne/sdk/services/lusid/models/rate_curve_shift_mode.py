@@ -32,6 +32,7 @@ class RateCurveShiftMode(str, Enum):  # type: ignore[misc]
     STEEPEN = 'steepen'
     FLATTEN = 'flatten'
     TWIST = 'twist'
+    TENT = 'tent'
 
     @classmethod
     def from_json(cls, json_str: str) -> RateCurveShiftMode:
