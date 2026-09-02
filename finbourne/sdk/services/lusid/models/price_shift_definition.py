@@ -33,7 +33,7 @@ class PriceShiftDefinition(ScenarioShiftDefinition):
     amount: Optional[Union[StrictFloat, StrictInt]] = None
     shift_type:  StrictStr = Field(...,alias="shiftType", description="Available values: Absolute, Relative, Percentage.") 
     quote_type:  Optional[StrictStr] = Field(default=None,alias="quoteType", description="Available values: Price, Spread, Rate, LogNormalVol, NormalVol, ParSpread, IsdaSpread, Upfront, Index, Ratio, Delta, PoolFactor, InflationAssumption, DirtyPrice, PrincipalWriteOff, InterestDeferred, InterestShortfall, ConstituentWeightFactor.") 
-    scenario_shift_type:  StrictStr = Field(...,alias="scenarioShiftType", description="Available values: RateCurveShiftDefinition, FxShiftDefinition, PriceShiftDefinition, VolSurfaceShiftDefinition, MdkrGroupShiftDefinition.") 
+    scenario_shift_type:  StrictStr = Field(...,alias="scenarioShiftType", description="Available values: RateCurveShiftDefinition, FxShiftDefinition, PriceShiftDefinition, VolSurfaceShiftDefinition, MdkrGroupShiftDefinition, InflationCurveShiftDefinition.") 
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["scenarioShiftType", "instrument", "filter", "amount", "shiftType", "quoteType"]
 
@@ -93,7 +93,7 @@ class PriceShiftDefinition(ScenarioShiftDefinition):
         if "scenario_shift_type" != "type":
             return value
 
-        _allowed = ['RateCurveShiftDefinition', 'FxShiftDefinition', 'PriceShiftDefinition', 'VolSurfaceShiftDefinition', 'MdkrGroupShiftDefinition']
+        _allowed = ['RateCurveShiftDefinition', 'FxShiftDefinition', 'PriceShiftDefinition', 'VolSurfaceShiftDefinition', 'MdkrGroupShiftDefinition', 'InflationCurveShiftDefinition']
         if len(_allowed) != 1:
             return value
         if value not in _allowed:

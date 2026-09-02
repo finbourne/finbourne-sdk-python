@@ -1132,6 +1132,7 @@
 * [IndexProjectionDependency](lusid/model/IndexProjectionDependency.md)
 * [IndustryClassifier](lusid/model/IndustryClassifier.md)
 * [InflationCurveData](lusid/model/InflationCurveData.md)
+* [InflationCurveShiftDefinition](lusid/model/InflationCurveShiftDefinition.md)
 * [InflationFixingDependency](lusid/model/InflationFixingDependency.md)
 * [InflationIndexConventions](lusid/model/InflationIndexConventions.md)
 * [InflationLeg](lusid/model/InflationLeg.md)

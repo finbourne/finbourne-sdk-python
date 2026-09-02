@@ -24,16 +24,20 @@ from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictF
 from finbourne.sdk.services.lusid.models.scenario_shift_definition import ScenarioShiftDefinition
 
 
-class FxShiftDefinition(ScenarioShiftDefinition):
+class InflationCurveShiftDefinition(ScenarioShiftDefinition):
     """
-    FxShiftDefinition
+    A shift of an inflation curve, targeted by inflation index name. The shift applies to the  zero-coupon inflation swap quotes the curve was solved from and the curve re-solves with  the same seasonal factors and resolved fixings, so seasonality and the historic index path  survive the shift. Shift shapes, tenor windows, scales and the Tent pivot behave exactly  as they do on a rate curve shift.  # noqa: E501
     """
-    currency_pair:  StrictStr = Field(...,alias="currencyPair") 
-    amount: Optional[Union[StrictFloat, StrictInt]] = None
-    shift_type:  StrictStr = Field(...,alias="shiftType", description="Available values: Absolute, Relative, Percentage.") 
+    index:  StrictStr = Field(...,alias="index", description="The inflation index name the curve is keyed by, e.g. UKRPI or EUHICPXT.") 
+    amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The size of the shift, in the units given by Scale: basis points on the zero-coupon  rates by default (50 means +50bps), or a percentage of each rate when Scale is  Percentage (1 means rates scaled by 1.01).")
+    start_tenor:  Optional[StrictStr] = Field(default=None,alias="startTenor") 
+    end_tenor:  Optional[StrictStr] = Field(default=None,alias="endTenor") 
+    shift_type:  StrictStr = Field(...,alias="shiftType", description="Available values: Parallel, Steepen, Flatten, Twist, Tent.") 
+    scale:  Optional[StrictStr] = Field(default=None,alias="scale", description="Available values: Bps, Percentage.") 
+    pivot_tenor:  Optional[StrictStr] = Field(default=None,alias="pivotTenor", description="The tenor the Tent shift peaks at. The shift applies with the full Amount at this tenor,  falling linearly to zero at StartTenor and EndTenor - the key-rate triangle shape. Only  valid with ShiftType Tent; omitted, a Tent peaks at the midpoint of the window. Declared  last on purpose: generated SDKs emit their positional constructor in property-declaration  order, and this property must not shift the parameters of the ones before it.") 
     scenario_shift_type:  StrictStr = Field(...,alias="scenarioShiftType", description="Available values: RateCurveShiftDefinition, FxShiftDefinition, PriceShiftDefinition, VolSurfaceShiftDefinition, MdkrGroupShiftDefinition, InflationCurveShiftDefinition.") 
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["scenarioShiftType", "currencyPair", "amount", "shiftType"]
+    __properties: ClassVar[List[str]] = ["scenarioShiftType", "index", "amount", "startTenor", "endTenor", "shiftType", "scale", "pivotTenor"]
 
     @field_validator('shift_type')
     def shift_type_validate_enum(cls, value):
@@ -48,7 +52,30 @@ class FxShiftDefinition(ScenarioShiftDefinition):
         if "shift_type" != "type":
             return value
 
-        _allowed = ['Absolute', 'Relative', 'Percentage']
+        _allowed = ['Parallel', 'Steepen', 'Flatten', 'Twist', 'Tent']
+        if len(_allowed) != 1:
+            return value
+        if value not in _allowed:
+            raise ValueError(f"must be one of enum values {_allowed}")
+        return value
+
+    @field_validator('scale')
+    def scale_validate_enum(cls, value):
+        """Validates the enum"""
+
+        # Finbourne removed enum validation on all models except the
+        # oneOf-discriminator case: each oneOf variant declares a `type`
+        # field whose enum has exactly one allowable value, which pydantic
+        # uses to route the union. We detect that shape here (property
+        # named `type`, single allowable value) — no manual class list.
+
+        if "scale" != "type":
+            return value
+
+        if value is None:
+            return value
+
+        _allowed = ['Bps', 'Percentage']
         if len(_allowed) != 1:
             return value
         if value not in _allowed:
@@ -98,8 +125,8 @@ class FxShiftDefinition(ScenarioShiftDefinition):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> FxShiftDefinition:
-        """Create an instance of FxShiftDefinition from a JSON string"""
+    def from_json(cls, json_str: str) -> InflationCurveShiftDefinition:
+        """Create an instance of InflationCurveShiftDefinition from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self, by_alias=True):
@@ -120,22 +147,41 @@ class FxShiftDefinition(ScenarioShiftDefinition):
         if self.amount is None and "amount" in self.model_fields_set:
             _dict['amount'] = None
 
+        # set to None if start_tenor (nullable) is None
+        # and model_fields_set contains the field
+        if self.start_tenor is None and "start_tenor" in self.model_fields_set:
+            _dict['startTenor'] = None
+
+        # set to None if end_tenor (nullable) is None
+        # and model_fields_set contains the field
+        if self.end_tenor is None and "end_tenor" in self.model_fields_set:
+            _dict['endTenor'] = None
+
+        # set to None if pivot_tenor (nullable) is None
+        # and model_fields_set contains the field
+        if self.pivot_tenor is None and "pivot_tenor" in self.model_fields_set:
+            _dict['pivotTenor'] = None
+
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> FxShiftDefinition:
-        """Create an instance of FxShiftDefinition from a dict"""
+    def from_dict(cls, obj: dict) -> InflationCurveShiftDefinition:
+        """Create an instance of InflationCurveShiftDefinition from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return FxShiftDefinition.model_validate(obj)
+            return InflationCurveShiftDefinition.model_validate(obj)
 
-        _obj = FxShiftDefinition.model_validate({
+        _obj = InflationCurveShiftDefinition.model_validate({
             "scenario_shift_type": obj.get("scenarioShiftType"),
-            "currency_pair": obj.get("currencyPair"),
+            "index": obj.get("index"),
             "amount": obj.get("amount"),
-            "shift_type": obj.get("shiftType")
+            "start_tenor": obj.get("startTenor"),
+            "end_tenor": obj.get("endTenor"),
+            "shift_type": obj.get("shiftType"),
+            "scale": obj.get("scale"),
+            "pivot_tenor": obj.get("pivotTenor")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
@@ -144,5 +190,5 @@ class FxShiftDefinition(ScenarioShiftDefinition):
 
         return _obj
 
-FxShiftDefinition.model_rebuild()
+InflationCurveShiftDefinition.model_rebuild()
 

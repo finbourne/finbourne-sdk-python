@@ -664,6 +664,7 @@ from finbourne.sdk.services.lusid.models.index_model_options import IndexModelOp
 from finbourne.sdk.services.lusid.models.index_projection_dependency import IndexProjectionDependency
 from finbourne.sdk.services.lusid.models.industry_classifier import IndustryClassifier
 from finbourne.sdk.services.lusid.models.inflation_curve_data import InflationCurveData
+from finbourne.sdk.services.lusid.models.inflation_curve_shift_definition import InflationCurveShiftDefinition
 from finbourne.sdk.services.lusid.models.inflation_fixing_dependency import InflationFixingDependency
 from finbourne.sdk.services.lusid.models.inflation_index_conventions import InflationIndexConventions
 from finbourne.sdk.services.lusid.models.inflation_leg import InflationLeg
@@ -2301,6 +2302,7 @@ __all__ = [
     "IndexProjectionDependency",
     "IndustryClassifier",
     "InflationCurveData",
+    "InflationCurveShiftDefinition",
     "InflationFixingDependency",
     "InflationIndexConventions",
     "InflationLeg",

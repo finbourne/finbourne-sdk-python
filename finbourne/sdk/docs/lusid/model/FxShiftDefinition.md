@@ -7,7 +7,7 @@
 | **currency_pair** | **str** | Required | *No description available.* |
 | **amount** | **float** | Optional | *No description available.* |
 | **shift_type** | **str** | Required | Available values: Absolute, Relative, Percentage. |
-| **scenario_shift_type** | **str** | Required | Available values: RateCurveShiftDefinition, FxShiftDefinition, PriceShiftDefinition, VolSurfaceShiftDefinition, MdkrGroupShiftDefinition. |
+| **scenario_shift_type** | **str** | Required | Available values: RateCurveShiftDefinition, FxShiftDefinition, PriceShiftDefinition, VolSurfaceShiftDefinition, MdkrGroupShiftDefinition, InflationCurveShiftDefinition. |
 
 
 ## Usage
@@ -21,7 +21,7 @@ instance = FxShiftDefinition(
     currency_pair="...",  # required
     amount=0.0,  # optional
     shift_type="...",  # required — Available values: Absolute, Relative, Percentage.
-    scenario_shift_type="..."  # required — Available values: RateCurveShiftDefinition, FxShiftDefinition, PriceShiftDefinition, VolSurfaceShiftDefinition, MdkrGroupShiftDefinition.
+    scenario_shift_type="..."  # required — Available values: RateCurveShiftDefinition, FxShiftDefinition, PriceShiftDefinition, VolSurfaceShiftDefinition, MdkrGroupShiftDefinition, InflationCurveShiftDefinition.
 )
 ```
 
