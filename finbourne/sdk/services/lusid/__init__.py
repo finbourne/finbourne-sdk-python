@@ -455,10 +455,12 @@ from finbourne.sdk.services.lusid.models.credit_default_swap import CreditDefaul
 from finbourne.sdk.services.lusid.models.credit_premium_cash_flow_event import CreditPremiumCashFlowEvent
 from finbourne.sdk.services.lusid.models.credit_rating import CreditRating
 from finbourne.sdk.services.lusid.models.credit_spread_curve_data import CreditSpreadCurveData
+from finbourne.sdk.services.lusid.models.credit_spread_shift_definition import CreditSpreadShiftDefinition
 from finbourne.sdk.services.lusid.models.credit_support_annex import CreditSupportAnnex
 from finbourne.sdk.services.lusid.models.criterion_type import CriterionType
 from finbourne.sdk.services.lusid.models.currency_and_amount import CurrencyAndAmount
 from finbourne.sdk.services.lusid.models.curve_options import CurveOptions
+from finbourne.sdk.services.lusid.models.curve_shift_window_bounds import CurveShiftWindowBounds
 from finbourne.sdk.services.lusid.models.custodian_account import CustodianAccount
 from finbourne.sdk.services.lusid.models.custodian_account_properties import CustodianAccountProperties
 from finbourne.sdk.services.lusid.models.custodian_account_request import CustodianAccountRequest
@@ -1128,6 +1130,8 @@ from finbourne.sdk.services.lusid.models.posting_module_response import PostingM
 from finbourne.sdk.services.lusid.models.posting_module_rule import PostingModuleRule
 from finbourne.sdk.services.lusid.models.posting_module_rules_updated_response import PostingModuleRulesUpdatedResponse
 from finbourne.sdk.services.lusid.models.pre_trade_configuration import PreTradeConfiguration
+from finbourne.sdk.services.lusid.models.preferred_share import PreferredShare
+from finbourne.sdk.services.lusid.models.preferred_share_all_of_identifiers import PreferredShareAllOfIdentifiers
 from finbourne.sdk.services.lusid.models.premium import Premium
 from finbourne.sdk.services.lusid.models.previous_fund_calendar_entry import PreviousFundCalendarEntry
 from finbourne.sdk.services.lusid.models.previous_fund_valuation_point_data import PreviousFundValuationPointData
@@ -2184,10 +2188,12 @@ __all__ = [
     "CreditPremiumCashFlowEvent",
     "CreditRating",
     "CreditSpreadCurveData",
+    "CreditSpreadShiftDefinition",
     "CreditSupportAnnex",
     "CriterionType",
     "CurrencyAndAmount",
     "CurveOptions",
+    "CurveShiftWindowBounds",
     "CustodianAccount",
     "CustodianAccountProperties",
     "CustodianAccountRequest",
@@ -2857,6 +2863,8 @@ __all__ = [
     "PostingModuleRule",
     "PostingModuleRulesUpdatedResponse",
     "PreTradeConfiguration",
+    "PreferredShare",
+    "PreferredShareAllOfIdentifiers",
     "Premium",
     "PreviousFundCalendarEntry",
     "PreviousFundValuationPointData",

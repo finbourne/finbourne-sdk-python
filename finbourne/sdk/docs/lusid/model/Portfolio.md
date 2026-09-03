@@ -29,7 +29,7 @@ A portfolio of a particular type.
 | **tax_rule_set_scope** | **str** | Optional | The scope of the tax rule sets for this portfolio. |
 | **settlement_configuration** | [PortfolioSettlementConfiguration](PortfolioSettlementConfiguration.md) | Optional | *No description available.* |
 | **transaction_exclusion_filter** | **str** | Optional | A filter expression that identifies transactions to exclude when building the transaction portfolio&#39;s transactions and holdings. Transactions matching this filter are flagged as excluded. |
-| **tax_lot_selection_cost_basis** | **str** | Optional | The cost figure that cost-referencing accounting methods evaluate when selecting tax lots for a disposal. This can be: Cost or AmortisedCost. Defaults to Cost if not specified. Available values: Cost, AmortisedCost. |
+| **tax_lot_selection_cost_basis** | **str** | Optional | The cost figure that cost-referencing accounting methods evaluate when selecting tax lots for a disposal. This can be: Cost or AmortisedCost. Defaults to Cost if not specified. Supply Default to explicitly reset it; a reset or never-configured basis reads back as absent. Available values: Default, Cost, AmortisedCost. |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
@@ -65,7 +65,7 @@ instance = Portfolio(
     tax_rule_set_scope="...",  # optional — The scope of the tax rule sets for this portfolio.
     settlement_configuration=PortfolioSettlementConfiguration(...),  # optional
     transaction_exclusion_filter="...",  # optional — A filter expression that identifies transactions to exclude when building the transaction portfolio&#39;s transactions and holdings. Transactions matching this filter are flagged as excluded.
-    tax_lot_selection_cost_basis="...",  # optional — The cost figure that cost-referencing accounting methods evaluate when selecting tax lots for a disposal. This can be: Cost or AmortisedCost. Defaults to Cost if not specified. Available values: Cost, AmortisedCost.
+    tax_lot_selection_cost_basis="...",  # optional — The cost figure that cost-referencing accounting methods evaluate when selecting tax lots for a disposal. This can be: Cost or AmortisedCost. Defaults to Cost if not specified. Supply Default to explicitly reset it; a reset or never-configured basis reads back as absent. Available values: Default, Cost, AmortisedCost.
     links=[]  # optional
 )
 ```

@@ -36,9 +36,11 @@ class RateCurveShiftDefinition(ScenarioShiftDefinition):
     scale:  Optional[StrictStr] = Field(default=None,alias="scale", description="Available values: Bps, Percentage.") 
     apply_to:  Optional[StrictStr] = Field(default=None,alias="applyTo", description="A LUSID filter expression over the instrument entity scoping which instruments this shift is  for, e.g. \"properties[Instrument/default/CountryOfIssue] eq 'Italy'\". The shifted market data  is used by the whole valuation run, but when the scenario is requested as a result column the  column is only populated for matching instruments. Only usable when the scenario is applied as  a per-metric column. Note that with a scope set, the base and scenario columns cover different  instrument populations: an aggregate (e.g. Sum) of the scenario column totals only the matching  instruments, so it is not directly comparable to the same aggregate of the base column.") 
     pivot_tenor:  Optional[StrictStr] = Field(default=None,alias="pivotTenor", description="The tenor the Tent shift peaks at. The shift applies with the full Amount at this tenor,  falling linearly to zero at StartTenor and EndTenor - the key-rate triangle shape, whose  asymmetry matters because key-rate buckets are rarely evenly spaced. Only valid with  ShiftType Tent; omitted, a Tent peaks at the midpoint of the window. Declared last on  purpose: generated SDKs emit their positional constructor in property-declaration order,  and this property must not shift the parameters of the ones before it.  Over a window containing a single curve point, that point takes the full Amount regardless  of where the pivot lands: a one-point window has no slope to express, and every shift  shape degenerates the same way there.") 
-    scenario_shift_type:  StrictStr = Field(...,alias="scenarioShiftType", description="Available values: RateCurveShiftDefinition, FxShiftDefinition, PriceShiftDefinition, VolSurfaceShiftDefinition, MdkrGroupShiftDefinition, InflationCurveShiftDefinition.") 
+    window_bounds:  Optional[StrictStr] = Field(default=None,alias="windowBounds", description="Available values: Inclusive, StartExclusive, EndExclusive, Exclusive.") 
+    curve_name:  Optional[StrictStr] = Field(default=None,alias="curveName", description="The funding identifier of the one curve in the currency this shift targets, letting a  scenario shock a named curve (say, an issuer discounting curve) without also moving the  risk-free curve mastered in the same currency. Omitted - as on every scenario stored  before this field existed - the shift matches every rate curve in the currency, exactly  as before. Declared last on purpose: generated SDKs emit their positional constructor in  property-declaration order, and this property must not shift the parameters of the ones  before it.") 
+    scenario_shift_type:  StrictStr = Field(...,alias="scenarioShiftType", description="Available values: RateCurveShiftDefinition, FxShiftDefinition, PriceShiftDefinition, VolSurfaceShiftDefinition, MdkrGroupShiftDefinition, InflationCurveShiftDefinition, CreditSpreadShiftDefinition.") 
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["scenarioShiftType", "ccy", "amount", "startTenor", "endTenor", "shiftType", "scale", "applyTo", "pivotTenor"]
+    __properties: ClassVar[List[str]] = ["scenarioShiftType", "ccy", "amount", "startTenor", "endTenor", "shiftType", "scale", "applyTo", "pivotTenor", "windowBounds", "curveName"]
 
     @field_validator('shift_type')
     def shift_type_validate_enum(cls, value):
@@ -83,6 +85,29 @@ class RateCurveShiftDefinition(ScenarioShiftDefinition):
             raise ValueError(f"must be one of enum values {_allowed}")
         return value
 
+    @field_validator('window_bounds')
+    def window_bounds_validate_enum(cls, value):
+        """Validates the enum"""
+
+        # Finbourne removed enum validation on all models except the
+        # oneOf-discriminator case: each oneOf variant declares a `type`
+        # field whose enum has exactly one allowable value, which pydantic
+        # uses to route the union. We detect that shape here (property
+        # named `type`, single allowable value) — no manual class list.
+
+        if "window_bounds" != "type":
+            return value
+
+        if value is None:
+            return value
+
+        _allowed = ['Inclusive', 'StartExclusive', 'EndExclusive', 'Exclusive']
+        if len(_allowed) != 1:
+            return value
+        if value not in _allowed:
+            raise ValueError(f"must be one of enum values {_allowed}")
+        return value
+
     @field_validator('scenario_shift_type')
     def scenario_shift_type_validate_enum(cls, value):
         """Validates the enum"""
@@ -96,7 +121,7 @@ class RateCurveShiftDefinition(ScenarioShiftDefinition):
         if "scenario_shift_type" != "type":
             return value
 
-        _allowed = ['RateCurveShiftDefinition', 'FxShiftDefinition', 'PriceShiftDefinition', 'VolSurfaceShiftDefinition', 'MdkrGroupShiftDefinition', 'InflationCurveShiftDefinition']
+        _allowed = ['RateCurveShiftDefinition', 'FxShiftDefinition', 'PriceShiftDefinition', 'VolSurfaceShiftDefinition', 'MdkrGroupShiftDefinition', 'InflationCurveShiftDefinition', 'CreditSpreadShiftDefinition']
         if len(_allowed) != 1:
             return value
         if value not in _allowed:
@@ -168,6 +193,11 @@ class RateCurveShiftDefinition(ScenarioShiftDefinition):
         if self.pivot_tenor is None and "pivot_tenor" in self.model_fields_set:
             _dict['pivotTenor'] = None
 
+        # set to None if curve_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.curve_name is None and "curve_name" in self.model_fields_set:
+            _dict['curveName'] = None
+
         return _dict
 
     @classmethod
@@ -188,7 +218,9 @@ class RateCurveShiftDefinition(ScenarioShiftDefinition):
             "shift_type": obj.get("shiftType"),
             "scale": obj.get("scale"),
             "apply_to": obj.get("applyTo"),
-            "pivot_tenor": obj.get("pivotTenor")
+            "pivot_tenor": obj.get("pivotTenor"),
+            "window_bounds": obj.get("windowBounds"),
+            "curve_name": obj.get("curveName")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

@@ -35,9 +35,10 @@ class InflationCurveShiftDefinition(ScenarioShiftDefinition):
     shift_type:  StrictStr = Field(...,alias="shiftType", description="Available values: Parallel, Steepen, Flatten, Twist, Tent.") 
     scale:  Optional[StrictStr] = Field(default=None,alias="scale", description="Available values: Bps, Percentage.") 
     pivot_tenor:  Optional[StrictStr] = Field(default=None,alias="pivotTenor", description="The tenor the Tent shift peaks at. The shift applies with the full Amount at this tenor,  falling linearly to zero at StartTenor and EndTenor - the key-rate triangle shape. Only  valid with ShiftType Tent; omitted, a Tent peaks at the midpoint of the window. Declared  last on purpose: generated SDKs emit their positional constructor in property-declaration  order, and this property must not shift the parameters of the ones before it.") 
-    scenario_shift_type:  StrictStr = Field(...,alias="scenarioShiftType", description="Available values: RateCurveShiftDefinition, FxShiftDefinition, PriceShiftDefinition, VolSurfaceShiftDefinition, MdkrGroupShiftDefinition, InflationCurveShiftDefinition.") 
+    window_bounds:  Optional[StrictStr] = Field(default=None,alias="windowBounds", description="Available values: Inclusive, StartExclusive, EndExclusive, Exclusive.") 
+    scenario_shift_type:  StrictStr = Field(...,alias="scenarioShiftType", description="Available values: RateCurveShiftDefinition, FxShiftDefinition, PriceShiftDefinition, VolSurfaceShiftDefinition, MdkrGroupShiftDefinition, InflationCurveShiftDefinition, CreditSpreadShiftDefinition.") 
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["scenarioShiftType", "index", "amount", "startTenor", "endTenor", "shiftType", "scale", "pivotTenor"]
+    __properties: ClassVar[List[str]] = ["scenarioShiftType", "index", "amount", "startTenor", "endTenor", "shiftType", "scale", "pivotTenor", "windowBounds"]
 
     @field_validator('shift_type')
     def shift_type_validate_enum(cls, value):
@@ -82,6 +83,29 @@ class InflationCurveShiftDefinition(ScenarioShiftDefinition):
             raise ValueError(f"must be one of enum values {_allowed}")
         return value
 
+    @field_validator('window_bounds')
+    def window_bounds_validate_enum(cls, value):
+        """Validates the enum"""
+
+        # Finbourne removed enum validation on all models except the
+        # oneOf-discriminator case: each oneOf variant declares a `type`
+        # field whose enum has exactly one allowable value, which pydantic
+        # uses to route the union. We detect that shape here (property
+        # named `type`, single allowable value) — no manual class list.
+
+        if "window_bounds" != "type":
+            return value
+
+        if value is None:
+            return value
+
+        _allowed = ['Inclusive', 'StartExclusive', 'EndExclusive', 'Exclusive']
+        if len(_allowed) != 1:
+            return value
+        if value not in _allowed:
+            raise ValueError(f"must be one of enum values {_allowed}")
+        return value
+
     @field_validator('scenario_shift_type')
     def scenario_shift_type_validate_enum(cls, value):
         """Validates the enum"""
@@ -95,7 +119,7 @@ class InflationCurveShiftDefinition(ScenarioShiftDefinition):
         if "scenario_shift_type" != "type":
             return value
 
-        _allowed = ['RateCurveShiftDefinition', 'FxShiftDefinition', 'PriceShiftDefinition', 'VolSurfaceShiftDefinition', 'MdkrGroupShiftDefinition', 'InflationCurveShiftDefinition']
+        _allowed = ['RateCurveShiftDefinition', 'FxShiftDefinition', 'PriceShiftDefinition', 'VolSurfaceShiftDefinition', 'MdkrGroupShiftDefinition', 'InflationCurveShiftDefinition', 'CreditSpreadShiftDefinition']
         if len(_allowed) != 1:
             return value
         if value not in _allowed:
@@ -181,7 +205,8 @@ class InflationCurveShiftDefinition(ScenarioShiftDefinition):
             "end_tenor": obj.get("endTenor"),
             "shift_type": obj.get("shiftType"),
             "scale": obj.get("scale"),
-            "pivot_tenor": obj.get("pivotTenor")
+            "pivot_tenor": obj.get("pivotTenor"),
+            "window_bounds": obj.get("windowBounds")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

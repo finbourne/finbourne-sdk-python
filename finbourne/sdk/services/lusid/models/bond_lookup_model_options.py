@@ -29,9 +29,10 @@ class BondLookupModelOptions(ModelOptions):
     Model options for the quote-anchored bond lookup pricer.  # noqa: E501
     """
     spread_anchored_risk: StrictBool = Field(description="Price the bond by discounting its own cashflows over its discounting curve at a constant  spread, instead of marking it to its quoted price. Marking to a quote declares no curve  dependency, so a lookup-priced bond reports no curve delta at all. In this mode the pricer  declares both the discounting curve and a ZSpread quote for the instrument and prices off  them, so holding the spread fixed while the curve is perturbed produces the curve's delta.  Off by default, as the mode changes both the declared dependencies and where the price  comes from.", alias="spreadAnchoredRisk")
+    cs01_bump_width: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The TOTAL width of the central-difference stencil behind the CS01/Central measure: the  instrument's own z-spread is repriced at spread ± width/2, so a width of 0.0001 means  ±0.5bp reprice points. The width is the whole distance between the two reprice points,  NOT the half-shift. The reported measure is always per one basis point of widening  whatever width is configured. Must be strictly positive.  Defaults to 0.0001 (1bp, repriced at ±0.5bp) when not supplied.", alias="cs01BumpWidth")
     model_options_type:  StrictStr = Field(...,alias="modelOptionsType", description="Available values: Invalid, OpaqueModelOptions, EmptyModelOptions, IndexModelOptions, FxForwardModelOptions, FundingLegModelOptions, EquityModelOptions, CdsModelOptions, FlexibleLoanPricerOptions, HullWhiteModelOptions, BondLookupModelOptions.") 
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["modelOptionsType", "spreadAnchoredRisk"]
+    __properties: ClassVar[List[str]] = ["modelOptionsType", "spreadAnchoredRisk", "cs01BumpWidth"]
 
     @field_validator('model_options_type')
     def model_options_type_validate_enum(cls, value):
@@ -93,6 +94,11 @@ class BondLookupModelOptions(ModelOptions):
             for _key, _value in self.additional_properties.items():
                 _dict[_key] = _value
 
+        # set to None if cs01_bump_width (nullable) is None
+        # and model_fields_set contains the field
+        if self.cs01_bump_width is None and "cs01_bump_width" in self.model_fields_set:
+            _dict['cs01BumpWidth'] = None
+
         return _dict
 
     @classmethod
@@ -106,7 +112,8 @@ class BondLookupModelOptions(ModelOptions):
 
         _obj = BondLookupModelOptions.model_validate({
             "model_options_type": obj.get("modelOptionsType"),
-            "spread_anchored_risk": obj.get("spreadAnchoredRisk")
+            "spread_anchored_risk": obj.get("spreadAnchoredRisk"),
+            "cs01_bump_width": obj.get("cs01BumpWidth")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

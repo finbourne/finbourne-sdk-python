@@ -33,7 +33,7 @@ class VolSurfaceShiftDefinition(ScenarioShiftDefinition):
     strike: Optional[Union[StrictFloat, StrictInt]] = None
     expiry:  Optional[StrictStr] = Field(default=None,alias="expiry") 
     shift_type:  StrictStr = Field(...,alias="shiftType", description="Available values: Absolute, Relative.") 
-    scenario_shift_type:  StrictStr = Field(...,alias="scenarioShiftType", description="Available values: RateCurveShiftDefinition, FxShiftDefinition, PriceShiftDefinition, VolSurfaceShiftDefinition, MdkrGroupShiftDefinition, InflationCurveShiftDefinition.") 
+    scenario_shift_type:  StrictStr = Field(...,alias="scenarioShiftType", description="Available values: RateCurveShiftDefinition, FxShiftDefinition, PriceShiftDefinition, VolSurfaceShiftDefinition, MdkrGroupShiftDefinition, InflationCurveShiftDefinition, CreditSpreadShiftDefinition.") 
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["scenarioShiftType", "instrument", "amount", "strike", "expiry", "shiftType"]
 
@@ -70,7 +70,7 @@ class VolSurfaceShiftDefinition(ScenarioShiftDefinition):
         if "scenario_shift_type" != "type":
             return value
 
-        _allowed = ['RateCurveShiftDefinition', 'FxShiftDefinition', 'PriceShiftDefinition', 'VolSurfaceShiftDefinition', 'MdkrGroupShiftDefinition', 'InflationCurveShiftDefinition']
+        _allowed = ['RateCurveShiftDefinition', 'FxShiftDefinition', 'PriceShiftDefinition', 'VolSurfaceShiftDefinition', 'MdkrGroupShiftDefinition', 'InflationCurveShiftDefinition', 'CreditSpreadShiftDefinition']
         if len(_allowed) != 1:
             return value
         if value not in _allowed:
