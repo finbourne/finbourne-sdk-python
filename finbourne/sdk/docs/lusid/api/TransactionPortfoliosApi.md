@@ -1358,7 +1358,7 @@ Name | Type | Description  | Notes
 ---
 
 # **get_holdings**
-> VersionedResourceListOfPortfolioHolding getHoldings = get_holdings(scope, code, effective_at=effective_at, as_at=as_at, filter=filter, property_keys=property_keys, by_taxlots=by_taxlots, include_settlement_events_after_days=include_settlement_events_after_days, timeline_scope=timeline_scope, timeline_code=timeline_code, closed_period_id=closed_period_id, aggregate_cash_commitments=aggregate_cash_commitments)
+> VersionedResourceListWithWarningsOfPortfolioHolding getHoldings = get_holdings(scope, code, effective_at=effective_at, as_at=as_at, filter=filter, property_keys=property_keys, by_taxlots=by_taxlots, include_settlement_events_after_days=include_settlement_events_after_days, timeline_scope=timeline_scope, timeline_code=timeline_code, closed_period_id=closed_period_id, aggregate_cash_commitments=aggregate_cash_commitments)
 
 GetHoldings: Get holdings
 
@@ -1403,7 +1403,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**VersionedResourceListOfPortfolioHolding**](../model/VersionedResourceListOfPortfolioHolding.md)
+[**VersionedResourceListWithWarningsOfPortfolioHolding**](../model/VersionedResourceListWithWarningsOfPortfolioHolding.md)
 
 ### HTTP request headers
 

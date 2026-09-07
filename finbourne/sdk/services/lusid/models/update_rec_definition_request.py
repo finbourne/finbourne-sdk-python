@@ -26,6 +26,7 @@ from finbourne.sdk.services.lusid.models.rec_def_recipe_ids import RecDefRecipeI
 from finbourne.sdk.services.lusid.models.rec_def_ruleset import RecDefRuleset
 from finbourne.sdk.services.lusid.models.rec_def_side_names import RecDefSideNames
 from finbourne.sdk.services.lusid.models.rec_def_source import RecDefSource
+from finbourne.sdk.services.lusid.models.rec_review_configuration import RecReviewConfiguration
 
 
 class UpdateRecDefinitionRequest(BaseModel):
@@ -41,7 +42,8 @@ class UpdateRecDefinitionRequest(BaseModel):
     valuation_recipes: Optional[RecDefRecipeIds] = Field(default=None, alias="valuationRecipes")
     currencies: Optional[RecDefCurrencies] = None
     rulesets: List[RecDefRuleset] = Field(description="The types of reconciliation included in the group, each naming the matching ruleset that drives it. At least one entry is required, and each rec type may appear at most once.")
-    __properties: ClassVar[List[str]] = ["displayName", "description", "definitionType", "sideNames", "leftPortfolioSources", "rightPortfolioSources", "valuationRecipes", "currencies", "rulesets"]
+    review_configuration: Optional[RecReviewConfiguration] = Field(default=None, alias="reviewConfiguration")
+    __properties: ClassVar[List[str]] = ["displayName", "description", "definitionType", "sideNames", "leftPortfolioSources", "rightPortfolioSources", "valuationRecipes", "currencies", "rulesets", "reviewConfiguration"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -107,6 +109,9 @@ class UpdateRecDefinitionRequest(BaseModel):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['rulesets'] = _items
+        # override the default output from pydantic by calling `to_dict()` of review_configuration
+        if self.review_configuration:
+            _dict['reviewConfiguration'] = self.review_configuration.to_dict(by_alias=by_alias)
         # set to None if description (nullable) is None
         # and model_fields_set contains the field
         if self.description is None and "description" in self.model_fields_set:
@@ -142,7 +147,8 @@ class UpdateRecDefinitionRequest(BaseModel):
             "right_portfolio_sources": [RecDefSource.from_dict(_item) for _item in _v] if (_v := obj.get("rightPortfolioSources")) is not None else None,
             "valuation_recipes": RecDefRecipeIds.from_dict(_v) if (_v := obj.get("valuationRecipes")) is not None else None,
             "currencies": RecDefCurrencies.from_dict(_v) if (_v := obj.get("currencies")) is not None else None,
-            "rulesets": [RecDefRuleset.from_dict(_item) for _item in _v] if (_v := obj.get("rulesets")) is not None else None
+            "rulesets": [RecDefRuleset.from_dict(_item) for _item in _v] if (_v := obj.get("rulesets")) is not None else None,
+            "review_configuration": RecReviewConfiguration.from_dict(_v) if (_v := obj.get("reviewConfiguration")) is not None else None
         })
         return _obj
 

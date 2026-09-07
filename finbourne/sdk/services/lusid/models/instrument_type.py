@@ -81,6 +81,7 @@ class InstrumentType(str, Enum):  # type: ignore[misc]
     COMMODITYCALENDARSWAP = 'CommodityCalendarSwap'
     BONDFORWARD = 'BondForward'
     PREFERREDSHARE = 'PreferredShare'
+    CAPITALINTEREST = 'CapitalInterest'
 
     @classmethod
     def from_json(cls, json_str: str) -> InstrumentType:

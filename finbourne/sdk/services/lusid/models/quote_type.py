@@ -46,6 +46,8 @@ class QuoteType(str, Enum):  # type: ignore[misc]
     INTERESTDEFERRED = 'InterestDeferred'
     INTERESTSHORTFALL = 'InterestShortfall'
     CONSTITUENTWEIGHTFACTOR = 'ConstituentWeightFactor'
+    FORWARDPRICE = 'ForwardPrice'
+    DISCOUNTFACTOR = 'DiscountFactor'
 
     @classmethod
     def from_json(cls, json_str: str) -> QuoteType:

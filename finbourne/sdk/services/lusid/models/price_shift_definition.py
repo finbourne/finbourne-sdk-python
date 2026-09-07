@@ -32,8 +32,8 @@ class PriceShiftDefinition(ScenarioShiftDefinition):
     filter:  Optional[StrictStr] = Field(default=None,alias="filter", description="A LUSID filter expression over the instrument entity - fields and properties - selecting which  instruments' quotes the shift applies to, e.g.  \"assetClass eq 'Bond' and properties[Instrument/Issuer/Name] eq 'X'\".  Exactly one of Instrument and Filter must be supplied.") 
     amount: Optional[Union[StrictFloat, StrictInt]] = None
     shift_type:  StrictStr = Field(...,alias="shiftType", description="Available values: Absolute, Relative, Percentage.") 
-    quote_type:  Optional[StrictStr] = Field(default=None,alias="quoteType", description="Available values: Price, Spread, Rate, LogNormalVol, NormalVol, ParSpread, IsdaSpread, Upfront, Index, Ratio, Delta, PoolFactor, InflationAssumption, DirtyPrice, PrincipalWriteOff, InterestDeferred, InterestShortfall, ConstituentWeightFactor.") 
-    scenario_shift_type:  StrictStr = Field(...,alias="scenarioShiftType", description="Available values: RateCurveShiftDefinition, FxShiftDefinition, PriceShiftDefinition, VolSurfaceShiftDefinition, MdkrGroupShiftDefinition, InflationCurveShiftDefinition, CreditSpreadShiftDefinition.") 
+    quote_type:  Optional[StrictStr] = Field(default=None,alias="quoteType", description="Available values: Price, Spread, Rate, LogNormalVol, NormalVol, ParSpread, IsdaSpread, Upfront, Index, Ratio, Delta, PoolFactor, InflationAssumption, DirtyPrice, PrincipalWriteOff, InterestDeferred, InterestShortfall, ConstituentWeightFactor, ForwardPrice, DiscountFactor.") 
+    scenario_shift_type:  StrictStr = Field(...,alias="scenarioShiftType", description="Available values: RateCurveShiftDefinition, FxShiftDefinition, PriceShiftDefinition, VolSurfaceShiftDefinition, MdkrGroupShiftDefinition, InflationCurveShiftDefinition, CreditSpreadShiftDefinition, ModelOptionShiftDefinition.") 
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["scenarioShiftType", "instrument", "filter", "amount", "shiftType", "quoteType"]
 
@@ -73,7 +73,7 @@ class PriceShiftDefinition(ScenarioShiftDefinition):
         if value is None:
             return value
 
-        _allowed = ['Price', 'Spread', 'Rate', 'LogNormalVol', 'NormalVol', 'ParSpread', 'IsdaSpread', 'Upfront', 'Index', 'Ratio', 'Delta', 'PoolFactor', 'InflationAssumption', 'DirtyPrice', 'PrincipalWriteOff', 'InterestDeferred', 'InterestShortfall', 'ConstituentWeightFactor']
+        _allowed = ['Price', 'Spread', 'Rate', 'LogNormalVol', 'NormalVol', 'ParSpread', 'IsdaSpread', 'Upfront', 'Index', 'Ratio', 'Delta', 'PoolFactor', 'InflationAssumption', 'DirtyPrice', 'PrincipalWriteOff', 'InterestDeferred', 'InterestShortfall', 'ConstituentWeightFactor', 'ForwardPrice', 'DiscountFactor']
         if len(_allowed) != 1:
             return value
         if value not in _allowed:
@@ -93,7 +93,7 @@ class PriceShiftDefinition(ScenarioShiftDefinition):
         if "scenario_shift_type" != "type":
             return value
 
-        _allowed = ['RateCurveShiftDefinition', 'FxShiftDefinition', 'PriceShiftDefinition', 'VolSurfaceShiftDefinition', 'MdkrGroupShiftDefinition', 'InflationCurveShiftDefinition', 'CreditSpreadShiftDefinition']
+        _allowed = ['RateCurveShiftDefinition', 'FxShiftDefinition', 'PriceShiftDefinition', 'VolSurfaceShiftDefinition', 'MdkrGroupShiftDefinition', 'InflationCurveShiftDefinition', 'CreditSpreadShiftDefinition', 'ModelOptionShiftDefinition']
         if len(_allowed) != 1:
             return value
         if value not in _allowed:

@@ -27,6 +27,7 @@ from finbourne.sdk.services.lusid.models.rec_def_recipe_ids import RecDefRecipeI
 from finbourne.sdk.services.lusid.models.rec_def_ruleset import RecDefRuleset
 from finbourne.sdk.services.lusid.models.rec_def_side_names import RecDefSideNames
 from finbourne.sdk.services.lusid.models.rec_def_source import RecDefSource
+from finbourne.sdk.services.lusid.models.rec_review_configuration import RecReviewConfiguration
 from finbourne.sdk.services.lusid.models.resource_id import ResourceId
 from finbourne.sdk.services.lusid.models.version import Version
 
@@ -45,10 +46,11 @@ class RecDefinition(BaseModel):
     valuation_recipes: Optional[RecDefRecipeIds] = Field(default=None, alias="valuationRecipes")
     currencies: Optional[RecDefCurrencies] = None
     rulesets: List[RecDefRuleset] = Field(description="The types of reconciliation included in the group, each naming the matching ruleset that drives it. At least one entry is required, and each rec type may appear at most once.")
+    review_configuration: RecReviewConfiguration = Field(alias="reviewConfiguration")
     href:  Optional[StrictStr] = Field(default=None,alias="href", description="The specific Uniform Resource Identifier (URI) for this resource at the requested effective and asAt datetime.") 
     version: Optional[Version] = None
     links: Optional[List[Link]] = None
-    __properties: ClassVar[List[str]] = ["id", "displayName", "description", "definitionType", "sideNames", "leftPortfolioSources", "rightPortfolioSources", "valuationRecipes", "currencies", "rulesets", "href", "version", "links"]
+    __properties: ClassVar[List[str]] = ["id", "displayName", "description", "definitionType", "sideNames", "leftPortfolioSources", "rightPortfolioSources", "valuationRecipes", "currencies", "rulesets", "reviewConfiguration", "href", "version", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -117,6 +119,9 @@ class RecDefinition(BaseModel):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['rulesets'] = _items
+        # override the default output from pydantic by calling `to_dict()` of review_configuration
+        if self.review_configuration:
+            _dict['reviewConfiguration'] = self.review_configuration.to_dict(by_alias=by_alias)
         # override the default output from pydantic by calling `to_dict()` of version
         if self.version:
             _dict['version'] = self.version.to_dict(by_alias=by_alias)
@@ -164,6 +169,7 @@ class RecDefinition(BaseModel):
             "valuation_recipes": RecDefRecipeIds.from_dict(_v) if (_v := obj.get("valuationRecipes")) is not None else None,
             "currencies": RecDefCurrencies.from_dict(_v) if (_v := obj.get("currencies")) is not None else None,
             "rulesets": [RecDefRuleset.from_dict(_item) for _item in _v] if (_v := obj.get("rulesets")) is not None else None,
+            "review_configuration": RecReviewConfiguration.from_dict(_v) if (_v := obj.get("reviewConfiguration")) is not None else None,
             "href": obj.get("href"),
             "version": Version.from_dict(_v) if (_v := obj.get("version")) is not None else None,
             "links": [Link.from_dict(_item) for _item in _v] if (_v := obj.get("links")) is not None else None

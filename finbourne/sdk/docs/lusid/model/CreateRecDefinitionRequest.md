@@ -14,6 +14,7 @@
 | **valuation_recipes** | [RecDefRecipeIds](RecDefRecipeIds.md) | Optional | *No description available.* |
 | **currencies** | [RecDefCurrencies](RecDefCurrencies.md) | Optional | *No description available.* |
 | **rulesets** | [List[RecDefRuleset]](RecDefRuleset.md) | Required | The types of reconciliation included in the group, each naming the matching ruleset that drives it. At least one entry is required, and each rec type may appear at most once. |
+| **review_configuration** | [RecReviewConfiguration](RecReviewConfiguration.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -33,7 +34,8 @@ instance = CreateRecDefinitionRequest(
     right_portfolio_sources=[],  # optional — The portfolios, portfolio groups and funds contributing to the right side. Empty when the right side draws on relational data instead, which requires every ruleset to declare relational data for that side. Both sides cannot be empty.
     valuation_recipes=RecDefRecipeIds(...),  # optional
     currencies=RecDefCurrencies(...),  # optional
-    rulesets=[]  # required — The types of reconciliation included in the group, each naming the matching ruleset that drives it. At least one entry is required, and each rec type may appear at most once.
+    rulesets=[],  # required — The types of reconciliation included in the group, each naming the matching ruleset that drives it. At least one entry is required, and each rec type may appear at most once.
+    review_configuration=RecReviewConfiguration(...)  # optional
 )
 ```
 
@@ -47,6 +49,7 @@ instance = CreateRecDefinitionRequest(
 - [RecDefRecipeIds](RecDefRecipeIds.md)
 - [RecDefCurrencies](RecDefCurrencies.md)
 - [RecDefRuleset](RecDefRuleset.md) — used in `rulesets`
+- [RecReviewConfiguration](RecReviewConfiguration.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

@@ -36,9 +36,11 @@ class CreditSpreadShiftDefinition(ScenarioShiftDefinition):
     shift_type:  StrictStr = Field(...,alias="shiftType", description="Available values: Parallel, Steepen, Flatten, Twist, Tent.") 
     scale:  Optional[StrictStr] = Field(default=None,alias="scale", description="Available values: Bps, Percentage.") 
     pivot_tenor:  Optional[StrictStr] = Field(default=None,alias="pivotTenor", description="The tenor the Tent shift peaks at. The shift applies with the full Amount at this tenor,  falling linearly to zero at StartTenor and EndTenor - the key-rate triangle shape. Only  valid with ShiftType Tent; omitted, a Tent peaks at the midpoint of the window. Declared  last on purpose: generated SDKs emit their positional constructor in property-declaration  order, and this property must not shift the parameters of the ones before it.") 
-    scenario_shift_type:  StrictStr = Field(...,alias="scenarioShiftType", description="Available values: RateCurveShiftDefinition, FxShiftDefinition, PriceShiftDefinition, VolSurfaceShiftDefinition, MdkrGroupShiftDefinition, InflationCurveShiftDefinition, CreditSpreadShiftDefinition.") 
+    minimum_amount_bps: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The smallest magnitude, in basis points, of the shift finally applied at each curve point,  evaluated per point AFTER the shape weight, in the direction the shift acts there. Exactly  the rate curve shift's MinimumAmountBps - see that field for the full semantics; the  curve shifts keep one vocabulary. Omitted, no floor applies - today's behaviour.  Declared after PivotTenor on purpose, for the constructor-ordering reason given there.", alias="minimumAmountBps")
+    apply_when_value:  Optional[StrictStr] = Field(default=None,alias="applyWhenValue", description="Available values: Any, Positive, Negative.") 
+    scenario_shift_type:  StrictStr = Field(...,alias="scenarioShiftType", description="Available values: RateCurveShiftDefinition, FxShiftDefinition, PriceShiftDefinition, VolSurfaceShiftDefinition, MdkrGroupShiftDefinition, InflationCurveShiftDefinition, CreditSpreadShiftDefinition, ModelOptionShiftDefinition.") 
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["scenarioShiftType", "ticker", "ccy", "amount", "startTenor", "endTenor", "shiftType", "scale", "pivotTenor"]
+    __properties: ClassVar[List[str]] = ["scenarioShiftType", "ticker", "ccy", "amount", "startTenor", "endTenor", "shiftType", "scale", "pivotTenor", "minimumAmountBps", "applyWhenValue"]
 
     @field_validator('shift_type')
     def shift_type_validate_enum(cls, value):
@@ -83,6 +85,29 @@ class CreditSpreadShiftDefinition(ScenarioShiftDefinition):
             raise ValueError(f"must be one of enum values {_allowed}")
         return value
 
+    @field_validator('apply_when_value')
+    def apply_when_value_validate_enum(cls, value):
+        """Validates the enum"""
+
+        # Finbourne removed enum validation on all models except the
+        # oneOf-discriminator case: each oneOf variant declares a `type`
+        # field whose enum has exactly one allowable value, which pydantic
+        # uses to route the union. We detect that shape here (property
+        # named `type`, single allowable value) — no manual class list.
+
+        if "apply_when_value" != "type":
+            return value
+
+        if value is None:
+            return value
+
+        _allowed = ['Any', 'Positive', 'Negative']
+        if len(_allowed) != 1:
+            return value
+        if value not in _allowed:
+            raise ValueError(f"must be one of enum values {_allowed}")
+        return value
+
     @field_validator('scenario_shift_type')
     def scenario_shift_type_validate_enum(cls, value):
         """Validates the enum"""
@@ -96,7 +121,7 @@ class CreditSpreadShiftDefinition(ScenarioShiftDefinition):
         if "scenario_shift_type" != "type":
             return value
 
-        _allowed = ['RateCurveShiftDefinition', 'FxShiftDefinition', 'PriceShiftDefinition', 'VolSurfaceShiftDefinition', 'MdkrGroupShiftDefinition', 'InflationCurveShiftDefinition', 'CreditSpreadShiftDefinition']
+        _allowed = ['RateCurveShiftDefinition', 'FxShiftDefinition', 'PriceShiftDefinition', 'VolSurfaceShiftDefinition', 'MdkrGroupShiftDefinition', 'InflationCurveShiftDefinition', 'CreditSpreadShiftDefinition', 'ModelOptionShiftDefinition']
         if len(_allowed) != 1:
             return value
         if value not in _allowed:
@@ -168,6 +193,11 @@ class CreditSpreadShiftDefinition(ScenarioShiftDefinition):
         if self.pivot_tenor is None and "pivot_tenor" in self.model_fields_set:
             _dict['pivotTenor'] = None
 
+        # set to None if minimum_amount_bps (nullable) is None
+        # and model_fields_set contains the field
+        if self.minimum_amount_bps is None and "minimum_amount_bps" in self.model_fields_set:
+            _dict['minimumAmountBps'] = None
+
         return _dict
 
     @classmethod
@@ -188,7 +218,9 @@ class CreditSpreadShiftDefinition(ScenarioShiftDefinition):
             "end_tenor": obj.get("endTenor"),
             "shift_type": obj.get("shiftType"),
             "scale": obj.get("scale"),
-            "pivot_tenor": obj.get("pivotTenor")
+            "pivot_tenor": obj.get("pivotTenor"),
+            "minimum_amount_bps": obj.get("minimumAmountBps"),
+            "apply_when_value": obj.get("applyWhenValue")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

@@ -29,6 +29,7 @@ class LuminesceBinaryType(str, Enum):  # type: ignore[misc]
     allowed enum values
     """
     COMMANDLINETOOL = 'CommandLineTool'
+    LUMICODE = 'LumiCode'
     LOCAL_FILE_SYSTEM_PROVIDERS = 'LocalFileSystem_Providers'
     EMAIL_PROVIDERS = 'Email_Providers'
     PYTHON_PROVIDERS = 'Python_Providers'

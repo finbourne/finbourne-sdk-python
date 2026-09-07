@@ -173,6 +173,7 @@ from finbourne.sdk.services.lusid.models.allocation_group_definition import Allo
 from finbourne.sdk.services.lusid.models.allocation_request import AllocationRequest
 from finbourne.sdk.services.lusid.models.allocation_service_run_response import AllocationServiceRunResponse
 from finbourne.sdk.services.lusid.models.allocation_set_request import AllocationSetRequest
+from finbourne.sdk.services.lusid.models.amend_commitment_event import AmendCommitmentEvent
 from finbourne.sdk.services.lusid.models.amortisation_event import AmortisationEvent
 from finbourne.sdk.services.lusid.models.amortisation_rule import AmortisationRule
 from finbourne.sdk.services.lusid.models.amortisation_rule_set import AmortisationRuleSet
@@ -238,6 +239,7 @@ from finbourne.sdk.services.lusid.models.bond_default_event import BondDefaultEv
 from finbourne.sdk.services.lusid.models.bond_default_suppression_details import BondDefaultSuppressionDetails
 from finbourne.sdk.services.lusid.models.bond_forward import BondForward
 from finbourne.sdk.services.lusid.models.bond_forward_cash_settlement_event import BondForwardCashSettlementEvent
+from finbourne.sdk.services.lusid.models.bond_forward_model_options import BondForwardModelOptions
 from finbourne.sdk.services.lusid.models.bond_forward_termination_event import BondForwardTerminationEvent
 from finbourne.sdk.services.lusid.models.bond_lookup_model_options import BondLookupModelOptions
 from finbourne.sdk.services.lusid.models.bond_option import BondOption
@@ -280,8 +282,10 @@ from finbourne.sdk.services.lusid.models.cancel_swap_event import CancelSwapEven
 from finbourne.sdk.services.lusid.models.cancelled_order_result import CancelledOrderResult
 from finbourne.sdk.services.lusid.models.cancelled_placement_result import CancelledPlacementResult
 from finbourne.sdk.services.lusid.models.cap_floor import CapFloor
+from finbourne.sdk.services.lusid.models.capital_call_event import CapitalCallEvent
 from finbourne.sdk.services.lusid.models.capital_distribution_event import CapitalDistributionEvent
 from finbourne.sdk.services.lusid.models.capital_gains_distribution_event import CapitalGainsDistributionEvent
+from finbourne.sdk.services.lusid.models.capital_interest import CapitalInterest
 from finbourne.sdk.services.lusid.models.caplet_floorlet_cash_flow_event import CapletFloorletCashFlowEvent
 from finbourne.sdk.services.lusid.models.cash import Cash
 from finbourne.sdk.services.lusid.models.cash_and_security_offer_election import CashAndSecurityOfferElection
@@ -569,6 +573,8 @@ from finbourne.sdk.services.lusid.models.equity_swap import EquitySwap
 from finbourne.sdk.services.lusid.models.equity_vol_dependency import EquityVolDependency
 from finbourne.sdk.services.lusid.models.equity_vol_surface_data import EquityVolSurfaceData
 from finbourne.sdk.services.lusid.models.error_detail import ErrorDetail
+from finbourne.sdk.services.lusid.models.estimate_transfer_agency_order_request import EstimateTransferAgencyOrderRequest
+from finbourne.sdk.services.lusid.models.estimate_transfer_agency_orders_response import EstimateTransferAgencyOrdersResponse
 from finbourne.sdk.services.lusid.models.estimate_variant import EstimateVariant
 from finbourne.sdk.services.lusid.models.event_date_range import EventDateRange
 from finbourne.sdk.services.lusid.models.event_inheritance import EventInheritance
@@ -638,6 +644,7 @@ from finbourne.sdk.services.lusid.models.fund_configuration_properties import Fu
 from finbourne.sdk.services.lusid.models.fund_configuration_request import FundConfigurationRequest
 from finbourne.sdk.services.lusid.models.fund_definition_request import FundDefinitionRequest
 from finbourne.sdk.services.lusid.models.fund_details import FundDetails
+from finbourne.sdk.services.lusid.models.fund_distribution_event import FundDistributionEvent
 from finbourne.sdk.services.lusid.models.fund_estimate_valuation_point import FundEstimateValuationPoint
 from finbourne.sdk.services.lusid.models.fund_id_list import FundIdList
 from finbourne.sdk.services.lusid.models.fund_instrument import FundInstrument
@@ -656,7 +663,7 @@ from finbourne.sdk.services.lusid.models.fund_valuation_point_data import FundVa
 from finbourne.sdk.services.lusid.models.fund_valuation_request import FundValuationRequest
 from finbourne.sdk.services.lusid.models.fund_valuation_schedule import FundValuationSchedule
 from finbourne.sdk.services.lusid.models.funding_leg import FundingLeg
-from finbourne.sdk.services.lusid.models.funding_leg_options import FundingLegOptions
+from finbourne.sdk.services.lusid.models.funding_leg_model_options import FundingLegModelOptions
 from finbourne.sdk.services.lusid.models.future import Future
 from finbourne.sdk.services.lusid.models.future_expiry_event import FutureExpiryEvent
 from finbourne.sdk.services.lusid.models.future_mark_to_market_event import FutureMarkToMarketEvent
@@ -749,6 +756,7 @@ from finbourne.sdk.services.lusid.models.holding_context import HoldingContext
 from finbourne.sdk.services.lusid.models.holding_contributor import HoldingContributor
 from finbourne.sdk.services.lusid.models.holding_ids_request import HoldingIdsRequest
 from finbourne.sdk.services.lusid.models.holding_pricing_info import HoldingPricingInfo
+from finbourne.sdk.services.lusid.models.holding_property_delta import HoldingPropertyDelta
 from finbourne.sdk.services.lusid.models.holdings_adjustment import HoldingsAdjustment
 from finbourne.sdk.services.lusid.models.holdings_adjustment_header import HoldingsAdjustmentHeader
 from finbourne.sdk.services.lusid.models.hull_white_model_options import HullWhiteModelOptions
@@ -888,6 +896,8 @@ from finbourne.sdk.services.lusid.models.metadata_fields_to_remove import Metada
 from finbourne.sdk.services.lusid.models.metadata_fields_to_update import MetadataFieldsToUpdate
 from finbourne.sdk.services.lusid.models.metric_value import MetricValue
 from finbourne.sdk.services.lusid.models.mixed_lot_constituents_election import MixedLotConstituentsElection
+from finbourne.sdk.services.lusid.models.model_option_shift_definition import ModelOptionShiftDefinition
+from finbourne.sdk.services.lusid.models.model_option_shift_mode import ModelOptionShiftMode
 from finbourne.sdk.services.lusid.models.model_options import ModelOptions
 from finbourne.sdk.services.lusid.models.model_options_type import ModelOptionsType
 from finbourne.sdk.services.lusid.models.model_property import ModelProperty
@@ -903,6 +913,7 @@ from finbourne.sdk.services.lusid.models.nav_activity_adjustment import NavActiv
 from finbourne.sdk.services.lusid.models.nav_activity_adjustment_response import NavActivityAdjustmentResponse
 from finbourne.sdk.services.lusid.models.nav_activity_adjustment_response_type import NavActivityAdjustmentResponseType
 from finbourne.sdk.services.lusid.models.nav_activity_adjustment_type import NavActivityAdjustmentType
+from finbourne.sdk.services.lusid.models.nav_report_event import NavReportEvent
 from finbourne.sdk.services.lusid.models.nav_settlement_configuration import NavSettlementConfiguration
 from finbourne.sdk.services.lusid.models.nav_settlement_configuration_category import NavSettlementConfigurationCategory
 from finbourne.sdk.services.lusid.models.nav_type import NavType
@@ -1231,6 +1242,10 @@ from finbourne.sdk.services.lusid.models.rec_result_review import RecResultRevie
 from finbourne.sdk.services.lusid.models.rec_result_set import RecResultSet
 from finbourne.sdk.services.lusid.models.rec_result_set_approval_decision_request import RecResultSetApprovalDecisionRequest
 from finbourne.sdk.services.lusid.models.rec_review import RecReview
+from finbourne.sdk.services.lusid.models.rec_review_configuration import RecReviewConfiguration
+from finbourne.sdk.services.lusid.models.rec_review_required_approval import RecReviewRequiredApproval
+from finbourne.sdk.services.lusid.models.rec_review_requirement_rule import RecReviewRequirementRule
+from finbourne.sdk.services.lusid.models.rec_review_submission import RecReviewSubmission
 from finbourne.sdk.services.lusid.models.rec_run_log_entry import RecRunLogEntry
 from finbourne.sdk.services.lusid.models.rec_submission import RecSubmission
 from finbourne.sdk.services.lusid.models.rec_superseded_run import RecSupersededRun
@@ -1359,6 +1374,7 @@ from finbourne.sdk.services.lusid.models.resource_list_of_reconciliation_break i
 from finbourne.sdk.services.lusid.models.resource_list_of_relation import ResourceListOfRelation
 from finbourne.sdk.services.lusid.models.resource_list_of_relationship import ResourceListOfRelationship
 from finbourne.sdk.services.lusid.models.resource_list_of_returns_entity import ResourceListOfReturnsEntity
+from finbourne.sdk.services.lusid.models.resource_list_of_scenario_template_definition import ResourceListOfScenarioTemplateDefinition
 from finbourne.sdk.services.lusid.models.resource_list_of_scope_definition import ResourceListOfScopeDefinition
 from finbourne.sdk.services.lusid.models.resource_list_of_side_definition import ResourceListOfSideDefinition
 from finbourne.sdk.services.lusid.models.resource_list_of_string import ResourceListOfString
@@ -1391,6 +1407,7 @@ from finbourne.sdk.services.lusid.models.returns_entity import ReturnsEntity
 from finbourne.sdk.services.lusid.models.returns_metric import ReturnsMetric
 from finbourne.sdk.services.lusid.models.reverse_stock_split_event import ReverseStockSplitEvent
 from finbourne.sdk.services.lusid.models.revert_valuation_point_data_request import RevertValuationPointDataRequest
+from finbourne.sdk.services.lusid.models.risk_bump_options import RiskBumpOptions
 from finbourne.sdk.services.lusid.models.roll_interest_updates import RollInterestUpdates
 from finbourne.sdk.services.lusid.models.roll_principal_updates import RollPrincipalUpdates
 from finbourne.sdk.services.lusid.models.rollover_constituent import RolloverConstituent
@@ -1409,6 +1426,8 @@ from finbourne.sdk.services.lusid.models.scenario_preview_response import Scenar
 from finbourne.sdk.services.lusid.models.scenario_reference import ScenarioReference
 from finbourne.sdk.services.lusid.models.scenario_shift_definition import ScenarioShiftDefinition
 from finbourne.sdk.services.lusid.models.scenario_shift_type import ScenarioShiftType
+from finbourne.sdk.services.lusid.models.scenario_template_definition import ScenarioTemplateDefinition
+from finbourne.sdk.services.lusid.models.scenario_template_parameter import ScenarioTemplateParameter
 from finbourne.sdk.services.lusid.models.schedule import Schedule
 from finbourne.sdk.services.lusid.models.schedule_type import ScheduleType
 from finbourne.sdk.services.lusid.models.scope_definition import ScopeDefinition
@@ -1449,6 +1468,7 @@ from finbourne.sdk.services.lusid.models.share_class_dealing_breakdown import Sh
 from finbourne.sdk.services.lusid.models.share_class_definition import ShareClassDefinition
 from finbourne.sdk.services.lusid.models.share_class_details import ShareClassDetails
 from finbourne.sdk.services.lusid.models.share_class_pnl_breakdown import ShareClassPnlBreakdown
+from finbourne.sdk.services.lusid.models.shift_value_condition import ShiftValueCondition
 from finbourne.sdk.services.lusid.models.side_configuration_data import SideConfigurationData
 from finbourne.sdk.services.lusid.models.side_configuration_data_request import SideConfigurationDataRequest
 from finbourne.sdk.services.lusid.models.side_definition import SideDefinition
@@ -1562,7 +1582,9 @@ from finbourne.sdk.services.lusid.models.transaction_type_property_mapping impor
 from finbourne.sdk.services.lusid.models.transaction_type_request import TransactionTypeRequest
 from finbourne.sdk.services.lusid.models.transactions_reconciliations_response import TransactionsReconciliationsResponse
 from finbourne.sdk.services.lusid.models.transfer_agency_dates import TransferAgencyDates
+from finbourne.sdk.services.lusid.models.transfer_agency_order_estimate_result import TransferAgencyOrderEstimateResult
 from finbourne.sdk.services.lusid.models.transfer_agency_order_result import TransferAgencyOrderResult
+from finbourne.sdk.services.lusid.models.transfer_agency_order_to_estimate import TransferAgencyOrderToEstimate
 from finbourne.sdk.services.lusid.models.transfer_agency_orders_response import TransferAgencyOrdersResponse
 from finbourne.sdk.services.lusid.models.transition_event import TransitionEvent
 from finbourne.sdk.services.lusid.models.transition_rec_instance_request import TransitionRecInstanceRequest
@@ -1906,6 +1928,7 @@ __all__ = [
     "AllocationRequest",
     "AllocationServiceRunResponse",
     "AllocationSetRequest",
+    "AmendCommitmentEvent",
     "AmortisationEvent",
     "AmortisationRule",
     "AmortisationRuleSet",
@@ -1971,6 +1994,7 @@ __all__ = [
     "BondDefaultSuppressionDetails",
     "BondForward",
     "BondForwardCashSettlementEvent",
+    "BondForwardModelOptions",
     "BondForwardTerminationEvent",
     "BondLookupModelOptions",
     "BondOption",
@@ -2013,8 +2037,10 @@ __all__ = [
     "CancelledOrderResult",
     "CancelledPlacementResult",
     "CapFloor",
+    "CapitalCallEvent",
     "CapitalDistributionEvent",
     "CapitalGainsDistributionEvent",
+    "CapitalInterest",
     "CapletFloorletCashFlowEvent",
     "Cash",
     "CashAndSecurityOfferElection",
@@ -2302,6 +2328,8 @@ __all__ = [
     "EquityVolDependency",
     "EquityVolSurfaceData",
     "ErrorDetail",
+    "EstimateTransferAgencyOrderRequest",
+    "EstimateTransferAgencyOrdersResponse",
     "EstimateVariant",
     "EventDateRange",
     "EventInheritance",
@@ -2371,6 +2399,7 @@ __all__ = [
     "FundConfigurationRequest",
     "FundDefinitionRequest",
     "FundDetails",
+    "FundDistributionEvent",
     "FundEstimateValuationPoint",
     "FundIdList",
     "FundInstrument",
@@ -2389,7 +2418,7 @@ __all__ = [
     "FundValuationRequest",
     "FundValuationSchedule",
     "FundingLeg",
-    "FundingLegOptions",
+    "FundingLegModelOptions",
     "Future",
     "FutureExpiryEvent",
     "FutureMarkToMarketEvent",
@@ -2482,6 +2511,7 @@ __all__ = [
     "HoldingContributor",
     "HoldingIdsRequest",
     "HoldingPricingInfo",
+    "HoldingPropertyDelta",
     "HoldingsAdjustment",
     "HoldingsAdjustmentHeader",
     "HullWhiteModelOptions",
@@ -2621,6 +2651,8 @@ __all__ = [
     "MetadataFieldsToUpdate",
     "MetricValue",
     "MixedLotConstituentsElection",
+    "ModelOptionShiftDefinition",
+    "ModelOptionShiftMode",
     "ModelOptions",
     "ModelOptionsType",
     "ModelProperty",
@@ -2636,6 +2668,7 @@ __all__ = [
     "NavActivityAdjustmentResponse",
     "NavActivityAdjustmentResponseType",
     "NavActivityAdjustmentType",
+    "NavReportEvent",
     "NavSettlementConfiguration",
     "NavSettlementConfigurationCategory",
     "NavType",
@@ -2964,6 +2997,10 @@ __all__ = [
     "RecResultSet",
     "RecResultSetApprovalDecisionRequest",
     "RecReview",
+    "RecReviewConfiguration",
+    "RecReviewRequiredApproval",
+    "RecReviewRequirementRule",
+    "RecReviewSubmission",
     "RecRunLogEntry",
     "RecSubmission",
     "RecSupersededRun",
@@ -3092,6 +3129,7 @@ __all__ = [
     "ResourceListOfRelation",
     "ResourceListOfRelationship",
     "ResourceListOfReturnsEntity",
+    "ResourceListOfScenarioTemplateDefinition",
     "ResourceListOfScopeDefinition",
     "ResourceListOfSideDefinition",
     "ResourceListOfString",
@@ -3124,6 +3162,7 @@ __all__ = [
     "ReturnsMetric",
     "ReverseStockSplitEvent",
     "RevertValuationPointDataRequest",
+    "RiskBumpOptions",
     "RollInterestUpdates",
     "RollPrincipalUpdates",
     "RolloverConstituent",
@@ -3142,6 +3181,8 @@ __all__ = [
     "ScenarioReference",
     "ScenarioShiftDefinition",
     "ScenarioShiftType",
+    "ScenarioTemplateDefinition",
+    "ScenarioTemplateParameter",
     "Schedule",
     "ScheduleType",
     "ScopeDefinition",
@@ -3182,6 +3223,7 @@ __all__ = [
     "ShareClassDefinition",
     "ShareClassDetails",
     "ShareClassPnlBreakdown",
+    "ShiftValueCondition",
     "SideConfigurationData",
     "SideConfigurationDataRequest",
     "SideDefinition",
@@ -3295,7 +3337,9 @@ __all__ = [
     "TransactionTypeRequest",
     "TransactionsReconciliationsResponse",
     "TransferAgencyDates",
+    "TransferAgencyOrderEstimateResult",
     "TransferAgencyOrderResult",
+    "TransferAgencyOrderToEstimate",
     "TransferAgencyOrdersResponse",
     "TransitionEvent",
     "TransitionRecInstanceRequest",

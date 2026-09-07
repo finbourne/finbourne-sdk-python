@@ -17,6 +17,7 @@
 | **calculate_trade_date_to_settlement_fx_pn_l** | **bool** | Optional | Configures whether Trade To Settlement Date Realised Gain Loss should be calculated. This overrides the value set at the Portfolio level.If null, then the Portfolio Settlement Configuration TradeToSettlementDateRealisedFxPnl setting will be used.If false, then no TradeToSettlementDateRealisedFxPnl will apply for this movement and if true, then TradeToSettlementDateRealisedFxPnlwill be calculated for this movement. |
 | **custodian_account_type** | **str** | Optional | The type of custodian account this movement targets, e.g. Cash or Margin. Free text, optional. |
 | **account_selector** | **str** | Optional | An optional selector expression used to identify the specific account this movement targets. Available values: From, To. |
+| **holding_property_deltas** | [List[HoldingPropertyDelta]](HoldingPropertyDelta.md) | Optional | An optional list of running balances on the holding that this movement adjusts, for example the committed, funded and unfunded capital balances maintained by the private equity transaction types. Each delta names the balance to adjust, the transaction field that sources the adjustment amount, and the direction in which to apply it. |
 
 
 ## Usage
@@ -39,12 +40,14 @@ instance = TransactionTypeMovement(
     settlement_mode="...",  # optional — Configures how movements should settle. Allowed values: &#39;Internal&#39; and &#39;External&#39;. A movement with &#39;Internal&#39; settlement mode will settle automatically on the contractual settlement date regardlesss of portfolio configuration or settlement instruction. An &#39;External&#39; movement can be settled automatically or by a settlement instruction. Available values: Internal, External.
     calculate_trade_date_to_settlement_fx_pn_l=True,  # optional — Configures whether Trade To Settlement Date Realised Gain Loss should be calculated. This overrides the value set at the Portfolio level.If null, then the Portfolio Settlement Configuration TradeToSettlementDateRealisedFxPnl setting will be used.If false, then no TradeToSettlementDateRealisedFxPnl will apply for this movement and if true, then TradeToSettlementDateRealisedFxPnlwill be calculated for this movement.
     custodian_account_type="...",  # optional — The type of custodian account this movement targets, e.g. Cash or Margin. Free text, optional.
-    account_selector="..."  # optional — An optional selector expression used to identify the specific account this movement targets. Available values: From, To.
+    account_selector="...",  # optional — An optional selector expression used to identify the specific account this movement targets. Available values: From, To.
+    holding_property_deltas=[]  # optional — An optional list of running balances on the holding that this movement adjusts, for example the committed, funded and unfunded capital balances maintained by the private equity transaction types. Each delta names the balance to adjust, the transaction field that sources the adjustment amount, and the direction in which to apply it.
 )
 ```
 
 - [PerpetualProperty](PerpetualProperty.md) — used in `properties`
 - [TransactionTypePropertyMapping](TransactionTypePropertyMapping.md) — used in `mappings`
+- [HoldingPropertyDelta](HoldingPropertyDelta.md) — used in `holding_property_deltas`
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

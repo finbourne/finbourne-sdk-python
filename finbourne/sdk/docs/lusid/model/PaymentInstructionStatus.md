@@ -5,7 +5,7 @@ The current status of a Payment Instruction. Managed exclusively via the dedicat
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **current_value** | **str** | Required | The current status value. One of: Created, Staged, Released, Instructed, Sent, Cancelled. |
+| **current_value** | **str** | Required | The current status value. One of: Created, Staged, Released, Instructed, Sent, Cancelled, Failed. |
 | **as_at_last_transition** | **datetime** | Required | The as-at timestamp of the most recent status transition. |
 | **user_id_last_transition** | **str** | Required | The ID of the user who made the most recent status transition. |
 
@@ -18,7 +18,7 @@ The current status of a Payment Instruction. Managed exclusively via the dedicat
 from finbourne.sdk.services.lusid.models.PaymentInstructionStatus import PaymentInstructionStatus
 
 instance = PaymentInstructionStatus(
-    current_value="...",  # required — The current status value. One of: Created, Staged, Released, Instructed, Sent, Cancelled.
+    current_value="...",  # required — The current status value. One of: Created, Staged, Released, Instructed, Sent, Cancelled, Failed.
     as_at_last_transition=datetime.now(),  # required — The as-at timestamp of the most recent status transition.
     user_id_last_transition="..."  # required — The ID of the user who made the most recent status transition.
 )

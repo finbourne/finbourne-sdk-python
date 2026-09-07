@@ -5,7 +5,7 @@ The market quote for an observable which will be used to calibrate the market da
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **quote_type** | **str** | Required | Available values: Price, Spread, Rate, LogNormalVol, NormalVol, ParSpread, IsdaSpread, Upfront, Index, Ratio, Delta, PoolFactor, InflationAssumption, DirtyPrice, PrincipalWriteOff, InterestDeferred, InterestShortfall, ConstituentWeightFactor. |
+| **quote_type** | **str** | Required | Available values: Price, Spread, Rate, LogNormalVol, NormalVol, ParSpread, IsdaSpread, Upfront, Index, Ratio, Delta, PoolFactor, InflationAssumption, DirtyPrice, PrincipalWriteOff, InterestDeferred, InterestShortfall, ConstituentWeightFactor, ForwardPrice, DiscountFactor. |
 | **value** | **float** | Required | Numeric value of the quote |
 
 
@@ -17,7 +17,7 @@ The market quote for an observable which will be used to calibrate the market da
 from finbourne.sdk.services.lusid.models.MarketQuote import MarketQuote
 
 instance = MarketQuote(
-    quote_type="...",  # required — Available values: Price, Spread, Rate, LogNormalVol, NormalVol, ParSpread, IsdaSpread, Upfront, Index, Ratio, Delta, PoolFactor, InflationAssumption, DirtyPrice, PrincipalWriteOff, InterestDeferred, InterestShortfall, ConstituentWeightFactor.
+    quote_type="...",  # required — Available values: Price, Spread, Rate, LogNormalVol, NormalVol, ParSpread, IsdaSpread, Upfront, Index, Ratio, Delta, PoolFactor, InflationAssumption, DirtyPrice, PrincipalWriteOff, InterestDeferred, InterestShortfall, ConstituentWeightFactor, ForwardPrice, DiscountFactor.
     value=0.0  # required — Numeric value of the quote
 )
 ```

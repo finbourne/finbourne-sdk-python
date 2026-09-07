@@ -73,7 +73,6 @@ from finbourne.sdk.services.lusid.models.versioned_resource_list_of_a2_b_data_re
 from finbourne.sdk.services.lusid.models.versioned_resource_list_of_a2_b_movement_record import VersionedResourceListOfA2BMovementRecord
 from finbourne.sdk.services.lusid.models.versioned_resource_list_of_holding_contributor import VersionedResourceListOfHoldingContributor
 from finbourne.sdk.services.lusid.models.versioned_resource_list_of_output_transaction import VersionedResourceListOfOutputTransaction
-from finbourne.sdk.services.lusid.models.versioned_resource_list_of_portfolio_holding import VersionedResourceListOfPortfolioHolding
 from finbourne.sdk.services.lusid.models.versioned_resource_list_of_transaction import VersionedResourceListOfTransaction
 from finbourne.sdk.services.lusid.models.versioned_resource_list_of_transaction_settlement_instruction import VersionedResourceListOfTransactionSettlementInstruction
 from finbourne.sdk.services.lusid.models.versioned_resource_list_with_post_bodies_of_settlement_instruction_with_transaction_to_settlement_instruction_query import VersionedResourceListWithPostBodiesOfSettlementInstructionWithTransactionToSettlementInstructionQuery
@@ -4137,7 +4136,7 @@ class TransactionPortfoliosApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def get_holdings(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, by_taxlots: Optional[bool] = None, include_settlement_events_after_days: Optional[int] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, aggregate_cash_commitments: Optional[bool] = None, **kwargs) -> VersionedResourceListOfPortfolioHolding:
+    def get_holdings(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, by_taxlots: Optional[bool] = None, include_settlement_events_after_days: Optional[int] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, aggregate_cash_commitments: Optional[bool] = None, **kwargs) -> VersionedResourceListWithWarningsOfPortfolioHolding:
         """GetHoldings: Get holdings  # noqa: E501
 
         Calculate holdings for a transaction portfolio.  # noqa: E501
@@ -4169,7 +4168,7 @@ class TransactionPortfoliosApi:
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
         :return: Returns the result object.
-        :rtype: VersionedResourceListOfPortfolioHolding
+        :rtype: VersionedResourceListWithWarningsOfPortfolioHolding
         """
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_holdings_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
@@ -4179,7 +4178,7 @@ class TransactionPortfoliosApi:
         return response.data
 
     @validate_call
-    def get_holdings_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, by_taxlots: Optional[bool] = None, include_settlement_events_after_days: Optional[int] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, aggregate_cash_commitments: Optional[bool] = None, **kwargs) -> ApiResponse[VersionedResourceListOfPortfolioHolding]:
+    def get_holdings_with_http_info(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, by_taxlots: Optional[bool] = None, include_settlement_events_after_days: Optional[int] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, aggregate_cash_commitments: Optional[bool] = None, **kwargs) -> ApiResponse[VersionedResourceListWithWarningsOfPortfolioHolding]:
         """GetHoldings: Get holdings  # noqa: E501
 
         Calculate holdings for a transaction portfolio.  # noqa: E501
@@ -4224,7 +4223,7 @@ class TransactionPortfoliosApi:
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-        :rtype: tuple(VersionedResourceListOfPortfolioHolding, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(VersionedResourceListWithWarningsOfPortfolioHolding, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -4327,7 +4326,7 @@ class TransactionPortfoliosApi:
         _auth_settings = ['oauth2']  # noqa: E501
 
         _response_types_map = {
-            '200': "VersionedResourceListOfPortfolioHolding",
+            '200': "VersionedResourceListWithWarningsOfPortfolioHolding",
             '400': "LusidValidationProblemDetails",
         }
 
@@ -12689,7 +12688,7 @@ class TransactionPortfoliosApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def get_holdings_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, by_taxlots: Optional[bool] = None, include_settlement_events_after_days: Optional[int] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, aggregate_cash_commitments: Optional[bool] = None, **kwargs) -> VersionedResourceListOfPortfolioHolding:
+    async def get_holdings_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, by_taxlots: Optional[bool] = None, include_settlement_events_after_days: Optional[int] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, aggregate_cash_commitments: Optional[bool] = None, **kwargs) -> VersionedResourceListWithWarningsOfPortfolioHolding:
             """GetHoldings: Get holdings  # noqa: E501
             Calculate holdings for a transaction portfolio.  # noqa: E501
             
@@ -12721,7 +12720,7 @@ class TransactionPortfoliosApi:
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
             :return: Returns an coroutine ApiResponse object.
-            :rtype: VersionedResourceListOfPortfolioHolding
+            :rtype: VersionedResourceListWithWarningsOfPortfolioHolding
             """
             if '_preload_content' in kwargs:
                 message = "Error! Please call the get_holdings_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
@@ -12731,7 +12730,7 @@ class TransactionPortfoliosApi:
             return response.data
 
     @validate_call
-    async def get_holdings_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, by_taxlots: Optional[bool] = None, include_settlement_events_after_days: Optional[int] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, aggregate_cash_commitments: Optional[bool] = None, **kwargs) -> ApiResponse[VersionedResourceListOfPortfolioHolding]:
+    async def get_holdings_with_http_info_async(self, scope: StrictStr, code: StrictStr, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, by_taxlots: Optional[bool] = None, include_settlement_events_after_days: Optional[int] = None, timeline_scope: Optional[StrictStr] = None, timeline_code: Optional[StrictStr] = None, closed_period_id: Optional[StrictStr] = None, aggregate_cash_commitments: Optional[bool] = None, **kwargs) -> ApiResponse[VersionedResourceListWithWarningsOfPortfolioHolding]:
             """GetHoldings: Get holdings  # noqa: E501
 
             Calculate holdings for a transaction portfolio.  # noqa: E501
@@ -12777,7 +12776,7 @@ class TransactionPortfoliosApi:
             :type _request_auth: dict, optional
             :type _content_type: string, optional: force content-type for the request
             :return: Returns an coroutine ApiResponse object.
-            :rtype: tuple(VersionedResourceListOfPortfolioHolding, status_code(int), headers(HTTPHeaderDict))
+            :rtype: tuple(VersionedResourceListWithWarningsOfPortfolioHolding, status_code(int), headers(HTTPHeaderDict))
             """
 
             _params = locals()
@@ -12880,7 +12879,7 @@ class TransactionPortfoliosApi:
             _auth_settings = ['oauth2']  # noqa: E501
 
             _response_types_map = {
-                '200': "VersionedResourceListOfPortfolioHolding",
+                '200': "VersionedResourceListWithWarningsOfPortfolioHolding",
                 '400': "LusidValidationProblemDetails",
             }
 

@@ -24,14 +24,14 @@ from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictF
 from finbourne.sdk.services.lusid.models.model_options import ModelOptions
 
 
-class FundingLegOptions(ModelOptions):
+class BondForwardModelOptions(ModelOptions):
     """
-    FundingLegOptions
+    Model options for bond forward pricing.  # noqa: E501
     """
-    expected_funding_leg_notional:  StrictStr = Field(...,alias="expectedFundingLegNotional", description="Assumption made on future expected notional of the funding leg.") 
-    model_options_type:  StrictStr = Field(...,alias="modelOptionsType", description="Available values: Invalid, OpaqueModelOptions, EmptyModelOptions, IndexModelOptions, FxForwardModelOptions, FundingLegModelOptions, EquityModelOptions, CdsModelOptions, FlexibleLoanPricerOptions, HullWhiteModelOptions, BondLookupModelOptions.") 
+    bond_forward_projection_type:  Optional[StrictStr] = Field(default=None,alias="bondForwardProjectionType", description="Determines how the forward price of the deliverable bond is projected to the settlement date.                Supported string (enumeration) values are: [QuotedContractPrice, ForwardProjectedFromFundingCurve].  Defaults to QuotedContractPrice - the original quote-driven behaviour - when not supplied, so  options persisted before this property existed keep the behaviour they were saved under.") 
+    model_options_type:  StrictStr = Field(...,alias="modelOptionsType", description="Available values: Invalid, OpaqueModelOptions, EmptyModelOptions, IndexModelOptions, FxForwardModelOptions, FundingLegModelOptions, EquityModelOptions, CdsModelOptions, FlexibleLoanPricerOptions, HullWhiteModelOptions, BondLookupModelOptions, BondForwardModelOptions.") 
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["modelOptionsType", "expectedFundingLegNotional"]
+    __properties: ClassVar[List[str]] = ["modelOptionsType", "bondForwardProjectionType"]
 
     @field_validator('model_options_type')
     def model_options_type_validate_enum(cls, value):
@@ -46,7 +46,7 @@ class FundingLegOptions(ModelOptions):
         if "model_options_type" != "type":
             return value
 
-        _allowed = ['Invalid', 'OpaqueModelOptions', 'EmptyModelOptions', 'IndexModelOptions', 'FxForwardModelOptions', 'FundingLegModelOptions', 'EquityModelOptions', 'CdsModelOptions', 'FlexibleLoanPricerOptions', 'HullWhiteModelOptions', 'BondLookupModelOptions']
+        _allowed = ['Invalid', 'OpaqueModelOptions', 'EmptyModelOptions', 'IndexModelOptions', 'FxForwardModelOptions', 'FundingLegModelOptions', 'EquityModelOptions', 'CdsModelOptions', 'FlexibleLoanPricerOptions', 'HullWhiteModelOptions', 'BondLookupModelOptions', 'BondForwardModelOptions']
         if len(_allowed) != 1:
             return value
         if value not in _allowed:
@@ -76,8 +76,8 @@ class FundingLegOptions(ModelOptions):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> FundingLegOptions:
-        """Create an instance of FundingLegOptions from a JSON string"""
+    def from_json(cls, json_str: str) -> BondForwardModelOptions:
+        """Create an instance of BondForwardModelOptions from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self, by_alias=True):
@@ -93,20 +93,25 @@ class FundingLegOptions(ModelOptions):
             for _key, _value in self.additional_properties.items():
                 _dict[_key] = _value
 
+        # set to None if bond_forward_projection_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.bond_forward_projection_type is None and "bond_forward_projection_type" in self.model_fields_set:
+            _dict['bondForwardProjectionType'] = None
+
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> FundingLegOptions:
-        """Create an instance of FundingLegOptions from a dict"""
+    def from_dict(cls, obj: dict) -> BondForwardModelOptions:
+        """Create an instance of BondForwardModelOptions from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return FundingLegOptions.model_validate(obj)
+            return BondForwardModelOptions.model_validate(obj)
 
-        _obj = FundingLegOptions.model_validate({
+        _obj = BondForwardModelOptions.model_validate({
             "model_options_type": obj.get("modelOptionsType"),
-            "expected_funding_leg_notional": obj.get("expectedFundingLegNotional")
+            "bond_forward_projection_type": obj.get("bondForwardProjectionType")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
@@ -115,5 +120,5 @@ class FundingLegOptions(ModelOptions):
 
         return _obj
 
-FundingLegOptions.model_rebuild()
+BondForwardModelOptions.model_rebuild()
 

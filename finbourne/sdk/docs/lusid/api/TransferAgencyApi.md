@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**calculate_order_dates**](TransferAgencyApi.md#calculate_order_dates) | **POST** /api/api/transferagency/orderdates | [EXPERIMENTAL] CalculateOrderDates: Calculate the key dates associated with transfer agency orders
 [**delete_transfer_agency_orders**](TransferAgencyApi.md#delete_transfer_agency_orders) | **POST** /api/api/transferagency/orders/$delete | [EXPERIMENTAL] DeleteTransferAgencyOrders: Delete transfer agency orders
+[**estimate_transfer_agency_orders**](TransferAgencyApi.md#estimate_transfer_agency_orders) | **POST** /api/api/transferagency/orders/$estimate | [EXPERIMENTAL] EstimateTransferAgencyOrders: Estimate the values of transfer agency orders
 [**upsert_transfer_agency_orders**](TransferAgencyApi.md#upsert_transfer_agency_orders) | **POST** /api/api/transferagency/orders | [EXPERIMENTAL] UpsertTransferAgencyOrders: Upsert transfer agency orders
 
 
@@ -111,6 +112,48 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successfully deleted orders and any failures. |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **estimate_transfer_agency_orders**
+> EstimateTransferAgencyOrdersResponse estimateTransferAgencyOrders = estimate_transfer_agency_orders(request_body)
+
+[EXPERIMENTAL] EstimateTransferAgencyOrders: Estimate the values of transfer agency orders
+
+Estimates the units and the cash each order supplied would move, from the share class's most recent price.  Nothing is written.                An order may be named by its identifier, to estimate it as it stands, or supplied whole, to estimate values  that have not been saved yet. Both forms may appear in the same request. Where an order is supplied whole,  those values are estimated in place of the saved order's.                A switch or a transfer is two orders, and each leg is estimated independently.                The price is reported in the currency the share class is quoted in, which is not necessarily the order's  currency, so it is returned alongside that currency and the rate used.                The response contains both the successful estimates and any failures, each in the form of a dictionary  keyed by the request's keys. A share class with no price available fails only its own orders. It is  important to check the failed set for unsuccessful results.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(TransferAgencyApi)
+request_body = {"Order1":{"orderId":{"scope":"example-scope","code":"order-1"}},"Order2":{"orderId":{"scope":"example-scope","code":"order-2"},"order":{"portfolioId":{"scope":"example-scope","code":"investor-1"},"instrumentIdentifierType":"LusidInstrumentId","instrumentIdentifier":"LUID_00000000","transactionCategory":"Subscription","currency":"GBP","amount":10000.0,"transactionDate":"2026-08-26T00:00:00.0000000+00:00"}}} # Dict[str, EstimateTransferAgencyOrderRequest]
+api_response = api_instance.estimate_transfer_agency_orders(request_body)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request_body** | [**Dict[str, EstimateTransferAgencyOrderRequest]**](../model/EstimateTransferAgencyOrderRequest.md)| The transfer agency orders to estimate, keyed by a unique request identifier. | [required] 
+
+### Return type
+
+[**EstimateTransferAgencyOrdersResponse**](../model/EstimateTransferAgencyOrdersResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully estimated orders and any failures. |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 

@@ -38,9 +38,11 @@ class RateCurveShiftDefinition(ScenarioShiftDefinition):
     pivot_tenor:  Optional[StrictStr] = Field(default=None,alias="pivotTenor", description="The tenor the Tent shift peaks at. The shift applies with the full Amount at this tenor,  falling linearly to zero at StartTenor and EndTenor - the key-rate triangle shape, whose  asymmetry matters because key-rate buckets are rarely evenly spaced. Only valid with  ShiftType Tent; omitted, a Tent peaks at the midpoint of the window. Declared last on  purpose: generated SDKs emit their positional constructor in property-declaration order,  and this property must not shift the parameters of the ones before it.  Over a window containing a single curve point, that point takes the full Amount regardless  of where the pivot lands: a one-point window has no slope to express, and every shift  shape degenerates the same way there.") 
     window_bounds:  Optional[StrictStr] = Field(default=None,alias="windowBounds", description="Available values: Inclusive, StartExclusive, EndExclusive, Exclusive.") 
     curve_name:  Optional[StrictStr] = Field(default=None,alias="curveName", description="The funding identifier of the one curve in the currency this shift targets, letting a  scenario shock a named curve (say, an issuer discounting curve) without also moving the  risk-free curve mastered in the same currency. Omitted - as on every scenario stored  before this field existed - the shift matches every rate curve in the currency, exactly  as before. Declared last on purpose: generated SDKs emit their positional constructor in  property-declaration order, and this property must not shift the parameters of the ones  before it.") 
-    scenario_shift_type:  StrictStr = Field(...,alias="scenarioShiftType", description="Available values: RateCurveShiftDefinition, FxShiftDefinition, PriceShiftDefinition, VolSurfaceShiftDefinition, MdkrGroupShiftDefinition, InflationCurveShiftDefinition, CreditSpreadShiftDefinition.") 
+    minimum_amount_bps: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The smallest magnitude, in basis points, of the shift finally applied at each curve point.  Evaluated per point AFTER the shape weight, in the direction the shift acts there (the sign  of Amount times the shape weight): the applied move becomes at least the minimum in that  direction, even where a Percentage shift on a negative rate would have pointed the other  way - the Solvency II up-shock's \"at least one percentage point at any maturity\" is  MinimumAmountBps = 100 on the relative shift the regulation states. A point whose shape  weight is exactly zero stays unshifted: the floor strengthens a shock where the shape  applies one, it does not extend the shock to points the shape excludes (a Tent's window  ends remain unmoved). Deliberately in basis points rather than in Scale units, because the  floor and the shift are in different units by construction: the regulation states a  relative shock with an absolute floor. Omitted, no floor applies - today's behaviour.  Declared after PivotTenor on purpose, for the constructor-ordering reason given there.", alias="minimumAmountBps")
+    apply_when_value:  Optional[StrictStr] = Field(default=None,alias="applyWhenValue", description="Available values: Any, Positive, Negative.") 
+    scenario_shift_type:  StrictStr = Field(...,alias="scenarioShiftType", description="Available values: RateCurveShiftDefinition, FxShiftDefinition, PriceShiftDefinition, VolSurfaceShiftDefinition, MdkrGroupShiftDefinition, InflationCurveShiftDefinition, CreditSpreadShiftDefinition, ModelOptionShiftDefinition.") 
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["scenarioShiftType", "ccy", "amount", "startTenor", "endTenor", "shiftType", "scale", "applyTo", "pivotTenor", "windowBounds", "curveName"]
+    __properties: ClassVar[List[str]] = ["scenarioShiftType", "ccy", "amount", "startTenor", "endTenor", "shiftType", "scale", "applyTo", "pivotTenor", "windowBounds", "curveName", "minimumAmountBps", "applyWhenValue"]
 
     @field_validator('shift_type')
     def shift_type_validate_enum(cls, value):
@@ -108,6 +110,29 @@ class RateCurveShiftDefinition(ScenarioShiftDefinition):
             raise ValueError(f"must be one of enum values {_allowed}")
         return value
 
+    @field_validator('apply_when_value')
+    def apply_when_value_validate_enum(cls, value):
+        """Validates the enum"""
+
+        # Finbourne removed enum validation on all models except the
+        # oneOf-discriminator case: each oneOf variant declares a `type`
+        # field whose enum has exactly one allowable value, which pydantic
+        # uses to route the union. We detect that shape here (property
+        # named `type`, single allowable value) — no manual class list.
+
+        if "apply_when_value" != "type":
+            return value
+
+        if value is None:
+            return value
+
+        _allowed = ['Any', 'Positive', 'Negative']
+        if len(_allowed) != 1:
+            return value
+        if value not in _allowed:
+            raise ValueError(f"must be one of enum values {_allowed}")
+        return value
+
     @field_validator('scenario_shift_type')
     def scenario_shift_type_validate_enum(cls, value):
         """Validates the enum"""
@@ -121,7 +146,7 @@ class RateCurveShiftDefinition(ScenarioShiftDefinition):
         if "scenario_shift_type" != "type":
             return value
 
-        _allowed = ['RateCurveShiftDefinition', 'FxShiftDefinition', 'PriceShiftDefinition', 'VolSurfaceShiftDefinition', 'MdkrGroupShiftDefinition', 'InflationCurveShiftDefinition', 'CreditSpreadShiftDefinition']
+        _allowed = ['RateCurveShiftDefinition', 'FxShiftDefinition', 'PriceShiftDefinition', 'VolSurfaceShiftDefinition', 'MdkrGroupShiftDefinition', 'InflationCurveShiftDefinition', 'CreditSpreadShiftDefinition', 'ModelOptionShiftDefinition']
         if len(_allowed) != 1:
             return value
         if value not in _allowed:
@@ -198,6 +223,11 @@ class RateCurveShiftDefinition(ScenarioShiftDefinition):
         if self.curve_name is None and "curve_name" in self.model_fields_set:
             _dict['curveName'] = None
 
+        # set to None if minimum_amount_bps (nullable) is None
+        # and model_fields_set contains the field
+        if self.minimum_amount_bps is None and "minimum_amount_bps" in self.model_fields_set:
+            _dict['minimumAmountBps'] = None
+
         return _dict
 
     @classmethod
@@ -220,7 +250,9 @@ class RateCurveShiftDefinition(ScenarioShiftDefinition):
             "apply_to": obj.get("applyTo"),
             "pivot_tenor": obj.get("pivotTenor"),
             "window_bounds": obj.get("windowBounds"),
-            "curve_name": obj.get("curveName")
+            "curve_name": obj.get("curveName"),
+            "minimum_amount_bps": obj.get("minimumAmountBps"),
+            "apply_when_value": obj.get("applyWhenValue")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

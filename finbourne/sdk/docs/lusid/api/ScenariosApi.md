@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**create_scenario_from_template**](ScenariosApi.md#create_scenario_from_template) | **POST** /api/api/scenarios/{scope}/$fromTemplate | [EARLY ACCESS] CreateScenarioFromTemplate: [EARLY ACCESS] CreateScenarioFromTemplate: Create a Scenario from a pre-built template.
 [**delete_scenario**](ScenariosApi.md#delete_scenario) | **DELETE** /api/api/scenarios/{scope}/{code} | [EARLY ACCESS] DeleteScenario: Delete a Scenario, assuming that it is present.
 [**get_scenario**](ScenariosApi.md#get_scenario) | **GET** /api/api/scenarios/{scope}/{code} | [EARLY ACCESS] GetScenario: Get Scenario
+[**list_scenario_templates**](ScenariosApi.md#list_scenario_templates) | **GET** /api/api/scenarios/$templates | [EARLY ACCESS] ListScenarioTemplates: [EARLY ACCESS] ListScenarioTemplates: List the pre-built scenario templates.
 [**list_scenario_versions**](ScenariosApi.md#list_scenario_versions) | **GET** /api/api/scenarios/{scope}/{code}/versions | [EARLY ACCESS] ListScenarioVersions: List the versions of a Scenario
 [**list_scenarios**](ScenariosApi.md#list_scenarios) | **GET** /api/api/scenarios | [EARLY ACCESS] ListScenarios: List Scenarios
 [**list_scenarios_for_scope**](ScenariosApi.md#list_scenarios_for_scope) | **GET** /api/api/scenarios/{scope} | [EARLY ACCESS] ListScenariosForScope: List Scenarios for a scope
@@ -44,7 +45,7 @@ api_instance = api_client_factory.build(ScenariosApi)
 
 [EARLY ACCESS] CreateScenarioFromTemplate: [EARLY ACCESS] CreateScenarioFromTemplate: Create a Scenario from a pre-built template.
 
-Creates and stores a scenario built from a pre-defined parameterised template, for example a  parallel rates shift or an equity crash. The template determines the scenario's shifts; the  parameters supply the targets (e.g. currency or instrument) and optionally override the default  shift size. The created scenario is stored in the given scope and behaves exactly like a  hand-built scenario.                Available templates: RatesUp, RatesDown, CurveSteepener, CurveFlattener, VolSpike, EquityCrash,  FxShock, RiskOff.
+Creates and stores a scenario built from a pre-defined parameterised template, for example a  parallel rates shift or an equity crash. The template determines the scenario's shifts; the  parameters supply the targets (e.g. currency or instrument) and optionally override the default  shift size. The created scenario is stored in the given scope and behaves exactly like a  hand-built scenario.                Use ListScenarioTemplates to discover the available templates and, for each, the parameters it  accepts, their defaults and their units. A parameter the template does not read is rejected  rather than ignored, and parameter names are case-sensitive.
 
 ### Example
 
@@ -167,6 +168,43 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | The successfully retrieved Scenario |  -  |
 **400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **list_scenario_templates**
+> ResourceListOfScenarioTemplateDefinition listScenarioTemplates = list_scenario_templates()
+
+[EARLY ACCESS] ListScenarioTemplates: [EARLY ACCESS] ListScenarioTemplates: List the pre-built scenario templates.
+
+Lists every template CreateScenarioFromTemplate accepts, with each template's parameters: the  parameter's name (case-sensitive), whether it is required, what it means, the default used when  it is omitted and the unit a numeric value is read in. The units differ between templates -  basis points, percentage points or a fraction - so read them per template rather than assuming  one convention. The list is static application metadata: it does not vary by tenant, scope or  date, so the endpoint takes no parameters.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(ScenariosApi)
+api_response = api_instance.list_scenario_templates()
+pprint(api_response)
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ResourceListOfScenarioTemplateDefinition**](../model/ResourceListOfScenarioTemplateDefinition.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The available scenario templates |  -  |
 **0** | Error response |  -  |
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)

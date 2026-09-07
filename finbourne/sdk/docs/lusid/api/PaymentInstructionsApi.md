@@ -4,8 +4,9 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_payment_instruction**](PaymentInstructionsApi.md#get_payment_instruction) | **GET** /api/api/paymentinstructions/{scope}/{code} | [EARLY ACCESS] GetPaymentInstruction: Get Payment Instruction
-[**upsert_payment_instructions**](PaymentInstructionsApi.md#upsert_payment_instructions) | **POST** /api/api/paymentinstructions | [EARLY ACCESS] UpsertPaymentInstructions: Upsert Payment Instructions
+[**delete_payment_instruction**](PaymentInstructionsApi.md#delete_payment_instruction) | **DELETE** /api/api/paymentinstructions/{scope}/{code} | [EXPERIMENTAL] DeletePaymentInstruction: Delete Payment Instruction
+[**get_payment_instruction**](PaymentInstructionsApi.md#get_payment_instruction) | **GET** /api/api/paymentinstructions/{scope}/{code} | [EXPERIMENTAL] GetPaymentInstruction: Get Payment Instruction
+[**upsert_payment_instructions**](PaymentInstructionsApi.md#upsert_payment_instructions) | **POST** /api/api/paymentinstructions | [EXPERIMENTAL] UpsertPaymentInstructions: Upsert Payment Instructions
 
 
 ### Example
@@ -33,10 +34,54 @@ api_instance = api_client_factory.build(PaymentInstructionsApi)
 
 ---
 
+# **delete_payment_instruction**
+> DeletedEntityResponse deletePaymentInstruction = delete_payment_instruction(scope, code)
+
+[EXPERIMENTAL] DeletePaymentInstruction: Delete Payment Instruction
+
+Delete a Payment Instruction. Deletion will be valid from the payment instruction's creation datetime.  This means that the payment instruction will no longer exist at any effective datetime from the asAt datetime  of deletion. Any payment records the instruction owns are released and become available to another instruction.  A payment instruction that has been released, instructed, sent, cancelled or failed cannot be deleted.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(PaymentInstructionsApi)
+scope = 'scope_example' # str
+code = 'code_example' # str
+api_response = api_instance.delete_payment_instruction(scope, code)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| The scope of the payment instruction. | [required] 
+ **code** | **str**| The code of the payment instruction. | [required] 
+
+### Return type
+
+[**DeletedEntityResponse**](../model/DeletedEntityResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The response from deleting the payment instruction |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
 # **get_payment_instruction**
 > PaymentInstruction getPaymentInstruction = get_payment_instruction(scope, code, property_keys=property_keys, effective_at=effective_at, as_at=as_at)
 
-[EARLY ACCESS] GetPaymentInstruction: Get Payment Instruction
+[EXPERIMENTAL] GetPaymentInstruction: Get Payment Instruction
 
 Retrieve a single Payment Instruction.
 
@@ -86,7 +131,7 @@ Name | Type | Description  | Notes
 # **upsert_payment_instructions**
 > PaymentInstructionsResponse upsertPaymentInstructions = upsert_payment_instructions(request_body)
 
-[EARLY ACCESS] UpsertPaymentInstructions: Upsert Payment Instructions
+[EXPERIMENTAL] UpsertPaymentInstructions: Upsert Payment Instructions
 
 Create or update a collection of Payment Instructions.
 
