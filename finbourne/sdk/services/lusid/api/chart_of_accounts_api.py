@@ -2408,7 +2408,7 @@ class ChartOfAccountsApi:
         :type page: str
         :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
         :type limit: int
-        :param filter: Expression to filter the results.              For example, to filter on the Account type, specify \"code eq '001'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results.              For example, to filter on the Account type, specify \"code eq '001'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param property_keys: A list of property keys from the 'Account' domain to decorate onto the Account.              These must have the format {domain}/{scope}/{code}, for example 'Account/system/Name'.
         :type property_keys: List[str]
@@ -2442,7 +2442,7 @@ class ChartOfAccountsApi:
         :type page: str
         :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
         :type limit: int
-        :param filter: Expression to filter the results.              For example, to filter on the Account type, specify \"code eq '001'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results.              For example, to filter on the Account type, specify \"code eq '001'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param property_keys: A list of property keys from the 'Account' domain to decorate onto the Account.              These must have the format {domain}/{scope}/{code}, for example 'Account/system/Name'.
         :type property_keys: List[str]
@@ -2584,7 +2584,7 @@ class ChartOfAccountsApi:
         :type page: str
         :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
         :type limit: int
-        :param filter: Expression to filter the results.              For example, to filter on the Chart of Accounts type, specify \"id.Code eq '001'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results.              For example, to filter on the Chart of Accounts type, specify \"id.Code eq '001'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
         :type sort_by: List[str]
@@ -2616,7 +2616,7 @@ class ChartOfAccountsApi:
         :type page: str
         :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
         :type limit: int
-        :param filter: Expression to filter the results.              For example, to filter on the Chart of Accounts type, specify \"id.Code eq '001'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results.              For example, to filter on the Chart of Accounts type, specify \"id.Code eq '001'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
         :type sort_by: List[str]
@@ -2761,7 +2761,7 @@ class ChartOfAccountsApi:
         :type page: str
         :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
         :type limit: int
-        :param filter: Expression to filter the results.              For example, to filter on the rule id, specify \"ruleId eq 'rule 1'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results.              For example, to filter on the rule id, specify \"ruleId eq 'rule 1'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -2793,7 +2793,7 @@ class ChartOfAccountsApi:
         :type page: str
         :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
         :type limit: int
-        :param filter: Expression to filter the results.              For example, to filter on the rule id, specify \"ruleId eq 'rule 1'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results.              For example, to filter on the rule id, specify \"ruleId eq 'rule 1'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -2930,7 +2930,7 @@ class ChartOfAccountsApi:
         :type page: str
         :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
         :type limit: int
-        :param filter: Expression to filter the results.              For example, to filter on the Cleardown Module status, specify \"status eq 'Active'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results.              For example, to filter on the Cleardown Module status, specify \"status eq 'Active'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
         :type sort_by: List[str]
@@ -2962,7 +2962,7 @@ class ChartOfAccountsApi:
         :type page: str
         :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
         :type limit: int
-        :param filter: Expression to filter the results.              For example, to filter on the Cleardown Module status, specify \"status eq 'Active'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results.              For example, to filter on the Cleardown Module status, specify \"status eq 'Active'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
         :type sort_by: List[str]
@@ -3102,7 +3102,7 @@ class ChartOfAccountsApi:
         :type page: str
         :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
         :type limit: int
-        :param filter: Expression to filter the results.              For example, to filter on the General Ledger profiles type, specify \"type eq 'PeriodBoundary'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results.              For example, to filter on the General Ledger profiles type, specify \"type eq 'PeriodBoundary'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
         :type sort_by: List[str]
@@ -3134,7 +3134,7 @@ class ChartOfAccountsApi:
         :type page: str
         :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
         :type limit: int
-        :param filter: Expression to filter the results.              For example, to filter on the General Ledger profiles type, specify \"type eq 'PeriodBoundary'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results.              For example, to filter on the General Ledger profiles type, specify \"type eq 'PeriodBoundary'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
         :type sort_by: List[str]
@@ -3276,7 +3276,7 @@ class ChartOfAccountsApi:
         :type page: str
         :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
         :type limit: int
-        :param filter: Expression to filter the results.              For example, to filter on the rule id, specify \"ruleId eq 'rule 1'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results.              For example, to filter on the rule id, specify \"ruleId eq 'rule 1'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -3308,7 +3308,7 @@ class ChartOfAccountsApi:
         :type page: str
         :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
         :type limit: int
-        :param filter: Expression to filter the results.              For example, to filter on the rule id, specify \"ruleId eq 'rule 1'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results.              For example, to filter on the rule id, specify \"ruleId eq 'rule 1'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -3445,7 +3445,7 @@ class ChartOfAccountsApi:
         :type page: str
         :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
         :type limit: int
-        :param filter: Expression to filter the results.              For example, to filter on the Posting Module status, specify \"status eq 'Active'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results.              For example, to filter on the Posting Module status, specify \"status eq 'Active'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
         :type sort_by: List[str]
@@ -3477,7 +3477,7 @@ class ChartOfAccountsApi:
         :type page: str
         :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
         :type limit: int
-        :param filter: Expression to filter the results.              For example, to filter on the Posting Module status, specify \"status eq 'Active'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results.              For example, to filter on the Posting Module status, specify \"status eq 'Active'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
         :type sort_by: List[str]
@@ -7590,7 +7590,7 @@ class ChartOfAccountsApi:
             :type page: str
             :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
             :type limit: int
-            :param filter: Expression to filter the results.              For example, to filter on the Account type, specify \"code eq '001'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results.              For example, to filter on the Account type, specify \"code eq '001'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param property_keys: A list of property keys from the 'Account' domain to decorate onto the Account.              These must have the format {domain}/{scope}/{code}, for example 'Account/system/Name'.
             :type property_keys: List[str]
@@ -7625,7 +7625,7 @@ class ChartOfAccountsApi:
             :type page: str
             :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
             :type limit: int
-            :param filter: Expression to filter the results.              For example, to filter on the Account type, specify \"code eq '001'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results.              For example, to filter on the Account type, specify \"code eq '001'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param property_keys: A list of property keys from the 'Account' domain to decorate onto the Account.              These must have the format {domain}/{scope}/{code}, for example 'Account/system/Name'.
             :type property_keys: List[str]
@@ -7767,7 +7767,7 @@ class ChartOfAccountsApi:
             :type page: str
             :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
             :type limit: int
-            :param filter: Expression to filter the results.              For example, to filter on the Chart of Accounts type, specify \"id.Code eq '001'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results.              For example, to filter on the Chart of Accounts type, specify \"id.Code eq '001'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
             :type sort_by: List[str]
@@ -7800,7 +7800,7 @@ class ChartOfAccountsApi:
             :type page: str
             :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
             :type limit: int
-            :param filter: Expression to filter the results.              For example, to filter on the Chart of Accounts type, specify \"id.Code eq '001'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results.              For example, to filter on the Chart of Accounts type, specify \"id.Code eq '001'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
             :type sort_by: List[str]
@@ -7945,7 +7945,7 @@ class ChartOfAccountsApi:
             :type page: str
             :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
             :type limit: int
-            :param filter: Expression to filter the results.              For example, to filter on the rule id, specify \"ruleId eq 'rule 1'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results.              For example, to filter on the rule id, specify \"ruleId eq 'rule 1'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -7978,7 +7978,7 @@ class ChartOfAccountsApi:
             :type page: str
             :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
             :type limit: int
-            :param filter: Expression to filter the results.              For example, to filter on the rule id, specify \"ruleId eq 'rule 1'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results.              For example, to filter on the rule id, specify \"ruleId eq 'rule 1'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
@@ -8115,7 +8115,7 @@ class ChartOfAccountsApi:
             :type page: str
             :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
             :type limit: int
-            :param filter: Expression to filter the results.              For example, to filter on the Cleardown Module status, specify \"status eq 'Active'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results.              For example, to filter on the Cleardown Module status, specify \"status eq 'Active'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
             :type sort_by: List[str]
@@ -8148,7 +8148,7 @@ class ChartOfAccountsApi:
             :type page: str
             :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
             :type limit: int
-            :param filter: Expression to filter the results.              For example, to filter on the Cleardown Module status, specify \"status eq 'Active'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results.              For example, to filter on the Cleardown Module status, specify \"status eq 'Active'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
             :type sort_by: List[str]
@@ -8288,7 +8288,7 @@ class ChartOfAccountsApi:
             :type page: str
             :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
             :type limit: int
-            :param filter: Expression to filter the results.              For example, to filter on the General Ledger profiles type, specify \"type eq 'PeriodBoundary'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results.              For example, to filter on the General Ledger profiles type, specify \"type eq 'PeriodBoundary'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
             :type sort_by: List[str]
@@ -8321,7 +8321,7 @@ class ChartOfAccountsApi:
             :type page: str
             :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
             :type limit: int
-            :param filter: Expression to filter the results.              For example, to filter on the General Ledger profiles type, specify \"type eq 'PeriodBoundary'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results.              For example, to filter on the General Ledger profiles type, specify \"type eq 'PeriodBoundary'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
             :type sort_by: List[str]
@@ -8463,7 +8463,7 @@ class ChartOfAccountsApi:
             :type page: str
             :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
             :type limit: int
-            :param filter: Expression to filter the results.              For example, to filter on the rule id, specify \"ruleId eq 'rule 1'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results.              For example, to filter on the rule id, specify \"ruleId eq 'rule 1'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -8496,7 +8496,7 @@ class ChartOfAccountsApi:
             :type page: str
             :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
             :type limit: int
-            :param filter: Expression to filter the results.              For example, to filter on the rule id, specify \"ruleId eq 'rule 1'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results.              For example, to filter on the rule id, specify \"ruleId eq 'rule 1'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
@@ -8633,7 +8633,7 @@ class ChartOfAccountsApi:
             :type page: str
             :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
             :type limit: int
-            :param filter: Expression to filter the results.              For example, to filter on the Posting Module status, specify \"status eq 'Active'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results.              For example, to filter on the Posting Module status, specify \"status eq 'Active'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
             :type sort_by: List[str]
@@ -8666,7 +8666,7 @@ class ChartOfAccountsApi:
             :type page: str
             :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
             :type limit: int
-            :param filter: Expression to filter the results.              For example, to filter on the Posting Module status, specify \"status eq 'Active'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results.              For example, to filter on the Posting Module status, specify \"status eq 'Active'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
             :type sort_by: List[str]

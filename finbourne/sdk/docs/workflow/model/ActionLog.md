@@ -9,7 +9,7 @@ An Action Log contains the processing history of an Action
 | **origin** | [ActionLogOrigin](ActionLogOrigin.md) | Required | *No description available.* |
 | **action_type** | **str** | Required | The type of the Action |
 | **run_as_user_id** | **str** | Optional | The ID of the user that the Action was performed by. If not specified, the actions were performed by the \&quot;current user\&quot;. |
-| **logged_items** | [List[ActionLogItem]](ActionLogItem.md) | Required | The logged items for this Action |
+| **logged_items** | [List[ActionLogItem]](ActionLogItem.md) | Required | The logged items for this Action, ordered by timestamp with the earliest item first |
 
 
 ## Usage
@@ -24,7 +24,7 @@ instance = ActionLog(
     origin=ActionLogOrigin(...),  # required
     action_type="...",  # required — The type of the Action
     run_as_user_id="...",  # optional — The ID of the user that the Action was performed by. If not specified, the actions were performed by the \&quot;current user\&quot;.
-    logged_items=[]  # required — The logged items for this Action
+    logged_items=[]  # required — The logged items for this Action, ordered by timestamp with the earliest item first
 )
 ```
 

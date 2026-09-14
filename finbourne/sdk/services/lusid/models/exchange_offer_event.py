@@ -21,12 +21,16 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
+from finbourne.sdk.services.lusid.models.abstain_election import AbstainElection
+from finbourne.sdk.services.lusid.models.cash_and_security_offer_election import CashAndSecurityOfferElection
 from finbourne.sdk.services.lusid.models.cash_offer_election import CashOfferElection
+from finbourne.sdk.services.lusid.models.consent_and_exchange_election import ConsentAndExchangeElection
 from finbourne.sdk.services.lusid.models.instrument_event import InstrumentEvent
 from finbourne.sdk.services.lusid.models.lapse_election import LapseElection
 from finbourne.sdk.services.lusid.models.mixed_lot_constituents_election import MixedLotConstituentsElection
 from finbourne.sdk.services.lusid.models.new_instrument import NewInstrument
 from finbourne.sdk.services.lusid.models.security_offer_election import SecurityOfferElection
+from finbourne.sdk.services.lusid.models.unknown_proceeds_election import UnknownProceedsElection
 
 
 class ExchangeOfferEvent(InstrumentEvent):
@@ -41,6 +45,10 @@ class ExchangeOfferEvent(InstrumentEvent):
     security_offer_elections: Optional[List[SecurityOfferElection]] = Field(default=None, alias="securityOfferElections")
     mixed_lot_constituents_elections: Optional[List[MixedLotConstituentsElection]] = Field(default=None, alias="mixedLotConstituentsElections")
     lapse_elections: Optional[List[LapseElection]] = Field(default=None, alias="lapseElections")
+    cash_and_security_offer_elections: Optional[List[CashAndSecurityOfferElection]] = Field(default=None, description="List of possible CashAndSecurityOfferElections for this exchange offer event.", alias="cashAndSecurityOfferElections")
+    consent_and_exchange_elections: Optional[List[ConsentAndExchangeElection]] = Field(default=None, description="List of possible consent-and-exchange elections for this event (CTEN-style consent paired with the exchange).", alias="consentAndExchangeElections")
+    abstain_elections: Optional[List[AbstainElection]] = Field(default=None, description="List of possible abstain elections for this event (ABST) — decline to vote on the consent.", alias="abstainElections")
+    unknown_proceeds_elections: Optional[List[UnknownProceedsElection]] = Field(default=None, description="List of possible unknown-proceeds elections for this event (UNKNOWN) — the outturn is not yet known.", alias="unknownProceedsElections")
     min_piece_size: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="minPieceSize")
     min_increment: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="minIncrement")
     fractional_units_cash_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="fractionalUnitsCashPrice")
@@ -48,9 +56,9 @@ class ExchangeOfferEvent(InstrumentEvent):
     fractional_units_rounding_convention:  Optional[StrictStr] = Field(default=None,alias="fractionalUnitsRoundingConvention", description="The convention used to round the fractional units entitlement. Defaults to Floor. Available values: Floor, Ceiling, RoundHalfUp, RoundHalfDown, RoundToDecimalPlaces, BuyUp, BankerRounding.") 
     fractional_units_decimal_places: Optional[StrictInt] = Field(default=None, description="The number of decimal places to round to when FractionalUnitsRoundingConvention is RoundToDecimalPlaces.", alias="fractionalUnitsDecimalPlaces")
     instruction_reference:  Optional[StrictStr] = Field(default=None,alias="instructionReference") 
-    instrument_event_type:  StrictStr = Field(...,alias="instrumentEventType", description="The Type of Event. Available values: TransitionEvent, InformationalEvent, OpenEvent, CloseEvent, StockSplitEvent, BondDefaultEvent, CashDividendEvent, AmortisationEvent, CashFlowEvent, ExerciseEvent, ResetEvent, TriggerEvent, RawVendorEvent, InformationalErrorEvent, BondCouponEvent, DividendReinvestmentEvent, AccumulationEvent, BondPrincipalEvent, DividendOptionEvent, MaturityEvent, FxForwardSettlementEvent, ExpiryEvent, ScripDividendEvent, StockDividendEvent, ReverseStockSplitEvent, CapitalDistributionEvent, SpinOffEvent, MergerEvent, FutureExpiryEvent, SwapCashFlowEvent, SwapPrincipalEvent, CreditPremiumCashFlowEvent, CdsCreditEvent, CdxCreditEvent, MbsCouponEvent, MbsPrincipalEvent, BonusIssueEvent, MbsPrincipalWriteOffEvent, MbsInterestDeferralEvent, MbsInterestShortfallEvent, TenderEvent, CallOnIntermediateSecuritiesEvent, IntermediateSecuritiesDistributionEvent, OptionExercisePhysicalEvent, OptionExerciseCashEvent, ProtectionPayoutCashFlowEvent, TermDepositInterestEvent, TermDepositPrincipalEvent, EarlyRedemptionEvent, FutureMarkToMarketEvent, AdjustGlobalCommitmentEvent, ContractInitialisationEvent, DrawdownEvent, LoanInterestRepaymentEvent, UpdateDepositAmountEvent, LoanPrincipalRepaymentEvent, DepositInterestPaymentEvent, DepositCloseEvent, LoanFacilityContractRolloverEvent, RepurchaseOfferEvent, RepoPartialClosureEvent, RepoCashFlowEvent, FlexibleRepoInterestPaymentEvent, FlexibleRepoCashFlowEvent, FlexibleRepoCollateralEvent, ConversionEvent, FlexibleRepoPartialClosureEvent, FlexibleRepoFullClosureEvent, CapletFloorletCashFlowEvent, EarlyCloseOutEvent, DepositRollEvent, ConsentEvent, DrawingEvent, CapitalGainsDistributionEvent, ExchangeOfferEvent, DutchAuctionEvent, WorthlessEvent, PutRedemptionEvent, LoanFacilityDelayedCompensationPaymentEvent, InterestPaymentEvent, PriorityIssueEvent, ClassActionEvent, BankruptcyEvent, LiquidationPaymentEvent, PartialDefeasanceEvent, SecurityWriteOffEvent, WarrantsExerciseEvent, PariPassuEvent, ChangeEvent, PikBondCouponEvent, PikBondCashCouponEvent, PikBondInterestCapitalisationEvent, PikBondPrincipalEvent, DelistingEvent, PikBondInterestEvent, CommodityForwardCashSettlementEvent, PaymentInKindEvent, CommodityForwardPhysicalSettlementEvent, CancelSwapEvent, BondOptionTerminationEvent, TerminationEvent, CommodityCalendarSwapCashFlowEvent, DepositSweepEvent, BondForwardCashSettlementEvent, BondForwardTerminationEvent, AmendCommitmentEvent, CapitalCallEvent, FundDistributionEvent, NavReportEvent.") 
+    instrument_event_type:  StrictStr = Field(...,alias="instrumentEventType", description="The Type of Event. Available values: TransitionEvent, InformationalEvent, OpenEvent, CloseEvent, StockSplitEvent, BondDefaultEvent, CashDividendEvent, AmortisationEvent, CashFlowEvent, ExerciseEvent, ResetEvent, TriggerEvent, RawVendorEvent, InformationalErrorEvent, BondCouponEvent, DividendReinvestmentEvent, AccumulationEvent, BondPrincipalEvent, DividendOptionEvent, MaturityEvent, FxForwardSettlementEvent, ExpiryEvent, ScripDividendEvent, StockDividendEvent, ReverseStockSplitEvent, CapitalDistributionEvent, SpinOffEvent, MergerEvent, FutureExpiryEvent, SwapCashFlowEvent, SwapPrincipalEvent, CreditPremiumCashFlowEvent, CdsCreditEvent, CdxCreditEvent, MbsCouponEvent, MbsPrincipalEvent, BonusIssueEvent, MbsPrincipalWriteOffEvent, MbsInterestDeferralEvent, MbsInterestShortfallEvent, TenderEvent, CallOnIntermediateSecuritiesEvent, IntermediateSecuritiesDistributionEvent, OptionExercisePhysicalEvent, OptionExerciseCashEvent, ProtectionPayoutCashFlowEvent, TermDepositInterestEvent, TermDepositPrincipalEvent, EarlyRedemptionEvent, FutureMarkToMarketEvent, AdjustGlobalCommitmentEvent, ContractInitialisationEvent, DrawdownEvent, LoanInterestRepaymentEvent, UpdateDepositAmountEvent, LoanPrincipalRepaymentEvent, DepositInterestPaymentEvent, DepositCloseEvent, LoanFacilityContractRolloverEvent, RepurchaseOfferEvent, RepoPartialClosureEvent, RepoCashFlowEvent, FlexibleRepoInterestPaymentEvent, FlexibleRepoCashFlowEvent, FlexibleRepoCollateralEvent, ConversionEvent, FlexibleRepoPartialClosureEvent, FlexibleRepoFullClosureEvent, CapletFloorletCashFlowEvent, EarlyCloseOutEvent, DepositRollEvent, ConsentEvent, DrawingEvent, CapitalGainsDistributionEvent, ExchangeOfferEvent, DutchAuctionEvent, WorthlessEvent, PutRedemptionEvent, LoanFacilityDelayedCompensationPaymentEvent, InterestPaymentEvent, PriorityIssueEvent, ClassActionEvent, BankruptcyEvent, LiquidationPaymentEvent, PartialDefeasanceEvent, SecurityWriteOffEvent, WarrantsExerciseEvent, PariPassuEvent, ChangeEvent, PikBondCouponEvent, PikBondCashCouponEvent, PikBondInterestCapitalisationEvent, PikBondPrincipalEvent, DelistingEvent, PikBondInterestEvent, CommodityForwardCashSettlementEvent, PaymentInKindEvent, CommodityForwardPhysicalSettlementEvent, CancelSwapEvent, BondOptionTerminationEvent, TerminationEvent, CommodityCalendarSwapCashFlowEvent, DepositSweepEvent, BondForwardCashSettlementEvent, BondForwardTerminationEvent, AmendCommitmentEvent, CapitalCallEvent, FundDistributionEvent, NavReportEvent, DividendSuspensionEvent, LoanInterestCapitalisationEvent.") 
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["instrumentEventType", "effectiveDate", "settlementDate", "eventSource", "newInstrument", "cashOfferElections", "securityOfferElections", "mixedLotConstituentsElections", "lapseElections", "minPieceSize", "minIncrement", "fractionalUnitsCashPrice", "fractionalUnitsCashCurrency", "fractionalUnitsRoundingConvention", "fractionalUnitsDecimalPlaces", "instructionReference"]
+    __properties: ClassVar[List[str]] = ["instrumentEventType", "effectiveDate", "settlementDate", "eventSource", "newInstrument", "cashOfferElections", "securityOfferElections", "mixedLotConstituentsElections", "lapseElections", "cashAndSecurityOfferElections", "consentAndExchangeElections", "abstainElections", "unknownProceedsElections", "minPieceSize", "minIncrement", "fractionalUnitsCashPrice", "fractionalUnitsCashCurrency", "fractionalUnitsRoundingConvention", "fractionalUnitsDecimalPlaces", "instructionReference"]
 
     @field_validator('instrument_event_type')
     def instrument_event_type_validate_enum(cls, value):
@@ -65,7 +73,7 @@ class ExchangeOfferEvent(InstrumentEvent):
         if "instrument_event_type" != "type":
             return value
 
-        _allowed = ['TransitionEvent', 'InformationalEvent', 'OpenEvent', 'CloseEvent', 'StockSplitEvent', 'BondDefaultEvent', 'CashDividendEvent', 'AmortisationEvent', 'CashFlowEvent', 'ExerciseEvent', 'ResetEvent', 'TriggerEvent', 'RawVendorEvent', 'InformationalErrorEvent', 'BondCouponEvent', 'DividendReinvestmentEvent', 'AccumulationEvent', 'BondPrincipalEvent', 'DividendOptionEvent', 'MaturityEvent', 'FxForwardSettlementEvent', 'ExpiryEvent', 'ScripDividendEvent', 'StockDividendEvent', 'ReverseStockSplitEvent', 'CapitalDistributionEvent', 'SpinOffEvent', 'MergerEvent', 'FutureExpiryEvent', 'SwapCashFlowEvent', 'SwapPrincipalEvent', 'CreditPremiumCashFlowEvent', 'CdsCreditEvent', 'CdxCreditEvent', 'MbsCouponEvent', 'MbsPrincipalEvent', 'BonusIssueEvent', 'MbsPrincipalWriteOffEvent', 'MbsInterestDeferralEvent', 'MbsInterestShortfallEvent', 'TenderEvent', 'CallOnIntermediateSecuritiesEvent', 'IntermediateSecuritiesDistributionEvent', 'OptionExercisePhysicalEvent', 'OptionExerciseCashEvent', 'ProtectionPayoutCashFlowEvent', 'TermDepositInterestEvent', 'TermDepositPrincipalEvent', 'EarlyRedemptionEvent', 'FutureMarkToMarketEvent', 'AdjustGlobalCommitmentEvent', 'ContractInitialisationEvent', 'DrawdownEvent', 'LoanInterestRepaymentEvent', 'UpdateDepositAmountEvent', 'LoanPrincipalRepaymentEvent', 'DepositInterestPaymentEvent', 'DepositCloseEvent', 'LoanFacilityContractRolloverEvent', 'RepurchaseOfferEvent', 'RepoPartialClosureEvent', 'RepoCashFlowEvent', 'FlexibleRepoInterestPaymentEvent', 'FlexibleRepoCashFlowEvent', 'FlexibleRepoCollateralEvent', 'ConversionEvent', 'FlexibleRepoPartialClosureEvent', 'FlexibleRepoFullClosureEvent', 'CapletFloorletCashFlowEvent', 'EarlyCloseOutEvent', 'DepositRollEvent', 'ConsentEvent', 'DrawingEvent', 'CapitalGainsDistributionEvent', 'ExchangeOfferEvent', 'DutchAuctionEvent', 'WorthlessEvent', 'PutRedemptionEvent', 'LoanFacilityDelayedCompensationPaymentEvent', 'InterestPaymentEvent', 'PriorityIssueEvent', 'ClassActionEvent', 'BankruptcyEvent', 'LiquidationPaymentEvent', 'PartialDefeasanceEvent', 'SecurityWriteOffEvent', 'WarrantsExerciseEvent', 'PariPassuEvent', 'ChangeEvent', 'PikBondCouponEvent', 'PikBondCashCouponEvent', 'PikBondInterestCapitalisationEvent', 'PikBondPrincipalEvent', 'DelistingEvent', 'PikBondInterestEvent', 'CommodityForwardCashSettlementEvent', 'PaymentInKindEvent', 'CommodityForwardPhysicalSettlementEvent', 'CancelSwapEvent', 'BondOptionTerminationEvent', 'TerminationEvent', 'CommodityCalendarSwapCashFlowEvent', 'DepositSweepEvent', 'BondForwardCashSettlementEvent', 'BondForwardTerminationEvent', 'AmendCommitmentEvent', 'CapitalCallEvent', 'FundDistributionEvent', 'NavReportEvent']
+        _allowed = ['TransitionEvent', 'InformationalEvent', 'OpenEvent', 'CloseEvent', 'StockSplitEvent', 'BondDefaultEvent', 'CashDividendEvent', 'AmortisationEvent', 'CashFlowEvent', 'ExerciseEvent', 'ResetEvent', 'TriggerEvent', 'RawVendorEvent', 'InformationalErrorEvent', 'BondCouponEvent', 'DividendReinvestmentEvent', 'AccumulationEvent', 'BondPrincipalEvent', 'DividendOptionEvent', 'MaturityEvent', 'FxForwardSettlementEvent', 'ExpiryEvent', 'ScripDividendEvent', 'StockDividendEvent', 'ReverseStockSplitEvent', 'CapitalDistributionEvent', 'SpinOffEvent', 'MergerEvent', 'FutureExpiryEvent', 'SwapCashFlowEvent', 'SwapPrincipalEvent', 'CreditPremiumCashFlowEvent', 'CdsCreditEvent', 'CdxCreditEvent', 'MbsCouponEvent', 'MbsPrincipalEvent', 'BonusIssueEvent', 'MbsPrincipalWriteOffEvent', 'MbsInterestDeferralEvent', 'MbsInterestShortfallEvent', 'TenderEvent', 'CallOnIntermediateSecuritiesEvent', 'IntermediateSecuritiesDistributionEvent', 'OptionExercisePhysicalEvent', 'OptionExerciseCashEvent', 'ProtectionPayoutCashFlowEvent', 'TermDepositInterestEvent', 'TermDepositPrincipalEvent', 'EarlyRedemptionEvent', 'FutureMarkToMarketEvent', 'AdjustGlobalCommitmentEvent', 'ContractInitialisationEvent', 'DrawdownEvent', 'LoanInterestRepaymentEvent', 'UpdateDepositAmountEvent', 'LoanPrincipalRepaymentEvent', 'DepositInterestPaymentEvent', 'DepositCloseEvent', 'LoanFacilityContractRolloverEvent', 'RepurchaseOfferEvent', 'RepoPartialClosureEvent', 'RepoCashFlowEvent', 'FlexibleRepoInterestPaymentEvent', 'FlexibleRepoCashFlowEvent', 'FlexibleRepoCollateralEvent', 'ConversionEvent', 'FlexibleRepoPartialClosureEvent', 'FlexibleRepoFullClosureEvent', 'CapletFloorletCashFlowEvent', 'EarlyCloseOutEvent', 'DepositRollEvent', 'ConsentEvent', 'DrawingEvent', 'CapitalGainsDistributionEvent', 'ExchangeOfferEvent', 'DutchAuctionEvent', 'WorthlessEvent', 'PutRedemptionEvent', 'LoanFacilityDelayedCompensationPaymentEvent', 'InterestPaymentEvent', 'PriorityIssueEvent', 'ClassActionEvent', 'BankruptcyEvent', 'LiquidationPaymentEvent', 'PartialDefeasanceEvent', 'SecurityWriteOffEvent', 'WarrantsExerciseEvent', 'PariPassuEvent', 'ChangeEvent', 'PikBondCouponEvent', 'PikBondCashCouponEvent', 'PikBondInterestCapitalisationEvent', 'PikBondPrincipalEvent', 'DelistingEvent', 'PikBondInterestEvent', 'CommodityForwardCashSettlementEvent', 'PaymentInKindEvent', 'CommodityForwardPhysicalSettlementEvent', 'CancelSwapEvent', 'BondOptionTerminationEvent', 'TerminationEvent', 'CommodityCalendarSwapCashFlowEvent', 'DepositSweepEvent', 'BondForwardCashSettlementEvent', 'BondForwardTerminationEvent', 'AmendCommitmentEvent', 'CapitalCallEvent', 'FundDistributionEvent', 'NavReportEvent', 'DividendSuspensionEvent', 'LoanInterestCapitalisationEvent']
         if len(_allowed) != 1:
             return value
         if value not in _allowed:
@@ -138,6 +146,34 @@ class ExchangeOfferEvent(InstrumentEvent):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['lapseElections'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in cash_and_security_offer_elections (list)
+        _items = []
+        if self.cash_and_security_offer_elections:
+            for _item in self.cash_and_security_offer_elections:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['cashAndSecurityOfferElections'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in consent_and_exchange_elections (list)
+        _items = []
+        if self.consent_and_exchange_elections:
+            for _item in self.consent_and_exchange_elections:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['consentAndExchangeElections'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in abstain_elections (list)
+        _items = []
+        if self.abstain_elections:
+            for _item in self.abstain_elections:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['abstainElections'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in unknown_proceeds_elections (list)
+        _items = []
+        if self.unknown_proceeds_elections:
+            for _item in self.unknown_proceeds_elections:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['unknownProceedsElections'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -162,6 +198,26 @@ class ExchangeOfferEvent(InstrumentEvent):
         # and model_fields_set contains the field
         if self.lapse_elections is None and "lapse_elections" in self.model_fields_set:
             _dict['lapseElections'] = None
+
+        # set to None if cash_and_security_offer_elections (nullable) is None
+        # and model_fields_set contains the field
+        if self.cash_and_security_offer_elections is None and "cash_and_security_offer_elections" in self.model_fields_set:
+            _dict['cashAndSecurityOfferElections'] = None
+
+        # set to None if consent_and_exchange_elections (nullable) is None
+        # and model_fields_set contains the field
+        if self.consent_and_exchange_elections is None and "consent_and_exchange_elections" in self.model_fields_set:
+            _dict['consentAndExchangeElections'] = None
+
+        # set to None if abstain_elections (nullable) is None
+        # and model_fields_set contains the field
+        if self.abstain_elections is None and "abstain_elections" in self.model_fields_set:
+            _dict['abstainElections'] = None
+
+        # set to None if unknown_proceeds_elections (nullable) is None
+        # and model_fields_set contains the field
+        if self.unknown_proceeds_elections is None and "unknown_proceeds_elections" in self.model_fields_set:
+            _dict['unknownProceedsElections'] = None
 
         # set to None if min_piece_size (nullable) is None
         # and model_fields_set contains the field
@@ -219,6 +275,10 @@ class ExchangeOfferEvent(InstrumentEvent):
             "security_offer_elections": [SecurityOfferElection.from_dict(_item) for _item in _v] if (_v := obj.get("securityOfferElections")) is not None else None,
             "mixed_lot_constituents_elections": [MixedLotConstituentsElection.from_dict(_item) for _item in _v] if (_v := obj.get("mixedLotConstituentsElections")) is not None else None,
             "lapse_elections": [LapseElection.from_dict(_item) for _item in _v] if (_v := obj.get("lapseElections")) is not None else None,
+            "cash_and_security_offer_elections": [CashAndSecurityOfferElection.from_dict(_item) for _item in _v] if (_v := obj.get("cashAndSecurityOfferElections")) is not None else None,
+            "consent_and_exchange_elections": [ConsentAndExchangeElection.from_dict(_item) for _item in _v] if (_v := obj.get("consentAndExchangeElections")) is not None else None,
+            "abstain_elections": [AbstainElection.from_dict(_item) for _item in _v] if (_v := obj.get("abstainElections")) is not None else None,
+            "unknown_proceeds_elections": [UnknownProceedsElection.from_dict(_item) for _item in _v] if (_v := obj.get("unknownProceedsElections")) is not None else None,
             "min_piece_size": obj.get("minPieceSize"),
             "min_increment": obj.get("minIncrement"),
             "fractional_units_cash_price": obj.get("fractionalUnitsCashPrice"),

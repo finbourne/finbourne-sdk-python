@@ -8,7 +8,7 @@ An aggregate matching rule and its values. The difference is the measured magnit
 | **rule_name** | **str** | Required | The name of the rule. |
 | **left_value** | **str** | Optional | The left-side value. |
 | **right_value** | **str** | Optional | The right-side value. |
-| **difference** | **str** | Required | The measured magnitude of the difference, ToString(ABS(leftValue - rightValue)). |
+| **difference** | **str** | Optional | The measured magnitude of the difference, ToString(ABS(leftValue - rightValue)). |
 | **applied_tolerance** | [ToleranceBase](ToleranceBase.md) | Optional | *No description available.* |
 
 
@@ -23,7 +23,7 @@ instance = AggregateRuleValues(
     rule_name="...",  # required — The name of the rule.
     left_value="...",  # optional — The left-side value.
     right_value="...",  # optional — The right-side value.
-    difference="...",  # required — The measured magnitude of the difference, ToString(ABS(leftValue - rightValue)).
+    difference="...",  # optional — The measured magnitude of the difference, ToString(ABS(leftValue - rightValue)).
     applied_tolerance=ToleranceBase(...)  # optional
 )
 ```

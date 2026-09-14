@@ -78,6 +78,7 @@
 * [ConventionsApi](lusid/api/ConventionsApi.md)
 * [CorporateActionSourcesApi](lusid/api/CorporateActionSourcesApi.md)
 * [CounterpartiesApi](lusid/api/CounterpartiesApi.md)
+* [CurrencyGroupsApi](lusid/api/CurrencyGroupsApi.md)
 * [CustomDataModelsApi](lusid/api/CustomDataModelsApi.md)
 * [CustomEntitiesApi](lusid/api/CustomEntitiesApi.md)
 * [CustomEntityDefinitionsApi](lusid/api/CustomEntityDefinitionsApi.md)

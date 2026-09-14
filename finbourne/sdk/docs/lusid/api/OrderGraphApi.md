@@ -60,12 +60,12 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **as_at** | **datetime**| See https://support.lusid.com/knowledgebase/article/KA-01832/ | [optional] 
- **pagination_token** | **str**| See https://support.lusid.com/knowledgebase/article/KA-01915/ | [optional] 
+ **as_at** | **datetime**| See https://support.lusid.com/docs/what-is-the-asat-timestamp | [optional] 
+ **pagination_token** | **str**| See https://support.lusid.com/docs/paging-and-limiting-an-api-request | [optional] 
  **sort_by** | [**List[str]**](../model/str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
- **limit** | **int**| See https://support.lusid.com/knowledgebase/article/KA-01915/ | [optional] 
- **filter** | **str**| See https://support.lusid.com/knowledgebase/article/KA-01914/ | [optional] [default to &#39;&#39;]
- **property_keys** | [**List[str]**](../model/str.md)| Must be block-level properties. See https://support.lusid.com/knowledgebase/article/KA-01855/ | [optional] 
+ **limit** | **int**| See https://support.lusid.com/docs/paging-and-limiting-an-api-request | [optional] 
+ **filter** | **str**| See https://support.lusid.com/docs/filtering-information-retrieved-from-lusid | [optional] [default to &#39;&#39;]
+ **property_keys** | [**List[str]**](../model/str.md)| Must be block-level properties. See https://support.lusid.com/docs/properties | [optional] 
  **use_compliance_v2** | **bool**| Whether to use the V2 compliance engine when deriving compliance statuses for orders. (default: false) | [optional] [default to False]
 
 ### Return type
@@ -116,11 +116,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| The parent placement&#39;s scope | [required] 
  **code** | **str**| The parent placement&#39;s code | [required] 
- **as_at** | **datetime**| See https://support.lusid.com/knowledgebase/article/KA-01832/ | [optional] 
- **pagination_token** | **str**| See https://support.lusid.com/knowledgebase/article/KA-01915/ | [optional] 
+ **as_at** | **datetime**| See https://support.lusid.com/docs/what-is-the-asat-timestamp | [optional] 
+ **pagination_token** | **str**| See https://support.lusid.com/docs/paging-and-limiting-an-api-request | [optional] 
  **sort_by** | [**List[str]**](../model/str.md)| Order the results by these fields. Use use the &#39;-&#39; sign to denote descending order e.g. -MyFieldName. | [optional] 
- **limit** | **int**| See https://support.lusid.com/knowledgebase/article/KA-01915/ | [optional] 
- **property_keys** | [**List[str]**](../model/str.md)| Must be placement properties. See https://support.lusid.com/knowledgebase/article/KA-01855/ | [optional] 
+ **limit** | **int**| See https://support.lusid.com/docs/paging-and-limiting-an-api-request | [optional] 
+ **property_keys** | [**List[str]**](../model/str.md)| Must be placement properties. See https://support.lusid.com/docs/properties | [optional] 
 
 ### Return type
 
@@ -167,12 +167,12 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **as_at** | **datetime**| See https://support.lusid.com/knowledgebase/article/KA-01832/ | [optional] 
- **pagination_token** | **str**| See https://support.lusid.com/knowledgebase/article/KA-01915/ | [optional] 
+ **as_at** | **datetime**| See https://support.lusid.com/docs/what-is-the-asat-timestamp | [optional] 
+ **pagination_token** | **str**| See https://support.lusid.com/docs/paging-and-limiting-an-api-request | [optional] 
  **sort_by** | [**List[str]**](../model/str.md)| A list of field names or properties to sort by, each suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot;. | [optional] 
- **limit** | **int**| See https://support.lusid.com/knowledgebase/article/KA-01915/ | [optional] 
- **filter** | **str**| See https://support.lusid.com/knowledgebase/article/KA-01914/ | [optional] [default to &#39;&#39;]
- **property_keys** | [**List[str]**](../model/str.md)| Must be placement properties. See https://support.lusid.com/knowledgebase/article/KA-01855/ | [optional] 
+ **limit** | **int**| See https://support.lusid.com/docs/paging-and-limiting-an-api-request | [optional] 
+ **filter** | **str**| See https://support.lusid.com/docs/filtering-information-retrieved-from-lusid | [optional] [default to &#39;&#39;]
+ **property_keys** | [**List[str]**](../model/str.md)| Must be placement properties. See https://support.lusid.com/docs/properties | [optional] 
 
 ### Return type
 

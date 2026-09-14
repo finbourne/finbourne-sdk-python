@@ -31,10 +31,11 @@ class ComplianceRuleBreakdown(BaseModel):
     """
     group_status:  StrictStr = Field(...,alias="groupStatus", description="The status of this subset of results.") 
     results_used: Dict[str, Union[StrictFloat, StrictInt]] = Field(description="Dictionary of AddressKey (as string) and their corresponding decimal values, that were used in this rule.", alias="resultsUsed")
+    formula_values: Optional[Dict[str, Union[StrictFloat, StrictInt]]] = Field(default=None, description="The value each formula within the check criterion evaluated to for this group. Empty where the criterion  compares a single value or is not numerical, since the operand values already recorded describe those.", alias="formulaValues")
     properties_used: Dict[str, Optional[List[ModelProperty]]] = Field(description="Dictionary of PropertyKey (as string) and their corresponding Properties, that were used in this rule", alias="propertiesUsed")
     missing_data_information: List[StrictStr] = Field(description="List of string information detailing data that was missing from contributions processed in this rule", alias="missingDataInformation")
     lineage: List[LineageMember]
-    __properties: ClassVar[List[str]] = ["groupStatus", "resultsUsed", "propertiesUsed", "missingDataInformation", "lineage"]
+    __properties: ClassVar[List[str]] = ["groupStatus", "resultsUsed", "formulaValues", "propertiesUsed", "missingDataInformation", "lineage"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -86,6 +87,11 @@ class ComplianceRuleBreakdown(BaseModel):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['lineage'] = _items
+        # set to None if formula_values (nullable) is None
+        # and model_fields_set contains the field
+        if self.formula_values is None and "formula_values" in self.model_fields_set:
+            _dict['formulaValues'] = None
+
         return _dict
 
     @classmethod
@@ -100,6 +106,7 @@ class ComplianceRuleBreakdown(BaseModel):
         _obj = ComplianceRuleBreakdown.model_validate({
             "group_status": obj.get("groupStatus"),
             "results_used": obj.get("resultsUsed"),
+            "formula_values": obj.get("formulaValues"),
             "properties_used": dict(
                 (_k,
                         [ModelProperty.from_dict(_item) for _item in _v]

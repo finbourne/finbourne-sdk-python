@@ -13,6 +13,7 @@ Readonly information about how the worker should be executed
 * [LibraryResponse](./LibraryResponse.md)
 * [LuminesceViewResponse](./LuminesceViewResponse.md)
 * [LusidEntityDataQualityCheckResponse](./LusidEntityDataQualityCheckResponse.md)
+* [PortfolioHoldingDataQualityCheckResponse](./PortfolioHoldingDataQualityCheckResponse.md)
 * [SchedulerJobResponse](./SchedulerJobResponse.md)
 * [SleepResponse](./SleepResponse.md)
 
@@ -39,6 +40,7 @@ instance = WorkerConfigurationResponse(fail_response_instance)
 - [LibraryResponse](./LibraryResponse.md)
 - [LuminesceViewResponse](./LuminesceViewResponse.md)
 - [LusidEntityDataQualityCheckResponse](./LusidEntityDataQualityCheckResponse.md)
+- [PortfolioHoldingDataQualityCheckResponse](./PortfolioHoldingDataQualityCheckResponse.md)
 - [SchedulerJobResponse](./SchedulerJobResponse.md)
 - [SleepResponse](./SleepResponse.md)
 

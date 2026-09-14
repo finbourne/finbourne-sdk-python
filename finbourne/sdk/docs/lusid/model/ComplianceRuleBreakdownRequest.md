@@ -6,6 +6,7 @@
 |------|------|----------|-------------|
 | **group_status** | **str** | Required | *No description available.* |
 | **results_used** | **Dict[str, float]** | Required | *No description available.* |
+| **formula_values** | **Dict[str, float]** | Optional | *No description available.* |
 | **properties_used** | **Dict[str, Optional[List[ModelProperty]]]** | Required | *No description available.* |
 | **missing_data_information** | **List[str]** | Required | *No description available.* |
 | **lineage** | [List[LineageMember]](LineageMember.md) | Required | *No description available.* |
@@ -21,6 +22,7 @@ from finbourne.sdk.services.lusid.models.ComplianceRuleBreakdownRequest import C
 instance = ComplianceRuleBreakdownRequest(
     group_status="...",  # required
     results_used=,  # required
+    formula_values=,  # optional
     properties_used=,  # required
     missing_data_information=,  # required
     lineage=[]  # required

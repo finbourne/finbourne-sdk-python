@@ -3835,7 +3835,7 @@ class FundsApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def get_valuation_point_journal_entry_lines(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, general_ledger_profile_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ValuationPointResourceListOfFundJournalEntryLine:
+    def get_valuation_point_journal_entry_lines(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, general_ledger_profile_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, bucket_set_code: Optional[StrictStr] = None, **kwargs) -> ValuationPointResourceListOfFundJournalEntryLine:
         """[EARLY ACCESS] GetValuationPointJournalEntryLines: Get the Journal Entry Lines for the given Fund.  # noqa: E501
 
         Gets the Journal Entry Lines for the given Valuation Point for a Fund.                The Journal Entry Lines have been generated from transactions, translated via posting rules and used in the valuation point.  # noqa: E501
@@ -3859,6 +3859,8 @@ class FundsApi:
         :type property_keys: List[str]
         :param nav_type_code: When provided, runs against the specified NAV Type, otherwise the Primary NAV Type will be used.
         :type nav_type_code: str
+        :param bucket_set_code: When provided, each line's bucketMemberships report only this bucket set's classification of it.               Otherwise, every bucket set covering the NAV Type is reported.
+        :type bucket_set_code: str
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -3869,11 +3871,11 @@ class FundsApi:
             message = "Error! Please call the get_valuation_point_journal_entry_lines_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.get_valuation_point_journal_entry_lines_with_http_info(scope, code, valuation_point_data_query_parameters, general_ledger_profile_code, as_at, filter, limit, page, property_keys, nav_type_code, **kwargs)
+        response = self.get_valuation_point_journal_entry_lines_with_http_info(scope, code, valuation_point_data_query_parameters, general_ledger_profile_code, as_at, filter, limit, page, property_keys, nav_type_code, bucket_set_code, **kwargs)
         return response.data
 
     @validate_call
-    def get_valuation_point_journal_entry_lines_with_http_info(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, general_ledger_profile_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfFundJournalEntryLine]:
+    def get_valuation_point_journal_entry_lines_with_http_info(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, general_ledger_profile_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, bucket_set_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfFundJournalEntryLine]:
         """[EARLY ACCESS] GetValuationPointJournalEntryLines: Get the Journal Entry Lines for the given Fund.  # noqa: E501
 
         Gets the Journal Entry Lines for the given Valuation Point for a Fund.                The Journal Entry Lines have been generated from transactions, translated via posting rules and used in the valuation point.  # noqa: E501
@@ -3897,6 +3899,8 @@ class FundsApi:
         :type property_keys: List[str]
         :param nav_type_code: When provided, runs against the specified NAV Type, otherwise the Primary NAV Type will be used.
         :type nav_type_code: str
+        :param bucket_set_code: When provided, each line's bucketMemberships report only this bucket set's classification of it.               Otherwise, every bucket set covering the NAV Type is reported.
+        :type bucket_set_code: str
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -3929,7 +3933,8 @@ class FundsApi:
             'limit',
             'page',
             'property_keys',
-            'nav_type_code'
+            'nav_type_code',
+            'bucket_set_code'
         ]
         _all_params.extend(
             [
@@ -3990,6 +3995,9 @@ class FundsApi:
 
         if _params.get('nav_type_code') is not None:  # noqa: E501
             _query_params.append(('navTypeCode', _params['nav_type_code']))
+
+        if _params.get('bucket_set_code') is not None:  # noqa: E501
+            _query_params.append(('bucketSetCode', _params['bucket_set_code']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -4651,7 +4659,7 @@ class FundsApi:
         :type general_ledger_profile_code: str
         :param as_at: The asAt datetime at which to retrieve the Trial Balance.               Defaults to returning the latest version if not specified.
         :type as_at: datetime
-        :param filter: Expression to filter the results by.               For more information about filtering results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results by.               For more information about filtering results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param limit: When paginating, limit the number of returned results to this number.               Defaults to 100 if not specified.
         :type limit: int
@@ -4691,7 +4699,7 @@ class FundsApi:
         :type general_ledger_profile_code: str
         :param as_at: The asAt datetime at which to retrieve the Trial Balance.               Defaults to returning the latest version if not specified.
         :type as_at: datetime
-        :param filter: Expression to filter the results by.               For more information about filtering results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results by.               For more information about filtering results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param limit: When paginating, limit the number of returned results to this number.               Defaults to 100 if not specified.
         :type limit: int
@@ -5075,7 +5083,7 @@ class FundsApi:
         :type page: str
         :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
         :type limit: int
-        :param filter: Expression to filter the results.              For example, to filter on the treatment, specify \"treatment eq 'Monthly'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results.              For example, to filter on the treatment, specify \"treatment eq 'Monthly'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\"
         :type sort_by: List[str]
@@ -5111,7 +5119,7 @@ class FundsApi:
         :type page: str
         :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
         :type limit: int
-        :param filter: Expression to filter the results.              For example, to filter on the treatment, specify \"treatment eq 'Monthly'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results.              For example, to filter on the treatment, specify \"treatment eq 'Monthly'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\"
         :type sort_by: List[str]
@@ -5262,7 +5270,7 @@ class FundsApi:
         :type page: str
         :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
         :type limit: int
-        :param filter: Expression to filter the results. For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results. For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
         :type sort_by: List[str]
@@ -5296,7 +5304,7 @@ class FundsApi:
         :type page: str
         :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
         :type limit: int
-        :param filter: Expression to filter the results. For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results. For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
         :type sort_by: List[str]
@@ -5443,7 +5451,7 @@ class FundsApi:
         :type page: str
         :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
         :type limit: int
-        :param filter: Expression to filter the results. For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results. For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
         :type sort_by: List[str]
@@ -5477,7 +5485,7 @@ class FundsApi:
         :type page: str
         :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
         :type limit: int
-        :param filter: Expression to filter the results. For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results. For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
         :type sort_by: List[str]
@@ -5622,7 +5630,7 @@ class FundsApi:
         :type page: str
         :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
         :type limit: int
-        :param filter: Expression to filter the results.              For example, to filter on the Fund code, specify \"id.Code eq 'Fund1'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results.              For example, to filter on the Fund code, specify \"id.Code eq 'Fund1'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\"
         :type sort_by: List[str]
@@ -5654,7 +5662,7 @@ class FundsApi:
         :type page: str
         :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
         :type limit: int
-        :param filter: Expression to filter the results.              For example, to filter on the Fund code, specify \"id.Code eq 'Fund1'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results.              For example, to filter on the Fund code, specify \"id.Code eq 'Fund1'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\"
         :type sort_by: List[str]
@@ -6369,7 +6377,7 @@ class FundsApi:
         :type page: str
         :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
         :type limit: int
-        :param filter: Expression to filter the results by.              For example, to filter on the NAV, specify \"NAV gt 300\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results by.              For example, to filter on the NAV, specify \"NAV gt 300\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param property_keys: A list of property keys from the 'DiaryEntry' domain to decorate onto each ValuationPoint.              These must take the format {domain}/{scope}/{code}, for example 'DiaryEntry/ValuationPoint/Id'.
         :type property_keys: List[str]
@@ -6405,7 +6413,7 @@ class FundsApi:
         :type page: str
         :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
         :type limit: int
-        :param filter: Expression to filter the results by.              For example, to filter on the NAV, specify \"NAV gt 300\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results by.              For example, to filter on the NAV, specify \"NAV gt 300\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param property_keys: A list of property keys from the 'DiaryEntry' domain to decorate onto each ValuationPoint.              These must take the format {domain}/{scope}/{code}, for example 'DiaryEntry/ValuationPoint/Id'.
         :type property_keys: List[str]
@@ -12198,7 +12206,7 @@ class FundsApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def get_valuation_point_journal_entry_lines_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, general_ledger_profile_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ValuationPointResourceListOfFundJournalEntryLine:
+    async def get_valuation_point_journal_entry_lines_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, general_ledger_profile_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, bucket_set_code: Optional[StrictStr] = None, **kwargs) -> ValuationPointResourceListOfFundJournalEntryLine:
             """[EARLY ACCESS] GetValuationPointJournalEntryLines: Get the Journal Entry Lines for the given Fund.  # noqa: E501
             Gets the Journal Entry Lines for the given Valuation Point for a Fund.                The Journal Entry Lines have been generated from transactions, translated via posting rules and used in the valuation point.  # noqa: E501
             
@@ -12222,6 +12230,8 @@ class FundsApi:
             :type property_keys: List[str]
             :param nav_type_code: When provided, runs against the specified NAV Type, otherwise the Primary NAV Type will be used.
             :type nav_type_code: str
+            :param bucket_set_code: When provided, each line's bucketMemberships report only this bucket set's classification of it.               Otherwise, every bucket set covering the NAV Type is reported.
+            :type bucket_set_code: str
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -12232,11 +12242,11 @@ class FundsApi:
                 message = "Error! Please call the get_valuation_point_journal_entry_lines_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.get_valuation_point_journal_entry_lines_with_http_info_async(scope, code, valuation_point_data_query_parameters, general_ledger_profile_code, as_at, filter, limit, page, property_keys, nav_type_code, **kwargs)
+            response = await self.get_valuation_point_journal_entry_lines_with_http_info_async(scope, code, valuation_point_data_query_parameters, general_ledger_profile_code, as_at, filter, limit, page, property_keys, nav_type_code, bucket_set_code, **kwargs)
             return response.data
 
     @validate_call
-    async def get_valuation_point_journal_entry_lines_with_http_info_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, general_ledger_profile_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfFundJournalEntryLine]:
+    async def get_valuation_point_journal_entry_lines_with_http_info_async(self, scope: StrictStr, code: StrictStr, valuation_point_data_query_parameters: ValuationPointDataQueryParameters, general_ledger_profile_code: Optional[StrictStr] = None, as_at: Optional[datetime] = None, filter: Optional[StrictStr] = None, limit: Optional[int] = None, page: Optional[StrictStr] = None, property_keys: Optional[List[str]] = None, nav_type_code: Optional[StrictStr] = None, bucket_set_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ValuationPointResourceListOfFundJournalEntryLine]:
             """[EARLY ACCESS] GetValuationPointJournalEntryLines: Get the Journal Entry Lines for the given Fund.  # noqa: E501
 
             Gets the Journal Entry Lines for the given Valuation Point for a Fund.                The Journal Entry Lines have been generated from transactions, translated via posting rules and used in the valuation point.  # noqa: E501
@@ -12261,6 +12271,8 @@ class FundsApi:
             :type property_keys: List[str]
             :param nav_type_code: When provided, runs against the specified NAV Type, otherwise the Primary NAV Type will be used.
             :type nav_type_code: str
+            :param bucket_set_code: When provided, each line's bucketMemberships report only this bucket set's classification of it.               Otherwise, every bucket set covering the NAV Type is reported.
+            :type bucket_set_code: str
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -12293,7 +12305,8 @@ class FundsApi:
                 'limit',
                 'page',
                 'property_keys',
-                'nav_type_code'
+                'nav_type_code',
+                'bucket_set_code'
             ]
             _all_params.extend(
                 [
@@ -12354,6 +12367,9 @@ class FundsApi:
 
             if _params.get('nav_type_code') is not None:  # noqa: E501
                 _query_params.append(('navTypeCode', _params['nav_type_code']))
+
+            if _params.get('bucket_set_code') is not None:  # noqa: E501
+                _query_params.append(('bucketSetCode', _params['bucket_set_code']))
 
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))
@@ -13018,7 +13034,7 @@ class FundsApi:
             :type general_ledger_profile_code: str
             :param as_at: The asAt datetime at which to retrieve the Trial Balance.               Defaults to returning the latest version if not specified.
             :type as_at: datetime
-            :param filter: Expression to filter the results by.               For more information about filtering results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results by.               For more information about filtering results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param limit: When paginating, limit the number of returned results to this number.               Defaults to 100 if not specified.
             :type limit: int
@@ -13059,7 +13075,7 @@ class FundsApi:
             :type general_ledger_profile_code: str
             :param as_at: The asAt datetime at which to retrieve the Trial Balance.               Defaults to returning the latest version if not specified.
             :type as_at: datetime
-            :param filter: Expression to filter the results by.               For more information about filtering results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results by.               For more information about filtering results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param limit: When paginating, limit the number of returned results to this number.               Defaults to 100 if not specified.
             :type limit: int
@@ -13444,7 +13460,7 @@ class FundsApi:
             :type page: str
             :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
             :type limit: int
-            :param filter: Expression to filter the results.              For example, to filter on the treatment, specify \"treatment eq 'Monthly'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results.              For example, to filter on the treatment, specify \"treatment eq 'Monthly'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\"
             :type sort_by: List[str]
@@ -13481,7 +13497,7 @@ class FundsApi:
             :type page: str
             :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
             :type limit: int
-            :param filter: Expression to filter the results.              For example, to filter on the treatment, specify \"treatment eq 'Monthly'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results.              For example, to filter on the treatment, specify \"treatment eq 'Monthly'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\"
             :type sort_by: List[str]
@@ -13632,7 +13648,7 @@ class FundsApi:
             :type page: str
             :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
             :type limit: int
-            :param filter: Expression to filter the results. For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results. For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
             :type sort_by: List[str]
@@ -13667,7 +13683,7 @@ class FundsApi:
             :type page: str
             :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
             :type limit: int
-            :param filter: Expression to filter the results. For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results. For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
             :type sort_by: List[str]
@@ -13814,7 +13830,7 @@ class FundsApi:
             :type page: str
             :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
             :type limit: int
-            :param filter: Expression to filter the results. For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results. For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
             :type sort_by: List[str]
@@ -13849,7 +13865,7 @@ class FundsApi:
             :type page: str
             :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
             :type limit: int
-            :param filter: Expression to filter the results. For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results. For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
             :type sort_by: List[str]
@@ -13994,7 +14010,7 @@ class FundsApi:
             :type page: str
             :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
             :type limit: int
-            :param filter: Expression to filter the results.              For example, to filter on the Fund code, specify \"id.Code eq 'Fund1'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results.              For example, to filter on the Fund code, specify \"id.Code eq 'Fund1'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\"
             :type sort_by: List[str]
@@ -14027,7 +14043,7 @@ class FundsApi:
             :type page: str
             :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
             :type limit: int
-            :param filter: Expression to filter the results.              For example, to filter on the Fund code, specify \"id.Code eq 'Fund1'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results.              For example, to filter on the Fund code, specify \"id.Code eq 'Fund1'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\"
             :type sort_by: List[str]
@@ -14745,7 +14761,7 @@ class FundsApi:
             :type page: str
             :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
             :type limit: int
-            :param filter: Expression to filter the results by.              For example, to filter on the NAV, specify \"NAV gt 300\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results by.              For example, to filter on the NAV, specify \"NAV gt 300\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param property_keys: A list of property keys from the 'DiaryEntry' domain to decorate onto each ValuationPoint.              These must take the format {domain}/{scope}/{code}, for example 'DiaryEntry/ValuationPoint/Id'.
             :type property_keys: List[str]
@@ -14782,7 +14798,7 @@ class FundsApi:
             :type page: str
             :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
             :type limit: int
-            :param filter: Expression to filter the results by.              For example, to filter on the NAV, specify \"NAV gt 300\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results by.              For example, to filter on the NAV, specify \"NAV gt 300\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param property_keys: A list of property keys from the 'DiaryEntry' domain to decorate onto each ValuationPoint.              These must take the format {domain}/{scope}/{code}, for example 'DiaryEntry/ValuationPoint/Id'.
             :type property_keys: List[str]

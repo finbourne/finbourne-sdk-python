@@ -130,7 +130,7 @@ Estimates the units and the cash each order supplied would move, from the share 
 
 ```python
 api_instance = api_client_factory.build(TransferAgencyApi)
-request_body = {"Order1":{"orderId":{"scope":"example-scope","code":"order-1"}},"Order2":{"orderId":{"scope":"example-scope","code":"order-2"},"order":{"portfolioId":{"scope":"example-scope","code":"investor-1"},"instrumentIdentifierType":"LusidInstrumentId","instrumentIdentifier":"LUID_00000000","transactionCategory":"Subscription","currency":"GBP","amount":10000.0,"transactionDate":"2026-08-26T00:00:00.0000000+00:00"}}} # Dict[str, EstimateTransferAgencyOrderRequest]
+request_body = {"Order1":{"orderId":{"scope":"example-scope","code":"order-1"}},"Order2":{"orderId":{"scope":"example-scope","code":"order-2"},"order":{"portfolioId":{"scope":"example-scope","code":"investor-1"},"instrumentIdentifierType":"LusidInstrumentId","instrumentIdentifier":"LUID_00000000","instrumentScope":"default","transactionCategory":"Subscription","currency":"GBP","amount":10000.0}}} # Dict[str, EstimateTransferAgencyOrderRequest]
 api_response = api_instance.estimate_transfer_agency_orders(request_body)
 pprint(api_response)
 ```

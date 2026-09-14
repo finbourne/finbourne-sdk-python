@@ -7,7 +7,7 @@ A credit spread curve matching tenors against par spread quotes
 |------|------|----------|-------------|
 | **base_date** | **datetime** | Required | EffectiveAt date of the quoted rates |
 | **dom_ccy** | **str** | Required | Domestic currency of the curve |
-| **tenors** | **List[str]** | Required | The tenors for which the rates apply  For more information on tenors, see [knowledge base article KA-02097](https://support.lusid.com/knowledgebase/article/KA-02097) |
+| **tenors** | **List[str]** | Required | The tenors for which the rates apply  For more information on tenors, see [Specifying tenors in LUSID](https://support.lusid.com/docs/specifying-tenors-in-lusid) |
 | **spreads** | **List[float]** | Required | Par spread quotes corresponding to the tenors. |
 | **recovery_rate** | **float** | Required | The recovery rate in default. |
 | **reference_date** | **datetime** | Optional | If tenors are provided, this is the date against which the tenors will be resolved.  This is of importance to CDX spread quotes, which are usually quoted in tenors relative to the CDX start date.  In this case, the ReferenceDate would be equal to the CDX start date, and the BaseDate would be the date for which the spreads are valid.  If not provided, this defaults to the BaseDate of the curve. |
@@ -28,7 +28,7 @@ from finbourne.sdk.services.lusid.models.CreditSpreadCurveData import CreditSpre
 instance = CreditSpreadCurveData(
     base_date=datetime.now(),  # required — EffectiveAt date of the quoted rates
     dom_ccy="...",  # required — Domestic currency of the curve
-    tenors=,  # required — The tenors for which the rates apply  For more information on tenors, see [knowledge base article KA-02097](https://support.lusid.com/knowledgebase/article/KA-02097)
+    tenors=,  # required — The tenors for which the rates apply  For more information on tenors, see [Specifying tenors in LUSID](https://support.lusid.com/docs/specifying-tenors-in-lusid)
     spreads=,  # required — Par spread quotes corresponding to the tenors.
     recovery_rate=0.0,  # required — The recovery rate in default.
     reference_date=datetime.now(),  # optional — If tenors are provided, this is the date against which the tenors will be resolved.  This is of importance to CDX spread quotes, which are usually quoted in tenors relative to the CDX start date.  In this case, the ReferenceDate would be equal to the CDX start date, and the BaseDate would be the date for which the spreads are valid.  If not provided, this defaults to the BaseDate of the curve.

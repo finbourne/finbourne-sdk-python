@@ -14,6 +14,7 @@ Used to specify holdings target amounts at the tax-lot level
 | **notional_cost** | **float** | Optional | The notional cost of the tax-lot&#39;s opening transaction. |
 | **variation_margin** | **float** | Optional | The variation margin of the tax-lot&#39;s opening transaction. |
 | **variation_margin_portfolio_ccy** | **float** | Optional | The variation margin in portfolio currency of the tax-lot&#39;s opening transaction. |
+| **amortised_cost** | **float** | Optional | The amortised cost of the tax-lot in the settlement currency, for example a supplied amortised cost at migration. If supplied, this value seeds the tax-lot&#39;s amortised cost at the adjustment date and amortisation continues forward from it; if not supplied, the amortised cost defaults to the cost of the tax-lot. |
 
 
 ## Usage
@@ -32,7 +33,8 @@ instance = TargetTaxLot(
     settlement_date=datetime.now(),  # optional — The settlement date of the tax-lot&#39;s opening transaction.
     notional_cost=0.0,  # optional — The notional cost of the tax-lot&#39;s opening transaction.
     variation_margin=0.0,  # optional — The variation margin of the tax-lot&#39;s opening transaction.
-    variation_margin_portfolio_ccy=0.0  # optional — The variation margin in portfolio currency of the tax-lot&#39;s opening transaction.
+    variation_margin_portfolio_ccy=0.0,  # optional — The variation margin in portfolio currency of the tax-lot&#39;s opening transaction.
+    amortised_cost=0.0  # optional — The amortised cost of the tax-lot in the settlement currency, for example a supplied amortised cost at migration. If supplied, this value seeds the tax-lot&#39;s amortised cost at the adjustment date and amortisation continues forward from it; if not supplied, the amortised cost defaults to the cost of the tax-lot.
 )
 ```
 

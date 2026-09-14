@@ -22,17 +22,25 @@ from uuid import UUID
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 from finbourne.sdk.services.lusid.models.rec_dates_reconciled import RecDatesReconciled
+from finbourne.sdk.services.lusid.models.rec_execution import RecExecution
+from finbourne.sdk.services.lusid.models.rec_result_counts import RecResultCounts
+from finbourne.sdk.services.lusid.models.rec_review import RecReview
 
 
 class RecRunLogEntry(BaseModel):
     """
-    A single run within an instance's run log. All runs share the same effective dates (frozen at  instantiation); each has a different asAt, advanced on re-run.  # noqa: E501
+    A summary of a single run of a single rec type within an instance's run log, carrying the per-run outcome  detail the grouped-by-instance overview renders. Every entry comes off a result set, so only a run that has  completed or failed appears: a run still in flight is not logged until it lands.  # noqa: E501
     """
     run_number: StrictInt = Field(description="The run number within the instance. Increments with each re-run.", alias="runNumber")
     run_as_at: datetime = Field(description="The asAt datetime at which the run happened.", alias="runAsAt")
     superseded_as_at: Optional[datetime] = Field(default=None, description="The asAt datetime at which this run was superseded by a subsequent run.", alias="supersededAsAt")
     dates_reconciled: RecDatesReconciled = Field(alias="datesReconciled")
-    __properties: ClassVar[List[str]] = ["runNumber", "runAsAt", "supersededAsAt", "datesReconciled"]
+    execution: RecExecution
+    approval_status:  StrictStr = Field(...,alias="approvalStatus", description="The position of this result set in the approval ceremony. Available values: UnderReview, PendingApproval, RevisionsRequested, Approved, NotApplicable.") 
+    result_counts: Optional[RecResultCounts] = Field(default=None, alias="resultCounts")
+    review: Optional[RecReview] = None
+    rec_result_set_href:  StrictStr = Field(...,alias="recResultSetHref", description="The specific Uniform Resource Identifier (URI) of the full rec result set this run belongs to.") 
+    __properties: ClassVar[List[str]] = ["runNumber", "runAsAt", "supersededAsAt", "datesReconciled", "execution", "approvalStatus", "resultCounts", "review", "recResultSetHref"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -71,6 +79,15 @@ class RecRunLogEntry(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of dates_reconciled
         if self.dates_reconciled:
             _dict['datesReconciled'] = self.dates_reconciled.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of execution
+        if self.execution:
+            _dict['execution'] = self.execution.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of result_counts
+        if self.result_counts:
+            _dict['resultCounts'] = self.result_counts.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of review
+        if self.review:
+            _dict['review'] = self.review.to_dict(by_alias=by_alias)
         # set to None if superseded_as_at (nullable) is None
         # and model_fields_set contains the field
         if self.superseded_as_at is None and "superseded_as_at" in self.model_fields_set:
@@ -91,7 +108,12 @@ class RecRunLogEntry(BaseModel):
             "run_number": obj.get("runNumber"),
             "run_as_at": obj.get("runAsAt"),
             "superseded_as_at": obj.get("supersededAsAt"),
-            "dates_reconciled": RecDatesReconciled.from_dict(_v) if (_v := obj.get("datesReconciled")) is not None else None
+            "dates_reconciled": RecDatesReconciled.from_dict(_v) if (_v := obj.get("datesReconciled")) is not None else None,
+            "execution": RecExecution.from_dict(_v) if (_v := obj.get("execution")) is not None else None,
+            "approval_status": obj.get("approvalStatus"),
+            "result_counts": RecResultCounts.from_dict(_v) if (_v := obj.get("resultCounts")) is not None else None,
+            "review": RecReview.from_dict(_v) if (_v := obj.get("review")) is not None else None,
+            "rec_result_set_href": obj.get("recResultSetHref")
         })
         return _obj
 

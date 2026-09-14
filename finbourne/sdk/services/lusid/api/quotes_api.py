@@ -59,7 +59,7 @@ class QuotesApi:
 
     @validate_call
     def delete_quote_access_metadata_rule(self, scope: StrictStr, provider: Optional[StrictStr] = None, price_source: Optional[StrictStr] = None, instrument_id_type: Optional[StrictStr] = None, instrument_id: Optional[StrictStr] = None, quote_type: Optional[StrictStr] = None, var_field: Optional[StrictStr] = None, effective_at: Optional[StrictStr] = None, **kwargs) -> QuoteAccessMetadataRule:
-        """[EXPERIMENTAL] DeleteQuoteAccessMetadataRule: Delete a Quote Access Metadata Rule  # noqa: E501
+        """DeleteQuoteAccessMetadataRule: Delete a Quote Access Metadata Rule  # noqa: E501
 
         Delete the Quote Access Metadata Rule that exactly matches the provided identifier parts  # noqa: E501
         :param scope: The scope of the Quote Access Metadata Rule to retrieve. (required)
@@ -93,7 +93,7 @@ class QuotesApi:
 
     @validate_call
     def delete_quote_access_metadata_rule_with_http_info(self, scope: StrictStr, provider: Optional[StrictStr] = None, price_source: Optional[StrictStr] = None, instrument_id_type: Optional[StrictStr] = None, instrument_id: Optional[StrictStr] = None, quote_type: Optional[StrictStr] = None, var_field: Optional[StrictStr] = None, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[QuoteAccessMetadataRule]:
-        """[EXPERIMENTAL] DeleteQuoteAccessMetadataRule: Delete a Quote Access Metadata Rule  # noqa: E501
+        """DeleteQuoteAccessMetadataRule: Delete a Quote Access Metadata Rule  # noqa: E501
 
         Delete the Quote Access Metadata Rule that exactly matches the provided identifier parts  # noqa: E501
         :param scope: The scope of the Quote Access Metadata Rule to retrieve. (required)
@@ -532,7 +532,7 @@ class QuotesApi:
 
     @validate_call
     def get_quotes_access_metadata_rule(self, scope: StrictStr, provider: Optional[StrictStr] = None, price_source: Optional[StrictStr] = None, instrument_id_type: Optional[StrictStr] = None, instrument_id: Optional[StrictStr] = None, quote_type: Optional[StrictStr] = None, var_field: Optional[StrictStr] = None, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> QuoteAccessMetadataRule:
-        """[EXPERIMENTAL] GetQuotesAccessMetadataRule: Get a quote access metadata rule  # noqa: E501
+        """GetQuotesAccessMetadataRule: Get a quote access metadata rule  # noqa: E501
 
         Get a specific quote access metadata rule by specifying the corresponding identifier parts                No matching will be performed through this endpoint. To retrieve a rule, it is necessary to specify, exactly, the identifier of the rule  # noqa: E501
         :param scope: The scope of the Quote Access Metadata Rule to retrieve. (required)
@@ -568,7 +568,7 @@ class QuotesApi:
 
     @validate_call
     def get_quotes_access_metadata_rule_with_http_info(self, scope: StrictStr, provider: Optional[StrictStr] = None, price_source: Optional[StrictStr] = None, instrument_id_type: Optional[StrictStr] = None, instrument_id: Optional[StrictStr] = None, quote_type: Optional[StrictStr] = None, var_field: Optional[StrictStr] = None, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[QuoteAccessMetadataRule]:
-        """[EXPERIMENTAL] GetQuotesAccessMetadataRule: Get a quote access metadata rule  # noqa: E501
+        """GetQuotesAccessMetadataRule: Get a quote access metadata rule  # noqa: E501
 
         Get a specific quote access metadata rule by specifying the corresponding identifier parts                No matching will be performed through this endpoint. To retrieve a rule, it is necessary to specify, exactly, the identifier of the rule  # noqa: E501
         :param scope: The scope of the Quote Access Metadata Rule to retrieve. (required)
@@ -874,7 +874,7 @@ class QuotesApi:
 
     @validate_call
     def list_quotes_access_metadata_rules(self, scope: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ResourceListOfQuoteAccessMetadataRule:
-        """[EXPERIMENTAL] ListQuotesAccessMetadataRules: List all quote access metadata rules in a scope  # noqa: E501
+        """ListQuotesAccessMetadataRules: List all quote access metadata rules in a scope  # noqa: E501
 
         Get all the quote access metadata rules in the specified scope  # noqa: E501
         :param scope: The scope of the Quote Access Metadata Rule to retrieve. (required)
@@ -896,7 +896,7 @@ class QuotesApi:
 
     @validate_call
     def list_quotes_access_metadata_rules_with_http_info(self, scope: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfQuoteAccessMetadataRule]:
-        """[EXPERIMENTAL] ListQuotesAccessMetadataRules: List all quote access metadata rules in a scope  # noqa: E501
+        """ListQuotesAccessMetadataRules: List all quote access metadata rules in a scope  # noqa: E501
 
         Get all the quote access metadata rules in the specified scope  # noqa: E501
         :param scope: The scope of the Quote Access Metadata Rule to retrieve. (required)
@@ -1160,7 +1160,7 @@ class QuotesApi:
 
     @validate_call
     def upsert_quote_access_metadata_rule(self, scope: StrictStr, upsert_quote_access_metadata_rule_request: UpsertQuoteAccessMetadataRuleRequest, effective_at: Optional[StrictStr] = None, effective_until: Optional[datetime] = None, **kwargs) -> QuoteAccessMetadataRule:
-        """[EXPERIMENTAL] UpsertQuoteAccessMetadataRule: Upsert a Quote Access Metadata Rule. This creates or updates the data in LUSID.  # noqa: E501
+        """UpsertQuoteAccessMetadataRule: Upsert a Quote Access Metadata Rule. This creates or updates the data in LUSID.  # noqa: E501
 
         Update or insert one Quote Access Metadata Rule in a single scope. An item will be updated if it already exists  and inserted if it does not.    The response will return the successfully updated or inserted Quote Access Metadata Rule or failure message if unsuccessful    It is important to always check to verify success (or failure).                Multiple rules for a key can exists with different effective at dates, when resources are accessed the rule that is active for the current time will be fetched  # noqa: E501
         :param scope: The scope to use when updating or inserting the Quote Access Metadata Rule. (required)
@@ -1186,7 +1186,7 @@ class QuotesApi:
 
     @validate_call
     def upsert_quote_access_metadata_rule_with_http_info(self, scope: StrictStr, upsert_quote_access_metadata_rule_request: UpsertQuoteAccessMetadataRuleRequest, effective_at: Optional[StrictStr] = None, effective_until: Optional[datetime] = None, **kwargs) -> ApiResponse[QuoteAccessMetadataRule]:
-        """[EXPERIMENTAL] UpsertQuoteAccessMetadataRule: Upsert a Quote Access Metadata Rule. This creates or updates the data in LUSID.  # noqa: E501
+        """UpsertQuoteAccessMetadataRule: Upsert a Quote Access Metadata Rule. This creates or updates the data in LUSID.  # noqa: E501
 
         Update or insert one Quote Access Metadata Rule in a single scope. An item will be updated if it already exists  and inserted if it does not.    The response will return the successfully updated or inserted Quote Access Metadata Rule or failure message if unsuccessful    It is important to always check to verify success (or failure).                Multiple rules for a key can exists with different effective at dates, when resources are accessed the rule that is active for the current time will be fetched  # noqa: E501
         :param scope: The scope to use when updating or inserting the Quote Access Metadata Rule. (required)
@@ -1453,7 +1453,7 @@ class QuotesApi:
 
     @validate_call
     async def delete_quote_access_metadata_rule_async(self, scope: StrictStr, provider: Optional[StrictStr] = None, price_source: Optional[StrictStr] = None, instrument_id_type: Optional[StrictStr] = None, instrument_id: Optional[StrictStr] = None, quote_type: Optional[StrictStr] = None, var_field: Optional[StrictStr] = None, effective_at: Optional[StrictStr] = None, **kwargs) -> QuoteAccessMetadataRule:
-            """[EXPERIMENTAL] DeleteQuoteAccessMetadataRule: Delete a Quote Access Metadata Rule  # noqa: E501
+            """DeleteQuoteAccessMetadataRule: Delete a Quote Access Metadata Rule  # noqa: E501
             Delete the Quote Access Metadata Rule that exactly matches the provided identifier parts  # noqa: E501
             
             :param scope: The scope of the Quote Access Metadata Rule to retrieve. (required)
@@ -1487,7 +1487,7 @@ class QuotesApi:
 
     @validate_call
     async def delete_quote_access_metadata_rule_with_http_info_async(self, scope: StrictStr, provider: Optional[StrictStr] = None, price_source: Optional[StrictStr] = None, instrument_id_type: Optional[StrictStr] = None, instrument_id: Optional[StrictStr] = None, quote_type: Optional[StrictStr] = None, var_field: Optional[StrictStr] = None, effective_at: Optional[StrictStr] = None, **kwargs) -> ApiResponse[QuoteAccessMetadataRule]:
-            """[EXPERIMENTAL] DeleteQuoteAccessMetadataRule: Delete a Quote Access Metadata Rule  # noqa: E501
+            """DeleteQuoteAccessMetadataRule: Delete a Quote Access Metadata Rule  # noqa: E501
 
             Delete the Quote Access Metadata Rule that exactly matches the provided identifier parts  # noqa: E501
 
@@ -1929,7 +1929,7 @@ class QuotesApi:
 
     @validate_call
     async def get_quotes_access_metadata_rule_async(self, scope: StrictStr, provider: Optional[StrictStr] = None, price_source: Optional[StrictStr] = None, instrument_id_type: Optional[StrictStr] = None, instrument_id: Optional[StrictStr] = None, quote_type: Optional[StrictStr] = None, var_field: Optional[StrictStr] = None, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> QuoteAccessMetadataRule:
-            """[EXPERIMENTAL] GetQuotesAccessMetadataRule: Get a quote access metadata rule  # noqa: E501
+            """GetQuotesAccessMetadataRule: Get a quote access metadata rule  # noqa: E501
             Get a specific quote access metadata rule by specifying the corresponding identifier parts                No matching will be performed through this endpoint. To retrieve a rule, it is necessary to specify, exactly, the identifier of the rule  # noqa: E501
             
             :param scope: The scope of the Quote Access Metadata Rule to retrieve. (required)
@@ -1965,7 +1965,7 @@ class QuotesApi:
 
     @validate_call
     async def get_quotes_access_metadata_rule_with_http_info_async(self, scope: StrictStr, provider: Optional[StrictStr] = None, price_source: Optional[StrictStr] = None, instrument_id_type: Optional[StrictStr] = None, instrument_id: Optional[StrictStr] = None, quote_type: Optional[StrictStr] = None, var_field: Optional[StrictStr] = None, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[QuoteAccessMetadataRule]:
-            """[EXPERIMENTAL] GetQuotesAccessMetadataRule: Get a quote access metadata rule  # noqa: E501
+            """GetQuotesAccessMetadataRule: Get a quote access metadata rule  # noqa: E501
 
             Get a specific quote access metadata rule by specifying the corresponding identifier parts                No matching will be performed through this endpoint. To retrieve a rule, it is necessary to specify, exactly, the identifier of the rule  # noqa: E501
 
@@ -2273,7 +2273,7 @@ class QuotesApi:
 
     @validate_call
     async def list_quotes_access_metadata_rules_async(self, scope: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ResourceListOfQuoteAccessMetadataRule:
-            """[EXPERIMENTAL] ListQuotesAccessMetadataRules: List all quote access metadata rules in a scope  # noqa: E501
+            """ListQuotesAccessMetadataRules: List all quote access metadata rules in a scope  # noqa: E501
             Get all the quote access metadata rules in the specified scope  # noqa: E501
             
             :param scope: The scope of the Quote Access Metadata Rule to retrieve. (required)
@@ -2295,7 +2295,7 @@ class QuotesApi:
 
     @validate_call
     async def list_quotes_access_metadata_rules_with_http_info_async(self, scope: StrictStr, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[ResourceListOfQuoteAccessMetadataRule]:
-            """[EXPERIMENTAL] ListQuotesAccessMetadataRules: List all quote access metadata rules in a scope  # noqa: E501
+            """ListQuotesAccessMetadataRules: List all quote access metadata rules in a scope  # noqa: E501
 
             Get all the quote access metadata rules in the specified scope  # noqa: E501
 
@@ -2561,7 +2561,7 @@ class QuotesApi:
 
     @validate_call
     async def upsert_quote_access_metadata_rule_async(self, scope: StrictStr, upsert_quote_access_metadata_rule_request: UpsertQuoteAccessMetadataRuleRequest, effective_at: Optional[StrictStr] = None, effective_until: Optional[datetime] = None, **kwargs) -> QuoteAccessMetadataRule:
-            """[EXPERIMENTAL] UpsertQuoteAccessMetadataRule: Upsert a Quote Access Metadata Rule. This creates or updates the data in LUSID.  # noqa: E501
+            """UpsertQuoteAccessMetadataRule: Upsert a Quote Access Metadata Rule. This creates or updates the data in LUSID.  # noqa: E501
             Update or insert one Quote Access Metadata Rule in a single scope. An item will be updated if it already exists  and inserted if it does not.    The response will return the successfully updated or inserted Quote Access Metadata Rule or failure message if unsuccessful    It is important to always check to verify success (or failure).                Multiple rules for a key can exists with different effective at dates, when resources are accessed the rule that is active for the current time will be fetched  # noqa: E501
             
             :param scope: The scope to use when updating or inserting the Quote Access Metadata Rule. (required)
@@ -2587,7 +2587,7 @@ class QuotesApi:
 
     @validate_call
     async def upsert_quote_access_metadata_rule_with_http_info_async(self, scope: StrictStr, upsert_quote_access_metadata_rule_request: UpsertQuoteAccessMetadataRuleRequest, effective_at: Optional[StrictStr] = None, effective_until: Optional[datetime] = None, **kwargs) -> ApiResponse[QuoteAccessMetadataRule]:
-            """[EXPERIMENTAL] UpsertQuoteAccessMetadataRule: Upsert a Quote Access Metadata Rule. This creates or updates the data in LUSID.  # noqa: E501
+            """UpsertQuoteAccessMetadataRule: Upsert a Quote Access Metadata Rule. This creates or updates the data in LUSID.  # noqa: E501
 
             Update or insert one Quote Access Metadata Rule in a single scope. An item will be updated if it already exists  and inserted if it does not.    The response will return the successfully updated or inserted Quote Access Metadata Rule or failure message if unsuccessful    It is important to always check to verify success (or failure).                Multiple rules for a key can exists with different effective at dates, when resources are accessed the rule that is active for the current time will be fetched  # noqa: E501
 

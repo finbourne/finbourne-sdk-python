@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**delete_payment_instruction**](PaymentInstructionsApi.md#delete_payment_instruction) | **DELETE** /api/api/paymentinstructions/{scope}/{code} | [EXPERIMENTAL] DeletePaymentInstruction: Delete Payment Instruction
 [**get_payment_instruction**](PaymentInstructionsApi.md#get_payment_instruction) | **GET** /api/api/paymentinstructions/{scope}/{code} | [EXPERIMENTAL] GetPaymentInstruction: Get Payment Instruction
+[**get_payment_instructions_by_payment_record_ids**](PaymentInstructionsApi.md#get_payment_instructions_by_payment_record_ids) | **POST** /api/api/paymentinstructions/$getByPaymentRecordIds | [EXPERIMENTAL] GetPaymentInstructionsByPaymentRecordIds: Get Payment Instructions by Payment Record Ids
 [**upsert_payment_instructions**](PaymentInstructionsApi.md#upsert_payment_instructions) | **POST** /api/api/paymentinstructions | [EXPERIMENTAL] UpsertPaymentInstructions: Upsert Payment Instructions
 
 
@@ -121,6 +122,54 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The requested payment instruction |  -  |
+**400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../README.md)
+
+---
+
+# **get_payment_instructions_by_payment_record_ids**
+> GetPaymentInstructionsResponse getPaymentInstructionsByPaymentRecordIds = get_payment_instructions_by_payment_record_ids(request_body, property_keys=property_keys, effective_at=effective_at, as_at=as_at)
+
+[EXPERIMENTAL] GetPaymentInstructionsByPaymentRecordIds: Get Payment Instructions by Payment Record Ids
+
+Retrieve the Payment Instructions that reference the given Payment Records. Payment record ids are unique  across the system scope, so no scope or identifier type is required. The response contains the payment  instructions that could be found, keyed by the payment record id used to retrieve them, along with the  nature of any failures.
+
+### Example
+
+```python
+api_instance = api_client_factory.build(PaymentInstructionsApi)
+request_body = ["payment-record-id-1","payment-record-id-2"] # List[str]
+property_keys = ['property_keys_example'] # List[str] (optional)
+effective_at = 'effective_at_example' # str (optional)
+as_at = '2013-10-20T19:20:30+01:00' # datetime (optional)
+api_response = api_instance.get_payment_instructions_by_payment_record_ids(request_body, property_keys=property_keys, effective_at=effective_at, as_at=as_at)
+pprint(api_response)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request_body** | [**List[str]**](../model/str.md)| A collection of payment record ids to retrieve payment instructions for.              Duplicate ids are ignored. | [required] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the \&quot;PaymentInstruction\&quot; domain to decorate onto each              payment instruction. These take the format {domain}/{scope}/{code} e.g. \&quot;PaymentInstruction/myScope/myProperty\&quot;. | [optional] 
+ **effective_at** | **str**| The effective datetime or cut label at which to retrieve the payment instructions.              Defaults to the current LUSID system datetime if not specified. | [optional] 
+ **as_at** | **datetime**| The asAt datetime at which to retrieve the payment instructions. Defaults to return the latest              version of each payment instruction if not specified. | [optional] 
+
+### Return type
+
+[**GetPaymentInstructionsResponse**](../model/GetPaymentInstructionsResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The payment instructions that could be found for the supplied payment record ids, along with any failures |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 

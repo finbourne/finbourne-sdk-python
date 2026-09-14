@@ -633,7 +633,7 @@ class AborConfigurationApi:
         :type page: str
         :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
         :type limit: int
-        :param filter: Expression to filter the results.              For example, to filter on the AborConfiguration type, specify \"id.Code eq 'AborConfiguration1'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results.              For example, to filter on the AborConfiguration type, specify \"id.Code eq 'AborConfiguration1'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
         :type sort_by: List[str]
@@ -665,7 +665,7 @@ class AborConfigurationApi:
         :type page: str
         :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
         :type limit: int
-        :param filter: Expression to filter the results.              For example, to filter on the AborConfiguration type, specify \"id.Code eq 'AborConfiguration1'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results.              For example, to filter on the AborConfiguration type, specify \"id.Code eq 'AborConfiguration1'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
         :type sort_by: List[str]
@@ -1666,7 +1666,7 @@ class AborConfigurationApi:
             :type page: str
             :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
             :type limit: int
-            :param filter: Expression to filter the results.              For example, to filter on the AborConfiguration type, specify \"id.Code eq 'AborConfiguration1'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results.              For example, to filter on the AborConfiguration type, specify \"id.Code eq 'AborConfiguration1'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
             :type sort_by: List[str]
@@ -1699,7 +1699,7 @@ class AborConfigurationApi:
             :type page: str
             :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
             :type limit: int
-            :param filter: Expression to filter the results.              For example, to filter on the AborConfiguration type, specify \"id.Code eq 'AborConfiguration1'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results.              For example, to filter on the AborConfiguration type, specify \"id.Code eq 'AborConfiguration1'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
             :type sort_by: List[str]

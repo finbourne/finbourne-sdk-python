@@ -7,7 +7,7 @@ A Cleardown rule
 |------|------|----------|-------------|
 | **rule_id** | **str** | Required | The identifier for the Cleardown Rule. |
 | **general_ledger_account_code** | **str** | Required | The account to post the residual P&amp;L to. |
-| **rule_filter** | **str** | Required | The filter syntax for the Cleardown Rule. See https://support.lusid.com/knowledgebase/article/KA-02140 for more information on filter syntax. |
+| **rule_filter** | **str** | Required | The filter syntax for the Cleardown Rule. See https://support.lusid.com/docs/assigning-economic-activity-to-general-ledger-accounts-using-posting-rules for more information on filter syntax. |
 
 
 ## Usage
@@ -20,7 +20,7 @@ from finbourne.sdk.services.lusid.models.CleardownModuleRule import CleardownMod
 instance = CleardownModuleRule(
     rule_id="...",  # required — The identifier for the Cleardown Rule.
     general_ledger_account_code="...",  # required — The account to post the residual P&amp;L to.
-    rule_filter="..."  # required — The filter syntax for the Cleardown Rule. See https://support.lusid.com/knowledgebase/article/KA-02140 for more information on filter syntax.
+    rule_filter="..."  # required — The filter syntax for the Cleardown Rule. See https://support.lusid.com/docs/assigning-economic-activity-to-general-ledger-accounts-using-posting-rules for more information on filter syntax.
 )
 ```
 

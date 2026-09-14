@@ -34,9 +34,9 @@ class RunFileResponse(BaseModel):
     file_hash:  StrictStr = Field(...,alias="fileHash") 
     encrypted: StrictBool
     destinations: List[FileDestinationResponse]
-    transaction_ids: List[UUID] = Field(alias="transactionIds")
+    transaction_ids: List[StrictStr] = Field(alias="transactionIds")
     file_uuid:  StrictStr = Field(...,alias="fileUuid") 
-    failed_transaction_ids: List[UUID] = Field(alias="failedTransactionIds")
+    failed_transaction_ids: List[StrictStr] = Field(alias="failedTransactionIds")
     __properties: ClassVar[List[str]] = ["fileName", "generatedAt", "rowCount", "fileHash", "encrypted", "destinations", "transactionIds", "fileUuid", "failedTransactionIds"]
 
     model_config = ConfigDict(

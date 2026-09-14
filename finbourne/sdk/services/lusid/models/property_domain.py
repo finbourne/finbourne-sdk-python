@@ -120,6 +120,7 @@ class PropertyDomain(str, Enum):  # type: ignore[misc]
     SCENARIODEFINITION = 'ScenarioDefinition'
     PAYMENTINSTRUCTION = 'PaymentInstruction'
     TRANSFER = 'Transfer'
+    CURRENCYGROUP = 'CurrencyGroup'
 
     @classmethod
     def from_json(cls, json_str: str) -> PropertyDomain:

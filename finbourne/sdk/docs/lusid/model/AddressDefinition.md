@@ -5,12 +5,12 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **display_name** | **str** | Optional | The display name of the address key. |
-| **type** | **str** | Optional | Available values: String, Int, Decimal, DateTime, Boolean, ResultValue, Result0D, Result1D, Result2D, Json. |
+| **type** | **str** | Optional | Available values: String, Int, Decimal, DateTime, Boolean, ResultValue, Result0D, Result1D, Result2D, Json, ResultND. |
 | **description** | **str** | Optional | The description for this result. |
 | **life_cycle_status** | **str** | Optional | What is the status of the address path. If it is not Production then it might be removed at some point in the future.  See the removal date for the likely timing of that if any. |
 | **removal_date** | **datetime** | Optional | If the life-cycle status of the address is Deprecated then this is the date at which support of the address will be suspended.  After that date it will be removed at the earliest possible point subject to any specific contractual support and development constraints. |
 | **documentation_link** | **str** | Optional | Contains a link to the documentation for this AddressDefinition in KnowledgeBase. |
-| **axes** | [List[ResultAxisDefinition]](ResultAxisDefinition.md) | Optional | For keys whose type is a labelled vector or matrix (Result1D/Result2D), describes what the  labels on each axis mean. Null for scalar results and for shaped results whose axes have  not been described. |
+| **axes** | [List[ResultAxisDefinition]](ResultAxisDefinition.md) | Optional | For keys whose type is a labelled vector or matrix (Result1D/Result2D), describes what the  labels on each axis mean. Null for scalar results and for shaped results whose axes have  not been described. Note the constructor below collapses an empty axes list to null, so a  described-but-empty axis set is indistinguishable from an undescribed one. |
 
 
 ## Usage
@@ -22,12 +22,12 @@ from finbourne.sdk.services.lusid.models.AddressDefinition import AddressDefinit
 
 instance = AddressDefinition(
     display_name="...",  # optional — The display name of the address key.
-    type="...",  # optional — Available values: String, Int, Decimal, DateTime, Boolean, ResultValue, Result0D, Result1D, Result2D, Json.
+    type="...",  # optional — Available values: String, Int, Decimal, DateTime, Boolean, ResultValue, Result0D, Result1D, Result2D, Json, ResultND.
     description="...",  # optional — The description for this result.
     life_cycle_status="...",  # optional — What is the status of the address path. If it is not Production then it might be removed at some point in the future.  See the removal date for the likely timing of that if any.
     removal_date=datetime.now(),  # optional — If the life-cycle status of the address is Deprecated then this is the date at which support of the address will be suspended.  After that date it will be removed at the earliest possible point subject to any specific contractual support and development constraints.
     documentation_link="...",  # optional — Contains a link to the documentation for this AddressDefinition in KnowledgeBase.
-    axes=[]  # optional — For keys whose type is a labelled vector or matrix (Result1D/Result2D), describes what the  labels on each axis mean. Null for scalar results and for shaped results whose axes have  not been described.
+    axes=[]  # optional — For keys whose type is a labelled vector or matrix (Result1D/Result2D), describes what the  labels on each axis mean. Null for scalar results and for shaped results whose axes have  not been described. Note the constructor below collapses an empty axes list to null, so a  described-but-empty axis set is indistinguishable from an undescribed one.
 )
 ```
 

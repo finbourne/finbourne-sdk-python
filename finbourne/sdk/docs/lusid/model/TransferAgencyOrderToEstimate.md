@@ -14,7 +14,6 @@ The values of an order to estimate, for an order that has not been saved yet or 
 | **quantity** | **float** | Optional | *No description available.* |
 | **amount** | **float** | Optional | *No description available.* |
 | **weight** | **float** | Optional | *No description available.* |
-| **transaction_date** | **datetime** | Optional | *No description available.* |
 | **exchange_rate** | **float** | Optional | *No description available.* |
 
 
@@ -35,7 +34,6 @@ instance = TransferAgencyOrderToEstimate(
     quantity=0.0,  # optional
     amount=0.0,  # optional
     weight=0.0,  # optional
-    transaction_date=datetime.now(),  # optional
     exchange_rate=0.0  # optional
 )
 ```

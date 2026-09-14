@@ -10,7 +10,7 @@ A Workflow
 | **display_name** | **str** | Required | Human readable name |
 | **description** | **str** | Optional | Human readable description |
 | **root_task_definition_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
-| **workflow_structure** | [WorkflowStructure](WorkflowStructure.md) | Optional | *No description available.* |
+| **workflow_structure** | [WorkflowStructure](WorkflowStructure.md) | Required | *No description available.* |
 | **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | The properties of the Workflow, keyed by property key. |
 
 
@@ -27,7 +27,7 @@ instance = WorkflowResponse(
     display_name="...",  # required — Human readable name
     description="...",  # optional — Human readable description
     root_task_definition_id=ResourceId(...),  # required
-    workflow_structure=WorkflowStructure(...),  # optional
+    workflow_structure=WorkflowStructure(...),  # required
     properties=PerpetualProperty(...)  # optional — The properties of the Workflow, keyed by property key.
 )
 ```

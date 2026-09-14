@@ -7,7 +7,7 @@ Contains data (i.e. tenors and rates + metadata) for building fx forward curves 
 |------|------|----------|-------------|
 | **dom_ccy** | **str** | Required | Domestic currency of the fx forward |
 | **fgn_ccy** | **str** | Required | Foreign currency of the fx forward |
-| **tenors** | **List[str]** | Required | Tenors for which the forward rates apply.  For more information on tenors, see [knowledge base article KA-02097](https://support.lusid.com/knowledgebase/article/KA-02097) |
+| **tenors** | **List[str]** | Required | Tenors for which the forward rates apply.  For more information on tenors, see [Specifying tenors in LUSID](https://support.lusid.com/docs/specifying-tenors-in-lusid) |
 | **quote_references** | **List[Dict[str, str]]** | Required | For each tenor, a collection of identifiers. These will be looked up in the LUSID Quote Store to resolve the actual rates.  Accepts an array of Dictionary&lt;string, string&gt;. The keys of each dictionary must be chosen from the following enumeration:  [LusidInstrumentId, Isin, Sedol, Cusip, ClientInternal, Figi, RIC, QuotePermId, REDCode, BBGId, ICECode].  For example:    \&quot;quoteReferences\&quot;: [{\&quot;ClientInternal\&quot;: \&quot;SomeIdentifierForFirstTenor\&quot;},{\&quot;ClientInternal\&quot;: \&quot;SomeIdentifierForSecondTenor\&quot;} |
 | **lineage** | **str** | Optional | Description of the complex market data&#39;s lineage e.g. &#39;FundAccountant_GreenQuality&#39;. |
 | **market_data_options** | [MarketDataOptions](MarketDataOptions.md) | Optional | *No description available.* |
@@ -27,7 +27,7 @@ from finbourne.sdk.services.lusid.models.FxForwardCurveByQuoteReference import F
 instance = FxForwardCurveByQuoteReference(
     dom_ccy="...",  # required — Domestic currency of the fx forward
     fgn_ccy="...",  # required — Foreign currency of the fx forward
-    tenors=,  # required — Tenors for which the forward rates apply.  For more information on tenors, see [knowledge base article KA-02097](https://support.lusid.com/knowledgebase/article/KA-02097)
+    tenors=,  # required — Tenors for which the forward rates apply.  For more information on tenors, see [Specifying tenors in LUSID](https://support.lusid.com/docs/specifying-tenors-in-lusid)
     quote_references=,  # required — For each tenor, a collection of identifiers. These will be looked up in the LUSID Quote Store to resolve the actual rates.  Accepts an array of Dictionary&lt;string, string&gt;. The keys of each dictionary must be chosen from the following enumeration:  [LusidInstrumentId, Isin, Sedol, Cusip, ClientInternal, Figi, RIC, QuotePermId, REDCode, BBGId, ICECode].  For example:    \&quot;quoteReferences\&quot;: [{\&quot;ClientInternal\&quot;: \&quot;SomeIdentifierForFirstTenor\&quot;},{\&quot;ClientInternal\&quot;: \&quot;SomeIdentifierForSecondTenor\&quot;}
     lineage="...",  # optional — Description of the complex market data&#39;s lineage e.g. &#39;FundAccountant_GreenQuality&#39;.
     market_data_options=MarketDataOptions(...),  # optional

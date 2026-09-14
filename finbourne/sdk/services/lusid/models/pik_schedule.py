@@ -26,18 +26,23 @@ from finbourne.sdk.services.lusid.models.schedule import Schedule
 
 class PikSchedule(Schedule):
     """
-    A PikSchedule represents Payment-in-Kind features for a ComplexBond.  It works in conjunction with existing FixedSchedules or FloatSchedules to define  how interest is paid during duration of the schedule.  # noqa: E501
+    A PikSchedule represents Payment-in-Kind features for a ComplexBond, a FlexibleLoan or a LoanFacility.  It works in conjunction with existing FixedSchedules or FloatSchedules to define  how interest is paid during duration of the schedule.  # noqa: E501
     """
     start_date: datetime = Field(description="The start date of the PIK schedule period.", alias="startDate")
     maturity_date: datetime = Field(description="The end date of the PIK schedule period.", alias="maturityDate")
+    face_rounding_convention:  Optional[StrictStr] = Field(default=None,alias="faceRoundingConvention", description="How the face credited by an interest capitalisation is rounded. A PIK indenture typically increases  the note's principal by the interest payable rounded to a whole currency unit, and which way it  rounds varies by issuer. Defaults to null, which leaves the credited face unrounded. BuyUp is one  of the available values but is rejected: a capitalisation has no cash leg to fund the next whole  unit from. The per-unit coupon itself is never rounded. Available values: Floor, Ceiling, RoundHalfUp, RoundHalfDown, RoundToDecimalPlaces, BuyUp, BankerRounding.") 
+    face_rounding_decimal_places: Optional[StrictInt] = Field(default=None, description="The number of decimal places the credited face is rounded to. Required when  FaceRoundingConvention is RoundToDecimalPlaces and not permitted otherwise.", alias="faceRoundingDecimalPlaces")
     is_pik_fraction_electable: Optional[StrictBool] = Field(default=None, description="If true, the PIK fraction is electable at each payment date.  Defaults to false.", alias="isPikFractionElectable")
     pik_fraction: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The fraction of the coupon that is paid in kind, where 0 means fully cash and 1 means fully PIK.  Required if IsPikFractionElectable is false or null. Must satisfy 0 <= pikFraction <= 1.", alias="pikFraction")
+    pik_margin: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The portion of the coupon that is paid in kind, stated in the leg's own rate units (an annualised  rate on the notional) rather than as a fraction of the coupon. The in-kind leg accrues at this flat  rate and the cash leg accrues the remainder of the coupon, so on a floating leg the in-kind portion  stays constant across fixings — the shape of a loan quoted as \"index + 700bp, of which 250bp paid  in kind\". On a fixed leg it is equivalent to pikFraction = pikMargin / couponRate. Should the  period's whole coupon fall below the margin, the in-kind portion is capped at the whole  (non-negative) coupon and the cash leg floors at zero.  Mutually exclusive with pikFraction, pikRate, pikSpread and isPikFractionElectable.  Must be greater than or equal to zero. null indicates the split is stated by pikFraction instead.", alias="pikMargin")
     pik_payment_type:  Optional[StrictStr] = Field(default=None,alias="pikPaymentType", description="The type of PIK payment to be used for the duration of this schedule.  InterestCapitalisation adds the paid-in-kind portion to the bond's current face;  AdditionalSecurities settles it by delivering units of another instrument, named on each  period's PikBondInterestEvent; Electable leaves the choice to a per-period election.                Supported string (enumeration) values are: [Electable, InterestCapitalisation, AdditionalSecurities].") 
     pik_rate: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The PIK interest rate. Must be greater than or equal to zero.  null indicates no override PIK interest rate.", alias="pikRate")
     pik_spread: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The PIK spread to be added to the base rate for the final PIK rate.  null indicates no spread on base rate.", alias="pikSpread")
+    pik_travels_free: Optional[StrictBool] = Field(default=None, description="Whether the in-kind entitlement travels with the traded position for the whole period, the way bond  interest does, rather than being earned from settlement the way loan cash interest is. When true, a  holder who buys before the period end takes the full-period in-kind amount on the amount bought even  if the trade settles after the ex-date. When false, the in-kind amount is day-weighted on the settled  balance path and the settled holder keeps it. Defaults to true. Bank debt only: a ComplexBond's  in-kind entitlement already follows the record date.                Nullable in the constructor and initialised here, unlike the generated shape: Newtonsoft passes  default(bool) for a value-type constructor parameter the payload omits, so a plain  `bool pikTravelsFree = true` would come back false for every client that did not state it.", alias="pikTravelsFree")
+    pik_interest_basis:  Optional[StrictStr] = Field(default=None,alias="pikInterestBasis", description="Whether the in-kind leg stands in place of the cash leg or is paid on top of it.                Alternative, the default, is the toggling structure: one period's interest settled partly in cash  and partly in kind, so the cash leg settles the complement of PikFraction and the period's  interest is the weighted sum of the two accruals, lying between them. Additional makes the two  separate legs of one loan, each settled in full, so the period's interest is their sum and  PikFraction weights only the in-kind leg.                The two accruals cannot be told apart without this: 500 accrued in cash against 600 in kind is  560 of interest on one reading and 1,100 on the other. A PikMargin schedule is Additional  whichever is stated, because the margin is already carved out of the coupon.                Defaulted here as well as in the constructor for the reason PikTravelsFree is.") 
     schedule_type:  StrictStr = Field(...,alias="scheduleType", description="Available values: FixedSchedule, FloatSchedule, OptionalitySchedule, StepSchedule, Exercise, FxRateSchedule, FxLinkedNotionalSchedule, BondConversionSchedule, PikSchedule, CommodityCalendarSchedule, Invalid, CancelSchedule.") 
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["scheduleType", "startDate", "maturityDate", "isPikFractionElectable", "pikFraction", "pikPaymentType", "pikRate", "pikSpread"]
+    __properties: ClassVar[List[str]] = ["scheduleType", "startDate", "maturityDate", "faceRoundingConvention", "faceRoundingDecimalPlaces", "isPikFractionElectable", "pikFraction", "pikMargin", "pikPaymentType", "pikRate", "pikSpread", "pikTravelsFree", "pikInterestBasis"]
 
     @field_validator('schedule_type')
     def schedule_type_validate_enum(cls, value):
@@ -99,10 +104,25 @@ class PikSchedule(Schedule):
             for _key, _value in self.additional_properties.items():
                 _dict[_key] = _value
 
+        # set to None if face_rounding_convention (nullable) is None
+        # and model_fields_set contains the field
+        if self.face_rounding_convention is None and "face_rounding_convention" in self.model_fields_set:
+            _dict['faceRoundingConvention'] = None
+
+        # set to None if face_rounding_decimal_places (nullable) is None
+        # and model_fields_set contains the field
+        if self.face_rounding_decimal_places is None and "face_rounding_decimal_places" in self.model_fields_set:
+            _dict['faceRoundingDecimalPlaces'] = None
+
         # set to None if pik_fraction (nullable) is None
         # and model_fields_set contains the field
         if self.pik_fraction is None and "pik_fraction" in self.model_fields_set:
             _dict['pikFraction'] = None
+
+        # set to None if pik_margin (nullable) is None
+        # and model_fields_set contains the field
+        if self.pik_margin is None and "pik_margin" in self.model_fields_set:
+            _dict['pikMargin'] = None
 
         # set to None if pik_payment_type (nullable) is None
         # and model_fields_set contains the field
@@ -119,6 +139,11 @@ class PikSchedule(Schedule):
         if self.pik_spread is None and "pik_spread" in self.model_fields_set:
             _dict['pikSpread'] = None
 
+        # set to None if pik_interest_basis (nullable) is None
+        # and model_fields_set contains the field
+        if self.pik_interest_basis is None and "pik_interest_basis" in self.model_fields_set:
+            _dict['pikInterestBasis'] = None
+
         return _dict
 
     @classmethod
@@ -134,11 +159,16 @@ class PikSchedule(Schedule):
             "schedule_type": obj.get("scheduleType"),
             "start_date": obj.get("startDate"),
             "maturity_date": obj.get("maturityDate"),
+            "face_rounding_convention": obj.get("faceRoundingConvention"),
+            "face_rounding_decimal_places": obj.get("faceRoundingDecimalPlaces"),
             "is_pik_fraction_electable": obj.get("isPikFractionElectable"),
             "pik_fraction": obj.get("pikFraction"),
+            "pik_margin": obj.get("pikMargin"),
             "pik_payment_type": obj.get("pikPaymentType"),
             "pik_rate": obj.get("pikRate"),
-            "pik_spread": obj.get("pikSpread")
+            "pik_spread": obj.get("pikSpread"),
+            "pik_travels_free": obj.get("pikTravelsFree"),
+            "pik_interest_basis": obj.get("pikInterestBasis")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

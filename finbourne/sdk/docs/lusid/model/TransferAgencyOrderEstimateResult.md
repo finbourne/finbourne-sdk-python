@@ -13,6 +13,7 @@ The estimated values for one order, together with the market facts they were str
 | **estimated_amount** | **float** | Optional | *No description available.* |
 | **estimated_amount_currency** | **str** | Optional | *No description available.* |
 | **fx_rate_used** | **float** | Optional | *No description available.* |
+| **excluded_orders** | [List[TransferAgencyExcludedOrder]](TransferAgencyExcludedOrder.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -30,7 +31,8 @@ instance = TransferAgencyOrderEstimateResult(
     estimated_units=0.0,  # optional
     estimated_amount=0.0,  # optional
     estimated_amount_currency="...",  # optional
-    fx_rate_used=0.0  # optional
+    fx_rate_used=0.0,  # optional
+    excluded_orders=[]  # optional
 )
 ```
 
@@ -38,6 +40,7 @@ instance = TransferAgencyOrderEstimateResult(
 ## Related Models
 
 - [ResourceId](ResourceId.md)
+- [TransferAgencyExcludedOrder](TransferAgencyExcludedOrder.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

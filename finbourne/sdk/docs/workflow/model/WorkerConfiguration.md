@@ -12,6 +12,7 @@ Information about how the worker should be executed
 * [HorizonIntegration](./HorizonIntegration.md)
 * [LuminesceView](./LuminesceView.md)
 * [LusidEntityDataQualityCheck](./LusidEntityDataQualityCheck.md)
+* [PortfolioHoldingDataQualityCheck](./PortfolioHoldingDataQualityCheck.md)
 * [SchedulerJob](./SchedulerJob.md)
 * [Sleep](./Sleep.md)
 
@@ -37,6 +38,7 @@ instance = WorkerConfiguration(fail_instance)
 - [HorizonIntegration](./HorizonIntegration.md)
 - [LuminesceView](./LuminesceView.md)
 - [LusidEntityDataQualityCheck](./LusidEntityDataQualityCheck.md)
+- [PortfolioHoldingDataQualityCheck](./PortfolioHoldingDataQualityCheck.md)
 - [SchedulerJob](./SchedulerJob.md)
 - [Sleep](./Sleep.md)
 

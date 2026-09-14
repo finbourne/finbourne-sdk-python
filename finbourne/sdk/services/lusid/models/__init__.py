@@ -22,6 +22,7 @@ from finbourne.sdk.services.lusid.models.abor_configuration_properties import Ab
 from finbourne.sdk.services.lusid.models.abor_configuration_request import AborConfigurationRequest
 from finbourne.sdk.services.lusid.models.abor_properties import AborProperties
 from finbourne.sdk.services.lusid.models.abor_request import AborRequest
+from finbourne.sdk.services.lusid.models.abstain_election import AbstainElection
 from finbourne.sdk.services.lusid.models.accept_estimate_valuation_point_response import AcceptEstimateValuationPointResponse
 from finbourne.sdk.services.lusid.models.access_controlled_action import AccessControlledAction
 from finbourne.sdk.services.lusid.models.access_controlled_resource import AccessControlledResource
@@ -162,6 +163,7 @@ from finbourne.sdk.services.lusid.models.break_code_source import BreakCodeSourc
 from finbourne.sdk.services.lusid.models.bucket import Bucket
 from finbourne.sdk.services.lusid.models.bucket_border_configuration import BucketBorderConfiguration
 from finbourne.sdk.services.lusid.models.bucket_definition import BucketDefinition
+from finbourne.sdk.services.lusid.models.bucket_membership import BucketMembership
 from finbourne.sdk.services.lusid.models.bucket_set_definition import BucketSetDefinition
 from finbourne.sdk.services.lusid.models.bucket_set_node import BucketSetNode
 from finbourne.sdk.services.lusid.models.bucket_set_result import BucketSetResult
@@ -296,7 +298,11 @@ from finbourne.sdk.services.lusid.models.composite_dispersion import CompositeDi
 from finbourne.sdk.services.lusid.models.composite_dispersion_response import CompositeDispersionResponse
 from finbourne.sdk.services.lusid.models.compounding import Compounding
 from finbourne.sdk.services.lusid.models.configuration_recipe import ConfigurationRecipe
+from finbourne.sdk.services.lusid.models.consent_and_exchange_election import ConsentAndExchangeElection
+from finbourne.sdk.services.lusid.models.consent_and_tender_election import ConsentAndTenderElection
+from finbourne.sdk.services.lusid.models.consent_denied_election import ConsentDeniedElection
 from finbourne.sdk.services.lusid.models.consent_event import ConsentEvent
+from finbourne.sdk.services.lusid.models.consent_granted_election import ConsentGrantedElection
 from finbourne.sdk.services.lusid.models.constant_volatility_surface import ConstantVolatilitySurface
 from finbourne.sdk.services.lusid.models.constituents_adjustment_header import ConstituentsAdjustmentHeader
 from finbourne.sdk.services.lusid.models.contract_details import ContractDetails
@@ -368,6 +374,8 @@ from finbourne.sdk.services.lusid.models.credit_spread_shift_definition import C
 from finbourne.sdk.services.lusid.models.credit_support_annex import CreditSupportAnnex
 from finbourne.sdk.services.lusid.models.criterion_type import CriterionType
 from finbourne.sdk.services.lusid.models.currency_and_amount import CurrencyAndAmount
+from finbourne.sdk.services.lusid.models.currency_group_minor_unit import CurrencyGroupMinorUnit
+from finbourne.sdk.services.lusid.models.currency_group_response import CurrencyGroupResponse
 from finbourne.sdk.services.lusid.models.curve_options import CurveOptions
 from finbourne.sdk.services.lusid.models.curve_shift_window_bounds import CurveShiftWindowBounds
 from finbourne.sdk.services.lusid.models.custodian_account import CustodianAccount
@@ -452,6 +460,7 @@ from finbourne.sdk.services.lusid.models.discounting_dependency import Discounti
 from finbourne.sdk.services.lusid.models.discounting_method import DiscountingMethod
 from finbourne.sdk.services.lusid.models.dividend_option_event import DividendOptionEvent
 from finbourne.sdk.services.lusid.models.dividend_reinvestment_event import DividendReinvestmentEvent
+from finbourne.sdk.services.lusid.models.dividend_suspension_event import DividendSuspensionEvent
 from finbourne.sdk.services.lusid.models.drawdown_event import DrawdownEvent
 from finbourne.sdk.services.lusid.models.drawing_event import DrawingEvent
 from finbourne.sdk.services.lusid.models.dutch_auction_event import DutchAuctionEvent
@@ -606,6 +615,7 @@ from finbourne.sdk.services.lusid.models.get_data_map_response import GetDataMap
 from finbourne.sdk.services.lusid.models.get_flow_conventions_response import GetFlowConventionsResponse
 from finbourne.sdk.services.lusid.models.get_index_convention_response import GetIndexConventionResponse
 from finbourne.sdk.services.lusid.models.get_instruments_response import GetInstrumentsResponse
+from finbourne.sdk.services.lusid.models.get_payment_instructions_response import GetPaymentInstructionsResponse
 from finbourne.sdk.services.lusid.models.get_quotes_response import GetQuotesResponse
 from finbourne.sdk.services.lusid.models.get_recipe_composer_response import GetRecipeComposerResponse
 from finbourne.sdk.services.lusid.models.get_recipe_response import GetRecipeResponse
@@ -673,6 +683,7 @@ from finbourne.sdk.services.lusid.models.index_convention import IndexConvention
 from finbourne.sdk.services.lusid.models.index_model_options import IndexModelOptions
 from finbourne.sdk.services.lusid.models.index_projection_dependency import IndexProjectionDependency
 from finbourne.sdk.services.lusid.models.industry_classifier import IndustryClassifier
+from finbourne.sdk.services.lusid.models.inflation_convexity_options import InflationConvexityOptions
 from finbourne.sdk.services.lusid.models.inflation_curve_data import InflationCurveData
 from finbourne.sdk.services.lusid.models.inflation_curve_shift_definition import InflationCurveShiftDefinition
 from finbourne.sdk.services.lusid.models.inflation_fixing_dependency import InflationFixingDependency
@@ -753,6 +764,7 @@ from finbourne.sdk.services.lusid.models.list_complex_market_data_with_meta_data
 from finbourne.sdk.services.lusid.models.loan_facility import LoanFacility
 from finbourne.sdk.services.lusid.models.loan_facility_contract_rollover_event import LoanFacilityContractRolloverEvent
 from finbourne.sdk.services.lusid.models.loan_facility_delayed_compensation_payment_event import LoanFacilityDelayedCompensationPaymentEvent
+from finbourne.sdk.services.lusid.models.loan_interest_capitalisation_event import LoanInterestCapitalisationEvent
 from finbourne.sdk.services.lusid.models.loan_interest_repayment_event import LoanInterestRepaymentEvent
 from finbourne.sdk.services.lusid.models.loan_period import LoanPeriod
 from finbourne.sdk.services.lusid.models.loan_principal_repayment_event import LoanPrincipalRepaymentEvent
@@ -875,6 +887,7 @@ from finbourne.sdk.services.lusid.models.otc_confirmation import OtcConfirmation
 from finbourne.sdk.services.lusid.models.output_transaction import OutputTransaction
 from finbourne.sdk.services.lusid.models.output_transition import OutputTransition
 from finbourne.sdk.services.lusid.models.override_virtual_transactions_response import OverrideVirtualTransactionsResponse
+from finbourne.sdk.services.lusid.models.oversubscribe_election import OversubscribeElection
 from finbourne.sdk.services.lusid.models.package import Package
 from finbourne.sdk.services.lusid.models.package_request import PackageRequest
 from finbourne.sdk.services.lusid.models.package_set_request import PackageSetRequest
@@ -895,6 +908,7 @@ from finbourne.sdk.services.lusid.models.paged_resource_list_of_compliance_rule_
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_compliance_run_info_v2 import PagedResourceListOfComplianceRunInfoV2
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_compliance_template import PagedResourceListOfComplianceTemplate
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_corporate_action_source import PagedResourceListOfCorporateActionSource
+from finbourne.sdk.services.lusid.models.paged_resource_list_of_currency_group_response import PagedResourceListOfCurrencyGroupResponse
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_custodian_account import PagedResourceListOfCustodianAccount
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_custom_entity_definition import PagedResourceListOfCustomEntityDefinition
 from finbourne.sdk.services.lusid.models.paged_resource_list_of_custom_entity_response import PagedResourceListOfCustomEntityResponse
@@ -1151,6 +1165,7 @@ from finbourne.sdk.services.lusid.models.rec_review_configuration import RecRevi
 from finbourne.sdk.services.lusid.models.rec_review_required_approval import RecReviewRequiredApproval
 from finbourne.sdk.services.lusid.models.rec_review_requirement_rule import RecReviewRequirementRule
 from finbourne.sdk.services.lusid.models.rec_review_submission import RecReviewSubmission
+from finbourne.sdk.services.lusid.models.rec_run_log import RecRunLog
 from finbourne.sdk.services.lusid.models.rec_run_log_entry import RecRunLogEntry
 from finbourne.sdk.services.lusid.models.rec_submission import RecSubmission
 from finbourne.sdk.services.lusid.models.rec_superseded_run import RecSupersededRun
@@ -1297,6 +1312,7 @@ from finbourne.sdk.services.lusid.models.result_data_key_rule import ResultDataK
 from finbourne.sdk.services.lusid.models.result_data_schema import ResultDataSchema
 from finbourne.sdk.services.lusid.models.result_key_rule import ResultKeyRule
 from finbourne.sdk.services.lusid.models.result_key_rule_type import ResultKeyRuleType
+from finbourne.sdk.services.lusid.models.result_nd import ResultND
 from finbourne.sdk.services.lusid.models.result_value import ResultValue
 from finbourne.sdk.services.lusid.models.result_value0_d import ResultValue0D
 from finbourne.sdk.services.lusid.models.result_value_bool import ResultValueBool
@@ -1307,6 +1323,7 @@ from finbourne.sdk.services.lusid.models.result_value_dictionary import ResultVa
 from finbourne.sdk.services.lusid.models.result_value_int import ResultValueInt
 from finbourne.sdk.services.lusid.models.result_value_string import ResultValueString
 from finbourne.sdk.services.lusid.models.result_value_type import ResultValueType
+from finbourne.sdk.services.lusid.models.retain_election import RetainElection
 from finbourne.sdk.services.lusid.models.return_zero_pv_options import ReturnZeroPvOptions
 from finbourne.sdk.services.lusid.models.returns_entity import ReturnsEntity
 from finbourne.sdk.services.lusid.models.returns_metric import ReturnsMetric
@@ -1342,6 +1359,7 @@ from finbourne.sdk.services.lusid.models.security_election import SecurityElecti
 from finbourne.sdk.services.lusid.models.security_offer_constituent import SecurityOfferConstituent
 from finbourne.sdk.services.lusid.models.security_offer_election import SecurityOfferElection
 from finbourne.sdk.services.lusid.models.security_write_off_event import SecurityWriteOffEvent
+from finbourne.sdk.services.lusid.models.sell_entitlement_election import SellEntitlementElection
 from finbourne.sdk.services.lusid.models.sequence_definition import SequenceDefinition
 from finbourne.sdk.services.lusid.models.series_definition import SeriesDefinition
 from finbourne.sdk.services.lusid.models.series_definition_request import SeriesDefinitionRequest
@@ -1487,6 +1505,7 @@ from finbourne.sdk.services.lusid.models.transaction_type_property_mapping impor
 from finbourne.sdk.services.lusid.models.transaction_type_request import TransactionTypeRequest
 from finbourne.sdk.services.lusid.models.transactions_reconciliations_response import TransactionsReconciliationsResponse
 from finbourne.sdk.services.lusid.models.transfer_agency_dates import TransferAgencyDates
+from finbourne.sdk.services.lusid.models.transfer_agency_excluded_order import TransferAgencyExcludedOrder
 from finbourne.sdk.services.lusid.models.transfer_agency_order_estimate_result import TransferAgencyOrderEstimateResult
 from finbourne.sdk.services.lusid.models.transfer_agency_order_result import TransferAgencyOrderResult
 from finbourne.sdk.services.lusid.models.transfer_agency_order_to_estimate import TransferAgencyOrderToEstimate
@@ -1510,9 +1529,11 @@ from finbourne.sdk.services.lusid.models.trial_balance_query_parameters import T
 from finbourne.sdk.services.lusid.models.trigger_event import TriggerEvent
 from finbourne.sdk.services.lusid.models.typed_resource_id import TypedResourceId
 from finbourne.sdk.services.lusid.models.unconfirm_closed_period_request import UnconfirmClosedPeriodRequest
+from finbourne.sdk.services.lusid.models.unit_dimension import UnitDimension
 from finbourne.sdk.services.lusid.models.unit_schema import UnitSchema
 from finbourne.sdk.services.lusid.models.unitisation_data import UnitisationData
 from finbourne.sdk.services.lusid.models.units_ratio import UnitsRatio
+from finbourne.sdk.services.lusid.models.unknown_proceeds_election import UnknownProceedsElection
 from finbourne.sdk.services.lusid.models.unmatched_holding_method import UnmatchedHoldingMethod
 from finbourne.sdk.services.lusid.models.unsettled_transaction import UnsettledTransaction
 from finbourne.sdk.services.lusid.models.update_amortisation_rule_set_details_request import UpdateAmortisationRuleSetDetailsRequest
@@ -1563,6 +1584,7 @@ from finbourne.sdk.services.lusid.models.upsert_corporate_action_request import 
 from finbourne.sdk.services.lusid.models.upsert_corporate_actions_response import UpsertCorporateActionsResponse
 from finbourne.sdk.services.lusid.models.upsert_counterparty_agreement_request import UpsertCounterpartyAgreementRequest
 from finbourne.sdk.services.lusid.models.upsert_credit_support_annex_request import UpsertCreditSupportAnnexRequest
+from finbourne.sdk.services.lusid.models.upsert_currency_group_request import UpsertCurrencyGroupRequest
 from finbourne.sdk.services.lusid.models.upsert_custom_entities_response import UpsertCustomEntitiesResponse
 from finbourne.sdk.services.lusid.models.upsert_custom_entity_access_metadata_request import UpsertCustomEntityAccessMetadataRequest
 from finbourne.sdk.services.lusid.models.upsert_data_quality_rule import UpsertDataQualityRule
@@ -1686,6 +1708,7 @@ __all__ = [
     "AborConfigurationRequest",
     "AborProperties",
     "AborRequest",
+    "AbstainElection",
     "AcceptEstimateValuationPointResponse",
     "AccessControlledAction",
     "AccessControlledResource",
@@ -1826,6 +1849,7 @@ __all__ = [
     "Bucket",
     "BucketBorderConfiguration",
     "BucketDefinition",
+    "BucketMembership",
     "BucketSetDefinition",
     "BucketSetNode",
     "BucketSetResult",
@@ -1960,7 +1984,11 @@ __all__ = [
     "CompositeDispersionResponse",
     "Compounding",
     "ConfigurationRecipe",
+    "ConsentAndExchangeElection",
+    "ConsentAndTenderElection",
+    "ConsentDeniedElection",
     "ConsentEvent",
+    "ConsentGrantedElection",
     "ConstantVolatilitySurface",
     "ConstituentsAdjustmentHeader",
     "ContractDetails",
@@ -2032,6 +2060,8 @@ __all__ = [
     "CreditSupportAnnex",
     "CriterionType",
     "CurrencyAndAmount",
+    "CurrencyGroupMinorUnit",
+    "CurrencyGroupResponse",
     "CurveOptions",
     "CurveShiftWindowBounds",
     "CustodianAccount",
@@ -2116,6 +2146,7 @@ __all__ = [
     "DiscountingMethod",
     "DividendOptionEvent",
     "DividendReinvestmentEvent",
+    "DividendSuspensionEvent",
     "DrawdownEvent",
     "DrawingEvent",
     "DutchAuctionEvent",
@@ -2270,6 +2301,7 @@ __all__ = [
     "GetFlowConventionsResponse",
     "GetIndexConventionResponse",
     "GetInstrumentsResponse",
+    "GetPaymentInstructionsResponse",
     "GetQuotesResponse",
     "GetRecipeComposerResponse",
     "GetRecipeResponse",
@@ -2337,6 +2369,7 @@ __all__ = [
     "IndexModelOptions",
     "IndexProjectionDependency",
     "IndustryClassifier",
+    "InflationConvexityOptions",
     "InflationCurveData",
     "InflationCurveShiftDefinition",
     "InflationFixingDependency",
@@ -2417,6 +2450,7 @@ __all__ = [
     "LoanFacility",
     "LoanFacilityContractRolloverEvent",
     "LoanFacilityDelayedCompensationPaymentEvent",
+    "LoanInterestCapitalisationEvent",
     "LoanInterestRepaymentEvent",
     "LoanPeriod",
     "LoanPrincipalRepaymentEvent",
@@ -2539,6 +2573,7 @@ __all__ = [
     "OutputTransaction",
     "OutputTransition",
     "OverrideVirtualTransactionsResponse",
+    "OversubscribeElection",
     "Package",
     "PackageRequest",
     "PackageSetRequest",
@@ -2559,6 +2594,7 @@ __all__ = [
     "PagedResourceListOfComplianceRunInfoV2",
     "PagedResourceListOfComplianceTemplate",
     "PagedResourceListOfCorporateActionSource",
+    "PagedResourceListOfCurrencyGroupResponse",
     "PagedResourceListOfCustodianAccount",
     "PagedResourceListOfCustomEntityDefinition",
     "PagedResourceListOfCustomEntityResponse",
@@ -2815,6 +2851,7 @@ __all__ = [
     "RecReviewRequiredApproval",
     "RecReviewRequirementRule",
     "RecReviewSubmission",
+    "RecRunLog",
     "RecRunLogEntry",
     "RecSubmission",
     "RecSupersededRun",
@@ -2961,6 +2998,7 @@ __all__ = [
     "ResultDataSchema",
     "ResultKeyRule",
     "ResultKeyRuleType",
+    "ResultND",
     "ResultValue",
     "ResultValue0D",
     "ResultValueBool",
@@ -2971,6 +3009,7 @@ __all__ = [
     "ResultValueInt",
     "ResultValueString",
     "ResultValueType",
+    "RetainElection",
     "ReturnZeroPvOptions",
     "ReturnsEntity",
     "ReturnsMetric",
@@ -3006,6 +3045,7 @@ __all__ = [
     "SecurityOfferConstituent",
     "SecurityOfferElection",
     "SecurityWriteOffEvent",
+    "SellEntitlementElection",
     "SequenceDefinition",
     "SeriesDefinition",
     "SeriesDefinitionRequest",
@@ -3151,6 +3191,7 @@ __all__ = [
     "TransactionTypeRequest",
     "TransactionsReconciliationsResponse",
     "TransferAgencyDates",
+    "TransferAgencyExcludedOrder",
     "TransferAgencyOrderEstimateResult",
     "TransferAgencyOrderResult",
     "TransferAgencyOrderToEstimate",
@@ -3174,9 +3215,11 @@ __all__ = [
     "TriggerEvent",
     "TypedResourceId",
     "UnconfirmClosedPeriodRequest",
+    "UnitDimension",
     "UnitSchema",
     "UnitisationData",
     "UnitsRatio",
+    "UnknownProceedsElection",
     "UnmatchedHoldingMethod",
     "UnsettledTransaction",
     "UpdateAmortisationRuleSetDetailsRequest",
@@ -3227,6 +3270,7 @@ __all__ = [
     "UpsertCorporateActionsResponse",
     "UpsertCounterpartyAgreementRequest",
     "UpsertCreditSupportAnnexRequest",
+    "UpsertCurrencyGroupRequest",
     "UpsertCustomEntitiesResponse",
     "UpsertCustomEntityAccessMetadataRequest",
     "UpsertDataQualityRule",

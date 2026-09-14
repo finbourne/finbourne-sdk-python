@@ -868,7 +868,7 @@ class TransactionConfigurationApi:
     def list_transaction_types(self, as_at: Optional[datetime] = None, scope: Optional[StrictStr] = None, **kwargs) -> Dict[str, List[TransactionType]]:
         """ListTransactionTypes: List transaction types  # noqa: E501
 
-        Get the list of current transaction types. For information on the default transaction types provided with  LUSID, see https://support.lusid.com/knowledgebase/article/KA-01873/.  # noqa: E501
+        Get the list of current transaction types. For information on the default transaction types provided with  LUSID, see https://support.lusid.com/docs/what-built-in-transaction-types-and-sides-are-provided-with-lusid.  # noqa: E501
         :param as_at: The asAt datetime at which to retrieve the transaction types. Defaults              to returning the latest versions if not specified.
         :type as_at: datetime
         :param scope: The scope in which the transaction types exist. When not supplied the scope is 'default'. Use '*' to list across all scopes.
@@ -890,7 +890,7 @@ class TransactionConfigurationApi:
     def list_transaction_types_with_http_info(self, as_at: Optional[datetime] = None, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[Dict[str, List[TransactionType]]]:
         """ListTransactionTypes: List transaction types  # noqa: E501
 
-        Get the list of current transaction types. For information on the default transaction types provided with  LUSID, see https://support.lusid.com/knowledgebase/article/KA-01873/.  # noqa: E501
+        Get the list of current transaction types. For information on the default transaction types provided with  LUSID, see https://support.lusid.com/docs/what-built-in-transaction-types-and-sides-are-provided-with-lusid.  # noqa: E501
         :param as_at: The asAt datetime at which to retrieve the transaction types. Defaults              to returning the latest versions if not specified.
         :type as_at: datetime
         :param scope: The scope in which the transaction types exist. When not supplied the scope is 'default'. Use '*' to list across all scopes.
@@ -999,7 +999,7 @@ class TransactionConfigurationApi:
     def set_side_definition(self, side: StrictStr, side_definition_request: SideDefinitionRequest, scope: Optional[StrictStr] = None, **kwargs) -> SideDefinition:
         """SetSideDefinition: Set a side definition  # noqa: E501
 
-        Set a new side definition for use in a transaction type. For more information, see https://support.lusid.com/knowledgebase/article/KA-01875.  # noqa: E501
+        Set a new side definition for use in a transaction type. For more information, see https://support.lusid.com/docs/what-is-a-side.  # noqa: E501
         :param side: The label to uniquely identify the side. (required)
         :type side: str
         :param side_definition_request: The side definition to create or replace. (required)
@@ -1023,7 +1023,7 @@ class TransactionConfigurationApi:
     def set_side_definition_with_http_info(self, side: StrictStr, side_definition_request: SideDefinitionRequest, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[SideDefinition]:
         """SetSideDefinition: Set a side definition  # noqa: E501
 
-        Set a new side definition for use in a transaction type. For more information, see https://support.lusid.com/knowledgebase/article/KA-01875.  # noqa: E501
+        Set a new side definition for use in a transaction type. For more information, see https://support.lusid.com/docs/what-is-a-side.  # noqa: E501
         :param side: The label to uniquely identify the side. (required)
         :type side: str
         :param side_definition_request: The side definition to create or replace. (required)
@@ -1142,7 +1142,7 @@ class TransactionConfigurationApi:
     def set_side_definitions(self, sides_definition_request: List[SidesDefinitionRequest], scope: Optional[StrictStr] = None, **kwargs) -> ResourceListOfSideDefinition:
         """SetSideDefinitions: Set the given side definitions  # noqa: E501
 
-        Set a new side definition for use in a transaction type. For more information, see https://support.lusid.com/knowledgebase/article/KA-01875.  # noqa: E501
+        Set a new side definition for use in a transaction type. For more information, see https://support.lusid.com/docs/what-is-a-side.  # noqa: E501
         :param sides_definition_request: The list of side definitions to create, or replace. (required)
         :type sides_definition_request: List[SidesDefinitionRequest]
         :param scope: The scope in which the side exists. When not supplied the scope is 'default'.
@@ -1164,7 +1164,7 @@ class TransactionConfigurationApi:
     def set_side_definitions_with_http_info(self, sides_definition_request: List[SidesDefinitionRequest], scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfSideDefinition]:
         """SetSideDefinitions: Set the given side definitions  # noqa: E501
 
-        Set a new side definition for use in a transaction type. For more information, see https://support.lusid.com/knowledgebase/article/KA-01875.  # noqa: E501
+        Set a new side definition for use in a transaction type. For more information, see https://support.lusid.com/docs/what-is-a-side.  # noqa: E501
         :param sides_definition_request: The list of side definitions to create, or replace. (required)
         :type sides_definition_request: List[SidesDefinitionRequest]
         :param scope: The scope in which the side exists. When not supplied the scope is 'default'.
@@ -2389,7 +2389,7 @@ class TransactionConfigurationApi:
     @validate_call
     async def list_transaction_types_async(self, as_at: Optional[datetime] = None, scope: Optional[StrictStr] = None, **kwargs) -> Dict[str, List[TransactionType]]:
             """ListTransactionTypes: List transaction types  # noqa: E501
-            Get the list of current transaction types. For information on the default transaction types provided with  LUSID, see https://support.lusid.com/knowledgebase/article/KA-01873/.  # noqa: E501
+            Get the list of current transaction types. For information on the default transaction types provided with  LUSID, see https://support.lusid.com/docs/what-built-in-transaction-types-and-sides-are-provided-with-lusid.  # noqa: E501
             
             :param as_at: The asAt datetime at which to retrieve the transaction types. Defaults              to returning the latest versions if not specified.
             :type as_at: datetime
@@ -2412,7 +2412,7 @@ class TransactionConfigurationApi:
     async def list_transaction_types_with_http_info_async(self, as_at: Optional[datetime] = None, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[Dict[str, List[TransactionType]]]:
             """ListTransactionTypes: List transaction types  # noqa: E501
 
-            Get the list of current transaction types. For information on the default transaction types provided with  LUSID, see https://support.lusid.com/knowledgebase/article/KA-01873/.  # noqa: E501
+            Get the list of current transaction types. For information on the default transaction types provided with  LUSID, see https://support.lusid.com/docs/what-built-in-transaction-types-and-sides-are-provided-with-lusid.  # noqa: E501
 
             :param as_at: The asAt datetime at which to retrieve the transaction types. Defaults              to returning the latest versions if not specified.
             :type as_at: datetime
@@ -2521,7 +2521,7 @@ class TransactionConfigurationApi:
     @validate_call
     async def set_side_definition_async(self, side: StrictStr, side_definition_request: SideDefinitionRequest, scope: Optional[StrictStr] = None, **kwargs) -> SideDefinition:
             """SetSideDefinition: Set a side definition  # noqa: E501
-            Set a new side definition for use in a transaction type. For more information, see https://support.lusid.com/knowledgebase/article/KA-01875.  # noqa: E501
+            Set a new side definition for use in a transaction type. For more information, see https://support.lusid.com/docs/what-is-a-side.  # noqa: E501
             
             :param side: The label to uniquely identify the side. (required)
             :type side: str
@@ -2546,7 +2546,7 @@ class TransactionConfigurationApi:
     async def set_side_definition_with_http_info_async(self, side: StrictStr, side_definition_request: SideDefinitionRequest, scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[SideDefinition]:
             """SetSideDefinition: Set a side definition  # noqa: E501
 
-            Set a new side definition for use in a transaction type. For more information, see https://support.lusid.com/knowledgebase/article/KA-01875.  # noqa: E501
+            Set a new side definition for use in a transaction type. For more information, see https://support.lusid.com/docs/what-is-a-side.  # noqa: E501
 
             :param side: The label to uniquely identify the side. (required)
             :type side: str
@@ -2665,7 +2665,7 @@ class TransactionConfigurationApi:
     @validate_call
     async def set_side_definitions_async(self, sides_definition_request: List[SidesDefinitionRequest], scope: Optional[StrictStr] = None, **kwargs) -> ResourceListOfSideDefinition:
             """SetSideDefinitions: Set the given side definitions  # noqa: E501
-            Set a new side definition for use in a transaction type. For more information, see https://support.lusid.com/knowledgebase/article/KA-01875.  # noqa: E501
+            Set a new side definition for use in a transaction type. For more information, see https://support.lusid.com/docs/what-is-a-side.  # noqa: E501
             
             :param sides_definition_request: The list of side definitions to create, or replace. (required)
             :type sides_definition_request: List[SidesDefinitionRequest]
@@ -2688,7 +2688,7 @@ class TransactionConfigurationApi:
     async def set_side_definitions_with_http_info_async(self, sides_definition_request: List[SidesDefinitionRequest], scope: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfSideDefinition]:
             """SetSideDefinitions: Set the given side definitions  # noqa: E501
 
-            Set a new side definition for use in a transaction type. For more information, see https://support.lusid.com/knowledgebase/article/KA-01875.  # noqa: E501
+            Set a new side definition for use in a transaction type. For more information, see https://support.lusid.com/docs/what-is-a-side.  # noqa: E501
 
             :param sides_definition_request: The list of side definitions to create, or replace. (required)
             :type sides_definition_request: List[SidesDefinitionRequest]

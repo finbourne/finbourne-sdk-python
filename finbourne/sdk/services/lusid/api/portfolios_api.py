@@ -1658,7 +1658,7 @@ class PortfoliosApi:
         :type period: str
         :param output_frequency: The type of calculated output. Available values: Daily, Weekly, Monthly, Quarterly, HalfYearly, Yearly.
         :type output_frequency: str
-        :param metrics: Determines what type of returns should be calculated, see https://support.lusid.com/knowledgebase/article/KA-01675/en-us for a list of available metrics.
+        :param metrics: Determines what type of returns should be calculated, see https://support.lusid.com/docs/aggregating-performance-returns-for-a-portfolio for a list of available metrics.
         :type metrics: List[str]
         :param as_at: The asAt datetime at which to retrieve the Returns. Defaults to the latest.
         :type as_at: datetime
@@ -1704,7 +1704,7 @@ class PortfoliosApi:
         :type period: str
         :param output_frequency: The type of calculated output. Available values: Daily, Weekly, Monthly, Quarterly, HalfYearly, Yearly.
         :type output_frequency: str
-        :param metrics: Determines what type of returns should be calculated, see https://support.lusid.com/knowledgebase/article/KA-01675/en-us for a list of available metrics.
+        :param metrics: Determines what type of returns should be calculated, see https://support.lusid.com/docs/aggregating-performance-returns-for-a-portfolio for a list of available metrics.
         :type metrics: List[str]
         :param as_at: The asAt datetime at which to retrieve the Returns. Defaults to the latest.
         :type as_at: datetime
@@ -2042,7 +2042,7 @@ class PortfoliosApi:
         :type from_as_at: datetime
         :param to_as_at: The upper bound asAt datetime (inclusive) from which to retrieve commands. There is no upper bound if this is not specified.
         :type to_as_at: datetime
-        :param filter: Expression to filter the results.              For example, to filter on the User ID, specify \"userId.id eq 'string'\".              For more information about filtering, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results.              For example, to filter on the User ID, specify \"userId.id eq 'string'\".              For more information about filtering, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param page: The pagination token to use to continue listing commands; this value is returned from the previous call.
         :type page: str
@@ -2074,7 +2074,7 @@ class PortfoliosApi:
         :type from_as_at: datetime
         :param to_as_at: The upper bound asAt datetime (inclusive) from which to retrieve commands. There is no upper bound if this is not specified.
         :type to_as_at: datetime
-        :param filter: Expression to filter the results.              For example, to filter on the User ID, specify \"userId.id eq 'string'\".              For more information about filtering, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results.              For example, to filter on the User ID, specify \"userId.id eq 'string'\".              For more information about filtering, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param page: The pagination token to use to continue listing commands; this value is returned from the previous call.
         :type page: str
@@ -2512,7 +2512,7 @@ class PortfoliosApi:
         :type portfolio_effective_at: str
         :param as_at: The asAt datetime at which to show the history. Defaults to returning the current datetime if not supplied.
         :type as_at: datetime
-        :param filter: Expression to filter the results. For more information about filtering,              see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results. For more information about filtering,              see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param page: The pagination token to use to continue listing properties; this value is returned from              the previous call. If a pagination token is provided, the propertyKeys, filter, portfolioEffectiveAt, and asAt              fields must not have changed since the original request.
         :type page: str
@@ -2546,7 +2546,7 @@ class PortfoliosApi:
         :type portfolio_effective_at: str
         :param as_at: The asAt datetime at which to show the history. Defaults to returning the current datetime if not supplied.
         :type as_at: datetime
-        :param filter: Expression to filter the results. For more information about filtering,              see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results. For more information about filtering,              see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param page: The pagination token to use to continue listing properties; this value is returned from              the previous call. If a pagination token is provided, the propertyKeys, filter, portfolioEffectiveAt, and asAt              fields must not have changed since the original request.
         :type page: str
@@ -2692,7 +2692,7 @@ class PortfoliosApi:
         :type portfolio_effective_at: str
         :param as_at: The asAt datetime at which to show the history. Defaults to returning the current datetime if not supplied.
         :type as_at: datetime
-        :param filter: Expression to filter the results. For more information about filtering,              see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results. For more information about filtering,              see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param page: The pagination token to use to continue listing properties; this value is returned from              the previous call. If a pagination token is provided, the filter, portfolioEffectiveAt, and asAt fields              must not have changed since the original request.
         :type page: str
@@ -2726,7 +2726,7 @@ class PortfoliosApi:
         :type portfolio_effective_at: str
         :param as_at: The asAt datetime at which to show the history. Defaults to returning the current datetime if not supplied.
         :type as_at: datetime
-        :param filter: Expression to filter the results. For more information about filtering,              see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results. For more information about filtering,              see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param page: The pagination token to use to continue listing properties; this value is returned from              the previous call. If a pagination token is provided, the filter, portfolioEffectiveAt, and asAt fields              must not have changed since the original request.
         :type page: str
@@ -3535,7 +3535,7 @@ class PortfoliosApi:
         :type page: str
         :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
         :type limit: int
-        :param filter: Expression to filter the results. For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results. For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param sort_by: A list of field names to sort by, each suffixed by \" ASC\" or \" DESC\".
         :type sort_by: List[str]
@@ -3575,7 +3575,7 @@ class PortfoliosApi:
         :type page: str
         :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
         :type limit: int
-        :param filter: Expression to filter the results. For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results. For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param sort_by: A list of field names to sort by, each suffixed by \" ASC\" or \" DESC\".
         :type sort_by: List[str]
@@ -3898,7 +3898,7 @@ class PortfoliosApi:
         :type page: str
         :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
         :type limit: int
-        :param filter: Expression to filter the results.              For example, to filter on the transaction type, specify \"type eq 'Transaction'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results.              For example, to filter on the transaction type, specify \"type eq 'Transaction'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
         :type sort_by: List[str]
@@ -3934,7 +3934,7 @@ class PortfoliosApi:
         :type page: str
         :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
         :type limit: int
-        :param filter: Expression to filter the results.              For example, to filter on the transaction type, specify \"type eq 'Transaction'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results.              For example, to filter on the transaction type, specify \"type eq 'Transaction'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
         :type sort_by: List[str]
@@ -4090,7 +4090,7 @@ class PortfoliosApi:
         :type page: str
         :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
         :type limit: int
-        :param filter: Expression to filter the results.              For example, to return only transactions with a transaction type of 'Buy', specify \"type eq 'Buy'\".              For more information about filtering results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results.              For example, to return only transactions with a transaction type of 'Buy', specify \"type eq 'Buy'\".              For more information about filtering results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
         :type sort_by: List[str]
@@ -4126,7 +4126,7 @@ class PortfoliosApi:
         :type page: str
         :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
         :type limit: int
-        :param filter: Expression to filter the results.              For example, to return only transactions with a transaction type of 'Buy', specify \"type eq 'Buy'\".              For more information about filtering results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results.              For example, to return only transactions with a transaction type of 'Buy', specify \"type eq 'Buy'\".              For more information about filtering results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
         :type sort_by: List[str]
@@ -6944,7 +6944,7 @@ class PortfoliosApi:
             :type period: str
             :param output_frequency: The type of calculated output. Available values: Daily, Weekly, Monthly, Quarterly, HalfYearly, Yearly.
             :type output_frequency: str
-            :param metrics: Determines what type of returns should be calculated, see https://support.lusid.com/knowledgebase/article/KA-01675/en-us for a list of available metrics.
+            :param metrics: Determines what type of returns should be calculated, see https://support.lusid.com/docs/aggregating-performance-returns-for-a-portfolio for a list of available metrics.
             :type metrics: List[str]
             :param as_at: The asAt datetime at which to retrieve the Returns. Defaults to the latest.
             :type as_at: datetime
@@ -6991,7 +6991,7 @@ class PortfoliosApi:
             :type period: str
             :param output_frequency: The type of calculated output. Available values: Daily, Weekly, Monthly, Quarterly, HalfYearly, Yearly.
             :type output_frequency: str
-            :param metrics: Determines what type of returns should be calculated, see https://support.lusid.com/knowledgebase/article/KA-01675/en-us for a list of available metrics.
+            :param metrics: Determines what type of returns should be calculated, see https://support.lusid.com/docs/aggregating-performance-returns-for-a-portfolio for a list of available metrics.
             :type metrics: List[str]
             :param as_at: The asAt datetime at which to retrieve the Returns. Defaults to the latest.
             :type as_at: datetime
@@ -7330,7 +7330,7 @@ class PortfoliosApi:
             :type from_as_at: datetime
             :param to_as_at: The upper bound asAt datetime (inclusive) from which to retrieve commands. There is no upper bound if this is not specified.
             :type to_as_at: datetime
-            :param filter: Expression to filter the results.              For example, to filter on the User ID, specify \"userId.id eq 'string'\".              For more information about filtering, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results.              For example, to filter on the User ID, specify \"userId.id eq 'string'\".              For more information about filtering, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param page: The pagination token to use to continue listing commands; this value is returned from the previous call.
             :type page: str
@@ -7363,7 +7363,7 @@ class PortfoliosApi:
             :type from_as_at: datetime
             :param to_as_at: The upper bound asAt datetime (inclusive) from which to retrieve commands. There is no upper bound if this is not specified.
             :type to_as_at: datetime
-            :param filter: Expression to filter the results.              For example, to filter on the User ID, specify \"userId.id eq 'string'\".              For more information about filtering, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results.              For example, to filter on the User ID, specify \"userId.id eq 'string'\".              For more information about filtering, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param page: The pagination token to use to continue listing commands; this value is returned from the previous call.
             :type page: str
@@ -7803,7 +7803,7 @@ class PortfoliosApi:
             :type portfolio_effective_at: str
             :param as_at: The asAt datetime at which to show the history. Defaults to returning the current datetime if not supplied.
             :type as_at: datetime
-            :param filter: Expression to filter the results. For more information about filtering,              see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results. For more information about filtering,              see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param page: The pagination token to use to continue listing properties; this value is returned from              the previous call. If a pagination token is provided, the propertyKeys, filter, portfolioEffectiveAt, and asAt              fields must not have changed since the original request.
             :type page: str
@@ -7838,7 +7838,7 @@ class PortfoliosApi:
             :type portfolio_effective_at: str
             :param as_at: The asAt datetime at which to show the history. Defaults to returning the current datetime if not supplied.
             :type as_at: datetime
-            :param filter: Expression to filter the results. For more information about filtering,              see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results. For more information about filtering,              see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param page: The pagination token to use to continue listing properties; this value is returned from              the previous call. If a pagination token is provided, the propertyKeys, filter, portfolioEffectiveAt, and asAt              fields must not have changed since the original request.
             :type page: str
@@ -7984,7 +7984,7 @@ class PortfoliosApi:
             :type portfolio_effective_at: str
             :param as_at: The asAt datetime at which to show the history. Defaults to returning the current datetime if not supplied.
             :type as_at: datetime
-            :param filter: Expression to filter the results. For more information about filtering,              see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results. For more information about filtering,              see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param page: The pagination token to use to continue listing properties; this value is returned from              the previous call. If a pagination token is provided, the filter, portfolioEffectiveAt, and asAt fields              must not have changed since the original request.
             :type page: str
@@ -8019,7 +8019,7 @@ class PortfoliosApi:
             :type portfolio_effective_at: str
             :param as_at: The asAt datetime at which to show the history. Defaults to returning the current datetime if not supplied.
             :type as_at: datetime
-            :param filter: Expression to filter the results. For more information about filtering,              see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results. For more information about filtering,              see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param page: The pagination token to use to continue listing properties; this value is returned from              the previous call. If a pagination token is provided, the filter, portfolioEffectiveAt, and asAt fields              must not have changed since the original request.
             :type page: str
@@ -8832,7 +8832,7 @@ class PortfoliosApi:
             :type page: str
             :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
             :type limit: int
-            :param filter: Expression to filter the results. For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results. For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param sort_by: A list of field names to sort by, each suffixed by \" ASC\" or \" DESC\".
             :type sort_by: List[str]
@@ -8873,7 +8873,7 @@ class PortfoliosApi:
             :type page: str
             :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
             :type limit: int
-            :param filter: Expression to filter the results. For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results. For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param sort_by: A list of field names to sort by, each suffixed by \" ASC\" or \" DESC\".
             :type sort_by: List[str]
@@ -9197,7 +9197,7 @@ class PortfoliosApi:
             :type page: str
             :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
             :type limit: int
-            :param filter: Expression to filter the results.              For example, to filter on the transaction type, specify \"type eq 'Transaction'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results.              For example, to filter on the transaction type, specify \"type eq 'Transaction'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
             :type sort_by: List[str]
@@ -9234,7 +9234,7 @@ class PortfoliosApi:
             :type page: str
             :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
             :type limit: int
-            :param filter: Expression to filter the results.              For example, to filter on the transaction type, specify \"type eq 'Transaction'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results.              For example, to filter on the transaction type, specify \"type eq 'Transaction'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
             :type sort_by: List[str]
@@ -9390,7 +9390,7 @@ class PortfoliosApi:
             :type page: str
             :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
             :type limit: int
-            :param filter: Expression to filter the results.              For example, to return only transactions with a transaction type of 'Buy', specify \"type eq 'Buy'\".              For more information about filtering results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results.              For example, to return only transactions with a transaction type of 'Buy', specify \"type eq 'Buy'\".              For more information about filtering results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
             :type sort_by: List[str]
@@ -9427,7 +9427,7 @@ class PortfoliosApi:
             :type page: str
             :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
             :type limit: int
-            :param filter: Expression to filter the results.              For example, to return only transactions with a transaction type of 'Buy', specify \"type eq 'Buy'\".              For more information about filtering results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results.              For example, to return only transactions with a transaction type of 'Buy', specify \"type eq 'Buy'\".              For more information about filtering results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
             :type sort_by: List[str]

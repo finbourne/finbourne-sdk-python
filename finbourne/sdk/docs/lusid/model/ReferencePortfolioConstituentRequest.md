@@ -7,7 +7,7 @@
 | **instrument_identifiers** | **Dict[str, Optional[str]]** | Required | Unique instrument identifiers |
 | **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | *No description available.* |
 | **weight** | **float** | Required |  |
-| **currency** | **str** | Optional |  |
+| **currency** | **str** | Required |  |
 
 
 ## Usage
@@ -21,7 +21,7 @@ instance = ReferencePortfolioConstituentRequest(
     instrument_identifiers=,  # required — Unique instrument identifiers
     properties=PerpetualProperty(...),  # optional
     weight=0.0,  # required — 
-    currency="..."  # optional — 
+    currency="..."  # required — 
 )
 ```
 

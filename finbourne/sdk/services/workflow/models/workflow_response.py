@@ -36,7 +36,7 @@ class WorkflowResponse(BaseModel):
     display_name:  StrictStr = Field(...,alias="displayName", description="Human readable name") 
     description:  Optional[StrictStr] = Field(default=None,alias="description", description="Human readable description") 
     root_task_definition_id: ResourceId = Field(alias="rootTaskDefinitionId")
-    workflow_structure: Optional[WorkflowStructure] = Field(default=None, alias="workflowStructure")
+    workflow_structure: WorkflowStructure = Field(alias="workflowStructure")
     properties: Optional[Dict[str, PerpetualProperty]] = Field(default=None, description="The properties of the Workflow, keyed by property key.")
     __properties: ClassVar[List[str]] = ["id", "version", "displayName", "description", "rootTaskDefinitionId", "workflowStructure", "properties"]
 

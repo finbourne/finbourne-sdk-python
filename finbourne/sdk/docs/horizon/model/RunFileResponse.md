@@ -11,9 +11,9 @@ record containing details of a single file for a run.
 | **file_hash** | **str** | Required | *No description available.* |
 | **encrypted** | **bool** | Required | *No description available.* |
 | **destinations** | [List[FileDestinationResponse]](FileDestinationResponse.md) | Required | *No description available.* |
-| **transaction_ids** | **List[UUID]** | Required | *No description available.* |
+| **transaction_ids** | **List[str]** | Required | *No description available.* |
 | **file_uuid** | **UUID** | Required | *No description available.* |
-| **failed_transaction_ids** | **List[UUID]** | Required | *No description available.* |
+| **failed_transaction_ids** | **List[str]** | Required | *No description available.* |
 
 
 ## Usage

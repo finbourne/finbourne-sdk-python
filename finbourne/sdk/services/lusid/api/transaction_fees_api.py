@@ -493,7 +493,7 @@ class TransactionFeesApi:
     def list_transaction_fee_rules(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, page: Optional[StrictStr] = None, **kwargs) -> ResourceListOfFeeRule:
         """ListTransactionFeeRules: List fee rules, with optional filtering.  # noqa: E501
 
-        For more information about filtering results,  see https://support.lusid.com/knowledgebase/article/KA-01914.  # noqa: E501
+        For more information about filtering results,  see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.  # noqa: E501
         :param effective_at: The effective datetime or cut label at which to retrieve the rule definitions. Defaults to the current LUSID  system datetime if not specified.
         :type effective_at: str
         :param as_at: The asAt datetime at which to retrieve the rule definitions. Defaults to returning the latest version if not  specified.
@@ -521,7 +521,7 @@ class TransactionFeesApi:
     def list_transaction_fee_rules_with_http_info(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfFeeRule]:
         """ListTransactionFeeRules: List fee rules, with optional filtering.  # noqa: E501
 
-        For more information about filtering results,  see https://support.lusid.com/knowledgebase/article/KA-01914.  # noqa: E501
+        For more information about filtering results,  see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.  # noqa: E501
         :param effective_at: The effective datetime or cut label at which to retrieve the rule definitions. Defaults to the current LUSID  system datetime if not specified.
         :type effective_at: str
         :param as_at: The asAt datetime at which to retrieve the rule definitions. Defaults to returning the latest version if not  specified.
@@ -1226,7 +1226,7 @@ class TransactionFeesApi:
     @validate_call
     async def list_transaction_fee_rules_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, page: Optional[StrictStr] = None, **kwargs) -> ResourceListOfFeeRule:
             """ListTransactionFeeRules: List fee rules, with optional filtering.  # noqa: E501
-            For more information about filtering results,  see https://support.lusid.com/knowledgebase/article/KA-01914.  # noqa: E501
+            For more information about filtering results,  see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.  # noqa: E501
             
             :param effective_at: The effective datetime or cut label at which to retrieve the rule definitions. Defaults to the current LUSID  system datetime if not specified.
             :type effective_at: str
@@ -1255,7 +1255,7 @@ class TransactionFeesApi:
     async def list_transaction_fee_rules_with_http_info_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, page: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfFeeRule]:
             """ListTransactionFeeRules: List fee rules, with optional filtering.  # noqa: E501
 
-            For more information about filtering results,  see https://support.lusid.com/knowledgebase/article/KA-01914.  # noqa: E501
+            For more information about filtering results,  see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.  # noqa: E501
 
             :param effective_at: The effective datetime or cut label at which to retrieve the rule definitions. Defaults to the current LUSID  system datetime if not specified.
             :type effective_at: str

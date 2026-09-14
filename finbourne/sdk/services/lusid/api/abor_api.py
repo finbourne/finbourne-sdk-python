@@ -1244,7 +1244,7 @@ class AborApi:
         :type trial_balance_query_parameters: TrialBalanceQueryParameters
         :param as_at: The asAt datetime at which to retrieve the Trial Balance.               Defaults to returning the latest version if not specified.
         :type as_at: datetime
-        :param filter: Expression to filter the results by.               For more information about filtering results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results by.               For more information about filtering results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param limit: When paginating, limit the number of returned results to this many.               Defaults to 100 if not specified.
         :type limit: int
@@ -1276,7 +1276,7 @@ class AborApi:
         :type trial_balance_query_parameters: TrialBalanceQueryParameters
         :param as_at: The asAt datetime at which to retrieve the Trial Balance.               Defaults to returning the latest version if not specified.
         :type as_at: datetime
-        :param filter: Expression to filter the results by.               For more information about filtering results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results by.               For more information about filtering results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param limit: When paginating, limit the number of returned results to this many.               Defaults to 100 if not specified.
         :type limit: int
@@ -1422,7 +1422,7 @@ class AborApi:
         :type page: str
         :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
         :type limit: int
-        :param filter: Expression to filter the results.              For example, to filter on the Abor type, specify \"id.Code eq 'Abor1'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results.              For example, to filter on the Abor type, specify \"id.Code eq 'Abor1'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
         :type sort_by: List[str]
@@ -1454,7 +1454,7 @@ class AborApi:
         :type page: str
         :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
         :type limit: int
-        :param filter: Expression to filter the results.              For example, to filter on the Abor type, specify \"id.Code eq 'Abor1'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results.              For example, to filter on the Abor type, specify \"id.Code eq 'Abor1'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
         :type sort_by: List[str]
@@ -1599,7 +1599,7 @@ class AborApi:
         :type page: str
         :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
         :type limit: int
-        :param filter: Expression to filter the results.              For example, to filter on the DiaryEntry type, specify \"type eq 'PeriodBoundary'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results.              For example, to filter on the DiaryEntry type, specify \"type eq 'PeriodBoundary'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
         :type sort_by: List[str]
@@ -1635,7 +1635,7 @@ class AborApi:
         :type page: str
         :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
         :type limit: int
-        :param filter: Expression to filter the results.              For example, to filter on the DiaryEntry type, specify \"type eq 'PeriodBoundary'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results.              For example, to filter on the DiaryEntry type, specify \"type eq 'PeriodBoundary'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
         :type sort_by: List[str]
@@ -3534,7 +3534,7 @@ class AborApi:
             :type trial_balance_query_parameters: TrialBalanceQueryParameters
             :param as_at: The asAt datetime at which to retrieve the Trial Balance.               Defaults to returning the latest version if not specified.
             :type as_at: datetime
-            :param filter: Expression to filter the results by.               For more information about filtering results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results by.               For more information about filtering results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param limit: When paginating, limit the number of returned results to this many.               Defaults to 100 if not specified.
             :type limit: int
@@ -3567,7 +3567,7 @@ class AborApi:
             :type trial_balance_query_parameters: TrialBalanceQueryParameters
             :param as_at: The asAt datetime at which to retrieve the Trial Balance.               Defaults to returning the latest version if not specified.
             :type as_at: datetime
-            :param filter: Expression to filter the results by.               For more information about filtering results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results by.               For more information about filtering results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param limit: When paginating, limit the number of returned results to this many.               Defaults to 100 if not specified.
             :type limit: int
@@ -3713,7 +3713,7 @@ class AborApi:
             :type page: str
             :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
             :type limit: int
-            :param filter: Expression to filter the results.              For example, to filter on the Abor type, specify \"id.Code eq 'Abor1'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results.              For example, to filter on the Abor type, specify \"id.Code eq 'Abor1'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
             :type sort_by: List[str]
@@ -3746,7 +3746,7 @@ class AborApi:
             :type page: str
             :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
             :type limit: int
-            :param filter: Expression to filter the results.              For example, to filter on the Abor type, specify \"id.Code eq 'Abor1'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results.              For example, to filter on the Abor type, specify \"id.Code eq 'Abor1'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
             :type sort_by: List[str]
@@ -3891,7 +3891,7 @@ class AborApi:
             :type page: str
             :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
             :type limit: int
-            :param filter: Expression to filter the results.              For example, to filter on the DiaryEntry type, specify \"type eq 'PeriodBoundary'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results.              For example, to filter on the DiaryEntry type, specify \"type eq 'PeriodBoundary'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
             :type sort_by: List[str]
@@ -3928,7 +3928,7 @@ class AborApi:
             :type page: str
             :param limit: When paginating, limit the results to this number. Defaults to 100 if not specified.
             :type limit: int
-            :param filter: Expression to filter the results.              For example, to filter on the DiaryEntry type, specify \"type eq 'PeriodBoundary'\". For more information about filtering              results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results.              For example, to filter on the DiaryEntry type, specify \"type eq 'PeriodBoundary'\". For more information about filtering              results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
             :type sort_by: List[str]

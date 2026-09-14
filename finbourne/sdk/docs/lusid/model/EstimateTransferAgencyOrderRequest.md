@@ -7,6 +7,7 @@ A request to estimate the values of one order. `OrderId` is required whether or 
 |------|------|----------|-------------|
 | **order_id** | [ResourceId](ResourceId.md) | Required | *No description available.* |
 | **order** | [TransferAgencyOrderToEstimate](TransferAgencyOrderToEstimate.md) | Optional | *No description available.* |
+| **price_date** | **datetime** | Optional | *No description available.* |
 
 
 ## Usage
@@ -18,7 +19,8 @@ from finbourne.sdk.services.lusid.models.EstimateTransferAgencyOrderRequest impo
 
 instance = EstimateTransferAgencyOrderRequest(
     order_id=ResourceId(...),  # required
-    order=TransferAgencyOrderToEstimate(...)  # optional
+    order=TransferAgencyOrderToEstimate(...),  # optional
+    price_date=datetime.now()  # optional
 )
 ```
 

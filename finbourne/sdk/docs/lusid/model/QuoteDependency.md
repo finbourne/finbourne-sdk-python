@@ -8,6 +8,7 @@ For indicating a dependency on the value of an asset at a point in time.  If the
 | **market_identifier** | **str** | Required | Type of the code identifying the asset, e.g. ISIN or CUSIP |
 | **code** | **str** | Required | The code identifying the corresponding equity, e.g. US0378331005 if the MarketIdentifier was set to ISIN |
 | **var_date** | **datetime** | Required | The effectiveAt of the quote for the identified entity. |
+| **descriptor** | **List[str]** | Optional | Optional additional description of the quote being depended upon, e.g. the model or lineage that produced it.  When matching a dependency against supplied market data overrides, the descriptor must match as well as the identifier and code.  If omitted, the dependency has no descriptor. |
 | **dependency_type** | **str** | Required | Available values: OpaqueDependency, CashDependency, DiscountingDependency, EquityCurveDependency, EquityVolDependency, FxDependency, FxForwardsDependency, FxVolDependency, IndexProjectionDependency, IrVolDependency, QuoteDependency, Vendor, CalendarDependency, InflationFixingDependency. |
 
 
@@ -22,6 +23,7 @@ instance = QuoteDependency(
     market_identifier="...",  # required — Type of the code identifying the asset, e.g. ISIN or CUSIP
     code="...",  # required — The code identifying the corresponding equity, e.g. US0378331005 if the MarketIdentifier was set to ISIN
     var_date=datetime.now(),  # required — The effectiveAt of the quote for the identified entity.
+    descriptor=,  # optional — Optional additional description of the quote being depended upon, e.g. the model or lineage that produced it.  When matching a dependency against supplied market data overrides, the descriptor must match as well as the identifier and code.  If omitted, the dependency has no descriptor.
     dependency_type="..."  # required — Available values: OpaqueDependency, CashDependency, DiscountingDependency, EquityCurveDependency, EquityVolDependency, FxDependency, FxForwardsDependency, FxVolDependency, IndexProjectionDependency, IrVolDependency, QuoteDependency, Vendor, CalendarDependency, InflationFixingDependency.
 )
 ```

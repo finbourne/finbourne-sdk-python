@@ -1964,9 +1964,9 @@ class InstrumentsApi:
         :type identifier_effective_at: str
         :param as_at: The asAt datetime at which to retrieve the instrument's property history. Defaults to              returning the current datetime if not supplied.
         :type as_at: datetime
-        :param filter: Expression to filter the results. For more information about filtering,              see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results. For more information about filtering,              see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
-        :param page: The pagination token to use to continue listing properties; this value is returned from              the previous call. If a pagination token is provided, the <i>filter</i>, <i>effectiveAt</i> and              <i>asAt</i> fields must not have changed since the original request. For more information, see              https://support.lusid.com/knowledgebase/article/KA-01915.
+        :param page: The pagination token to use to continue listing properties; this value is returned from              the previous call. If a pagination token is provided, the <i>filter</i>, <i>effectiveAt</i> and              <i>asAt</i> fields must not have changed since the original request. For more information, see              https://support.lusid.com/docs/paging-and-limiting-an-api-request.
         :type page: str
         :param limit: When paginating, limit the results to this number.
         :type limit: int
@@ -2000,9 +2000,9 @@ class InstrumentsApi:
         :type identifier_effective_at: str
         :param as_at: The asAt datetime at which to retrieve the instrument's property history. Defaults to              returning the current datetime if not supplied.
         :type as_at: datetime
-        :param filter: Expression to filter the results. For more information about filtering,              see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the results. For more information about filtering,              see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
-        :param page: The pagination token to use to continue listing properties; this value is returned from              the previous call. If a pagination token is provided, the <i>filter</i>, <i>effectiveAt</i> and              <i>asAt</i> fields must not have changed since the original request. For more information, see              https://support.lusid.com/knowledgebase/article/KA-01915.
+        :param page: The pagination token to use to continue listing properties; this value is returned from              the previous call. If a pagination token is provided, the <i>filter</i>, <i>effectiveAt</i> and              <i>asAt</i> fields must not have changed since the original request. For more information, see              https://support.lusid.com/docs/paging-and-limiting-an-api-request.
         :type page: str
         :param limit: When paginating, limit the results to this number.
         :type limit: int
@@ -2684,13 +2684,13 @@ class InstrumentsApi:
         :type as_at: datetime
         :param effective_at: The effective datetime or cut label at which to list instruments.               Defaults to the current LUSID system datetime if not specified.
         :type effective_at: str
-        :param page: The pagination token to use to continue listing instruments; this value is returned from               the previous call. If a pagination token is provided, the <i>sortBy</i>, <i>filter</i>, <i>effectiveAt</i> and               <i>asAt</i> fields must not have changed since the original request.               For more information, see https://support.lusid.com/knowledgebase/article/KA-01915.
+        :param page: The pagination token to use to continue listing instruments; this value is returned from               the previous call. If a pagination token is provided, the <i>sortBy</i>, <i>filter</i>, <i>effectiveAt</i> and               <i>asAt</i> fields must not have changed since the original request.               For more information, see https://support.lusid.com/docs/paging-and-limiting-an-api-request.
         :type page: str
         :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
         :type sort_by: List[str]
         :param limit: When paginating, limit the results to this number.
         :type limit: int
-        :param filter: Expression to filter the result set. Defaults to filtering out inactive instruments               (that is, those that have been deleted). For more information about filtering results,               see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the result set. Defaults to filtering out inactive instruments               (that is, those that have been deleted). For more information about filtering results,               see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param instrument_property_keys: A list of property keys from the 'Instrument' domain to decorate onto               instruments, or from any domain that supports relationships to decorate onto related entities.               These must have the format {domain}/{scope}/{code}, for example 'Instrument/system/Name'.
         :type instrument_property_keys: List[str]
@@ -2732,13 +2732,13 @@ class InstrumentsApi:
         :type as_at: datetime
         :param effective_at: The effective datetime or cut label at which to list instruments.               Defaults to the current LUSID system datetime if not specified.
         :type effective_at: str
-        :param page: The pagination token to use to continue listing instruments; this value is returned from               the previous call. If a pagination token is provided, the <i>sortBy</i>, <i>filter</i>, <i>effectiveAt</i> and               <i>asAt</i> fields must not have changed since the original request.               For more information, see https://support.lusid.com/knowledgebase/article/KA-01915.
+        :param page: The pagination token to use to continue listing instruments; this value is returned from               the previous call. If a pagination token is provided, the <i>sortBy</i>, <i>filter</i>, <i>effectiveAt</i> and               <i>asAt</i> fields must not have changed since the original request.               For more information, see https://support.lusid.com/docs/paging-and-limiting-an-api-request.
         :type page: str
         :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
         :type sort_by: List[str]
         :param limit: When paginating, limit the results to this number.
         :type limit: int
-        :param filter: Expression to filter the result set. Defaults to filtering out inactive instruments               (that is, those that have been deleted). For more information about filtering results,               see https://support.lusid.com/knowledgebase/article/KA-01914.
+        :param filter: Expression to filter the result set. Defaults to filtering out inactive instruments               (that is, those that have been deleted). For more information about filtering results,               see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
         :type filter: str
         :param instrument_property_keys: A list of property keys from the 'Instrument' domain to decorate onto               instruments, or from any domain that supports relationships to decorate onto related entities.               These must have the format {domain}/{scope}/{code}, for example 'Instrument/system/Name'.
         :type instrument_property_keys: List[str]
@@ -3219,7 +3219,7 @@ class InstrumentsApi:
     def upsert_instruments(self, request_body: Dict[str, InstrumentDefinition], scope: Optional[StrictStr] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, **kwargs) -> UpsertInstrumentsResponse:
         """UpsertInstruments: Upsert instruments  # noqa: E501
 
-        Create or update one or more instruments in the instrument master. An instrument is updated  if it already exists and created if it does not.                In the request, each instrument definition should be keyed by a unique correlation ID. This ID is ephemeral  and not stored by LUSID. It serves only to easily identify each instrument in the response.                Note that an instrument must have at least one unique identifier, which is a combination of a type  (such as 'Figi') and a value (such as 'BBG000BS1N49'). In addition, a random value is automatically  generated for a LUSID Instrument ID (LUID) unique type by the system. For more information, see  https://support.lusid.com/knowledgebase/article/KA-01862.                The response returns both the collection of successfully created or updated instruments, as well as those  that failed. For each failure, a reason is provided. It is important to check the failed set for  unsuccessful results.  The maximum number of instruments that this method can upsert per request is 2,000.  # noqa: E501
+        Create or update one or more instruments in the instrument master. An instrument is updated  if it already exists and created if it does not.                In the request, each instrument definition should be keyed by a unique correlation ID. This ID is ephemeral  and not stored by LUSID. It serves only to easily identify each instrument in the response.                Note that an instrument must have at least one unique identifier, which is a combination of a type  (such as 'Figi') and a value (such as 'BBG000BS1N49'). In addition, a random value is automatically  generated for a LUSID Instrument ID (LUID) unique type by the system. For more information, see  https://support.lusid.com/docs/understanding-instrument-identifiers.                The response returns both the collection of successfully created or updated instruments, as well as those  that failed. For each failure, a reason is provided. It is important to check the failed set for  unsuccessful results.  The maximum number of instruments that this method can upsert per request is 2,000.  # noqa: E501
         :param request_body: The definitions of the instruments to create or update. (required)
         :type request_body: Dict[str, InstrumentDefinition]
         :param scope: The scope in which the instrument lies. When not supplied the scope is 'default'.
@@ -3245,7 +3245,7 @@ class InstrumentsApi:
     def upsert_instruments_with_http_info(self, request_body: Dict[str, InstrumentDefinition], scope: Optional[StrictStr] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[UpsertInstrumentsResponse]:
         """UpsertInstruments: Upsert instruments  # noqa: E501
 
-        Create or update one or more instruments in the instrument master. An instrument is updated  if it already exists and created if it does not.                In the request, each instrument definition should be keyed by a unique correlation ID. This ID is ephemeral  and not stored by LUSID. It serves only to easily identify each instrument in the response.                Note that an instrument must have at least one unique identifier, which is a combination of a type  (such as 'Figi') and a value (such as 'BBG000BS1N49'). In addition, a random value is automatically  generated for a LUSID Instrument ID (LUID) unique type by the system. For more information, see  https://support.lusid.com/knowledgebase/article/KA-01862.                The response returns both the collection of successfully created or updated instruments, as well as those  that failed. For each failure, a reason is provided. It is important to check the failed set for  unsuccessful results.  The maximum number of instruments that this method can upsert per request is 2,000.  # noqa: E501
+        Create or update one or more instruments in the instrument master. An instrument is updated  if it already exists and created if it does not.                In the request, each instrument definition should be keyed by a unique correlation ID. This ID is ephemeral  and not stored by LUSID. It serves only to easily identify each instrument in the response.                Note that an instrument must have at least one unique identifier, which is a combination of a type  (such as 'Figi') and a value (such as 'BBG000BS1N49'). In addition, a random value is automatically  generated for a LUSID Instrument ID (LUID) unique type by the system. For more information, see  https://support.lusid.com/docs/understanding-instrument-identifiers.                The response returns both the collection of successfully created or updated instruments, as well as those  that failed. For each failure, a reason is provided. It is important to check the failed set for  unsuccessful results.  The maximum number of instruments that this method can upsert per request is 2,000.  # noqa: E501
         :param request_body: The definitions of the instruments to create or update. (required)
         :type request_body: Dict[str, InstrumentDefinition]
         :param scope: The scope in which the instrument lies. When not supplied the scope is 'default'.
@@ -5428,9 +5428,9 @@ class InstrumentsApi:
             :type identifier_effective_at: str
             :param as_at: The asAt datetime at which to retrieve the instrument's property history. Defaults to              returning the current datetime if not supplied.
             :type as_at: datetime
-            :param filter: Expression to filter the results. For more information about filtering,              see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results. For more information about filtering,              see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
-            :param page: The pagination token to use to continue listing properties; this value is returned from              the previous call. If a pagination token is provided, the <i>filter</i>, <i>effectiveAt</i> and              <i>asAt</i> fields must not have changed since the original request. For more information, see              https://support.lusid.com/knowledgebase/article/KA-01915.
+            :param page: The pagination token to use to continue listing properties; this value is returned from              the previous call. If a pagination token is provided, the <i>filter</i>, <i>effectiveAt</i> and              <i>asAt</i> fields must not have changed since the original request. For more information, see              https://support.lusid.com/docs/paging-and-limiting-an-api-request.
             :type page: str
             :param limit: When paginating, limit the results to this number.
             :type limit: int
@@ -5465,9 +5465,9 @@ class InstrumentsApi:
             :type identifier_effective_at: str
             :param as_at: The asAt datetime at which to retrieve the instrument's property history. Defaults to              returning the current datetime if not supplied.
             :type as_at: datetime
-            :param filter: Expression to filter the results. For more information about filtering,              see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the results. For more information about filtering,              see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
-            :param page: The pagination token to use to continue listing properties; this value is returned from              the previous call. If a pagination token is provided, the <i>filter</i>, <i>effectiveAt</i> and              <i>asAt</i> fields must not have changed since the original request. For more information, see              https://support.lusid.com/knowledgebase/article/KA-01915.
+            :param page: The pagination token to use to continue listing properties; this value is returned from              the previous call. If a pagination token is provided, the <i>filter</i>, <i>effectiveAt</i> and              <i>asAt</i> fields must not have changed since the original request. For more information, see              https://support.lusid.com/docs/paging-and-limiting-an-api-request.
             :type page: str
             :param limit: When paginating, limit the results to this number.
             :type limit: int
@@ -6152,13 +6152,13 @@ class InstrumentsApi:
             :type as_at: datetime
             :param effective_at: The effective datetime or cut label at which to list instruments.               Defaults to the current LUSID system datetime if not specified.
             :type effective_at: str
-            :param page: The pagination token to use to continue listing instruments; this value is returned from               the previous call. If a pagination token is provided, the <i>sortBy</i>, <i>filter</i>, <i>effectiveAt</i> and               <i>asAt</i> fields must not have changed since the original request.               For more information, see https://support.lusid.com/knowledgebase/article/KA-01915.
+            :param page: The pagination token to use to continue listing instruments; this value is returned from               the previous call. If a pagination token is provided, the <i>sortBy</i>, <i>filter</i>, <i>effectiveAt</i> and               <i>asAt</i> fields must not have changed since the original request.               For more information, see https://support.lusid.com/docs/paging-and-limiting-an-api-request.
             :type page: str
             :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
             :type sort_by: List[str]
             :param limit: When paginating, limit the results to this number.
             :type limit: int
-            :param filter: Expression to filter the result set. Defaults to filtering out inactive instruments               (that is, those that have been deleted). For more information about filtering results,               see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the result set. Defaults to filtering out inactive instruments               (that is, those that have been deleted). For more information about filtering results,               see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param instrument_property_keys: A list of property keys from the 'Instrument' domain to decorate onto               instruments, or from any domain that supports relationships to decorate onto related entities.               These must have the format {domain}/{scope}/{code}, for example 'Instrument/system/Name'.
             :type instrument_property_keys: List[str]
@@ -6201,13 +6201,13 @@ class InstrumentsApi:
             :type as_at: datetime
             :param effective_at: The effective datetime or cut label at which to list instruments.               Defaults to the current LUSID system datetime if not specified.
             :type effective_at: str
-            :param page: The pagination token to use to continue listing instruments; this value is returned from               the previous call. If a pagination token is provided, the <i>sortBy</i>, <i>filter</i>, <i>effectiveAt</i> and               <i>asAt</i> fields must not have changed since the original request.               For more information, see https://support.lusid.com/knowledgebase/article/KA-01915.
+            :param page: The pagination token to use to continue listing instruments; this value is returned from               the previous call. If a pagination token is provided, the <i>sortBy</i>, <i>filter</i>, <i>effectiveAt</i> and               <i>asAt</i> fields must not have changed since the original request.               For more information, see https://support.lusid.com/docs/paging-and-limiting-an-api-request.
             :type page: str
             :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
             :type sort_by: List[str]
             :param limit: When paginating, limit the results to this number.
             :type limit: int
-            :param filter: Expression to filter the result set. Defaults to filtering out inactive instruments               (that is, those that have been deleted). For more information about filtering results,               see https://support.lusid.com/knowledgebase/article/KA-01914.
+            :param filter: Expression to filter the result set. Defaults to filtering out inactive instruments               (that is, those that have been deleted). For more information about filtering results,               see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
             :type filter: str
             :param instrument_property_keys: A list of property keys from the 'Instrument' domain to decorate onto               instruments, or from any domain that supports relationships to decorate onto related entities.               These must have the format {domain}/{scope}/{code}, for example 'Instrument/system/Name'.
             :type instrument_property_keys: List[str]
@@ -6689,7 +6689,7 @@ class InstrumentsApi:
     @validate_call
     async def upsert_instruments_async(self, request_body: Dict[str, InstrumentDefinition], scope: Optional[StrictStr] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, **kwargs) -> UpsertInstrumentsResponse:
             """UpsertInstruments: Upsert instruments  # noqa: E501
-            Create or update one or more instruments in the instrument master. An instrument is updated  if it already exists and created if it does not.                In the request, each instrument definition should be keyed by a unique correlation ID. This ID is ephemeral  and not stored by LUSID. It serves only to easily identify each instrument in the response.                Note that an instrument must have at least one unique identifier, which is a combination of a type  (such as 'Figi') and a value (such as 'BBG000BS1N49'). In addition, a random value is automatically  generated for a LUSID Instrument ID (LUID) unique type by the system. For more information, see  https://support.lusid.com/knowledgebase/article/KA-01862.                The response returns both the collection of successfully created or updated instruments, as well as those  that failed. For each failure, a reason is provided. It is important to check the failed set for  unsuccessful results.  The maximum number of instruments that this method can upsert per request is 2,000.  # noqa: E501
+            Create or update one or more instruments in the instrument master. An instrument is updated  if it already exists and created if it does not.                In the request, each instrument definition should be keyed by a unique correlation ID. This ID is ephemeral  and not stored by LUSID. It serves only to easily identify each instrument in the response.                Note that an instrument must have at least one unique identifier, which is a combination of a type  (such as 'Figi') and a value (such as 'BBG000BS1N49'). In addition, a random value is automatically  generated for a LUSID Instrument ID (LUID) unique type by the system. For more information, see  https://support.lusid.com/docs/understanding-instrument-identifiers.                The response returns both the collection of successfully created or updated instruments, as well as those  that failed. For each failure, a reason is provided. It is important to check the failed set for  unsuccessful results.  The maximum number of instruments that this method can upsert per request is 2,000.  # noqa: E501
             
             :param request_body: The definitions of the instruments to create or update. (required)
             :type request_body: Dict[str, InstrumentDefinition]
@@ -6716,7 +6716,7 @@ class InstrumentsApi:
     async def upsert_instruments_with_http_info_async(self, request_body: Dict[str, InstrumentDefinition], scope: Optional[StrictStr] = None, data_model_scope: Optional[StrictStr] = None, data_model_code: Optional[StrictStr] = None, **kwargs) -> ApiResponse[UpsertInstrumentsResponse]:
             """UpsertInstruments: Upsert instruments  # noqa: E501
 
-            Create or update one or more instruments in the instrument master. An instrument is updated  if it already exists and created if it does not.                In the request, each instrument definition should be keyed by a unique correlation ID. This ID is ephemeral  and not stored by LUSID. It serves only to easily identify each instrument in the response.                Note that an instrument must have at least one unique identifier, which is a combination of a type  (such as 'Figi') and a value (such as 'BBG000BS1N49'). In addition, a random value is automatically  generated for a LUSID Instrument ID (LUID) unique type by the system. For more information, see  https://support.lusid.com/knowledgebase/article/KA-01862.                The response returns both the collection of successfully created or updated instruments, as well as those  that failed. For each failure, a reason is provided. It is important to check the failed set for  unsuccessful results.  The maximum number of instruments that this method can upsert per request is 2,000.  # noqa: E501
+            Create or update one or more instruments in the instrument master. An instrument is updated  if it already exists and created if it does not.                In the request, each instrument definition should be keyed by a unique correlation ID. This ID is ephemeral  and not stored by LUSID. It serves only to easily identify each instrument in the response.                Note that an instrument must have at least one unique identifier, which is a combination of a type  (such as 'Figi') and a value (such as 'BBG000BS1N49'). In addition, a random value is automatically  generated for a LUSID Instrument ID (LUID) unique type by the system. For more information, see  https://support.lusid.com/docs/understanding-instrument-identifiers.                The response returns both the collection of successfully created or updated instruments, as well as those  that failed. For each failure, a reason is provided. It is important to check the failed set for  unsuccessful results.  The maximum number of instruments that this method can upsert per request is 2,000.  # noqa: E501
 
             :param request_body: The definitions of the instruments to create or update. (required)
             :type request_body: Dict[str, InstrumentDefinition]

@@ -37,6 +37,7 @@ A Journal Entry line entity specifically for fund valuation point lines.
 | **share_class_breakdowns** | [List[JournalEntryLineShareClassBreakdown]](JournalEntryLineShareClassBreakdown.md) | Optional | Share Class breakdown data for this Journal Entry Line. |
 | **custodian_account_id** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **custodian_account_type** | **str** | Optional | Indicates the Account Type of the resolved Custodian Account for this Journal Entry Line. |
+| **bucket_memberships** | [List[BucketMembership]](BucketMembership.md) | Optional | The bucket this Journal Entry Line is assigned to in each of the Fund Configuration&#39;s bucket sets that covers the NAV type, in bucket set definition order. Each bucket set classifies the line independently, so a line normally carries one entry per bucket set. |
 | **links** | [List[Link]](Link.md) | Optional | *No description available.* |
 
 
@@ -80,6 +81,7 @@ instance = FundJournalEntryLine(
     share_class_breakdowns=[],  # optional — Share Class breakdown data for this Journal Entry Line.
     custodian_account_id=ResourceId(...),  # optional
     custodian_account_type="...",  # optional — Indicates the Account Type of the resolved Custodian Account for this Journal Entry Line.
+    bucket_memberships=[],  # optional — The bucket this Journal Entry Line is assigned to in each of the Fund Configuration&#39;s bucket sets that covers the NAV type, in bucket set definition order. Each bucket set classifies the line independently, so a line normally carries one entry per bucket set.
     links=[]  # optional
 )
 ```
@@ -91,6 +93,7 @@ instance = FundJournalEntryLine(
 - [ModelProperty](ModelProperty.md) — used in `properties`
 - [JournalEntryLineShareClassBreakdown](JournalEntryLineShareClassBreakdown.md) — used in `share_class_breakdowns`
 - [ResourceId](ResourceId.md)
+- [BucketMembership](BucketMembership.md) — used in `bucket_memberships`
 - [Link](Link.md)
 
 

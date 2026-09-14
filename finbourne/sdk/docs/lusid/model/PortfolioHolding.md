@@ -29,8 +29,6 @@ A list of holdings.
 | **unsettled_units** | **float** | Optional | The number of unsettled units for the holding. |
 | **overdue_units** | **float** | Optional | The number of unsettled units for the holding that are beyond their contractual settlement date. |
 | **custodian_account** | [CustodianAccount](CustodianAccount.md) | Optional | *No description available.* |
-| **resolved_custodian_account** | [ResolvedCustodianAccount](ResolvedCustodianAccount.md) | Optional | *No description available.* |
-| **holding_property_balances** | **Dict[str, float]** | Optional | The latest running balance of each holding property maintained on the holding by transaction type holding property deltas, keyed by holding property key, for example &#39;CommittedCapital&#39;. Only populated when the holding has at least one balance. |
 
 
 ## Usage
@@ -64,9 +62,7 @@ instance = PortfolioHolding(
     custodian_account_id=ResourceId(...),  # optional
     unsettled_units=0.0,  # optional — The number of unsettled units for the holding.
     overdue_units=0.0,  # optional — The number of unsettled units for the holding that are beyond their contractual settlement date.
-    custodian_account=CustodianAccount(...),  # optional
-    resolved_custodian_account=ResolvedCustodianAccount(...),  # optional
-    holding_property_balances=  # optional — The latest running balance of each holding property maintained on the holding by transaction type holding property deltas, keyed by holding property key, for example &#39;CommittedCapital&#39;. Only populated when the holding has at least one balance.
+    custodian_account=CustodianAccount(...)  # optional
 )
 ```
 
@@ -83,7 +79,6 @@ instance = PortfolioHolding(
 - [SettlementSchedule](SettlementSchedule.md) — used in `settlement_schedule`
 - [ResourceId](ResourceId.md)
 - [CustodianAccount](CustodianAccount.md)
-- [ResolvedCustodianAccount](ResolvedCustodianAccount.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

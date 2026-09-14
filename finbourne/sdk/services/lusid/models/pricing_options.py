@@ -21,6 +21,7 @@ from uuid import UUID
 
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
+from finbourne.sdk.services.lusid.models.inflation_convexity_options import InflationConvexityOptions
 from finbourne.sdk.services.lusid.models.model_selection import ModelSelection
 from finbourne.sdk.services.lusid.models.return_zero_pv_options import ReturnZeroPvOptions
 from finbourne.sdk.services.lusid.models.risk_bump_options import RiskBumpOptions
@@ -52,7 +53,11 @@ class PricingOptions(BaseModel):
     scale_instrument_accrued_override_by_contract_size: Optional[StrictBool] = Field(default=None, description="When enabled, an SRS InstrumentAccrued override is multiplied by the instrument contractSize (legacy behaviour).  By default this is disabled, and the override is treated as the accrued for a single unit, keeping the  holding-level identity PV = CleanPv + Accrued consistent.", alias="scaleInstrumentAccruedOverrideByContractSize")
     risk_bump_options: Optional[RiskBumpOptions] = Field(default=None, alias="riskBumpOptions")
     funding_curve_by_currency: Optional[Dict[str, Optional[StrictStr]]] = Field(default=None, description="Names the funding curve each currency discounts on, keyed by ISO 4217 currency code  (e.g. \"GBP\" -> \"GBPOIS-USDCOLL\"). Keys are case-insensitive. A currency absent from  the map keeps the default funding curve, {CCY}OIS, so an absent or empty map leaves  every valuation unchanged.", alias="fundingCurveByCurrency")
-    __properties: ClassVar[List[str]] = ["modelSelection", "useInstrumentTypeToDeterminePricer", "allowAnyInstrumentsWithSecUidToPriceOffLookup", "allowPartiallySuccessfulEvaluation", "riskEngine", "findOrCalculate", "produceSeparateResultForLinearOtcLegs", "fxForwardContractsAsUnitsInBothLegs", "enableUseOfCachedUnitResults", "windowValuationOnInstrumentStartEnd", "removeContingentCashflowsInPaymentDiary", "useChildSubHoldingKeysForPortfolioExpansion", "validateDomesticAndQuoteCurrenciesAreConsistent", "mbsValuationUsingHoldingCurrentFace", "convertSrsCashFlowsToPortfolioCurrency", "conservedQuantityForLookthroughExpansion", "returnZeroPv", "enableLegLevelInferenceForCustomSrsColumns", "useInstrumentScaleFactorAsDefault", "scaleInstrumentAccruedOverrideByContractSize", "riskBumpOptions", "fundingCurveByCurrency"]
+    default_pool_factors_to_unity: Optional[StrictBool] = Field(default=None, description="When true, an asset-backed instrument with no pool-factor history defaults the pool  factor to 1.0 (the full original face) instead of 0. When false (default), the factor  defaults to 0 as before, preserving current behaviour.", alias="defaultPoolFactorsToUnity")
+    find_or_calculate_write_through: Optional[StrictBool] = Field(default=None, description="When true, and FindOrCalculate is Enabled, results that had to be calculated because no  verified stored value existed are written back into the structured result store, so a  later identical request can serve them without recomputing. The write targets the  document selected by the same result data key rules the lookup reads. When false  (default), calculated results are never persisted.  Results are stored at unit level (per unit of holding), so a value served from the store  is rescaled by the holding's units and may differ from a freshly calculated value in the  least significant digits.", alias="findOrCalculateWriteThrough")
+    inflation_convexity: Optional[InflationConvexityOptions] = Field(default=None, alias="inflationConvexity")
+    allow_fallback_on_model_decline: Optional[StrictBool] = Field(default=None, description="When true, a model that refuses an instrument outright - because the instrument is outside  what that model can represent, not because data was missing - hands the instrument to the  next model this recipe's rules offer for it, and to the default model for its type after  those. The row is then priced by the first model that accepts it, and carries a diagnostic  naming the model that stood down, its objection, and the model that served it. The caller  must be entitled to the model that serves the row; where none of the alternatives is both  licensed and willing, the row keeps the original refusal.  When false (default), a refusal ends the row however many other models the recipe offers.  A failure that is not a refusal - a missing curve, an unresolved fixing, a malformed model  option - always ends the row, whatever this is set to, because another model's number would  hide the gap rather than close it.", alias="allowFallbackOnModelDecline")
+    __properties: ClassVar[List[str]] = ["modelSelection", "useInstrumentTypeToDeterminePricer", "allowAnyInstrumentsWithSecUidToPriceOffLookup", "allowPartiallySuccessfulEvaluation", "riskEngine", "findOrCalculate", "produceSeparateResultForLinearOtcLegs", "fxForwardContractsAsUnitsInBothLegs", "enableUseOfCachedUnitResults", "windowValuationOnInstrumentStartEnd", "removeContingentCashflowsInPaymentDiary", "useChildSubHoldingKeysForPortfolioExpansion", "validateDomesticAndQuoteCurrenciesAreConsistent", "mbsValuationUsingHoldingCurrentFace", "convertSrsCashFlowsToPortfolioCurrency", "conservedQuantityForLookthroughExpansion", "returnZeroPv", "enableLegLevelInferenceForCustomSrsColumns", "useInstrumentScaleFactorAsDefault", "scaleInstrumentAccruedOverrideByContractSize", "riskBumpOptions", "fundingCurveByCurrency", "defaultPoolFactorsToUnity", "findOrCalculateWriteThrough", "inflationConvexity", "allowFallbackOnModelDecline"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -97,6 +102,9 @@ class PricingOptions(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of risk_bump_options
         if self.risk_bump_options:
             _dict['riskBumpOptions'] = self.risk_bump_options.to_dict(by_alias=by_alias)
+        # override the default output from pydantic by calling `to_dict()` of inflation_convexity
+        if self.inflation_convexity:
+            _dict['inflationConvexity'] = self.inflation_convexity.to_dict(by_alias=by_alias)
         # set to None if risk_engine (nullable) is None
         # and model_fields_set contains the field
         if self.risk_engine is None and "risk_engine" in self.model_fields_set:
@@ -150,7 +158,11 @@ class PricingOptions(BaseModel):
             "use_instrument_scale_factor_as_default": obj.get("useInstrumentScaleFactorAsDefault"),
             "scale_instrument_accrued_override_by_contract_size": obj.get("scaleInstrumentAccruedOverrideByContractSize"),
             "risk_bump_options": RiskBumpOptions.from_dict(_v) if (_v := obj.get("riskBumpOptions")) is not None else None,
-            "funding_curve_by_currency": obj.get("fundingCurveByCurrency")
+            "funding_curve_by_currency": obj.get("fundingCurveByCurrency"),
+            "default_pool_factors_to_unity": obj.get("defaultPoolFactorsToUnity"),
+            "find_or_calculate_write_through": obj.get("findOrCalculateWriteThrough"),
+            "inflation_convexity": InflationConvexityOptions.from_dict(_v) if (_v := obj.get("inflationConvexity")) is not None else None,
+            "allow_fallback_on_model_decline": obj.get("allowFallbackOnModelDecline")
         })
         return _obj
 

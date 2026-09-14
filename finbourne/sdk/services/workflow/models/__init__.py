@@ -50,6 +50,8 @@ from finbourne.sdk.services.workflow.models.error_detail import ErrorDetail
 from finbourne.sdk.services.workflow.models.event_handler import EventHandler
 from finbourne.sdk.services.workflow.models.event_handler_mapping import EventHandlerMapping
 from finbourne.sdk.services.workflow.models.event_matching_pattern import EventMatchingPattern
+from finbourne.sdk.services.workflow.models.existing_tasks_not_recurring_configuration import ExistingTasksNotRecurringConfiguration
+from finbourne.sdk.services.workflow.models.existing_tasks_recurring_configuration import ExistingTasksRecurringConfiguration
 from finbourne.sdk.services.workflow.models.fail import Fail
 from finbourne.sdk.services.workflow.models.fail_response import FailResponse
 from finbourne.sdk.services.workflow.models.field_mapping import FieldMapping
@@ -73,6 +75,7 @@ from finbourne.sdk.services.workflow.models.lusid_entity_data_quality_check_resp
 from finbourne.sdk.services.workflow.models.lusid_problem_details import LusidProblemDetails
 from finbourne.sdk.services.workflow.models.lusid_validation_problem_details import LusidValidationProblemDetails
 from finbourne.sdk.services.workflow.models.metric_value import MetricValue
+from finbourne.sdk.services.workflow.models.new_tasks_recurring_configuration import NewTasksRecurringConfiguration
 from finbourne.sdk.services.workflow.models.paged_resource_list_of_event_handler import PagedResourceListOfEventHandler
 from finbourne.sdk.services.workflow.models.paged_resource_list_of_task import PagedResourceListOfTask
 from finbourne.sdk.services.workflow.models.paged_resource_list_of_task_definition import PagedResourceListOfTaskDefinition
@@ -81,7 +84,10 @@ from finbourne.sdk.services.workflow.models.paged_resource_list_of_workflow_resp
 from finbourne.sdk.services.workflow.models.parameter import Parameter
 from finbourne.sdk.services.workflow.models.parameter_value import ParameterValue
 from finbourne.sdk.services.workflow.models.perpetual_property import PerpetualProperty
+from finbourne.sdk.services.workflow.models.portfolio_holding_data_quality_check import PortfolioHoldingDataQualityCheck
+from finbourne.sdk.services.workflow.models.portfolio_holding_data_quality_check_response import PortfolioHoldingDataQualityCheckResponse
 from finbourne.sdk.services.workflow.models.property_value import PropertyValue
+from finbourne.sdk.services.workflow.models.re_run_configuration import ReRunConfiguration
 from finbourne.sdk.services.workflow.models.read_only_states import ReadOnlyStates
 from finbourne.sdk.services.workflow.models.recurrence_pattern import RecurrencePattern
 from finbourne.sdk.services.workflow.models.relative_month_regularity import RelativeMonthRegularity
@@ -92,6 +98,8 @@ from finbourne.sdk.services.workflow.models.resource_list_of_task import Resourc
 from finbourne.sdk.services.workflow.models.result_field import ResultField
 from finbourne.sdk.services.workflow.models.result_matching_pattern import ResultMatchingPattern
 from finbourne.sdk.services.workflow.models.resultant_child_task_configuration import ResultantChildTaskConfiguration
+from finbourne.sdk.services.workflow.models.results_not_recurring_configuration import ResultsNotRecurringConfiguration
+from finbourne.sdk.services.workflow.models.results_recurring_configuration import ResultsRecurringConfiguration
 from finbourne.sdk.services.workflow.models.run_worker_action import RunWorkerAction
 from finbourne.sdk.services.workflow.models.run_worker_action_response import RunWorkerActionResponse
 from finbourne.sdk.services.workflow.models.run_worker_request import RunWorkerRequest
@@ -187,6 +195,8 @@ __all__ = [
     "EventHandler",
     "EventHandlerMapping",
     "EventMatchingPattern",
+    "ExistingTasksNotRecurringConfiguration",
+    "ExistingTasksRecurringConfiguration",
     "Fail",
     "FailResponse",
     "FieldMapping",
@@ -210,6 +220,7 @@ __all__ = [
     "LusidProblemDetails",
     "LusidValidationProblemDetails",
     "MetricValue",
+    "NewTasksRecurringConfiguration",
     "PagedResourceListOfEventHandler",
     "PagedResourceListOfTask",
     "PagedResourceListOfTaskDefinition",
@@ -218,7 +229,10 @@ __all__ = [
     "Parameter",
     "ParameterValue",
     "PerpetualProperty",
+    "PortfolioHoldingDataQualityCheck",
+    "PortfolioHoldingDataQualityCheckResponse",
     "PropertyValue",
+    "ReRunConfiguration",
     "ReadOnlyStates",
     "RecurrencePattern",
     "RelativeMonthRegularity",
@@ -229,6 +243,8 @@ __all__ = [
     "ResultField",
     "ResultMatchingPattern",
     "ResultantChildTaskConfiguration",
+    "ResultsNotRecurringConfiguration",
+    "ResultsRecurringConfiguration",
     "RunWorkerAction",
     "RunWorkerActionResponse",
     "RunWorkerRequest",

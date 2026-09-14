@@ -22,6 +22,7 @@ from uuid import UUID
 
 from pydantic import StrictStr, Field, BaseModel, StrictInt, StrictBool, StrictFloat, StrictBytes, ConfigDict, field_validator, conlist 
 from finbourne.sdk.services.workflow.models.field_mapping import FieldMapping
+from finbourne.sdk.services.workflow.models.re_run_configuration import ReRunConfiguration
 from finbourne.sdk.services.workflow.models.resource_id import ResourceId
 from finbourne.sdk.services.workflow.models.resultant_child_task_configuration import ResultantChildTaskConfiguration
 from finbourne.sdk.services.workflow.models.worker_status_triggers import WorkerStatusTriggers
@@ -37,8 +38,9 @@ class RunWorkerAction(BaseModel):
     worker_parameters: Optional[Dict[str, FieldMapping]] = Field(default=None, description="Parameters for this Worker", alias="workerParameters")
     worker_status_triggers: Optional[WorkerStatusTriggers] = Field(default=None, alias="workerStatusTriggers")
     child_task_configurations: Optional[List[ResultantChildTaskConfiguration]] = Field(default=None, description="Tasks can be generated from run worker results; this is the configuration", alias="childTaskConfigurations")
+    re_run_configurations: Optional[List[ReRunConfiguration]] = Field(default=None, description="Configuration governing how re-run results are reconciled against existing child tasks from a previous run of this action against the same parent Task instance", alias="reRunConfigurations")
     worker_timeout: Optional[StrictInt] = Field(default=None, description="Worker WorkerTimeout in seconds", alias="workerTimeout")
-    __properties: ClassVar[List[str]] = ["type", "workerId", "workerAsAt", "workerParameters", "workerStatusTriggers", "childTaskConfigurations", "workerTimeout"]
+    __properties: ClassVar[List[str]] = ["type", "workerId", "workerAsAt", "workerParameters", "workerStatusTriggers", "childTaskConfigurations", "reRunConfigurations", "workerTimeout"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -114,6 +116,13 @@ class RunWorkerAction(BaseModel):
                 if _item:
                     _items.append(_item.to_dict(by_alias=by_alias))
             _dict['childTaskConfigurations'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in re_run_configurations (list)
+        _items = []
+        if self.re_run_configurations:
+            for _item in self.re_run_configurations:
+                if _item:
+                    _items.append(_item.to_dict(by_alias=by_alias))
+            _dict['reRunConfigurations'] = _items
         # set to None if worker_as_at (nullable) is None
         # and model_fields_set contains the field
         if self.worker_as_at is None and "worker_as_at" in self.model_fields_set:
@@ -128,6 +137,11 @@ class RunWorkerAction(BaseModel):
         # and model_fields_set contains the field
         if self.child_task_configurations is None and "child_task_configurations" in self.model_fields_set:
             _dict['childTaskConfigurations'] = None
+
+        # set to None if re_run_configurations (nullable) is None
+        # and model_fields_set contains the field
+        if self.re_run_configurations is None and "re_run_configurations" in self.model_fields_set:
+            _dict['reRunConfigurations'] = None
 
         # set to None if worker_timeout (nullable) is None
         # and model_fields_set contains the field
@@ -157,6 +171,7 @@ class RunWorkerAction(BaseModel):
             else None,
             "worker_status_triggers": WorkerStatusTriggers.from_dict(_v) if (_v := obj.get("workerStatusTriggers")) is not None else None,
             "child_task_configurations": [ResultantChildTaskConfiguration.from_dict(_item) for _item in _v] if (_v := obj.get("childTaskConfigurations")) is not None else None,
+            "re_run_configurations": [ReRunConfiguration.from_dict(_item) for _item in _v] if (_v := obj.get("reRunConfigurations")) is not None else None,
             "worker_timeout": obj.get("workerTimeout")
         })
         return _obj

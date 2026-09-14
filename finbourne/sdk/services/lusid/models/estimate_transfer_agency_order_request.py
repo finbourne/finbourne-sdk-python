@@ -31,7 +31,8 @@ class EstimateTransferAgencyOrderRequest(BaseModel):
     """
     order_id: ResourceId = Field(alias="orderId")
     order: Optional[TransferAgencyOrderToEstimate] = None
-    __properties: ClassVar[List[str]] = ["orderId", "order"]
+    price_date: Optional[datetime] = Field(default=None, alias="priceDate")
+    __properties: ClassVar[List[str]] = ["orderId", "order", "priceDate"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -73,6 +74,11 @@ class EstimateTransferAgencyOrderRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of order
         if self.order:
             _dict['order'] = self.order.to_dict(by_alias=by_alias)
+        # set to None if price_date (nullable) is None
+        # and model_fields_set contains the field
+        if self.price_date is None and "price_date" in self.model_fields_set:
+            _dict['priceDate'] = None
+
         return _dict
 
     @classmethod
@@ -86,7 +92,8 @@ class EstimateTransferAgencyOrderRequest(BaseModel):
 
         _obj = EstimateTransferAgencyOrderRequest.model_validate({
             "order_id": ResourceId.from_dict(_v) if (_v := obj.get("orderId")) is not None else None,
-            "order": TransferAgencyOrderToEstimate.from_dict(_v) if (_v := obj.get("order")) is not None else None
+            "order": TransferAgencyOrderToEstimate.from_dict(_v) if (_v := obj.get("order")) is not None else None,
+            "price_date": obj.get("priceDate")
         })
         return _obj
 

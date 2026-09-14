@@ -54,17 +54,17 @@ class OrderGraphApi:
         """ListOrderGraphBlocks: Lists blocks that pass the filter provided, and builds a summary picture of the state of their associated order entities.  # noqa: E501
 
         Lists all blocks of orders, subject to the filter, along with the IDs of orders, placements, allocations and  executions in the block, the total quantities of each, and a simple text field describing the overall state.  # noqa: E501
-        :param as_at: See https://support.lusid.com/knowledgebase/article/KA-01832/
+        :param as_at: See https://support.lusid.com/docs/what-is-the-asat-timestamp
         :type as_at: datetime
-        :param pagination_token: See https://support.lusid.com/knowledgebase/article/KA-01915/
+        :param pagination_token: See https://support.lusid.com/docs/paging-and-limiting-an-api-request
         :type pagination_token: str
         :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
         :type sort_by: List[str]
-        :param limit: See https://support.lusid.com/knowledgebase/article/KA-01915/
+        :param limit: See https://support.lusid.com/docs/paging-and-limiting-an-api-request
         :type limit: int
-        :param filter: See https://support.lusid.com/knowledgebase/article/KA-01914/
+        :param filter: See https://support.lusid.com/docs/filtering-information-retrieved-from-lusid
         :type filter: str
-        :param property_keys: Must be block-level properties. See https://support.lusid.com/knowledgebase/article/KA-01855/
+        :param property_keys: Must be block-level properties. See https://support.lusid.com/docs/properties
         :type property_keys: List[str]
         :param use_compliance_v2: Whether to use the V2 compliance engine when deriving compliance statuses for orders. (default: false)
         :type use_compliance_v2: bool
@@ -86,17 +86,17 @@ class OrderGraphApi:
         """ListOrderGraphBlocks: Lists blocks that pass the filter provided, and builds a summary picture of the state of their associated order entities.  # noqa: E501
 
         Lists all blocks of orders, subject to the filter, along with the IDs of orders, placements, allocations and  executions in the block, the total quantities of each, and a simple text field describing the overall state.  # noqa: E501
-        :param as_at: See https://support.lusid.com/knowledgebase/article/KA-01832/
+        :param as_at: See https://support.lusid.com/docs/what-is-the-asat-timestamp
         :type as_at: datetime
-        :param pagination_token: See https://support.lusid.com/knowledgebase/article/KA-01915/
+        :param pagination_token: See https://support.lusid.com/docs/paging-and-limiting-an-api-request
         :type pagination_token: str
         :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
         :type sort_by: List[str]
-        :param limit: See https://support.lusid.com/knowledgebase/article/KA-01915/
+        :param limit: See https://support.lusid.com/docs/paging-and-limiting-an-api-request
         :type limit: int
-        :param filter: See https://support.lusid.com/knowledgebase/article/KA-01914/
+        :param filter: See https://support.lusid.com/docs/filtering-information-retrieved-from-lusid
         :type filter: str
-        :param property_keys: Must be block-level properties. See https://support.lusid.com/knowledgebase/article/KA-01855/
+        :param property_keys: Must be block-level properties. See https://support.lusid.com/docs/properties
         :type property_keys: List[str]
         :param use_compliance_v2: Whether to use the V2 compliance engine when deriving compliance statuses for orders. (default: false)
         :type use_compliance_v2: bool
@@ -231,15 +231,15 @@ class OrderGraphApi:
         :type scope: str
         :param code: The parent placement's code (required)
         :type code: str
-        :param as_at: See https://support.lusid.com/knowledgebase/article/KA-01832/
+        :param as_at: See https://support.lusid.com/docs/what-is-the-asat-timestamp
         :type as_at: datetime
-        :param pagination_token: See https://support.lusid.com/knowledgebase/article/KA-01915/
+        :param pagination_token: See https://support.lusid.com/docs/paging-and-limiting-an-api-request
         :type pagination_token: str
         :param sort_by: Order the results by these fields. Use use the '-' sign to denote descending order e.g. -MyFieldName.
         :type sort_by: List[str]
-        :param limit: See https://support.lusid.com/knowledgebase/article/KA-01915/
+        :param limit: See https://support.lusid.com/docs/paging-and-limiting-an-api-request
         :type limit: int
-        :param property_keys: Must be placement properties. See https://support.lusid.com/knowledgebase/article/KA-01855/
+        :param property_keys: Must be placement properties. See https://support.lusid.com/docs/properties
         :type property_keys: List[str]
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -263,15 +263,15 @@ class OrderGraphApi:
         :type scope: str
         :param code: The parent placement's code (required)
         :type code: str
-        :param as_at: See https://support.lusid.com/knowledgebase/article/KA-01832/
+        :param as_at: See https://support.lusid.com/docs/what-is-the-asat-timestamp
         :type as_at: datetime
-        :param pagination_token: See https://support.lusid.com/knowledgebase/article/KA-01915/
+        :param pagination_token: See https://support.lusid.com/docs/paging-and-limiting-an-api-request
         :type pagination_token: str
         :param sort_by: Order the results by these fields. Use use the '-' sign to denote descending order e.g. -MyFieldName.
         :type sort_by: List[str]
-        :param limit: See https://support.lusid.com/knowledgebase/article/KA-01915/
+        :param limit: See https://support.lusid.com/docs/paging-and-limiting-an-api-request
         :type limit: int
-        :param property_keys: Must be placement properties. See https://support.lusid.com/knowledgebase/article/KA-01855/
+        :param property_keys: Must be placement properties. See https://support.lusid.com/docs/properties
         :type property_keys: List[str]
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -400,17 +400,17 @@ class OrderGraphApi:
         """ListOrderGraphPlacements: Lists placements that pass the filter provided, and builds a summary picture of the state of their associated order entities.  # noqa: E501
 
         Lists all order placements, subject to the filter, along with the IDs of the block and order that the  placement is for, each placement's quantity, the IDs of all allocations and executions in the placement  and the total quantities of those, and a simple text field describing the overall state of the placement.  # noqa: E501
-        :param as_at: See https://support.lusid.com/knowledgebase/article/KA-01832/
+        :param as_at: See https://support.lusid.com/docs/what-is-the-asat-timestamp
         :type as_at: datetime
-        :param pagination_token: See https://support.lusid.com/knowledgebase/article/KA-01915/
+        :param pagination_token: See https://support.lusid.com/docs/paging-and-limiting-an-api-request
         :type pagination_token: str
         :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
         :type sort_by: List[str]
-        :param limit: See https://support.lusid.com/knowledgebase/article/KA-01915/
+        :param limit: See https://support.lusid.com/docs/paging-and-limiting-an-api-request
         :type limit: int
-        :param filter: See https://support.lusid.com/knowledgebase/article/KA-01914/
+        :param filter: See https://support.lusid.com/docs/filtering-information-retrieved-from-lusid
         :type filter: str
-        :param property_keys: Must be placement properties. See https://support.lusid.com/knowledgebase/article/KA-01855/
+        :param property_keys: Must be placement properties. See https://support.lusid.com/docs/properties
         :type property_keys: List[str]
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
@@ -430,17 +430,17 @@ class OrderGraphApi:
         """ListOrderGraphPlacements: Lists placements that pass the filter provided, and builds a summary picture of the state of their associated order entities.  # noqa: E501
 
         Lists all order placements, subject to the filter, along with the IDs of the block and order that the  placement is for, each placement's quantity, the IDs of all allocations and executions in the placement  and the total quantities of those, and a simple text field describing the overall state of the placement.  # noqa: E501
-        :param as_at: See https://support.lusid.com/knowledgebase/article/KA-01832/
+        :param as_at: See https://support.lusid.com/docs/what-is-the-asat-timestamp
         :type as_at: datetime
-        :param pagination_token: See https://support.lusid.com/knowledgebase/article/KA-01915/
+        :param pagination_token: See https://support.lusid.com/docs/paging-and-limiting-an-api-request
         :type pagination_token: str
         :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
         :type sort_by: List[str]
-        :param limit: See https://support.lusid.com/knowledgebase/article/KA-01915/
+        :param limit: See https://support.lusid.com/docs/paging-and-limiting-an-api-request
         :type limit: int
-        :param filter: See https://support.lusid.com/knowledgebase/article/KA-01914/
+        :param filter: See https://support.lusid.com/docs/filtering-information-retrieved-from-lusid
         :type filter: str
-        :param property_keys: Must be placement properties. See https://support.lusid.com/knowledgebase/article/KA-01855/
+        :param property_keys: Must be placement properties. See https://support.lusid.com/docs/properties
         :type property_keys: List[str]
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -569,17 +569,17 @@ class OrderGraphApi:
             """ListOrderGraphBlocks: Lists blocks that pass the filter provided, and builds a summary picture of the state of their associated order entities.  # noqa: E501
             Lists all blocks of orders, subject to the filter, along with the IDs of orders, placements, allocations and  executions in the block, the total quantities of each, and a simple text field describing the overall state.  # noqa: E501
             
-            :param as_at: See https://support.lusid.com/knowledgebase/article/KA-01832/
+            :param as_at: See https://support.lusid.com/docs/what-is-the-asat-timestamp
             :type as_at: datetime
-            :param pagination_token: See https://support.lusid.com/knowledgebase/article/KA-01915/
+            :param pagination_token: See https://support.lusid.com/docs/paging-and-limiting-an-api-request
             :type pagination_token: str
             :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
             :type sort_by: List[str]
-            :param limit: See https://support.lusid.com/knowledgebase/article/KA-01915/
+            :param limit: See https://support.lusid.com/docs/paging-and-limiting-an-api-request
             :type limit: int
-            :param filter: See https://support.lusid.com/knowledgebase/article/KA-01914/
+            :param filter: See https://support.lusid.com/docs/filtering-information-retrieved-from-lusid
             :type filter: str
-            :param property_keys: Must be block-level properties. See https://support.lusid.com/knowledgebase/article/KA-01855/
+            :param property_keys: Must be block-level properties. See https://support.lusid.com/docs/properties
             :type property_keys: List[str]
             :param use_compliance_v2: Whether to use the V2 compliance engine when deriving compliance statuses for orders. (default: false)
             :type use_compliance_v2: bool
@@ -602,17 +602,17 @@ class OrderGraphApi:
 
             Lists all blocks of orders, subject to the filter, along with the IDs of orders, placements, allocations and  executions in the block, the total quantities of each, and a simple text field describing the overall state.  # noqa: E501
 
-            :param as_at: See https://support.lusid.com/knowledgebase/article/KA-01832/
+            :param as_at: See https://support.lusid.com/docs/what-is-the-asat-timestamp
             :type as_at: datetime
-            :param pagination_token: See https://support.lusid.com/knowledgebase/article/KA-01915/
+            :param pagination_token: See https://support.lusid.com/docs/paging-and-limiting-an-api-request
             :type pagination_token: str
             :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
             :type sort_by: List[str]
-            :param limit: See https://support.lusid.com/knowledgebase/article/KA-01915/
+            :param limit: See https://support.lusid.com/docs/paging-and-limiting-an-api-request
             :type limit: int
-            :param filter: See https://support.lusid.com/knowledgebase/article/KA-01914/
+            :param filter: See https://support.lusid.com/docs/filtering-information-retrieved-from-lusid
             :type filter: str
-            :param property_keys: Must be block-level properties. See https://support.lusid.com/knowledgebase/article/KA-01855/
+            :param property_keys: Must be block-level properties. See https://support.lusid.com/docs/properties
             :type property_keys: List[str]
             :param use_compliance_v2: Whether to use the V2 compliance engine when deriving compliance statuses for orders. (default: false)
             :type use_compliance_v2: bool
@@ -747,15 +747,15 @@ class OrderGraphApi:
             :type scope: str
             :param code: The parent placement's code (required)
             :type code: str
-            :param as_at: See https://support.lusid.com/knowledgebase/article/KA-01832/
+            :param as_at: See https://support.lusid.com/docs/what-is-the-asat-timestamp
             :type as_at: datetime
-            :param pagination_token: See https://support.lusid.com/knowledgebase/article/KA-01915/
+            :param pagination_token: See https://support.lusid.com/docs/paging-and-limiting-an-api-request
             :type pagination_token: str
             :param sort_by: Order the results by these fields. Use use the '-' sign to denote descending order e.g. -MyFieldName.
             :type sort_by: List[str]
-            :param limit: See https://support.lusid.com/knowledgebase/article/KA-01915/
+            :param limit: See https://support.lusid.com/docs/paging-and-limiting-an-api-request
             :type limit: int
-            :param property_keys: Must be placement properties. See https://support.lusid.com/knowledgebase/article/KA-01855/
+            :param property_keys: Must be placement properties. See https://support.lusid.com/docs/properties
             :type property_keys: List[str]
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -780,15 +780,15 @@ class OrderGraphApi:
             :type scope: str
             :param code: The parent placement's code (required)
             :type code: str
-            :param as_at: See https://support.lusid.com/knowledgebase/article/KA-01832/
+            :param as_at: See https://support.lusid.com/docs/what-is-the-asat-timestamp
             :type as_at: datetime
-            :param pagination_token: See https://support.lusid.com/knowledgebase/article/KA-01915/
+            :param pagination_token: See https://support.lusid.com/docs/paging-and-limiting-an-api-request
             :type pagination_token: str
             :param sort_by: Order the results by these fields. Use use the '-' sign to denote descending order e.g. -MyFieldName.
             :type sort_by: List[str]
-            :param limit: See https://support.lusid.com/knowledgebase/article/KA-01915/
+            :param limit: See https://support.lusid.com/docs/paging-and-limiting-an-api-request
             :type limit: int
-            :param property_keys: Must be placement properties. See https://support.lusid.com/knowledgebase/article/KA-01855/
+            :param property_keys: Must be placement properties. See https://support.lusid.com/docs/properties
             :type property_keys: List[str]
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
@@ -917,17 +917,17 @@ class OrderGraphApi:
             """ListOrderGraphPlacements: Lists placements that pass the filter provided, and builds a summary picture of the state of their associated order entities.  # noqa: E501
             Lists all order placements, subject to the filter, along with the IDs of the block and order that the  placement is for, each placement's quantity, the IDs of all allocations and executions in the placement  and the total quantities of those, and a simple text field describing the overall state of the placement.  # noqa: E501
             
-            :param as_at: See https://support.lusid.com/knowledgebase/article/KA-01832/
+            :param as_at: See https://support.lusid.com/docs/what-is-the-asat-timestamp
             :type as_at: datetime
-            :param pagination_token: See https://support.lusid.com/knowledgebase/article/KA-01915/
+            :param pagination_token: See https://support.lusid.com/docs/paging-and-limiting-an-api-request
             :type pagination_token: str
             :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
             :type sort_by: List[str]
-            :param limit: See https://support.lusid.com/knowledgebase/article/KA-01915/
+            :param limit: See https://support.lusid.com/docs/paging-and-limiting-an-api-request
             :type limit: int
-            :param filter: See https://support.lusid.com/knowledgebase/article/KA-01914/
+            :param filter: See https://support.lusid.com/docs/filtering-information-retrieved-from-lusid
             :type filter: str
-            :param property_keys: Must be placement properties. See https://support.lusid.com/knowledgebase/article/KA-01855/
+            :param property_keys: Must be placement properties. See https://support.lusid.com/docs/properties
             :type property_keys: List[str]
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
@@ -948,17 +948,17 @@ class OrderGraphApi:
 
             Lists all order placements, subject to the filter, along with the IDs of the block and order that the  placement is for, each placement's quantity, the IDs of all allocations and executions in the placement  and the total quantities of those, and a simple text field describing the overall state of the placement.  # noqa: E501
 
-            :param as_at: See https://support.lusid.com/knowledgebase/article/KA-01832/
+            :param as_at: See https://support.lusid.com/docs/what-is-the-asat-timestamp
             :type as_at: datetime
-            :param pagination_token: See https://support.lusid.com/knowledgebase/article/KA-01915/
+            :param pagination_token: See https://support.lusid.com/docs/paging-and-limiting-an-api-request
             :type pagination_token: str
             :param sort_by: A list of field names or properties to sort by, each suffixed by \" ASC\" or \" DESC\".
             :type sort_by: List[str]
-            :param limit: See https://support.lusid.com/knowledgebase/article/KA-01915/
+            :param limit: See https://support.lusid.com/docs/paging-and-limiting-an-api-request
             :type limit: int
-            :param filter: See https://support.lusid.com/knowledgebase/article/KA-01914/
+            :param filter: See https://support.lusid.com/docs/filtering-information-retrieved-from-lusid
             :type filter: str
-            :param property_keys: Must be placement properties. See https://support.lusid.com/knowledgebase/article/KA-01855/
+            :param property_keys: Must be placement properties. See https://support.lusid.com/docs/properties
             :type property_keys: List[str]
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the

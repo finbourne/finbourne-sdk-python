@@ -5,7 +5,7 @@
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | **query_method** | **str** | Optional | The method used to query data points. Can be either &#39;Latest&#39; or &#39;TimeSeries&#39;. |
-| **filter** | **str** | Optional | Expression to filter the result set. For more information about filtering LUSID results, see https://support.lusid.com/knowledgebase/article/KA-01914. |
+| **filter** | **str** | Optional | Expression to filter the result set. For more information about filtering LUSID results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid. |
 | **custom_sort_by** | [List[CustomSortBy]](CustomSortBy.md) | Optional | A list of fields and values to sort the results by. |
 
 
@@ -18,7 +18,7 @@ from finbourne.sdk.services.lusid.models.QueryRelationalDatasetRequest import Qu
 
 instance = QueryRelationalDatasetRequest(
     query_method="...",  # optional — The method used to query data points. Can be either &#39;Latest&#39; or &#39;TimeSeries&#39;.
-    filter="...",  # optional — Expression to filter the result set. For more information about filtering LUSID results, see https://support.lusid.com/knowledgebase/article/KA-01914.
+    filter="...",  # optional — Expression to filter the result set. For more information about filtering LUSID results, see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.
     custom_sort_by=[]  # optional — A list of fields and values to sort the results by.
 )
 ```

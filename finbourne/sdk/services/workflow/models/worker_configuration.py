@@ -26,11 +26,12 @@ from finbourne.sdk.services.workflow.models.health_check import HealthCheck
 from finbourne.sdk.services.workflow.models.horizon_integration import HorizonIntegration
 from finbourne.sdk.services.workflow.models.luminesce_view import LuminesceView
 from finbourne.sdk.services.workflow.models.lusid_entity_data_quality_check import LusidEntityDataQualityCheck
+from finbourne.sdk.services.workflow.models.portfolio_holding_data_quality_check import PortfolioHoldingDataQualityCheck
 from finbourne.sdk.services.workflow.models.scheduler_job import SchedulerJob
 from finbourne.sdk.services.workflow.models.sleep import Sleep
 from typing import Optional, List, Dict, Union, Annotated, Any, ClassVar, Literal, TYPE_CHECKING
 
-WORKERCONFIGURATION_ONE_OF_SCHEMAS = ["Fail", "GroupReconciliation", "HealthCheck", "HorizonIntegration", "LuminesceView", "LusidEntityDataQualityCheck", "SchedulerJob", "Sleep"]
+WORKERCONFIGURATION_ONE_OF_SCHEMAS = ["Fail", "GroupReconciliation", "HealthCheck", "HorizonIntegration", "LuminesceView", "LusidEntityDataQualityCheck", "PortfolioHoldingDataQualityCheck", "SchedulerJob", "Sleep"]
 
 class WorkerConfiguration(BaseModel):
     """
@@ -48,12 +49,14 @@ class WorkerConfiguration(BaseModel):
     oneof_schema_5_validator: Optional[LuminesceView] = None
     # data type: LusidEntityDataQualityCheck
     oneof_schema_6_validator: Optional[LusidEntityDataQualityCheck] = None
+    # data type: PortfolioHoldingDataQualityCheck
+    oneof_schema_7_validator: Optional[PortfolioHoldingDataQualityCheck] = None
     # data type: SchedulerJob
-    oneof_schema_7_validator: Optional[SchedulerJob] = None
+    oneof_schema_8_validator: Optional[SchedulerJob] = None
     # data type: Sleep
-    oneof_schema_8_validator: Optional[Sleep] = None
+    oneof_schema_9_validator: Optional[Sleep] = None
     if TYPE_CHECKING:
-        actual_instance: Union[Fail, GroupReconciliation, HealthCheck, HorizonIntegration, LuminesceView, LusidEntityDataQualityCheck, SchedulerJob, Sleep]
+        actual_instance: Union[Fail, GroupReconciliation, HealthCheck, HorizonIntegration, LuminesceView, LusidEntityDataQualityCheck, PortfolioHoldingDataQualityCheck, SchedulerJob, Sleep]
     else:
         actual_instance: Any
     one_of_schemas: ClassVar[List[str]] = WORKERCONFIGURATION_ONE_OF_SCHEMAS
@@ -114,6 +117,12 @@ class WorkerConfiguration(BaseModel):
         else:
             match += 1
             matchclass = matchclass + " LusidEntityDataQualityCheck"
+        # validate data type: PortfolioHoldingDataQualityCheck
+        if not isinstance(v, PortfolioHoldingDataQualityCheck):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `PortfolioHoldingDataQualityCheck`")
+        else:
+            match += 1
+            matchclass = matchclass + " PortfolioHoldingDataQualityCheck"
         # validate data type: SchedulerJob
         if not isinstance(v, SchedulerJob):
             error_messages.append(f"Error! Input type `{type(v)}` is not `SchedulerJob`")
@@ -128,10 +137,10 @@ class WorkerConfiguration(BaseModel):
             matchclass = matchclass + " Sleep"
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in WorkerConfiguration with oneOf schemas: Fail, GroupReconciliation, HealthCheck, HorizonIntegration, LuminesceView, LusidEntityDataQualityCheck, SchedulerJob, Sleep. Details: Matched classes " + matchclass)
+            raise ValueError("Multiple matches found when setting `actual_instance` in WorkerConfiguration with oneOf schemas: Fail, GroupReconciliation, HealthCheck, HorizonIntegration, LuminesceView, LusidEntityDataQualityCheck, PortfolioHoldingDataQualityCheck, SchedulerJob, Sleep. Details: Matched classes " + matchclass)
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in WorkerConfiguration with oneOf schemas: Fail, GroupReconciliation, HealthCheck, HorizonIntegration, LuminesceView, LusidEntityDataQualityCheck, SchedulerJob, Sleep. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in WorkerConfiguration with oneOf schemas: Fail, GroupReconciliation, HealthCheck, HorizonIntegration, LuminesceView, LusidEntityDataQualityCheck, PortfolioHoldingDataQualityCheck, SchedulerJob, Sleep. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -190,6 +199,13 @@ class WorkerConfiguration(BaseModel):
             matchclass =matchclass + " LusidEntityDataQualityCheck"
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
+        # deserialize data into PortfolioHoldingDataQualityCheck
+        try:
+            instance.actual_instance = PortfolioHoldingDataQualityCheck.from_json(json_str)
+            match += 1
+            matchclass =matchclass + " PortfolioHoldingDataQualityCheck"
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
         # deserialize data into SchedulerJob
         try:
             instance.actual_instance = SchedulerJob.from_json(json_str)
@@ -207,10 +223,10 @@ class WorkerConfiguration(BaseModel):
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into WorkerConfiguration with oneOf schemas: Fail, GroupReconciliation, HealthCheck, HorizonIntegration, LuminesceView, LusidEntityDataQualityCheck, SchedulerJob, Sleep. Matches: "+matchclass+", Details: " + ", ".join(error_messages) + ", JSON: " + json_str)
+            raise ValueError("Multiple matches found when deserializing the JSON string into WorkerConfiguration with oneOf schemas: Fail, GroupReconciliation, HealthCheck, HorizonIntegration, LuminesceView, LusidEntityDataQualityCheck, PortfolioHoldingDataQualityCheck, SchedulerJob, Sleep. Matches: "+matchclass+", Details: " + ", ".join(error_messages) + ", JSON: " + json_str)
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into WorkerConfiguration with oneOf schemas: Fail, GroupReconciliation, HealthCheck, HorizonIntegration, LuminesceView, LusidEntityDataQualityCheck, SchedulerJob, Sleep. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into WorkerConfiguration with oneOf schemas: Fail, GroupReconciliation, HealthCheck, HorizonIntegration, LuminesceView, LusidEntityDataQualityCheck, PortfolioHoldingDataQualityCheck, SchedulerJob, Sleep. Details: " + ", ".join(error_messages))
         else:
             return instance
 

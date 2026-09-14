@@ -184,7 +184,7 @@ class SystemConfigurationApi:
     def create_side_definition(self, side_configuration_data_request: Optional[SideConfigurationDataRequest] = None, **kwargs) -> TransactionSetConfigurationData:
         """[EXPERIMENTAL] CreateSideDefinition: Create side definition  # noqa: E501
 
-        Create a new side definition for use in a transaction type. For more information, see https://support.lusid.com/knowledgebase/article/KA-01875.  # noqa: E501
+        Create a new side definition for use in a transaction type. For more information, see https://support.lusid.com/docs/what-is-a-side.  # noqa: E501
         :param side_configuration_data_request: The definition of the side.
         :type side_configuration_data_request: SideConfigurationDataRequest
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
@@ -204,7 +204,7 @@ class SystemConfigurationApi:
     def create_side_definition_with_http_info(self, side_configuration_data_request: Optional[SideConfigurationDataRequest] = None, **kwargs) -> ApiResponse[TransactionSetConfigurationData]:
         """[EXPERIMENTAL] CreateSideDefinition: Create side definition  # noqa: E501
 
-        Create a new side definition for use in a transaction type. For more information, see https://support.lusid.com/knowledgebase/article/KA-01875.  # noqa: E501
+        Create a new side definition for use in a transaction type. For more information, see https://support.lusid.com/docs/what-is-a-side.  # noqa: E501
         :param side_configuration_data_request: The definition of the side.
         :type side_configuration_data_request: SideConfigurationDataRequest
         :param _preload_content: if False, the ApiResponse.data will
@@ -562,7 +562,7 @@ class SystemConfigurationApi:
     def list_configuration_transaction_types(self, as_at: Optional[datetime] = None, **kwargs) -> TransactionSetConfigurationData:
         """[EARLY ACCESS] ListConfigurationTransactionTypes: List transaction types  # noqa: E501
 
-        Get the list of current transaction types. For information on the default transaction types provided with  LUSID, see https://support.lusid.com/knowledgebase/article/KA-01873/.  # noqa: E501
+        Get the list of current transaction types. For information on the default transaction types provided with  LUSID, see https://support.lusid.com/docs/what-built-in-transaction-types-and-sides-are-provided-with-lusid.  # noqa: E501
         :param as_at: The asAt datetime at which to retrieve the transaction types. Defaults              to returning the latest versions if not specified.
         :type as_at: datetime
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
@@ -582,7 +582,7 @@ class SystemConfigurationApi:
     def list_configuration_transaction_types_with_http_info(self, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[TransactionSetConfigurationData]:
         """[EARLY ACCESS] ListConfigurationTransactionTypes: List transaction types  # noqa: E501
 
-        Get the list of current transaction types. For information on the default transaction types provided with  LUSID, see https://support.lusid.com/knowledgebase/article/KA-01873/.  # noqa: E501
+        Get the list of current transaction types. For information on the default transaction types provided with  LUSID, see https://support.lusid.com/docs/what-built-in-transaction-types-and-sides-are-provided-with-lusid.  # noqa: E501
         :param as_at: The asAt datetime at which to retrieve the transaction types. Defaults              to returning the latest versions if not specified.
         :type as_at: datetime
         :param _preload_content: if False, the ApiResponse.data will
@@ -1078,7 +1078,7 @@ class SystemConfigurationApi:
     @validate_call
     async def create_side_definition_async(self, side_configuration_data_request: Optional[SideConfigurationDataRequest] = None, **kwargs) -> TransactionSetConfigurationData:
             """[EXPERIMENTAL] CreateSideDefinition: Create side definition  # noqa: E501
-            Create a new side definition for use in a transaction type. For more information, see https://support.lusid.com/knowledgebase/article/KA-01875.  # noqa: E501
+            Create a new side definition for use in a transaction type. For more information, see https://support.lusid.com/docs/what-is-a-side.  # noqa: E501
             
             :param side_configuration_data_request: The definition of the side.
             :type side_configuration_data_request: SideConfigurationDataRequest
@@ -1099,7 +1099,7 @@ class SystemConfigurationApi:
     async def create_side_definition_with_http_info_async(self, side_configuration_data_request: Optional[SideConfigurationDataRequest] = None, **kwargs) -> ApiResponse[TransactionSetConfigurationData]:
             """[EXPERIMENTAL] CreateSideDefinition: Create side definition  # noqa: E501
 
-            Create a new side definition for use in a transaction type. For more information, see https://support.lusid.com/knowledgebase/article/KA-01875.  # noqa: E501
+            Create a new side definition for use in a transaction type. For more information, see https://support.lusid.com/docs/what-is-a-side.  # noqa: E501
 
             :param side_configuration_data_request: The definition of the side.
             :type side_configuration_data_request: SideConfigurationDataRequest
@@ -1459,7 +1459,7 @@ class SystemConfigurationApi:
     @validate_call
     async def list_configuration_transaction_types_async(self, as_at: Optional[datetime] = None, **kwargs) -> TransactionSetConfigurationData:
             """[EARLY ACCESS] ListConfigurationTransactionTypes: List transaction types  # noqa: E501
-            Get the list of current transaction types. For information on the default transaction types provided with  LUSID, see https://support.lusid.com/knowledgebase/article/KA-01873/.  # noqa: E501
+            Get the list of current transaction types. For information on the default transaction types provided with  LUSID, see https://support.lusid.com/docs/what-built-in-transaction-types-and-sides-are-provided-with-lusid.  # noqa: E501
             
             :param as_at: The asAt datetime at which to retrieve the transaction types. Defaults              to returning the latest versions if not specified.
             :type as_at: datetime
@@ -1480,7 +1480,7 @@ class SystemConfigurationApi:
     async def list_configuration_transaction_types_with_http_info_async(self, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[TransactionSetConfigurationData]:
             """[EARLY ACCESS] ListConfigurationTransactionTypes: List transaction types  # noqa: E501
 
-            Get the list of current transaction types. For information on the default transaction types provided with  LUSID, see https://support.lusid.com/knowledgebase/article/KA-01873/.  # noqa: E501
+            Get the list of current transaction types. For information on the default transaction types provided with  LUSID, see https://support.lusid.com/docs/what-built-in-transaction-types-and-sides-are-provided-with-lusid.  # noqa: E501
 
             :param as_at: The asAt datetime at which to retrieve the transaction types. Defaults              to returning the latest versions if not specified.
             :type as_at: datetime

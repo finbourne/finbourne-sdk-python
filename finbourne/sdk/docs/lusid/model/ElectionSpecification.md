@@ -4,7 +4,7 @@
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| **election_type** | **str** | Required | Available values: CashElection, CashAndSecurityOfferElection, CashOfferElection, EarlyRedemptionElection, LapseElection, OptionExerciseElection, SecurityElection, SecurityOfferElection, TenderOfferElection, MixedLotConstituentsElection, SubscribeElection. |
+| **election_type** | **str** | Required | Available values: CashElection, CashAndSecurityOfferElection, CashOfferElection, EarlyRedemptionElection, LapseElection, OptionExerciseElection, SecurityElection, SecurityOfferElection, TenderOfferElection, MixedLotConstituentsElection, SubscribeElection, ConsentGrantedElection, ConsentDeniedElection, AbstainElection, ConsentAndTenderElection, ConsentAndExchangeElection, RetainElection, OversubscribeElection, SellEntitlementElection, UnknownProceedsElection. |
 | **cardinality** | **Dict[str, Optional[str]]** | Required | *No description available.* |
 | **referenced_as** | **List[str]** | Required | *No description available.* |
 
@@ -17,7 +17,7 @@
 from finbourne.sdk.services.lusid.models.ElectionSpecification import ElectionSpecification
 
 instance = ElectionSpecification(
-    election_type="...",  # required — Available values: CashElection, CashAndSecurityOfferElection, CashOfferElection, EarlyRedemptionElection, LapseElection, OptionExerciseElection, SecurityElection, SecurityOfferElection, TenderOfferElection, MixedLotConstituentsElection, SubscribeElection.
+    election_type="...",  # required — Available values: CashElection, CashAndSecurityOfferElection, CashOfferElection, EarlyRedemptionElection, LapseElection, OptionExerciseElection, SecurityElection, SecurityOfferElection, TenderOfferElection, MixedLotConstituentsElection, SubscribeElection, ConsentGrantedElection, ConsentDeniedElection, AbstainElection, ConsentAndTenderElection, ConsentAndExchangeElection, RetainElection, OversubscribeElection, SellEntitlementElection, UnknownProceedsElection.
     cardinality=,  # required
     referenced_as=  # required
 )

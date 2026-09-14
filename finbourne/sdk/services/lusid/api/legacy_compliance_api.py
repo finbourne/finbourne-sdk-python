@@ -623,7 +623,7 @@ class LegacyComplianceApi:
     def list_legacy_compliance_rules(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ResourceListOfComplianceRule:
         """[EXPERIMENTAL] ListLegacyComplianceRules: List compliance rules, with optional filtering.  # noqa: E501
 
-        For more information about filtering results,  see https://support.lusid.com/knowledgebase/article/KA-01914.  # noqa: E501
+        For more information about filtering results,  see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.  # noqa: E501
         :param effective_at: The effective datetime or cut label at which to retrieve the rule definitions. Defaults to the current LUSID  system datetime if not specified.
         :type effective_at: str
         :param as_at: The asAt datetime at which to retrieve the rule definitions. Defaults to returning the latest version if not  specified.
@@ -651,7 +651,7 @@ class LegacyComplianceApi:
     def list_legacy_compliance_rules_with_http_info(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfComplianceRule]:
         """[EXPERIMENTAL] ListLegacyComplianceRules: List compliance rules, with optional filtering.  # noqa: E501
 
-        For more information about filtering results,  see https://support.lusid.com/knowledgebase/article/KA-01914.  # noqa: E501
+        For more information about filtering results,  see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.  # noqa: E501
         :param effective_at: The effective datetime or cut label at which to retrieve the rule definitions. Defaults to the current LUSID  system datetime if not specified.
         :type effective_at: str
         :param as_at: The asAt datetime at which to retrieve the rule definitions. Defaults to returning the latest version if not  specified.
@@ -1774,7 +1774,7 @@ class LegacyComplianceApi:
     @validate_call
     async def list_legacy_compliance_rules_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ResourceListOfComplianceRule:
             """[EXPERIMENTAL] ListLegacyComplianceRules: List compliance rules, with optional filtering.  # noqa: E501
-            For more information about filtering results,  see https://support.lusid.com/knowledgebase/article/KA-01914.  # noqa: E501
+            For more information about filtering results,  see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.  # noqa: E501
             
             :param effective_at: The effective datetime or cut label at which to retrieve the rule definitions. Defaults to the current LUSID  system datetime if not specified.
             :type effective_at: str
@@ -1803,7 +1803,7 @@ class LegacyComplianceApi:
     async def list_legacy_compliance_rules_with_http_info_async(self, effective_at: Optional[StrictStr] = None, as_at: Optional[datetime] = None, page: Optional[StrictStr] = None, limit: Optional[int] = None, filter: Optional[StrictStr] = None, **kwargs) -> ApiResponse[ResourceListOfComplianceRule]:
             """[EXPERIMENTAL] ListLegacyComplianceRules: List compliance rules, with optional filtering.  # noqa: E501
 
-            For more information about filtering results,  see https://support.lusid.com/knowledgebase/article/KA-01914.  # noqa: E501
+            For more information about filtering results,  see https://support.lusid.com/docs/filtering-information-retrieved-from-lusid.  # noqa: E501
 
             :param effective_at: The effective datetime or cut label at which to retrieve the rule definitions. Defaults to the current LUSID  system datetime if not specified.
             :type effective_at: str
