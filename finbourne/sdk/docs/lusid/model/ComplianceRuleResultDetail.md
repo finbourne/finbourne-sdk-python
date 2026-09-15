@@ -14,6 +14,7 @@
 | **rule_name** | **str** | Required | *No description available.* |
 | **rule_description** | **str** | Required | *No description available.* |
 | **outcome** | **str** | Required | *No description available.* |
+| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -33,7 +34,8 @@ instance = ComplianceRuleResultDetail(
     status="...",  # required
     rule_name="...",  # required
     rule_description="...",  # required
-    outcome="..."  # required
+    outcome="...",  # required
+    properties=PerpetualProperty(...)  # optional
 )
 ```
 
@@ -44,6 +46,7 @@ instance = ComplianceRuleResultDetail(
 - [ComplianceRuleResultPortfolioDetail](ComplianceRuleResultPortfolioDetail.md)
 - [ResourceId](ResourceId.md)
 - [ResourceId](ResourceId.md)
+- [PerpetualProperty](PerpetualProperty.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

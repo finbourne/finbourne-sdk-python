@@ -168,6 +168,7 @@ from finbourne.sdk.services.lusid.models.bucket_set_definition import BucketSetD
 from finbourne.sdk.services.lusid.models.bucket_set_node import BucketSetNode
 from finbourne.sdk.services.lusid.models.bucket_set_result import BucketSetResult
 from finbourne.sdk.services.lusid.models.bucket_set_result_bucket import BucketSetResultBucket
+from finbourne.sdk.services.lusid.models.bucket_set_share_class_details import BucketSetShareClassDetails
 from finbourne.sdk.services.lusid.models.bucketed_cash_flow_request import BucketedCashFlowRequest
 from finbourne.sdk.services.lusid.models.bucketed_cash_flow_response import BucketedCashFlowResponse
 from finbourne.sdk.services.lusid.models.bucketing_schedule import BucketingSchedule
@@ -623,6 +624,8 @@ from finbourne.sdk.services.lusid.models.get_reference_portfolio_constituents_re
 from finbourne.sdk.services.lusid.models.get_scenario_response import GetScenarioResponse
 from finbourne.sdk.services.lusid.models.get_structured_result_data_response import GetStructuredResultDataResponse
 from finbourne.sdk.services.lusid.models.get_subscription_response import GetSubscriptionResponse
+from finbourne.sdk.services.lusid.models.get_transfer_request import GetTransferRequest
+from finbourne.sdk.services.lusid.models.get_transfer_response import GetTransferResponse
 from finbourne.sdk.services.lusid.models.get_virtual_document_response import GetVirtualDocumentResponse
 from finbourne.sdk.services.lusid.models.group_by_selector_compliance_parameter import GroupBySelectorComplianceParameter
 from finbourne.sdk.services.lusid.models.group_by_step import GroupByStep
@@ -1854,6 +1857,7 @@ __all__ = [
     "BucketSetNode",
     "BucketSetResult",
     "BucketSetResultBucket",
+    "BucketSetShareClassDetails",
     "BucketedCashFlowRequest",
     "BucketedCashFlowResponse",
     "BucketingSchedule",
@@ -2309,6 +2313,8 @@ __all__ = [
     "GetScenarioResponse",
     "GetStructuredResultDataResponse",
     "GetSubscriptionResponse",
+    "GetTransferRequest",
+    "GetTransferResponse",
     "GetVirtualDocumentResponse",
     "GroupBySelectorComplianceParameter",
     "GroupByStep",

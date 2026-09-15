@@ -322,7 +322,7 @@ Name | Type | Description  | Notes
 ---
 
 # **get_decorated_compliance_run_summary**
-> DecoratedComplianceRunSummary getDecoratedComplianceRunSummary = get_decorated_compliance_run_summary(scope, code)
+> DecoratedComplianceRunSummary getDecoratedComplianceRunSummary = get_decorated_compliance_run_summary(scope, code, property_keys=property_keys)
 
 [EARLY ACCESS] GetDecoratedComplianceRunSummary: Get decorated summary results for a specific compliance run.
 
@@ -334,7 +334,8 @@ Specify a run scope and code from a previously run compliance check to get an ov
 api_instance = api_client_factory.build(ComplianceApi)
 scope = 'scope_example' # str
 code = 'code_example' # str
-api_response = api_instance.get_decorated_compliance_run_summary(scope, code)
+property_keys = ['property_keys_example'] # List[str] (optional)
+api_response = api_instance.get_decorated_compliance_run_summary(scope, code, property_keys=property_keys)
 pprint(api_response)
 ```
 
@@ -344,6 +345,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **str**| Required: Run Scope. | [required] 
  **code** | **str**| Required: Run Code. | [required] 
+ **property_keys** | [**List[str]**](../model/str.md)| A list of property keys from the &#39;Compliance&#39; domain to decorate onto each rule result.              These must take the format {domain}/{scope}/{code}, for example &#39;Compliance/live/UCITS&#39;. | [optional] 
 
 ### Return type
 

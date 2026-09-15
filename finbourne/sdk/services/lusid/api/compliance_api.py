@@ -887,7 +887,7 @@ class ComplianceApi:
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    def get_decorated_compliance_run_summary(self, scope: StrictStr, code: StrictStr, **kwargs) -> DecoratedComplianceRunSummary:
+    def get_decorated_compliance_run_summary(self, scope: StrictStr, code: StrictStr, property_keys: Optional[List[str]] = None, **kwargs) -> DecoratedComplianceRunSummary:
         """[EARLY ACCESS] GetDecoratedComplianceRunSummary: Get decorated summary results for a specific compliance run.  # noqa: E501
 
         Specify a run scope and code from a previously run compliance check to get an overview of result details.  # noqa: E501
@@ -895,6 +895,8 @@ class ComplianceApi:
         :type scope: str
         :param code: Required: Run Code. (required)
         :type code: str
+        :param property_keys: A list of property keys from the 'Compliance' domain to decorate onto each rule result.              These must take the format {domain}/{scope}/{code}, for example 'Compliance/live/UCITS'.
+        :type property_keys: List[str]
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
         :param opts: Configuration options for this request
         :type opts: ConfigurationOptions, optional
@@ -905,11 +907,11 @@ class ComplianceApi:
             message = "Error! Please call the get_decorated_compliance_run_summary_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
 
-        response = self.get_decorated_compliance_run_summary_with_http_info(scope, code, **kwargs)
+        response = self.get_decorated_compliance_run_summary_with_http_info(scope, code, property_keys, **kwargs)
         return response.data
 
     @validate_call
-    def get_decorated_compliance_run_summary_with_http_info(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DecoratedComplianceRunSummary]:
+    def get_decorated_compliance_run_summary_with_http_info(self, scope: StrictStr, code: StrictStr, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[DecoratedComplianceRunSummary]:
         """[EARLY ACCESS] GetDecoratedComplianceRunSummary: Get decorated summary results for a specific compliance run.  # noqa: E501
 
         Specify a run scope and code from a previously run compliance check to get an overview of result details.  # noqa: E501
@@ -917,6 +919,8 @@ class ComplianceApi:
         :type scope: str
         :param code: Required: Run Code. (required)
         :type code: str
+        :param property_keys: A list of property keys from the 'Compliance' domain to decorate onto each rule result.              These must take the format {domain}/{scope}/{code}, for example 'Compliance/live/UCITS'.
+        :type property_keys: List[str]
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -941,7 +945,8 @@ class ComplianceApi:
 
         _all_params = [
             'scope',
-            'code'
+            'code',
+            'property_keys'
         ]
         _all_params.extend(
             [
@@ -978,6 +983,10 @@ class ComplianceApi:
 
         # process the query parameters
         _query_params = []
+        if _params.get('property_keys') is not None:  # noqa: E501
+            _query_params.append(('propertyKeys', _params['property_keys']))
+            _collection_formats['propertyKeys'] = 'multi'
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -3170,7 +3179,7 @@ class ComplianceApi:
                 _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
     @validate_call
-    async def get_decorated_compliance_run_summary_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> DecoratedComplianceRunSummary:
+    async def get_decorated_compliance_run_summary_async(self, scope: StrictStr, code: StrictStr, property_keys: Optional[List[str]] = None, **kwargs) -> DecoratedComplianceRunSummary:
             """[EARLY ACCESS] GetDecoratedComplianceRunSummary: Get decorated summary results for a specific compliance run.  # noqa: E501
             Specify a run scope and code from a previously run compliance check to get an overview of result details.  # noqa: E501
             
@@ -3178,6 +3187,8 @@ class ComplianceApi:
             :type scope: str
             :param code: Required: Run Code. (required)
             :type code: str
+            :param property_keys: A list of property keys from the 'Compliance' domain to decorate onto each rule result.              These must take the format {domain}/{scope}/{code}, for example 'Compliance/live/UCITS'.
+            :type property_keys: List[str]
             :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
             :param opts: Configuration options for this request
             :type opts: ConfigurationOptions, optional
@@ -3188,11 +3199,11 @@ class ComplianceApi:
                 message = "Error! Please call the get_decorated_compliance_run_summary_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
                 raise ValueError(message)
 
-            response = await self.get_decorated_compliance_run_summary_with_http_info_async(scope, code, **kwargs)
+            response = await self.get_decorated_compliance_run_summary_with_http_info_async(scope, code, property_keys, **kwargs)
             return response.data
 
     @validate_call
-    async def get_decorated_compliance_run_summary_with_http_info_async(self, scope: StrictStr, code: StrictStr, **kwargs) -> ApiResponse[DecoratedComplianceRunSummary]:
+    async def get_decorated_compliance_run_summary_with_http_info_async(self, scope: StrictStr, code: StrictStr, property_keys: Optional[List[str]] = None, **kwargs) -> ApiResponse[DecoratedComplianceRunSummary]:
             """[EARLY ACCESS] GetDecoratedComplianceRunSummary: Get decorated summary results for a specific compliance run.  # noqa: E501
 
             Specify a run scope and code from a previously run compliance check to get an overview of result details.  # noqa: E501
@@ -3201,6 +3212,8 @@ class ComplianceApi:
             :type scope: str
             :param code: Required: Run Code. (required)
             :type code: str
+            :param property_keys: A list of property keys from the 'Compliance' domain to decorate onto each rule result.              These must take the format {domain}/{scope}/{code}, for example 'Compliance/live/UCITS'.
+            :type property_keys: List[str]
             :param _preload_content: if False, the ApiResponse.data will
                                     be set to none and raw_data will store the
                                     HTTP response body without reading/decoding.
@@ -3225,7 +3238,8 @@ class ComplianceApi:
 
             _all_params = [
                 'scope',
-                'code'
+                'code',
+                'property_keys'
             ]
             _all_params.extend(
                 [
@@ -3262,6 +3276,10 @@ class ComplianceApi:
 
             # process the query parameters
             _query_params = []
+            if _params.get('property_keys') is not None:  # noqa: E501
+                _query_params.append(('propertyKeys', _params['property_keys']))
+                _collection_formats['propertyKeys'] = 'multi'
+
             # process the header parameters
             _header_params = dict(_params.get('_headers', {}))
             # process the form parameters

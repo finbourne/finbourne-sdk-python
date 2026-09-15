@@ -54,9 +54,9 @@ class CreateTransferRequest(BaseModel):
     custodian_account_id_in: Optional[ResourceId] = Field(default=None, alias="custodianAccountIdIn")
     source:  StrictStr = Field(...,alias="source") 
     accounting_method:  Optional[StrictStr] = Field(default=None,alias="accountingMethod", description="Available values: AverageCost, FirstInFirstOut, LastInFirstOut, HighestCostFirst, LowestCostFirst, ProRateByUnits, ProRateByCost, ProRateByCostPortfolioCurrency, IntraDayThenFirstInFirstOut, LongTermHighestCostFirst, LongTermHighestCostFirstPortfolioCurrency, HighestCostFirstPortfolioCurrency, LowestCostFirstPortfolioCurrency, MaximumLossMinimumGain, MaximumLossMinimumGainPortfolioCurrency.") 
-    properties: Optional[Dict[str, PerpetualProperty]] = None
+    properties_out: Optional[Dict[str, PerpetualProperty]] = Field(default=None, alias="propertiesOut")
     properties_in: Optional[Dict[str, PerpetualProperty]] = Field(default=None, alias="propertiesIn")
-    __properties: ClassVar[List[str]] = ["transferId", "portfolioIdOut", "portfolioIdIn", "instrumentIdentifierOut", "instrumentIdentifierIn", "pricingMethod", "taxLotStructure", "unitsOut", "unitsIn", "amountOut", "weightOut", "tradeDateOut", "tradeDateIn", "settlementDateOut", "settlementDateIn", "exchangeRateOut", "exchangeRateIn", "transactionPriceOut", "transactionPriceIn", "counterpartyIdOut", "counterpartyIdIn", "custodianAccountIdOut", "custodianAccountIdIn", "source", "accountingMethod", "properties", "propertiesIn"]
+    __properties: ClassVar[List[str]] = ["transferId", "portfolioIdOut", "portfolioIdIn", "instrumentIdentifierOut", "instrumentIdentifierIn", "pricingMethod", "taxLotStructure", "unitsOut", "unitsIn", "amountOut", "weightOut", "tradeDateOut", "tradeDateIn", "settlementDateOut", "settlementDateIn", "exchangeRateOut", "exchangeRateIn", "transactionPriceOut", "transactionPriceIn", "counterpartyIdOut", "counterpartyIdIn", "custodianAccountIdOut", "custodianAccountIdIn", "source", "accountingMethod", "propertiesOut", "propertiesIn"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -107,13 +107,13 @@ class CreateTransferRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of custodian_account_id_in
         if self.custodian_account_id_in:
             _dict['custodianAccountIdIn'] = self.custodian_account_id_in.to_dict(by_alias=by_alias)
-        # override the default output from pydantic by calling `to_dict()` of each value in properties (dict)
+        # override the default output from pydantic by calling `to_dict()` of each value in properties_out (dict)
         _field_dict = {}
-        if self.properties:
-            for _key in self.properties:
-                if self.properties[_key]:
-                    _field_dict[_key] = self.properties[_key].to_dict(by_alias=by_alias)
-            _dict['properties'] = _field_dict
+        if self.properties_out:
+            for _key in self.properties_out:
+                if self.properties_out[_key]:
+                    _field_dict[_key] = self.properties_out[_key].to_dict(by_alias=by_alias)
+            _dict['propertiesOut'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of each value in properties_in (dict)
         _field_dict = {}
         if self.properties_in:
@@ -176,10 +176,10 @@ class CreateTransferRequest(BaseModel):
         if self.accounting_method is None and "accounting_method" in self.model_fields_set:
             _dict['accountingMethod'] = None
 
-        # set to None if properties (nullable) is None
+        # set to None if properties_out (nullable) is None
         # and model_fields_set contains the field
-        if self.properties is None and "properties" in self.model_fields_set:
-            _dict['properties'] = None
+        if self.properties_out is None and "properties_out" in self.model_fields_set:
+            _dict['propertiesOut'] = None
 
         # set to None if properties_in (nullable) is None
         # and model_fields_set contains the field
@@ -223,11 +223,11 @@ class CreateTransferRequest(BaseModel):
             "custodian_account_id_in": ResourceId.from_dict(_v) if (_v := obj.get("custodianAccountIdIn")) is not None else None,
             "source": obj.get("source"),
             "accounting_method": obj.get("accountingMethod"),
-            "properties": dict(
+            "properties_out": dict(
                 (_k, PerpetualProperty.from_dict(_v))
                 for _k, _v in _val.items()
             )
-            if (_val := obj.get("properties")) is not None
+            if (_val := obj.get("propertiesOut")) is not None
             else None,
             "properties_in": dict(
                 (_k, PerpetualProperty.from_dict(_v))

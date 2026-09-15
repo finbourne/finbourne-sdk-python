@@ -14,6 +14,10 @@ One node within a bucket set result: the fund aggregate or a single share class.
 | **shares_in_issue** | **float** | Optional | The share class&#39;s units in issue at the end of the period. Reported only for a share class that is unitised. |
 | **previous_per_unit_value** | **float** | Optional | The share class&#39;s NAV per unit at the previous valuation point, on the same basis as PerUnitValue. |
 | **previous_shares_in_issue** | **float** | Optional | The share class&#39;s units in issue at the start of the period. Reported only for a share class that is unitised. |
+| **label** | **str** | Optional | A display label for the node: the fund&#39;s display name on the fund node, the share class&#39;s name on a share class node. |
+| **previous_nav** | **float** | Optional | The net asset value this node carried at the previous valuation point, in the fund currency. Zero at the fund&#39;s first valuation point. |
+| **net_dealing_units** | **float** | Optional | The net units dealt for the share class over the period, so that the shares in issue are the previous shares in issue plus this. Set only on share class nodes, and only where the bucket set is unitised. |
+| **share_class_details** | [BucketSetShareClassDetails](BucketSetShareClassDetails.md) | Optional | *No description available.* |
 
 
 ## Usage
@@ -32,11 +36,16 @@ instance = BucketSetNode(
     per_unit_value=0.0,  # optional — The share class&#39;s NAV per unit in issue, in the fund currency, rounded to the share class&#39;s PricePrecision (left unrounded where the share class declares none). Reported only for a share class that is unitised and has units in issue to divide by. The dealing price - in the share class currency, with its instrument&#39;s rounding convention applied - is on the share class breakdown&#39;s unitisation data.
     shares_in_issue=0.0,  # optional — The share class&#39;s units in issue at the end of the period. Reported only for a share class that is unitised.
     previous_per_unit_value=0.0,  # optional — The share class&#39;s NAV per unit at the previous valuation point, on the same basis as PerUnitValue.
-    previous_shares_in_issue=0.0  # optional — The share class&#39;s units in issue at the start of the period. Reported only for a share class that is unitised.
+    previous_shares_in_issue=0.0,  # optional — The share class&#39;s units in issue at the start of the period. Reported only for a share class that is unitised.
+    label="...",  # optional — A display label for the node: the fund&#39;s display name on the fund node, the share class&#39;s name on a share class node.
+    previous_nav=0.0,  # optional — The net asset value this node carried at the previous valuation point, in the fund currency. Zero at the fund&#39;s first valuation point.
+    net_dealing_units=0.0,  # optional — The net units dealt for the share class over the period, so that the shares in issue are the previous shares in issue plus this. Set only on share class nodes, and only where the bucket set is unitised.
+    share_class_details=BucketSetShareClassDetails(...)  # optional
 )
 ```
 
 - [BucketSetResultBucket](BucketSetResultBucket.md) — used in `buckets`
+- [BucketSetShareClassDetails](BucketSetShareClassDetails.md)
 
 
 [Back to top](#) · [Back to API list](../../api_endpoints.md) · [Back to Model list](../../models.md) · [Back to README](../../../../../README.md)

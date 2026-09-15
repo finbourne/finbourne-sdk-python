@@ -336,7 +336,7 @@ wheels = [
 
 [[package]]
 name = "finbourne-sdk"
-version = "0.1.118"
+version = "0.1.120"
 source = { editable = "." }
 dependencies = [
     { name = "aenum" },

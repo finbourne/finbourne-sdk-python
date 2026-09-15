@@ -19,10 +19,14 @@ from typing import overload, Optional, Union, Awaitable
 from typing_extensions import Annotated
 
 import finbourne.sdk.services.lusid.models as packageModels
+from datetime import datetime
 from pydantic import Field
+from typing import Optional
 from typing_extensions import Annotated
 from finbourne.sdk.services.lusid.models.create_transfer_request import CreateTransferRequest
 from finbourne.sdk.services.lusid.models.create_transfer_response import CreateTransferResponse
+from finbourne.sdk.services.lusid.models.get_transfer_request import GetTransferRequest
+from finbourne.sdk.services.lusid.models.get_transfer_response import GetTransferResponse
 from finbourne.sdk.api_client import ApiClient
 from finbourne.sdk.api_response import ApiResponse
 from finbourne.sdk.extensions.api_client import SyncApiClient
@@ -51,7 +55,7 @@ class TransfersApi:
     def create_transfer(self, create_transfer_request: CreateTransferRequest, **kwargs) -> CreateTransferResponse:
         """[EXPERIMENTAL] CreateTransfer: Create a transfer.  # noqa: E501
 
-        Move a position between two portfolios, exchange one instrument for another within a portfolio, or do  both at once.                The outgoing and incoming transaction legs and the Transfer entity recording them are written as a single  atomic operation: if any part of the request is rejected, nothing is written.  # noqa: E501
+        Move a position between two portfolios, exchange one instrument for another within a portfolio, or do  both at once.  The outgoing and incoming transaction legs and the Transfer entity recording them are written as a single  atomic operation: if any part of the request is rejected, nothing is written.  # noqa: E501
         :param create_transfer_request: The transfer to create. (required)
         :type create_transfer_request: CreateTransferRequest
         :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
@@ -71,7 +75,7 @@ class TransfersApi:
     def create_transfer_with_http_info(self, create_transfer_request: CreateTransferRequest, **kwargs) -> ApiResponse[CreateTransferResponse]:
         """[EXPERIMENTAL] CreateTransfer: Create a transfer.  # noqa: E501
 
-        Move a position between two portfolios, exchange one instrument for another within a portfolio, or do  both at once.                The outgoing and incoming transaction legs and the Transfer entity recording them are written as a single  atomic operation: if any part of the request is rejected, nothing is written.  # noqa: E501
+        Move a position between two portfolios, exchange one instrument for another within a portfolio, or do  both at once.  The outgoing and incoming transaction legs and the Transfer entity recording them are written as a single  atomic operation: if any part of the request is rejected, nothing is written.  # noqa: E501
         :param create_transfer_request: The transfer to create. (required)
         :type create_transfer_request: CreateTransferRequest
         :param _preload_content: if False, the ApiResponse.data will
@@ -174,6 +178,145 @@ class TransfersApi:
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'), model_klass=packageModels)
 
+    @validate_call
+    def get_transfer(self, get_transfer_request: GetTransferRequest, as_at: Optional[datetime] = None, **kwargs) -> GetTransferResponse:
+        """[EXPERIMENTAL] GetTransfer: Get a transfer  # noqa: E501
+
+        Retrieve a transfer and both of the transactions it booked.  A transfer is identified by its scope, its code and both of its portfolios, so all four are supplied in  the request body rather than in the path.  # noqa: E501
+        :param get_transfer_request: The transfer to retrieve. (required)
+        :type get_transfer_request: GetTransferRequest
+        :param as_at: The asAt datetime at which to retrieve the transfer. Defaults to latest              version if not specified.
+        :type as_at: datetime
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :return: Returns the result object.
+        :rtype: GetTransferResponse
+        """
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the get_transfer_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+
+        response = self.get_transfer_with_http_info(get_transfer_request, as_at, **kwargs)
+        return response.data
+
+    @validate_call
+    def get_transfer_with_http_info(self, get_transfer_request: GetTransferRequest, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[GetTransferResponse]:
+        """[EXPERIMENTAL] GetTransfer: Get a transfer  # noqa: E501
+
+        Retrieve a transfer and both of the transactions it booked.  A transfer is identified by its scope, its code and both of its portfolios, so all four are supplied in  the request body rather than in the path.  # noqa: E501
+        :param get_transfer_request: The transfer to retrieve. (required)
+        :type get_transfer_request: GetTransferRequest
+        :param as_at: The asAt datetime at which to retrieve the transfer. Defaults to latest              version if not specified.
+        :type as_at: datetime
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+        :param opts: Configuration options for this request
+        :type opts: ConfigurationOptions, optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+        :rtype: tuple(GetTransferResponse, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'get_transfer_request',
+            'as_at'
+        ]
+        _all_params.extend(
+            [
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers',
+                'opts'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_transfer" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('as_at') is not None:  # noqa: E501
+            if isinstance(_params['as_at'], datetime):
+                _query_params.append(('asAt', _params['as_at'].strftime(self.sync_api_client.configuration.datetime_format)))
+            else:
+                _query_params.append(('asAt', _params['as_at']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['get_transfer_request'] is not None:
+            _body_params = _params['get_transfer_request']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.sync_api_client.select_header_accept(
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.sync_api_client.select_header_content_type(
+                ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['oauth2']  # noqa: E501
+
+        _response_types_map = {
+            '200': "GetTransferResponse",
+            '400': "LusidValidationProblemDetails",
+            '404': "LusidValidationProblemDetails",
+        }
+
+        return self.sync_api_client.call_api(
+            '/api/api/transfers/$get', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            opts=_params.get('opts'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
 
   # --- ASYNC API METHODS ---
 
@@ -181,7 +324,7 @@ class TransfersApi:
     @validate_call
     async def create_transfer_async(self, create_transfer_request: CreateTransferRequest, **kwargs) -> CreateTransferResponse:
             """[EXPERIMENTAL] CreateTransfer: Create a transfer.  # noqa: E501
-            Move a position between two portfolios, exchange one instrument for another within a portfolio, or do  both at once.                The outgoing and incoming transaction legs and the Transfer entity recording them are written as a single  atomic operation: if any part of the request is rejected, nothing is written.  # noqa: E501
+            Move a position between two portfolios, exchange one instrument for another within a portfolio, or do  both at once.  The outgoing and incoming transaction legs and the Transfer entity recording them are written as a single  atomic operation: if any part of the request is rejected, nothing is written.  # noqa: E501
             
             :param create_transfer_request: The transfer to create. (required)
             :type create_transfer_request: CreateTransferRequest
@@ -202,7 +345,7 @@ class TransfersApi:
     async def create_transfer_with_http_info_async(self, create_transfer_request: CreateTransferRequest, **kwargs) -> ApiResponse[CreateTransferResponse]:
             """[EXPERIMENTAL] CreateTransfer: Create a transfer.  # noqa: E501
 
-            Move a position between two portfolios, exchange one instrument for another within a portfolio, or do  both at once.                The outgoing and incoming transaction legs and the Transfer entity recording them are written as a single  atomic operation: if any part of the request is rejected, nothing is written.  # noqa: E501
+            Move a position between two portfolios, exchange one instrument for another within a portfolio, or do  both at once.  The outgoing and incoming transaction legs and the Transfer entity recording them are written as a single  atomic operation: if any part of the request is rejected, nothing is written.  # noqa: E501
 
             :param create_transfer_request: The transfer to create. (required)
             :type create_transfer_request: CreateTransferRequest
@@ -291,6 +434,146 @@ class TransfersApi:
 
             return await self.api_client.call_api_async(
                 '/api/api/transfers', 'POST',
+                _path_params,
+                _query_params,
+                _header_params,
+                body=_body_params,
+                post_params=_form_params,
+                files=_files,
+                response_types_map=_response_types_map,
+                auth_settings=_auth_settings,
+                _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+                _preload_content=_params.get('_preload_content', True),
+                _request_timeout=_params.get('_request_timeout'),
+                opts=_params.get('opts'),
+                collection_formats=_collection_formats,
+                _request_auth=_params.get('_request_auth'), model_klass=packageModels)
+
+    @validate_call
+    async def get_transfer_async(self, get_transfer_request: GetTransferRequest, as_at: Optional[datetime] = None, **kwargs) -> GetTransferResponse:
+            """[EXPERIMENTAL] GetTransfer: Get a transfer  # noqa: E501
+            Retrieve a transfer and both of the transactions it booked.  A transfer is identified by its scope, its code and both of its portfolios, so all four are supplied in  the request body rather than in the path.  # noqa: E501
+            
+            :param get_transfer_request: The transfer to retrieve. (required)
+            :type get_transfer_request: GetTransferRequest
+            :param as_at: The asAt datetime at which to retrieve the transfer. Defaults to latest              version if not specified.
+            :type as_at: datetime
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: GetTransferResponse
+            """
+            if '_preload_content' in kwargs:
+                message = "Error! Please call the get_transfer_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+                raise ValueError(message)
+
+            response = await self.get_transfer_with_http_info_async(get_transfer_request, as_at, **kwargs)
+            return response.data
+
+    @validate_call
+    async def get_transfer_with_http_info_async(self, get_transfer_request: GetTransferRequest, as_at: Optional[datetime] = None, **kwargs) -> ApiResponse[GetTransferResponse]:
+            """[EXPERIMENTAL] GetTransfer: Get a transfer  # noqa: E501
+
+            Retrieve a transfer and both of the transactions it booked.  A transfer is identified by its scope, its code and both of its portfolios, so all four are supplied in  the request body rather than in the path.  # noqa: E501
+
+            :param get_transfer_request: The transfer to retrieve. (required)
+            :type get_transfer_request: GetTransferRequest
+            :param as_at: The asAt datetime at which to retrieve the transfer. Defaults to latest              version if not specified.
+            :type as_at: datetime
+            :param _preload_content: if False, the ApiResponse.data will
+                                    be set to none and raw_data will store the
+                                    HTTP response body without reading/decoding.
+                                    Default is True.
+            :type _preload_content: bool, optional
+            :param _return_http_data_only: response data instead of ApiResponse
+                                          object with status code, headers, etc
+            :type _return_http_data_only: bool, optional
+            :param _request_timeout: Timeout setting. Do not use - use the opts parameter instead
+            :param opts: Configuration options for this request
+            :type opts: ConfigurationOptions, optional
+            :param _request_auth: set to override the auth_settings for an a single
+                                  request; this effectively ignores the authentication
+                                  in the spec for a single request.
+            :type _request_auth: dict, optional
+            :type _content_type: string, optional: force content-type for the request
+            :return: Returns an coroutine ApiResponse object.
+            :rtype: tuple(GetTransferResponse, status_code(int), headers(HTTPHeaderDict))
+            """
+
+            _params = locals()
+
+            _all_params = [
+                'get_transfer_request',
+                'as_at'
+            ]
+            _all_params.extend(
+                [
+                    '_return_http_data_only',
+                    '_preload_content',
+                    '_request_timeout',
+                    '_request_auth',
+                    '_content_type',
+                    '_headers',
+                    'opts'
+                ]
+            )
+
+            # validate the arguments
+            for _key, _val in _params['kwargs'].items():
+                if _key not in _all_params:
+                    raise ApiTypeError(
+                        "Got an unexpected keyword argument '%s'"
+                        " to method get_transfer" % _key
+                    )
+                _params[_key] = _val
+            del _params['kwargs']
+
+            _collection_formats = {}
+
+            # process the path parameters
+            _path_params = {}
+
+            # process the query parameters
+            _query_params = []
+            if _params.get('as_at') is not None:  # noqa: E501
+                if isinstance(_params['as_at'], datetime):
+                    _query_params.append(('asAt', _params['as_at'].strftime(self.api_client.configuration.datetime_format)))
+                else:
+                    _query_params.append(('asAt', _params['as_at']))
+
+            # process the header parameters
+            _header_params = dict(_params.get('_headers', {}))
+            # process the form parameters
+            _form_params = []
+            _files = {}
+            # process the body parameter
+            _body_params = None
+            if _params['get_transfer_request'] is not None:
+                _body_params = _params['get_transfer_request']
+
+            # set the HTTP header `Accept`
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                ['text/plain', 'application/json', 'text/json'])  # noqa: E501
+
+            # set the HTTP header `Content-Type`
+            _content_types_list = _params.get('_content_type',
+                self.api_client.select_header_content_type(
+                    ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json']))
+            if _content_types_list:
+                    _header_params['Content-Type'] = _content_types_list
+
+            # authentication setting
+            _auth_settings = ['oauth2']  # noqa: E501
+
+            _response_types_map = {
+                '200': "GetTransferResponse",
+                '400': "LusidValidationProblemDetails",
+                '404': "LusidValidationProblemDetails",
+            }
+
+            return await self.api_client.call_api_async(
+                '/api/api/transfers/$get', 'POST',
                 _path_params,
                 _query_params,
                 _header_params,

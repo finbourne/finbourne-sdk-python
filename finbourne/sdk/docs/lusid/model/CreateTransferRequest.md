@@ -30,7 +30,7 @@ A request to create a transfer: the paired transaction legs that move a position
 | **custodian_account_id_in** | [ResourceId](ResourceId.md) | Optional | *No description available.* |
 | **source** | **str** | Required | *No description available.* |
 | **accounting_method** | **str** | Optional | Available values: AverageCost, FirstInFirstOut, LastInFirstOut, HighestCostFirst, LowestCostFirst, ProRateByUnits, ProRateByCost, ProRateByCostPortfolioCurrency, IntraDayThenFirstInFirstOut, LongTermHighestCostFirst, LongTermHighestCostFirstPortfolioCurrency, HighestCostFirstPortfolioCurrency, LowestCostFirstPortfolioCurrency, MaximumLossMinimumGain, MaximumLossMinimumGainPortfolioCurrency. |
-| **properties** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | *No description available.* |
+| **properties_out** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | *No description available.* |
 | **properties_in** | [Dict[str, PerpetualProperty]](PerpetualProperty.md) | Optional | *No description available.* |
 
 
@@ -67,7 +67,7 @@ instance = CreateTransferRequest(
     custodian_account_id_in=ResourceId(...),  # optional
     source="...",  # required
     accounting_method="...",  # optional — Available values: AverageCost, FirstInFirstOut, LastInFirstOut, HighestCostFirst, LowestCostFirst, ProRateByUnits, ProRateByCost, ProRateByCostPortfolioCurrency, IntraDayThenFirstInFirstOut, LongTermHighestCostFirst, LongTermHighestCostFirstPortfolioCurrency, HighestCostFirstPortfolioCurrency, LowestCostFirstPortfolioCurrency, MaximumLossMinimumGain, MaximumLossMinimumGainPortfolioCurrency.
-    properties=PerpetualProperty(...),  # optional
+    properties_out=PerpetualProperty(...),  # optional
     properties_in=PerpetualProperty(...)  # optional
 )
 ```
